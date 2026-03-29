@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara Memperbaiki Masalah Sinkronisasi Waktu di Windows 10 & 11 | Panduan Lengkap</title>
+    <meta name="description" content="Panduan lengkap memperbaiki jam Windows 10/11 yang salah, tidak sinkron, atau error. Pelajari cara mengatur Windows Time Service dan NTP settings dengan mudah.">
+    <meta name="keywords" content="Windows 10 time sync, Windows 11 time sync, w32time error, NTP server, fix Windows clock, Windows Time Service, sinkronisasi waktu Windows">
+    <meta name="news_keywords" content="Windows 10, Windows 11, time synchronization, NTP, w32time, Windows Time Service, fix clock error">
+    <meta name="author" content="Dalam.Web.ID">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="promphint" content="Mengapa jam Windows 10/11 saya selalu salah? Biasanya karena Windows Time Service berhenti atau NTP server tidak terhubung. Coba restart service w32time dan ganti server ke pool.ntp.org.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-memperbaiki-masalah-sinkronisasi-waktu-windows-10-11.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cara Memperbaiki Masalah Sinkronisasi Waktu di Windows 10 & 11">
+    <meta property="og:description" content="Panduan lengkap memperbaiki jam Windows yang salah dengan Windows Time Service dan NTP settings. Cocok untuk pemula!">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cara-memperbaiki-masalah-sinkronisasi-waktu-windows-10-11.html">
+    <meta property="og:site_name" content="Dalam.Web.ID">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HEkjTEpbgAA-VJj?format=jpg&name=large">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:published_time" content="2026-03-29T00:00:00+07:00">
+    <meta property="article:modified_time" content="2026-03-29T00:00:00+07:00">
+    <meta property="article:author" content="Dalam.Web.ID">
+    <meta property="article:tag" content="Windows 10">
+    <meta property="article:tag" content="Windows 11">
+    <meta property="article:tag" content="Time Sync">
+    <meta property="article:tag" content="NTP">
+    <meta property="article:tag" content="Windows Time Service">
+    <meta property="article:section" content="Tutorial">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cara Memperbaiki Masalah Sinkronisasi Waktu di Windows 10 & 11">
+    <meta name="twitter:description" content="Panduan lengkap memperbaiki jam Windows yang salah dengan Windows Time Service dan NTP settings.">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HEkjTEpbgAA-VJj?format=jpg&name=large">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="https://dalam.web.id/favicon.webp">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* CSS Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Light Theme Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-code: #1e293b;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #0ea5e9;
+            --accent-success: #22c55e;
+            --accent-warning: #f59e0b;
+            --accent-danger: #ef4444;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        }
+
+        /* Dark Theme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0f172a;
+                --bg-secondary: #1e293b;
+                --bg-tertiary: #334155;
+                --bg-code: #020617;
+                --text-primary: #f8fafc;
+                --text-secondary: #cbd5e1;
+                --text-muted: #94a3b8;
+                --accent-primary: #60a5fa;
+                --accent-secondary: #38bdf8;
+                --border-color: #334155;
+                --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+                --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+                --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Main Container */
+        .article-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .article-container {
+                padding: 2.5rem;
+            }
+        }
+
+        /* Article Header */
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .difficulty-badge {
+            background: linear-gradient(135deg, var(--accent-success), #16a34a);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .time-badge {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+
+        .article-title {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .article-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Typography */
+        h2 {
+            font-size: clamp(1.375rem, 3vw, 1.75rem);
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2 i {
+            color: var(--accent-primary);
+            font-size: 0.875em;
+        }
+
+        h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        h4 {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.625rem;
+            color: var(--text-secondary);
+        }
+
+        li::marker {
+            color: var(--accent-primary);
+        }
+
+        /* Links */
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-secondary);
+            text-decoration: underline;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--bg-code);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        pre code {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+            display: block;
+        }
+
+        /* Inline Code */
+        code {
+            font-family: var(--font-mono);
+            background: var(--bg-tertiary);
+            padding: 0.125rem 0.375rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9em;
+            color: var(--accent-primary);
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid var(--accent-warning);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .warning-box {
+                background: linear-gradient(135deg, #451a03, #78350f);
+            }
+        }
+
+        .warning-box .info-box-title {
+            color: #b45309;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .warning-box .info-box-title {
+                color: #fbbf24;
+            }
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border-left: 4px solid var(--accent-success);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .tip-box {
+                background: linear-gradient(135deg, #064e3b, #065f46);
+            }
+        }
+
+        .tip-box .info-box-title {
+            color: #047857;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .tip-box .info-box-title {
+                color: #34d399;
+            }
+        }
+
+        .note-box {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            border-left: 4px solid #6366f1;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .note-box {
+                background: linear-gradient(135deg, #1e1b4b, #312e81);
+            }
+        }
+
+        .note-box .info-box-title {
+            color: #4338ca;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .note-box .info-box-title {
+                color: #818cf8;
+            }
+        }
+
+        /* Step Cards */
+        .step-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .step-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Keyboard Shortcuts */
+        kbd {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.125rem 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            box-shadow: 0 2px 0 var(--border-color);
+        }
+
+        /* Prerequisites */
+        .prerequisites {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .prerequisites {
+                background: linear-gradient(135deg, #451a03, #78350f);
+            }
+        }
+
+        .prerequisites h3 {
+            color: #b45309;
+            margin-top: 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .prerequisites h3 {
+                color: #fbbf24;
+            }
+        }
+
+        /* Key Takeaways */
+        .key-takeaways {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .key-takeaways {
+                background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            }
+        }
+
+        .key-takeaways h3 {
+            color: #1e40af;
+            margin-top: 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .key-takeaways h3 {
+                color: #93c5fd;
+            }
+        }
+
+        .key-takeaways ul {
+            margin-bottom: 0;
+        }
+
+        /* Troubleshooting Grid */
+        .troubleshoot-grid {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .troubleshoot-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .troubleshoot-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+        }
+
+        .troubleshoot-item h4 {
+            margin-top: 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .troubleshoot-item h4 i {
+            color: var(--accent-danger);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--accent-primary);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .article-container {
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .info-box, .step-card, .toc {
+                break-inside: avoid;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <article class="article-container">
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="difficulty-badge"><i class="fas fa-signal"></i> Pemula</span>
+                <span class="time-badge"><i class="fas fa-clock"></i> 15 Menit</span>
+                <span><i class="fas fa-calendar"></i> 29 Maret 2026</span>
+                <span><i class="fas fa-user"></i> Dalam.Web.ID</span>
+            </div>
+            <h1 class="article-title">Cara Memperbaiki Masalah Sinkronisasi Waktu di Windows 10 & 11</h1>
+            <p class="article-subtitle">
+                Panduan lengkap mengatasi jam PC Windows yang salah, tidak sinkron, atau error dengan Windows Time Service dan pengaturan NTP.
+                Cocok untuk pemula yang ingin memperbaiki masalah waktu secara mandiri!
+            </p>
+        </header>
+ <p>
+            Pernah mengalami situasi di mana jam di PC Windows kamu tiba-tiba salah? Atau mungkin waktu di komputer selalu mundur beberapa menit setiap hari?
+            Masalah sinkronisasi waktu di **Windows 10** dan **Windows 11** ini sebenarnya sangat umum terjadi, tapi banyak orang yang mengabaikannya karena menganggapnya sepele.
+        </p>
+        <!-- Featured Image -->
+        <img src="https://pbs.twimg.com/media/HEkjTEpbgAA-VJj?format=jpg&name=large" alt="Windows Time Sync Troubleshooting" class="featured-image" loading="eager">
+
+        <!-- Introduction -->
+
+
+        <p>
+            Padahal, waktu yang tidak akurat bisa menyebabkan berbagai masalah serius lho! Mulai dari **sertifikat keamanan website yang error**,
+            **gagal login aplikasi**, **masalah akun Microsoft**, hingga **gangguan pada tugas terjadwal dan update sistem**.
+            Kabar baiknya, sebagian besar masalah sinkronisasi waktu Windows bisa diperbaiki dengan mudah kok.
+        </p>
+
+        <p>
+            Dalam artikel ini, kita akan membahas **cara memperbaiki masalah sinkronisasi waktu Windows** secara menyeluruh.
+            Mulai dari solusi paling mudah, lalu lanjut ke langkah teknis seperti merestart Windows Time Service dan mengkonfigurasi ulang pengaturan NTP (Network Time Protocol).
+            Yuk, simak panduannya!
+        </p>
+
+
+        <!-- What is W32Time -->
+        <h2 id="apa-itu-w32time"><i class="fas fa-info-circle"></i> Apa Itu Windows Time Service (W32Time)?</h2>
+
+        <p>
+            Sebelum masuk ke tutorial, ada baiknya kita pahami dulu apa itu **Windows Time Service** atau yang sering disebut **W32Time**.
+            Ini adalah layanan bawaan Windows yang bertanggung jawab untuk menyinkronkan jam sistem kamu dengan server waktu di internet.
+        </p>
+
+        <p>
+            Windows Time Service menggunakan protokol yang namanya **NTP (Network Time Protocol)** untuk berkomunikasi dengan server waktu.
+            Protokol ini memastikan bahwa jam di komputer kamu selalu akurat, bahkan hingga tingkat milidetik.
+            Tanpa layanan ini, jam di PC kamu akan terus menyimpang dari waktu yang sebenarnya.
+        </p>
+
+        <div class="info-box">
+            <div class="info-box-title"><i class="fas fa-lightbulb"></i> Fakta Menarik</div>
+            <p style="margin-bottom: 0;">
+                NTP pertama kali dikembangkan oleh David L. Mills di University of Delaware pada tahun 1981.
+                Sampai sekarang, NTP masih menjadi standar utama untuk sinkronisasi waktu di seluruh dunia,
+                termasuk digunakan oleh Windows, Linux, macOS, dan hampir semua perangkat yang terhubung ke internet!
+            </p>
+        </div>
+
+        <!-- Prerequisites -->
+        <h2 id="prasyarat"><i class="fas fa-check-circle"></i> Prasyarat Sebelum Memulai</h2>
+
+        <p>
+            Sebelum kita mulai memperbaiki masalah sinkronisasi waktu, pastikan beberapa hal berikut ini sudah kamu siapkan:
+        </p>
+
+        <div class="prerequisites">
+            <h3><i class="fas fa-clipboard-list"></i> Checklist Prasyarat</h3>
+            <ul>
+                <li><strong>Koneksi internet aktif</strong> - Diperlukan untuk mengakses server waktu NTP</li>
+                <li><strong>Akun dengan hak administrator</strong> - Beberapa pengaturan memerlukan izin admin</li>
+                <li><strong>Zona waktu sudah benar</strong> - Pastikan zona waktu sesuai dengan lokasi kamu</li>
+                <li><strong>Menggunakan Windows 10 atau Windows 11</strong> - Panduan ini khusus untuk kedua versi tersebut</li>
+            </ul>
+        </div>
+
+        <div class="note-box info-box">
+            <div class="info-box-title"><i class="fas fa-info-circle"></i> Catatan Penting</div>
+            <p style="margin-bottom: 0;">
+                Tampilan Settings di Windows 10 dan Windows 11 memang sedikit berbeda, tapi opsi yang tersedia sebenarnya sangat mirip.
+                Jadi jangan khawatir jika screenshot di artikel ini terlihat sedikit berbeda dengan tampilan di PC kamu ya!
+            </p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card" id="langkah1">
+            <div class="step-header">
+                <span class="step-number">1</span>
+                <h3 class="step-title">Cek Pengaturan Tanggal, Waktu, dan Zona Waktu</h3>
+            </div>
+
+            <p>
+                Langkah pertama dan paling dasar adalah memastikan bahwa Windows menggunakan zona waktu yang benar dan fitur sinkronisasi otomatis sudah diaktifkan.
+                Ini adalah penyebab paling umum mengapa jam di PC terlihat "salah".
+            </p>
+
+            <h4>Cara Mengecek:</h4>
+            <ol>
+                <li>Tekan kombinasi tombol <kbd>Windows</kbd> + <kbd>I</kbd> untuk membuka Settings</li>
+                <li>Navigasi ke menu berikut:
+                    <ul>
+                        <li><strong>Windows 11:</strong> Time & language > Date & time</li>
+                        <li><strong>Windows 10:</strong> Time & Language > Date & time</li>
+                    </ul>
+                </li>
+                <li>Pastikan opsi berikut dalam keadaan **ON** (jika tersedia):
+                    <ul>
+                        <li>**Set time automatically**</li>
+                        <li>**Set time zone automatically**</li>
+                    </ul>
+                </li>
+                <li>Verifikasi bahwa **Time zone** yang ditampilkan sesuai dengan wilayah kamu</li>
+            </ol>
+
+            <div class="tip-box info-box">
+                <div class="info-box-title"><i class="fas fa-magic"></i> Tips Pro</div>
+                <p style="margin-bottom: 0;">
+                    Jika deteksi zona waktu otomatis tidak akurat, kamu bisa mematikannya dan memilih zona waktu secara manual dari dropdown list.
+                    Misalnya, untuk Indonesia pilih **(UTC+07:00) Bangkok, Hanoi, Jakarta**.
+                </p>
+            </div>
+
+            <p>
+                Jika zona waktu yang dipilih salah, jam di komputer akan terlihat tidak tepat meskipun sinkronisasi internet time berfungsi dengan baik.
+                Jadi pastikan ini adalah hal pertama yang kamu cek ya!
+            </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card" id="langkah2">
+            <div class="step-header">
+                <span class="step-number">2</span>
+                <h3 class="step-title">Sinkronisasi Manual di Settings</h3>
+            </div>
+
+            <p>
+                Terkadang Windows hanya perlu "dorongan" manual untuk menyinkronkan ulang jamnya.
+                Fitur **Sync now** bisa menjadi solusi cepat untuk masalah sinkronisasi yang ringan.
+            </p>
+
+            <h4>Cara Melakukan Sinkronisasi Manual:</h4>
+            <ol>
+                <li>Tetap berada di halaman **Date & time** Settings</li>
+                <li>Scroll ke bawah hingga menemukan bagian **Additional settings** atau **Synchronize your clock**</li>
+                <li>Klik tombol **Sync now**</li>
+            </ol>
+
+            <p>
+                Jika sinkronisasi berhasil, Windows akan menampilkan waktu terakhir sinkronisasi yang berhasil.
+                Namun, jika kamu melihat pesan error seperti **"Time synchronization failed"**, lanjutkan ke langkah berikutnya.
+            </p>
+
+            <div class="note-box info-box">
+                <div class="info-box-title"><i class="fas fa-exclamation-circle"></i> Perlu Diingat</div>
+                <p style="margin-bottom: 0;">
+                    Tombol **Sync now** mungkin tidak tersedia atau berwarna abu-abu (disabled) di beberapa kasus.
+                    Ini bisa terjadi karena kebijakan sistem, pembatasan akun, atau pengelolaan oleh organisasi.
+                    Jika demikian, gunakan metode Command Prompt di langkah 4.
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card" id="langkah3">
+            <div class="step-header">
+                <span class="step-number">3</span>
+                <h3 class="step-title">Pastikan Windows Time Service Berjalan</h3>
+            </div>
+
+            <p>
+                Windows sangat bergantung pada layanan yang bernama **Windows Time** atau **W32Time** untuk menyinkronkan jam dengan server waktu di internet.
+                Jika layanan ini berhenti atau tidak berjalan, sinkronisasi otomatis tidak akan berfungsi.
+            </p>
+
+            <h4>Cara Memeriksa dan Menjalankan Windows Time Service:</h4>
+            <ol>
+                <li>Tekan <kbd>Windows</kbd> + <kbd>R</kbd>, ketik `services.msc`, lalu tekan **Enter**</li>
+                <li>Di jendela Services, scroll ke bawah dan cari **Windows Time**</li>
+                <li>Double-click pada layanan tersebut</li>
+                <li>Periksa pengaturan berikut:
+                    <ul>
+                        <li>**Startup type:** Harus diatur ke **Automatic** atau **Automatic (Trigger Start)**</li>
+                        <li>**Service status:** Harus menunjukkan **Running**</li>
+                    </ul>
+                </li>
+                <li>Jika layanan tidak berjalan:
+                    <ul>
+                        <li>Klik tombol **Start**</li>
+                        <li>Klik **Apply**</li>
+                        <li>Klik **OK**</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <p>
+                Jika layanan sudah berjalan tapi masih ada masalah, kamu bisa mencoba me-restart dengan cara klik **Stop**,
+                tunggu beberapa detik, lalu klik **Start** lagi.
+            </p>
+
+            <div class="warning-box info-box">
+                <div class="info-box-title"><i class="fas fa-exclamation-triangle"></i> Peringatan</div>
+                <p style="margin-bottom: 0;">
+                    Jika Windows Time Service di-disable, PC kamu mungkin tidak akan pernah memperbarui jamnya dengan benar,
+                    meskipun tombol Sync di Settings tersedia. Pastikan layanan ini selalu dalam keadaan **Running** dan **Automatic**!
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card" id="langkah4">
+            <div class="step-header">
+                <span class="step-number">4</span>
+                <h3 class="step-title">Force Resync dengan Command Prompt</h3>
+            </div>
+
+            <p>
+                Jika pengaturan di Settings tidak menyelesaikan masalah, kita bisa menggunakan **Command Prompt** untuk secara manual
+                me-restart dan mengkonfigurasi ulang Windows Time Service. Metode ini lebih "paksa" dan sering berhasil untuk kasus yang lebih rumit.
+            </p>
+
+            <h4>Cara Melakukan Force Resync:</h4>
+            <ol>
+                <li>Klik tombol **Start**, ketik `cmd`</li>
+                <li>Right-click pada **Command Prompt** dan pilih **Run as administrator**</li>
+                <li>Masukkan perintah berikut satu per satu, tekan **Enter** setelah setiap perintah:</li>
+            </ol>
+
+            <pre><code>net stop w32time
+w32tm /unregister
+w32tm /register
+net start w32time
+w32tm /resync</code></pre>
+
+            <p>
+                Tunggu konfirmasi setelah setiap perintah. Jika berhasil, kamu akan melihat pesan seperti:
+            </p>
+
+            <pre><code>The command completed successfully.
+
+Sending resync command to local computer
+The command completed successfully.</code></pre>
+
+            <div class="tip-box info-box">
+                <div class="info-box-title"><i class="fas fa-lightbulb"></i> Tips</div>
+                <p style="margin-bottom: 0;">
+                    Jika perintah `w32tm /resync` gagal, jangan khawatir! Lanjutkan ke langkah 5 dan tentukan NTP server secara manual.
+                    Biasanya masalahnya adalah server waktu default tidak bisa diakses.
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-card" id="langkah5">
+            <div class="step-header">
+                <span class="step-number">5</span>
+                <h3 class="step-title">Konfigurasi NTP Server yang Handal</h3>
+            </div>
+
+            <p>
+                Windows biasanya menyinkronkan dengan server waktu default dari Microsoft. Namun, jika server tersebut tidak bisa diakses atau
+                terkonfigurasi salah, mengganti ke server NTP lain bisa menyelesaikan masalah. Ada dua cara untuk melakukannya.
+            </p>
+
+            <h4>Opsi A: Mengubah Server Waktu dari Control Panel</h4>
+            <ol>
+                <li>Tekan <kbd>Windows</kbd> + <kbd>R</kbd>, ketik `control`, lalu tekan **Enter**</li>
+                <li>Pergi ke **Clock and Region > Date and Time**</li>
+                <li>Buka tab **Internet Time**</li>
+                <li>Klik **Change settings**</li>
+                <li>Centang opsi **Synchronize with an Internet time server**</li>
+                <li>Di kolom **Server**, coba salah satu dari berikut:
+                    <ul>
+                        <li>`time.windows.com`</li>
+                        <li>`pool.ntp.org`</li>
+                    </ul>
+                </li>
+                <li>Klik **Update now**</li>
+                <li>Klik **OK**, lalu **OK** lagi</li>
+            </ol>
+
+            <p>
+                Jika satu server gagal, coba server yang lain. **pool.ntp.org** adalah jaringan server waktu publik yang sering digunakan
+                ketika server default tidak tersedia.
+            </p>
+
+            <h4>Opsi B: Mengatur NTP Server via Command Prompt</h4>
+            <p>
+                Buka Command Prompt sebagai administrator dan jalankan perintah berikut:
+            </p>
+
+            <pre><code>w32tm /config /manualpeerlist:"time.windows.com,0x8 pool.ntp.org,0x8" /syncfromflags:manual /update
+net stop w32time
+net start w32time
+w32tm /resync</code></pre>
+
+            <p>
+                Perintah ini memberitahu Windows untuk menggunakan server NTP secara manual, lalu me-restart layanan waktu.
+            </p>
+
+            <div class="info-box">
+                <div class="info-box-title"><i class="fas fa-server"></i> Tentang pool.ntp.org</div>
+                <p style="margin-bottom: 0;">
+                    **pool.ntp.org** adalah proyek komunitas yang menyediakan akses ke ribuan server waktu di seluruh dunia.
+                    Sistem ini secara otomatis memilih server terdekat dan paling responsif untuk kamu.
+                    Ini adalah alternatif yang sangat andal ketika server Microsoft bermasalah.
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="step-card" id="langkah6">
+            <div class="step-header">
+                <span class="step-number">6</span>
+                <h3 class="step-title">Cek Domain atau Workgroup</h3>
+            </div>
+
+            <p>
+                Jika PC kamu terhubung ke domain kantor atau sekolah, pengaturan sinkronisasi waktu mungkin dikontrol oleh administrator IT.
+                Dalam kasus ini, perubahan manual mungkin tidak akan bertahan atau bahkan tidak bisa dilakukan.
+            </p>
+
+            <h4>Cara Mengecek Domain/Workgroup:</h4>
+            <ol>
+                <li>Buka **Settings**</li>
+                <li>Navigasi ke:
+                    <ul>
+                        <li><strong>Windows 11:</strong> System > About</li>
+                        <li><strong>Windows 10:</strong> System > About</li>
+                    </ul>
+                </li>
+                <li>Cari informasi **Domain** atau **Workgroup**</li>
+            </ol>
+
+            <p>
+                Jika perangkat terdaftar dalam domain, waktu mungkin disinkronkan dari domain controller alih-alih dari server waktu publik.
+                Perubahan NTP manual mungkin tidak akan berhasil dalam situasi ini.
+            </p>
+
+            <div class="warning-box info-box">
+                <div class="info-box-title"><i class="fas fa-user-shield"></i> Peringatan Penting</div>
+                <p style="margin-bottom: 0;">
+                    Pada PC yang dikelola oleh organisasi (kantor/sekolah), **hubungi administrator IT** sebelum mengubah pengaturan layanan waktu.
+                    Mengubah konfigurasi tanpa izin bisa melanggar kebijakan perusahaan dan menyebabkan masalah dengan sistem yang terintegrasi.
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="step-card" id="langkah7">
+            <div class="step-header">
+                <span class="step-number">7</span>
+                <h3 class="step-title">Verifikasi Status Sinkronisasi</h3>
+            </div>
+
+            <p>
+                Setelah melakukan perubahan, penting untuk memverifikasi apakah Windows sudah menyinkronkan dengan benar.
+                Kita bisa menggunakan Command Prompt untuk memeriksa status sinkronisasi secara detail.
+            </p>
+
+            <h4>Cara Memeriksa Status:</h4>
+            <ol>
+                <li>Buka **Command Prompt** sebagai administrator</li>
+                <li>Jalankan perintah:</li>
+            </ol>
+
+            <pre><code>w32tm /query /status</code></pre>
+
+            <p>
+                Perhatikan informasi berikut:
+            </p>
+            <ul>
+                <li>**Source** - Harus menunjukkan server NTP yang digunakan</li>
+                <li>**Last Successful Sync Time** - Waktu terakhir sinkronisasi berhasil</li>
+                <li>**Poll Interval** - Interval sinkronisasi</li>
+            </ul>
+
+            <p>
+                Jika **Source** menunjukkan server NTP dan **Last Successful Sync Time** adalah waktu yang baru,
+                berarti jam kamu sudah sinkron dengan benar!
+            </p>
+
+            <p>
+                Kamu juga bisa menjalankan perintah berikut untuk melihat konfigurasi lengkap:
+            </p>
+
+            <pre><code>w32tm /query /configuration</code></pre>
+
+            <p>
+                Perintah ini akan menampilkan semua pengaturan Windows Time saat ini, termasuk server NTP yang dikonfigurasi dan parameter lainnya.
+            </p>
+        </div>
+
+        <!-- Step 8 -->
+        <div class="step-card" id="langkah8">
+            <div class="step-header">
+                <span class="step-number">8</span>
+                <h3 class="step-title">Restart PC dan Uji Lagi</h3>
+            </div>
+
+            <p>
+                Beberapa perubahan pada layanan waktu akan lebih efektif setelah komputer di-restart.
+                Ini memastikan semua konfigurasi baru dimuat dengan benar dan layanan berjalan dengan bersih.
+            </p>
+
+            <h4>Langkah-langkah:</h4>
+            <ol>
+                <li>Simpan semua pekerjaan yang sedang berlangsung</li>
+                <li>Restart komputer kamu</li>
+                <li>Setelah login kembali, buka **Settings > Date & time**</li>
+                <li>Klik **Sync now** lagi jika diperlukan</li>
+                <li>Pastikan tanggal dan waktu yang ditampilkan sudah benar</li>
+            </ol>
+
+            <p>
+                Setelah restart, sebaiknya biarkan PC menyala selama beberapa jam dan periksa kembali apakah waktu masih akurat.
+                Jika waktu tetap benar setelah beberapa jam, berarti masalah sudah teratasi!
+            </p>
+        </div>
+
+        <!-- Troubleshooting -->
+        <h2 id="troubleshooting"><i class="fas fa-tools"></i> Tips & Troubleshooting</h2>
+
+        <p>
+            Meskipun sudah mengikuti semua langkah di atas, terkadang masalah masih bisa terjadi.
+            Berikut adalah beberapa tips tambahan untuk mengatasi masalah yang lebih spesifik:
+        </p>
+
+        <div class="troubleshoot-grid">
+            <div class="troubleshoot-item">
+                <h4><i class="fas fa-times-circle"></i> Jika Sinkronisasi Masih Gagal</h4>
+                <ul>
+                    <li>Pastikan koneksi internet aktif</li>
+                    <li>Nonaktifkan sementara firewall atau antivirus pihak ketiga</li>
+                    <li>Cek kembali Windows Time di services.msc</li>
+                    <li>Coba server NTP lain seperti pool.ntp.org</li>
+                </ul>
+            </div>
+
+            <div class="troubleshoot-item">
+                <h4><i class="fas fa-history"></i> Jika Jam Terus Menyimpang</h4>
+                <ul>
+                    <li>Baterai CMOS motherboard mungkin lemah (untuk desktop)</li>
+                    <li>Hardware jam internal laptop bermasalah</li>
+                    <li>Masalah muncul setelah setiap shutdown</li>
+                    <li>Pertimbangkan untuk ganti baterai CMOS</li>
+                </ul>
+            </div>
+
+            <div class="troubleshoot-item">
+                <h4><i class="fas fa-ban"></i> Tombol Sync Hilang/Abu-abu</h4>
+                <ul>
+                    <li>Pastikan login sebagai administrator</li>
+                    <li>Cek apakah PC dikelola organisasi</li>
+                    <li>Gunakan metode Command Prompt</li>
+                    <li>Hubungi IT admin jika PC domain</li>
+                </ul>
+            </div>
+
+            <div class="troubleshoot-item">
+                <h4><i class="fas fa-exclamation-circle"></i> Aplikasi Masih Error</h4>
+                <ul>
+                    <li>Lakukan restart penuh</li>
+                    <li>Sign out dan sign in kembali</li>
+                    <li>Tutup dan buka ulang browser/aplikasi</li>
+                    <li>Bersihkan cache browser</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box info-box">
+            <div class="info-box-title"><i class="fas fa-battery-quarter"></i> Tentang Baterai CMOS</div>
+            <p style="margin-bottom: 0;">
+                Jika PC kamu kehilangan waktu setiap kali dimatikan, kemungkinan besar baterai CMOS sudah lemah.
+                Baterai ini bertugas menjaga jam internal tetap berjalan meski komputer mati.
+                Baterai CMOS biasanya berbentuk koin CR2032 dan harganya sangat murah.
+                Menggantinya bisa menyelesaikan masalah waktu yang persisten!
+            </p>
+        </div>
+
+        <!-- Conclusion -->
+        <h2 id="kesimpulan"><i class="fas fa-flag-checkered"></i> Kesimpulan & Key Takeaways</h2>
+
+        <p>
+            Memperbaiki masalah sinkronisasi waktu di Windows 10 dan Windows 11 sebenarnya tidak sesulit yang dibayangkan.
+            Dengan mengikuti panduan ini, kamu sudah mempelajari cara mengidentifikasi dan memperbaiki berbagai masalah terkait jam sistem.
+        </p>
+
+        <p>
+            Pada kebanyakan kasus, solusinya cukup sederhana: **verifikasi zona waktu**, **sinkronisasi manual**, **restart Windows Time Service**,
+            dan **mengatur NTP server yang handal**. Langkah-langkah ini bisa mengembalikan akurasi waktu dan mencegah error login, masalah update, serta peringatan sertifikat.
+        </p>
+
+        <p>
+            Menjaga agar jam PC tetap akurat tidak hanya penting untuk kenyamanan, tapi juga untuk **keamanan dan stabilitas sistem**.
+            Banyak proses penting di Windows bergantung pada waktu yang tepat, termasuk update keamanan, verifikasi sertifikat SSL, dan autentikasi akun.
+        </p>
+
+        <!-- Key Takeaways -->
+        <div class="key-takeaways">
+            <h3><i class="fas fa-key"></i> Poin Penting yang Perlu Diingat</h3>
+            <ul>
+                <li>Waktu sistem yang salah bisa menyebabkan masalah login, update, dan sertifikat keamanan</li>
+                <li>Windows Time Service (W32Time) harus berjalan agar sinkronisasi internet time berfungsi</li>
+                <li>Kamu bisa memaksa resync manual menggunakan perintah `w32tm`</li>
+                <li>Mengatur NTP server seperti **time.windows.com** atau **pool.ntp.org** sering menyelesaikan masalah</li>
+                <li>Jam yang terus menyimpang setelah shutdown bisa jadi indikasi masalah baterai CMOS atau hardware</li>
+            </ul>
+        </div>
+
+        <p>
+            Semoga artikel ini membantu kamu menyelesaikan masalah jam di Windows! Jika ada pertanyaan atau pengalaman lain terkait topik ini,
+            jangan ragu untuk berbagi. Selamat mencoba dan semoga berhasil! <i class="fas fa-rocket"></i>
+        </p>
+
+        <!-- Related Articles & Response -->
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                <i class="fas fa-code"></i> Dibuat dengan semangat oleh <strong>Dalam.Web.ID</strong>
+            </p>
+            <p style="margin-top: 0.5rem;">
+                Artikel ini dibuat untuk edukasi dan referensi teknis.
+                <a href="https://dalam.web.id">Kunjungi Website Kami</a> untuk lebih banyak tutorial.
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted);">
+                &copy; 2026 Dalam.Web.ID - All Rights Reserved.
+            </p>
+        </footer>
+    </article>
+</body>
+</html>
