@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generator Label Mentari - Custom Logo UI</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="title" content="Generator Label Mentari - Custom Logo UI">
+<meta name="description" content="Generator label otomatis untuk kertas A4 format 24 box (Mentari). Presisi tinggi, mudah digunakan, dan siap cetak untuk kebutuhan label produk, alamat, dan lainnya.">
+<meta name="keywords" content="generator label, label mentari, 24 box A4, cetak label, template label, label otomatis, label produk">
+<meta name="author" content="Layar Kosong">
+<meta name="robots" content="index, follow">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://dalam.web.id/artikel/generator-label-24-box.html">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dalam.web.id/artikel/generator-label-24-box.html">
+<meta property="og:title" content="Generator Label Mentari - Custom Logo UI">
+<meta property="og:description" content="Buat label A4 24 box dengan presisi tinggi secara otomatis. Cocok untuk bisnis, pengiriman, dan kebutuhan cetak lainnya.">
+<meta property="og:image" content="https://dalam.web.id/img/AAAAAA/1dhfgsdgss.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://dalam.web.id/artikel/generator-label-24-box.html">
+<meta name="twitter:title" content="Generator Label Mentari - Custom Logo UI">
+<meta name="twitter:description" content="Generator label otomatis format 24 box A4, cepat, presisi, dan siap cetak.">
+<meta name="twitter:image" content="https://dalam.web.id/img/AAAAAA/1dhfgsdgss.webp">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
+<style>
+@page {
+size: A4;
+margin: 0;
+}
+
+body {
+font-family: 'Arial', sans-serif;
+margin: 0;
+background: #f0f0f0;
+}
+
+/* Menu Atas (Non-Print) */
+.no-print {
+background: white;
+padding: 20px;
+border-bottom: 2px solid #ccc;
+position: sticky;
+top: 0;
+z-index: 100;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+
+.controls {
+display: flex;
+gap: 15px;
+align-items: center;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.input-group {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 5px;
+}
+
+input[type="text"], input[type="file"] {
+padding: 6px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+/* Container Halaman A4 */
+.page-wrapper {
+width: 210mm;
+height: 297mm;
+padding: 8.5mm 15mm;
+box-sizing: border-box;
+background: white;
+margin: 10mm auto;
+page-break-after: always;
+box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.label-grid {
+display: grid;
+grid-template-columns: repeat(3, 60mm);
+grid-template-rows: repeat(8, 35mm);
+border-left: 0.5pt solid #000;
+border-top: 0.5pt solid #000;
+}
+
+.label-box {
+width: 60mm;
+height: 35mm;
+border-right: 0.5pt solid #000;
+border-bottom: 0.5pt solid #000;
+padding: 3mm;
+position: relative;
+box-sizing: border-box;
+overflow: hidden;
+}
+
+.product-name {
+font-weight: 800;
+font-size: 9.5pt;
+text-transform: uppercase;
+line-height: 1.1;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+
+.serial-number { font-size: 8.5pt; font-weight: bold; margin-top: 1mm; display: block; }
+
+.price-row {
+position: absolute;
+bottom: 11mm;
+right: 3mm;
+text-align: right;
+}
+.price-text { font-weight: 900; font-size: 13pt; }
+.unit-text { font-style: italic; font-weight: bold; font-size: 9pt; }
+
+.footer-logo {
+position: absolute;
+bottom: 2mm;
+right: 0;
+}
+.footer-logo img { height: 9mm; display: block; }
+
+@media print {
+body { background: none; }
+.no-print { display: none; }
+.page-wrapper { margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="no-print">
+<h2 style="margin:0;">Mentari Label Generator</h2>
+
+<div class="controls">
+<div class="input-group">
+<label>1. Sumber Data (CSV):</label>
+<input type="file" id="csvFile" accept=".csv">
+</div>
+
+<div class="input-group">
+<label>2. URL/Path Lokasi Logo:</label>
+<input type="text" id="logoUrl" value="logommp.png" placeholder="https://link-gambar.com/logo.png" style="width: 250px;">
+</div>
+
+<div class="input-group" style="justify-content: flex-end;">
+<button onclick="generateLabels()" style="padding: 8px 15px; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px; font-weight: bold;">PREVIEW</button>
+</div>
+<div class="input-group" style="justify-content: flex-end;">
+<button onclick="window.print()" style="padding: 8px 20px; cursor: pointer; font-weight: bold; background: #27ae60; color: white; border: none; border-radius: 4px;">PRINT PDF</button>
+</div>
+</div><p>Pakai 4 kolom CSV, dengan susunan: NamaProduct, KodeBarang, Harga, Satuan</p>
+
+</div>
+<div id="main-output"></div>
+
+<script>
+function generateLabels() {
+const fileInput = document.getElementById('csvFile');
+const logoUrl = document.getElementById('logoUrl').value;
+const file = fileInput.files[0];
+
+if (!file) {
+alert("Silakan pilih file CSV terlebih dahulu!");
+return;
+}
+
+const reader = new FileReader();
+reader.onload = function(event) {
+const text = event.target.result;
+const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
+const dataRows = rows.slice(1);
+
+const mainOutput = document.getElementById('main-output');
+mainOutput.innerHTML = '';
+
+const ITEMS_PER_PAGE = 24;
+
+for (let i = 0; i < dataRows.length; i += ITEMS_PER_PAGE) {
+const pageData = dataRows.slice(i, i + ITEMS_PER_PAGE);
+const pageWrapper = document.createElement('div');
+pageWrapper.className = 'page-wrapper';
+
+const labelGrid = document.createElement('div');
+labelGrid.className = 'label-grid';
+
+pageData.forEach(row => {
+const columns = row.split(',');
+if (columns.length >= 4) {
+const name = columns[0].trim();
+const serial = columns[1].trim();
+const priceRaw = columns[2].trim().replace(/[Rp.\s]/g, '').replace(/,/g, '');
+const formattedPrice = new Intl.NumberFormat('id-ID').format(priceRaw);
+const unit = columns[3].trim();
+
+labelGrid.insertAdjacentHTML('beforeend', `
+<div class="label-box">
+<div class="product-name">${name}</div>
+<div class="serial-number">${serial}</div>
+<div class="price-row">
+<span class="price-text">Rp ${formattedPrice},-</span>
+<span class="unit-text"> /${unit}</span>
+</div>
+<div class="footer-logo">
+<img src="${logoUrl}" alt="Logo" onerror="this.style.display='none'">
+</div>
+</div>
+`);
+}
+});
+
+pageWrapper.appendChild(labelGrid);
+mainOutput.appendChild(pageWrapper);
+}
+};
+reader.readAsText(file);
+}
+</script>
+</body><noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+</html>
