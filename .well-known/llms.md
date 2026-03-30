@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.13
+document_version: 19.14
 last_updated: 2026-03-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Maret 2026)
-> Menampilkan 1159 artikel versi 19.13.
+> Menampilkan 1161 artikel versi 19.14.
 
 ## Gaya Hidup
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
@@ -396,6 +396,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Silaturahmi atau Silaturahim? Mana yang Benar?](https://dalam.web.id/lainnya/silaturahmi-vs-silaturahim) : Sering bingung pakai kata silaturahmi atau silaturahim? Ternyata keduanya benar dan baku menurut KBBI! Pahami beda makna, asal kata, dan konteks penggunaannya di sini.
 
 ## Olah Media
+- [Jasa Editing Video Dihargai Nol? Fakta Mengejutkan yang Mengancam Industri Kreatif](https://dalam.web.id/olah-media/mengapa-jasa-editing-video-dihargai-nol) : Kasus jasa editing video dihargai Rp 0 mengguncang industri kreatif. Simak analisis lengkap 5W+1H, fakta mengejutkan, dan solusi agar kerja kreatif tidak lagi diremehkan.
+- [Jasa Editing Video Dihargai Nol? Fakta Mengejutkan Industri Kreatif](https://dalam.web.id/olah-media/jasa-editing-video-dihargai-nol) : Jasa editing video dihargai nol? Simak fakta mengejutkan tentang kasus yang mengancam profesi kreatif, dari editor hingga videografer di Indonesia.
 - [Generator Label Mentari - Custom Logo UI](https://dalam.web.id/olah-media/generator-label-24-box) : Generator label otomatis untuk kertas A4 format 24 box (Mentari). Presisi tinggi, mudah digunakan, dan siap cetak untuk kebutuhan label produk, alamat, dan lainnya.
 - [Euro-Office: Alternatif Open Source Eropa Pengganti Google Docs & Microsoft 365](https://dalam.web.id/olah-media/euro-office-alternatif-berdaulat-digital) : Euro-Office adalah fork dari OnlyOffice yang lahir dari gerakan kedaulatan digital Eropa. Bebas pengaruh Rusia, open source, dan siap menggantikan Google Docs.
 - [LibreOffice Online Kembali: Alternatif Open Source untuk Google Docs](https://dalam.web.id/olah-media/libreoffice-online-kembali) : LibreOffice Online, aplikasi web open source, akan dihidupkan kembali. Cocok untuk self-hosting, kontrol penuh data, dan kompatibilitas dokumen Microsoft Office.
