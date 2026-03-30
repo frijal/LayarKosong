@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.14
+document_version: 19.15
 last_updated: 2026-03-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Maret 2026)
-> Menampilkan 1161 artikel versi 19.14.
+> Menampilkan 1165 artikel versi 19.15.
 
 ## Gaya Hidup
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
@@ -128,6 +128,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Dalil Menyayangi Hewan dalam Islam: Kasih Sayang yang Membawa ke Surga](https://dalam.web.id/jejak-sejarah/dalil-islam-menyayangi-hewan) : Kekhawatiran menyakiti hewan adalah tanda iman. Simak dalil Al Quran dan Hadits tentang kewajiban berbuat baik pada hewan dan ancaman bagi yang menelantarkannya.
 - [10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif](https://dalam.web.id/jejak-sejarah/penyimpangan-ajaran-islam) : Penyimpangan dari ajaran Islam perlu dipahami secara objektif berdasarkan tauhid, syariat, dan adab. Pelajari 10 bentuk penyimpangan beserta penjelasannya di sini.
 - [Hukum Memancing dalam Islam: Panduan Lengkap Fikih untuk Pemancing Muslim](https://dalam.web.id/jejak-sejarah/hukum-memancing-dalam-islam) : Hukum memancing dalam Islam dijelaskan secara lengkap, mulai dari catch and release, konsumsi ikan, hingga pemancingan berbayar. Simak panduan fikih yang benar di sini.
 - [Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern](https://dalam.web.id/jejak-sejarah/manhaj-tarjih-tajdid-muhammadiyah) : Manhaj Tarjih dan Tajdid Muhammadiyah adalah metode ilmiah dalam memahami Islam secara murni dan relevan Pelajari konsep fungsi dan penerapannya di sini
@@ -476,6 +477,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi](https://dalam.web.id/opini-sosial/selisih-utang-negara-indonesia) : Hitung selisih utang negara Indonesia tiap era presiden. Simak data lengkap kenaikan dan penurunan utang dari masa Soekarno hingga proyeksi era Prabowo.
 - [Lingkungan Kerja Beracun & Manajemen Kantor Buruk: Tanda, Dampak, dan Solusi](https://dalam.web.id/opini-sosial/toxic-work-environment-management) : Mengenal ciri-ciri lingkungan kerja beracun: kurang hormat, micromanagement, komunikasi buruk, favoritisme, stres berlebih. Dampaknya pada karyawan dan perusahaan serta solusi manajemen sehat.
 - [Pasukan Berjas Putih Kuba: Solidaritas Dokter yang Mendunia dan Jejaknya di Indonesia](https://dalam.web.id/opini-sosial/solidaritas-dokter-kuba-pasukan-berjas-putih) : Kisah solidaritas medis Kuba yang mengirimkan ribuan dokter ke seluruh dunia tanpa pamrih, termasuk saat bencana Aceh dan Jogja. Pelajari sejarah hubungan Indonesia Kuba dan krisis terkini.
 - [Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14](https://dalam.web.id/opini-sosial/ketika-orang-terdekat-menjadi-ujian) : Sebuah refleksi spiritual tentang ujian hidup yang datang dari keluarga terdekat berdasarkan QS At Taghabun Ayat 14 Bagaimana mencintai tanpa melalaikan Tuhan
@@ -651,6 +653,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Kebijakan Wikipedia tentang AI Generatif: Fakta Penting yang Perlu Anda Ketahui](https://dalam.web.id/sistem-terbuka/kebijakan-wikipedia-ai-generatif) : Kebijakan Wikipedia tentang AI generatif semakin ketat demi menjaga akurasi dan kepercayaan informasi. Simak penjelasan lengkapnya di sini untuk kontributor.
 - [Ubuntu 26.04 LTS: Dukungan 12 Tahun, Kernel 6.19 & GNOME 50 yang Lebih Pintar](https://dalam.web.id/sistem-terbuka/ubuntu-2604-lts-fitur-lengkap) : Ulasan mendalam Ubuntu 26.04 LTS: dukungan keamanan 12 tahun via Ubuntu Pro, kernel 6.19, GNOME 50 dengan AI, Snap lebih cepat, installer Flutter modern. Cocok untuk enterprise dan personal.
 - [Snap vs Flatpak: Pengalaman Pindah ke Flatpak yang Lebih Ringan dan Bebas Gangguan](https://dalam.web.id/sistem-terbuka/snap-vs-flatpak-pengalaman-pindah) : Perbandingan jujur Snap vs Flatpak: dari keterlambatan aplikasi, izin akses, hingga kebersihan sistem. Pelajari pengalaman pindah ke Flatpak dan kapan harus tetap pakai Snap. Cocok untuk pengguna Ubuntu dan Linux.
 - [ZRAM vs ZSWAP di Linux: Mana yang Lebih Cocok untuk Manajemen Memori?](https://dalam.web.id/sistem-terbuka/zram-vs-zswap-linux-optimasi-memory) : Perbandingan ZRAM dan ZSWAP pada Linux: cara kerja, kelebihan, kekurangan, dan rekomendasi mana yang sesuai dengan kebutuhan RAM dan workload Anda.
@@ -959,6 +962,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Keamanan Sisi Klien: Ancaman Skimming & Solusi Cloudflare](https://dalam.web.id/warta-tekno/client-side-security-cloudflare) : Serangan skimming sisi klien bisa mencuri data tanpa merusak halaman. Pelajari cara Cloudflare mendeteksi JavaScript berbahaya dengan AI & LLM, serta lindungi situs Anda.
 - [Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP](https://dalam.web.id/warta-tekno/fix-windows-time-sync) : mengatasi jam Windows yang salah, gagal sinkron, atau melenceng terus. Perbaiki layanan Windows Time dan atur NTP dengan mudah.
 - [Cari Browser Ringan untuk PC Jadul? Ini Pilihan Terbaik 2026](https://dalam.web.id/warta-tekno/browser-ringan-pc-jadul) : Cari browser yang ramah RAM, bisa dikustomisasi, dan tetap cepat di Intel i5-7400 dengan 8GB RAM? Simak rekomendasi Firefox, Vivaldi, OperaGX, Brave, dan tips upgrade hardware.
 - [10 about:config Tweaks untuk Performa Firefox Maksimal](https://dalam.web.id/warta-tekno/10-about-config-tweaks-performa-firefox) : 10 tweak about:config untuk mempercepat Firefox. Aktifkan WebRender, kurangi animasi, optimasi RAM, dan tingkatkan responsivitas browser.
