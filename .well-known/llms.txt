@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.8
-last_updated: 2026-03-29
+document_version: 19.9
+last_updated: 2026-03-30
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 29 Maret 2026)
-> Menampilkan 1158 artikel versi 19.8.
+## Index Artikel Terbaru (Updated: 30 Maret 2026)
+> Menampilkan 1159 artikel versi 19.9.
 
 ## Gaya Hidup
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
@@ -648,6 +648,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Generator Label Mentari - Custom Logo UI](https://dalam.web.id/sistem-terbuka/generator-label-24-box) : Generator label otomatis untuk kertas A4 format 24 box (Mentari). Presisi tinggi, mudah digunakan, dan siap cetak untuk kebutuhan label produk, alamat, dan lainnya.
 - [Ubuntu 26.04 LTS: Dukungan 12 Tahun, Kernel 6.19 & GNOME 50 yang Lebih Pintar](https://dalam.web.id/sistem-terbuka/ubuntu-2604-lts-fitur-lengkap) : Ulasan mendalam Ubuntu 26.04 LTS: dukungan keamanan 12 tahun via Ubuntu Pro, kernel 6.19, GNOME 50 dengan AI, Snap lebih cepat, installer Flutter modern. Cocok untuk enterprise dan personal.
 - [Snap vs Flatpak: Pengalaman Pindah ke Flatpak yang Lebih Ringan dan Bebas Gangguan](https://dalam.web.id/sistem-terbuka/snap-vs-flatpak-pengalaman-pindah) : Perbandingan jujur Snap vs Flatpak: dari keterlambatan aplikasi, izin akses, hingga kebersihan sistem. Pelajari pengalaman pindah ke Flatpak dan kapan harus tetap pakai Snap. Cocok untuk pengguna Ubuntu dan Linux.
 - [ZRAM vs ZSWAP di Linux: Mana yang Lebih Cocok untuk Manajemen Memori?](https://dalam.web.id/sistem-terbuka/zram-vs-zswap-linux-optimasi-memory) : Perbandingan ZRAM dan ZSWAP pada Linux: cara kerja, kelebihan, kekurangan, dan rekomendasi mana yang sesuai dengan kebutuhan RAM dan workload Anda.
