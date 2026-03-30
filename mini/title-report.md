@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/29/2026, 1:02:25 PM
+Generated on: 3/30/2026, 11:49:27 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 3/29/2026, 1:02:25 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.8 | LLM Index v19.8 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.11 | LLM Index v19.11 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
@@ -388,6 +388,7 @@ Generated on: 3/29/2026, 1:02:25 PM
 | `artikel/gemini-personal-intelligence.html` | Gemini Makin "Bestie" dengan Personal Intelligence: Asisten AI yang Beneran Kenal Kamu - Layar Kosong | Gemini Makin "Bestie" dengan Personal Intelligence: Asisten AI yang Beneran Kenal Kamu | Layar Kosong | ✅ Perfect |
 | `artikel/generasi-muda-krisis-adab-digital.html` | Generasi Muda dan Krisis Adab Digital: Tantangan Karakter di Era Viral - Layar Kosong | Generasi Muda dan Krisis Adab Digital: Tantangan Karakter di Era Viral | Layar Kosong | ✅ Perfect |
 | `artikel/generator-desktop-autostart-linux.html` | Generator .desktop Autostart Aplikasi Linux - Layar Kosong | Generator .desktop Autostart Aplikasi Linux | Layar Kosong | ✅ Perfect |
+| `artikel/generator-label-24-box.html` | Generator Label Mentari - Custom Logo UI - Layar Kosong | Generator Label Mentari - Custom Logo UI | Layar Kosong | ✅ Perfect |
 | `artikel/geo-lahir-seo-mati.html` | GEO Lahir, SEO Mati? Transformasi Komunikasi di Era AI Generatif - Layar Kosong | GEO Lahir, SEO Mati? Transformasi Komunikasi di Era AI Generatif | Layar Kosong | ✅ Perfect |
 | `artikel/gh-force-clean.html` | Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge - Layar Kosong | Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge | Layar Kosong | ✅ Perfect |
 | `artikel/gh-force-merge.html` | Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI - Layar Kosong | Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI | Layar Kosong | ✅ Perfect |
@@ -1590,6 +1591,7 @@ Generated on: 3/29/2026, 1:02:25 PM
 | `olah-media/gabung-pdf.html` | Cara Cepat Menggabungkan Banyak File PDF Menjadi Satu Halaman - Layar Kosong | Cara Cepat Menggabungkan Banyak File PDF Menjadi Satu Halaman | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-video-ffmpeg.html` | Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Tanpa Audio) - Layar Kosong | Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Tanpa Audio) | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-video-tanpa-audio.html` | Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio - Layar Kosong | Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio | Layar Kosong | ✅ Perfect |
+| `olah-media/generator-label-24-box.html` | Generator Label Mentari - Custom Logo UI - Layar Kosong | Generator Label Mentari - Custom Logo UI | Layar Kosong | ✅ Perfect |
 | `olah-media/google-veo-ai.html` | Mengenal Veo: Generator Video AI Canggih dari Google - Layar Kosong | Mengenal Veo: Generator Video AI Canggih dari Google | Layar Kosong | ✅ Perfect |
 | `olah-media/handbrake-preset-custom.html` | Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬 - Layar Kosong | Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬 | Layar Kosong | ✅ Perfect |
 | `olah-media/html-to-markdown-reverse-converter.html` | Frijal Reverse Converter - Konversi HTML ke Markdown Otomatis - Layar Kosong | Frijal Reverse Converter - Konversi HTML ke Markdown Otomatis | Layar Kosong | ✅ Perfect |
