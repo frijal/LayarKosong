@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.18
+document_version: 19.19
 last_updated: 2026-04-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 April 2026)
-> Menampilkan 1166 artikel versi 19.18.
+> Menampilkan 1166 artikel versi 19.19.
 
 ## Gaya Hidup
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
@@ -128,6 +128,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir](https://dalam.web.id/jejak-sejarah/langit-terkunci-saat-jin-menjerit) : peristiwa langit terkunci setelah diutusnya Nabi Muhammad SAW. Surat Al-Jinn ayat 8-9, penjagaan syihab, jin tak bisa mencuri wahyu. 5W+1H dan pesan anti ramalan dukun zodiak. Islam, fakta Al-Quran.
 - [Dalil Menyayangi Hewan dalam Islam: Kasih Sayang yang Membawa ke Surga](https://dalam.web.id/jejak-sejarah/dalil-islam-menyayangi-hewan) : Kekhawatiran menyakiti hewan adalah tanda iman. Simak dalil Al Quran dan Hadits tentang kewajiban berbuat baik pada hewan dan ancaman bagi yang menelantarkannya.
 - [10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif](https://dalam.web.id/jejak-sejarah/penyimpangan-ajaran-islam) : Penyimpangan dari ajaran Islam perlu dipahami secara objektif berdasarkan tauhid, syariat, dan adab. Pelajari 10 bentuk penyimpangan beserta penjelasannya di sini.
 - [Hukum Memancing dalam Islam: Panduan Lengkap Fikih untuk Pemancing Muslim](https://dalam.web.id/jejak-sejarah/hukum-memancing-dalam-islam) : Hukum memancing dalam Islam dijelaskan secara lengkap, mulai dari catch and release, konsumsi ikan, hingga pemancingan berbayar. Simak panduan fikih yang benar di sini.
@@ -962,7 +963,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir](https://dalam.web.id/warta-tekno/langit-terkunci-saat-jin-menjerit) : peristiwa langit terkunci setelah diutusnya Nabi Muhammad SAW. Surat Al-Jinn ayat 8-9, penjagaan syihab, jin tak bisa mencuri wahyu. 5W+1H dan pesan anti ramalan dukun zodiak. Islam, fakta Al-Quran.
 - [Keamanan Sisi Klien: Ancaman Skimming & Solusi Cloudflare](https://dalam.web.id/warta-tekno/client-side-security-cloudflare) : Serangan skimming sisi klien bisa mencuri data tanpa merusak halaman. Pelajari cara Cloudflare mendeteksi JavaScript berbahaya dengan AI & LLM, serta lindungi situs Anda.
 - [Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP](https://dalam.web.id/warta-tekno/fix-windows-time-sync) : mengatasi jam Windows yang salah, gagal sinkron, atau melenceng terus. Perbaiki layanan Windows Time dan atur NTP dengan mudah.
 - [Cari Browser Ringan untuk PC Jadul? Ini Pilihan Terbaik 2026](https://dalam.web.id/warta-tekno/browser-ringan-pc-jadul) : Cari browser yang ramah RAM, bisa dikustomisasi, dan tetap cepat di Intel i5-7400 dengan 8GB RAM? Simak rekomendasi Firefox, Vivaldi, OperaGX, Brave, dan tips upgrade hardware.
