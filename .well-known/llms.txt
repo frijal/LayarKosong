@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.21
+document_version: 19.22
 last_updated: 2026-04-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 April 2026)
-> Menampilkan 1170 artikel versi 19.21.
+> Menampilkan 1170 artikel versi 19.22.
 
 ## Gaya Hidup
 - [Aturan PKWT: Kompensasi, THR, dan Hak Pekerja Saat Sakit](https://dalam.web.id/gaya-hidup/aturan-pkwt-kompensasi-thr-sakit) : Pahami aturan PKWT terbaru tentang uang kompensasi, hak THR, ganti rugi pemutusan kontrak, dan larangan potong gaji saat sakit berdasarkan PP 35/2021, Permenaker 6/2016, dan UU 13/2003. Lengkap dengan tabel dan FAQ.
