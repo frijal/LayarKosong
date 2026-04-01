@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.22
+document_version: 19.23
 last_updated: 2026-04-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 April 2026)
-> Menampilkan 1170 artikel versi 19.22.
+> Menampilkan 1171 artikel versi 19.23.
 
 ## Gaya Hidup
 - [Aturan PKWT: Kompensasi, THR, dan Hak Pekerja Saat Sakit](https://dalam.web.id/gaya-hidup/aturan-pkwt-kompensasi-thr-sakit) : Pahami aturan PKWT terbaru tentang uang kompensasi, hak THR, ganti rugi pemutusan kontrak, dan larangan potong gaji saat sakit berdasarkan PP 35/2021, Permenaker 6/2016, dan UU 13/2003. Lengkap dengan tabel dan FAQ.
@@ -129,6 +129,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Memahami Pasang Surut Iman: Rahasia Istiqamah di Tengah Fatrah](https://dalam.web.id/jejak-sejarah/pasang-surut-iman) : Setiap insan pasti mengalami naik turun iman. Pelajari bimbingan Rasulullah ﷺ, dalil Al-Qur'an, dan nasihat ulama tentang cara menjaga istiqamah saat iman sedang surut. Dilengkapi hadis sahih dan ayat Al-Qur'an.
 - [Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir](https://dalam.web.id/jejak-sejarah/langit-terkunci-saat-jin-menjerit) : peristiwa langit terkunci setelah diutusnya Nabi Muhammad SAW. Surat Al-Jinn ayat 8-9, penjagaan syihab, jin tak bisa mencuri wahyu. 5W+1H dan pesan anti ramalan dukun zodiak. Islam, fakta Al-Quran.
 - [Dalil Menyayangi Hewan dalam Islam: Kasih Sayang yang Membawa ke Surga](https://dalam.web.id/jejak-sejarah/dalil-islam-menyayangi-hewan) : Kekhawatiran menyakiti hewan adalah tanda iman. Simak dalil Al Quran dan Hadits tentang kewajiban berbuat baik pada hewan dan ancaman bagi yang menelantarkannya.
 - [10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif](https://dalam.web.id/jejak-sejarah/penyimpangan-ajaran-islam) : Penyimpangan dari ajaran Islam perlu dipahami secara objektif berdasarkan tauhid, syariat, dan adab. Pelajari 10 bentuk penyimpangan beserta penjelasannya di sini.
