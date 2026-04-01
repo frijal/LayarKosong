@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.19
+document_version: 19.20
 last_updated: 2026-04-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 April 2026)
-> Menampilkan 1166 artikel versi 19.19.
+> Menampilkan 1170 artikel versi 19.20.
 
 ## Gaya Hidup
+- [Aturan PKWT: Kompensasi, THR, dan Hak Pekerja Saat Sakit](https://dalam.web.id/gaya-hidup/aturan-pkwt-kompensasi-thr-sakit) : Pahami aturan PKWT terbaru tentang uang kompensasi, hak THR, ganti rugi pemutusan kontrak, dan larangan potong gaji saat sakit berdasarkan PP 35/2021, Permenaker 6/2016, dan UU 13/2003. Lengkap dengan tabel dan FAQ.
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
 - [Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung](https://dalam.web.id/gaya-hidup/bahan-dapur-penurun-kolesterol-alami) : Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.
 - [Kedaulatan SDA: Iran Menikmati Minyaknya, Indonesia Hanya Petugas Parkir](https://dalam.web.id/gaya-hidup/kedaulatan-sda-indonesia-vs-iran-pasal-33) : Indonesia gagal mengelola kekayaan alam seperti Iran? Pasal 33 UUD 1945 hanya jadi mantra kosong. Belajar dari Iran yang berdaulat penuh atas minyaknya, sementara Indonesia hanya jadi petugas parkir bagi korporasi. Analisis kritis hilirisasi, pajak, dan impor.
@@ -310,6 +311,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Cara Menghitung Pesangon: Panduan Lengkap dengan Contoh & Kalkulator](https://dalam.web.id/lainnya/cara-menghitung-pesangon) : cara menghitung pesangon, uang penghargaan masa kerja (UPMK), dan uang penggantian hak (UPH) sesuai UU 13/2003 dan PP 35/2021. Dilengkapi kalkulator interaktif dan contoh perhitungan.
 - [Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang](https://dalam.web.id/lainnya/seni-mengatur-porsi-makan) : Mengulas filosofi makan saat lapar dan berhenti sebelum kenyang dari sudut pandang kesehatan modern dan efisiensi tubuh.
 - [Cara Daftar UTBK SNBT 2026 dan Perubahan Kebijakannya](https://dalam.web.id/lainnya/utbk-snbt-2026-cara-daftar-dan-perubahan-kebijakan) : pendaftaran UTBK SNBT 2026 yang dibuka 25 Maret sampai 7 April 2026, termasuk tiga perubahan kebijakan penting yang perlu kamu ketahui sebelum mendaftar.
 - [Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas](https://dalam.web.id/lainnya/dilema-hemat-gas-pedagang-makanan) : Mengupas dampak imbauan Menteri ESDM Bahlil Lahadalia soal hemat LPG bagi pedagang makanan seperti soto, bakso, dan bubur yang butuh api standby.
@@ -478,6 +480,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Prosedur Pemutusan Kontrak Kerja yang Sah: Panduan Lengkap](https://dalam.web.id/opini-sosial/prosedur-pemutusan-kontrak-kerja-sah) : prosedur pemutusan kontrak kerja yang sah sesuai UU Ketenagakerjaan. Mulai dari PHK, pengunduran diri, berakhirnya PKWT, hingga hak pesangon dan uang kompensasi. untuk pekerja dan HRD.
+- [Perbedaan PKWT dan PKWTT: Kontrak Kerja Waktu Tertentu vs Tidak Tertentu](https://dalam.web.id/opini-sosial/perbedaan-pkwt-dan-pkwtt) : Apa beda PKWT (kontrak) dengan PKWTT (tetap)? Simak perbedaan mendasar dari sisi jangka waktu, hak pesangon, uang kompensasi, prosedur PHK, dan aturan hukumnya. untuk pekerja dan HR.
 - [Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi](https://dalam.web.id/opini-sosial/selisih-utang-negara-indonesia) : Hitung selisih utang negara Indonesia tiap era presiden. Simak data lengkap kenaikan dan penurunan utang dari masa Soekarno hingga proyeksi era Prabowo.
 - [Lingkungan Kerja Beracun & Manajemen Kantor Buruk: Tanda, Dampak, dan Solusi](https://dalam.web.id/opini-sosial/toxic-work-environment-management) : Mengenal ciri-ciri lingkungan kerja beracun: kurang hormat, micromanagement, komunikasi buruk, favoritisme, stres berlebih. Dampaknya pada karyawan dan perusahaan serta solusi manajemen sehat.
 - [Pasukan Berjas Putih Kuba: Solidaritas Dokter yang Mendunia dan Jejaknya di Indonesia](https://dalam.web.id/opini-sosial/solidaritas-dokter-kuba-pasukan-berjas-putih) : Kisah solidaritas medis Kuba yang mengirimkan ribuan dokter ke seluruh dunia tanpa pamrih, termasuk saat bencana Aceh dan Jogja. Pelajari sejarah hubungan Indonesia Kuba dan krisis terkini.
