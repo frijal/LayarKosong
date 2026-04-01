@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/31/2026, 11:41:53 AM
+Generated on: 4/1/2026, 11:44:10 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 3/31/2026, 11:41:53 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.17 | LLM Index v19.17 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.19 | LLM Index v19.19 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
@@ -620,6 +620,7 @@ Generated on: 3/31/2026, 11:41:53 AM
 | `artikel/kutai-kartanegara-oss-2010.html` | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi - Layar Kosong | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi | Layar Kosong | ✅ Perfect |
 | `artikel/label-nonhalal-jaga-iman.html` | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman - Layar Kosong | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `artikel/langit-sama-tanggal-beda-ramadan-2026.html` | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 - Layar Kosong | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 | Layar Kosong | ✅ Perfect |
+| `artikel/langit-terkunci-saat-jin-menjerit.html` | Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir - Layar Kosong | Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir | Layar Kosong | ✅ Perfect |
 | `artikel/laptop-pertama-osborne1.html` | Osborne 1 - Laptop Pertama Dunia - Layar Kosong | Osborne 1 - Laptop Pertama Dunia | Layar Kosong | ✅ Perfect |
 | `artikel/larangan-cas-powerbank-di-kereta.html` | Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya! - Layar Kosong | Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya! | Layar Kosong | ✅ Perfect |
 | `artikel/larangan-ghibah.html` | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) - Layar Kosong | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) | Layar Kosong | ✅ Perfect |
@@ -1382,6 +1383,7 @@ Generated on: 3/31/2026, 11:41:53 AM
 | `jejak-sejarah/kritik-mbg-dan-sunnah-nabi.html` | Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik - Layar Kosong | Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/label-nonhalal-jaga-iman.html` | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman - Layar Kosong | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/langit-sama-tanggal-beda-ramadan-2026.html` | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 - Layar Kosong | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/langit-terkunci-saat-jin-menjerit.html` | Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir - Layar Kosong | Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/larangan-ghibah.html` | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) - Layar Kosong | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/lisan-dijaga-neraka.html` | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat - Layar Kosong | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/makna-az-zumar-53.html` | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan - Layar Kosong | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan | Layar Kosong | ✅ Perfect |
