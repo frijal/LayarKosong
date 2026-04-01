@@ -464,48 +464,6 @@
       </p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-    <div id="lightbox" class="lightbox">
-      <span class="close-lightbox">×</span>
-      <img class="lightbox-content" id="lightbox-img" alt="Gambar - Mengenal Veo: Generator Video AI Canggih dari Google">
-    </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-          // 1. Lazy Loading untuk Gambar Utama
-          const lazyImage = document.getElementById('main-image');
-          if (lazyImage) {
-            const lazyImageObserver = new IntersectionObserver(
-              (entries, observer) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    lazyImageObserver.unobserve(img);
-                  }
-                });
-              }
-            );
-            lazyImageObserver.observe(lazyImage);
-          }
-          // 2. Fungsi Lightbox
-          const lightbox = document.getElementById('lightbox');
-          const lightboxImg = document.getElementById('lightbox-img');
-          const closeLightbox = document.querySelector('.close-lightbox');
-          if (lazyImage && lightbox && lightboxImg && closeLightbox) {
-            lazyImage.addEventListener('click', () => {
-              lightbox.style.display = 'flex';
-              lightboxImg.src = lazyImage.src;
-            });
-            closeLightbox.addEventListener('click', () => {
-              lightbox.style.display = 'none';
-            });
-            lightbox.addEventListener('click', (e) => {
-              if (e.target === lightbox) {
-                lightbox.style.display = 'none';
-              }
-            });
-          }
-      });
-    </script>
+    
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 </body></html>
