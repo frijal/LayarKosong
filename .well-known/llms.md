@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.24
+document_version: 19.25
 last_updated: 2026-04-02
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 2 April 2026)
-> Menampilkan 1175 artikel versi 19.24.
+> Menampilkan 1176 artikel versi 19.25.
 
 ## Gaya Hidup
 - [Aturan PKWT: Kompensasi, THR, dan Hak Pekerja Saat Sakit](https://dalam.web.id/gaya-hidup/aturan-pkwt-kompensasi-thr-sakit) : Pahami aturan PKWT terbaru tentang uang kompensasi, hak THR, ganti rugi pemutusan kontrak, dan larangan potong gaji saat sakit berdasarkan PP 35/2021, Permenaker 6/2016, dan UU 13/2003. Lengkap dengan tabel dan FAQ.
@@ -659,6 +659,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Dakwah Ekonomi Nabi Muhammad: Revolusi Melawan Riba dan Keadilan Sosial](https://dalam.web.id/sistem-terbuka/dakwah-ekonomi-nabi-muhammad-revolusi-riba) : Dakwah Nabi Muhammad bukan hanya ibadah ritual, tapi revolusi ekonomi. Beliau menghapus riba, membela kaum lemah, dan membangun sistem keadilan. Pelajari pesan mendalam untuk umat masa kini.
 - [Ubuntu Studio 26.04 LTS Beta Rilis - Resolute Raccoon untuk Kreator](https://dalam.web.id/sistem-terbuka/ubuntu-studio-26-04-lts-beta) : Ubuntu Studio 26.04 LTS Beta (Resolute Raccoon) hadir dengan tiga tata letak desktop, audio config baru, dan dukungan 3 tahun. Simak fitur lengkap dan cara uji coba.
 - [Fedora Linux 44 Beta Resmi Dirilis: Linux 6.19, GNOME 50, dan KDE Plasma 6.6](https://dalam.web.id/sistem-terbuka/fedora-linux-44-beta-released) : Fedora Linux 44 Beta hadir dengan kernel Linux 6.19, GNOME 50, KDE Plasma 6.6, dan berbagai pembaruan toolchain. Uji coba sekarang sebelum rilis final April 2026.
 - [Lubuntu 26.04 Beta Resolute Raccoon Rilis: Cek Fitur dan Perubahannya](https://dalam.web.id/sistem-terbuka/lubuntu-26-04-beta-resolute-raccoon) : Lubuntu 26.04 Beta Resolute Raccoon resmi rilis. Cek fitur baru LXQt 2.3, masa dukungan LTS hingga 2029, dan alasan penghapusan game 2048 di sini.
