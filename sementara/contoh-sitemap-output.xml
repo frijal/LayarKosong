@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+<!-- ✅ Contoh 1: Artikel dengan gambar saja (no video) -->
+<url>
+<loc>https://dalam.web.id/warta-tekno/tutorial-typescript</loc>
+<lastmod>2026-04-01T10:00:00+08:00</lastmod>
+<image:image>
+<image:loc>https://dalam.web.id/img/tutorial-typescript.webp</image:loc>
+</image:image>
+</url>
+
+<!-- ✅ Contoh 2: Artikel dengan gambar + 1 video YouTube -->
+<url>
+<loc>https://dalam.web.id/olah-media/edit-video-premiere</loc>
+<lastmod>2026-04-02T14:30:00+08:00</lastmod>
+<image:image>
+<image:loc>https://dalam.web.id/img/edit-video-premiere.webp</image:loc>
+</image:image>
+
+<video:video>
+<video:thumbnail_loc>https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg</video:thumbnail_loc>
+<video:title><![CDATA[Tutorial Edit Video di Premiere Pro untuk Pemula]]></video:title>
+<video:description><![CDATA[Belajar editing video dari nol menggunakan Adobe Premiere Pro. Cocok untuk content creator pemula yang ingin membuat video berkualitas profesional.]]></video:description>
+<video:player_loc>https://www.youtube.com/embed/dQw4w9WgXcQ</video:player_loc>
+<video:publication_date>2026-04-02T14:30:00+08:00</video:publication_date>
+<video:family_friendly>yes</video:family_friendly>
+</video:video>
+</url>
+
+<!-- ✅ Contoh 3: Artikel dengan gambar + 2 video YouTube -->
+<url>
+<loc>https://dalam.web.id/gaya-hidup/resep-masakan-nusantara</loc>
+<lastmod>2026-04-03T09:15:00+08:00</lastmod>
+<image:image>
+<image:loc>https://dalam.web.id/img/resep-masakan-nusantara.webp</image:loc>
+</image:image>
+
+<video:video>
+<video:thumbnail_loc>https://img.youtube.com/vi/ABC12345678/hqdefault.jpg</video:thumbnail_loc>
+<video:title><![CDATA[Cara Membuat Rendang Padang Asli]]></video:title>
+<video:description><![CDATA[Resep rendang padang autentik dengan bumbu rempah lengkap. Tutorial lengkap dari persiapan bumbu hingga teknik memasak yang benar.]]></video:description>
+<video:player_loc>https://www.youtube.com/embed/ABC12345678</video:player_loc>
+<video:publication_date>2026-04-03T09:15:00+08:00</video:publication_date>
+<video:family_friendly>yes</video:family_friendly>
+</video:video>
+
+<video:video>
+<video:thumbnail_loc>https://img.youtube.com/vi/XYZ98765432/hqdefault.jpg</video:thumbnail_loc>
+<video:title><![CDATA[Tips Memilih Daging untuk Rendang]]></video:title>
+<video:description><![CDATA[Panduan memilih daging sapi terbaik untuk rendang. Bagian daging mana yang paling cocok dan tips menyimpan daging agar tetap segar.]]></video:description>
+<video:player_loc>https://www.youtube.com/embed/XYZ98765432</video:player_loc>
+<video:publication_date>2026-04-03T09:15:00+08:00</video:publication_date>
+<video:family_friendly>yes</video:family_friendly>
+</video:video>
+</url>
+
+<!-- ✅ Contoh 4: Artikel dengan title panjang (dipotong otomatis max 100 chars) -->
+<url>
+<loc>https://dalam.web.id/sistem-terbuka/panduan-lengkap-linux</loc>
+<lastmod>2026-03-28T16:45:00+08:00</lastmod>
+<image:image>
+<image:loc>https://dalam.web.id/img/panduan-lengkap-linux.webp</image:loc>
+</image:image>
+
+<video:video>
+<video:thumbnail_loc>https://img.youtube.com/vi/LNX24680246/hqdefault.jpg</video:thumbnail_loc>
+<video:title><![CDATA[Panduan Lengkap Instalasi dan Konfigurasi Linux Ubuntu 24.04 LTS untuk Developer Web dan Sys]]></video:title>
+<video:description><![CDATA[Tutorial komprehensif instalasi Ubuntu 24.04 LTS dari awal hingga konfigurasi lengkap untuk development web. Termasuk setup Apache, MySQL, PHP, Node.js, dan tools developer lainnya.]]></video:description>
+<video:player_loc>https://www.youtube.com/embed/LNX24680246</video:player_loc>
+<video:publication_date>2026-03-28T16:45:00+08:00</video:publication_date>
+<video:family_friendly>yes</video:family_friendly>
+</video:video>
+</url>
+
+</urlset>
