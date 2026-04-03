@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.28
+document_version: 19.29
 last_updated: 2026-04-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 April 2026)
-> Menampilkan 1179 artikel versi 19.28.
+> Menampilkan 1180 artikel versi 19.29.
 
 ## Gaya Hidup
 - [7 Herbal Alami Turunkan Darah Tinggi | Tanpa Efek Samping](https://dalam.web.id/gaya-hidup/herbal-tekanan-darah-tinggi) : Tekanan darah tinggi bisa diturunkan secara alami dengan 7 herbal: daun seledri, bawang putih, daun salam, belimbing wuluh, mentimun, pegagan, daun sirsak. Aman dan bertahap.
@@ -485,6 +485,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Ironi MBG: PPPK Pemda Dirumahkan, SPPG Diangkat – Kebijakan Timpang Pemerintah?](https://dalam.web.id/opini-sosial/ironi-mbg-pppk-sppg-pemerintah) : Kebijakan efisiensi pemerintah justru memberhentikan PPPK Pemda yang sudah mengabdi, namun di sisi lain SPPG untuk program MBG malah direkrut menjadi PPPK. Apakah Pemerintah terlalu MBG-oriented tanpa keseimbangan?
 - [Prosedur Pemutusan Kontrak Kerja yang Sah: Panduan Lengkap](https://dalam.web.id/opini-sosial/prosedur-pemutusan-kontrak-kerja-sah) : prosedur pemutusan kontrak kerja yang sah sesuai UU Ketenagakerjaan. Mulai dari PHK, pengunduran diri, berakhirnya PKWT, hingga hak pesangon dan uang kompensasi. untuk pekerja dan HRD.
 - [Perbedaan PKWT dan PKWTT: Kontrak Kerja Waktu Tertentu vs Tidak Tertentu](https://dalam.web.id/opini-sosial/perbedaan-pkwt-dan-pkwtt) : Apa beda PKWT (kontrak) dengan PKWTT (tetap)? Simak perbedaan mendasar dari sisi jangka waktu, hak pesangon, uang kompensasi, prosedur PHK, dan aturan hukumnya. untuk pekerja dan HR.
 - [Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi](https://dalam.web.id/opini-sosial/selisih-utang-negara-indonesia) : Hitung selisih utang negara Indonesia tiap era presiden. Simak data lengkap kenaikan dan penurunan utang dari masa Soekarno hingga proyeksi era Prabowo.
