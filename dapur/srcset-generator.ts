@@ -183,7 +183,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
           await sharp(inputBuffer)
           .rotate()
           .resize(targetWidth, null, { withoutEnlargement: true })
-          .webp({ quality: 82 })
+          .webp({ quality: 85 })
           .toFile(absDesktopPath);
 
           if (needsMobile) {
