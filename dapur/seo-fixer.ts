@@ -75,7 +75,7 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
         } else {
             await sharp(buffer)
             .rotate()
-            .webp({ quality: 85, effort: 6 })
+            .webp({ quality: 100, effort: 6 })
             .toFile(localPath);
         }
 
