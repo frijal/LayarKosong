@@ -32,8 +32,6 @@ const slug = (t: any) => t.toString().toLowerCase().trim()
 .replace(/\s+/g, '-')
 .replace(/-+/g, '-');
 
-// FIX #1: iso() sekarang benar-benar menggeser waktu ke WIB (+08:00)
-// sebelumnya hanya ganti label Z → +08:00 tanpa mengubah nilainya
 const iso = (d: any) => {
     const parsed = new Date(d);
     const base   = isNaN(parsed.getTime()) ? new Date() : parsed;
@@ -192,7 +190,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 for (const it of flat) {
     const [txt, size] = await Promise.all([
         Bun.file(`${C.art}/${it.file}`).text(),
-                                          imgSize(it.img)
+        imgSize(it.img)
     ]);
     globalSizes.set(it.img, size);
 
@@ -224,18 +222,15 @@ combinedXmlEntries += `
 }
 
 const finalSitemapContent =
-`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${combinedXmlEntries}
 </urlset>`;
 
 await Promise.all([
     Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent),
-                  Bun.write(`${C.root}/rss.xml`, buildRss(
-                      'Layar Kosong',
-                      flat.slice(0, C.limit),
+    Bun.write(`${C.root}/rss.xml`, buildRss(
+    'Layar Kosong',
+    flat.slice(0, C.limit),
                                                           `${C.base}/rss.xml`,
                                                           'Feed artikel terbaru dari Layar Kosong',
                                                           globalSizes
@@ -296,12 +291,11 @@ if (tmp) {
         // Tulis index.html + feed RSS kategori sekaligus
         await Promise.all([
             Bun.write(`${C.root}/${s}/index.html`, pg),
-                          Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
-                              `Kategori ${categoryNameClean}`,
-                              catItems,
-                              rUrl,
-                              `Artikel ${cat}`,
-                              globalSizes // reuse — tidak perlu stat ulang
+        Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
+        `Kategori ${categoryNameClean}`,
+        catItems, rUrl,
+        `Artikel ${cat}`,
+        globalSizes // reuse — tidak perlu stat ulang
                           )),
         ]);
     }
