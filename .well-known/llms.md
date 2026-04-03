@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.31
+document_version: 19.32
 last_updated: 2026-04-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 April 2026)
-> Menampilkan 1185 artikel versi 19.31.
+> Menampilkan 1185 artikel versi 19.32.
 
 ## Gaya Hidup
 - [7 Herbal Alami Turunkan Darah Tinggi | Tanpa Efek Samping](https://dalam.web.id/gaya-hidup/herbal-tekanan-darah-tinggi) : Tekanan darah tinggi bisa diturunkan secara alami dengan 7 herbal: daun seledri, bawang putih, daun salam, belimbing wuluh, mentimun, pegagan, daun sirsak. Aman dan bertahap.
