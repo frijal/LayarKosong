@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.29
+document_version: 19.30
 last_updated: 2026-04-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 April 2026)
-> Menampilkan 1180 artikel versi 19.29.
+> Menampilkan 1185 artikel versi 19.30.
 
 ## Gaya Hidup
 - [7 Herbal Alami Turunkan Darah Tinggi | Tanpa Efek Samping](https://dalam.web.id/gaya-hidup/herbal-tekanan-darah-tinggi) : Tekanan darah tinggi bisa diturunkan secara alami dengan 7 herbal: daun seledri, bawang putih, daun salam, belimbing wuluh, mentimun, pegagan, daun sirsak. Aman dan bertahap.
@@ -485,6 +485,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Kritik Pedas IDAI: Sanksi 1306 RS oleh Kemenkes, Arogansi atau Solusi?](https://dalam.web.id/opini-sosial/kritik-idai-sanksi-rs-satu-sehat) : Ketua IDAI Sumut, Rizky Adriansyah, menyebut sanksi terhadap 1306 RS karena gagal integrasi SATU SEHAT sebagai bentuk arogansi dan kebijakan buta realitas. Simak analisis lengkapnya.
 - [Ironi MBG: PPPK Pemda Dirumahkan, SPPG Diangkat – Kebijakan Timpang Pemerintah?](https://dalam.web.id/opini-sosial/ironi-mbg-pppk-sppg-pemerintah) : Kebijakan efisiensi pemerintah justru memberhentikan PPPK Pemda yang sudah mengabdi, namun di sisi lain SPPG untuk program MBG malah direkrut menjadi PPPK. Apakah Pemerintah terlalu MBG-oriented tanpa keseimbangan?
 - [Prosedur Pemutusan Kontrak Kerja yang Sah: Panduan Lengkap](https://dalam.web.id/opini-sosial/prosedur-pemutusan-kontrak-kerja-sah) : prosedur pemutusan kontrak kerja yang sah sesuai UU Ketenagakerjaan. Mulai dari PHK, pengunduran diri, berakhirnya PKWT, hingga hak pesangon dan uang kompensasi. untuk pekerja dan HRD.
 - [Perbedaan PKWT dan PKWTT: Kontrak Kerja Waktu Tertentu vs Tidak Tertentu](https://dalam.web.id/opini-sosial/perbedaan-pkwt-dan-pkwtt) : Apa beda PKWT (kontrak) dengan PKWTT (tetap)? Simak perbedaan mendasar dari sisi jangka waktu, hak pesangon, uang kompensasi, prosedur PHK, dan aturan hukumnya. untuk pekerja dan HR.
@@ -664,6 +665,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Panduan Konversi Video ke WebM: Optimasi Performa Web di Linux 2026](https://dalam.web.id/sistem-terbuka/konversi-video-webm) : cara konversi video ke WebM menggunakan Bun dan FFmpeg di Linux untuk optimasi Core Web Vitals. untuk ThinkPad L570 dan CachyOS.
+- [Manajemen File Cerdas: Skrip Cari & Pindah Video Rekursif di Linux](https://dalam.web.id/sistem-terbuka/skrip-pindah-video-otomatis) : Cara otomatis mencari dan memindahkan video secara rekursif di Linux menggunakan Bun Runtime. Solusi cepat untuk merapikan folder bakxoje di CachyOS.
+- [Cara Login Muhammadiyah: Daftar KTAM Online & Tren Viral](https://dalam.web.id/sistem-terbuka/login-muhammadiyah-ktam-online) : Tren Login Muhammadiyah ramai di X. Simak panduan lengkap daftar KTAM online lewat aplikasi MASA, cara jadi simpatisan, biaya, dan alasan di balik viralnya.
 - [Ubuntu Studio 26.04 LTS Beta Rilis - Resolute Raccoon untuk Kreator](https://dalam.web.id/sistem-terbuka/ubuntu-studio-26-04-lts-beta) : Ubuntu Studio 26.04 LTS Beta (Resolute Raccoon) hadir dengan tiga tata letak desktop, audio config baru, dan dukungan 3 tahun. Simak fitur lengkap dan cara uji coba.
 - [Fedora Linux 44 Beta Resmi Dirilis: Linux 6.19, GNOME 50, dan KDE Plasma 6.6](https://dalam.web.id/sistem-terbuka/fedora-linux-44-beta-released) : Fedora Linux 44 Beta hadir dengan kernel Linux 6.19, GNOME 50, KDE Plasma 6.6, dan berbagai pembaruan toolchain. Uji coba sekarang sebelum rilis final April 2026.
 - [Lubuntu 26.04 Beta Resolute Raccoon Rilis: Cek Fitur dan Perubahannya](https://dalam.web.id/sistem-terbuka/lubuntu-26-04-beta-resolute-raccoon) : Lubuntu 26.04 Beta Resolute Raccoon resmi rilis. Cek fitur baru LXQt 2.3, masa dukungan LTS hingga 2029, dan alasan penghapusan game 2048 di sini.
@@ -977,6 +981,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Pernyataan Parrot Security soal Verifikasi Usia: Kami Tidak Butuh ID Anda](https://dalam.web.id/warta-tekno/parrot-security-age-verification-statement) : Parrot Security menolak verifikasi usia karena dianggap sebagai tameng sensor. Simak pernyataan resmi, risiko identitas terpusat, dan posisi tegas mereka demi kebebasan digital.
 - [Keamanan Sisi Klien: Ancaman Skimming & Solusi Cloudflare](https://dalam.web.id/warta-tekno/client-side-security-cloudflare) : Serangan skimming sisi klien bisa mencuri data tanpa merusak halaman. Pelajari cara Cloudflare mendeteksi JavaScript berbahaya dengan AI & LLM, serta lindungi situs Anda.
 - [Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP](https://dalam.web.id/warta-tekno/fix-windows-time-sync) : mengatasi jam Windows yang salah, gagal sinkron, atau melenceng terus. Perbaiki layanan Windows Time dan atur NTP dengan mudah.
 - [Cari Browser Ringan untuk PC Jadul? Ini Pilihan Terbaik 2026](https://dalam.web.id/warta-tekno/browser-ringan-pc-jadul) : Cari browser yang ramah RAM, bisa dikustomisasi, dan tetap cepat di Intel i5-7400 dengan 8GB RAM? Simak rekomendasi Firefox, Vivaldi, OperaGX, Brave, dan tips upgrade hardware.
