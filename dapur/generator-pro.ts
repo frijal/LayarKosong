@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'; // FIX #5: ganti require('fs') dengan proper ESM import
+import { promises as fs } from 'fs';
 import { titleToCategory } from './titleToCategory.ts';
 
 const C = {
@@ -9,7 +9,6 @@ const C = {
     cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno']
 };
 
-// FIX #2: escape titik di C.base supaya aman dipakai dalam RegExp
 const BASE_RE = C.base.replace(/\./g, '\\.');
 
 /** Bersihkan HTML Entities menjadi teks murni */
@@ -44,7 +43,6 @@ const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').tri
 const mime = (u: string) =>
 ({ png: 'image/png', webp: 'image/webp', svg: 'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
 
-// FIX #6: escapeAttr — mencegah broken HTML saat judul mengandung tanda kutip
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
 /** Baca ukuran file gambar dari disk lokal.
@@ -52,7 +50,7 @@ const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 const imgSize = async (url: string): Promise<number> => {
     try {
         if (!url.startsWith(C.base)) return 0;
-        return (await fs.stat(url.replace(C.base, C.root))).size; // FIX #5
+        return (await fs.stat(url.replace(C.base, C.root))).size;
     } catch {
         return 0;
     }
@@ -65,26 +63,25 @@ const buildRss = (
     desc: string,
     sizes: Map<string, number> = new Map()
 ) =>
-// FIX #4: <description> channel dibungkus CDATA supaya karakter spesial aman
 `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${decodeHTML(t)}]]></title><link>${C.base}/</link><description><![CDATA[${desc}]]></description><language>id-ID</language><atom:link href="${link}" rel="self" type="application/rss+xml"/><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map(it =>
     `<item><title><![CDATA[${decodeHTML(it.title)}]]></title><link>${it.loc}</link><guid>${it.loc}</guid><description><![CDATA[${it.desc || sanitize(decodeHTML(it.title))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${it.category}]]></category><enclosure url="${it.img}" length="${sizes.get(it.img) ?? 0}" type="${mime(it.img)}"/></item>`
 ).join('')}</channel></rss>`;
 
 const distribute = async (f: string, cat: string, url: string, pre?: string) => {
     const dir = `${C.root}/${slug(cat)}`;
-    await fs.mkdir(dir, { recursive: true }); // FIX #5
+    await fs.mkdir(dir, { recursive: true });
     let html = pre || await Bun.file(`${C.art}/${f}`).text();
     html = html
     .replace(/<link rel="canonical" href="[^"]+">/i,     `<link rel="canonical" href="${url}">`)
     .replace(/<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${url}">`)
-    .replace(new RegExp(`${BASE_RE}/artikel/${f.replace('.html', '')}`, 'g'), url) // FIX #2
+    .replace(new RegExp(`${BASE_RE}/artikel/${f.replace('.html', '')}`, 'g'), url)
     .replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
     await Bun.write(`${dir}/${f}`, html);
 };
 
 // =============================================================================
 (async () => {
-    console.log('🚀 Diet Mode V8.9'); // FIX #7: hapus "countArticles" yang tidak ada implementasinya
+    console.log('🚀 Diet Mode V8.9 - Google Sitemap Compliant');
 
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
@@ -155,7 +152,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         }
         const date = masterDate
         || txt.match(/article:published_time" content="(.*?)"/i)?.[1]
-        || (await fs.stat(`${C.art}/${f}`)).mtime; // FIX #5
+        || (await fs.stat(`${C.art}/${f}`)).mtime;
 
         const img  = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html', '')}.webp`;
         const desc = (txt.match(/description" content="(.*?)"/i)?.[1] || '').trim();
@@ -170,10 +167,10 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     // ── Cleanup file lama ────────────────────────────────────────────────────
     for (const s of C.cats) {
         const d = `${C.root}/${s}`;
-        await fs.mkdir(d, { recursive: true }); // FIX #5
+        await fs.mkdir(d, { recursive: true });
         for (const f of [...new Bun.Glob("*.html").scanSync(d)]) {
             if (f !== 'index.html' && !valid.has(`${s}/${f}`)) {
-                await fs.unlink(`${d}/${f}`); // FIX #5
+                await fs.unlink(`${d}/${f}`);
                 urls.delete(`${C.base}/${s}/${f.replace('.html', '')}`);
             }
         }
@@ -190,7 +187,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 for (const it of flat) {
     const [txt, size] = await Promise.all([
         Bun.file(`${C.art}/${it.file}`).text(),
-        imgSize(it.img)
+                                          imgSize(it.img)
     ]);
     globalSizes.set(it.img, size);
 
@@ -201,22 +198,30 @@ for (const it of flat) {
     let videoXml = '';
 vids.forEach(s => {
     const id = s.match(/embed\/([^/?]+)/)?.[1];
-    if (id) videoXml += `
+    if (id) {
+        // ✅ FIX: Validasi max length sesuai Google guidelines
+        const videoTitle = decodeHTML(it.title).substring(0, 100); // Max 100 chars
+        const videoDesc = (it.desc || decodeHTML(it.title)).substring(0, 2048); // Max 2048 chars
+
+        videoXml += `
         <video:video>
         <video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc>
-        <video:title><![CDATA[${decodeHTML(it.title)}]]></video:title>
-        <video:description><![CDATA[${it.desc || decodeHTML(it.title)}]]></video:description>
-        <video:player_loc>https://www.youtube.com/watch?v=${id}</video:player_loc>
+        <video:title><![CDATA[${videoTitle}]]></video:title>
+        <video:description><![CDATA[${videoDesc}]]></video:description>
+        <video:player_loc>https://www.youtube.com/embed/${id}</video:player_loc>
+        <video:publication_date>${it.lastmod}</video:publication_date>
+        <video:family_friendly>yes</video:family_friendly>
         </video:video>`;
+    }
 });
 
+// ✅ FIX: Hapus <image:caption> yang deprecated
 combinedXmlEntries += `
 <url>
 <loc>${it.loc}</loc>
 <lastmod>${it.lastmod}</lastmod>
 <image:image>
 <image:loc>${it.img}</image:loc>
-<image:caption><![CDATA[${decodeHTML(it.title)}]]></image:caption>
 </image:image>${videoXml}
 </url>`;
 }
@@ -228,16 +233,16 @@ ${combinedXmlEntries}
 
 await Promise.all([
     Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent),
-    Bun.write(`${C.root}/rss.xml`, buildRss(
-    'Layar Kosong',
-    flat.slice(0, C.limit),
+                  Bun.write(`${C.root}/rss.xml`, buildRss(
+                      'Layar Kosong',
+                      flat.slice(0, C.limit),
                                                           `${C.base}/rss.xml`,
                                                           'Feed artikel terbaru dari Layar Kosong',
                                                           globalSizes
                   )),
 ]);
 
-console.log('✅ Sitemap Tunggal Berhasil Dibuat: sitemap.xml (All Assets Included)');
+console.log('✅ Sitemap Tunggal Berhasil Dibuat: sitemap.xml (Google Compliant)');
 console.log('📡 RSS Feed Global Berhasil Dibuat: rss.xml');
 
 // ── Build Category Pages (Static) ────────────────────────────────────────
@@ -262,7 +267,7 @@ if (tmp) {
             return `
             <a href="${cleanUrl}" class="article-card">
             <div class="card-thumbnail">
-            <img src="${image}" alt="${escapeAttr(title)}" loading="lazy" width="300" height="200" onerror="this.src='/thumbnail.webp'">`/* FIX #6: escapeAttr pada alt */ + `
+            <img src="${image}" alt="${escapeAttr(title)}" loading="lazy" width="300" height="200" onerror="this.src='/thumbnail.webp'">
             </div>
             <div class="card-content">
             <h2>${title}</h2>
@@ -291,11 +296,11 @@ if (tmp) {
         // Tulis index.html + feed RSS kategori sekaligus
         await Promise.all([
             Bun.write(`${C.root}/${s}/index.html`, pg),
-        Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
-        `Kategori ${categoryNameClean}`,
-        catItems, rUrl,
-        `Artikel ${cat}`,
-        globalSizes // reuse — tidak perlu stat ulang
+                          Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
+                              `Kategori ${categoryNameClean}`,
+                              catItems, rUrl,
+                              `Artikel ${cat}`,
+                              globalSizes
                           )),
         ]);
     }
@@ -310,12 +315,11 @@ if (feedTemplate) {
         const encodedLink = encodeURIComponent(it.loc);
         const encodedText = encodeURIComponent(it.desc || it.title);
         const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(it.lastmod));
-        // FIX #3: gunakan \p{Emoji_Presentation} supaya semua emoji modern ter-strip
         const cleanCat    = it.category.replace(/\p{Emoji_Presentation}\s*/gu, '').trim();
         return `
         <div class="feed-item">
         <div class="feed-item-thumbnail">
-        <img src="${it.img}" alt="${escapeAttr(it.title)}" loading="lazy">`/* FIX #6: escapeAttr pada alt */ + `
+        <img src="${it.img}" alt="${escapeAttr(it.title)}" loading="lazy">
         </div>
         <div class="feed-item-content">
         <h2><a href="${it.loc}" rel="noreferrer">${it.title}</a></h2>
