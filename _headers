@@ -13,39 +13,39 @@ https://:version.:project.pages.dev/*
 # 2. DATA & XML (Wajib Fresh / No-Cache)
 # =========================================================
 /feed-gaya-hidup.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /feed-jejak-sejarah.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /feed-lainnya.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /feed-olah-media.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /feed-opini-sosial.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /feed-sistem-terbuka.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /feed-warta-tekno.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /artikel.json
   Cache-Control: public, max-age=1800, stale-while-revalidate=2419200
 /ext/data-provider.js
   Cache-Control: public, max-age=1800, stale-while-revalidate=2419200
 /rss.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /sitemap.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /image-sitemap-1.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /sitemap-1.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /video-sitemap-1.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /sitemap.txt
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /llms.txt
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /.well-known/llms.txt
-  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 # =========================================================
 # 3. ASSET STATIS (Long-term Cache)
 # =========================================================
@@ -83,73 +83,73 @@ https://:version.:project.pages.dev/*
 # 4. HALAMAN HTML (Ultra Long-term dengan SWR)
 # =========================================================
 /404.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /404
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /about.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /about
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /data-deletion.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /data-deletion
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /data-deletion-form.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /data-deletion-form
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /disclaimer.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /disclaimer
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /feed.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /feed
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /img.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /img
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /index.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /index
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /lisensi.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /lisensi
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /llms-index.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /llms-index
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /privacy.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /privacy
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /search.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /search
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /security-policy.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /security-policy
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /sitemap.html
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /sitemap
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 # --- Artikel Berdasarkan Kategori ---
 /gaya-hidup/*
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /jejak-sejarah/*
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /lainnya/*
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /olah-media/*
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /opini-sosial/*
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /sistem-terbuka/*
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /warta-tekno/*
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
