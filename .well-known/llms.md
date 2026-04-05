@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.33
+document_version: 19.34
 last_updated: 2026-04-05
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 5 April 2026)
-> Menampilkan 1191 artikel versi 19.33.
+> Menampilkan 1191 artikel versi 19.34.
 
 ## Gaya Hidup
+- [Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Panduan Lengkap](https://dalam.web.id/gaya-hidup/fanatik-iman-kuat-atau-bahaya) : Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Pelajari perbedaan fanatik sehat dan fanatik buta, ciri-ciri, dampak, serta cara menyikapinya dengan benar menurut Islam dan psikologi.
 - [7 Herbal Alami Turunkan Darah Tinggi | Tanpa Efek Samping](https://dalam.web.id/gaya-hidup/herbal-tekanan-darah-tinggi) : Tekanan darah tinggi bisa diturunkan secara alami dengan 7 herbal: daun seledri, bawang putih, daun salam, belimbing wuluh, mentimun, pegagan, daun sirsak. Aman dan bertahap.
 - [Aturan PKWT: Kompensasi, THR, dan Hak Pekerja Saat Sakit](https://dalam.web.id/gaya-hidup/aturan-pkwt-kompensasi-thr-sakit) : Pahami aturan PKWT terbaru tentang uang kompensasi, hak THR, ganti rugi pemutusan kontrak, dan larangan potong gaji saat sakit berdasarkan PP 35/2021, Permenaker 6/2016, dan UU 13/2003. Lengkap dengan tabel dan FAQ.
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
@@ -673,7 +674,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Panduan Lengkap](https://dalam.web.id/sistem-terbuka/fanatik-iman-kuat-atau-bahaya) : Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Pelajari perbedaan fanatik sehat dan fanatik buta, ciri-ciri, dampak, serta cara menyikapinya dengan benar menurut Islam dan psikologi.
 - [Pernyataan Parrot Security soal Verifikasi Usia: Kami Tidak Butuh ID Anda](https://dalam.web.id/sistem-terbuka/parrot-security-age-verification-statement) : Parrot Security menolak verifikasi usia karena dianggap sebagai tameng sensor. Simak pernyataan resmi, risiko identitas terpusat, dan posisi tegas mereka demi kebebasan digital.
 - [Ubuntu Studio 26.04 LTS Beta Rilis - Resolute Raccoon untuk Kreator](https://dalam.web.id/sistem-terbuka/ubuntu-studio-26-04-lts-beta) : Ubuntu Studio 26.04 LTS Beta (Resolute Raccoon) hadir dengan tiga tata letak desktop, audio config baru, dan dukungan 3 tahun. Simak fitur lengkap dan cara uji coba.
 - [Fedora Linux 44 Beta Resmi Dirilis: Linux 6.19, GNOME 50, dan KDE Plasma 6.6](https://dalam.web.id/sistem-terbuka/fedora-linux-44-beta-released) : Fedora Linux 44 Beta hadir dengan kernel Linux 6.19, GNOME 50, KDE Plasma 6.6, dan berbagai pembaruan toolchain. Uji coba sekarang sebelum rilis final April 2026.
