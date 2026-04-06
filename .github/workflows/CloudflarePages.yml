@@ -44,7 +44,7 @@ jobs:
 
       - name: Create Dynamic Wrangler Config
         run: |
-            cat <<EOF > wrangler.toml
+            cat <<EOF > source/wrangler.toml
             [[d1_databases]]
             binding = "DB"
             database_name = "layarkosong-db"
