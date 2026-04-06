@@ -1,10 +1,12 @@
-name: Run Bun Script and Commit
+name: Run Bun Script and Commit (Manual)
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      script_path:
+        description: 'Path atau nama file .ts yang ingin dijalankan'
+        required: true
+        default: ''
 
 jobs:
   run-bun-script:
@@ -14,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          persist-credentials: false   # supaya kita bisa pakai token sendiri
+          persist-credentials: false
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -25,7 +27,7 @@ jobs:
         run: bun install
 
       - name: Run TypeScript script
-        run: bun run build-search.ts
+        run: bun run ${{ github.event.inputs.script_path }}
 
       - name: Configure Git
         run: |
@@ -39,4 +41,3 @@ jobs:
           git add .
           git commit -m "chore: update after Bun script run" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
-
