@@ -102,6 +102,8 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /disclaimer
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/disclosure.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /feed.html
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /feed
