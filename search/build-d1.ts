@@ -16,21 +16,29 @@ const TEMP_CONFIG = "/tmp/wrangler.toml";
  */
 const superCleanText = (text: string) => {
     return text
-        // 1. Hapus Emoji & Unicode Variants
+        // 1. HAPUS MARKDOWN SYMBOLS (Penting!)
+        .replace(/(\*\*|__)(.*?)\1/g, '$2')          // Hapus Bold **teks** atau __teks__
+        .replace(/(\*|_)(.*?)\1/g, '$2')            // Hapus Italic *teks* atau _teks_
+        .replace(/#+\s+/g, '')                      // Hapus Header symbols (#, ##, dst)
+        .replace(/\[(.*?)\]\(.*?\)/g, '$1')         // Hapus Link [teks](url) tapi sisakan teksnya
+        .replace(/>\s+/g, '')                       // Hapus Blockquote (>)
+        .replace(/`{1,3}.*?`{1,3}/g, '')            // Hapus Inline code atau code blocks
+        
+        // 2. HAPUS EMOJI & UNICODE (Tetap ada)
         .replace(/[\u{1F300}-\u{1F9FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F191}-\u{1F251}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F171}\u{1F17E}-\u{1F17F}\u{1F18E}\u{3030}\u{2B50}\u{2B55}\u{2934}-\u{2935}\u{2B05}-\u{2B07}\u{2B1B}-\u{2B1C}\u{3297}\u{3299}]/gu, '')
         .replace(/[\u{1F3FB}-\u{1F3FF}]/gu, '')
         .replace(/[\uFE00-\uFE0F]/g, '')
         .replace(/\u200D/g, '')
-        // 2. Rapikan Spasi & Newline
-        .replace(/\s+/g, ' ')
-        // 3. NETRALISIR SQL TRANSACTION KEYWORDS
-        // Mengubah keyword agar tidak dieksekusi sebagai perintah oleh Wrangler/D1
+
+        // 3. NETRALISIR SQL KEYWORDS (Agar tidak error di Wrangler)
         .replace(/BEGIN\s+TRANSACTION/gi, 'BEGIN_TRANSACTION')
         .replace(/COMMIT/gi, 'COMMIT_DONE')
         .replace(/ROLLBACK/gi, 'ROLLBACK_DONE')
         .replace(/SAVEPOINT/gi, 'SAVEPOINT_DONE')
-        // 4. Escape Kutip Satu (Wajib untuk SQL Insert)
-        .replace(/'/g, "''")
+
+        // 4. CLEANUP AKHIR
+        .replace(/\s+/g, ' ')  // Satukan spasi berlebih
+        .replace(/'/g, "''")   // Escape single quote
         .trim();
 };
 
