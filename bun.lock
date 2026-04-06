@@ -5,15 +5,15 @@
     "": {
       "name": "layarkosong",
       "dependencies": {
-        "@minify-html/node": "latest",
-        "@xmldom/xmldom": "latest",
-        "cheerio": "latest",
-        "glob": "latest",
-        "sharp": "latest",
-        "tumblr.js": "latest",
+        "@minify-html/node": "^0.18.1",
+        "@xmldom/xmldom": "^0.9.9",
+        "cheerio": "^1.2.0",
+        "glob": "^13.0.6",
+        "sharp": "^0.34.5",
+        "tumblr.js": "^5.0.1",
       },
       "devDependencies": {
-        "wrangler": "latest",
+        "wrangler": "^4.80.0",
       },
     },
   },
