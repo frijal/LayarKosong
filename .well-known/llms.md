@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.34
-last_updated: 2026-04-05
+document_version: 19.35
+last_updated: 2026-04-06
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 5 April 2026)
-> Menampilkan 1191 artikel versi 19.34.
+## Index Artikel Terbaru (Updated: 6 April 2026)
+> Menampilkan 1192 artikel versi 19.35.
 
 ## Gaya Hidup
 - [Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Panduan Lengkap](https://dalam.web.id/gaya-hidup/fanatik-iman-kuat-atau-bahaya) : Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Pelajari perbedaan fanatik sehat dan fanatik buta, ciri-ciri, dampak, serta cara menyikapinya dengan benar menurut Islam dan psikologi.
@@ -131,6 +131,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri](https://dalam.web.id/jejak-sejarah/kekeliruan-menilai-muhammadiyah-tidak-patuh-ulil-amri) : Membedah 4 kekeliruan cara pikir yang menilai Muhammadiyah tidak taat pada ulil amri. Perbedaan ijtihad bukan pembangkangan, ini bentuk tanggung jawab ilmiah.
 - [Dari Zaman Nabi Adam ke Era Viral: Mengapa Kejahatan Terasa Makin Kacau?](https://dalam.web.id/jejak-sejarah/dari-nabi-adam-ke-era-viral) : Kejahatan bukan hal baru, sejak Nabi Adam pun sudah ada. Yang berubah adalah cara kita menyebarkannya. Artikel ini mengajak kita sadar: jangan jadi penyebar keburukan, ubah arah jadi penebar kebaikan.
 - [Ka'bah dalam Islam: Fakta, Makna, dan Fungsi Sebenarnya](https://dalam.web.id/jejak-sejarah/kabah-dalam-islam-fakta-makna) : Ka'bah dalam Islam sering disalahpahami sebagai objek sembahan. Artikel ini menjelaskan makna sebenarnya, fungsi kiblat, sejarah, dan alasan mengapa umat Islam tidak menyembah Ka'bah. Bahasa Indonesia santai, berdasarkan Al-Qur'an dan fakta sejarah.
 - [Fenomena Login Muhammadiyah: Anak Makin Melek Islam Berkemajuan](https://dalam.web.id/jejak-sejarah/fenomena-login-muhammadiyah) : Fenomena login Muhammadiyah menunjukkan meningkatnya ketertarikan anak muda pada Islam berkemajuan. Simak alasan, dampak, dan relevansinya di era modern.
