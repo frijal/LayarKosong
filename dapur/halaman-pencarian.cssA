@@ -1,7 +1,6 @@
 /* =============================================================
- * STYLE HALAMAN PENCARIAN (OPTIMIZED V8.6 - DIET MODE)
- * SELARAS DENGAN HEADER & CLOUDFLARE D1 API
- * ============================================================= */
+ *  STYLE HALAMAN PENCARIAN (SELARAS DENGAN HEADER)
+ *  ============================================================= */
 
 /* 1. Base Setup */
 body {
@@ -20,14 +19,12 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 /* 2. Konten Utama */
 .area-konten-pencarian {
     flex: 1;
-    margin-top: 2rem;
+    margin-top: 2rem; /* Tambahan jarak selain padding-top dari body.header-dimuat */
 }
 
 .status-pencarian {
@@ -46,7 +43,7 @@ body {
     color: var(--warna-aksen);
 }
 
-/* 3. Grid Hasil Pencarian */
+/* 3. Grid Hasil Pencarian (Sesuai Logic JS Kamu) */
 .search-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -54,16 +51,13 @@ body {
     padding-bottom: 4rem;
 }
 
-/* 4. Card Styling */
+/* 4. Card Styling (Menggunakan variabel dari header.css) */
 .result-card {
     background-color: var(--warna-permukaan);
     border: 1px solid var(--warna-garis);
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
 }
 
 .result-card:hover {
@@ -77,14 +71,10 @@ body {
     aspect-ratio: 16/9;
     object-fit: cover;
     background-color: var(--warna-garis);
-    display: block;
 }
 
 .card-content {
     padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
 }
 
 .card-title {
@@ -93,32 +83,20 @@ body {
     margin: 0.5rem 0;
     color: var(--warna-teks-utama);
     line-height: 1.4;
-    /* Optimization: Max 2 lines */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .card-desc {
     font-size: 0.85rem;
     color: var(--warna-teks-sekunder);
     margin-bottom: 1rem;
-    line-height: 1.5;
-    /* Optimization: Max 3 lines for snippet */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
-/* 5. Highlight Marker (Optimized for Readability) */
+/* 5. Highlight Marker */
 mark {
     background-color: var(--warna-aksen);
-    color: #ffffff; /* Kontras tinggi untuk teks yang dicari */
+    color: #fff;
     padding: 0 2px;
     border-radius: 2px;
-    font-weight: 500;
 }
 
 /* 6. Loading & Footer */
@@ -149,7 +127,6 @@ color: var(--warna-teks-sekunder);
     text-align: center;
     font-size: 0.85rem;
     color: var(--warna-teks-sekunder);
-    margin-top: auto;
 }
 
 /* 7. Responsive Mobile */
@@ -159,27 +136,11 @@ color: var(--warna-teks-sekunder);
         gap: 0.75rem;
     }
 
-    .pembungkus-lebar {
-        padding: 0 1rem;
-    }
-
     .card-content {
         padding: 0.75rem;
     }
 
     .card-title {
         font-size: 0.9rem;
-    }
-
-    .card-desc {
-        font-size: 0.8rem;
-        -webkit-line-clamp: 2; /* Lebih pendek di mobile biar ga penuh */
-    }
-}
-
-/* 8. Extra Small Devices */
-@media (max-width: 400px) {
-    .search-grid {
-        grid-template-columns: 1fr; /* Balik ke 1 kolom jika layar terlalu sempit */
     }
 }

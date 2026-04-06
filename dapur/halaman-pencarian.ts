@@ -1,24 +1,24 @@
 /**
- * halaman-pencarian.ts - Search Engine & UI Manager v6.9 (Provider Edition)
+ * halaman-pencarian.ts - Search Engine & UI Manager v8.6 (D1 API Edition)
  */
 
+// Interface tetap dipertahankan untuk type safety jika diperlukan
 interface MatchResult {
     title: string;
-    id: string;        // ini adalah filename
+    id: string;
     image: string;
-    date: string;      // ini adalah dateISO
+    date: string;
     description: string;
     category: string;
-    catSlug: string;
+    snippet_text?: string;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 🛠️ 1. RE-ADJUST PADDING
+    // 🛠️ 1. RE-ADJUST PADDING (Header Dynamic Height)
     const header = document.getElementById('main-header');
     if (header) {
         const resizeObserver = new ResizeObserver(entries => {
             for (let entry of entries) {
-                // Menggunakan height dari contentRect untuk padding body
                 document.body.style.paddingTop = `${entry.contentRect.height}px`;
             }
         });
@@ -61,12 +61,10 @@ if (!query) {
 }
 
 try {
-    // Tampilkan loading saat fetch
     if (loadingIndicator) loadingIndicator.style.display = 'block';
+    if (resultsContainer) resultsContainer.innerHTML = ''; // Bersihkan container sebelum render
 
-    // MEMANGGIL API PAGES FUNCTIONS (/search)
     const response = await fetch(`/search?q=${encodeURIComponent(query)}`);
-
     if (!response.ok) throw new Error('Gagal mengambil data dari server');
 
     const data = await response.json();
@@ -83,7 +81,7 @@ if (resultsContainer) {
 }
 }
 
-// 🖌️ 5. RENDERER (Optimized for D1 Output)
+// 🖌️ 5. RENDERER
 function renderResults(matches: any[], query: string) {
     if (!resultsContainer) return;
 
@@ -92,21 +90,20 @@ function renderResults(matches: any[], query: string) {
         return;
     }
 
-    resultsContainer.innerHTML = `<p class="text-muted">Ditemukan ${matches.length} artikel terkait...</p>`;
+    // Gunakan innerHTML untuk teks status agar tidak menumpuk saat pencarian ulang
+    resultsContainer.innerHTML = `<p class="text-muted" style="margin-bottom:1rem;">Ditemukan ${matches.length} artikel terkait...</p>`;
 
     const grid = document.createElement('div');
     grid.className = 'search-grid';
 
 matches.forEach(m => {
-    // D1 mengirim 'id' sebagai filename (misal: judul-post.html)
     const fileSlug = m.id ? m.id.replace('.html', '') : '#';
-    const catSlug = m.category ? m.category.toLowerCase().replace(/\s+/g, '-') : 'arsip';
+    // Fallback category jika null
+    const categoryName = m.category || 'Lainnya';
+    const catSlug = categoryName.toLowerCase().replace(/\s+/g, '-');
     const finalUrl = `/${catSlug}/${fileSlug}`;
-
-    // Image fallback jika null
     const thumbImg = m.image || '/thumbnail.webp';
 
-    // Format tanggal jika ada
 const dateStr = m.date ? new Date(m.date).toLocaleDateString('id-ID', {
     day: 'numeric', month: 'long', year: 'numeric'
 }) : '';
@@ -117,7 +114,7 @@ card.innerHTML = `
 <a href="${finalUrl}" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; height:100%;">
 <img src="${thumbImg}" alt="${m.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
 <div class="card-content">
-<span style="font-size: 10px; color: var(--color-primary); font-weight: bold; text-transform: uppercase;">${m.category}</span>
+<span style="font-size: 10px; color: var(--warna-aksen); font-weight: bold; text-transform: uppercase;">${categoryName}</span>
 <h3 class="card-title">${m.title}</h3>
 <p class="card-desc">${m.snippet_text || m.description || ''}</p>
 <div style="margin-top: auto; padding-top: 10px; font-size: 10px; color: gray;">${dateStr}</div>
@@ -125,6 +122,7 @@ card.innerHTML = `
 </a>`;
 grid.appendChild(card);
 });
+
 resultsContainer.appendChild(grid);
 }
 });
