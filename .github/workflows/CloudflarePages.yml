@@ -89,7 +89,7 @@ jobs:
 
       # 🍳 3. RUN DAPUR (Membaca deploy_dir)
       - name: Run Dapur (Build D1)
-        run: bun search/build-d1.ts
+        run: bun run source/search/build-d1.ts
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
