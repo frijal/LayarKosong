@@ -59,7 +59,7 @@ jobs:
         run: bun run dapur/build-d1.ts
         env:
     # Jika script dapurmu butuh token atau ID secara langsung:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ID_D1: ${{ secrets.CLOUDFLARE_ID_D1 }}
                     
       # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
