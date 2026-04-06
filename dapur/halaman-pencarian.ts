@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear().toString();
 
-    // 🔍 4. SEARCH LOGIC
+    // 🔍 4. SEARCH LOGIC (D1 API Edition)
     const resultsContainer = document.getElementById('search-results') as HTMLElement;
     const loadingIndicator = document.getElementById('loading-indicator') as HTMLElement;
     const queryDisplay = document.getElementById('search-query-display') as HTMLElement;
@@ -61,32 +61,19 @@ if (!query) {
 }
 
 try {
-    // MENGGUNAKAN PROVIDER
-    const data = await (window as any).siteDataProvider.getFor('halaman-pencarian.ts');
-    const matches: MatchResult[] = [];
-    const lowerQuery = query.toLowerCase();
+    // Tampilkan loading saat fetch
+    if (loadingIndicator) loadingIndicator.style.display = 'block';
 
-    Object.entries(data).forEach(([category, articles]: [string, any]) => {
-        const catSlug = category.toLowerCase().replace(/\s+/g, '-');
+    // MEMANGGIL API PAGES FUNCTIONS (/search)
+    const response = await fetch(`/search?q=${encodeURIComponent(query)}`);
 
-        // articles sekarang adalah array of objects (bukan array of arrays)
-        articles.forEach((article: any) => {
-            if (article.title?.toLowerCase().includes(lowerQuery) ||
-                article.description?.toLowerCase().includes(lowerQuery)) {
-                matches.push({
-                    title: article.title,
-                    id: article.id,
-                    image: article.image,
-                    date: article.date,
-                    description: article.description,
-                    category: category,
-                    catSlug: catSlug
-                });
-                }
-        });
-    });
+    if (!response.ok) throw new Error('Gagal mengambil data dari server');
+
+    const data = await response.json();
+    const matches = data.results || [];
 
     if (loadingIndicator) loadingIndicator.style.display = 'none';
+
     renderResults(matches, query);
 
 } catch (err: any) {
@@ -96,8 +83,8 @@ if (resultsContainer) {
 }
 }
 
-// 🖌️ 5. RENDERER
-function renderResults(matches: MatchResult[], query: string) {
+// 🖌️ 5. RENDERER (Optimized for D1 Output)
+function renderResults(matches: any[], query: string) {
     if (!resultsContainer) return;
 
     if (matches.length === 0) {
@@ -105,37 +92,35 @@ function renderResults(matches: MatchResult[], query: string) {
         return;
     }
 
-    resultsContainer.innerHTML = `<p class="text-muted">ditemukan ${matches.length} judul artikel...</p>`;
+    resultsContainer.innerHTML = `<p class="text-muted">Ditemukan ${matches.length} artikel terkait...</p>`;
 
     const grid = document.createElement('div');
     grid.className = 'search-grid';
 
-const highlight = (text: string): string => {
-    if (!text) return '';
-    const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(${safeQuery})`, 'gi');
-    return text.replace(regex, '<mark>$1</mark>');
-};
-
 matches.forEach(m => {
+    // D1 mengirim 'id' sebagai filename (misal: judul-post.html)
     const fileSlug = m.id ? m.id.replace('.html', '') : '#';
-    const finalUrl = `/${m.catSlug}/${fileSlug}`;
+    const catSlug = m.category ? m.category.toLowerCase().replace(/\s+/g, '-') : 'arsip';
+    const finalUrl = `/${catSlug}/${fileSlug}`;
 
-    // Format tanggal
-    const dateStr = m.date ? new Date(m.date).toLocaleDateString('id-ID', {
-        day: 'numeric', month: 'long', year: 'numeric'
-    }) : '';
+    // Image fallback jika null
+    const thumbImg = m.image || '/thumbnail.webp';
 
-    const card = document.createElement('div');
-    card.className = 'result-card';
+    // Format tanggal jika ada
+const dateStr = m.date ? new Date(m.date).toLocaleDateString('id-ID', {
+    day: 'numeric', month: 'long', year: 'numeric'
+}) : '';
+
+const card = document.createElement('div');
+card.className = 'result-card';
 card.innerHTML = `
 <a href="${finalUrl}" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; height:100%;">
-<img src="${m.image}" alt="${m.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
+<img src="${thumbImg}" alt="${m.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
 <div class="card-content">
 <span style="font-size: 10px; color: var(--color-primary); font-weight: bold; text-transform: uppercase;">${m.category}</span>
-<h3 class="card-title">${highlight(m.title)}</h3>
-<p class="card-desc">${highlight(m.description)}</p>
-<div style="margin-top: auto; padding-top: 10px; font-size: 10px;">${dateStr}</div>
+<h3 class="card-title">${m.title}</h3>
+<p class="card-desc">${m.snippet_text || m.description || ''}</p>
+<div style="margin-top: auto; padding-top: 10px; font-size: 10px; color: gray;">${dateStr}</div>
 </div>
 </a>`;
 grid.appendChild(card);
