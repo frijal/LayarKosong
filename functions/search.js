@@ -3,12 +3,15 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const query = url.searchParams.get("q");
 
-  // JIKA TIDAK ADA QUERY: Biarkan Cloudflare menampilkan file HTML asli
-  if (!query) {
+  // LOGIKA PENTING:
+  // Jika tidak ada parameter 'q', atau 'q' kosong,
+  // STOP jalankan kode API dan berikan kendali ke Cloudflare Pages 
+  // untuk menampilkan file /search/index.html kamu.
+  if (!query || query.trim() === "") {
     return context.next(); 
   }
 
-  // JIKA ADA QUERY: Kirim data JSON (seperti sebelumnya)
+  // Jika ADA parameter 'q', barulah kita kirim JSON
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -17,7 +20,7 @@ export async function onRequest(context) {
   try {
     const { results } = await env.DB.prepare(`
       SELECT title, id, category, image, date,
-      snippet(articles_fts, 2, '<mark>', '</mark>', '...', 60) as snippet_text
+      snippet(articles_fts, 2, '<mark>', '</mark>', '...', 20) as snippet_text
       FROM articles_fts 
       WHERE articles_fts MATCH ? 
       ORDER BY rank LIMIT 12
