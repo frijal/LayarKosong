@@ -3,14 +3,14 @@ import { readdirSync, readFileSync, existsSync } from "fs";
 import { join } from "path";
 
 // 1. KONFIGURASI
-const DB_PATH = "./search.db"; 
-const ARTICLE_DIRS = [
+const DB_FILE = "./search.db"; 
+const CATEGORIES = [
     "gaya-hidup", "jejak-sejarah", "lainnya", 
     "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"
 ];
 
-// 2. INISIALISASI DATABASE FTS5
-const db = new Database(DB_PATH, { create: true });
+// 2. INISIALISASI DATABASE
+const db = new Database(DB_FILE, { create: true });
 db.run("DROP TABLE IF EXISTS articles_fts");
 db.run(`
   CREATE VIRTUAL TABLE articles_fts USING fts5(
@@ -25,79 +25,76 @@ db.run(`
   )
 `);
 
-const insert = db.prepare(`
+const stmt = db.prepare(`
   INSERT INTO articles_fts (title, description, content, id, category, date, image) 
   VALUES ($title, $description, $content, $id, $category, $date, $image)
 `);
 
-// 3. HELPER: PEMBERSIHAN (Gunakan let untuk fleksibilitas runtime)
-function getCleanData(html: string, fileName: string) {
-    let titleMatch = html.match(/<title>(.*?)<\/title>/i);
-    let descMatch = html.match(/<meta name="description" content="(.*?)"/i);
-    let imageMatch = html.match(/<meta property="og:image" content="(.*?)"/i);
-    let dateMatch = html.match(/<meta name="publish-date" content="(.*?)"/i);
+// 3. FUNGSI PEMBERSIH (Gaya Linear/Flat)
+function parseHtml(rawHtml: string, name: string) {
+    const tMatch = rawHtml.match(/<title>(.*?)<\/title>/i);
+    const dMatch = rawHtml.match(/<meta name="description" content="(.*?)"/i);
+    const iMatch = rawHtml.match(/<meta property="og:image" content="(.*?)"/i);
+    const dtMatch = rawHtml.match(/<meta name="publish-date" content="(.*?)"/i);
 
-    // Proses Pembersihan
-    let tmp = html
-        .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gmi, "")
-        .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gmi, "")
-        .replace(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/gmi, "")
-        .replace(/<footer\b[^>]*>([\s\S]*?)<\/footer>/gmi, "")
-        .replace(//g, "");
+    // Step-by-step cleaning
+    let s = rawHtml;
+    s = s.replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gmi, "");
+    s = s.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gmi, "");
+    s = s.replace(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/gmi, "");
+    s = s.replace(/<footer\b[^>]*>([\s\S]*?)<\/footer>/gmi, "");
+    s = s.replace(//g, "");
 
-    // Cek tag <article>
-    let articlePart = tmp.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
-    let finalBody = articlePart ? articlePart[1] : tmp;
+    // Ambil isi artikel jika ada
+    const matchArt = s.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
+    const bodyText = (matchArt && matchArt[1]) ? matchArt[1] : s;
 
-    // Hapus tag HTML & Rapikan Spasi
-    let cleanText = finalBody
-        .replace(/<[^>]*>/g, " ") 
-        .replace(/\s+/g, " ")
-        .trim();
+    // Bersihkan tag HTML
+    const finalTxt = bodyText.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
     return {
-        title: titleMatch ? titleMatch[1] : fileName.replace(".html", ""),
-        description: descMatch ? descMatch[1] : "",
-        content: cleanText,
-        image: imageMatch ? imageMatch[1] : "/thumbnail.webp",
-        date: dateMatch ? dateMatch[1] : new Date().toISOString()
+        t: tMatch ? tMatch[1] : name.replace(".html", ""),
+        d: dMatch ? dMatch[1] : "",
+        c: finalTxt,
+        i: iMatch ? iMatch[1] : "/thumbnail.webp",
+        dt: dtMatch ? dtMatch[1] : new Date().toISOString()
     };
 }
 
-// 4. PROSES INDEXING
-console.log("🚀 Memulai Indexing...");
-let count = 0;
+// 4. MAIN LOOP
+console.log("--- Memulai Indexing Layar Kosong ---");
+let total = 0;
 
-for (let cat of ARTICLE_DIRS) {
-    if (!existsSync(cat)) continue;
+for (const folder of CATEGORIES) {
+    if (!existsSync(folder)) continue;
 
-    let files = readdirSync(cat).filter(f => f.endsWith(".html"));
-    console.log(`📂 ${cat}: ${files.length} file`);
+    const allFiles = readdirSync(folder).filter(x => x.endsWith(".html"));
+    console.log(`[*] Kategori ${folder}: ${allFiles.length} file`);
 
-    for (let file of files) {
+    for (const fName of allFiles) {
         try {
-            let raw = readFileSync(join(cat, file), "utf-8");
-            let data = getCleanData(raw, file);
+            const contentRaw = readFileSync(join(folder, fName), "utf-8");
+            const res = parseHtml(contentRaw, fName);
             
-            insert.run({
-                $title: data.title,
-                $description: data.description,
-                $content: data.content,
-                $id: file,
-                $category: cat,
-                $date: data.date,
-                $image: data.image
+            stmt.run({
+                $title: res.t,
+                $description: res.d,
+                $content: res.c,
+                $id: fName,
+                $category: folder,
+                $date: res.dt,
+                $image: res.i
             });
-            count++;
-        } catch (e) {
-            console.error(`❌ Gagal: ${file}`);
+            total++;
+        } catch (err) {
+            console.error(`[!] Error di file: ${fName}`);
         }
     }
 }
 
-// 5. FINISHING
+// 5. FINISH
 db.run("INSERT INTO articles_fts(articles_fts) VALUES('optimize')");
 db.run("VACUUM");
 db.close();
 
-console.log(`✅ Selesai! ${count} artikel terindeks ke ${DB_PATH}`);
+console.log(`--- Selesai! ${total} artikel masuk ke ${DB_FILE} ---`);
