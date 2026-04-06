@@ -92,17 +92,17 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
-      # 🚀 4. DEPLOY (Dengan sistem Retry 3x)
-      - name: Deploy to Cloudflare Pages
+      - name: 🚀 Deploy to Cloudflare Pages
         run: |
-          # Copy config sebentar ke folder kerja agar Pages mau jalan
-          cp /tmp/wrangler.toml source/wrangler.toml
+          # 1. Copy ke titik (.) karena kita sudah di dalam folder source
+          cp /tmp/wrangler.toml ./wrangler.toml
           
           max_attempts=3
           attempt=1
           until [ $attempt -gt $max_attempts ]
           do
             echo "🚀 Attempt $attempt to deploy..."
+            # Gunakan ../deploy_dir karena posisi kita ada di source/
             if bunx wrangler pages deploy ../deploy_dir --project-name=layarkosong --branch=main; then
               echo "✅ Deploy succeeded on attempt $attempt"
               break
@@ -114,14 +114,14 @@ jobs:
                 sleep 15
               else
                 echo "❌ All attempts failed"
-                rm source/wrangler.toml # Hapus config meski gagal
+                rm -f ./wrangler.toml
                 exit 1
               fi
             fi
           done
           
-          # Hapus config rahasia setelah selesai
-          rm source/wrangler.toml
+          # 2. Hapus config rahasia
+          rm -f ./wrangler.toml
         working-directory: source
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
