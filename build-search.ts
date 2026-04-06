@@ -30,27 +30,27 @@ const stmt = db.prepare(`
   VALUES ($title, $description, $content, $id, $category, $date, $image)
 `);
 
-// 3. FUNGSI PEMBERSIH (Gaya Linear/Flat)
+// 3. FUNGSI PEMBERSIH (Gaya Klasik agar tidak error di Runner)
 function parseHtml(rawHtml: string, name: string) {
-    const tMatch = rawHtml.match(/<title>(.*?)<\/title>/i);
-    const dMatch = rawHtml.match(/<meta name="description" content="(.*?)"/i);
-    const iMatch = rawHtml.match(/<meta property="og:image" content="(.*?)"/i);
-    const dtMatch = rawHtml.match(/<meta name="publish-date" content="(.*?)"/i);
+    var tMatch = rawHtml.match(/<title>(.*?)<\/title>/i);
+    var dMatch = rawHtml.match(/<meta name="description" content="(.*?)"/i);
+    var iMatch = rawHtml.match(/<meta property="og:image" content="(.*?)"/i);
+    var dtMatch = rawHtml.match(/<meta name="publish-date" content="(.*?)"/i);
 
-    // Step-by-step cleaning
-    let s = rawHtml;
-    s = s.replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gmi, "");
-    s = s.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gmi, "");
-    s = s.replace(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/gmi, "");
-    s = s.replace(/<footer\b[^>]*>([\s\S]*?)<\/footer>/gmi, "");
-    s = s.replace(//g, "");
+    // Pembersihan berantai
+    var s = rawHtml
+        .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gmi, "")
+        .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gmi, "")
+        .replace(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/gmi, "")
+        .replace(/<footer\b[^>]*>([\s\S]*?)<\/footer>/gmi, "")
+        .replace(//g, "");
 
-    // Ambil isi artikel jika ada
-    const matchArt = s.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
-    const bodyText = (matchArt && matchArt[1]) ? matchArt[1] : s;
+    // Ambil isi artikel
+    var matchArt = s.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
+    var bodyText = (matchArt && matchArt[1]) ? matchArt[1] : s;
 
-    // Bersihkan tag HTML
-    const finalTxt = bodyText.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    // Bersihkan tag HTML & Spasi
+    var finalTxt = bodyText.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
     return {
         t: tMatch ? tMatch[1] : name.replace(".html", ""),
@@ -63,18 +63,20 @@ function parseHtml(rawHtml: string, name: string) {
 
 // 4. MAIN LOOP
 console.log("--- Memulai Indexing Layar Kosong ---");
-let total = 0;
+var total = 0;
 
-for (const folder of CATEGORIES) {
+for (var i = 0; i < CATEGORIES.length; i++) {
+    var folder = CATEGORIES[i];
     if (!existsSync(folder)) continue;
 
-    const allFiles = readdirSync(folder).filter(x => x.endsWith(".html"));
-    console.log(`[*] Kategori ${folder}: ${allFiles.length} file`);
+    var allFiles = readdirSync(folder).filter(function(x) { return x.endsWith(".html"); });
+    console.log("[*] Kategori " + folder + ": " + allFiles.length + " file");
 
-    for (const fName of allFiles) {
+    for (var j = 0; j < allFiles.length; j++) {
+        var fName = allFiles[j];
         try {
-            const contentRaw = readFileSync(join(folder, fName), "utf-8");
-            const res = parseHtml(contentRaw, fName);
+            var contentRaw = readFileSync(join(folder, fName), "utf-8");
+            var res = parseHtml(contentRaw, fName);
             
             stmt.run({
                 $title: res.t,
@@ -87,14 +89,14 @@ for (const folder of CATEGORIES) {
             });
             total++;
         } catch (err) {
-            console.error(`[!] Error di file: ${fName}`);
+            console.error("[!] Error di file: " + fName);
         }
     }
 }
 
 // 5. FINISH
-db.run("INSERT INTO articles_fts(articles_fts) VALUES('optimize')");
-db.run("VACUUM");
+db.run("INSERT INTO articles_fts(articles_fts) VALUES('optimize');");
+db.run("VACUUM;");
 db.close();
 
-console.log(`--- Selesai! ${total} artikel masuk ke ${DB_FILE} ---`);
+console.log("--- Selesai! " + total + " artikel masuk ---");
