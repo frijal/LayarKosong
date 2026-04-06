@@ -44,23 +44,25 @@ jobs:
 
       - name: Create Dynamic Wrangler Config
         run: |
-            cat <<EOF > /tmp/wrangler.toml
-            [[d1_databases]]
-            binding = "DB"
-            database_name = "layarkosong-db"
-            database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+          cat <<EOF > /tmp/wrangler.toml
+          #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
+          name = "layarkosong"
+          compatibility_date = "2025-12-01"
+          pages_build_output_dir = "../deploy_dir"
 
-            [[kv_namespaces]]
-            binding = "COUNTS_KV"
-            id = "${{ secrets.CLOUDFLARE_ID_KV }}"
-            EOF
+          [vars]
+          BUN_VERSION = "latest"
+          NODE_VERSION = "24"
 
-      - name: Build D1 Database (Dapur)
-        run: bun run dapur/build-d1.ts
-        env:
-    # Jika script dapurmu butuh token atau ID secara langsung:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_ID_D1: ${{ secrets.CLOUDFLARE_ID_D1 }}
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "layarkosong-db"
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+
+          [[kv_namespaces]]
+          binding = "COUNTS_KV"
+          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          EOF
                     
       # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
       - name: Prepare Clean Directory
