@@ -20,7 +20,7 @@ export async function onRequest(context) {
       snippet(articles_fts, 2, '<mark>', '</mark>', '...', 20) as snippet_text
       FROM articles_fts 
       WHERE articles_fts MATCH ? 
-      ORDER BY rank LIMIT 12
+      ORDER BY rank LIMIT 120
     `).bind(query).all();
 
     // 3. Kirim hasil sebagai JSON
