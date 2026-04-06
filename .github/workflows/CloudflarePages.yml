@@ -67,13 +67,14 @@ jobs:
             --exclude='*' \
             source/ deploy_dir/
 
+      # 🔑 2. CREATE CONFIG (Tetap di /tmp agar aman)
       - name: Create Temporary Wrangler Config
         run: |
           cat <<EOF > /tmp/wrangler.toml
           #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
           name = "layarkosong"
           compatibility_date = "2025-12-01"
-          pages_build_output_dir = "../deploy_dir"
+          pages_build_output_dir = "deploy_dir"
           [vars]
           BUN_VERSION = "latest"
           NODE_VERSION = "24"
@@ -86,15 +87,16 @@ jobs:
           id = "${{ secrets.CLOUDFLARE_ID_KV }}"
           EOF
 
-      # 🍳 3. RUN DAPUR (Olah data dari deploy_dir yang sudah bersih)
+      # 🍳 3. RUN DAPUR (Membaca deploy_dir)
       - name: Run Dapur (Build D1)
-        run: bun run source/search/build-d1.ts
+        run: bun search/build-d1.ts
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
-      - name: 🚀 Deploy to Cloudflare Pages
+      # 🚀 4. DEPLOY (Retry 3x)
+      - name: Deploy to Cloudflare Pages
         run: |
-          # 1. Copy ke titik (.) karena kita sudah di dalam folder source
+          # Copy ke root (.) karena kita tidak punya folder source/
           cp /tmp/wrangler.toml ./wrangler.toml
           
           max_attempts=3
@@ -102,27 +104,17 @@ jobs:
           until [ $attempt -gt $max_attempts ]
           do
             echo "🚀 Attempt $attempt to deploy..."
-            # Gunakan ../deploy_dir karena posisi kita ada di source/
-            if bunx wrangler pages deploy ../deploy_dir --project-name=layarkosong --branch=main; then
+            # deploy_dir ada di folder yang sama
+            if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
               echo "✅ Deploy succeeded on attempt $attempt"
               break
             else
               echo "⚠️ Deploy failed on attempt $attempt"
               attempt=$((attempt+1))
-              if [ $attempt -le $max_attempts ]; then
-                echo "🔄 Retrying in 15 seconds..."
-                sleep 15
-              else
-                echo "❌ All attempts failed"
-                rm -f ./wrangler.toml
-                exit 1
-              fi
+              [ $attempt -le $max_attempts ] && sleep 15
             fi
           done
           
-          # 2. Hapus config rahasia
-          rm -f ./wrangler.toml
-        working-directory: source
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
