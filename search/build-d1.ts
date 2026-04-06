@@ -2,7 +2,7 @@ import { readdirSync, readFileSync, existsSync, writeFileSync, unlinkSync } from
 import { join } from "path";
 import { execSync } from "child_process";
 
-const ROOT_DIR = "..";
+const ROOT_DIR = "./deploy_dir";
 const ARTICLE_DIRS = ["gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"];
 const SQL_FILE = "./temp_sync.sql";
 // 📂 Path folder sementara di GitHub Runner
