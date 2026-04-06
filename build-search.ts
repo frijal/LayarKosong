@@ -30,27 +30,27 @@ const insert = db.prepare(`
   VALUES ($title, $description, $content, $id, $category, $date, $image)
 `);
 
-// 3. HELPER: EKSTRAKSI & PEMBERSIHAN (Fungsi Terpisah)
+// 3. HELPER: PEMBERSIHAN (Gunakan let untuk fleksibilitas runtime)
 function getCleanData(html: string, fileName: string) {
-    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
-    const descMatch = html.match(/<meta name="description" content="(.*?)"/i);
-    const imageMatch = html.match(/<meta property="og:image" content="(.*?)"/i);
-    const dateMatch = html.match(/<meta name="publish-date" content="(.*?)"/i);
+    let titleMatch = html.match(/<title>(.*?)<\/title>/i);
+    let descMatch = html.match(/<meta name="description" content="(.*?)"/i);
+    let imageMatch = html.match(/<meta property="og:image" content="(.*?)"/i);
+    let dateMatch = html.match(/<meta name="publish-date" content="(.*?)"/i);
 
-    // Pembersihan Tag Pengganggu
-    let processHtml = html
+    // Proses Pembersihan
+    let tmp = html
         .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gmi, "")
         .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gmi, "")
         .replace(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/gmi, "")
         .replace(/<footer\b[^>]*>([\s\S]*?)<\/footer>/gmi, "")
         .replace(//g, "");
 
-    // Ambil isi <article> jika ada, jika tidak pakai seluruh html yang sudah dibersihkan
-    const articleMatch = processHtml.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
-    const targetContent = articleMatch ? articleMatch[1] : processHtml;
+    // Cek tag <article>
+    let articlePart = tmp.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
+    let finalBody = articlePart ? articlePart[1] : tmp;
 
-    // Hapus semua tag HTML dan rapikan spasi
-    const finalContent = targetContent
+    // Hapus tag HTML & Rapikan Spasi
+    let cleanText = finalBody
         .replace(/<[^>]*>/g, " ") 
         .replace(/\s+/g, " ")
         .trim();
@@ -58,27 +58,26 @@ function getCleanData(html: string, fileName: string) {
     return {
         title: titleMatch ? titleMatch[1] : fileName.replace(".html", ""),
         description: descMatch ? descMatch[1] : "",
-        content: finalContent,
+        content: cleanText,
         image: imageMatch ? imageMatch[1] : "/thumbnail.webp",
         date: dateMatch ? dateMatch[1] : new Date().toISOString()
     };
 }
 
 // 4. PROSES INDEXING
-console.log("🚀 Memulai Full-Text Indexing...");
+console.log("🚀 Memulai Indexing...");
+let count = 0;
 
-let totalIndexed = 0;
-
-for (const cat of ARTICLE_DIRS) {
+for (let cat of ARTICLE_DIRS) {
     if (!existsSync(cat)) continue;
 
-    const files = readdirSync(cat).filter(f => f.endsWith(".html"));
-    console.log(`📂 Kategori: ${cat} (${files.length} file)`);
+    let files = readdirSync(cat).filter(f => f.endsWith(".html"));
+    console.log(`📂 ${cat}: ${files.length} file`);
 
-    for (const file of files) {
+    for (let file of files) {
         try {
-            const html = readFileSync(join(cat, file), "utf-8");
-            const data = getCleanData(html, file);
+            let raw = readFileSync(join(cat, file), "utf-8");
+            let data = getCleanData(raw, file);
             
             insert.run({
                 $title: data.title,
@@ -89,17 +88,16 @@ for (const cat of ARTICLE_DIRS) {
                 $date: data.date,
                 $image: data.image
             });
-            totalIndexed++;
+            count++;
         } catch (e) {
-            console.error(`❌ Gagal: ${file}`, e);
+            console.error(`❌ Gagal: ${file}`);
         }
     }
 }
 
-// 5. OPTIMASI
-console.log("🧹 Mengoptimasi database...");
+// 5. FINISHING
 db.run("INSERT INTO articles_fts(articles_fts) VALUES('optimize')");
 db.run("VACUUM");
 db.close();
 
-console.log(`✅ Selesai! ${totalIndexed} artikel masuk ke search.db`);
+console.log(`✅ Selesai! ${count} artikel terindeks ke ${DB_PATH}`);
