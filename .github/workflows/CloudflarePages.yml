@@ -42,7 +42,7 @@ jobs:
         run:  bun install
         working-directory: source
 
-      - name: Create Dynamic Wrangler Config
+      - name: 🔑 Create Temporary Wrangler Config
         run: |
           cat <<EOF > /tmp/wrangler.toml
           #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
@@ -63,14 +63,18 @@ jobs:
           binding = "COUNTS_KV"
           id = "${{ secrets.CLOUDFLARE_ID_KV }}"
           EOF
-                    
-      # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
-      - name: Prepare Clean Directory
+
+      - name: 🍳 Run Dapur (Build D1)
+        # Untuk D1, flag -c masih diperbolehkan, jadi kita pakai yang di /tmp/
+        run: bun ./dapur/build-d1.ts
+        working-directory: source
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: 🧹 Prepare Clean Directory (rsync)
         run: |
           mkdir deploy_dir
-          echo "🧹 Filtering files using rsync..."
-          
-          # Logic 'satpam' rsync yang sama persis
+          # rsync tetap bersih karena wrangler.toml masih di /tmp/
           rsync -a --delete \
             --include='gaya-hidup/***' \
             --include='jejak-sejarah/***' \
@@ -84,48 +88,36 @@ jobs:
             --include='ext/***' \
             --include='.well-known/***' \
             --include='img/***' \
-            --include='artikel.json' \
-            --include='redirectmap.json' \
-            --include='wrangler.toml' \
-            --include='llms.md' \
             --include='_redirects' \
             --include='_headers' \
             --include='*.html' \
             --include='*.xml' \
-            --include='*.xsl' \
-            --include='*.txt' \
             --include='favicon.*' \
-            --include='icon.*' \
-            --include='logo.*' \
-            --include='thumbnail.*' \
-            --include='*.webmanifest' \
             --exclude='*' \
             source/ deploy_dir/
-            
-          echo "✅ Ready to deploy contents of deploy_dir/"
-     
-      - name: Deploy to Cloudflare Pages (with retry)
+
+      - name: 🚀 Deploy to Cloudflare Pages
         run: |
+          # 1. Copy config dari /tmp ke folder kerja (karena Pages butuh file lokal)
+          cp /tmp/wrangler.toml .
+          
+          echo "🚀 Starting deploy..."
           max_attempts=3
           attempt=1
           until [ $attempt -gt $max_attempts ]
           do
-          echo "🚀 Attempt $attempt to deploy..."
-          if bunx wrangler pages deploy ../deploy_dir --project-name=layarkosong --branch=main -c /tmp/wrangler.toml; then
-          echo "✅ Deploy succeeded on attempt $attempt"
-          break
-          else
-          echo "⚠️ Deploy failed on attempt $attempt"
-          attempt=$((attempt+1))
-          if [ $attempt -le $max_attempts ]; then
-          echo "🔄 Retrying in 15 seconds..."
-          sleep 15
-          else
-          echo "❌ All attempts failed"
-          exit 1
-          fi
-          fi
+            if bunx wrangler pages deploy ../deploy_dir --project-name=layarkosong --branch=main; then
+              echo "✅ Deploy succeeded!"
+              break
+            else
+              echo "⚠️ Attempt $attempt failed, retrying..."
+              attempt=$((attempt+1))
+              [ $attempt -le $max_attempts ] && sleep 15
+            fi
           done
+
+          # 2. HAPUS SEGERA setelah selesai agar tidak ada jejak
+          rm wrangler.toml
         working-directory: source
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
