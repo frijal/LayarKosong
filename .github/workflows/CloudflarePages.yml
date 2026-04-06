@@ -109,7 +109,7 @@ jobs:
           until [ $attempt -gt $max_attempts ]
           do
           echo "🚀 Attempt $attempt to deploy..."
-          if bunx wrangler pages deploy --branch=main; then
+          if bunx wrangler pages deploy ../deploy_dir --project-name=layarkosong --branch=main -c /tmp/wrangler.toml; then
           echo "✅ Deploy succeeded on attempt $attempt"
           break
           else
