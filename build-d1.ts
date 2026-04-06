@@ -7,7 +7,7 @@ const SQL_FILE = "./temp_sync.sql";
 
 console.log("🛠️  Memulai proses sinkronisasi 1.200+ artikel...");
 
-let sqlCommands = ["BEGIN TRANSACTION;", "DELETE FROM articles_fts;"];
+let sqlCommands = ["DELETE FROM articles_fts;"];
 
 for (const cat of ARTICLE_DIRS) {
     if (!existsSync(cat)) continue;
@@ -36,7 +36,6 @@ for (const cat of ARTICLE_DIRS) {
         } catch (e) { console.error(`Gagal baca: ${file}`); }
     }
 }
-sqlCommands.push("COMMIT;");
 writeFileSync(SQL_FILE, sqlCommands.join("\n"));
 
 console.log("🚀 Mengirim ke Cloudflare D1...");
