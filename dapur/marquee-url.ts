@@ -157,7 +157,7 @@ function initFloatingSearch(allData: any): void {
     `).join('');
     results.style.display = 'block';
   } else {
-    results.innerHTML = `<div class="no-results">❌ Tidak ditemukan</div>`;
+    results.innerHTML = `<div class="no-results">❌ Tekan Tombol Enter untuk Selanjutnya...</div>`;
     results.style.display = 'block';
   }
   });
