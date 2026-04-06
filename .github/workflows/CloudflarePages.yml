@@ -42,34 +42,6 @@ jobs:
         run:  bun install
         working-directory: source
 
-      - name: 🔑 Create Temporary Wrangler Config
-        run: |
-          cat <<EOF > /tmp/wrangler.toml
-          #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
-          name = "layarkosong"
-          compatibility_date = "2025-12-01"
-          pages_build_output_dir = "../deploy_dir"
-
-          [vars]
-          BUN_VERSION = "latest"
-          NODE_VERSION = "24"
-
-          [[d1_databases]]
-          binding = "DB"
-          database_name = "layarkosong-db"
-          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
-
-          [[kv_namespaces]]
-          binding = "COUNTS_KV"
-          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
-          EOF
-
-      - name: 🍳 Run Dapur (Build D1)
-        run: bun dapur/build-d1.ts
-        working-directory: source  # Pastikan ini ada
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-
       - name: 🧹 Prepare Clean Directory (rsync)
         run: |
           mkdir deploy_dir
@@ -95,28 +67,61 @@ jobs:
             --exclude='*' \
             source/ deploy_dir/
 
-      - name: 🚀 Deploy to Cloudflare Pages
+      - name: Create Temporary Wrangler Config
         run: |
-          # 1. Copy config dari /tmp ke folder kerja (karena Pages butuh file lokal)
-          cp /tmp/wrangler.toml .
+          cat <<EOF > /tmp/wrangler.toml
+          #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
+          name = "layarkosong"
+          compatibility_date = "2025-12-01"
+          pages_build_output_dir = "../deploy_dir"
+          [vars]
+          BUN_VERSION = "latest"
+          NODE_VERSION = "24"
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "layarkosong-db"
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+          [[kv_namespaces]]
+          binding = "COUNTS_KV"
+          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          EOF
+
+      # 🍳 3. RUN DAPUR (Olah data dari deploy_dir yang sudah bersih)
+      - name: Run Dapur (Build D1)
+        run: bun run dapur/build-d1.ts
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      # 🚀 4. DEPLOY (Dengan sistem Retry 3x)
+      - name: Deploy to Cloudflare Pages
+        run: |
+          # Copy config sebentar ke folder kerja agar Pages mau jalan
+          cp /tmp/wrangler.toml source/wrangler.toml
           
-          echo "🚀 Starting deploy..."
           max_attempts=3
           attempt=1
           until [ $attempt -gt $max_attempts ]
           do
+            echo "🚀 Attempt $attempt to deploy..."
             if bunx wrangler pages deploy ../deploy_dir --project-name=layarkosong --branch=main; then
-              echo "✅ Deploy succeeded!"
+              echo "✅ Deploy succeeded on attempt $attempt"
               break
             else
-              echo "⚠️ Attempt $attempt failed, retrying..."
+              echo "⚠️ Deploy failed on attempt $attempt"
               attempt=$((attempt+1))
-              [ $attempt -le $max_attempts ] && sleep 15
+              if [ $attempt -le $max_attempts ]; then
+                echo "🔄 Retrying in 15 seconds..."
+                sleep 15
+              else
+                echo "❌ All attempts failed"
+                rm source/wrangler.toml # Hapus config meski gagal
+                exit 1
+              fi
             fi
           done
-
-          # 2. HAPUS SEGERA setelah selesai agar tidak ada jejak
-          rm wrangler.toml
+          
+          # Hapus config rahasia setelah selesai
+          rm source/wrangler.toml
         working-directory: source
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
