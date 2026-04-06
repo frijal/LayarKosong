@@ -10,7 +10,6 @@ const ARTICLE_DIRS = [
 ];
 
 // 2. INISIALISASI DATABASE FTS5
-// Kita gunakan tokenize unicode61 agar pencarian mendukung karakter spesial & case-insensitive
 const db = new Database(DB_PATH, { create: true });
 db.run("DROP TABLE IF EXISTS articles_fts");
 db.run(`
@@ -31,30 +30,27 @@ const insert = db.prepare(`
   VALUES ($title, $description, $content, $id, $category, $date, $image)
 `);
 
-// 3. HELPER: EKSTRAKSI METADATA & PEMBERSIHAN KONTEN
-function getCleanData(html: string, fileName: string, category: string) {
-    // Ekstraksi Metadata Dasar
+// 3. HELPER: EKSTRAKSI & PEMBERSIHAN (Fungsi Terpisah)
+function getCleanData(html: string, fileName: string) {
     const titleMatch = html.match(/<title>(.*?)<\/title>/i);
     const descMatch = html.match(/<meta name="description" content="(.*?)"/i);
     const imageMatch = html.match(/<meta property="og:image" content="(.*?)"/i);
     const dateMatch = html.match(/<meta name="publish-date" content="(.*?)"/i);
 
-    // Proses Pembersihan Content (Full Article)
-    let clean = html
-        .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gmi, "")     // Buang CSS
-        .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gmi, "")   // Buang JS
-        .replace(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/gmi, "") // Buang Noscript
-        .replace(/<footer\b[^>]*>([\s\S]*?)<\/footer>/gmi, "")   // Buang Footer
-        .replace(//g, "");                      // Buang Komentar HTML
+    // Pembersihan Tag Pengganggu
+    let processHtml = html
+        .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gmi, "")
+        .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gmi, "")
+        .replace(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/gmi, "")
+        .replace(/<footer\b[^>]*>([\s\S]*?)<\/footer>/gmi, "")
+        .replace(//g, "");
 
-    // Jika artikel kamu dibungkus tag <article>, ambil isinya saja agar lebih presisi
-    const articleMatch = clean.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
-    if (articleMatch) {
-        clean = articleMatch[1];
-    }
+    // Ambil isi <article> jika ada, jika tidak pakai seluruh html yang sudah dibersihkan
+    const articleMatch = processHtml.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
+    const targetContent = articleMatch ? articleMatch[1] : processHtml;
 
-    // Hapus sisa tag HTML dan rapikan spasi
-    clean = clean
+    // Hapus semua tag HTML dan rapikan spasi
+    const finalContent = targetContent
         .replace(/<[^>]*>/g, " ") 
         .replace(/\s+/g, " ")
         .trim();
@@ -62,32 +58,27 @@ function getCleanData(html: string, fileName: string, category: string) {
     return {
         title: titleMatch ? titleMatch[1] : fileName.replace(".html", ""),
         description: descMatch ? descMatch[1] : "",
-        content: clean, // FULL CONTENT
+        content: finalContent,
         image: imageMatch ? imageMatch[1] : "/thumbnail.webp",
         date: dateMatch ? dateMatch[1] : new Date().toISOString()
     };
 }
 
 // 4. PROSES INDEXING
-console.log("🚀 Memulai Full-Text Indexing untuk Layar Kosong...");
+console.log("🚀 Memulai Full-Text Indexing...");
 
 let totalIndexed = 0;
 
 for (const cat of ARTICLE_DIRS) {
-    if (!existsSync(cat)) {
-        console.warn(`⚠️ Folder ${cat} tidak ditemukan, melewati...`);
-        continue;
-    }
+    if (!existsSync(cat)) continue;
 
     const files = readdirSync(cat).filter(f => f.endsWith(".html"));
-    console.log(`📂 Kategori: ${cat} | Menemukan ${files.length} file.`);
+    console.log(`📂 Kategori: ${cat} (${files.length} file)`);
 
     for (const file of files) {
         try {
-            const filePath = join(cat, file);
-            const html = readFileSync(filePath, "utf-8");
-            
-            const data = getCleanData(html, file, cat);
+            const html = readFileSync(join(cat, file), "utf-8");
+            const data = getCleanData(html, file);
             
             insert.run({
                 $title: data.title,
@@ -100,17 +91,15 @@ for (const cat of ARTICLE_DIRS) {
             });
             totalIndexed++;
         } catch (e) {
-            console.error(`❌ Gagal memproses ${file}:`, e);
+            console.error(`❌ Gagal: ${file}`, e);
         }
     }
 }
 
-// 5. OPTIMASI & FINISHING
-console.log("Kasih makan database dengan optimasi...");
+// 5. OPTIMASI
+console.log("🧹 Mengoptimasi database...");
 db.run("INSERT INTO articles_fts(articles_fts) VALUES('optimize')");
-db.run("VACUUM"); // Merampingkan ukuran file di disk
+db.run("VACUUM");
 db.close();
 
-console.log(`\n✅ BERHASIL!`);
-console.log(`📊 Total Artikel: ${totalIndexed}`);
-console.log(`📂 Output: ${DB_PATH}`);
+console.log(`✅ Selesai! ${totalIndexed} artikel masuk ke search.db`);
