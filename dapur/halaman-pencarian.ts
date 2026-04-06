@@ -64,7 +64,7 @@ try {
     if (loadingIndicator) loadingIndicator.style.display = 'block';
     if (resultsContainer) resultsContainer.innerHTML = ''; // Bersihkan container sebelum render
 
-    const response = await fetch(`/search?q=${encodeURIComponent(query)}`);
+    const response = await fetch(`/cari?q=${encodeURIComponent(query)}`);
     if (!response.ok) throw new Error('Gagal mengambil data dari server');
 
     const data = await response.json();
