@@ -35,10 +35,7 @@ const superCleanText = (text: string) => {
 
 console.log("🛠️ Memulai Sinkronisasi D1: Operasi Sterilisasi Emoji & Metadata...");
 
-let sqlCommands: string[] = [
-    "BEGIN TRANSACTION;",
-    "DELETE FROM articles_fts;"
-];
+let sqlCommands: string[] = ["DELETE FROM articles_fts;"];
 
 for (const cat of ARTICLE_DIRS) {
     const fullCatPath = join(ROOT_DIR, cat);
