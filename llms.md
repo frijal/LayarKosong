@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.35
+document_version: 19.36
 last_updated: 2026-04-06
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 6 April 2026)
-> Menampilkan 1192 artikel versi 19.35.
+> Menampilkan 1193 artikel versi 19.36.
 
 ## Gaya Hidup
 - [Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Panduan Lengkap](https://dalam.web.id/gaya-hidup/fanatik-iman-kuat-atau-bahaya) : Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Pelajari perbedaan fanatik sehat dan fanatik buta, ciri-ciri, dampak, serta cara menyikapinya dengan benar menurut Islam dan psikologi.
@@ -319,6 +319,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda](https://dalam.web.id/lainnya/ketimpangan-pendidikan-sekolah-negeri-madrasah-swasta) : Ketimpangan pendidikan antara sekolah binaan Kemendikbud dan madrasah di bawah Kemenag semakin parah. Guru madrasah swasta hanya digaji Rp300 ribu, sementara guru negeri sejahtera. Analisis 5W+1H dan solusi.
 - [Kenapa Hanya Rasulullah yang Punya Gelar SAW? Penjelasan Lengkap + 7 Fakta](https://dalam.web.id/lainnya/kenapa-rasulullah-gelar-saw) : Kenapa hanya Rasulullah yang punya gelar SAW sedangkan nabi lain AS? Simak penjelasan lengkap, dalil Al-Quran, perbedaan makna, serta hikmah di baliknya. Bahasa Indonesia santai dan mendalam.
 - [Penolakan Pemindahan Madrasah ke Kemendikbud: Identitas dan Solusi](https://dalam.web.id/lainnya/penolakan-pemindahan-madrasah) : Penolakan pemindahan madrasah ke Kementerian Pendidikan bukan tanpa alasan. Madrasah adalah warisan peradaban Islam. Artikel ini mengulas 7 alasan kuat mengapa madrasah tetap di bawah Kemenag beserta solusi penguatan.
 - [MBG: Membangun Sistem Makan Bergizi yang Segar, Efisien & Anti Korupsi](https://dalam.web.id/lainnya/mbg-sistem-berkelanjutan) : Makan Bergizi Gratis (MBG) menghadapi masalah basi & kurang efisien. Solusi: sistem segar (produksi dekat konsumsi), efisien (sederhana), dan transparan anti korupsi. Pelajaran dari Jepang, Finlandia, Korsel.
