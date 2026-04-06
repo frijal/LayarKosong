@@ -16,7 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          persist-credentials: false
+          fetch-depth: 1
+          persist-credentials: true
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
