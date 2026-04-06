@@ -96,15 +96,21 @@ jobs:
       # 🚀 4. DEPLOY (Retry 3x)
       - name: Deploy to Cloudflare Pages
         run: |
-          # Copy ke root (.) karena kita tidak punya folder source/
+          # 1. Pastikan wrangler.toml ada di root untuk dibaca wrangler
           cp /tmp/wrangler.toml ./wrangler.toml
           
+          # 2. PENTING: Copy folder functions dari source ke ROOT (.) 
+          # agar sejajar dengan deploy_dir
+          cp -r source/functions ./functions
+
           max_attempts=3
           attempt=1
           until [ $attempt -gt $max_attempts ]
           do
             echo "🚀 Attempt $attempt to deploy..."
-            # deploy_dir ada di folder yang sama
+            
+            # 3. Jalankan deploy dari root (.) mengarah ke folder statis (deploy_dir)
+            # Wrangler otomatis akan mencari folder ./functions di root!
             if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
               echo "✅ Deploy succeeded on attempt $attempt"
               break
