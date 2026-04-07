@@ -137,21 +137,37 @@ color: var(--warna-teks-sekunder);
     animation: putar 1s linear infinite;
     margin: 0 auto 1rem;
 }
+/* ************************** */
+.search-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
 .btn-nav {
-    padding: 10px 20px;
-    background: var(--warna-bg-konten);
-    border: 1px solid var(--warna-aksen);
-    color: var(--warna-teks);
-    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--warna-bg-konten, #fff);
+    border: 1px solid var(--warna-aksen, #007bff);
+    color: var(--warna-teks, #333);
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
-    transition: 0.3s;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 .btn-nav:hover {
-    background: var(--warna-aksen);
-    color: white;
+    background-color: var(--warna-aksen, #007bff);
+    color: #fff;
 }
+
+/* Tambahkan efek disabled secara visual jika sedang loading */
+.btn-nav:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* ************************** */
+
 @keyframes putar {
     to { transform: rotate(360deg); }
 }
