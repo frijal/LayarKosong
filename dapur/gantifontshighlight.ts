@@ -132,8 +132,8 @@ const results = await Promise.all(files.map(processFile));
 const stats = results.filter(Boolean).reduce((acc, curr) => ({
   files: acc.files + 1,
   rep: acc.rep + (curr?.replaced || 0),
-                                                             cln: acc.cln + (curr?.cleaned || 0),
-                                                             inj: acc.inj + (curr?.injected || 0) // Menghitung injeksi trigger otomatis
+  cln: acc.cln + (curr?.cleaned || 0),
+  inj: acc.inj + (curr?.injected || 0) // Menghitung injeksi trigger otomatis
 }), { files: 0, rep: 0, cln: 0, inj: 0 });
 
 // Laporan hasil akhir
