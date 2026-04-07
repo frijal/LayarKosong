@@ -49,26 +49,6 @@ jobs:
             cp -u artikel/artikel.json sementara/
       # bun run dapur/audit-workflow-efisiensi.ts
 
-      - name: Create Dynamic Wrangler Config
-        run: |
-            cat <<EOF > wrangler.toml
-            [[d1_databases]]
-            binding = "DB"
-            database_name = "layarkosong-db"
-            database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
-
-            [[kv_namespaces]]
-            binding = "COUNTS_KV"
-            id = "${{ secrets.CLOUDFLARE_ID_KV }}"
-            EOF
-
-      - name: Build D1 Database (Dapur)
-        run: bun run dapur/build-d1.ts
-        env:
-    # Jika script dapurmu butuh token atau ID secara langsung:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ID_D1: ${{ secrets.CLOUDFLARE_ID_D1 }}
-
       # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
       - name: 📊 Generate Simplified Content Report
         id: generate_report
