@@ -137,7 +137,21 @@ color: var(--warna-teks-sekunder);
     animation: putar 1s linear infinite;
     margin: 0 auto 1rem;
 }
+.btn-nav {
+    padding: 10px 20px;
+    background: var(--warna-bg-konten);
+    border: 1px solid var(--warna-aksen);
+    color: var(--warna-teks);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
 
+.btn-nav:hover {
+    background: var(--warna-aksen);
+    color: white;
+}
 @keyframes putar {
     to { transform: rotate(360deg); }
 }
