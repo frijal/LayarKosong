@@ -89,20 +89,22 @@ async function postToLinkedInCompany() {
 
         // KITA LANGSUNG KE STEP POSTING (TANPA UPLOAD IMAGE)
         await httpPost(
-            'https://api.linkedin.com/rest/posts',
+            'https://api.linkedin.com/v2/ugcPosts',
             {
                 author: ORG_ID,
-                commentary: `${target.title}\n\n${target.url}\n\n${target.desc}`,
-                visibility: 'PUBLIC',
-                distribution: {
-                    feedDistribution: 'MAIN_FEED',
-                    targetEntities: [],
-                    thirdPartyDistributionChannels: []
+                lifecycleState: 'PUBLISHED',
+                specificContent: {
+                    'com.linkedin.ugc.ShareContent': {
+                        shareCommentary: { text: `${target.title}\n\n${target.url}` },
+                        shareMediaCategory: 'NONE'
+                    }
                 },
-                lifecycleState: 'PUBLISHED'
-                // Bagian 'content' dihapus agar LinkedIn melakukan auto-crawl link
+                visibility: { 'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC' }
             },
-            commonHeaders
+            {
+                'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                'X-Restli-Protocol-Version': '2.0.0' // Penting!
+            }
         );
 
         if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
