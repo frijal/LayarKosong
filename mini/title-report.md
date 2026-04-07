@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/6/2026, 11:41:50 AM
+Generated on: 4/7/2026, 11:46:01 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,9 +14,8 @@ Generated on: 4/6/2026, 11:41:50 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.34 | LLM Index v19.34 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.36 | LLM Index v19.36 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
-| `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/10-about-config-tweaks-performa-firefox.html` | 10 about:config Tweaks untuk Performa Firefox Maksimal - Layar Kosong | 10 about:config Tweaks untuk Performa Firefox Maksimal | Layar Kosong | ✅ Perfect |
@@ -556,6 +555,7 @@ Generated on: 4/6/2026, 11:41:50 AM
 | `artikel/kejeniusan-dadan-hindayana-nitrit-sayur.html` | Dadan Hindayana: Kejeniusan Level Ahli Temukan Musuh Nitrit di Sayur - Layar Kosong | Dadan Hindayana: Kejeniusan Level Ahli Temukan Musuh Nitrit di Sayur | Layar Kosong | ✅ Perfect |
 | `artikel/kejujuran-bisnis.html` | Kejujuran: Pondasi Bisnis yang Berkah - Layar Kosong | Kejujuran: Pondasi Bisnis yang Berkah | Layar Kosong | ✅ Perfect |
 | `artikel/kekaisaran-mongol.html` | Kisah Kekaisaran Mongol: Dari Temüjin ke Dinasti Yuan - Layar Kosong | Kisah Kekaisaran Mongol: Dari Temüjin ke Dinasti Yuan | Layar Kosong | ✅ Perfect |
+| `artikel/kekeliruan-menilai-muhammadiyah-tidak-patuh-ulil-amri.html` | Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri - Layar Kosong | Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri | Layar Kosong | ✅ Perfect |
 | `artikel/kekuasaan-jadi-dagangan.html` | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman - Layar Kosong | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman | Layar Kosong | ✅ Perfect |
 | `artikel/kenangan-ponsel-lama.html` | Galeri Kenangan Ponsel Jadul - Nostalgia Digital - Layar Kosong | Galeri Kenangan Ponsel Jadul - Nostalgia Digital | Layar Kosong | ✅ Perfect |
 | `artikel/kenapa-ada-folder-npm-cache.html` | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya - Layar Kosong | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya | Layar Kosong | ✅ Perfect |
@@ -581,6 +581,7 @@ Generated on: 4/6/2026, 11:41:50 AM
 | `artikel/kesimpulan-ai-umkm.html` | Masa Depan Milik Mereka yang Melek Teknologi - Layar Kosong | Masa Depan Milik Mereka yang Melek Teknologi | Layar Kosong | ✅ Perfect |
 | `artikel/kesultanan-utsmaniyah.html` | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum - Layar Kosong | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum | Layar Kosong | ✅ Perfect |
 | `artikel/ketika-orang-terdekat-menjadi-ujian.html` | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 - Layar Kosong | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 | Layar Kosong | ✅ Perfect |
+| `artikel/ketimpangan-pendidikan-sekolah-negeri-madrasah-swasta.html` | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda - Layar Kosong | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda | Layar Kosong | ✅ Perfect |
 | `artikel/keunggulan-dan-kekurangan-Desktop-KDE.html` | Keunggulan & Kekurangan Desktop KDE Plasma - Layar Kosong | Keunggulan & Kekurangan Desktop KDE Plasma | Layar Kosong | ✅ Perfect |
 | `artikel/keutamaan-bulan-ramadhan.html` | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya - Layar Kosong | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya | Layar Kosong | ✅ Perfect |
 | `artikel/keutamaan-membela-kehormatan-saudara.html` | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! - Layar Kosong | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! | Layar Kosong | ✅ Perfect |
@@ -1403,6 +1404,7 @@ Generated on: 4/6/2026, 11:41:50 AM
 | `jejak-sejarah/keajaiban-tulang-ekor-dalam-islam.html` | Keajaiban Tulang Ekor dalam Islam: Hadis, Al-Qur’an, dan Sains - Layar Kosong | Keajaiban Tulang Ekor dalam Islam: Hadis, Al-Qur’an, dan Sains | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/keindahan-surga-tak-terbayangkan.html` | Keindahan Surga Yang Tak Terbayangkan: Benarkah Lebih Indah dari Dunia? - Layar Kosong | Keindahan Surga Yang Tak Terbayangkan: Benarkah Lebih Indah dari Dunia? | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kekaisaran-mongol.html` | Kisah Kekaisaran Mongol: Dari Temüjin ke Dinasti Yuan - Layar Kosong | Kisah Kekaisaran Mongol: Dari Temüjin ke Dinasti Yuan | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/kekeliruan-menilai-muhammadiyah-tidak-patuh-ulil-amri.html` | Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri - Layar Kosong | Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kenapa-nama-tokoh-agama-mirip.html` | Satu Akar Sejarah Mengapa Nama Tokoh Agama Islam dan Kristen Terasa Mirip - Layar Kosong | Satu Akar Sejarah Mengapa Nama Tokoh Agama Islam dan Kristen Terasa Mirip | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kesultanan-utsmaniyah.html` | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum - Layar Kosong | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/keutamaan-bulan-ramadhan.html` | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya - Layar Kosong | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya | Layar Kosong | ✅ Perfect |
@@ -1564,6 +1566,7 @@ Generated on: 4/6/2026, 11:41:50 AM
 | `lainnya/kebutuhan-dasar-rakyat-2026.html` | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis - Layar Kosong | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis | Layar Kosong | ✅ Perfect |
 | `lainnya/kenapa-kartun-90an-hilang-dari-tv.html` | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? - Layar Kosong | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? | Layar Kosong | ✅ Perfect |
 | `lainnya/kenapa-rasulullah-gelar-saw.html` | Kenapa Hanya Rasulullah yang Punya Gelar SAW? Penjelasan Lengkap + 7 Fakta - Layar Kosong | Kenapa Hanya Rasulullah yang Punya Gelar SAW? Penjelasan Lengkap + 7 Fakta | Layar Kosong | ✅ Perfect |
+| `lainnya/ketimpangan-pendidikan-sekolah-negeri-madrasah-swasta.html` | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda - Layar Kosong | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda | Layar Kosong | ✅ Perfect |
 | `lainnya/kisah-jenderal-soedirman.html` | Kisah Sang Panglima Gerilya, Jenderal Soedirman - Layar Kosong | Kisah Sang Panglima Gerilya, Jenderal Soedirman | Layar Kosong | ✅ Perfect |
 | `lainnya/kontroversi-beasiswa-lpdp-reformasi.html` | Kontroversi Beasiswa LPDP: 7 Fakta Penting Soal Keadilan, Elitisme, dan Reformasi Total - Layar Kosong | Kontroversi Beasiswa LPDP: 7 Fakta Penting Soal Keadilan, Elitisme, dan Reformasi Total | Layar Kosong | ✅ Perfect |
 | `lainnya/koperasi-merah-putih-mobil-india.html` | Borongan 24 Triliun: Koperasi Merah Putih, Mobil India, dan Nasib Esemka yang Terlupakan 🇮🇳🚗 - Layar Kosong | Borongan 24 Triliun: Koperasi Merah Putih, Mobil India, dan Nasib Esemka yang Terlupakan 🇮🇳🚗 | Layar Kosong | ✅ Perfect |
@@ -1875,6 +1878,7 @@ Generated on: 4/6/2026, 11:41:50 AM
 | `opini-sosial/uu-kuhp-2026-netizen-indonesia.html` | Wajib Tahu! Mengenal UU KUHP 2026 & Dampaknya bagi Netizen Indonesia - Jaga Data Pribadi Tetap Aman - Layar Kosong | Wajib Tahu! Mengenal UU KUHP 2026 & Dampaknya bagi Netizen Indonesia - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `opini-sosial/video-singkat-menyusutkan-otak.html` | Video Durasi Singkat: Benarkah Membunuh Fokus Kita? - Layar Kosong | Video Durasi Singkat: Benarkah Membunuh Fokus Kita? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/whoosh-vs-saudi-land-bridge.html` | Whoosh vs Saudi Land Bridge: Biaya Sama 11x Beda Jarak? Ini Penjelasannya - Layar Kosong | Whoosh vs Saudi Land Bridge: Biaya Sama 11x Beda Jarak? Ini Penjelasannya | Layar Kosong | ✅ Perfect |
+| `search/index.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/10-distro-linux-terbaik-2026.html` | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 - Layar Kosong | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/4-distro-linux-turunan-terbaik.html` | 4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya - Layar Kosong | 4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/6-hal-salah-kaprah-windows-user-tentang-linux.html` | 6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya! - Layar Kosong | 6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya! | Layar Kosong | ✅ Perfect |
