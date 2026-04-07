@@ -229,14 +229,32 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   if (!catInfo) { grid.style.display = 'none'; return; }
 
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
-  grid.innerHTML = related.map((item: any) => `
-  <div class="rel-card-mini">
-  <a href="${getFullUrl(item.id, allData)}">
-  <div class="rel-img-mini"><img src="${item.image || '/thumbnail.webp'}" alt="${item.title}" loading="lazy" onerror="this.src='/thumbnail.webp'"></div>
-  <div class="rel-info-mini"><h4>${item.title}</h4></div>
-  </a>
-  </div>
-  `).join('');
+  
+  grid.innerHTML = related.map((item: any) => {
+    // Logika untuk mengubah thumbnail ke versi ringan (-sm.webp)
+    let thumbUrl = '/thumbnail.webp';
+    if (item.image) {
+      // Mengganti ekstensi file gambar apa pun (jpg, png, webp) menjadi -sm.webp
+      thumbUrl = item.image.replace(/\.[^/.]+$/, "") + "-sm.webp";
+    }
+
+    return `
+    <div class="rel-card-mini">
+      <a href="${getFullUrl(item.id, allData)}">
+        <div class="rel-img-mini">
+          <img 
+            src="${thumbUrl}" 
+            alt="${item.title}" 
+            loading="lazy" 
+            onerror="this.src='/thumbnail.webp'">
+        </div>
+        <div class="rel-info-mini">
+          <h4>${item.title}</h4>
+        </div>
+      </a>
+    </div>
+    `;
+  }).join('');
 }
 
 // ---------------------------
