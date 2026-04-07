@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     navContainer.appendChild(prevBtn);
     navContainer.appendChild(nextBtn);
-    resultsContainer.after(navContainer);
-
+const paginationBox = document.getElementById('pagination-container');
+if (paginationBox) paginationBox.appendChild(navContainer);
     if (!query) {
         if (loadingIndicator) loadingIndicator.style.display = 'none';
         if (resultsContainer) resultsContainer.innerHTML =
