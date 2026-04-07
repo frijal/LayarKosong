@@ -1,3 +1,55 @@
+import fs from 'node:fs';
+
+/**
+ * CONFIGURATION
+ * Pastikan environment variable berikut sudah di-set:
+ * LINKEDIN_ACCESS_TOKEN
+ * LINKEDIN_ORGANIZATION_ID (format: urn:li:organization:123456)
+ */
+const JSON_FILE = 'artikel.json';
+const DATABASE_FILE = 'mini/posted-linkedin-comp.txt';
+const BASE_URL = 'https://dalam.web.id';
+
+// --- Helper Functions ---
+
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+const slugify = (text: string) =>
+text.toLowerCase().trim().replace(/\s+/g, '-');
+
+async function httpPost(url: string, body: any, headers: Record<string, string> = {}) {
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...headers },
+        body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+        const errorBody = await res.text();
+        throw new Error(`POST ${url} gagal (${res.status}): ${errorBody}`);
+    }
+    return res.json();
+}
+
+async function httpGetBinary(url: string) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`GET ${url} gagal: ${res.status}`);
+    const buffer = Buffer.from(await res.arrayBuffer());
+    const contentType = res.headers.get('content-type') || 'application/octet-stream';
+    return { buffer, contentType };
+}
+
+async function httpPut(url: string, buffer: Buffer, headers: Record<string, string> = {}) {
+    const res = await fetch(url, {
+        method: 'PUT',
+        headers,
+        body: buffer
+    });
+    if (!res.ok) throw new Error(`PUT ${url} gagal: ${res.status}`);
+    return res;
+}
+
+// --- Main Function ---
+
 async function postToLinkedInCompany() {
     const ACCESS_TOKEN = process.env.LINKEDIN_ACCESS_TOKEN;
     const ORG_ID = process.env.LINKEDIN_ORGANIZATION_ID;
@@ -63,3 +115,6 @@ async function postToLinkedInCompany() {
         process.exit(1);
     }
 }
+
+// Jalankan skrip
+postToLinkedInCompany();
