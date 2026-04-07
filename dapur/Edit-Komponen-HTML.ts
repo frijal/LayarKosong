@@ -131,7 +131,7 @@ function addElements(html: string): string {
   if (!html.includes("marquee-url.css")) {
     html = html.replace(
       "</head>",
-      `<link rel="stylesheet" href="/ext/marquee-url.css"></head>`
+      `<link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript></head>`
     );
   }
   // 2. Footer links
