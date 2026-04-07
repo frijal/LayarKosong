@@ -115,7 +115,7 @@
             color: var(--primary-color);
             margin-bottom: 15px;
         }
-        .step-box {
+        .zdummy3 {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
@@ -256,12 +256,12 @@
         </div>
         <h2 id="step1">Langkah 1: Mengatur Cloudflare Turnstile 🛡️</h2>
         <p>Turnstile adalah satpam di gardu depan blog kita. Dia yang bakal mastiin yang masuk itu beneran orang Balikpapan atau bot dari antah-berantah.</p>
-        <div class="step-box">
+        <div class="zdummy3">
             <div class="step-number">1</div>
             <h3>Daftar di Cloudflare</h3>
             <p>Langsung aja gas ke <a href="https://dash.cloudflare.com/?to=/:account/turnstile" target="_blank" rel="noopener noreferrer">Dashboard Cloudflare Turnstile</a> kamu. Pilih menu Turnstile, lalu tambahkan situs baru. Pilih mode <strong>Managed</strong> biar Cloudflare yang mikir gimana cara paling pas buat ngetes pengunjung.</p>
         </div>
-        <div class="step-box">
+        <div class="zdummy3">
             <div class="step-number">2</div>
             <h3>Pasang Widget di HTML</h3>
             <p>Masukkan script API Turnstile di bagian atas halaman kamu, lalu tempelkan <code>div</code> widget di dalam form. Ingat, <strong>Site Key</strong> itu ibarat alamat rumah, sedangkan <strong>Secret Key</strong> jangan sampai ada yang tahu selain kamu dan script Google nanti.</p>
@@ -269,7 +269,7 @@
         </div>
         <h2 id="step2">Langkah 2: Mengatur Google Apps Script 📧</h2>
         <p>Buka <a href="https://script.google.com/home" target="_blank" rel="noopener noreferrer">Google Apps Script</a>, Sekarang kita siapkan "otak" pengirim emailnya. Google Apps Script bakal nerima data dari form, ngecek validasi Turnstile, baru deh kirim email ke kamu.</p>
-        <div class="step-box">
+        <div class="zdummy3">
             <div class="step-number">3</div>
             <h3>Tanam Kode di Google Script</h3>
             <p>Buka <em>Google Script editor</em>, buat project baru, dan masukkan kode sakti di bawah ini. Kode ini udah lengkap dengan fitur verifikasi ke API Cloudflare biar makin aman.</p>
