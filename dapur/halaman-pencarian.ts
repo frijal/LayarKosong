@@ -88,7 +88,7 @@ if (paginationBox) paginationBox.appendChild(navContainer);
         return;
     }
 
-// --- 🟢 FUNGSI FETCH & REPLACE ---
+// --- 🟢 FUNGSI FETCH & REPLACE --
 async function fetchResults(page: number) {
     try {
         if (loadingIndicator) loadingIndicator.style.display = 'block';
