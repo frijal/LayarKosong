@@ -17,7 +17,8 @@ on:
           - bluesky
           - discord
           - facebook
-          - linkedin
+          - linkedin-personal
+          - linkedin-comp
           - mastodon
           - threads
           - tumblr
@@ -34,15 +35,15 @@ jobs:
     
     steps:
       - name: 🛰️ Checkout Repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
           persist-credentials: true
 
       - name: 🚀 Setup Bun
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest         
+          bun-version: latest          
       
       - name: 📦 Install
         run: bun install 
@@ -83,13 +84,21 @@ jobs:
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
         run: bun run dapur/post-to-threads.ts
 
-      - name: 🆕 4. LinkedIn Post Script
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin'
+      - name: 🆕 4a. LinkedIn Personal Post
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin-personal'
         continue-on-error: true
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
-        run: bun run dapur/post-to-linkedin.ts
+        run: bun run dapur/post-to-linkedin-personal.ts
+
+      - name: 🏢 4b. LinkedIn comp Post
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin-comp'
+        continue-on-error: true
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_ORGANIZATION_ID: ${{ secrets.LINKEDIN_ORGANIZATION_ID }}
+        run: bun run dapur/post-to-linkedin-comp.ts
 
       - name: 🎨 5. Tumblr Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'tumblr'
@@ -115,26 +124,6 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
         run: bun run dapur/post-to-facebook.ts      
-
-#      - name: 🦋 9. Bluesky Autopost (Bun Version)
-#        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
-#        continue-on-error: true
-#        env:
-#          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
-#          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-#        run: |
-#          bun run dapur/post-to-bluesky.js
-#          if [ -f /tmp/temp_new_url_bsky.txt ]; then
-#            cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
-#          fi
-
-#      - name: 🟡 10. Lemmy Post
-#        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
-#        continue-on-error: true
-#        env:
-#          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
-#          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-#        run: bun run dapur/post-to-lemmy.js
 
       # =========================================================
       # 💾 FINAL COMMIT
