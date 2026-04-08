@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/7/2026, 11:46:01 AM
+Generated on: 4/8/2026, 11:46:09 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/7/2026, 11:46:01 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.36 | LLM Index v19.36 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.37 | LLM Index v19.37 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -729,6 +729,7 @@ Generated on: 4/7/2026, 11:46:01 AM
 | `artikel/membagikan-aplikasi-debian-dengan-dpkg-repack.html` | Membagikan Aplikasi Debian dengan dpkg-repack - Layar Kosong | Membagikan Aplikasi Debian dengan dpkg-repack | Layar Kosong | ✅ Perfect |
 | `artikel/membedah-hasil-apt-audit-lengkap.html` | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris - Layar Kosong | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris | Layar Kosong | ✅ Perfect |
 | `artikel/membedah-hasil-apt-audit.html` | Mengupas Hasil 'apt --audit': Arti & Solusi Lengkapnya - Layar Kosong | Mengupas Hasil 'apt --audit': Arti & Solusi Lengkapnya | Layar Kosong | ✅ Perfect |
+| `artikel/membedah-tugas-hrd.html` | Tentang Tugas HRD dari Hulu ke Hilir: Panduan Lengkap - Layar Kosong | Tentang Tugas HRD dari Hulu ke Hilir: Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/membersihkan-junk-files-dan-driver-lama-windows.html` | Cara Membersihkan Junk Files & Driver Lama di Windows - Biar Laptop/PC Makin Ngebut! 🚀 - Layar Kosong | Cara Membersihkan Junk Files & Driver Lama di Windows - Biar Laptop/PC Makin Ngebut! 🚀 | Layar Kosong | ✅ Perfect |
 | `artikel/membuat-album-json.html` | Cara Membuat File album.json untuk Galeri Gambar (Python & Node.js) - Layar Kosong | Cara Membuat File album.json untuk Galeri Gambar (Python & Node.js) | Layar Kosong | ✅ Perfect |
 | `artikel/membuat-git-orphan-branch.html` | Cara Membuat Orphan Branch di Git & GitHub - Layar Kosong | Cara Membuat Orphan Branch di Git & GitHub | Layar Kosong | ✅ Perfect |
@@ -1089,6 +1090,7 @@ Generated on: 4/7/2026, 11:46:01 AM
 | `artikel/spanyol-umumkan-inisiatif-baru-buka-darsgah-untuk-gadis-muslim.html` | Spanyol Umumkan Inisiatif Baru Buka 50.000 Darsgah untuk Gadis Muslim - Layar Kosong | Spanyol Umumkan Inisiatif Baru Buka 50.000 Darsgah untuk Gadis Muslim | Layar Kosong | ✅ Perfect |
 | `artikel/sparkylinux-2026-03-tiamat.html` | SparkyLinux 2026.03 Tiamat Rilis: Debian Testing Forky dengan Kernel 6.19 - Layar Kosong | SparkyLinux 2026.03 Tiamat Rilis: Debian Testing Forky dengan Kernel 6.19 | Layar Kosong | ✅ Perfect |
 | `artikel/sparkylinux-8-2-rilis-kernel-619.html` | SparkyLinux 8.2 Dirilis dengan Dukungan Kernel 6.19 dan Lingkungan Desktop Terbaru - Layar Kosong | SparkyLinux 8.2 Dirilis dengan Dukungan Kernel 6.19 dan Lingkungan Desktop Terbaru | Layar Kosong | ✅ Perfect |
+| `artikel/sqlite-bisa-seperti-mysql-postgre.html` | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? - Layar Kosong | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? | Layar Kosong | ✅ Perfect |
 | `artikel/ssh-linux.html` | Pengenalan SSH di Linux - Terminal Interaktif - Layar Kosong | Pengenalan SSH di Linux - Terminal Interaktif | Layar Kosong | ✅ Perfect |
 | `artikel/ssh3-evolusi-keamanan.html` | SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern - Layar Kosong | SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern | Layar Kosong | ✅ Perfect |
 | `artikel/status-ibu-kota-indonesia-mk.html` | Menanti Keppres Pindah ke Nusantara: Sekarang Ibu Kota RI Ada di Mana? - Layar Kosong | Menanti Keppres Pindah ke Nusantara: Sekarang Ibu Kota RI Ada di Mana? | Layar Kosong | ✅ Perfect |
@@ -1580,6 +1582,7 @@ Generated on: 4/7/2026, 11:46:01 AM
 | `lainnya/mbg-sistem-berkelanjutan.html` | MBG: Membangun Sistem Makan Bergizi yang Segar, Efisien & Anti Korupsi - Layar Kosong | MBG: Membangun Sistem Makan Bergizi yang Segar, Efisien & Anti Korupsi | Layar Kosong | ✅ Perfect |
 | `lainnya/mburu-uceng-kelangan-deleg.html` | Mburu Uceng Kelangan Deleg: Pepatah Jawa yang Ngena Banget! 🐟 - Layar Kosong | Mburu Uceng Kelangan Deleg: Pepatah Jawa yang Ngena Banget! 🐟 | Layar Kosong | ✅ Perfect |
 | `lainnya/memahami-kdrt-lebih-dalam.html` | KDRT: Lebih dari Sekadar Luka Lebam (Memahami Kekerasan dalam Rumah Tangga) - Layar Kosong | KDRT: Lebih dari Sekadar Luka Lebam (Memahami Kekerasan dalam Rumah Tangga) | Layar Kosong | ✅ Perfect |
+| `lainnya/membedah-tugas-hrd.html` | Tentang Tugas HRD dari Hulu ke Hilir: Panduan Lengkap - Layar Kosong | Tentang Tugas HRD dari Hulu ke Hilir: Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `lainnya/menepis-gelap-menyambut-terang.html` | Menepis Gelap, Menyambut Terang - Perspektif Baru tentang Ujian Hidup - Layar Kosong | Menepis Gelap, Menyambut Terang - Perspektif Baru tentang Ujian Hidup | Layar Kosong | ✅ Perfect |
 | `lainnya/menggugat-koperasi-merah-putih.html` | Menggugat Koperasi Merah Putih: Proyek Rakyat atau Cuan Pejabat? - Layar Kosong | Menggugat Koperasi Merah Putih: Proyek Rakyat atau Cuan Pejabat? | Layar Kosong | ✅ Perfect |
 | `lainnya/menggugat-otoritas-keagamaan-mui.html` | MENGGUGAT OTORITAS KEAGAMAAN MUI: Tuhan Kok Diwakili? - Layar Kosong | MENGGUGAT OTORITAS KEAGAMAAN MUI: Tuhan Kok Diwakili? | Layar Kosong | ✅ Perfect |
@@ -1607,6 +1610,7 @@ Generated on: 4/7/2026, 11:46:01 AM
 | `lainnya/sekolah-daring-hemat-bbm.html` | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? - Layar Kosong | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? | Layar Kosong | ✅ Perfect |
 | `lainnya/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `lainnya/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
+| `lainnya/sqlite-bisa-seperti-mysql-postgre.html` | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? - Layar Kosong | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? | Layar Kosong | ✅ Perfect |
 | `lainnya/tarif-listrik-januari-maret-2026.html` | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya | Layar Kosong | ✅ Perfect |
 | `lainnya/terjebak-dopamine-loop-scroll-medsos.html` | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? - Layar Kosong | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? | Layar Kosong | ✅ Perfect |
 | `lainnya/ujian-nasional-catatan-video.html` | Ujian Nasional: catatan singkat, video, dan visual - Layar Kosong | Ujian Nasional: catatan singkat, video, dan visual | Layar Kosong | ✅ Perfect |
