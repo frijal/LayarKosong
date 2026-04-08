@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet</title>
+
+    <meta name="description" content="Menjadi Data Analyst tidak perlu ribet. Pelajari 10 fungsi Excel terbaik seperti XLOOKUP dan FILTER untuk bekerja lebih cerdas dan menghemat waktu.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/10-rumus-excel-data-analyst.html">
+
+    <meta name="promphint" content="Pertanyaan Apa saja rumus Excel yang wajib dikuasai Data Analyst Jawaban Fungsi seperti XLOOKUP FILTER SUMIFS UNIQUE dan SORT sangat penting untuk mempermudah analisis data">
+
+    <meta name="news_keywords" content="excel, data analyst, rumus excel, tutorial excel, belajar data, xlookup, fungsi excel">
+
+    <meta property="og:title" content="10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet">
+    <meta property="og:description" content="Panduan santai tapi lengkap membahas 10 fungsi Excel mutlak buat Data Analyst. Mulai dari XLOOKUP sampai VSTACK, semuanya dibahas tuntas pakai contoh.">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HFZNPh5bUAAcmaH?format=jpg&name=large">
+    <meta property="og:url" content="https://dalam.web.id/artikel/10-rumus-excel-data-analyst.html">
+    <meta property="og:type" content="article">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet">
+    <meta name="twitter:description" content="Pusing rekap data tiap bulan? Ini 10 rumus Excel rahasia yang bakal bikin kamu kerja lebih cerdas, bukan lebih keras! Klik buat baca selengkapnya.">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HFZNPh5bUAAcmaH?format=jpg&name=large">
+
+    <meta property="article:tag" content="Data Analyst">
+    <meta property="article:tag" content="Tutorial Excel">
+    <meta property="article:tag" content="Produktivitas">
+    <meta property="article:tag" content="Tips Karir">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Optimasi CSS Tanpa Framework - Mendukung Light/Dark Mode Secara Native */
+        :root {
+            --bg-color: #fdfdfd;
+            --text-color: #2c3e50;
+            --heading-color: #1a252f;
+            --link-color: #2980b9;
+            --code-bg: #f1f2f6;
+            --border-color: #e0e0e0;
+            --accent-color: #27ae60;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --heading-color: #ffffff;
+                --link-color: #64b5f6;
+                --code-bg: #1e1e1e;
+                --border-color: #333333;
+                --accent-color: #4caf50;
+            }
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0 20px;
+            font-size: 18px; /* Ukuran font nyaman dibaca */
+        }
+
+        /* 1 Kolom Max-Width 1000px di tengah */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        h1, h2, h3 {
+            color: var(--heading-color);
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 2.5rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; }
+        h2 { font-size: 1.8rem; margin-top: 40px; }
+        h3 { font-size: 1.4rem; color: var(--accent-color); }
+
+        /* Optimasi CLS: Menjaga rasio gambar */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        a { color: var(--link-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 0.9em;
+            color: var(--link-color);
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+
+        .note-box {
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        /* Helpers */
+        .mb-2 { margin-bottom: 1rem; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+
+<main>
+    <article>
+        <h1><i class="fa-solid fa-file-excel"></i> 10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet</h1>
+
+        <p>Jujur aja, awal mula terjun ke dunia pengolahan data, rasanya pengen nyerah. Menjadi Data Analyst itu ribet banget 🤯! Bayangin, kamu harus buka ratusan ribu baris data, nyocokin satu-satu, dan kalau salah geser kolom dikit aja pas pakai VLOOKUP... *boom*, semua laporan langsung berantakan.</p>
+
+        <img src="https://pbs.twimg.com/media/HFZNPh5bUAAcmaH?format=jpg&name=large" width="1000" height="562" alt="Ilustrasi Data Analyst Menggunakan Excel" fetchpriority="high">
+
+
+
+        <p>Berdasarkan pengalaman jatuh bangun ngurusin data <em>raw</em> yang bikin pusing, sampai akhirnya aku menemukan jalannya. 10 fungsi di Excel inilah jawabannya. Yuk kita kupas satu-satu!</p>
+
+        <hr style="border:0; border-top:1px solid var(--border-color); margin:40px 0;">
+
+        <h2>1. XLOOKUP <i class="fa-solid fa-magnifying-glass"></i></h2>
+        <p>Selamat tinggal VLOOKUP dan HLOOKUP! Ini adalah penerus VLOOKUP yang jauh lebih fleksibel. Kamu bisa mencari data ke arah mana pun (kiri atau kanan) tanpa perlu repot menghitung indeks kolom. Kalau dulu posisi kolom acuan harus di paling kiri, dengan XLOOKUP bebas mau taruh di mana aja.</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=XLOOKUP(nilai_dicari, kolom_pencarian, kolom_hasil)</code></li>
+            <li><strong>Contoh Kasus:</strong> Kamu punya daftar ID di kolom A dan Nama di kolom B. Ingin cari nama untuk ID "A01".</li>
+        </ul>
+        <pre><code>=XLOOKUP("A01", A:A, B:B)</code></pre>
+
+        <h2>2. FILTER <i class="fa-solid fa-filter"></i></h2>
+        <p>Kalau biasanya kamu pakai fitur klik ikon corong (filter) di atas tabel, sekarang kamu bisa memanggil datanya di tempat lain pakai rumus! Ini berguna banget untuk bikin laporan dinamis. Fungsi ini menampilkan sekumpulan data berdasarkan kriteria tertentu secara otomatis.</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=FILTER(rentang_data, kondisi)</code></li>
+            <li><strong>Contoh Kasus:</strong> Menampilkan semua baris data secara lengkap yang kategorinya adalah "Elektronik".</li>
+        </ul>
+        <pre><code>=FILTER(A2:C10, B2:B10="Elektronik")</code></pre>
+
+        <h2>3. SUMIFS <i class="fa-solid fa-calculator"></i></h2>
+        <p>Satu kriteria buat jumlahan aja kadang nggak cukup. Gimana kalau bos minta, "Coba hitung total penjualan Si A, tapi khusus bulan Januari aja ya?" Nah, di sinilah SUMIFS jadi pahlawan. Fungsi ini menjumlahkan angka berdasarkan satu atau lebih kriteria.</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=SUMIFS(rentang_jumlah, rentang_kriteria1, kriteria1, ...)</code></li>
+            <li><strong>Contoh Kasus:</strong> Total penjualan untuk sales bernama "Andi" di bulan "Januari".</li>
+        </ul>
+        <pre><code>=SUMIFS(C2:C10, A2:A10, "Andi", B2:B10, "Januari")</code></pre>
+
+        <h2>4. UNIQUE <i class="fa-solid fa-fingerprint"></i></h2>
+        <p>Dapet data kotor hasil <em>dump</em> dari sistem? Banyak nama pelanggan yang di-input dobel? Jangan dihapus manual! UNIQUE akan mengambil nilai unik dari sebuah daftar (menghapus duplikat secara otomatis dan instan).</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=UNIQUE(rentang_data)</code></li>
+            <li><strong>Contoh Kasus:</strong> Kamu punya daftar 100 kota yang banyak duplikatnya, ingin tahu kota apa saja yang sebenarnya ada di sana tanpa perulangan.</li>
+        </ul>
+        <pre><code>=UNIQUE(A2:A100)</code></pre>
+
+        <h2>5. SORT <i class="fa-solid fa-arrow-down-a-z"></i></h2>
+        <p>Sering banget kita butuh data yang otomatis rapi pas ada data baru masuk. Daripada setiap ada <em>update</em> harus klik Filter/Sort di menu bar, mending pakai rumus ini. SORT akan mengurutkan data secara otomatis.</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=SORT(rentang_data, indeks_kolom, urutan)</code></li>
+            <li><strong>Contoh Kasus:</strong> Mengurutkan daftar nama di kolom A sampai B sesuai abjad (A-Z) berdasarkan kolom pertama.</li>
+        </ul>
+        <pre><code>=SORT(A2:B10, 1, 1)</code></pre>
+        <p><em>(Catatan: Angka 1 terakhir berarti Ascending/dari A ke Z).</em></p>
+
+        <h2>6. COUNTIFS <i class="fa-solid fa-hashtag"></i></h2>
+        <p>Beda sama SUMIFS yang menghitung "total nilai rupiah/angka", COUNTIFS ini buat menghitung "ada berapa banyak jumlah transaksinya". Menghitung jumlah sel yang memenuhi beberapa kriteria sekaligus.</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=COUNTIFS(rentang_kriteria1, kriteria1, ...)</code></li>
+            <li><strong>Contoh Kasus:</strong> Menghitung berapa kali produk "Apel" terjual dengan status pembayaran "Lunas".</li>
+        </ul>
+        <pre><code>=COUNTIFS(A2:A10, "Apel", B2:B10, "Lunas")</code></pre>
+
+        <h2>7. IFS <i class="fa-solid fa-code-branch"></i></h2>
+        <p>Pernah bikin Nested IF (IF bertingkat) yang kurung tutupnya <code>))))))</code> sampai bikin mata siwer? Lupakan itu. IFS adalah pengganti IF bertingkat agar rumusnya tidak kepanjangan, gampang dilacak, dan jauh lebih mudah dibaca.</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=IFS(kondisi1, hasil1, kondisi2, hasil2, ...)</code></li>
+            <li><strong>Contoh Kasus:</strong> Menentukan Grade nilai siswa/karyawan.</li>
+        </ul>
+        <pre><code>=IFS(A1>=90, "A", A1>=80, "B", A1>=70, "C")</code></pre>
+
+        <h2>8. TEXTJOIN <i class="fa-solid fa-link"></i></h2>
+        <p>Dulu kita pakai <code>CONCATENATE</code> atau simbol <code>&</code> buat gabungin kata, tapi ribet kalau banyak sel kosong. TEXTJOIN menggabungkan teks dari beberapa sel dengan pembatas (delimiter) tertentu dan hebatnya: <strong>bisa mengabaikan sel kosong!</strong></p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=TEXTJOIN(pembatas, abaikan_kosong, rentang_teks)</code></li>
+            <li><strong>Contoh Kasus:</strong> Menggabungkan kata di sel A1, B1, dan C1 dengan pemisah tanda koma.</li>
+        </ul>
+        <pre><code>=TEXTJOIN(", ", TRUE, A1:C1)</code></pre>
+        <p><em>Hasilnya kalau dibaca: Apel, Jeruk, Mangga</em></p>
+
+        <h2>9. SEQUENCE <i class="fa-solid fa-list-ol"></i></h2>
+        <p>Suka males kan ngetik angka 1, 2, 3 lalu di-<em>drag</em> ke bawah untuk bikin nomor urut? Kalau datanya ribuan gimana? Pakai SEQUENCE aja. Fungsi ini membuat daftar angka berurutan secara dinamis dalam sekejap.</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=SEQUENCE(baris, [kolom], [awal], [langkah])</code></li>
+            <li><strong>Contoh Kasus:</strong> Membuat nomor urut 1 sampai 10 ke bawah secara otomatis.</li>
+        </ul>
+        <pre><code>=SEQUENCE(10, 1)</code></pre>
+
+        <h2>10. VSTACK <i class="fa-solid fa-layer-group"></i></h2>
+        <p>Ini nih MVP (Most Valuable Player) buat yang suka bikin laporan rekap tahunan. Menumpuk beberapa tabel atau rentang data secara vertikal menjadi satu kesatuan panjang. Nggak perlu lagi <em>Copy-Paste</em> bawahnya satu-satu!</p>
+        <ul>
+            <li><strong>Rumus:</strong> <code>=VSTACK(rentang1, rentang2, ...)</code></li>
+            <li><strong>Contoh Kasus:</strong> Menggabungkan data dari Tabel Januari di atas Tabel Februari.</li>
+        </ul>
+        <pre><code>=VSTACK(A2:B5, D2:E5)</code></pre>
+
+        <hr style="border:0; border-top:1px solid var(--border-color); margin:40px 0;">
+  <div class="note-box">
+            <strong>Mengapa artikel ini penting? (Konsep 5W+1H)</strong><br>
+            <ul>
+                <li><strong>What (Apa):</strong> 10 fungsi Excel modern yang akan mengubah cara kerjamu selamanya.</li>
+                <li><strong>Who (Siapa):</strong> Siapa saja yang butuh ini? Data Analyst, staff admin, hingga manajer yang lelah dengan laporan manual.</li>
+                <li><strong>Why (Mengapa):</strong> Karena ngurusin data berantakan itu makan waktu. Fungsi ini adalah kunci untuk bekerja lebih cerdas, bukan lebih keras.</li>
+                <li><strong>When (Kapan):</strong> Gunakan kapan pun kamu sedang berhadapan dengan cleansing data atau membuat dashboard otomatis.</li>
+                <li><strong>Where (Di mana):</strong> Di Microsoft Excel (atau Google Sheets, karena sebagian besar rumusnya mirip!).</li>
+                <li><strong>How (Bagaimana):</strong> Baca pelan-pelan ke bawah, aku sertakan rumus dan contoh kasus aslinya biar gampang dicerna.</li>
+            </ul>
+        </div>
+        <h3>Kesimpulan ✨</h3>
+        <p>Itu dia 10 jalan buat ngakalin data berantakan. Percaya deh, kalau kamu udah terbiasa pakai 10 fungsi Excel ini, urusan bersih-bersih data sampai bikin report kelar lebih cepat. Kamu bisa ngopi santai sambil lihat laporan beres sendirinya. Ingat, kerjalah dengan cerdas, bukan dengan keras!</p>
+
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+
+    </article>
+</main>
+
+<footer>
+    <p>&copy; 2026 Layar Kosong | Ditulis dengan ☕ untuk efisiensi harimu.</p>
+</footer>
+
+</body>
+</html>
