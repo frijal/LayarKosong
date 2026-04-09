@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.39
-last_updated: 2026-04-08
+document_version: 19.40
+last_updated: 2026-04-09
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 8 April 2026)
-> Menampilkan 1200 artikel versi 19.39.
+## Index Artikel Terbaru (Updated: 9 April 2026)
+> Menampilkan 1201 artikel versi 19.40.
 
 ## Gaya Hidup
 - [Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Panduan Lengkap](https://dalam.web.id/gaya-hidup/fanatik-iman-kuat-atau-bahaya) : Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Pelajari perbedaan fanatik sehat dan fanatik buta, ciri-ciri, dampak, serta cara menyikapinya dengan benar menurut Islam dan psikologi.
@@ -319,6 +319,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya](https://dalam.web.id/lainnya/tanda-tubuh-kurang-vitamin-dan-sumbernya) : Sering lemes atau rambut rontok? Itu kode dari tubuh! Cek 10 tanda kekurangan vitamin dan daftar sumber makanan alami terbaik untuk mengatasinya di sini.
 - [Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat](https://dalam.web.id/lainnya/kenapa-bukan-pejabat-ngumpulin-duit) : rakyat selalu jadi sasaran iuran dan dana umat sementara pejabat tetap nyaman. Simak ulasan kritis Nabila Zidane tentang sistem kapitalisme vs Islam dalam mengelola dana publik.
 - [Tentang Tugas HRD dari Hulu ke Hilir: Panduan Lengkap](https://dalam.web.id/lainnya/membedah-tugas-hrd) : tugas HRD secara mendalam mulai dari rekrutmen, administrasi, absensi, hingga payroll dan pengembangan karyawan dalam bahasa santai.
 - [Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda](https://dalam.web.id/lainnya/ketimpangan-pendidikan-sekolah-negeri-madrasah-swasta) : Ketimpangan pendidikan antara sekolah binaan Kemendikbud dan madrasah di bawah Kemenag semakin parah. Guru madrasah swasta hanya digaji Rp300 ribu, sementara guru negeri sejahtera. Analisis 5W+1H dan solusi.
