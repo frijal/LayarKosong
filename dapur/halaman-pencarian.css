@@ -1,16 +1,65 @@
 /* =============================================================
- * STYLE HALAMAN PENCARIAN (OPTIMIZED V8.6 - DIET MODE)
- * SELARAS DENGAN HEADER & CLOUDFLARE D1 API
+ * STYLE HALAMAN PENCARIAN (v11.0 - CSS-FIRST THEME EDITION)
+ * Theme detection 100% menggunakan CSS prefers-color-scheme
+ * Bye-bye JavaScript theme engine! 👋
  * ============================================================= */
 
-/* 1. Base Setup */
+/* ========================================
+ * 🎨 VARIABEL TEMA - LIGHT MODE (DEFAULT)
+ * ======================================== */
+:root {
+    /* Warna Dasar */
+    --warna-latar: #ffffff;
+    --warna-permukaan: #f8f9fa;
+    --warna-garis: #e1e4e8;
+    --warna-bayangan: rgba(0, 0, 0, 0.05);
+
+    /* Warna Teks */
+    --warna-teks-utama: #24292e;
+    --warna-teks-sekunder: #586069;
+
+    /* Warna Aksen */
+    --warna-aksen: #007bff;
+    --warna-aksen-hover: #0056b3;
+
+    /* Warna Background Konten */
+    --warna-bg-konten: #ffffff;
+}
+
+/* ========================================
+ * 🌙 VARIABEL TEMA - DARK MODE
+ * ======================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Warna Dasar */
+        --warna-latar: #0d1117;
+        --warna-permukaan: #161b22;
+        --warna-garis: #30363d;
+        --warna-bayangan: rgba(0, 0, 0, 0.3);
+
+        /* Warna Teks */
+        --warna-teks-utama: #c9d1d9;
+        --warna-teks-sekunder: #8b949e;
+
+        /* Warna Aksen */
+        --warna-aksen: #58a6ff;
+        --warna-aksen-hover: #1f6feb;
+
+        /* Warna Background Konten */
+        --warna-bg-konten: #161b22;
+    }
+}
+
+/* ========================================
+ * 1️⃣ BASE SETUP
+ * ======================================== */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     background-color: var(--warna-latar);
     color: var(--warna-teks-utama);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -24,7 +73,9 @@ body {
     box-sizing: border-box;
 }
 
-/* 2. Konten Utama */
+/* ========================================
+ * 2️⃣ KONTEN UTAMA
+ * ======================================== */
 .area-konten-pencarian {
     flex: 1;
     margin-top: 2rem;
@@ -46,7 +97,9 @@ body {
     color: var(--warna-aksen);
 }
 
-/* 3. Grid Hasil Pencarian */
+/* ========================================
+ * 3️⃣ GRID HASIL PENCARIAN
+ * ======================================== */
 .search-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -54,13 +107,15 @@ body {
     padding-bottom: 4rem;
 }
 
-/* 4. Card Styling */
+/* ========================================
+ * 4️⃣ CARD STYLING
+ * ======================================== */
 .result-card {
     background-color: var(--warna-permukaan);
     border: 1px solid var(--warna-garis);
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -87,13 +142,21 @@ body {
     flex: 1;
 }
 
+.card-tag {
+    font-size: 0.625rem;
+    color: var(--warna-aksen);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .card-title {
     font-size: 1rem;
     font-weight: 600;
     margin: 0.5rem 0;
     color: var(--warna-teks-utama);
     line-height: 1.4;
-    /* Optimization: Max 2 lines */
+    /* Max 2 lines */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -105,23 +168,35 @@ body {
     color: var(--warna-teks-sekunder);
     margin-bottom: 1rem;
     line-height: 1.5;
-    /* Optimization: Max 3 lines for snippet */
+    /* Max 3 lines */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* 5. Highlight Marker (Optimized for Readability) */
+/* ========================================
+ * 5️⃣ HIGHLIGHT MARKER
+ * ======================================== */
 mark {
     background-color: var(--warna-aksen);
-    color: #ffffff; /* Kontras tinggi untuk teks yang dicari */
+    color: #ffffff;
     padding: 0 2px;
     border-radius: 2px;
     font-weight: 500;
 }
 
-/* 6. Loading & Footer */
+/* Dark mode: sedikit adjustment untuk mark */
+@media (prefers-color-scheme: dark) {
+    mark {
+        background-color: var(--warna-aksen);
+        color: #0d1117;
+    }
+}
+
+/* ========================================
+ * 6️⃣ LOADING INDICATOR
+ * ======================================== */
 #loading-indicator {
 text-align: center;
 padding: 4rem 0;
@@ -137,7 +212,14 @@ color: var(--warna-teks-sekunder);
     animation: putar 1s linear infinite;
     margin: 0 auto 1rem;
 }
-/* ************************** */
+
+@keyframes putar {
+    to { transform: rotate(360deg); }
+}
+
+/* ========================================
+ * 7️⃣ NAVIGATION BUTTONS
+ * ======================================== */
 .search-navigation {
     display: flex;
     justify-content: center;
@@ -146,32 +228,37 @@ color: var(--warna-teks-sekunder);
 }
 
 .btn-nav {
-    padding: 0.5rem 1.5rem;
-    background-color: var(--warna-bg-konten, #fff);
-    border: 1px solid var(--warna-aksen, #007bff);
-    color: var(--warna-teks, #333);
-    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--warna-bg-konten);
+    border: 2px solid var(--warna-aksen);
+    color: var(--warna-teks-utama);
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 500;
+    font-size: 0.95rem;
     transition: all 0.2s ease;
 }
 
 .btn-nav:hover {
-    background-color: var(--warna-aksen, #007bff);
-    color: #fff;
+    background-color: var(--warna-aksen);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--warna-bayangan);
 }
 
-/* Tambahkan efek disabled secara visual jika sedang loading */
+.btn-nav:active {
+    transform: translateY(0);
+}
+
 .btn-nav:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-}
-/* ************************** */
-
-@keyframes putar {
-    to { transform: rotate(360deg); }
+    transform: none;
 }
 
+/* ========================================
+ * 8️⃣ FOOTER
+ * ======================================== */
 .footer-pencarian {
     background-color: var(--warna-permukaan);
     border-top: 1px solid var(--warna-garis);
@@ -182,7 +269,9 @@ color: var(--warna-teks-sekunder);
     margin-top: auto;
 }
 
-/* 7. Responsive Mobile */
+/* ========================================
+ * 9️⃣ RESPONSIVE - MOBILE
+ * ======================================== */
 @media (max-width: 640px) {
     .search-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -203,13 +292,41 @@ color: var(--warna-teks-sekunder);
 
     .card-desc {
         font-size: 0.8rem;
-        -webkit-line-clamp: 2; /* Lebih pendek di mobile biar ga penuh */
+        -webkit-line-clamp: 2;
+    }
+
+    .btn-nav {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
     }
 }
 
-/* 8. Extra Small Devices */
+/* ========================================
+ * 🔟 EXTRA SMALL DEVICES
+ * ======================================== */
 @media (max-width: 400px) {
     .search-grid {
-        grid-template-columns: 1fr; /* Balik ke 1 kolom jika layar terlalu sempit */
+        grid-template-columns: 1fr;
     }
+
+    .btn-nav {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ========================================
+ * ✨ SMOOTH TRANSITIONS UNTUK SEMUA
+ * ======================================== */
+* {
+    transition-property: background-color, color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+/* Kecuali animasi yang butuh timing spesifik */
+.result-card,
+.btn-nav,
+.spinner-pencarian {
+    transition: all 0.2s ease;
 }
