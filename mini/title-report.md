@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/8/2026, 11:46:09 AM
+Generated on: 4/9/2026, 11:46:34 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,13 +14,15 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.37 | LLM Index v19.37 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.40 | LLM Index v19.40 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/10-about-config-tweaks-performa-firefox.html` | 10 about:config Tweaks untuk Performa Firefox Maksimal - Layar Kosong | 10 about:config Tweaks untuk Performa Firefox Maksimal | Layar Kosong | ✅ Perfect |
 | `artikel/10-distro-linux-terbaik-2026.html` | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 - Layar Kosong | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/10-kalimat-muslim.html` | 10 Kalimat Mulia yang Wajib Dibiasakan Setiap Hari 🌙 - Layar Kosong | 10 Kalimat Mulia yang Wajib Dibiasakan Setiap Hari 🌙 | Layar Kosong | ✅ Perfect |
+| `artikel/10-rumus-excel-data-analyst.html` | 10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet - Layar Kosong | 10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet | Layar Kosong | ✅ Perfect |
+| `artikel/10-rumus-excel-lanjutan-data-analyst.html` | 10 Rumus Excel Lanjutan untuk Data Analyst: Level Up Skill Kamu! - Layar Kosong | 10 Rumus Excel Lanjutan untuk Data Analyst: Level Up Skill Kamu! | Layar Kosong | ✅ Perfect |
 | `artikel/100-perintah-allah-dalam-quran.html` | 100 Perintah Allah Kepada Manusia di Dalam Al-Qur'an - Layar Kosong | 100 Perintah Allah Kepada Manusia di Dalam Al-Qur'an | Layar Kosong | ✅ Perfect |
 | `artikel/1011nabi-yaakub-yusuf.html` | Kisah Nabi Ya'qub dan Yusuf - Layar Kosong | Kisah Nabi Ya'qub dan Yusuf | Layar Kosong | ✅ Perfect |
 | `artikel/12-jenis-domain-id.html` | 12 Jenis Domain .ID Beserta Peruntukannya! - Layar Kosong | 12 Jenis Domain .ID Beserta Peruntukannya! | Layar Kosong | ✅ Perfect |
@@ -380,6 +382,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `artikel/fix-signature-unknown-trust.html` | Memperbaiki Error Signature Unknown Trust Bad Signature di Arch Linux - Layar Kosong | Memperbaiki Error Signature Unknown Trust Bad Signature di Arch Linux | Layar Kosong | ✅ Perfect |
 | `artikel/fix-windows-network-drive-smb.html` | Cara Memperbaiki Mapping Network Drive Windows 10/11 (SMB) - Panduan Lengkap - Layar Kosong | Cara Memperbaiki Mapping Network Drive Windows 10/11 (SMB) - Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/fix-windows-time-sync.html` | Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP - Layar Kosong | Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP | Layar Kosong | ✅ Perfect |
+| `artikel/flash-fill-excel-otomatis.html` | Mengenal Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus - Layar Kosong | Mengenal Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus | Layar Kosong | ✅ Perfect |
 | `artikel/flatpak-flathub-santai.html` | Flatpak & Flathub: Kotak Ajaib untuk Aplikasi Linux - Layar Kosong | Flatpak & Flathub: Kotak Ajaib untuk Aplikasi Linux | Layar Kosong | ✅ Perfect |
 | `artikel/flatpak-linux.html` | Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦 - Layar Kosong | Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦 | Layar Kosong | ✅ Perfect |
 | `artikel/fotografi-privasi-hak-potret.html` | Motret Candid di Ruang Publik: Privasi, Hak Potret, dan UU PDP - Layar Kosong | Motret Candid di Ruang Publik: Privasi, Hak Potret, dan UU PDP | Layar Kosong | ✅ Perfect |
@@ -559,6 +562,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `artikel/kekuasaan-jadi-dagangan.html` | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman - Layar Kosong | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman | Layar Kosong | ✅ Perfect |
 | `artikel/kenangan-ponsel-lama.html` | Galeri Kenangan Ponsel Jadul - Nostalgia Digital - Layar Kosong | Galeri Kenangan Ponsel Jadul - Nostalgia Digital | Layar Kosong | ✅ Perfect |
 | `artikel/kenapa-ada-folder-npm-cache.html` | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya - Layar Kosong | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya | Layar Kosong | ✅ Perfect |
+| `artikel/kenapa-bukan-pejabat-ngumpulin-duit.html` | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat - Layar Kosong | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat | Layar Kosong | ✅ Perfect |
 | `artikel/kenapa-debian-pilihan-utama-linux.html` | Kenapa Debian Jadi Pilihan Utama Aku? Analisis Mendalam Perbandingan Distro Linux - Layar Kosong | Kenapa Debian Jadi Pilihan Utama Aku? Analisis Mendalam Perbandingan Distro Linux | Layar Kosong | ✅ Perfect |
 | `artikel/kenapa-kartun-90an-hilang-dari-tv.html` | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? - Layar Kosong | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? | Layar Kosong | ✅ Perfect |
 | `artikel/kenapa-nama-tokoh-agama-mirip.html` | Satu Akar Sejarah Mengapa Nama Tokoh Agama Islam dan Kristen Terasa Mirip - Layar Kosong | Satu Akar Sejarah Mengapa Nama Tokoh Agama Islam dan Kristen Terasa Mirip | Layar Kosong | ✅ Perfect |
@@ -868,6 +872,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `artikel/panduan-libur-cuti-bersama-2026.html` | Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend! - Layar Kosong | Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend! | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-migrasi-nodejs-ke-bun.html` | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah - Layar Kosong | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-pengasuhan-sains.html` | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja - Layar Kosong | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja | Layar Kosong | ✅ Perfect |
+| `artikel/panduan-pivot-table-excel.html` | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus - Layar Kosong | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-robots-txt.html` | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir - Layar Kosong | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-seo-metadata-blog.html` | Panduan Lengkap SEO dan Metadata untuk Blog Anda - Layar Kosong | Panduan Lengkap SEO dan Metadata untuk Blog Anda | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-skrip-fix-html.html` | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML - Layar Kosong | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML | Layar Kosong | ✅ Perfect |
@@ -1116,6 +1121,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `artikel/tabut-ketenangan-thalut-jalut.html` | Tabut Ketenangan, Thalut vs Jalut, dan keberanian Dawud dalam Sejarah Islam - Layar Kosong | Tabut Ketenangan, Thalut vs Jalut, dan keberanian Dawud dalam Sejarah Islam | Layar Kosong | ✅ Perfect |
 | `artikel/tafsir-quraisy-ayat-4.html` | Tafsir QS Quraisy Ayat 4: Nikmat Pangan dan Keamanan dalam Pandangan Ulama - Layar Kosong | Tafsir QS Quraisy Ayat 4: Nikmat Pangan dan Keamanan dalam Pandangan Ulama | Layar Kosong | ✅ Perfect |
 | `artikel/tahun-percakapan-linux.html` | 2025: Tahun Percakapan Linux Dimulai? - Layar Kosong | 2025: Tahun Percakapan Linux Dimulai? | Layar Kosong | ✅ Perfect |
+| `artikel/tanda-tubuh-kurang-vitamin-dan-sumbernya.html` | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya - Layar Kosong | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya | Layar Kosong | ✅ Perfect |
 | `artikel/tanggung-jawab-pemimpin-dan-pengikut.html` | Tanggung Jawab Pemimpin dan Pengikut dalam Islam - Layar Kosong | Tanggung Jawab Pemimpin dan Pengikut dalam Islam | Layar Kosong | ✅ Perfect |
 | `artikel/tar-di-linux.html` | Tar di Linux: Kompres & Extract Santai dari Terminal - Layar Kosong | Tar di Linux: Kompres & Extract Santai dari Terminal | Layar Kosong | ✅ Perfect |
 | `artikel/target-blank-vs-empty.html` | Apa Bedanya target =_blank dengan target =''? - Layar Kosong | Apa Bedanya target =_blank dengan target =''? | Layar Kosong | ✅ Perfect |
@@ -1566,6 +1572,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `lainnya/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi.html` | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih - Layar Kosong | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih | Layar Kosong | ✅ Perfect |
 | `lainnya/kebiasaan-pagi-rasulullah.html` | Kebiasaan Pagi Rasulullah yang Powerful untuk Hidup Lebih Produktif dan Berkah - Layar Kosong | Kebiasaan Pagi Rasulullah yang Powerful untuk Hidup Lebih Produktif dan Berkah | Layar Kosong | ✅ Perfect |
 | `lainnya/kebutuhan-dasar-rakyat-2026.html` | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis - Layar Kosong | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis | Layar Kosong | ✅ Perfect |
+| `lainnya/kenapa-bukan-pejabat-ngumpulin-duit.html` | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat - Layar Kosong | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat | Layar Kosong | ✅ Perfect |
 | `lainnya/kenapa-kartun-90an-hilang-dari-tv.html` | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? - Layar Kosong | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? | Layar Kosong | ✅ Perfect |
 | `lainnya/kenapa-rasulullah-gelar-saw.html` | Kenapa Hanya Rasulullah yang Punya Gelar SAW? Penjelasan Lengkap + 7 Fakta - Layar Kosong | Kenapa Hanya Rasulullah yang Punya Gelar SAW? Penjelasan Lengkap + 7 Fakta | Layar Kosong | ✅ Perfect |
 | `lainnya/ketimpangan-pendidikan-sekolah-negeri-madrasah-swasta.html` | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda - Layar Kosong | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda | Layar Kosong | ✅ Perfect |
@@ -1610,7 +1617,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `lainnya/sekolah-daring-hemat-bbm.html` | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? - Layar Kosong | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? | Layar Kosong | ✅ Perfect |
 | `lainnya/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `lainnya/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
-| `lainnya/sqlite-bisa-seperti-mysql-postgre.html` | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? - Layar Kosong | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? | Layar Kosong | ✅ Perfect |
+| `lainnya/tanda-tubuh-kurang-vitamin-dan-sumbernya.html` | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya - Layar Kosong | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya | Layar Kosong | ✅ Perfect |
 | `lainnya/tarif-listrik-januari-maret-2026.html` | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya | Layar Kosong | ✅ Perfect |
 | `lainnya/terjebak-dopamine-loop-scroll-medsos.html` | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? - Layar Kosong | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? | Layar Kosong | ✅ Perfect |
 | `lainnya/ujian-nasional-catatan-video.html` | Ujian Nasional: catatan singkat, video, dan visual - Layar Kosong | Ujian Nasional: catatan singkat, video, dan visual | Layar Kosong | ✅ Perfect |
@@ -1621,6 +1628,8 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `lainnya/wfa-sekolah-daring-hemat-bbm.html` | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? - Layar Kosong | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? | Layar Kosong | ✅ Perfect |
 | `lainnya/wigo-balikpapan.html` | WiGO 4G & Komunitas Blogger Balikpapan: Dokumentasi Lengkap - Layar Kosong | WiGO 4G & Komunitas Blogger Balikpapan: Dokumentasi Lengkap | Layar Kosong | ✅ Perfect |
 | `lainnya/zakat-lebih-utama-dari-sodaqoh.html` | Zakat Lebih Utama Dibanding Sedekah? Jangan Salah Prioritas dalam Beramal - Layar Kosong | Zakat Lebih Utama Dibanding Sedekah? Jangan Salah Prioritas dalam Beramal | Layar Kosong | ✅ Perfect |
+| `olah-media/10-rumus-excel-data-analyst.html` | 10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet - Layar Kosong | 10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet | Layar Kosong | ✅ Perfect |
+| `olah-media/10-rumus-excel-lanjutan-data-analyst.html` | 10 Rumus Excel Lanjutan untuk Data Analyst: Level Up Skill Kamu! - Layar Kosong | 10 Rumus Excel Lanjutan untuk Data Analyst: Level Up Skill Kamu! | Layar Kosong | ✅ Perfect |
 | `olah-media/40-tahun-excel-sejarah-spreadsheet.html` | 40 Tahun Excel: Kisah dari Layar Monokrom Mac Jadi Raja Spreadsheet - Layar Kosong | 40 Tahun Excel: Kisah dari Layar Monokrom Mac Jadi Raja Spreadsheet | Layar Kosong | ✅ Perfect |
 | `olah-media/adobe-visual-trend-2026.html` | Adobe Visual Trend 2026: Rahasia Karya Laku Keras dan Relevan - Layar Kosong | Adobe Visual Trend 2026: Rahasia Karya Laku Keras dan Relevan | Layar Kosong | ✅ Perfect |
 | `olah-media/ambil-gambar-thumbnail-youtube.html` | Ambil Thumbnail YouTube High Resolution Gratis - Layar Kosong | Ambil Thumbnail YouTube High Resolution Gratis | Layar Kosong | ✅ Perfect |
@@ -1642,6 +1651,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `olah-media/FFmpeg-split-video-durasi-otomatis.html` | FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀 - Layar Kosong | FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀 | Layar Kosong | ✅ Perfect |
 | `olah-media/FFmpeg-ubah-gambar-menjadi-video.html` | FFmpeg: Mengubah Gambar Menjadi Video (Image to Video) - Layar Kosong | FFmpeg: Mengubah Gambar Menjadi Video (Image to Video) | Layar Kosong | ✅ Perfect |
 | `olah-media/firefox-split-view-146.html` | Firefox 146 Akhirnya Punya Fitur Split View: Begini Cara Aktifkannya! 🚀 - Layar Kosong | Firefox 146 Akhirnya Punya Fitur Split View: Begini Cara Aktifkannya! 🚀 | Layar Kosong | ✅ Perfect |
+| `olah-media/flash-fill-excel-otomatis.html` | Mengenal Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus - Layar Kosong | Mengenal Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-pdf.html` | Cara Cepat Menggabungkan Banyak File PDF Menjadi Satu Halaman - Layar Kosong | Cara Cepat Menggabungkan Banyak File PDF Menjadi Satu Halaman | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-video-ffmpeg.html` | Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Tanpa Audio) - Layar Kosong | Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Tanpa Audio) | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-video-tanpa-audio.html` | Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio - Layar Kosong | Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio | Layar Kosong | ✅ Perfect |
@@ -1680,6 +1690,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `olah-media/odf-vs-ooxml-libreoffice-onlyoffice.html` | ODF vs OOXML: LibreOffice & ONLYOFFICE dalam Debat Standar Terbuka - Layar Kosong | ODF vs OOXML: LibreOffice & ONLYOFFICE dalam Debat Standar Terbuka | Layar Kosong | ✅ Perfect |
 | `olah-media/open-document-converter.html` | Mengubah Dokumen ke Open Document dengan OpenOffice & LibreOffice - Layar Kosong | Mengubah Dokumen ke Open Document dengan OpenOffice & LibreOffice | Layar Kosong | ✅ Perfect |
 | `olah-media/panduan-interaktif-ffmpeg.html` | Panduan Interaktif FFmpeg Visual: Audio & Video - Layar Kosong | Panduan Interaktif FFmpeg Visual: Audio & Video | Layar Kosong | ✅ Perfect |
+| `olah-media/panduan-pivot-table-excel.html` | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus - Layar Kosong | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus | Layar Kosong | ✅ Perfect |
 | `olah-media/penurunan-kognitif-era-medsos.html` | Anak Muda Sulit Fokus? Analisis Fenomena Brain Rot di Era Video Pendek - Layar Kosong | Anak Muda Sulit Fokus? Analisis Fenomena Brain Rot di Era Video Pendek | Layar Kosong | ✅ Perfect |
 | `olah-media/perbaikan-foto-ala-national-geographic.html` | Panduan Perbaikan Foto ala National Geographic - Layar Kosong | Panduan Perbaikan Foto ala National Geographic | Layar Kosong | ✅ Perfect |
 | `olah-media/pictory-ai-video-marketing.html` | Pictory.ai: Ubah Tulisan Jadi Video Marketing Profesional - Layar Kosong | Pictory.ai: Ubah Tulisan Jadi Video Marketing Profesional | Layar Kosong | ✅ Perfect |
@@ -2425,6 +2436,7 @@ Generated on: 4/8/2026, 11:46:09 AM
 | `warta-tekno/semver-7-7-3.html` | semver@7.7.3 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js - Layar Kosong | semver@7.7.3 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js | Layar Kosong | ✅ Perfect |
 | `warta-tekno/shutdown-windows-cepat.html` | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh - Layar Kosong | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sony-hentikan-produksi-memory-card-ssd-shortage.html` | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD - Layar Kosong | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD | Layar Kosong | ✅ Perfect |
+| `warta-tekno/sqlite-bisa-seperti-mysql-postgre.html` | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? - Layar Kosong | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? | Layar Kosong | ✅ Perfect |
 | `warta-tekno/ssh3-evolusi-keamanan.html` | SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern - Layar Kosong | SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern | Layar Kosong | ✅ Perfect |
 | `warta-tekno/strategi-branching-github.html` | Kenalan Sama Strategi Branching Populer di GitHub 📊 - Layar Kosong | Kenalan Sama Strategi Branching Populer di GitHub 📊 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/target-blank-vs-empty.html` | Apa Bedanya target =_blank dengan target =''? - Layar Kosong | Apa Bedanya target =_blank dengan target =''? | Layar Kosong | ✅ Perfect |
