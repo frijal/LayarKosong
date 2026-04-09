@@ -35,7 +35,7 @@ try {
         "", "/jejak-sejarah", "/lainnya", "/olah-media",
         "/opini-sosial", "/sistem-terbuka", "/warta-tekno",
         "/gaya-hidup", "/about", "/privacy", "/search",
-        "/security-policy", "/data-deletion-form", "/disclaimer",
+        "/security-policy", "/data-deletion-form", "/disclaimer", "/disclosure",
         "/feed", "/img", "/lisensi", "/sitemap"
     ].map(u => `${BASE_URL}${u}`);
 
