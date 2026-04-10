@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/9/2026, 11:46:34 AM
+Generated on: 4/10/2026, 11:17:14 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/9/2026, 11:46:34 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.40 | LLM Index v19.40 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.41 | LLM Index v19.41 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1002,6 +1002,7 @@ Generated on: 4/9/2026, 11:46:34 AM
 | `artikel/regulasi-agen-properti-permendag-33-2025.html` | Regulasi Agen Properti Permendag 33 Tahun 2025: Perlindungan Konsumen atau Penyaringan Pasar? - Layar Kosong | Regulasi Agen Properti Permendag 33 Tahun 2025: Perlindungan Konsumen atau Penyaringan Pasar? | Layar Kosong | ✅ Perfect |
 | `artikel/rekam-desktop-gnome3.html` | Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan - Layar Kosong | Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan | Layar Kosong | ✅ Perfect |
 | `artikel/rekam-layar-ffmpeg.html` | Cara Merekam Sebagian Layar Desktop dengan FFmpeg - Layar Kosong | Cara Merekam Sebagian Layar Desktop dengan FFmpeg | Layar Kosong | ✅ Perfect |
+| `artikel/rekomendasi-distro-linux-terbaik.html` | Panduan Memilih Distro Linux Terbaik Sesuai Kebutuhan dan Cara Kerja Ekosistemnya - Layar Kosong | Panduan Memilih Distro Linux Terbaik Sesuai Kebutuhan dan Cara Kerja Ekosistemnya | Layar Kosong | ✅ Perfect |
 | `artikel/rekor-ddos-29tbps-aisuru-botnet.html` | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! - Layar Kosong | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! | Layar Kosong | ✅ Perfect |
 | `artikel/remove-old-kernels.html` | Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman - Layar Kosong | Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman | Layar Kosong | ✅ Perfect |
 | `artikel/remove-windows-ai.html` | Remove Windows AI: Hapus Copilot dan Recall - Layar Kosong | Remove Windows AI: Hapus Copilot dan Recall | Layar Kosong | ✅ Perfect |
@@ -2129,6 +2130,7 @@ Generated on: 4/9/2026, 11:46:34 AM
 | `sistem-terbuka/rating-distro-linux.html` | Rating distro Linux: makna, metrik, dan cara memilih bijak - Layar Kosong | Rating distro Linux: makna, metrik, dan cara memilih bijak | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/realtek-rtl8723be.html` | Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux - Layar Kosong | Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/refind-cachyos-theme.html` | rEFInd Theme CachyOS Arch Linux - Layar Kosong | rEFInd Theme CachyOS Arch Linux | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/rekomendasi-distro-linux-terbaik.html` | Panduan Memilih Distro Linux Terbaik Sesuai Kebutuhan dan Cara Kerja Ekosistemnya - Layar Kosong | Panduan Memilih Distro Linux Terbaik Sesuai Kebutuhan dan Cara Kerja Ekosistemnya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/remove-old-kernels.html` | Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman - Layar Kosong | Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/rescuezilla-panduan.html` | Rescuezilla: Alat Pemulihan Sistem Mudah & Powerful 🛠️ - Layar Kosong | Rescuezilla: Alat Pemulihan Sistem Mudah & Powerful 🛠️ | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/rev-linux.html` | Membaca Teks Terbalik dengan Perintah 'rev' di Linux - Layar Kosong | Membaca Teks Terbalik dengan Perintah 'rev' di Linux | Layar Kosong | ✅ Perfect |
