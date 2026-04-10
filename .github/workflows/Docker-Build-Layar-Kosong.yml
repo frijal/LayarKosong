@@ -2,7 +2,7 @@ name: 🐳 Build and Push to GHCR
 
 on:
   schedule:
-      - cron: '0 4 4 * *'
+      - cron: '45 3 4 * *'
   workflow_dispatch:
 
 # Tambahkan izin untuk menulis ke Registry
