@@ -2,7 +2,7 @@ name: 🔆 Pengecekan & Laporan Konten Harian
 
 on:
   schedule:
-    - cron: '0 11 * * *'
+    - cron: '30 12 * * *'
   workflow_dispatch: # Bisa dijalankan manual dari tab Actions
 
 jobs:
