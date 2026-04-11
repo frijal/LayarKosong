@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.42
+document_version: 19.43
 last_updated: 2026-04-11
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,11 +39,12 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 11 April 2026)
-> Menampilkan 1209 artikel versi 19.42.
+> Menampilkan 1209 artikel versi 19.43.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
 - [Logika Terbalik Koperasi MP: Sejak Awal Sudah Berjalan Mundur](https://dalam.web.id/gaya-hidup/logika-terbalik-koperasi-mp) : mengapa Koperasi Merah Putih (MP) sejak awal dibangun dengan logika terbalik: top-down, legalitas tanpa aktivitas, dan kendaraan impor sebelum kebutuhan. Perspektif 5W+1H dan pelajaran dari BUUD, KUD, BUMDES.
+- [Remunerasi Pegawai: 3 Pilar + 6 Faktor yang Menentukan Gaji](https://dalam.web.id/gaya-hidup/3-pilar-remunerasi-dan-6-faktor) : Pahami 3 pilar utama remunerasi: accountability, leverage, scarcity, plus 6 faktor lain seperti investasi modal manusia, kompleksitas, kondisi pasar, biaya hidup, risiko bahaya, dan performa. untuk HR dan pekerja.
 - [Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Panduan Lengkap](https://dalam.web.id/gaya-hidup/fanatik-iman-kuat-atau-bahaya) : Fanatik: Antara Iman yang Kuat atau Bahaya yang Menyesatkan? Pelajari perbedaan fanatik sehat dan fanatik buta, ciri-ciri, dampak, serta cara menyikapinya dengan benar menurut Islam dan psikologi.
 - [7 Herbal Alami Turunkan Darah Tinggi | Tanpa Efek Samping](https://dalam.web.id/gaya-hidup/herbal-tekanan-darah-tinggi) : Tekanan darah tinggi bisa diturunkan secara alami dengan 7 herbal: daun seledri, bawang putih, daun salam, belimbing wuluh, mentimun, pegagan, daun sirsak. Aman dan bertahap.
 - [Aturan PKWT: Kompensasi, THR, dan Hak Pekerja Saat Sakit](https://dalam.web.id/gaya-hidup/aturan-pkwt-kompensasi-thr-sakit) : Pahami aturan PKWT terbaru tentang uang kompensasi, hak THR, ganti rugi pemutusan kontrak, dan larangan potong gaji saat sakit berdasarkan PP 35/2021, Permenaker 6/2016, dan UU 13/2003. Lengkap dengan tabel dan FAQ.
@@ -322,7 +323,6 @@ document_type: llm_behavior_and_entity_guidance
 
 ## Lainnya
 - [Guru Honorer Rp400rb vs Tukang Cuci Ompreng Rp2,4jt: Logika Mana yang Waras?](https://dalam.web.id/lainnya/guru-honorer-vs-tukang-cuci-ompreng) : perbandingan gaji guru honorer (Rp400 ribu) dengan tukang cuci ompreng (Rp2,4 juta). Mengapa argumen adu nasib adalah logical fallacy. Pendidikan, leverage, scarcity, dan upah layak.
-- [DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie](https://dalam.web.id/lainnya/dbsc-chrome-146-keamanan-session-cookie) : Google resmi luncurkan Device Bound Session Credentials (DBSC) di Chrome 146 untuk Windows. Fitur ini kunci session cookie ke hardware TPM, bikin malware stealer gigit jari. Simak cara kerja dan masa depan keamanan browser.
 - [10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya](https://dalam.web.id/lainnya/tanda-tubuh-kurang-vitamin-dan-sumbernya) : Sering lemes atau rambut rontok? Itu kode dari tubuh! Cek 10 tanda kekurangan vitamin dan daftar sumber makanan alami terbaik untuk mengatasinya di sini.
 - [Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat](https://dalam.web.id/lainnya/kenapa-bukan-pejabat-ngumpulin-duit) : rakyat selalu jadi sasaran iuran dan dana umat sementara pejabat tetap nyaman. Simak ulasan kritis Nabila Zidane tentang sistem kapitalisme vs Islam dalam mengelola dana publik.
 - [Tentang Tugas HRD dari Hulu ke Hilir: Panduan Lengkap](https://dalam.web.id/lainnya/membedah-tugas-hrd) : tugas HRD secara mendalam mulai dari rekrutmen, administrasi, absensi, hingga payroll dan pengembangan karyawan dalam bahasa santai.
@@ -1004,7 +1004,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Remunerasi Pegawai: 3 Pilar + 6 Faktor yang Menentukan Gaji](https://dalam.web.id/warta-tekno/3-pilar-remunerasi-dan-6-faktor) : Pahami 3 pilar utama remunerasi: accountability, leverage, scarcity, plus 6 faktor lain seperti investasi modal manusia, kompleksitas, kondisi pasar, biaya hidup, risiko bahaya, dan performa. untuk HR dan pekerja.
+- [DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie](https://dalam.web.id/warta-tekno/dbsc-chrome-146-keamanan-session-cookie) : Google resmi luncurkan Device Bound Session Credentials (DBSC) di Chrome 146 untuk Windows. Fitur ini kunci session cookie ke hardware TPM, bikin malware stealer gigit jari. Simak cara kerja dan masa depan keamanan browser.
 - [SQLite vs MySQL/PostgreSQL: Mana yang Cocok?](https://dalam.web.id/warta-tekno/sqlite-bisa-seperti-mysql-postgre) : Apakah SQLite bisa menggantikan MySQL atau PostgreSQL? Simak perbandingan lengkap, kelebihan, kekurangan, kapan menggunakan SQLite dan kapan tetap butuh database besar. Bahasa Indonesia santai dengan prinsip 5W+1H.
 - [Keamanan Sisi Klien: Ancaman Skimming & Solusi Cloudflare](https://dalam.web.id/warta-tekno/client-side-security-cloudflare) : Serangan skimming sisi klien bisa mencuri data tanpa merusak halaman. Pelajari cara Cloudflare mendeteksi JavaScript berbahaya dengan AI & LLM, serta lindungi situs Anda.
 - [Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP](https://dalam.web.id/warta-tekno/fix-windows-time-sync) : mengatasi jam Windows yang salah, gagal sinkron, atau melenceng terus. Perbaiki layanan Windows Time dan atur NTP dengan mudah.
