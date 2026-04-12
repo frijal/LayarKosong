@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/11/2026, 1:37:30 PM
+Generated on: 4/12/2026, 1:41:04 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/11/2026, 1:37:30 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.45 | LLM Index v19.45 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.48 | LLM Index v19.48 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -497,6 +497,7 @@ Generated on: 4/11/2026, 1:37:30 PM
 | `artikel/instal-cloudflare-warp-linux-2025.html` | Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) - Update 2025! - Layar Kosong | Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) - Update 2025! | Layar Kosong | ✅ Perfect |
 | `artikel/instal-nextcloud-docker-compose.html` | Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian - Layar Kosong | Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian | Layar Kosong | ✅ Perfect |
 | `artikel/install-coffee-linux.html` | Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕ - Layar Kosong | Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕ | Layar Kosong | ✅ Perfect |
+| `artikel/install-kde-plasma-linux.html` | Install KDE Plasma di Semua Distro Linux • Panduan Lengkap 2026 - Layar Kosong | Install KDE Plasma di Semua Distro Linux • Panduan Lengkap 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/install-sabily.html` | Install Sabily - Panduan Lengkap Linux Muslim Edition - Layar Kosong | Install Sabily - Panduan Lengkap Linux Muslim Edition | Layar Kosong | ✅ Perfect |
 | `artikel/install-virtualbox-4-ubuntu.html` | Install VirtualBox 4 di Ubuntu Jadul - Layar Kosong | Install VirtualBox 4 di Ubuntu Jadul | Layar Kosong | ✅ Perfect |
 | `artikel/insya-allah-janji.html` | Makna Janji dan Pentingnya Mengucapkan Insya Allah - Layar Kosong | Makna Janji dan Pentingnya Mengucapkan Insya Allah | Layar Kosong | ✅ Perfect |
@@ -1116,6 +1117,7 @@ Generated on: 4/11/2026, 1:37:30 PM
 | `artikel/suara-senyap-tembok-tinggi.html` | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat - Layar Kosong | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat | Layar Kosong | ✅ Perfect |
 | `artikel/sudah-jauh-banget-generasi-kita.html` | Sudah "Jauh" Banget Apa Ya, Generasi Penerus Kita? - Refleksi Pendidikan Islam - Layar Kosong | Sudah "Jauh" Banget Apa Ya, Generasi Penerus Kita? - Refleksi Pendidikan Islam | Layar Kosong | ✅ Perfect |
 | `artikel/sudo-tanpa-password.html` | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) - Layar Kosong | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) | Layar Kosong | ✅ Perfect |
+| `artikel/sulit-khusyu-penyakit-hati.html` | Sulit Khusyu adalah Penyakit Mematikan Hati - Layar Kosong | Sulit Khusyu adalah Penyakit Mematikan Hati | Layar Kosong | ✅ Perfect |
 | `artikel/sultan-murad-iii.html` | Kisah Sultan Murad III - Antara Cahaya Ilmu dan Bayangan Kemewahan - Layar Kosong | Kisah Sultan Murad III - Antara Cahaya Ilmu dan Bayangan Kemewahan | Layar Kosong | ✅ Perfect |
 | `artikel/sumur-rumah-madinah.html` | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah - Layar Kosong | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah | Layar Kosong | ✅ Perfect |
 | `artikel/surat-terbuka-aiman-witjaksono-ruang-diskursus-publik.html` | Surat Terbuka Untuk Aiman Witjaksono Tentang Kualitas Diskursus Publik - Layar Kosong | Surat Terbuka Untuk Aiman Witjaksono Tentang Kualitas Diskursus Publik | Layar Kosong | ✅ Perfect |
@@ -1633,6 +1635,7 @@ Generated on: 4/11/2026, 1:37:30 PM
 | `lainnya/sekolah-daring-hemat-bbm.html` | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? - Layar Kosong | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? | Layar Kosong | ✅ Perfect |
 | `lainnya/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `lainnya/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
+| `lainnya/sulit-khusyu-penyakit-hati.html` | Sulit Khusyu adalah Penyakit Mematikan Hati - Layar Kosong | Sulit Khusyu adalah Penyakit Mematikan Hati | Layar Kosong | ✅ Perfect |
 | `lainnya/tanda-tubuh-kurang-vitamin-dan-sumbernya.html` | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya - Layar Kosong | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya | Layar Kosong | ✅ Perfect |
 | `lainnya/tarif-listrik-januari-maret-2026.html` | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya | Layar Kosong | ✅ Perfect |
 | `lainnya/terjebak-dopamine-loop-scroll-medsos.html` | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? - Layar Kosong | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? | Layar Kosong | ✅ Perfect |
@@ -2033,6 +2036,7 @@ Generated on: 4/11/2026, 1:37:30 PM
 | `sistem-terbuka/instal-cloudflare-warp-linux-2025.html` | Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) - Update 2025! - Layar Kosong | Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) - Update 2025! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/instal-nextcloud-docker-compose.html` | Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian - Layar Kosong | Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/install-coffee-linux.html` | Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕ - Layar Kosong | Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕ | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/install-kde-plasma-linux.html` | Install KDE Plasma di Semua Distro Linux • Panduan Lengkap 2026 - Layar Kosong | Install KDE Plasma di Semua Distro Linux • Panduan Lengkap 2026 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/install-sabily.html` | Install Sabily - Panduan Lengkap Linux Muslim Edition - Layar Kosong | Install Sabily - Panduan Lengkap Linux Muslim Edition | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/install-virtualbox-4-ubuntu.html` | Install VirtualBox 4 di Ubuntu Jadul - Layar Kosong | Install VirtualBox 4 di Ubuntu Jadul | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/jalankan-aplikasi-windows-di-linux-winapps-winboat.html` | Panduan Lengkap WinApps & WinBoat: Cara Jalankan Aplikasi Windows di Linux Secara Native 2026 - Layar Kosong | Panduan Lengkap WinApps & WinBoat: Cara Jalankan Aplikasi Windows di Linux Secara Native 2026 | Layar Kosong | ✅ Perfect |
