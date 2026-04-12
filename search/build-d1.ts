@@ -60,11 +60,6 @@ const extractArticleData = (filePath: string, file: string, category: string) =>
     const $ = cheerio.load(html);
 
     const title = superCleanText($('title').text() || file);
-    const desc = superCleanText(
-        $('meta[name="description"]').attr('content') ||
-        $('meta[property="og:description"]').attr('content') ||
-        ""
-    );
     const image = ($('meta[property="og:image"]').attr('content') || "/thumbnail.webp").replace(/'/g, "''");
     const dateISO = $('meta[property="article:published_time"]').attr('content') || new Date().toISOString();
 
@@ -75,15 +70,15 @@ const extractArticleData = (filePath: string, file: string, category: string) =>
     const articleArea = $('article').length ? $('article') : $('main').length ? $('main') : $('body');
     const bodyContent = superCleanText(articleArea.text());
 
-    return { title, desc, image, dateISO, bodyContent };
+    return { title, image, dateISO, bodyContent };
 };
 
 /**
  * 🏗️ Generate SQL INSERT statement
  */
-const generateInsertSQL = (data: { title: string; desc: string; bodyContent: string; file: string; category: string; image: string; dateISO: string }) => {
-    return `INSERT INTO articles_fts (title, description, content, id, category, image, date) ` +
-    `VALUES ('${data.title}', '${data.desc}', '${data.bodyContent}', '${data.file}', '${data.category}', '${data.image}', '${data.dateISO}');`;
+const generateInsertSQL = (data: { title: string; bodyContent: string; file: string; category: string; image: string; dateISO: string }) => {
+    return `INSERT INTO articles_fts (title, content, id, category, image, date) ` +
+    `VALUES ('${data.title}', '${data.bodyContent}', '${data.file}', '${data.category}', '${data.image}', '${data.dateISO}');`;
 };
 
 // ============================================
