@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.45
-last_updated: 2026-04-11
+document_version: 19.46
+last_updated: 2026-04-12
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 11 April 2026)
-> Menampilkan 1211 artikel versi 19.45.
+## Index Artikel Terbaru (Updated: 12 April 2026)
+> Menampilkan 1212 artikel versi 19.46.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
@@ -690,6 +690,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Install KDE Plasma di Semua Distro Linux • Panduan Lengkap 2026](https://dalam.web.id/sistem-terbuka/install-kde-plasma-linux) : Panduan santai install KDE Plasma Desktop di Ubuntu, Debian, Arch, Fedora, openSUSE, Void, Gentoo, hingga NixOS. Lengkap dengan perintah terminal dan tips ringan.
 - [Ubuntu 26.04 LTS: Distro Cantik dengan Kernel 7.0 dan GNOME 50 yang Siap Mengguncang](https://dalam.web.id/sistem-terbuka/ubuntu-26-04-lts-kernel-7-gnome-50) : Ubuntu 26.04 LTS hadir dengan kernel 7.0, GNOME 50, performa AI mumpuni, gaming kelas berat, dan tetap bisa pakai .deb atau flatpak. Simak ulasan santai lengkap dengan 5W+1H.
 - [Panduan Memilih Distro Linux Terbaik Sesuai Kebutuhan dan Cara Kerja Ekosistemnya](https://dalam.web.id/sistem-terbuka/rekomendasi-distro-linux-terbaik) : rekomendasi distro Linux terbaik untuk pemula coding hingga desain grafis serta pahami fleksibilitas sistem operasi open source dalam artikel lengkap ini
 - [Pernyataan Parrot Security soal Verifikasi Usia: Kami Tidak Butuh ID Anda](https://dalam.web.id/sistem-terbuka/parrot-security-age-verification-statement) : Parrot Security menolak verifikasi usia karena dianggap sebagai tameng sensor. Simak pernyataan resmi, risiko identitas terpusat, dan posisi tegas mereka demi kebebasan digital.
