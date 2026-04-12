@@ -11,7 +11,7 @@ const TEMP_CONFIG = "/tmp/wrangler.toml";
 // 🎯 FILTER: File yang Harus Di-Skip
 const SKIP_PATTERNS = [
     /^index\.html$/i,           // Landing page
-/^agregat.*\.html$/i,       // Agregat pages (agregat.html, agregat-2024.html, dll)
+    /^agregat.*\.html$/i,       // Agregat pages (agregat.html, agregat-2024.html, dll)
 ];
 
 /**
@@ -90,26 +90,18 @@ const generateInsertSQL = (data: { title: string; desc: string; bodyContent: str
 // 🚀 MAIN EXECUTION
 // ============================================
 
-console.log("🛠️ Memulai Sinkronisasi D1: Operasi Sterilisasi & Smart Filtering...");
-
 let sqlCommands: string[] = ["DELETE FROM articles_fts;"];
 let totalProcessed = 0;
 let totalSkipped = 0;
 
 for (const cat of ARTICLE_DIRS) {
     const fullCatPath = join(ROOT_DIR, cat);
-    if (!existsSync(fullCatPath)) {
-        console.log(`⚠️ Kategori ${cat} tidak ditemukan, skip...`);
-        continue;
-    }
+    if (!existsSync(fullCatPath)) continue;
 
     const files = readdirSync(fullCatPath).filter(f => f.endsWith(".html"));
-    console.log(`\n📂 Processing Kategori: ${cat} (${files.length} file)`);
 
     for (const file of files) {
-        // --- 🚫 SKIP FILE BERDASARKAN PATTERN ---
         if (shouldSkipFile(file)) {
-            console.log(`   ⏭️ Skip: ${file}`);
             totalSkipped++;
             continue;
         }
@@ -118,34 +110,19 @@ for (const cat of ARTICLE_DIRS) {
             const data = extractArticleData(join(fullCatPath, file), file, cat);
             sqlCommands.push(generateInsertSQL({ ...data, file, category: cat }));
             totalProcessed++;
-
-            // Progress indicator setiap 10 file
-            if (totalProcessed % 10 === 0) {
-                process.stdout.write(`   ✓ Processed ${totalProcessed} articles...\r`);
-            }
         } catch (e: any) {
-            console.error(`   ❌ Gagal olah file: ${file} (${e.message})`);
+            console.error(`❌ Gagal olah file: ${file} (${e.message})`);
         }
     }
 }
 
-// Clear progress line
-process.stdout.write('\n');
-
-console.log(`\n📊 Summary:`);
-console.log(`   ✅ Processed: ${totalProcessed} articles`);
-console.log(`   ⏭️ Skipped: ${totalSkipped} files (landing pages & agregat)`);
-console.log(`   📝 Total SQL commands: ${sqlCommands.length}`);
-
-// Write SQL file
 writeFileSync(SQL_FILE, sqlCommands.join("\n"));
-
-console.log(`\n🚀 Mengirim data ke D1...`);
 
 try {
     if (existsSync(TEMP_CONFIG)) {
         execSync(`bunx wrangler d1 execute layarkosong-db --remote --file=${SQL_FILE} -c ${TEMP_CONFIG}`, { stdio: 'inherit' });
-        console.log("\n✅ BERHASIL! Database D1 Layar Kosong telah di-update dengan data bersih.");
+        console.log(`\n✅ Sync D1 Berhasil!`);
+        console.log(`   📊 ${totalProcessed} artikel diproses | ${totalSkipped} file di-skip`);
     } else {
         console.error("❌ File konfigurasi wrangler.toml tidak ditemukan.");
         process.exit(1);
@@ -154,10 +131,5 @@ try {
     console.error(`❌ Terjadi kesalahan saat update D1: ${err.message}`);
     process.exit(1);
 } finally {
-    if (existsSync(SQL_FILE)) {
-        unlinkSync(SQL_FILE);
-        console.log("🧹 Temporary SQL file cleaned up.");
-    }
+    if (existsSync(SQL_FILE)) unlinkSync(SQL_FILE);
 }
-
-console.log("\n🎉 Proses selesai! Database siap untuk pencarian yang lebih akurat.");
