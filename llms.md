@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.52
+document_version: 19.53
 last_updated: 2026-04-13
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 13 April 2026)
-> Menampilkan 1215 artikel versi 19.52.
+> Menampilkan 1216 artikel versi 19.53.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
@@ -511,6 +511,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online](https://dalam.web.id/opini-sosial/diam-yang-melelahkan-pekerja-gig) : Tubuh yang diam menanti orderan bukanlah istirahat, melainkan kerja siaga penuh tekanan. Sebuah tinjauan 5W+1H tentang prekaritas pengemudi ojek online.
 - [Guru vs Petugas MBG: Ketika Otak Tak Dihargai, Badanpun Disuruh-suruh](https://dalam.web.id/opini-sosial/guru-vs-petugas-mbg-intelektualitas-tak-dihargai) : Kisah nyata seorang guru ditegur petugas MBG untuk membersihkan dan menyusun wadah makanan. Guru menolak karena bukan tugasnya, tak ada SK dan upah. Insiden ini menggambarkan betapa intelektualitas tak dihargai di Indonesia.
 - [Inovator Lokal Indonesia Terhambat Regulasi: Fakta dan Solusi](https://dalam.web.id/opini-sosial/inovator-lokal-terhambat-regulasi) : Inovator lokal Indonesia terhambat regulasi menjadi isu serius. Artikel ini mengulas fakta, penyebab, dan solusi agar inovasi rakyat bisa berkembang. Bahasa Indonesia santai berdasarkan data terkini.
 - [Kritik Pedas IDAI: Sanksi 1306 RS oleh Kemenkes, Arogansi atau Solusi?](https://dalam.web.id/opini-sosial/kritik-idai-sanksi-rs-satu-sehat) : Ketua IDAI Sumut, Rizky Adriansyah, menyebut sanksi terhadap 1306 RS karena gagal integrasi SATU SEHAT sebagai bentuk arogansi dan kebijakan buta realitas. Simak analisis lengkapnya.
