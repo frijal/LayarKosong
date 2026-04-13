@@ -2,7 +2,7 @@ name: "🛠️ Dapur Maintenance (All-in-One)"
 
 on:
   schedule:
-    - cron: '0 9 9 * *' # Bulanan otomatis
+    - cron: '0 9 */7 * *'
   workflow_dispatch:
     inputs:
       mode:
