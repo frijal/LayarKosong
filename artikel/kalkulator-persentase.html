@@ -100,17 +100,17 @@
             <input type="text" id="awal2" placeholder="Contoh: 50.000" oninput="handleInput(this, 'nilai')">
         </div>
         <div class="form-group">
-            <label>Persentase (%)</label>
-            <input type="number" id="persen2" placeholder="Contoh: 10" oninput="hitungNilai()">
-        </div>
-        <div class="form-group">
             <label>Aksi</label>
             <select id="aksi" onchange="hitungNilai()">
                 <option value="tambah">Penambahan (+)</option>
                 <option value="kurang">Diskon / Pengurangan (-)</option>
             </select>
         </div>
-    </div>
+        <div class="form-group">
+            <label>Persentase (%)</label>
+            <input type="number" id="persen2" placeholder="Contoh: 10" oninput="hitungNilai()">
+        </div>
+            </div>
     <div id="resultWrapper">
         <div id="resultText" class="result-text">Hasil: 0</div>
         <button class="copy-btn" id="copyBtn" onclick="copyResult()">Salin</button>
