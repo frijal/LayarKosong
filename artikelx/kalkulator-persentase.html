@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Persentase Lengkap - Hitung Cepat Akurat</title>
+<meta name="description" content="Kalkulator persentase online gratis untuk menghitung persen dari jumlah, kenaikan/penurunan persentase, dan perbandingan angka secara instan dan akurat.">
+<meta name="keywords" content="kalkulator persentase, hitung persen, persentase kenaikan, diskon, kalkulator matematika, cara hitung persen">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dalam.web.id/artikel/kalkulator-persentase.html">
+<meta property="og:title" content="Kalkulator Persentase Lengkap - Hitung Cepat Akurat">
+<meta property="og:description" content="Solusi praktis menghitung segala jenis persentase. Mudah digunakan untuk tugas sekolah, bisnis, hingga perhitungan diskon belanja.">
+<meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/f46988801da32d61.webp">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://dalam.web.id/artikel/kalkulator-persentase.html">
+<meta property="twitter:title" content="Kalkulator Persentase Lengkap">
+<meta property="twitter:description" content="Hitung persentase jadi lebih mudah dan cepat dengan alat kalkulator online kami.">
+<meta property="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/f46988801da32d61.webp">
+
+<link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-persentase.html">
+<meta name="robots" content="index, follow">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --bg: #f8fafc;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); padding: 20px; color: #334155; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab { flex: 1; padding: 10px; border: none; background: #e2e8f0; cursor: pointer; border-radius: 6px; font-weight: 600; transition: 0.3s; }
+        .tab.active { background: var(--primary); color: white; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-size: 0.9em; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        
+        #resultWrapper { 
+            margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 8px; 
+            display: none; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary);
+        }
+        .result-text { font-weight: bold; font-size: 1.1em; }
+        .copy-btn { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+        
+        .history-section { margin-top: 30px; border-top: 2px solid #f1f5f9; padding-top: 15px; }
+        .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .history-item { 
+            padding: 10px; border-bottom: 1px solid #f1f5f9; font-size: 0.9em; 
+            display: flex; justify-content: space-between;
+        }
+        .clear-btn { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 0.8em; text-decoration: underline; }
+        .text-up { color: var(--success); font-weight: bold; }
+        .text-down { color: var(--danger); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container"><h1>Kalkulator Persentase</h1>
+    <h2>Hitung Cepat Akurat</h2>
+    
+    <div class="tabs">
+        <button class="tab active" id="tab1" onclick="switchTab('perubahan')">Perubahan %</button>
+        <button class="tab" id="tab2" onclick="switchTab('nilai')">Nilai Akhir</button>
+    </div>
+
+    <div id="formPerubahan">
+        <div class="form-group">
+            <label>Nilai Awal</label>
+            <input type="text" id="awal1" placeholder="Contoh: 1.000" oninput="handleInput(this, 'perubahan')">
+        </div>
+        <div class="form-group">
+            <label>Nilai Akhir</label>
+            <input type="text" id="akhir1" placeholder="Contoh: 1.200" oninput="handleInput(this, 'perubahan')">
+        </div>
+    </div>
+
+    <div id="formNilai" style="display:none;">
+        <div class="form-group">
+            <label>Nilai Utama</label>
+            <input type="text" id="awal2" placeholder="Contoh: 50.000" oninput="handleInput(this, 'nilai')">
+        </div>
+     <div class="form-group">
+            <label>Aksi</label>
+            <select id="aksi" onchange="hitungNilai()">
+                <option value="tambah">Penambahan (+)</option>
+                <option value="kurang">Diskon / Pengurangan (-)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Persentase (%)</label>
+            <input type="number" id="persen2" placeholder="Contoh: 10" oninput="hitungNilai()">
+        </div>
+       </div>
+
+    <div id="resultWrapper">
+        <div id="resultText" class="result-text">Hasil: 0</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyResult()">Salin</button>
+    </div>
+
+    <div class="history-section">
+        <div class="history-header">
+            <h3>Riwayat</h3>
+            <button class="clear-btn" onclick="clearHistory()">Hapus Semua</button>
+        </div>
+        <div id="historyList"></div>
+    </div>
+</div>
+
+<script>
+    let currentResultValue = "";
+
+    // Fungsi utama untuk menangani input dengan format ribuan
+    function formatNumberInput(input) {
+        // Hapus semua karakter kecuali angka
+        let value = input.value.replace(/[^0-9]/g, "");
+        
+        // Simpan posisi kursor agar tidak melompat ke akhir
+        let cursorPosition = input.selectionStart;
+        let oldLength = input.value.length;
+
+        if (value === "") {
+            input.value = "";
+            return 0;
+        }
+
+        // Ubah ke format ribuan (Indonesia menggunakan titik)
+        let formatted = parseInt(value).toLocaleString('id-ID');
+        input.value = formatted;
+
+        // Koreksi posisi kursor setelah format
+        let newLength = input.value.length;
+        input.setSelectionRange(cursorPosition + (newLength - oldLength), cursorPosition + (newLength - oldLength));
+
+        return parseInt(value);
+    }
+
+    function handleInput(el, type) {
+        formatNumberInput(el);
+        if (type === 'perubahan') hitungPerubahan();
+        if (type === 'nilai') hitungNilai();
+    }
+
+    // Ambil nilai murni (integer) dari input yang berformat titik
+    function getRawValue(id) {
+        let val = document.getElementById(id).value.replace(/[^0-9]/g, "");
+        return val === "" ? NaN : parseFloat(val);
+    }
+
+    function switchTab(tab) {
+        document.getElementById('formPerubahan').style.display = tab === 'perubahan' ? 'block' : 'none';
+        document.getElementById('formNilai').style.display = tab === 'nilai' ? 'block' : 'none';
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        document.getElementById('resultWrapper').style.display = 'none';
+    }
+
+    function hitungPerubahan() {
+        const a = getRawValue('awal1');
+        const b = getRawValue('akhir1');
+        
+        if (isNaN(a) || isNaN(b) || a === 0) return;
+
+        const p = ((b - a) / a) * 100;
+        const formatted = Number(p.toFixed(2)) + "%";
+        const indicator = p >= 0 ? `<span class="text-up">↑ ${formatted}</span>` : `<span class="text-down">↓ ${formatted}</span>`;
+        
+        showResult(`Hasil: ${indicator}`, formatted);
+        
+        debouncedSave(`${a.toLocaleString('id-ID')} → ${b.toLocaleString('id-ID')} = ${indicator}`);
+    }
+
+    function hitungNilai() {
+        const a = getRawValue('awal2');
+        const p = parseFloat(document.getElementById('persen2').value);
+        const aksi = document.getElementById('aksi').value;
+        
+        if (isNaN(a) || isNaN(p)) return;
+
+        const akhir = aksi === 'tambah' ? a * (1 + (p/100)) : a * (1 - (p/100));
+        const formatted = Math.round(akhir).toLocaleString('id-ID');
+        
+        showResult(`Hasil: ${formatted}`, formatted);
+
+        const simbol = aksi === 'tambah' ? '+' : '-';
+        debouncedSave(`${a.toLocaleString('id-ID')} ${simbol} ${p}% = <b>${formatted}</b>`);
+    }
+
+    function showResult(text, rawValue) {
+        currentResultValue = rawValue;
+        const wrapper = document.getElementById('resultWrapper');
+        document.getElementById('resultText').innerHTML = text;
+        wrapper.style.display = 'flex';
+        document.getElementById('copyBtn').innerText = "Salin";
+    }
+
+    function copyResult() {
+        navigator.clipboard.writeText(currentResultValue.replace(/[^0-9,%↑↓]/g, ""));
+        document.getElementById('copyBtn').innerText = "Tersalin!";
+        setTimeout(() => { document.getElementById('copyBtn').innerText = "Salin"; }, 2000);
+    }
+
+    // Debounce untuk menyimpan ke history
+    let timer;
+    function debouncedSave(text) {
+        clearTimeout(timer);
+        timer = setTimeout(() => saveHistory(text), 1500);
+    }
+
+    function saveHistory(entry) {
+        let history = JSON.parse(localStorage.getItem('calc_history') || "[]");
+        if (history[0] === entry) return;
+        history.unshift(entry);
+        localStorage.setItem('calc_history', JSON.stringify(history.slice(0, 5)));
+        renderHistory();
+    }
+
+    function renderHistory() {
+        const list = document.getElementById('historyList');
+        const history = JSON.parse(localStorage.getItem('calc_history') || "[]");
+        list.innerHTML = history.map(item => `<div class="history-item">${item}</div>`).join('');
+    }
+
+    function clearHistory() {
+        localStorage.removeItem('calc_history');
+        renderHistory();
+    }
+
+    window.onload = renderHistory;
+</script>
+
+</body>
+</html>
