@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.51
+document_version: 19.52
 last_updated: 2026-04-13
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 13 April 2026)
-> Menampilkan 1214 artikel versi 19.51.
+> Menampilkan 1215 artikel versi 19.52.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
@@ -424,6 +424,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati](https://dalam.web.id/lainnya/qanaah-kekayaan-hati-keberuntungan) : Mengulas Hadits Muslim No. 1054 dan penjelasan Ibnul Qayyim tentang sifat Qanaah (merasa cukup). Pelajari bagaimana Qanaah adalah kekayaan sejati dan jalan menuju keberuntungan di dunia dan akhirat.
 
 ## Olah Media
+- [Video Splitter One-Liner Generator](https://dalam.web.id/olah-media/video-splitter-one-liner-generator) : Generate perintah one-liner untuk membagi video dengan cepat dan efisien. Cocok untuk developer, content creator, dan pengguna FFmpeg.
 - [10 Rumus Excel Lanjutan untuk Data Analyst: Level Up Skill Kamu!](https://dalam.web.id/olah-media/10-rumus-excel-lanjutan-data-analyst) : Tingkatkan kemampuan analisis datamu dengan 10 rumus Excel lanjutan seperti IFERROR, TEXTSPLIT, LET, hingga SUMPRODUCT. Data Analyst.
 - [10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet](https://dalam.web.id/olah-media/10-rumus-excel-data-analyst) : Menjadi Data Analyst tidak perlu ribet. Pelajari 10 fungsi Excel terbaik seperti XLOOKUP dan FILTER untuk bekerja lebih cerdas dan menghemat waktu.
 - [Mengenal Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus](https://dalam.web.id/olah-media/flash-fill-excel-otomatis) : kecanggihan Flash Fill di Excel untuk memisahkan, menggabungkan, dan memformat data secara otomatis tanpa rumus kompleks.
