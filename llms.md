@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.53
+document_version: 19.54
 last_updated: 2026-04-13
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 13 April 2026)
-> Menampilkan 1216 artikel versi 19.53.
+> Menampilkan 1217 artikel versi 19.54.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
@@ -134,6 +134,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Kalkulator Faraid Lengkap - Sistem Hijab](https://dalam.web.id/jejak-sejarah/kalkulator-faraid) : Kalkulator Faraid lengkap untuk menghitung pembagian warisan menurut hukum Islam; panduan, contoh, dan fitur perhitungan otomatis.
 - [Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri](https://dalam.web.id/jejak-sejarah/kekeliruan-menilai-muhammadiyah-tidak-patuh-ulil-amri) : Membedah 4 kekeliruan cara pikir yang menilai Muhammadiyah tidak taat pada ulil amri. Perbedaan ijtihad bukan pembangkangan, ini bentuk tanggung jawab ilmiah.
 - [Dari Zaman Nabi Adam ke Era Viral: Mengapa Kejahatan Terasa Makin Kacau?](https://dalam.web.id/jejak-sejarah/dari-nabi-adam-ke-era-viral) : Kejahatan bukan hal baru, sejak Nabi Adam pun sudah ada. Yang berubah adalah cara kita menyebarkannya. Artikel ini mengajak kita sadar: jangan jadi penyebar keburukan, ubah arah jadi penebar kebaikan.
 - [Ka'bah dalam Islam: Fakta, Makna, dan Fungsi Sebenarnya](https://dalam.web.id/jejak-sejarah/kabah-dalam-islam-fakta-makna) : Ka'bah dalam Islam sering disalahpahami sebagai objek sembahan. Artikel ini menjelaskan makna sebenarnya, fungsi kiblat, sejarah, dan alasan mengapa umat Islam tidak menyembah Ka'bah. Bahasa Indonesia santai, berdasarkan Al-Qur'an dan fakta sejarah.
