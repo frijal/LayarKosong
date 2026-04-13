@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.48
-last_updated: 2026-04-12
+document_version: 19.49
+last_updated: 2026-04-13
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 12 April 2026)
-> Menampilkan 1213 artikel versi 19.48.
+## Index Artikel Terbaru (Updated: 13 April 2026)
+> Menampilkan 1214 artikel versi 19.49.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
@@ -322,6 +322,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum](https://dalam.web.id/jejak-sejarah/kesultanan-utsmaniyah) : Narasi santai tentang lahir dan bertumbuhnya Kesultanan Utsmaniyah: dari Osman I, Orhan I, Murad I, Bayezid I, hingga masa Interregnum. Lengkap, responsif, dan interaktif.
 
 ## Lainnya
+- [Kalkulator Persentase Lengkap - Hitung Cepat Akurat](https://dalam.web.id/lainnya/kalkulator-persentase) : Kalkulator persentase online gratis untuk menghitung persen dari jumlah, kenaikan/penurunan persentase, dan perbandingan angka secara instan dan akurat.
 - [Sulit Khusyu adalah Penyakit Mematikan Hati](https://dalam.web.id/lainnya/sulit-khusyu-penyakit-hati) : Sulit khusyu bukan sekadar kurang fokus, tapi tanda hati sakit dan bisa mematikan iman. Pelajari bahaya, sebab, dan solusi dari Al-Quran dan ulama.
 - [Refleksi Kemanusiaan: Pelajaran dari "Gratis untuk yang Membutuhkan"](https://dalam.web.id/lainnya/refleksi-kemanusiaan-gratis-untuk-membutuhkan) : Refleksi kemanusiaan yang menyentuh dari sudut jalan: papan 'Gratis untuk yang membutuhkan' mengajarkan arti cukup, berbagi, dan adab. Pelajaran peradaban sejati.
 - [Kisah Pendayung dan Wazir: Mengapa Gaji Tak Selaras Keringat?](https://dalam.web.id/lainnya/kisah-pendayung-dan-wazir-remunerasi) : Kisah bijak dari India Abad Pertengahan: seorang pendayung kerajaan mengeluh gajinya kecil sementara Wazir digaji besar. Raja mengajarkan perbedaan antara tenaga fisik dan kecerdasan strategis. Pelajari 3 pilar remunerasi.
