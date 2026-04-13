@@ -1,6 +1,6 @@
 # 🗓️ Dashboard Jadwal Otomatis Layar Kosong
 
-> **Terakhir Diperbarui:** Minggu, 12 April 2026 pukul 21.41.03 WITA
+> **Terakhir Diperbarui:** Senin, 13 April 2026 pukul 22.15.21 WITA
 
 | 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Jadwal Lokal (Balikpapan) |
 | :--- | :--- | :--- |
@@ -8,7 +8,7 @@
 | XCleanup Old GitHub Actions Cache | `30 0 */6 * *` | Setiap pukul 08:30 WITA, setiap 6 hari |
 | Zemester Content Aggregation | `15 1 1 1,7 *` | Setiap pukul 09:15 WITA, tanggal 1, bulan ke-1,7 |
 | 🐳 Build and Push to GHCR | `45 3 4 * *` | Setiap pukul 11:45 WITA, tanggal 4 |
-| 🛠️ Dapur Maintenance (All-in-One) | `0 9 9 * *` | Setiap pukul 17:00 WITA, tanggal 9 |
+| 🛠️ Dapur Maintenance (All-in-One) | `0 9 */7 * *` | Setiap pukul 17:00 WITA, setiap 7 hari |
 | 🔆 Pengecekan & Laporan Konten Harian | `30 12 * * *` | Setiap pukul 20:30 WITA |
 
 ---

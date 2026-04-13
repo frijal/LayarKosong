@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/12/2026, 1:41:04 PM
+Generated on: 4/13/2026, 2:15:21 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/12/2026, 1:41:04 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.48 | LLM Index v19.48 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.52 | LLM Index v19.52 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -540,6 +540,7 @@ Generated on: 4/12/2026, 1:41:04 PM
 | `artikel/kalkulator-dimensi-gambar.html` | Kalkulator Rasio dan Dimensi Gambar Otomatis - Layar Kosong | Kalkulator Rasio dan Dimensi Gambar Otomatis | Layar Kosong | ✅ Perfect |
 | `artikel/Kalkulator-Laundry-Berkah.html` | Kalkulator Laundry Berkah - Layar Kosong | Kalkulator Laundry Berkah | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-listrik-real-time-2026.html` | Kalkulator Listrik Real-Time 2026 - Layar Kosong | Kalkulator Listrik Real-Time 2026 | Layar Kosong | ✅ Perfect |
+| `artikel/kalkulator-persentase.html` | Kalkulator Persentase Lengkap - Hitung Cepat Akurat - Layar Kosong | Kalkulator Persentase Lengkap - Hitung Cepat Akurat | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-thr.html` | Kalkulator THR Indonesia - Layar Kosong | Kalkulator THR Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-zakat-fitrah-lengkap-laporan.html` | Laporan Kalkulator Zakat Fitrah Lengkap - Layar Kosong | Laporan Kalkulator Zakat Fitrah Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/kan-bisa-belajar-ngapain-bayar.html` | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? - Layar Kosong | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? | Layar Kosong | ✅ Perfect |
@@ -1211,6 +1212,7 @@ Generated on: 4/12/2026, 1:41:04 PM
 | `artikel/ventoy-install-linux.html` | Cara Instal & Pakai Ventoy untuk Bootable USB di Linux 💽 - Layar Kosong | Cara Instal & Pakai Ventoy untuk Bootable USB di Linux 💽 | Layar Kosong | ✅ Perfect |
 | `artikel/ventoy-multi-boot-usb-drag-drop.html` | Ventoy: Solusi Terbaik Membuat Multi-Boot USB, Cukup Drag & Drop ISO! - Layar Kosong | Ventoy: Solusi Terbaik Membuat Multi-Boot USB, Cukup Drag & Drop ISO! | Layar Kosong | ✅ Perfect |
 | `artikel/video-singkat-menyusutkan-otak.html` | Video Durasi Singkat: Benarkah Membunuh Fokus Kita? - Layar Kosong | Video Durasi Singkat: Benarkah Membunuh Fokus Kita? | Layar Kosong | ✅ Perfect |
+| `artikel/video-splitter-one-liner-generator.html` | Video Splitter One-Liner Generator - Layar Kosong | Video Splitter One-Liner Generator | Layar Kosong | ✅ Perfect |
 | `artikel/vladimir-putin-akui-madrasah-al-quran-rusia.html` | Resmi! Putin Akui Madrasah dan Al-Qur'an: Menilik Kebijakan Islam di Rusia - Layar Kosong | Resmi! Putin Akui Madrasah dan Al-Qur'an: Menilik Kebijakan Islam di Rusia | Layar Kosong | ✅ Perfect |
 | `artikel/vlc-rotate.html` | Cara Memutar Video Terbalik di VLC Player - Layar Kosong | Cara Memutar Video Terbalik di VLC Player | Layar Kosong | ✅ Perfect |
 | `artikel/vpn-bikin-internet-cepat.html` | Kenapa Pake VPN Internet Malah Makin Ngebut? Ini Penjelasan Teknis Tapi Santai - Layar Kosong | Kenapa Pake VPN Internet Malah Makin Ngebut? Ini Penjelasan Teknis Tapi Santai | Layar Kosong | ✅ Perfect |
@@ -1583,6 +1585,7 @@ Generated on: 4/12/2026, 1:41:04 PM
 | `lainnya/kacamata-dunia-akhirat.html` | Kacamata yang Salah: Membandingkan Dunia vs Akhirat - Layar Kosong | Kacamata yang Salah: Membandingkan Dunia vs Akhirat | Layar Kosong | ✅ Perfect |
 | `lainnya/Kalkulator-Laundry-Berkah.html` | Kalkulator Laundry Berkah - Layar Kosong | Kalkulator Laundry Berkah | Layar Kosong | ✅ Perfect |
 | `lainnya/kalkulator-listrik-real-time-2026.html` | Kalkulator Listrik Real-Time 2026 - Layar Kosong | Kalkulator Listrik Real-Time 2026 | Layar Kosong | ✅ Perfect |
+| `lainnya/kalkulator-persentase.html` | Kalkulator Persentase Lengkap - Hitung Cepat Akurat - Layar Kosong | Kalkulator Persentase Lengkap - Hitung Cepat Akurat | Layar Kosong | ✅ Perfect |
 | `lainnya/kalkulator-zakat-fitrah-lengkap-laporan.html` | Laporan Kalkulator Zakat Fitrah Lengkap - Layar Kosong | Laporan Kalkulator Zakat Fitrah Lengkap | Layar Kosong | ✅ Perfect |
 | `lainnya/kdmp-analisis-finansial.html` | Koperasi Desa Merah Putih Analisis Finansial, Resiko, dan Realitasnya - Layar Kosong | Koperasi Desa Merah Putih Analisis Finansial, Resiko, dan Realitasnya | Layar Kosong | ✅ Perfect |
 | `lainnya/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi.html` | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih - Layar Kosong | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih | Layar Kosong | ✅ Perfect |
@@ -1728,6 +1731,7 @@ Generated on: 4/12/2026, 1:41:04 PM
 | `olah-media/ubah-gabung.html` | Panduan Interaktif ImageMagick - CLI Media Manipulation 🛠️ - Layar Kosong | Panduan Interaktif ImageMagick - CLI Media Manipulation 🛠️ | Layar Kosong | ✅ Perfect |
 | `olah-media/ubah-suara-ubuntu-stereo.html` | Ubah Suara Sistem Ubuntu: Panduan Kustomisasi Audio - Layar Kosong | Ubah Suara Sistem Ubuntu: Panduan Kustomisasi Audio | Layar Kosong | ✅ Perfect |
 | `olah-media/ubahpotong.html` | Cara Memotong Gambar menggunakan ImageMagick - Panduan Interaktif ✂️ - Layar Kosong | Cara Memotong Gambar menggunakan ImageMagick - Panduan Interaktif ✂️ | Layar Kosong | ✅ Perfect |
+| `olah-media/video-splitter-one-liner-generator.html` | Video Splitter One-Liner Generator - Layar Kosong | Video Splitter One-Liner Generator | Layar Kosong | ✅ Perfect |
 | `olah-media/vlc-rotate.html` | Cara Memutar Video Terbalik di VLC Player - Layar Kosong | Cara Memutar Video Terbalik di VLC Player | Layar Kosong | ✅ Perfect |
 | `olah-media/watermark-imagemagick.html` | Memberi Watermark pada Gambar dengan ImageMagick di Linux - Layar Kosong | Memberi Watermark pada Gambar dengan ImageMagick di Linux | Layar Kosong | ✅ Perfect |
 | `olah-media/web-tool-generator-all-in-one.html` | Web Tool Generator - All in One - Layar Kosong | Web Tool Generator - All in One | Layar Kosong | ✅ Perfect |
