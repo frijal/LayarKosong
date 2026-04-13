@@ -1,0 +1,148 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Persentase Lengkap - Hitung Cepat Akurat</title>
+<meta name="description" content="Kalkulator persentase online gratis untuk menghitung persen dari jumlah, kenaikan/penurunan persentase, dan perbandingan angka secara instan dan akurat.">
+<meta name="keywords" content="kalkulator persentase, hitung persen, persentase kenaikan, diskon, kalkulator matematika, cara hitung persen">
+<meta name="author" content="Nama Brand/Anda">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dalam.web.id/artikel/kalkulator-persentase.html">
+<meta property="og:title" content="Kalkulator Persentase Lengkap - Hitung Cepat Akurat">
+<meta property="og:description" content="Solusi praktis menghitung segala jenis persentase. Mudah digunakan untuk tugas sekolah, bisnis, hingga perhitungan diskon belanja.">
+<meta property="og:image" content="https://pbs.twimg.com/media/HFxAmAcbYAAjdkM?format=jpg&name=medium">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://dalam.web.id/artikel/kalkulator-persentase.html">
+<meta property="twitter:title" content="Kalkulator Persentase Lengkap">
+<meta property="twitter:description" content="Hitung persentase jadi lebih mudah dan cepat dengan alat kalkulator online kami.">
+<meta property="twitter:image" content="https://pbs.twimg.com/media/HFxAmAcbYAAjdkM?format=jpg&name=medium">
+
+<link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-persentase.html">
+<meta name="robots" content="index, follow">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; background-color: #f0f2f5; }
+        .container { width: 100%; max-width: 450px; }
+        .card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .tabs { display: flex; margin-bottom: 15px; border-bottom: 2px solid #eee; }
+        .tab { flex: 1; padding: 10px; text-align: center; cursor: pointer; font-size: 0.8rem; font-weight: bold; color: #888; }
+        .tab.active { color: #007bff; border-bottom: 2px solid #007bff; }
+        .input-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 5px; font-size: 0.85rem; color: #666; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        
+        /* Gaya Box Hasil & Tombol Copy */
+        .result-container { margin-top: 15px; display: none; align-items: center; gap: 10px; padding: 10px; background: #e7f3ff; border-radius: 6px; }
+        .result-text { flex-grow: 1; font-weight: bold; color: #0056b3; font-size: 1rem; }
+        .btn-copy { background: #6c757d; padding: 5px 12px; font-size: 0.75rem; width: auto; margin: 0; }
+        .btn-copy:hover { background: #5a6268; }
+
+        .history-card { background: white; padding: 1rem; border-radius: 12px; font-size: 0.85rem; max-height: 200px; overflow-y: auto; }
+        .history-item { border-bottom: 1px solid #eee; padding: 8px 0; display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+<h1>Kalkulator Persentase Lengkap - Hitung Cepat Akurat</h1>
+    <div class="card">
+        <div class="tabs">
+            <div id="tab1" class="tab active" onclick="switchTab('perubahan')">Cari % Perubahan</div>
+            <div id="tab2" class="tab" onclick="switchTab('nilai')">Cari Nilai Akhir</div>
+        </div>
+
+        <!-- Form 1 -->
+        <div id="formPerubahan">
+            <div class="input-group"><label>Nilai Awal</label><input type="number" id="awal1"></div>
+            <div class="input-group"><label>Nilai Akhir</label><input type="number" id="akhir1"></div>
+            <button onclick="hitungPerubahan()">Hitung %</button>
+        </div>
+
+        <!-- Form 2 -->
+        <div id="formNilai" style="display:none;">
+            <div class="input-group"><label>Nilai Awal</label><input type="number" id="awal2"></div>
+            <div class="input-group">
+                <label>Aksi</label>
+                <select id="aksi">
+                    <option value="tambah">Tambah (+)</option>
+                    <option value="kurang">Kurang (-)</option>
+                </select>
+            </div>
+            <div class="input-group"><label>Persentase (%)</label><input type="number" id="persen2"></div>
+            <button onclick="hitungNilai()">Hitung Nilai Akhir</button>
+        </div>
+
+        <!-- Wadah Hasil dengan Tombol Copy -->
+        <div id="resultWrapper" class="result-container">
+            <div id="resultText" class="result-text"></div>
+            <button id="copyBtn" class="btn-copy" onclick="copyResult()">Salin</button>
+        </div>
+    </div>
+
+    <div class="history-card">
+        <strong style="display:block; margin-bottom:10px;">Riwayat</strong>
+        <div id="historyList"></div>
+    </div>
+</div>
+
+<script>
+    let currentResult = "";
+
+    function switchTab(tab) {
+        document.getElementById('formPerubahan').style.display = tab === 'perubahan' ? 'block' : 'none';
+        document.getElementById('formNilai').style.display = tab === 'nilai' ? 'block' : 'none';
+        document.getElementById('tab1').classList.toggle('active', tab === 'perubahan');
+        document.getElementById('tab2').classList.toggle('active', tab === 'nilai');
+        document.getElementById('resultWrapper').style.display = 'none';
+    }
+
+    function showResult(text, rawValue) {
+        currentResult = rawValue; // Nilai yang akan di-copy
+        const wrapper = document.getElementById('resultWrapper');
+        document.getElementById('resultText').innerText = text;
+        wrapper.style.display = 'flex';
+        document.getElementById('copyBtn').innerText = "Salin";
+    }
+
+    function copyResult() {
+        navigator.clipboard.writeText(currentResult).then(() => {
+            const btn = document.getElementById('copyBtn');
+            btn.innerText = "Tersalin!";
+            setTimeout(() => { btn.innerText = "Salin"; }, 2000);
+        });
+    }
+
+    function addHistory(text) {
+        const list = document.getElementById('historyList');
+        const item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerHTML = `<span>${text}</span>`;
+        list.insertBefore(item, list.firstChild);
+    }
+
+    function hitungPerubahan() {
+        const a = parseFloat(document.getElementById('awal1').value);
+        const b = parseFloat(document.getElementById('akhir1').value);
+        if(isNaN(a) || isNaN(b) || a === 0) return alert("Masukkan angka valid");
+        
+        const p = ((b - a) / a) * 100;
+        const formatted = p.toFixed(2) + "%";
+        showResult(`Hasil: ${formatted}`, formatted);
+        addHistory(`${a.toLocaleString()} → ${b.toLocaleString()} = ${formatted}`);
+    }
+
+    function hitungNilai() {
+        const a = parseFloat(document.getElementById('awal2').value);
+        const p = parseFloat(document.getElementById('persen2').value);
+        const aksi = document.getElementById('aksi').value;
+        if(isNaN(a) || isNaN(p)) return alert("Masukkan angka valid");
+        
+        let akhir = aksi === 'tambah' ? a * (1 + (p/100)) : a * (1 - (p/100));
+        const formatted = akhir.toLocaleString();
+        showResult(`Hasil: ${formatted}`, formatted);
+        addHistory(`${a.toLocaleString()} ${aksi === 'tambah' ? '+' : '-'} ${p}% = ${formatted}`);
+    }
+</script>
+
+</body>
+</html>
