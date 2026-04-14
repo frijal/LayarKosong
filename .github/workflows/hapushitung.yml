@@ -1,14 +1,12 @@
 name: 🔆 Pengecekan & Laporan Konten Harian
-
 on:
   schedule:
     - cron: '30 12 * * *'
   workflow_dispatch: # Bisa dijalankan manual dari tab Actions
-
 jobs:
   maintenance_and_reporting:
     runs-on: ubuntu-latest
-   
+
     permissions:
       contents: write
 
@@ -44,10 +42,10 @@ jobs:
 
       - name: 🕵️ Update Dashboard Jadwal
         run: | 
-            bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."            
-            bun run dapur/metadata-audit.ts
-            cp -u artikel/artikel.json sementara/
-      # bun run dapur/audit-workflow-efisiensi.ts
+          bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."            
+          bun run dapur/metadata-audit.ts
+          cp -u artikel/artikel.json sementara/
+          # bun run dapur/audit-workflow-efisiensi.ts
 
       # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
       - name: 📊 Generate Simplified Content Report
@@ -55,63 +53,93 @@ jobs:
         run: |
           # Definisikan tanggal dan simpan ke GITHUB_ENV agar bisa diakses langkah lain
           DATE=$(date +'%Y-%m-%d')
-          echo "REPORT_DATE=$DATE" >> $GITHUB_ENV          
-          REPORT_PATH="mini/${DATE}-laporan_konten.md"          
-          echo "📊 Membuat laporan ringkas..."
-            declare -A ext_count
-            declare -A ext_folders
-            total_files=0
+          echo "REPORT_DATE=$DATE" >> $GITHUB_ENV
+          REPORT_PATH="mini/${DATE}-laporan_konten.md"
 
-            # 2. Scanning (Hanya folder utama, abaikan sistem)
-            while IFS= read -r -d $'\0' file; do
+          echo "📊 Membuat laporan ringkas..."
+          declare -A ext_count
+          declare -A ext_folders
+          total_files=0
+
+          # 2. Scanning (Hanya folder utama, abaikan sistem)
+          while IFS= read -r -d $'\0' file; do
             # Ambil ekstensi
             ext="${file##*.}"
             [[ "$file" != *.* ]] && ext="no-ext"
-      
+            
             # Hitung total per ekstensi
             ext_count["$ext"]=$(( ${ext_count["$ext"]:-0} + 1 ))
             total_files=$(( total_files + 1 ))
-      
+            
             # Catat folder unik (ambil nama folder pertama setelah root)
             folder=$(echo "$file" | cut -d'/' -f2)
             if [[ ! "${ext_folders["$ext"]}" =~ "$folder" ]]; then
-            ext_folders["$ext"]+="$folder "
+              ext_folders["$ext"]+="$folder "
             fi
-            done < <(find . -maxdepth 3 -not -path '*/.*' -not -path './node_modules*' -not -path './mini*' -type f -print0)
+          done < <(find . -maxdepth 3 -not -path '*/.*' -not -path './node_modules*' -not -path './mini*' -type f -print0)
 
-            # 3. Generate Markdown
-            {
+          # 3. Generate Markdown
+          {
             echo "# 🔆 Laporan Ringkas Konten"
             echo "Update: $(date '+%d %b %Y | %H:%M') WITA"
             echo ""
             echo "### 📑 Statistik Global"
             echo "| Ekstensi | Jumlah | Lokasi Folder |"
             echo "| :--- | :---: | :--- |"
-
+            
             # Sort ekstensi berdasarkan abjad
             for ext in $(echo "${!ext_count[@]}" | tr ' ' '\n' | sort); do
-            count=${ext_count["$ext"]}
-            # Rapikan list folder
-            folders=$(echo "${ext_folders["$ext"]}" | sed 's/ $//; s/ /, /g')
-        
-            # Mapping emoji sederhana
-            case $ext in
-            md) emo="📝" ;;
-            webp|jpg|png) emo="🖼️" ;;
-            js|py|sh) emo="📜" ;;
-            html|css) emo="🎨" ;;
-            *) emo="📄" ;;
-            esac
-
-            printf "| %s %-5s | **%d** | %s |\n" "$emo" "$ext" "$count" "$folders"
+              count=${ext_count["$ext"]}
+              # Rapikan list folder
+              folders=$(echo "${ext_folders["$ext"]}" | sed 's/ $//; s/ /, /g')
+              
+              # Mapping emoji sederhana
+              case $ext in
+                md) emo="📝" ;;
+                webp|jpg|png) emo="🖼️" ;;
+                js|py|sh) emo="📜" ;;
+                html|css) emo="🎨" ;;
+                *) emo="📄" ;;
+              esac
+              
+              printf "| %s %-5s | **%d** | %s |\n" "$emo" "$ext" "$count" "$folders"
             done
-
+            
             echo ""
             echo "**Total File:** $total_files"
-            } > "$REPORT_PATH"
+          } > "$REPORT_PATH"
 
-            echo "✅ Laporan disederhanakan: $REPORT_PATH"
-          
+          echo "✅ Laporan disederhanakan: $REPORT_PATH"
+
+          # 4. 🧹 CLEANUP - Keep only 6 newest reports
+          echo ""
+          echo "🧹 Membersihkan laporan lama..."
+
+          # Hitung jumlah laporan yang ada
+          report_count=$(find mini/ -name "*-laporan_konten.md" 2>/dev/null | wc -l)
+          echo "📋 Total laporan yang ada: $report_count"
+
+          if [ "$report_count" -gt 6 ]; then
+            # List semua laporan, sort berdasarkan nama (tanggal), ambil yang lama
+            # head -n -6 = ambil semua kecuali 6 terakhir
+            find mini/ -name "*-laporan_konten.md" -type f | sort | head -n -6 | while read -r old_report; do
+              echo "🗑️  Menghapus: $(basename "$old_report")"
+              rm -f "$old_report"
+            done
+            
+            deleted_count=$((report_count - 6))
+            echo "✨ Berhasil menghapus $deleted_count laporan lama"
+          else
+            echo "✅ Laporan masih dalam batas (max 6), tidak ada yang dihapus"
+          fi
+
+          # Show final report list
+          echo ""
+          echo "📚 Laporan yang tersisa:"
+          find mini/ -name "*-laporan_konten.md" -type f | sort -r | while read -r report; do
+            echo "  📄 $(basename "$report")"
+          done      
+      
       # ========== COMMIT & PUSH ==========
       - name: 📮 Commit & Push All Changes
         run: |
