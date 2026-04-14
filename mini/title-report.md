@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/13/2026, 2:15:21 PM
+Generated on: 4/14/2026, 2:19:16 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/13/2026, 2:15:21 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.52 | LLM Index v19.52 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.57 | LLM Index v19.57 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -291,6 +291,7 @@ Generated on: 4/13/2026, 2:15:21 PM
 | `artikel/Desktop-GNOME.html` | Ulasan Desktop GNOME Terbaru: Modern & Produktif - Layar Kosong | Ulasan Desktop GNOME Terbaru: Modern & Produktif | Layar Kosong | ✅ Perfect |
 | `artikel/dewan-nasional-yvc-indonesia-2025-2027.html` | DEWAN NASIONAL YVC INDONESIA MASA BAKTI 2025 - 2027 - Layar Kosong | DEWAN NASIONAL YVC INDONESIA MASA BAKTI 2025 - 2027 | Layar Kosong | ✅ Perfect |
 | `artikel/diagnosa-pc-windows-lambat-perfmon.html` | Cara Diagnosa PC Windows Lambat dalam 60 Detik dengan Perfmon Report Panduan Lengkap 2026 - Layar Kosong | Cara Diagnosa PC Windows Lambat dalam 60 Detik dengan Perfmon Report Panduan Lengkap 2026 | Layar Kosong | ✅ Perfect |
+| `artikel/diam-yang-melelahkan-pekerja-gig.html` | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online - Layar Kosong | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online | Layar Kosong | ✅ Perfect |
 | `artikel/diesel-runaway-horor-mesin-ngamuk.html` | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya - Layar Kosong | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya | Layar Kosong | ✅ Perfect |
 | `artikel/dikira-halal-ternyata-haram-cantik.html` | DIKIRA HALAL, TERNYATA HARAM - EDISI CANTIK & GANTENG - Layar Kosong | DIKIRA HALAL, TERNYATA HARAM - EDISI CANTIK & GANTENG | Layar Kosong | ✅ Perfect |
 | `artikel/dilema-hemat-gas-pedagang-makanan.html` | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas - Layar Kosong | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas | Layar Kosong | ✅ Perfect |
@@ -538,6 +539,7 @@ Generated on: 4/13/2026, 2:15:21 PM
 | `artikel/kadin-minta-prabowo-batalkan-impor-mobil-india.html` | Dilema Impor Mobil India: Mengapa Kadin Minta Presiden Prabowo Batalkan Rencana Rp 24,6 Triliun? - Layar Kosong | Dilema Impor Mobil India: Mengapa Kadin Minta Presiden Prabowo Batalkan Rencana Rp 24,6 Triliun? | Layar Kosong | ✅ Perfect |
 | `artikel/kalau-itu-aib-maka-tutuplah.html` | Kalau Itu Aib, Maka Tutuplah - Layar Kosong | Kalau Itu Aib, Maka Tutuplah | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-dimensi-gambar.html` | Kalkulator Rasio dan Dimensi Gambar Otomatis - Layar Kosong | Kalkulator Rasio dan Dimensi Gambar Otomatis | Layar Kosong | ✅ Perfect |
+| `artikel/kalkulator-faraid.html` | Kalkulator Faraid Lengkap - Sistem Hijab - Layar Kosong | Kalkulator Faraid Lengkap - Sistem Hijab | Layar Kosong | ✅ Perfect |
 | `artikel/Kalkulator-Laundry-Berkah.html` | Kalkulator Laundry Berkah - Layar Kosong | Kalkulator Laundry Berkah | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-listrik-real-time-2026.html` | Kalkulator Listrik Real-Time 2026 - Layar Kosong | Kalkulator Listrik Real-Time 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-persentase.html` | Kalkulator Persentase Lengkap - Hitung Cepat Akurat - Layar Kosong | Kalkulator Persentase Lengkap - Hitung Cepat Akurat | Layar Kosong | ✅ Perfect |
@@ -876,12 +878,14 @@ Generated on: 4/13/2026, 2:15:21 PM
 | `artikel/panduan-kontribusi-layar-kosong.html` | Panduan Kontribusi untuk Layar Kosong - dalam.web.id 🤝 - Layar Kosong | Panduan Kontribusi untuk Layar Kosong - dalam.web.id 🤝 | Layar Kosong | ⚠️ Partial |
 | `artikel/panduan-layar-kosong.html` | Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages - Layar Kosong | Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages | Layar Kosong | ⚠️ Partial |
 | `artikel/panduan-lengkap-notebooklm.html` | Panduan Ahli NotebookLM: Cara Cerdas Kelola Riset dan Ide - Layar Kosong | Panduan Ahli NotebookLM: Cara Cerdas Kelola Riset dan Ide | Layar Kosong | ✅ Perfect |
+| `artikel/panduan-lengkap-robocopy-backup-optimasi.html` | Panduan Lengkap Robocopy: Backup, Sinkronisasi, dan Optimasi 2026 - Layar Kosong | Panduan Lengkap Robocopy: Backup, Sinkronisasi, dan Optimasi 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-lengkap-shalat-lail.html` | Panduan Lengkap Shalat Lail (Tahajjud, Witir, Tarawih): Tata Cara dan Keutamaannya - Layar Kosong | Panduan Lengkap Shalat Lail (Tahajjud, Witir, Tarawih): Tata Cara dan Keutamaannya | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-lengkap-snbp-2026.html` | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator - Layar Kosong | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-libur-cuti-bersama-2026.html` | Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend! - Layar Kosong | Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend! | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-migrasi-nodejs-ke-bun.html` | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah - Layar Kosong | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-pengasuhan-sains.html` | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja - Layar Kosong | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-pivot-table-excel.html` | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus - Layar Kosong | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus | Layar Kosong | ✅ Perfect |
+| `artikel/panduan-robocopy-sync-backup.html` | Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows - Layar Kosong | Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-robots-txt.html` | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir - Layar Kosong | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-seo-metadata-blog.html` | Panduan Lengkap SEO dan Metadata untuk Blog Anda - Layar Kosong | Panduan Lengkap SEO dan Metadata untuk Blog Anda | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-skrip-fix-html.html` | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML - Layar Kosong | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML | Layar Kosong | ✅ Perfect |
@@ -1425,6 +1429,7 @@ Generated on: 4/13/2026, 2:15:21 PM
 | `jejak-sejarah/janganlah-sombong.html` | Janganlah Sombong - Tafsir, Bahaya, dan Jalan Menjauhi Takabbur - Layar Kosong | Janganlah Sombong - Tafsir, Bahaya, dan Jalan Menjauhi Takabbur | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/jumat.html` | Keistimewaan Hari Jumat dalam Islam - Layar Kosong | Keistimewaan Hari Jumat dalam Islam | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kabah-dalam-islam-fakta-makna.html` | Ka'bah dalam Islam: Fakta, Makna, dan Fungsi Sebenarnya - Layar Kosong | Ka'bah dalam Islam: Fakta, Makna, dan Fungsi Sebenarnya | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/kalkulator-faraid.html` | Kalkulator Faraid Lengkap - Sistem Hijab - Layar Kosong | Kalkulator Faraid Lengkap - Sistem Hijab | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/karakteristik-air-perspektif-islam.html` | Membaca Karakteristik Air dalam Perspektif Islam: Anomali Banjir - Layar Kosong | Membaca Karakteristik Air dalam Perspektif Islam: Anomali Banjir | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/keajaiban-tulang-ekor-dalam-islam.html` | Keajaiban Tulang Ekor dalam Islam: Hadis, Al-Qur’an, dan Sains - Layar Kosong | Keajaiban Tulang Ekor dalam Islam: Hadis, Al-Qur’an, dan Sains | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/keindahan-surga-tak-terbayangkan.html` | Keindahan Surga Yang Tak Terbayangkan: Benarkah Lebih Indah dari Dunia? - Layar Kosong | Keindahan Surga Yang Tak Terbayangkan: Benarkah Lebih Indah dari Dunia? | Layar Kosong | ✅ Perfect |
@@ -1763,6 +1768,7 @@ Generated on: 4/13/2026, 2:15:21 PM
 | `opini-sosial/dari-rahim-aisyiyah-perempuan-yang-menguatkan-para-tokoh-bangsa.html` | Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa - Layar Kosong | Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa | Layar Kosong | ✅ Perfect |
 | `opini-sosial/denda-bpjs-iuran-disulap-jadi-utang.html` | Denda BPJS: Iuran Disulap Jadi Utang, Rakyat Diminta Tepuk Tangan - Layar Kosong | Denda BPJS: Iuran Disulap Jadi Utang, Rakyat Diminta Tepuk Tangan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/dewan-nasional-yvc-indonesia-2025-2027.html` | DEWAN NASIONAL YVC INDONESIA MASA BAKTI 2025 - 2027 - Layar Kosong | DEWAN NASIONAL YVC INDONESIA MASA BAKTI 2025 - 2027 | Layar Kosong | ✅ Perfect |
+| `opini-sosial/diam-yang-melelahkan-pekerja-gig.html` | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online - Layar Kosong | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online | Layar Kosong | ✅ Perfect |
 | `opini-sosial/diplomasi-indonesia-palestina-israel-analisis.html` | Diplomasi Indonesia di Tengah Konflik Palestina-Israel dan Peran Ormas Islam - Layar Kosong | Diplomasi Indonesia di Tengah Konflik Palestina-Israel dan Peran Ormas Islam | Layar Kosong | ✅ Perfect |
 | `opini-sosial/disiplin-otoriter-sekolahan.html` | Disiplin Otoriter di Sekolahan: Ancaman bagi Kreativitas dan Kemajuan Siswa, Analisis Pendidikan Indonesia - Layar Kosong | Disiplin Otoriter di Sekolahan: Ancaman bagi Kreativitas dan Kemajuan Siswa, Analisis Pendidikan Indonesia | Layar Kosong | ✅ Perfect |
 | `opini-sosial/doa-buruk-penguasa-zalim.html` | Bolehkah Berdoa Buruk Untuk Penguasa Zalim? (Diskusi Online Kajian Sholihah, 17/2/2026) - Layar Kosong | Bolehkah Berdoa Buruk Untuk Penguasa Zalim? (Diskusi Online Kajian Sholihah, 17/2/2026) | Layar Kosong | ✅ Perfect |
@@ -2422,7 +2428,9 @@ Generated on: 4/13/2026, 2:15:21 PM
 | `warta-tekno/panduan-kontribusi-layar-kosong.html` | Panduan Kontribusi untuk Layar Kosong - dalam.web.id 🤝 - Layar Kosong | Panduan Kontribusi untuk Layar Kosong - dalam.web.id 🤝 | Layar Kosong | ⚠️ Partial |
 | `warta-tekno/panduan-layar-kosong.html` | Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages - Layar Kosong | Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages | Layar Kosong | ⚠️ Partial |
 | `warta-tekno/panduan-lengkap-notebooklm.html` | Panduan Ahli NotebookLM: Cara Cerdas Kelola Riset dan Ide - Layar Kosong | Panduan Ahli NotebookLM: Cara Cerdas Kelola Riset dan Ide | Layar Kosong | ✅ Perfect |
+| `warta-tekno/panduan-lengkap-robocopy-backup-optimasi.html` | Panduan Lengkap Robocopy: Backup, Sinkronisasi, dan Optimasi 2026 - Layar Kosong | Panduan Lengkap Robocopy: Backup, Sinkronisasi, dan Optimasi 2026 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/panduan-migrasi-nodejs-ke-bun.html` | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah - Layar Kosong | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah | Layar Kosong | ✅ Perfect |
+| `warta-tekno/panduan-robocopy-sync-backup.html` | Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows - Layar Kosong | Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows | Layar Kosong | ✅ Perfect |
 | `warta-tekno/panduan-robots-txt.html` | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir - Layar Kosong | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir | Layar Kosong | ✅ Perfect |
 | `warta-tekno/panduan-seo-metadata-blog.html` | Panduan Lengkap SEO dan Metadata untuk Blog Anda - Layar Kosong | Panduan Lengkap SEO dan Metadata untuk Blog Anda | Layar Kosong | ✅ Perfect |
 | `warta-tekno/panduan-skrip-fix-html.html` | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML - Layar Kosong | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML | Layar Kosong | ✅ Perfect |
