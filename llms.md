@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.54
-last_updated: 2026-04-13
+document_version: 19.55
+last_updated: 2026-04-14
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 13 April 2026)
-> Menampilkan 1217 artikel versi 19.54.
+## Index Artikel Terbaru (Updated: 14 April 2026)
+> Menampilkan 1218 artikel versi 19.55.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
@@ -1012,6 +1012,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows](https://dalam.web.id/warta-tekno/panduan-robocopy-sync-backup) : Cara pakai Robocopy untuk sync dan backup data Windows. Solusi error auditing, script batch (.bat), optimasi WLAN, dan perbandingan dengan rsync.
 - [DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie](https://dalam.web.id/warta-tekno/dbsc-chrome-146-keamanan-session-cookie) : Google resmi luncurkan Device Bound Session Credentials (DBSC) di Chrome 146 untuk Windows. Fitur ini kunci session cookie ke hardware TPM, bikin malware stealer gigit jari. Simak cara kerja dan masa depan keamanan browser.
 - [SQLite vs MySQL/PostgreSQL: Mana yang Cocok?](https://dalam.web.id/warta-tekno/sqlite-bisa-seperti-mysql-postgre) : Apakah SQLite bisa menggantikan MySQL atau PostgreSQL? Simak perbandingan lengkap, kelebihan, kekurangan, kapan menggunakan SQLite dan kapan tetap butuh database besar. Bahasa Indonesia santai dengan prinsip 5W+1H.
 - [Keamanan Sisi Klien: Ancaman Skimming & Solusi Cloudflare](https://dalam.web.id/warta-tekno/client-side-security-cloudflare) : Serangan skimming sisi klien bisa mencuri data tanpa merusak halaman. Pelajari cara Cloudflare mendeteksi JavaScript berbahaya dengan AI & LLM, serta lindungi situs Anda.
