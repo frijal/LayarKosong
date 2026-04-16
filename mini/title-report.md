@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/15/2026, 2:11:24 PM
+Generated on: 4/16/2026, 2:21:08 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/15/2026, 2:11:24 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.57 | LLM Index v19.57 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.61 | LLM Index v19.61 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -550,6 +550,7 @@ Generated on: 4/15/2026, 2:11:24 PM
 | `artikel/kasih-ibu-kediri.html` | Kasih Ibu Sepanjang Masa - Potret di Kediri Saat Senja - Layar Kosong | Kasih Ibu Sepanjang Masa - Potret di Kediri Saat Senja | Layar Kosong | ✅ Perfect |
 | `artikel/kasus-ira-puspadewi-bumn.html` | Kasus Ira Puspadewi: Di Mana Batas Korupsi dan Kelalaian Bisnis BUMN? - Layar Kosong | Kasus Ira Puspadewi: Di Mana Batas Korupsi dan Kelalaian Bisnis BUMN? | Layar Kosong | ✅ Perfect |
 | `artikel/kate-editor-teks-pengganti-ide.html` | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya - Layar Kosong | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya | Layar Kosong | ✅ Perfect |
+| `artikel/kde-gear-26-04-30-tahun.html` | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital - Layar Kosong | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital | Layar Kosong | ✅ Perfect |
 | `artikel/kde-plasma-6-6.html` | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! - Layar Kosong | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! | Layar Kosong | ✅ Perfect |
 | `artikel/kdmp-analisis-finansial.html` | Koperasi Desa Merah Putih Analisis Finansial, Resiko, dan Realitasnya - Layar Kosong | Koperasi Desa Merah Putih Analisis Finansial, Resiko, dan Realitasnya | Layar Kosong | ✅ Perfect |
 | `artikel/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi.html` | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih - Layar Kosong | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih | Layar Kosong | ✅ Perfect |
@@ -1117,6 +1118,7 @@ Generated on: 4/15/2026, 2:11:24 PM
 | `artikel/stop-educating-linux.html` | Stop Educating Linux: Mengapa Linux Bukan Windows dan Mengapa Itu Keren! - Layar Kosong | Stop Educating Linux: Mengapa Linux Bukan Windows dan Mengapa Itu Keren! | Layar Kosong | ✅ Perfect |
 | `artikel/stop-piracy-retro.html` | Stop Piracy : Penjelasan Lengkap dan Sumber Gambar - Layar Kosong | Stop Piracy : Penjelasan Lengkap dan Sumber Gambar | Layar Kosong | ✅ Perfect |
 | `artikel/strategi-branching-github.html` | Kenalan Sama Strategi Branching Populer di GitHub 📊 - Layar Kosong | Kenalan Sama Strategi Branching Populer di GitHub 📊 | Layar Kosong | ✅ Perfect |
+| `artikel/stricken-disturbed-makna-lirik.html` | Makna Mendalam Lagu Stricken Disturbed - Layar Kosong | Makna Mendalam Lagu Stricken Disturbed | Layar Kosong | ✅ Perfect |
 | `artikel/struktur-berkas-direktori-linux.html` | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai - Layar Kosong | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai | Layar Kosong | ✅ Perfect |
 | `artikel/suara-hati-foss-kaltim-pemilukada.html` | Suara Hati FOSS Kaltim Menjelang Pemilukada - Layar Kosong | Suara Hati FOSS Kaltim Menjelang Pemilukada | Layar Kosong | ✅ Perfect |
 | `artikel/suara-senyap-tembok-tinggi.html` | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat - Layar Kosong | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat | Layar Kosong | ✅ Perfect |
@@ -1643,6 +1645,7 @@ Generated on: 4/15/2026, 2:11:24 PM
 | `lainnya/sekolah-daring-hemat-bbm.html` | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? - Layar Kosong | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? | Layar Kosong | ✅ Perfect |
 | `lainnya/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `lainnya/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
+| `lainnya/stricken-disturbed-makna-lirik.html` | Makna Mendalam Lagu Stricken Disturbed - Layar Kosong | Makna Mendalam Lagu Stricken Disturbed | Layar Kosong | ✅ Perfect |
 | `lainnya/sulit-khusyu-penyakit-hati.html` | Sulit Khusyu adalah Penyakit Mematikan Hati - Layar Kosong | Sulit Khusyu adalah Penyakit Mematikan Hati | Layar Kosong | ✅ Perfect |
 | `lainnya/tanda-tubuh-kurang-vitamin-dan-sumbernya.html` | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya - Layar Kosong | 10 Tanda Tubuh Kurang Vitamin dan Sumber Makanannya | Layar Kosong | ✅ Perfect |
 | `lainnya/tarif-listrik-januari-maret-2026.html` | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya | Layar Kosong | ✅ Perfect |
@@ -2053,6 +2056,7 @@ Generated on: 4/15/2026, 2:11:24 PM
 | `sistem-terbuka/jangan-crying-baby-linux.html` | Jangan Jadi "Crying Baby" di Linux! - Layar Kosong | Jangan Jadi "Crying Baby" di Linux! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/jenis-instalasi-linux.html` | Jenis Instalasi Linux: Dual Boot, Live USB, VM, & Fresh Install - Layar Kosong | Jenis Instalasi Linux: Dual Boot, Live USB, VM, & Fresh Install | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kate-editor-teks-pengganti-ide.html` | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya - Layar Kosong | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/kde-gear-26-04-30-tahun.html` | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital - Layar Kosong | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kde-plasma-6-6.html` | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! - Layar Kosong | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/keamanan-linux-vs-windows.html` | Open Source Lebih Aman? Mengapa Linux Unggul dari Windows (Analisis Teknis) - Layar Kosong | Open Source Lebih Aman? Mengapa Linux Unggul dari Windows (Analisis Teknis) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kebijakan-wikipedia-ai-generatif.html` | Kebijakan Wikipedia tentang AI Generatif: Fakta Penting yang Perlu Anda Ketahui - Layar Kosong | Kebijakan Wikipedia tentang AI Generatif: Fakta Penting yang Perlu Anda Ketahui | Layar Kosong | ✅ Perfect |
