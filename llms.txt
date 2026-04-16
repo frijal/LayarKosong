@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.60
+document_version: 19.61
 last_updated: 2026-04-16
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 16 April 2026)
-> Menampilkan 1221 artikel versi 19.60.
+> Menampilkan 1221 artikel versi 19.61.
 
 ## Gaya Hidup
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
