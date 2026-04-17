@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.61
-last_updated: 2026-04-16
+document_version: 19.62
+last_updated: 2026-04-17
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,10 +38,11 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 16 April 2026)
-> Menampilkan 1221 artikel versi 19.61.
+## Index Artikel Terbaru (Updated: 17 April 2026)
+> Menampilkan 1227 artikel versi 19.62.
 
 ## Gaya Hidup
+- [Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood](https://dalam.web.id/gaya-hidup/manfaat-pisang-5-alasan-wajib-makan-pisang) : Pisang itu buah murah tapi manfaatnya nggak main-main. Dari energi instan, sahabat perut, jaga jantung, mood booster, sampai anti kram. Simak ulasan 5W+1H.
 - [Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan?](https://dalam.web.id/gaya-hidup/anggaran-pendidikan-motor-listrik-mbg) : Polemik penggunaan anggaran pendidikan untuk pengadaan 21.801 motor listrik operasional MBG oleh Badan Gizi Nasional. Dana BOS terancam, guru honorer tak terbayar, dan harga motor dipertanyakan. Analisis lengkap.
 - [Logika Terbalik Koperasi MP: Sejak Awal Sudah Berjalan Mundur](https://dalam.web.id/gaya-hidup/logika-terbalik-koperasi-mp) : mengapa Koperasi Merah Putih (MP) sejak awal dibangun dengan logika terbalik: top-down, legalitas tanpa aktivitas, dan kendaraan impor sebelum kebutuhan. Perspektif 5W+1H dan pelajaran dari BUUD, KUD, BUMDES.
 - [Remunerasi Pegawai: 3 Pilar + 6 Faktor yang Menentukan Gaji](https://dalam.web.id/gaya-hidup/3-pilar-remunerasi-dan-6-faktor) : Pahami 3 pilar utama remunerasi: accountability, leverage, scarcity, plus 6 faktor lain seperti investasi modal manusia, kompleksitas, kondisi pasar, biaya hidup, risiko bahaya, dan performa. untuk HR dan pekerja.
@@ -134,6 +135,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [GA USAH NEKO NEKO IKUTI AKAD DAN SYARIAT INSYAALLAH SELAMAT](https://dalam.web.id/jejak-sejarah/ga-usah-neko-neko-akad-syariat) : Artikel santai tentang pentingnya taat akad dan syariat dalam mengelola lembaga donasi. Simak prinsip 5W 1H, dalil, serta tips agar lembaga amanah dan donatur makin percaya.
 - [Kalkulator Faraid Lengkap - Sistem Hijab](https://dalam.web.id/jejak-sejarah/kalkulator-faraid) : Kalkulator Faraid lengkap untuk menghitung pembagian warisan menurut hukum Islam; panduan, contoh, dan fitur perhitungan otomatis.
 - [Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri](https://dalam.web.id/jejak-sejarah/kekeliruan-menilai-muhammadiyah-tidak-patuh-ulil-amri) : Membedah 4 kekeliruan cara pikir yang menilai Muhammadiyah tidak taat pada ulil amri. Perbedaan ijtihad bukan pembangkangan, ini bentuk tanggung jawab ilmiah.
 - [Dari Zaman Nabi Adam ke Era Viral: Mengapa Kejahatan Terasa Makin Kacau?](https://dalam.web.id/jejak-sejarah/dari-nabi-adam-ke-era-viral) : Kejahatan bukan hal baru, sejak Nabi Adam pun sudah ada. Yang berubah adalah cara kita menyebarkannya. Artikel ini mengajak kita sadar: jangan jadi penyebar keburukan, ubah arah jadi penebar kebaikan.
@@ -323,6 +325,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum](https://dalam.web.id/jejak-sejarah/kesultanan-utsmaniyah) : Narasi santai tentang lahir dan bertumbuhnya Kesultanan Utsmaniyah: dari Osman I, Orhan I, Murad I, Bayezid I, hingga masa Interregnum. Lengkap, responsif, dan interaktif.
 
 ## Lainnya
+- [Kalkulator Zakat Maal Harta Simpanan](https://dalam.web.id/lainnya/kalkulator-zakat-maal-harta-simpanan) : Hitung zakat maal (harta simpanan) Anda dengan mudah dan akurat. Termasuk tabungan, emas, perak, dan aset lainnya sesuai nisab dan haul.
+- [Pengkhianatan Kaum Intelektual: Mengapa Profesor dan Dosen Tak Berani Beda Suara?](https://dalam.web.id/lainnya/pengkhianatan-kaum-intelektual-indonesia) : Dari 6500-8000 profesor di Indonesia, berapa yang berani mengkritik kebijakan? Refleksi tajam atas sikap diam kaum terdidik dan relevansi La Trahison des Clercs Julien Benda.
+- [Kalkulator Zakat Penghasilan](https://dalam.web.id/lainnya/kalkulator-zakat-penghasilan) : Hitung zakat penghasilan Anda dengan mudah dan cepat menggunakan kalkulator zakat online. Sesuai syariat, akurat, dan praktis.
 - [Makna Mendalam Lagu Stricken Disturbed](https://dalam.web.id/lainnya/stricken-disturbed-makna-lirik) : lirik Stricken Disturbed: kecanduan emosional, manipulasi, dan kehancuran batin. Lengkap terjemahan, fakta lagu, dan ulasan E-E-A-T.
 - [Kalkulator Persentase Lengkap - Hitung Cepat Akurat](https://dalam.web.id/lainnya/kalkulator-persentase) : Kalkulator persentase online gratis untuk menghitung persen dari jumlah, kenaikan/penurunan persentase, dan perbandingan angka secara instan dan akurat.
 - [Sulit Khusyu adalah Penyakit Mematikan Hati](https://dalam.web.id/lainnya/sulit-khusyu-penyakit-hati) : Sulit khusyu bukan sekadar kurang fokus, tapi tanda hati sakit dan bisa mematikan iman. Pelajari bahaya, sebab, dan solusi dari Al-Quran dan ulama.
@@ -513,6 +518,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Paradoks Indonesia: Raksasa Komoditas Dunia yang Belum Sejahtera](https://dalam.web.id/opini-sosial/paradoks-indonesia-raksasa-komoditas) : Indonesia masuk 3 besar dunia untuk 12 komoditas unggulan, tapi 50-60% penduduk masih rentan miskin. Mengapa kekayaan alam belum berbanding lurus dengan kesejahteraan? Simak analisis 5W+1H.
 - [Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online](https://dalam.web.id/opini-sosial/diam-yang-melelahkan-pekerja-gig) : Tubuh yang diam menanti orderan bukanlah istirahat, melainkan kerja siaga penuh tekanan. Sebuah tinjauan 5W+1H tentang prekaritas pengemudi ojek online.
 - [Guru vs Petugas MBG: Ketika Otak Tak Dihargai, Badanpun Disuruh-suruh](https://dalam.web.id/opini-sosial/guru-vs-petugas-mbg-intelektualitas-tak-dihargai) : Kisah nyata seorang guru ditegur petugas MBG untuk membersihkan dan menyusun wadah makanan. Guru menolak karena bukan tugasnya, tak ada SK dan upah. Insiden ini menggambarkan betapa intelektualitas tak dihargai di Indonesia.
 - [Inovator Lokal Indonesia Terhambat Regulasi: Fakta dan Solusi](https://dalam.web.id/opini-sosial/inovator-lokal-terhambat-regulasi) : Inovator lokal Indonesia terhambat regulasi menjadi isu serius. Artikel ini mengulas fakta, penyebab, dan solusi agar inovasi rakyat bisa berkembang. Bahasa Indonesia santai berdasarkan data terkini.
