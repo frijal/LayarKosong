@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/18/2026, 1:42:00 PM
+Generated on: 4/19/2026, 1:40:31 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.62 | LLM Index v19.62 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.63 | LLM Index v19.63 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -174,6 +174,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `artikel/barqa-tripoli-baqt-nubia.html` | Barqa & Tripoli serta Baqt Nubia - 22-23 H / 643-644 M - Layar Kosong | Barqa & Tripoli serta Baqt Nubia - 22-23 H / 643-644 M | Layar Kosong | ✅ Perfect |
 | `artikel/barter-besar-washington-art-agreement.html` | Barter Besar di Washington: Akses Ekspor Ditukar Pasar Domestik Dipertaruhkan - Layar Kosong | Barter Besar di Washington: Akses Ekspor Ditukar Pasar Domestik Dipertaruhkan | Layar Kosong | ✅ Perfect |
 | `artikel/bayar-pajak-kendaraan-tanpa-ktp.html` | Bayar Pajak Kendaraan Bermotor Tanpa KTP: Fakta Penting dan Risiko Serius - Layar Kosong | Bayar Pajak Kendaraan Bermotor Tanpa KTP: Fakta Penting dan Risiko Serius | Layar Kosong | ✅ Perfect |
+| `artikel/bbm-non-subsidi-naik-tajam-tekanan-stok-subsidi.html` | BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN? - Layar Kosong | BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN? | Layar Kosong | ✅ Perfect |
 | `artikel/beda-hadis-dengan-sunnah.html` | Beda Hadis dengan Sunnah: Penjelasan Penting yang Wajib Dipahami Umat Islam - Layar Kosong | Beda Hadis dengan Sunnah: Penjelasan Penting yang Wajib Dipahami Umat Islam | Layar Kosong | ✅ Perfect |
 | `artikel/bedah-pasal-407-kuhp-baru.html` | Bedah Pasal 407 KUHP Baru: Senjata Pamungkas Lawan Kejahatan Digital - Jaga Data Pribadi Tetap Aman - Layar Kosong | Bedah Pasal 407 KUHP Baru: Senjata Pamungkas Lawan Kejahatan Digital - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `artikel/bekerja-dalam-islam.html` | Bekerja dalam Islam - Hadits dan Penjelasan Lengkap - Layar Kosong | Bekerja dalam Islam - Hadits dan Penjelasan Lengkap | Layar Kosong | ✅ Perfect |
@@ -208,6 +209,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `artikel/cachyos-paru-gagal-update.html` | Mengatasi PARU Gagal Update dan Upgrade di CachyOS - Layar Kosong | Mengatasi PARU Gagal Update dan Upgrade di CachyOS | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-paru-update.html` | CachyOS & PARU: Rahasia Update Ngebut - Layar Kosong | CachyOS & PARU: Rahasia Update Ngebut | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-paru-upgrade-cepat.html` | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat - Layar Kosong | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat | Layar Kosong | ✅ Perfect |
+| `artikel/cachyos-update-rate.html` | CachyOS Linux Update Rate - Layar Kosong | CachyOS Linux Update Rate | Layar Kosong | ✅ Perfect |
 | `artikel/canva-magic-studio-desain-ai.html` | Canva Magic Studio: Desain Keren Tanpa Ribet Pakai AI - Layar Kosong | Canva Magic Studio: Desain Keren Tanpa Ribet Pakai AI | Layar Kosong | ✅ Perfect |
 | `artikel/cara-aktifkan-branch-protection.html` | Cara Mengaktifkan Branch Protection di GitHub - Layar Kosong | Cara Mengaktifkan Branch Protection di GitHub | Layar Kosong | ✅ Perfect |
 | `artikel/cara-autostart-skrip-di-ubuntu.html` | Cara Autostart Skrip di Ubuntu - Layar Kosong | Cara Autostart Skrip di Ubuntu | Layar Kosong | ✅ Perfect |
@@ -299,6 +301,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `artikel/disiplin-otoriter-sekolahan.html` | Disiplin Otoriter di Sekolahan: Ancaman bagi Kreativitas dan Kemajuan Siswa, Analisis Pendidikan Indonesia - Layar Kosong | Disiplin Otoriter di Sekolahan: Ancaman bagi Kreativitas dan Kemajuan Siswa, Analisis Pendidikan Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/distribusi-os-linux-ringan.html` | Linux Ringan: 9 Distro Terbaik untuk Komputer Lawas - Layar Kosong | Linux Ringan: 9 Distro Terbaik untuk Komputer Lawas | Layar Kosong | ✅ Perfect |
 | `artikel/distro-hopping-penyakit-linux.html` | Distro Hopping: Hobi atau Penyakit Prokrastinasi di Komunitas Linux? - Layar Kosong | Distro Hopping: Hobi atau Penyakit Prokrastinasi di Komunitas Linux? | Layar Kosong | ✅ Perfect |
+| `artikel/distro-linux-ringan-2026.html` | 12 Distro Linux Paling Ringan untuk PC Kentang 2026 🐧⚡ - Layar Kosong | 12 Distro Linux Paling Ringan untuk PC Kentang 2026 🐧⚡ | Layar Kosong | ✅ Perfect |
 | `artikel/distro-linux-terbaik-2026.html` | Panduan Lengkap Distro Linux Terbaik 2025-2026: Dari Pemula Hingga Pro - Layar Kosong | Panduan Lengkap Distro Linux Terbaik 2025-2026: Dari Pemula Hingga Pro | Layar Kosong | ✅ Perfect |
 | `artikel/distro-linux-untuk-pengguna-windows.html` | Distro Linux untuk Pengguna Windows: 5 Pilihan Andal dan Tanpa Rasa Sakit untuk Transisi Mulus - Layar Kosong | Distro Linux untuk Pengguna Windows: 5 Pilihan Andal dan Tanpa Rasa Sakit untuk Transisi Mulus | Layar Kosong | ✅ Perfect |
 | `artikel/dna-muhammadiyah.html` | Memahami DNA Muhammadiyah - Teologi Al‑Ma’un Menjadi Aksi Nyata - Layar Kosong | Memahami DNA Muhammadiyah - Teologi Al‑Ma’un Menjadi Aksi Nyata | Layar Kosong | ✅ Perfect |
@@ -966,6 +969,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `artikel/pindah-ke-linux-mint.html` | Pindah ke Linux Mint: Solusi Laptop Lemot & Hidup Lebih Tenang - Layar Kosong | Pindah ke Linux Mint: Solusi Laptop Lemot & Hidup Lebih Tenang | Layar Kosong | ✅ Perfect |
 | `artikel/pindah-ke-linux-pemula.html` | Mau Pindah ke Linux? Baca Ini Dulu: Jawaban Pertanyaan Pemula! - Layar Kosong | Mau Pindah ke Linux? Baca Ini Dulu: Jawaban Pertanyaan Pemula! | Layar Kosong | ✅ Perfect |
 | `artikel/pindah-ke-linux-tanpa-terminal.html` | Dilema Pengguna Biasa Pindah ke Linux Tanpa Terminal 🐧 - Layar Kosong | Dilema Pengguna Biasa Pindah ke Linux Tanpa Terminal 🐧 | Layar Kosong | ✅ Perfect |
+| `artikel/pindah-xfce-ke-kde-linux.html` | Pindah XFCE ke KDE di Linux: Gampang Kok, Nggak Perlu Panik! 🐧 - Layar Kosong | Pindah XFCE ke KDE di Linux: Gampang Kok, Nggak Perlu Panik! 🐧 | Layar Kosong | ✅ Perfect |
 | `artikel/pip-cache-bersih.html` | Mengecilkan Folder pip Cache dan http-v2 di Linux - Layar Kosong | Mengecilkan Folder pip Cache dan http-v2 di Linux | Layar Kosong | ✅ Perfect |
 | `artikel/poac-perencanaan-partisipatif.html` | POAC dan perencanaan partisipatif: pondasi organisasi yang sehat - Layar Kosong | POAC dan perencanaan partisipatif: pondasi organisasi yang sehat | Layar Kosong | ✅ Perfect |
 | `artikel/pola-hidup-sehat-untuk-usus.html` | Pola Hidup Sehat untuk Usus yang Bahagia - Layar Kosong | Pola Hidup Sehat untuk Usus yang Bahagia | Layar Kosong | ✅ Perfect |
@@ -1773,6 +1777,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `opini-sosial/bahaya-hasad-dalam-islam.html` | Bahaya Hasad Dengki dalam Islam, menghapus Amal Kebaikan - Layar Kosong | Bahaya Hasad Dengki dalam Islam, menghapus Amal Kebaikan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/bahaya-penjilat-dalam-institusi.html` | Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban? - Layar Kosong | Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/bahaya-rekan-kerja-narsistik.html` | Bahaya Tersembunyi Rekan Kerja Narsistik (NPD) bagi Organisasi dan Budaya Kerja - Layar Kosong | Bahaya Tersembunyi Rekan Kerja Narsistik (NPD) bagi Organisasi dan Budaya Kerja | Layar Kosong | ✅ Perfect |
+| `opini-sosial/bbm-non-subsidi-naik-tajam-tekanan-stok-subsidi.html` | BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN? - Layar Kosong | BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/bekerja-dalam-islam.html` | Bekerja dalam Islam - Hadits dan Penjelasan Lengkap - Layar Kosong | Bekerja dalam Islam - Hadits dan Penjelasan Lengkap | Layar Kosong | ✅ Perfect |
 | `opini-sosial/belajar-dari-pendidikan-singapura.html` | Negara Kecil Tapi Raksasa Ekonomi: Rahasia Pendidikan Singapura yang Mengubah Dunia - Layar Kosong | Negara Kecil Tapi Raksasa Ekonomi: Rahasia Pendidikan Singapura yang Mengubah Dunia | Layar Kosong | ✅ Perfect |
 | `opini-sosial/bilqis-humaira-ai-kritik-indonesia.html` | Bilqis Humaira: Tameng AI di Balik Tajamnya Kritik Digital - Layar Kosong | Bilqis Humaira: Tameng AI di Balik Tajamnya Kritik Digital | Layar Kosong | ✅ Perfect |
@@ -1971,6 +1976,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `sistem-terbuka/cachyos-paru-gagal-update.html` | Mengatasi PARU Gagal Update dan Upgrade di CachyOS - Layar Kosong | Mengatasi PARU Gagal Update dan Upgrade di CachyOS | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-paru-update.html` | CachyOS & PARU: Rahasia Update Ngebut - Layar Kosong | CachyOS & PARU: Rahasia Update Ngebut | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-paru-upgrade-cepat.html` | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat - Layar Kosong | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/cachyos-update-rate.html` | CachyOS Linux Update Rate - Layar Kosong | CachyOS Linux Update Rate | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-autostart-skrip-di-ubuntu.html` | Cara Autostart Skrip di Ubuntu - Layar Kosong | Cara Autostart Skrip di Ubuntu | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-bersihkan-cachyos-arch-linux.html` | Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif - Layar Kosong | Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-hapus-snap-ubuntu.html` | Cara Menghapus Snap dari Ubuntu: Bersihkan Bloatware dan Ambil Alih Kendali Sistem! 🚀 - Layar Kosong | Cara Menghapus Snap dari Ubuntu: Bersihkan Bloatware dan Ambil Alih Kendali Sistem! 🚀 | Layar Kosong | ✅ Perfect |
@@ -1998,6 +2004,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `sistem-terbuka/Desktop-GNOME.html` | Ulasan Desktop GNOME Terbaru: Modern & Produktif - Layar Kosong | Ulasan Desktop GNOME Terbaru: Modern & Produktif | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/distribusi-os-linux-ringan.html` | Linux Ringan: 9 Distro Terbaik untuk Komputer Lawas - Layar Kosong | Linux Ringan: 9 Distro Terbaik untuk Komputer Lawas | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/distro-hopping-penyakit-linux.html` | Distro Hopping: Hobi atau Penyakit Prokrastinasi di Komunitas Linux? - Layar Kosong | Distro Hopping: Hobi atau Penyakit Prokrastinasi di Komunitas Linux? | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/distro-linux-ringan-2026.html` | 12 Distro Linux Paling Ringan untuk PC Kentang 2026 🐧⚡ - Layar Kosong | 12 Distro Linux Paling Ringan untuk PC Kentang 2026 🐧⚡ | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/distro-linux-terbaik-2026.html` | Panduan Lengkap Distro Linux Terbaik 2025-2026: Dari Pemula Hingga Pro - Layar Kosong | Panduan Lengkap Distro Linux Terbaik 2025-2026: Dari Pemula Hingga Pro | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/distro-linux-untuk-pengguna-windows.html` | Distro Linux untuk Pengguna Windows: 5 Pilihan Andal dan Tanpa Rasa Sakit untuk Transisi Mulus - Layar Kosong | Distro Linux untuk Pengguna Windows: 5 Pilihan Andal dan Tanpa Rasa Sakit untuk Transisi Mulus | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/docs-linux-mirror.html` | Panduan Mirror Linux Lintas Distro - Layar Kosong | Panduan Mirror Linux Lintas Distro | Layar Kosong | ✅ Perfect |
@@ -2169,6 +2176,7 @@ Generated on: 4/18/2026, 1:42:00 PM
 | `sistem-terbuka/pindah-ke-linux-mint.html` | Pindah ke Linux Mint: Solusi Laptop Lemot & Hidup Lebih Tenang - Layar Kosong | Pindah ke Linux Mint: Solusi Laptop Lemot & Hidup Lebih Tenang | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pindah-ke-linux-pemula.html` | Mau Pindah ke Linux? Baca Ini Dulu: Jawaban Pertanyaan Pemula! - Layar Kosong | Mau Pindah ke Linux? Baca Ini Dulu: Jawaban Pertanyaan Pemula! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pindah-ke-linux-tanpa-terminal.html` | Dilema Pengguna Biasa Pindah ke Linux Tanpa Terminal 🐧 - Layar Kosong | Dilema Pengguna Biasa Pindah ke Linux Tanpa Terminal 🐧 | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/pindah-xfce-ke-kde-linux.html` | Pindah XFCE ke KDE di Linux: Gampang Kok, Nggak Perlu Panik! 🐧 - Layar Kosong | Pindah XFCE ke KDE di Linux: Gampang Kok, Nggak Perlu Panik! 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pip-cache-bersih.html` | Mengecilkan Folder pip Cache dan http-v2 di Linux - Layar Kosong | Mengecilkan Folder pip Cache dan http-v2 di Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/prediksi-linux-desktop-2026.html` | Ramalan Linux Desktop 2026: AI Lokal, Kejayaan Rust, hingga Invasi Wayland! 🐧 - Layar Kosong | Ramalan Linux Desktop 2026: AI Lokal, Kejayaan Rust, hingga Invasi Wayland! 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/presto-yum.html` | YUM Presto: Hemat Bandwidth Saat Update - Layar Kosong | YUM Presto: Hemat Bandwidth Saat Update | Layar Kosong | ✅ Perfect |
