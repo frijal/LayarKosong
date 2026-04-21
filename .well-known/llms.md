@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.63
-last_updated: 2026-04-18
+document_version: 19.64
+last_updated: 2026-04-21
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 18 April 2026)
-> Menampilkan 1231 artikel versi 19.63.
+## Index Artikel Terbaru (Updated: 21 April 2026)
+> Menampilkan 1234 artikel versi 19.64.
 
 ## Gaya Hidup
 - [Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood](https://dalam.web.id/gaya-hidup/manfaat-pisang-5-alasan-wajib-makan-pisang) : Pisang itu buah murah tapi manfaatnya nggak main-main. Dari energi instan, sahabat perut, jaga jantung, mood booster, sampai anti kram. Simak ulasan 5W+1H.
@@ -135,6 +135,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar](https://dalam.web.id/jejak-sejarah/muhammadiyah-ambil-langkah-besar-industri-farmasi) : Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar - strategi Muhammadiyah masuk industri farmasi dan dampaknya
 - [GA USAH NEKO NEKO IKUTI AKAD DAN SYARIAT INSYAALLAH SELAMAT](https://dalam.web.id/jejak-sejarah/ga-usah-neko-neko-akad-syariat) : Artikel santai tentang pentingnya taat akad dan syariat dalam mengelola lembaga donasi. Simak prinsip 5W 1H, dalil, serta tips agar lembaga amanah dan donatur makin percaya.
 - [Kalkulator Faraid Lengkap - Sistem Hijab](https://dalam.web.id/jejak-sejarah/kalkulator-faraid) : Kalkulator Faraid lengkap untuk menghitung pembagian warisan menurut hukum Islam; panduan, contoh, dan fitur perhitungan otomatis.
 - [Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri](https://dalam.web.id/jejak-sejarah/kekeliruan-menilai-muhammadiyah-tidak-patuh-ulil-amri) : Membedah 4 kekeliruan cara pikir yang menilai Muhammadiyah tidak taat pada ulil amri. Perbedaan ijtihad bukan pembangkangan, ini bentuk tanggung jawab ilmiah.
@@ -325,6 +326,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum](https://dalam.web.id/jejak-sejarah/kesultanan-utsmaniyah) : Narasi santai tentang lahir dan bertumbuhnya Kesultanan Utsmaniyah: dari Osman I, Orhan I, Murad I, Bayezid I, hingga masa Interregnum. Lengkap, responsif, dan interaktif.
 
 ## Lainnya
+- [KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen](https://dalam.web.id/lainnya/kuota-hangus-dipertahankan-operator) : KUOTA HANGUS Dipertahankan OPERATOR menjadi isu besar di Indonesia. Pelajari dampak ekonomi, hukum, dan masa depan hak konsumen dalam sistem kuota internet.
+- [Anak Kita Sudah Bisa Berbohong? Simak Alasan Psikologis & Solusinya](https://dalam.web.id/lainnya/anak-berbohong-dan-cara-mengatasinya) : anak berbohong dan bagaimana cara mengatasinya? Pelajari panduan psikologis lengkap untuk orang tua dalam membangun kejujuran pada anak tanpa hukuman.
 - [Kalkulator Zakat Maal Harta Simpanan](https://dalam.web.id/lainnya/kalkulator-zakat-maal-harta-simpanan) : Hitung zakat maal (harta simpanan) Anda dengan mudah dan akurat. Termasuk tabungan, emas, perak, dan aset lainnya sesuai nisab dan haul.
 - [Pengkhianatan Kaum Intelektual: Mengapa Profesor dan Dosen Tak Berani Beda Suara?](https://dalam.web.id/lainnya/pengkhianatan-kaum-intelektual-indonesia) : Dari 6500-8000 profesor di Indonesia, berapa yang berani mengkritik kebijakan? Refleksi tajam atas sikap diam kaum terdidik dan relevansi La Trahison des Clercs Julien Benda.
 - [Kalkulator Zakat Penghasilan](https://dalam.web.id/lainnya/kalkulator-zakat-penghasilan) : Hitung zakat penghasilan Anda dengan mudah dan cepat menggunakan kalkulator zakat online. Sesuai syariat, akurat, dan praktis.
