@@ -71,6 +71,7 @@ jobs:
             --include='icon.*' \
             --include='logo.*' \
             --include='thumbnail.*' \
+            --include='thumbnail-sm.*' \
             --include='*.webmanifest' \
             --exclude='*' \
             source/ deploy_dir/
