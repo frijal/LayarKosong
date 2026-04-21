@@ -1,0 +1,53 @@
+# ================================================
+# SEARCH DATABASE - HARUS DI-COMMIT!
+# ================================================
+# File articles.db berisi FTS index yang perlu
+# persist untuk menjaga statistik rank.
+# JANGAN tambahkan *.db ke .gitignore!
+
+# Temporary sync files (IGNORE INI)
+temp_sync.sql
+*.sql.tmp
+
+# Node modules
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.output/
+.vercel/
+.netlify/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+/tmp/wrangler.toml
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Wrangler
+.wrangler/
+.dev.vars
+
+# ================================================
+# EXCEPTION: Articles database HARUS di-track
+# ================================================
+!articles.db
