@@ -19,7 +19,7 @@ db.run(`
 `);
 
 /**
- * 🧹 Super Clean Text - Logika pembersihan asli milikmu
+ * 🧹 Super Clean Text - Sterilisasi konten
  */
 const superCleanText = (text: string): string => {
     return text
@@ -49,7 +49,7 @@ const superCleanText = (text: string): string => {
 };
 
 /**
- * 📄 Extract CONTENT saja dari HTML file menggunakan logika kuatmu
+ * 📄 Extract CONTENT saja dari HTML file 
  */
 const extractContentOnly = (filePath: string): string => {
     const html = readFileSync(filePath, "utf-8");
@@ -58,7 +58,7 @@ const extractContentOnly = (filePath: string): string => {
     // Hapus elemen yang tidak relevan
     $('script, style, meta, link, noscript, i, header, footer, nav, aside, #header-placeholder, #loading-indicator').remove();
 
-    // Logika area artikel andalanmu
+    // Area artikel utama
     const articleArea = $('article').length ? $('article') : $('main').length ? $('main') : $('body');
     
     return superCleanText(articleArea.text());
@@ -69,25 +69,38 @@ const extractContentOnly = (filePath: string): string => {
 // ============================================
 
 if (!existsSync(JSON_PATH)) {
-    console.error("❌ artikel.json tidak ditemukan!");
+    console.error("❌ File artikel.json tidak ditemukan!");
     process.exit(1);
 }
 
-const articlesMetadata = JSON.parse(readFileSync(JSON_PATH, "utf-8"));
+// 1. Baca dan Pastikan Format Data adalah Array
+const rawData = readFileSync(JSON_PATH, "utf-8");
+let articlesMetadata;
+
+try {
+    articlesMetadata = JSON.parse(rawData);
+} catch (e) {
+    console.error("❌ Gagal mem-parsing artikel.json. Pastikan format JSON valid.");
+    process.exit(1);
+}
+
+// FIX: Konversi ke Array jika struktur JSON ternyata berupa Object
+const articleList = Array.isArray(articlesMetadata) ? articlesMetadata : Object.values(articlesMetadata);
+
 let totalProcessed = 0;
 
-// Prepare statement untuk INSERT atau REPLACE (Upsert ke tabel fisik)
+// 2. Prepare statement untuk Upsert
 const insertStmt = db.prepare(`
     INSERT OR REPLACE INTO articles_fts (title, content, id, category, image, date)
     VALUES ($title, $content, $id, $category, $image, $date)
 `);
 
-console.log(`⏳ Memulai sinkronisasi konten dari file HTML berdasarkan artikel.json...`);
+// 3. Definisikan Transaksi (Menerima parameter array)
+const syncTransaction = db.transaction((dataArray) => {
+    for (const art of dataArray) {
+        // Lewati jika properti yang dibutuhkan tidak ada
+        if (!art || !art.category || !art.file) continue;
 
-// Gunakan Transaksi agar proses ke file .db sangat cepat
-const syncTransaction = db.transaction((list) => {
-    for (const art of list) {
-        // Path: root/kategori/file.html
         const filePath = join(ROOT_DIR, art.category, art.file);
 
         if (existsSync(filePath)) {
@@ -95,26 +108,35 @@ const syncTransaction = db.transaction((list) => {
                 const bodyContent = extractContentOnly(filePath);
 
                 insertStmt.run({
-                    $title: art.title,       // Sumber: artikel.json (Bersih)
-                    $content: bodyContent,   // Sumber: HTML (Logika Kuat)
+                    $title: art.title || "Tanpa Judul",
+                    $content: bodyContent,
                     $id: art.file,
                     $category: art.category,
                     $image: art.image || "/thumbnail.webp",
-                    $date: art.date
+                    $date: art.date || new Date().toISOString()
                 });
                 totalProcessed++;
             } catch (e: any) {
                 console.error(`❌ Gagal olah file: ${art.file} (${e.message})`);
             }
+        } else {
+            console.warn(`⚠️ File HTML tidak ditemukan: ${filePath}`);
         }
     }
 });
 
-syncTransaction(articlesMetadata);
+// 4. Eksekusi Transaksi
+console.log(`⏳ Memulai sinkronisasi ${articleList.length} artikel dari JSON...`);
+try {
+    syncTransaction(articleList);
+} catch (err: any) {
+    console.error(`❌ Terjadi kesalahan saat transaksi database: ${err.message}`);
+    process.exit(1);
+}
 
-// Optimasi internal SQLite FTS5 untuk rank yang lebih baik
+// 5. Optimasi internal SQLite FTS5
 db.run(`INSERT INTO articles_fts(articles_fts) VALUES('optimize');`);
 db.run(`VACUUM;`);
 
 console.log(`\n✅ Database fisik 'articles.db' berhasil diperbarui!`);
-console.log(`📊 Total: ${totalProcessed} artikel masuk indeks.`);
+console.log(`📊 Total: ${totalProcessed} artikel berhasil masuk ke indeks pencarian.`);
