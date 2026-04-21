@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 
 // 📍 Set root ke direktori tempat script dijalankan
 const ROOT_DIR = process.cwd();
-const DB_PATH = join(ROOT_DIR, "articles.db");
+const DB_PATH = join(ROOT_DIR, "artikel.db");
 
 const ARTICLE_DIRS = [
     "gaya-hidup", 
