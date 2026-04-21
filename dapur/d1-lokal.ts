@@ -54,9 +54,28 @@ const insertStmt = db.prepare(`
     VALUES ($title, $content, $id, $category, $image, $date)
 `);
 
-const syncTransaction = db.transaction((dataArray) => {
-    for (const art of dataArray) {
-        // 🛠️ DEBUG LOG: Pastikan path ini benar
+// ... (Bagian awal script tetap sama sampai insertStmt) ...
+
+if (!existsSync(JSON_PATH)) {
+    console.error(`❌ File tidak ada di: ${JSON_PATH}`);
+    process.exit(1);
+}
+
+// 1. Baca data dan pastikan isinya Array
+const rawData = readFileSync(JSON_PATH, "utf-8");
+const parsedData = JSON.parse(rawData);
+
+// Jika JSON ternyata { "posts": [...] }, ambil array-nya. Jika sudah [...], pakai langsung.
+const articleList = Array.isArray(parsedData) 
+    ? parsedData 
+    : (parsedData.articles || parsedData.posts || Object.values(parsedData));
+
+let totalProcessed = 0;
+
+// 2. Definisi Transaksi (Terima parameter 'items')
+const syncTransaction = db.transaction((items) => {
+    for (const art of items) {
+        // Gabungkan path dengan teliti
         const filePath = join(PROJECT_ROOT, art.category, art.file);
         
         if (existsSync(filePath)) {
@@ -75,15 +94,24 @@ const syncTransaction = db.transaction((dataArray) => {
                 console.error(`❌ Gagal: ${art.file} -> ${e.message}`);
             }
         } else {
-            // Ini akan muncul di log GitHub Action jika file tidak ditemukan
-            console.warn(`⚠️ Skip: File tidak ditemukan di ${filePath}`);
+            console.warn(`⚠️ Skip: File tidak ketemu -> ${filePath}`);
         }
     }
+    return totalProcessed;
 });
 
-console.log(`⏳ Memproses dari: ${PROJECT_ROOT}`);
-syncTransaction(articleList);
+// 3. Eksekusi dengan Melempar articleList ke dalam Transaksi
+console.log(`⏳ Memproses ${articleList.length} artikel dari: ${PROJECT_ROOT}`);
 
+try {
+    // CRITICAL: Harus mempassing articleList ke sini!
+    syncTransaction(articleList);
+} catch (err: any) {
+    console.error(`❌ Error Transaksi: ${err.message}`);
+    process.exit(1);
+}
+
+// 4. Finalisasi
 db.run(`INSERT INTO articles_fts(articles_fts) VALUES('optimize');`);
 db.run(`VACUUM;`);
 
