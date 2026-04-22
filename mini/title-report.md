@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/21/2026, 2:16:28 PM
+Generated on: 4/22/2026, 2:16:38 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/21/2026, 2:16:28 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.63 | LLM Index v19.63 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.65 | LLM Index v19.65 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -107,6 +107,7 @@ Generated on: 4/21/2026, 2:16:28 PM
 | `artikel/ambil-thumbnail-youtube-short.html` | Ambil Thumbnail YouTube dan Shorts High Resolution - Layar Kosong | Ambil Thumbnail YouTube dan Shorts High Resolution | Layar Kosong | ✅ Perfect |
 | `artikel/ambil-thumbnail-youtube.html` | Ambil Thumbnail YouTube High Resolution - Tools Gratis Tanpa Ribet - Layar Kosong | Ambil Thumbnail YouTube High Resolution - Tools Gratis Tanpa Ribet | Layar Kosong | ✅ Perfect |
 | `artikel/amr-bin-al-ash.html` | Amr bin al-‘Āsh - Diplomasi, Ambisi, dan Cahaya Risalah - Layar Kosong | Amr bin al-‘Āsh - Diplomasi, Ambisi, dan Cahaya Risalah | Layar Kosong | ✅ Perfect |
+| `artikel/anak-berbohong-dan-cara-mengatasinya.html` | Anak Kita Sudah Bisa Berbohong? Simak Alasan Psikologis & Solusinya - Layar Kosong | Anak Kita Sudah Bisa Berbohong? Simak Alasan Psikologis & Solusinya | Layar Kosong | ✅ Perfect |
 | `artikel/anak-raja-vs-adab-malik-badri.html` | Anak Jadi 'Raja Kecil'? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan - Layar Kosong | Anak Jadi 'Raja Kecil'? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan | Layar Kosong | ✅ Perfect |
 | `artikel/analisis-anggaran-pendidikan-vs-gizi-2026.html` | Anggaran 2026: Antara Perut Kenyang dan Otak Pintar - Layar Kosong | Anggaran 2026: Antara Perut Kenyang dan Otak Pintar | Layar Kosong | ✅ Perfect |
 | `artikel/analisis-asn-mbg-kdmp-5w1h.html` | Rekrutmen ASN, MBG, KDMP: Analisis Kebijakan Bermasalah - Layar Kosong | Rekrutmen ASN, MBG, KDMP: Analisis Kebijakan Bermasalah | Layar Kosong | ✅ Perfect |
@@ -652,6 +653,7 @@ Generated on: 4/21/2026, 2:16:28 PM
 | `artikel/kritik-narasi-pejabat-perang-iran-israel.html` | Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik - Layar Kosong | Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik | Layar Kosong | ✅ Perfect |
 | `artikel/kubuntu-11-10.html` | Kubuntu 11.10 - Panduan dan Pengalaman - Layar Kosong | Kubuntu 11.10 - Panduan dan Pengalaman | Layar Kosong | ✅ Perfect |
 | `artikel/kuhp-baru-kebebasan-sipil.html` | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil - Layar Kosong | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil | Layar Kosong | ✅ Perfect |
+| `artikel/kuota-hangus-dipertahankan-operator.html` | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen - Layar Kosong | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen | Layar Kosong | ✅ Perfect |
 | `artikel/kurangi-cahaya-ketika-tidur.html` | Kurangi Cahaya Ketika Tidur - Ilmu Modern & Pesan Nabi - Layar Kosong | Kurangi Cahaya Ketika Tidur - Ilmu Modern & Pesan Nabi | Layar Kosong | ✅ Perfect |
 | `artikel/kutai-kartanegara-oss-2010.html` | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi - Layar Kosong | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi | Layar Kosong | ✅ Perfect |
 | `artikel/label-nonhalal-jaga-iman.html` | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman - Layar Kosong | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
@@ -818,6 +820,7 @@ Generated on: 4/21/2026, 2:16:28 PM
 | `artikel/mount-ntfs-caja.html` | Cara Mengatasi Partisi NTFS Tidak Bisa Dibuka di Linux (Caja File Manager) - Layar Kosong | Cara Mengatasi Partisi NTFS Tidak Bisa Dibuka di Linux (Caja File Manager) | Layar Kosong | ✅ Perfect |
 | `artikel/mudahnya-wanita-masuk-surga.html` | Mudahnya Wanita Masuk Surga - Layar Kosong | Mudahnya Wanita Masuk Surga | Layar Kosong | ✅ Perfect |
 | `artikel/muhammad-ali-taher-pahlawan-palestina.html` | Muhammad Ali Taher Pahlawan Palestina yang Serahkan Hartanya untuk Indonesia - Layar Kosong | Muhammad Ali Taher Pahlawan Palestina yang Serahkan Hartanya untuk Indonesia | Layar Kosong | ✅ Perfect |
+| `artikel/muhammadiyah-ambil-langkah-besar-industri-farmasi.html` | Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar - Layar Kosong | Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar | Layar Kosong | ✅ Perfect |
 | `artikel/muhammadiyah-bughot-puasa-lebaran.html` | Puasa dan Lebaran Berbeda, Muhammadiyah Tidak Patuh Kepada Pemerintah. Bughot?! - Layar Kosong | Puasa dan Lebaran Berbeda, Muhammadiyah Tidak Patuh Kepada Pemerintah. Bughot?! | Layar Kosong | ✅ Perfect |
 | `artikel/muhammadiyah-dan-manhaj-salaf.html` | Muhammadiyah & Manhaj Salaf: Antara Organisasi dan Metodologi Beragama - Layar Kosong | Muhammadiyah & Manhaj Salaf: Antara Organisasi dan Metodologi Beragama | Layar Kosong | ✅ Perfect |
 | `artikel/muhammadiyah-dan-politik-nilai.html` | Muhammadiyah dan Politik Nilai: Menjaga Jarak dari Kekuasaan, Merawat Etika Publik - Layar Kosong | Muhammadiyah dan Politik Nilai: Menjaga Jarak dari Kekuasaan, Merawat Etika Publik | Layar Kosong | ✅ Perfect |
@@ -1482,6 +1485,7 @@ Generated on: 4/21/2026, 2:16:28 PM
 | `jejak-sejarah/menyambut-tahun-baru-hijriyah.html` | Menyambut Tahun Baru Hijriyah - tenang, santai, dan tetap berpegang - Layar Kosong | Menyambut Tahun Baru Hijriyah - tenang, santai, dan tetap berpegang | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/mudahnya-wanita-masuk-surga.html` | Mudahnya Wanita Masuk Surga - Layar Kosong | Mudahnya Wanita Masuk Surga | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/muhammad-ali-taher-pahlawan-palestina.html` | Muhammad Ali Taher Pahlawan Palestina yang Serahkan Hartanya untuk Indonesia - Layar Kosong | Muhammad Ali Taher Pahlawan Palestina yang Serahkan Hartanya untuk Indonesia | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/muhammadiyah-ambil-langkah-besar-industri-farmasi.html` | Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar - Layar Kosong | Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/muhammadiyah-dan-politik-nilai.html` | Muhammadiyah dan Politik Nilai: Menjaga Jarak dari Kekuasaan, Merawat Etika Publik - Layar Kosong | Muhammadiyah dan Politik Nilai: Menjaga Jarak dari Kekuasaan, Merawat Etika Publik | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/muhammadiyah-generasi-awal.html` | Kehebatan Muhammadiyah Generasi Awal: Memahami Formula Teologis yang Luar Biasa - Layar Kosong | Kehebatan Muhammadiyah Generasi Awal: Memahami Formula Teologis yang Luar Biasa | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/muhammadiyah-sholat-gerhana-3-maret-2026.html` | Muhammadiyah & Sholat Gerhana 3 Maret 2026: Hisab vs Rukyat - Layar Kosong | Muhammadiyah & Sholat Gerhana 3 Maret 2026: Hisab vs Rukyat | Layar Kosong | ✅ Perfect |
@@ -1572,6 +1576,7 @@ Generated on: 4/21/2026, 2:16:28 PM
 | `lainnya/agregat-2025-semester1.html` | Arsip Layar Kosong: Semester 1 2025 - Layar Kosong | Arsip Layar Kosong: Semester 1 2025 | Layar Kosong | ⚠️ Partial |
 | `lainnya/agregat-2025-semester2.html` | Arsip Layar Kosong: Semester 2 2025 - Layar Kosong | Arsip Layar Kosong: Semester 2 2025 | Layar Kosong | ⚠️ Partial |
 | `lainnya/aku-cinta-indonesia.html` | Aku Cinta Indonesia - Warisan Nilai dari Film Anak 'ACI' (1985) - Layar Kosong | Aku Cinta Indonesia - Warisan Nilai dari Film Anak 'ACI' (1985) | Layar Kosong | ✅ Perfect |
+| `lainnya/anak-berbohong-dan-cara-mengatasinya.html` | Anak Kita Sudah Bisa Berbohong? Simak Alasan Psikologis & Solusinya - Layar Kosong | Anak Kita Sudah Bisa Berbohong? Simak Alasan Psikologis & Solusinya | Layar Kosong | ✅ Perfect |
 | `lainnya/anak-raja-vs-adab-malik-badri.html` | Anak Jadi 'Raja Kecil'? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan - Layar Kosong | Anak Jadi 'Raja Kecil'? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan | Layar Kosong | ✅ Perfect |
 | `lainnya/analisis-putusan-mk-yim-vs-bgs.html` | Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI - Layar Kosong | Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI | Layar Kosong | ✅ Perfect |
 | `lainnya/asml-mesin-paling-kompleks-manusia.html` | ASML: Mengenal Mesin Paling Kompleks di Muka Bumi - Layar Kosong | ASML: Mengenal Mesin Paling Kompleks di Muka Bumi | Layar Kosong | ✅ Perfect |
@@ -1620,6 +1625,7 @@ Generated on: 4/21/2026, 2:16:28 PM
 | `lainnya/kisah-pendayung-dan-wazir-remunerasi.html` | Kisah Pendayung dan Wazir: Mengapa Gaji Tak Selaras Keringat? - Layar Kosong | Kisah Pendayung dan Wazir: Mengapa Gaji Tak Selaras Keringat? | Layar Kosong | ✅ Perfect |
 | `lainnya/kontroversi-beasiswa-lpdp-reformasi.html` | Kontroversi Beasiswa LPDP: 7 Fakta Penting Soal Keadilan, Elitisme, dan Reformasi Total - Layar Kosong | Kontroversi Beasiswa LPDP: 7 Fakta Penting Soal Keadilan, Elitisme, dan Reformasi Total | Layar Kosong | ✅ Perfect |
 | `lainnya/koperasi-merah-putih-mobil-india.html` | Borongan 24 Triliun: Koperasi Merah Putih, Mobil India, dan Nasib Esemka yang Terlupakan 🇮🇳🚗 - Layar Kosong | Borongan 24 Triliun: Koperasi Merah Putih, Mobil India, dan Nasib Esemka yang Terlupakan 🇮🇳🚗 | Layar Kosong | ✅ Perfect |
+| `lainnya/kuota-hangus-dipertahankan-operator.html` | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen - Layar Kosong | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen | Layar Kosong | ✅ Perfect |
 | `lainnya/larangan-cas-powerbank-di-kereta.html` | Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya! - Layar Kosong | Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya! | Layar Kosong | ✅ Perfect |
 | `lainnya/larangan-jilbab-1980-1990.html` | Kontroversi Larangan Jilbab di Sekolah Negeri (1980-1990) - Layar Kosong | Kontroversi Larangan Jilbab di Sekolah Negeri (1980-1990) | Layar Kosong | ✅ Perfect |
 | `lainnya/lir-sepo-asepah-samun-wedhatama.html` | Lir Sepo Asepah Samun: Makna Ampas yang Tersembunyi dari Serat Wedhatama - Layar Kosong | Lir Sepo Asepah Samun: Makna Ampas yang Tersembunyi dari Serat Wedhatama | Layar Kosong | ✅ Perfect |
