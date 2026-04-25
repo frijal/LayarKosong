@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/24/2026, 2:14:28 PM
+Generated on: 4/25/2026, 1:44:21 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/24/2026, 2:14:28 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.65 | LLM Index v19.65 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.68 | LLM Index v19.68 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -296,6 +296,7 @@ Generated on: 4/24/2026, 2:14:28 PM
 | `artikel/diagnosa-pc-windows-lambat-perfmon.html` | Cara Diagnosa PC Windows Lambat dalam 60 Detik dengan Perfmon Report Panduan Lengkap 2026 - Layar Kosong | Cara Diagnosa PC Windows Lambat dalam 60 Detik dengan Perfmon Report Panduan Lengkap 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/diam-yang-melelahkan-pekerja-gig.html` | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online - Layar Kosong | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online | Layar Kosong | ✅ Perfect |
 | `artikel/diesel-runaway-horor-mesin-ngamuk.html` | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya - Layar Kosong | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya | Layar Kosong | ✅ Perfect |
+| `artikel/digitalisasi-identitas-ektp-ikd-shm.html` | Digitalisasi Identitas di Indonesia: E-KTP, IKD, dan Kesiapan Sistem yang Dipertanyakan - Layar Kosong | Digitalisasi Identitas di Indonesia: E-KTP, IKD, dan Kesiapan Sistem yang Dipertanyakan | Layar Kosong | ✅ Perfect |
 | `artikel/dikira-halal-ternyata-haram-cantik.html` | DIKIRA HALAL, TERNYATA HARAM - EDISI CANTIK & GANTENG - Layar Kosong | DIKIRA HALAL, TERNYATA HARAM - EDISI CANTIK & GANTENG | Layar Kosong | ✅ Perfect |
 | `artikel/dilema-hemat-gas-pedagang-makanan.html` | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas - Layar Kosong | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas | Layar Kosong | ✅ Perfect |
 | `artikel/diplomasi-indonesia-palestina-israel-analisis.html` | Diplomasi Indonesia di Tengah Konflik Palestina-Israel dan Peran Ormas Islam - Layar Kosong | Diplomasi Indonesia di Tengah Konflik Palestina-Israel dan Peran Ormas Islam | Layar Kosong | ✅ Perfect |
@@ -1201,6 +1202,7 @@ Generated on: 4/24/2026, 2:14:28 PM
 | `artikel/ubuntu-25-10-startup-applications.html` | Ubuntu 25.10 Menghapus Startup Applications: Cara Autostart Sekarang - Layar Kosong | Ubuntu 25.10 Menghapus Startup Applications: Cara Autostart Sekarang | Layar Kosong | ✅ Perfect |
 | `artikel/ubuntu-26-04-linux-firmware-split.html` | Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware - Layar Kosong | Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware | Layar Kosong | ✅ Perfect |
 | `artikel/ubuntu-26-04-lts-kernel-7-gnome-50.html` | Ubuntu 26.04 LTS: Distro Cantik dengan Kernel 7.0 dan GNOME 50 yang Siap Mengguncang - Layar Kosong | Ubuntu 26.04 LTS: Distro Cantik dengan Kernel 7.0 dan GNOME 50 yang Siap Mengguncang | Layar Kosong | ✅ Perfect |
+| `artikel/ubuntu-26-04-lts-resolute-raccoon.html` | Ubuntu 26.04 LTS Resolute Raccoon: 15 Fitur Revolusioner yang Wajib Anda Ketahui di 2026 - Layar Kosong | Ubuntu 26.04 LTS Resolute Raccoon: 15 Fitur Revolusioner yang Wajib Anda Ketahui di 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/ubuntu-2604-lts-fitur-lengkap.html` | Ubuntu 26.04 LTS: Dukungan 12 Tahun, Kernel 6.19 & GNOME 50 yang Lebih Pintar - Layar Kosong | Ubuntu 26.04 LTS: Dukungan 12 Tahun, Kernel 6.19 & GNOME 50 yang Lebih Pintar | Layar Kosong | ✅ Perfect |
 | `artikel/ubuntu-2604-resolute-raccoon-fitur.html` | Ubuntu 26.04 'Resolute Raccoon': Jadwal Rilis dan Fitur Terbaru 🚀 - Layar Kosong | Ubuntu 26.04 'Resolute Raccoon': Jadwal Rilis dan Fitur Terbaru 🚀 | Layar Kosong | ✅ Perfect |
 | `artikel/ubuntu-di-bontang.html` | Ubuntu Sampai Bontang: Antara Bangga dan Luruskan Informasi - Layar Kosong | Ubuntu Sampai Bontang: Antara Bangga dan Luruskan Informasi | Layar Kosong | ✅ Perfect |
@@ -1243,6 +1245,7 @@ Generated on: 4/24/2026, 2:14:28 PM
 | `artikel/watermark-imagemagick.html` | Memberi Watermark pada Gambar dengan ImageMagick di Linux - Layar Kosong | Memberi Watermark pada Gambar dengan ImageMagick di Linux | Layar Kosong | ✅ Perfect |
 | `artikel/wayland-vs-xorg.html` | Wayland vs X11: Mana yang Lebih Baik untuk Linux? - Layar Kosong | Wayland vs X11: Mana yang Lebih Baik untuk Linux? | Layar Kosong | ✅ Perfect |
 | `artikel/web-tool-generator-all-in-one.html` | Web Tool Generator - All in One - Layar Kosong | Web Tool Generator - All in One | Layar Kosong | ✅ Perfect |
+| `artikel/webp-itu-bagus-sebenarnya.html` | WebP Itu Bagus, Sebenarnya: Kenapa Format Gambar Ini Layak Dipakai - Layar Kosong | WebP Itu Bagus, Sebenarnya: Kenapa Format Gambar Ini Layak Dipakai | Layar Kosong | ✅ Perfect |
 | `artikel/website-dari-json.html` | Cara Membuat Website dari Data .json - Layar Kosong | Cara Membuat Website dari Data .json | Layar Kosong | ✅ Perfect |
 | `artikel/wfa-sekolah-daring-2026.html` | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru - Layar Kosong | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru | Layar Kosong | ✅ Perfect |
 | `artikel/wfa-sekolah-daring-hemat-bbm.html` | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? - Layar Kosong | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? | Layar Kosong | ✅ Perfect |
@@ -1764,6 +1767,7 @@ Generated on: 4/24/2026, 2:14:28 PM
 | `olah-media/vlc-rotate.html` | Cara Memutar Video Terbalik di VLC Player - Layar Kosong | Cara Memutar Video Terbalik di VLC Player | Layar Kosong | ✅ Perfect |
 | `olah-media/watermark-imagemagick.html` | Memberi Watermark pada Gambar dengan ImageMagick di Linux - Layar Kosong | Memberi Watermark pada Gambar dengan ImageMagick di Linux | Layar Kosong | ✅ Perfect |
 | `olah-media/web-tool-generator-all-in-one.html` | Web Tool Generator - All in One - Layar Kosong | Web Tool Generator - All in One | Layar Kosong | ✅ Perfect |
+| `olah-media/webp-itu-bagus-sebenarnya.html` | WebP Itu Bagus, Sebenarnya: Kenapa Format Gambar Ini Layak Dipakai - Layar Kosong | WebP Itu Bagus, Sebenarnya: Kenapa Format Gambar Ini Layak Dipakai | Layar Kosong | ✅ Perfect |
 | `olah-media/workflow-perbaikan-foto-ala-national-geographic.html` | Workflow Perbaikan Foto ala National Geographic - Layar Kosong | Workflow Perbaikan Foto ala National Geographic | Layar Kosong | ✅ Perfect |
 | `opini-sosial/agenda-2030-the-grand-convergence.html` | AGENDA 2030: The Grand Convergence - Bagaimana Sepiring Nasi Gratis Menjadi Kunci Penjara Digital Anda - Layar Kosong | AGENDA 2030: The Grand Convergence - Bagaimana Sepiring Nasi Gratis Menjadi Kunci Penjara Digital Anda | Layar Kosong | ✅ Perfect |
 | `opini-sosial/agreement-of-reciprocal-trade-politik-bebas-aktif.html` | Agreement of Reciprocal Trade 2026 Berakhirnya Politik Bebas Aktif Indonesia - Layar Kosong | Agreement of Reciprocal Trade 2026 Berakhirnya Politik Bebas Aktif Indonesia | Layar Kosong | ✅ Perfect |
@@ -1794,6 +1798,7 @@ Generated on: 4/24/2026, 2:14:28 PM
 | `opini-sosial/denda-bpjs-iuran-disulap-jadi-utang.html` | Denda BPJS: Iuran Disulap Jadi Utang, Rakyat Diminta Tepuk Tangan - Layar Kosong | Denda BPJS: Iuran Disulap Jadi Utang, Rakyat Diminta Tepuk Tangan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/dewan-nasional-yvc-indonesia-2025-2027.html` | DEWAN NASIONAL YVC INDONESIA MASA BAKTI 2025 - 2027 - Layar Kosong | DEWAN NASIONAL YVC INDONESIA MASA BAKTI 2025 - 2027 | Layar Kosong | ✅ Perfect |
 | `opini-sosial/diam-yang-melelahkan-pekerja-gig.html` | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online - Layar Kosong | Diam yang Melelahkan: Potret Kerja Rentan Pengemudi Ojek Online | Layar Kosong | ✅ Perfect |
+| `opini-sosial/digitalisasi-identitas-ektp-ikd-shm.html` | Digitalisasi Identitas di Indonesia: E-KTP, IKD, dan Kesiapan Sistem yang Dipertanyakan - Layar Kosong | Digitalisasi Identitas di Indonesia: E-KTP, IKD, dan Kesiapan Sistem yang Dipertanyakan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/diplomasi-indonesia-palestina-israel-analisis.html` | Diplomasi Indonesia di Tengah Konflik Palestina-Israel dan Peran Ormas Islam - Layar Kosong | Diplomasi Indonesia di Tengah Konflik Palestina-Israel dan Peran Ormas Islam | Layar Kosong | ✅ Perfect |
 | `opini-sosial/disiplin-otoriter-sekolahan.html` | Disiplin Otoriter di Sekolahan: Ancaman bagi Kreativitas dan Kemajuan Siswa, Analisis Pendidikan Indonesia - Layar Kosong | Disiplin Otoriter di Sekolahan: Ancaman bagi Kreativitas dan Kemajuan Siswa, Analisis Pendidikan Indonesia | Layar Kosong | ✅ Perfect |
 | `opini-sosial/doa-buruk-penguasa-zalim.html` | Bolehkah Berdoa Buruk Untuk Penguasa Zalim? (Diskusi Online Kajian Sholihah, 17/2/2026) - Layar Kosong | Bolehkah Berdoa Buruk Untuk Penguasa Zalim? (Diskusi Online Kajian Sholihah, 17/2/2026) | Layar Kosong | ✅ Perfect |
@@ -2244,6 +2249,7 @@ Generated on: 4/24/2026, 2:14:28 PM
 | `sistem-terbuka/ubuntu-25-10-startup-applications.html` | Ubuntu 25.10 Menghapus Startup Applications: Cara Autostart Sekarang - Layar Kosong | Ubuntu 25.10 Menghapus Startup Applications: Cara Autostart Sekarang | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/ubuntu-26-04-linux-firmware-split.html` | Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware - Layar Kosong | Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/ubuntu-26-04-lts-kernel-7-gnome-50.html` | Ubuntu 26.04 LTS: Distro Cantik dengan Kernel 7.0 dan GNOME 50 yang Siap Mengguncang - Layar Kosong | Ubuntu 26.04 LTS: Distro Cantik dengan Kernel 7.0 dan GNOME 50 yang Siap Mengguncang | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/ubuntu-26-04-lts-resolute-raccoon.html` | Ubuntu 26.04 LTS Resolute Raccoon: 15 Fitur Revolusioner yang Wajib Anda Ketahui di 2026 - Layar Kosong | Ubuntu 26.04 LTS Resolute Raccoon: 15 Fitur Revolusioner yang Wajib Anda Ketahui di 2026 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/ubuntu-2604-lts-fitur-lengkap.html` | Ubuntu 26.04 LTS: Dukungan 12 Tahun, Kernel 6.19 & GNOME 50 yang Lebih Pintar - Layar Kosong | Ubuntu 26.04 LTS: Dukungan 12 Tahun, Kernel 6.19 & GNOME 50 yang Lebih Pintar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/ubuntu-2604-resolute-raccoon-fitur.html` | Ubuntu 26.04 'Resolute Raccoon': Jadwal Rilis dan Fitur Terbaru 🚀 - Layar Kosong | Ubuntu 26.04 'Resolute Raccoon': Jadwal Rilis dan Fitur Terbaru 🚀 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/ubuntu-di-bontang.html` | Ubuntu Sampai Bontang: Antara Bangga dan Luruskan Informasi - Layar Kosong | Ubuntu Sampai Bontang: Antara Bangga dan Luruskan Informasi | Layar Kosong | ✅ Perfect |
