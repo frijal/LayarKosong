@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.66
+document_version: 19.67
 last_updated: 2026-04-25
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 25 April 2026)
-> Menampilkan 1236 artikel versi 19.66.
+> Menampilkan 1236 artikel versi 19.67.
 
 ## Gaya Hidup
 - [Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood](https://dalam.web.id/gaya-hidup/manfaat-pisang-5-alasan-wajib-makan-pisang) : Pisang itu buah murah tapi manfaatnya nggak main-main. Dari energi instan, sahabat perut, jaga jantung, mood booster, sampai anti kram. Simak ulasan 5W+1H.
