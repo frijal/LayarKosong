@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.67
+document_version: 19.68
 last_updated: 2026-04-25
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 25 April 2026)
-> Menampilkan 1236 artikel versi 19.67.
+> Menampilkan 1237 artikel versi 19.68.
 
 ## Gaya Hidup
 - [Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood](https://dalam.web.id/gaya-hidup/manfaat-pisang-5-alasan-wajib-makan-pisang) : Pisang itu buah murah tapi manfaatnya nggak main-main. Dari energi instan, sahabat perut, jaga jantung, mood booster, sampai anti kram. Simak ulasan 5W+1H.
@@ -434,6 +434,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati](https://dalam.web.id/lainnya/qanaah-kekayaan-hati-keberuntungan) : Mengulas Hadits Muslim No. 1054 dan penjelasan Ibnul Qayyim tentang sifat Qanaah (merasa cukup). Pelajari bagaimana Qanaah adalah kekayaan sejati dan jalan menuju keberuntungan di dunia dan akhirat.
 
 ## Olah Media
+- [WebP Itu Bagus, Sebenarnya: Kenapa Format Gambar Ini Layak Dipakai](https://dalam.web.id/olah-media/webp-itu-bagus-sebenarnya) : WebP sering dikira format ribet, padahal unggul dari JPEG, PNG, dan GIF. Simak kenapa WebP itu bagus, kelebihannya, dan cara menggunakannya tanpa hambatan.
 - [Video Splitter One-Liner Generator](https://dalam.web.id/olah-media/video-splitter-one-liner-generator) : Generate perintah one-liner untuk membagi video dengan cepat dan efisien. Cocok untuk developer, content creator, dan pengguna FFmpeg.
 - [10 Rumus Excel Lanjutan untuk Data Analyst: Level Up Skill Kamu!](https://dalam.web.id/olah-media/10-rumus-excel-lanjutan-data-analyst) : Tingkatkan kemampuan analisis datamu dengan 10 rumus Excel lanjutan seperti IFERROR, TEXTSPLIT, LET, hingga SUMPRODUCT. Data Analyst.
 - [10 Rumus Excel Dasar untuk Data Analyst Biar Nggak Ribet](https://dalam.web.id/olah-media/10-rumus-excel-data-analyst) : Menjadi Data Analyst tidak perlu ribet. Pelajari 10 fungsi Excel terbaik seperti XLOOKUP dan FILTER untuk bekerja lebih cerdas dan menghemat waktu.
