@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/26/2026, 1:47:07 PM
+Generated on: 4/27/2026, 2:35:15 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
