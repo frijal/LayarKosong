@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/27/2026, 2:35:15 PM
+Generated on: 4/28/2026, 3:04:49 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/27/2026, 2:35:15 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.68 | LLM Index v19.68 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.69 | LLM Index v19.69 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1179,6 +1179,7 @@ Generated on: 4/27/2026, 2:35:15 PM
 | `artikel/tips-cooling-laptop-amd.html` | Tips Cooling Ekstrem Laptop AMD dengan Kipas Box 🧊 - Layar Kosong | Tips Cooling Ekstrem Laptop AMD dengan Kipas Box 🧊 | Layar Kosong | ✅ Perfect |
 | `artikel/tips-hemat-baterai-firefox.html` | Tips Jitu Menghemat Baterai Laptop Saat Pakai Firefox ⚡ - Layar Kosong | Tips Jitu Menghemat Baterai Laptop Saat Pakai Firefox ⚡ | Layar Kosong | ✅ Perfect |
 | `artikel/tips-melancarkan-pencernaan.html` | Tips Melancarkan Pencernaan & Buang Air Besar - Layar Kosong | Tips Melancarkan Pencernaan & Buang Air Besar | Layar Kosong | ✅ Perfect |
+| `artikel/tips-memilih-busi-motor.html` | Tips Memilih Busi Motor 2026 • Jenis, Fungsi, Resistor, Iridium, Platinum - Layar Kosong | Tips Memilih Busi Motor 2026 • Jenis, Fungsi, Resistor, Iridium, Platinum | Layar Kosong | ✅ Perfect |
 | `artikel/tools-ai-untuk-umkm.html` | Tools AI Canggih untuk UMKM Naik Kelas - Layar Kosong | Tools AI Canggih untuk UMKM Naik Kelas | Layar Kosong | ✅ Perfect |
 | `artikel/tools-github-binary-linux.html` | 7 Tools Keren Buat Install Binary GitHub di Linux Tanpa Ribet 🚀 - Layar Kosong | 7 Tools Keren Buat Install Binary GitHub di Linux Tanpa Ribet 🚀 | Layar Kosong | ✅ Perfect |
 | `artikel/top-10-reasons-mx-linux-better-than-ubuntu-for-older-pcs.html` | Top 10 Reasons MX Linux is Better Than Ubuntu for Older PC - Layar Kosong | Top 10 Reasons MX Linux is Better Than Ubuntu for Older PC | Layar Kosong | ✅ Perfect |
@@ -1362,6 +1363,7 @@ Generated on: 4/27/2026, 2:35:15 PM
 | `gaya-hidup/tidur-bada-ashar-ramadhan.html` | Selama Ramadhan Sempatnya Tidur Ba’da Ashar? Boleh Hukumnya? (Syariat dan Medis) - Layar Kosong | Selama Ramadhan Sempatnya Tidur Ba’da Ashar? Boleh Hukumnya? (Syariat dan Medis) | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/tips-belajar-bahasa-dari-membaca.html` | Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading - Layar Kosong | Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/tips-melancarkan-pencernaan.html` | Tips Melancarkan Pencernaan & Buang Air Besar - Layar Kosong | Tips Melancarkan Pencernaan & Buang Air Besar | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/tips-memilih-busi-motor.html` | Tips Memilih Busi Motor 2026 • Jenis, Fungsi, Resistor, Iridium, Platinum - Layar Kosong | Tips Memilih Busi Motor 2026 • Jenis, Fungsi, Resistor, Iridium, Platinum | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/tubuh-butuh-reset.html` | 4 Tanda Tubuh Butuh "Reset" (Bukan Detox Racun!) - Layar Kosong | 4 Tanda Tubuh Butuh "Reset" (Bukan Detox Racun!) | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/unboxing-respiro-jne-balikpapan.html` | Unboxing Respiro: Paket Datang! (JNE Balikpapan) - Layar Kosong | Unboxing Respiro: Paket Datang! (JNE Balikpapan) | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/wifi-gratis-taman-bekapai-balikpapan.html` | Wifi Gratis di Taman Bekapai, Balikpapan - Catatan Siang PENGACARA - Layar Kosong | Wifi Gratis di Taman Bekapai, Balikpapan - Catatan Siang PENGACARA | Layar Kosong | ✅ Perfect |
