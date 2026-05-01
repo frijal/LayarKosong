@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 4/30/2026, 2:40:42 PM
+Generated on: 5/1/2026, 2:00:26 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.69 | LLM Index v19.69 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.71 | LLM Index v19.71 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -206,6 +206,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `artikel/bunsenlabs-boron.html` | BunsenLabs Boron - Distro Linux Ringan yang Masih Memukau - Layar Kosong | BunsenLabs Boron - Distro Linux Ringan yang Masih Memukau | Layar Kosong | ✅ Perfect |
 | `artikel/buruk-sangka-menggunjing.html` | Aturan Buruk Sangka dan Menggunjing - Menjaga Hati, Menjaga Silaturahim - Layar Kosong | Aturan Buruk Sangka dan Menggunjing - Menjaga Hati, Menjaga Silaturahim | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-2026-update-wayland-plasma.html` | CachyOS 2026: Era Baru Wayland dan Plasma Login Manager di Arch Linux - Layar Kosong | CachyOS 2026: Era Baru Wayland dan Plasma Login Manager di Arch Linux | Layar Kosong | ✅ Perfect |
+| `artikel/cachyos-april-2026-update.html` | Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang - Layar Kosong | Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-maret-2026-changelog.html` | CachyOS Maret 2026 Rilis: Installer Animasi, Winboat, Handheld Makin Gahar - Layar Kosong | CachyOS Maret 2026 Rilis: Installer Animasi, Winboat, Handheld Makin Gahar | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-paru-gagal-update.html` | Mengatasi PARU Gagal Update dan Upgrade di CachyOS - Layar Kosong | Mengatasi PARU Gagal Update dan Upgrade di CachyOS | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-paru-update.html` | CachyOS & PARU: Rahasia Update Ngebut - Layar Kosong | CachyOS & PARU: Rahasia Update Ngebut | Layar Kosong | ✅ Perfect |
@@ -338,6 +339,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `artikel/fckgw-windows-xp.html` | Kisah FCKGW dan Windows XP: Bukan hasil crack, tapi VLK yang bocor - Layar Kosong | Kisah FCKGW dan Windows XP: Bukan hasil crack, tapi VLK yang bocor | Layar Kosong | ✅ Perfect |
 | `artikel/fedora-gnome-tutup-aplikasi.html` | Fedora + GNOME: Menutup Semua Aplikasi & Tips Screencast FFMPEG - Layar Kosong | Fedora + GNOME: Menutup Semua Aplikasi & Tips Screencast FFMPEG | Layar Kosong | ✅ Perfect |
 | `artikel/fedora-linux-44-beta-released.html` | Fedora Linux 44 Beta Resmi Dirilis: Linux 6.19, GNOME 50, dan KDE Plasma 6.6 - Layar Kosong | Fedora Linux 44 Beta Resmi Dirilis: Linux 6.19, GNOME 50, dan KDE Plasma 6.6 | Layar Kosong | ✅ Perfect |
+| `artikel/fedora-linux-44-rilis.html` | Fedora Linux 44 Resmi Dirilis: GNOME 50, KDE Plasma 6.6, dan NTSYNC Hadir untuk Pengalaman Linux yang Lebih Kencang - Layar Kosong | Fedora Linux 44 Resmi Dirilis: GNOME 50, KDE Plasma 6.6, dan NTSYNC Hadir untuk Pengalaman Linux yang Lebih Kencang | Layar Kosong | ✅ Perfect |
 | `artikel/fedora-mirror.html` | fedora-mirror.sh - Aktifkan Mirror Tercepat (Fedora) - Layar Kosong | fedora-mirror.sh - Aktifkan Mirror Tercepat (Fedora) | Layar Kosong | ✅ Perfect |
 | `artikel/fedora-multimedia-codec.html` | Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi - Layar Kosong | Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi | Layar Kosong | ✅ Perfect |
 | `artikel/fedora-multimedia.html` | Memutar Berkas Multimedia di Fedora Linux - Layar Kosong | Memutar Berkas Multimedia di Fedora Linux | Layar Kosong | ✅ Perfect |
@@ -670,6 +672,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `artikel/libreoffice-font-fix.html` | LibreOffice Punya Jurus Ampuh Lawan Font Berbayar Microsoft: Bye-Bye Dokumen Rusak! 🥳 - Layar Kosong | LibreOffice Punya Jurus Ampuh Lawan Font Berbayar Microsoft: Bye-Bye Dokumen Rusak! 🥳 | Layar Kosong | ✅ Perfect |
 | `artikel/libreoffice-kritik-format-proprietary-xlsx-konsultasi-cra.html` | LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA - Layar Kosong | LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA | Layar Kosong | ✅ Perfect |
 | `artikel/libreoffice-online-kembali.html` | LibreOffice Online Kembali: Alternatif Open Source untuk Google Docs - Layar Kosong | LibreOffice Online Kembali: Alternatif Open Source untuk Google Docs | Layar Kosong | ✅ Perfect |
+| `artikel/lika-liku-perjalanan-ojol.html` | Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia - Layar Kosong | Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/lingkungan-desktop-linux-alternatif.html` | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME - Layar Kosong | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME | Layar Kosong | ✅ Perfect |
 | `artikel/linus-torvalds-linux.html` | Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua - Layar Kosong | Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua | Layar Kosong | ✅ Perfect |
 | `artikel/linux-bersama.html` | Linux Bisa Bekerja Sama dengan Windows & macOS - Layar Kosong | Linux Bisa Bekerja Sama dengan Windows & macOS | Layar Kosong | ✅ Perfect |
@@ -694,6 +697,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `artikel/linux-ringan-dell-latitude-d430.html` | Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi - Layar Kosong | Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi | Layar Kosong | ✅ Perfect |
 | `artikel/linux-tanpa-terminal.html` | Dilema Pengguna Biasa Pindah ke Linux: Nyaman Tanpa Terminal - Layar Kosong | Dilema Pengguna Biasa Pindah ke Linux: Nyaman Tanpa Terminal | Layar Kosong | ✅ Perfect |
 | `artikel/linux-torvalds-konfirmasi-linux-70.html` | Linus Torvalds Konfirmasi Kernel Berikutnya Adalah Linux 7.0: Evolusi dan Artinya - Layar Kosong | Linus Torvalds Konfirmasi Kernel Berikutnya Adalah Linux 7.0: Evolusi dan Artinya | Layar Kosong | ✅ Perfect |
+| `artikel/linux-untuk-penulis-dan-kreator-2026.html` | Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It? - Layar Kosong | Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It? | Layar Kosong | ✅ Perfect |
 | `artikel/linux-vs-windows-updates.html` | Linux vs Windows: Si Transparan dan Si Misterius dalam Dunia Update - Layar Kosong | Linux vs Windows: Si Transparan dan Si Misterius dalam Dunia Update | Layar Kosong | ✅ Perfect |
 | `artikel/lir-sepo-asepah-samun-wedhatama.html` | Lir Sepo Asepah Samun: Makna Ampas yang Tersembunyi dari Serat Wedhatama - Layar Kosong | Lir Sepo Asepah Samun: Makna Ampas yang Tersembunyi dari Serat Wedhatama | Layar Kosong | ✅ Perfect |
 | `artikel/lirik-pulang-nostalgia.html` | Pulang - Nostalgia, Rindu, dan Senyum Kecil - Layar Kosong | Pulang - Nostalgia, Rindu, dan Senyum Kecil | Layar Kosong | ✅ Perfect |
@@ -739,6 +743,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `artikel/maulid-ringkas.html` | Ringkas Maulid Nabi: Pro, Kontra, dan Titik Temu - Layar Kosong | Ringkas Maulid Nabi: Pro, Kontra, dan Titik Temu | Layar Kosong | ✅ Perfect |
 | `artikel/maulid-slides.html` | Slide Web: Sejarah & Pro-Kontra Maulid Nabi - Layar Kosong | Slide Web: Sejarah & Pro-Kontra Maulid Nabi | Layar Kosong | ✅ Perfect |
 | `artikel/maulid-timeline.html` | Sejarah Maulid Nabi: Dari Fathimiyah hingga Era Modern - Layar Kosong | Sejarah Maulid Nabi: Dari Fathimiyah hingga Era Modern | Layar Kosong | ✅ Perfect |
+| `artikel/mauna-linux-25-2.html` | Mauna Linux 25.2 Resmi Dirilis: Berbasis Debian 13.4, APT 3.2 dengan Rollback, dan Empat Pilihan Desktop - Layar Kosong | Mauna Linux 25.2 Resmi Dirilis: Berbasis Debian 13.4, APT 3.2 dengan Rollback, dan Empat Pilihan Desktop | Layar Kosong | ✅ Perfect |
 | `artikel/mbg-dan-koperasi-merah-putih.html` | MBG dan Koperasi Merah Putih: Infrastruktur Kekuasaan Berkedok Kesejahteraan - Layar Kosong | MBG dan Koperasi Merah Putih: Infrastruktur Kekuasaan Berkedok Kesejahteraan | Layar Kosong | ✅ Perfect |
 | `artikel/mbg-kemerdekaan-dirampas-atas-nama-gizi.html` | MBG: Ketika Kemerdekaan Dirampas Atas Nama Gizi - Analisis Kritis Program Makanan Bergizi Gratis - Layar Kosong | MBG: Ketika Kemerdekaan Dirampas Atas Nama Gizi - Analisis Kritis Program Makanan Bergizi Gratis | Layar Kosong | ✅ Perfect |
 | `artikel/mbg-sistem-berkelanjutan.html` | MBG: Membangun Sistem Makan Bergizi yang Segar, Efisien & Anti Korupsi - Layar Kosong | MBG: Membangun Sistem Makan Bergizi yang Segar, Efisien & Anti Korupsi | Layar Kosong | ✅ Perfect |
@@ -862,6 +867,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `artikel/ojol-parkir-balikpapan.html` | Permohonan Kebijakan Parkir untuk Ojol di Balikpapan - Layar Kosong | Permohonan Kebijakan Parkir untuk Ojol di Balikpapan | Layar Kosong | ✅ Perfect |
 | `artikel/open-document-converter.html` | Mengubah Dokumen ke Open Document dengan OpenOffice & LibreOffice - Layar Kosong | Mengubah Dokumen ke Open Document dengan OpenOffice & LibreOffice | Layar Kosong | ✅ Perfect |
 | `artikel/open-source-indonesia.html` | Open Source vs Gratis: Peluang, Lisensi, dan Praktik Baik di Indonesia - Layar Kosong | Open Source vs Gratis: Peluang, Lisensi, dan Praktik Baik di Indonesia | Layar Kosong | ✅ Perfect |
+| `artikel/open-source-vs-closed-ai-2026.html` | Open Source vs Closed AI 2026: Kenapa Model AI Gratis Kini Hampir Setara dengan yang Berbayar - Layar Kosong | Open Source vs Closed AI 2026: Kenapa Model AI Gratis Kini Hampir Setara dengan yang Berbayar | Layar Kosong | ✅ Perfect |
 | `artikel/open-source.html` | Open Source: Kisah Sukses Sumber Terbuka - Layar Kosong | Open Source: Kisah Sukses Sumber Terbuka | Layar Kosong | ✅ Perfect |
 | `artikel/opensuse-mirror.html` | opensuse-mirror.sh - Mirror Tercepat untuk openSUSE - Layar Kosong | opensuse-mirror.sh - Mirror Tercepat untuk openSUSE | Layar Kosong | ✅ Perfect |
 | `artikel/opini-rumah-berantakan-global.html` | Opini: Ketika Rumah Sendiri Belum Beres, Perlukah Terlalu Sibuk di Panggung Global? - Layar Kosong | Opini: Ketika Rumah Sendiri Belum Beres, Perlukah Terlalu Sibuk di Panggung Global? | Layar Kosong | ✅ Perfect |
@@ -1471,6 +1477,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `jejak-sejarah/langit-sama-tanggal-beda-ramadan-2026.html` | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 - Layar Kosong | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/langit-terkunci-saat-jin-menjerit.html` | Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir - Layar Kosong | Langit Terkunci: Saat Jin Menjerit dan Setan Kehilangan Informasi Takdir | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/larangan-ghibah.html` | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) - Layar Kosong | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/lika-liku-perjalanan-ojol.html` | Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia - Layar Kosong | Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/lisan-dijaga-neraka.html` | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat - Layar Kosong | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/makna-az-zumar-53.html` | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan - Layar Kosong | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/manhaj-tarjih-tajdid-muhammadiyah.html` | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern - Layar Kosong | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern | Layar Kosong | ✅ Perfect |
@@ -1985,6 +1992,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `sistem-terbuka/bsd-kisah-berkeley.html` | BSD: Kisah Pemberontakan di Kampus yang Melahirkan Dunia Digital - Layar Kosong | BSD: Kisah Pemberontakan di Kampus yang Melahirkan Dunia Digital | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/bunsenlabs-boron.html` | BunsenLabs Boron - Distro Linux Ringan yang Masih Memukau - Layar Kosong | BunsenLabs Boron - Distro Linux Ringan yang Masih Memukau | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-2026-update-wayland-plasma.html` | CachyOS 2026: Era Baru Wayland dan Plasma Login Manager di Arch Linux - Layar Kosong | CachyOS 2026: Era Baru Wayland dan Plasma Login Manager di Arch Linux | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/cachyos-april-2026-update.html` | Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang - Layar Kosong | Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-maret-2026-changelog.html` | CachyOS Maret 2026 Rilis: Installer Animasi, Winboat, Handheld Makin Gahar - Layar Kosong | CachyOS Maret 2026 Rilis: Installer Animasi, Winboat, Handheld Makin Gahar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-paru-gagal-update.html` | Mengatasi PARU Gagal Update dan Upgrade di CachyOS - Layar Kosong | Mengatasi PARU Gagal Update dan Upgrade di CachyOS | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-paru-update.html` | CachyOS & PARU: Rahasia Update Ngebut - Layar Kosong | CachyOS & PARU: Rahasia Update Ngebut | Layar Kosong | ✅ Perfect |
@@ -2027,6 +2035,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `sistem-terbuka/emmabuntus-de-6-review-linux-etika.html` | Emmabuntüs DE 6: Review Lengkap Linux Berhati Mulia untuk Lawan Limbah Elektronik - Layar Kosong | Emmabuntüs DE 6: Review Lengkap Linux Berhati Mulia untuk Lawan Limbah Elektronik | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/ergonomi-darurat-ubuntu.html` | Satu Hari Bersama Komunitas Ubuntu - Layar Kosong | Satu Hari Bersama Komunitas Ubuntu | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/fedora-linux-44-beta-released.html` | Fedora Linux 44 Beta Resmi Dirilis: Linux 6.19, GNOME 50, dan KDE Plasma 6.6 - Layar Kosong | Fedora Linux 44 Beta Resmi Dirilis: Linux 6.19, GNOME 50, dan KDE Plasma 6.6 | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/fedora-linux-44-rilis.html` | Fedora Linux 44 Resmi Dirilis: GNOME 50, KDE Plasma 6.6, dan NTSYNC Hadir untuk Pengalaman Linux yang Lebih Kencang - Layar Kosong | Fedora Linux 44 Resmi Dirilis: GNOME 50, KDE Plasma 6.6, dan NTSYNC Hadir untuk Pengalaman Linux yang Lebih Kencang | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/fedora-mirror.html` | fedora-mirror.sh - Aktifkan Mirror Tercepat (Fedora) - Layar Kosong | fedora-mirror.sh - Aktifkan Mirror Tercepat (Fedora) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/fedora-opensuse-auto-mirror-selection.html` | Otomatis Memilih Mirror Linux Tercepat - Layar Kosong | Otomatis Memilih Mirror Linux Tercepat | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/fedora15-networkmanager-fix.html` | Fedora 15: Perbaiki NetworkManager USB Modem yang Ngadat - Layar Kosong | Fedora 15: Perbaiki NetworkManager USB Modem yang Ngadat | Layar Kosong | ✅ Perfect |
@@ -2128,12 +2137,14 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `sistem-terbuka/linux-ringan-dell-latitude-d430.html` | Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi - Layar Kosong | Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-tanpa-terminal.html` | Dilema Pengguna Biasa Pindah ke Linux: Nyaman Tanpa Terminal - Layar Kosong | Dilema Pengguna Biasa Pindah ke Linux: Nyaman Tanpa Terminal | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-torvalds-konfirmasi-linux-70.html` | Linus Torvalds Konfirmasi Kernel Berikutnya Adalah Linux 7.0: Evolusi dan Artinya - Layar Kosong | Linus Torvalds Konfirmasi Kernel Berikutnya Adalah Linux 7.0: Evolusi dan Artinya | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/linux-untuk-penulis-dan-kreator-2026.html` | Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It? - Layar Kosong | Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It? | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-vs-windows-updates.html` | Linux vs Windows: Si Transparan dan Si Misterius dalam Dunia Update - Layar Kosong | Linux vs Windows: Si Transparan dan Si Misterius dalam Dunia Update | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/lts-vs-rolling-release.html` | LTS vs Rolling Release: Manakah yang Lebih Baik untuk Anda? - Layar Kosong | LTS vs Rolling Release: Manakah yang Lebih Baik untuk Anda? | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/lubuntu-26-04-beta-resolute-raccoon.html` | Lubuntu 26.04 Beta Resolute Raccoon Rilis: Cek Fitur dan Perubahannya - Layar Kosong | Lubuntu 26.04 Beta Resolute Raccoon Rilis: Cek Fitur dan Perubahannya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mageia9-review.html` | 🐧 Mencoba Linux Distro Mageia 9 - Review Santai - Layar Kosong | 🐧 Mencoba Linux Distro Mageia 9 - Review Santai | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/master-dashboard-monitor-linux-bash.html` | Master Dashboard Monitor Linux: Disk, RAM, dan Network dalam Satu Script Bash - Layar Kosong | Master Dashboard Monitor Linux: Disk, RAM, dan Network dalam Satu Script Bash | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mate-vs-xfce-laptop-tua.html` | MATE vs XFCE di Linux Mint: Pilih Mana Buat Laptop Tua? 🤔💻 - Layar Kosong | MATE vs XFCE di Linux Mint: Pilih Mana Buat Laptop Tua? 🤔💻 | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/mauna-linux-25-2.html` | Mauna Linux 25.2 Resmi Dirilis: Berbasis Debian 13.4, APT 3.2 dengan Rollback, dan Empat Pilihan Desktop - Layar Kosong | Mauna Linux 25.2 Resmi Dirilis: Berbasis Debian 13.4, APT 3.2 dengan Rollback, dan Empat Pilihan Desktop | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/memahami-rating-distro-linux.html` | Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas - Layar Kosong | Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/membagikan-aplikasi-debian-dengan-dpkg-repack.html` | Membagikan Aplikasi Debian dengan dpkg-repack - Layar Kosong | Membagikan Aplikasi Debian dengan dpkg-repack | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/membedah-hasil-apt-audit-lengkap.html` | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris - Layar Kosong | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris | Layar Kosong | ✅ Perfect |
@@ -2162,6 +2173,7 @@ Generated on: 4/30/2026, 2:40:42 PM
 | `sistem-terbuka/nixos-mirror.html` | Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS - Layar Kosong | Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/nostalgia-knoppix-linux.html` | Nostalgia Knoppix: Sang Penyihir Live CD yang Menyelamatkan Newbie Linux - Layar Kosong | Nostalgia Knoppix: Sang Penyihir Live CD yang Menyelamatkan Newbie Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/open-source-indonesia.html` | Open Source vs Gratis: Peluang, Lisensi, dan Praktik Baik di Indonesia - Layar Kosong | Open Source vs Gratis: Peluang, Lisensi, dan Praktik Baik di Indonesia | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/open-source-vs-closed-ai-2026.html` | Open Source vs Closed AI 2026: Kenapa Model AI Gratis Kini Hampir Setara dengan yang Berbayar - Layar Kosong | Open Source vs Closed AI 2026: Kenapa Model AI Gratis Kini Hampir Setara dengan yang Berbayar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/open-source.html` | Open Source: Kisah Sukses Sumber Terbuka - Layar Kosong | Open Source: Kisah Sukses Sumber Terbuka | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/opensuse-mirror.html` | opensuse-mirror.sh - Mirror Tercepat untuk openSUSE - Layar Kosong | opensuse-mirror.sh - Mirror Tercepat untuk openSUSE | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/optimasi-firefox-linux-debian-arch.html` | Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch - Layar Kosong | Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch | Layar Kosong | ✅ Perfect |
