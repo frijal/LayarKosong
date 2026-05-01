@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.69
-last_updated: 2026-04-27
+document_version: 19.70
+last_updated: 2026-05-01
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 27 April 2026)
-> Menampilkan 1238 artikel versi 19.69.
+## Index Artikel Terbaru (Updated: 1 Mei 2026)
+> Menampilkan 1244 artikel versi 19.70.
 
 ## Gaya Hidup
 - [Tips Memilih Busi Motor 2026 • Jenis, Fungsi, Resistor, Iridium, Platinum](https://dalam.web.id/gaya-hidup/tips-memilih-busi-motor) : Biar motor tetap ngacir dan ECU aman. Kenali jenis busi standar nikel, platinum, iridium, resistor, sampai racing. Simak tips memilih sesuai spesifikasi pabrikan dan umur pakai ideal.
@@ -136,6 +136,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia](https://dalam.web.id/jejak-sejarah/lika-liku-perjalanan-ojol) : Kilas balik konflik ojek online dari 2016 hingga 2025. Dari perang wilayah, bentrok massal, zona larangan, sampai konflik horizontal sesama driver. Sebuah potret sosial ekonomi yang memperlihatkan absennya peran negara.
 - [Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar](https://dalam.web.id/jejak-sejarah/muhammadiyah-ambil-langkah-besar-industri-farmasi) : Punya 130 Rumah Sakit Tapi Masih Numpang Pabrik Lain, Muhammadiyah Akhirnya Ambil Langkah Besar - strategi Muhammadiyah masuk industri farmasi dan dampaknya
 - [GA USAH NEKO NEKO IKUTI AKAD DAN SYARIAT INSYAALLAH SELAMAT](https://dalam.web.id/jejak-sejarah/ga-usah-neko-neko-akad-syariat) : Artikel santai tentang pentingnya taat akad dan syariat dalam mengelola lembaga donasi. Simak prinsip 5W 1H, dalil, serta tips agar lembaga amanah dan donatur makin percaya.
 - [Kalkulator Faraid Lengkap - Sistem Hijab](https://dalam.web.id/jejak-sejarah/kalkulator-faraid) : Kalkulator Faraid lengkap untuk menghitung pembagian warisan menurut hukum Islam; panduan, contoh, dan fitur perhitungan otomatis.
@@ -709,6 +710,11 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It?](https://dalam.web.id/sistem-terbuka/linux-untuk-penulis-dan-kreator-2026) : Setelah bertahun-tahun dianggap kurang cocok untuk penulis, Linux di 2026 kini punya ekosistem menulis yang matang. Dari FocusWriter hingga Obsidian, Ubuntu Studio 26.04, dan alasan kenapa penulis mulai beralih.
+- [Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang](https://dalam.web.id/sistem-terbuka/cachyos-april-2026-update) : Update CachyOS April 2026 hadir dengan manajer paket GUI baru bernama Shelly, DNS-over-HTTPS lewat blocky, fingerprint sudo, penjadwal NVMe Kyber, dan berbagai peningkatan gaming. Simak semua perubahan dan cara updatenya di sini.
+- [Open Source vs Closed AI 2026: Kenapa Model AI Gratis Kini Hampir Setara dengan yang Berbayar](https://dalam.web.id/sistem-terbuka/open-source-vs-closed-ai-2026) : Perbandingan AI open source vs closed source di tahun 2026. Model gratis seperti dari Alibaba, DeepSeek, dan MiniMax kini menguasai 45 persen trafik developer global. Simak data terbaru, alasan model berbayar tetap eksis, dan strategi hybrid yang mulai diadopsi.
+- [Mauna Linux 25.2 Resmi Dirilis: Berbasis Debian 13.4, APT 3.2 dengan Rollback, dan Empat Pilihan Desktop](https://dalam.web.id/sistem-terbuka/mauna-linux-25-2) : Mauna Linux 25.2 hadir dengan Debian 13.4 Trixie, APT 3.2 yang kini mendukung undo dan rollback transaksi paket, Firefox 150, GIMP 3.2.2, serta pilihan desktop Cinnamon, MATE, LXQt, dan Xfce. Cocok untuk pemula maupun pengguna yang ingin stabilitas.
+- [Fedora Linux 44 Resmi Dirilis: GNOME 50, KDE Plasma 6.6, dan NTSYNC Hadir untuk Pengalaman Linux yang Lebih Kencang](https://dalam.web.id/sistem-terbuka/fedora-linux-44-rilis) : Fedora Linux 44 resmi dirilis oleh Fedora Project pada 28 April 2026. Hadir dengan GNOME 50, KDE Plasma 6.6, NTSYNC untuk Wine, MariaDB 11.8, dan berbagai peningkatan performa. Simak panduan lengkap upgrade dan fitur barunya di sini.
 - [Ubuntu 26.04 LTS Resolute Raccoon: 15 Fitur Revolusioner yang Wajib Anda Ketahui di 2026](https://dalam.web.id/sistem-terbuka/ubuntu-26-04-lts-resolute-raccoon) : Ubuntu 26.04 LTS Resolute Raccoon, fitur terbaru, peningkatan performa, keamanan, dan alasan mengapa ini menjadi rilis Ubuntu paling canggih di tahun 2026.
 - [Pindah XFCE ke KDE di Linux: Gampang Kok, Nggak Perlu Panik! 🐧](https://dalam.web.id/sistem-terbuka/pindah-xfce-ke-kde-linux) : Bingung mau pakai XFCE atau KDE Plasma? Artikel santai ini bahas tuntas risiko, cara switch, KDE Connect, Steam, dan hardware AMD 9950X & Nvidia 5090. Mulai dari XFCE dulu, kalau kurang sreg tinggal loncat ke KDE.
 - [12 Distro Linux Paling Ringan untuk PC Kentang 2026 🐧⚡](https://dalam.web.id/sistem-terbuka/distro-linux-ringan-2026) : Cari distro Linux enteng buat laptop jadul atau PC RAM 2GB? Simak 12 rekomendasi terbaik 2026 dari AntiX sampai Xubuntu. Cocok buat pemula maupun advanced.
