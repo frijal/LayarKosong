@@ -32,6 +32,11 @@ jobs:
           path: source
           fetch-depth: 1
           persist-credentials: true
+
+      - name: '1.5 Setup Node.js v22'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
      
       - name: '2. Setup Bun.js'
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
