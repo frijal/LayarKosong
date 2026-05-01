@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.70
+document_version: 19.71
 last_updated: 2026-05-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 Mei 2026)
-> Menampilkan 1244 artikel versi 19.70.
+> Menampilkan 1244 artikel versi 19.71.
 
 ## Gaya Hidup
 - [Tips Memilih Busi Motor 2026 • Jenis, Fungsi, Resistor, Iridium, Platinum](https://dalam.web.id/gaya-hidup/tips-memilih-busi-motor) : Biar motor tetap ngacir dan ECU aman. Kenali jenis busi standar nikel, platinum, iridium, resistor, sampai racing. Simak tips memilih sesuai spesifikasi pabrikan dan umur pakai ideal.
