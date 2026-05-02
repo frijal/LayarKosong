@@ -116,8 +116,8 @@ function replaceContent(html: string): string {
     .replaceAll('content="Temukan ', 'content="')
 
     // Font Awesome class mapping
-    .replaceAll("far fa-copyright", "fa-brands fa-creative-commons-zero")
-    .replaceAll("fas fa-copyright", "fa-brands fa-creative-commons-zero")
+    .replaceAll("far fa-copyright", "fa-brands fa-creative-commons-by")
+    .replaceAll("fas fa-copyright", "fa-brands fa-creative-commons-by")
     .replace(/\bfab /g, "fa-brands ")
     .replace(/\bfar /g, "fa-regular ")
     .replace(/\bfas /g, "fa-solid ");
