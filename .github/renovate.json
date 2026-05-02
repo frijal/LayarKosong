@@ -20,7 +20,7 @@
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
 
-  "stabilityDays": 2,
+  "minimumReleaseAge": "2 days",
 
   "postUpdateOptions": [
     "bun-lockfile-fix"
