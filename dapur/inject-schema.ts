@@ -10,7 +10,7 @@ type ArtikelData = Record<string, ArticleEntry[]>;
 const BASE_URL    = "https://dalam.web.id";
 const SITE_NAME   = "Layar Kosong";
 const AUTHOR      = "Fakhrul Rijal";
-const LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/";
+const LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/";
 
 const ALLOWED_CATEGORIES = new Set([
   "gaya-hidup", "jejak-sejarah", "lainnya",
