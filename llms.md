@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.71
-last_updated: 2026-05-01
+document_version: 19.72
+last_updated: 2026-05-03
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 1 Mei 2026)
-> Menampilkan 1244 artikel versi 19.71.
+## Index Artikel Terbaru (Updated: 3 Mei 2026)
+> Menampilkan 1245 artikel versi 19.72.
 
 ## Gaya Hidup
 - [Tips Memilih Busi Motor 2026 • Jenis, Fungsi, Resistor, Iridium, Platinum](https://dalam.web.id/gaya-hidup/tips-memilih-busi-motor) : Biar motor tetap ngacir dan ECU aman. Kenali jenis busi standar nikel, platinum, iridium, resistor, sampai racing. Simak tips memilih sesuai spesifikasi pabrikan dan umur pakai ideal.
@@ -436,6 +436,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati](https://dalam.web.id/lainnya/qanaah-kekayaan-hati-keberuntungan) : Mengulas Hadits Muslim No. 1054 dan penjelasan Ibnul Qayyim tentang sifat Qanaah (merasa cukup). Pelajari bagaimana Qanaah adalah kekayaan sejati dan jalan menuju keberuntungan di dunia dan akhirat.
 
 ## Olah Media
+- [Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol](https://dalam.web.id/olah-media/perpres-nomor-27-tahun-2026-potongan-ojol) : Perpres Nomor 27 Tahun 2026 mengatur perlindungan pekerja transportasi online dengan batas potongan aplikator maksimal 8%. Simak dampak, fakta, dan analisis lengkapnya di sini.
 - [WebP Itu Bagus, Sebenarnya: Kenapa Format Gambar Ini Layak Dipakai](https://dalam.web.id/olah-media/webp-itu-bagus-sebenarnya) : WebP sering dikira format ribet, padahal unggul dari JPEG, PNG, dan GIF. Simak kenapa WebP itu bagus, kelebihannya, dan cara menggunakannya tanpa hambatan.
 - [Video Splitter One-Liner Generator](https://dalam.web.id/olah-media/video-splitter-one-liner-generator) : Generate perintah one-liner untuk membagi video dengan cepat dan efisien. Cocok untuk developer, content creator, dan pengguna FFmpeg.
 - [10 Rumus Excel Lanjutan untuk Data Analyst: Level Up Skill Kamu!](https://dalam.web.id/olah-media/10-rumus-excel-lanjutan-data-analyst) : Tingkatkan kemampuan analisis datamu dengan 10 rumus Excel lanjutan seperti IFERROR, TEXTSPLIT, LET, hingga SUMPRODUCT. Data Analyst.
