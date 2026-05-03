@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/2/2026, 1:53:44 PM
+Generated on: 5/3/2026, 1:54:56 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,8 +13,8 @@ Generated on: 5/2/2026, 1:53:44 PM
 | `google2e9cfaf2f2923d27.html` | *(Missing)* | *(Missing)* | *(Missing)* | - |
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
-| `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.71 | LLM Index v19.71 | Layar Kosong | ✅ Perfect |
+| `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.75 | LLM Index v19.75 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -597,6 +597,7 @@ Generated on: 5/2/2026, 1:53:44 PM
 | `artikel/kepemimpinan-presiden-kesejahteraan-rakyat.html` | Kepemimpinan Presiden dan Kesejahteraan Rakyat: Alarm Serius bagi Arah Demokrasi - Layar Kosong | Kepemimpinan Presiden dan Kesejahteraan Rakyat: Alarm Serius bagi Arah Demokrasi | Layar Kosong | ✅ Perfect |
 | `artikel/kereta-api-di-terminal-sl.html` | SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik - Layar Kosong | SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik | Layar Kosong | ✅ Perfect |
 | `artikel/keringanan-pajak-kendaraan-rusak.html` | Keadilan Pajak untuk Kendaraan Rusak dan Sosial: Harapan Baru Bagi Pemilik Motor Tua - Layar Kosong | Keadilan Pajak untuk Kendaraan Rusak dan Sosial: Harapan Baru Bagi Pemilik Motor Tua | Layar Kosong | ✅ Perfect |
+| `artikel/kerja-formalitas-ngopi-rutinitas.html` | Kerja Formalitas, Ngopi Rutinitas: Fakta Budaya Kerja Modern - Layar Kosong | Kerja Formalitas, Ngopi Rutinitas: Fakta Budaya Kerja Modern | Layar Kosong | ✅ Perfect |
 | `artikel/kerja-halal.html` | Cara Memahami dan Mencari Kerja Halal - Panduan Singkat - Layar Kosong | Cara Memahami dan Mencari Kerja Halal - Panduan Singkat | Layar Kosong | ✅ Perfect |
 | `artikel/kerja-sama-indonesia-as-analisis-kritis.html` | Waspadai Empat Isi Kerja Sama Indonesia-AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan? - Layar Kosong | Waspadai Empat Isi Kerja Sama Indonesia-AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan? | Layar Kosong | ✅ Perfect |
 | `artikel/kerja-sama-indonesia-india-2026.html` | Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳 - Layar Kosong | Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳 | Layar Kosong | ✅ Perfect |
@@ -657,6 +658,7 @@ Generated on: 5/2/2026, 1:53:44 PM
 | `artikel/kubuntu-11-10.html` | Kubuntu 11.10 - Panduan dan Pengalaman - Layar Kosong | Kubuntu 11.10 - Panduan dan Pengalaman | Layar Kosong | ✅ Perfect |
 | `artikel/kuhp-baru-kebebasan-sipil.html` | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil - Layar Kosong | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil | Layar Kosong | ✅ Perfect |
 | `artikel/kuota-hangus-dipertahankan-operator.html` | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen - Layar Kosong | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen | Layar Kosong | ✅ Perfect |
+| `artikel/kupas-kebijakan-hardiknas-2026.html` | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? - Layar Kosong | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? | Layar Kosong | ✅ Perfect |
 | `artikel/kurangi-cahaya-ketika-tidur.html` | Kurangi Cahaya Ketika Tidur - Ilmu Modern & Pesan Nabi - Layar Kosong | Kurangi Cahaya Ketika Tidur - Ilmu Modern & Pesan Nabi | Layar Kosong | ✅ Perfect |
 | `artikel/kutai-kartanegara-oss-2010.html` | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi - Layar Kosong | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi | Layar Kosong | ✅ Perfect |
 | `artikel/label-nonhalal-jaga-iman.html` | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman - Layar Kosong | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
@@ -967,6 +969,7 @@ Generated on: 5/2/2026, 1:53:44 PM
 | `artikel/perniagaan-paling-jitu.html` | Perniagaan Paling Jitu - Ketika Tuhan Menjadi Mitra Bisnis Anda - Layar Kosong | Perniagaan Paling Jitu - Ketika Tuhan Menjadi Mitra Bisnis Anda | Layar Kosong | ✅ Perfect |
 | `artikel/perpisahan-doraemon-tv-nasional.html` | Perjalanan 35 Tahun Doraemon di TV Nasional Resmi Berakhir - Layar Kosong | Perjalanan 35 Tahun Doraemon di TV Nasional Resmi Berakhir | Layar Kosong | ✅ Perfect |
 | `artikel/perplexity-ai-riset-terkini.html` | Perplexity AI - Riset Topik Terkini Jadi Gampang - Layar Kosong | Perplexity AI - Riset Topik Terkini Jadi Gampang | Layar Kosong | ✅ Perfect |
+| `artikel/perpres-nomor-27-tahun-2026-potongan-ojol.html` | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol - Layar Kosong | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol | Layar Kosong | ✅ Perfect |
 | `artikel/pertempuran-yarmuk-yerusalem.html` | Pertempuran Yarmuk & Penyerahan Yerusalem - Kisah Islam di Syam - Layar Kosong | Pertempuran Yarmuk & Penyerahan Yerusalem - Kisah Islam di Syam | Layar Kosong | ✅ Perfect |
 | `artikel/perubahan-git-3-0-main-default.html` | 🎉 Perubahan Besar di Git 3.0: 'main' Jadi Default, Selamat Tinggal 'master'! - Layar Kosong | 🎉 Perubahan Besar di Git 3.0: 'main' Jadi Default, Selamat Tinggal 'master'! | Layar Kosong | ✅ Perfect |
 | `artikel/perut-kenyang-namun-otak-kosong.html` | Perut Kenyang namun Otak Kosong: Analisis Kritis Program Makan Gratis vs Pendidikan Indonesia - Layar Kosong | Perut Kenyang namun Otak Kosong: Analisis Kritis Program Makan Gratis vs Pendidikan Indonesia | Layar Kosong | ✅ Perfect |
@@ -1320,6 +1323,7 @@ Generated on: 5/2/2026, 1:53:44 PM
 | `gaya-hidup/kenapa-tidak-boker-harian.html` | Apa Penyebab Tidak Boker Setiap Hari? - Layar Kosong | Apa Penyebab Tidak Boker Setiap Hari? | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/kenapa-tidur-setelah-subuh-tidak-disarankan-medis.html` | Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi - Layar Kosong | Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/keringanan-pajak-kendaraan-rusak.html` | Keadilan Pajak untuk Kendaraan Rusak dan Sosial: Harapan Baru Bagi Pemilik Motor Tua - Layar Kosong | Keadilan Pajak untuk Kendaraan Rusak dan Sosial: Harapan Baru Bagi Pemilik Motor Tua | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/kerja-formalitas-ngopi-rutinitas.html` | Kerja Formalitas, Ngopi Rutinitas: Fakta Budaya Kerja Modern - Layar Kosong | Kerja Formalitas, Ngopi Rutinitas: Fakta Budaya Kerja Modern | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/kerupuk-tolak-miskin.html` | Kerupuk 'Tolak Miskin', Ternyata Beneran Ada! - Layar Kosong | Kerupuk 'Tolak Miskin', Ternyata Beneran Ada! | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/kesehatan-pencernaan-boker.html` | Kenapa Nggak Boker Tiap Hari? Kupas Tuntas Kesehatan Pencernaan - Layar Kosong | Kenapa Nggak Boker Tiap Hari? Kupas Tuntas Kesehatan Pencernaan | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/kisah-cinta-google-maps.html` | 10 Tahun Cinta Lansia di Google Maps: Dari Bahagia Bersama hingga Rumah Dirobohkan 😢 - Layar Kosong | 10 Tahun Cinta Lansia di Google Maps: Dari Bahagia Bersama hingga Rumah Dirobohkan 😢 | Layar Kosong | ✅ Perfect |
@@ -1344,6 +1348,7 @@ Generated on: 5/2/2026, 1:53:44 PM
 | `gaya-hidup/ojol-parkir-balikpapan.html` | Permohonan Kebijakan Parkir untuk Ojol di Balikpapan - Layar Kosong | Permohonan Kebijakan Parkir untuk Ojol di Balikpapan | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/panduan-pengasuhan-sains.html` | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja - Layar Kosong | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/peresmian-bandara-sepinggan.html` | Nostalgia 2014: Wajah Pertama Bandara SAMS Sepinggan Baru - Layar Kosong | Nostalgia 2014: Wajah Pertama Bandara SAMS Sepinggan Baru | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/perpres-nomor-27-tahun-2026-potongan-ojol.html` | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol - Layar Kosong | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/pijat-sakit-kepala.html` | Sakit Kepala? Jangan Buru-Buru Minum Obat, Coba Pijat Relaksasi Ini! - Layar Kosong | Sakit Kepala? Jangan Buru-Buru Minum Obat, Coba Pijat Relaksasi Ini! | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/pola-hidup-sehat-untuk-usus.html` | Pola Hidup Sehat untuk Usus yang Bahagia - Layar Kosong | Pola Hidup Sehat untuk Usus yang Bahagia | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/produk-dairy-dan-alternatif.html` | Produk Dairy & Alternatif Non-Dairy untuk Kopi Susu - Layar Kosong | Produk Dairy & Alternatif Non-Dairy untuk Kopi Susu | Layar Kosong | ✅ Perfect |
@@ -1873,6 +1878,7 @@ Generated on: 5/2/2026, 1:53:44 PM
 | `opini-sosial/kritik-idai-sanksi-rs-satu-sehat.html` | Kritik Pedas IDAI: Sanksi 1306 RS oleh Kemenkes, Arogansi atau Solusi? - Layar Kosong | Kritik Pedas IDAI: Sanksi 1306 RS oleh Kemenkes, Arogansi atau Solusi? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kritik-narasi-pejabat-perang-iran-israel.html` | Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik - Layar Kosong | Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kuhp-baru-kebebasan-sipil.html` | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil - Layar Kosong | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil | Layar Kosong | ✅ Perfect |
+| `opini-sosial/kupas-kebijakan-hardiknas-2026.html` | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? - Layar Kosong | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/larangan-medsos-anak-16-tahun.html` | Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026 - Layar Kosong | Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026 | Layar Kosong | ✅ Perfect |
 | `opini-sosial/larangan-yahudi-teman-al-maidah-ayat-51.html` | Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur'an dan Relevansinya dengan Isu Palestina - Layar Kosong | Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur'an dan Relevansinya dengan Isu Palestina | Layar Kosong | ✅ Perfect |
 | `opini-sosial/logika-iri-pemerintah-prabowo.html` | Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo - Layar Kosong | Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo | Layar Kosong | ✅ Perfect |
