@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.73
+document_version: 19.74
 last_updated: 2026-05-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 Mei 2026)
-> Menampilkan 1245 artikel versi 19.73.
+> Menampilkan 1246 artikel versi 19.74.
 
 ## Gaya Hidup
 - [Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol](https://dalam.web.id/gaya-hidup/perpres-nomor-27-tahun-2026-potongan-ojol) : Perpres Nomor 27 Tahun 2026 mengatur perlindungan pekerja transportasi online dengan batas potongan aplikator maksimal 8%. Simak dampak, fakta, dan analisis lengkapnya di sini.
@@ -525,6 +525,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding?](https://dalam.web.id/opini-sosial/kupas-kebijakan-hardiknas-2026) : Mengupas tuntas kebijakan Hardiknas 2026 dari Kemendikdasmen. Fokus pada Deep Learning, digitalisasi, dan pemerataan mutu pendidikan. Cocok buat kamu yang ingin paham arah pendidikan Indonesia ke depan dengan gaya santai dan analitis.
 - [Digitalisasi Identitas di Indonesia: E-KTP, IKD, dan Kesiapan Sistem yang Dipertanyakan](https://dalam.web.id/opini-sosial/digitalisasi-identitas-ektp-ikd-shm) : Mengupas pemanfaatan E-KTP, fenomena IKD, dan digitalisasi SHM di Indonesia. Benarkah sistem sudah matang atau sekadar eksperimen digital setengah matang?
 - [BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN?](https://dalam.web.id/opini-sosial/bbm-non-subsidi-naik-tajam-tekanan-stok-subsidi) : BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN? Simak analisis lengkap dampak kenaikan harga BBM nonsubsidi, perilaku konsumen, dan risiko distribusi.
 - [Paradoks Indonesia: Raksasa Komoditas Dunia yang Belum Sejahtera](https://dalam.web.id/opini-sosial/paradoks-indonesia-raksasa-komoditas) : Indonesia masuk 3 besar dunia untuk 12 komoditas unggulan, tapi 50-60% penduduk masih rentan miskin. Mengapa kekayaan alam belum berbanding lurus dengan kesejahteraan? Simak analisis 5W+1H.
