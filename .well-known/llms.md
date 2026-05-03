@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.75
+document_version: 19.76
 last_updated: 2026-05-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 Mei 2026)
-> Menampilkan 1247 artikel versi 19.75.
+> Menampilkan 1248 artikel versi 19.76.
 
 ## Gaya Hidup
 - [Kerja Formalitas, Ngopi Rutinitas: Fakta Budaya Kerja Modern](https://dalam.web.id/gaya-hidup/kerja-formalitas-ngopi-rutinitas) : Kerja formalitas, ngopi rutinitas menjadi fenomena nyata di dunia kerja modern. Temukan penyebab, dampak, dan solusi agar produktivitas kembali bermakna.
@@ -526,6 +526,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Pendidikan di Indonesia Hari Ini: Fakta Kritis tentang Ilusi Gelar](https://dalam.web.id/opini-sosial/pendidikan-indonesia-hari-ini) : Pendidikan di Indonesia hari ini menghadapi krisis arah. Simak fakta penyebab dampak dan solusi agar sistem pendidikan lebih relevan dengan dunia kerja.
 - [Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding?](https://dalam.web.id/opini-sosial/kupas-kebijakan-hardiknas-2026) : Mengupas tuntas kebijakan Hardiknas 2026 dari Kemendikdasmen. Fokus pada Deep Learning, digitalisasi, dan pemerataan mutu pendidikan. Cocok buat kamu yang ingin paham arah pendidikan Indonesia ke depan dengan gaya santai dan analitis.
 - [Digitalisasi Identitas di Indonesia: E-KTP, IKD, dan Kesiapan Sistem yang Dipertanyakan](https://dalam.web.id/opini-sosial/digitalisasi-identitas-ektp-ikd-shm) : Mengupas pemanfaatan E-KTP, fenomena IKD, dan digitalisasi SHM di Indonesia. Benarkah sistem sudah matang atau sekadar eksperimen digital setengah matang?
 - [BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN?](https://dalam.web.id/opini-sosial/bbm-non-subsidi-naik-tajam-tekanan-stok-subsidi) : BBM Non Subsidi NAIK TAJAM, Apakah STOK BBM Subsidi Akan TERTEKAN? Simak analisis lengkap dampak kenaikan harga BBM nonsubsidi, perilaku konsumen, dan risiko distribusi.
