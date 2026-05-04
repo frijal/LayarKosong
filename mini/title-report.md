@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/3/2026, 1:54:56 PM
+Generated on: 5/4/2026, 2:39:04 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/3/2026, 1:54:56 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.75 | LLM Index v19.75 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.76 | LLM Index v19.76 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -932,6 +932,7 @@ Generated on: 5/3/2026, 1:54:56 PM
 | `artikel/penaklukan-mesir.html` | Penaklukan Mesir (19-21 H / 640-642 M): Dari Madinah ke Alexandria, lahirnya Fusthath - Layar Kosong | Penaklukan Mesir (19-21 H / 640-642 M): Dari Madinah ke Alexandria, lahirnya Fusthath | Layar Kosong | ✅ Perfect |
 | `artikel/Penaklukan-Persia.html` | Sejarah Islam Penaklukan Persia - Layar Kosong | Sejarah Islam Penaklukan Persia | Layar Kosong | ✅ Perfect |
 | `artikel/pencurian-teknologi-motorola-hytera-etika-bisnis.html` | Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global - Layar Kosong | Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global | Layar Kosong | ✅ Perfect |
+| `artikel/pendidikan-indonesia-hari-ini.html` | Pendidikan di Indonesia Hari Ini: Fakta Kritis tentang Ilusi Gelar - Layar Kosong | Pendidikan di Indonesia Hari Ini: Fakta Kritis tentang Ilusi Gelar | Layar Kosong | ✅ Perfect |
 | `artikel/pengalaman-kde-linux.html` | Pengalaman Sehari-hari Menggunakan KDE Linux - Layar Kosong | Pengalaman Sehari-hari Menggunakan KDE Linux | Layar Kosong | ✅ Perfect |
 | `artikel/pengaturan-posisi-json.html` | Pengaturan Posisi JSON - Fungsi dan Manfaatnya dalam Web & Aplikasi - Layar Kosong | Pengaturan Posisi JSON - Fungsi dan Manfaatnya dalam Web & Aplikasi | Layar Kosong | ✅ Perfect |
 | `artikel/pengecekan-dan-laporan-konten-harian.html` | Pengecekan & Laporan Konten Harian - Otomasi GitHub Actions 🔆 - Layar Kosong | Pengecekan & Laporan Konten Harian - Otomasi GitHub Actions 🔆 | Layar Kosong | ✅ Perfect |
@@ -1914,6 +1915,7 @@ Generated on: 5/3/2026, 1:54:56 PM
 | `opini-sosial/pasar-takjil-vs-mbg-ekonomi-hantu.html` | Pasar Takjil vs MBG: Ekonomi Hantu yang Terancam Monopoli Kebaikan - Layar Kosong | Pasar Takjil vs MBG: Ekonomi Hantu yang Terancam Monopoli Kebaikan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/pemakzulan-isu-bop-analisis-komentar.html` | Komentar Politik Viral: Memahami Pemakzulan, Isu BOP, dan Sentimen Warganet - Layar Kosong | Komentar Politik Viral: Memahami Pemakzulan, Isu BOP, dan Sentimen Warganet | Layar Kosong | ✅ Perfect |
 | `opini-sosial/pemerintah-tidak-peduli-kesehatan-rakyat.html` | Mari Kita Jujur: Mengapa Kesehatan Rakyat Belum Jadi Prioritas Utama di Indonesia - Layar Kosong | Mari Kita Jujur: Mengapa Kesehatan Rakyat Belum Jadi Prioritas Utama di Indonesia | Layar Kosong | ✅ Perfect |
+| `opini-sosial/pendidikan-indonesia-hari-ini.html` | Pendidikan di Indonesia Hari Ini: Fakta Kritis tentang Ilusi Gelar - Layar Kosong | Pendidikan di Indonesia Hari Ini: Fakta Kritis tentang Ilusi Gelar | Layar Kosong | ✅ Perfect |
 | `opini-sosial/penjelasan-lengkap-tentang-sahabat.html` | Sahabat: Arti, Ciri, dan Cara Menjaga Persahabatan - Panduan Ringkas - Layar Kosong | Sahabat: Arti, Ciri, dan Cara Menjaga Persahabatan - Panduan Ringkas | Layar Kosong | ✅ Perfect |
 | `opini-sosial/penurunan-kognitif-di-era-medsos.html` | Menurunnya Kemampuan Kognitif di Era Media Sosial: Fenomena, Penyebab, dan Solusi - Layar Kosong | Menurunnya Kemampuan Kognitif di Era Media Sosial: Fenomena, Penyebab, dan Solusi | Layar Kosong | ✅ Perfect |
 | `opini-sosial/penurunan-kognitif.html` | Menurunnya Kemampuan Kognitif di Era Media Sosial - Layar Kosong | Menurunnya Kemampuan Kognitif di Era Media Sosial | Layar Kosong | ✅ Perfect |
