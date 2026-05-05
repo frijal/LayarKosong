@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.77
+document_version: 19.78
 last_updated: 2026-05-05
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 5 Mei 2026)
-> Menampilkan 1252 artikel versi 19.77.
+> Menampilkan 1252 artikel versi 19.78.
 
 ## Gaya Hidup
 - [Jenis Piring yang Aman untuk Kesehatan Keluarga: Fakta Penting](https://dalam.web.id/gaya-hidup/jenis-piring-aman-kesehatan) : Jenis piring yang aman untuk kesehatan keluarga sangat penting diperhatikan. Pelajari bahan terbaik, risiko tersembunyi, dan cara memilih piring yang aman untuk makanan panas dan dingin.
@@ -528,6 +528,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Truk Tua Menuju Indonesia Emas: Antara Ambisi dan Realitas Fiskal 2026](https://dalam.web.id/opini-sosial/risiko-fiskal-indonesia-2026) : tentang risiko fiskal Indonesia 2026. Beban program MBG dan Koperasi Merah Putih di tengah utang yang menumpuk. Apakah kita sedang menuju jurang?
 - [Pendidikan di Indonesia Hari Ini: Fakta Kritis tentang Ilusi Gelar](https://dalam.web.id/opini-sosial/pendidikan-indonesia-hari-ini) : Pendidikan di Indonesia hari ini menghadapi krisis arah. Simak fakta penyebab dampak dan solusi agar sistem pendidikan lebih relevan dengan dunia kerja.
 - [Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding?](https://dalam.web.id/opini-sosial/kupas-kebijakan-hardiknas-2026) : Mengupas tuntas kebijakan Hardiknas 2026 dari Kemendikdasmen. Fokus pada Deep Learning, digitalisasi, dan pemerataan mutu pendidikan. Cocok buat kamu yang ingin paham arah pendidikan Indonesia ke depan dengan gaya santai dan analitis.
 - [Digitalisasi Identitas di Indonesia: E-KTP, IKD, dan Kesiapan Sistem yang Dipertanyakan](https://dalam.web.id/opini-sosial/digitalisasi-identitas-ektp-ikd-shm) : Mengupas pemanfaatan E-KTP, fenomena IKD, dan digitalisasi SHM di Indonesia. Benarkah sistem sudah matang atau sekadar eksperimen digital setengah matang?
@@ -716,7 +717,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Truk Tua Menuju Indonesia Emas: Antara Ambisi dan Realitas Fiskal 2026](https://dalam.web.id/sistem-terbuka/risiko-fiskal-indonesia-2026) : tentang risiko fiskal Indonesia 2026. Beban program MBG dan Koperasi Merah Putih di tengah utang yang menumpuk. Apakah kita sedang menuju jurang?
 - [Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It?](https://dalam.web.id/sistem-terbuka/linux-untuk-penulis-dan-kreator-2026) : Setelah bertahun-tahun dianggap kurang cocok untuk penulis, Linux di 2026 kini punya ekosistem menulis yang matang. Dari FocusWriter hingga Obsidian, Ubuntu Studio 26.04, dan alasan kenapa penulis mulai beralih.
 - [Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang](https://dalam.web.id/sistem-terbuka/cachyos-april-2026-update) : Update CachyOS April 2026 hadir dengan manajer paket GUI baru bernama Shelly, DNS-over-HTTPS lewat blocky, fingerprint sudo, penjadwal NVMe Kyber, dan berbagai peningkatan gaming. Simak semua perubahan dan cara updatenya di sini.
 - [Open Source vs Closed AI 2026: Kenapa Model AI Gratis Kini Hampir Setara dengan yang Berbayar](https://dalam.web.id/sistem-terbuka/open-source-vs-closed-ai-2026) : Perbandingan AI open source vs closed source di tahun 2026. Model gratis seperti dari Alibaba, DeepSeek, dan MiniMax kini menguasai 45 persen trafik developer global. Simak data terbaru, alasan model berbayar tetap eksis, dan strategi hybrid yang mulai diadopsi.
