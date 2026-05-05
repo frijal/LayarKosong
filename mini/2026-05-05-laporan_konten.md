@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 29 Apr 2026 | 14:39 WITA
+Update: 05 May 2026 | 14:32 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -18,7 +18,7 @@ Update: 29 Apr 2026 | 14:39 WITA
 | 🎨 css   | **49** | dapur, ext |
 | 📄 cssA  | **1** | dapur |
 | 📄 gif   | **1** | img |
-| 🎨 html  | **2547** | jejak-sejarah, llms-index.html, feed.html, artikel, lisensi.html, 404.html, img.html, sitemap.html, dapur, sistem-terbuka, disclosure.html, olah-media, google2e9cfaf2f2923d27.html, gaya-hidup, data-deletion.html, disclaimer.html, security-policy.html, about.html, opini-sosial, ext, data-deletion-form.html, search, privacy.html, lainnya, warta-tekno |
+| 🎨 html  | **2575** | jejak-sejarah, llms-index.html, feed.html, artikel, lisensi.html, 404.html, img.html, sitemap.html, dapur, sistem-terbuka, disclosure.html, olah-media, google2e9cfaf2f2923d27.html, gaya-hidup, data-deletion.html, disclaimer.html, security-policy.html, about.html, opini-sosial, ext, data-deletion-form.html, search, privacy.html, lainnya, warta-tekno |
 | 📄 htmlA | **1** | artikel |
 | 📄 ico   | **4** | favicon.ico, artikel, dapur, ext |
 | 🖼️ jpg   | **1** | thumbnail.jpg |
@@ -30,15 +30,15 @@ Update: 29 Apr 2026 | 14:39 WITA
 | 📜 py    | **5** | artikel, dapur, sementara |
 | 📜 sh    | **13** | artikel, dapur, sementara |
 | 📄 sql   | **1** | init.sql |
-| 📄 svg   | **51** | favicon.svg, artikel, dapur, img, ext |
+| 📄 svg   | **52** | favicon.svg, artikel, dapur, img, ext |
 | 📄 ts    | **65** | functions, dapur, sementara, search |
 | 📄 tsA   | **2** | dapur |
 | 📄 tsB   | **1** | dapur |
 | 📄 tsX   | **1** | search |
 | 📄 txt   | **29** | ads.txt, robots.txt, artikel, dapur, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, img, sementara, sitemap.txt, llms.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
-| 🖼️ webp  | **1651** | thumbnail-sm.webp, img, thumbnail.webp |
+| 🖼️ webp  | **1685** | thumbnail-sm.webp, img, thumbnail.webp |
 | 📄 woff2 | **8** | dapur, ext |
 | 📄 xml   | **12** | feed-lainnya.xml, opensearch.xml, feed-opini-sosial.xml, feed-warta-tekno.xml, feed-olah-media.xml, feed-sistem-terbuka.xml, feed-jejak-sejarah.xml, feed-gaya-hidup.xml, sementara, rss.xml, BingSiteAuth.xml, sitemap.xml |
 
-**Total File:** 4634
+**Total File:** 4697
