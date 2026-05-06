@@ -1,9 +1,6 @@
 name: 🚀 Cloudflare Deployer Filter & Direct 
 
 on:
-  workflow_run:
-    workflows: ["☢️ Build and Generate Site Files"]
-    types: [completed]  
   push:
     branches:
       - main  
