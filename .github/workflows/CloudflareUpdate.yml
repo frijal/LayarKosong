@@ -1,16 +1,7 @@
-name: 🚀 Cloudflare Deployer Filter & Direct 
+name: 🚀 Cloudflare Deployer Non-DB
 
 on:
-  push:
-    branches:
-      - main  
-    paths:
-      # Daftar filter trigger tetap sama (untuk efisiensi trigger)
-      #- 'wrangler.toml'  # Tambahkan ini biar kalau config berubah, dia auto-run
-      - '_redirects'
-      - '_headers'
-
-  workflow_dispatch:
+ workflow_dispatch:
 
 permissions:
   contents: read # Cukup READ saja, karena kita gak perlu push balik ke repo!
