@@ -1,0 +1,134 @@
+name: 🚀 Cloudflare Deployer Filter & Direct 
+
+on:
+  workflow_run:
+    workflows: ["☢️ Build and Generate Site Files"]
+    types: [completed]  
+  push:
+    branches:
+      - main  
+    paths:
+      # Daftar filter trigger tetap sama (untuk efisiensi trigger)
+      #- 'wrangler.toml'  # Tambahkan ini biar kalau config berubah, dia auto-run
+      - '_redirects'
+      - '_headers'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read # Cukup READ saja, karena kita gak perlu push balik ke repo!
+  deployments: write
+
+jobs:
+  deploy-direct:
+    runs-on: ubuntu-latest
+    
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      # 1. Ambil source code dari main
+      - name: Checkout source branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          path: source
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: '1.5 Setup Node.js v22'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.15.0
+      
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run:  bun install
+        working-directory: source
+
+      - name: 🧹 Prepare Clean Directory (rsync)
+        run: |
+          mkdir deploy_dir
+          # rsync tetap bersih karena wrangler.toml masih di /tmp/
+          rsync -a --delete \
+            --include='gaya-hidup/***' \
+            --include='jejak-sejarah/***' \
+            --include='lainnya/***' \
+            --include='olah-media/***' \
+            --include='opini-sosial/***' \
+            --include='sistem-terbuka/***' \
+            --include='warta-tekno/***' \
+            --include='functions/***' \
+            --include='search/***' \
+            --include='ext/***' \
+            --include='.well-known/***' \
+            --include='img/***' \
+            --include='artikel.json' \
+            --include='redirectmap.json' \
+            --include='llms.md' \
+            --include='_redirects' \
+            --include='_headers' \
+            --include='*.html' \
+            --include='*.xml' \
+            --include='*.txt' \
+            --include='favicon.*' \
+            --include='icon.*' \
+            --include='logo.*' \
+            --include='thumbnail.*' \
+            --include='thumbnail-sm.*' \
+            --include='*.webmanifest' \
+            --exclude='*' \
+            source/ deploy_dir/
+
+      # 🔑 2. CREATE CONFIG (Tetap di /tmp agar aman)
+      - name: Create Temporary Wrangler Config
+        run: |
+          cat <<EOF > /tmp/wrangler.toml
+          #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
+          name = "layarkosong"
+          compatibility_date = "2025-12-01"
+          pages_build_output_dir = "deploy_dir"
+          [vars]
+          BUN_VERSION = "latest"
+          NODE_VERSION = "24"
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "layarkosong-db"
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+          [[kv_namespaces]]
+          binding = "COUNTS_KV"
+          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          EOF
+
+      # 🚀 3. DEPLOY (Retry 3x)
+      - name: Deploy to Cloudflare Pages
+        run: |
+          # 1. Pastikan wrangler.toml ada di root untuk dibaca wrangler
+          cp /tmp/wrangler.toml ./wrangler.toml
+          
+          # 2. PENTING: Copy folder functions dari source ke ROOT (.) 
+          # agar sejajar dengan deploy_dir
+          cp -r source/functions ./functions
+
+          max_attempts=3
+          attempt=1
+          until [ $attempt -gt $max_attempts ]
+          do
+            echo "🚀 Attempt $attempt to deploy..."
+            
+            # 3. Jalankan deploy dari root (.) mengarah ke folder statis (deploy_dir)
+            # Wrangler otomatis akan mencari folder ./functions di root!
+            if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
+              echo "✅ Deploy succeeded on attempt $attempt"
+              break
+            else
+              echo "⚠️ Deploy failed on attempt $attempt"
+              attempt=$((attempt+1))
+              [ $attempt -le $max_attempts ] && sleep 15
+            fi
+          done
+          
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
