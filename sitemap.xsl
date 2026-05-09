@@ -42,9 +42,9 @@
                     <table id="sitemap-table">
                         <thead>
                             <tr>
-                                <th class="col-no">No.</th>
+                                <th class="col-no">#</th>
                                 <th>Cover</th>
-                                <th>URL &amp; Deskripsi</th>
+                                <th>URL Artikel</th>
                                 <th>Last Mods.</th>
                             </tr>
                         </thead>
