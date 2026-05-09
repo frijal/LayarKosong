@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" 
+<xsl:stylesheet version="2.0"
                 xmlns:html="http://www.w3.org/TR/REC-html40"
                 xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
                 xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -19,6 +19,12 @@
                     th { background: #3498db; color: white; text-align: left; padding: 12px; font-size: 14px; }
                     td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: top; }
                     tr:hover { background: #fdfdfd; }
+                    /* CSS untuk Paginasi */
+                    .pagination-wrapper { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #eee; }
+                    .nav-buttons { display: flex; gap: 8px; }
+                    .btn { background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; }
+                    .btn:disabled { background: #ccc; cursor: not-allowed; }
+                    .page-info { font-size: 14px; color: #666; }
                     a { color: #3498db; text-decoration: none; font-weight: 600; }
                     .img-thumb { width: 60px; height: 45px; object-fit: cover; border-radius: 4px; background: #eee; }
                     .video-info { font-size: 11px; color: #666; margin-top: 5px; display: block; border-left: 2px solid #e74c3c; padding-left: 8px; }
@@ -27,8 +33,9 @@
             <body>
                 <div class="container">
                     <h1>XML Sitemap - Layar Kosong</h1>
-                    <p>Halaman ini adalah indeks konten untuk mesin pencari. Total: <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> Judul Artikel.</p>
-                    <table>
+                    <p>Total: <strong id="total-count"><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong> Judul Artikel.</p>
+
+                    <table id="sitemap-table">
                         <thead>
                             <tr>
                                 <th>Preview</th>
@@ -38,7 +45,7 @@
                         </thead>
                         <tbody>
                             <xsl:for-each select="sitemap:urlset/sitemap:url">
-                                <tr>
+                                <tr class="sitemap-row">
                                     <td>
                                         <xsl:if test="image:image/image:loc">
                                             <img class="img-thumb" src="{image:image/image:loc}"/>
@@ -57,7 +64,54 @@
                             </xsl:for-each>
                         </tbody>
                     </table>
+
+                    <!-- Container Navigasi -->
+                    <div class="pagination-wrapper">
+                        <div class="page-info">Halaman <span id="current-page">1</span> dari <span id="total-pages">1</span></div>
+                        <div class="nav-buttons">
+                            <button id="prevBtn" class="btn" onclick="changePage(-1)">Sebelumnya</button>
+                            <button id="nextBtn" class="btn" onclick="changePage(1)">Selanjutnya</button>
+                        </div>
+                    </div>
                 </div>
+
+                <script type="text/javascript">
+                    let currentPage = 1;
+                    const recordsPerPage = 50; // Ubah angka ini sesuai keinginan
+                    const rows = document.getElementsByClassName('sitemap-row');
+                    const totalPages = Math.ceil(rows.length / recordsPerPage);
+
+                    function updateDisplay() {
+                        const start = (currentPage - 1) * recordsPerPage;
+                        const end = start + recordsPerPage;
+
+                        for (let i = 0; i &lt; rows.length; i++) {
+                            if (i &gt;= start &amp;&amp; i &lt; end) {
+                                rows[i].style.display = 'table-row';
+                            } else {
+                                rows[i].style.display = 'none';
+                            }
+                        }
+
+                        document.getElementById('current-page').innerText = currentPage;
+                        document.getElementById('total-pages').innerText = totalPages;
+                        document.getElementById('prevBtn').disabled = (currentPage === 1);
+                        document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+
+                        // Scroll kembali ke atas kontainer setelah ganti halaman
+                        window.scrollTo({top: 0, behavior: 'smooth'});
+                    }
+
+                    function changePage(direction) {
+                        currentPage += direction;
+                        if (currentPage &lt; 1) currentPage = 1;
+                        if (currentPage &gt; totalPages) currentPage = totalPages;
+                        updateDisplay();
+                    }
+
+                    // Inisialisasi tampilan pertama kali
+                    updateDisplay();
+                </script>
             </body>
         </html>
     </xsl:template>
