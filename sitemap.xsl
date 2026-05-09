@@ -20,13 +20,17 @@
                     td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: top; }
                     .col-no { width: 50px; color: #999; font-family: monospace; }
                     tr:hover { background: #fdfdfd; }
+                    /* Style untuk Image Preview yang bisa diklik */
+                    .img-container { cursor: pointer; display: inline-block; transition: transform 0.2s; }
+                    .img-container:hover { transform: scale(1.1); }
+                    .img-thumb { width: 60px; height: 45px; object-fit: cover; border-radius: 4px; background: #eee; border: 1px solid #ddd; }
+
                     .pagination-wrapper { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #eee; }
                     .nav-buttons { display: flex; gap: 8px; }
                     .btn { background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; }
                     .btn:disabled { background: #ccc; cursor: not-allowed; }
                     .page-info { font-size: 14px; color: #666; }
                     a { color: #3498db; text-decoration: none; font-weight: 600; }
-                    .img-thumb { width: 60px; height: 45px; object-fit: cover; border-radius: 4px; background: #eee; }
                     .video-info { font-size: 11px; color: #666; margin-top: 5px; display: block; border-left: 2px solid #e74c3c; padding-left: 8px; }
                 </style>
             </head>
@@ -38,25 +42,23 @@
                     <table id="sitemap-table">
                         <thead>
                             <tr>
-                                <th class="col-no">#</th>
-                                <th>Preview</th>
+                                <th class="col-no">No.</th>
+                                <th>Cover</th>
                                 <th>URL &amp; Deskripsi</th>
-                                <th>Last Mod</th>
+                                <th>Last Mods.</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Kita simpan total count di variabel XSLT agar mudah diakses -->
                             <xsl:variable name="total" select="count(sitemap:urlset/sitemap:url)" />
-
                             <xsl:for-each select="sitemap:urlset/sitemap:url">
                                 <tr class="sitemap-row">
-                                    <td class="col-no">
-                                        <!-- Nomor urut terbalik: Total - (posisi saat ini - 1) -->
-                                        <xsl:value-of select="$total - (position() - 1)"/>
-                                    </td>
+                                    <td class="col-no"><xsl:value-of select="$total - (position() - 1)"/></td>
                                     <td>
                                         <xsl:if test="image:image/image:loc">
-                                            <img class="img-thumb" src="{image:image/image:loc}"/>
+                                            <!-- Menambahkan onclick untuk memicu fungsi pop-up -->
+                                            <div class="img-container" onclick="openPreview('{image:image/image:loc}')">
+                                                <img class="img-thumb" src="{image:image/image:loc}" title="Klik untuk memperbesar"/>
+                                            </div>
                                         </xsl:if>
                                     </td>
                                     <td>
@@ -83,8 +85,21 @@
                 </div>
 
                 <script type="text/javascript">
+                    // Fungsi untuk membuka gambar di jendela terpisah (Pop-up)
+                    function openPreview(url) {
+                        const width = 800;
+                        const height = 600;
+                        const left = (screen.width - width) / 2;
+                        const top = (screen.height - height) / 2;
+
+                        // Membuka jendela baru dengan spesifikasi ukuran
+                        window.open(url, 'ImagePreview',
+                            `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=no,status=no,toolbar=no,menubar=no,location=no`
+                        );
+                    }
+
                     let currentPage = 1;
-                    const recordsPerPage = 100;
+                    const recordsPerPage = 44;
                     const rows = document.getElementsByClassName('sitemap-row');
                     const totalPages = Math.ceil(rows.length / recordsPerPage);
 
