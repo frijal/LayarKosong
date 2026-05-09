@@ -28,7 +28,7 @@ margin-bottom: 10px;
 table { width: 100%; border-collapse: collapse; margin-top: 10px; }
 th { background: #3498db; color: white; text-align: left; padding: 12px; font-size: 14px; }
 td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: top; }
-.col-no { width: 60px; color: #999; font-family: monospace; font-weight: bold; }
+.col-no { width: 60px; color: #000000; font-family: monospace; font-weight: bold; }
 tr:hover { background: #fdfdfd; }
 /* Image Preview */
 .img-container { cursor: pointer; display: inline-block; transition: transform 0.2s; }
