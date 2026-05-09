@@ -13,13 +13,13 @@
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <style type="text/css">
                     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #333; margin: 0; padding: 40px; background: #f4f7f6; }
-                    .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+                    .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
                     h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
                     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
                     th { background: #3498db; color: white; text-align: left; padding: 12px; font-size: 14px; }
                     td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: top; }
+                    .col-no { width: 50px; color: #999; font-family: monospace; }
                     tr:hover { background: #fdfdfd; }
-                    /* CSS untuk Paginasi */
                     .pagination-wrapper { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #eee; }
                     .nav-buttons { display: flex; gap: 8px; }
                     .btn { background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; }
@@ -38,14 +38,22 @@
                     <table id="sitemap-table">
                         <thead>
                             <tr>
+                                <th class="col-no">#</th>
                                 <th>Preview</th>
                                 <th>URL &amp; Deskripsi</th>
                                 <th>Last Mod</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Kita simpan total count di variabel XSLT agar mudah diakses -->
+                            <xsl:variable name="total" select="count(sitemap:urlset/sitemap:url)" />
+
                             <xsl:for-each select="sitemap:urlset/sitemap:url">
                                 <tr class="sitemap-row">
+                                    <td class="col-no">
+                                        <!-- Nomor urut terbalik: Total - (posisi saat ini - 1) -->
+                                        <xsl:value-of select="$total - (position() - 1)"/>
+                                    </td>
                                     <td>
                                         <xsl:if test="image:image/image:loc">
                                             <img class="img-thumb" src="{image:image/image:loc}"/>
@@ -65,7 +73,6 @@
                         </tbody>
                     </table>
 
-                    <!-- Container Navigasi -->
                     <div class="pagination-wrapper">
                         <div class="page-info">Halaman <span id="current-page">1</span> dari <span id="total-pages">1</span></div>
                         <div class="nav-buttons">
@@ -77,7 +84,7 @@
 
                 <script type="text/javascript">
                     let currentPage = 1;
-                    const recordsPerPage = 50; // Ubah angka ini sesuai keinginan
+                    const recordsPerPage = 100;
                     const rows = document.getElementsByClassName('sitemap-row');
                     const totalPages = Math.ceil(rows.length / recordsPerPage);
 
@@ -98,7 +105,6 @@
                         document.getElementById('prevBtn').disabled = (currentPage === 1);
                         document.getElementById('nextBtn').disabled = (currentPage === totalPages);
 
-                        // Scroll kembali ke atas kontainer setelah ganti halaman
                         window.scrollTo({top: 0, behavior: 'smooth'});
                     }
 
@@ -109,7 +115,6 @@
                         updateDisplay();
                     }
 
-                    // Inisialisasi tampilan pertama kali
                     updateDisplay();
                 </script>
             </body>
