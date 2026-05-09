@@ -86,7 +86,7 @@
                                     <td>
                                         <xsl:if test="image:image/image:loc">
                                             <div class="img-container" onclick="openPreview('{image:image/image:loc}')">
-                                                <img class="img-thumb" src="{image:image/image:loc}" title="Klik untuk memperbesar di jendela baru"/>
+                                                <img class="img-thumb" src="{image:image/image:loc}" title="Klik untuk melihat gambarnya..."/>
                                             </div>
                                         </xsl:if>
                                     </td>
