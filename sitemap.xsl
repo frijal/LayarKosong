@@ -61,7 +61,7 @@
                         <p class="total-info">Total: <strong id="total-count"><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong> Judul Artikel.</p>
 
                         <div class="pagination-wrapper">
-                            <div class="page-info">Hal <span class="current-page-txt">1</span> / <span class="total-pages-txt">1</span></div>
+                            <div class="page-info">Halaman <span class="current-page-txt">1</span> dari <span class="total-pages-txt">1</span></div>
                             <div class="nav-buttons">
                                 <button class="btn prevBtn" onclick="changePage(-1)">Sebelumnya</button>
                                 <button class="btn nextBtn" onclick="changePage(1)">Selanjutnya</button>
@@ -73,7 +73,7 @@
                         <thead>
                             <tr>
                                 <th class="col-no">#</th>
-                                <th>Preview</th>
+                                <th>Cover</th>
                                 <th>URL Artikel</th>
                                 <th>Last Mods.</th>
                             </tr>
