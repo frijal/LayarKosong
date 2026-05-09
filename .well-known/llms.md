@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.79
+document_version: 19.80
 last_updated: 2026-05-09
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 9 Mei 2026)
-> Menampilkan 1253 artikel versi 19.79.
+> Menampilkan 1253 artikel versi 19.80.
 
 ## Gaya Hidup
 - [Jenis Piring yang Aman untuk Kesehatan Keluarga: Fakta Penting](https://dalam.web.id/gaya-hidup/jenis-piring-aman-kesehatan) : Jenis piring yang aman untuk kesehatan keluarga sangat penting diperhatikan. Pelajari bahan terbaik, risiko tersembunyi, dan cara memilih piring yang aman untuk makanan panas dan dingin.
