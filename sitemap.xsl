@@ -14,36 +14,66 @@
                 <style type="text/css">
                     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #333; margin: 0; padding: 40px; background: #f4f7f6; }
                     .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-                    h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                    h1 { color: #2c3e50; margin-bottom: 20px; }
+
+                    /* Header Flexbox */
+                    .header-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 2px solid #3498db;
+                        padding-bottom: 15px;
+                        margin-bottom: 10px;
+                    }
+                    .total-info { font-size: 14px; margin: 0; color: #555; }
+
+                    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
                     th { background: #3498db; color: white; text-align: left; padding: 12px; font-size: 14px; }
                     td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: top; }
-                    .col-no { width: 50px; color: #999; font-family: monospace; }
+                    .col-no { width: 60px; color: #999; font-family: monospace; font-weight: bold; }
                     tr:hover { background: #fdfdfd; }
-                    /* Style untuk Image Preview yang bisa diklik */
+
+                    /* Image Preview */
                     .img-container { cursor: pointer; display: inline-block; transition: transform 0.2s; }
                     .img-container:hover { transform: scale(1.1); }
                     .img-thumb { width: 60px; height: 45px; object-fit: cover; border-radius: 4px; background: #eee; border: 1px solid #ddd; }
 
-                    .pagination-wrapper { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #eee; }
+                    /* Pagination */
+                    .pagination-wrapper { display: flex; align-items: center; gap: 15px; }
+                    .pagination-bottom { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; justify-content: space-between; }
                     .nav-buttons { display: flex; gap: 8px; }
-                    .btn { background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; }
+                    .btn { background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; transition: background 0.2s; }
+                    .btn:hover { background: #2980b9; }
                     .btn:disabled { background: #ccc; cursor: not-allowed; }
-                    .page-info { font-size: 14px; color: #666; }
+                    .page-info { font-size: 13px; color: #666; font-weight: 500; }
+
                     a { color: #3498db; text-decoration: none; font-weight: 600; }
+                    a:hover { text-decoration: underline; }
                     .video-info { font-size: 11px; color: #666; margin-top: 5px; display: block; border-left: 2px solid #e74c3c; padding-left: 8px; }
                 </style>
             </head>
             <body>
                 <div class="container">
                     <h1>XML Sitemap - Layar Kosong</h1>
-                    <p>Total: <strong id="total-count"><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong> Judul Artikel.</p>
+
+                    <!-- Header: Total & Navigasi Atas Sejajar -->
+                    <div class="header-container">
+                        <p class="total-info">Total: <strong id="total-count"><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong> Judul Artikel.</p>
+
+                        <div class="pagination-wrapper">
+                            <div class="page-info">Hal <span class="current-page-txt">1</span> / <span class="total-pages-txt">1</span></div>
+                            <div class="nav-buttons">
+                                <button class="btn prevBtn" onclick="changePage(-1)">Sebelumnya</button>
+                                <button class="btn nextBtn" onclick="changePage(1)">Selanjutnya</button>
+                            </div>
+                        </div>
+                    </div>
 
                     <table id="sitemap-table">
                         <thead>
                             <tr>
                                 <th class="col-no">#</th>
-                                <th>Cover</th>
+                                <th>Preview</th>
                                 <th>URL Artikel</th>
                                 <th>Last Mods.</th>
                             </tr>
@@ -55,9 +85,8 @@
                                     <td class="col-no"><xsl:value-of select="$total - (position() - 1)"/></td>
                                     <td>
                                         <xsl:if test="image:image/image:loc">
-                                            <!-- Menambahkan onclick untuk memicu fungsi pop-up -->
                                             <div class="img-container" onclick="openPreview('{image:image/image:loc}')">
-                                                <img class="img-thumb" src="{image:image/image:loc}" title="Klik untuk memperbesar"/>
+                                                <img class="img-thumb" src="{image:image/image:loc}" title="Klik untuk memperbesar di jendela baru"/>
                                             </div>
                                         </xsl:if>
                                     </td>
@@ -75,50 +104,54 @@
                         </tbody>
                     </table>
 
-                    <div class="pagination-wrapper">
-                        <div class="page-info">Halaman <span id="current-page">1</span> dari <span id="total-pages">1</span></div>
+                    <!-- Navigasi Bawah (Sinkron dengan Atas) -->
+                    <div class="pagination-wrapper pagination-bottom">
+                        <div class="page-info">Halaman <span class="current-page-txt">1</span> dari <span class="total-pages-txt">1</span></div>
                         <div class="nav-buttons">
-                            <button id="prevBtn" class="btn" onclick="changePage(-1)">Sebelumnya</button>
-                            <button id="nextBtn" class="btn" onclick="changePage(1)">Selanjutnya</button>
+                            <button class="btn prevBtn" onclick="changePage(-1)">Sebelumnya</button>
+                            <button class="btn nextBtn" onclick="changePage(1)">Selanjutnya</button>
                         </div>
                     </div>
                 </div>
 
                 <script type="text/javascript">
-                    // Fungsi untuk membuka gambar di jendela terpisah (Pop-up)
                     function openPreview(url) {
-                        const width = 800;
-                        const height = 600;
+                        const width = 850;
+                        const height = 650;
                         const left = (screen.width - width) / 2;
                         const top = (screen.height - height) / 2;
-
-                        // Membuka jendela baru dengan spesifikasi ukuran
                         window.open(url, 'ImagePreview',
-                            `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=no,status=no,toolbar=no,menubar=no,location=no`
+                            `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no`
                         );
                     }
 
                     let currentPage = 1;
-                    const recordsPerPage = 44;
+                    const recordsPerPage = 36;
                     const rows = document.getElementsByClassName('sitemap-row');
                     const totalPages = Math.ceil(rows.length / recordsPerPage);
+
+                    // Ambil semua elemen navigasi (atas dan bawah)
+                    const currentPageEles = document.getElementsByClassName('current-page-txt');
+                    const totalPagesEles = document.getElementsByClassName('total-pages-txt');
+                    const prevBtns = document.getElementsByClassName('prevBtn');
+                    const nextBtns = document.getElementsByClassName('nextBtn');
 
                     function updateDisplay() {
                         const start = (currentPage - 1) * recordsPerPage;
                         const end = start + recordsPerPage;
 
+                        // Tampilkan baris sesuai halaman
                         for (let i = 0; i &lt; rows.length; i++) {
-                            if (i &gt;= start &amp;&amp; i &lt; end) {
-                                rows[i].style.display = 'table-row';
-                            } else {
-                                rows[i].style.display = 'none';
-                            }
+                            rows[i].style.display = (i &gt;= start &amp;&amp; i &lt; end) ? 'table-row' : 'none';
                         }
 
-                        document.getElementById('current-page').innerText = currentPage;
-                        document.getElementById('total-pages').innerText = totalPages;
-                        document.getElementById('prevBtn').disabled = (currentPage === 1);
-                        document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+                        // Update semua teks indikator halaman
+                        for (let ele of currentPageEles) ele.innerText = currentPage;
+                        for (let ele of totalPagesEles) ele.innerText = totalPages;
+
+                        // Update status semua tombol
+                        for (let btn of prevBtns) btn.disabled = (currentPage === 1);
+                        for (let btn of nextBtns) btn.disabled = (currentPage === totalPages);
 
                         window.scrollTo({top: 0, behavior: 'smooth'});
                     }
@@ -130,6 +163,7 @@
                         updateDisplay();
                     }
 
+                    // Jalankan saat pertama kali load
                     updateDisplay();
                 </script>
             </body>
