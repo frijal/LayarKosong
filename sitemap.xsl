@@ -27,7 +27,7 @@
             <body>
                 <div class="container">
                     <h1>XML Sitemap - Layar Kosong</h1>
-                    <p>Halaman ini adalah indeks konten untuk mesin pencari. Total: <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> URL.</p>
+                    <p>Halaman ini adalah indeks konten untuk mesin pencari. Total: <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> Judul Artikel.</p>
                     <table>
                         <thead>
                             <tr>
