@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/8/2026, 2:23:36 PM
+Generated on: 5/9/2026, 1:59:23 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/8/2026, 2:23:36 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.78 | LLM Index v19.78 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.80 | LLM Index v19.80 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -413,6 +413,7 @@ Generated on: 5/8/2026, 2:23:36 PM
 | `artikel/generasi-muda-krisis-adab-digital.html` | Generasi Muda dan Krisis Adab Digital: Tantangan Karakter di Era Viral - Layar Kosong | Generasi Muda dan Krisis Adab Digital: Tantangan Karakter di Era Viral | Layar Kosong | ✅ Perfect |
 | `artikel/generator-desktop-autostart-linux.html` | Generator .desktop Autostart Aplikasi Linux - Layar Kosong | Generator .desktop Autostart Aplikasi Linux | Layar Kosong | ✅ Perfect |
 | `artikel/generator-label-24-box.html` | Generator Label Mentari - Custom Logo UI - Layar Kosong | Generator Label Mentari - Custom Logo UI | Layar Kosong | ✅ Perfect |
+| `artikel/generator-label-barcode.html` | Generator Label Mentari - Barcode UI - Layar Kosong | Generator Label Mentari - Barcode UI | Layar Kosong | ✅ Perfect |
 | `artikel/geo-lahir-seo-mati.html` | GEO Lahir, SEO Mati? Transformasi Komunikasi di Era AI Generatif - Layar Kosong | GEO Lahir, SEO Mati? Transformasi Komunikasi di Era AI Generatif | Layar Kosong | ✅ Perfect |
 | `artikel/gh-force-clean.html` | Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge - Layar Kosong | Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge | Layar Kosong | ✅ Perfect |
 | `artikel/gh-force-merge.html` | Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI - Layar Kosong | Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI | Layar Kosong | ✅ Perfect |
@@ -2086,6 +2087,7 @@ Generated on: 5/8/2026, 2:23:36 PM
 | `sistem-terbuka/flatpak-linux.html` | Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦 - Layar Kosong | Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gcos-2009-ngoprek-spg-ubuntu-jogja.html` | Ngoprek bareng SPG Ubuntu Jogja - GCOS 2009 di Aryaduta Semanggi - Layar Kosong | Ngoprek bareng SPG Ubuntu Jogja - GCOS 2009 di Aryaduta Semanggi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/generator-desktop-autostart-linux.html` | Generator .desktop Autostart Aplikasi Linux - Layar Kosong | Generator .desktop Autostart Aplikasi Linux | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/generator-label-barcode.html` | Generator Label Mentari - Barcode UI - Layar Kosong | Generator Label Mentari - Barcode UI | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/github-file-uploader.html` | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository - Layar Kosong | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/github-lambat-firefox-debian.html` | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! - Layar Kosong | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-49.html` | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar - Layar Kosong | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar | Layar Kosong | ✅ Perfect |
