@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.80
-last_updated: 2026-05-09
+document_version: 19.81
+last_updated: 2026-05-10
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 9 Mei 2026)
-> Menampilkan 1253 artikel versi 19.80.
+## Index Artikel Terbaru (Updated: 10 Mei 2026)
+> Menampilkan 1254 artikel versi 19.81.
 
 ## Gaya Hidup
 - [Jenis Piring yang Aman untuk Kesehatan Keluarga: Fakta Penting](https://dalam.web.id/gaya-hidup/jenis-piring-aman-kesehatan) : Jenis piring yang aman untuk kesehatan keluarga sangat penting diperhatikan. Pelajari bahan terbaik, risiko tersembunyi, dan cara memilih piring yang aman untuk makanan panas dan dingin.
@@ -331,6 +331,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum](https://dalam.web.id/jejak-sejarah/kesultanan-utsmaniyah) : Narasi santai tentang lahir dan bertumbuhnya Kesultanan Utsmaniyah: dari Osman I, Orhan I, Murad I, Bayezid I, hingga masa Interregnum. Lengkap, responsif, dan interaktif.
 
 ## Lainnya
+- [Surat Panggilan Polisi? Kenali Hak Konstitusional UU No 20 Tahun 2025](https://dalam.web.id/lainnya/hak-konstitusional-surat-panggilan-polisi-uu-20-2025) : Jangan panik saat menerima surat panggilan polisi. Pahami hak konstitusional Anda berdasarkan UU Nomor 20 Tahun 2025 tentang KUHAP Baru yang berlaku mulai 2026.
 - [Ganti Kualitas Rakyat: Kunci Mendapatkan Pemimpin Idaman](https://dalam.web.id/lainnya/ganti-kualitas-rakyat) : Membahas fenomena ganti presiden vs ganti kualitas rakyat. Benarkah pemimpin adalah cerminan rakyatnya sendiri? Simak kupasan tuntas berdasar dalil dan logika.
 - [KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen](https://dalam.web.id/lainnya/kuota-hangus-dipertahankan-operator) : KUOTA HANGUS Dipertahankan OPERATOR menjadi isu besar di Indonesia. Pelajari dampak ekonomi, hukum, dan masa depan hak konsumen dalam sistem kuota internet.
 - [Anak Kita Sudah Bisa Berbohong? Simak Alasan Psikologis & Solusinya](https://dalam.web.id/lainnya/anak-berbohong-dan-cara-mengatasinya) : anak berbohong dan bagaimana cara mengatasinya? Pelajari panduan psikologis lengkap untuk orang tua dalam membangun kejujuran pada anak tanpa hukuman.
