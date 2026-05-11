@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/10/2026, 2:00:34 PM
+Generated on: 5/11/2026, 3:45:03 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/10/2026, 2:00:34 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.80 | LLM Index v19.80 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.81 | LLM Index v19.81 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -468,6 +468,7 @@ Generated on: 5/10/2026, 2:00:34 PM
 | `artikel/hadits-ahmad-9157-larangan-takhbib.html` | Larangan Merusak Rumah Tangga (Takhbib): Hadits Ahmad 9157 - Layar Kosong | Larangan Merusak Rumah Tangga (Takhbib): Hadits Ahmad 9157 | Layar Kosong | ✅ Perfect |
 | `artikel/hadits-mungkar-tangan-lisan-hati.html` | Hadits Mungkar: Ketika Tangan, Lisan, dan Hati Tak Cukup - Jangan Sekutu Kebatilan - Layar Kosong | Hadits Mungkar: Ketika Tangan, Lisan, dan Hati Tak Cukup - Jangan Sekutu Kebatilan | Layar Kosong | ✅ Perfect |
 | `artikel/hak-kekayaan-intelektual-dalam-islam.html` | Hak Kekayaan Intelektual dalam Syariat Islam - Layar Kosong | Hak Kekayaan Intelektual dalam Syariat Islam | Layar Kosong | ✅ Perfect |
+| `artikel/hak-konstitusional-surat-panggilan-polisi-uu-20-2025.html` | Surat Panggilan Polisi? Kenali Hak Konstitusional UU No 20 Tahun 2025 - Layar Kosong | Surat Panggilan Polisi? Kenali Hak Konstitusional UU No 20 Tahun 2025 | Layar Kosong | ✅ Perfect |
 | `artikel/haki-dalam-islam.html` | Hak Cipta dalam Islam: Menghormati Karya Orang Lain - Layar Kosong | Hak Cipta dalam Islam: Menghormati Karya Orang Lain | Layar Kosong | ✅ Perfect |
 | `artikel/handbrake-preset-custom.html` | Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬 - Layar Kosong | Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬 | Layar Kosong | ✅ Perfect |
 | `artikel/hapus-os-ilegal-aman.html` | Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB - Layar Kosong | Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB | Layar Kosong | ✅ Perfect |
@@ -1621,6 +1622,7 @@ Generated on: 5/10/2026, 2:00:34 PM
 | `lainnya/ganti-kualitas-rakyat.html` | Ganti Kualitas Rakyat: Kunci Mendapatkan Pemimpin Idaman - Layar Kosong | Ganti Kualitas Rakyat: Kunci Mendapatkan Pemimpin Idaman | Layar Kosong | ✅ Perfect |
 | `lainnya/guru-honorer-vs-tukang-cuci-ompreng.html` | Guru Honorer Rp400rb vs Tukang Cuci Ompreng Rp2,4jt: Logika Mana yang Waras? - Layar Kosong | Guru Honorer Rp400rb vs Tukang Cuci Ompreng Rp2,4jt: Logika Mana yang Waras? | Layar Kosong | ✅ Perfect |
 | `lainnya/hadits-ahmad-9157-larangan-takhbib.html` | Larangan Merusak Rumah Tangga (Takhbib): Hadits Ahmad 9157 - Layar Kosong | Larangan Merusak Rumah Tangga (Takhbib): Hadits Ahmad 9157 | Layar Kosong | ✅ Perfect |
+| `lainnya/hak-konstitusional-surat-panggilan-polisi-uu-20-2025.html` | Surat Panggilan Polisi? Kenali Hak Konstitusional UU No 20 Tahun 2025 - Layar Kosong | Surat Panggilan Polisi? Kenali Hak Konstitusional UU No 20 Tahun 2025 | Layar Kosong | ✅ Perfect |
 | `lainnya/harga-bbm-turun-2026.html` | Kado Tahun Baru 2026: Harga BBM Non-Subsidi Turun! Pertamina, Shell, BP, Vivo Kompak Kasih Diskon 🚀 - Layar Kosong | Kado Tahun Baru 2026: Harga BBM Non-Subsidi Turun! Pertamina, Shell, BP, Vivo Kompak Kasih Diskon 🚀 | Layar Kosong | ✅ Perfect |
 | `lainnya/harga-sebuah-kapal-induk-dan-sepiring-makan-anak-sekolah.html` | Harga Sebuah Kapal Induk dan Sepiring Makan Anak Sekolah - Layar Kosong | Harga Sebuah Kapal Induk dan Sepiring Makan Anak Sekolah | Layar Kosong | ✅ Perfect |
 | `lainnya/hasad-adalah-penyakit-hati.html` | Hasad: Penyakit Hati yang Harus Dijauhi 😔 - Layar Kosong | Hasad: Penyakit Hati yang Harus Dijauhi 😔 | Layar Kosong | ✅ Perfect |
