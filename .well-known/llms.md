@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.84
+document_version: 19.85
 last_updated: 2026-05-12
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 12 Mei 2026)
-> Menampilkan 1257 artikel versi 19.84.
+> Menampilkan 1258 artikel versi 19.85.
 
 ## Gaya Hidup
 - [Kontras Pemimpin di KTT ASEAN Cebu Antara Kesederhanaan dan Gengsi Negara](https://dalam.web.id/gaya-hidup/kontras-pemimpin-ktt-asean-cebu) : Perbandingan gaya kepemimpinan Lawrence Wong dan Prabowo di KTT ASEAN Cebu dari kacamata ekonomi dan kesederhanaan pemimpin bangsa
@@ -1049,6 +1049,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Mengupas Makna Publisher Creator Author dan Owner di Era Digital](https://dalam.web.id/warta-tekno/makna-publisher-creator-author-owner) : Sering tertukar Pahami perbedaan mendasar antara Publisher Creator Author dan Owner terutama dalam konteks SEO Hak Cipta dan Schema Data
 - [Cara Cepat Hapus Email Sampah Gmail dengan Kode Rahasia](https://dalam.web.id/warta-tekno/panduan-kelola-inbox-gmail) : Cara cepat hapus ribuan email sampah di Gmail menggunakan kode rahasia filter pencarian. Solusi storage penuh tanpa ribet dan 100 persen aman.
 - [Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows](https://dalam.web.id/warta-tekno/panduan-robocopy-sync-backup) : Cara pakai Robocopy untuk sync dan backup data Windows. Solusi error auditing, script batch (.bat), optimasi WLAN, dan perbandingan dengan rsync.
 - [Panduan Lengkap Robocopy: Backup, Sinkronisasi, dan Optimasi 2026](https://dalam.web.id/warta-tekno/panduan-lengkap-robocopy-backup-optimasi) : Panduan santai dan lengkap Robocopy untuk pemula sampai mahir. Bahas sintaks, atasi error auditing, penjadwalan Task Scheduler, perbandingan rsync, hingga optimasi WLAN untuk file besar.
