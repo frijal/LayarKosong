@@ -25,9 +25,6 @@ const STOPWORDS     = new Set([
   "saya", "ini", "gue", "gua", "elu", "elo"
 ]);
 
-// Regex YouTube embed — dipakai matchAll agar semua ID per halaman terdeteksi
-const YT_EMBED_REGEX = /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/gi;
-
 // ========== UTILITIES ==========
 
 // Sinkron dengan slug() di diet.ts — handle emoji & karakter spesial
@@ -42,51 +39,33 @@ const slugify = (t: unknown): string =>
 const categoryNameClean = (c: string): string =>
   String(c).trim()
     .replace(/^[^\w\s]*/u, '')   // hapus emoji di awal
-    .replace(/-+/g, " ")         // FIX: handle multiple dashes
+    .replace(/-/g, " ")
     .replace(/\b\w/g, (m) => m.toUpperCase());
 
 function buildKeywords(headline: string, category: string, slug: string): string {
   const words = String(headline || "")
     .toLowerCase()
     .split(/[^\w]+/)
-    .filter(w => w.length > 2 && !STOPWORDS.has(w)); // FIX: > 2 agar singkatan seperti SEO/API aman
+    .filter(w => w.length > 3 && !STOPWORDS.has(w));
 
   const base = new Set<string>(words);
   base.add(String(category).toLowerCase());
-  slug.split("-").forEach(s => { if (s.length > 2) base.add(s); });
+  slug.split("-").forEach(s => { if (s.length > 3) base.add(s); });
   base.add("layar kosong");
 
   return Array.from(base).slice(0, 12).join(", ");
 }
 
-/**
- * Ekstrak semua YouTube ID dari konten HTML menggunakan matchAll.
- * Menggunakan Set untuk deduplikasi, jadi video yang sama di-embed 2x 
- * cuma dihitung 1 VideoObject.
- */
-function extractYoutubeIds(html: string): string[] {
-  const ids = new Set<string>();
-  for (const match of html.matchAll(YT_EMBED_REGEX)) {
-    ids.add(match[1]);
-  }
-  return [...ids];
-}
-
-// Tambahan parameter `htmlContent` untuk mendeteksi iframe YouTube secara otomatis
-function buildCombinedSchema(category: string, article: ArticleEntry, htmlContent: string): string {
+function buildCombinedSchema(category: string, article: ArticleEntry): string {
   const [headline, filename, image, iso_date, desc] = article;
 
-  const catSlug        = slugify(category);
-  const fileSlug       = String(filename).replace(/\.html$/i, "").replace(/^\//, "");
-  const cleanBase      = BASE_URL.replace(/\/+$/, "");
-  const articleUrl     = `${cleanBase}/${catSlug}/${fileSlug}`;
+  const catSlug       = slugify(category);
+  const fileSlug      = String(filename).replace(/\.html$/i, "").replace(/^\//, "");
+  const cleanBase     = BASE_URL.replace(/\/+$/, "");
+  const articleUrl    = `${cleanBase}/${catSlug}/${fileSlug}`;
   const catDisplayName = categoryNameClean(category);
 
-  // Ambil semua ID unik YouTube yang ada di halaman ini
-  const youtubeIds = extractYoutubeIds(htmlContent);
-
-  // Gunakan type 'any' agar leluasa nge-push array ke dalam graph
-  const schemaData: any = {
+  const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -131,7 +110,7 @@ function buildCombinedSchema(category: string, article: ArticleEntry, htmlConten
         "@type": "BreadcrumbList",
         "@id": `${articleUrl}#breadcrumb`,
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Beranda",        "item": cleanBase },
+          { "@type": "ListItem", "position": 1, "name": "Beranda",       "item": cleanBase },
           { "@type": "ListItem", "position": 2, "name": catDisplayName,  "item": `${cleanBase}/${catSlug}` },
           { "@type": "ListItem", "position": 3, "name": headline,        "item": articleUrl }
         ]
@@ -142,33 +121,14 @@ function buildCombinedSchema(category: string, article: ArticleEntry, htmlConten
         "name": "Navigasi Legal",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Privacy & Legal Info", "item": `${cleanBase}/privacy` },
-          { "@type": "ListItem", "position": 2, "name": "Disclaimer",             "item": `${cleanBase}/disclaimer` },
-          { "@type": "ListItem", "position": 3, "name": "About",                  "item": `${cleanBase}/about` },
-          { "@type": "ListItem", "position": 4, "name": "Security Policy",        "item": `${cleanBase}/security-policy` },
-          { "@type": "ListItem", "position": 5, "name": "Lisensi",                "item": `${cleanBase}/lisensi` }
+          { "@type": "ListItem", "position": 2, "name": "Disclaimer",           "item": `${cleanBase}/disclaimer` },
+          { "@type": "ListItem", "position": 3, "name": "About",                "item": `${cleanBase}/about` },
+          { "@type": "ListItem", "position": 4, "name": "Security Policy",      "item": `${cleanBase}/security-policy` },
+          { "@type": "ListItem", "position": 5, "name": "Lisensi",              "item": `${cleanBase}/lisensi` }
         ]
       }
     ]
   };
-
-  // FITUR BARU: Push VideoObject untuk setiap YouTube ID unik yang ditemukan
-  // Masing-masing dapat @id unik agar tidak error di GSC
-  youtubeIds.forEach((id, index) => {
-    schemaData["@graph"].push({
-      "@type": "VideoObject",
-      "@id": `${articleUrl}#video-${index}`,
-      "name": headline,
-      "description": (desc || headline).substring(0, 2048), // Batas aman GSC
-      "thumbnailUrl": [
-        `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
-        `https://img.youtube.com/vi/${id}/hqdefault.jpg`
-      ],
-      "uploadDate": iso_date,
-      "embedUrl": `https://www.youtube.com/embed/${id}`,
-      "url": `https://www.youtube.com/watch?v=${id}`,
-      "publisher": { "@id": `${cleanBase}/#organization` }
-    });
-  });
 
   return `<script type="application/ld+json">${JSON.stringify(schemaData)}</script>\n`;
 }
@@ -177,9 +137,7 @@ function buildCombinedSchema(category: string, article: ArticleEntry, htmlConten
 async function main() {
   try {
     const data: ArtikelData = await file("artikel.json").json();
-    
-    // Tambah counter untuk video
-    const results = { changed: 0, skipped: 0, missing: 0, withVideo: 0, totalVideos: 0 };
+    const results = { changed: 0, skipped: 0, missing: 0 };
     const signature = `<noscript>${SIGNATURE_KEY}_${new Date().toISOString().slice(0, 10)}</noscript>`;
 
     for (const [category, articles] of Object.entries(data)) {
@@ -204,14 +162,11 @@ async function main() {
           continue;
         }
 
-        // 1. Bersihkan schema lama DULU (Fix "Ghost Video" Bug)
+        // 1. Bersihkan schema lama
         html = html.replace(SCHEMA_REGEX, "");
 
-        // Deteksi video setelah dibersihkan (hanya memindai iframe yang benar-benar ada)
-        const ytIds = extractYoutubeIds(html);
-
-        // 2. Build schema baru (passing html untuk di-scan ID YouTube-nya)
-        const schema = buildCombinedSchema(category, article, html);
+        // 2. Build schema baru
+        const schema = buildCombinedSchema(category, article);
 
         // 3. Injeksi schema — prioritas: sebelum <style>, lalu </head>, lalu prepend
         if (/<style/i.test(html)) {
@@ -222,32 +177,24 @@ async function main() {
           html = schema + html;
         }
 
-        // 4. Injeksi signature di akhir file — FIX: Perbaikan Regex penutup </body>
-        if (/<\/body>/i.test(html)) {
-          html = html.replace(/<\/body>/i, `\n${signature}\n</body>`);
+        // 4. Injeksi signature di akhir file — rapat ke </html>
+        if (html.includes('</body>')) {
+          html = html.replace(/<\/body>\s*$/i, '').trimEnd() + `${signature}</body>`;
         } else {
-          html = html.trimEnd() + `\n${signature}`;
+          html = html.trimEnd() + signature;
         }
 
         // 5. Tulis balik ke file
         await write(htmlPath, html);
 
-        // Update stats log
         results.changed++;
-        if (ytIds.length > 0) {
-          results.withVideo++;
-          results.totalVideos += ytIds.length;
-        }
-
-        const videoLabel = ytIds.length > 0 ? ` 🎬 ×${ytIds.length}` : "";
-        console.log(`✅ Injected${videoLabel}: ${htmlPath}`);
+        console.log(`✅ Injected: ${htmlPath}`);
       }
     }
 
     console.log(`
 🚀 SEO Injection Selesai!
-🆕 Baru diproses  : ${results.changed}
-🎬 Artikel + video: ${results.withVideo} (${results.totalVideos} VideoObject)
+🆕 Baru diproses : ${results.changed}
 ⏭️  Di-skip        : ${results.skipped}
 ❌ File hilang    : ${results.missing}`);
 
