@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.82
+document_version: 19.83
 last_updated: 2026-05-12
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 12 Mei 2026)
-> Menampilkan 1257 artikel versi 19.82.
+> Menampilkan 1257 artikel versi 19.83.
 
 ## Gaya Hidup
+- [Kontras Pemimpin di KTT ASEAN Cebu Antara Kesederhanaan dan Gengsi Negara](https://dalam.web.id/gaya-hidup/kontras-pemimpin-ktt-asean-cebu) : Perbandingan gaya kepemimpinan Lawrence Wong dan Prabowo di KTT ASEAN Cebu dari kacamata ekonomi dan kesederhanaan pemimpin bangsa
 - [Jenis Piring yang Aman untuk Kesehatan Keluarga: Fakta Penting](https://dalam.web.id/gaya-hidup/jenis-piring-aman-kesehatan) : Jenis piring yang aman untuk kesehatan keluarga sangat penting diperhatikan. Pelajari bahan terbaik, risiko tersembunyi, dan cara memilih piring yang aman untuk makanan panas dan dingin.
 - [Kerja Formalitas, Ngopi Rutinitas: Fakta Budaya Kerja Modern](https://dalam.web.id/gaya-hidup/kerja-formalitas-ngopi-rutinitas) : Kerja formalitas, ngopi rutinitas menjadi fenomena nyata di dunia kerja modern. Temukan penyebab, dampak, dan solusi agar produktivitas kembali bermakna.
 - [Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol](https://dalam.web.id/gaya-hidup/perpres-nomor-27-tahun-2026-potongan-ojol) : Perpres Nomor 27 Tahun 2026 mengatur perlindungan pekerja transportasi online dengan batas potongan aplikator maksimal 8%. Simak dampak, fakta, dan analisis lengkapnya di sini.
@@ -331,6 +332,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum](https://dalam.web.id/jejak-sejarah/kesultanan-utsmaniyah) : Narasi santai tentang lahir dan bertumbuhnya Kesultanan Utsmaniyah: dari Osman I, Orhan I, Murad I, Bayezid I, hingga masa Interregnum. Lengkap, responsif, dan interaktif.
 
 ## Lainnya
+- [Antara Pajak dan Palak: Potret Buram Akamsi serta Negara yang Absen](https://dalam.web.id/lainnya/antara-pajak-dan-palak) : Kisah nyata dan tantangan pengusaha properti menghadapi pungli akamsi, oknum berseragam, hingga wartawan bodong saat membangun. Di mana peran negara?
 - [Surat Panggilan Polisi? Kenali Hak Konstitusional UU No 20 Tahun 2025](https://dalam.web.id/lainnya/hak-konstitusional-surat-panggilan-polisi-uu-20-2025) : Jangan panik saat menerima surat panggilan polisi. Pahami hak konstitusional Anda berdasarkan UU Nomor 20 Tahun 2025 tentang KUHAP Baru yang berlaku mulai 2026.
 - [Ganti Kualitas Rakyat: Kunci Mendapatkan Pemimpin Idaman](https://dalam.web.id/lainnya/ganti-kualitas-rakyat) : Membahas fenomena ganti presiden vs ganti kualitas rakyat. Benarkah pemimpin adalah cerminan rakyatnya sendiri? Simak kupasan tuntas berdasar dalil dan logika.
 - [KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen](https://dalam.web.id/lainnya/kuota-hangus-dipertahankan-operator) : KUOTA HANGUS Dipertahankan OPERATOR menjadi isu besar di Indonesia. Pelajari dampak ekonomi, hukum, dan masa depan hak konsumen dalam sistem kuota internet.
@@ -719,8 +721,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Antara Pajak dan Palak: Potret Buram Akamsi serta Negara yang Absen](https://dalam.web.id/sistem-terbuka/antara-pajak-dan-palak) : Kisah nyata dan tantangan pengusaha properti menghadapi pungli akamsi, oknum berseragam, hingga wartawan bodong saat membangun. Di mana peran negara?
-- [Kontras Pemimpin di KTT ASEAN Cebu Antara Kesederhanaan dan Gengsi Negara](https://dalam.web.id/sistem-terbuka/kontras-pemimpin-ktt-asean-cebu) : Perbandingan gaya kepemimpinan Lawrence Wong dan Prabowo di KTT ASEAN Cebu dari kacamata ekonomi dan kesederhanaan pemimpin bangsa
 - [Generator Label Mentari - Barcode UI](https://dalam.web.id/sistem-terbuka/generator-label-barcode) : Generator Label Mentari dengan antarmuka Barcode UI dan layar kosong untuk desain label yang sederhana, responsif, dan mudah digunakan.
 - [Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It?](https://dalam.web.id/sistem-terbuka/linux-untuk-penulis-dan-kreator-2026) : Setelah bertahun-tahun dianggap kurang cocok untuk penulis, Linux di 2026 kini punya ekosistem menulis yang matang. Dari FocusWriter hingga Obsidian, Ubuntu Studio 26.04, dan alasan kenapa penulis mulai beralih.
 - [Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang](https://dalam.web.id/sistem-terbuka/cachyos-april-2026-update) : Update CachyOS April 2026 hadir dengan manajer paket GUI baru bernama Shelly, DNS-over-HTTPS lewat blocky, fingerprint sudo, penjadwal NVMe Kyber, dan berbagai peningkatan gaming. Simak semua perubahan dan cara updatenya di sini.
