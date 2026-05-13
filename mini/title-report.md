@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/12/2026, 3:22:21 PM
+Generated on: 5/13/2026, 3:25:16 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/12/2026, 3:22:21 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.84 | LLM Index v19.84 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.85 | LLM Index v19.85 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -729,6 +729,7 @@ Generated on: 5/12/2026, 3:22:21 PM
 | `artikel/makanan-halal-thayyib-larangan-berlebihan.html` | Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan - Layar Kosong | Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan | Layar Kosong | ✅ Perfect |
 | `artikel/makna-at-taghabun-ayat-14.html` | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian - Layar Kosong | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian | Layar Kosong | ✅ Perfect |
 | `artikel/makna-az-zumar-53.html` | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan - Layar Kosong | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan | Layar Kosong | ✅ Perfect |
+| `artikel/makna-publisher-creator-author-owner.html` | Mengupas Makna Publisher Creator Author dan Owner di Era Digital - Layar Kosong | Mengupas Makna Publisher Creator Author dan Owner di Era Digital | Layar Kosong | ✅ Perfect |
 | `artikel/malaysia-tolak-board-of-peace-trump.html` | Malaysia Tolak Geng Barunya Trump: Kenapa Board of Peace Dianggap Sampah Diplomasi? - Layar Kosong | Malaysia Tolak Geng Barunya Trump: Kenapa Board of Peace Dianggap Sampah Diplomasi? | Layar Kosong | ✅ Perfect |
 | `artikel/manajer-kata-sandi-firefox.html` | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu - Layar Kosong | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu | Layar Kosong | ✅ Perfect |
 | `artikel/manfaat-bangun-subuh-kedokteran-modern.html` | Manfaat Bangun Subuh dari Pandangan Kedokteran Modern, Rahasia Tubuh Bugar dan Otak Cemerlang - Layar Kosong | Manfaat Bangun Subuh dari Pandangan Kedokteran Modern, Rahasia Tubuh Bugar dan Otak Cemerlang | Layar Kosong | ✅ Perfect |
@@ -2463,6 +2464,7 @@ Generated on: 5/12/2026, 3:22:21 PM
 | `warta-tekno/logika-matematika-idul-fitri-2026.html` | Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari - Layar Kosong | Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari | Layar Kosong | ✅ Perfect |
 | `warta-tekno/main-branch-protection.html` | Apa Artinya Main Branch Isn't Protected di GitHub? 🤔 - Layar Kosong | Apa Artinya Main Branch Isn't Protected di GitHub? 🤔 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/main-branch-unprotected.html` | GitHub Apakah main branch yang tidak protected itu berbahaya? (Jawaban santai tapi lengkap) - Layar Kosong | GitHub Apakah main branch yang tidak protected itu berbahaya? (Jawaban santai tapi lengkap) | Layar Kosong | ✅ Perfect |
+| `warta-tekno/makna-publisher-creator-author-owner.html` | Mengupas Makna Publisher Creator Author dan Owner di Era Digital - Layar Kosong | Mengupas Makna Publisher Creator Author dan Owner di Era Digital | Layar Kosong | ✅ Perfect |
 | `warta-tekno/manajer-kata-sandi-firefox.html` | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu - Layar Kosong | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu | Layar Kosong | ✅ Perfect |
 | `warta-tekno/matikan-ai-firefox.html` | Matikan Fitur AI Chat di Browser Firefox! Begini Caranya yang Gampang & Santai 🍥 - Layar Kosong | Matikan Fitur AI Chat di Browser Firefox! Begini Caranya yang Gampang & Santai 🍥 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/memahami-ikon-github-actions.html` | Membongkar Misteri Ikon di Log GitHub Actions - Panduan Lengkap - Layar Kosong | Membongkar Misteri Ikon di Log GitHub Actions - Panduan Lengkap | Layar Kosong | ✅ Perfect |
