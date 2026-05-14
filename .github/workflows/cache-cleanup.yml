@@ -2,7 +2,7 @@ name: "XCleanup Old GitHub Actions Cache"
 
 on:
   schedule:
-    - cron: "30 0 */6 * *"
+    - cron: 40 0 */6 * *
   workflow_dispatch: # bisa dijalankan manual
 
 permissions:
