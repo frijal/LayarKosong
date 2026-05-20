@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/19/2026, 4:14:41 PM
+Generated on: 5/20/2026, 4:20:55 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/19/2026, 4:14:41 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v19.85 | LLM Index v19.85 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v19.86 | LLM Index v19.86 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1018,6 +1018,7 @@ Generated on: 5/19/2026, 4:14:41 PM
 | `artikel/pusat-instalasi-linux.html` | Pusat Instalasi Linux: Ide Gila yang Dibutuhkan - Layanan Tatap Muka untuk Semua - Layar Kosong | Pusat Instalasi Linux: Ide Gila yang Dibutuhkan - Layanan Tatap Muka untuk Semua | Layar Kosong | ✅ Perfect |
 | `artikel/qanaah-kekayaan-hati-keberuntungan.html` | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati - Layar Kosong | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati | Layar Kosong | ✅ Perfect |
 | `artikel/qordoba-kilau-peradaban-andalusia.html` | Qordoba: Kilau Peradaban Andalusia - Layar Kosong | Qordoba: Kilau Peradaban Andalusia | Layar Kosong | ✅ Perfect |
+| `artikel/qrcodegenerator.html` | QR Code Generator - Buat QR Code Gratis & Cepat - Layar Kosong | QR Code Generator - Buat QR Code Gratis & Cepat | Layar Kosong | ✅ Perfect |
 | `artikel/queen-annes-revenge.html` | Queen Anne’s Revenge: Kisah La Concorde & Blackbeard - Layar Kosong | Queen Anne’s Revenge: Kisah La Concorde & Blackbeard | Layar Kosong | ✅ Perfect |
 | `artikel/quickbooks-ai-keuangan-umkm.html` | QuickBooks AI: Asisten Keuangan Cerdas untuk UMKM - Layar Kosong | QuickBooks AI: Asisten Keuangan Cerdas untuk UMKM | Layar Kosong | ✅ Perfect |
 | `artikel/qunut-atau-tidak-qunut.html` | Qunut atau tidak qunut? Tenang, jangan ribut - Layar Kosong | Qunut atau tidak qunut? Tenang, jangan ribut | Layar Kosong | ✅ Perfect |
@@ -1689,6 +1690,7 @@ Generated on: 5/19/2026, 4:14:41 PM
 | `lainnya/prosedur-laporan-polisi-diterima.html` | Cara Agar Laporan Polisi Segera Diterima dan Tidak Ditolak - Layar Kosong | Cara Agar Laporan Polisi Segera Diterima dan Tidak Ditolak | Layar Kosong | ✅ Perfect |
 | `lainnya/pt-badak-ngl.html` | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat - Layar Kosong | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat | Layar Kosong | ✅ Perfect |
 | `lainnya/qanaah-kekayaan-hati-keberuntungan.html` | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati - Layar Kosong | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati | Layar Kosong | ✅ Perfect |
+| `lainnya/qrcodegenerator.html` | QR Code Generator - Buat QR Code Gratis & Cepat - Layar Kosong | QR Code Generator - Buat QR Code Gratis & Cepat | Layar Kosong | ✅ Perfect |
 | `lainnya/rashdul-qibla.html` | Rashdul Qibla: 2 Waktu Emas Cek Arah Kiblat Paling Akurat Tanpa Kompas - Layar Kosong | Rashdul Qibla: 2 Waktu Emas Cek Arah Kiblat Paling Akurat Tanpa Kompas | Layar Kosong | ✅ Perfect |
 | `lainnya/refleksi-kemanusiaan-gratis-untuk-membutuhkan.html` | Refleksi Kemanusiaan: Pelajaran dari "Gratis untuk yang Membutuhkan" - Layar Kosong | Refleksi Kemanusiaan: Pelajaran dari "Gratis untuk yang Membutuhkan" | Layar Kosong | ✅ Perfect |
 | `lainnya/rencana-wfa-sekolah-daring-hemat-bbm.html` | WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua - Layar Kosong | WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua | Layar Kosong | ✅ Perfect |
