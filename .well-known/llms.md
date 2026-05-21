@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.0
+document_version: 20.1
 last_updated: 2026-05-21
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,12 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 21 Mei 2026)
-> Menampilkan 1270 artikel versi 20.0.
+> Menampilkan 1270 artikel versi 20.1.
 
 ## Gaya Hidup
+- [Duo Maut RPUL dan RPAL: Search Engine Asli Generasi 90an Sebelum Era AI 🌍✨](https://dalam.web.id/gaya-hidup/rpul-rpal-search-engine-90an) : Mengenang kembali buku RPUL dan RPAL sebagai search engine legendaris anak sekolah generasi 90an sebelum era kecerdasan buatan AI tahun 2026 berkembang pesat.
+- [Gen Z Diejek Gak Bisa Ngitung: Beneran Tolol atau Otaknya Emang Lebih Canggih? 🧠💻](https://dalam.web.id/gaya-hidup/gen-z-diejek-gak-bisa-ngitung) : Membongkar alasan mengapa Gen Z sering diejek tidak bisa matematika dasar atau punya tulisan jelek. Benarkah mereka malas atau ada penjelasan neurosains di baliknya?
+- [Misteri Tarif Ojol Indonesia: Kenapa Bisa Semurah Itu? 🏍️💨](https://dalam.web.id/gaya-hidup/ojol-murah-indonesia) : Mengulas alasan kenapa tarif ojek online di Indonesia sangat murah dibandingkan luar negeri dan melihat perjuangan luar biasa para driver ojol.
 - [Kontras Pemimpin di KTT ASEAN Cebu Antara Kesederhanaan dan Gengsi Negara](https://dalam.web.id/gaya-hidup/kontras-pemimpin-ktt-asean-cebu) : Perbandingan gaya kepemimpinan Lawrence Wong dan Prabowo di KTT ASEAN Cebu dari kacamata ekonomi dan kesederhanaan pemimpin bangsa
 - [Jenis Piring yang Aman untuk Kesehatan Keluarga: Fakta Penting](https://dalam.web.id/gaya-hidup/jenis-piring-aman-kesehatan) : Jenis piring yang aman untuk kesehatan keluarga sangat penting diperhatikan. Pelajari bahan terbaik, risiko tersembunyi, dan cara memilih piring yang aman untuk makanan panas dan dingin.
 - [Kerja Formalitas, Ngopi Rutinitas: Fakta Budaya Kerja Modern](https://dalam.web.id/gaya-hidup/kerja-formalitas-ngopi-rutinitas) : Kerja formalitas, ngopi rutinitas menjadi fenomena nyata di dunia kerja modern. Temukan penyebab, dampak, dan solusi agar produktivitas kembali bermakna.
@@ -730,8 +733,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Duo Maut RPUL dan RPAL: Search Engine Asli Generasi 90an Sebelum Era AI 🌍✨](https://dalam.web.id/sistem-terbuka/rpul-rpal-search-engine-90an) : Mengenang kembali buku RPUL dan RPAL sebagai search engine legendaris anak sekolah generasi 90an sebelum era kecerdasan buatan AI tahun 2026 berkembang pesat.
-- [Misteri Tarif Ojol Indonesia: Kenapa Bisa Semurah Itu? 🏍️💨](https://dalam.web.id/sistem-terbuka/ojol-murah-indonesia) : Mengulas alasan kenapa tarif ojek online di Indonesia sangat murah dibandingkan luar negeri dan melihat perjuangan luar biasa para driver ojol.
 - [Generator Label Mentari - Barcode UI](https://dalam.web.id/sistem-terbuka/generator-label-barcode) : Generator Label Mentari dengan antarmuka Barcode UI dan layar kosong untuk desain label yang sederhana, responsif, dan mudah digunakan.
 - [Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It?](https://dalam.web.id/sistem-terbuka/linux-untuk-penulis-dan-kreator-2026) : Setelah bertahun-tahun dianggap kurang cocok untuk penulis, Linux di 2026 kini punya ekosistem menulis yang matang. Dari FocusWriter hingga Obsidian, Ubuntu Studio 26.04, dan alasan kenapa penulis mulai beralih.
 - [Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang](https://dalam.web.id/sistem-terbuka/cachyos-april-2026-update) : Update CachyOS April 2026 hadir dengan manajer paket GUI baru bernama Shelly, DNS-over-HTTPS lewat blocky, fingerprint sudo, penjadwal NVMe Kyber, dan berbagai peningkatan gaming. Simak semua perubahan dan cara updatenya di sini.
@@ -992,7 +993,7 @@ document_type: llm_behavior_and_entity_guidance
 - [WiFi Realtek Linux: Sinyal Lemah Fix](https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah) : Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.
 - [Membuat USB Bootable Ubuntu Tanpa USB Creator](https://dalam.web.id/sistem-terbuka/usb-bootable-ubuntu) : Panduan membuat USB bootable Ubuntu tanpa aplikasi USB Creator, hanya dengan menggunakan perintah
 - [Kombinasi Tombol Pintas Synaptic Package Manager](https://dalam.web.id/sistem-terbuka/synaptic-shortcuts) : Panduan interaktif kombinasi tombol pintas (shortcut) Synaptic Package Manager di Debian/Ubuntu, lengkap dengan tooltip dan tombol copy.
-- [Membersihkan Symbolic Link Rusak dengan `symlinks` di Linux](https://dalam.web.id/sistem-terbuka/symlinks) : Panduan membersihkan symbolic link atau shortcut yang rusak (dangling) menggunakan utilitas
+- [Membersihkan Symbolic Link Rusak dengan symlinks di Linux](https://dalam.web.id/sistem-terbuka/symlinks) : Panduan membersihkan symbolic link atau shortcut yang rusak (dangling) menggunakan utilitas
 - [Cara Memeriksa Kondisi Baterai di Linux via Terminal](https://dalam.web.id/sistem-terbuka/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line) : cara memeriksa kondisi, kapasitas, dan status baterai laptop di Linux menggunakan perintah command line seperti upower, acpi, dan lainnya.
 - [Skrip Canggih Chroot di Linux: Setup & Cleanup Otomatis](https://dalam.web.id/sistem-terbuka/skrip-otomatis-chroot-linux) : Capek ngetik perintah mount/umount manual saat pakai chroot? Pakai skrip bash canggih ini untuk otomatisasi setup dan cleanup chroot di Linux dengan aman dan konsisten.
 - [Ubuntu vs Windows: Pengalaman Instal Pertama - Jujur Tapi Santai](https://dalam.web.id/sistem-terbuka/ubuntu-vs-windows-2010) : Perbandingan santai Ubuntu vs Windows saat instal pertama: software bawaan, dukungan perangkat keras, plus catatan adil. Dilengkapi tabel responsif, galeri, dan tombol berbagi.
@@ -1001,8 +1002,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Memperbaiki GRUB Bootloader (Debian & Turunannya)](https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya) : memperbaiki GRUB bootloader yang rusak pada Debian dan turunannya seperti Ubuntu dan Linux Mint, mulai dari live USB hingga reinstall GRUB dengan aman.
 - [Perbaikan Manual GRUB Bootloader (Debian & Turunannya)](https://dalam.web.id/sistem-terbuka/fix-grub-manual) : Panduan langkah demi langkah untuk memperbaiki GRUB bootloader secara manual di Debian/Ubuntu menggunakan Live USB dan chroot.
 - [Bundle Perbaikan GRUB Bootloader (Debian & Turunannya)](https://dalam.web.id/sistem-terbuka/grub-recovery-bundle) : Kumpulan metode untuk memperbaiki GRUB bootloader di Debian/Ubuntu, baik secara otomatis dengan skrip, manual, maupun troubleshooting untuk kasus UEFI.
-- [Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit-lengkap) : Jangan bingung dengan hasil
-- [Mengupas Hasil 'apt --audit': Arti & Solusi Lengkapnya](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit) : Hasil
+- [Penjelasan Super Lengkap: Membedah Hasil 'apt —audit' Baris per Baris](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit-lengkap) : Jangan bingung dengan hasil
+- [Mengupas Hasil 'apt —audit': Arti & Solusi Lengkapnya](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit) : Hasil
 - [Ringkasan Keren: Windows vs Linux, Beda Kebiasaan Tanpa Debat](https://dalam.web.id/sistem-terbuka/ringkasan-windows-vs-linux) : Ini ringkasan seru dari artikel perbandingan kebiasaan pengguna Windows dan Linux. Fokusnya pada instalasi aplikasi, kesiapan sistem, dan kesimpulan yang adil. Lengkap dengan fitur interaktif!
 - [Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas](https://dalam.web.id/sistem-terbuka/memahami-rating-distro-linux) : Pernah lihat ranking distro Linux di DistroWatch? Apa artinya? Panduan santai ini membahas cara kerja rating, mengapa MX Linux populer, dan cara memilih distro yang tepat untukmu.
 - [KPLI Balikpapan - Rilis Party Ubuntu 16.04 di DiLo Telkom](https://dalam.web.id/sistem-terbuka/kpli-balikpapan-rilis-party-ubuntu-1604) : KPLI Balikpapan ngisi waktu luang bareng pelajar SMK: rilis party Ubuntu 16.04 di ruang DiLo Telkom. Cerita, foto, dan semangat open source.
@@ -1043,7 +1044,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Install Sabily - Panduan Lengkap Linux Muslim Edition](https://dalam.web.id/sistem-terbuka/install-sabily) : Panduan instalasi Sabily Linux – distribusi Ubuntu berbasis Muslim Edition. Ditulis oleh Rijal Fakhrul dengan gaya santai, untuk kamu yang ingin belajar instalasi Linux dengan mudah.
 - [Upgrade Online Ubuntu 10.04 - Panduan Lengkap](https://dalam.web.id/sistem-terbuka/upgrade-online-10-04) : cara melakukan upgrade online Ubuntu. Ditulis oleh Rijal Fakhrul dalam gaya santai, disertai tips aman dan langkah-langkah praktis untuk pemula.
 - [Kubuntu 11.10 - Panduan dan Pengalaman](https://dalam.web.id/sistem-terbuka/kubuntu-11-10) : Panduan dan pengalaman menggunakan Kubuntu 11.10: tampilan elegan berbasis KDE, ringan tapi modern. Artikel santai oleh Rijal Fakhrul untuk pengguna Linux baru dan lama.
-- [Kapan Pakai 'rsync -a' vs 'rsync -a --delete'? - Penjelasan Santai](https://dalam.web.id/sistem-terbuka/rsync-a-vs-delete) : Bingung bedanya
+- [Kapan Pakai 'rsync -a' vs 'rsync -a —delete'? - Penjelasan Santai](https://dalam.web.id/sistem-terbuka/rsync-a-vs-delete) : Bingung bedanya
 - [Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang)](https://dalam.web.id/sistem-terbuka/sudo-tanpa-password) : Bosan ngetik password sudo terus? Ini dia cara gampang setting sudo di Ubuntu (via /etc/sudoers) biar bisa jalan tanpa password. Aman buat yang pakai komputer sendiri!
 - [Natty Release Party: Ruang Belajar Open Source yang Penuh Semangat](https://dalam.web.id/sistem-terbuka/natty-release-party-SMKN3) : Kisah komunitas open source yang bersemangat mencari ruang belajar, beralih ke kamar kos berukuran 3x3 meter untuk acara Natty Release Party. Sebuah permohonan untuk dukungan.
 - [Ngoprek Conky Bahasa Indonesia: Monitor Sistem Jadi Lebih Keren! 🖥️](https://dalam.web.id/sistem-terbuka/conky-bahasa-indonesia) : Ngutak-ngatik Conky dari nol: instalasi, contoh .conkyrc berbahasa Indonesia, script mulai (.mulaiconky.sh), autostart, dan sensor jaringan.
@@ -1060,7 +1061,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Gen Z Diejek Gak Bisa Ngitung: Beneran Tolol atau Otaknya Emang Lebih Canggih? 🧠💻](https://dalam.web.id/warta-tekno/gen-z-diejek-gak-bisa-ngitung) : Membongkar alasan mengapa Gen Z sering diejek tidak bisa matematika dasar atau punya tulisan jelek. Benarkah mereka malas atau ada penjelasan neurosains di baliknya?
 - [Mengupas Makna Publisher Creator Author dan Owner di Era Digital](https://dalam.web.id/warta-tekno/makna-publisher-creator-author-owner) : Sering tertukar Pahami perbedaan mendasar antara Publisher Creator Author dan Owner terutama dalam konteks SEO Hak Cipta dan Schema Data
 - [Cara Cepat Hapus Email Sampah Gmail dengan Kode Rahasia](https://dalam.web.id/warta-tekno/panduan-kelola-inbox-gmail) : Cara cepat hapus ribuan email sampah di Gmail menggunakan kode rahasia filter pencarian. Solusi storage penuh tanpa ribet dan 100 persen aman.
 - [Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows](https://dalam.web.id/warta-tekno/panduan-robocopy-sync-backup) : Cara pakai Robocopy untuk sync dan backup data Windows. Solusi error auditing, script batch (.bat), optimasi WLAN, dan perbandingan dengan rsync.
@@ -1099,7 +1099,7 @@ document_type: llm_behavior_and_entity_guidance
 - [MOS - Sistem Operasi Modular Ringan untuk Homelab dan Server rumahan](https://dalam.web.id/warta-tekno/mos-modular-operation-system) : MOS adalah OS berbasis Devuan untuk server rumah dan homelab. Ringan, modular, siap pakai dengan Docker, LXC, QEMU, mergerfs, SnapRAID. Fokus pada privasi dan kesederhanaan.
 - [Google Peringatkan 1 Miliar Ponsel Android Kini Berisiko - Apa yang Perlu Anda Tahu](https://dalam.web.id/warta-tekno/google-android-1-miliar-berisiko) : Google mengeluarkan peringatan serius: lebih dari 1 miliar ponsel Android tidak lagi mendapat pembaruan keamanan sistem. Simak penyebab, risiko, dan solusinya.
 - [Warisan Ilmiah B.J. Habibie: Mr. Crack dan Rahasia Langit Dunia](https://dalam.web.id/warta-tekno/warisan-ilmiah-bj-habibie) : Mengupas tuntas kontribusi B.J. Habibie dalam dunia penerbangan. Mengapa ia dijuluki Mr. Crack? Simak analisis mendalam mengenai Crack Propagation dan keamanan pesawat modern.
-- [git push --force origin main, git reset --hard: 7 Kebenaran Penting yang Harus Diketahui Developer](https://dalam.web.id/warta-tekno/git-push-force-reset-hard) : cara aman menggunakan git push --force origin main, git reset --hard dengan panduan lengkap ini. Temukan risiko, metode pemulihan, praktik terbaik, dan tips ahli.
+- [git push —force origin main, git reset —hard: 7 Kebenaran Penting yang Harus Diketahui Developer](https://dalam.web.id/warta-tekno/git-push-force-reset-hard) : cara aman menggunakan git push --force origin main, git reset --hard dengan panduan lengkap ini. Temukan risiko, metode pemulihan, praktik terbaik, dan tips ahli.
 - [YouTube Ad Blockers vs MV3: 7 Dampak Mengejutkan yang Harus Kamu Tahu di 2026](https://dalam.web.id/warta-tekno/youtube-ad-blockers-vs-mv3-2026) : YouTube Ad Blockers vs MV3: deskripsi dan komentar tersembunyi. Ketahui bagaimana Manifest V3 mengubah pemblokiran iklan, membatasi perbaikan, dan memengaruhi jutaan pengguna di seluruh dunia.
 - [Firefox 148 AI Controls: Cara Mematikan Fitur AI Secara Total di Browser Kamu](https://dalam.web.id/warta-tekno/firefox-148-ai-controls) : cara menggunakan fitur AI Controls di Firefox 148 untuk memblokir fitur generative AI. Pelajari cara kerja master switch dan dampaknya bagi privasi data Anda.
 - [Copilot Memory Sekarang Pakai Data Edge Bing dan MSN Secara Default - Cara Amankan Privasi Kamu](https://dalam.web.id/warta-tekno/copilot-memory-privacy-management) : Ketahui pembaruan terbaru Microsoft Copilot yang kini otomatis merekam aktivitas dari Edge Bing dan MSN ke dalam fitur Memory. Pelajari cara mengelola privasi dan menghapus data yang tersimpan.
