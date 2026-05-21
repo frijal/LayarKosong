@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.2
+document_version: 20.3
 last_updated: 2026-05-21
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 21 Mei 2026)
-> Menampilkan 1278 artikel versi 20.2.
+> Menampilkan 1278 artikel versi 20.3.
 
 ## Gaya Hidup
 - [Duo Maut RPUL dan RPAL: Search Engine Asli Generasi 90an Sebelum Era AI 🌍✨](https://dalam.web.id/gaya-hidup/rpul-rpal-search-engine-90an) : Mengenang kembali buku RPUL dan RPAL sebagai search engine legendaris anak sekolah generasi 90an sebelum era kecerdasan buatan AI tahun 2026 berkembang pesat.
@@ -338,7 +338,10 @@ document_type: llm_behavior_and_entity_guidance
 ## Lainnya
 - [Siapa Saja Pihak yang Berwenang Melakukan Tilang di Jalan Raya? Biar Gak Kena Prank Oknum! 🚦👮](https://dalam.web.id/lainnya/pihak-berwenang-tilang-jalan-raya) : Meluruskan miskonsepsi tentang siapa saja yang berhak melakukan tilang di jalan raya. Apakah hanya Polantas atau Dishub juga bisa? Temukan jawabannya di sini.
 - [Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔](https://dalam.web.id/lainnya/sop-kondisi-penindakan-tilang-lalu-lintas) : Membahas kapan dan dalam skenario seperti apa sebuah penilangan dianggap boleh termasuk menjawab mitos soal polisi yang sedang tidak berdinas di jalan raya.
+- [Sisi Gelap dan Terang Gelar Kiai: Dari Kiai Tandur Sampai Kiai Ndawir 👳♂️📜](https://dalam.web.id/lainnya/membongkar-gelar-kiai-nusantara) : Mengupas sejarah gelar kiai di Nusantara. Dari keris hingga ulama, serta membongkar oknum kiai sakti, klenik, dan ndawir yang merugikan umat.
+- [Air Kelihatan Aman, Tapi Bisa Jadi Penghantar Listrik Mematikan! ⚠️⚡](https://dalam.web.id/lainnya/bahaya-air-penghantar-listrik) : Jangan sepelekan air keran atau sumur di rumahmu. Pahami alasan kenapa air bisa menghantarkan arus listrik dan cara mencegah bahaya kesetrum yang mematikan.
 - [Bekal Cerdas untuk Pengendara: Kesimpulan dan Tips Anti Prank Oknum 🛡️🛵](https://dalam.web.id/lainnya/bekal-cerdas-pengendara-tips-tilang) : dan bekal cerdas bagi pengendara di jalan raya agar tidak mudah dikelabui oknum aparat. Ketahui hak Anda saat menghadapi razia atau tilang.
+- [Era Digital Tilang Elektronik vs Tilang Manual Jangan Mau Diajak Damai 📸🚔](https://dalam.web.id/lainnya/era-digital-tilang-elektronik-vs-tilang-manual) : Mengupas tuntas transisi tilang manual ke tilang elektronik ETLE. Ketahui aturan larangan tilang manual dan sanksi bagi oknum nakal di jalan raya.
 - [Wacana Ganti LPG 3 Kg ke CNG: Benar Bikin Hemat Atau Malah Rakyat yang Buntung? ⛽💸](https://dalam.web.id/lainnya/wacana-ganti-lpg-ke-cng-hemat-atau-buntung) : Membongkar celah logika di balik wacana pemerintah mengganti LPG 3 kg dengan CNG. Benarkah efisien atau justru membebani rakyat dengan biaya alat baru?
 - [Analisa Yuridis Perpres 27: Restorasi Keadilan dalam Ekosistem Transportasi Online 🛵⚖️](https://dalam.web.id/lainnya/analisa-yuridis-perpres-27-ojol) : Kupas tuntas draf Perpres 27 yang mengatur batas potongan aplikator maksimal 10 persen, jaminan asuransi, hingga larangan putus mitra sepihak bagi ojol.
 - [Rahasia Anatomi Semut: Kenapa Bisa Pecah Seperti Kaca Saat Terinjak? 🐜💎](https://dalam.web.id/lainnya/rahasia-anatomi-semut-kaca) : Mengungkap fakta sains mencengangkan tentang anatomi semut yang dilapisi kitin sehingga bisa pecah layaknya kaca saat terinjak, selaras dengan catatan kuno.
@@ -545,6 +548,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Di Balik Rp600 Ribu dan Taruhan Nyawa: Mengapa Kita Harus Menghargai Ojol 🏍️💔](https://dalam.web.id/opini-sosial/realitas-pahit-ojol-17-jam) : Kisah nyata di balik senyum ramah driver ojek online. Mereka rela kerja 17 jam sehari demi 600 ribu rupiah yang berisiko pada kesehatan dan nyawa.
 - [BLT vs Makan Bergizi Gratis: Kebijakan Mana yang Benar-Benar Membantu Rakyat? 🍽️💸](https://dalam.web.id/opini-sosial/blt-vs-makan-bergizi-gratis) : membandingkan efektivitas Bantuan Langsung Tunai BLT dengan program Makan Bergizi Gratis MBG dari segi sasaran dan risiko korupsi.
 - [Nama Jadi Beban? Ini Panduan Lengkap & Sah Ganti Nama di Indonesia! 📝⚖️](https://dalam.web.id/opini-sosial/panduan-sah-ganti-nama-indonesia) : dan sah cara ganti nama di Indonesia menurut hukum. Simak syarat prosedur Pengadilan Negeri hingga Disdukcapil secara detail.
 - [Kebohongan Adalah Sumber Kehancuran Sosial Fakta dan Dampaknya](https://dalam.web.id/opini-sosial/kebohongan-adalah-sumber-kehancuran-sosial) : Kebohongan adalah sumber kehancuran sosial yang sering tidak disadari Baca artikel panjang tentang pentingnya kejujuran di era digital dan efek dari hoaks
@@ -737,8 +741,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Di Balik Rp600 Ribu dan Taruhan Nyawa: Mengapa Kita Harus Menghargai Ojol 🏍️💔](https://dalam.web.id/sistem-terbuka/realitas-pahit-ojol-17-jam) : Kisah nyata di balik senyum ramah driver ojek online. Mereka rela kerja 17 jam sehari demi 600 ribu rupiah yang berisiko pada kesehatan dan nyawa.
-- [Air Kelihatan Aman, Tapi Bisa Jadi Penghantar Listrik Mematikan! ⚠️⚡](https://dalam.web.id/sistem-terbuka/bahaya-air-penghantar-listrik) : Jangan sepelekan air keran atau sumur di rumahmu. Pahami alasan kenapa air bisa menghantarkan arus listrik dan cara mencegah bahaya kesetrum yang mematikan.
 - [Generator Label Mentari - Barcode UI](https://dalam.web.id/sistem-terbuka/generator-label-barcode) : Generator Label Mentari dengan antarmuka Barcode UI dan layar kosong untuk desain label yang sederhana, responsif, dan mudah digunakan.
 - [Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It?](https://dalam.web.id/sistem-terbuka/linux-untuk-penulis-dan-kreator-2026) : Setelah bertahun-tahun dianggap kurang cocok untuk penulis, Linux di 2026 kini punya ekosistem menulis yang matang. Dari FocusWriter hingga Obsidian, Ubuntu Studio 26.04, dan alasan kenapa penulis mulai beralih.
 - [Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang](https://dalam.web.id/sistem-terbuka/cachyos-april-2026-update) : Update CachyOS April 2026 hadir dengan manajer paket GUI baru bernama Shelly, DNS-over-HTTPS lewat blocky, fingerprint sudo, penjadwal NVMe Kyber, dan berbagai peningkatan gaming. Simak semua perubahan dan cara updatenya di sini.
@@ -1067,8 +1069,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Sisi Gelap dan Terang Gelar Kiai: Dari Kiai Tandur Sampai Kiai Ndawir 👳♂️📜](https://dalam.web.id/warta-tekno/membongkar-gelar-kiai-nusantara) : Mengupas sejarah gelar kiai di Nusantara. Dari keris hingga ulama, serta membongkar oknum kiai sakti, klenik, dan ndawir yang merugikan umat.
-- [Era Digital Tilang Elektronik vs Tilang Manual Jangan Mau Diajak Damai 📸🚔](https://dalam.web.id/warta-tekno/era-digital-tilang-elektronik-vs-tilang-manual) : Mengupas tuntas transisi tilang manual ke tilang elektronik ETLE. Ketahui aturan larangan tilang manual dan sanksi bagi oknum nakal di jalan raya.
 - [Mengupas Makna Publisher Creator Author dan Owner di Era Digital](https://dalam.web.id/warta-tekno/makna-publisher-creator-author-owner) : Sering tertukar Pahami perbedaan mendasar antara Publisher Creator Author dan Owner terutama dalam konteks SEO Hak Cipta dan Schema Data
 - [Cara Cepat Hapus Email Sampah Gmail dengan Kode Rahasia](https://dalam.web.id/warta-tekno/panduan-kelola-inbox-gmail) : Cara cepat hapus ribuan email sampah di Gmail menggunakan kode rahasia filter pencarian. Solusi storage penuh tanpa ribet dan 100 persen aman.
 - [Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows](https://dalam.web.id/warta-tekno/panduan-robocopy-sync-backup) : Cara pakai Robocopy untuk sync dan backup data Windows. Solusi error auditing, script batch (.bat), optimasi WLAN, dan perbandingan dengan rsync.
