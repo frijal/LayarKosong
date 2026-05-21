@@ -318,6 +318,10 @@
         }
         const tanggalSekarang = formatTanggalIndonesia();
         window.addEventListener('DOMContentLoaded', () => {
+    const checkLibrary = setInterval(() => {
+        if (typeof QRCode !== 'undefined') {
+            clearInterval(checkLibrary);
+            
             qrcodeInstance = new QRCode(document.getElementById("qrcode"), {
                 text: "Inisialisasi",
                 width: 90,
@@ -326,8 +330,11 @@
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.M
             });
+
             updatePreview();
-        });
+        }
+    }, 100); // Cek setiap 100ms apakah library sudah ada
+});
         function updatePreview() {
             const nama = document.getElementById('input-nama').value || '';
             const kota = document.getElementById('input-alamat').value || '';
