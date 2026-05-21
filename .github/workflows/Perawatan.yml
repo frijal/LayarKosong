@@ -104,7 +104,7 @@ jobs:
           cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
           cp node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js
           cp node_modules/html2pdf.js/dist/html2pdf.bundle.min.js dapur/html2pdf.bundle.min.js
-          cp node_modules/qrcode/build/qrcode.min.js dapur/qrcode.min.js
+          cp node_modules/qrcode/lib/browser.js dapur/qrcode.min.js
                               
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
           
