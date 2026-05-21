@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.88
+document_version: 19.89
 last_updated: 2026-05-21
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 21 Mei 2026)
-> Menampilkan 1260 artikel versi 19.88.
+> Menampilkan 1260 artikel versi 19.89.
 
 ## Gaya Hidup
 - [Kontras Pemimpin di KTT ASEAN Cebu Antara Kesederhanaan dan Gengsi Negara](https://dalam.web.id/gaya-hidup/kontras-pemimpin-ktt-asean-cebu) : Perbandingan gaya kepemimpinan Lawrence Wong dan Prabowo di KTT ASEAN Cebu dari kacamata ekonomi dan kesederhanaan pemimpin bangsa
