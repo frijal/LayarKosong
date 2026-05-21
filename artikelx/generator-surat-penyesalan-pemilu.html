@@ -1,0 +1,409 @@
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator Surat Penyesalan Pemilu</title>
+
+  <!-- Meta dasar dan canonical -->
+<meta name="description" content="Generator Surat Penyesalan Pemilu alat online untuk membuat surat penyesalan setelah pemilu secara pribadi dan bijak. Praktis dan edukatif.">
+<link rel="canonical" href="https://dalam.web.id/artikel/generator-surat-penyesalan-pemilu.html">
+
+<!-- Meta keywords berita -->
+<meta name="news_keywords" content="Generator Surat Penyesalan Pemilu, surat penyesalan pemilu, alat surat pemilu, introspeksi pemilu, edukasi politik">
+
+<!-- Meta promphint (pertanyaan dan jawaban singkat) -->
+<meta name="promphint" content="Pertanyaan: Apa itu Generator Surat Penyesalan Pemilu dan bagaimana fungsinya? Jawaban: Generator Surat Penyesalan Pemilu adalah alat online yang membantu pengguna membuat surat penyesalan pribadi setelah pemilu.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generator Surat Penyesalan Pemilu Alat Introspeksi Diri">
+<meta property="og:description" content="Gunakan Generator Surat Penyesalan Pemilu untuk menulis surat penyesalan yang jujur dan membangun. Cocok untuk edukasi pemilih sadar dan demokrasi sehat.">
+<meta property="og:url" content="https://dalam.web.id/artikel/generator-surat-penyesalan-pemilu.html">
+<meta property="og:image" content="https://dalam.web.id/img/AAAAAA/apologiezzz.webp">
+<meta property="og:image:alt" content="Ilustrasi alat generator surat penyesalan pemilu">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Generator Surat Penyesalan Pemilu Cara Baru Introspeksi">
+<meta name="twitter:description" content="Buat surat penyesalan pasca pemilu dengan mudah. Alat ini mendorong introspeksi, perdamaian, dan pembelajaran politik.">
+<meta name="twitter:image" content="https://dalam.web.id/img/AAAAAA/apologiezzz.webp">
+<meta name="twitter:image:alt" content="Thumbnail generator surat penyesalan pemilu">
+
+<!-- Article tags (variasi) -->
+<meta property="article:tag" content="Pemilu">
+<meta property="article:tag" content="Surat Penyesalan">
+<meta property="article:tag" content="Introspeksi Politik">
+<meta property="article:tag" content="Edukasi Pemilih">
+<meta property="article:tag" content="Demokrasi Sehat">
+<meta property="article:published_time" content="2026-05-21T09:00:00+07:00">
+<meta property="article:modified_time" content="2026-05-21T09:00:00+07:00">
+
+
+
+  <!-- Load library dari CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    /* Styling untuk halaman generator (UI) */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .control-panel {
+      background-color: white;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+
+    .control-panel h2 {
+      margin-top: 0;
+      color: #333;
+      font-size: 20px;
+      border-bottom: 2px solid #eef2f5;
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #495057;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease-in-out;
+    }
+
+    .form-group input:focus {
+      border-color: #80bdff;
+      outline: 0;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      color: white;
+    }
+
+    .btn-pdf { background-color: #dc3545; }
+    .btn-pdf:hover { background-color: #bd2130; }
+
+    .btn-img { background-color: #28a745; }
+    .btn-img:hover { background-color: #218838; }
+
+    /* KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI */
+    .paper-wrapper {
+      background: white;
+      width: 210mm;
+      height: 297mm; /* Kunci 1: Set tinggi mutlak standar A4 */
+      padding: 20mm 20mm; /* Kunci 2: Optimasi padding atas/bawah agar ruang teks maksimal */
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      overflow: hidden; /* Kunci 3: Memotong micro-spillover piksel penyebab page 2 */
+    }
+
+    #surat-template {
+      font-family: "Times New Roman", Times, serif;
+      color: black;
+      font-size: 18px; /* Ukuran font diatur ideal (tetap besar & mantap dibaca) */
+      line-height: 1.5;
+      background: white;
+    }
+
+    #surat-template h1 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 35px;
+      letter-spacing: 1px;
+      text-decoration: underline;
+    }
+
+    .identitas {
+      margin-bottom: 20px;
+    }
+
+    .row-identitas {
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .col-label { width: 110px; }
+    .col-titikdua { width: 20px; text-align: center; }
+    .col-value { flex: 1; font-weight: bold; min-height: 26px; }
+
+    .paragraf {
+      text-align: justify;
+      margin-bottom: 16px;
+    }
+
+    .list-alasan {
+      margin-top: 5px;
+      margin-bottom: 16px;
+      padding-left: 25px;
+      text-align: justify;
+    }
+
+    .list-alasan li {
+      margin-bottom: 8px;
+    }
+
+    /* Bagian Tanda Tangan & QR Code */
+    .blok-tanda-tangan {
+      margin-top: 35px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: left;
+    }
+
+    .ttd-container {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tanggal-surat {
+      margin-bottom: 5px;
+      align-self: flex-start;
+      padding-left: 30px;
+    }
+
+    .tanda-tangan-teks {
+      margin-bottom: 10px;
+      align-self: flex-start;
+      padding-left: 30px;
+    }
+
+    .qrcode-box {
+      margin: 5px 0;
+      padding: 5px;
+      background: white;
+      border: 1px dashed #ccc;
+      display: inline-block;
+      width: 90px;
+      height: 90px;
+      box-sizing: border-box;
+    }
+
+    .qrcode-box img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .nama-ttd-wrapper {
+      margin-top: 10px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .nama-ttd {
+      font-weight: bold;
+      text-transform: uppercase;
+      border-bottom: 1px solid black;
+      display: inline-block;
+      min-width: 200px;
+      padding-bottom: 2px;
+      min-height: 25px;
+    }
+
+    /* Responsive Preview di Browser */
+    @media (max-width: 850px) {
+      .paper-wrapper {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+      }
+      #surat-template { font-size: 15px; }
+      #surat-template h1 { font-size: 20px; margin-bottom: 20px; }
+      .ttd-container { width: 100%; align-items: center; }
+      .tanggal-surat, .tanda-tangan-teks { align-self: center; padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="control-panel">
+    <h2>🛠️ Generator Surat Penyesalan Pemilu</h2>
+    <div class="form-group">
+      <label for="input-nama">Nama Lengkap</label>
+      <input type="text" id="input-nama" placeholder="Masukkan nama..." value=" " oninput="updatePreview()">
+    </div>
+    <div class="form-group">
+      <label for="input-alamat">Kota / Alamat</label>
+      <input type="text" id="input-alamat" placeholder="Masukkan kota..." value=" " oninput="updatePreview()">
+    </div>
+    <div class="button-group">
+      <button class="btn-pdf" onclick="generatePDF()">📄 Cetak PDF</button>
+      <button class="btn-img" onclick="generateIMG()">🖼️ Jadi Gambar</button>
+    </div>
+  </div>
+
+  <div class="paper-wrapper" id="capture-area">
+    <div id="surat-template">
+      <h1>SURAT PERMOHONAN MAAF</h1>
+
+      <p class="paragraf">Saya yang bertanda tangan di bawah ini:</p>
+
+      <div class="identitas">
+        <div class="row-identitas">
+          <div class="col-label">Nama</div>
+          <div class="col-titikdua">:</div>
+          <div class="col-value" id="preview-nama"></div>
+        </div>
+        <div class="row-identitas">
+          <div class="col-label">Domisili</div>
+          <div class="col-titikdua">:</div>
+          <div class="col-value" id="preview-alamat"></div>
+        </div>
+      </div>
+
+      <p class="paragraf">
+        Melalui pernyataan ini, saya menyampaikan permohonan maaf yang sebesar-besarnya kepada publik atas keputusan politik saya yang keliru, yakni memilih pasangan <strong>PRABOWO - GIBRAN</strong> pada Pemilihan Presiden Republik Indonesia pada tahun 2024.
+      </p>
+
+      <p class="paragraf">
+        Penyesalan ini lahir dari pengamatan langsung terhadap bobroknya kualitas kepemimpinan nasional yang membuka jalan pintas menuju kemunduran bangsa, dengan indikator utama:
+      </p>
+
+      <ol class="list-alasan">
+        <li><strong>Degradasi Meritokrasi:</strong> Jabatan dijalankan oleh individu yang tidak kompeten akibat politik transaksional.</li>
+        <li><strong>Nestapa Politik:</strong> Terkikisnya ruang demokrasi dan kepatutan etika bernegara dan bermasyarakat.</li>
+        <li><strong>Kehancuran Ekonomi:</strong> Kebijakan yang carut-marut dan gagal melindungi kesejahteraan rakyat.</li>
+      </ol>
+
+      <p class="paragraf">
+        Pernyataan ini saya buat secara sadar sebagai bentuk pertanggungjawaban moral atas satu suara yang turut berkontribusi pada situasi kelam ini.
+      </p>
+
+      <div class="blok-tanda-tangan">
+        <div class="ttd-container">
+          <div id="preview-tanggal" class="tanggal-surat"></div>
+          <div class="tanda-tangan-teks">Hormat saya,</div>
+
+          <div id="qrcode" class="qrcode-box"></div>
+
+          <div class="nama-ttd-wrapper">
+            <div id="preview-nama-ttd" class="nama-ttd"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let qrcodeInstance = null;
+
+    function formatTanggalIndonesia() {
+      const bulanIndo = [
+        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+      ];
+      const hariIni = new Date();
+      const tanggal = hariIni.getDate();
+      const bulan = bulanIndo[hariIni.getMonth()];
+      const tahun = hariIni.getFullYear();
+
+      return `${tanggal} ${bulan} ${tahun}`;
+    }
+
+    const tanggalSekarang = formatTanggalIndonesia();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      qrcodeInstance = new QRCode(document.getElementById("qrcode"), {
+            text: "Inisialisasi",
+        width: 90,
+        height: 90,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.M
+      });
+
+      updatePreview();
+    });
+
+    function updatePreview() {
+      const nama = document.getElementById('input-nama').value || '';
+      const kota = document.getElementById('input-alamat').value || '';
+
+      document.getElementById('preview-nama').innerText = nama;
+      document.getElementById('preview-alamat').innerText = kota;
+      document.getElementById('preview-nama-ttd').innerText = nama;
+
+      if (kota) {
+        document.getElementById('preview-tanggal').innerText = `${kota}, ${tanggalSekarang}`;
+      } else {
+        document.getElementById('preview-tanggal').innerText = tanggalSekarang;
+      }
+
+      if (qrcodeInstance) {
+        const textQR = `Surat Permohonan Maaf - ${nama || 'Tanpa Nama'} - ${kota || 'Tanpa Kota'} - ${tanggalSekarang}`;
+        qrcodeInstance.makeCode(textQR);
+      }
+    }
+
+    function generatePDF() {
+      const element = document.getElementById('capture-area');
+      const nama = document.getElementById('input-nama').value || 'TanpaNama';
+
+      const opt = {
+        margin:   0,
+        filename:  `Surat_Maaf_${nama.replace(/\s+/g, '_')}.pdf`,
+        image:    { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0, windowY: 0 },
+        jsPDF:    { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save();
+    }
+
+    function generateIMG() {
+      const element = document.getElementById('capture-area');
+      const nama = document.getElementById('input-nama').value || 'TanpaNama';
+
+      html2canvas(element, { scale: 2, useCORS: true, scrollY: 0, windowY: 0 }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `Surat_Maaf_${nama.replace(/\s+/g, '_')}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  </script>
+</body><noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+</html>
