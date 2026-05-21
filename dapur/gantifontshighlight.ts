@@ -42,6 +42,7 @@ const MAP: MapItem[] = [
   { rx: /https:\/\/cdn\.jsdelivr\.net\/npm\/html2canvas@[\d\.]+\/dist\/html2canvas\.min\.js/i, repl: "/ext/html2canvas.min.js" },
   { rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/html2pdf\.js\/[\d\.]+\/html2pdf\.bundle\.min\.js/i, repl: "/ext/html2pdf.bundle.min.js" },
   { rx: /https?:\/\/.*\/highlight\.min\.js/i, repl: "/ext/highlight.js" },
+  { rx: /https?:\/\/.*\/qrcode\.min\.js/i, repl: "/ext/qrcode.min.js" },
 ].map(item => ({
   repl: item.repl,
   combined: new RegExp(`(\\b(?:href|src)\\b)(\\s*=\\s*)(['"])\\s*(${item.rx.source})\\s*\\3`, "gim")
