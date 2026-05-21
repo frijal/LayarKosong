@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.98
+document_version: 19.99
 last_updated: 2026-05-21
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 21 Mei 2026)
-> Menampilkan 1261 artikel versi 19.98.
+> Menampilkan 1262 artikel versi 19.99.
 
 ## Gaya Hidup
 - [Kontras Pemimpin di KTT ASEAN Cebu Antara Kesederhanaan dan Gengsi Negara](https://dalam.web.id/gaya-hidup/kontras-pemimpin-ktt-asean-cebu) : Perbandingan gaya kepemimpinan Lawrence Wong dan Prabowo di KTT ASEAN Cebu dari kacamata ekonomi dan kesederhanaan pemimpin bangsa
@@ -332,6 +332,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Generator Surat Hutang Piutang](https://dalam.web.id/lainnya/generator-surat-hutang-piutang) : Generator Surat Hutang Piutang alat online untuk membuat perjanjian hutang piutang yang sah dan mudah. Template praktis untuk keperluan pribadi maupun usaha.
 - [Generator Surat Pengunduran Diri](https://dalam.web.id/lainnya/generator-surat-pengunduran-diri) : Generator Surat Pengunduran Diri. Buat surat pengunduran diri profesional dengan mudah cepat dan gratis. Template sederhana dan efektif.
 - [Generator Surat Penyesalan Pemilu](https://dalam.web.id/lainnya/generator-surat-penyesalan-pemilu) : Generator Surat Penyesalan Pemilu alat online untuk membuat surat penyesalan setelah pemilu secara pribadi dan bijak. Praktis dan edukatif.
 - [QR Code Generator - Buat QR Code Gratis & Cepat](https://dalam.web.id/lainnya/qrcodegenerator) : Buat QR Code gratis secara instan untuk URL, teks, WiFi, WhatsApp, dan nomor telepon. Mudah digunakan, tanpa daftar, dan siap download.
