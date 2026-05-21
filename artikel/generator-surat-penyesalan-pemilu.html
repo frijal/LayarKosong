@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Generator Surat Penyesalan Pemilu - Layar Kosong</title>
-  
+
   <meta name="description" content="Generator Surat Penyesalan Pemilu alat online untuk membuat surat penyesalan setelah pemilu secara pribadi dan bijak. Praktis dan edukatif.">
   <link rel="canonical" href="https://dalam.web.id/artikel/generator-surat-penyesalan-pemilu">
-  
+
   <meta name="news_keywords" content="Generator Surat Penyesalan Pemilu, surat penyesalan pemilu, alat surat pemilu, introspeksi pemilu, edukasi politik">
-  
+
   <meta name="promphint" content="Pertanyaan: Apa itu Generator Surat Penyesalan Pemilu dan bagaimana fungsinya? Jawaban: Generator Surat Penyesalan Pemilu adalah alat online yang membantu pengguna membuat surat penyesalan pribadi setelah pemilu.">
-  
+
   <script src="/ext/html2canvas.min.js" data-cfasync="false"></script>
   <script src="/ext/html2pdf.bundle.min.js" data-cfasync="false"></script>
   <script src="/ext/qrcode.min.js" data-cfasync="false"></script>
-  
+
   <style>
     /* Styling untuk halaman generator (UI) */
     body {
@@ -65,6 +65,8 @@
       font-size: 16px;
       box-sizing: border-box;
       transition: border-color 0.15s ease-in-out;
+      /* FITUR BARU: Auto capitalize secara visual di input box */
+      text-transform: capitalize;
     }
     .form-group input:focus {
       border-color: #80bdff;
@@ -89,21 +91,21 @@
     .btn-pdf:hover { background-color: #bd2130; }
     .btn-img { background-color: #28a745; }
     .btn-img:hover { background-color: #218838; }
-    
+
     /* KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI */
     .paper-wrapper {
       background: white;
       width: 210mm;
-      height: 296mm; /* PERBAIKAN: Dikurangi 1mm dari 297mm biar jaminan gak bocor ke page 2 */
-      padding: 20mm 20mm; 
+      height: 296mm;
+      padding: 20mm 20mm;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
       box-sizing: border-box;
-      overflow: hidden; 
+      overflow: hidden;
     }
     #surat-template {
       font-family: "Times New Roman", Times, serif;
       color: black;
-      font-size: 18px; 
+      font-size: 18px;
       line-height: 1.5;
       background: white;
     }
@@ -139,7 +141,7 @@
     .list-alasan li {
       margin-bottom: 8px;
     }
-    
+
     /* Bagian Tanda Tangan & QR Code */
     .blok-tanda-tangan {
       margin-top: 35px;
@@ -164,8 +166,7 @@
       align-self: flex-start;
       padding-left: 30px;
     }
-    
-    /* PERBAIKAN CSS QR CODE */
+
     .qrcode-box {
       margin: 5px 0;
       padding: 5px;
@@ -175,20 +176,19 @@
       width: 90px;
       height: 90px;
       box-sizing: border-box;
-      overflow: hidden; /* Mencegah tumpahan elemen ganda */
+      overflow: hidden;
     }
-    
-    /* Wajib: Sembunyikan canvas biar html2canvas gak ngejepret dua kali */
+
     .qrcode-box canvas {
       display: none !important;
     }
-    
+
     .qrcode-box img {
       width: 100% !important;
       height: 100% !important;
       display: block !important;
     }
-    
+
     .nama-ttd-wrapper {
       margin-top: 10px;
       text-align: center;
@@ -203,7 +203,7 @@
       padding-bottom: 2px;
       min-height: 25px;
     }
-    
+
     /* Responsive Preview di Browser */
     @media (max-width: 850px) {
       .paper-wrapper {
@@ -321,6 +321,13 @@
     </div>
   </div>
  <script>
+    // FITUR BARU: Fungsi untuk ubah teks jadi Title Case (Huruf depan kapital)
+    function toTitleCase(str) {
+      return str.toLowerCase().replace(/(?:^|\s)\w/g, function(match) {
+        return match.toUpperCase();
+      });
+    }
+
     function formatTanggalIndonesia() {
       const bulanIndo = [
         "Januari", "Februari", "Maret", "April", "Mei", "Juni",
@@ -336,14 +343,17 @@
 
     const tanggalSekarang = formatTanggalIndonesia();
 
-    // Jalankan pertama kali saat halaman dimuat
     window.addEventListener('DOMContentLoaded', () => {
       updatePreview();
     });
 
     function updatePreview() {
-      const nama = document.getElementById('input-nama').value || '';
-      const kota = document.getElementById('input-alamat').value || '';
+      // Ambil value lalu format dengan fungsi toTitleCase
+      let rawNama = document.getElementById('input-nama').value || '';
+      let rawKota = document.getElementById('input-alamat').value || '';
+
+      const nama = toTitleCase(rawNama);
+      const kota = toTitleCase(rawKota);
 
       document.getElementById('preview-nama').innerText = nama;
       document.getElementById('preview-alamat').innerText = kota;
@@ -356,12 +366,10 @@
       }
 
       const qrContainer = document.getElementById("qrcode");
-      
-      // Bersihkan elemen QR Code lama
-      qrContainer.innerHTML = ""; 
+      qrContainer.innerHTML = "";
 
       const textQR = `Surat Permohonan Maaf - ${nama || 'Tanpa Nama'} - ${kota || 'Tanpa Kota'} - ${tanggalSekarang}`;
-      
+
       new QRCode(qrContainer, {
         text: textQR,
         width: 90,
@@ -374,7 +382,8 @@
 
     function generatePDF() {
       const element = document.getElementById('capture-area');
-      const nama = document.getElementById('input-nama').value || 'TanpaNama';
+      const namaRaw = document.getElementById('input-nama').value || 'TanpaNama';
+      const nama = toTitleCase(namaRaw);
 
       const opt = {
         margin:   0,
@@ -389,7 +398,8 @@
 
     function generateIMG() {
       const element = document.getElementById('capture-area');
-      const nama = document.getElementById('input-nama').value || 'TanpaNama';
+      const namaRaw = document.getElementById('input-nama').value || 'TanpaNama';
+      const nama = toTitleCase(namaRaw);
 
       html2canvas(element, { scale: 2, useCORS: true, scrollY: 0, windowY: 0 }).then(canvas => {
         const link = document.createElement('a');
