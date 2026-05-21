@@ -303,8 +303,7 @@
       </div>
     </div>
   </div>
-  <script>
-    let qrcodeInstance = null;
+ <script>
     function formatTanggalIndonesia() {
       const bulanIndo = [
         "Januari", "Februari", "Maret", "April", "Mei", "Juni",
@@ -314,39 +313,55 @@
       const tanggal = hariIni.getDate();
       const bulan = bulanIndo[hariIni.getMonth()];
       const tahun = hariIni.getFullYear();
+
       return `${tanggal} ${bulan} ${tahun}`;
     }
+
     const tanggalSekarang = formatTanggalIndonesia();
+
+    // Jalankan pertama kali saat halaman dimuat
     window.addEventListener('DOMContentLoaded', () => {
-      qrcodeInstance = new QRCode(document.getElementById("qrcode"), {
-        text: "Inisialisasi",
+      updatePreview();
+    });
+
+    function updatePreview() {
+      const nama = document.getElementById('input-nama').value || '';
+      const kota = document.getElementById('input-alamat').value || '';
+
+      document.getElementById('preview-nama').innerText = nama;
+      document.getElementById('preview-alamat').innerText = kota;
+      document.getElementById('preview-nama-ttd').innerText = nama;
+
+      if (kota) {
+        document.getElementById('preview-tanggal').innerText = `${kota}, ${tanggalSekarang}`;
+      } else {
+        document.getElementById('preview-tanggal').innerText = tanggalSekarang;
+      }
+
+      // ==== PERBAIKAN LOGIKA QR CODE ====
+      const qrContainer = document.getElementById("qrcode");
+      
+      // 1. Bersihkan elemen QR Code lama sebelum membuat yang baru
+      qrContainer.innerHTML = ""; 
+
+      // 2. Siapkan teks datanya
+      const textQR = `Surat Permohonan Maaf - ${nama || 'Tanpa Nama'} - ${kota || 'Tanpa Kota'} - ${tanggalSekarang}`;
+      
+      // 3. Generate QR Code baru dengan teks yang fresh
+      new QRCode(qrContainer, {
+        text: textQR,
         width: 90,
         height: 90,
         colorDark : "#000000",
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.M
       });
-      updatePreview();
-    });
-    function updatePreview() {
-      const nama = document.getElementById('input-nama').value || '';
-      const kota = document.getElementById('input-alamat').value || '';
-      document.getElementById('preview-nama').innerText = nama;
-      document.getElementById('preview-alamat').innerText = kota;
-      document.getElementById('preview-nama-ttd').innerText = nama;
-      if (kota) {
-        document.getElementById('preview-tanggal').innerText = `${kota}, ${tanggalSekarang}`;
-      } else {
-        document.getElementById('preview-tanggal').innerText = tanggalSekarang;
-      }
-      if (qrcodeInstance) {
-        const textQR = `Surat Permohonan Maaf - ${nama || 'Tanpa Nama'} - ${kota || 'Tanpa Kota'} - ${tanggalSekarang}`;
-        qrcodeInstance.makeCode(textQR);
-      }
     }
+
     function generatePDF() {
       const element = document.getElementById('capture-area');
       const nama = document.getElementById('input-nama').value || 'TanpaNama';
+
       const opt = {
         margin:   0,
         filename:  `Surat_Maaf_${nama.replace(/\s+/g, '_')}.pdf`,
@@ -354,11 +369,14 @@
         html2canvas: { scale: 2, useCORS: true, scrollY: 0, windowY: 0 },
         jsPDF:    { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
+
       html2pdf().set(opt).from(element).save();
     }
+
     function generateIMG() {
       const element = document.getElementById('capture-area');
       const nama = document.getElementById('input-nama').value || 'TanpaNama';
+
       html2canvas(element, { scale: 2, useCORS: true, scrollY: 0, windowY: 0 }).then(canvas => {
         const link = document.createElement('a');
         link.download = `Surat_Maaf_${nama.replace(/\s+/g, '_')}.png`;
