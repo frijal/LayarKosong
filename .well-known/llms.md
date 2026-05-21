@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.86
-last_updated: 2026-05-20
+document_version: 19.87
+last_updated: 2026-05-21
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 20 Mei 2026)
-> Menampilkan 1259 artikel versi 19.86.
+## Index Artikel Terbaru (Updated: 21 Mei 2026)
+> Menampilkan 1260 artikel versi 19.87.
 
 ## Gaya Hidup
 - [Kontras Pemimpin di KTT ASEAN Cebu Antara Kesederhanaan dan Gengsi Negara](https://dalam.web.id/gaya-hidup/kontras-pemimpin-ktt-asean-cebu) : Perbandingan gaya kepemimpinan Lawrence Wong dan Prabowo di KTT ASEAN Cebu dari kacamata ekonomi dan kesederhanaan pemimpin bangsa
@@ -332,6 +332,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Generator Surat Penyesalan Pemilu](https://dalam.web.id/lainnya/generator-surat-penyesalan-pemilu) : Generator Surat Penyesalan Pemilu alat online untuk membuat surat penyesalan setelah pemilu secara pribadi dan bijak. Praktis dan edukatif.
 - [QR Code Generator - Buat QR Code Gratis & Cepat](https://dalam.web.id/lainnya/qrcodegenerator) : Buat QR Code gratis secara instan untuk URL, teks, WiFi, WhatsApp, dan nomor telepon. Mudah digunakan, tanpa daftar, dan siap download.
 - [Antara Pajak dan Palak: Potret Buram Akamsi serta Negara yang Absen](https://dalam.web.id/lainnya/antara-pajak-dan-palak) : Kisah nyata dan tantangan pengusaha properti menghadapi pungli akamsi, oknum berseragam, hingga wartawan bodong saat membangun. Di mana peran negara?
 - [Surat Panggilan Polisi? Kenali Hak Konstitusional UU No 20 Tahun 2025](https://dalam.web.id/lainnya/hak-konstitusional-surat-panggilan-polisi-uu-20-2025) : Jangan panik saat menerima surat panggilan polisi. Pahami hak konstitusional Anda berdasarkan UU Nomor 20 Tahun 2025 tentang KUHAP Baru yang berlaku mulai 2026.
