@@ -51,7 +51,7 @@ function parseMarkdown(text: string): string {
 }
 
 function enhanceMarkdown(): void {
-  const selector = "p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, footer, summary, .alert, .alert-box, .article-container, .author-box, .box, .callout, .card, .card-highlight, .card-tip, .closing, .code-block, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .five-wh, .gallery, .highlight, .highlight-box, .important, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-author, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .wh-item, .zdummy, .zdummy1, .zdummy2, .zdummy3";
+  const selector = "p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, footer, summary, .alert, .alert-box, .article-container, .article-meta, .author-box, .box, .callout, .card, .card-highlight, .card-tip, .closing, .code-block, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .five-wh, .gallery, .highlight, .highlight-box, .important, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-author, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .wh-item, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   const targets = document.querySelectorAll(selector);
   targets.forEach((el) => {
     const target = el as HTMLElement;
