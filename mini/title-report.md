@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/22/2026, 3:45:08 PM
+Generated on: 5/23/2026, 2:26:04 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/22/2026, 3:45:08 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v20.3 | LLM Index v20.3 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v20.5 | LLM Index v20.5 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -100,6 +100,7 @@ Generated on: 5/22/2026, 3:45:08 PM
 | `artikel/al-baqarah-11-12-tafsir-kerusakan.html` | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak - Layar Kosong | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak | Layar Kosong | ✅ Perfect |
 | `artikel/album-thumbnail-json-generator.html` | Album Thumbnail Viewer & JSON Generator - Layar Kosong | Album Thumbnail Viewer & JSON Generator | Layar Kosong | ✅ Perfect |
 | `artikel/alias-linux.html` | Tips & Trik Linux: Pahami Perintah 'Alias' Biar Nge-terminal Lebih Cepat! ⚡ - Layar Kosong | Tips & Trik Linux: Pahami Perintah 'Alias' Biar Nge-terminal Lebih Cepat! ⚡ | Layar Kosong | ✅ Perfect |
+| `artikel/alternatif-all-rights-reserved.html` | Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital - Layar Kosong | Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital | Layar Kosong | ✅ Perfect |
 | `artikel/amanah-indra-al-isra-36-kritis-berkemajuan.html` | Al-Isra: 36 - Amanah Indrawi dan Kritis di Era Banjir Informasi 💡 - Layar Kosong | Al-Isra: 36 - Amanah Indrawi dan Kritis di Era Banjir Informasi 💡 | Layar Kosong | ✅ Perfect |
 | `artikel/amankan-git-server-dari-bot.html` | Wajib Blokir Bot di Server Git Self-Hosted: Lindungi Kode dari AI Scraper - Layar Kosong | Wajib Blokir Bot di Server Git Self-Hosted: Lindungi Kode dari AI Scraper | Layar Kosong | ✅ Perfect |
 | `artikel/amazon-phk-ai-brutal.html` | PHK Brutal Amazon: 30 Ribu Karyawan Diganti AI - Layar Kosong | PHK Brutal Amazon: 30 Ribu Karyawan Diganti AI | Layar Kosong | ✅ Perfect |
@@ -993,6 +994,7 @@ Generated on: 5/22/2026, 3:45:08 PM
 | `artikel/perpisahan-doraemon-tv-nasional.html` | Perjalanan 35 Tahun Doraemon di TV Nasional Resmi Berakhir - Layar Kosong | Perjalanan 35 Tahun Doraemon di TV Nasional Resmi Berakhir | Layar Kosong | ✅ Perfect |
 | `artikel/perplexity-ai-riset-terkini.html` | Perplexity AI - Riset Topik Terkini Jadi Gampang - Layar Kosong | Perplexity AI - Riset Topik Terkini Jadi Gampang | Layar Kosong | ✅ Perfect |
 | `artikel/perpres-nomor-27-tahun-2026-potongan-ojol.html` | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol - Layar Kosong | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol | Layar Kosong | ✅ Perfect |
+| `artikel/persaudaraan-tanpa-batas-yvci-balikpapan.html` | Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak - Layar Kosong | Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak | Layar Kosong | ✅ Perfect |
 | `artikel/pertempuran-yarmuk-yerusalem.html` | Pertempuran Yarmuk & Penyerahan Yerusalem - Kisah Islam di Syam - Layar Kosong | Pertempuran Yarmuk & Penyerahan Yerusalem - Kisah Islam di Syam | Layar Kosong | ✅ Perfect |
 | `artikel/perubahan-git-3-0-main-default.html` | 🎉 Perubahan Besar di Git 3.0: 'main' Jadi Default, Selamat Tinggal 'master'! - Layar Kosong | 🎉 Perubahan Besar di Git 3.0: 'main' Jadi Default, Selamat Tinggal 'master'! | Layar Kosong | ✅ Perfect |
 | `artikel/perut-kenyang-namun-otak-kosong.html` | Perut Kenyang namun Otak Kosong: Analisis Kritis Program Makan Gratis vs Pendidikan Indonesia - Layar Kosong | Perut Kenyang namun Otak Kosong: Analisis Kritis Program Makan Gratis vs Pendidikan Indonesia | Layar Kosong | ✅ Perfect |
@@ -1384,6 +1386,7 @@ Generated on: 5/22/2026, 3:45:08 PM
 | `gaya-hidup/panduan-pengasuhan-sains.html` | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja - Layar Kosong | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/peresmian-bandara-sepinggan.html` | Nostalgia 2014: Wajah Pertama Bandara SAMS Sepinggan Baru - Layar Kosong | Nostalgia 2014: Wajah Pertama Bandara SAMS Sepinggan Baru | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/perpres-nomor-27-tahun-2026-potongan-ojol.html` | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol - Layar Kosong | Perpres Nomor 27 Tahun 2026: Fakta, Dampak & Kebenaran Potongan Ojol | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/persaudaraan-tanpa-batas-yvci-balikpapan.html` | Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak - Layar Kosong | Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/pijat-sakit-kepala.html` | Sakit Kepala? Jangan Buru-Buru Minum Obat, Coba Pijat Relaksasi Ini! - Layar Kosong | Sakit Kepala? Jangan Buru-Buru Minum Obat, Coba Pijat Relaksasi Ini! | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/pola-hidup-sehat-untuk-usus.html` | Pola Hidup Sehat untuk Usus yang Bahagia - Layar Kosong | Pola Hidup Sehat untuk Usus yang Bahagia | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/produk-dairy-dan-alternatif.html` | Produk Dairy & Alternatif Non-Dairy untuk Kopi Susu - Layar Kosong | Produk Dairy & Alternatif Non-Dairy untuk Kopi Susu | Layar Kosong | ✅ Perfect |
@@ -2368,6 +2371,7 @@ Generated on: 5/22/2026, 3:45:08 PM
 | `warta-tekno/akhir-hidup-microsoft-publisher-2026.html` | Akhir Hidup Microsoft Publisher: Panduan Lengkap Menyelamatkan File Desain Anda Sebelum 2026 - Layar Kosong | Akhir Hidup Microsoft Publisher: Panduan Lengkap Menyelamatkan File Desain Anda Sebelum 2026 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/akses-nextcloud-cloudflare-tunnel.html` | Akses Nextcloud dari Luar Rumah via Cloudflare Tunnel - Layar Kosong | Akses Nextcloud dari Luar Rumah via Cloudflare Tunnel | Layar Kosong | ✅ Perfect |
 | `warta-tekno/album-thumbnail-json-generator.html` | Album Thumbnail Viewer & JSON Generator - Layar Kosong | Album Thumbnail Viewer & JSON Generator | Layar Kosong | ✅ Perfect |
+| `warta-tekno/alternatif-all-rights-reserved.html` | Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital - Layar Kosong | Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital | Layar Kosong | ✅ Perfect |
 | `warta-tekno/amankan-git-server-dari-bot.html` | Wajib Blokir Bot di Server Git Self-Hosted: Lindungi Kode dari AI Scraper - Layar Kosong | Wajib Blokir Bot di Server Git Self-Hosted: Lindungi Kode dari AI Scraper | Layar Kosong | ✅ Perfect |
 | `warta-tekno/amazon-phk-ai-brutal.html` | PHK Brutal Amazon: 30 Ribu Karyawan Diganti AI - Layar Kosong | PHK Brutal Amazon: 30 Ribu Karyawan Diganti AI | Layar Kosong | ✅ Perfect |
 | `warta-tekno/ambil-thumbnail-youtube-short.html` | Ambil Thumbnail YouTube dan Shorts High Resolution - Layar Kosong | Ambil Thumbnail YouTube dan Shorts High Resolution | Layar Kosong | ✅ Perfect |
