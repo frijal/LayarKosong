@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.5
+document_version: 20.6
 last_updated: 2026-05-23
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 23 Mei 2026)
-> Menampilkan 1280 artikel versi 20.5.
+> Menampilkan 1283 artikel versi 20.6.
 
 ## Gaya Hidup
 - [Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak](https://dalam.web.id/gaya-hidup/persaudaraan-tanpa-batas-yvci-balikpapan) : Kisah solidaritas dan persaudaraan tanpa batas YVCI Balikpapan. Menelisik makna keluarga kedua bagi para pecinta Yamaha Vixion di Kota Minyak.
@@ -337,6 +337,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Cukupkah Pendapatan Bersih Rp 200.000 Per Hari Untuk Ojek Online?](https://dalam.web.id/lainnya/realita-pendapatan-ojol-200-ribu) : mengenai realita pendapatan harian driver ojek online sebesar 200 ribu rupiah apakah cukup untuk biaya hidup dan operasional
 - [Siapa Saja Pihak yang Berwenang Melakukan Tilang di Jalan Raya? Biar Gak Kena Prank Oknum! 🚦👮](https://dalam.web.id/lainnya/pihak-berwenang-tilang-jalan-raya) : Meluruskan miskonsepsi tentang siapa saja yang berhak melakukan tilang di jalan raya. Apakah hanya Polantas atau Dishub juga bisa? Temukan jawabannya di sini.
 - [Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔](https://dalam.web.id/lainnya/sop-kondisi-penindakan-tilang-lalu-lintas) : Membahas kapan dan dalam skenario seperti apa sebuah penilangan dianggap boleh termasuk menjawab mitos soal polisi yang sedang tidak berdinas di jalan raya.
 - [Sisi Gelap dan Terang Gelar Kiai: Dari Kiai Tandur Sampai Kiai Ndawir 👳♂️📜](https://dalam.web.id/lainnya/membongkar-gelar-kiai-nusantara) : Mengupas sejarah gelar kiai di Nusantara. Dari keris hingga ulama, serta membongkar oknum kiai sakti, klenik, dan ndawir yang merugikan umat.
@@ -742,6 +743,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Kalkulator Mahram & Aurat Keluarga](https://dalam.web.id/sistem-terbuka/kalkulator-mahram-aurat) : Kalkulator interaktif untuk menentukan hubungan mahram dan batas aurat dalam keluarga berdasarkan panduan fikih. Praktis untuk keluarga dan pengajar.
+- [Hewlett Packard Resmi Jadi Sponsor Utama LVFS, Pengguna Linux Makin Dimanja](https://dalam.web.id/sistem-terbuka/kemenangan-linux-hp-sponsor-lvfs) : Kabar gembira untuk pengguna Linux karena Hewlett Packard resmi menjadi sponsor utama LVFS menyusul Dell dan Lenovo untuk kemudahan update firmware dan BIOS yang aman
 - [Generator Label Mentari - Barcode UI](https://dalam.web.id/sistem-terbuka/generator-label-barcode) : Generator Label Mentari dengan antarmuka Barcode UI dan layar kosong untuk desain label yang sederhana, responsif, dan mudah digunakan.
 - [Linux untuk Penulis dan Kreator Konten di 2026 — Akhirnya Worth It?](https://dalam.web.id/sistem-terbuka/linux-untuk-penulis-dan-kreator-2026) : Setelah bertahun-tahun dianggap kurang cocok untuk penulis, Linux di 2026 kini punya ekosistem menulis yang matang. Dari FocusWriter hingga Obsidian, Ubuntu Studio 26.04, dan alasan kenapa penulis mulai beralih.
 - [Update CachyOS April 2026: Shelly, DNS-over-HTTPS, Fingerprint sudo, dan Performa Gaming Lebih Kencang](https://dalam.web.id/sistem-terbuka/cachyos-april-2026-update) : Update CachyOS April 2026 hadir dengan manajer paket GUI baru bernama Shelly, DNS-over-HTTPS lewat blocky, fingerprint sudo, penjadwal NVMe Kyber, dan berbagai peningkatan gaming. Simak semua perubahan dan cara updatenya di sini.
