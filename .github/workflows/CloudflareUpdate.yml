@@ -1,43 +1,52 @@
-name: "Cloudflare Deployer Non-DB"
+name: 🚀 Cloudflare Deployer Non-DB + KV
 
-on:  
+on:
+  workflow_run:
+    workflows: ["☢️ Build and Generate Site Files"]
+    types: [completed]  
+  push:
+    branches:
+      - main  
+    paths:
+      - '_redirects'
+      - '_headers'
+
   workflow_dispatch:
 
 permissions:
-  contents: read # Cukup READ saja, karena kita gak perlu push balik ke repo!
+  contents: read
   deployments: write
 
 jobs:
   deploy-direct:
     runs-on: ubuntu-latest
+   
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-      # 1. Ambil source code dari main
       - name: Checkout source branch
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           path: source
           fetch-depth: 1
           persist-credentials: true
 
-      - name: "1.5 Setup Node.js v22"
+      - name: '1.5 Setup Node.js v22'
         uses: actions/setup-node@v6
         with:
           node-version: 24.16.0
-
-      - name: "2. Setup Bun.js"
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+     
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: latest
 
       - name: Install dependencies
-        run: bun install
+        run:  bun install
         working-directory: source
 
-      - name: "🧹 Prepare Clean Directory (rsync)"
+      - name: 🧹 Prepare Clean Directory (rsync)
         run: |
           mkdir deploy_dir
-          # rsync tetap bersih karena wrangler.toml masih di /tmp/
           rsync -a --delete \
             --include='gaya-hidup/***' \
             --include='jejak-sejarah/***' \
@@ -69,7 +78,6 @@ jobs:
             --exclude='*' \
             source/ deploy_dir/
 
-      # 🔑 2. CREATE CONFIG (Tetap di /tmp agar aman)
       - name: Create Temporary Wrangler Config
         run: |
           cat <<EOF > /tmp/wrangler.toml
@@ -80,19 +88,11 @@ jobs:
           [vars]
           BUN_VERSION = "latest"
           NODE_VERSION = "24"
-          [[kv_namespaces]]
-          binding = "COUNTS_KV"
-          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
           EOF
 
-      # 🚀 3. DEPLOY (Retry 3x)
-      - name: Deploy to Cloudflare Pages
+      - name: 🚀 4. DEPLOY (Retry 3x)
         run: |
-          # 1. Pastikan wrangler.toml ada di root untuk dibaca wrangler
           cp /tmp/wrangler.toml ./wrangler.toml
-
-          # 2. PENTING: Copy folder functions dari source ke ROOT (.)
-          # agar sejajar dengan deploy_dir
           cp -r source/functions ./functions
 
           max_attempts=3
@@ -100,9 +100,6 @@ jobs:
           until [ $attempt -gt $max_attempts ]
           do
             echo "🚀 Attempt $attempt to deploy..."
-
-            # 3. Jalankan deploy dari root (.) mengarah ke folder statis (deploy_dir)
-            # Wrangler otomatis akan mencari folder ./functions di root!
             if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
               echo "✅ Deploy succeeded on attempt $attempt"
               break
