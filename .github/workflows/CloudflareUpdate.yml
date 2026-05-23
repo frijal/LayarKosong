@@ -65,7 +65,7 @@ jobs:
             --include='thumbnail-sm.*' \
             --include='*.webmanifest' \
             --exclude='functions/cari.js' \
-            --exclude='functions/hits.ts' \
+            --exclude='functions/hit.ts' \
             --exclude='*' \
             source/ deploy_dir/
 
