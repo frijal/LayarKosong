@@ -72,6 +72,7 @@ function replaceContent(html: string): string {
     // copyright symbol
     .replaceAll("&copy;", "🄯")
     .replaceAll("©", "🄯")
+    .replaceAll("All Rights Reserved", "Copyleft, All Rights Reversed")
 
     // Font Awesome version
     .replaceAll("Font Awesome 5 Free", "Font Awesome 7 Free")
