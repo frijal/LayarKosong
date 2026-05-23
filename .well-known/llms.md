@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.4
+document_version: 20.5
 last_updated: 2026-05-23
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 23 Mei 2026)
-> Menampilkan 1279 artikel versi 20.4.
+> Menampilkan 1280 artikel versi 20.5.
 
 ## Gaya Hidup
 - [Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak](https://dalam.web.id/gaya-hidup/persaudaraan-tanpa-batas-yvci-balikpapan) : Kisah solidaritas dan persaudaraan tanpa batas YVCI Balikpapan. Menelisik makna keluarga kedua bagi para pecinta Yamaha Vixion di Kota Minyak.
@@ -1070,6 +1070,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital](https://dalam.web.id/warta-tekno/alternatif-all-rights-reserved) : Mengenal alternatif hak cipta All Rights Reserved seperti Creative Commons Copyleft dan Public Domain untuk kebebasan karya digital
 - [Mengupas Makna Publisher Creator Author dan Owner di Era Digital](https://dalam.web.id/warta-tekno/makna-publisher-creator-author-owner) : Sering tertukar Pahami perbedaan mendasar antara Publisher Creator Author dan Owner terutama dalam konteks SEO Hak Cipta dan Schema Data
 - [Cara Cepat Hapus Email Sampah Gmail dengan Kode Rahasia](https://dalam.web.id/warta-tekno/panduan-kelola-inbox-gmail) : Cara cepat hapus ribuan email sampah di Gmail menggunakan kode rahasia filter pencarian. Solusi storage penuh tanpa ribet dan 100 persen aman.
 - [Panduan Lengkap Robocopy: Cara Cepat Sync dan Backup Data di Windows](https://dalam.web.id/warta-tekno/panduan-robocopy-sync-backup) : Cara pakai Robocopy untuk sync dan backup data Windows. Solusi error auditing, script batch (.bat), optimasi WLAN, dan perbandingan dengan rsync.
