@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.11
+document_version: 20.12
 last_updated: 2026-05-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 24 Mei 2026)
-> Menampilkan 1289 artikel versi 20.11.
+> Menampilkan 1290 artikel versi 20.12.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -1077,6 +1077,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser](https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown) : Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.
 - [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/warta-tekno/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
 - [Panduan Santai Memahami Lisensi Creative Commons Biar Karyamu Aman 🛡️](https://dalam.web.id/warta-tekno/panduan-lisensi-creative-commons) : tentang apa itu lisensi Creative Commons, fungsi setiap ikonnya, dan cara melindungi karyamu di era digital. Baca selengkapnya di sini.
 - [Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital](https://dalam.web.id/warta-tekno/alternatif-all-rights-reserved) : Mengenal alternatif hak cipta All Rights Reserved seperti Creative Commons Copyleft dan Public Domain untuk kebebasan karya digital
