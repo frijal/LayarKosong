@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.7
-last_updated: 2026-05-23
+document_version: 20.8
+last_updated: 2026-05-24
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 23 Mei 2026)
-> Menampilkan 1283 artikel versi 20.7.
+## Index Artikel Terbaru (Updated: 24 Mei 2026)
+> Menampilkan 1284 artikel versi 20.8.
 
 ## Gaya Hidup
 - [Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak](https://dalam.web.id/gaya-hidup/persaudaraan-tanpa-batas-yvci-balikpapan) : Kisah solidaritas dan persaudaraan tanpa batas YVCI Balikpapan. Menelisik makna keluarga kedua bagi para pecinta Yamaha Vixion di Kota Minyak.
@@ -1073,6 +1073,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Panduan Santai Memahami Lisensi Creative Commons Biar Karyamu Aman 🛡️](https://dalam.web.id/warta-tekno/panduan-lisensi-creative-commons) : tentang apa itu lisensi Creative Commons, fungsi setiap ikonnya, dan cara melindungi karyamu di era digital. Baca selengkapnya di sini.
 - [Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital](https://dalam.web.id/warta-tekno/alternatif-all-rights-reserved) : Mengenal alternatif hak cipta All Rights Reserved seperti Creative Commons Copyleft dan Public Domain untuk kebebasan karya digital
 - [Mengupas Makna Publisher Creator Author dan Owner di Era Digital](https://dalam.web.id/warta-tekno/makna-publisher-creator-author-owner) : Sering tertukar Pahami perbedaan mendasar antara Publisher Creator Author dan Owner terutama dalam konteks SEO Hak Cipta dan Schema Data
 - [Cara Cepat Hapus Email Sampah Gmail dengan Kode Rahasia](https://dalam.web.id/warta-tekno/panduan-kelola-inbox-gmail) : Cara cepat hapus ribuan email sampah di Gmail menggunakan kode rahasia filter pencarian. Solusi storage penuh tanpa ribet dan 100 persen aman.
