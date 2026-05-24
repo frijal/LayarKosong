@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.9
+document_version: 20.10
 last_updated: 2026-05-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 24 Mei 2026)
-> Menampilkan 1288 artikel versi 20.9.
+> Menampilkan 1288 artikel versi 20.10.
 
 ## Gaya Hidup
+- [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
 - [Persaudaraan Tanpa Batas YVCI Balikpapan Cerita dari Kota Minyak](https://dalam.web.id/gaya-hidup/persaudaraan-tanpa-batas-yvci-balikpapan) : Kisah solidaritas dan persaudaraan tanpa batas YVCI Balikpapan. Menelisik makna keluarga kedua bagi para pecinta Yamaha Vixion di Kota Minyak.
 - [Duo Maut RPUL dan RPAL: Search Engine Asli Generasi 90an Sebelum Era AI 🌍✨](https://dalam.web.id/gaya-hidup/rpul-rpal-search-engine-90an) : Mengenang kembali buku RPUL dan RPAL sebagai search engine legendaris anak sekolah generasi 90an sebelum era kecerdasan buatan AI tahun 2026 berkembang pesat.
 - [Gen Z Diejek Gak Bisa Ngitung: Beneran Tolol atau Otaknya Emang Lebih Canggih? 🧠💻](https://dalam.web.id/gaya-hidup/gen-z-diejek-gak-bisa-ngitung) : Membongkar alasan mengapa Gen Z sering diejek tidak bisa matematika dasar atau punya tulisan jelek. Benarkah mereka malas atau ada penjelasan neurosains di baliknya?
@@ -144,7 +145,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
-- [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/jejak-sejarah/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
 - [Kalkulator Mahram & Aurat Keluarga](https://dalam.web.id/jejak-sejarah/kalkulator-mahram-aurat) : Kalkulator interaktif untuk menentukan hubungan mahram dan batas aurat dalam keluarga berdasarkan panduan fikih. Praktis untuk keluarga dan pengajar.
 - [Anjuran Nabi Muhammad tentang Berjalan Kaki vs Realitas Warga Indonesia Hari Ini 🚶♂️🇮🇩](https://dalam.web.id/jejak-sejarah/anjuran-jalan-kaki-nabi-vs-realitas-indonesia) : masyarakat Indonesia yang mayoritas Muslim justru menjadi warga yang paling malas berjalan kaki? Membedah anjuran agama versus realitas infrastruktur.
 - [Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia](https://dalam.web.id/jejak-sejarah/lika-liku-perjalanan-ojol) : Kilas balik konflik ojek online dari 2016 hingga 2025. Dari perang wilayah, bentrok massal, zona larangan, sampai konflik horizontal sesama driver. Sebuah potret sosial ekonomi yang memperlihatkan absennya peran negara.
@@ -745,7 +745,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/sistem-terbuka/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
 - [Memilih Distro Linux Terbaik 2026: CachyOS vs Fedora vs Arch](https://dalam.web.id/sistem-terbuka/cachyos-vs-fedora-vs-arch-linux) : Panduan teknis memilih distro Linux terbaik di tahun 2026 antara CachyOS, Fedora KDE, dan Arch Linux untuk harian dan gaming tanpa pusing.
 - [Mengapa NSA Takut dengan Tails OS Panduan Lengkap Sistem Operasi Linux Paling Anonim](https://dalam.web.id/sistem-terbuka/tails-os-sistem-operasi-anonim) : Tails OS menggunakan prinsip 5W 1H Mengapa sistem operasi ini dianggap ancaman besar oleh NSA dan bagaimana cara mengoptimalkan privasi Anda
 - [Hewlett Packard Resmi Jadi Sponsor Utama LVFS, Pengguna Linux Makin Dimanja](https://dalam.web.id/sistem-terbuka/kemenangan-linux-hp-sponsor-lvfs) : Kabar gembira untuk pengguna Linux karena Hewlett Packard resmi menjadi sponsor utama LVFS menyusul Dell dan Lenovo untuk kemudahan update firmware dan BIOS yang aman
@@ -1077,6 +1076,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/warta-tekno/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
 - [Panduan Santai Memahami Lisensi Creative Commons Biar Karyamu Aman 🛡️](https://dalam.web.id/warta-tekno/panduan-lisensi-creative-commons) : tentang apa itu lisensi Creative Commons, fungsi setiap ikonnya, dan cara melindungi karyamu di era digital. Baca selengkapnya di sini.
 - [Mengenal Alternatif All Rights Reserved Dalam Dunia Kreatif Digital](https://dalam.web.id/warta-tekno/alternatif-all-rights-reserved) : Mengenal alternatif hak cipta All Rights Reserved seperti Creative Commons Copyleft dan Public Domain untuk kebebasan karya digital
 - [Mengupas Makna Publisher Creator Author dan Owner di Era Digital](https://dalam.web.id/warta-tekno/makna-publisher-creator-author-owner) : Sering tertukar Pahami perbedaan mendasar antara Publisher Creator Author dan Owner terutama dalam konteks SEO Hak Cipta dan Schema Data
