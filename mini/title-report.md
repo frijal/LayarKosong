@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/24/2026, 2:20:50 PM
+Generated on: 5/25/2026, 3:46:20 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/24/2026, 2:20:50 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v20.11 | LLM Index v20.11 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v20.12 | LLM Index v20.12 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -573,6 +573,7 @@ Generated on: 5/24/2026, 2:20:50 PM
 | `artikel/kalkulator-zakat-fitrah-lengkap-laporan.html` | Laporan Kalkulator Zakat Fitrah Lengkap - Layar Kosong | Laporan Kalkulator Zakat Fitrah Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-zakat-maal-harta-simpanan.html` | Kalkulator Zakat Maal Harta Simpanan - Layar Kosong | Kalkulator Zakat Maal Harta Simpanan | Layar Kosong | ✅ Perfect |
 | `artikel/kalkulator-zakat-penghasilan.html` | Kalkulator Zakat Penghasilan - Layar Kosong | Kalkulator Zakat Penghasilan | Layar Kosong | ✅ Perfect |
+| `artikel/kamus-syntax-html-markdown.html` | Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser - Layar Kosong | Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser | Layar Kosong | ✅ Perfect |
 | `artikel/kan-bisa-belajar-ngapain-bayar.html` | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? - Layar Kosong | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? | Layar Kosong | ✅ Perfect |
 | `artikel/karakteristik-air-perspektif-islam.html` | Membaca Karakteristik Air dalam Perspektif Islam: Anomali Banjir - Layar Kosong | Membaca Karakteristik Air dalam Perspektif Islam: Anomali Banjir | Layar Kosong | ✅ Perfect |
 | `artikel/kasih-ibu-kediri.html` | Kasih Ibu Sepanjang Masa - Potret di Kediri Saat Senja - Layar Kosong | Kasih Ibu Sepanjang Masa - Potret di Kediri Saat Senja | Layar Kosong | ✅ Perfect |
@@ -2507,6 +2508,7 @@ Generated on: 5/24/2026, 2:20:50 PM
 | `warta-tekno/jangan-taruh-semua-telur-satu-keranjang.html` | Panduan pakai banyak AI chatbot - Layar Kosong | Panduan pakai banyak AI chatbot | Layar Kosong | ✅ Perfect |
 | `warta-tekno/jasper-ai-content-writer.html` | Jasper AI: Mesin Penulis Konten Super Cepat - Layar Kosong | Jasper AI: Mesin Penulis Konten Super Cepat | Layar Kosong | ✅ Perfect |
 | `warta-tekno/json-published-time-artikel-editor.html` | JSON Batch Editor article:published_time - Layar Kosong | JSON Batch Editor article:published_time | Layar Kosong | ✅ Perfect |
+| `warta-tekno/kamus-syntax-html-markdown.html` | Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser - Layar Kosong | Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser | Layar Kosong | ✅ Perfect |
 | `warta-tekno/kan-bisa-belajar-ngapain-bayar.html` | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? - Layar Kosong | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? | Layar Kosong | ✅ Perfect |
 | `warta-tekno/kenapa-ada-folder-npm-cache.html` | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya - Layar Kosong | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya | Layar Kosong | ✅ Perfect |
 | `warta-tekno/kenapa-pakai-setup-node-github-actions.html` | Kenapa Sih File .yml GitHub Actions Sering Pake 'setup-node'? - Layar Kosong | Kenapa Sih File .yml GitHub Actions Sering Pake 'setup-node'? | Layar Kosong | ✅ Perfect |
