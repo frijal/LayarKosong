@@ -10,50 +10,56 @@
  // Format geometry ImageMagick (Lebar = 1080x, Tinggi = x1080)
  const geometry = dimType === "width" ? val + "x" : "x" + val;
  // Escaping tanda $ pakai backslash agar tidak dibaca sebagai variabel JS
- const bashScript = `#!/bin/bash
+const bashScript = `#!/bin/bash
 # ==============================================================================
-# Script Konversi PNG ke PDF Teroptimasi (Auto-Generate Layar Kosong)
-# Kombinasi: ImageMagick (Diet Resolusi) -> Ghostscript (Jahit Dokumen)
+# Script Konversi Multi-Format (PNG, JPG, WEBP) ke PDF
 # ==============================================================================
-echo "🚀 Memulai proses konversi file PNG ke PDF..."
+echo "🚀 Memulai proses konversi berbagai format gambar ke PDF..."
 # 1. Pengecekan Alat
 if ! command -v magick &> /dev/null && ! command -v convert &> /dev/null; then
- echo "❌ Waduh, ImageMagick belum terpasang! install dulu deh..."
- exit 1
+echo "❌ Waduh, ImageMagick belum terpasang! install dulu deh..."
+exit 1
 fi
 if ! command -v gs &> /dev/null; then
- echo "❌ Ghostscript (gs) tidak ditemukan! install dulu deh..."
- exit 1
+echo "❌ Ghostscript (gs) tidak ditemukan! install dulu deh..."
+exit 1
 fi
 TEMP_PDFS=()
+# Aktifkan fitur bash agar bisa baca banyak ekstensi & abaikan huruf besar/kecil
+shopt -s nullglob nocaseglob
 # 2. Proses Resize & Bungkus
-echo "🖼️ [ImageMagick] Memproses diet halaman..."
-for img in *.png; do
- if [ -f "\$img" ]; then
- temp_pdf="\${img%.png}_temp.pdf"
- echo " -> Diet & Bungkus: \$img -> \$temp_pdf"
- # Eksekusi resize ImageMagick dengan target resolusi
- if command -v magick &> /dev/null; then
- magick "\$img" -resize "${geometry}>" "\$temp_pdf"
- else
- convert "\$img" -resize "${geometry}>" "\$temp_pdf"
- fi
- TEMP_PDFS+=("\$temp_pdf")
- fi
+echo "🖼️  [ImageMagick] Memproses diet halaman..."
+# Looping sapu jagat untuk memproses 4 jenis ekstensi sekaligus
+for img in *.{png,jpg,jpeg,webp}; do
+if [ -f "\$img" ]; then
+# \${img%.*} berfungsi membuang ekstensi apa pun secara dinamis
+temp_pdf="\${img%.*}_temp.pdf"
+echo "   -> Diet & Bungkus: \$img -> \$temp_pdf"
+# Eksekusi resize ImageMagick dengan target resolusi
+# Ditambah -quality 80 agar JPG/WEBP tidak membuat PDF obesitas
+if command -v magick &> /dev/null; then
+magick "\$img" -resize "${geometry}>" -quality 80 "\$temp_pdf"
+else
+convert "\$img" -resize "${geometry}>" -quality 80 "\$temp_pdf"
+fi
+TEMP_PDFS+=("\$temp_pdf")
+fi
 done
+# Matikan kembali fitur bash-nya biar rapi
+shopt -u nullglob nocaseglob
 if [ \${#TEMP_PDFS[@]} -eq 0 ]; then
- echo "🤷 Nggak nemu file .png satupun di folder ini."
- exit 1
+echo "🤷 Nggak nemu file PNG/JPG/WEBP satupun di folder ini."
+exit 1
 fi
 # 3. Proses Penggabungan (Merging)
 OUTPUT="Hasil_Optimasi_PDF.pdf"
 echo "🪡 [Ghostscript] Merajut menjadi dokumen PDF utuh..."
 gs -dBATCH \\
- -dNOPAUSE \\
- -q \\
- -sDEVICE=pdfwrite \\
- -sOutputFile="\$OUTPUT" \\
- "\${TEMP_PDFS[@]}"
+-dNOPAUSE \\
+-q \\
+-sDEVICE=pdfwrite \\
+-sOutputFile="\$OUTPUT" \\
+"\${TEMP_PDFS[@]}"
 # 4. Bersih-bersih
 rm "\${TEMP_PDFS[@]}"
 echo "✅ Sukses beres, Bos! File PDF kamu siap di: \$OUTPUT"
