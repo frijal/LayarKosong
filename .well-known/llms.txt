@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.12
-last_updated: 2026-05-24
+document_version: 20.13
+last_updated: 2026-05-26
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 24 Mei 2026)
-> Menampilkan 1290 artikel versi 20.12.
+## Index Artikel Terbaru (Updated: 26 Mei 2026)
+> Menampilkan 1291 artikel versi 20.13.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -745,6 +745,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Dilema Migrasi Linux Berburu Pengganti Notepad Plus Plus Antara Kate dan Geany](https://dalam.web.id/sistem-terbuka/pengganti-notepad-plus-plus-linux-kate-vs-geany) : Kupas tuntas pencarian alternatif Notepad Plus Plus di Linux. Bandingkan performa Kate dan Geany untuk coding web modern UI design dan kebutuhan sehari hari.
 - [Panduan Memahami Persistent Storage vs Non Persistent Mode di Live USB Linux](https://dalam.web.id/sistem-terbuka/persistent-storage-live-usb-linux) : Kupas tuntas perbedaan cara kerja kelebihan serta risiko antara Persistent Storage dan Non-Persistent Mode alias Amnesic Mode pada bootable Live USB Linux
 - [Memilih Distro Linux Terbaik 2026: CachyOS vs Fedora vs Arch](https://dalam.web.id/sistem-terbuka/cachyos-vs-fedora-vs-arch-linux) : Panduan teknis memilih distro Linux terbaik di tahun 2026 antara CachyOS, Fedora KDE, dan Arch Linux untuk harian dan gaming tanpa pusing.
 - [Mengapa NSA Takut dengan Tails OS Panduan Lengkap Sistem Operasi Linux Paling Anonim](https://dalam.web.id/sistem-terbuka/tails-os-sistem-operasi-anonim) : Tails OS menggunakan prinsip 5W 1H Mengapa sistem operasi ini dianggap ancaman besar oleh NSA dan bagaimana cara mengoptimalkan privasi Anda
