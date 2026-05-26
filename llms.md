@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.15
+document_version: 20.16
 last_updated: 2026-05-26
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 26 Mei 2026)
-> Menampilkan 1297 artikel versi 20.15.
+> Menampilkan 1297 artikel versi 20.16.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -339,7 +339,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
-- [Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online](https://dalam.web.id/lainnya/drama-kolom-komentar-windows-vs-linux) : Mengupas tuntas drama pertempuran sengit netizen antara pengguna Windows dan sekte Linux beserta kontroversi pemaksaan akun online Microsoft
 - [Cukupkah Pendapatan Bersih Rp 200.000 Per Hari Untuk Ojek Online?](https://dalam.web.id/lainnya/realita-pendapatan-ojol-200-ribu) : mengenai realita pendapatan harian driver ojek online sebesar 200 ribu rupiah apakah cukup untuk biaya hidup dan operasional
 - [Siapa Saja Pihak yang Berwenang Melakukan Tilang di Jalan Raya? Biar Gak Kena Prank Oknum! 🚦👮](https://dalam.web.id/lainnya/pihak-berwenang-tilang-jalan-raya) : Meluruskan miskonsepsi tentang siapa saja yang berhak melakukan tilang di jalan raya. Apakah hanya Polantas atau Dishub juga bisa? Temukan jawabannya di sini.
 - [Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔](https://dalam.web.id/lainnya/sop-kondisi-penindakan-tilang-lalu-lintas) : Membahas kapan dan dalam skenario seperti apa sebuah penilangan dianggap boleh termasuk menjawab mitos soal polisi yang sedang tidak berdinas di jalan raya.
@@ -465,6 +464,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Silaturahmi atau Silaturahim? Mana yang Benar?](https://dalam.web.id/lainnya/silaturahmi-vs-silaturahim) : Sering bingung pakai kata silaturahmi atau silaturahim? Ternyata keduanya benar dan baku menurut KBBI! Pahami beda makna, asal kata, dan konteks penggunaannya di sini.
 
 ## Olah Media
+- [Ukuran Resolusi PDF Paling Ideal untuk Layar Ponsel](https://dalam.web.id/olah-media/ukuran-resolusi-pdf-ideal-ponsel) : menentukan resolusi gambar PDF terbaik untuk smartphone lengkap dengan generator script otomatis konversi PNG ke PDF via Ghostscript.
 - [WebP Itu Bagus, Sebenarnya: Kenapa Format Gambar Ini Layak Dipakai](https://dalam.web.id/olah-media/webp-itu-bagus-sebenarnya) : WebP sering dikira format ribet, padahal unggul dari JPEG, PNG, dan GIF. Simak kenapa WebP itu bagus, kelebihannya, dan cara menggunakannya tanpa hambatan.
 - [Video Splitter One-Liner Generator](https://dalam.web.id/olah-media/video-splitter-one-liner-generator) : Generate perintah one-liner untuk membagi video dengan cepat dan efisien. Cocok untuk developer, content creator, dan pengguna FFmpeg.
 - [Mengenal Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus](https://dalam.web.id/olah-media/flash-fill-excel-otomatis) : kecanggihan Flash Fill di Excel untuk memisahkan, menggabungkan, dan memformat data secara otomatis tanpa rumus kompleks.
@@ -1083,7 +1083,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Ukuran Resolusi PDF Paling Ideal untuk Layar Ponsel](https://dalam.web.id/warta-tekno/ukuran-resolusi-pdf-ideal-ponsel) : menentukan resolusi gambar PDF terbaik untuk smartphone lengkap dengan generator script otomatis konversi PNG ke PDF via Ghostscript.
+- [Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online](https://dalam.web.id/warta-tekno/drama-kolom-komentar-windows-vs-linux) : Mengupas tuntas drama pertempuran sengit netizen antara pengguna Windows dan sekte Linux beserta kontroversi pemaksaan akun online Microsoft
 - [Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser](https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown) : Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.
 - [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/warta-tekno/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
 - [Panduan Santai Memahami Lisensi Creative Commons Biar Karyamu Aman 🛡️](https://dalam.web.id/warta-tekno/panduan-lisensi-creative-commons) : tentang apa itu lisensi Creative Commons, fungsi setiap ikonnya, dan cara melindungi karyamu di era digital. Baca selengkapnya di sini.
