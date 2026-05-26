@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.14
+document_version: 20.15
 last_updated: 2026-05-26
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 26 Mei 2026)
-> Menampilkan 1296 artikel versi 20.14.
+> Menampilkan 1297 artikel versi 20.15.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -1083,6 +1083,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Ukuran Resolusi PDF Paling Ideal untuk Layar Ponsel](https://dalam.web.id/warta-tekno/ukuran-resolusi-pdf-ideal-ponsel) : menentukan resolusi gambar PDF terbaik untuk smartphone lengkap dengan generator script otomatis konversi PNG ke PDF via Ghostscript.
 - [Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser](https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown) : Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.
 - [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/warta-tekno/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
 - [Panduan Santai Memahami Lisensi Creative Commons Biar Karyamu Aman 🛡️](https://dalam.web.id/warta-tekno/panduan-lisensi-creative-commons) : tentang apa itu lisensi Creative Commons, fungsi setiap ikonnya, dan cara melindungi karyamu di era digital. Baca selengkapnya di sini.
