@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/25/2026, 3:46:20 PM
+Generated on: 5/26/2026, 4:37:10 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v20.12 | LLM Index v20.12 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v20.14 | LLM Index v20.14 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -220,6 +220,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `artikel/cachyos-paru-upgrade-cepat.html` | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat - Layar Kosong | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-update-rate.html` | CachyOS Linux Update Rate - Layar Kosong | CachyOS Linux Update Rate | Layar Kosong | ✅ Perfect |
 | `artikel/cachyos-vs-fedora-vs-arch-linux.html` | Memilih Distro Linux Terbaik 2026: CachyOS vs Fedora vs Arch - Layar Kosong | Memilih Distro Linux Terbaik 2026: CachyOS vs Fedora vs Arch | Layar Kosong | ✅ Perfect |
+| `artikel/california-linux-age-verification-law.html` | Analisis Miring Ketika California Hampir Paksa Linux Kumpulkan Data Usia - Layar Kosong | Analisis Miring Ketika California Hampir Paksa Linux Kumpulkan Data Usia | Layar Kosong | ✅ Perfect |
 | `artikel/canva-magic-studio-desain-ai.html` | Canva Magic Studio: Desain Keren Tanpa Ribet Pakai AI - Layar Kosong | Canva Magic Studio: Desain Keren Tanpa Ribet Pakai AI | Layar Kosong | ✅ Perfect |
 | `artikel/cara-aktifkan-branch-protection.html` | Cara Mengaktifkan Branch Protection di GitHub - Layar Kosong | Cara Mengaktifkan Branch Protection di GitHub | Layar Kosong | ✅ Perfect |
 | `artikel/cara-autostart-skrip-di-ubuntu.html` | Cara Autostart Skrip di Ubuntu - Layar Kosong | Cara Autostart Skrip di Ubuntu | Layar Kosong | ✅ Perfect |
@@ -320,6 +321,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `artikel/docs-linux-mirror.html` | Panduan Mirror Linux Lintas Distro - Layar Kosong | Panduan Mirror Linux Lintas Distro | Layar Kosong | ✅ Perfect |
 | `artikel/drama-beras-uea-medan.html` | Drama Beras UEA di Medan: Dari Rencana Retur Hingga di Eksekusi Muhammadiyah - Layar Kosong | Drama Beras UEA di Medan: Dari Rencana Retur Hingga di Eksekusi Muhammadiyah | Layar Kosong | ✅ Perfect |
 | `artikel/drama-bot-email.html` | Drama Bot Email 👻 dan Solusi "Gratisan" yang Powerfull - Layar Kosong | Drama Bot Email 👻 dan Solusi "Gratisan" yang Powerfull | Layar Kosong | ✅ Perfect |
+| `artikel/drama-kolom-komentar-windows-vs-linux.html` | Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online - Layar Kosong | Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online | Layar Kosong | ✅ Perfect |
 | `artikel/drauger-os-linux-gaming.html` | Drauger OS: Distro Linux Khusus Gaming 🎮 - Layar Kosong | Drauger OS: Distro Linux Khusus Gaming 🎮 | Layar Kosong | ✅ Perfect |
 | `artikel/du-linux-panduan.html` | Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk 📂 - Layar Kosong | Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk 📂 | Layar Kosong | ✅ Perfect |
 | `artikel/dua-usaha-dihindari-2026.html` | Waspada 2026: Dua Jenis Usaha Berisiko Tinggi yang Harus Kamu Hindari! - Layar Kosong | Waspada 2026: Dua Jenis Usaha Berisiko Tinggi yang Harus Kamu Hindari! | Layar Kosong | ✅ Perfect |
@@ -705,6 +707,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `artikel/linux-debian-cinnamon-kedamaian.html` | GNU, Debian, dan Cinnamon: Mencari Kedamaian di Tengah Hutan Digital - Layar Kosong | GNU, Debian, dan Cinnamon: Mencari Kedamaian di Tengah Hutan Digital | Layar Kosong | ✅ Perfect |
 | `artikel/linux-distro-berisiko-untuk-pemula.html` | Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula - Layar Kosong | Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula | Layar Kosong | ✅ Perfect |
 | `artikel/linux-file-system-santai.html` | Linux File System: Dijelasin Santai dari Atas Sampai Bawah - Layar Kosong | Linux File System: Dijelasin Santai dari Atas Sampai Bawah | Layar Kosong | ✅ Perfect |
+| `artikel/linux-foundation-open-driver-initiative.html` | Gebrakan Linux Foundation Melalui Open Driver Initiative Selamat Tinggal Driver Tertutup - Layar Kosong | Gebrakan Linux Foundation Melalui Open Driver Initiative Selamat Tinggal Driver Tertutup | Layar Kosong | ✅ Perfect |
 | `artikel/linux-keamanan.html` | Apakah Komunitas Linux Siap Menghadapi Tantangan Baru? - Layar Kosong | Apakah Komunitas Linux Siap Menghadapi Tantangan Baru? | Layar Kosong | ✅ Perfect |
 | `artikel/linux-kernel-7-release.html` | Linux Kernel 7 Segera Rilis: Apa Artinya Buat Kita? (Deep Dive 2026) - Layar Kosong | Linux Kernel 7 Segera Rilis: Apa Artinya Buat Kita? (Deep Dive 2026) | Layar Kosong | ✅ Perfect |
 | `artikel/linux-mint-22-2-upgrade-step.html` | Upgrade Linux Mint 22.1 ke 22.2 Zara - Layar Kosong | Upgrade Linux Mint 22.1 ke 22.2 Zara | Layar Kosong | ✅ Perfect |
@@ -803,6 +806,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `artikel/mengapa-puasa-2026-dimulai-18-februari.html` | Mengapa Puasa 2026 Dimulai 18 Februari? Kupas Tuntas KHGT Muhammadiyah dan Peran Alaska - Layar Kosong | Mengapa Puasa 2026 Dimulai 18 Februari? Kupas Tuntas KHGT Muhammadiyah dan Peran Alaska | Layar Kosong | ✅ Perfect |
 | `artikel/mengatasi-email-spoofing-dmarc-spf.html` | Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF - Layar Kosong | Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF | Layar Kosong | ✅ Perfect |
 | `artikel/mengatasi-error-git-push-non-fast-forward.html` | Error 'Non-Fast-Forward' Saat git push? Ini Penjelasan dan Solusinya! - Layar Kosong | Error 'Non-Fast-Forward' Saat git push? Ini Penjelasan dan Solusinya! | Layar Kosong | ✅ Perfect |
+| `artikel/mengatasi-error-reading-fd-7-pacman.html` | Cara Ampuh Mengatasi Error reading fd 7 di Pacman Arch Linux - Layar Kosong | Cara Ampuh Mengatasi Error reading fd 7 di Pacman Arch Linux | Layar Kosong | ✅ Perfect |
 | `artikel/mengelola-lisan.html` | Bahaya Ghibah dan Fitnah: Menjaga Lisan dari Dosa Tak Terasa - Layar Kosong | Bahaya Ghibah dan Fitnah: Menjaga Lisan dari Dosa Tak Terasa | Layar Kosong | ✅ Perfect |
 | `artikel/mengenal-fenomena-ulama-su-dan-integritas-moral.html` | Mengenal Fenomena Ulama Su: Ketika Ilmu Menjadi Alat Kekuasaan dan Propaganda - Layar Kosong | Mengenal Fenomena Ulama Su: Ketika Ilmu Menjadi Alat Kekuasaan dan Propaganda | Layar Kosong | ✅ Perfect |
 | `artikel/mengenal-jenis-domain-name.html` | Mengenal Jenis Domain: TLD, gTLD, ccTLD, SLD, dan 3LD - Layar Kosong | Mengenal Jenis Domain: TLD, gTLD, ccTLD, SLD, dan 3LD | Layar Kosong | ✅ Perfect |
@@ -967,6 +971,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `artikel/pengecekan-dan-laporan-konten-harian.html` | Pengecekan & Laporan Konten Harian - Otomasi GitHub Actions 🔆 - Layar Kosong | Pengecekan & Laporan Konten Harian - Otomasi GitHub Actions 🔆 | Layar Kosong | ✅ Perfect |
 | `artikel/pengecekan-laporan-konten-harian.html` | Pengecekan & Laporan Konten Harian - GitHub Actions 🔆 - Layar Kosong | Pengecekan & Laporan Konten Harian - GitHub Actions 🔆 | Layar Kosong | ✅ Perfect |
 | `artikel/pengganti-google-code.html` | Apa Pengganti Google Code Sekarang? (Dulu Komunitas, Kini Bisnis) - Layar Kosong | Apa Pengganti Google Code Sekarang? (Dulu Komunitas, Kini Bisnis) | Layar Kosong | ✅ Perfect |
+| `artikel/pengganti-notepad-plus-plus-linux-kate-vs-geany.html` | Dilema Migrasi Linux Berburu Pengganti Notepad Plus Plus Antara Kate dan Geany - Layar Kosong | Dilema Migrasi Linux Berburu Pengganti Notepad Plus Plus Antara Kate dan Geany | Layar Kosong | ✅ Perfect |
 | `artikel/pengkhianatan-kaum-intelektual-indonesia.html` | Pengkhianatan Kaum Intelektual: Mengapa Profesor dan Dosen Tak Berani Beda Suara? - Layar Kosong | Pengkhianatan Kaum Intelektual: Mengapa Profesor dan Dosen Tak Berani Beda Suara? | Layar Kosong | ✅ Perfect |
 | `artikel/penjelasan-generate-gitignore-js.html` | Bedah Skrip generate-gitignore.js: Bikin .gitignore Otomatis. - Layar Kosong | Bedah Skrip generate-gitignore.js: Bikin .gitignore Otomatis. | Layar Kosong | ✅ Perfect |
 | `artikel/penjelasan-generate-icons-js.html` | Bedah Skrip generate-icons.js: Bikin Ikon PWA & Manifest Otomatis. - Layar Kosong | Bedah Skrip generate-icons.js: Bikin Ikon PWA & Manifest Otomatis. | Layar Kosong | ✅ Perfect |
@@ -1223,6 +1228,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `artikel/tidak-boker-tiap-hari.html` | Mengapa Tidak Buang Air Besar Setiap Hari? Penjelasan & Solusi - Layar Kosong | Mengapa Tidak Buang Air Besar Setiap Hari? Penjelasan & Solusi | Layar Kosong | ✅ Perfect |
 | `artikel/tidio-chatbot-ai.html` | Tidio: Chatbot Cerdas untuk Layanan Pelanggan 24/7 - Layar Kosong | Tidio: Chatbot Cerdas untuk Layanan Pelanggan 24/7 | Layar Kosong | ✅ Perfect |
 | `artikel/tidur-bada-ashar-ramadhan.html` | Selama Ramadhan Sempatnya Tidur Ba’da Ashar? Boleh Hukumnya? (Syariat dan Medis) - Layar Kosong | Selama Ramadhan Sempatnya Tidur Ba’da Ashar? Boleh Hukumnya? (Syariat dan Medis) | Layar Kosong | ✅ Perfect |
+| `artikel/tiga-bug-kritis-linux-lpe-dirty-frag.html` | Mimpi Buruk Dua Minggu Terakhir Linux: 3 Bug Kritis Bersarang di Kernel - Layar Kosong | Mimpi Buruk Dua Minggu Terakhir Linux: 3 Bug Kritis Bersarang di Kernel | Layar Kosong | ✅ Perfect |
 | `artikel/tinggalkan-frase-ikut-pemerintah-atau-muhammadiyah.html` | Tinggalkan Frase Ikut Pemerintah atau Ikut Muhammadiyah - Layar Kosong | Tinggalkan Frase Ikut Pemerintah atau Ikut Muhammadiyah | Layar Kosong | ✅ Perfect |
 | `artikel/tipe-distro-hopper-linux.html` | Jenis Distro Hopper: Mengenal Tipe Pelompat Linux di Komunitas - Layar Kosong | Jenis Distro Hopper: Mengenal Tipe Pelompat Linux di Komunitas | Layar Kosong | ✅ Perfect |
 | `artikel/tips-belajar-bahasa-dari-membaca.html` | Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading - Layar Kosong | Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading | Layar Kosong | ✅ Perfect |
@@ -1663,6 +1669,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `lainnya/defisit-di-meja-perundingan.html` | Defisit di Meja Perundingan Analisis Kedaulatan Pangan dan Komitmen Impor 2026 - Layar Kosong | Defisit di Meja Perundingan Analisis Kedaulatan Pangan dan Komitmen Impor 2026 | Layar Kosong | ✅ Perfect |
 | `lainnya/diesel-runaway-horor-mesin-ngamuk.html` | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya - Layar Kosong | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya | Layar Kosong | ✅ Perfect |
 | `lainnya/dilema-hemat-gas-pedagang-makanan.html` | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas - Layar Kosong | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas | Layar Kosong | ✅ Perfect |
+| `lainnya/drama-kolom-komentar-windows-vs-linux.html` | Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online - Layar Kosong | Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online | Layar Kosong | ✅ Perfect |
 | `lainnya/dua-usaha-dihindari-2026.html` | Waspada 2026: Dua Jenis Usaha Berisiko Tinggi yang Harus Kamu Hindari! - Layar Kosong | Waspada 2026: Dua Jenis Usaha Berisiko Tinggi yang Harus Kamu Hindari! | Layar Kosong | ✅ Perfect |
 | `lainnya/editor-json-pro.html` | Editor Artikel JSON Pro - Kelola Konten Layar Kosong - Layar Kosong | Editor Artikel JSON Pro - Kelola Konten Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lainnya/era-digital-tilang-elektronik-vs-tilang-manual.html` | Era Digital Tilang Elektronik vs Tilang Manual Jangan Mau Diajak Damai 📸🚔 - Layar Kosong | Era Digital Tilang Elektronik vs Tilang Manual Jangan Mau Diajak Damai 📸🚔 | Layar Kosong | ✅ Perfect |
@@ -2080,6 +2087,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `sistem-terbuka/cachyos-paru-upgrade-cepat.html` | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat - Layar Kosong | Mempercepat Upgrade PARU di CachyOS dengan Mirror Terdekat | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-update-rate.html` | CachyOS Linux Update Rate - Layar Kosong | CachyOS Linux Update Rate | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cachyos-vs-fedora-vs-arch-linux.html` | Memilih Distro Linux Terbaik 2026: CachyOS vs Fedora vs Arch - Layar Kosong | Memilih Distro Linux Terbaik 2026: CachyOS vs Fedora vs Arch | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/california-linux-age-verification-law.html` | Analisis Miring Ketika California Hampir Paksa Linux Kumpulkan Data Usia - Layar Kosong | Analisis Miring Ketika California Hampir Paksa Linux Kumpulkan Data Usia | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-autostart-skrip-di-ubuntu.html` | Cara Autostart Skrip di Ubuntu - Layar Kosong | Cara Autostart Skrip di Ubuntu | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-bersihkan-cachyos-arch-linux.html` | Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif - Layar Kosong | Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-hapus-snap-ubuntu.html` | Cara Menghapus Snap dari Ubuntu: Bersihkan Bloatware dan Ambil Alih Kendali Sistem! 🚀 - Layar Kosong | Cara Menghapus Snap dari Ubuntu: Bersihkan Bloatware dan Ambil Alih Kendali Sistem! 🚀 | Layar Kosong | ✅ Perfect |
@@ -2205,6 +2213,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `sistem-terbuka/linux-debian-cinnamon-kedamaian.html` | GNU, Debian, dan Cinnamon: Mencari Kedamaian di Tengah Hutan Digital - Layar Kosong | GNU, Debian, dan Cinnamon: Mencari Kedamaian di Tengah Hutan Digital | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-distro-berisiko-untuk-pemula.html` | Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula - Layar Kosong | Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-file-system-santai.html` | Linux File System: Dijelasin Santai dari Atas Sampai Bawah - Layar Kosong | Linux File System: Dijelasin Santai dari Atas Sampai Bawah | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/linux-foundation-open-driver-initiative.html` | Gebrakan Linux Foundation Melalui Open Driver Initiative Selamat Tinggal Driver Tertutup - Layar Kosong | Gebrakan Linux Foundation Melalui Open Driver Initiative Selamat Tinggal Driver Tertutup | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-keamanan.html` | Apakah Komunitas Linux Siap Menghadapi Tantangan Baru? - Layar Kosong | Apakah Komunitas Linux Siap Menghadapi Tantangan Baru? | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-kernel-7-release.html` | Linux Kernel 7 Segera Rilis: Apa Artinya Buat Kita? (Deep Dive 2026) - Layar Kosong | Linux Kernel 7 Segera Rilis: Apa Artinya Buat Kita? (Deep Dive 2026) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-mint-22-2-upgrade-step.html` | Upgrade Linux Mint 22.1 ke 22.2 Zara - Layar Kosong | Upgrade Linux Mint 22.1 ke 22.2 Zara | Layar Kosong | ✅ Perfect |
@@ -2237,6 +2246,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `sistem-terbuka/memilih-desktop-environment.html` | Memilih Desktop Environment untuk Linux - Layar Kosong | Memilih Desktop Environment untuk Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/memilih-distro-linux-stabil.html` | Pilih Distro Linux Stabil - Tips Longevity dan Recovery - Layar Kosong | Pilih Distro Linux Stabil - Tips Longevity dan Recovery | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/memilih-distro-linux.html` | Memilih Distribusi Linux yang Tepat 🐧 - Layar Kosong | Memilih Distribusi Linux yang Tepat 🐧 | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/mengatasi-error-reading-fd-7-pacman.html` | Cara Ampuh Mengatasi Error reading fd 7 di Pacman Arch Linux - Layar Kosong | Cara Ampuh Mengatasi Error reading fd 7 di Pacman Arch Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mengenal-linux-dan-floss.html` | Mengenal Linux dan FLOSS: Panduan Lengkap untuk Pemula - Layar Kosong | Mengenal Linux dan FLOSS: Panduan Lengkap untuk Pemula | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mengganti-kata-dengan-perl.html` | Mengganti Kata dalam Banyak Dokumen dengan Perl - Layar Kosong | Mengganti Kata dalam Banyak Dokumen dengan Perl | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/menonaktifkan-koneksi-otomatis-firefox.html` | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian - Layar Kosong | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian | Layar Kosong | ✅ Perfect |
@@ -2277,6 +2287,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `sistem-terbuka/pembaruan-otomatis-fedora.html` | Pembaruan Otomatis Fedora: Perlukah? - Layar Kosong | Pembaruan Otomatis Fedora: Perlukah? | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pengalaman-kde-linux.html` | Pengalaman Sehari-hari Menggunakan KDE Linux - Layar Kosong | Pengalaman Sehari-hari Menggunakan KDE Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pengganti-google-code.html` | Apa Pengganti Google Code Sekarang? (Dulu Komunitas, Kini Bisnis) - Layar Kosong | Apa Pengganti Google Code Sekarang? (Dulu Komunitas, Kini Bisnis) | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/pengganti-notepad-plus-plus-linux-kate-vs-geany.html` | Dilema Migrasi Linux Berburu Pengganti Notepad Plus Plus Antara Kate dan Geany - Layar Kosong | Dilema Migrasi Linux Berburu Pengganti Notepad Plus Plus Antara Kate dan Geany | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/peramban-ringan-linux-terbaik.html` | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel - Layar Kosong | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/perbaiki-grub-rescue.html` | Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB - Layar Kosong | Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/perintah-teks.html` | Perintah Teks di Linux - Panduan Santai & Lengkap - Layar Kosong | Perintah Teks di Linux - Panduan Santai & Lengkap | Layar Kosong | ✅ Perfect |
@@ -2337,6 +2348,7 @@ Generated on: 5/25/2026, 3:46:20 PM
 | `sistem-terbuka/tahun-percakapan-linux.html` | 2025: Tahun Percakapan Linux Dimulai? - Layar Kosong | 2025: Tahun Percakapan Linux Dimulai? | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/tails-os-sistem-operasi-anonim.html` | Mengapa NSA Takut dengan Tails OS Panduan Lengkap Sistem Operasi Linux Paling Anonim - Layar Kosong | Mengapa NSA Takut dengan Tails OS Panduan Lengkap Sistem Operasi Linux Paling Anonim | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/tar-di-linux.html` | Tar di Linux: Kompres & Extract Santai dari Terminal - Layar Kosong | Tar di Linux: Kompres & Extract Santai dari Terminal | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/tiga-bug-kritis-linux-lpe-dirty-frag.html` | Mimpi Buruk Dua Minggu Terakhir Linux: 3 Bug Kritis Bersarang di Kernel - Layar Kosong | Mimpi Buruk Dua Minggu Terakhir Linux: 3 Bug Kritis Bersarang di Kernel | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/tipe-distro-hopper-linux.html` | Jenis Distro Hopper: Mengenal Tipe Pelompat Linux di Komunitas - Layar Kosong | Jenis Distro Hopper: Mengenal Tipe Pelompat Linux di Komunitas | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/tips-cooling-laptop-amd.html` | Tips Cooling Ekstrem Laptop AMD dengan Kipas Box 🧊 - Layar Kosong | Tips Cooling Ekstrem Laptop AMD dengan Kipas Box 🧊 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/tips-hemat-baterai-firefox.html` | Tips Jitu Menghemat Baterai Laptop Saat Pakai Firefox ⚡ - Layar Kosong | Tips Jitu Menghemat Baterai Laptop Saat Pakai Firefox ⚡ | Layar Kosong | ✅ Perfect |
