@@ -184,28 +184,28 @@ function initNavIcons(allData: any, currentFile: string): void {
   if (idx === -1) return;
 
   const total = catInfo.list.length;
-  const prevI = (idx - 1 + total) % total; // artikel sebelumnya (⏪)
-const nextI = (idx + 1) % total;         // artikel berikutnya (⏩)
+  const nextI = (idx - 1 + total) % total;
+  const prevI = (idx + 1) % total;
 
-let nav = document.getElementById('dynamic-nav-container');
-if (!nav) {
-  nav = document.createElement('div');
-  nav.id = 'dynamic-nav-container';
-  nav.className = 'floating-nav';
-  document.body.appendChild(nav);
-}
+  let nav = document.getElementById('dynamic-nav-container');
+  if (!nav) {
+    nav = document.createElement('div');
+    nav.id = 'dynamic-nav-container';
+    nav.className = 'floating-nav';
+    document.body.appendChild(nav);
+  }
 
-nav.innerHTML = `
-<div class="nav-left"><a href="/${catInfo.slug}/" class="category-link visible">${catInfo.name}</a></div>
-<div class="nav-right">
-<a href="/" title="Home" class="btn-emoji">🏠</a>
-<a href="/sitemap/" title="Daftar Isi" class="btn-emoji">📄</a>
-<a href="/feed/" title="RSS Feed" class="btn-emoji">📡</a>
-${total > 1 ? `
-  <a href="${getFullUrl(catInfo.list[prevI].id, allData)}" title="${catInfo.list[prevI].title}" class="btn-emoji">⏪</a>
-  <a href="${getFullUrl(catInfo.list[nextI].id, allData)}" title="${catInfo.list[nextI].title}" class="btn-emoji">⏩</a>
-  ` : ''}
-  </div>`;
+  nav.innerHTML = `
+  <div class="nav-left"><a href="/${catInfo.slug}/" class="category-link visible">${catInfo.name}</a></div>
+  <div class="nav-right">
+  <a href="/" title="Home" class="btn-emoji">🏠</a>
+  <a href="/sitemap/" title="Daftar Isi" class="btn-emoji">📄</a>
+  <a href="/feed/" title="RSS Feed" class="btn-emoji">📡</a>
+  ${total > 1 ? `
+    <a href="${getFullUrl(catInfo.list[nextI].id, allData)}" title="${catInfo.list[nextI].title}" class="btn-emoji">⏩</a>
+    <a href="${getFullUrl(catInfo.list[prevI].id, allData)}" title="${catInfo.list[prevI].title}" class="btn-emoji">⏪</a>
+    ` : ''}
+    </div>`;
 }
 
 function initInternalNav(): void {
@@ -229,31 +229,29 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   if (!catInfo) { grid.style.display = 'none'; return; }
 
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
-
+  
   grid.innerHTML = related.map((item: any) => {
-    // Primary: versi ringan -sm.webp
-    // Fallback 1: gambar asli (item.image)
-    // Fallback 2: /thumbnail.webp
-    const smUrl = item.image
-    ? item.image.replace(/\.[^/.]+$/, '') + '-sm.webp'
-    : null;
-    const thumbSrc = smUrl ?? '/thumbnail.webp';
-    const fallback1 = item.image ? `this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='${item.image}'` : `this.onerror=null;this.src='/thumbnail.webp'`;
+    // Logika untuk mengubah thumbnail ke versi ringan (-sm.webp)
+    let thumbUrl = '/thumbnail.webp';
+    if (item.image) {
+      // Mengganti ekstensi file gambar apa pun (jpg, png, webp) menjadi -sm.webp
+      thumbUrl = item.image.replace(/\.[^/.]+$/, "") + "-sm.webp";
+    }
 
     return `
     <div class="rel-card-mini">
-    <a href="${getFullUrl(item.id, allData)}">
-    <div class="rel-img-mini">
-    <img
-    src="${thumbSrc}"
-    alt="${item.title}"
-    loading="lazy"
-    onerror="${fallback1}">
-    </div>
-    <div class="rel-info-mini">
-    <h4>${item.title}</h4>
-    </div>
-    </a>
+      <a href="${getFullUrl(item.id, allData)}">
+        <div class="rel-img-mini">
+          <img 
+            src="${thumbUrl}" 
+            alt="${item.title}" 
+            loading="lazy" 
+            onerror="this.src='/thumbnail.webp'">
+        </div>
+        <div class="rel-info-mini">
+          <h4>${item.title}</h4>
+        </div>
+      </a>
     </div>
     `;
   }).join('');

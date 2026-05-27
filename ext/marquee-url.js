@@ -1,31 +1,31 @@
-(()=>{(function(){function Z(){return window.innerWidth<=768||"ontouchstart"in window||navigator.maxTouchPoints>0}function j(E){return E?E.replace(/\.html$/,""):""}function z(){let K=window.location.pathname.split("/").filter(Boolean).pop();if(!K||K==="artikel")return"";return K.endsWith(".html")?K:`${K}.html`}function $(E,K){for(let[H,J]of Object.entries(K))if(J.some((Q)=>Q.id===E))return`/${H.toLowerCase().replace(/\s+/g,"-")}/${E.replace(".html","")}/`;return`/${j(E)}/`}function B(E,K){for(let[H,J]of Object.entries(K)){let V=J;if(V.some((Q)=>Q.id===E))return{name:H,slug:H.toLowerCase().replace(/\s+/g,"-"),list:V}}return null}function O(){let E=document.getElementById("related-marquee-container");if(!E)return;let K=getComputedStyle(document.body).backgroundColor,[H,J,V]=(K.match(/\d+/g)||["0","0","0"]).map(Number),Q=0.299*H+0.587*J+0.114*V;E.classList.toggle("theme-light",Q>128)}function R(){let E=document.getElementById("related-marquee-container");if(!E)return;E.addEventListener("click",(K)=>{let J=K.target.closest("a");if(!J)return;let V=J.dataset.articleId;if(!V)return;let Q=JSON.parse(localStorage.getItem("read_marquee_articles")||"[]");if(!Q.includes(V))Q.push(V),localStorage.setItem("read_marquee_articles",JSON.stringify(Q))})}function q(){let E=document.getElementById("progress");if(!E)return;let K=()=>{let{documentElement:H,body:J}=document,V=H.scrollTop||J.scrollTop,Q=H.scrollHeight||J.scrollHeight,X=H.clientHeight,W=Q-X;E.style.width=W>0?V/W*100+"%":"0%"};window.addEventListener("scroll",K,{passive:!0}),K()}function k(E,K){let H=document.getElementById("related-marquee-container");if(!H)return;let J=B(K,E);if(!J)return;let V=J.list.filter((Y)=>Y.id!==K),Q=JSON.parse(localStorage.getItem("read_marquee_articles")||"[]"),X=V.filter((Y)=>!Q.includes(Y.id));if(X.length===0){H.innerHTML='<p class="marquee-message">Semua artikel terkait sudah dibaca. \uD83D\uDE0A</p>';return}X.sort(()=>0.5-Math.random());let W=Z(),_=X.map((Y)=>{let L=$(Y.id,E),A=W?Y.title:Y.description||Y.title;return`<a href="${L}" data-article-id="${Y.id}" title="${A}">${Y.title}</a> • `}).join("");H.innerHTML=`<div class="marquee-content">${_.repeat(10)}</div>`;let G=H.querySelector(".marquee-content");if(G){let Y=G.offsetWidth,L=W?40:75;G.style.animationDuration=`${Y/2/L}s`}R()}function y(E){let K=document.querySelector(".search-floating-container"),H=document.getElementById("floatingSearchInput"),J=K?.querySelector(".clear-button"),V=K?.querySelector(".floating-results-container");if(!K||!H||!J||!V)return;H.addEventListener("input",()=>{let Q=H.value.trim().toLowerCase();if(J.style.display=Q.length?"block":"none",Q.length<3){V.style.display="none";return}let X=[];for(let W in E)for(let _ of E[W])if((_.title+" "+(_.description||"")).toLowerCase().includes(Q))X.push(_);if(X.length>0)V.innerHTML=X.slice(0,5).map((W)=>`
-    <a href="${$(W.id,E)}">
-    <strong>${W.title}</strong>
-    <small>${W.description?W.description.substring(0,60)+"...":"Lihat artikel"}</small>
+(()=>{(function(){function P(){return window.innerWidth<=768||"ontouchstart"in window||navigator.maxTouchPoints>0}function Z(j){return j?j.replace(/\.html$/,""):""}function z(){let J=window.location.pathname.split("/").filter(Boolean).pop();if(!J||J==="artikel")return"";return J.endsWith(".html")?J:`${J}.html`}function _(j,J){for(let[E,H]of Object.entries(J))if(H.some((K)=>K.id===j))return`/${E.toLowerCase().replace(/\s+/g,"-")}/${j.replace(".html","")}/`;return`/${Z(j)}/`}function $(j,J){for(let[E,H]of Object.entries(J)){let Q=H;if(Q.some((K)=>K.id===j))return{name:E,slug:E.toLowerCase().replace(/\s+/g,"-"),list:Q}}return null}function L(){let j=document.getElementById("related-marquee-container");if(!j)return;let J=getComputedStyle(document.body).backgroundColor,[E,H,Q]=(J.match(/\d+/g)||["0","0","0"]).map(Number),K=0.299*E+0.587*H+0.114*Q;j.classList.toggle("theme-light",K>128)}function R(){let j=document.getElementById("related-marquee-container");if(!j)return;j.addEventListener("click",(J)=>{let H=J.target.closest("a");if(!H)return;let Q=H.dataset.articleId;if(!Q)return;let K=JSON.parse(localStorage.getItem("read_marquee_articles")||"[]");if(!K.includes(Q))K.push(Q),localStorage.setItem("read_marquee_articles",JSON.stringify(K))})}function q(){let j=document.getElementById("progress");if(!j)return;let J=()=>{let{documentElement:E,body:H}=document,Q=E.scrollTop||H.scrollTop,K=E.scrollHeight||H.scrollHeight,W=E.clientHeight,V=K-W;j.style.width=V>0?Q/V*100+"%":"0%"};window.addEventListener("scroll",J,{passive:!0}),J()}function y(j,J){let E=document.getElementById("related-marquee-container");if(!E)return;let H=$(J,j);if(!H)return;let Q=H.list.filter((X)=>X.id!==J),K=JSON.parse(localStorage.getItem("read_marquee_articles")||"[]"),W=Q.filter((X)=>!K.includes(X.id));if(W.length===0){E.innerHTML='<p class="marquee-message">Semua artikel terkait sudah dibaca. \uD83D\uDE0A</p>';return}W.sort(()=>0.5-Math.random());let V=P(),Y=W.map((X)=>{let G=_(X.id,j),T=V?X.title:X.description||X.title;return`<a href="${G}" data-article-id="${X.id}" title="${T}">${X.title}</a> • `}).join("");E.innerHTML=`<div class="marquee-content">${Y.repeat(10)}</div>`;let B=E.querySelector(".marquee-content");if(B){let X=B.offsetWidth,G=V?40:75;B.style.animationDuration=`${X/2/G}s`}R()}function w(j){let J=document.querySelector(".search-floating-container"),E=document.getElementById("floatingSearchInput"),H=J?.querySelector(".clear-button"),Q=J?.querySelector(".floating-results-container");if(!J||!E||!H||!Q)return;E.addEventListener("input",()=>{let K=E.value.trim().toLowerCase();if(H.style.display=K.length?"block":"none",K.length<3){Q.style.display="none";return}let W=[];for(let V in j)for(let Y of j[V])if((Y.title+" "+(Y.description||"")).toLowerCase().includes(K))W.push(Y);if(W.length>0)Q.innerHTML=W.slice(0,5).map((V)=>`
+    <a href="${_(V.id,j)}">
+    <strong>${V.title}</strong>
+    <small>${V.description?V.description.substring(0,60)+"...":"Lihat artikel"}</small>
     </a>
-    `).join(""),V.style.display="block";else V.innerHTML='<div class="no-results">❌ Tekan Tombol Enter untuk Selanjutnya...</div>',V.style.display="block"}),H.addEventListener("keydown",(Q)=>{if(Q.key==="Enter")Q.preventDefault(),window.location.href=`/search/?q=${encodeURIComponent(H.value)}`}),J.addEventListener("click",()=>{H.value="",V.style.display="none",J.style.display="none"})}function S(E,K){let H=B(K,E);if(!H)return;let J=H.list.findIndex((_)=>_.id===K);if(J===-1)return;let V=H.list.length,Q=(J-1+V)%V,X=(J+1)%V,W=document.getElementById("dynamic-nav-container");if(!W)W=document.createElement("div"),W.id="dynamic-nav-container",W.className="floating-nav",document.body.appendChild(W);W.innerHTML=`
-  <div class="nav-left"><a href="/${H.slug}/" class="category-link visible">${H.name}</a></div>
-  <div class="nav-right">
-  <a href="/" title="Home" class="btn-emoji">\uD83C\uDFE0</a>
-  <a href="/sitemap/" title="Daftar Isi" class="btn-emoji">\uD83D\uDCC4</a>
-  <a href="/feed/" title="RSS Feed" class="btn-emoji">\uD83D\uDCE1</a>
-  ${V>1?`
-    <a href="${$(H.list[Q].id,E)}" title="${H.list[Q].title}" class="btn-emoji">⏩</a>
-    <a href="${$(H.list[X].id,E)}" title="${H.list[X].title}" class="btn-emoji">⏪</a>
-    `:""}
-    </div>`}function w(){let E=document.getElementById("internal-nav");if(!E)return;let H=Array.from(document.querySelectorAll("h2, h3, h4")).filter((J)=>J.innerText.trim().length>0&&!J.closest(".floating-nav")&&!E.contains(J));if(H.length===0){E.style.display="none";return}E.innerHTML='<ul class="nav-list">'+H.map((J,V)=>{if(!J.id)J.id=J.innerText.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||`section-${V}`;return`<li class="nav-item nav-${J.tagName.toLowerCase()}"><a href="#${J.id}" class="nav-link">${J.innerText.trim()}</a></li>`}).join("")+"</ul>"}function T(E,K){let H=document.getElementById("related-articles-grid");if(!H)return;let J=B(K,E);if(!J){H.style.display="none";return}let V=J.list.filter((Q)=>Q.id!==K).sort(()=>0.5-Math.random()).slice(0,6);H.innerHTML=V.map((Q)=>{let X="/thumbnail.webp";if(Q.image)X=Q.image.replace(/\.[^/.]+$/,"")+"-sm.webp";return`
+    `).join(""),Q.style.display="block";else Q.innerHTML='<div class="no-results">❌ Tekan Tombol Enter untuk Selanjutnya...</div>',Q.style.display="block"}),E.addEventListener("keydown",(K)=>{if(K.key==="Enter")K.preventDefault(),window.location.href=`/search/?q=${encodeURIComponent(E.value)}`}),H.addEventListener("click",()=>{E.value="",Q.style.display="none",H.style.display="none"})}function S(j,J){let E=$(J,j);if(!E)return;let H=E.list.findIndex((Y)=>Y.id===J);if(H===-1)return;let Q=E.list.length,K=(H-1+Q)%Q,W=(H+1)%Q,V=document.getElementById("dynamic-nav-container");if(!V)V=document.createElement("div"),V.id="dynamic-nav-container",V.className="floating-nav",document.body.appendChild(V);V.innerHTML=`
+<div class="nav-left"><a href="/${E.slug}/" class="category-link visible">${E.name}</a></div>
+<div class="nav-right">
+<a href="/" title="Home" class="btn-emoji">\uD83C\uDFE0</a>
+<a href="/sitemap/" title="Daftar Isi" class="btn-emoji">\uD83D\uDCC4</a>
+<a href="/feed/" title="RSS Feed" class="btn-emoji">\uD83D\uDCE1</a>
+${Q>1?`
+  <a href="${_(E.list[K].id,j)}" title="${E.list[K].title}" class="btn-emoji">⏪</a>
+  <a href="${_(E.list[W].id,j)}" title="${E.list[W].title}" class="btn-emoji">⏩</a>
+  `:""}
+  </div>`}function U(){let j=document.getElementById("internal-nav");if(!j)return;let E=Array.from(document.querySelectorAll("h2, h3, h4")).filter((H)=>H.innerText.trim().length>0&&!H.closest(".floating-nav")&&!j.contains(H));if(E.length===0){j.style.display="none";return}j.innerHTML='<ul class="nav-list">'+E.map((H,Q)=>{if(!H.id)H.id=H.innerText.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||`section-${Q}`;return`<li class="nav-item nav-${H.tagName.toLowerCase()}"><a href="#${H.id}" class="nav-link">${H.innerText.trim()}</a></li>`}).join("")+"</ul>"}function k(j,J){let E=document.getElementById("related-articles-grid");if(!E)return;let H=$(J,j);if(!H){E.style.display="none";return}let Q=H.list.filter((K)=>K.id!==J).sort(()=>0.5-Math.random()).slice(0,6);E.innerHTML=Q.map((K)=>{let V=(K.image?K.image.replace(/\.[^/.]+$/,"")+"-sm.webp":null)??"/thumbnail.webp",Y=K.image?`this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='${K.image}'`:"this.onerror=null;this.src='/thumbnail.webp'";return`
     <div class="rel-card-mini">
-      <a href="${$(Q.id,E)}">
-        <div class="rel-img-mini">
-          <img 
-            src="${X}" 
-            alt="${Q.title}" 
-            loading="lazy" 
-            onerror="this.src='/thumbnail.webp'">
-        </div>
-        <div class="rel-info-mini">
-          <h4>${Q.title}</h4>
-        </div>
-      </a>
+    <a href="${_(K.id,j)}">
+    <div class="rel-img-mini">
+    <img
+    src="${V}"
+    alt="${K.title}"
+    loading="lazy"
+    onerror="${Y}">
     </div>
-    `}).join("")}async function P(){while(!window.siteDataProvider)await new Promise((H)=>setTimeout(H,100));let E=await window.siteDataProvider.getFor("marquee-url.ts"),K=z();if(E)w(),q(),k(E,K),y(E),S(E,K),T(E,K),O(),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",O)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",P):P()})();})();
+    <div class="rel-info-mini">
+    <h4>${K.title}</h4>
+    </div>
+    </a>
+    </div>
+    `}).join("")}async function O(){while(!window.siteDataProvider)await new Promise((E)=>setTimeout(E,100));let j=await window.siteDataProvider.getFor("marquee-url.ts"),J=z();if(j)U(),q(),y(j,J),w(j),S(j,J),k(j,J),L(),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",L)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",O):O()})();})();
