@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.19
+document_version: 20.20
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1298 artikel versi 20.19.
+> Menampilkan 1298 artikel versi 20.20.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -512,7 +512,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan](https://dalam.web.id/olah-media/rekam-desktop-gnome3) : Gnome 3 memiliki fitur perekam layar tersembunyi yang dapat diaktifkan dengan shortcut Ctrl+Shift+Alt+R, tanpa perlu aplikasi tambahan.
 - [Pictory.ai: Ubah Tulisan Jadi Video Marketing Profesional](https://dalam.web.id/olah-media/pictory-ai-video-marketing) : Konten video lagi ngetren! Pelajari cara Pictory.ai mengubah artikel blog jadi video keren dengan subtitle otomatis, cocok untuk UMKM yang mau hemat biaya.
 - [Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi](https://dalam.web.id/olah-media/fedora-multimedia-codec) : Panduan singkat memasang codec tambahan di Fedora agar bisa memutar MP3 MP4 MKV dan format lain. Langkah untuk Fedora 16 dan Fedora 19 ke atas.
-- [Memutar Berkas Multimedia di Fedora Linux](https://dalam.web.id/olah-media/fedora-multimedia) : memasang codec multimedia di Fedora Linux menggunakan gstreamer dan xine-lib-extras-freeworld agar bisa memutar berbagai format audio dan video.
+- [Cara Ampuh Memutar Berkas Multimedia di Fedora Linux](https://dalam.web.id/olah-media/fedora-multimedia) : cara mengaktifkan RPM Fusion dan menginstal codec multimedia di Fedora Linux agar bisa memutar file audio dan video MP4/MP3 dengan lancar.
 - [Screencast Desktop Super Gampang di Linux pakai FFmpeg](https://dalam.web.id/olah-media/ffmpeg-rekam-desktop-ffmpeg) : Rekam seluruh aktivitas desktop Linux pakai FFmpeg langsung dari Terminal. Desain satu kolom, lebar, interaktif, mobile-friendly, lengkap metadata SEO, galeri, dan tombol berbagi.
 - [Linux dan Internet Protocol Television (IPTV) 📺](https://dalam.web.id/olah-media/iptv-linux) : dan santai cara menikmati IPTV di Linux dengan Hypnotix, VLC, dan lainnya. Ada galeri, tips, info sistem, sharing, dan komentar!
 - [Multi Video YouTube dengan Thumbnail Gallery](https://dalam.web.id/olah-media/multi-video-youtube-gallery) : Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile.
