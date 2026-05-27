@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.21
+document_version: 20.22
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1298 artikel versi 20.21.
+> Menampilkan 1298 artikel versi 20.22.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -135,7 +135,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Mengapa Tidak Buang Air Besar Setiap Hari? Penjelasan & Solusi](https://dalam.web.id/gaya-hidup/tidak-boker-tiap-hari) : Penjelasan santai tentang kenapa seseorang bisa tidak buang air besar setiap hari, lengkap dengan penyebab, posisi kolon, serta tips agar pencernaan tetap lancar.
 - [4 Tanda Tubuh Butuh "Reset" (Bukan Detox Racun!)](https://dalam.web.id/gaya-hidup/tubuh-butuh-reset) : Sering brain fog, bau badan, atau mudah lelah? Itu tanda tubuh kewalahan, bukan racun numpuk. Kenali 4 sinyal tubuh butuh reset dan cara detoks alami yang benar.
 - [Bahaya Marah: Tinjauan Lengkap Islam dan Medis](https://dalam.web.id/gaya-hidup/bahaya-marah-islam-medis) : Mengupas tuntas bahaya marah dari sudut pandang Islam dan medis. Temukan alasan kenapa menahan amarah itu penting untuk kesehatan fisik, mental, dan akhirat.
-- [Gaya Hijab Saat Berkendara Sepeda Motor & Catatan Keselamatan](https://dalam.web.id/gaya-hidup/gaya-hijab-berkendara-motor) : Contoh foto gaya hijab saat berkendara motor dan catatan keselamatan sederhana yang mudah dipahami. Tampilan halaman modern, responsif, dengan lightbox, dan tombol berbagi.
+- [Gaya Hijab Saat Berkendara Motor: Perbandingan dan Tips Aman](https://dalam.web.id/gaya-hidup/gaya-hijab-berkendara-motor) : Panduan visual sederhana tentang gaya hijab saat berkendara motor. Temukan cara memakai helm yang pas agar perjalanan menuju kantor tetap nyaman dan aman.
 - [Produk Dairy & Alternatif Non-Dairy untuk Kopi Susu](https://dalam.web.id/gaya-hidup/produk-dairy-dan-alternatif) : Penjelasan santai tentang pengaruh produk dairy terhadap pencernaan dan frekuensi buang air besar, serta berbagai alternatif susu non-dairy untuk kopi susu yang lebih ringan dan sehat.
 - [Pola Hidup Sehat untuk Usus yang Bahagia](https://dalam.web.id/gaya-hidup/pola-hidup-sehat-untuk-usus) : Panduan gaya hidup sehat untuk menjaga usus tetap bahagia dan sistem pencernaan berfungsi optimal.
 - [Tips Melancarkan Pencernaan & Buang Air Besar](https://dalam.web.id/gaya-hidup/tips-melancarkan-pencernaan) : Panduan santai untuk menjaga pencernaan tetap sehat dan buang air besar lancar setiap hari. Lengkap dengan tips pola makan, gaya hidup, dan kebiasaan sederhana.
