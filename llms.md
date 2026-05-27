@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.28
+document_version: 20.29
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1298 artikel versi 20.28.
+> Menampilkan 1301 artikel versi 20.29.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -145,6 +145,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Demokrasi Dipertahankan, Syariat Dicurigai: Ada Apa dengan Umat Ini?](https://dalam.web.id/jejak-sejarah/demokrasi-dan-syariat) : Membahas fenomena mengapa umat sering kali lebih membela sistem demokrasi dibandingkan syariat, serta mengupas akar ketakutan mental yang menjajah umat saat ini.
 - [Kalkulator Mahram & Aurat Keluarga](https://dalam.web.id/jejak-sejarah/kalkulator-mahram-aurat) : Kalkulator interaktif untuk menentukan hubungan mahram dan batas aurat dalam keluarga berdasarkan panduan fikih. Praktis untuk keluarga dan pengajar.
 - [Anjuran Nabi Muhammad tentang Berjalan Kaki vs Realitas Warga Indonesia Hari Ini 🚶♂️🇮🇩](https://dalam.web.id/jejak-sejarah/anjuran-jalan-kaki-nabi-vs-realitas-indonesia) : masyarakat Indonesia yang mayoritas Muslim justru menjadi warga yang paling malas berjalan kaki? Membedah anjuran agama versus realitas infrastruktur.
 - [Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia](https://dalam.web.id/jejak-sejarah/lika-liku-perjalanan-ojol) : Kilas balik konflik ojek online dari 2016 hingga 2025. Dari perang wilayah, bentrok massal, zona larangan, sampai konflik horizontal sesama driver. Sebuah potret sosial ekonomi yang memperlihatkan absennya peran negara.
@@ -553,6 +554,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Indonesia Kehilangan Ribuan Triliun Investasi: Saat Kita Mengusir Investor](https://dalam.web.id/opini-sosial/indonesia-kehilangan-ribuan-triliun-investasi) : Indonesia kehilangan potensi investasi asing hingga ribuan triliun rupiah? Simak bedah tuntas masalah birokrasi, regulasi tidak pasti, dan pungli yang mengusir para pemodal.
 - [Di Balik Rp600 Ribu dan Taruhan Nyawa: Mengapa Kita Harus Menghargai Ojol 🏍️💔](https://dalam.web.id/opini-sosial/realitas-pahit-ojol-17-jam) : Kisah nyata di balik senyum ramah driver ojek online. Mereka rela kerja 17 jam sehari demi 600 ribu rupiah yang berisiko pada kesehatan dan nyawa.
 - [BLT vs Makan Bergizi Gratis: Kebijakan Mana yang Benar-Benar Membantu Rakyat? 🍽️💸](https://dalam.web.id/opini-sosial/blt-vs-makan-bergizi-gratis) : membandingkan efektivitas Bantuan Langsung Tunai BLT dengan program Makan Bergizi Gratis MBG dari segi sasaran dan risiko korupsi.
 - [Nama Jadi Beban? Ini Panduan Lengkap & Sah Ganti Nama di Indonesia! 📝⚖️](https://dalam.web.id/opini-sosial/panduan-sah-ganti-nama-indonesia) : dan sah cara ganti nama di Indonesia menurut hukum. Simak syarat prosedur Pengadilan Negeri hingga Disdukcapil secara detail.
@@ -746,6 +748,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Cara Menambahkan Repositori Pihak Ketiga di Debian Linux](https://dalam.web.id/sistem-terbuka/cara-menambahkan-repositori-debian) : 3 cara mudah menambahkan repositori eksternal di Debian Linux. Mulai dari antarmuka GUI GNOME hingga terminal, lengkap dengan panduan langkah demi langkah.
 - [Download MX Linux 25.2 Infinity Rilis Terbaru Makin Ringan dan Stabil](https://dalam.web.id/sistem-terbuka/rilis-mx-linux-25-2-infinity) : Kabar gembira buat pengguna Linux MX 25 2 Infinity resmi dirilis dengan kernel Debian terbaru dan peningkatan fitur live system Cek link download lengkapnya.
 - [Mimpi Buruk Dua Minggu Terakhir Linux: 3 Bug Kritis Bersarang di Kernel](https://dalam.web.id/sistem-terbuka/tiga-bug-kritis-linux-lpe-dirty-frag) : Penjelasan santai tentang tiga kerentanan serius di Linux belakangan ini termasuk Copy Fail, Dirty Frag, dan Fragnesia beserta cara memperbaikinya.
 - [Cara Ampuh Mengatasi Error reading fd 7 di Pacman Arch Linux](https://dalam.web.id/sistem-terbuka/mengatasi-error-reading-fd-7-pacman) : Panduan santai dan lengkap cara mengatasi error could not open file Error reading fd 7 saat membersihkan cache pacman di Arch Linux.
