@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.31
+document_version: 20.32
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1301 artikel versi 20.31.
+> Menampilkan 1301 artikel versi 20.32.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -272,7 +272,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Menyambut Tahun Baru Hijriyah - tenang, santai, dan tetap berpegang](https://dalam.web.id/jejak-sejarah/menyambut-tahun-baru-hijriyah) : Refleksi santai jelang Muharram: apa yang diajarkan ulama tentang amalan awal tahun hijriyah, mana yang keliru, dan bagaimana menyambutnya dengan tenang. Dilengkapi galeri, bagikan, dan komentar.
 - [Kisah Mehmed II Al-Fatih - Penakluk Konstantinopel](https://dalam.web.id/jejak-sejarah/mehmed-ii-al-fatih) : Kisah lengkap Mehmed II Al-Fatih: masa kecil, didikan ulama, latihan militer, penaklukan Konstantinopel, kebijakan adil, warisan peradaban, hingga Bayezid II sang pewaris.
 - [Mūsā bin Nuṣayr - Muslim Penakluk Andalusia](https://dalam.web.id/jejak-sejarah/musa-bin-nusayr) : Mūsā bin Nuṣayr: dari Ifriqiyah hingga gerbang Andalusia, membina Berber, menakluk Bizantium, dan menyiapkan Ṭāriq bin Ziyād.
-- [Islam, Indonesia Merdeka, dan Ramadhan - syukur, sejarah, dan inspirasi](https://dalam.web.id/jejak-sejarah/islam-indonesia-merdeka-ramadhan) : Mengulas keistimewaan Ramadhan, turunnya kitab-kitab suci, para pahlawan muslim, dan momen kemerdekaan Indonesia. Santai, ceria, dan penuh syukur.
+- [Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan](https://dalam.web.id/jejak-sejarah/islam-indonesia-merdeka-ramadhan) : Refleksi sejarah kemerdekaan Indonesia pada 8 Ramadhan 1364 H, turunnya kitab suci, dan jejak perjuangan pahlawan muslim Nusantara.
 - [Istighfar: Kunci Keberkahan dan Rezeki Muslim](https://dalam.web.id/jejak-sejarah/istighfar-kunci-keberkahan-dan-rezeki) : Istighfar adalah kunci keberkahan hidup dan rezeki, sebagaimana dijelaskan dalam Surah Nuh ayat 10-12.
 - [Janganlah Sombong - Tafsir, Bahaya, dan Jalan Menjauhi Takabbur](https://dalam.web.id/jejak-sejarah/janganlah-sombong) : Penjelasan tentang kesombongan (takabbur) menurut Rasulullah SAW, sumber-sumbernya (nasab, harta, ilmu, amal), dampak sosial dan spiritual, serta cara-cara menanggulanginya.
 - [Keistimewaan Hari Jumat dalam Islam](https://dalam.web.id/jejak-sejarah/jumat) : Yuk, simak keistimewaan Hari Jumat dalam Islam. Temukan keutamaannya, galeri inspiratif, dan fitur interaktif lainnya di dalam.web.id!
