@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.20
+document_version: 20.21
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1298 artikel versi 20.20.
+> Menampilkan 1298 artikel versi 20.21.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -513,7 +513,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Pictory.ai: Ubah Tulisan Jadi Video Marketing Profesional](https://dalam.web.id/olah-media/pictory-ai-video-marketing) : Konten video lagi ngetren! Pelajari cara Pictory.ai mengubah artikel blog jadi video keren dengan subtitle otomatis, cocok untuk UMKM yang mau hemat biaya.
 - [Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi](https://dalam.web.id/olah-media/fedora-multimedia-codec) : Panduan singkat memasang codec tambahan di Fedora agar bisa memutar MP3 MP4 MKV dan format lain. Langkah untuk Fedora 16 dan Fedora 19 ke atas.
 - [Cara Ampuh Memutar Berkas Multimedia di Fedora Linux](https://dalam.web.id/olah-media/fedora-multimedia) : cara mengaktifkan RPM Fusion dan menginstal codec multimedia di Fedora Linux agar bisa memutar file audio dan video MP4/MP3 dengan lancar.
-- [Screencast Desktop Super Gampang di Linux pakai FFmpeg](https://dalam.web.id/olah-media/ffmpeg-rekam-desktop-ffmpeg) : Rekam seluruh aktivitas desktop Linux pakai FFmpeg langsung dari Terminal. Desain satu kolom, lebar, interaktif, mobile-friendly, lengkap metadata SEO, galeri, dan tombol berbagi.
+- [Screencast Desktop Super Gampang di Linux pakai FFmpeg](https://dalam.web.id/olah-media/ffmpeg-rekam-desktop-ffmpeg) : Panduan mudah cara merekam layar penuh (screencast) di desktop Linux menggunakan FFmpeg. Ringan, fleksibel, dan tanpa perlu aplikasi GUI berat.
 - [Linux dan Internet Protocol Television (IPTV) 📺](https://dalam.web.id/olah-media/iptv-linux) : dan santai cara menikmati IPTV di Linux dengan Hypnotix, VLC, dan lainnya. Ada galeri, tips, info sistem, sharing, dan komentar!
 - [Multi Video YouTube dengan Thumbnail Gallery](https://dalam.web.id/olah-media/multi-video-youtube-gallery) : Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile.
 - [Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬](https://dalam.web.id/olah-media/handbrake-preset-custom) : Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan.
