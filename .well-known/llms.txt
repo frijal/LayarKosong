@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.23
+document_version: 20.24
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1298 artikel versi 20.23.
+> Menampilkan 1298 artikel versi 20.24.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -106,7 +106,7 @@ document_type: llm_behavior_and_entity_guidance
 - [DIKIRA HALAL, TERNYATA HARAM - EDISI CANTIK & GANTENG](https://dalam.web.id/gaya-hidup/dikira-halal-ternyata-haram-cantik) : Siapa sangka, gak semua cara merawat diri itu dibolehkan dalam Islam! Ada yang bisa berdampak pada keabsahan wudhu.
 - [e-BPKB Resmi Berlaku Maret 2025: Mutasi Kendaraan Jauh Lebih Cepat!](https://dalam.web.id/gaya-hidup/e-bpkb-resmi-berlaku) : Kabar gembira! e-BPKB dengan chip RFID resmi berlaku Maret 2025. Proses mutasi kendaraan jadi hitungan jam, lebih aman, dan transparan. Simak info lengkapnya!
 - [Unboxing Respiro: Paket Datang! (JNE Balikpapan)](https://dalam.web.id/gaya-hidup/unboxing-respiro-jne-balikpapan) : Sesaat sebelum menelpon JNE, pintu diketuk: paket Respiro dari Sumedang Jatos tiba! Unboxing, foto-foto, dan rencana touring pakai Journey Respiro R3.
-- [Stop Piracy : Penjelasan Lengkap dan Sumber Gambar](https://dalam.web.id/gaya-hidup/stop-piracy-retro) : Ulasan singkat dan mudah dipahami tentang poster Stop Piracy yang dilengkapi sumber gambar asli, lightbox, tombol bagikan, komentar Facebook, dan info perangkat Anda.
+- [Poster Stop Piracy Retro: Desain Tegas untuk Edukasi Hak Cipta](https://dalam.web.id/gaya-hidup/stop-piracy-retro) : Mari bedah detail poster Stop Piracy bergaya retro. Solusi visual menarik untuk kampanye anti-pembajakan, literasi digital, dan edukasi hak cipta di sekolah atau kantor.
 - [Permohonan Kebijakan Parkir untuk Ojol di Balikpapan](https://dalam.web.id/gaya-hidup/ojol-parkir-balikpapan) : Surat terbuka untuk para pimpinan fasilitas publik di Balikpapan agar mempertimbangkan kebijakan karcis parkir bagi driver ojek online yang mengantar-jemput penumpang, barang, dan makanan.
 - [Kopdar & Berbagi Bareng Pelapak Balikpapan 2017](https://dalam.web.id/gaya-hidup/bukalapak-berbagi-2017) : Reportase lengkap Kopdar Komunitas Bukalapak Balikpapan 2017. Berbagi takjil dan kebahagiaan di Lapangan Merdeka. Cek foto-foto kenangan serunya di sini!
 - [Nostalgia 2014: Wajah Pertama Bandara SAMS Sepinggan Baru](https://dalam.web.id/gaya-hidup/peresmian-bandara-sepinggan) : Flashback ke tahun 2014 saat Bandara SAMS Sepinggan Balikpapan pertama kali dibuka. Galeri foto asli dari kamera HP jadul merekam sejarah kemegahan bandara ini.
