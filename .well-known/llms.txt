@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.24
+document_version: 20.25
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1298 artikel versi 20.24.
+> Menampilkan 1298 artikel versi 20.25.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -124,7 +124,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Kenapa Nggak Boker Tiap Hari? Kupas Tuntas Kesehatan Pencernaan](https://dalam.web.id/gaya-hidup/kesehatan-pencernaan-boker) : Santai tapi serius, ini penjelasan kenapa frekuensi buang air besar bisa beda-beda. Dari soal serat, stres, sampai di mana sebenarnya feses disimpan.
 - [Kurangi Cahaya Ketika Tidur - Ilmu Modern & Pesan Nabi](https://dalam.web.id/gaya-hidup/kurangi-cahaya-ketika-tidur) : mematikan cahaya saat tidur penting: temuan ilmiah tentang gangguan biologis & kesehatan, serta hadits Nabi yang lebih dulu memberi petunjuk.
 - [Hak Kekayaan Intelektual dalam Syariat Islam](https://dalam.web.id/gaya-hidup/hak-kekayaan-intelektual-dalam-islam) : Syariat Islam telah lama mengajarkan penghormatan terhadap hak kekayaan intelektual, jauh sebelum munculnya konsep Copyright, HaKI, GPL, dan lain sebagainya.
-- [Sakit Kepala? Jangan Buru-Buru Minum Obat, Coba Pijat Relaksasi Ini!](https://dalam.web.id/gaya-hidup/pijat-sakit-kepala) : Cara mudah dan efektif meredakan sakit kepala dan ketegangan dengan teknik pijat sederhana yang bisa kamu lakukan sambil duduk di depan komputer.
+- [Kepala Tegang? Coba 5 Pijatan Simpel Ini di Meja Kerja](https://dalam.web.id/gaya-hidup/pijat-sakit-kepala) : Sering sakit kepala karena kelamaan menatap layar komputer? Redakan dengan 5 teknik pijatan relaksasi simpel ini di sela-sela waktu kerjamu.
 - [Minuman yang Membantu Melancarkan Pencernaan](https://dalam.web.id/gaya-hidup/minuman-bantu-pencernaan) : Daftar minuman alami yang membantu melancarkan pencernaan dan buang air besar, lengkap dengan manfaat dan tips konsumsi sehari-hari.
 - [Cara Mudah dan Cepat Menyelesaikan Psikotes](https://dalam.web.id/gaya-hidup/cara-mudah-menyelesaikan-psikotes) : cara mudah dan cepat menyelesaikan soal-soal psikotes: tes logika, aritmatika, penalaran, EPPS, Kraepelin, Warteg, dan lainnya.
 - [Ngopi Sek Ben Ra Edan, Yuk!](https://dalam.web.id/gaya-hidup/ngopi-ben-ra-edan) : Ternyata sudah dua hari ini saya belum ngopi! Ayo, siapa mau gabung? Ngopi dulu biar tidak
