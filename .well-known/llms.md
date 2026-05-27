@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.29
+document_version: 20.30
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1301 artikel versi 20.29.
+> Menampilkan 1301 artikel versi 20.30.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -969,7 +969,7 @@ document_type: llm_behavior_and_entity_guidance
 - [quick-mirror.sh - Skrip Pilih Mirror Debian & Arch](https://dalam.web.id/sistem-terbuka/arch-debian-quick-mirror) : Skrip bash
 - [Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman](https://dalam.web.id/sistem-terbuka/remove-old-kernels) : Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.
 - [Rescuezilla: Alat Pemulihan Sistem Mudah & Powerful 🛠️](https://dalam.web.id/sistem-terbuka/rescuezilla-panduan) : Panduan santai Rescuezilla: alat backup dan recovery grafis, mudah, cocok untuk pemula, dengan galeri interaktif dan tips.
-- [Training Baris Perintah Linux - Panduan Lengkap](https://dalam.web.id/sistem-terbuka/training-baris-perintah-linux) : step-by-step belajar command line Linux: pengertian, man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv (rename/move), shortcut terminal, dan penutup. Disertai contoh, opsi umum, tips, dan ilustrasi.
+- [Training Baris Perintah Linux: Panduan Lengkap 17 Halaman](https://dalam.web.id/sistem-terbuka/training-baris-perintah-linux) : baris perintah Linux dari dasar hingga mahir. Pelajari perintah man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv, dan shortcut terminal. Disertai contoh, tips, dan ilustrasi.
 - [Solaris: OS Enterprise Tangguh dengan ZFS, DTrace, dan Zones](https://dalam.web.id/sistem-terbuka/solaris) : Solaris adalah OS Unix enterprise yang stabil, aman, dan scalable. Artikel santai dengan narasi penuh, galeri, tombol berbagi, dan fungsionalitas modern.
 - [Membaca Teks Terbalik dengan Perintah 'rev' di Linux](https://dalam.web.id/sistem-terbuka/rev-linux) : membaca teks terbalik menggunakan perintah rev di Linux. Artikel ini membahas cara penggunaan, manfaat, dan contoh praktis.
 - [Tar di Linux: Kompres & Extract Santai dari Terminal](https://dalam.web.id/sistem-terbuka/tar-di-linux) : Tutorial tar di Linux dengan perintah dasar, variasi, tips exclude, backup otomatis, dan alternatif seperti zip/7z.
