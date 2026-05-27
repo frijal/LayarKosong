@@ -1,44 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- SEO & Metadata Dasar -->
-    <title>Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan</title>
-
+    <title>Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan - Layar Kosong</title>
     <!-- Variasi Deskripsi -->
-    <meta name="description" content="Refleksi sejarah kemerdekaan Indonesia pada 8 Ramadhan 1364 H, turunnya kitab suci, dan jejak perjuangan pahlawan muslim Nusantara.">
-    <meta property="og:description" content="Menggali hikmah di balik peristiwa besar bulan Ramadhan, mulai dari Nuzulul Qur'an hingga proklamasi kemerdekaan Republik Indonesia yang penuh keberkahan.">
-    <meta name="twitter:description" content="Ramadhan bukan hanya bulan puasa, tapi bulan kemenangan. Simak sejarah turunnya wahyu, pembebasan Makkah, hingga lahirnya bangsa Indonesia di bulan suci ini.">
-
     <meta name="news_keywords" content="sejarah islam indonesia, kemerdekaan ri ramadhan, pahlawan muslim indonesia, peristiwa penting ramadhan, 8 ramadhan 1364 H, kemerdekaan indonesia">
-    <link rel="canonical" href="https://dalam.web.id/artikel/islam-indonesia-merdeka-dan-ramadhan.html">
-
     <!-- Custom Meta Requirement -->
     <meta name="promphint" content="Kapan proklamasi kemerdekaan Indonesia terjadi dalam kalender Hijriah? Indonesia merdeka bertepatan dengan tanggal 8 Ramadhan 1364 H.">
-
     <!-- Open Graph & Twitter Card -->
-    <meta property="og:title" content="Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/islam-indonesia-merdeka-dan-ramadhan.html">
-    <meta property="og:image" content="https://dalam.web.id/img/upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/1200px-Flag_of_Indonesia.svg.webp">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan">
-    <meta name="twitter:image" content="https://dalam.web.id/img/upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/1200px-Flag_of_Indonesia.svg.webp">
-
-    <meta property="article:tag" content="Sejarah Islam">
-    <meta property="article:tag" content="Kemerdekaan RI">
-    <meta property="article:tag" content="Ramadhan">
-    <meta property="article:tag" content="Pahlawan Nasional">
-
     <!-- Optimasi LCP: Preload gambar utama -->
     <link rel="preload" as="image" href="https://dalam.web.id/img/upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/1200px-Flag_of_Indonesia.svg.webp" fetchpriority="high">
-
     <!-- Ikon FontAwesome (Asynchronous) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
         /* Desain Mobile-First, Native CSS & Preferensi Tema */
         :root {
@@ -52,7 +25,6 @@
             --card-bg: #f7fafc;
             --quote-border: #4299e1;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a202c;
@@ -66,13 +38,11 @@
                 --quote-border: #63b3ed;
             }
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
@@ -80,57 +50,47 @@
             line-height: 1.7;
             font-size: 16px;
         }
-
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 1rem;
         }
-
         header {
             margin-bottom: 2.5rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 1.5rem;
         }
-
         h1 {
             font-size: 1.75rem;
             color: var(--heading-color);
             line-height: 1.3;
             margin-bottom: 1rem;
         }
-
         h2 {
             font-size: 1.4rem;
             color: var(--heading-color);
             margin-top: 2.5rem;
             margin-bottom: 1rem;
         }
-
         p {
             margin-bottom: 1.25rem;
         }
-
         ul, ol {
             margin-bottom: 1.25rem;
             padding-left: 1.5rem;
         }
-
         li {
             margin-bottom: 0.5rem;
         }
-
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
             font-weight: 500;
         }
-
         a.article-link:hover {
             text-decoration: underline;
             color: var(--link-hover);
         }
-
         /* E-E-A-T Author Meta Block */
         .author-meta {
             display: flex;
@@ -143,19 +103,16 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
-
         .author-meta span {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
         /* Styling Gambar Anti-CLS */
         .img-wrapper {
             margin: 2rem 0;
             text-align: center;
         }
-
         /* Mencegah hero image raksasa di atas fold */
         .img-wrapper img {
             max-width: 100%;
@@ -165,18 +122,15 @@
             display: block;
             margin: 0 auto;
         }
-
         .img-wrapper.hero img {
             max-width: 600px; /* Ukuran proporsional, tidak memakan seluruh layar */
         }
-
         .img-caption {
             font-size: 0.85rem;
             color: var(--meta-color);
             margin-top: 0.75rem;
             font-style: italic;
         }
-
         blockquote {
             background-color: var(--card-bg);
             border-left: 4px solid var(--quote-border);
@@ -185,7 +139,6 @@
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
-
         footer {
             margin-top: 3rem;
             padding: 1.5rem 0;
@@ -194,7 +147,6 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-
         /* Desktop Breakpoints */
         @media (min-width: 768px) {
             .container {
@@ -208,40 +160,78 @@
             }
         }
     </style>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/islam-indonesia-merdeka-ramadhan">
+    <meta property="og:url" content="https://dalam.web.id/artikel/islam-indonesia-merdeka-ramadhan">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/islam-indonesia-merdeka-ramadhan">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan">
+    <meta name="twitter:title" content="Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan">
+    <meta name="description" content="Refleksi sejarah kemerdekaan Indonesia pada 8 Ramadhan 1364 H, turunnya kitab suci, dan jejak perjuangan pahlawan muslim Nusantara.">
+    <meta property="og:description" content="Menggali hikmah di balik peristiwa besar bulan Ramadhan, mulai dari Nuzulul Qur'an hingga proklamasi kemerdekaan Republik Indonesia yang penuh keberkahan.">
+    <meta name="twitter:description" content="Ramadhan bukan hanya bulan puasa, tapi bulan kemenangan. Simak sejarah turunnya wahyu, pembebasan Makkah, hingga lahirnya bangsa Indonesia di bulan suci ini.">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <meta name="twitter:image" content="https://dalam.web.id/img/upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/1200px-Flag_of_Indonesia.svg.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/1200px-Flag_of_Indonesia.svg.webp">
+    <meta property="og:image:alt" content="Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="618">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:tag" content="Sejarah Islam">
+    <meta property="article:tag" content="Kemerdekaan RI">
+    <meta property="article:tag" content="Ramadhan">
+    <meta property="article:tag" content="Pahlawan Nasional">
+    <meta property="article:published_time" content="2026-05-27T11:10:21.675Z">
+    <meta property="article:modified_time" content="2026-05-27T11:10:21.675Z">
 </head>
 <body>
-
 <div class="container">
     <main role="main">
         <article>
             <header>
-                <h1>Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan</h1>
-
+                <h1>Islam, Indonesia Merdeka, dan Ramadhan: Momen Suci yang Menyatukan</h1><div id="iposbrowser"></div>
                 <div class="author-meta">
                     <span><i class="fa-solid fa-pen-nib"></i> Ditulis oleh: Fakhrul Rijal</span>
                     <span><i class="fa-solid fa-calendar-alt"></i> Edisi Reflektif Agustus 2010 (Ramadhan 1431 H)</span>
                     <span><i class="fa-solid fa-location-dot"></i> Balikpapan, Kalimantan Timur</span>
                 </div>
             </header>
-
             <blockquote>
                 <strong>Judul ini bukan tanpa alasan.</strong> Ramadhan terbukti melahirkan banyak peristiwa agung dalam peradaban manusia; bahkan Indonesia merdeka pun jatuh pada tanggal 8 Ramadhan 1364 H. Yuk rangkum momen-momen yang indah: mulai dari turunnya kitab suci pembawa petunjuk, peran pahlawan muslim Nusantara, hingga rentetan jejak sejarah gemilang di bulan penuh berkah ini.
             </blockquote>
-
             <p>Ada benang merah yang kuat antara bulan Ramadhan, semangat perjuangan, dan lahirnya sebuah bangsa. Mengapa hal ini penting kita bahas? Karena sejarah sering kali menyediakan jawaban bagi kita (<em>siapa</em> kita dan <em>bagaimana</em> kita harus melangkah). Semua hal mulia yang dicatat oleh waktu selalu memiliki momen keemasannya tersendiri. Ramadhan menyapa umat dengan ketenangan ibadah, sementara Indonesia lahir dengan gagah berani melalui proklamasi kemerdekaan di waktu yang sama.</p>
-
             <p>Di antara kedua peristiwa monumental ini, kita diajak untuk belajar bersyukur. Bersyukur pada wahyu yang menuntun hidup kita, bersyukur pada para pahlawan yang rela mengorbankan nyawa di tanah Nusantara, dan bersyukur pada setiap detik waktu yang terus meneguhkan keimanan kita.</p>
-
             <!-- LCP Image ditempatkan secara proporsional (bukan ukuran hero raksasa) -->
             <div class="img-wrapper hero">
                 <img src="https://dalam.web.id/img/upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/1200px-Flag_of_Indonesia.svg.webp" alt="Bendera Merah Putih berkibar, perlambang kemerdekaan Indonesia" fetchpriority="high" decoding="async">
                 <div class="img-caption">Merah Putih: Kemerdekaan itu amanah yang diraih melalui darah, keringat, dan doa di bulan mulia.</div>
             </div>
-
             <blockquote>
                 <strong>Catatan hangat:</strong> Daftar peristiwa dan tanggal di bawah ini merangkum tradisi pengetahuan umat tentang momen istimewa di bulan Ramadhan. Tujuan utamanya murni untuk sarana mengingat, bahan merenung, dan mengambil hikmah—bukan untuk dijadikan bahan berdebat kusir mengenai detail kronologi yang sering kali berbeda mazhab sejarah.
             </blockquote>
-
             <h2>Turunnya Kitab Suci di Bulan Ramadhan</h2>
             <p>Bulan Ramadhan dikenal dengan julukan <em>Syahrul Qur'an</em> (Bulan Al-Qur'an). Namun, bukan hanya Al-Qur'an yang diturunkan di bulan ini. Rentetan petunjuk Ilahi untuk umat manusia sebelumnya juga diturunkan pada bulan suci ini, menandakan bahwa Ramadhan adalah waktu turunnya cahaya bagi dunia:</p>
             <ol>
@@ -250,29 +240,26 @@
                 <li><strong>Injil:</strong> Diturunkan kepada Nabi Isa AS, dalam bahasa Suryani, membawa ajaran kasih sayang, penyucian jiwa, dan penyempurnaan hukum sebelumnya.</li>
                 <li><strong>Al-Qur’an:</strong> Diturunkan kepada Nabi Muhammad SAW dalam bahasa Arab yang fasih. Merupakan mukjizat terbesar, penyempurna kitab-kitab terdahulu, dan panduan komprehensif bagi seluruh umat manusia hingga akhir zaman.</li>
             </ol>
-
             <h2>Pahlawan Muslim Pejuang Kemerdekaan Indonesia</h2>
             <p>Kemerdekaan Indonesia bukanlah hadiah dari penjajah, melainkan hasil tetesan darah para syuhada dan ulama yang berjuang di medan pertempuran (<em>di mana</em>) sejak berabad-abad lalu. Resolusi jihad dan perlawanan fisik diinisiasi oleh semangat ketauhidan. Kepada para pendahulu, kita kirimkan doa terbaik. Berikut adalah beberapa nama besar yang sering disebut dalam catatan emas sejarah bangsa kita:</p>
-
             <ul>
-                <li><strong>Cut Nyak Dhien</strong> &mdash; Srikandi Aceh yang tak kenal lelah memimpin perang gerilya.</li>
-                <li><strong>Cut Nyak Meutia</strong> &mdash; Pejuang wanita tangguh dari tanah rencong.</li>
-                <li><strong>KH Ahmad Dahlan</strong> &mdash; Pelopor kebangkitan pendidikan dan sosial umat Islam.</li>
-                <li><strong>Kapiten Pattimura (Ahmad Lussy)</strong> &mdash; Pemimpin perlawanan rakyat Maluku yang heroik.</li>
-                <li><strong>Laksamana Keumalahayati</strong> &mdash; Laksamana laut wanita pertama di dunia yang dihormati lawan maupun kawan.</li>
-                <li><strong>Pangeran Diponegoro</strong> &mdash; Pemimpin Perang Jawa yang sangat merepotkan kolonial Belanda.</li>
-                <li><strong>Panglima Polem</strong> &mdash; Bangsawan Aceh yang memilih bergerilya bersama rakyat.</li>
-                <li><strong>Sultan Ageng Tirtayasa</strong> &mdash; Penguasa Banten yang sangat gigih menentang monopoli dagang VOC.</li>
-                <li><strong>Sultan Agung Prabu Hanyokrokusumo</strong> &mdash; Raja Mataram yang bercita-cita menyatukan tanah Jawa dan mengusir penjajah.</li>
-                <li><strong>Sultan Hasanuddin</strong> &mdash; Dijuluki "Ayam Jantan dari Timur" berkat keberaniannya di perairan Sulawesi.</li>
-                <li><strong>Sultan Iskandar Muda</strong> &mdash; Membawa Kesultanan Aceh pada puncak kejayaannya.</li>
-                <li><strong>Sultan Mahmud Badaruddin II</strong> &mdash; Sultan Palembang yang memimpin perlawanan sengit di Sumatera Selatan.</li>
-                <li><strong>Teuku Chik Ditiro</strong> &mdash; Pahlawan dari Pidie yang memimpin Perang Sabil.</li>
-                <li><strong>Teuku Umar</strong> &mdash; Ahli strategi militer jenius dari Aceh.</li>
-                <li><strong>Tuanku Imam Bonjol</strong> &mdash; Ulama besar sekaligus panglima Perang Padri di tanah Minangkabau.</li>
+                <li><strong>Cut Nyak Dhien</strong> — Srikandi Aceh yang tak kenal lelah memimpin perang gerilya.</li>
+                <li><strong>Cut Nyak Meutia</strong> — Pejuang wanita tangguh dari tanah rencong.</li>
+                <li><strong>KH Ahmad Dahlan</strong> — Pelopor kebangkitan pendidikan dan sosial umat Islam.</li>
+                <li><strong>Kapiten Pattimura (Ahmad Lussy)</strong> — Pemimpin perlawanan rakyat Maluku yang heroik.</li>
+                <li><strong>Laksamana Keumalahayati</strong> — Laksamana laut wanita pertama di dunia yang dihormati lawan maupun kawan.</li>
+                <li><strong>Pangeran Diponegoro</strong> — Pemimpin Perang Jawa yang sangat merepotkan kolonial Belanda.</li>
+                <li><strong>Panglima Polem</strong> — Bangsawan Aceh yang memilih bergerilya bersama rakyat.</li>
+                <li><strong>Sultan Ageng Tirtayasa</strong> — Penguasa Banten yang sangat gigih menentang monopoli dagang VOC.</li>
+                <li><strong>Sultan Agung Prabu Hanyokrokusumo</strong> — Raja Mataram yang bercita-cita menyatukan tanah Jawa dan mengusir penjajah.</li>
+                <li><strong>Sultan Hasanuddin</strong> — Dijuluki "Ayam Jantan dari Timur" berkat keberaniannya di perairan Sulawesi.</li>
+                <li><strong>Sultan Iskandar Muda</strong> — Membawa Kesultanan Aceh pada puncak kejayaannya.</li>
+                <li><strong>Sultan Mahmud Badaruddin II</strong> — Sultan Palembang yang memimpin perlawanan sengit di Sumatera Selatan.</li>
+                <li><strong>Teuku Chik Ditiro</strong> — Pahlawan dari Pidie yang memimpin Perang Sabil.</li>
+                <li><strong>Teuku Umar</strong> — Ahli strategi militer jenius dari Aceh.</li>
+                <li><strong>Tuanku Imam Bonjol</strong> — Ulama besar sekaligus panglima Perang Padri di tanah Minangkabau.</li>
             </ul>
             <p>Tentu saja, nama-nama di atas hanyalah sebagian kecil. <strong>Dan masih banyak lagi</strong> (terdapat lebih dari 126 pahlawan nasional) yang berjuang demi tegaknya ibu pertiwi. Anda bisa melihat daftar lengkapnya di <a href="http://id.wikipedia.org/wiki/Daftar_pahlawan_nasional_Indonesia" target="_blank" rel="noopener noreferrer" class="article-link">halaman Wikipedia Pahlawan Nasional Indonesia</a>.</p>
-
             <h2>Peristiwa Penting &amp; Bersejarah di Bulan Ramadhan</h2>
             <p>Sejarah peradaban Islam membuktikan bahwa puasa (menahan lapar dan haus) sama sekali bukan alasan untuk bermalas-malasan. Sebaliknya, Ramadhan adalah bulan kemenangan dan pencapaian monumental. Berikut rangkuman peristiwanya:</p>
             <ol>
@@ -289,27 +276,21 @@
                 <li><strong>Ramadhan 1393 H:</strong> Aksi serangan mendadak pasukan perjuangan Palestina di kawasan Ramallah terhadap kekuatan militer Israel.</li>
                 <li><strong>8 Ramadhan 1364 H (Bertepatan dengan 17 Agustus 1945 M):</strong> <strong>Indonesia Merdeka!</strong> Bung Karno dan Bung Hatta membacakan proklamasi di pagi hari bulan puasa, membawa bangsa ini lepas dari belenggu penjajahan.</li>
             </ol>
-
             <div class="img-wrapper">
                 <!-- Elemen gambar ditiadakan di sini karena gambar wajib (bendera) sudah digunakan sebagai hero/LCP di atas sesuai aturan instruksi. -->
             </div>
-
             <h2>Penutup: Refleksi Kebangsaan</h2>
             <blockquote>
                 <strong>Doa penutup:</strong> Alhamdulillah kita dipertemukan dengan <strong>Ramadhan 1431 H</strong> (dalam nuansa tulisan ini dibuat), dan kala itu kita menyambut <strong>HUT RI ke-65 (Tahun 2010)</strong>. Mari jadikan memori sejarah ini sebagai pengingat bahwa nikmat kemerdekaan diraih dengan pengorbanan tak terhingga. Semoga rasa syukur kita tak terputus sampai hari ini, dan semoga bangsa ini terus maju membawa amanah para pendirinya.
             </blockquote>
         </article>
-
         <!-- Struktur Wajib Akhir Konten Sesuai Instruksi Tanpa Tambahan Styling -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>
-
     </main>
-
     <footer>
-        <p>&copy; 2010 - 2026 Layar Kosong. Disusun dengan semangat berbagi wawasan sejarah dan teknologi terbuka.</p>
-    </footer>
+        <p>🄯 2010 - 2026 Layar Kosong. Disusun dengan semangat berbagi wawasan sejarah dan teknologi terbuka.</p>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+</body></html>
