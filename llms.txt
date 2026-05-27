@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.22
+document_version: 20.23
 last_updated: 2026-05-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Mei 2026)
-> Menampilkan 1298 artikel versi 20.22.
+> Menampilkan 1298 artikel versi 20.23.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -115,7 +115,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Perpecahan: Menjaga Lisan dan Ukhuwah di Akhir Zaman - Dalam Web](https://dalam.web.id/gaya-hidup/bahaya-perpecahan-menjaga-lisan-ukhuwah) : Pembahasan santai mengenai larangan keras dalam Islam terkait menyesatkan, memusuhi, ghibah, dan takfir sesama Muslim berdasarkan Al-Quran dan Sunnah. Mari jaga ukhuwah di zaman fitnah.
 - [Bumbu Pecel Kacang - Pengertian, Bahan & Cara Membuat](https://dalam.web.id/gaya-hidup/bumbu-pecel-kacang) : Bumbu pecel kacang: resep, bahan, cara membuat dan tips menyajikan pecel yang enak. Panduan praktis dalam bahasa Indonesia.
 - [Kerupuk 'Tolak Miskin', Ternyata Beneran Ada!](https://dalam.web.id/gaya-hidup/kerupuk-tolak-miskin) : Ternyata ada kerupuk yang dinamai
-- [Gerimis & Jagung Godog: Hangatnya Camilan Sederhana - Catatan Kuliner](https://dalam.web.id/gaya-hidup/jagung-godog-gerimis) : Ketika gerimis mengundang, nikmatnya jagung godog terasa berlipat. Cerita singkat, galeri foto, tips penyajian, dan fitur interaktif.
+- [Nikmat Sederhana Saat Gerimis: Jagung Godog yang Menghangatkan](https://dalam.web.id/gaya-hidup/jagung-godog-gerimis) : Resep dan tips sederhana menyajikan jagung godog. Camilan hangat yang pas untuk menemani suasana gerimis. Temukan variasi topping gurih hingga manis di sini.
 - [Manfaat Memakan Kurma - Khasiat, Nutrisi, dan Cara Mengonsumsinya](https://dalam.web.id/gaya-hidup/manfaat-kurma) : manfaat kesehatan kurma: sumber energi, serat, vitamin & mineral, serta tips konsumsi yang tepat.
 - [Adab dan Tata Cara Minum dalam Islam - Panduan Praktis dan Dalil](https://dalam.web.id/gaya-hidup/adab-tata-cara-minum-dalam-islam) : Ringkasan modern adab minum menurut ajaran Islam: sunnah, anjuran, larangan, serta penjelasan singkat tiap tata cara untuk praktik sehari-hari.
 - [Catatan Harian Seorang Wanita - Versi Santai, Ceria](https://dalam.web.id/gaya-hidup/catatan-harian-wanita) : Catatan harian seorang wanita: versi santai, ceria, fullscreen. Humor, renungan, dan obrolan hangat tentang dinamika hubungan.
