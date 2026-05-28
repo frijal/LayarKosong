@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.38
+document_version: 20.39
 last_updated: 2026-05-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Mei 2026)
-> Menampilkan 1312 artikel versi 20.38.
+> Menampilkan 1312 artikel versi 20.39.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -559,6 +559,7 @@ document_type: llm_behavior_and_entity_guidance
 ## Opini Sosial
 - [Ilusi Koperasi Palsu Merah-Putih: Catatan Kritis Kebijakan Top-Down](https://dalam.web.id/opini-sosial/ilusi-koperasi-palsu-merah-putih) : Farid Gaban mengenai program 30.000 Koperasi Merah-Putih era Presiden Prabowo yang dinilai mengulang kegagalan KUD top-down Orde Baru.
 - [Amanah Mengelola Kas Negara: Mengapa Harta Publik Bukan Uang Pribadi Penguasa](https://dalam.web.id/opini-sosial/amanah-mengelola-kas-negara) : Mengupas etika dan amanah pengelolaan harta publik serta kas negara (APBN) berkaca dari sejarah Islam klasik dan prinsip akuntabilitas Baitul Mal.
+- [Menyamakan APBN dengan Baitul Mal Klasik, Tepatkah Secara Fikih?](https://dalam.web.id/opini-sosial/apbn-baitul-mal-fikih) : dan mendalam mengenai fenomena penyamaan APBN modern dengan lembaga Baitul Mal klasik berdasarkan literatur fikih serta prinsip E-E-A-T.
 - [Indonesia Kehilangan Ribuan Triliun Investasi: Saat Kita Mengusir Investor](https://dalam.web.id/opini-sosial/indonesia-kehilangan-ribuan-triliun-investasi) : Indonesia kehilangan potensi investasi asing hingga ribuan triliun rupiah? Simak bedah tuntas masalah birokrasi, regulasi tidak pasti, dan pungli yang mengusir para pemodal.
 - [Di Balik Rp600 Ribu dan Taruhan Nyawa: Mengapa Kita Harus Menghargai Ojol 🏍️💔](https://dalam.web.id/opini-sosial/realitas-pahit-ojol-17-jam) : Kisah nyata di balik senyum ramah driver ojek online. Mereka rela kerja 17 jam sehari demi 600 ribu rupiah yang berisiko pada kesehatan dan nyawa.
 - [BLT vs Makan Bergizi Gratis: Kebijakan Mana yang Benar-Benar Membantu Rakyat? 🍽️💸](https://dalam.web.id/opini-sosial/blt-vs-makan-bergizi-gratis) : membandingkan efektivitas Bantuan Langsung Tunai BLT dengan program Makan Bergizi Gratis MBG dari segi sasaran dan risiko korupsi.
@@ -1097,7 +1098,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Menyamakan APBN dengan Baitul Mal Klasik, Tepatkah Secara Fikih?](https://dalam.web.id/warta-tekno/apbn-baitul-mal-fikih) : dan mendalam mengenai fenomena penyamaan APBN modern dengan lembaga Baitul Mal klasik berdasarkan literatur fikih serta prinsip E-E-A-T.
 - [Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online](https://dalam.web.id/warta-tekno/drama-kolom-komentar-windows-vs-linux) : Mengupas tuntas drama pertempuran sengit netizen antara pengguna Windows dan sekte Linux beserta kontroversi pemaksaan akun online Microsoft
 - [Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser](https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown) : Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.
 - [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/warta-tekno/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
