@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.41
+document_version: 20.42
 last_updated: 2026-05-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Mei 2026)
-> Menampilkan 1314 artikel versi 20.41.
+> Menampilkan 1314 artikel versi 20.42.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
