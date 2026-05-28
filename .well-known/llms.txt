@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.37
+document_version: 20.38
 last_updated: 2026-05-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Mei 2026)
-> Menampilkan 1307 artikel versi 20.37.
+> Menampilkan 1312 artikel versi 20.38.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -342,6 +342,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ## Lainnya
 - [Lonjakan Utang Negara: Rp2,6 Triliun per Hari, Menguap ke Mana?](https://dalam.web.id/lainnya/lonjakan-utang-negara-rp2-6-triliun-per-hari) : Opini kritis tentang lonjakan utang negara sejak Oktober 2024 hingga Maret 2026 yang mencapai tambahan Rp2,6 triliun per hari tanpa perbaikan kesejahteraan nyata.
+- [Polemik Qurban Presiden dari APBN: Membedah Dalil "Qurban Atas Nama Umat"](https://dalam.web.id/lainnya/polemik-qurban-presiden-apbn) : Mengulas polemik anggaran qurban presiden dari APBN. Benarkah bisa disamakan dengan dalil klasik qurban imam dari Baitul Mal? Simak bedah fikih siyasah di sini.
 - [Cukupkah Pendapatan Bersih Rp 200.000 Per Hari Untuk Ojek Online?](https://dalam.web.id/lainnya/realita-pendapatan-ojol-200-ribu) : mengenai realita pendapatan harian driver ojek online sebesar 200 ribu rupiah apakah cukup untuk biaya hidup dan operasional
 - [Siapa Saja Pihak yang Berwenang Melakukan Tilang di Jalan Raya? Biar Gak Kena Prank Oknum! 🚦👮](https://dalam.web.id/lainnya/pihak-berwenang-tilang-jalan-raya) : Meluruskan miskonsepsi tentang siapa saja yang berhak melakukan tilang di jalan raya. Apakah hanya Polantas atau Dishub juga bisa? Temukan jawabannya di sini.
 - [Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔](https://dalam.web.id/lainnya/sop-kondisi-penindakan-tilang-lalu-lintas) : Membahas kapan dan dalam skenario seperti apa sebuah penilangan dianggap boleh termasuk menjawab mitos soal polisi yang sedang tidak berdinas di jalan raya.
@@ -556,6 +557,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Ilusi Koperasi Palsu Merah-Putih: Catatan Kritis Kebijakan Top-Down](https://dalam.web.id/opini-sosial/ilusi-koperasi-palsu-merah-putih) : Farid Gaban mengenai program 30.000 Koperasi Merah-Putih era Presiden Prabowo yang dinilai mengulang kegagalan KUD top-down Orde Baru.
+- [Amanah Mengelola Kas Negara: Mengapa Harta Publik Bukan Uang Pribadi Penguasa](https://dalam.web.id/opini-sosial/amanah-mengelola-kas-negara) : Mengupas etika dan amanah pengelolaan harta publik serta kas negara (APBN) berkaca dari sejarah Islam klasik dan prinsip akuntabilitas Baitul Mal.
 - [Indonesia Kehilangan Ribuan Triliun Investasi: Saat Kita Mengusir Investor](https://dalam.web.id/opini-sosial/indonesia-kehilangan-ribuan-triliun-investasi) : Indonesia kehilangan potensi investasi asing hingga ribuan triliun rupiah? Simak bedah tuntas masalah birokrasi, regulasi tidak pasti, dan pungli yang mengusir para pemodal.
 - [Di Balik Rp600 Ribu dan Taruhan Nyawa: Mengapa Kita Harus Menghargai Ojol 🏍️💔](https://dalam.web.id/opini-sosial/realitas-pahit-ojol-17-jam) : Kisah nyata di balik senyum ramah driver ojek online. Mereka rela kerja 17 jam sehari demi 600 ribu rupiah yang berisiko pada kesehatan dan nyawa.
 - [BLT vs Makan Bergizi Gratis: Kebijakan Mana yang Benar-Benar Membantu Rakyat? 🍽️💸](https://dalam.web.id/opini-sosial/blt-vs-makan-bergizi-gratis) : membandingkan efektivitas Bantuan Langsung Tunai BLT dengan program Makan Bergizi Gratis MBG dari segi sasaran dan risiko korupsi.
@@ -750,6 +753,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Mengatasi Boot Failure /dev/mapper/root di MX Linux](https://dalam.web.id/sistem-terbuka/mengatasi-boot-failure-mx-linux) : Terjebak di BusyBox initramfs setelah update MX Linux? Berikut panduan lengkap mengatasi error /dev/mapper/root does not exist dengan metode CLI dan GUI.
 - [Cara Beralih Penuh dari SysVinit ke systemd di MX Linux 25 (Debian 13)](https://dalam.web.id/sistem-terbuka/migrasi-sysvinit-ke-systemd-mx-linux-25) : Tutorial aman menghapus SysVinit dan migrasi penuh ke systemd pada MX Linux 25 (Infinity) berbasis Debian 13 Trixie. Langkah demi langkah untuk sysadmin.
 - [Kuis Interaktif: Temukan Distro Linux yang Paling Cocok Untukmu!](https://dalam.web.id/sistem-terbuka/kuis-pilih-distro-linux) : Bingung milih distro Linux? Ikuti kuis interaktif 10 langkah ini untuk menemukan sistem operasi yang paling sesuai dengan kebutuhan dan spesifikasi komputermu.
 - [Rilis Resmi Nitrux 6.1: Evolusi Distro Linux Tanpa Systemd dengan Hyprland](https://dalam.web.id/sistem-terbuka/rilis-resmi-nitrux-6-1-hyprland) : Nitrux 6.1 resmi dirilis dengan kernel 7.0.8, desktop Hyprland, dan optimasi CachyOS. Sistem operasi Linux tanpa systemd ini juga membawa pembaruan keamanan dan ekosistem MauiKit.
@@ -968,7 +972,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Otomatis Memilih Mirror Linux Tercepat](https://dalam.web.id/sistem-terbuka/fedora-opensuse-auto-mirror-selection) : cara otomatis memilih mirror repository tercepat di berbagai distro Linux seperti Debian, Ubuntu, Arch, Fedora, dan openSUSE untuk mempercepat update.
 - [Tutorial CHROOT di Debian: Mengisolasi Sistem Kerja Anda](https://dalam.web.id/sistem-terbuka/chroot-tutorial) : cara menggunakan perintah chroot di Debian, termasuk kegunaan, langkah dasar mount/unmount filesystem, dan contoh skrip shell untuk otomatisasi.
 - [fedora-mirror.sh - Aktifkan Mirror Tercepat (Fedora)](https://dalam.web.id/sistem-terbuka/fedora-mirror) : Skrip bash sederhana untuk mengaktifkan plugin
-- [Cara Membuat Bootable Linux dengan USB](https://dalam.web.id/sistem-terbuka/bootable-Linux-menggunakan-USB-Flash) : Panduan langkah demi langkah cara membuat USB bootable Linux menggunakan software seperti Rufus, Etcher, atau perintah dd untuk instalasi sistem operasi.
+- [Cara Mudah Membuat USB Bootable Linux: Panduan Lengkap & Praktis](https://dalam.web.id/sistem-terbuka/bootable-Linux-menggunakan-USB-Flash) : dan praktis cara membuat USB bootable Linux dengan mudah menggunakan Rufus atau Etcher untuk pemula.
 - [Skrip Otomatis Update & Clean APT di Debian/Ubuntu](https://dalam.web.id/sistem-terbuka/apt-update-clean) : Skrip bash sederhana untuk mengotomatisasi pembaruan dan pembersihan paket APT di sistem Debian/Ubuntu, membuat perawatan sistem lebih mudah.
 - [Tutorial APT (Advanced Package Tool) di Debian/Ubuntu](https://dalam.web.id/sistem-terbuka/apt-tutorial) : Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.
 - [arch-mirror.sh - Pilih Mirror Tercepat (Arch Linux)](https://dalam.web.id/sistem-terbuka/arch-mirror) : Skrip bash sederhana untuk memilih mirror Arch Linux tercepat secara otomatis menggunakan
@@ -1093,6 +1097,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Menyamakan APBN dengan Baitul Mal Klasik, Tepatkah Secara Fikih?](https://dalam.web.id/warta-tekno/apbn-baitul-mal-fikih) : dan mendalam mengenai fenomena penyamaan APBN modern dengan lembaga Baitul Mal klasik berdasarkan literatur fikih serta prinsip E-E-A-T.
 - [Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online](https://dalam.web.id/warta-tekno/drama-kolom-komentar-windows-vs-linux) : Mengupas tuntas drama pertempuran sengit netizen antara pengguna Windows dan sekte Linux beserta kontroversi pemaksaan akun online Microsoft
 - [Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser](https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown) : Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.
 - [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/warta-tekno/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
