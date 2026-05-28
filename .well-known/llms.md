@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.40
+document_version: 20.41
 last_updated: 2026-05-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Mei 2026)
-> Menampilkan 1313 artikel versi 20.40.
+> Menampilkan 1314 artikel versi 20.41.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -754,6 +754,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [7 Distro Linux Termudah untuk Pemula: Panduan Migrasi Nyaman](https://dalam.web.id/sistem-terbuka/7-distro-linux-termudah-untuk-pemula) : Mau coba Linux tapi bingung mulai dari mana? Yuk, intip 7 rekomendasi distro Linux termudah untuk pemula yang stabil, ringan, dan ramah pengguna di sini!
 - [Perang Shell Linux: Bash, Zsh, Fish, atau PowerShell? Ikuti Kuisnya!](https://dalam.web.id/sistem-terbuka/pilih-shell-linux-quiz) : Debat abadi di dunia Linux: memilih Shell terbaik. Ikuti kuis interaktif ini untuk menentukan apakah Bash, Zsh, Fish, atau PowerShell yang pas untuk terminalmu.
 - [Mengatasi Boot Failure /dev/mapper/root di MX Linux](https://dalam.web.id/sistem-terbuka/mengatasi-boot-failure-mx-linux) : Terjebak di BusyBox initramfs setelah update MX Linux? Berikut panduan lengkap mengatasi error /dev/mapper/root does not exist dengan metode CLI dan GUI.
 - [Cara Beralih Penuh dari SysVinit ke systemd di MX Linux 25 (Debian 13)](https://dalam.web.id/sistem-terbuka/migrasi-sysvinit-ke-systemd-mx-linux-25) : Tutorial aman menghapus SysVinit dan migrasi penuh ke systemd pada MX Linux 25 (Infinity) berbasis Debian 13 Trixie. Langkah demi langkah untuk sysadmin.
