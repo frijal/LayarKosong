@@ -332,6 +332,8 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 [![HTML5](https://img.shields.io/badge/HTML5-Yes-orange?logo=html5&logoColor=white)](#readme)
 [![CSS3](https://img.shields.io/badge/CSS3-Yes-blue?logo=css3&logoColor=white)](#readme)
 [![JavaScript](https://img.shields.io/badge/JavaScript-Yes-yellow?logo=javascript&logoColor=black)](#readme)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Yes-3178C6?logo=typescript&logoColor=white)](#readme)
+[![Bun](https://img.shields.io/badge/Bun-Yes-000000?logo=bun&logoColor=white)](#readme)
 [![Node.js](https://img.shields.io/badge/Node.js-Yes-339933?logo=node.js&logoColor=white)](#readme)
 [![npm](https://img.shields.io/badge/npm-Yes-CB3837?logo=npm&logoColor=white)](#readme)
 [![pnpm](https://img.shields.io/badge/pnpm-Yes-F69220?logo=pnpm&logoColor=white)](#readme)
