@@ -181,10 +181,14 @@
         }
     }
 </style>
-    <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
+    <script type="module" data-cfasync="false">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    mermaid.initialize({ 
+        startOnLoad: true, 
+        theme: isDarkMode ? 'dark' : 'default' 
+    });
+</script>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/warta-tekno/panduan-static-site-github-cloudflare">
