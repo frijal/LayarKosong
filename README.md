@@ -4,11 +4,131 @@ Selamat datang! Panduan ini akan membantumu membangun situs statis yang super ce
 
 Konsepnya: Kamu cukup fokus menulis di GitHub, dan biarkan **GitHub Actions + Cloudflare Wrangler** yang bekerja mengirimkan artikelmu ke internet secara instan.
 
-**Otomatisasi:**
+**Fitur Unggulan:**
+* **Direct Deploy:** Menggunakan Wrangler untuk pengiriman kilat tanpa *branch* perantara.
+* **Search Engine:** *Client-side JavaScript* super ngebut menggunakan data dari `artikel.json` & Cloudflare D1.
+* **Clean URLs:** Mendukung URL tanpa `.html` untuk navigasi yang lebih elegan dan rapi.
 
-* **Direct Deploy:** Menggunakan Wrangler untuk pengiriman kilat tanpa branch perantara.
-* **Search Engine:** Client-side JavaScript menggunakan data dari `artikel.json`.
-* **Clean URLs:** Mendukung URL tanpa `.html` untuk navigasi yang lebih rapi.
+---
+
+## 🧠 Arsitektur Otomatisasi (CI/CD)
+
+Penasaran bagaimana "Layar Kosong" memproses draf kasarmu menjadi situs yang *live*? Berikut adalah alur kerja estafet otomatisnya:
+
+```mermaid
+graph TD
+    %% ==========================================
+    %% WORKFLOW 1: 🔄 PROSES ARTIKELX
+    %% ==========================================
+    subgraph WF1 ["🔄 Workflow 1: Proses ArtikelX (Persiapan Awal)"]
+        direction TB
+        Start1(((Mulai))) --> Trig1{"Trigger:<br>Push (artikelx/*.html)<br>atau Manual"}
+        Trig1 --> Check1["1️⃣ Checkout Repo & Setup Bun.js"]
+        
+        Check1 --> S_HTML[/"2️⃣ Edit Komponen HTML (Edit-Komponen-HTML.ts)"/]
+        S_HTML --> S_Clean[/"3️⃣ Sterilize Schema (clean-schema.ts)"/]
+        S_Clean --> S_Font[/"4️⃣ Ganti Aset ke Lokal (gantifontshighlight.ts)"/]
+        S_Font --> S_SEO[/"5️⃣ Injeksi SEO, Mirror, WebP (seo-fixer.ts)"/]
+        
+        S_SEO --> Move["6️⃣ Pindah file HTML dari 'artikelx/' ke 'artikel/'"]
+        Move --> Commit1["7️⃣ Commit & Push Perubahan"]
+    end
+
+    %% ==========================================
+    %% WORKFLOW 2: ☢️ BUILD AND GENERATE
+    %% ==========================================
+    subgraph WF2 ["☢️ Workflow 2: Build & Generate Site Files (Pabrik Produksi)"]
+        direction TB
+        Trig2{"Trigger:<br>WF1 Sukses<br>atau Manual (Toggles)"}
+        
+        Trig2 --> Check2["1️⃣ Checkout Repo & Setup Bun.js"]
+        Check2 --> Build1{"Generate Data?"}
+        
+        Build1 -- Ya --> S_Gen[/"2️⃣ generator-pro.ts<br>(JSON, XML, RSS)"/] --> Build2
+        Build1 -- Tidak --> Build2{"Generate Srcset?"}
+        
+        S_Gen --> Build2
+        Build2 -- Ya --> S_Srcset[/"3️⃣ srcset-generator.ts"/] --> Build3
+        Build2 -- Tidak --> Build3{"Update Sitemap TXT?"}
+        
+        S_Srcset --> Build3
+        Build3 -- Ya --> S_SiteTXT[/"4️⃣ koki.ts, bikin-sitemap-txt.ts, dll"/] --> Build4
+        Build3 -- Tidak --> Build4{"Inject Schema?"}
+        
+        S_SiteTXT --> Build4
+        Build4 -- Ya --> S_Inject[/"5️⃣ inject-schema.ts"/] --> Build5
+        Build4 -- Tidak --> Build5{"Ubah ke Markdown?"}
+        
+        S_Inject --> Build5
+        Build5 -- Ya --> S_MD[/"6️⃣ html-to-markdown.ts"/] --> Build6
+        Build5 -- Tidak --> Build6{"Minify File?"}
+        
+        S_MD --> Build6
+        Build6 -- Ya --> S_Min[/"7️⃣ Minify HTML, JSON & XML"/] --> Commit2
+        Build6 -- Tidak --> Commit2["8️⃣ Commit, Pull --rebase & Push Data"]
+    end
+
+    %% ==========================================
+    %% WORKFLOW 3: 🚀 CLOUDFLARE DEPLOYER
+    %% ==========================================
+    subgraph WF3 ["🚀 Workflow 3: Cloudflare Deployer (Peluncuran Publik)"]
+        direction TB
+        Trig3{"Trigger:<br>WF2 Sukses<br>atau Push (Paths: _redirects, _headers)"}
+        
+        Trig3 --> Check3["1️⃣ Checkout Branch 'main' (ke folder 'source')"]
+        Check3 --> Setup3["2️⃣ Setup Node v24 & Bun.js"]
+        
+        Setup3 --> Rsync["3️⃣ Bersihkan Direktori & Pindahkan File<br>(rsync ke 'deploy_dir')"]
+        
+        Rsync --> Config["4️⃣ Injeksi Kredensial Cloudflare (D1 & KV)<br>ke /tmp/wrangler.toml"]
+        
+        Config --> D1Build[/"5️⃣ Eksekusi build-d1.ts (Update Database D1)"/]
+        
+        D1Build --> DeploySetup["6️⃣ Pindahkan 'wrangler.toml' dan folder 'functions'<br>ke root direktori"]
+        
+        DeploySetup --> Cloudflare{"7️⃣ Deploy ke Cloudflare Pages<br>(bunx wrangler pages deploy)"}
+        
+        Cloudflare -- "Berhasil" --> Success(((Layar Kosong<br>Go Live! 🎉)))
+        Cloudflare -- "Gagal" --> Retry["⚠️ Coba Ulang (Maksimal 3x)"]
+        Retry --> Cloudflare
+    end
+
+    %% ==========================================
+    %% CONNECTIONS (ESTAFET)
+    %% ==========================================
+    Commit1 -- Memicu (workflow_run) --> Trig2
+    Commit2 -- Memicu (workflow_run) --> Trig3
+```
+
+### 🛠️ Dapur Rahasia: Script Otomatisasi (Bun.js & TypeScript)
+
+Tertarik melihat jeroan kode di balik arsitektur di atas? Berikut adalah tautan langsung ke *script* penggeraknya:
+
+<details>
+<summary><strong>1️⃣ Script Tahap Persiapan (Proses ArtikelX)</strong></summary>
+
+- [`Edit-Komponen-HTML.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/Edit-Komponen-HTML.ts) — Memodifikasi struktur dasar HTML agar sesuai standar SEO.
+- [`clean-schema.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/clean-schema.ts) — Membersihkan tag atau *schema markup* yang tidak diperlukan.
+- [`gantifontshighlight.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/gantifontshighlight.ts) — Menarik aset *third-party* (font, CSS eksternal) menjadi aset lokal.
+- [`seo-fixer.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/seo-fixer.ts) — Injeksi meta SEO, *mirroring* gambar otomatis, dan konversi ke WebP.
+</details>
+
+<details>
+<summary><strong>2️⃣ Script Tahap Produksi (Build & Generate)</strong></summary>
+
+- [`generator-pro.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generator-pro.ts) — Otak utama pembuat file `artikel.json`, XML, dan RSS Feed.
+- [`srcset-generator.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/srcset-generator.ts) — Mengoptimasi ukuran gambar untuk berbagai resolusi layar.
+- **Sitemap & Redirect Bundle:** Pasukan pembuat peta situs dan *routing* ([`koki.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/koki.ts), [`bikin-sitemap-txt.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/bikin-sitemap-txt.ts), [`generate_llms.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generate_llms.ts), [`redirectmap.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/redirectmap.ts)).
+- [`inject-schema.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/inject-schema.ts) — Menyuntikkan *Schema.org* untuk *rich snippet* Google.
+- [`html-to-markdown.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/html-to-markdown.ts) — Melakukan konversi format HTML menjadi Markdown.
+- **Minifier:** Kompresor file tingkat tinggi untuk <em>load</em> secepat kilat ([`minify-html.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-html.ts), [`minify-jsonxml.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-jsonxml.ts)).
+</details>
+
+<details>
+<summary><strong>3️⃣ Script Tahap Deploy (Cloudflare)</strong></summary>
+
+- [`build-d1.ts`](https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts) — Membangun indeks pencarian dan melemparnya ke Cloudflare D1 Database.
+</details>
 
 ---
 
@@ -21,7 +141,7 @@ Langkah pertama: **Pastikan Git dan Node.js sudah terpasang** karena kita akan m
 
 ### 🪟 Windows
 Unduh dan instal *installer* resmi dari [git-scm.com](https://git-scm.com/download/win). Tinggal "Next, Next, Finish"!
-atau bisa juga gunakan winget:
+Atau bisa juga gunakan winget:
 ```bash
 winget install --id Git.Git -e --source winget
 ```
@@ -30,34 +150,35 @@ winget install --id Git.Git -e --source winget
 Buka terminal dan ketik perintah berikut (jika menggunakan Homebrew):
 ```bash
 brew install git
-````
+```
 
 ### 🐧 Linux
 
-  * **Debian, Ubuntu, Linux Mint, MX Linux, Kali:**
-    ```bash
-    sudo apt update
-    sudo apt install git
-    ```
-  * **Fedora, Red Hat (RHEL), CentOS, AlmaLinux:**
-    ```bash
-    sudo dnf install git
-    # atau untuk versi lama:
-    sudo yum install git
-    ```
-  * **Arch Linux, CachyOS, Manjaro, EndeavourOS:**
-    ```bash
-    sudo pacman -S git
-    ```
-  * **NixOS:**
-    Tambahkan `git` ke `environment.systemPackages` di `configuration.nix` atau jalankan:
-    ```bash
-    nix-env -i git
-    ```
-  * **OpenSUSE:**
-    ```bash
-    sudo zypper install git
-    ```
+* **Debian, Ubuntu, Linux Mint, MX Linux, Kali:**
+  ```bash
+  sudo apt update
+  sudo apt install git
+  ```
+* **Fedora, Red Hat (RHEL), CentOS, AlmaLinux:**
+  ```bash
+  sudo dnf install git
+  # atau untuk versi lama:
+  sudo yum install git
+  ```
+* **Arch Linux, CachyOS, Manjaro, EndeavourOS:**
+  ```bash
+  sudo pacman -S git
+  ```
+* **NixOS:**
+  Tambahkan `git` ke `environment.systemPackages` di `configuration.nix` atau jalankan:
+  ```bash
+  nix-env -i git
+  ```
+* **OpenSUSE:**
+  ```bash
+  sudo zypper install git
+  ```
+
 ---
 
 ## 🧬 Tahap 2: Setup Repository (Fork & Cloudflare)
@@ -81,96 +202,78 @@ brew install git
 
 ## 🏗️ Tahap 3: Otomatisasi (GitHub Secrets)
 
-Sekarang saatnya bersih-bersih dan mulai mengisi kontenmu sendiri.
+Sekarang saatnya bersih-bersih dan mulai menyiapkan jalurnya.
 
-### 1\. Bersihkan Konten Lama 🧹
-
+### 1. Bersihkan Konten Lama 🧹
 Hapus semua file contoh bawaan agar situsmu bersih:
+* Hapus semua isi di dalam folder `artikel/`.
+* Hapus seluruh gambar di dalam folder `img/`.
 
-  * Hapus semua isi di dalam folder `artikel/`.
-  * Hapus seluruh gambar di dalam folder `img/`.
-
-### 2\. Agar GitHub bisa mengirim file ke Cloudflare secara otomatis:
-masukkan "kunci" rahasia di repo hasil fork-mu:
-
+### 2. Pasang Kunci Rahasia
+Agar GitHub bisa mengirim file ke Cloudflare secara otomatis, masukkan kredensialmu ke repo hasil *fork*:
 1. Buka tab **Settings** > **Secrets and variables** > **Actions** pada repository GitHub-mu.
-2. Klik **New repository secret** dan tambahkan:
-* `CF_API_TOKEN`: (Isi dengan token API Cloudflare-mu).
-* `CF_ACCOUNT_ID`: (Isi dengan ID akun Cloudflare-mu).
+2. Klik **New repository secret** dan tambahkan dua rahasia ini:
+   * `CF_API_TOKEN`: (Isi dengan token API Cloudflare-mu).
+   * `CF_ACCOUNT_ID`: (Isi dengan ID akun Cloudflare-mu).
 
 ---
 
-## ✍️ Tahap 4: Mulai Menulis dan Produksi (Membuat Konten)
+## ✍️ Tahap 4: Mulai Menulis dan Produksi
 
-Di sinilah keajaiban terjadi. Kamu tidak menaruh file langsung di folder publik, tapi melalui proses "masak" otomatis:
+Di sinilah keajaiban terjadi. Kamu tidak perlu repot menaruh file langsung di folder publik, cukup ikuti alur "dapur" ini:
 
-1.  Buat file HTML artikel barumu.
-2.  Masukkan file tersebut ke dalam folder **`artikelx/`** (perhatikan akhiran 'x').
-3.  Lakukan *commit* dan *push*.
-4.  **Biarkan Action Bekerja:** Sistem otomatis (*workflow*) akan mendeteksi file baru, memprosesnya, dan memindahkannya dari `artikelx/` menuju folder `artikel/` yang siap tayang.
+1. Buat file HTML artikel barumu.
+2. Masukkan file tersebut ke dalam folder **`artikelx/`** (perhatikan akhiran 'x').
+3. Lakukan `git commit` dan `git push` ke repositori.
+4. **Biarkan Action Bekerja:** Sistem otomatis (*workflow*) akan mendeteksi file baru, memprosesnya (injeksi SEO, webp, sitemap, dll), dan memindahkannya ke etalase utama yang siap tayang!
 
-🎉 **Selesai\!** Halaman pertamamu sudah terbit. Ulangi langkah ini untuk artikel-artikel berikutnya.
+🎉 **Selesai!** Halaman pertamamu sudah terbit ke seluruh penjuru dunia. Ulangi langkah ini untuk artikel-artikel berikutnya.
 
 ---
 
-## 🎨 Tahap 5: Personalisasi & Konfigurasi
+## 🎨 Tahap 5: Personalisasi Identitas & Konfigurasi
 
-Setelah uji coba sukses, saatnya mengklaim situs ini menjadi milikmu sepenuhnya. Jangan lupa ubah data-data berikut agar SEO dan identitas situsmu benar.
+Setelah uji coba sukses, saatnya mengklaim situs ini menjadi milikmu sepenuhnya. Jangan lupa ubah data-data berikut agar SEO dan identitas situsmu relevan.
 
-### 📂 Folder `ext/`
+### Konfigurasi Inti (Wajib Diubah)
+* **`wrangler.toml`**: Ganti `name = "layarkosong"` menjadi nama proyek Cloudflare-mu.
+* **`artikel.json`**: Ini adalah nyawa mesin pencari blogmu, biarkan sistem yang mengupdatenya secara otomatis.
+* **Folder `ext/`**: Sesuaikan URL dan nama domain pada seluruh file konfigurasi di dalam folder ini.
 
-Sesuaikan URL dan nama domain pada seluruh file konfigurasi di dalam folder ini.
-
-### 📄 isi File di dalam Root (Wajib Diubah)
-
+### Halaman Root (Sesuaikan Identitasmu)
 Edit dan sesuaikan informasi di file-file berikut yang ada di halaman utama (*root*):
-
+- `index.html` - Halaman utama.
+- `search.html` - Halaman pencarian.
 - `404.html` - Halaman untuk tautan URL yang tidak ditemukan.
 - `BingSiteAuth.xml` - Verifikasi Bing Webmaster.
 - `CODE_OF_CONDUCT.md` - Kode etik repository.
-- `data-deletion-form.html` - Form penghapusan data.
-- `data-deletion.html` - Halaman penghapusan data.
-- `disclaimer.html` - Disclaimer situs.
-- `disclaimer.md` - Disclaimer (markdown).
+- `data-deletion-form.html` & `data-deletion.html` - Halaman terkait privasi & penghapusan data.
+- `disclaimer.html` & `disclaimer.md` - Disclaimer situs.
 - `favicon.ico` / `favicon.png` / `favicon.svg` - Icon situs.
 - `feed.html` - Halaman RSS Feed Terbaru.
 - `img.html` - Galeri gambar.
-- `index.html` - Halaman utama.
-- `robots.txt` - Instruksi untuk crawler.
-- `search.html` - Halaman pencarian.
-- `sitemap.html` - Daftar Isi, Peta Situs .
-- `thumbnail.jpg` / `thumbnail.png` / `thumbnail.webp` - Thumbnail sosial media.
+- `robots.txt` - Instruksi untuk *crawler* mesin pencari.
+- `sitemap.html` - Daftar Isi / Peta Situs.
+- `thumbnail.jpg` / `thumbnail.png` / `thumbnail.webp` - Thumbnail default untuk *social share*.
 
-### 🙏 Checklist Konfigurasi
-
+### 🙏 Checklist Pra-Peluncuran
 - [ ] Ganti semua URL dari `dalam.web.id` ke domain kamu.
 - [ ] Update informasi kontak dan metadata.
-- [ ] Sesuaikan warna, logo, dan branding.
+- [ ] Sesuaikan warna, logo, dan *branding*.
 - [ ] Test semua link internal.
-- [ ] Verifikasi sitemap dan robots.txt
+- [ ] Verifikasi `sitemap` dan `robots.txt`.
 
 ---
 
-## Domain Custom (Opsional jika Ada)
+## 🌐 Tahap 6: Domain Custom (Opsional)
 
-Jika ingin menggunakan domain custom:
+Jika kamu punya domain sendiri dan tidak ingin menggunakan bawaan Cloudflare Pages (`*.pages.dev`):
 
 1. Tambahkan file `CNAME` di root repository.
-2. Isi dengan nama domain kamu (contoh: `example.com`)
-3. Atur DNS di provider domain kamu:
-   - Tambahkan record A ke IP GitHub Pages.
-   - Atau CNAME ke `usernamekamu.github.io`
-
----
-
-## 🎨 Tahap 6: Personalisasi
-
-Ubah data berikut di branch `main` agar situs ini menjadi milikmu sepenuhnya:
-
-* **`wrangler.toml`**: Ganti `name = "layarkosong"` menjadi nama proyek Cloudflare-mu.
-* **`artikel.json`**: Ini adalah nyawa mesin pencari blogmu, biarkan sistem yang mengupdatenya secara otomatis.
-* Sesuaikan `index.html`, `search.html`, dan `404.html` dengan identitasmu.
-* Folder `ext/**`: Sesuaikan konfigurasi domain di dalamnya.
+2. Isi dengan nama domain kamu (contoh: `example.com`).
+3. Atur DNS di *provider* domain kamu:
+   - Tambahkan *record* A ke IP GitHub Pages (jika pakai Pages).
+   - Atau cukup atur langsung via dashboard **Cloudflare Pages > Custom Domains** untuk integrasi paling mulus.
 
 ---
 
@@ -244,13 +347,12 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 **Sosial Media:**
 
-[![Twitter/X](https://img.shields.io/badge/Twitter-frijal-000000?logo=x&logoColor=white)](https://twitter.com/frijal)
-[![Threads](https://img.shields.io/badge/Threads-frijal-000000?logo=threads&logoColor=white)](https://www.threads.net/@frijal)
-[![TikTok](https://img.shields.io/badge/TikTok-@gibah.dilarang-000000?logo=tiktok&logoColor=white)](https://www.tiktok.com/@gibah.dilarang)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-frijal-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/frijal)
+[![Twitter/X](https://img.shields.io/badge/Twitter-frijal-000000?logo=x&logoColor=white)](https://twitter.com/responaja)
+[![Threads](https://img.shields.io/badge/Threads-frijal-000000?logo=threads&logoColor=white)](https://threads.net/frijal)
+[![TikTok](https://img.shields.io/badge/TikTok-@gibah.dilarang-000000?logo=tiktok&logoColor=white)](https://tiktok.com/@gibah.dilarang)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-frijal-0A66C2?logo=linkedin&logoColor=white)](https://linkedin.com/in/frijal)
 [![Facebook](https://img.shields.io/badge/Facebook-frijal-1877F2?logo=facebook&logoColor=white)](https://facebook.com/frijal)
-[![Instagram](https://img.shields.io/badge/Instagram-frijal-E4405F?logo=instagram&logoColor=white)](https://instagram.com/frijal)
-[![Gist](https://img.shields.io/badge/Gist-Available-black?logo=github&logoColor=white)](https://gist.github.com/frijal)
+[![GitHub](https://img.shields.io/badge/GitHub-frijal-black?logo=github&logoColor=white)](https://github.com/frijal)
 
 **Dukungan AI:**
 
