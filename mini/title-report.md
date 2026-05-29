@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/28/2026, 4:47:53 PM
+Generated on: 5/29/2026, 4:36:53 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v20.40 | LLM Index v20.40 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v20.49 | LLM Index v20.49 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -53,6 +53,8 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/5nabi-saleh.html` | Nabi Saleh ‘Alaihissalam - Thamud, Unta, dan Dentum Hukuman - Layar Kosong | Nabi Saleh ‘Alaihissalam - Thamud, Unta, dan Dentum Hukuman | Layar Kosong | ✅ Perfect |
 | `artikel/6-hal-salah-kaprah-windows-user-tentang-linux.html` | 6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya! - Layar Kosong | 6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya! | Layar Kosong | ✅ Perfect |
 | `artikel/6nabi-ibrahim.html` | Nabi Ibrahim ‘Alaihissalam, Dari Babylon hingga Kaabah - Layar Kosong | Nabi Ibrahim ‘Alaihissalam, Dari Babylon hingga Kaabah | Layar Kosong | ✅ Perfect |
+| `artikel/7-distro-linux-termudah-untuk-pemula.html` | 7 Distro Linux Termudah untuk Pemula: Panduan Migrasi Nyaman - Layar Kosong | 7 Distro Linux Termudah untuk Pemula: Panduan Migrasi Nyaman | Layar Kosong | ✅ Perfect |
+| `artikel/7-kekurangan-sepele-merusak-kesehatan.html` | Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya - Layar Kosong | Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya | Layar Kosong | ✅ Perfect |
 | `artikel/7nabi-luth.html` | Nabi Luth ‘Alaihissalam - Layar Kosong | Nabi Luth ‘Alaihissalam | Layar Kosong | ✅ Perfect |
 | `artikel/8nabi-ismail.html` | Nabi Ismail ‘Alaihissalam , Ramadahan Tales - Layar Kosong | Nabi Ismail ‘Alaihissalam , Ramadahan Tales | Layar Kosong | ✅ Perfect |
 | `artikel/9nabi-ishak.html` | Kisah Nabi Ishak ‘Alaihissalam - Layar Kosong | Kisah Nabi Ishak ‘Alaihissalam | Layar Kosong | ✅ Perfect |
@@ -136,6 +138,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/apa-itu-swdkllj-asuransi-kecelakaan-stnk.html` | SWDKLLJ: Dana Wajib Asuransi Kecelakaan Motor/Mobil yang Kamu Bayar Tiap Tahun 💸 - Layar Kosong | SWDKLLJ: Dana Wajib Asuransi Kecelakaan Motor/Mobil yang Kamu Bayar Tiap Tahun 💸 | Layar Kosong | ✅ Perfect |
 | `artikel/apa-itu-tajdid.html` | Apa Itu Tajdid? Memurnikan Ajaran & Memajukan Peradaban (Islam Berkemajuan) - Layar Kosong | Apa Itu Tajdid? Memurnikan Ajaran & Memajukan Peradaban (Islam Berkemajuan) | Layar Kosong | ✅ Perfect |
 | `artikel/apakah-bsu-2026-akan-cair.html` | Apakah BSU 2026 Akan Cair? Cek Fakta Terbaru dan Cara Mengeceknya - Layar Kosong | Apakah BSU 2026 Akan Cair? Cek Fakta Terbaru dan Cara Mengeceknya | Layar Kosong | ✅ Perfect |
+| `artikel/apakah-fedora-distro-linux-terbaik.html` | Apakah Fedora Diam-diam Menjadi Distro Linux Terbaik? Ini Kata Komunitas - Layar Kosong | Apakah Fedora Diam-diam Menjadi Distro Linux Terbaik? Ini Kata Komunitas | Layar Kosong | ✅ Perfect |
 | `artikel/apakah-muhammadiyah-bughot-analisis-perbedaan-lebaran.html` | Apakah Muhammadiyah Bughot? Analisis Perbedaan Puasa dan Lebaran di Indonesia - Layar Kosong | Apakah Muhammadiyah Bughot? Analisis Perbedaan Puasa dan Lebaran di Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/apakah-semua-akan-muhammadiyah-pada-waktunya.html` | Apakah Semua Akan Muhammadiyah Pada Waktunya Sejarah dan Kalender Global - Layar Kosong | Apakah Semua Akan Muhammadiyah Pada Waktunya Sejarah dan Kalender Global | Layar Kosong | ✅ Perfect |
 | `artikel/apbn-2025.html` | APBN 2025: Uang Kita untuk Masa Depan yang Lebih Sejahtera! - Layar Kosong | APBN 2025: Uang Kita untuk Masa Depan yang Lebih Sejahtera! | Layar Kosong | ✅ Perfect |
@@ -242,6 +245,8 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/Cara-Memotong-Gambar-dengan-ImageMagick.html` | Cara Memotong Gambar dengan ImageMagick di Command Line ✂️ - Layar Kosong | Cara Memotong Gambar dengan ImageMagick di Command Line ✂️ | Layar Kosong | ✅ Perfect |
 | `artikel/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.html` | Memperbaiki GRUB Bootloader (Debian & Turunannya) - Layar Kosong | Memperbaiki GRUB Bootloader (Debian & Turunannya) | Layar Kosong | ✅ Perfect |
 | `artikel/cara-menambahkan-repositori-debian.html` | Cara Menambahkan Repositori Pihak Ketiga di Debian Linux - Layar Kosong | Cara Menambahkan Repositori Pihak Ketiga di Debian Linux | Layar Kosong | ✅ Perfect |
+| `artikel/cara-mengatasi-error-locale-debian-ubuntu.html` | Cara Mengatasi Error Locale "perl: warning: Setting locale failed" di Debian & Ubuntu - Layar Kosong | Cara Mengatasi Error Locale "perl: warning: Setting locale failed" di Debian & Ubuntu | Layar Kosong | ✅ Perfect |
+| `artikel/cara-mengatasi-wifi-mediatek-ubuntu.html` | Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux - Layar Kosong | Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux | Layar Kosong | ✅ Perfect |
 | `artikel/cara-menggunakan-userchrome-css-firefox.html` | Cara Menggunakan userChrome.css di Firefox untuk Pemula (Panduan Lengkap) - Layar Kosong | Cara Menggunakan userChrome.css di Firefox untuk Pemula (Panduan Lengkap) | Layar Kosong | ✅ Perfect |
 | `artikel/cara-menghadapi-razia-pajak-mati.html` | Cara Menghadapi Razia Saat Pajak Belum Dibayar Karena Hemat Nasional - Layar Kosong | Cara Menghadapi Razia Saat Pajak Belum Dibayar Karena Hemat Nasional | Layar Kosong | ✅ Perfect |
 | `artikel/cara-menghapus-kernel-lama-linux-purge.html` | Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧 - Layar Kosong | Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧 | Layar Kosong | ✅ Perfect |
@@ -692,6 +697,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/kuota-hangus-dipertahankan-operator.html` | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen - Layar Kosong | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen | Layar Kosong | ✅ Perfect |
 | `artikel/kupas-kebijakan-hardiknas-2026.html` | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? - Layar Kosong | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? | Layar Kosong | ✅ Perfect |
 | `artikel/kurangi-cahaya-ketika-tidur.html` | Kurangi Cahaya Ketika Tidur - Ilmu Modern & Pesan Nabi - Layar Kosong | Kurangi Cahaya Ketika Tidur - Ilmu Modern & Pesan Nabi | Layar Kosong | ✅ Perfect |
+| `artikel/kustomisasi-desktop-gnome-linux.html` | Kustomisasi Desktop GNOME Linux: Panduan Lengkap Ekstensi - Layar Kosong | Kustomisasi Desktop GNOME Linux: Panduan Lengkap Ekstensi | Layar Kosong | ✅ Perfect |
 | `artikel/kutai-kartanegara-oss-2010.html` | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi - Layar Kosong | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi | Layar Kosong | ✅ Perfect |
 | `artikel/label-nonhalal-jaga-iman.html` | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman - Layar Kosong | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `artikel/langit-sama-tanggal-beda-ramadan-2026.html` | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 - Layar Kosong | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 | Layar Kosong | ✅ Perfect |
@@ -793,6 +799,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/memahami-kdrt-lebih-dalam.html` | KDRT: Lebih dari Sekadar Luka Lebam (Memahami Kekerasan dalam Rumah Tangga) - Layar Kosong | KDRT: Lebih dari Sekadar Luka Lebam (Memahami Kekerasan dalam Rumah Tangga) | Layar Kosong | ✅ Perfect |
 | `artikel/memahami-npm-audit-vulnerability.html` | npm audit Menemukan Vulnerability 'High'? Jangan Panik, Ini Penjelasannya! - Layar Kosong | npm audit Menemukan Vulnerability 'High'? Jangan Panik, Ini Penjelasannya! | Layar Kosong | ✅ Perfect |
 | `artikel/memahami-rating-distro-linux.html` | Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas - Layar Kosong | Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas | Layar Kosong | ✅ Perfect |
+| `artikel/memahami-struktur-direktori-linux.html` | Memahami Struktur Direktori Linux: Panduan Navigasi Sistem Operasi - Layar Kosong | Memahami Struktur Direktori Linux: Panduan Navigasi Sistem Operasi | Layar Kosong | ✅ Perfect |
 | `artikel/memaknai-ketidakpuasan-dunia-energi-kehidupan-dan-pesan-al-qasas-ayat-77.html` | Memaknai Ketidakpuasan Dunia: Energi Kehidupan dan Pesan Al-Qasas Ayat 77 - Layar Kosong | Memaknai Ketidakpuasan Dunia: Energi Kehidupan dan Pesan Al-Qasas Ayat 77 | Layar Kosong | ✅ Perfect |
 | `artikel/membagikan-aplikasi-debian-dengan-dpkg-repack.html` | Membagikan Aplikasi Debian dengan dpkg-repack - Layar Kosong | Membagikan Aplikasi Debian dengan dpkg-repack | Layar Kosong | ✅ Perfect |
 | `artikel/membedah-hasil-apt-audit-lengkap.html` | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris - Layar Kosong | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris | Layar Kosong | ✅ Perfect |
@@ -851,6 +858,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/microsoft-copilot-cowork.html` | Microsoft Copilot Cowork: Agen AI yang Mengubah Cara Kerja di 2026 - Layar Kosong | Microsoft Copilot Cowork: Agen AI yang Mengubah Cara Kerja di 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/microsoft-copilot.html` | Microsoft Copilot: Otomatisasi Pekerjaan Berjam-jam - Layar Kosong | Microsoft Copilot: Otomatisasi Pekerjaan Berjam-jam | Layar Kosong | ✅ Perfect |
 | `artikel/microsoft-powertoys-panduan-lengkap-2026.html` | Microsoft PowerToys: Panduan Lengkap 2026 - Tingkatkan Produktivitas Windows Anda - Layar Kosong | Microsoft PowerToys: Panduan Lengkap 2026 - Tingkatkan Produktivitas Windows Anda | Layar Kosong | ✅ Perfect |
+| `artikel/microsoft-rilis-azure-linux-4.html` | Microsoft Rilis Azure Linux 4.0: Distro Server General-Purpose Pertama mereka - Layar Kosong | Microsoft Rilis Azure Linux 4.0: Distro Server General-Purpose Pertama mereka | Layar Kosong | ✅ Perfect |
 | `artikel/migrasi-blog-serverless.html` | Migrasi Blog ke Serverless: Bye-bye Server Lemot dan Mahal! - Layar Kosong | Migrasi Blog ke Serverless: Bye-bye Server Lemot dan Mahal! | Layar Kosong | ✅ Perfect |
 | `artikel/migrasi-github-actions-node-24-bun.html` | Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun - Layar Kosong | Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun | Layar Kosong | ✅ Perfect |
 | `artikel/migrasi-linux-drive-ntfs-aman.html` | Migrasi ke Linux: Solusi Aman untuk Drive Data Windows (NTFS) Anda - Layar Kosong | Migrasi ke Linux: Solusi Aman untuk Drive Data Windows (NTFS) Anda | Layar Kosong | ✅ Perfect |
@@ -953,6 +961,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/panduan-sah-ganti-nama-indonesia.html` | Nama Jadi Beban? Ini Panduan Lengkap & Sah Ganti Nama di Indonesia! 📝⚖️ - Layar Kosong | Nama Jadi Beban? Ini Panduan Lengkap & Sah Ganti Nama di Indonesia! 📝⚖️ | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-seo-metadata-blog.html` | Panduan Lengkap SEO dan Metadata untuk Blog Anda - Layar Kosong | Panduan Lengkap SEO dan Metadata untuk Blog Anda | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-skrip-fix-html.html` | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML - Layar Kosong | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML | Layar Kosong | ✅ Perfect |
+| `artikel/panduan-static-site-github-cloudflare.html` | Panduan Membuat Static Site dengan Github dan Cloudflare - Layar Kosong | Panduan Membuat Static Site dengan Github dan Cloudflare | Layar Kosong | ✅ Perfect |
 | `artikel/panel-untuk-githubpages.html` | Panel Terbaik untuk Pengguna GitHub Pages - Layar Kosong | Panel Terbaik untuk Pengguna GitHub Pages | Layar Kosong | ✅ Perfect |
 | `artikel/para-keledai-kitab-tebal-pengkhianatan-ulama.html` | Para Keledai & Kitab Tebal • Pengkhianatan Ulama di Negeri Muslim - Layar Kosong | Para Keledai & Kitab Tebal • Pengkhianatan Ulama di Negeri Muslim | Layar Kosong | ✅ Perfect |
 | `artikel/paradoks-hilal-rukyat-hisab-astronomi-islam.html` | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? - Layar Kosong | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? | Layar Kosong | ✅ Perfect |
@@ -1170,6 +1179,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/siapa-sebenarnya-ulil-amri.html` | Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern - Layar Kosong | Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern | Layar Kosong | ✅ Perfect |
 | `artikel/sikat-gigi-aduk.html` | Bahaya Menggunakan Sikat Gigi untuk Mengaduk Minuman - Layar Kosong | Bahaya Menggunakan Sikat Gigi untuk Mengaduk Minuman | Layar Kosong | ✅ Perfect |
 | `artikel/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
+| `artikel/silsilah-keluarga-linux.html` | Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya - Layar Kosong | Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya | Layar Kosong | ✅ Perfect |
 | `artikel/sisi-gelap-aplikator.html` | Sisi Gelap 5 Raksasa Aplikator: Perang Harga dan Nasib Mereka - Layar Kosong | Sisi Gelap 5 Raksasa Aplikator: Perang Harga dan Nasib Mereka | Layar Kosong | ✅ Perfect |
 | `artikel/sisi-gelap-makan-bergizi-gratis.html` | Sisi Gelap Makan Bergizi Gratis: Antara Niat Mulia dan Ancaman Gunungan Sampah Makanan - Layar Kosong | Sisi Gelap Makan Bergizi Gratis: Antara Niat Mulia dan Ancaman Gunungan Sampah Makanan | Layar Kosong | ✅ Perfect |
 | `artikel/skkni-pengasuh-anak-peran-ibu.html` | SKKNI Pengasuh Anak: Melindungi Hak Anak atau Menjauhkan Wanita dari Peran Ibu? - Suara Muslimah Jabar - Layar Kosong | SKKNI Pengasuh Anak: Melindungi Hak Anak atau Menjauhkan Wanita dari Peran Ibu? - Suara Muslimah Jabar | Layar Kosong | ✅ Perfect |
@@ -1352,6 +1362,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `artikel/zsync-blankon.html` | Panduan ZSync untuk ISO BlankOn Rote - Layar Kosong | Panduan ZSync untuk ISO BlankOn Rote | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/16-tahun-ojol-tanpa-uu.html` | 16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda - Layar Kosong | 16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/3-pilar-remunerasi-dan-6-faktor.html` | Remunerasi Pegawai: 3 Pilar + 6 Faktor yang Menentukan Gaji - Layar Kosong | Remunerasi Pegawai: 3 Pilar + 6 Faktor yang Menentukan Gaji | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/7-kekurangan-sepele-merusak-kesehatan.html` | Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya - Layar Kosong | Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/adab-tata-cara-minum-dalam-islam.html` | Adab dan Tata Cara Minum dalam Islam - Panduan Praktis dan Dalil - Layar Kosong | Adab dan Tata Cara Minum dalam Islam - Panduan Praktis dan Dalil | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/anggaran-pendidikan-motor-listrik-mbg.html` | Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan? - Layar Kosong | Anggaran Pendidikan untuk Motor Listrik MBG: Efisien atau Pemborosan? | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/angkringan-jogja.html` | Angkringan Jogja - Kuliner Tradisional Yang Legendaris - Layar Kosong | Angkringan Jogja - Kuliner Tradisional Yang Legendaris | Layar Kosong | ✅ Perfect |
@@ -2080,6 +2091,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `sistem-terbuka/10-distro-linux-terbaik-2026.html` | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 - Layar Kosong | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/4-distro-linux-turunan-terbaik.html` | 4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya - Layar Kosong | 4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/6-hal-salah-kaprah-windows-user-tentang-linux.html` | 6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya! - Layar Kosong | 6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya! | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/7-distro-linux-termudah-untuk-pemula.html` | 7 Distro Linux Termudah untuk Pemula: Panduan Migrasi Nyaman - Layar Kosong | 7 Distro Linux Termudah untuk Pemula: Panduan Migrasi Nyaman | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/age-verification-linux-2026.html` | Age Verification Linux 2026: Dampak Besar yang Wajib Diketahui Pengguna Open Source - Layar Kosong | Age Verification Linux 2026: Dampak Besar yang Wajib Diketahui Pengguna Open Source | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/alias-linux.html` | Tips & Trik Linux: Pahami Perintah 'Alias' Biar Nge-terminal Lebih Cepat! ⚡ - Layar Kosong | Tips & Trik Linux: Pahami Perintah 'Alias' Biar Nge-terminal Lebih Cepat! ⚡ | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/analisis-ram-dmidecode.html` | Analisis RAM Laptop Anda: Tipe, Kapasitas, dan Upgrade (dmidecode) ⚡ - Layar Kosong | Analisis RAM Laptop Anda: Tipe, Kapasitas, dan Upgrade (dmidecode) ⚡ | Layar Kosong | ✅ Perfect |
@@ -2087,6 +2099,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `sistem-terbuka/antix-linux-review.html` | antiX Linux: Solusi Ringan untuk Laptop Jadul & PC Lawas - Layar Kosong | antiX Linux: Solusi Ringan untuk Laptop Jadul & PC Lawas | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/apa-itu-linux-sebenarnya.html` | Apa Itu Linux Sebenarnya? Penjelasan Santai Buat Yang Baru Mau Nyemplung! - Layar Kosong | Apa Itu Linux Sebenarnya? Penjelasan Santai Buat Yang Baru Mau Nyemplung! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/apa-itu-pkgbuild.html` | Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR - Layar Kosong | Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/apakah-fedora-distro-linux-terbaik.html` | Apakah Fedora Diam-diam Menjadi Distro Linux Terbaik? Ini Kata Komunitas - Layar Kosong | Apakah Fedora Diam-diam Menjadi Distro Linux Terbaik? Ini Kata Komunitas | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/apt-debian-history.html` | APT Debian Tambah Native History: apt history-list & history-info - Layar Kosong | APT Debian Tambah Native History: apt history-list & history-info | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/apt-tutorial.html` | Tutorial APT (Advanced Package Tool) di Debian/Ubuntu - Layar Kosong | Tutorial APT (Advanced Package Tool) di Debian/Ubuntu | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/apt-update-clean.html` | Skrip Otomatis Update & Clean APT di Debian/Ubuntu - Layar Kosong | Skrip Otomatis Update & Clean APT di Debian/Ubuntu | Layar Kosong | ✅ Perfect |
@@ -2120,6 +2133,8 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `sistem-terbuka/cara-install-xfce-desktop-linux.html` | Cara Install XFCE Desktop Environment di Berbagai Distro Linux - Layar Kosong | Cara Install XFCE Desktop Environment di Berbagai Distro Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.html` | Memperbaiki GRUB Bootloader (Debian & Turunannya) - Layar Kosong | Memperbaiki GRUB Bootloader (Debian & Turunannya) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-menambahkan-repositori-debian.html` | Cara Menambahkan Repositori Pihak Ketiga di Debian Linux - Layar Kosong | Cara Menambahkan Repositori Pihak Ketiga di Debian Linux | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/cara-mengatasi-error-locale-debian-ubuntu.html` | Cara Mengatasi Error Locale "perl: warning: Setting locale failed" di Debian & Ubuntu - Layar Kosong | Cara Mengatasi Error Locale "perl: warning: Setting locale failed" di Debian & Ubuntu | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/cara-mengatasi-wifi-mediatek-ubuntu.html` | Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux - Layar Kosong | Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-menghapus-kernel-lama-linux-purge.html` | Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧 - Layar Kosong | Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cara-pasang-docker-di-debian.html` | Cara Pasang Docker di Debian: Panduan Lengkap & Anti Gagal - Layar Kosong | Cara Pasang Docker di Debian: Panduan Lengkap & Anti Gagal | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/cek-paket-global-npm.html` | Cara Cek Semua Aplikasi Node.js (Paket Global) di Laptop - Layar Kosong | Cara Cek Semua Aplikasi Node.js (Paket Global) di Laptop | Layar Kosong | ✅ Perfect |
@@ -2231,6 +2246,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `sistem-terbuka/kpli-balikpapan.html` | Kegiatan KPLI Balikpapan - Rilis Party Ubuntu 16.04 - Layar Kosong | Kegiatan KPLI Balikpapan - Rilis Party Ubuntu 16.04 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kubuntu-11-10.html` | Kubuntu 11.10 - Panduan dan Pengalaman - Layar Kosong | Kubuntu 11.10 - Panduan dan Pengalaman | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kuis-pilih-distro-linux.html` | Kuis Interaktif: Temukan Distro Linux yang Paling Cocok Untukmu! - Layar Kosong | Kuis Interaktif: Temukan Distro Linux yang Paling Cocok Untukmu! | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/kustomisasi-desktop-gnome-linux.html` | Kustomisasi Desktop GNOME Linux: Panduan Lengkap Ekstensi - Layar Kosong | Kustomisasi Desktop GNOME Linux: Panduan Lengkap Ekstensi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kutai-kartanegara-oss-2010.html` | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi - Layar Kosong | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/libreoffice-kritik-format-proprietary-xlsx-konsultasi-cra.html` | LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA - Layar Kosong | LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/lingkungan-desktop-linux-alternatif.html` | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME - Layar Kosong | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME | Layar Kosong | ✅ Perfect |
@@ -2267,6 +2283,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `sistem-terbuka/mate-vs-xfce-laptop-tua.html` | MATE vs XFCE di Linux Mint: Pilih Mana Buat Laptop Tua? 🤔💻 - Layar Kosong | MATE vs XFCE di Linux Mint: Pilih Mana Buat Laptop Tua? 🤔💻 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mauna-linux-25-2.html` | Mauna Linux 25.2 Resmi Dirilis: Berbasis Debian 13.4, APT 3.2 dengan Rollback, dan Empat Pilihan Desktop - Layar Kosong | Mauna Linux 25.2 Resmi Dirilis: Berbasis Debian 13.4, APT 3.2 dengan Rollback, dan Empat Pilihan Desktop | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/memahami-rating-distro-linux.html` | Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas - Layar Kosong | Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/memahami-struktur-direktori-linux.html` | Memahami Struktur Direktori Linux: Panduan Navigasi Sistem Operasi - Layar Kosong | Memahami Struktur Direktori Linux: Panduan Navigasi Sistem Operasi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/membagikan-aplikasi-debian-dengan-dpkg-repack.html` | Membagikan Aplikasi Debian dengan dpkg-repack - Layar Kosong | Membagikan Aplikasi Debian dengan dpkg-repack | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/membedah-hasil-apt-audit-lengkap.html` | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris - Layar Kosong | Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/membedah-hasil-apt-audit.html` | Mengupas Hasil 'apt --audit': Arti & Solusi Lengkapnya - Layar Kosong | Mengupas Hasil 'apt --audit': Arti & Solusi Lengkapnya | Layar Kosong | ✅ Perfect |
@@ -2280,6 +2297,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `sistem-terbuka/mengganti-kata-dengan-perl.html` | Mengganti Kata dalam Banyak Dokumen dengan Perl - Layar Kosong | Mengganti Kata dalam Banyak Dokumen dengan Perl | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/menonaktifkan-koneksi-otomatis-firefox.html` | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian - Layar Kosong | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/microfetch-fetch-tool-super-cepat.html` | Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat untuk NixOS - Layar Kosong | Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat untuk NixOS | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/microsoft-rilis-azure-linux-4.html` | Microsoft Rilis Azure Linux 4.0: Distro Server General-Purpose Pertama mereka - Layar Kosong | Microsoft Rilis Azure Linux 4.0: Distro Server General-Purpose Pertama mereka | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/migrasi-linux-drive-ntfs-aman.html` | Migrasi ke Linux: Solusi Aman untuk Drive Data Windows (NTFS) Anda - Layar Kosong | Migrasi ke Linux: Solusi Aman untuk Drive Data Windows (NTFS) Anda | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/migrasi-sysvinit-ke-systemd-mx-linux-25.html` | Cara Beralih Penuh dari SysVinit ke systemd di MX Linux 25 (Debian 13) - Layar Kosong | Cara Beralih Penuh dari SysVinit ke systemd di MX Linux 25 (Debian 13) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/migrasi-windows-ke-linux.html` | Migrasi Windows ke Linux Itu Gampang: Panduan Langkah Demi Langkah - Layar Kosong | Migrasi Windows ke Linux Itu Gampang: Panduan Langkah Demi Langkah | Layar Kosong | ✅ Perfect |
@@ -2358,6 +2376,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `sistem-terbuka/setup-email-cloudflare-komunitas.html` | Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung) - Layar Kosong | Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/setup-email-komunitas-cloudflare.html` | Cara Setup MX Cloudflare Gratis untuk Email Komunitas - Layar Kosong | Cara Setup MX Cloudflare Gratis untuk Email Komunitas | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/setup-email-komunitas-gratis.html` | Setup Email Komunitas Gratis dengan Cloudflare Gmail dan SMTP - Layar Kosong | Setup Email Komunitas Gratis dengan Cloudflare Gmail dan SMTP | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/silsilah-keluarga-linux.html` | Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya - Layar Kosong | Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/skrip-otomatis-chroot-linux.html` | Skrip Canggih Chroot di Linux: Setup & Cleanup Otomatis - Layar Kosong | Skrip Canggih Chroot di Linux: Setup & Cleanup Otomatis | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/Skrip-Otomatis-ChRoot.html` | Skrip Otomatis: Setup & Cleanup chroot - Layar Kosong | Skrip Otomatis: Setup & Cleanup chroot | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/slackware-mirror.html` | slackware-mirror.sh - Mirror Tercepat untuk Slackware - Layar Kosong | slackware-mirror.sh - Mirror Tercepat untuk Slackware | Layar Kosong | ✅ Perfect |
@@ -2622,6 +2641,7 @@ Generated on: 5/28/2026, 4:47:53 PM
 | `warta-tekno/panduan-robots-txt.html` | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir - Layar Kosong | Panduan Lengkap robots.txt untuk SEO: Dari Pemula hingga Mahir | Layar Kosong | ✅ Perfect |
 | `warta-tekno/panduan-seo-metadata-blog.html` | Panduan Lengkap SEO dan Metadata untuk Blog Anda - Layar Kosong | Panduan Lengkap SEO dan Metadata untuk Blog Anda | Layar Kosong | ✅ Perfect |
 | `warta-tekno/panduan-skrip-fix-html.html` | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML - Layar Kosong | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML | Layar Kosong | ✅ Perfect |
+| `warta-tekno/panduan-static-site-github-cloudflare.html` | Panduan Membuat Static Site dengan Github dan Cloudflare - Layar Kosong | Panduan Membuat Static Site dengan Github dan Cloudflare | Layar Kosong | ✅ Perfect |
 | `warta-tekno/panel-untuk-githubpages.html` | Panel Terbaik untuk Pengguna GitHub Pages - Layar Kosong | Panel Terbaik untuk Pengguna GitHub Pages | Layar Kosong | ✅ Perfect |
 | `warta-tekno/pasang-cloudflare-turnstile-google-apps-script.html` | Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis - Layar Kosong | Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis | Layar Kosong | ✅ Perfect |
 | `warta-tekno/pemisah-json-mingguan-offline.html` | Pemisah JSON Artikel Mingguan (Offline) - Layar Kosong | Pemisah JSON Artikel Mingguan (Offline) | Layar Kosong | ✅ Perfect |
