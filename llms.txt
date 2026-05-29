@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.45
+document_version: 20.46
 last_updated: 2026-05-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 29 Mei 2026)
-> Menampilkan 1321 artikel versi 20.45.
+> Menampilkan 1321 artikel versi 20.46.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -1037,7 +1037,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Sosialisasi Open Source Software di Kutai Kartanegara - Kementerian Riset dan Teknologi](https://dalam.web.id/sistem-terbuka/sosialisasi-oss-kutai-kartanegara) : Kegiatan sosialisasi dan migrasi pemanfaatan perangkat lunak legal berbasis Open Source Software di Kabupaten Kutai Kartanegara, Kalimantan Timur pada Oktober 2010.
 - [WiFi Realtek Linux: Sinyal Lemah Fix](https://dalam.web.id/sistem-terbuka/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah) : Tutorial lengkap memperbaiki sinyal WiFi Realtek yang lemah di Linux dengan perintah iwconfig, ifconfig, dan modprobe. Langkah-langkah mudah, responsif, dan kompatibel untuk berbagai distro Linux.
 - [WiFi Realtek Linux: Sinyal Lemah Fix](https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah) : Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.
-- [Membersihkan Symbolic Link Rusak dengan symlinks di Linux](https://dalam.web.id/sistem-terbuka/symlinks) : Panduan membersihkan symbolic link atau shortcut yang rusak (dangling) menggunakan utilitas
+- [Membersihkan Symbolic Link Rusak dengan `symlinks` di Linux](https://dalam.web.id/sistem-terbuka/symlinks) : Panduan membersihkan symbolic link atau shortcut yang rusak (dangling) menggunakan utilitas
 - [Membuat USB Bootable Ubuntu Tanpa USB Creator](https://dalam.web.id/sistem-terbuka/usb-bootable-ubuntu) : Panduan membuat USB bootable Ubuntu tanpa aplikasi USB Creator, hanya dengan menggunakan perintah
 - [Kombinasi Tombol Pintas Synaptic Package Manager](https://dalam.web.id/sistem-terbuka/synaptic-shortcuts) : Panduan interaktif kombinasi tombol pintas (shortcut) Synaptic Package Manager di Debian/Ubuntu, lengkap dengan tooltip dan tombol copy.
 - [Cara Memeriksa Kondisi Baterai di Linux via Terminal](https://dalam.web.id/sistem-terbuka/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line) : cara memeriksa kondisi, kapasitas, dan status baterai laptop di Linux menggunakan perintah command line seperti upower, acpi, dan lainnya.
@@ -1048,8 +1048,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Memperbaiki GRUB Bootloader (Debian & Turunannya)](https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya) : memperbaiki GRUB bootloader yang rusak pada Debian dan turunannya seperti Ubuntu dan Linux Mint, mulai dari live USB hingga reinstall GRUB dengan aman.
 - [Bundle Perbaikan GRUB Bootloader (Debian & Turunannya)](https://dalam.web.id/sistem-terbuka/grub-recovery-bundle) : Kumpulan metode untuk memperbaiki GRUB bootloader di Debian/Ubuntu, baik secara otomatis dengan skrip, manual, maupun troubleshooting untuk kasus UEFI.
 - [Perbaikan Manual GRUB Bootloader (Debian & Turunannya)](https://dalam.web.id/sistem-terbuka/fix-grub-manual) : Panduan langkah demi langkah untuk memperbaiki GRUB bootloader secara manual di Debian/Ubuntu menggunakan Live USB dan chroot.
-- [Mengupas Hasil 'apt —audit': Arti & Solusi Lengkapnya](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit) : Hasil
-- [Penjelasan Super Lengkap: Membedah Hasil 'apt —audit' Baris per Baris](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit-lengkap) : Jangan bingung dengan hasil
+- [Mengupas Hasil 'apt --audit': Arti & Solusi Lengkapnya](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit) : Hasil
+- [Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris](https://dalam.web.id/sistem-terbuka/membedah-hasil-apt-audit-lengkap) : Jangan bingung dengan hasil
 - [Ringkasan Keren: Windows vs Linux, Beda Kebiasaan Tanpa Debat](https://dalam.web.id/sistem-terbuka/ringkasan-windows-vs-linux) : Ini ringkasan seru dari artikel perbandingan kebiasaan pengguna Windows dan Linux. Fokusnya pada instalasi aplikasi, kesiapan sistem, dan kesimpulan yang adil. Lengkap dengan fitur interaktif!
 - [Memahami Rating Distro Linux: Panduan Lengkap DistroWatch & Popularitas](https://dalam.web.id/sistem-terbuka/memahami-rating-distro-linux) : Pernah lihat ranking distro Linux di DistroWatch? Apa artinya? Panduan santai ini membahas cara kerja rating, mengapa MX Linux populer, dan cara memilih distro yang tepat untukmu.
 - [KPLI Balikpapan - Rilis Party Ubuntu 16.04 di DiLo Telkom](https://dalam.web.id/sistem-terbuka/kpli-balikpapan-rilis-party-ubuntu-1604) : KPLI Balikpapan ngisi waktu luang bareng pelajar SMK: rilis party Ubuntu 16.04 di ruang DiLo Telkom. Cerita, foto, dan semangat open source.
@@ -1090,7 +1090,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Kubuntu 11.10 - Panduan dan Pengalaman](https://dalam.web.id/sistem-terbuka/kubuntu-11-10) : Panduan dan pengalaman menggunakan Kubuntu 11.10: tampilan elegan berbasis KDE, ringan tapi modern. Artikel santai oleh Rijal Fakhrul untuk pengguna Linux baru dan lama.
 - [Install Sabily - Panduan Lengkap Linux Muslim Edition](https://dalam.web.id/sistem-terbuka/install-sabily) : Panduan instalasi Sabily Linux – distribusi Ubuntu berbasis Muslim Edition. Ditulis oleh Rijal Fakhrul dengan gaya santai, untuk kamu yang ingin belajar instalasi Linux dengan mudah.
 - [Upgrade Online Ubuntu 10.04 - Panduan Lengkap](https://dalam.web.id/sistem-terbuka/upgrade-online-10-04) : cara melakukan upgrade online Ubuntu. Ditulis oleh Rijal Fakhrul dalam gaya santai, disertai tips aman dan langkah-langkah praktis untuk pemula.
-- [Kapan Pakai 'rsync -a' vs 'rsync -a —delete'? - Penjelasan Santai](https://dalam.web.id/sistem-terbuka/rsync-a-vs-delete) : Bingung bedanya
+- [Kapan Pakai 'rsync -a' vs 'rsync -a --delete'? - Penjelasan Santai](https://dalam.web.id/sistem-terbuka/rsync-a-vs-delete) : Bingung bedanya
 - [Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang)](https://dalam.web.id/sistem-terbuka/sudo-tanpa-password) : Bosan ngetik password sudo terus? Ini dia cara gampang setting sudo di Ubuntu (via /etc/sudoers) biar bisa jalan tanpa password. Aman buat yang pakai komputer sendiri!
 - [Natty Release Party: Ruang Belajar Open Source yang Penuh Semangat](https://dalam.web.id/sistem-terbuka/natty-release-party-SMKN3) : Kisah komunitas open source yang bersemangat mencari ruang belajar, beralih ke kamar kos berukuran 3x3 meter untuk acara Natty Release Party. Sebuah permohonan untuk dukungan.
 - [Dilema Pengguna Biasa Pindah ke Linux: Nyaman Tanpa Terminal](https://dalam.web.id/sistem-terbuka/linux-tanpa-terminal) : Transisi dari Windows ke Linux tanpa Terminal: misi mouse-driven, zero-CLI, integrasi Wine/Proton, software center andal, dan penutupan ‘gap’ GUI. Santai, responsif, interaktif.
@@ -1150,7 +1150,7 @@ document_type: llm_behavior_and_entity_guidance
 - [MOS - Sistem Operasi Modular Ringan untuk Homelab dan Server rumahan](https://dalam.web.id/warta-tekno/mos-modular-operation-system) : MOS adalah OS berbasis Devuan untuk server rumah dan homelab. Ringan, modular, siap pakai dengan Docker, LXC, QEMU, mergerfs, SnapRAID. Fokus pada privasi dan kesederhanaan.
 - [Google Peringatkan 1 Miliar Ponsel Android Kini Berisiko - Apa yang Perlu Anda Tahu](https://dalam.web.id/warta-tekno/google-android-1-miliar-berisiko) : Google mengeluarkan peringatan serius: lebih dari 1 miliar ponsel Android tidak lagi mendapat pembaruan keamanan sistem. Simak penyebab, risiko, dan solusinya.
 - [Warisan Ilmiah B.J. Habibie: Mr. Crack dan Rahasia Langit Dunia](https://dalam.web.id/warta-tekno/warisan-ilmiah-bj-habibie) : Mengupas tuntas kontribusi B.J. Habibie dalam dunia penerbangan. Mengapa ia dijuluki Mr. Crack? Simak analisis mendalam mengenai Crack Propagation dan keamanan pesawat modern.
-- [git push —force origin main, git reset —hard: 7 Kebenaran Penting yang Harus Diketahui Developer](https://dalam.web.id/warta-tekno/git-push-force-reset-hard) : cara aman menggunakan git push --force origin main, git reset --hard dengan panduan lengkap ini. Temukan risiko, metode pemulihan, praktik terbaik, dan tips ahli.
+- [git push --force origin main, git reset --hard: 7 Kebenaran Penting yang Harus Diketahui Developer](https://dalam.web.id/warta-tekno/git-push-force-reset-hard) : cara aman menggunakan git push --force origin main, git reset --hard dengan panduan lengkap ini. Temukan risiko, metode pemulihan, praktik terbaik, dan tips ahli.
 - [YouTube Ad Blockers vs MV3: 7 Dampak Mengejutkan yang Harus Kamu Tahu di 2026](https://dalam.web.id/warta-tekno/youtube-ad-blockers-vs-mv3-2026) : YouTube Ad Blockers vs MV3: deskripsi dan komentar tersembunyi. Ketahui bagaimana Manifest V3 mengubah pemblokiran iklan, membatasi perbaikan, dan memengaruhi jutaan pengguna di seluruh dunia.
 - [Firefox 148 AI Controls: Cara Mematikan Fitur AI Secara Total di Browser Kamu](https://dalam.web.id/warta-tekno/firefox-148-ai-controls) : cara menggunakan fitur AI Controls di Firefox 148 untuk memblokir fitur generative AI. Pelajari cara kerja master switch dan dampaknya bagi privasi data Anda.
 - [Copilot Memory Sekarang Pakai Data Edge Bing dan MSN Secara Default - Cara Amankan Privasi Kamu](https://dalam.web.id/warta-tekno/copilot-memory-privacy-management) : Ketahui pembaruan terbaru Microsoft Copilot yang kini otomatis merekam aktivitas dari Edge Bing dan MSN ke dalam fitur Memory. Pelajari cara mengelola privasi dan menghapus data yang tersimpan.
