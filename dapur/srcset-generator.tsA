@@ -48,8 +48,10 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   const htmlContent = await file(htmlPath).text();
   const $ = load(htmlContent, { decodeEntities: false });
 
+  // Skip jika sudah ada signature — artikel sudah pernah diproses
   if (htmlContent.includes(PICTURE_SIGNATURE)) return "skipped";
 
+  // Kumpulkan kandidat gambar — lokal atau BASE_URL, bukan skip ext
   const imageCandidates = $("body img").toArray().filter(el => {
     const src = $(el).attr("src");
     if (!src) return false;
@@ -67,90 +69,89 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   let imageCounter = 0;
   let fileHasChanged = false;
 
-  function updateImgAttrs(
-    $img: Cheerio,
-    webDesktopUrl: string,
-    webMobileUrl: string | null,
-    webMediumUrl: string | null,
-    meta: any,
-    isFirst: boolean
-  ) {
+  /**
+   * updateImgAttrs
+   * - Hanya bertanggung jawab untuk menambahkan/menyesuaikan srcset dan sizes
+   * - Tidak mengubah style, width, height, atau atribut presentasi lainnya
+   * - Jika hanya ada satu kandidat (desktop saja), tidak menambahkan srcset (menghindari single-entry)
+   * - Jika parent adalah <picture>, menambahkan <source type="image/webp"> secara idempotent
+   * - Mengembalikan true jika ada perubahan pada atribut srcset/sizes atau pada <picture> sources
+   */
+  function updateImgAttrs($img: Cheerio, webDesktopUrl: string, webMobileUrl: string | null, meta: any, isFirst: boolean) {
     const desktopWidth = meta.width > 1000 ? 1000 : meta.width;
-    const mobileWidth  = 480;
-    const mediumWidth  = 720;
-    const hasMobile    = !!webMobileUrl && meta.width > mobileWidth;
-    const hasMedium    = !!webMediumUrl && meta.width > mediumWidth;
+    const mobileWidth = 480;
+    const hasMobile = !!webMobileUrl && meta.width > mobileWidth;
+
+    // Hanya buat srcset jika ada mobile + desktop (lebih dari 1 kandidat)
     const willHaveSrcset = hasMobile;
 
-    // FIX #1: calc(100vw - 40px) — sesuai padding container 20px kiri + kanan
-    // FIX #2: srcset tiga kandidat: 480w, 720w, 1000w
-    const srcsetCandidates: string[] = [];
-    if (hasMobile) srcsetCandidates.push(`${webMobileUrl} ${mobileWidth}w`);
-    if (hasMedium) srcsetCandidates.push(`${webMediumUrl} ${mediumWidth}w`);
-    srcsetCandidates.push(`${webDesktopUrl} ${desktopWidth}w`);
-
-    const srcsetValue = willHaveSrcset ? srcsetCandidates.join(", ") : "";
-    const sizesValue  = willHaveSrcset
-      ? "(max-width: 1040px) calc(100vw - 40px), 1000px"
-      : "";
+    // Siapkan nilai srcset dan sizes (hanya relevan bila multi-candidate)
+    const srcsetValue = willHaveSrcset ? `${webMobileUrl} ${mobileWidth}w, ${webDesktopUrl} ${desktopWidth}w` : "";
+    const sizesValue = willHaveSrcset ? "(max-width: 640px) 100vw, 1000px" : "";
 
     let changed = false;
 
+    // Jika parent adalah <picture>, tambahkan <source type="image/webp"> (idempotent)
     const parent = $img.parent();
     if (parent.is("picture")) {
+      // Hapus source webp lama agar idempotent
       const existingWebpSources = parent.find('source[type="image/webp"]');
       if (existingWebpSources.length > 0) {
         existingWebpSources.remove();
         changed = true;
       }
 
+      // Tambahkan sources sesuai kandidat (mobile dulu agar media query bekerja)
       if (willHaveSrcset) {
-        // FIX #3: satu blok prepend — bukan dua kali — agar urutan source terjamin
-        // FIX #4: media query 500px → 640px
-        const mediumSource = hasMedium
-          ? `\n  <source type="image/webp" media="(min-width: 641px) and (max-width: 1040px)" srcset="${webMediumUrl}">`
-          : "";
-        parent.prepend(
-          `<source type="image/webp" media="(max-width: 640px)" srcset="${webMobileUrl}">${mediumSource}\n  <source type="image/webp" srcset="${webDesktopUrl}">`
-        );
+        parent.prepend(`<source type="image/webp" media="(max-width:500px)" srcset="${webMobileUrl}">`);
+        parent.prepend(`<source type="image/webp" srcset="${webDesktopUrl}">`);
         changed = true;
       } else {
+        // hanya desktop source
         parent.prepend(`<source type="image/webp" srcset="${webDesktopUrl}">`);
         changed = true;
       }
     }
 
+    // --- Update atribut pada <img> ---
     const currentSrcset = $img.attr("srcset") || "";
-    const currentSizes  = $img.attr("sizes")  || "";
+    const currentSizes = $img.attr("sizes") || "";
 
     if (!willHaveSrcset) {
+      // Jika tidak perlu srcset (hanya desktop), hapus srcset/sizes lama jika ada
       if (currentSrcset || currentSizes) {
         $img.removeAttr("srcset");
         $img.removeAttr("sizes");
         changed = true;
       }
+      // Jangan mengubah src, width, height, style, loading, decoding, fetchpriority
       return changed;
     }
 
+    // Jika sudah identik, tidak perlu mengubah
     if (currentSrcset === srcsetValue && currentSizes === sizesValue) {
       return changed;
     }
 
+    // Terapkan hanya srcset dan sizes — jangan sentuh atribut lain
     $img.attr("srcset", srcsetValue);
-    $img.attr("sizes",  sizesValue);
+    $img.attr("sizes", sizesValue);
     changed = true;
 
     return changed;
   }
 
+  // Loop kandidat gambar
   for (const el of imageCandidates) {
-    const $img        = $(el);
+    const $img = $(el);
     const originalSrc = $img.attr("src") || "";
     imageCounter++;
 
-    const cleanPath      = normalizeToRepoPath(originalSrc);
+    // Normalize path ke repo-relative
+    const cleanPath = normalizeToRepoPath(originalSrc);
     const fullPathSource = path.join(process.cwd(), cleanPath);
 
+    // Debug log (bisa dihapus jika tidak perlu)
     console.log(`Processing image: original=${originalSrc} clean=${cleanPath} full=${fullPathSource}`);
 
     if (!existsSync(fullPathSource)) {
@@ -163,55 +164,36 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const meta = await sharp(inputBuffer).metadata();
       if (!meta?.width || !meta?.height) continue;
 
-      const dirName      = path.dirname(cleanPath);
-      const ext          = path.extname(cleanPath);
+      const dirName = path.dirname(cleanPath);
+      const ext = path.extname(cleanPath);
       const baseNameSafe = path.basename(cleanPath, ext).replace(FORBIDDEN_CHARS, "-");
 
       const desktopPath = path.join(dirName, `${baseNameSafe}.webp`);
-      const mediumPath  = path.join(dirName, `${baseNameSafe}-md.webp`);
-      const mobilePath  = path.join(dirName, `${baseNameSafe}-sm.webp`);
-
+      const mobilePath = path.join(dirName, `${baseNameSafe}-sm.webp`);
       const absDesktopPath = path.join(process.cwd(), desktopPath);
-      const absMediumPath  = path.join(process.cwd(), mediumPath);
-      const absMobilePath  = path.join(process.cwd(), mobilePath);
-
+      const absMobilePath = path.join(process.cwd(), mobilePath);
       const needsMobile = meta.width > 480;
-      const needsMedium = meta.width > 720;
+      const physicalComplete = existsSync(absDesktopPath) && (!needsMobile || existsSync(absMobilePath));
 
-      const physicalComplete =
-        existsSync(absDesktopPath) &&
-        (!needsMedium || existsSync(absMediumPath)) &&
-        (!needsMobile || existsSync(absMobilePath));
-
+      // Generate .webp jika belum ada
       if (!optimizedCache.has(cleanPath) || !physicalComplete) {
         if (!physicalComplete) {
           ensureDirForFile(absDesktopPath);
-
           const targetWidth = meta.width > 1000 ? 1000 : meta.width;
           await sharp(inputBuffer)
-            .rotate()
-            .resize(targetWidth, null, { withoutEnlargement: true })
-            .webp({ quality: 85 })
-            .toFile(absDesktopPath);
-
-          if (needsMedium) {
-            ensureDirForFile(absMediumPath);
-            await sharp(inputBuffer)
-              .rotate()
-              .resize(720, null, { withoutEnlargement: true })
-              .webp({ quality: 80 })
-              .toFile(absMediumPath);
-          }
+          .rotate()
+          .resize(targetWidth, null, { withoutEnlargement: true })
+          .webp({ quality: 85 })
+          .toFile(absDesktopPath);
 
           if (needsMobile) {
             ensureDirForFile(absMobilePath);
             await sharp(inputBuffer)
-              .rotate()
-              .resize(480, null, { withoutEnlargement: true })
-              .webp({ quality: 75 })
-              .toFile(absMobilePath);
+            .rotate()
+            .resize(480, null, { withoutEnlargement: true })
+            .webp({ quality: 75 })
+            .toFile(absMobilePath);
           }
-
           console.log(`  ✨ WebP OK: ${cleanPath}`);
         }
 
@@ -221,18 +203,18 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         }
       }
 
+      // Transformasi HTML — hanya update srcset/sizes dan <picture> sources
       const originalAlt = $img.attr("alt")?.trim();
       let finalAlt = originalAlt || pageTitle;
       if (!originalAlt && imageCounter > 1) finalAlt = `${pageTitle} - ${imageCounter}`;
       if (!originalAlt) $img.attr("alt", finalAlt.replace(/"/g, "&quot;"));
 
       const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, "/")}`;
-      const webMediumUrl  = needsMedium ? `${BASE_URL}/${mediumPath.replace(/\\/g, "/")}` : null;
-      const webMobileUrl  = needsMobile ? `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}` : null;
+      const webMobileUrl = needsMobile ? `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}` : null;
 
-      const changed = updateImgAttrs($img, webDesktopUrl, webMobileUrl, webMediumUrl, meta, isFirstImage);
+      const changed = updateImgAttrs($img, webDesktopUrl, webMobileUrl, meta, isFirstImage);
       if (changed) {
-        isFirstImage   = false;
+        isFirstImage = false;
         fileHasChanged = true;
       }
 
@@ -243,7 +225,8 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
   if (!fileHasChanged) return "no-change";
 
-  let finalHtml   = $.html();
+  // Injeksi signature di akhir file
+  let finalHtml = $.html();
   const signature = `<noscript>${PICTURE_SIGNATURE}</noscript>`;
   if (finalHtml.includes("</body>")) {
     finalHtml = finalHtml.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`;
@@ -263,19 +246,19 @@ async function main() {
   mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 
   const sitemapUrls = existsSync(SITEMAP_FILE)
-    ? new Set(
-        readFileSync(SITEMAP_FILE, "utf-8")
-          .split("\n").map(l => l.trim()).filter(Boolean)
-      )
-    : new Set<string>();
+  ? new Set(
+    readFileSync(SITEMAP_FILE, "utf-8")
+    .split("\n").map(l => l.trim()).filter(Boolean)
+  )
+  : new Set<string>();
 
   console.log(`📄 sitemap.txt lama : ${sitemapUrls.size} URL terdaftar\n`);
 
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
       return readdirSync(cat)
-        .filter(f => f.endsWith(".html") && f !== "index.html")
-        .map(f => join(cat, f));
+      .filter(f => f.endsWith(".html") && f !== "index.html")
+      .map(f => join(cat, f));
     } catch {
       return [];
     }
@@ -291,8 +274,8 @@ async function main() {
     }
     const result = await processHtmlFile(htmlPath);
     if (result === "processed") { results.processed++; console.log(`✅ Processed: ${htmlPath}`); }
-    if (result === "skipped")   results.skipped++;
-    if (result === "no-image")  results.noImage++;
+    if (result === "skipped") results.skipped++;
+    if (result === "no-image") results.noImage++;
   }
 
   console.log(`
