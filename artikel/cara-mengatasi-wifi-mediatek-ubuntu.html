@@ -1,42 +1,15 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux</title>
-    <meta name="description" content="Pusing Wi-Fi MediaTek (MT7921/MT7922) tidak terbaca di Ubuntu? Ini panduan lengkap cara cek chipset, update firmware, dan solusinya secara bertahap!">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://dalam.web.id/artikel/cara-mengatasi-wifi-mediatek-ubuntu.html">
+    <title>Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux - Layar Kosong</title>
     <meta name="news_keywords" content="Ubuntu, MediaTek Wi-Fi, Driver Linux, MT7921, MT7922, Linux Firmware, Troubleshooting Ubuntu, No Wi-Fi Adapter Found">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux">
-    <meta property="og:description" content="Panduan langkah demi langkah mengatasi masalah No Wi-Fi Adapter Found untuk chipset MediaTek di Ubuntu Linux. Yuk, simak tutorial lengkapnya di sini!">
-    <meta property="og:image" content="https://pbs.twimg.com/media/HJfDEvHbkAID2d_?format=jpg&name=large">
-    <meta property="og:url" content="https://dalam.web.id/artikel/cara-mengatasi-wifi-mediatek-ubuntu.html">
-    <meta property="og:site_name" content="Layar Kosong">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux">
-    <meta name="twitter:description" content="Wi-Fi MediaTek kamu rewel di Ubuntu? Jangan panik, ikuti tutorial lengkap cara mengatasi driver unclaimed atau tidak terdeteksi ini.">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/HJfDEvHbkAID2d_?format=jpg&name=large">
-
-    <meta property="article:published_time" content="2026-05-29T12:00:00+07:00">
-    <meta property="article:modified_time" content="2026-05-29T19:50:00+07:00">
-    <meta property="article:author" content="Fakhrul Rijal">
-    <meta property="article:section" content="Linux Tutorial">
     <meta name="article:tag" content="Ubuntu">
     <meta name="article:tag" content="MediaTek">
     <meta name="article:tag" content="Driver">
     <meta name="article:tag" content="Troubleshooting">
-
     <meta name="promphint" content="Bagaimana cara memperbaiki Wi-Fi MediaTek yang tidak berfungsi di Ubuntu? Solusinya adalah dengan mengidentifikasi chipset lewat terminal lalu memperbarui paket linux-firmware serta kernel sistem.">
-
-    <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJfDEvHbkAID2d_?format=jpg&name=large" fetchpriority="high">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
+    <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJfDEvHbkAID2d_?format=jpg&amp;name=large" fetchpriority="high">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
             --bg-color: #fafafa;
@@ -51,7 +24,6 @@
             --table-striped: #f6f8fa;
             --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0d1117;
@@ -66,13 +38,11 @@
                 --table-striped: #21262d;
             }
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: var(--font-stack);
             background-color: var(--bg-color);
@@ -81,7 +51,6 @@
             padding: 0;
             word-wrap: break-word;
         }
-
         .container {
             width: 100%;
             max-width: 1000px;
@@ -89,7 +58,6 @@
             padding: 16px;
             background-color: var(--container-bg);
         }
-
         @media (min-width: 768px) {
             .container {
                 padding: 40px;
@@ -99,46 +67,38 @@
                 box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             }
         }
-
         header {
             margin-bottom: 24px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 16px;
         }
-
         h1 {
             font-size: 1.8rem;
             line-height: 1.25;
             margin-bottom: 12px;
             color: var(--text-color);
         }
-
         @media (min-width: 768px) {
             h1 { font-size: 2.3rem; }
         }
-
         .meta-author-box {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 16px;
         }
-
         .meta-info {
             font-size: 0.9rem;
             color: var(--text-muted);
         }
-
         .meta-info a {
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
         }
-
         .meta-info a:hover {
             text-decoration: underline;
         }
-
         /* Styling Gambar Utama Tanpa Pemotongan Tinggi (Memenuhi Request User) */
         .main-thumbnail-wrapper {
             width: 100%;
@@ -146,13 +106,11 @@
             margin-bottom: 24px;
             background-color: var(--code-bg);
         }
-
         .main-thumbnail {
             width: 100%;
             height: auto;
             display: block;
         }
-
         article h2 {
             font-size: 1.4rem;
             margin-top: 32px;
@@ -160,28 +118,23 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 8px;
         }
-
         article h3 {
             font-size: 1.15rem;
             margin-top: 24px;
             margin-bottom: 12px;
         }
-
         article p {
             margin-bottom: 16px;
             font-size: 1.05rem;
             text-align: justify;
         }
-
         article ul, article ol {
             margin-left: 24px;
             margin-bottom: 16px;
         }
-
         article li {
             margin-bottom: 8px;
         }
-
         blockquote {
             margin: 24px 0;
             padding: 16px;
@@ -190,7 +143,6 @@
             border-radius: 0 6px 6px 0;
             font-style: italic;
         }
-
         /* Blok Kode Terminal */
         pre {
             background-color: var(--code-bg);
@@ -200,7 +152,6 @@
             border: 1px solid var(--border-color);
             margin-bottom: 24px;
         }
-
         code {
             font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas, monospace;
             color: var(--code-text);
@@ -208,14 +159,12 @@
             border-radius: 4px;
             font-size: 0.9em;
         }
-
         pre code {
             color: var(--text-color);
             padding: 0;
             background-color: transparent;
             font-size: 0.95rem;
         }
-
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -223,40 +172,33 @@
             border: 1px solid var(--border-color);
             border-radius: 6px;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.95rem;
             text-align: left;
         }
-
         th, td {
             padding: 12px 16px;
             border-bottom: 1px solid var(--border-color);
         }
-
         th {
             background-color: var(--code-bg);
             font-weight: 600;
         }
-
         tr:nth-child(even) {
             background-color: var(--table-striped);
         }
-
         .references-section {
             margin-top: 40px;
             padding-top: 20px;
             border-top: 2px dashed var(--border-color);
         }
-
         .references-section h2 { font-size: 1.2rem; margin-top: 0; }
         .references-section ul { list-style-type: none; margin-left: 0; }
         .references-section li { font-size: 0.95rem; margin-bottom: 6px; }
         .references-section a { color: var(--accent-color); text-decoration: none; }
         .references-section a:hover { text-decoration: underline; }
-
         footer {
             margin-top: 40px;
             padding-top: 16px;
@@ -266,39 +208,69 @@
             color: var(--text-muted);
         }
     </style>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-mengatasi-wifi-mediatek-ubuntu">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cara-mengatasi-wifi-mediatek-ubuntu">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/cara-mengatasi-wifi-mediatek-ubuntu">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux">
+    <meta name="twitter:title" content="Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux">
+    <meta name="description" content="Pusing Wi-Fi MediaTek (MT7921/MT7922) tidak terbaca di Ubuntu? Ini panduan lengkap cara cek chipset, update firmware, dan solusinya secara bertahap!">
+    <meta property="og:description" content="Panduan langkah demi langkah mengatasi masalah No Wi-Fi Adapter Found untuk chipset MediaTek di Ubuntu Linux. Yuk, simak tutorial lengkapnya di sini!">
+    <meta name="twitter:description" content="Wi-Fi MediaTek kamu rewel di Ubuntu? Jangan panik, ikuti tutorial lengkap cara mengatasi driver unclaimed atau tidak terdeteksi ini.">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/f4b71ba7c75eb798.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/f4b71ba7c75eb798.webp">
+    <meta property="og:image:alt" content="Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="618">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:published_time" content="2026-05-29T12:00:00+07:00">
+    <meta property="article:modified_time" content="2026-05-29T19:50:00+07:00">
 </head>
 <body>
-
     <div class="container" role="main">
-
         <header>
-            <h1>Cara Mengatasi Driver Wi-Fi MediaTek yang Tidak Terdeteksi di Ubuntu Linux</h1>
+            <h1>Cara Mengatasi Driver Wi-Fi MediaTek yang Tidak Terdeteksi di Ubuntu Linux</h1><div id="iposbrowser"></div>
             <div class="meta-author-box">
                 <div class="meta-info">
-                    Oleh: <a href="https://dalam.web.id" rel="author">Fakhrul Rijal</a> &bull;
+                    Oleh: <a href="https://dalam.web.id" rel="author">Fakhrul Rijal</a> •
                     Dipublikasikan: <time datetime="2026-05-29T12:00:00+07:00">29 Mei 2026</time>
                 </div>
             </div>
         </header>
-
-
-
         <article>
             <p>
                 Bermigrasi ke sistem operasi baru seperti <strong>Linux Ubuntu</strong> memang menawarkan kebebasan dan performa yang asyik. Namun, proses adaptasi ini tidak jarang diwarnai oleh drama teknis kecil. Salah satu kendala klasik yang sering membuat pusing pengguna baru adalah ketika perangkat keras, khususnya <strong>driver Wi-Fi MediaTek</strong>, mendadak mogok kerja alias belum terbaca atau belum didukung dengan baik oleh sistem sesaat setelah instalasi selesai.
             </p>  <div class="main-thumbnail-wrapper">
-            <img class="main-thumbnail"
-                 src="https://pbs.twimg.com/media/HJfDEvHbkAID2d_?format=jpg&name=large"
-                 alt="Panduan Mengatasi Masalah Driver Wi-Fi MediaTek di Sistem Operasi Ubuntu Linux"
-                 width="1000"
-                 height="562"
-                 fetchpriority="high"
-                 decoding="async">
+            <img class="main-thumbnail" src="https://dalam.web.id/img/pbs.twimg.com/f4b71ba7c75eb798.webp" alt="Panduan Mengatasi Masalah Driver Wi-Fi MediaTek di Sistem Operasi Ubuntu Linux" width="1000" height="562" fetchpriority="high" decoding="async">
         </div>
             <p>
                 Gejalanya pun bervariasi: mulai dari hilangnya opsi Wi-Fi di menu pengaturan, hingga munculnya pesan eror menjengkelkan seperti <em>"No Wi-Fi Adapter Found"</em>. Jika kamu sedang mengalami kendala serupa, jangan buru-buru menyerah dan kembali ke OS lama. Artikel ini akan memandu kamu melakukan diagnosis mandiri dan menerapkan langkah perbaikan yang aman langsung dari jendela terminal.
             </p>
-
             <h2>1. Mengapa Wi-Fi MediaTek Bisa Bermasalah di Ubuntu? (The Root Cause)</h2>
             <p>
                 <strong>Mengapa kendala ini bisa terjadi?</strong> Jawabannya terletak pada sinkronisasi antara versi kernel Linux yang berjalan di Ubuntu dengan modul sub-sistem firmware eksternal. Chipset nirkabel modern keluaran MediaTek membutuhkan basis kode kernel yang cukup baru agar bisa dikenali secara native oleh subsistem <code>mt76</code> bawaan Linux.
@@ -314,28 +286,22 @@
             <p>
                 Apabila kamu menggunakan rilis Ubuntu dengan kernel lama atau justru menggunakan rilis mutakhir seperti Ubuntu 24.04 LTS namun struktur binari firmware di folder sistem mengalami korup, sistem akan mendeteksi status perangkat tersebut sebagai <code class="unclaimed">UNCLAIMED</code>.
             </p>
-
             <h2>2. Langkah Awal Diagnosis: Mengintip Isi Jeroan Sistem</h2>
             <p>
                 Sebelum kita mengeksekusi perintah perbaikan, hal pertama yang wajib kita lakukan adalah mengumpulkan informasi valid terkait apa tipe chipset hardware yang tertanam serta bagaimana respons kernel saat ini. Buka aplikasi terminal kamu (<code>Ctrl + Alt + T</code>) lalu jalankan baris perintah berikut secara berurutan:
             </p>
-
             <h3>A. Cek Tipe Chipset Network Nirkabel</h3>
             <p>Perintah ini digunakan untuk memastikan apakah hardware MediaTek kamu terhubung di jalur PCIe dan melihat status drivernya:</p>
             <pre><code>lspci -nnk | grep -A3 -i network</code></pre>
-
             <h3>B. Periksa Versi Kernel yang Sedang Aktif</h3>
             <p>Untuk mencocokkan apakah versi kernel kamu sudah memenuhi syarat minimum dukungan FHS dan driver nirkabel:</p>
             <pre><code>uname -r</code></pre>
-
             <h3>C. Periksa Log Eror Melalui dmesg</h3>
             <p>Mantra ini sangat berguna untuk membaca apakah kernel mendeteksi adanya kegagalan saat mencoba memuat firmware MediaTek saat proses booting:</p>
             <pre><code>sudo dmesg | grep -iE "mt76|mt792|mediatek|firmware"</code></pre>
-
             <h3>D. Validasi Ketersediaan File Blob Firmware</h3>
             <p>Gunakan perintah ini untuk memastikan berkas binary penggerak MediaTek sudah ada di direktori penyimpanan lokal sistem:</p>
             <pre><code>ls /lib/firmware/mediatek</code></pre>
-
             <h2>3. Solusi Praktis Mengatasi Driver yang Tidak Terbaca</h2>
             <p>
                 Jika hasil diagnosis menunjukkan berkas firmware corrupt atau tidak cocok, jangan panik. Berikut adalah jalur perbaikan standar dan paling aman yang bisa kamu tempuh untuk memaksa Ubuntu memperbarui seluruh pustaka driver hardware-nya:
@@ -355,28 +321,22 @@ nmcli device</code></pre>
             <p>
                 Jika baris perintah <code>nmcli device</code> kini menampilkan status perangkat nirkabel kamu sebagai <strong>connected</strong> atau <strong>disconnected</strong> (bukan lagi <em>unmanaged / unclaimed</em>), selamat! Wi-Fi kamu kini sudah aktif dan siap mencari sinyal hotspot terdekat.
             </p>
-
             <blockquote>
                 <i class="fa-solid fa-triangle-exclamation"></i> <strong>Catatan Penting untuk Pengguna Ubuntu 24.04:</strong> Beberapa laporan komunitas di forum Reddit mengindikasikan adanya isu bug spesifik pada siklus manajemen daya chipset MT7921/MT7922. Jika Wi-Fi masih hilang, pastikan fitur <strong>Secure Boot</strong> di dalam BIOS komputer kamu diubah sementara ke opsi <em>Disabled</em>, karena Secure Boot terkadang memblokir pemuatan modul driver pihak ketiga yang belum ditandatangani secara digital.
             </blockquote>
-
             <section class="references-section">
-                <h2><i class="fa-solid fa-book"></i> Referensi & Sumber Komunitas</h2>
+                <h2><i class="fa-solid fa-book"></i> Referensi &amp; Sumber Komunitas</h2>
                 <ul>
-                    <li>&bull; Linux Wireless Documentation. <em>MediaTek Kernel Drivers Support & Features Matrix</em>. <a href="https://wireless.docs.kernel.org/en/latest/en/users/drivers/mediatek.html" target="_blank" rel="noopener nofollow">wireless.docs.kernel.org</a></li>
-                    <li>&bull; Ubuntu Community Thread. <em>Ubuntu 24.04 not recognizing MediaTek Wi-Fi adapter troubleshooting</em>. <a href="https://www.reddit.com/r/Ubuntu/comments/1ehhuoa/ubuntu_2404_not_recognizing_mediatek_wifi_adapter/" target="_blank" rel="noopener nofollow">reddit.com/r/Ubuntu</a></li>
+                    <li>• Linux Wireless Documentation. <em>MediaTek Kernel Drivers Support &amp; Features Matrix</em>. <a href="https://wireless.docs.kernel.org/en/latest/en/users/drivers/mediatek.html" target="_blank" rel="noopener nofollow">wireless.docs.kernel.org</a></li>
+                    <li>• Ubuntu Community Thread. <em>Ubuntu 24.04 not recognizing MediaTek Wi-Fi adapter troubleshooting</em>. <a href="https://www.reddit.com/r/Ubuntu/comments/1ehhuoa/ubuntu_2404_not_recognizing_mediatek_wifi_adapter/" target="_blank" rel="noopener nofollow">reddit.com/r/Ubuntu</a></li>
                 </ul>
             </section>        <div id="related-articles-grid"></div>
         <div id="response"></div>
         </article>
-
-
-
         <footer>
-            <p>&copy; 2026 Layar Kosong. Panduan Troubleshooting Terbuka untuk Komunitas Linux Indonesia.</p>
-        </footer>
-
+            <p>🄯 2026 Layar Kosong. Panduan Troubleshooting Terbuka untuk Komunitas Linux Indonesia.</p>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
