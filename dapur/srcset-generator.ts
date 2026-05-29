@@ -151,8 +151,6 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     const cleanPath      = normalizeToRepoPath(originalSrc);
     const fullPathSource = path.join(process.cwd(), cleanPath);
 
-    console.log(`Processing image: original=${originalSrc} clean=${cleanPath} full=${fullPathSource}`);
-
     if (!existsSync(fullPathSource)) {
       console.warn(`⚠️  Gambar tidak ditemukan: ${fullPathSource}`);
       continue;
