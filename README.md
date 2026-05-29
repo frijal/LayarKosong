@@ -132,12 +132,12 @@ Tertarik melihat jeroan kode di balik arsitektur di atas? Berikut adalah tautan 
 
 ---
 
-## 🛠️ Tahap 1: Persiapan Lingkungan (Git & Node.js)
+## 🛠️ Tahap 1: Persiapan Lingkungan (Git & Bun)
 
-Langkah pertama: **Pastikan Git dan Node.js sudah terpasang** karena kita akan menggunakan perintah `npx wrangler`.
+Langkah pertama: **Pastikan Git dan Bun sudah terpasang** karena kita akan menggunakan perintah `bunx wrangler`.
 
 * **Git:** [Download di sini](https://git-scm.com/downloads) (Atau gunakan `winget install Git.Git` di Windows).
-* **Node.js:** [Download di sini](https://nodejs.org/) (Rekomendasi versi LTS).
+* **Bun:** [Panduan instalasi di sini](https://bun.sh/) (Runtime super cepat pengganti Node.js).
 
 ### 🪟 Windows
 Unduh dan instal *installer* resmi dari [git-scm.com](https://git-scm.com/download/win). Tinggal "Next, Next, Finish"!
@@ -187,7 +187,7 @@ brew install git
 > 👉 **[Klik di sini untuk Fork Repo](https://github.com/frijal/LayarKosong/fork)**
 
 
-2. **Daftar Cloudflare Pages:**
+2. **Mendaftar di Cloudflare Pages:**
 * Login ke dashboard [Cloudflare](https://dash.cloudflare.com/).
 * Pilih **Workers & Pages** > **Create application** > **Pages** > **Upload assets**.
 * Beri nama proyekmu (misal: `blog-saya`).
