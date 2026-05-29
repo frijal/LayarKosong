@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.46
+document_version: 20.47
 last_updated: 2026-05-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 29 Mei 2026)
-> Menampilkan 1321 artikel versi 20.46.
+> Menampilkan 1323 artikel versi 20.47.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -754,6 +754,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/sistem-terbuka/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
 - [Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya](https://dalam.web.id/sistem-terbuka/silsilah-keluarga-linux) : silsilah lengkap keluarga distribusi Linux dari Debian, Arch, hingga faksi Indie beserta karakteristik uniknya dalam panduan komprehensif ini.
 - [Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux](https://dalam.web.id/sistem-terbuka/cara-mengatasi-wifi-mediatek-ubuntu) : Pusing Wi-Fi MediaTek (MT7921/MT7922) tidak terbaca di Ubuntu? Ini panduan lengkap cara cek chipset, update firmware, dan solusinya secara bertahap!
 - [Memahami Struktur Direktori Linux: Panduan Navigasi Sistem Operasi](https://dalam.web.id/sistem-terbuka/memahami-struktur-direktori-linux) : memahami hierarki folder Linux berdasarkan standar FHS untuk pemula dan profesional. Yuk, kuasai petunjuk arah sistem operasi ini!
@@ -1107,6 +1108,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Panduan Membuat Static Site dengan Github dan Cloudflare](https://dalam.web.id/warta-tekno/panduan-static-site-github-cloudflare) : Panduan langkah demi langkah membuat static site menggunakan GitHub Pages dan Cloudflare: setup repo, build, deploy, custom domain, dan optimasi CDN.
 - [Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online](https://dalam.web.id/warta-tekno/drama-kolom-komentar-windows-vs-linux) : Mengupas tuntas drama pertempuran sengit netizen antara pengguna Windows dan sekte Linux beserta kontroversi pemaksaan akun online Microsoft
 - [Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser](https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown) : Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.
 - [Cara Mengatasi Inbox Penuh Akibat Email Spoofing dengan DMARC dan SPF](https://dalam.web.id/warta-tekno/mengatasi-email-spoofing-dmarc-spf) : cara mengatasi inbox email bisnis yang penuh akibat email spoofing. Pelajari setting DMARC p reject dan SPF DNS Cloudflare agar domain tetap aman dari spammer.
