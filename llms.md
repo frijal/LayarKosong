@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.43
+document_version: 20.44
 last_updated: 2026-05-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 29 Mei 2026)
-> Menampilkan 1318 artikel versi 20.43.
+> Menampilkan 1319 artikel versi 20.44.
 
 ## Gaya Hidup
 - [Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨](https://dalam.web.id/gaya-hidup/seni-menurut-tarjih-muhammadiyah) : dan santai tentang hukum seni menurut Majelis Tarjih Muhammadiyah. Cek mana seni yang halal dan haram agar tetap asyik tanpa melanggar syariat.
@@ -754,6 +754,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya](https://dalam.web.id/sistem-terbuka/silsilah-keluarga-linux) : silsilah lengkap keluarga distribusi Linux dari Debian, Arch, hingga faksi Indie beserta karakteristik uniknya dalam panduan komprehensif ini.
 - [Kustomisasi Desktop GNOME Linux: Panduan Lengkap Ekstensi](https://dalam.web.id/sistem-terbuka/kustomisasi-desktop-gnome-linux) : kustomisasi desktop GNOME untuk pengguna Linux. Temukan cara mengubah tampilan dengan ekstensi terbaik tanpa mengorbankan performa sistem.
 - [Microsoft Rilis Azure Linux 4.0: Distro Server General-Purpose Pertama mereka](https://dalam.web.id/sistem-terbuka/microsoft-rilis-azure-linux-4) : Microsoft resmi meluncurkan Azure Linux 4.0 sebagai distro Linux server general-purpose pertama yang dioptimalkan untuk cloud dan virtual machine di Azure.
 - [Apakah Fedora Diam-diam Menjadi Distro Linux Terbaik? Ini Kata Komunitas](https://dalam.web.id/sistem-terbuka/apakah-fedora-distro-linux-terbaik) : mengenai klaim Fedora sebagai distro Linux serba ada terbaik saat ini, lengkap dengan perspektif dan debat hangat dari komunitas open-source.
