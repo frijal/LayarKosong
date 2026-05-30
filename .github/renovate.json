@@ -71,8 +71,9 @@
     "labels": ["security"],
     "assignees": ["frijal"],
     "automerge": true
-  }
-  {
+  }  
+}
+{
   "regexManagers": [
     {
       "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
@@ -140,5 +141,4 @@
       "versioning": "regex"
     }
   ]
-}
 }
