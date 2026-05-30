@@ -6,7 +6,7 @@
     ":combinePatchMinorReleases",
     ":rebaseStalePrs"
   ],
-  "enabledManagers": ["bun", "github-actions", "regex"],
+  "enabledManagers": ["bun", "github-actions","custom.regex"],
   "bun": {
     "enabled": true
   },
@@ -56,27 +56,29 @@
     },
     {
       "description": "Use semver for npm packages discovered by regex manager",
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "matchDatasources": ["npm"],
       "versioning": "semver"
     },
     {
       "description": "Use semver for GitHub-based assets discovered by regex manager",
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "matchDatasources": ["github-releases", "github-tags"],
       "versioning": "semver"
     },
     {
       "description": "Use semver for cdnjs assets discovered by regex manager",
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "matchDatasources": ["cdnjs"],
       "versioning": "semver"
     },
     {
       "description": "Fallback: treat generic @vX.Y.Z in URLs discovered by regex manager as regex-versioned",
-      "matchManagers": ["regex"],
-      "matchPackagePatterns": ["^https?://.*@v?\\d"],
-      "versioning": "regex"
+      "matchManagers": ["custom.regex"],
+      "versioning": "regex",
+      "matchPackageNames": [
+        "/^https?://.*@v?\\d/"
+      ]
     }
   ],
   "vulnerabilityAlerts": {
@@ -84,64 +86,53 @@
     "assignees": ["frijal"],
     "automerge": true
   },
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
-      "matchStrings": [
-        "import\\s+[^\\n]*from\\s+[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']",
-        "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
+      "customType": "regex",
+      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
+      "matchStrings": ["import\\s+[^\\n]*from\\s+[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']", "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
       "depNameTemplate": "{{{depName}}}",
       "datasourceTemplate": "npm"
     },
     {
-      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
-      "matchStrings": [
-        "https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/",
-        "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
+      "customType": "regex",
+      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
+      "matchStrings": ["https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/", "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
       "depNameTemplate": "{{{depName}}}",
       "datasourceTemplate": "github-releases"
     },
     {
-      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
-      "matchStrings": [
-        "https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/",
-        "src=[\"']https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
+      "customType": "regex",
+      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
+      "matchStrings": ["https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/", "src=[\"']https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
       "depNameTemplate": "{{{depName}}}",
       "datasourceTemplate": "npm"
     },
     {
-      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
-      "matchStrings": [
-        "https?:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/]+)\\/(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/"
-      ],
+      "customType": "regex",
+      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
+      "matchStrings": ["https?:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/]+)\\/(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/"],
       "depNameTemplate": "{{{depName}}}",
       "datasourceTemplate": "cdnjs"
     },
     {
-      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
-      "matchStrings": [
-        "src=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']",
-        "href=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
+      "customType": "regex",
+      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
+      "matchStrings": ["src=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']", "href=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
       "depNameTemplate": "{{{depName}}}",
       "datasourceTemplate": "github-tags"
     },
     {
-      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
-      "matchStrings": [
-        "(?<depName>[a-zA-Z0-9_\\-]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})"
-      ],
+      "customType": "regex",
+      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
+      "matchStrings": ["(?<depName>[a-zA-Z0-9_\\-]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})"],
       "depNameTemplate": "{{{depName}}}",
       "datasourceTemplate": "npm"
     },
     {
-      "fileMatch": ["^.*\\.html$"],
-      "matchStrings": [
-        "src=[\"'](?<url>https?:\\/\\/[^\"']+@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})[^\"']*)[\"']"
-      ],
+      "customType": "regex",
+      "managerFilePatterns": ["/^.*\\.html$/"],
+      "matchStrings": ["src=[\"'](?<url>https?:\\/\\/[^\"']+@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})[^\"']*)[\"']"],
       "depNameTemplate": "{{{url}}}",
       "datasourceTemplate": "github-tags"
     }
