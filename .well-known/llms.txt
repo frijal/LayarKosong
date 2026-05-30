@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.66
+document_version: 20.67
 last_updated: 2026-05-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Mei 2026)
-> Menampilkan 1353 artikel versi 20.66.
+> Menampilkan 1353 artikel versi 20.67.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -290,7 +290,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Kisah Badui kencing di Masjid](https://dalam.web.id/jejak-sejarah/badui-kencing-di-masjid) : Rasulullah ﷺ menanggapi seorang Badui yang kencing di masjid dengan kelembutan, bukan kemarahan: pelajaran agung tentang dakwah yang memudahkan.
 - [Lima Alasan Kenapa Harus Belajar Akidah](https://dalam.web.id/jejak-sejarah/akidah-lima-alasan) : Enam poin kuat tentang urgensi akidah: akar agama, konsekuensi kesalahan keyakinan, bahaya syirik, dan kemuliaan ilmu tentang Allah.
 - [Abu Thalhah, Muslim Sang Pengawal Rasulullah](https://dalam.web.id/jejak-sejarah/abu-thalhah) : Kisah Abu Thalhah—sahabat dan pengawal Rasulullah SAW. Puasa tanpa henti, jihad, dan wafat mulia di perjalanan armada Islam.
-- [Makna Janji dan Pentingnya Mengucapkan Insya Allah](https://dalam.web.id/jejak-sejarah/insya-allah-janji) : Berjanji adalah hal yang berat. Artikel ini membahas pentingnya mengucapkan Insya Allah saat berjanji, agar janji kita mendapat ridha Allah dan terhindar dari kesulitan.
+- [Makna Janji dan Pentingnya Mengucapkan Insya Allah](https://dalam.web.id/jejak-sejarah/insya-allah-janji) : Memahami kedalaman makna janji dalam Islam dan alasan krusial mengapa ucapan Insya Allah pantang dilewatkan dalam interaksi keseharian kita.
 - [Imam Al-Ghazali: Krisis, Rihlah Batin, dan Ihya’ , Kisah Sang Hujjatul Islam](https://dalam.web.id/jejak-sejarah/imam-al-ghazali) : Imam Al-Ghazali: dari masa kecil di Ṭūs, krisis spiritual, pengasingan di Damaskus dan Yerusalem, haji ke Mekkah, hingga menulis Ihya’ ‘Ulum ad-Din.
 - [Bilal bin Rabah: Budak yang Menjadi Bintang Iman](https://dalam.web.id/jejak-sejarah/bilal-bin-rabah-budak-bintang-iman) : Kisah inspiratif Bilal bin Rabah, dari budak berkulit hitam hingga muadzin pertama Rasulullah ﷺ. Pelajaran iman, kebebasan, dan kesetaraan dalam Islam.
 - [Panduan Bacaan dan Doa dalam Gerakan Shalat](https://dalam.web.id/jejak-sejarah/bacaan-dalam-shalat) : Belajar bersama mengenai terjemahan dan makna bacaan doa dalam setiap gerakan shalat, mulai dari Takbiratul Ihram hingga Salam, agar lebih khusyuk.
