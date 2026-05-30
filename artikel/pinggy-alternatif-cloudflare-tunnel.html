@@ -1,36 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal</title>
-
-    <meta name="description" content="Pinggy.io hadir sebagai alternatif Cloudflare Tunnel yang super simpel. Ekspos localhost ke internet hanya bermodal satu baris perintah SSH tanpa perlu instalasi rumit.">
-    <meta property="og:description" content="Sedang mencari layanan tunneling yang murah dan anti-ribet? Pinggy menawarkan fitur QR code instan, dukungan TCP/UDP, dan harga mulai dari $2.50. Simak ulasannya!">
-    <meta name="twitter:description" content="Tinggalkan kerumitan setup! Dengan Pinggy, kamu bisa pamer aplikasi lokal ke klien langsung dari terminal. Baca ulasan lengkap alternatif Cloudflare Tunnel ini.">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal">
-    <meta property="og:url" content="https://dalam.web.id/artikel/pinggy-alternatif-cloudflare-tunnel.html">
-    <meta property="og:image" content="https://pbs.twimg.com/media/HJj8vUyaAAAvn26?format=jpg&name=large">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/HJj8vUyaAAAvn26?format=jpg&name=large">
-
+    <title>Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal - Layar Kosong</title>
     <meta name="news_keywords" content="pinggy io, ulasan pinggy, alternatif cloudflare tunnel, tunneling ssh, expose localhost, web development">
-    <meta property="article:tag" content="DevOps">
-    <meta property="article:tag" content="Web Development">
-    <meta property="article:tag" content="Tunneling">
-
-    <link rel="canonical" href="https://dalam.web.id/artikel/pinggy-alternatif-cloudflare-tunnel.html">
-
     <meta name="promphint" content="Apa keunggulan utama dari Pinggy.io dibandingkan layanan tunneling lainnya? Pinggy memungkinkan pengguna untuk mengekspos localhost langsung dari terminal menggunakan perintah SSH tanpa instalasi klien, dan secara otomatis membuat QR code untuk dibagikan.">
-
-    <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJj8vUyaAAAvn26?format=jpg&name=large" fetchpriority="high">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-
+    <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJj8vUyaAAAvn26?format=jpg&amp;name=large" fetchpriority="high">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
         :root {
             /* Tema Terang */
@@ -44,7 +19,6 @@
             --code-bg: #f1f5f9;
             --code-text: #0f172a;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 /* Tema Gelap */
@@ -59,11 +33,9 @@
                 --code-text: #f8fafc;
             }
         }
-
         *, *::before, *::after {
             box-sizing: border-box;
         }
-
         body {
             margin: 0;
             padding: 0;
@@ -74,61 +46,50 @@
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-
         .container {
             max-width: 62.5rem; /* 1000px */
             margin: 0 auto;
             padding: 1.25rem;
         }
-
         header {
             margin-bottom: 2rem;
             border-bottom: 0.125rem solid var(--border-color);
             padding-bottom: 1.25rem;
         }
-
         h1 {
             font-size: 1.875rem;
             line-height: 1.3;
             margin: 0 0 1rem 0;
         }
-
         h2 {
             font-size: 1.5rem;
             margin: 2.5rem 0 1rem 0;
             border-left: 0.25rem solid var(--accent-color);
             padding-left: 0.75rem;
         }
-
         h3 {
             font-size: 1.25rem;
             margin: 2rem 0 1rem 0;
             color: var(--accent-color);
         }
-
         p {
             margin: 0 0 1.25rem 0;
         }
-
         ul, ol {
             margin: 0 0 1.25rem 0;
             padding-left: 1.5rem;
         }
-
         li {
             margin-bottom: 0.5rem;
         }
-
         a {
             color: var(--link-color);
             text-decoration: none;
             border-bottom: 0.0625rem dashed var(--link-color);
         }
-
         a:hover {
             border-bottom-style: solid;
         }
-
         code {
             font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
             background-color: var(--code-bg);
@@ -138,7 +99,6 @@
             font-size: 0.875em;
             border: 0.0625rem solid var(--border-color);
         }
-
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -150,7 +110,6 @@
             font-size: 0.875rem;
             margin-bottom: 1.5rem;
         }
-
         /* Full container width, responsive height */
         .content-img, video {
             width: 100%;
@@ -161,7 +120,6 @@
             background-color: var(--surface-color);
             box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
         }
-
         /* E-E-A-T Box */
         .author-box {
             background-color: var(--surface-color);
@@ -172,11 +130,9 @@
             margin-bottom: 2rem;
             font-size: 0.875rem;
         }
-
         .author-box p {
             margin: 0;
         }
-
         footer {
             text-align: center;
             padding: 2rem 0;
@@ -185,42 +141,76 @@
             font-size: 0.875rem;
             color: var(--text-muted);
         }
-
         /* Skala Desktop */
         @media (min-width: 48rem) {
             h1 { font-size: 2.5rem; }
             .container { padding: 2rem; }
         }
     </style>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/pinggy-alternatif-cloudflare-tunnel">
+    <meta property="og:url" content="https://dalam.web.id/artikel/pinggy-alternatif-cloudflare-tunnel">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/pinggy-alternatif-cloudflare-tunnel">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal">
+    <meta name="twitter:title" content="Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal">
+    <meta name="description" content="Pinggy.io hadir sebagai alternatif Cloudflare Tunnel yang super simpel. Ekspos localhost ke internet hanya bermodal satu baris perintah SSH tanpa perlu instalasi rumit.">
+    <meta property="og:description" content="Sedang mencari layanan tunneling yang murah dan anti-ribet? Pinggy menawarkan fitur QR code instan, dukungan TCP/UDP, dan harga mulai dari $2.50. Simak ulasannya!">
+    <meta name="twitter:description" content="Tinggalkan kerumitan setup! Dengan Pinggy, kamu bisa pamer aplikasi lokal ke klien langsung dari terminal. Baca ulasan lengkap alternatif Cloudflare Tunnel ini.">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/664886034c6084be.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/664886034c6084be.webp">
+    <meta property="og:image:alt" content="Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="618">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="Web Development">
+    <meta property="article:tag" content="Tunneling">
+    <meta property="article:published_time" content="2026-05-30T12:01:35.598Z">
+    <meta property="article:modified_time" content="2026-05-30T12:01:35.598Z">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 itemprop="headline">Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal</h1>
+            <h1 itemprop="headline">Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal</h1><div id="iposbrowser"></div>
             <div style="font-size: 0.875rem; color: var(--text-muted);">
-                <i class="fas fa-terminal"></i> Seri Alternatif Cloudflare Tunnel (1/10)
+                <i class="fa-solid fa-terminal"></i> Seri Alternatif Cloudflare Tunnel (1/10)
             </div>
         </header>
-
         <main role="main">
             <p>Berada di urutan pertama dalam daftar penjelajahan kita menembus batasan jaringan adalah **Pinggy.io**. Dalam rutinitas harian pengembangan *software*, kita sering kali berhadapan dengan situasi mendesak. Misalnya, kamu baru saja merampungkan antarmuka sebuah aplikasi dan bosmu tiba-tiba meminta *link demo* untuk dilihat langsung dari ponselnya. Mengkonfigurasi Cloudflare Tunnel dari awal jelas memakan waktu. Di sinilah Pinggy hadir sebagai juru selamat yang menyodorkan pendekatan radikal: tanpa instalasi aplikasi klien sama sekali.</p>
-
-            <img src="https://pbs.twimg.com/media/HJj8vUyaAAAvn26?format=jpg&name=large"
-                 alt="Ilustrasi menghubungkan localhost ke internet secara instan menggunakan antarmuka terminal"
-                 class="content-img"
-                 fetchpriority="high"
-                 decoding="async">
-
+            <img src="https://dalam.web.id/img/pbs.twimg.com/664886034c6084be.webp" alt="Ilustrasi menghubungkan localhost ke internet secara instan menggunakan antarmuka terminal" class="content-img" fetchpriority="high" decoding="async">
             <h2>Apa Itu Pinggy.io?</h2>
             <p>Pinggy adalah layanan *tunneling* super simpel dan sangat terjangkau yang bertugas memfasilitasi akses publik ke *localhost* kamu, bahkan ketika kamu sedang bersembunyi di balik NAT (*Network Address Translation*) atau *firewall* penyedia internet yang cerewet. Alat ini dirancang secara spesifik untuk pengembang yang menginginkan solusi instan tanpa kerumitan untuk mengekspos lingkungan *development* lokal ke web.</p>
-
             <p>Skenario penggunaan ideal untuk Pinggy sangatlah luas. Bagi kamu yang butuh menguji *webhook* dari GitHub atau Stripe secara *real-time*, mendemonstrasikan proyek React yang sedang berjalan, atau sekadar melakukan *debugging* jarak jauh, alat ini adalah *sweet spot* yang tepat.</p>
-
-            <video controls autoplay loop muted playsinline class="content-img" aria-label="Video demonstrasi cara kerja Pinggy dari terminal">
+            <video controls="" autoplay="" loop="" muted="" playsinline="" class="content-img" aria-label="Video demonstrasi cara kerja Pinggy dari terminal">
                 <source src="https://pinggy.io/assets/pinggy_demo.webm" type="video/webm">
                 Maaf, peramban Anda tidak mendukung pemutaran video HTML5.
             </video>
-
             <h2>Bedah Fitur: Kelebihan Pinggy</h2>
             <p>Mari kita ulik mengapa Pinggy sukses mencuri perhatian komunitas *developer* di tahun 2026 ini:</p>
             <ul>
@@ -228,40 +218,33 @@
                 <li>**QR Code Generator:** Bayangkan ini, begitu *tunnel* terbuka, Pinggy akan menggambar sebuah *QR code* langsung di terminalmu (berbasis teks ASCII). Kamu atau klienmu cukup memindainya via *smartphone*, dan *boom!* Aplikasi lokalmu sudah terbuka di HP.</li>
                 <li>**Alat Pemantauan Bawaan (Web Inspector):** Pinggy menyertakan alat inspeksi untuk memantau *request* dan *response* HTTP yang masuk ke *tunnel* secara *real-time*. Proses *debugging payload* webhook jadi semudah membalik telapak tangan.</li>
                 <li>**Fleksibilitas Protokol:** Berbeda dengan Cloudflare Tunnel yang agak "pilih kasih", Pinggy menyediakan *tunneling* tidak hanya untuk HTTP/HTTPS, tetapi juga untuk TCP dan UDP. Ini krusial buat kamu yang bermain dengan server *game* lokal atau basis data.</li>
-                <li>**Kustomisasi & Kolaborasi:** Mendukung pemetaan *domain custom* (berguna untuk *branding* URL) dan memiliki fitur akses bersama sehingga rekan satu tim bisa ikut menyelam ke dalam *tunnel* yang sama.</li>
+                <li>**Kustomisasi &amp; Kolaborasi:** Mendukung pemetaan *domain custom* (berguna untuk *branding* URL) dan memiliki fitur akses bersama sehingga rekan satu tim bisa ikut menyelam ke dalam *tunnel* yang sama.</li>
             </ul>
-
             <h2>Sisi Gelap: Kekurangan Pinggy</h2>
             <p>Tentu saja, tidak ada teknologi yang sempurna. Pendekatan minimalis Pinggy harus mengorbankan beberapa fitur kelas *enterprise*:</p>
             <ul>
                 <li>**Absennya Otentikasi Modern:** Pinggy tidak memiliki fitur perlindungan *tunnel* menggunakan autentikasi OAuth 2.0 (seperti login dengan akun Google atau GitHub bagi pengunjung), sesuatu yang cukup lumrah ditemukan di ekosistem Cloudflare atau ngrok versi berbayar.</li>
                 <li>**Skalabilitas Infrastruktur:** Tidak ada fitur penyeimbangan beban server global (*global load balancing*) atau *edge routing* pintar yang merutekan pengguna ke *server* terdekat. Jadi, jangan harap kecepatannya bisa menyamai CDN milik Cloudflare.</li>
             </ul>
-
             <h2>Cara Instalasi (Atau Tepatnya, Eksekusi)</h2>
             <p>Untuk melihat betapa jeniusnya konsep yang dibawa Pinggy, mari kita lakukan simulasi. Katakanlah kamu sedang menjalankan sebuah aplikasi *React* atau *Node.js* di komputer pada *port* 3000. Untuk membagikannya ke dunia maya, kamu cukup membuka terminal dan mengetik baris mantra ini:</p>
-
             <pre><code>ssh -p 443 -R0:localhost:3000 a.pinggy.io</code></pre>
-
             <p>Itu saja! Kamu tidak perlu membuat akun terlebih dahulu. Terminalmu akan langsung menampilkan URL publik (dan tentu saja, gambar *QR code* ASCII yang keren itu).</p>
-
             <h2>Struktur Harga yang Bersahabat</h2>
             <p>Berbicara soal ongkos, <a href="https://pinggy.io/" target="_blank">Pinggy</a> jauh lebih mengerti isi dompet *startup* dan bisnis skala kecil. Mereka menyediakan **paket gratis** yang sangat fungsional, meski durasi satu sesi *tunnel* dibatasi maksimal 60 menit (setelah itu kamu tinggal menyalakannya lagi). Jika butuh kekuatan penuh seperti *domain custom*, tanpa batasan waktu, dan manajemen akses tim, paket berbayarnya dipatok mulai dari **$2.50 per bulan**. Sangat terjangkau jika dibandingkan dengan jajan kopi susu kekinian, bukan?</p>
-
             <div class="author-box" aria-label="Informasi Penulis dan Kredibilitas Konten">
-                <p><i class="fas fa-pen-nib"></i> Ditulis oleh: **Fakhrul Rijal** (*Layar Kosong*)</p>
-                <p><i class="fas fa-map-marker-alt"></i> Dilaporkan dari: **Balikpapan, Kalimantan Timur**</p>
-                <p><i class="far fa-clock"></i> Dipublikasikan pada: **30 Mei 2026**</p>
+                <p><i class="fa-solid fa-pen-nib"></i> Ditulis oleh: **Fakhrul Rijal** (*Layar Kosong*)</p>
+                <p><i class="fa-solid fa-map-marker-alt"></i> Dilaporkan dari: **Balikpapan, Kalimantan Timur**</p>
+                <p><i class="fa-regular fa-clock"></i> Dipublikasikan pada: **30 Mei 2026**</p>
                 <p style="margin-top: 0.75rem; color: var(--text-muted);">Ulasan mengenai fungsionalitas Pinggy.io di atas didasarkan pada pengujian langsung perintah *Secure Shell* (SSH) pada lingkungan pengembangan lokal berbasis Linux/macOS. Harga dan fitur layanan merupakan data faktual yang ditarik dari spesifikasi resmi rilis layanan Pinggy pada kuartal pertama tahun 2026.</p>
             </div>
         </main>
-
         <div id="related-articles-grid"></div>
         <div id="response"></div>
-
         <footer>
-            <p>&copy; 2026 Layar Kosong. Disajikan dengan HTML dan CSS native demi pengalaman *browsing* yang ringan dan gesit.</p>
-        </footer>
+            <p>🄯 2026 Layar Kosong. Disajikan dengan HTML dan CSS native demi pengalaman *browsing* yang ringan dan gesit.</p>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
