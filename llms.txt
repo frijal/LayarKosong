@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.50
-last_updated: 2026-05-29
+document_version: 20.51
+last_updated: 2026-05-30
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 29 Mei 2026)
-> Menampilkan 1330 artikel versi 20.50.
+## Index Artikel Terbaru (Updated: 30 Mei 2026)
+> Menampilkan 1334 artikel versi 20.51.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -1114,7 +1114,11 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Mengupas Masalah Patching Jaringan Terbatas pada Update Secure Boot](https://dalam.web.id/warta-tekno/masalah-patching-jaringan-terbatas-secure-boot) : tentang masalah patching jaringan terbatas (restricted networks) pada update Secure Boot Windows dan mengapa ini berprioritas rendah.
+- [Update Windows Bikin Pusing Lagi: Mengupas Insiden Crash KB5070311](https://dalam.web.id/warta-tekno/masalah-windows-update-kb5070311-crash) : Kupas tuntas mengapa Windows Update sering bermasalah, berkaca dari kasus update KB5070311 Februari 2026 yang memicu restart berulang dan cara manual mengatasinya.
 - [Panduan Resmi SEO AI Google (2026): Mitos yang Gugur & Strategi Baru](https://dalam.web.id/warta-tekno/panduan-seo-ai-google-2026) : Google baru saja merilis panduan resmi SEO untuk AI Search. Lupakan mitos bikin llms.txt atau pecah konten, ini strategi yang sebenarnya kamu butuhkan!
+- [Cara Mudah Memperbarui Sertifikat Secure Boot Windows Agar Tidak Mogok](https://dalam.web.id/warta-tekno/cara-update-sertifikat-secure-boot) : cara memperbarui sertifikat Secure Boot di PC Windows Anda agar terhindar dari kegagalan booting pada bulan Juni. Mulai dari Windows Update hingga update BIOS.
+- [Microsoft Peringatkan Sertifikat Kedaluwarsa Juni Bisa Hentikan PC Windows](https://dalam.web.id/warta-tekno/microsoft-sertifikat-kedaluwarsa-secure-boot) : Microsoft mengingatkan pengguna Windows untuk segera memperbarui sertifikat Secure Boot sebelum Juni 2026 guna mencegah kegagalan booting pada sistem pribadi maupun bisnis.
 - [Panduan Membuat Static Site dengan Github dan Cloudflare](https://dalam.web.id/warta-tekno/panduan-static-site-github-cloudflare) : Panduan langkah demi langkah membuat static site menggunakan GitHub Pages dan Cloudflare: setup repo, build, deploy, custom domain, dan optimasi CDN.
 - [Rangkuman Drama Jendela vs Penguin dan Krisis Akun Online](https://dalam.web.id/warta-tekno/drama-kolom-komentar-windows-vs-linux) : Mengupas tuntas drama pertempuran sengit netizen antara pengguna Windows dan sekte Linux beserta kontroversi pemaksaan akun online Microsoft
 - [Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser](https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown) : Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.
