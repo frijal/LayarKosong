@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.60
+document_version: 20.61
 last_updated: 2026-05-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Mei 2026)
-> Menampilkan 1352 artikel versi 20.60.
+> Menampilkan 1352 artikel versi 20.61.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -559,7 +559,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
-- [Frp: Alternatif Cloudflare Tunnel Berkinerja Tinggi untuk Kelas Enterprise](https://dalam.web.id/opini-sosial/frp-alternatif-cloudflare-tunnel) : Mencari reverse proxy open-source untuk beban kerja berat? Frp (Fast Reverse Proxy) adalah solusi mandiri terbaik dengan dukungan TCP, UDP, dan load balancing.
 - [Ilusi Koperasi Palsu Merah-Putih: Catatan Kritis Kebijakan Top-Down](https://dalam.web.id/opini-sosial/ilusi-koperasi-palsu-merah-putih) : Farid Gaban mengenai program 30.000 Koperasi Merah-Putih era Presiden Prabowo yang dinilai mengulang kegagalan KUD top-down Orde Baru.
 - [Amanah Mengelola Kas Negara: Mengapa Harta Publik Bukan Uang Pribadi Penguasa](https://dalam.web.id/opini-sosial/amanah-mengelola-kas-negara) : Mengupas etika dan amanah pengelolaan harta publik serta kas negara (APBN) berkaca dari sejarah Islam klasik dan prinsip akuntabilitas Baitul Mal.
 - [Menyamakan APBN dengan Baitul Mal Klasik, Tepatkah Secara Fikih?](https://dalam.web.id/opini-sosial/apbn-baitul-mal-fikih) : dan mendalam mengenai fenomena penyamaan APBN modern dengan lembaga Baitul Mal klasik berdasarkan literatur fikih serta prinsip E-E-A-T.
@@ -1118,6 +1117,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Frp: Alternatif Cloudflare Tunnel Berkinerja Tinggi untuk Kelas Enterprise](https://dalam.web.id/warta-tekno/frp-alternatif-cloudflare-tunnel) : Mencari reverse proxy open-source untuk beban kerja berat? Frp (Fast Reverse Proxy) adalah solusi mandiri terbaik dengan dukungan TCP, UDP, dan load balancing.
 - [Mengapa Bertahan dengan Renovate Adalah Pilihan Paling Logis untuk Power User](https://dalam.web.id/warta-tekno/bertahan-dengan-renovate) : Jangan terburu-buru migrasi! Bagi power user, bertahan dengan Renovate jauh lebih aman dan efisien dibandingkan beralih ke Dependabot.
 - [Tunnelmole: Alternatif Cloudflare Tunnel Sederhana dengan HTTPS Otomatis](https://dalam.web.id/warta-tekno/tunnelmole-alternatif-cloudflare-tunnel) : Tunnelmole menawarkan cara instan mendapatkan URL publik berbalut HTTPS otomatis untuk localhost-mu. Solusi tunneling open-source teringan tanpa pusing konfigurasi.
 - [ngrok: Sang Veteran Tunneling Kaya Fitur](https://dalam.web.id/warta-tekno/ngrok-alternatif-cloudflare-tunnel) : Mencari alternatif Cloudflare Tunnel dengan fitur kelas enterprise? ngrok menawarkan solusi tunneling dengan inspeksi request, OAuth, dan dashboard monitoring lengkap.
