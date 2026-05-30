@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.68
+document_version: 20.69
 last_updated: 2026-05-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Mei 2026)
-> Menampilkan 1353 artikel versi 20.68.
+> Menampilkan 1353 artikel versi 20.69.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -210,7 +210,7 @@ document_type: llm_behavior_and_entity_guidance
 - [MUI Mendatangi Pintu Penguasa: Melegitmasi Kezaliman Palestina?](https://dalam.web.id/jejak-sejarah/mui-pintu-penguasa-palestina) : Ahmad Khozinudin, S.H. mengenai perubahan sikap MUI terhadap keterlibatan Indonesia dalam Dewan Perdamaian bentukan Donald Trump. Apakah ini pengkhianatan terhadap Palestina?
 - [Sejarah Lengkap Hubungan Indonesia-Israel: Fakta, Analisis, dan Masa Depan Diplomasi](https://dalam.web.id/jejak-sejarah/sejarah-hubungan-indonesia-israel) : Panduan komprehensif sejarah hubungan diplomatik Indonesia-Israel sejak 1945 hingga 2024. kebijakan luar negeri, faktor penentu, dan implikasi geopolitik. Kajian lengkap 5W+1H dengan narasi santai dan mudah dipahami.
 - [Resmi! Putin Akui Madrasah dan Al-Qur'an: Menilik Kebijakan Islam di Rusia](https://dalam.web.id/jejak-sejarah/vladimir-putin-akui-madrasah-al-quran-rusia) : kebijakan Vladimir Putin dalam mengakui pendidikan madrasah dan Al-Quran secara resmi di Rusia. Simak sejarah, regulasi, dan dampaknya.
-- [Kehebatan Muhammadiyah Generasi Awal: Memahami Formula Teologis yang Luar Biasa](https://dalam.web.id/jejak-sejarah/muhammadiyah-generasi-awal) : Dulu aku merasa sikap Muhammadiyah generasi awal itu aneh, namun sekarang aku mengerti kehebatan mereka. Bagaimana KH Ahmad Dahlan, Buya Hamka, dan Kiai Djarnawi menggabungkan Asy’ariyyah dan dalam satu formula yang unik.
+- [Kehebatan Muhammadiyah Generasi Awal: Memahami Formula Teologis yang Luar Biasa](https://dalam.web.id/jejak-sejarah/muhammadiyah-generasi-awal) : Mengupas rahasia di balik sikap teologis Muhammadiyah generasi awal yang unik. Temukan bagaimana KH Ahmad Dahlan memadukan tradisi Asy'ariyyah dan pemurnian Salafiyyah.
 - [Apakah Muhammadiyah Bughot? Analisis Perbedaan Puasa dan Lebaran di Indonesia](https://dalam.web.id/jejak-sejarah/apakah-muhammadiyah-bughot-analisis-perbedaan-lebaran) : Mengulas tuntas fenomena perbedaan awal Ramadhan dan Idul Fitri antara Muhammadiyah dan Pemerintah. Apakah ini bentuk pembangkangan atau ijtihad sah? Simak analisis 5W+1H di sini.
 - [Sejarah RS PKU Muhammadiyah Yogyakarta: Mengabdi Sejak 1923](https://dalam.web.id/jejak-sejarah/sejarah-rs-pku-muhammadiyah-yogyakarta) : Kupas tuntas sejarah RS PKU Muhammadiyah Yogyakarta, dari klinik sederhana hingga rumah sakit modern yang mengabdi pada umat sejak 1923. Pelajari peran KH Ahmad Dahlan dan H.M. Sudjak dalam membangun kesehatan masyarakat dhuafa.
 - [Catatan Real-Time 1945: Dari Reruntuhan Nazi hingga Fajar Bom Atom](https://dalam.web.id/jejak-sejarah/catatan-real-time-1945-economist) : Selami arsip orisinal The Economist dari tahun 1945. Laporan mendalam tentang jatuhnya Reich Ketiga, kematian FDR, kemenangan atas Jepang, dan lahirnya era atom.
