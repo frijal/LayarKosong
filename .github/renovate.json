@@ -72,4 +72,73 @@
     "assignees": ["frijal"],
     "automerge": true
   }
+  {
+  "regexManagers": [
+    {
+      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
+      "matchStrings": [
+        "import\\s+[^\\n]*from\\s+[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']",
+        "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
+      ],
+      "depNameTemplate": "{{{depName}}}",
+      "datasourceTemplate": "npm",
+      "versioning": "semver"
+    },
+    {
+      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
+      "matchStrings": [
+        "https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/",
+        "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
+      ],
+      "depNameTemplate": "{{{depName}}}",
+      "datasourceTemplate": "github-releases",
+      "versioning": "semver"
+    },
+    {
+      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
+      "matchStrings": [
+        "https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/",
+        "src=[\"']https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
+      ],
+      "depNameTemplate": "{{{depName}}}",
+      "datasourceTemplate": "npm",
+      "versioning": "semver"
+    },
+    {
+      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
+      "matchStrings": [
+        "https?:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/]+)\\/(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/"
+      ],
+      "depNameTemplate": "{{{depName}}}",
+      "datasourceTemplate": "cdnjs",
+      "versioning": "semver"
+    },
+    {
+      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
+      "matchStrings": [
+        "src=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']",
+        "href=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
+      ],
+      "depNameTemplate": "{{{depName}}}",
+      "datasourceTemplate": "github-tags",
+      "versioning": "semver"
+    },
+    {
+      "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
+      "matchStrings": [
+        "(?<depName>[a-zA-Z0-9_\\-]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})"
+      ],
+      "depNameTemplate": "{{{depName}}}",
+      "versioning": "semver"
+    },
+    {
+      "fileMatch": ["^.*\\.html$"],
+      "matchStrings": [
+        "src=[\"'](?<url>https?:\\/\\/[^\"']+@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})[^\"']*)[\"']"
+      ],
+      "depNameTemplate": "{{{url}}}",
+      "versioning": "regex"
+    }
+  ]
+}
 }
