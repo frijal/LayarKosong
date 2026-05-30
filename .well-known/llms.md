@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.53
+document_version: 20.54
 last_updated: 2026-05-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Mei 2026)
-> Menampilkan 1336 artikel versi 20.53.
+> Menampilkan 1337 artikel versi 20.54.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -1116,6 +1116,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Meta Rilis 'Forum', Aplikasi Baru Pesaing Reddit untuk Grup Facebook](https://dalam.web.id/warta-tekno/meta-rilis-aplikasi-forum-pesaing-reddit) : Meta diam-diam meluncurkan Forum, aplikasi mandiri baru untuk Facebook Group dengan fitur AI yang digadang-gadang sebagai pesaing Reddit.
 - [Mengupas Masalah Patching Jaringan Terbatas pada Update Secure Boot](https://dalam.web.id/warta-tekno/masalah-patching-jaringan-terbatas-secure-boot) : tentang masalah patching jaringan terbatas (restricted networks) pada update Secure Boot Windows dan mengapa ini berprioritas rendah.
 - [Update Windows Bikin Pusing Lagi: Mengupas Insiden Crash KB5070311](https://dalam.web.id/warta-tekno/masalah-windows-update-kb5070311-crash) : Kupas tuntas mengapa Windows Update sering bermasalah, berkaca dari kasus update KB5070311 Februari 2026 yang memicu restart berulang dan cara manual mengatasinya.
 - [Panduan Resmi SEO AI Google (2026): Mitos yang Gugur & Strategi Baru](https://dalam.web.id/warta-tekno/panduan-seo-ai-google-2026) : Google baru saja merilis panduan resmi SEO untuk AI Search. Lupakan mitos bikin llms.txt atau pecah konten, ini strategi yang sebenarnya kamu butuhkan!
