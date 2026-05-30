@@ -54,7 +54,6 @@
       "matchUpdateTypes": ["major"],
       "automerge": false
     },
-
     {
       "description": "Use semver for npm packages discovered by regex manager",
       "matchManagers": ["regex"],
@@ -135,14 +134,16 @@
       "matchStrings": [
         "(?<depName>[a-zA-Z0-9_\\-]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})"
       ],
-      "depNameTemplate": "{{{depName}}}"
+      "depNameTemplate": "{{{depName}}}",
+      "datasourceTemplate": "npm"
     },
     {
       "fileMatch": ["^.*\\.html$"],
       "matchStrings": [
         "src=[\"'](?<url>https?:\\/\\/[^\"']+@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})[^\"']*)[\"']"
       ],
-      "depNameTemplate": "{{{url}}}"
+      "depNameTemplate": "{{{url}}}",
+      "datasourceTemplate": "github-tags"
     }
   ]
 }
