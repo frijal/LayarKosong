@@ -6,7 +6,7 @@
     ":combinePatchMinorReleases",
     ":rebaseStalePrs"
   ],
-  "enabledManagers": ["bun", "github-actions"],
+  "enabledManagers": ["bun", "github-actions", "regex"],
   "bun": {
     "enabled": true
   },
@@ -53,6 +53,31 @@
       "description": "Major updates = always manual review",
       "matchUpdateTypes": ["major"],
       "automerge": false
+    },
+
+    {
+      "description": "Use semver for npm packages discovered by regex manager",
+      "matchManagers": ["regex"],
+      "matchDatasources": ["npm"],
+      "versioning": "semver"
+    },
+    {
+      "description": "Use semver for GitHub-based assets discovered by regex manager",
+      "matchManagers": ["regex"],
+      "matchDatasources": ["github-releases", "github-tags"],
+      "versioning": "semver"
+    },
+    {
+      "description": "Use semver for cdnjs assets discovered by regex manager",
+      "matchManagers": ["regex"],
+      "matchDatasources": ["cdnjs"],
+      "versioning": "semver"
+    },
+    {
+      "description": "Fallback: treat generic @vX.Y.Z in URLs discovered by regex manager as regex-versioned",
+      "matchManagers": ["regex"],
+      "matchPackagePatterns": ["^https?://.*@v?\\d"],
+      "versioning": "regex"
     }
   ],
   "vulnerabilityAlerts": {
@@ -68,8 +93,7 @@
         "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
       ],
       "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm",
-      "versioning": "semver"
+      "datasourceTemplate": "npm"
     },
     {
       "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
@@ -78,8 +102,7 @@
         "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
       ],
       "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "github-releases",
-      "versioning": "semver"
+      "datasourceTemplate": "github-releases"
     },
     {
       "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
@@ -88,8 +111,7 @@
         "src=[\"']https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
       ],
       "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm",
-      "versioning": "semver"
+      "datasourceTemplate": "npm"
     },
     {
       "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
@@ -97,8 +119,7 @@
         "https?:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/]+)\\/(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/"
       ],
       "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "cdnjs",
-      "versioning": "semver"
+      "datasourceTemplate": "cdnjs"
     },
     {
       "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
@@ -107,24 +128,21 @@
         "href=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
       ],
       "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "github-tags",
-      "versioning": "semver"
+      "datasourceTemplate": "github-tags"
     },
     {
       "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
       "matchStrings": [
         "(?<depName>[a-zA-Z0-9_\\-]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})"
       ],
-      "depNameTemplate": "{{{depName}}}",
-      "versioning": "semver"
+      "depNameTemplate": "{{{depName}}}"
     },
     {
       "fileMatch": ["^.*\\.html$"],
       "matchStrings": [
         "src=[\"'](?<url>https?:\\/\\/[^\"']+@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})[^\"']*)[\"']"
       ],
-      "depNameTemplate": "{{{url}}}",
-      "versioning": "regex"
+      "depNameTemplate": "{{{url}}}"
     }
   ]
 }
