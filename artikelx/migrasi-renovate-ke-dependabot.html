@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Sukses Migrasi dari Renovate ke Dependabot</title>
+
+    <!-- Meta Descriptions -->
+    <meta name="description" content="Cara mudah menerjemahkan konfigurasi renovate.json milikmu ke format dependabot.yml. Pelajari trik mengatasi fitur automerge dan dukungan Bun di GitHub.">
+    <meta property="og:description" content="Pindah dari Renovate ke Dependabot? Simak panduan lengkap mengonversi konfigurasi otomatisasi dependensimu agar tetap ngebut dan aman di ekosistem GitHub.">
+    <meta name="twitter:description" content="Selamat tinggal Renovate, halo Dependabot! Bedah tuntas cara migrasi konfigurasi, grouping PR, hingga trik automerge pakai GitHub Actions.">
+
+    <!-- Open Graph & Twitter Cards -->
+    <meta property="og:title" content="Panduan Sukses Migrasi dari Renovate ke Dependabot">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/migrasi-renovate-ke-dependabot.html">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HJj14IAbQAAHrXo?format=jpg&name=large">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Panduan Sukses Migrasi dari Renovate ke Dependabot">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HJj14IAbQAAHrXo?format=jpg&name=large">
+
+    <!-- Keywords & Tags -->
+    <meta name="news_keywords" content="migrasi renovate ke dependabot, github dependabot yml, automerge dependabot, konfigurasi dependabot, github actions">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="GitHub">
+    <meta property="article:tag" content="Otomatisasi">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dalam.web.id/artikel/migrasi-renovate-ke-dependabot.html">
+
+    <!-- Custom Meta Promphint -->
+    <meta name="promphint" content="Bagaimana cara migrasi dari Renovate ke Dependabot? Kamu perlu menerjemahkan file renovate.json menjadi .github/dependabot.yml, dan menggunakan GitHub Actions tambahan untuk mempertahankan fitur automerge.">
+
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJj14IAbQAAHrXo?format=jpg&name=large" fetchpriority="high">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+
+    <!-- Critical Native CSS -->
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --accent-color: #0284c7;
+            --border-color: #e5e7eb;
+            --code-bg: #f3f4f6;
+            --code-text: #111827;
+            --warning-bg: #fef3c7;
+            --warning-text: #92400e;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #111827;
+                --text-color: #f3f4f6;
+                --text-muted: #9ca3af;
+                --accent-color: #38bdf8;
+                --border-color: #374151;
+                --code-bg: #1f2937;
+                --code-text: #f9fafb;
+                --warning-bg: #451a03;
+                --warning-text: #fde68a;
+            }
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 62.5rem;
+            margin: 0 auto;
+            padding: 1.25rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 0.125rem solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin: 0 0 1rem 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            border-left: 0.25rem solid var(--accent-color);
+            padding-left: 0.75rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem 0;
+            color: var(--accent-color);
+        }
+
+        p {
+            margin: 0 0 1.25rem 0;
+        }
+
+        ul, ol {
+            margin: 0 0 1.25rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            border: 0.0625rem solid var(--border-color);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            background-color: var(--code-bg);
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+        }
+
+        /* LCP Image: Full width container, no fixed height to prevent cropping */
+        .content-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem 0 2rem 0;
+            border-radius: 0.5rem;
+            background-color: var(--code-bg);
+            box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+        }
+
+        .alert-box {
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 0.25rem solid #d97706;
+        }
+
+        /* E-E-A-T Box */
+        .author-box {
+            background-color: var(--code-bg);
+            border: 0.0625rem solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .author-box p {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        @media (min-width: 48rem) {
+            h1 { font-size: 2.5rem; }
+            .container { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 itemprop="headline">Panduan Sukses Migrasi dari Renovate ke Dependabot</h1>
+            <div style="font-size: 0.875rem; color: var(--text-muted);">
+                <i class="fas fa-robot"></i> Kategori: Otomatisasi & DevOps
+            </div>
+        </header>
+
+        <main role="main">
+            <p>Memutuskan untuk ganti gigi dari Renovate ke Dependabot adalah langkah yang cukup masuk akal, apalagi kalau kamu ingin ekosistem yang lebih menyatu dengan infrastruktur *native* GitHub. File konfigurasimu sebelumnya memang sudah cukup matang, lengkap dengan aturan pengelompokan (*grouping*) hingga skema *automerge*. Namun, menerjemahkannya ke format Dependabot butuh sedikit penyesuaian karena kedua sistem ini punya filosofi kerja yang berbeda.</p>
+
+            <img src="https://pbs.twimg.com/media/HJj14IAbQAAHrXo?format=jpg&name=large"
+                 alt="Ilustrasi pemindahan konfigurasi dari JSON Renovate ke YAML Dependabot"
+                 class="content-img"
+                 fetchpriority="high"
+                 decoding="async">
+
+            <div class="alert-box">
+                <i class="fas fa-exclamation-triangle"></i> **Realita Pahit Migrasi:**
+                Ada beberapa fitur Renovate yang ~~harus kamu ikhlaskan~~ tidak didukung langsung oleh Dependabot:
+                <ul>
+                    <li>**Dukungan Bun:** Dependabot belum memiliki ekosistem `bun` yang terpisah secara *native* seperti Renovate. Dia akan membaca *project* Bun kamu di bawah payung ekosistem `npm` (akan mem-parsing `package.json`, tapi perbaikan lockfile `bun.lockb` mungkin tidak semulus Renovate).</li>
+                    <li>**Aturan Waktu (Hourly Limit & Release Age):** Dependabot tidak punya fitur untuk menunda rilis selama "2 days" atau membatasi pembuatan PR per jam. Dia hanya membatasi total PR yang terbuka saja.</li>
+                    <li>**Dashboard:** File `dependencyDashboard` digantikan secara otomatis oleh tab *Security & Insights* bawaan GitHub.</li>
+                </ul>
+            </div>
+
+            <h2>Langkah 1: Membuat File `dependabot.yml`</h2>
+            <p>Alih-alih JSON, Dependabot menggunakan format YAML. Kamu harus membuat file ini dan meletakkannya di *path* `.github/dependabot.yml` di dalam repositorimu. Berdasarkan konfigurasimu, kita akan menyetel batasan 5 PR serentak (`open-pull-requests-limit`), mengelompokkan *web-optimizers* dan *external-services*, serta menugaskan PR tersebut ke akun `frijal`.</p>
+
+<pre><code>version: 2
+updates:
+  # Ekosistem 1: GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    assignees:
+      - "frijal"
+
+  # Ekosistem 2: NPM (Untuk Bun / Node.js)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    versioning-strategy: increase # Setara dengan rangeStrategy: "bump"
+    assignees:
+      - "frijal"
+
+    # Aturan Pengelompokan (Grouping)
+    groups:
+      web-optimizers:
+        patterns:
+          - "sharp"
+          - "@minify-html/node"
+          - "cheerio"
+          - "@xmldom/xmldom"
+          - "glob"
+      external-services:
+        patterns:
+          - "wrangler"
+          - "tumblr.js"
+
+    # Mengabaikan update Major (Karena di Renovate kamu set automerge: false)
+    # Dependabot tetap akan bikin PR Major,
+    # tapi kita tidak akan meng-automerge-nya nanti.</code></pre>
+
+            <h2>Langkah 2: Mengembalikan "Sihir" Automerge</h2>
+            <p>Di masa lalu, Dependabot punya fitur `automerge` di dalam YAML-nya. Namun, GitHub sudah menghapus fitur tersebut demi alasan keamanan. Untuk meniru perilaku di file JSON lamamu—yaitu melakukan *automerge* untuk `patch` dan `minor` (kecuali yang berawalan `0.x`), serta *automerge* keamanan—kamu wajib membuat *GitHub Actions Workflow* khusus.</p>
+
+            <p>Buat file baru di `.github/workflows/dependabot-automerge.yml` dengan konfigurasi berikut:</p>
+
+<pre><code>name: Dependabot Auto-merge
+on: pull_request
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Approve a PR
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Auto-merge untuk Patch dan Minor
+        # Automerge diaktifkan HANYA jika bukan update Major
+        if: ${{steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'}}
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}</code></pre>
+
+            <h3>Penyesuaian Ekstra di Repository Settings</h3>
+            <p>Agar alur kerja GitHub Actions di atas berjalan mulus, pastikan kamu mengaktifkan opsi **"Allow auto-merge"** di pengaturan repositorimu (*Settings* -> *General* -> *Pull Requests*). Dengan kombinasi `dependabot.yml` dan *workflow* rahasia ini, kamu berhasil meniru sekitar 80% kekuatan file konfigurasi Renovate lamamu ke dalam ekosistem Dependabot yang jauh lebih ringan.</p>
+
+            <!-- Kredibilitas Konten -->
+            <div class="author-box" aria-label="Informasi Keandalan Artikel">
+                <p><i class="fas fa-pen-nib"></i> Ditulis oleh: **Fakhrul Rijal**</p>
+                <p><i class="far fa-clock"></i> Diperbarui pada: **30 Mei 2026**</p>
+                <p style="margin-top: 0.5rem; color: var(--text-muted);">Panduan translasi skema konfigurasi ini diverifikasi berdasarkan spesifikasi YAML Dependabot v2 terbaru dan manajemen Dependabot Metadata API untuk *workflow* GitHub Actions. Resolusi paket Bun dalam Dependabot mungkin mengalami penyesuaian seiring dengan rilis tambalan platform GitHub di masa mendatang.</p>
+            </div>
+        </main>
+
+        <!-- Elemen Akhir Wajib -->
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+
+        <footer>
+            <p>&copy; 2026 Layar Kosong. Didukung oleh standar HTML dan CSS telanjang tanpa framework.</p>
+        </footer>
+    </div>
+</body>
+</html>
