@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.65
+document_version: 20.66
 last_updated: 2026-05-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Mei 2026)
-> Menampilkan 1353 artikel versi 20.65.
+> Menampilkan 1353 artikel versi 20.66.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -234,7 +234,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Nabi Ilyas ‘Alaihissalam - Teguh di Lembah Baalbek](https://dalam.web.id/jejak-sejarah/19nabi-ilyas) : Kisah Nabi Ilyas ‘Alaihissalam: dakwah tauhid di Baalbek, penolakan kaum penyembah Ba’l, hijrah 20 tahun, dan kemuliaan nama beliau di Al-Qur’an. Disusun santai, interaktif, dan mobile-friendly.
 - [Nabi Yunus ‘Alaihissalam , Dari Gelap Perut Ikan ke Terang Taubat](https://dalam.web.id/jejak-sejarah/21nabi-yunus) : Kisah Nabi Yunus ‘Alaihissalam: dakwah di Ninawa (Mosul), badai di lautan, perut ikan nun, doa dalam kegelapan, dan taubat massal satu kaum. Santai, interaktif, mobile-friendly.
 - [Nabi Ilyasa ‘Alaihissalam , Meneruskan Syariat, Merawat Keteguhan](https://dalam.web.id/jejak-sejarah/20nabi-ilyasa) : Kisah singkat Nabi Ilyasa ‘Alaihissalam: sepupu Nabi Ilyas dari Bani Israel, berdakwah di sekitar Damaskus, wafat di Palestina. Nama beliau diabadikan di Al-Qur’an. Desain dark-mode, responsif, interaktif.
-- [Kisah Nabi Zakaria A.S.: Dakwah, Doa, & Kesabaran yang Tak Tergoyahkan](https://dalam.web.id/jejak-sejarah/nabi-zakaria) : Kisah Nabi Zakaria A.S.: keteladanan dakwah, doa memohon keturunan, lahirnya Nabi Yahya, dan pelajaran kesabaran dari seorang nabi yang penuh cinta ibadah dan ujian. Narasi santai, galeri, interaktif, dan SEO.
+- [Kisah Nabi Zakaria A.S.: Dakwah, Doa, & Kesabaran yang Tak Tergoyahkan](https://dalam.web.id/jejak-sejarah/nabi-zakaria) : inspirasi dari kisah Nabi Zakaria A.S. yang tak kenal lelah berdakwah, keajaiban doa di usia senja, hingga kesabaran luar biasa menghadapi kaumnya.
 - [Nabi Sulaiman ‘Alaihissalam , Raja Hikmah, Angin, Jin, dan Hudhud](https://dalam.web.id/jejak-sejarah/18nabi-sulaiman) : Kisah Nabi Sulaiman ‘Alaihissalam: warisan takhta Nabi Daud, mukjizat mengendalikan angin, tembaga, dan jin; dialog dengan hudhud; pertemuan dengan Puteri Balqis; hingga wafatnya yang jadi tanda. Disusun santai, interaktif, dan mobile-friendly.
 - [Nabi Musa & Harun ‘Alaihissalam , Keberanian, Doa, dan Pembebasan](https://dalam.web.id/jejak-sejarah/1415nabi-musa-harun) : Kisah Nabi Musa & Harun ‘Alaihissalam: dari kelahiran penuh risiko, mukjizat tongkat, duel dengan para penyihir, hingga terbelahnya laut dan tumbangnya Firaun. Disusun santai, interaktif, dan mobile-friendly.
 - [Nabi Zulkifli ‘Alaihissalam - Sabar, Tanggung Jawab, dan Kemenangan](https://dalam.web.id/jejak-sejarah/16nabi-zulkifli) : Kisah Nabi Zulkifli ‘Alaihissalam: pemuda bertanggung jawab, raja yang sabar, dan hamba yang tekun berpuasa di siang hari serta beribadah di malam. Disusun santai, interaktif, mobile-friendly.
