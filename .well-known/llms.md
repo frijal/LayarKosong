@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.52
+document_version: 20.53
 last_updated: 2026-05-30
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 30 Mei 2026)
-> Menampilkan 1335 artikel versi 20.52.
+> Menampilkan 1336 artikel versi 20.53.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -756,6 +756,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [9 Distro Linux Terbaik untuk PC Sangat Jadul dan Laptop Tua](https://dalam.web.id/sistem-terbuka/9-distro-linux-untuk-pc-jadul) : Punya PC tua atau laptop jadul yang nganggur? Jangan dibuang! Ini dia 9 distro Linux super ringan yang bisa menghidupkan kembali komputer lama Anda dengan lancar tanpa lemot.
 - [Mencicipi Cuplikan Ubuntu 26.10 Stonking Stingray Lebih Awal](https://dalam.web.id/sistem-terbuka/mencicipi-cuplikan-ubuntu-26-10-stonking-stingray) : Dapatkan akses awal Ubuntu 26.10 Stonking Stingray melalui rilis cuplikan (snapshot) pengembangan. Mari uji fitur baru tanpa harus menunggu build harian.
 - [Xfce 4.22 – Apa yang Baru dan Apa yang Bisa Diharapkan?](https://dalam.web.id/sistem-terbuka/xfce-4-22-apa-yang-baru) : Jelajahi pembaruan terbaru Xfce 4.22 yang akan hadir di tahun 2026. Temukan peningkatan dukungan Wayland, performa Thunar, dan optimasi resource untuk distro Linux favorit Anda.
 - [Manajer Paket Linux Adalah Alasan Pengguna Enggan Kembali ke Windows](https://dalam.web.id/sistem-terbuka/alasan-pengguna-linux-enggan-kembali-windows-manajer-paket) : Bosan dengan instalasi aplikasi Windows yang ribet? Cari tahu mengapa manajer paket (package manager) di Linux menjadi alasan utama pengguna enggan kembali.
