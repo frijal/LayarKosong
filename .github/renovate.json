@@ -6,26 +6,18 @@
     ":combinePatchMinorReleases",
     ":rebaseStalePrs"
   ],
-
   "enabledManagers": ["bun", "github-actions"],
-
   "bun": {
     "enabled": true
   },
-
   "rangeStrategy": "bump",
-
   "dependencyDashboard": true,
-
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
-
   "minimumReleaseAge": "2 days",
-
   "postUpdateOptions": [
     "bun-lockfile-fix"
   ],
-
   "packageRules": [
     {
       "description": "Group core web processing tools",
@@ -45,7 +37,6 @@
       "automerge": true,
       "automergeType": "pr"
     },
-
     {
       "description": "Safe automerge for patch & minor",
       "matchUpdateTypes": ["patch", "minor"],
@@ -53,27 +44,22 @@
       "automerge": true,
       "automergeType": "pr"
     },
-
     {
       "description": "0.x packages = semi-danger zone",
       "matchCurrentVersion": "/^0./",
       "automerge": false
     },
-
     {
       "description": "Major updates = always manual review",
       "matchUpdateTypes": ["major"],
       "automerge": false
     }
   ],
-
   "vulnerabilityAlerts": {
     "labels": ["security"],
     "assignees": ["frijal"],
     "automerge": true
-  }  
-}
-{
+  },
   "regexManagers": [
     {
       "fileMatch": ["^.*\\.html$", "^.*\\.js$"],
