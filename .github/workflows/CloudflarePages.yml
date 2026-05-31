@@ -17,11 +17,11 @@ on:
       mode:
         description: 'Pilih mode deploy'
         required: true
-        default: 'full-database-D1'
+        default: 'full'
         type: choice
         options:
-          - full-database-D1 # Default run: deploy + build D1
-          - update-tanpa-D1  # Hanya deploy, tanpa build D1
+          - full         # Default run: deploy + build D1
+          - update-only  # Hanya deploy, tanpa build D1
 
 permissions:
   contents: read
@@ -111,7 +111,7 @@ jobs:
 
       # 🍳 Run Dapur — DILEWATI kalau mode: update-only
       - name: Run Dapur (Build D1)
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'full-database-D1' }}
+        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'full' }}
         run: bun run source/search/build-d1.ts
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
