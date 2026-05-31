@@ -21,7 +21,7 @@ on:
         type: choice
         options:
           - full-database-D1         # Default run: deploy + build D1
-          - update-only-tanpa-D1  # Hanya deploy, tanpa build D1
+          - update-tanpa-D1  # Hanya deploy, tanpa build D1
 
 permissions:
   contents: read
