@@ -6,6 +6,10 @@
     ":combinePatchMinorReleases",
     ":rebaseStalePrs"
   ],
+  "ignorePaths": [
+    "dapur/**/*.min.js",
+    "ext/**/*.min.js"
+  ],
   "enabledManagers": ["bun", "github-actions","custom.regex"],
   "bun": {
     "enabled": true
