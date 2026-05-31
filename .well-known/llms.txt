@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.76
+document_version: 20.77
 last_updated: 2026-05-31
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 31 Mei 2026)
-> Menampilkan 1363 artikel versi 20.76.
+> Menampilkan 1363 artikel versi 20.77.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -409,7 +409,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Parlemen Bisu di Tengah Sejumlah Isu](https://dalam.web.id/lainnya/parlemen-bisu-2026) : DRI terkesan bisu saat anggaran pendidikan digunting, ritel modern mau dimatikan, dan impor indukan ayam serta mobil digulirkan? Analisis 5W+1H dan E-E-AAT oleh Makinuddin Samin.
 - [Ujian bagi Rakyat Karena Pemimpin Bodoh: Realita atau Takdir?](https://dalam.web.id/lainnya/ujian-rakyat-pemimpin-bodoh) : Mengupas tuntas fenomena ujian bagi rakyat karena pemimpin bodoh. Apakah ini takdir atau konsekuensi logis dari pilihan politik? Simak analisis mendalam 5W+1H di sini.
 - [Zakat Lebih Utama Dibanding Sedekah? Jangan Salah Prioritas dalam Beramal](https://dalam.web.id/lainnya/zakat-lebih-utama-dari-sodaqoh) : Zakat adalah rukun Islam keempat, wajib bagi yang mampu. Sedekah sunnah tapi mulia. Mana yang lebih utama? Simak penjelasan lengkap prioritas zakat vs sodaqoh.
-- [Invoizy - Aesthetic Invoice Generator](https://dalam.web.id/lainnya/invoizy) : Simple, fast, and aesthetic invoice generator. Swiss & Apple inspired design for professionals.
+- [Invoices Tagihan DP Penjualan Produk Diskon](https://dalam.web.id/lainnya/invoizy) : Invoice Generator untuk Penjualan Produk dengan fitur DP dan Diskon.
 - [Koperasi Desa Merah Putih Analisis Finansial, Resiko, dan Realitasnya](https://dalam.web.id/lainnya/kdmp-analisis-finansial) : narasi KDMP (Koperasi Desa Merah Putih) dari sisi finansial: hitungan omzet, skenario gagal bayar, resiko crowding out, dan realitas di desa. Bahasa santai, data jelas.
 - [Kontroversi Beasiswa LPDP: 7 Fakta Penting Soal Keadilan, Elitisme, dan Reformasi Total](https://dalam.web.id/lainnya/kontroversi-beasiswa-lpdp-reformasi) : Kontroversi beasiswa LPDP kembali mencuat setelah nama anak tokoh publik dan pejabat dikaitkan sebagai penerima. Apakah LPDP sudah tepat sasaran atau perlu reformasi total?
 - [Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis](https://dalam.web.id/lainnya/kebutuhan-dasar-rakyat-2026) : Sebenarnya rakyat tidak minta yang macam-macam. Artikel ini membahas tiga kebutuhan utama rakyat: kesehatan gratis, pendidikan gratis, dan lapangan pekerjaan luas sebagai fondasi kesejahteraan bangsa.
