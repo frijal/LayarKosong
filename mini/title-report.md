@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 5/30/2026, 2:25:01 PM
+Generated on: 5/31/2026, 2:26:16 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v20.63 | LLM Index v20.63 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v20.72 | LLM Index v20.72 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -395,6 +395,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `artikel/firefox-mascot-kit.html` | Kit Bukan Logo Baru, Tapi Maskot Lucu Firefox yang Baru Rilis! - Brand Refresh 2025 🦊 - Layar Kosong | Kit Bukan Logo Baru, Tapi Maskot Lucu Firefox yang Baru Rilis! - Brand Refresh 2025 🦊 | Layar Kosong | ✅ Perfect |
 | `artikel/firefox-split-view-146.html` | Firefox 146 Akhirnya Punya Fitur Split View: Begini Cara Aktifkannya! 🚀 - Layar Kosong | Firefox 146 Akhirnya Punya Fitur Split View: Begini Cara Aktifkannya! 🚀 | Layar Kosong | ✅ Perfect |
 | `artikel/firefox-ubuntu-ram.html` | Kenapa Firefox di Ubuntu Nggak Boros RAM? - Layar Kosong | Kenapa Firefox di Ubuntu Nggak Boros RAM? | Layar Kosong | ✅ Perfect |
+| `artikel/fitur-eksperimental-cachyos-optimasi-memori.html` | Kupas Tuntas Fitur Eksperimental CachyOS: Rahasia Desktop Mulus Lancar - Layar Kosong | Kupas Tuntas Fitur Eksperimental CachyOS: Rahasia Desktop Mulus Lancar | Layar Kosong | ✅ Perfect |
 | `artikel/fix-cachyos-boot.html` | Cara Memperbaiki Error Update Bootloader CachyOS & Masalah Mount VFAT - Layar Kosong | Cara Memperbaiki Error Update Bootloader CachyOS & Masalah Mount VFAT | Layar Kosong | ✅ Perfect |
 | `artikel/fix-cannot-resolve-dependencies.html` | Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux - Layar Kosong | Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux | Layar Kosong | ✅ Perfect |
 | `artikel/fix-database-corrupted.html` | Memperbaiki Error Database Corrupted Failed to Commit Transaction di Arch Linux - Layar Kosong | Memperbaiki Error Database Corrupted Failed to Commit Transaction di Arch Linux | Layar Kosong | ✅ Perfect |
@@ -580,6 +581,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `artikel/jejak-negosiasi-geopolitik-gaza-freeport-danantara.html` | Jejak Geopolitik: Barter Iuran BoP dan Gurita Freeport di Danantara - Layar Kosong | Jejak Geopolitik: Barter Iuran BoP dan Gurita Freeport di Danantara | Layar Kosong | ✅ Perfect |
 | `artikel/jenis-instalasi-linux.html` | Jenis Instalasi Linux: Dual Boot, Live USB, VM, & Fresh Install - Layar Kosong | Jenis Instalasi Linux: Dual Boot, Live USB, VM, & Fresh Install | Layar Kosong | ✅ Perfect |
 | `artikel/jenis-piring-aman-kesehatan.html` | Jenis Piring yang Aman untuk Kesehatan Keluarga: Fakta Penting - Layar Kosong | Jenis Piring yang Aman untuk Kesehatan Keluarga: Fakta Penting | Layar Kosong | ✅ Perfect |
+| `artikel/jeroan-komputer-cpu-ram-vram-zram.html` | Bongkar Jeroan Komputer: Rahasia CPU, RAM, VRAM, dan zRAM - Layar Kosong | Bongkar Jeroan Komputer: Rahasia CPU, RAM, VRAM, dan zRAM | Layar Kosong | ✅ Perfect |
 | `artikel/json-published-time-artikel-editor.html` | JSON Batch Editor article:published_time - Layar Kosong | JSON Batch Editor article:published_time | Layar Kosong | ✅ Perfect |
 | `artikel/jumat.html` | Keistimewaan Hari Jumat dalam Islam - Layar Kosong | Keistimewaan Hari Jumat dalam Islam | Layar Kosong | ✅ Perfect |
 | `artikel/jusuf-kalla-nobel-perdamaian.html` | H. Jusuf Kalla: Mengapa Beliau Pantas Menerima Nobel Perdamaian dan Kemanusiaan - Layar Kosong | H. Jusuf Kalla: Mengapa Beliau Pantas Menerima Nobel Perdamaian dan Kemanusiaan | Layar Kosong | ✅ Perfect |
@@ -975,6 +977,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `artikel/panduan-lengkap-snbp-2026.html` | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator - Layar Kosong | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-libur-cuti-bersama-2026.html` | Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend! - Layar Kosong | Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend! | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-lisensi-creative-commons.html` | Panduan Santai Memahami Lisensi Creative Commons Biar Karyamu Aman 🛡️ - Layar Kosong | Panduan Santai Memahami Lisensi Creative Commons Biar Karyamu Aman 🛡️ | Layar Kosong | ✅ Perfect |
+| `artikel/panduan-memaksimalkan-zram-cachyos.html` | Panduan Maksimal zRAM di CachyOS - Layar Kosong | Panduan Maksimal zRAM di CachyOS | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-migrasi-nodejs-ke-bun.html` | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah - Layar Kosong | Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-pengasuhan-sains.html` | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja - Layar Kosong | Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-pivot-table-excel.html` | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus - Layar Kosong | Panduan Pivot Table Excel: Rahasia Rekap Data Kilat Tanpa Rumus | Layar Kosong | ✅ Perfect |
@@ -1034,6 +1037,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `artikel/peramban-ringan-linux-terbaik.html` | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel - Layar Kosong | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel | Layar Kosong | ✅ Perfect |
 | `artikel/peran-ai-bantu-umkm-bersaing.html` | Peran AI dalam Membantu UMKM Bersaing di Pasar Modern - Layar Kosong | Peran AI dalam Membantu UMKM Bersaing di Pasar Modern | Layar Kosong | ✅ Perfect |
 | `artikel/peran-hr-it-cepat-tergantikan-ai.html` | Peran HR & IT yang Paling Cepat Tergantikan AI: Analisis, Dampak, dan Strategi Adaptasi - Layar Kosong | Peran HR & IT yang Paling Cepat Tergantikan AI: Analisis, Dampak, dan Strategi Adaptasi | Layar Kosong | ✅ Perfect |
+| `artikel/peran-krusial-vram-linux.html` | Peran Krusial VRAM di Linux: Lebih dari Sekadar Memori Layar - Layar Kosong | Peran Krusial VRAM di Linux: Lebih dari Sekadar Memori Layar | Layar Kosong | ✅ Perfect |
 | `artikel/perbaikan-foto-ala-national-geographic.html` | Panduan Perbaikan Foto ala National Geographic - Layar Kosong | Panduan Perbaikan Foto ala National Geographic | Layar Kosong | ✅ Perfect |
 | `artikel/perbaiki-grub-rescue.html` | Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB - Layar Kosong | Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB | Layar Kosong | ✅ Perfect |
 | `artikel/perbandingan-ai-chatbot-terbaik.html` | Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖 - Layar Kosong | Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖 | Layar Kosong | ✅ Perfect |
@@ -1188,7 +1192,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `artikel/self-hosting-debian-pemula.html` | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! - Layar Kosong | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! | Layar Kosong | ✅ Perfect |
 | `artikel/selisih-utang-negara-indonesia.html` | Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi - Layar Kosong | Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi | Layar Kosong | ✅ Perfect |
 | `artikel/sembelit.html` | Sulit Buang Air Besar (Sembelit) - Penyebab, Cara Mengatasi & Pencegahan - Layar Kosong | Sulit Buang Air Besar (Sembelit) - Penyebab, Cara Mengatasi & Pencegahan | Layar Kosong | ✅ Perfect |
-| `artikel/semver-7-7-3.html` | semver@7.7.3 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js - Layar Kosong | semver@7.7.3 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js | Layar Kosong | ✅ Perfect |
+| `artikel/semver-7-7-3.html` | semver@7.8.1 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js - Layar Kosong | semver@7.8.1 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js | Layar Kosong | ✅ Perfect |
 | `artikel/seni-digital-masa-depan-kreativitas.html` | Eksplorasi Seni Digital: Dari Konsep Visual Hingga Peluang Masa DepanSeni Digital Masa Depan Kreativitas di Era Modern . Jaga Data Pribadi Tetap Aman - Layar Kosong | Eksplorasi Seni Digital: Dari Konsep Visual Hingga Peluang Masa DepanSeni Digital Masa Depan Kreativitas di Era Modern . Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `artikel/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `artikel/seni-menurut-tarjih-muhammadiyah.html` | Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨 - Layar Kosong | Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨 | Layar Kosong | ✅ Perfect |
@@ -1240,10 +1244,12 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `artikel/strategi-branching-github.html` | Kenalan Sama Strategi Branching Populer di GitHub 📊 - Layar Kosong | Kenalan Sama Strategi Branching Populer di GitHub 📊 | Layar Kosong | ✅ Perfect |
 | `artikel/stricken-disturbed-makna-lirik.html` | Makna Mendalam Lagu Stricken Disturbed - Layar Kosong | Makna Mendalam Lagu Stricken Disturbed | Layar Kosong | ✅ Perfect |
 | `artikel/struktur-berkas-direktori-linux.html` | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai - Layar Kosong | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai | Layar Kosong | ✅ Perfect |
+| `artikel/stuttering-cachyos-i5-dual-core.html` | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 - Layar Kosong | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 | Layar Kosong | ✅ Perfect |
 | `artikel/suara-hati-foss-kaltim-pemilukada.html` | Suara Hati FOSS Kaltim Menjelang Pemilukada - Layar Kosong | Suara Hati FOSS Kaltim Menjelang Pemilukada | Layar Kosong | ✅ Perfect |
 | `artikel/suara-senyap-tembok-tinggi.html` | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat - Layar Kosong | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat | Layar Kosong | ✅ Perfect |
 | `artikel/sudah-jauh-banget-generasi-kita.html` | Sudah "Jauh" Banget Apa Ya, Generasi Penerus Kita? - Refleksi Pendidikan Islam - Layar Kosong | Sudah "Jauh" Banget Apa Ya, Generasi Penerus Kita? - Refleksi Pendidikan Islam | Layar Kosong | ✅ Perfect |
 | `artikel/sudo-tanpa-password.html` | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) - Layar Kosong | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) | Layar Kosong | ✅ Perfect |
+| `artikel/sukses-instal-booster-cachyos.html` | Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi - Layar Kosong | Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi | Layar Kosong | ✅ Perfect |
 | `artikel/sulit-khusyu-penyakit-hati.html` | Sulit Khusyu adalah Penyakit Mematikan Hati - Layar Kosong | Sulit Khusyu adalah Penyakit Mematikan Hati | Layar Kosong | ✅ Perfect |
 | `artikel/sultan-murad-iii.html` | Kisah Sultan Murad III - Antara Cahaya Ilmu dan Bayangan Kemewahan - Layar Kosong | Kisah Sultan Murad III - Antara Cahaya Ilmu dan Bayangan Kemewahan | Layar Kosong | ✅ Perfect |
 | `artikel/sumur-rumah-madinah.html` | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah - Layar Kosong | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah | Layar Kosong | ✅ Perfect |
@@ -1350,6 +1356,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `artikel/vladimir-putin-akui-madrasah-al-quran-rusia.html` | Resmi! Putin Akui Madrasah dan Al-Qur'an: Menilik Kebijakan Islam di Rusia - Layar Kosong | Resmi! Putin Akui Madrasah dan Al-Qur'an: Menilik Kebijakan Islam di Rusia | Layar Kosong | ✅ Perfect |
 | `artikel/vlc-rotate.html` | Cara Memutar Video Terbalik di VLC Player - Layar Kosong | Cara Memutar Video Terbalik di VLC Player | Layar Kosong | ✅ Perfect |
 | `artikel/vpn-bikin-internet-cepat.html` | Kenapa Pake VPN Internet Malah Makin Ngebut? Ini Penjelasan Teknis Tapi Santai - Layar Kosong | Kenapa Pake VPN Internet Malah Makin Ngebut? Ini Penjelasan Teknis Tapi Santai | Layar Kosong | ✅ Perfect |
+| `artikel/vram-intel-hd-620-ram-16gb.html` | Punya RAM 16GB & Intel HD 620: Apakah Masih Butuh VRAM? - Layar Kosong | Punya RAM 16GB & Intel HD 620: Apakah Masih Butuh VRAM? | Layar Kosong | ✅ Perfect |
 | `artikel/wacana-ganti-lpg-ke-cng-hemat-atau-buntung.html` | Wacana Ganti LPG 3 Kg ke CNG: Benar Bikin Hemat Atau Malah Rakyat yang Buntung? ⛽💸 - Layar Kosong | Wacana Ganti LPG 3 Kg ke CNG: Benar Bikin Hemat Atau Malah Rakyat yang Buntung? ⛽💸 | Layar Kosong | ✅ Perfect |
 | `artikel/waktu-sangat-terbatas.html` | Waktu Itu Terbatas! Jangan Sia-siakan Detik Berhargamu ⏳ - Layar Kosong | Waktu Itu Terbatas! Jangan Sia-siakan Detik Berhargamu ⏳ | Layar Kosong | ✅ Perfect |
 | `artikel/warisan-ilmiah-bj-habibie.html` | Warisan Ilmiah B.J. Habibie: Mr. Crack dan Rahasia Langit Dunia - Layar Kosong | Warisan Ilmiah B.J. Habibie: Mr. Crack dan Rahasia Langit Dunia | Layar Kosong | ✅ Perfect |
@@ -1828,6 +1835,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `lainnya/ujian-nasional-catatan-video.html` | Ujian Nasional: catatan singkat, video, dan visual - Layar Kosong | Ujian Nasional: catatan singkat, video, dan visual | Layar Kosong | ✅ Perfect |
 | `lainnya/ujian-rakyat-pemimpin-bodoh.html` | Ujian bagi Rakyat Karena Pemimpin Bodoh: Realita atau Takdir? - Layar Kosong | Ujian bagi Rakyat Karena Pemimpin Bodoh: Realita atau Takdir? | Layar Kosong | ✅ Perfect |
 | `lainnya/utbk-snbt-2026-cara-daftar-dan-perubahan-kebijakan.html` | Cara Daftar UTBK SNBT 2026 dan Perubahan Kebijakannya - Layar Kosong | Cara Daftar UTBK SNBT 2026 dan Perubahan Kebijakannya | Layar Kosong | ✅ Perfect |
+| `lainnya/vram-intel-hd-620-ram-16gb.html` | Punya RAM 16GB & Intel HD 620: Apakah Masih Butuh VRAM? - Layar Kosong | Punya RAM 16GB & Intel HD 620: Apakah Masih Butuh VRAM? | Layar Kosong | ✅ Perfect |
 | `lainnya/wacana-ganti-lpg-ke-cng-hemat-atau-buntung.html` | Wacana Ganti LPG 3 Kg ke CNG: Benar Bikin Hemat Atau Malah Rakyat yang Buntung? ⛽💸 - Layar Kosong | Wacana Ganti LPG 3 Kg ke CNG: Benar Bikin Hemat Atau Malah Rakyat yang Buntung? ⛽💸 | Layar Kosong | ✅ Perfect |
 | `lainnya/waktu-sangat-terbatas.html` | Waktu Itu Terbatas! Jangan Sia-siakan Detik Berhargamu ⏳ - Layar Kosong | Waktu Itu Terbatas! Jangan Sia-siakan Detik Berhargamu ⏳ | Layar Kosong | ✅ Perfect |
 | `lainnya/wfa-sekolah-daring-2026.html` | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru - Layar Kosong | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru | Layar Kosong | ✅ Perfect |
@@ -2210,6 +2218,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `sistem-terbuka/file-permission.html` | Kupas Tuntas File Permission di Linux (chmod, chown) - Layar Kosong | Kupas Tuntas File Permission di Linux (chmod, chown) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/firefox-esr-debian-repos.html` | Pilihan Terbaik Memasang Firefox di Debian - ESR vs Flatpak - Layar Kosong | Pilihan Terbaik Memasang Firefox di Debian - ESR vs Flatpak | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/firefox-ubuntu-ram.html` | Kenapa Firefox di Ubuntu Nggak Boros RAM? - Layar Kosong | Kenapa Firefox di Ubuntu Nggak Boros RAM? | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/fitur-eksperimental-cachyos-optimasi-memori.html` | Kupas Tuntas Fitur Eksperimental CachyOS: Rahasia Desktop Mulus Lancar - Layar Kosong | Kupas Tuntas Fitur Eksperimental CachyOS: Rahasia Desktop Mulus Lancar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/fix-cachyos-boot.html` | Cara Memperbaiki Error Update Bootloader CachyOS & Masalah Mount VFAT - Layar Kosong | Cara Memperbaiki Error Update Bootloader CachyOS & Masalah Mount VFAT | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/fix-cannot-resolve-dependencies.html` | Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux - Layar Kosong | Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/fix-database-corrupted.html` | Memperbaiki Error Database Corrupted Failed to Commit Transaction di Arch Linux - Layar Kosong | Memperbaiki Error Database Corrupted Failed to Commit Transaction di Arch Linux | Layar Kosong | ✅ Perfect |
@@ -2364,6 +2373,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `sistem-terbuka/paket-debian-manual-install.html` | Bagaimana Melihat Paket Debian yang Diinstal Manual (Tanpa Dependensi Ribet)? - Layar Kosong | Bagaimana Melihat Paket Debian yang Diinstal Manual (Tanpa Dependensi Ribet)? | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/panduan-instalasi-arch-linux.html` | Panduan Instalasi Arch Linux untuk Pemula 🐧 - Layar Kosong | Panduan Instalasi Arch Linux untuk Pemula 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/panduan-instalasi-mx-linux-btrfs.html` | Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas - Layar Kosong | Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/panduan-memaksimalkan-zram-cachyos.html` | Panduan Maksimal zRAM di CachyOS - Layar Kosong | Panduan Maksimal zRAM di CachyOS | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/parrot-security-age-verification-statement.html` | Pernyataan Parrot Security soal Verifikasi Usia: Kami Tidak Butuh ID Anda - Layar Kosong | Pernyataan Parrot Security soal Verifikasi Usia: Kami Tidak Butuh ID Anda | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/paru-lintas-distro.html` | Paru Bukan Hanya Milik CachyOS! AUR Helper Lintas Distro Arch - Layar Kosong | Paru Bukan Hanya Milik CachyOS! AUR Helper Lintas Distro Arch | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/paru-software-nonresmi.html` | Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR) - Layar Kosong | Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR) | Layar Kosong | ✅ Perfect |
@@ -2375,6 +2385,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `sistem-terbuka/pengganti-google-code.html` | Apa Pengganti Google Code Sekarang? (Dulu Komunitas, Kini Bisnis) - Layar Kosong | Apa Pengganti Google Code Sekarang? (Dulu Komunitas, Kini Bisnis) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pengganti-notepad-plus-plus-linux-kate-vs-geany.html` | Dilema Migrasi Linux Berburu Pengganti Notepad Plus Plus Antara Kate dan Geany - Layar Kosong | Dilema Migrasi Linux Berburu Pengganti Notepad Plus Plus Antara Kate dan Geany | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/peramban-ringan-linux-terbaik.html` | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel - Layar Kosong | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/peran-krusial-vram-linux.html` | Peran Krusial VRAM di Linux: Lebih dari Sekadar Memori Layar - Layar Kosong | Peran Krusial VRAM di Linux: Lebih dari Sekadar Memori Layar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/perbaiki-grub-rescue.html` | Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB - Layar Kosong | Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/perintah-teks.html` | Perintah Teks di Linux - Panduan Santai & Lengkap - Layar Kosong | Perintah Teks di Linux - Panduan Santai & Lengkap | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/perjalanan-ubuntu-jogja-gcos.html` | Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta - Layar Kosong | Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta | Layar Kosong | ✅ Perfect |
@@ -2430,8 +2441,10 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `sistem-terbuka/ssh-linux.html` | Pengenalan SSH di Linux - Terminal Interaktif - Layar Kosong | Pengenalan SSH di Linux - Terminal Interaktif | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/stop-educating-linux.html` | Stop Educating Linux: Mengapa Linux Bukan Windows dan Mengapa Itu Keren! - Layar Kosong | Stop Educating Linux: Mengapa Linux Bukan Windows dan Mengapa Itu Keren! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/struktur-berkas-direktori-linux.html` | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai - Layar Kosong | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/stuttering-cachyos-i5-dual-core.html` | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 - Layar Kosong | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/suara-hati-foss-kaltim-pemilukada.html` | Suara Hati FOSS Kaltim Menjelang Pemilukada - Layar Kosong | Suara Hati FOSS Kaltim Menjelang Pemilukada | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/sudo-tanpa-password.html` | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) - Layar Kosong | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/sukses-instal-booster-cachyos.html` | Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi - Layar Kosong | Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/symlinks.html` | Membersihkan Symbolic Link Rusak dengan `symlinks` di Linux - Layar Kosong | Membersihkan Symbolic Link Rusak dengan `symlinks` di Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/synaptic-shortcuts.html` | Kombinasi Tombol Pintas Synaptic Package Manager - Layar Kosong | Kombinasi Tombol Pintas Synaptic Package Manager | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/systemd-manager-tui.html` | Systemd Manager TUI: Aplikasi Terminal untuk Mengelola Service systemd dengan Mudah - Layar Kosong | Systemd Manager TUI: Aplikasi Terminal untuk Mengelola Service systemd dengan Mudah | Layar Kosong | ✅ Perfect |
@@ -2617,6 +2630,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `warta-tekno/jangan-larang-medsos-anak-regulasi-platform.html` | Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty - Layar Kosong | Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty | Layar Kosong | ✅ Perfect |
 | `warta-tekno/jangan-taruh-semua-telur-satu-keranjang.html` | Panduan pakai banyak AI chatbot - Layar Kosong | Panduan pakai banyak AI chatbot | Layar Kosong | ✅ Perfect |
 | `warta-tekno/jasper-ai-content-writer.html` | Jasper AI: Mesin Penulis Konten Super Cepat - Layar Kosong | Jasper AI: Mesin Penulis Konten Super Cepat | Layar Kosong | ✅ Perfect |
+| `warta-tekno/jeroan-komputer-cpu-ram-vram-zram.html` | Bongkar Jeroan Komputer: Rahasia CPU, RAM, VRAM, dan zRAM - Layar Kosong | Bongkar Jeroan Komputer: Rahasia CPU, RAM, VRAM, dan zRAM | Layar Kosong | ✅ Perfect |
 | `warta-tekno/json-published-time-artikel-editor.html` | JSON Batch Editor article:published_time - Layar Kosong | JSON Batch Editor article:published_time | Layar Kosong | ✅ Perfect |
 | `warta-tekno/kamus-syntax-html-markdown.html` | Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser - Layar Kosong | Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser | Layar Kosong | ✅ Perfect |
 | `warta-tekno/kan-bisa-belajar-ngapain-bayar.html` | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? - Layar Kosong | Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar? | Layar Kosong | ✅ Perfect |
@@ -2734,7 +2748,7 @@ Generated on: 5/30/2026, 2:25:01 PM
 | `warta-tekno/sejarah-gravitasi-ilmuwan-muslim.html` | Ilmuwan Muslim Temukan Gravitasi Berabad-abad Sebelum Newton - Layar Kosong | Ilmuwan Muslim Temukan Gravitasi Berabad-abad Sebelum Newton | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sejarah-layout-keyboard-qwerty.html` | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ - Layar Kosong | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ | Layar Kosong | ✅ Perfect |
 | `warta-tekno/self-hosting-debian-pemula.html` | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! - Layar Kosong | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! | Layar Kosong | ✅ Perfect |
-| `warta-tekno/semver-7-7-3.html` | semver@7.7.3 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js - Layar Kosong | semver@7.7.3 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js | Layar Kosong | ✅ Perfect |
+| `warta-tekno/semver-7-7-3.html` | semver@7.8.1 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js - Layar Kosong | semver@7.8.1 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js | Layar Kosong | ✅ Perfect |
 | `warta-tekno/shutdown-windows-cepat.html` | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh - Layar Kosong | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sony-hentikan-produksi-memory-card-ssd-shortage.html` | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD - Layar Kosong | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sqlite-bisa-seperti-mysql-postgre.html` | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? - Layar Kosong | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? | Layar Kosong | ✅ Perfect |
