@@ -15,7 +15,7 @@ jobs:
       pull-requests: write # Tambahan izin wajib untuk bisa bikin PR otomatis
       
     steps:
-      - uses: actions/checkout@v4 # (Saya sesuaikan ke v4 karena ini versi paling stabil saat ini)
+      - uses: actions/checkout@v6 # (Saya sesuaikan ke v4 karena ini versi paling stabil saat ini)
         with:
           fetch-depth: 1
 
