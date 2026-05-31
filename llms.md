@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.74
+document_version: 20.75
 last_updated: 2026-05-31
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 31 Mei 2026)
-> Menampilkan 1363 artikel versi 20.74.
+> Menampilkan 1363 artikel versi 20.75.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -1317,7 +1317,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panel Terbaik untuk Pengguna GitHub Pages](https://dalam.web.id/warta-tekno/panel-untuk-githubpages) : Rekomendasi panel dan layanan terbaik untuk pengguna GitHub Pages. Cocok untuk pengelolaan DNS, CMS, dan otomatisasi.
 - [Perlukah Pakai cPanel untuk Kelola Domain?](https://dalam.web.id/warta-tekno/perlukah-pakai-cpanel) : Apakah kita perlu cPanel untuk mengelola domain? Temukan jawabannya di artikel ini dengan penjelasan santai dan lengkap.
 - [Cara Uninstall Paket Global Node.js (npm, yarn, pnpm)](https://dalam.web.id/warta-tekno/uninstall-paket-global-npm) : Tutorial gampang cara uninstall atau hapus paket global npm, yarn, dan pnpm di Linux, macOS, dan Windows PowerShell.
-- [semver@7.7.3 - Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js](https://dalam.web.id/warta-tekno/semver-7-7-3) : Semver@7.7.3 adalah paket npm untuk parsing, membandingkan, dan mengelola versi software sesuai aturan Semantic Versioning. Contoh kode, tabel fitur, dan kapan dipakai di CI/CD. Halaman responsif, widescreen, mode gelap/terang otomatis.
+- [semver@7.8.1: Kalkulator Versi Node.js](https://dalam.web.id/warta-tekno/semver-7-7-3) : tentang paket semver@7.8.1 di Node.js. Pahami cara parsing, komparasi, dan manajemen versi software agar project tetap stabil.
 - [47 Command Mode ChatGPT yang Jarang Diketahui.](https://dalam.web.id/warta-tekno/chatgpt-command-mode) : Ternyata ChatGPT punya
 - [Misteri GoogleCodeExporter: Jejak Migrasi Wiki Google Code](https://dalam.web.id/warta-tekno/google-code-exporter) : Pernah lihat commit
 - [Cara Membuat API Cloudflare](https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare) : cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.
