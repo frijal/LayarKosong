@@ -1,9 +1,6 @@
 name: Auto Clean Hidden Unicode (HTML)
 
-on:
-  push:
-    paths:
-      - "**/*.html"
+on:  
   workflow_dispatch:
 
 jobs:
