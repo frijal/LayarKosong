@@ -216,7 +216,7 @@ const run = async (): Promise<void> => {
     console.log("=".repeat(60));
     console.log(`⏱️  Waktu Tempuh      : ${duration.toFixed(4)} detik`);
     console.log(`✅ Berhasil Dijepit   : ${stats.success} file`);
-    console.log(`⏭️  Di-skip            : ${stats.skipped} file`);
+    console.log(`⏭️  Di-skip           : ${stats.skipped} file`);
     console.log(`❌ Gagal Proses       : ${stats.failed} file`);
     console.log("-".repeat(60));
     console.log(`📉 Ukuran Sebelum     : ${formatBytes(stats.totalBefore)}`);
