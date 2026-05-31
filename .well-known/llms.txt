@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.73
+document_version: 20.74
 last_updated: 2026-05-31
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 31 Mei 2026)
-> Menampilkan 1362 artikel versi 20.73.
+> Menampilkan 1363 artikel versi 20.74.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -343,6 +343,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Invoices Penyewaan](https://dalam.web.id/lainnya/invoice-sewa-layarkosong) : Invoice Generator khusus untuk rental/penyewaan dengan auto-DP, auto-tanggal kembali akurat, dan tata letak profesional.
 - [Sekolahan Dipaksa Mengikuti Halusinasi Diplomasi Kekuasaan](https://dalam.web.id/lainnya/sekolah-dipaksa-mengikuti-halusinasi-diplomasi-kekuasaan) : Kritikan tajam terhadap instruksi mendadak Presiden untuk memasukkan Bahasa Prancis dan Portugis ke kurikulum sekolah demi sebuah diplomasi.
 - [Punya RAM 16GB & Intel HD 620: Apakah Masih Butuh VRAM?](https://dalam.web.id/lainnya/vram-intel-hd-620-ram-16gb) : Pahami cara kerja sistem shared memory pada iGPU Intel HD 620 dengan RAM 16GB. Ketahui apakah laptopmu masih membutuhkan VRAM fisik atau tidak.
 - [Lonjakan Utang Negara: Rp2,6 Triliun per Hari, Menguap ke Mana?](https://dalam.web.id/lainnya/lonjakan-utang-negara-rp2-6-triliun-per-hari) : Opini kritis tentang lonjakan utang negara sejak Oktober 2024 hingga Maret 2026 yang mencapai tambahan Rp2,6 triliun per hari tanpa perbaikan kesejahteraan nyata.
