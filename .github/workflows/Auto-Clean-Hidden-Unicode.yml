@@ -9,27 +9,34 @@ on:
 jobs:
   autoclean:
     runs-on: ubuntu-latest
-   
+    
     permissions:
       contents: write
+      pull-requests: write # Tambahan izin wajib untuk bisa bikin PR otomatis
+      
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4 # (Saya sesuaikan ke v4 karena ini versi paling stabil saat ini)
         with:
           fetch-depth: 1
-          persist-credentials: true
 
       - name: Clean hidden unicode in HTML
+        # Mengubah NBSP menjadi &nbsp; agar tipografi aman, 
+        # dan menghapus zero-width characters lainnya tanpa ampun.
         run: |
-          find . -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/ /g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
+          find . -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/&nbsp;/g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
 
-      - name: Commit changes if any
-        run: |
-          if ! git diff --quiet; then
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git add .
-            git commit -m "chore: remove hidden unicode characters from HTML"
-            git push
-          else
-            echo "No changes to commit."
-          fi
+      - name: Create Pull Request if changes exist
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: remove hidden unicode characters from HTML"
+          title: "chore: 🧹 Auto-clean hidden Unicode characters in HTML"
+          body: |
+            Halo! Bot mendeteksi adanya karakter Unicode tersembunyi (seperti spasi gaib) dari hasil *copy-paste* di file HTML kamu.
+            
+            Karakter tersebut sudah dibersihkan dan diubah menjadi `&nbsp;` agar tipografi tetap aman dan Renovate tidak rewel lagi.
+            
+            Mohon periksa perubahannya dan *merge* jika sudah sesuai! ✨
+          branch: chore/auto-clean-unicode
+          delete-branch: true # Otomatis hapus branch ini setelah PR di-merge
+          labels: "automated pr, cleanup"
