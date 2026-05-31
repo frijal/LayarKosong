@@ -26,7 +26,7 @@ jobs:
           find . -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/&nbsp;/g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
 
       - name: Create Pull Request if changes exist
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: remove hidden unicode characters from HTML"
