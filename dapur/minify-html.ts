@@ -5,66 +5,83 @@ import * as minifyHtml from "@minify-html/node";
 
 // ========== CONFIG ==========
 const MINIFY_SIGNATURE = "minify_oleh_Fakhrul_Rijal";
-const rootDir = join(import.meta.dir, '..');
+const rootDir          = join(import.meta.dir, "..");
 
 const folders: string[] = [
     "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media",
-"opini-sosial", "sistem-terbuka", "warta-tekno"
+    "opini-sosial", "sistem-terbuka", "warta-tekno",
 ];
 
 // ========== TYPES ==========
 interface ErrorDetail {
-    path: string;
+    path:  string;
     error: string;
 }
 
 interface Stats {
-    success: number;
-    skipped: number;
-    failed: number;
-    errorList: ErrorDetail[];
-    totalSaved: number;
+    success:     number;
+    skipped:     number;
+    failed:      number;
+    errorList:   ErrorDetail[];
+    totalSaved:  number;
     totalBefore: number;
-    totalAfter: number;
+    totalAfter:  number;
 }
 
 const stats: Stats = {
-    success: 0,
-    skipped: 0,
-    failed: 0,
-    errorList: [],
-    totalSaved: 0,
+    success:     0,
+    skipped:     0,
+    failed:      0,
+    errorList:   [],
+    totalSaved:  0,
     totalBefore: 0,
-    totalAfter: 0,
+    totalAfter:  0,
 };
+
+// ========== SANITASI UNICODE ==========
+/**
+ * Bersihkan semua karakter invisible / hidden unicode dari HTML.
+ *
+ * Karakter yang ditangani:
+ *   \u00AD        → Soft Hyphen (dari Word/Google Docs)
+ *   \u200B        → Zero-Width Space
+ *   \u200C        → Zero-Width Non-Joiner
+ *   \u200D        → Zero-Width Joiner
+ *   \u200E        → Left-to-Right Mark
+ *   \u200F        → Right-to-Left Mark
+ *   \u2060        → Word Joiner
+ *   \uFEFF        → BOM / Zero-Width No-Break Space
+ *   \u00A0        → Non-Breaking Space → dikonversi ke &nbsp; (bukan dihapus)
+ */
+const sanitizeUnicode = (html: string): string =>
+    html
+        .replace(/\u00A0/g, "&nbsp;")
+        .replace(/[\u00AD\u200B-\u200F\u2060\uFEFF]/g, "");
 
 // ========== PROTECTION: ATRIBUT ==========
 const protectAttributes = (html: string): { html: string; vault: string[] } => {
     const vault: string[] = [];
 
     const protectedHtml = html
-    .replace(/<script\b[^>]*\bsrc\s*=\s*"[^"]*"[^>]*>/gi, (match) => {
-        const id = `___ATTR_${vault.length}___`;
-        vault.push(match);
-        return id;
-    })
-    .replace(
-        /\b(src|href|srcset|content|action|data-src|data-href|poster)\s*=\s*"([^"]*)"/gi,
-             (match) => {
-                 const id = `___ATTR_${vault.length}___`;
-                 vault.push(match);
-                 return id;
-             }
-    );
+        .replace(/<script\b[^>]*\bsrc\s*=\s*"[^"]*"[^>]*>/gi, (match) => {
+            const id = `___ATTR_${vault.length}___`;
+            vault.push(match);
+            return id;
+        })
+        .replace(
+            /\b(src|href|srcset|content|action|data-src|data-href|poster)\s*=\s*"([^"]*)"/gi,
+            (match) => {
+                const id = `___ATTR_${vault.length}___`;
+                vault.push(match);
+                return id;
+            }
+        );
 
     return { html: protectedHtml, vault };
 };
 
 const restoreAttributes = (html: string, vault: string[]): string =>
-vault.reduce((acc, original, i) => acc.replace(`___ATTR_${i}___`, original), html);
-
-const normalizeSpaces = (html: string): string =>
-html.replace(/ {2,}/g, ' ');
+    vault.reduce((acc, original, i) => acc.replace(`___ATTR_${i}___`, original), html);
 
 // ========== PROTECTION: STYLE BLOCKS ==========
 const protectStyleBlocks = (html: string): { html: string; styles: string[] } => {
@@ -78,20 +95,24 @@ const protectStyleBlocks = (html: string): { html: string; styles: string[] } =>
 };
 
 const restoreStyleBlocks = (html: string, styles: string[]): string =>
-styles.reduce((acc, style, i) => acc.replace(`___STYLE_${i}___`, style), html);
+    styles.reduce((acc, style, i) => acc.replace(`___STYLE_${i}___`, style), html);
 
 // ========== PROTECTION: MARKDOWN SPACES ==========
 const protectMarkdownSpaces = (html: string): string =>
-html
-.replace(/ (\*\*|__|\*|_|~~|`)/g, '&#32;$1')
-.replace(/(\*\*|__|\*|_|~~|`) /g, '$1&#32;');
+    html
+        .replace(/ (\*\*|__|\*|_|~~|`)/g, "&#32;$1")
+        .replace(/(\*\*|__|\*|_|~~|`) /g, "$1&#32;");
 
 const restoreMarkdownSpaces = (html: string): string => {
-    const restored = html.replaceAll('&#32;', ' ');
+    const restored = html.replaceAll("&#32;", " ");
     return restored
-    .replace(/ {2,}(\*\*|__|\*(?!\*)|_(?!_)|~~|`)/g, ' $1')
-    .replace(/(\*\*|__|\*(?!\*)|_(?!_)|~~|`) {2,}/g, '$1 ');
+        .replace(/ {2,}(\*\*|__|\*(?!\*)|_(?!_)|~~|`)/g, " $1")
+        .replace(/(\*\*|__|\*(?!\*)|_(?!_)|~~|`) {2,}/g, "$1 ");
 };
+
+// ========== NORMALIZE SPACES ==========
+const normalizeSpaces = (html: string): string =>
+    html.replace(/ {2,}/g, " ");
 
 // ========== PROCESSOR ==========
 const processFile = async (filePath: string): Promise<void> => {
@@ -105,29 +126,36 @@ const processFile = async (filePath: string): Promise<void> => {
 
         const before = content.length;
 
-        const { html: protected1, vault } = protectAttributes(content);
+        // 🧹 Langkah 1: Sanitasi unicode tersembunyi — SEBELUM semua protect chain
+        const cleaned = sanitizeUnicode(content);
+
+        // 🔒 Langkah 2: Protect → process → restore
+        const { html: protected1, vault } = protectAttributes(cleaned);
         const { html: noStyle, styles }   = protectStyleBlocks(protected1);
         const mdProtected                 = protectMarkdownSpaces(noStyle);
         const stylesRestored              = restoreStyleBlocks(mdProtected, styles);
         const restored                    = restoreAttributes(stylesRestored, vault);
 
+        // ⚡ Langkah 3: Minify
         const minified = minifyHtml.minify(Buffer.from(restored), {
-            allow_noncompliant_unquoted_attribute_values: true,
-            collapse_whitespaces: false,
+            allow_noncompliant_unquoted_attribute_values:    true,
+            collapse_whitespaces:                            false,
             ensure_spec_compliant_unquoted_attribute_values: true,
-            keep_comments: false,
-            keep_html_and_head_opening_tags: true,
-            keep_spaces_between_attributes: false,
-            minify_css: true,
-            minify_js: false,
+            keep_comments:                                   false,
+            keep_html_and_head_opening_tags:                 true,
+            keep_spaces_between_attributes:                  false,
+            minify_css:                                      true,
+            minify_js:                                       false,
         }).toString();
 
+        // 🔁 Langkah 4: Restore spasi markdown → normalize multi-spasi
         const spacesRestored = normalizeSpaces(restoreMarkdownSpaces(minified));
 
+        // 🖊️  Langkah 5: Bubuhkan signature
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
         const signed = spacesRestored.includes("</body>")
-        ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
-        : spacesRestored.trimEnd() + signature;
+            ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
+            : spacesRestored.trimEnd() + signature;
 
         const after = signed.length;
 
@@ -136,7 +164,8 @@ const processFile = async (filePath: string): Promise<void> => {
         stats.totalSaved  += before - after;
         stats.success++;
 
-        if (after < before) {
+        // Tulis hanya kalau ada perubahan nyata
+        if (signed !== content) {
             await writeFile(filePath, signed, "utf8");
         }
 
@@ -149,9 +178,9 @@ const processFile = async (filePath: string): Promise<void> => {
 // ========== HELPERS ==========
 const formatBytes = (bytes: number): string => {
     if (bytes === 0) return "0 Bytes";
-    const k = 1024;
+    const k     = 1024;
     const sizes = ["Bytes", "KB", "MB"];
-    const i = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
+    const i     = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 };
 
@@ -165,8 +194,8 @@ const run = async (): Promise<void> => {
                 try {
                     const files = await readdir(join(rootDir, folder));
                     return files
-                    .filter(f => f.endsWith(".html"))
-                    .map(f => join(rootDir, folder, f));
+                        .filter((f) => f.endsWith(".html"))
+                        .map((f) => join(rootDir, folder, f));
                 } catch {
                     console.error(`⚠️  Gagal membaca folder: ${folder}`);
                     return [];
@@ -186,19 +215,19 @@ const run = async (): Promise<void> => {
     console.log("📊 REKAP MINIFIKASI LAYAR KOSONG");
     console.log("=".repeat(60));
     console.log(`⏱️  Waktu Tempuh      : ${duration.toFixed(4)} detik`);
-    console.log(`✅ Berhasil Dijepit  : ${stats.success} file`);
-    console.log(`⏭️  Di-skip           : ${stats.skipped} file`);
-    console.log(`❌ Gagal Proses      : ${stats.failed} file`);
+    console.log(`✅ Berhasil Dijepit   : ${stats.success} file`);
+    console.log(`⏭️  Di-skip            : ${stats.skipped} file`);
+    console.log(`❌ Gagal Proses       : ${stats.failed} file`);
     console.log("-".repeat(60));
-    console.log(`📉 Ukuran Sebelum    : ${formatBytes(stats.totalBefore)}`);
-    console.log(`📉 Ukuran Sesudah    : ${formatBytes(stats.totalAfter)}`);
-    console.log(`🚀 Ruang Dihemat     : ${formatBytes(stats.totalSaved)}`);
+    console.log(`📉 Ukuran Sebelum     : ${formatBytes(stats.totalBefore)}`);
+    console.log(`📦 Ukuran Sesudah     : ${formatBytes(stats.totalAfter)}`);
+    console.log(`🚀 Ruang Dihemat      : ${formatBytes(stats.totalSaved)}`);
     console.log("=".repeat(60));
 
     if (stats.failed > 0) {
         console.log("\n⚠️  DETAIL ERROR:");
         stats.errorList.forEach((item, i) =>
-        console.log(`  ${i + 1}. ${item.path} → ${item.error}`)
+            console.log(`  ${i + 1}. ${item.path} → ${item.error}`)
         );
     }
 };
