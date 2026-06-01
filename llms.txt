@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.81
+document_version: 20.82
 last_updated: 2026-06-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 Juni 2026)
-> Menampilkan 1367 artikel versi 20.81.
+> Menampilkan 1369 artikel versi 20.82.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -146,6 +146,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Pancasila Tidak Lahir 1 Juni 1945: Meluruskan Sejarah](https://dalam.web.id/jejak-sejarah/pancasila-tidak-lahir-1-juni-1945) : Menelusuri sejarah otentik kelahiran Pancasila yang sah pada 18 Agustus 1945, meluruskan kekeliruan narasi 1 Juni dan pengkultusan peran Soekarno.
 - [Mendobrak Mitos Angka 13: Pesan Tauhid di Balik Megahnya Ibrahim Tower Muhammadiyah](https://dalam.web.id/jejak-sejarah/muhammadiyah-dobrak-mitos-angka-13) : Menghapus mitos angka sial, Muhammadiyah resmikan Ibrahim Tower 13 lantai di RS Roemani Semarang. Bukti nyata kemajuan berlandaskan tauhid dan rasionalitas.
 - [Ulama Juru Bicara Setan (Syaitonu Natiq) - Bahaya Pembela Kezaliman](https://dalam.web.id/jejak-sejarah/ulama-juru-bicara-setan) : Membahas tuntas bahaya ulama juru bicara setan (Syaitonu Natiq) yang membenarkan kezaliman penguasa, berdasarkan ulasan tajam dari Ahmad Khozinudin, S.H.
 - [Demokrasi Dipertahankan, Syariat Dicurigai: Ada Apa dengan Umat Ini?](https://dalam.web.id/jejak-sejarah/demokrasi-dan-syariat) : Membahas fenomena mengapa umat sering kali lebih membela sistem demokrasi dibandingkan syariat, serta mengupas akar ketakutan mental yang menjajah umat saat ini.
@@ -344,6 +345,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Akibat Fatal Typo Pengumuman RT: "Lapor 1 Jam - 24 X"](https://dalam.web.id/lainnya/typo-pengumuman-rt-lapor-tamu) : Kejadian menggelitik namun berpotensi fatal ketika pengurus RT salah menuliskan aturan lapor tamu. Simak dampak dan cara mengatasinya.
 - [Invoices Penyewaan](https://dalam.web.id/lainnya/invoice-sewa-layarkosong) : Invoice Generator khusus untuk rental/penyewaan dengan auto-DP, auto-tanggal kembali akurat, dan tata letak profesional.
 - [Sekolahan Dipaksa Mengikuti Halusinasi Diplomasi Kekuasaan](https://dalam.web.id/lainnya/sekolah-dipaksa-mengikuti-halusinasi-diplomasi-kekuasaan) : Kritikan tajam terhadap instruksi mendadak Presiden untuk memasukkan Bahasa Prancis dan Portugis ke kurikulum sekolah demi sebuah diplomasi.
 - [Punya RAM 16GB & Intel HD 620: Apakah Masih Butuh VRAM?](https://dalam.web.id/lainnya/vram-intel-hd-620-ram-16gb) : Pahami cara kerja sistem shared memory pada iGPU Intel HD 620 dengan RAM 16GB. Ketahui apakah laptopmu masih membutuhkan VRAM fisik atau tidak.
