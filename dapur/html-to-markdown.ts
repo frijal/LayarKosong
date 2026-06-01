@@ -62,69 +62,61 @@ function cleanHTML(html: string): string {
         vault.push(s);
         return id;
     };
+
+    // PERBAIKAN 1: Gunakan arrow function () => v agar karakter $ di dalam <script> aman
     const restore = (s: string) =>
-    vault.reduce((acc, v, i) => acc.replaceAll(`__VAULT_${i}__`, v), s);
+    vault.reduce((acc, v, i) => acc.replaceAll(`__VAULT_${i}__`, () => v), s);
 
-    // Proteksi <script> — bukan konten artikel
     let out = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, protect);
-
-    // Proteksi <style> — bukan konten artikel
     out = out.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, protect);
 
-    // Pre block normalisasi
     out = out.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
 
-    // ===== BOLD: <strong> / <b> → ** =====
-    // Capture 1 karakter sebelum dan sesudah tag untuk cek boundary
-    out = out.replace(/([\s\S]?)<(strong|b)>(.*?)<\/\2>([\s\S]?)/gi,
+    // PERBAIKAN 2: Ganti (.*?) menjadi (.+?) agar tidak memproses tag kosong
+    // ===== BOLD =====
+    out = out.replace(/([\s\S]?)<(strong|b)>(.+?)<\/\2>([\s\S]?)/gi,
                       (match, before, _tag, inner, after) =>
                       convertTag(match, before, inner, after, '**', '**')
     );
 
-    // ===== ITALIC: <em> / <i> → * =====
-    out = out.replace(/([\s\S]?)<(em|i)>(.*?)<\/\2>([\s\S]?)/gi,
+    // ===== ITALIC =====
+    out = out.replace(/([\s\S]?)<(em|i)>(.+?)<\/\2>([\s\S]?)/gi,
                       (match, before, _tag, inner, after) =>
                       convertTag(match, before, inner, after, '*', '*')
     );
 
-    // ===== STRIKETHROUGH: <del> / <s> / <strike> → ~~ =====
-    out = out.replace(/([\s\S]?)<(del|s|strike)>(.*?)<\/\2>([\s\S]?)/gi,
+    // ===== STRIKETHROUGH =====
+    out = out.replace(/([\s\S]?)<(del|s|strike)>(.+?)<\/\2>([\s\S]?)/gi,
                       (match, before, _tag, inner, after) =>
                       convertTag(match, before, inner, after, '~~', '~~')
     );
 
-    // ===== LINK: <a href="..."> → [teks](url) =====
-    // Hanya konversi yang bersih (tanpa atribut tambahan, tanpa gambar di dalamnya)
+    // ===== LINK =====
     out = out.replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
         const isProtected = /class=|id=|style=|target=|rel=/i.test(match);
         const containsImg = /<img\s[^>]*>/i.test(text);
         return (isProtected || containsImg) ? match : `[${text}](${url})`;
     });
 
-    // ===== INLINE CODE: <code> → ` =====
-    // Hanya satu baris, tanpa class/id
-    out = out.replace(/<pre[\s\S]*?<\/pre>|<code>([\s\S]*?)<\/code>/gi, (match, codeText) => {
+    // ===== INLINE CODE =====
+    out = out.replace(/<pre[\s\S]*?<\/pre>|<code>([\s\S]+?)<\/code>/gi, (match, codeText) => {
         if (match.toLowerCase().startsWith('<pre')) return match;
         if (codeText && !/\r|\n/.test(codeText) && !match.includes('class=') && !match.includes('id=')) {
-            // Capture 1 karakter sebelum/sesudah untuk boundary check
             return match.replace(
-                /([\s\S]?)<code>([\s\S]*?)<\/code>([\s\S]?)/i,
-                                 (_m, before, inner, after) =>
-                                 convertTag(_m, before, inner, after, '`', '`')
+                /([\s\S]?)<code>([\s\S]+?)<\/code>([\s\S]?)/i,
+                                 (_m, before, inner, after) => convertTag(_m, before, inner, after, '`', '`')
             );
         }
         return match;
     });
 
-    // Kembalikan semua yang diproteksi
     out = restore(out);
 
-    // Injeksi signature di akhir file
     const signature = `<noscript>${MD_SIGNATURE}</noscript>`;
     if (out.includes("</body>")) {
-        out = out.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`;
+        out = out.replace(/<\/body>\s*$/i, "").trimEnd() + `\n${signature}\n</body>`;
     } else {
-        out = out.trimEnd() + signature;
+        out = out.trimEnd() + `\n${signature}`;
     }
 
     return out;
