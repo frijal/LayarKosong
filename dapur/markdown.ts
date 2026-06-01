@@ -1,6 +1,6 @@
 /**
- * MARKDOWN ENHANCER v8.0 (Layar Kosong Optimized)
- * Update: Dual-path rendering — data-md priority + legacy selector fallback
+ * MARKDOWN ENHANCER v7.5 (Layar Kosong Optimized)
+ * Update: Anti-Dash List Fix & Em-Dash Support
  */
 declare global {
   interface Window {
@@ -50,35 +50,22 @@ function parseMarkdown(text: string): string {
   return res.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>").replace(/<\/ul><ul>/g, "");
 }
 
-function processElement(el: HTMLElement): void {
-  if (el.classList.contains("no-md") || el.classList.contains("rendered")) return;
-  const originalHTML = el.innerHTML.trim();
-  if (/[\*\#_\[\]`~\-]/.test(originalHTML)) {
-    const newHTML = parseMarkdown(originalHTML);
-    if (newHTML !== originalHTML) {
-      el.classList.add("rendered");
-      el.innerHTML = newHTML;
-    }
-  }
-}
-
 function enhanceMarkdown(): void {
-  // ============================================================
-  // JALUR BARU — data-md (artikel diproses cleanHTML.ts)
-  // ============================================================
-  const dataMdTargets = document.querySelectorAll<HTMLElement>("[data-md]");
-
-  if (dataMdTargets.length > 0) {
-    dataMdTargets.forEach(processElement);
-    return; // tidak masuk logika lama sama sekali
-  }
-
-  // ============================================================
-  // FALLBACK — logika lama (artikel dengan signature manual)
-  // Scope ini tidak akan ditambah content baru
-  // ============================================================
   const selector = "p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, footer, summary, .alert, .alert-box, .article-container, .article-meta, .author-box, .box, .callout, .card, .card-highlight, .card-tip, .closing, .code-block, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .five-wh, .gallery, .highlight, .highlight-box, .important, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-author, .meta-header, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .wh-item, .zdummy, .zdummy1, .zdummy2, .zdummy3";
-  document.querySelectorAll<HTMLElement>(selector).forEach(processElement);
+  const targets = document.querySelectorAll(selector);
+  targets.forEach((el) => {
+    const target = el as HTMLElement;
+    if (target.classList.contains("no-md") || target.classList.contains("rendered")) return;
+    const originalHTML = target.innerHTML;
+    const rawContent = originalHTML.trim();
+    if (/[\*\#_\[\]`~\-]/.test(rawContent)) {
+      const newHTML = parseMarkdown(rawContent);
+      if (newHTML !== originalHTML) {
+        target.classList.add("rendered");
+        target.innerHTML = newHTML;
+      }
+    }
+  });
 }
 
 function checkAndLoadHighlight(): void {
