@@ -33,7 +33,7 @@ async function fetchData(): Promise<void> {
       const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
       data[cat].forEach((item: any) => {
         const fileSlug = item.id.replace(/\.html$/, '');
-        
+
         // Penyesuaian Gambar:
         // img: versi kecil untuk list/feed
         // fullImg: versi asli untuk slider hero
@@ -150,7 +150,7 @@ function renderSidebar(targetCat?: string) {
 
     return `
       <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-        <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.onerror=null; this.src=this.src.includes('-sm.webp') ? '${item.fullImg}' : '/thumbnail.webp'" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; flex-shrink:0;">
+        <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="if(this.src.includes('-sm.webp')) { this.src='${item.fullImg}'; } else { this.onerror=null; this.src='/thumbnail-sm.webp'; }" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; flex-shrink:0;">
         <div class="mini-text">
           <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
             <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
@@ -269,10 +269,10 @@ function renderFeed(reset: boolean = false): void {
   const itemsToDisplay = filteredItems.slice(0, limit);
 
   itemsToDisplay.forEach(item => {
-    // Menggunakan item.img (-sm.webp) untuk performa feed
-    container.innerHTML += `
-      <div class="card" style="animation: fadeIn 0.5s ease">
-        <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.onerror=null; this.src=this.src.includes('-sm.webp') ? '${item.fullImg}' : '/thumbnail.webp'">
+  const cleanTitle = item.title.replace(/"/g, '&quot;');
+  container.innerHTML += `
+  <div class="card" style="animation: fadeIn 0.5s ease">
+  <img src="${item.img}" class="card-img" alt="${cleanTitle}" onerror="if(this.src.includes('-sm.webp')) { this.src='${item.fullImg}'; } else { this.onerror=null; this.src='/thumbnail-sm.webp'; }">
         <div class="card-body">
           <a href="${item.url}" class="card-link">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
