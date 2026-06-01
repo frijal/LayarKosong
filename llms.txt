@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.80
+document_version: 20.81
 last_updated: 2026-06-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 Juni 2026)
-> Menampilkan 1367 artikel versi 20.80.
+> Menampilkan 1367 artikel versi 20.81.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -344,7 +344,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
-- [Evolusi Sistem Operasi: Dari UNIX 1969 hingga HarmonyOS Modern](https://dalam.web.id/lainnya/sejarah-sistem-operasi-unix-harmonyos) : Telusuri perjalanan lengkap sejarah sistem operasi dari era UNIX hingga HarmonyOS beserta relevansinya dalam dunia cybersecurity dan cloud computing.
 - [Invoices Penyewaan](https://dalam.web.id/lainnya/invoice-sewa-layarkosong) : Invoice Generator khusus untuk rental/penyewaan dengan auto-DP, auto-tanggal kembali akurat, dan tata letak profesional.
 - [Sekolahan Dipaksa Mengikuti Halusinasi Diplomasi Kekuasaan](https://dalam.web.id/lainnya/sekolah-dipaksa-mengikuti-halusinasi-diplomasi-kekuasaan) : Kritikan tajam terhadap instruksi mendadak Presiden untuk memasukkan Bahasa Prancis dan Portugis ke kurikulum sekolah demi sebuah diplomasi.
 - [Punya RAM 16GB & Intel HD 620: Apakah Masih Butuh VRAM?](https://dalam.web.id/lainnya/vram-intel-hd-620-ram-16gb) : Pahami cara kerja sistem shared memory pada iGPU Intel HD 620 dengan RAM 16GB. Ketahui apakah laptopmu masih membutuhkan VRAM fisik atau tidak.
@@ -761,7 +760,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1](https://dalam.web.id/sistem-terbuka/tutorial-fts-cloudflare-d1) : dan santai cara membangun sistem pencarian Full-Text Search (FTS) di Cloudflare D1 untuk blog HTML statis menggunakan TypeScript.
 - [Solusi Laptop ASUS TUF Gaming Linux Auto Reboot Setelah Shutdown](https://dalam.web.id/sistem-terbuka/solusi-laptop-asus-tuf-linux-auto-reboot) : Cara mengatasi masalah laptop ASUS TUF Gaming A15 yang selalu menyala kembali (auto reboot) setelah melakukan shutdown di Linux Ubuntu dan Kubuntu secara tuntas.
 - [Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi](https://dalam.web.id/sistem-terbuka/sukses-instal-booster-cachyos) : Instalasi dmemcg-booster dan kcgroups di CachyOS berhasil! Pahami arti log terminalmu dan langkah selanjutnya agar sistem Linux bebas stuttering.
 - [Peran Krusial VRAM di Linux: Lebih dari Sekadar Memori Layar](https://dalam.web.id/sistem-terbuka/peran-krusial-vram-linux) : alasan mengapa VRAM sangat penting untuk sistem operasi Linux modern, mulai dari compositor Wayland hingga gaming via Proton dan rendering AI lokal.
@@ -1129,6 +1127,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1](https://dalam.web.id/warta-tekno/tutorial-fts-cloudflare-d1) : dan santai cara membangun sistem pencarian Full-Text Search (FTS) di Cloudflare D1 untuk blog HTML statis menggunakan TypeScript.
+- [Evolusi Sistem Operasi: Dari UNIX 1969 hingga HarmonyOS Modern](https://dalam.web.id/warta-tekno/sejarah-sistem-operasi-unix-harmonyos) : Telusuri perjalanan lengkap sejarah sistem operasi dari era UNIX hingga HarmonyOS beserta relevansinya dalam dunia cybersecurity dan cloud computing.
 - [Konversi URL GitHub ke Raw](https://dalam.web.id/warta-tekno/konversi-url-github-ke-raw) : Panduan singkat: ubah URL GitHub menjadi raw.githubusercontent.com dan coba langsung di halaman.
 - [Bongkar Jeroan Komputer: Rahasia CPU, RAM, VRAM, dan zRAM](https://dalam.web.id/warta-tekno/jeroan-komputer-cpu-ram-vram-zram) : Pahami bagaimana prosesor, memori utama, dan grafis saling berbagi sumber daya pada sistem operasi, serta solusi praktis menggunakan dmemcg-booster.
 - [10 Alternatif Cloudflare Tunnel Terbaik di Tahun 2026: Rangkuman Lengkap](https://dalam.web.id/warta-tekno/10-alternatif-cloudflare-tunnel-terbaik-2026) : Cari tahu 10 alternatif Cloudflare Tunnel terbaik di 2026. Mulai dari Pinggy hingga Frp, temukan solusi tunneling paling pas untuk kebutuhan web developer.
