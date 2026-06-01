@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.77
-last_updated: 2026-05-31
+document_version: 20.78
+last_updated: 2026-06-01
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 31 Mei 2026)
-> Menampilkan 1363 artikel versi 20.77.
+## Index Artikel Terbaru (Updated: 1 Juni 2026)
+> Menampilkan 1363 artikel versi 20.78.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -438,7 +438,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya](https://dalam.web.id/lainnya/tarif-listrik-januari-maret-2026) : Kabar gembira! PLN pastikan tarif listrik Januari-Maret 2026 tetap. Cek daftar tarif per kWh terbaru dan cara hitung tagihan listrik rumahmu di sini.
 - [Kalkulator Listrik Real-Time 2026](https://dalam.web.id/lainnya/kalkulator-listrik-real-time-2026) : Hitung tagihan listrik secara real-time. Masukkan alat, jumlah unit, dan durasi, hasil langsung muncul otomatis. Gratis dari Layar Kosong!
 - [Kado Tahun Baru 2026: Harga BBM Non-Subsidi Turun! Pertamina, Shell, BP, Vivo Kompak Kasih Diskon 🚀](https://dalam.web.id/lainnya/harga-bbm-turun-2026) : Mulai 1 Januari 2026, harga BBM non-subsidi seperti Pertamax, Pertamax Turbo, Dexlite turun signifikan. Cek daftar harga baru Pertamina dan badan usaha lain. Solar & Pertalite tetap, ini kado awal tahun buat pengendara!
-- [Kalkulator Laundry Berkah](https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah) : Layar Kosong - Catatan dan Opini.
+- [Kalkulator Laundry Berkah](https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah) : Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.
 - [Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya!](https://dalam.web.id/lainnya/larangan-cas-powerbank-di-kereta) : kenapa KAI melarang cas powerbank di kereta. Ini alasannya, dari risiko overload, listrik padam satu gerbong, hingga bahaya kebakaran.
 - [Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara!](https://dalam.web.id/lainnya/revolusi-dapur-dme) : Era tabung gas melon akan berakhir! Pemerintah finalisasi proyek penggantian LPG impor dengan DME (Dimethyl Ether) dari batu bara. Simak alasannya, plus minusnya, dan apa dampaknya bagi dapur kita.
 - [Ujian Nasional: catatan singkat, video, dan visual](https://dalam.web.id/lainnya/ujian-nasional-catatan-video) : Sedikit catatan tentang dampak Ujian Nasional: video, komentar santai, dan foto suasana pelaksanaan. Desain fullscreen, interaktif, dan mobile-friendly.
