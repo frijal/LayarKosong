@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.85
+document_version: 20.86
 last_updated: 2026-06-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 Juni 2026)
-> Menampilkan 1370 artikel versi 20.85.
+> Menampilkan 1371 artikel versi 20.86.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -762,6 +762,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Canonical tutup Ubuntu Pastebin](https://dalam.web.id/sistem-terbuka/canonical-tutup-ubuntu-pastebin) : Canonical mengumumkan penghentian layanan Ubuntu Pastebin; baca langkah amankan data dan alternatifnya.
 - [Apakah Ubuntu 26.04 LTS Distro Linux Paling Aman? Mitos vs Fakta](https://dalam.web.id/sistem-terbuka/ubuntu-26-04-lts-distro-linux-paling-aman) : Mengupas sistem keamanan Ubuntu 26.04 LTS secara mendalam. Apakah benar-benar distro Linux paling aman untuk kebutuhan harian dan server korporat?
 - [Solusi Laptop ASUS TUF Gaming Linux Auto Reboot Setelah Shutdown](https://dalam.web.id/sistem-terbuka/solusi-laptop-asus-tuf-linux-auto-reboot) : Cara mengatasi masalah laptop ASUS TUF Gaming A15 yang selalu menyala kembali (auto reboot) setelah melakukan shutdown di Linux Ubuntu dan Kubuntu secara tuntas.
 - [Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi](https://dalam.web.id/sistem-terbuka/sukses-instal-booster-cachyos) : Instalasi dmemcg-booster dan kcgroups di CachyOS berhasil! Pahami arti log terminalmu dan langkah selanjutnya agar sistem Linux bebas stuttering.
