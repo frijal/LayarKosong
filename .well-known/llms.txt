@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.86
+document_version: 20.87
 last_updated: 2026-06-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 Juni 2026)
-> Menampilkan 1371 artikel versi 20.86.
+> Menampilkan 1372 artikel versi 20.87.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -1131,6 +1131,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Langkah Mengatasi Email Notifikasi Masuk Spam (SPF, DKIM, DMARC)](https://dalam.web.id/warta-tekno/cara-mengatasi-email-masuk-spam) : Panduan praktis bagi developer untuk mengatasi masalah email transaksi dan notifikasi yang masuk folder spam menggunakan SPF, DKIM, dan DMARC.
 - [Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1](https://dalam.web.id/warta-tekno/tutorial-fts-cloudflare-d1) : dan santai cara membangun sistem pencarian Full-Text Search (FTS) di Cloudflare D1 untuk blog HTML statis menggunakan TypeScript.
 - [Evolusi Sistem Operasi: Dari UNIX 1969 hingga HarmonyOS Modern](https://dalam.web.id/warta-tekno/sejarah-sistem-operasi-unix-harmonyos) : Telusuri perjalanan lengkap sejarah sistem operasi dari era UNIX hingga HarmonyOS beserta relevansinya dalam dunia cybersecurity dan cloud computing.
 - [Konversi URL GitHub ke Raw](https://dalam.web.id/warta-tekno/konversi-url-github-ke-raw) : Panduan singkat: ubah URL GitHub menjadi raw.githubusercontent.com dan coba langsung di halaman.
