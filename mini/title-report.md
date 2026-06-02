@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/1/2026, 6:34:08 PM
+Generated on: 6/2/2026, 5:14:43 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v20.86 | LLM Index v20.86 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v20.90 | LLM Index v20.90 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -95,6 +95,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `artikel/agrinas-palma-nusantara-kontroversi-koperasi-merah-putih.html` | Agrinas & Koperasi Merah Putih: Antara Mimpi Energi & Kontroversi Impor Mobil - Layar Kosong | Agrinas & Koperasi Merah Putih: Antara Mimpi Energi & Kontroversi Impor Mobil | Layar Kosong | ✅ Perfect |
 | `artikel/ai-claude-temukan-bug-firefox-cepat.html` | AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas - Layar Kosong | AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas | Layar Kosong | ✅ Perfect |
 | `artikel/ai-coding-agent-2026.html` | AI Coding Agent 2026: Fakta Mengejutkan Mengapa Development Tidak Jadi Lebih Cepat - Layar Kosong | AI Coding Agent 2026: Fakta Mengejutkan Mengapa Development Tidak Jadi Lebih Cepat | Layar Kosong | ✅ Perfect |
+| `artikel/ai-forward-deployed-engineer.html` | AI Forward Deployed Engineer: Pekerjaan Baru Hype di Silicon Valley - Layar Kosong | AI Forward Deployed Engineer: Pekerjaan Baru Hype di Silicon Valley | Layar Kosong | ✅ Perfect |
 | `artikel/ai-gantikan-hr-it.html` | Peran HR & IT yang Paling Cepat Digantikan AI - Layar Kosong | Peran HR & IT yang Paling Cepat Digantikan AI | Layar Kosong | ✅ Perfect |
 | `artikel/ai-stack-2026-workflow-upgrade.html` | Stack Tools AI 2026: Upgrade Workflow Masa Depan - Layar Kosong | Stack Tools AI 2026: Upgrade Workflow Masa Depan | Layar Kosong | ✅ Perfect |
 | `artikel/ai-tangki-duluan.html` | AI Bisa Jawab Soal Teknik? Buktinya: Tangki Mana yang Kosong Duluan? - Layar Kosong | AI Bisa Jawab Soal Teknik? Buktinya: Tangki Mana yang Kosong Duluan? | Layar Kosong | ✅ Perfect |
@@ -253,6 +254,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `artikel/Cara-Memotong-Gambar-dengan-ImageMagick.html` | Cara Memotong Gambar dengan ImageMagick di Command Line ✂️ - Layar Kosong | Cara Memotong Gambar dengan ImageMagick di Command Line ✂️ | Layar Kosong | ✅ Perfect |
 | `artikel/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.html` | Memperbaiki GRUB Bootloader (Debian & Turunannya) - Layar Kosong | Memperbaiki GRUB Bootloader (Debian & Turunannya) | Layar Kosong | ✅ Perfect |
 | `artikel/cara-menambahkan-repositori-debian.html` | Cara Menambahkan Repositori Pihak Ketiga di Debian Linux - Layar Kosong | Cara Menambahkan Repositori Pihak Ketiga di Debian Linux | Layar Kosong | ✅ Perfect |
+| `artikel/cara-mengatasi-email-masuk-spam.html` | Langkah Mengatasi Email Notifikasi Masuk Spam (SPF, DKIM, DMARC) - Layar Kosong | Langkah Mengatasi Email Notifikasi Masuk Spam (SPF, DKIM, DMARC) | Layar Kosong | ✅ Perfect |
 | `artikel/cara-mengatasi-error-locale-debian-ubuntu.html` | Cara Mengatasi Error Locale "perl: warning: Setting locale failed" di Debian & Ubuntu - Layar Kosong | Cara Mengatasi Error Locale "perl: warning: Setting locale failed" di Debian & Ubuntu | Layar Kosong | ✅ Perfect |
 | `artikel/cara-mengatasi-wifi-mediatek-ubuntu.html` | Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux - Layar Kosong | Tutorial: Cara Mengatasi Wi-Fi MediaTek Tidak Terdeteksi di Ubuntu Linux | Layar Kosong | ✅ Perfect |
 | `artikel/cara-menggunakan-userchrome-css-firefox.html` | Cara Menggunakan userChrome.css di Firefox untuk Pemula (Panduan Lengkap) - Layar Kosong | Cara Menggunakan userChrome.css di Firefox untuk Pemula (Panduan Lengkap) | Layar Kosong | ✅ Perfect |
@@ -608,6 +610,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `artikel/kasus-ira-puspadewi-bumn.html` | Kasus Ira Puspadewi: Di Mana Batas Korupsi dan Kelalaian Bisnis BUMN? - Layar Kosong | Kasus Ira Puspadewi: Di Mana Batas Korupsi dan Kelalaian Bisnis BUMN? | Layar Kosong | ✅ Perfect |
 | `artikel/kate-editor-teks-pengganti-ide.html` | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya - Layar Kosong | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya | Layar Kosong | ✅ Perfect |
 | `artikel/kde-gear-26-04-30-tahun.html` | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital - Layar Kosong | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital | Layar Kosong | ✅ Perfect |
+| `artikel/kde-linux-distro-new.html` | KDE Linux Lepas dari Arch dan AUR di Wayland - Layar Kosong | KDE Linux Lepas dari Arch dan AUR di Wayland | Layar Kosong | ✅ Perfect |
 | `artikel/kde-plasma-6-6.html` | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! - Layar Kosong | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! | Layar Kosong | ✅ Perfect |
 | `artikel/kdmp-analisis-finansial.html` | Koperasi Desa Merah Putih Analisis Finansial, Resiko, dan Realitasnya - Layar Kosong | Koperasi Desa Merah Putih Analisis Finansial, Resiko, dan Realitasnya | Layar Kosong | ✅ Perfect |
 | `artikel/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi.html` | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih - Layar Kosong | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih | Layar Kosong | ✅ Perfect |
@@ -629,6 +632,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `artikel/kekeliruan-menilai-muhammadiyah-tidak-patuh-ulil-amri.html` | Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri - Layar Kosong | Kekeliruan Cara Pikir Menilai Muhammadiyah Tidak Patuh pada Ulil Amri | Layar Kosong | ✅ Perfect |
 | `artikel/kekuasaan-jadi-dagangan.html` | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman - Layar Kosong | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman | Layar Kosong | ✅ Perfect |
 | `artikel/kemenangan-linux-hp-sponsor-lvfs.html` | Hewlett Packard Resmi Jadi Sponsor Utama LVFS, Pengguna Linux Makin Dimanja - Layar Kosong | Hewlett Packard Resmi Jadi Sponsor Utama LVFS, Pengguna Linux Makin Dimanja | Layar Kosong | ✅ Perfect |
+| `artikel/kenali-jenis-saluran-listrik-udara.html` | Mengenal SUTR, SUTM, SUTT, SUTET hingga SUTUT - Layar Kosong | Mengenal SUTR, SUTM, SUTT, SUTET hingga SUTUT | Layar Kosong | ✅ Perfect |
 | `artikel/kenangan-ponsel-lama.html` | Galeri Kenangan Ponsel Jadul - Nostalgia Digital - Layar Kosong | Galeri Kenangan Ponsel Jadul - Nostalgia Digital | Layar Kosong | ✅ Perfect |
 | `artikel/kenapa-ada-folder-npm-cache.html` | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya - Layar Kosong | Kenapa Ada Folder .npm-cache/_cacache di Repo? Penyebab dan Solusinya | Layar Kosong | ✅ Perfect |
 | `artikel/kenapa-bukan-pejabat-ngumpulin-duit.html` | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat - Layar Kosong | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat | Layar Kosong | ✅ Perfect |
@@ -655,6 +659,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `artikel/kesimpulan-ai-umkm.html` | Masa Depan Milik Mereka yang Melek Teknologi - Layar Kosong | Masa Depan Milik Mereka yang Melek Teknologi | Layar Kosong | ✅ Perfect |
 | `artikel/kesultanan-utsmaniyah.html` | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum - Layar Kosong | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum | Layar Kosong | ✅ Perfect |
 | `artikel/ketika-orang-terdekat-menjadi-ujian.html` | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 - Layar Kosong | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 | Layar Kosong | ✅ Perfect |
+| `artikel/ketika-presiden-hanya-mendengar-kabar-baik.html` | Ketika Presiden Hanya Mendengar Kabar Baik, Bahaya Mengintai - Layar Kosong | Ketika Presiden Hanya Mendengar Kabar Baik, Bahaya Mengintai | Layar Kosong | ✅ Perfect |
 | `artikel/ketimpangan-pendidikan-sekolah-negeri-madrasah-swasta.html` | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda - Layar Kosong | Ketimpangan Pendidikan: Sekolah Negeri vs Madrasah Swasta, Keadilan yang Tertunda | Layar Kosong | ✅ Perfect |
 | `artikel/keunggulan-dan-kekurangan-Desktop-KDE.html` | Keunggulan & Kekurangan Desktop KDE Plasma - Layar Kosong | Keunggulan & Kekurangan Desktop KDE Plasma | Layar Kosong | ✅ Perfect |
 | `artikel/keutamaan-bulan-ramadhan.html` | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya - Layar Kosong | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya | Layar Kosong | ✅ Perfect |
@@ -1784,6 +1789,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `lainnya/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi.html` | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih - Layar Kosong | KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih | Layar Kosong | ✅ Perfect |
 | `lainnya/kebiasaan-pagi-rasulullah.html` | Kebiasaan Pagi Rasulullah yang Powerful untuk Hidup Lebih Produktif dan Berkah - Layar Kosong | Kebiasaan Pagi Rasulullah yang Powerful untuk Hidup Lebih Produktif dan Berkah | Layar Kosong | ✅ Perfect |
 | `lainnya/kebutuhan-dasar-rakyat-2026.html` | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis - Layar Kosong | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis | Layar Kosong | ✅ Perfect |
+| `lainnya/kenali-jenis-saluran-listrik-udara.html` | Mengenal SUTR, SUTM, SUTT, SUTET hingga SUTUT - Layar Kosong | Mengenal SUTR, SUTM, SUTT, SUTET hingga SUTUT | Layar Kosong | ✅ Perfect |
 | `lainnya/kenapa-bukan-pejabat-ngumpulin-duit.html` | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat - Layar Kosong | Kenapa Bukan Pejabat Aja yang Nyumbang Duit? Analisis Sistem dan Iuran Rakyat | Layar Kosong | ✅ Perfect |
 | `lainnya/kenapa-kartun-90an-hilang-dari-tv.html` | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? - Layar Kosong | Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional? | Layar Kosong | ✅ Perfect |
 | `lainnya/kenapa-rasulullah-gelar-saw.html` | Kenapa Hanya Rasulullah yang Punya Gelar SAW? Penjelasan Lengkap + 7 Fakta - Layar Kosong | Kenapa Hanya Rasulullah yang Punya Gelar SAW? Penjelasan Lengkap + 7 Fakta | Layar Kosong | ✅ Perfect |
@@ -2031,6 +2037,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `opini-sosial/kerja-sama-indonesia-as-analisis-kritis.html` | Waspadai Empat Isi Kerja Sama Indonesia-AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan? - Layar Kosong | Waspadai Empat Isi Kerja Sama Indonesia-AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kerja-sama-indonesia-india-2026.html` | Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳 - Layar Kosong | Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳 | Layar Kosong | ✅ Perfect |
 | `opini-sosial/ketika-orang-terdekat-menjadi-ujian.html` | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 - Layar Kosong | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 | Layar Kosong | ✅ Perfect |
+| `opini-sosial/ketika-presiden-hanya-mendengar-kabar-baik.html` | Ketika Presiden Hanya Mendengar Kabar Baik, Bahaya Mengintai - Layar Kosong | Ketika Presiden Hanya Mendengar Kabar Baik, Bahaya Mengintai | Layar Kosong | ✅ Perfect |
 | `opini-sosial/keutamaan-membela-kehormatan-saudara.html` | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! - Layar Kosong | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kewajiban-presiden-menurut-islam.html` | Kewajiban Presiden dan Jajarannya Menurut Pandangan Islam Secara Mendalam - Layar Kosong | Kewajiban Presiden dan Jajarannya Menurut Pandangan Islam Secara Mendalam | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kita-sadar-nggak-sih-jebakan-trump-prabowo-gaza.html` | Kita ini sadar nggak sih? Jebakan Trump untuk Prabowo, tameng hidup di Gaza - Layar Kosong | Kita ini sadar nggak sih? Jebakan Trump untuk Prabowo, tameng hidup di Gaza | Layar Kosong | ✅ Perfect |
@@ -2292,6 +2299,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `sistem-terbuka/jenis-instalasi-linux.html` | Jenis Instalasi Linux: Dual Boot, Live USB, VM, & Fresh Install - Layar Kosong | Jenis Instalasi Linux: Dual Boot, Live USB, VM, & Fresh Install | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kate-editor-teks-pengganti-ide.html` | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya - Layar Kosong | Kate: Editor Teks Ringan yang Gantiin IDE Berat Saya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kde-gear-26-04-30-tahun.html` | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital - Layar Kosong | KDE Gear 26.04: Edisi 30 Tahun KDE, Perangkat Lunak yang Kian Memantapkan Gizi Digital | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/kde-linux-distro-new.html` | KDE Linux Lepas dari Arch dan AUR di Wayland - Layar Kosong | KDE Linux Lepas dari Arch dan AUR di Wayland | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kde-plasma-6-6.html` | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! - Layar Kosong | KDE Plasma 6.6 - Fitur Terbaru yang Bikin Linux Users Excited! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/keamanan-linux-vs-windows.html` | Open Source Lebih Aman? Mengapa Linux Unggul dari Windows (Analisis Teknis) - Layar Kosong | Open Source Lebih Aman? Mengapa Linux Unggul dari Windows (Analisis Teknis) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/kebijakan-wikipedia-ai-generatif.html` | Kebijakan Wikipedia tentang AI Generatif: Fakta Penting yang Perlu Anda Ketahui - Layar Kosong | Kebijakan Wikipedia tentang AI Generatif: Fakta Penting yang Perlu Anda Ketahui | Layar Kosong | ✅ Perfect |
@@ -2518,6 +2526,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `warta-tekno/5g-fwa-open-ran-indonesia.html` | Apa Itu 5G FWA Open RAN? Internet Cepat Tanpa Kabel di Indonesia - Layar Kosong | Apa Itu 5G FWA Open RAN? Internet Cepat Tanpa Kabel di Indonesia | Layar Kosong | ✅ Perfect |
 | `warta-tekno/ai-claude-temukan-bug-firefox-cepat.html` | AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas - Layar Kosong | AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas | Layar Kosong | ✅ Perfect |
 | `warta-tekno/ai-coding-agent-2026.html` | AI Coding Agent 2026: Fakta Mengejutkan Mengapa Development Tidak Jadi Lebih Cepat - Layar Kosong | AI Coding Agent 2026: Fakta Mengejutkan Mengapa Development Tidak Jadi Lebih Cepat | Layar Kosong | ✅ Perfect |
+| `warta-tekno/ai-forward-deployed-engineer.html` | AI Forward Deployed Engineer: Pekerjaan Baru Hype di Silicon Valley - Layar Kosong | AI Forward Deployed Engineer: Pekerjaan Baru Hype di Silicon Valley | Layar Kosong | ✅ Perfect |
 | `warta-tekno/ai-gantikan-hr-it.html` | Peran HR & IT yang Paling Cepat Digantikan AI - Layar Kosong | Peran HR & IT yang Paling Cepat Digantikan AI | Layar Kosong | ✅ Perfect |
 | `warta-tekno/ai-stack-2026-workflow-upgrade.html` | Stack Tools AI 2026: Upgrade Workflow Masa Depan - Layar Kosong | Stack Tools AI 2026: Upgrade Workflow Masa Depan | Layar Kosong | ✅ Perfect |
 | `warta-tekno/ai-tangki-duluan.html` | AI Bisa Jawab Soal Teknik? Buktinya: Tangki Mana yang Kosong Duluan? - Layar Kosong | AI Bisa Jawab Soal Teknik? Buktinya: Tangki Mana yang Kosong Duluan? | Layar Kosong | ✅ Perfect |
@@ -2557,6 +2566,7 @@ Generated on: 6/1/2026, 6:34:08 PM
 | `warta-tekno/cara-melaporkan-deepfake-komdigi.html` | Panduan Lengkap: Cara Melaporkan Konten Deepfake ke Komdigi 2026 - Layar Kosong | Panduan Lengkap: Cara Melaporkan Konten Deepfake ke Komdigi 2026 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/cara-mematikan-laptop-yang-benar.html` | Cara Mematikan Laptop yang Benar dan Aman - Layar Kosong | Cara Mematikan Laptop yang Benar dan Aman | Layar Kosong | ✅ Perfect |
 | `warta-tekno/cara-membuat-api-cloudflare.html` | Cara Membuat API Cloudflare - Layar Kosong | Cara Membuat API Cloudflare | Layar Kosong | ✅ Perfect |
+| `warta-tekno/cara-mengatasi-email-masuk-spam.html` | Langkah Mengatasi Email Notifikasi Masuk Spam (SPF, DKIM, DMARC) - Layar Kosong | Langkah Mengatasi Email Notifikasi Masuk Spam (SPF, DKIM, DMARC) | Layar Kosong | ✅ Perfect |
 | `warta-tekno/cara-menggunakan-userchrome-css-firefox.html` | Cara Menggunakan userChrome.css di Firefox untuk Pemula (Panduan Lengkap) - Layar Kosong | Cara Menggunakan userChrome.css di Firefox untuk Pemula (Panduan Lengkap) | Layar Kosong | ✅ Perfect |
 | `warta-tekno/cara-sembunyikan-recommended-all-apps-windows-11.html` | Cara Menghilangkan Recommended dan All Apps di Start Menu Windows 11 Panduan Praktis dan Teknis - Layar Kosong | Cara Menghilangkan Recommended dan All Apps di Start Menu Windows 11 Panduan Praktis dan Teknis | Layar Kosong | ✅ Perfect |
 | `warta-tekno/cara-update-sertifikat-secure-boot.html` | Cara Mudah Memperbarui Sertifikat Secure Boot Windows Agar Tidak Mogok - Layar Kosong | Cara Mudah Memperbarui Sertifikat Secure Boot Windows Agar Tidak Mogok | Layar Kosong | ✅ Perfect |
