@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDE Linux Lepas dari Arch dan AUR di Wayland</title>
+
+    <meta name="description" content="KDE Linux bawa perubahan masif dengan migrasi ke kde-builder demi performa dan keamanan, plus trik rahasia atasi Proton Pass error di Wayland.">
+    <meta name="news_keywords" content="KDE Linux, kde-builder, Wayland, Proton Pass, Linux Distro, Keamanan Linux, AUR">
+    <meta name="article:tag" content="Linux">
+    <meta name="article:tag" content="KDE">
+    <meta name="article:tag" content="OpenSource">
+    <meta name="article:tag" content="ProtonPass">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Makin Mandiri, KDE Linux Tinggalkan Arch dan AUR demi Performa Optimal">
+    <meta property="og:description" content="Proyek KDE Linux umumkan update besar berskala arsitektural. Pelajari mengapa mereka beralih dari paket Arch dan bagaimana cara mengatasi glitch Proton Pass.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/kde-linux-distro-new.html">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HJ0Ydt3aYAAAg4f?format=jpg&name=large">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KDE Linux Makin Solid: Mandiri Tanpa Dependensi Arch & Solusi App Proton Pass">
+    <meta name="twitter:description" content="Update pengembangan terbaru KDE Linux fokus penuh pada audit keamanan mandiri. Plus, baca solusi jalan ninja pasang Proton Pass di Wayland.">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HJ0Ydt3aYAAAg4f?format=jpg&name=large">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/kde-linux-distro-new.html">
+
+    <meta name="promphint" content="Apa alat baru yang digunakan KDE Linux untuk membangun sistemnya? Mereka kini menggunakan kde-builder agar proses build lebih cepat dan independen.">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a202c;
+            --text-muted: #4a5568;
+            --accent-color: #2b6cb0;
+            --accent-hover: #2c5282;
+            --border-color: #e2e8f0;
+            --code-bg: #edf2f7;
+            --code-text: #b83280;
+            --syntax-comment: #718096;
+            --syntax-keyword: #d53f8c;
+            --syntax-string: #319795;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a202c;
+                --text-color: #f7fafc;
+                --text-muted: #a0aec0;
+                --accent-color: #63b3ed;
+                --accent-hover: #4299e1;
+                --border-color: #2d3748;
+                --code-bg: #2d3748;
+                --code-text: #f687b3;
+                --syntax-comment: #a0aec0;
+                --syntax-keyword: #f687b3;
+                --syntax-string: #4fd1c5;
+            }
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.7;
+            font-size: 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 0.0625rem solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            color: var(--accent-color);
+            line-height: 1.2;
+            margin: 0 0 0.5rem 0;
+        }
+
+        article p {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            text-align: justify;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: var(--accent-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.375rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        blockquote {
+            margin: 2rem 0;
+            padding: 1rem 1.5rem;
+            border-left: 0.25rem solid var(--accent-color);
+            background-color: var(--code-bg);
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        blockquote p {
+            margin: 0;
+            font-style: normal;
+            font-size: 1.05rem;
+            color: var(--text-color);
+        }
+
+        ol {
+            margin: 0 0 1.5rem 1.5rem;
+            padding: 0;
+        }
+
+        ol li {
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+        }
+
+        /* Syntax Highlighting Base */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--text-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.9375rem;
+            margin: 1.5rem 0;
+            border: 0.0625rem solid var(--border-color);
+        }
+
+        code {
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        pre code {
+            padding: 0;
+            background-color: transparent;
+            color: inherit;
+            font-size: inherit;
+        }
+
+        .sh-comment { color: var(--syntax-comment); font-style: italic; }
+        .sh-keyword { color: var(--syntax-keyword); font-weight: bold; }
+        .sh-string { color: var(--syntax-string); }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 0.0625rem solid var(--border-color);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-inline a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .footer-inline a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.75rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.2rem; }
+            article p, ol li { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 role="heading" aria-level="1">KDE Linux Bermigrasi Penuh Demi Keamanan Ekosistem Mandiri</h1>
+      </header>
+
+    <main role="main">
+        <article>
+            <p>**KDE Linux**, distro Linux yang bakal rilis dari KDE, baru aja dapet update pengembangan besar lainnya yang fokus ke performa, pengujian, dan keamanan. Langkah ini diambil oleh komunitas pengembang di seluruh dunia untuk memastikan sistem operasi masa depan ini siap bersaing di pasar desktop modern secara stabil.</p>
+
+            <img src="https://pbs.twimg.com/media/HJ0Ydt3aYAAAg4f?format=jpg&name=large"
+                 alt="Antarmuka KDE Linux terbaru yang fokus pada efisiensi performa dan keamanan Wayland"
+                 class="main-image"
+                 decoding="async"
+                 fetchpriority="high">
+
+            <p>Salah satu perubahan terbesar adalah KDE Linux mulai ninggalin pembuatan paket berbasis Arch dan sekarang nge-*build* software KDE langsung pake tool milik mereka sendiri, yaitu `kde-builder`. Ini bikin proses *build* jadi lebih cepet, improvisasi *caching*, dan ngebuat proyek ini gak terlalu bergantung sama satu distro tertentu aja.</p>
+
+            <p>Dari sisi keamanan, para developer KDE sempet ngelakuin audit kecil setelah ada isu keamanan kernel Linux baru-baru ini. Hasilnya, mereka ngehapus banyak komponen yang gak kepake atau berpotensi berisiko, balik lagi ke *vanilla Linux kernel*, nge-*drop* dukungan Fuse2 yang udah gak dirawat, dan ngebuang beberapa paket serta modul kernel yang gak perlu.</p>
+
+            <p>Mungkin perubahan yang paling mencolok adalah KDE Linux sekarang bener-bener lepas dari ketergantungan pada AUR (Arch User Repository) setelah nemuin kalau salah satu komponen berbasis AUR-nya ternyata gak bener-bener dipake. Developer bilang langkah ini bakal ninggatin reliabilitas dan ngurunqin pusing di bagian infrastruktur.</p>
+
+            <p>Proyek ini juga makin solid dalam hal pengujian otomatis lewat integrasi OpenQA, yang ngebantu nemuin *build* yang rusak sebelum sempet nyampe ke tangan user. Setiap lini kode diuji secara ketat sebelum diluncurkan.</p>
+
+            <p>KDE Linux emang masih dalam tahap pengembangan aktif, tapi setiap *update*-nya bikin distro ini keliatan makin serius sebagai distro desktop yang fokus pada keamanan dan dibangun di sekeliling ekosistem KDE. Pertanyaannya sekarang, tertarik buat nyoba KDE Linux pas rilis nanti?</p>
+            </article>
+    </main>
+
+    <div id="related-articles-grid"></div>
+    <div id="response"></div>
+
+    <footer role="contentinfo">
+        <div class="footer-inline">
+            <span>✍️ **Frijal** (Layar Kosong)</span>
+            <span>•</span>
+            <span>📅 Diperbarui: 2 Juni 2026</span>
+            <span>•</span>
+            <span>🔍 Referensi: Repositori Resmi KDE & Komunitas Linux Indonesia</span>            <span>•</span>
+
+            <span>🌐 Open Source</span>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
