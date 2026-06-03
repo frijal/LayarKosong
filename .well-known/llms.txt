@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 20.91
+document_version: 20.92
 last_updated: 2026-06-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 Juni 2026)
-> Menampilkan 1378 artikel versi 20.91.
+> Menampilkan 1379 artikel versi 20.92.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -766,6 +766,7 @@ document_type: llm_behavior_and_entity_guidance
 ## Sistem Terbuka
 - [Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck](https://dalam.web.id/sistem-terbuka/mula-sejarah-kde) : Menelusuri jejak sejarah KDE dari awal mula diciptakan pada 1996 hingga menjadi sistem operasi modern dan andalan di Steam Deck.
 - [Panduan Lengkap Instalasi KDE Linux (Testing Edition) & Syarat Sistem](https://dalam.web.id/sistem-terbuka/panduan-install-kde-linux-os) : KDE Linux edisi Testing telah rilis! Pelajari spesifikasi minimum, batasan hardware, dan tutorial lengkap cara install menggunakan Live USB di artikel ini.
+- [GitHub Media Uploader alat sederhana untuk Ngirim File tanpa masuk Repository](https://dalam.web.id/sistem-terbuka/github-media-uploader) : GitHub Media Uploader adalah tools sederhana dari Layar Kosong untuk upload gambar & video langsung ke repository GitHub dan dapat raw URL nya.
 - [KDE Linux Lepas dari Arch dan AUR di Wayland](https://dalam.web.id/sistem-terbuka/kde-linux-distro-new) : KDE Linux bawa perubahan masif dengan migrasi ke kde-builder demi performa dan keamanan, plus trik rahasia atasi Proton Pass error di Wayland.
 - [Canonical tutup Ubuntu Pastebin](https://dalam.web.id/sistem-terbuka/canonical-tutup-ubuntu-pastebin) : Canonical mengumumkan penghentian layanan Ubuntu Pastebin; baca langkah amankan data dan alternatifnya.
 - [Apakah Ubuntu 26.04 LTS Distro Linux Paling Aman? Mitos vs Fakta](https://dalam.web.id/sistem-terbuka/ubuntu-26-04-lts-distro-linux-paling-aman) : Mengupas sistem keamanan Ubuntu 26.04 LTS secara mendalam. Apakah benar-benar distro Linux paling aman untuk kebutuhan harian dan server korporat?
