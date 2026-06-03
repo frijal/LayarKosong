@@ -1,1 +1,163 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="12;url=/feed"><title>404 - Tersesat di - Layar Kosong</title><meta property="og:site_name" content="Layar Kosong"><meta property="og:title" content="404 Not Found"><link href="/favicon.ico" type="image/x-icon" rel="icon"><link rel="shortcut icon" href="/favicon.ico"><meta name="twitter:title" content="404 Not Found"><style>:root{--bg-color:#f4f4f9;--text-color:#2b2b2b;--text-muted:#666;--card-bg:#ffffff;--btn-bg:#3b82f6;--btn-hover:#2563eb;--btn-text:#ffffff;--btn-alt-bg:#e2e8f0;--btn-alt-hover:#cbd5e1;--btn-alt-text:#334155;--shadow:0 10px 15px -3px rgba(0, 0, 0, 0.1)}@media (prefers-color-scheme:dark){:root{--bg-color:#0f172a;--text-color:#f1f5f9;--text-muted:#94a3b8;--card-bg:#1e293b;--btn-bg:#3b82f6;--btn-hover:#60a5fa;--btn-text:#ffffff;--btn-alt-bg:#334155;--btn-alt-hover:#475569;--btn-alt-text:#f8fafc;--shadow:0 10px 15px -3px rgba(0, 0, 0, 0.5)}}*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,-apple-system,sans-serif;background-color:var(--bg-color);color:var(--text-color);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem;text-align:center;line-height:1.6;transition:background-color .3s,color .3s}.container{background-color:var(--card-bg);padding:3rem 2rem;border-radius:1rem;box-shadow:var(--shadow);max-width:500px;width:100%}h1{font-size:6rem;font-weight:900;margin-bottom:.5rem;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:float 3s ease-in-out infinite}h2{font-size:1.5rem;margin-bottom:1rem}p{color:var(--text-muted);margin-bottom:1.5rem}.timer-text{font-weight:700;font-size:1.2rem;color:var(--text-color);display:inline-block;margin-bottom:2rem;padding:.5rem 1rem;background-color:rgba(59,130,246,.1);border-radius:.5rem;border:1px solid rgba(59,130,246,.2)}.countdown::after{content:"12";animation:ticktock 12s step-end forwards;color:#ef4444;font-size:1.3rem;display:inline-block;min-width:1.5rem}.buttons{display:flex;flex-direction:column;gap:1rem}@media (min-width:480px){.buttons{flex-direction:row;justify-content:center}}.btn{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.5rem;border-radius:.5rem;text-decoration:none;font-weight:600;transition:all .2s ease}.btn-primary{background-color:var(--btn-bg);color:var(--btn-text)}.btn-primary:hover{background-color:var(--btn-hover);transform:translateY(-2px)}.btn-secondary{background-color:var(--btn-alt-bg);color:var(--btn-alt-text)}.btn-secondary:hover{background-color:var(--btn-alt-hover);transform:translateY(-2px)}@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}@keyframes ticktock{0%{content:"12"}8.33%{content:"11"}16.66%{content:"10"}25%{content:"9"}33.33%{content:"8"}41.66%{content:"7"}50%{content:"6"}58.33%{content:"5"}66.66%{content:"4"}75%{content:"3"}83.33%{content:"2"}91.66%{content:"1"}100%{content:"0"}}</style></head><body><div class="container"><h1>404</h1><h2>Dimensi Lain Ditemukan! 🛸</h2><p>Waduh, sepertinya kamu masuk ke gang buntu. Halaman yang kamu cari mungkin udah pindah, dihapus, atau emang nggak pernah ada.</p><div class="timer-text">Otomatis meluncur ke artikel terbaru dalam<span class="countdown"></span>detik...</div><div class="buttons"><a href="/" class="btn btn-primary">🏠 Beranda</a><a href="/sitemap" class="btn btn-secondary">🗺️ Daftar Isi</a></div></div></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="30;url=/">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:title" content="404 Not Found">
+<link href="/favicon.ico" type="image/x-icon" rel="icon">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="twitter:title" content="404 Not Found">
+<title>404 - Halaman Tidak Ditemukan - Layar Kosong</title>
+<style>
+/* === RESET & VARIABEL TEMA === */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--bg-color: #f8f9fa;
+--text-color: #212529;
+--box-bg: #e9ecef;
+--btn-hover: #dee2e6;
+--accent: #0d6efd;
+}
+/* Deteksi Tema Gelap (Dark Mode) Otomatis */
+@media (prefers-color-scheme: dark) {
+:root {
+--bg-color: #121212;
+--text-color: #e0e0e0;
+--box-bg: #1e1e1e;
+--btn-hover: #2d2d2d;
+--accent: #3b82f6;
+}
+}
+/* === LAYOUT UTAMA === */
+body {
+/* System font paling ringan dan bawaan OS */
+font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+background-color: var(--bg-color);
+color: var(--text-color);
+width: 100vw;
+height: 100vh;
+overflow: hidden; /* Mutlak: Mencegah page-scrolling */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 2vh 0;
+}
+/* === 1. Teks 404 Besar (Lebar 92%) === */
+.svg-404 {
+width: 92%;
+max-height: 35vh; /* Dibatasi agar tidak mendorong elemen lain turun */
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 2vh;
+}
+.svg-404 svg {
+width: 100%;
+height: auto;
+}
+/* === 2. Tiga Tombol Besar Sejajar === */
+.button-container {
+display: flex;
+width: 92%;
+gap: 1rem;
+margin-bottom: 3vh;
+}
+.btn {
+flex: 1; /* Membuat ketiganya sama besar dan sejajar */
+text-align: center;
+text-decoration: none;
+background-color: var(--box-bg);
+color: var(--text-color);
+padding: 2vh 1vw;
+border-radius: 8px;
+font-size: clamp(0.9rem, 2vw, 1.2rem); /* Font responsif ukuran layar */
+font-weight: 600;
+transition: background-color 0.2s ease;
+white-space: nowrap; /* Mencegah teks tombol turun ke baris baru */
+}
+.btn:hover {
+background-color: var(--btn-hover);
+}
+/* === 3. Konten Teks === */
+.content-box {
+width: 92%;
+background-color: var(--box-bg);
+padding: 3vh 3vw;
+border-radius: 12px;
+font-size: clamp(0.85rem, 1.6vw, 1.1rem); /* Ukuran auto sesuaikan viewport */
+line-height: 1.6;
+}
+.content-box p {
+margin-bottom: 1vh;
+}
+.content-box ul {
+padding-left: 20px;
+}
+.content-box li {
+margin-bottom: 0.5vh;
+}
+/* === 4. Progress Bar Auto Redirect === */
+.progress-bar-container {
+width: 92%;
+height: 4px;
+background-color: var(--box-bg);
+margin-top: 2vh;
+border-radius: 2px;
+overflow: hidden;
+}
+.progress-bar-fill {
+height: 100%;
+background-color: var(--accent);
+width: 0%;
+transition: width 1s linear; /* Animasi mulus detik per detik */
+}
+</style>
+</head>
+<body>
+<div class="svg-404">
+<svg viewBox="0 0 400 120" preserveAspectRatio="xMidYMid meet">
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="120" font-weight="900" fill="currentColor">404</text>
+</svg>
+</div>
+<div class="button-container">
+<a href="/" class="btn">/ Beranda</a>
+<a href="/feed" class="btn">/ Feed</a>
+<a href="/sitemap" class="btn">/ Sitemap</a>
+</div>
+<div class="content-box">
+<p><strong>Apa itu 404 (Not Found)?</strong></p>
+<p>Ini adalah kode status HTTP yang artinya, server website berhasil dikunjungi, tapi tujuan spesifik yang diminta tidak ada (biasanya karena salah ketik URL, atau halamannya sudah dihapus/dipindah).</p>
+<p><strong>Fungsi Utama 404:</strong></p>
+<ul>
+<li><strong>Memberi Kepastian (UX):</strong> Daripada menampilkan layar putih kosong yang bikin bingung, halaman ini langsung menegaskan ke pengunjung bahwa mereka nyasar atau salah alamat.</li>
+<li><strong>Alarm Webmaster (SEO):</strong> Menjadi indikator bagi pengelola web untuk mendeteksi keberadaan <em>broken link</em> (tautan rusak) di situsnya agar bisa segera diperbaiki atau menggunakan <em>redirect</em>.</li>
+</ul>
+</div>
+<div class="progress-bar-container">
+<div class="progress-bar-fill" id="redirect-progress"></div>
+</div>
+<script>
+const readingTimeSeconds = 30;
+let timeElapsed = 0;
+const progressBar = document.getElementById('redirect-progress');
+// Mulai menghitung mundur dengan interval 1 detik
+const timerInterval = setInterval(() => {
+timeElapsed++;
+const progressPercentage = (timeElapsed / readingTimeSeconds) * 100;
+progressBar.style.width = progressPercentage + "%";
+// Jika waktu sudah habis, jalankan Auto-Redirect
+if (timeElapsed >= readingTimeSeconds) {
+clearInterval(timerInterval);
+window.location.href = "/"; // Auto Redirect ke Beranda
+}
+}, 1000); // 1000ms = 1 detik
+</script>
+</body>
+</html>
