@@ -21,7 +21,7 @@
         .preview-container { margin-top: 15px; text-align: center; padding: 10px; background: #fff; border: 1px dashed #d1d5da; border-radius: 6px; }
         .preview-container img, .preview-container video { max-width: 100%; border-radius: 4px; max-height: 400px; }
     </style>
-<link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/github-media-uploader">
     <meta property="og:url" content="https://dalam.web.id/artikel/github-media-uploader">
@@ -35,16 +35,16 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:widgets:new-embed-design" content="on">
-    <meta property="og:title" content="GitHub Media Uploader alat sederhana untuk Ngirim File tanpa masuk Repository">
-    <meta name="twitter:title" content="GitHub Media Uploader alat sederhana untuk Ngirim File tanpa masuk Repository">
-    <meta name="description" content="GitHub Media Uploader adalah tools sederhana dari Layar Kosong untuk upload gambar & video langsung ke repository GitHub dan dapat raw URL nya.">
+    <meta property="og:title" content="GitHub Media Uploader">
+    <meta name="twitter:title" content="GitHub Media Uploader">
+    <meta name="description" content="GitHub Media Uploader adalah tools sederhana dari Layar Kosong untuk upload gambar &amp; video langsung ke repository GitHub dan dapat raw URL nya.">
     <meta property="og:description" content="Upload gambar atau video ke GitHub langsung dari web. Dapat raw URL dan preview langsung.">
     <meta name="twitter:description" content="Upload gambar atau video ke GitHub langsung dari web. Dapat raw URL dan preview langsung.">
     <meta property="twitter:domain" content="https://dalam.web.id">
     <meta property="og:type" content="article">
     <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
     <meta name="author" content="Fakhrul Rijal">
-    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <meta name="twitter:creator" content="@responaja">
     <meta name="bluesky:creator" content="@dalam.web.id">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
@@ -54,7 +54,6 @@
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
     <meta property="fb:app_id" content="175216696195384">
     <meta property="fb:pages" content="917962134736490">
-
     <meta name="twitter:image" content="https://dalam.web.id/img/AAAAAA/ghuploader.webp">
     <meta property="og:image" content="https://dalam.web.id/img/AAAAAA/ghuploader.webp">
     <meta property="og:image:alt" content="GitHub Media Uploader">
@@ -78,21 +77,16 @@
         <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
         <label for="path">Path Folder di Repo (opsional):</label>
         <input type="text" id="path" placeholder="misal: img/posts">
-
         <label for="fileInput">Pilih Gambar / Video:</label>
         <input type="file" id="fileInput" accept="image/*,video/*" required="">
-
         <button type="submit" id="uploadBtn">Upload Media ke GitHub</button>
     </form>
     <div id="status" class="status-msg"></div>
     <div id="result">
         <strong style="color: #22863a;">✅ Berhasil Diupload!</strong><br>
-
         <label for="rawUrlInput" style="font-size: 1rem; margin-top: 10px;">Raw URL (GitHub User Content):</label>
-        <textarea id="rawUrlInput" class="url-box" rows="2" readonly></textarea>
-
+        <textarea id="rawUrlInput" class="url-box" rows="2" readonly=""></textarea>
         <button onclick="copyUrl()" style="background: #0366d6; margin-top: 5px; margin-bottom: 15px;">Salin URL</button>
-
         <strong style="color: #444; font-size: 1rem;">Live Preview:</strong>
         <div id="mediaPreview" class="preview-container"></div>
     </div>
@@ -173,5 +167,5 @@
 <script>
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-
         const token = document.getElementById('token').
+</script></body></html>
