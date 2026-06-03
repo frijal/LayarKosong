@@ -1,9 +1,9 @@
 # Website Metadata Audit Report
-Generated on: 6/2/2026, 5:14:43 PM
+Generated on: 6/3/2026, 5:56:57 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| `404.html` | 404 - Tersesat di - Layar Kosong | 404 Not Found | Layar Kosong | - |
+| `404.html` | 404 - Halaman Tidak Ditemukan - Layar Kosong | 404 Not Found | Layar Kosong | - |
 | `about.html` | Tentang Kami - Layar Kosong | Tentang Kami | Layar Kosong | ✅ Perfect |
 | `data-deletion-form.html` | Formulir Penghapusan Data / Data Deletion Form - Layar Kosong | Formulir Penghapusan Data / Data Deletion Form | Layar Kosong | ✅ Perfect |
 | `data-deletion.html` | Instruksi Penghapusan Data / Data Deletion - Layar Kosong | Cara meminta penghapusan data | Layar Kosong | ✅ Perfect |
@@ -14,7 +14,7 @@ Generated on: 6/2/2026, 5:14:43 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v20.90 | LLM Index v20.90 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v20.95 | LLM Index v20.95 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -480,6 +480,7 @@ Generated on: 6/2/2026, 5:14:43 PM
 | `artikel/github-file-uploader.html` | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository - Layar Kosong | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository | Layar Kosong | ✅ Perfect |
 | `artikel/github-lambat-firefox-debian.html` | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! - Layar Kosong | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! | Layar Kosong | ✅ Perfect |
 | `artikel/github-lambat-myrepublic-debian-13.html` | GitHub Lambat Pakai MyRepublic di Debian 13? Ini Penyebab & Solusi Lengkap! - Layar Kosong | GitHub Lambat Pakai MyRepublic di Debian 13? Ini Penyebab & Solusi Lengkap! | Layar Kosong | ✅ Perfect |
+| `artikel/github-media-uploader.html` | GitHub Media Uploader - Layar Kosong | GitHub Media Uploader alat sederhana untuk Ngirim File tanpa masuk Repository | Layar Kosong | ✅ Perfect |
 | `artikel/github-pr-workflow-settings.html` | Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge & Delete - Layar Kosong | Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge & Delete | Layar Kosong | ✅ Perfect |
 | `artikel/github-webhooks.html` | Apa Gunanya Webhooks di GitHub? - Layar Kosong | Apa Gunanya Webhooks di GitHub? | Layar Kosong | ✅ Perfect |
 | `artikel/gitignore-nodejs-standar.html` | Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache & node_modules Masuk Repo) - Layar Kosong | Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache & node_modules Masuk Repo) | Layar Kosong | ✅ Perfect |
@@ -917,6 +918,7 @@ Generated on: 6/2/2026, 5:14:43 PM
 | `artikel/muhammadiyah-sholat-gerhana-3-maret-2026.html` | Muhammadiyah & Sholat Gerhana 3 Maret 2026: Hisab vs Rukyat - Layar Kosong | Muhammadiyah & Sholat Gerhana 3 Maret 2026: Hisab vs Rukyat | Layar Kosong | ✅ Perfect |
 | `artikel/muhammadiyah-zakat-palestina.html` | Muhammadiyah Agama Baru? Memahami Zakat Fitrah & penyaluran ke Palestina - Layar Kosong | Muhammadiyah Agama Baru? Memahami Zakat Fitrah & penyaluran ke Palestina | Layar Kosong | ✅ Perfect |
 | `artikel/mui-pintu-penguasa-palestina.html` | MUI Mendatangi Pintu Penguasa: Melegitmasi Kezaliman Palestina? - Layar Kosong | MUI Mendatangi Pintu Penguasa: Melegitmasi Kezaliman Palestina? | Layar Kosong | ✅ Perfect |
+| `artikel/mula-sejarah-kde.html` | Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck - Layar Kosong | Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck | Layar Kosong | ✅ Perfect |
 | `artikel/multi-distro-docs.html` | Manajemen Dokumen di Multi-Distro Linux - Layar Kosong | Manajemen Dokumen di Multi-Distro Linux | Layar Kosong | ✅ Perfect |
 | `artikel/multi-video-youtube-gallery.html` | Multi Video YouTube dengan Thumbnail Gallery - Layar Kosong | Multi Video YouTube dengan Thumbnail Gallery | Layar Kosong | ✅ Perfect |
 | `artikel/musa-bin-nusayr.html` | Mūsā bin Nuṣayr - Muslim Penakluk Andalusia - Layar Kosong | Mūsā bin Nuṣayr - Muslim Penakluk Andalusia | Layar Kosong | ✅ Perfect |
@@ -976,6 +978,7 @@ Generated on: 6/2/2026, 5:14:43 PM
 | `artikel/panduan-desil-dtsen-kemensos.html` | Panduan Lengkap Desil DTSEN Kemensos 2026: Cara Cek dan Klasifikasi Ekonomi Terbaru - Layar Kosong | Panduan Lengkap Desil DTSEN Kemensos 2026: Cara Cek dan Klasifikasi Ekonomi Terbaru | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-instalasi-arch-linux.html` | Panduan Instalasi Arch Linux untuk Pemula 🐧 - Layar Kosong | Panduan Instalasi Arch Linux untuk Pemula 🐧 | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-instalasi-mx-linux-btrfs.html` | Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas - Layar Kosong | Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas | Layar Kosong | ✅ Perfect |
+| `artikel/panduan-install-kde-linux-os.html` | Panduan Lengkap Instalasi KDE Linux (Testing Edition) & Syarat Sistem - Layar Kosong | Panduan Lengkap Instalasi KDE Linux (Testing Edition) & Syarat Sistem | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-interaktif-ffmpeg.html` | Panduan Interaktif FFmpeg Visual: Audio & Video - Layar Kosong | Panduan Interaktif FFmpeg Visual: Audio & Video | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-keamanan-digital-privasi.html` | Panduan Keamanan Digital: Lindungi Privasi dari Ancaman Siber - Layar Kosong | Panduan Keamanan Digital: Lindungi Privasi dari Ancaman Siber | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-kelola-inbox-gmail.html` | Cara Cepat Hapus Email Sampah Gmail dengan Kode Rahasia - Layar Kosong | Cara Cepat Hapus Email Sampah Gmail dengan Kode Rahasia | Layar Kosong | ✅ Perfect |
@@ -2274,6 +2277,7 @@ Generated on: 6/2/2026, 5:14:43 PM
 | `sistem-terbuka/generator-label-barcode.html` | Generator Label Mentari - Barcode UI - Layar Kosong | Generator Label Mentari - Barcode UI | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/github-file-uploader.html` | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository - Layar Kosong | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/github-lambat-firefox-debian.html` | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! - Layar Kosong | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/github-media-uploader.html` | GitHub Media Uploader - Layar Kosong | GitHub Media Uploader alat sederhana untuk Ngirim File tanpa masuk Repository | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-49.html` | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar - Layar Kosong | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-50-beta-vrr-fractional-scaling.html` | GNOME 50 Beta Hadir dengan VRR, Fractional Scaling, dan Peningkatan Desktop Besar - Layar Kosong | GNOME 50 Beta Hadir dengan VRR, Fractional Scaling, dan Peningkatan Desktop Besar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-50-x11-wayland.html` | GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya - Layar Kosong | GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya | Layar Kosong | ✅ Perfect |
@@ -2376,6 +2380,7 @@ Generated on: 6/2/2026, 5:14:43 PM
 | `sistem-terbuka/migrasi-windows-linux.html` | Migrasi Windows ke GNU/Linux - Panduan Lengkap - Layar Kosong | Migrasi Windows ke GNU/Linux - Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/monitor-trafik-jaringan-linux-otomatis.html` | Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol - Layar Kosong | Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mount-ntfs-caja.html` | Cara Mengatasi Partisi NTFS Tidak Bisa Dibuka di Linux (Caja File Manager) - Layar Kosong | Cara Mengatasi Partisi NTFS Tidak Bisa Dibuka di Linux (Caja File Manager) | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/mula-sejarah-kde.html` | Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck - Layar Kosong | Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/multi-distro-docs.html` | Manajemen Dokumen di Multi-Distro Linux - Layar Kosong | Manajemen Dokumen di Multi-Distro Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mx-linux-25-1-xfce-btrfs-snapper.html` | MX Linux 25.1 XFCE Panduan Instal Btrfs Snapper untuk PC Lawas - Layar Kosong | MX Linux 25.1 XFCE Panduan Instal Btrfs Snapper untuk PC Lawas | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mx-linux-25-1-xfce.html` | MX Linux 25.1 XFCE Swiss Army Knife Debian Based Distros - Layar Kosong | MX Linux 25.1 XFCE Swiss Army Knife Debian Based Distros | Layar Kosong | ✅ Perfect |
@@ -2398,6 +2403,7 @@ Generated on: 6/2/2026, 5:14:43 PM
 | `sistem-terbuka/paket-debian-manual-install.html` | Bagaimana Melihat Paket Debian yang Diinstal Manual (Tanpa Dependensi Ribet)? - Layar Kosong | Bagaimana Melihat Paket Debian yang Diinstal Manual (Tanpa Dependensi Ribet)? | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/panduan-instalasi-arch-linux.html` | Panduan Instalasi Arch Linux untuk Pemula 🐧 - Layar Kosong | Panduan Instalasi Arch Linux untuk Pemula 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/panduan-instalasi-mx-linux-btrfs.html` | Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas - Layar Kosong | Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/panduan-install-kde-linux-os.html` | Panduan Lengkap Instalasi KDE Linux (Testing Edition) & Syarat Sistem - Layar Kosong | Panduan Lengkap Instalasi KDE Linux (Testing Edition) & Syarat Sistem | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/panduan-memaksimalkan-zram-cachyos.html` | Panduan Maksimal zRAM di CachyOS - Layar Kosong | Panduan Maksimal zRAM di CachyOS | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/parrot-security-age-verification-statement.html` | Pernyataan Parrot Security soal Verifikasi Usia: Kami Tidak Butuh ID Anda - Layar Kosong | Pernyataan Parrot Security soal Verifikasi Usia: Kami Tidak Butuh ID Anda | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/paru-lintas-distro.html` | Paru Bukan Hanya Milik CachyOS! AUR Helper Lintas Distro Arch - Layar Kosong | Paru Bukan Hanya Milik CachyOS! AUR Helper Lintas Distro Arch | Layar Kosong | ✅ Perfect |
