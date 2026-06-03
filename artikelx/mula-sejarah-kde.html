@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck</title>
+
+    <meta name="description" content="Menelusuri jejak sejarah KDE dari awal mula diciptakan pada 1996 hingga menjadi sistem operasi modern dan andalan di Steam Deck.">
+    <meta property="og:description" content="Kisah inspiratif perjalanan KDE (Kool Desktop Environment). Kenali evolusi antarmuka grafis Unix paling populer dari masa ke masa.">
+    <meta name="twitter:description" content="Siapa sangka antarmuka grafis Unix tahun 90-an kini jadi penggerak Steam Deck? Baca sejarah lengkap KDE di sini!">
+
+    <meta property="og:title" content="Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/mula-sejarah-kde.html">
+    <meta property="og:image" content="https://timeline.kde.org/images/display_with_desktop_banana.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:title" content="Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck">
+    <meta name="twitter:image" content="https://timeline.kde.org/images/display_with_desktop_banana.png">
+
+    <meta name="news_keywords" content="sejarah KDE, Linux desktop, KDE Plasma, Steam Deck, teknologi open source, Wayland, Qt">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Open Source">
+    <meta property="article:tag" content="KDE">
+    <meta property="article:tag" content="Desktop Environment">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/mula-sejarah-kde.html">
+    <meta name="promphint" content="Apa itu KDE dan kapan diciptakan? KDE adalah antarmuka grafis open-source untuk sistem operasi mirip Unix yang pertama kali diumumkan pada tahun 1996 oleh Matthias Ettrich.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Native dengan System Font dan Tema Otomatis */
+        :root {
+            /* Tema Terang (Light Mode) */
+            --bg-color: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --link-color: #2563eb;
+            --border-color: #e2e8f0;
+            --surface: #f1f5f9;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Tema Gelap (Dark Mode) - WCAG AA Contrast */
+                --bg-color: #0f172a;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --link-color: #60a5fa;
+                --border-color: #334155;
+                --surface: #1e293b;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            font-size: 1rem; /* Menggunakan rem */
+            line-height: 1.7;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            overflow-x: hidden;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            margin-top: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--link-color);
+        }
+
+        a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* Optimas Core Web Vitals untuk Gambar */
+        img {
+            width: 100%;
+            height: auto; /* Tidak memotong tinggi, rasio natural */
+            display: block;
+            border-radius: 0.5rem;
+            background-color: var(--surface);
+            margin: 1.5rem 0;
+        }
+
+        .img-caption {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        /* Syntax Highlighting Base (jika ada kode) */
+        pre {
+            background-color: var(--surface);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        /* Footer E-E-A-T Inline Center */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        footer span {
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.875rem; }
+            h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck 🚀</h1>
+          </header>
+
+    <main role="main">
+        <p>Kalau kamu pengguna sistem operasi berbasis Linux, nama KDE pasti sudah tidak asing lagi di telinga. Tapi, tahukah kamu bagaimana perjalanan panjang di balik layar pembuatan antarmuka pengguna grafis ini? Mari kita telusuri mesin waktu dari era 90-an di mana semuanya masih sangat teknis, hingga detik ini saat **KDE** berhasil merajai perangkat portabel kelas atas.</p>
+
+        <h2>Titik Nol: Kerangka Baru dan Gebrakan Pertama (1995-1997)</h2>
+
+        <p>Semuanya berakar dari tahun 1995, ketika sebuah perusahaan asal Norwegia bernama Troll Tech menciptakan kerangka kerja *cross-platform* yang dinamakan <a href="https://wiki.qt.io/About_Qt">Qt</a>. Kerangka kerja inilah yang nantinya akan menjadi tulang punggung dari semua teknologi inti KDE selama puluhan tahun ke depan.</p>
+
+        <img src="https://timeline.kde.org/images/qt-logo.png" alt="Logo resmi framework Qt" fetchpriority="high" loading="eager" decoding="async">
+        <span class="img-caption">Logo framework Qt yang menjadi pondasi utama KDE.</span>
+
+        <p>Tepat pada tahun berikutnya, 1996, inovasi sebenarnya meledak. **Matthias Ettrich** mengumumkan proyek bernama **Kool Desktop Environment (KDE)**. Tujuannya sangat mulia namun menantang: menciptakan antarmuka grafis yang ramah untuk pengguna akhir di sistem Unix. Menariknya, nama KDE ini sebenarnya adalah pelesetan candaan dari *CDE* (Common Desktop Environment), sebuah sistem *proprietary* yang saat itu sangat mendominasi. Matthias mengembangkan antarmuka ini menggunakan bahasa pemrograman C++ dan Qt.</p>
+
+        <img src="https://timeline.kde.org/images/Matthias.jpg" alt="Foto Matthias Ettrich, pendiri KDE" loading="lazy" decoding="async">
+        <span class="img-caption">Matthias Ettrich, sosok di balik pengumuman pertama KDE.</span>
+
+        <p>Momentum ini semakin solid di tahun 1997. Sekitar 15 pengembang inti berkumpul di Arnsberg, Jerman, untuk menyamakan visi masa depan proyek di sebuah acara yang kelak dikenal sebagai **KDE One**. Di tahun yang sama dan juga di Jerman (tepatnya di kota Tübingen), komunitas ini mendirikan lembaga non-profit resmi bernama **KDE e.V.** untuk mengurus hak legal dan finansial proyek.</p>
+
+        <img src="https://timeline.kde.org/images/kde-one-arnsberg.png" alt="Pertemuan KDE One di Arnsberg" loading="lazy" decoding="async">
+
+        <img src="https://timeline.kde.org/images/ev_large.png" alt="Logo resmi KDE e.V." loading="lazy" decoding="async">
+
+        <h2>Menyapa Dunia: Era KDE 1 hingga 3 dan Kehadiran Sang Maskot (1998-2002)</h2>
+
+        <p>Tahun 1998 menjadi tonggak sejarah dengan rilisnya versi stabil pertama, **KDE 1**. Versi ini langsung memamerkan taringnya dengan kerangka pengembangan aplikasi, *KOM/OpenParts*, serta sebuah *preview* aplikasi perkantoran mereka. Ini membuktikan bahwa sistem berbasis Unix bukan cuma layar terminal hitam yang membosankan.</p>
+
+        <img src="https://timeline.kde.org/images/KDE1.png" alt="Tampilan antarmuka desktop KDE 1" loading="lazy" decoding="async">
+
+        <p>Masuk ke April 1999, komunitas akhirnya sepakat mengucapkan selamat tinggal pada *Kandalf* (maskot awal mereka) dan mengadopsi seekor naga kecil hijau yang imut bernama **Konqi**. Karakter naga ceria ini secara resmi menjadi asisten animasi di *KDE Help Center* dan ikon abadi proyek sejak versi 3.x.</p>
+
+        <img src="https://timeline.kde.org/images/Konqi.png" alt="Maskot naga Konqi" loading="lazy" decoding="async">
+
+        <p>Percepatan rilis terus terjadi. Pada tahun 2000, rilis **KDE 2** diumumkan dengan perombakan kode yang sangat masif. Di rilis ini lahir <a href="https://konqueror.org/">Konqueror</a> (peramban web sekaligus manajer file) dan *KOffice*. Dua tahun kemudian, pada 2002, **KDE 3** menyusul dengan tambahan krusial: *KDEPrint*, paket aplikasi edukasi dari *KDE Edutainment Project*, dan dukungan lokalisasi hingga 50 bahasa di seluruh dunia.</p>
+
+        <img src="https://timeline.kde.org/images/kde2.png" alt="Tampilan KDE 2" loading="lazy" decoding="async">
+        <img src="https://timeline.kde.org/images/kde3.jpg" alt="Tampilan KDE 3" loading="lazy" decoding="async">
+
+        <h2>Revolusi Visual dan Ledakan Komunitas (2008-2014)</h2>
+
+        <p>Perubahan besar-besaran terjadi di tahun 2008 melalui peluncuran **KDE 4**. Antarmuka yang sepenuhnya revolusioner diperkenalkan dengan tema bawaan bernama *Oxygen* dan area kerja modern bernama *Plasma*. Aplikasi-aplikasi legendaris seperti pembaca PDF *Okular*, file manager *Dolphin*, dan sistem efek grafis *KWin* bermunculan di era ini.</p>
+
+        <img src="https://timeline.kde.org/images/kde4.jpg" alt="Tampilan KDE 4.0 dengan tema Oxygen" loading="lazy" decoding="async">
+
+        <p>Antusiasme ini berdampak langsung pada basis pengembangnya. Bayangkan saja, dari angka 500.000 *commit* (perubahan kode) di awal 2006, proyek ini sukses menembus **1 juta commit** di repository Subversion mereka pada pertengahan 2009! Lonjakan luar biasa yang dicapai hanya dalam waktu 19 bulan, membuktikan seberapa dicintainya proyek ini oleh komunitas global.</p>
+
+        <img src="https://timeline.kde.org/images/active-contributors.png" alt="Grafik kontributor aktif KDE yang menyentuh angka 1 juta commits" loading="lazy" decoding="async">
+
+        <p>Inovasi tidak berhenti. Di 2014, transisi ke generasi kelima terjadi. Rilis **Plasma 5** memperkenalkan tema baru bernama *Breeze* dan infrastruktur grafis modern menggunakan OpenGL. Yang mengejutkan, di era ini komunitas juga mengumumkan **Plasma Mobile**, sebuah antarmuka yang dioptimalkan penuh untuk *smartphone*.</p>
+
+        <img src="https://timeline.kde.org/images/plasma5.png" alt="Tampilan antarmuka desktop Plasma 5" loading="lazy" decoding="async">
+        <img src="https://timeline.kde.org/images/plasma-mobile.jpg" alt="Tampilan antarmuka Plasma Mobile di smartphone" loading="lazy" decoding="async">
+
+        <h2>Era Dominasi: Dari Steam Deck Hingga KDE Linux (2021-2025)</h2>
+
+        <p>Banyak kritikus di masa lalu yang sempat ~~meragukan~~ potensi adopsi Linux untuk konsumen umum. Namun tahun 2021 mematahkan anggapan itu. Perusahaan raksasa *gaming*, Valve, mengumumkan perangkat konsol portabel **Steam Deck**. Coba tebak antarmuka desktop bawaan apa yang mereka pilih? Ya, mereka memilih **KDE Plasma** dan bekerja sama langsung dengan para pengembangnya.</p>
+
+        <img src="https://timeline.kde.org/images/kde_deck.jpg" alt="KDE Plasma berjalan mulus di perangkat Steam Deck" loading="lazy" decoding="async">
+
+        <p>Lalu, apa kabar KDE di hari ini? Pada 2024 lalu, komunitas merilis pembaruan masif bersandi *"MegaRelease"*. **Plasma 6** lahir dengan perombakan total. Mereka secara penuh bermigrasi ke teknologi mutakhir *Wayland* sebagai standar, didukung oleh versi Qt terbaru.</p>
+
+        <img src="https://timeline.kde.org/images/Plasma6_screenshot.png" alt="Desktop standar Plasma 6" loading="lazy" decoding="async">
+
+        <p>Puncaknya terjadi pada tahun 2025. Proyek yang dulunya menggunakan kode rahasia *Project Banana* ini akhirnya dirilis sebagai <a href="https://kde.org/linux/">KDE Linux</a>. Ini adalah sistem operasi independen buatan KDE yang menggabungkan implementasi terbaik dari semua perangkat lunak mereka. Bukan cuma antarmuka, tapi ekosistem penuh yang dirancang khusus untuk kenyamanan pengguna modern.</p>
+
+        <img src="https://timeline.kde.org/images/display_with_desktop_banana.png" alt="Tampilan sistem operasi mandiri KDE Linux" loading="lazy" decoding="async">
+
+        <p>Dari sebuah pelesetan ide antarmuka *Unix* hingga menggerakkan mesin *gaming* portabel kelas dunia dan menjadi <a href="https://dalam.web.id/sistem-terbuka/kde-linux-distro-new" target="_blank" rel="noopener noreferrer">sistem operasi mandiri</a>; perjalanan KDE adalah bukti nyata kekuatan kolaborasi *open-source*.</p>
+    </main>
+
+    <div id="related-articles-grid"></div>
+    <div id="response"></div>
+
+    <footer>
+        <span><i class="fa-solid fa-user-pen"></i> Ditulis oleh **Frijal**</span> |
+        <span><i class="fa-solid fa-calendar-day"></i> Terakhir diperbarui: 3 Juni 2026</span> |
+        <span><i class="fa-solid fa-globe"></i> Referensi: Dokumentasi Resmi KDE &amp; Timeline Otomatis KDE.</span>
+    </footer>
+
+</body>
+</html>
