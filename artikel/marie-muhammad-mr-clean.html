@@ -3,156 +3,235 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Teladan Mar'ie Muhammad: Kisah Kesederhanaan Sang Mr. Clean - Layar Kosong</title> 
   <meta name="keywords" content="Mar'ie Muhammad, Mr. Clean, Menteri Keuangan, Kesederhanaan, Integritas, Mobil Tua, Sejarah Indonesia, Pejabat Jujur, Anti Korupsi">
-  <!-- Favicon -->
-  <!-- Open Graph -->
-  <!-- Font Awesome untuk ikon sharing -->
-  <link rel="stylesheet" href="/ext/fontawesome.css">
-  <style>
-    :root {
-      --theme: #095e43;
-      --theme-light: #cfffed;
-      --theme-dark: #062e21;
-      --font: 'Segoe UI', 'Arial', sans-serif;
-    }
-    body {
-      font-family: var(--font);
-      margin: 0;
-      padding: 0;
-      background: var(--theme-light);
-      color: #222;
-      min-height: 100vh;
-      line-height: 1.7;
-    }
-    header {
-      background: var(--theme);
-      color: #fff;
-      padding: 1.5rem 1rem 1rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-    }
-    header img.author-icon {
-      width: 56px;
-      border-radius: 50%;
-      margin-bottom: 0.9rem;
-      box-shadow: 0 2px 11px #095e4355;
-    }
-    header h1 {
-      font-size: 2.25rem;
-      font-weight: 900;
-      margin: 0.2rem 0 0.5rem 0;
-      letter-spacing: 1px;
-    }
-    header p {
-      font-size: 1.15rem;
-      margin-bottom: 0.4rem;
-    }
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      background: #fff;
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 32px #095e4315;
-      margin-top: -2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .main-image {
-      width: 100%;
-      object-fit: cover;
-      border-radius: 1.2rem;
-      max-height: 340px;
-      box-shadow: 0 3px 14px #095e4325;
-    }
-    article h2 {
-      color: var(--theme);
-      font-size: 1.5rem;
-      margin: 1rem 0 0.5rem 0;
-      font-weight: 700;
-    }
-    .subtitle {
-      color: #333;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-    article p {
-      margin-bottom: 1.3rem;
-    }
-    .quote {
-      background: var(--theme);
-      color: #fff;
-      padding: 1rem 1.2rem;
-      border-left: 7px solid var(--theme-dark);
-      border-radius: 0.7rem;
-      font-style: italic;
-      margin: 1.1rem 0;
-      box-shadow: 0 3px 18px #095e4350;
-      font-size: 1.06rem;
-    }
-    .side-image {
-      width: 100%;
-      border-radius: 1.2rem;
-      object-fit: cover;
-      max-height: 240px;
-      margin-top: 1rem;
-      box-shadow: 0 2px 10px #095e4323;
-    }
-    .share-box {
-      margin-top: 2.5rem;
-      text-align: center;
-    }
-    .share-box span {
-      display: block;
-      margin-bottom: 0.8rem;
-      color: #666;
-      font-weight: 600;
-      font-size: 1.02rem;
-    }
-    .share-icons {
-      display: inline-flex;
-      gap: 15px;
-    }
-    .share-icons a {
-      color: var(--theme);
-      font-size: 2rem;
-      transition: transform 0.19s;
-    }
-    .share-icons a:hover {
-      transform: scale(1.18);
-      color: var(--theme-dark);
-    }
-    @media screen and (max-width:750px) {
-      header h1 {
-        font-size: 1.3rem;
-      }
-      main {
-        padding: 1.2rem;
-      }
-      .main-image {
-        max-height: 170px;
-      }
-      .side-image {
-        max-height: 130px;
-      }
-      article h2 {
-        font-size: 1.17rem;
-      }
-    }
-    @media screen and (max-width:500px) {
-      main {
-        border-radius: 0.8rem;
-      }
-      .main-image, .side-image {
-        border-radius: 0.8rem;
-      }
-    }
-  </style>
+<style>
+        /* --- 1. DEFINISI VARIABEL TEMA TERANG (Premium Organic) --- */
+        :root {
+            --theme: #095e43;
+            --theme-light: #f0fdf4;     /* Diubah ke mint pastel super lembut agar teks #222 lebih kontras */
+            --theme-dark: #062e21;
+            
+            --bg-body: var(--theme-light);
+            --bg-card: #ffffff;
+            --text-main: #1e293b;       /* Abu-abu gelap pekat yang lebih ramah mata dibanding #222 */
+            --text-muted: #64748b;
+            
+            --font: 'Segoe UI', 'Arial', sans-serif;
+            --shadow-card: 0 10px 32px rgba(9, 94, 67, 0.08);
+            --shadow-img: 0 4px 16px rgba(9, 94, 67, 0.15);
+            --shadow-quote: 0 4px 18px rgba(9, 94, 67, 0.25);
+            
+            --transition-speed: 0.3s;
+        }
+
+        /* --- 2. OTOMATIS TEMA GELAP (Deep Forest Obsidian) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #10b981;       /* Hijau emerald yang lebih cerah agar menyala di latar gelap */
+                --theme-light: #062e21; /* Hijau hutan pekat sebagai aksen sekunder */
+                --theme-dark: #022c22;
+                
+                --bg-body: #040d0a;     /* Latar belakang hitam obsidian dengan tint hijau malam */
+                --bg-card: #0b1a15;     /* Warna kartu utama gelap yang teduh */
+                --text-main: #e2e8f0;   /* Putih pualam lembut untuk kenyamanan membaca */
+                --text-muted: #94a3b8;
+                
+                --shadow-card: 0 10px 32px rgba(0, 0, 0, 0.4);
+                --shadow-img: 0 4px 16px rgba(0, 0, 0, 0.3);
+                --shadow-quote: 0 4px 18px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* --- 3. RESET & FONDASI DASAR LAYOUT --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.75; /* Dinaikkan tipis demi keterbacaan artikel panjang */
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* --- 4. KOMPONEN HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--theme-dark), #095e43); /* Ditambahkan gradien agar lebih premium */
+            color: #ffffff;
+            padding: 3rem 1rem 4rem 1rem; /* Ruang bawah diperdalam untuk menampung tumpukan kartu */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        header img.author-icon {
+            width: 64px; /* Diperbesar sedikit agar lebih proporsional */
+            height: 64px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 0.9rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            /* SOLUSI TYPO: Berubah otomatis dari layar besar ke kecil tanpa lompatan patah */
+            font-size: clamp(1.5rem, 5vw, 2.5rem); 
+            font-weight: 800;
+            margin: 0.2rem 0 0.5rem 0;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        header p {
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            opacity: 0.9;
+        }
+
+        /* --- 5. KARTU KONTEN UTAMA (KUNCI STABILITAS ELEMEN) --- */
+        main {
+            max-width: 900px;
+            width: calc(100% - 2rem); /* Menjamin ada jarak aman di kiri-kanan layar HP */
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+            background-color: var(--bg-card);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-card);
+            
+            /* SOLUSI: Mengunci stabilitas lapisan tumpukan di atas header */
+            position: relative;
+            z-index: 5;
+            margin-top: -2.5rem; 
+            
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        /* --- 6. MANAJEMEN MEDIA & GAMBAR --- */
+        .main-image {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 1.2rem;
+            max-height: 380px;
+            box-shadow: var(--shadow-img);
+        }
+
+        .side-image {
+            width: 100%;
+            border-radius: 1.2rem;
+            object-fit: cover;
+            max-height: 260px;
+            margin-top: 1rem;
+            box-shadow: var(--shadow-img);
+        }
+
+        /* --- 7. ARTIKEL & TIPOGRAFI ISI --- */
+        article h2 {
+            color: var(--theme);
+            font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+            margin: 1.5rem 0 0.5rem 0;
+            font-weight: 700;
+            transition: color var(--transition-speed);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        article p {
+            margin-bottom: 1.3rem;
+            text-align: justify; /* Membuat artikel esai terlihat rapi berstandar majalah */
+        }
+
+        /* --- 8. BLOK KUTIPAN (QUOTE BOX MODERN) --- */
+        .quote {
+            background: linear-gradient(to right, var(--theme-dark), var(--theme));
+            color: #ffffff;
+            padding: 1.2rem 1.5rem;
+            border-left: 7px solid #10b981;
+            border-radius: 0.7rem;
+            font-style: italic;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow-quote);
+            font-size: 1.06rem;
+        }
+
+        /* --- 9. AREA BERBAGI (SHARE BOX ACCESSIBLE) --- */
+        .share-box {
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px dashed var(--text-muted);
+            padding-top: 2rem;
+        }
+
+        .share-box span {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color var(--transition-speed);
+        }
+
+        .share-icons {
+            display: inline-flex;
+            gap: 20px;
+        }
+
+        .share-icons a {
+            color: var(--theme);
+            font-size: 2rem;
+            /* SOLUSI: Mengubah ke inline-block agar efek scale berjalan mulus tanpa menggetarkan teks teks di luar */
+            display: inline-block; 
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color var(--transition-speed);
+        }
+
+        .share-icons a:hover {
+            transform: scale(1.2) translateY(-2px); /* Ditambahkan sedikit efek melayang ke atas */
+            color: var(--theme-dark);
+        }
+        
+        .share-icons a:focus-visible {
+            outline: 2px solid var(--theme);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* --- 10. OPTIMASI RESPONSIVITAS LAYAR KECIL --- */
+        @media screen and (max-width: 750px) {
+            main {
+                padding: 1.75rem 1.25rem; /* Padding dikurangi secara rasional */
+                gap: 1.2rem;
+            }
+            .main-image { max-height: 220px; }
+            .side-image { max-height: 160px; }
+            
+            article p {
+                text-align: left; /* Mematikan justify di layar HP untuk menghindari bolong antar-kata */
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            main {
+                border-radius: 1rem;
+                width: calc(100% - 1.5rem); /* Lebih merapat ke pinggir di HP kecil demi efisiensi ruang */
+            }
+            .main-image, .side-image {
+                border-radius: 0.8rem;
+            }
+        }
+</style>
 <meta name="ai:summary" content="Mengulik kisah inspiratif Marie Muhammad, Menteri Keuangan era Orde Baru yang dijuluki Mr. Clean atas integritasnya. Ia lebih memilih mobil tua daripada mobil dinas demi prinsip dan efisiensi, hingga sempat tak dikenali di Istana Negara.">
 <meta name="ai:prompt_hint" content="Mengulik kisah inspiratif Marie Muhammad, Menteri Keuangan era Orde Baru yang dijuluki Mr. Clean atas integritasnya. Ia lebih memilih mobil tua daripada mobil dinas demi prinsip dan efisiensi, hingga sempat tak dikenali di Istana Negara.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
