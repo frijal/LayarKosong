@@ -4,27 +4,220 @@
     <title>Cara Memutar Video Terbalik di VLC Player - Layar Kosong</title> 
 <meta name="keywords" content="vlc player, putar video, rotasi video, video terbalik, vlc rotate, vlc transform, tutorial vlc">
     <meta name="date" content="2025-09-28">
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
-        header { text-align: center; color: #005a9e; padding-bottom: 10px; border-bottom: 2px solid #0078d4; }
-        h1, h2 { color: #005a9e; }
-        .gallery { margin: 20px 0; }
-        .gallery img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s; }
-        .gallery img:hover { transform: scale(1.05); }
-        .social-sharing { text-align: center; margin: 30px 0; }
-        .social-sharing h2 { border: none; font-size: 1.2em; }
-        .social-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .social-buttons a { display: inline-block; transition: transform 0.2s; }
-        .social-buttons a:hover { transform: scale(1.15); }
-        .social-buttons svg { width: 32px; height: 32px; }
-        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
-        .lightbox-content { max-width: 90%; max-height: 80%; border-radius: 8px; }
-        .lightbox-close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; user-select: none; }
-        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; font-size: 30px; cursor: pointer; padding: 10px 15px; user-select: none; border-radius: 5px; }
-        .prev { left: 15px; }
-        .next { right: 15px; }
-    </style>
+   <style>
+        /* --- 1. Definisikan Variabel Tema Terang (Default Korporat) --- */
+        :root {
+            --body-bg: #f4f4f9;
+            --container-bg: #ffffff;
+            --text-main: #333333;
+            
+            /* Palet Biru Fluent Microsoft */
+            --primary-color: #005a9e;
+            --accent-color: #0078d4;
+            --border-color: #0078d4;
+            
+            /* Lightbox & Navigasi */
+            --lightbox-overlay: rgba(0, 0, 0, 0.85);
+            --nav-button-bg: rgba(0, 0, 0, 0.5);
+            --nav-button-text: #ffffff;
+            
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --img-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 2. Otomatis Tema Gelap (Dark Mode Premium) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --body-bg: #0b0f19;       /* Slate gelap pekat malam */
+                --container-bg: #161b26;  /* Kontainer abu-biru gelap yang adem */
+                --text-main: #e2e8f0;     /* Teks putih-abu lembut */
+                
+                /* Mengubah biru tua menjadi biru neon pastel agar kontras di latar gelap */
+                --primary-color: #60cdff; 
+                --accent-color: #47a7ff;
+                --border-color: #47a7ff;
+                
+                /* Penyesuaian Lightbox di malam hari */
+                --lightbox-overlay: rgba(5, 5, 10, 0.95);
+                --nav-button-bg: rgba(255, 255, 255, 0.15); /* Tombol navigasi lebih transparan terang */
+                
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+                --img-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--body-bg); 
+            color: var(--text-main); 
+            line-height: 1.7; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .container { 
+            max-width: 800px; 
+            margin: 20px auto; 
+            padding: 2rem; /* Diubah ke rem agar lebih proporsional */
+            background-color: var(--container-bg); 
+            box-shadow: var(--shadow); 
+            border-radius: 8px; 
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        header { 
+            text-align: center; 
+            color: var(--primary-color); 
+            padding-bottom: 15px; 
+            border-bottom: 2px solid var(--border-color); 
+            transition: color 0.3s, border-color 0.3s;
+        }
+        
+        h1, h2 { 
+            color: var(--primary-color); 
+            transition: color 0.3s;
+        }
+        
+        header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Judul fleksibel otomatis mengecil di HP */
+            margin-top: 0.5rem;
+        }
+        
+        /* --- Galeri Gambar --- */
+        .gallery { 
+            margin: 25px 0; 
+        }
+        .gallery img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: var(--img-shadow); 
+            cursor: pointer; 
+            transition: transform 0.2s, box-shadow 0.3s; 
+        }
+        .gallery img:hover { 
+            transform: scale(1.03); /* Dikurangi sedikit dari 1.05 agar gambar tidak pecah melewati container */
+        }
+        
+        /* --- Bagian Share Sosial Media --- */
+        .social-sharing { 
+            text-align: center; 
+            margin: 35px 0 15px; 
+        }
+        .social-sharing h2 { 
+            border: none; 
+            font-size: 1.2em; 
+        }
+        .social-buttons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 16px; /* Jarak tombol agak dilonggarkan */
+            flex-wrap: wrap; 
+        }
+        .social-buttons a { 
+            display: inline-block; 
+            transition: transform 0.2s; 
+        }
+        .social-buttons a:hover { 
+            transform: translateY(-4px); /* Efek melayang ke atas terasa lebih elegan */
+        }
+        .social-buttons svg { 
+            width: 32px; 
+            height: 32px; 
+            fill: currentColor; /* Memaksa SVG mengikuti warna teks jika tidak pakai warna brand resmi */
+        }
+        
+        /* --- Sistem Lightbox Interaktif --- */
+        .lightbox { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: var(--lightbox-overlay); 
+            justify-content: center; 
+            align-items: center; 
+            transition: background-color 0.3s;
+        }
+        .lightbox-content { 
+            max-width: 90%; 
+            max-height: 80%; 
+            border-radius: 8px; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            animation: lancarMasuk 0.25s ease-out; /* Animasi pop-up halus */
+        }
+        
+        @keyframes lancarMasuk {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-close { 
+            position: absolute; 
+            top: 20px; 
+            right: 25px; 
+            color: #ffffff; 
+            font-size: 35px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            user-select: none; 
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .lightbox-close:hover { 
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+        
+        /* Tombol Navigasi Lightbox (Prev & Next) */
+        .lightbox-nav { 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            background-color: var(--nav-button-bg); 
+            color: var(--nav-button-text); 
+            border: none; 
+            font-size: 24px; 
+            font-weight: bold;
+            cursor: pointer; 
+            padding: 14px 18px; 
+            user-select: none; 
+            border-radius: 50%; /* Dibikin bulat penuh agar terlihat modern seperti UI kekinian */
+            transition: background-color 0.2s, transform 0.2s; 
+        }
+        .lightbox-nav:hover { 
+            background-color: var(--accent-color); 
+            color: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        /* --- 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- */
+        @media (max-width: 768px) {
+            .container { 
+                margin: 0; 
+                padding: 1.25rem 1rem; 
+                border-radius: 0; /* Menghilangkan radius di HP agar kontainer penuh memenuhi layar */
+                box-shadow: none; 
+            }
+            .lightbox-content {
+                max-width: 95%; /* Memberi ruang gambar lebih besar di layar sempit */
+                max-height: 70%;
+            }
+            /* Optimasi tombol navigasi di HP agar tidak menutupi gambar dan ramah sentuhan jari */
+            .lightbox-nav {
+                padding: 10px 14px;
+                font-size: 18px;
+                background-color: rgba(0, 0, 0, 0.7); /* Dipertegas di HP agar kelihatan */
+            }
+            .prev { left: 10px; }
+            .next { right: 10px; }
+            .lightbox-close { top: 15px; right: 20px; font-size: 30px; }
+        }
+</style>
 <meta name="ai:summary" content="dan mudah untuk memperbaiki rotasi video yang terbalik atau miring menggunakan fitur bawaan di VLC Media Player.">
 <meta name="ai:prompt_hint" content="dan mudah untuk memperbaiki rotasi video yang terbalik atau miring menggunakan fitur bawaan di VLC Media Player.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
