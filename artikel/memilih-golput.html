@@ -3,57 +3,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Memilih Golput - Alasan Teknis, Psikologis, dan Ideologis - Layar Kosong</title> 
 <style>
-        /* --- 1. Definisikan Variabel Tema Terang (SaaS Clean Vibe) --- */
+        /* --- 1. DESIGN TOKENS & UTILITIES (Modern Tech Blog Theme) --- */
         :root {
+            /* Mode Terang (Light Mode) */
             --bg: #f7fafc;
             --card: #ffffff;
+            --card-border: rgba(15, 23, 42, 0.05);
             --text-main: #0b1220;
             --muted: #6b7280;
             --accent: #0ea5a4;
             
-            /* Komponen Spesifik */
-            --header-bg: linear-gradient(90deg, rgba(14,165,164,0.08), rgba(99,102,241,0.04));
+            --header-bg: rgba(14, 165, 164, 0.06);
             --blockquote-bg: #fbfdfe;
             --blockquote-border: #e6eef0;
             --border-dashed: #eef2f7;
             
-            /* Efek Bayangan */
-            --shadow-card: 0 8px 30px rgba(15,23,42,0.04);
-            --shadow-aside: 0 6px 18px rgba(12,20,30,0.04);
+            --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.03);
+            --shadow-aside: 0 6px 18px rgba(12, 20, 30, 0.02);
+            --radius-lg: 12px;
+            --radius-md: 10px;
         }
 
-        /* --- 2. Otomatis Tema Gelap (Premium Tech Obsidian) --- */
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg: #0b1329;           /* Navy obsidian pekat yang adem */
-                --card: #1e293b;         /* Slate 800 untuk kontainer kartu */
-                --text-main: #f1f5f9;    /* Putih abu lembut (tidak bikin silau) */
-                --muted: #94a3b8;        /* Slate 400 untuk teks sekunder */
-                --accent: #22d3ee;       /* Cyan neon pastel agar tetap kontras */
+                /* Mode Gelap Premium (Dark Mode Typography Safe) */
+                --bg: #0b1329;          
+                --card: #1e293b; 
+                /* Solusi Elevasi: Gunakan border tipis sebagai pengganti shadow di mode gelap */
+                --card-border: rgba(255, 255, 255, 0.08);      
+                --text-main: #f1f5f9;    
+                --muted: #94a3b8;        
+                --accent: #22d3ee;      
                 
-                /* Penyesuaian Komponen di Malam Hari */
-                --header-bg: linear-gradient(90deg, rgba(34,211,238,0.1), rgba(99,102,241,0.05));
-                --blockquote-bg: #151f32; /* Gelap proporsional */
+                --header-bg: rgba(34, 211, 238, 0.08);
+                --blockquote-bg: #151f32; 
                 --blockquote-border: #334155;
                 --border-dashed: #334155;
                 
-                --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.3);
-                --shadow-aside: 0 6px 18px rgba(0, 0, 0, 0.2);
+                --shadow-card: transparent;
+                --shadow-aside: transparent;
             }
         }
 
-        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
-        * { 
+        /* --- 2. UNIVERSAL ACCESSIBLE RESET --- */
+        *, *::before, *::after { 
             box-sizing: border-box; 
         }
         
         html, body { 
-            height: 100%; 
+            min-height: 100vh; 
             margin: 0; 
-            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
-            background: var(--bg); 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background-color: var(--bg); 
             color: var(--text-main);
-            transition: background 0.3s, color 0.3s; /* Transisi halus saat ganti tema */
+            /* Transisi diperhalus saat user mengubah setelan tema OS mereka */
+            transition: background-color 0.4s ease, color 0.4s ease; 
         }
         
         .wrap { 
@@ -62,16 +66,21 @@
             flex-direction: column; 
         }
         
-        /* --- Header dengan Efek Blur Gantung --- */
+        /* --- 3. GLOBAL HEADER WITH APPLE GLASS FIX --- */
         header { 
-            padding: 20px 24px; 
-            background: var(--header-bg); 
-            backdrop-filter: blur(6px); 
-            transition: background 0.3s;
+            padding: 1.25rem 0; 
+            background-color: var(--header-bg); 
+            /* Perbaikan kompatibilitas Safari */
+            -webkit-backdrop-filter: blur(8px); 
+            backdrop-filter: blur(8px); 
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .container { 
-            width: min(1100px, 95%); 
+            width: min(1100px, 92%); 
             margin: 0 auto; 
         }
         
@@ -82,9 +91,9 @@
         }
         
         .logo { 
-            width: 48px; 
-            height: 48px; 
-            border-radius: 10px; 
+            width: 42px; 
+            height: 42px; 
+            border-radius: var(--radius-md); 
             background: linear-gradient(135deg, #06b6d4, #6366f1); 
             display: flex; 
             align-items: center; 
@@ -94,41 +103,55 @@
         }
         
         h1 { 
-            font-size: clamp(20px, 3.2vw, 28px); 
+            font-size: clamp(1.25rem, 3vw, 1.75rem); 
+            font-weight: 800;
+            letter-spacing: -0.02em;
             margin: 0; 
         }
         
         .lede { 
-            margin-top: 8px; 
+            margin-top: 4px; 
             color: var(--muted); 
-            font-size: clamp(13px, 1.8vw, 15px); 
-            transition: color 0.3s;
+            font-size: 0.875rem;
         }
         
-        /* --- Layout Sistem Grid --- */
+        /* --- 4. ENGINE TATA LETAK UTAMA --- */
         main { 
             flex: 1; 
-            padding: 28px 0; 
+            padding: 2rem 0; 
         }
         
         .grid { 
             display: grid; 
             grid-template-columns: 1fr 320px; 
-            gap: 28px; 
+            gap: 2rem; 
             align-items: start; 
         }
         
-        /* --- Kartu Artikel Utama --- */
-        article.card { 
-            background: var(--card); 
-            padding: 26px; 
-            border-radius: 12px; 
+        /* --- 5. KOMPONEN ARTIKEL & KARTU SIDEBAR --- */
+        article.card, aside.card { 
+            background-color: var(--card); 
+            border: 1px solid var(--card-border); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        article.card {
+            padding: 2rem; 
+            border-radius: var(--radius-lg); 
             box-shadow: var(--shadow-card); 
-            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        aside.card {
+            padding: 1.5rem; 
+            border-radius: var(--radius-lg); 
+            box-shadow: var(--shadow-aside); 
         }
         
-        article.card h2 {
-            font-size: clamp(1.4rem, 4vw, 1.8rem);
+        article h2 { 
+            font-size: clamp(1.35rem, 4vw, 1.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0.5rem 0 1rem 0; 
         }
         
         article .meta { 
@@ -136,66 +159,59 @@
             gap: 12px; 
             flex-wrap: wrap; 
             color: var(--muted); 
-            font-size: 13px; 
-            margin-bottom: 10px; 
-            transition: color 0.3s;
-        }
-        
-        article h2 { 
-            margin: 6px 0 12px; 
+            font-size: 0.825rem; 
+            margin-bottom: 0.5rem; 
         }
         
         article p { 
-            margin: 0 0 12px; 
+            line-height: 1.8;
+            color: var(--text-main);
+            opacity: 0.95; /* Menjaga kenyamanan membaca teks panjang */
+            margin-bottom: 1.25rem; 
         }
         
         .section-title { 
             font-weight: 700; 
-            margin-top: 18px; 
-            margin-bottom: 8px; 
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem; 
             color: var(--accent);
-            transition: color 0.3s;
         }
         
+        /* --- 6. KOMPONEN KONTEN KHUSUS --- */
         .illustration { 
             width: 100%; 
-            border-radius: 10px; 
+            border-radius: var(--radius-md); 
             overflow: hidden; 
-            margin: 12px 0; 
+            margin: 1.5rem 0; 
+            background-color: rgba(0,0,0,0.02);
         }
         
         .illustration img { 
-            width: 100%; 
+            max-width: 100%; /* Pengaman: mencegah gambar kecil pecah/melar terpaksa */
             height: auto; 
             display: block; 
+            margin: 0 auto;
         }
         
-        /* --- Penyelamatan Blok Kutipan --- */
         .blockquote { 
             border-left: 4px solid var(--blockquote-border); 
-            padding: 12px 16px; 
-            background: var(--blockquote-bg); 
-            border-radius: 8px; 
+            padding: 1rem 1.25rem; 
+            background-color: var(--blockquote-bg); 
+            border-radius: 0 var(--radius-md) var(--radius-md) 0; 
             color: var(--text-main); 
-            transition: background 0.3s, border-color 0.3s, color 0.3s;
-        }
-        
-        /* --- Sidebar Konten --- */
-        aside.card { 
-            background: var(--card); 
-            padding: 18px; 
-            border-radius: 12px; 
-            box-shadow: var(--shadow-aside); 
-            transition: background 0.3s, box-shadow 0.3s;
+            font-style: italic;
+            margin: 1.5rem 0;
         }
         
         .info-row { 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            padding: 8px 0; 
+            padding: 0.75rem 0; 
             border-bottom: 1px dashed var(--border-dashed); 
-            transition: border-color 0.3s;
+            font-size: 0.9rem;
         }
         
         .info-row:last-child { 
@@ -203,42 +219,47 @@
         }
         
         .small { 
-            font-size: 13px; 
+            font-size: 0.825rem; 
             color: var(--muted); 
-            transition: color 0.3s;
         }
         
-        /* --- Bagian Kaki Web --- */
+        /* --- 7. KAKI HALAMAN (FOOTER) --- */
         footer { 
-            padding: 18px 0; 
-            background: transparent; 
+            padding: 1.5rem 0; 
+            border-top: 1px solid var(--card-border);
+            margin-top: auto;
         }
         
         .footer-inner { 
-            width: min(1100px, 95%); 
-            margin: 0 auto; 
             display: flex; 
             flex-wrap: wrap; 
             align-items: center; 
             justify-content: space-between; 
             color: var(--muted);
-            transition: color 0.3s;
+            font-size: 0.825rem;
         }
         
-        /* --- Responsive Breakpoint (Tablet & HP) --- */
+        /* --- 8. ADAPTASI LAYAR RESPONSIVE (Mobile Engine) --- */
         @media (max-width: 880px) {
             .grid { 
                 grid-template-columns: 1fr; 
-                gap: 20px;
+                gap: 1.5rem;
             }
-            .aside { 
-                order: 2; /* Menjaga artikel utama tetap dibaca duluan di HP */
+            
+            /* Menggeser sidebar ke bawah artikel dengan urutan semantik yang benar */
+            aside.card { 
+                order: 2; 
             }
+            
             main {
-                padding: 16px 0;
+                padding: 1rem 0;
+            }
+
+            article.card {
+                padding: 1.5rem;
             }
         }
-</style>
+    </style>
     <meta name="date" content="2025-09-28">
 <meta name="ai:summary" content="sebagian warga memilih golput: faktor teknis, psikologis, dan ideologis. Analisis moderat tentang lunturnya kepercayaan terhadap praktik demokrasi sekuler.">
 <meta name="ai:prompt_hint" content="sebagian warga memilih golput: faktor teknis, psikologis, dan ideologis. Analisis moderat tentang lunturnya kepercayaan terhadap praktik demokrasi sekuler.">
