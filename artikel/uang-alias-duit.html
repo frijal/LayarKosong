@@ -5,43 +5,313 @@
 <title>UANG alias DUIT - Refleksi tentang Kuasa, Godaan, dan Tanggung Jawab 💰 - Layar Kosong</title> 
 <meta name="date" content="2025-09-27">
 <style>
-:root { --bg: #f8fafc; --card: #ffffff; --muted: #64748b; --accent: #f59e0b; }
-* { box-sizing: border-box; }
-body, html { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: var(--bg); color: #081026; }
-.wrap { min-height: 100vh; display: flex; flex-direction: column; }
-header { padding: 22px 24px; background: linear-gradient( 90deg, rgba(245, 158, 11, 0.08), rgba(14, 165, 164, 0.04) ); backdrop-filter: blur(6px); }
-.container { width: min(1100px, 95%); margin: 0 auto; }
-.brand { display: flex; gap: 12px; align-items: center; }
-.logo { width: 52px; height: 52px; border-radius: 10px; background: linear-gradient(135deg, #f59e0b, #ef4444); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; }
-h1 { font-size: clamp(20px, 3.2vw, 30px); margin: 0; }
-.lede { margin-top: 8px; color: var(--muted); font-size: clamp(13px, 1.8vw, 15px); }
-main { flex: 1; padding: 28px 0; }
-.grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
-article.card { background: var(--card); padding: 28px; border-radius: 14px; box-shadow: 0 10px 30px rgba(9, 12, 20, 0.06); }
-article .meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 13px; margin-bottom: 10px; }
-article h2 { margin: 6px 0 12px; }
-article h2 strong { color: var(--accent); }
-article p { margin: 0 0 12px; }
-.section-title { font-weight: 700; margin-top: 16px; margin-bottom: 8px; color: #333; }
-.quote { font-style: italic; padding: 12px 16px; border-left: 4px solid var(--accent); background: #fffaf1; border-radius: 8px; }
-ul { margin: 0 0 12px 20px; }
-.illustration { margin: 14px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-.illustration img { width: 100%; height: auto; display: block; }
-aside.card { background: var(--card); padding: 18px; border-radius: 12px; box-shadow: 0 6px 18px rgba(12, 20, 30, 0.04); }
-.info-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eef2f7; }
-.info-row:last-child { border-bottom: 0; }
-.small { font-size: 13px; color: var(--muted); }
-footer { padding: 18px 0; background: 0 0; }
-.footer-inner { width: min(1100px, 95%); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
-@media (max-width: 880px) { .grid { grid-template-columns: 1fr; } .aside { order: 2; } }
-/* Styling Tombol Floating */
-#btn-sitemap-left, #btn-home-right {
-position: fixed; display: flex; align-items: center; background-color: var(--accent); color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease; z-index: 9999;
-}
-#btn-sitemap-left:hover, #btn-home-right:hover { background-color: #d97706; transform: scale(1.05); }
-#btn-sitemap-left { left: 10px; top: 30%; transform: translateY(-50%); }
-#btn-home-right { right: 10px; bottom: 20%; transform: translateY(50%); }
-#btn-sitemap-left svg, #btn-home-right svg { flex-shrink: 0; margin-right: 6px; }
+        /* --- 1. Definisikan Variabel Tema Terang (Sunset Tech Vibe) --- */
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #081026;
+            --muted: #64748b;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            
+            /* Komponen Khusus */
+            --header-gradient: linear-gradient(90deg, rgba(245, 158, 11, 0.08), rgba(14, 165, 164, 0.04));
+            --section-title-color: #333333;
+            --quote-bg: #fffaf1;
+            --border-dashed: #eef2f7;
+            
+            /* Sistem Bayangan */
+            --shadow-card: 0 10px 30px rgba(9, 12, 20, 0.06);
+            --shadow-aside: 0 6px 18px rgba(12, 20, 30, 0.04);
+        }
+
+        /* --- 2. Otomatis Tema Gelap (Amber Obsidian Premium) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0b0f17;           /* Hitam arang dengan sub-tone biru malam */
+                --card: #161e2e;         /* Slate gelap untuk kontainer utama */
+                --text-main: #f1f5f9;    /* Putih abu lembut agar mata tidak lelah */
+                --muted: #94a3b8;        /* Slate abu untuk teks sekunder */
+                --accent: #fbbf24;       /* Amber pastel cerah agar kontras di latar gelap */
+                --accent-hover: #f59e0b;
+                
+                /* Penyesuaian Komponen Malam Hari */
+                --header-gradient: linear-gradient(90deg, rgba(251, 191, 36, 0.1), rgba(14, 165, 164, 0.04));
+                --section-title-color: #e2e8f0;
+                --quote-bg: #241a08;     /* Cokelat amber gelap pekat yang sangat teduh */
+                --border-dashed: #2d3748;
+                
+                --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+                --shadow-aside: 0 6px 18px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* --- 3. Desain Utama & Tata Letak --- */
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body, html { 
+            height: 100%; 
+            margin: 0; 
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
+            background: var(--bg); 
+            color: var(--text-main);
+            transition: background 0.3s, color 0.3s; /* Efek transisi halus saat ganti tema */
+        }
+        
+        .wrap { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        /* --- Header dengan Efek Blur Transparan --- */
+        header { 
+            padding: 22px 24px; 
+            background: var(--header-gradient); 
+            backdrop-filter: blur(6px); 
+            transition: background 0.3s;
+        }
+        
+        .container { 
+            width: min(1100px, 95%); 
+            margin: 0 auto; 
+        }
+        
+        .brand { 
+            display: flex; 
+            gap: 12px; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            width: 52px; 
+            height: 52px; 
+            border-radius: 10px; 
+            background: linear-gradient(135deg, #f59e0b, #ef4444); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #ffffff; 
+            font-weight: 800; 
+        }
+        
+        h1 { 
+            font-size: clamp(20px, 3.2vw, 30px); 
+            margin: 0; 
+        }
+        
+        .lede { 
+            margin-top: 8px; 
+            color: var(--muted); 
+            font-size: clamp(13px, 1.8vw, 15px); 
+            transition: color 0.3s;
+        }
+        
+        /* --- Sistem Grid Dua Kolom --- */
+        main { 
+            flex: 1; 
+            padding: 28px 0; 
+        }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr 320px; 
+            gap: 28px; 
+            align-items: start; 
+        }
+        
+        /* --- Kartu Artikel Konten --- */
+        article.card { 
+            background: var(--card); 
+            padding: 28px; 
+            border-radius: 14px; 
+            box-shadow: var(--shadow-card); 
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        
+        article .meta { 
+            display: flex; 
+            gap: 12px; 
+            flex-wrap: wrap; 
+            color: var(--muted); 
+            font-size: 13px; 
+            margin-bottom: 10px; 
+            transition: color 0.3s;
+        }
+        
+        article h2 { 
+            margin: 6px 0 12px; 
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+        }
+        
+        article h2 strong { 
+            color: var(--accent); 
+            transition: color 0.3s;
+        }
+        
+        article p { 
+            margin: 0 0 12px; 
+        }
+        
+        .section-title { 
+            font-weight: 700; 
+            margin-top: 16px; 
+            margin-bottom: 8px; 
+            color: var(--section-title-color); 
+            transition: color 0.3s;
+        }
+        
+        /* --- Penyelamatan Blok Kutipan --- */
+        .quote { 
+            font-style: italic; 
+            padding: 12px 16px; 
+            border-left: 4px solid var(--accent); 
+            background: var(--quote-bg); 
+            border-radius: 8px; 
+            transition: background 0.3s, border-color 0.3s;
+        }
+        
+        ul { 
+            margin: 0 0 12px 20px; 
+        }
+        
+        .illustration { 
+            margin: 14px 0; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+        }
+        
+        .illustration img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        
+        /* --- Sidebar Konten --- */
+        aside.card { 
+            background: var(--card); 
+            padding: 18px; 
+            border-radius: 12px; 
+            box-shadow: var(--shadow-aside); 
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        
+        .info-row { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 8px 0; 
+            border-bottom: 1px dashed var(--border-dashed); 
+            transition: border-color 0.3s;
+        }
+        
+        .info-row:last-child { 
+            border-bottom: 0; 
+        }
+        
+        .small { 
+            font-size: 13px; 
+            color: var(--muted); 
+            transition: color 0.3s;
+        }
+        
+        /* --- Bagian Kaki Web --- */
+        footer { 
+            padding: 18px 0; 
+            background: transparent; 
+        }
+        
+        .footer-inner { 
+            width: min(1100px, 95%); 
+            margin: 0 auto; 
+            display: flex; 
+            flex-wrap: wrap; 
+            align-items: center; 
+            justify-content: space-between; 
+            color: var(--muted);
+            transition: color 0.3s;
+        }
+
+        /* --- 4. Sistem Navigasi Tombol Floating Desktop --- */
+        #btn-sitemap-left, #btn-home-right {
+            position: fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            background-color: var(--accent); 
+            color: #ffffff; 
+            padding: 12px 18px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-family: Arial, sans-serif; 
+            font-size: 14px; 
+            font-weight: 700; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+            transition: background-color 0.3s, transform 0.2s, left 0.3s, right 0.3s, bottom 0.3s;
+            z-index: 9999;
+        }
+        
+        #btn-sitemap-left:hover, #btn-home-right:hover { 
+            background-color: var(--accent-hover); 
+            transform: scale(1.05); 
+        }
+        
+        #btn-sitemap-left { 
+            left: 20px; /* Ditambah sedikit jarak agar lebih bernapas dari tepi layar */
+            top: 30%; 
+            transform: translateY(-50%); 
+        }
+        
+        #btn-home-right { 
+            right: 20px; 
+            bottom: 20%; 
+            transform: translateY(50%); 
+        }
+        
+        #btn-sitemap-left svg, #btn-home-right svg { 
+            flex-shrink: 0; 
+            margin-right: 6px; 
+        }
+
+        /* --- 5. Otomatis Deteksi Mobile-Responsive (Layar < 880px) --- */
+        @media (max-width: 880px) { 
+            .grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            } 
+            .aside { 
+                order: 2; 
+            } 
+            main {
+                padding: 16px 0 80px 0; /* Ditambah padding bawah agar konten tidak tertutup dock mobile */
+            }
+
+            /* Penyelamatan Tombol Floating di Mobile:
+               Dipindahkan ke bawah layar, berjajar rapi membentuk Bottom Dock Navbar
+            */
+            #btn-sitemap-left, #btn-home-right {
+                position: fixed;
+                top: auto !important;
+                bottom: 16px !important;
+                transform: none !important;
+                width: calc(50% - 20px); /* Membagi layar rata dua sisi kiri-kanan */
+                box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+                padding: 14px 10px; /* Dipertebal agar ramah ketukan jari */
+            }
+            
+            #btn-sitemap-left {
+                left: 12px !important;
+                right: auto;
+            }
+            
+            #btn-home-right {
+                right: 12px !important;
+                left: auto;
+            }
+        }
 </style>
 <meta name="ai:summary" content="Personifikasi uang: manfaat, bahaya ketika disembah, dan pengingat moral untuk menjadikan uang alat, bukan tuhan. Refleksi tentang kuasa, godaan, dan tanggung jawab.">
 <meta name="ai:prompt_hint" content="Personifikasi uang: manfaat, bahaya ketika disembah, dan pengingat moral untuk menjadikan uang alat, bukan tuhan. Refleksi tentang kuasa, godaan, dan tanggung jawab.">
