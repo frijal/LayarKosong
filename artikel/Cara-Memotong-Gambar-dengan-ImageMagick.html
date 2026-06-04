@@ -5,74 +5,253 @@
 <meta name="keywords" content="ImageMagick, crop gambar, command line, bash, konversi gambar, resize, slice, pemrosesan gambar">
 <meta name="date" content="2025-09-27">
 <style>
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-}
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 25px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-h1 {
-  color: #2c3e50;
-  text-align: center;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
-}
-h2 {
-  color: #3498db;
-  border-left: 4px solid #3498db;
-  padding-left: 10px;
-}
-code {
-  background-color: #2c3e50;
-  color: #f4f4f4;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-family: "Courier New", Courier, monospace;
-  display: block;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  margin: 15px 0;
-}
-.image-placeholder,
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.image-caption {
-  text-align: center;
-  font-style: italic;
-  color: #666;
-  margin-top: -10px;
-  margin-bottom: 20px;
-}
-.result-container {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-.result-image {
-  width: 48%;
-  min-width: 200px;
-}
-p {
-  text-align: justify;
-}
+  :root {
+    color-scheme: light dark;
+
+    --primary: #3498db;
+    --primary-dark: #2c3e50;
+    --primary-hover: #217dbb;
+
+    --bg: #f4f4f4;
+    --text: #333333;
+    --muted: #666666;
+
+    --surface: #ffffff;
+    --border: rgba(44, 62, 80, 0.16);
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+
+    --code-bg: #2c3e50;
+    --code-text: #f4f4f4;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    --container: 800px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #5dade2;
+      --primary-dark: #d6eaff;
+      --primary-hover: #85c1e9;
+
+      --bg: #0f172a;
+      --text: #e5e7eb;
+      --muted: #a8b3c7;
+
+      --surface: #111827;
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+
+      --code-bg: #020617;
+      --code-text: #e5e7eb;
+    }
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background:
+      radial-gradient(circle at top left, color-mix(in srgb, var(--primary), transparent 88%), transparent 360px),
+      var(--bg);
+    color: var(--text);
+    font-size: 16px;
+  }
+
+  .container {
+    width: min(100% - 32px, var(--container));
+    margin: 24px auto;
+    padding: clamp(18px, 4vw, 28px);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  h1 {
+    color: var(--primary-dark);
+    text-align: center;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 0 1.4rem;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--primary);
+    text-wrap: balance;
+  }
+
+  h2 {
+    color: var(--primary);
+    font-size: clamp(1.35rem, 3.4vw, 2rem);
+    line-height: 1.25;
+    margin: 2rem 0 1rem;
+    padding-left: 12px;
+    border-left: 4px solid var(--primary);
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    text-align: justify;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  a:hover {
+    color: var(--primary-hover);
+  }
+
+  code {
+    display: block;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    overflow-x: auto;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .image-placeholder,
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 24px auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+  }
+
+  .image-caption {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: -12px;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+
+  .result-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+    align-items: start;
+  }
+
+  .result-image {
+    width: 100%;
+    min-width: 0;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--primary), transparent 45%);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      font-size: 15.5px;
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(100% - 20px, var(--container));
+      margin: 16px auto;
+      padding: 18px;
+      border-radius: 10px;
+    }
+
+    p {
+      text-align: left;
+    }
+
+    code {
+      font-size: 0.88rem;
+      padding: 0.85rem;
+    }
+
+    .result-container {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      font-size: 15px;
+    }
+
+    .container {
+      width: min(100% - 14px, var(--container));
+      margin: 10px auto;
+      padding: 15px;
+    }
+
+    h1 {
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      padding-left: 10px;
+      border-left-width: 3px;
+    }
+
+    .image-placeholder,
+    img {
+      margin: 18px auto;
+      border-radius: 7px;
+    }
+
+    .image-caption {
+      margin-top: -8px;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 </style>
 <meta name="ai:summary" content="Panduan langkah demi langkah memotong (crop) gambar secara horizontal dan vertikal menggunakan ImageMagick di command line. Lengkap dengan contoh perintah convert dan visualisasi hasil.">
 <meta name="ai:prompt_hint" content="Panduan langkah demi langkah memotong (crop) gambar secara horizontal dan vertikal menggunakan ImageMagick di command line. Lengkap dengan contoh perintah convert dan visualisasi hasil.">
