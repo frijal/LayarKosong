@@ -9,19 +9,187 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <!-- Canonical URL -->
 <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; }
-        .card { background: white; border: 1px solid #e1e4e8; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(149,157,165,0.1); }
-        h2 { margin-top: 0; color: #24292e; text-align: center; }
-        label { display: block; margin-top: 15px; font-weight: 600; color: #444; font-size: 1.2rem; }
-        input { width: 100%; margin: 8px 0; padding: 12px; border: 1px solid #d1d5da; border-radius: 6px; box-sizing: border-box; transition: border-color 0.2s; }
-        input:focus { border-color: #0366d6; outline: none; box-shadow: 0 0 0 3px rgba(3,102,214,0.1); }
-        button { width: 100%; margin-top: 20px; padding: 12px; background: #2ea44f; color: white; border: 1px solid rgba(27,31,35,0.15); border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; }
-        button:hover { background: #2c974b; }
-        button:disabled { background: #94d3a2; cursor: not-allowed; }
-        #result { margin-top: 25px; padding: 15px; background: #f1f8ff; border: 1px solid #c8e1ff; display: none; border-radius: 6px; }
-        .url-box { background: #fff; padding: 10px; border: 1px solid #d1d5da; border-radius: 4px; font-family: monospace; font-size: 13px; margin: 10px 0; overflow-x: auto; }
-        .status-msg { text-align: center; font-size: 1.2rem; margin-top: 10px; color: #586069; }
-    </style>
+    /* 1. Definisikan Variabel Tema Terang (Default) */
+    :root {
+        --bg-color: #f9f9f9;
+        --card-bg: #ffffff;
+        --text-main: #24292e;
+        --text-muted: #444444;
+        --border-color: #e1e4e8;
+        
+        --input-bg: #ffffff;
+        --input-border: #d1d5da;
+        --input-text: #24292e;
+        
+        --btn-bg: #2ea44f;
+        --btn-hover: #2c974b;
+        --btn-disabled: #94d3a2;
+        
+        --result-bg: #f1f8ff;
+        --result-border: #c8e1ff;
+        
+        --status-color: #586069;
+        --shadow-color: rgba(149,157,165,0.1);
+        --focus-ring: rgba(3,102,214,0.3);
+    }
+
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+            
+            --input-bg: #0d1117;
+            --input-border: #30363d;
+            --input-text: #c9d1d9;
+            
+            --btn-bg: #238636;
+            --btn-hover: #2ea043;
+            --btn-disabled: #1b4721;
+            
+            --result-bg: #1c2128;
+            --result-border: #444c56;
+            
+            --status-color: #8b949e;
+            --shadow-color: rgba(0,0,0,0.4);
+            --focus-ring: rgba(88,166,255,0.3);
+        }
+    }
+
+    /* 3. Base Styles (Desktop & Tablet) */
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        max-width: 900px; 
+        margin: 40px auto; 
+        padding: 20px; 
+        background-color: var(--bg-color); 
+        color: var(--text-main);
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .card { 
+        background: var(--card-bg); 
+        border: 1px solid var(--border-color); 
+        padding: 30px; 
+        border-radius: 12px; 
+        box-shadow: 0 8px 24px var(--shadow-color); 
+        transition: background-color 0.3s, border-color 0.3s, padding 0.3s;
+    }
+    
+    h2 { 
+        margin-top: 0; 
+        color: var(--text-main); 
+        text-align: center; 
+    }
+    
+    label { 
+        display: block; 
+        margin-top: 15px; 
+        font-weight: 600; 
+        color: var(--text-muted); 
+        font-size: 1.2rem; 
+    }
+    
+    input { 
+        width: 100%; 
+        margin: 8px 0; 
+        padding: 12px; 
+        background-color: var(--input-bg);
+        color: var(--input-text);
+        border: 1px solid var(--input-border); 
+        border-radius: 6px; 
+        box-sizing: border-box; 
+        transition: border-color 0.2s, background-color 0.3s, color 0.3s; 
+    }
+    
+    input:focus { 
+        border-color: #0366d6; 
+        outline: none; 
+        box-shadow: 0 0 0 3px var(--focus-ring); 
+    }
+    
+    button { 
+        width: 100%; 
+        margin-top: 20px; 
+        padding: 12px; 
+        background: var(--btn-bg); 
+        color: white; 
+        border: 1px solid rgba(27,31,35,0.15); 
+        border-radius: 6px; 
+        cursor: pointer; 
+        font-size: 16px; 
+        font-weight: 600; 
+        transition: background-color 0.2s;
+    }
+    
+    button:hover { 
+        background: var(--btn-hover); 
+    }
+    
+    button:disabled { 
+        background: var(--btn-disabled); 
+        cursor: not-allowed; 
+        color: rgba(255,255,255,0.6);
+    }
+    
+    #result { 
+        margin-top: 25px; 
+        padding: 15px; 
+        background: var(--result-bg); 
+        border: 1px solid var(--result-border); 
+        display: none; 
+        border-radius: 6px; 
+    }
+    
+    .url-box { 
+        background: var(--input-bg); 
+        padding: 10px; 
+        border: 1px solid var(--input-border); 
+        border-radius: 4px; 
+        font-family: monospace; 
+        font-size: 13px; 
+        margin: 10px 0; 
+        overflow-x: auto; 
+        color: var(--text-main);
+    }
+    
+    .status-msg { 
+        text-align: center; 
+        font-size: 1.2rem; 
+        margin-top: 10px; 
+        color: var(--status-color); 
+    }
+
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
+    @media (max-width: 600px) {
+        body {
+            margin: 10px auto;  /* Jarak atas-bawah dipangkas biar gak buang-buang tempat */
+            padding: 12px;      /* Sisi kanan-kiri dipersempit biar pas di layar HP */
+        }
+
+        .card {
+            padding: 20px 15px; /* Padding dalam card dikurangi supaya konten gak kesempitan */
+            border-radius: 8px;  /* Sedikit lebih kotak biar kelihatan rapi di layar kecil */
+        }
+
+        h2 {
+            font-size: 1.5rem;   /* Ukuran judul dikecilkan sedikit biar gak makan tempat */
+        }
+
+        label {
+            font-size: 1rem;     /* Ukuran label disesuaikan dengan proporsi mata di layar HP */
+            margin-top: 10px;
+        }
+
+        input, button {
+            padding: 10px;       /* Input & tombol dibikin sedikit lebih ramping tapi tetap nyaman di-tap */
+            font-size: 15px;
+        }
+    }
+</style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/github-file-uploader">
