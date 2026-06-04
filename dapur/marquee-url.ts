@@ -30,10 +30,10 @@ function getFullUrl(fileName: string, allData: any): string {
     const catArticles = articles as any[];
     if (catArticles.some((a: any) => a.id === fileName)) {
       const catSlug = catName.toLowerCase().replace(/\s+/g, '-');
-      return `/${catSlug}/${fileName.replace('.html', '')}/`;
+      return `/${catSlug}/${fileName.replace('.html', '')}`;
     }
   }
-  return `/${cleanSlug(fileName)}/`;
+  return `/${cleanSlug(fileName)}`;
 }
 
 function getCategoryInfo(fileName: string, allData: any) {
@@ -196,11 +196,11 @@ if (!nav) {
 }
 
 nav.innerHTML = `
-<div class="nav-left"><a href="/${catInfo.slug}/" class="category-link visible">${catInfo.name}</a></div>
+<div class="nav-left"><a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a></div>
 <div class="nav-right">
 <a href="/" title="Home" class="btn-emoji">🏠</a>
-<a href="/sitemap/" title="Daftar Isi" class="btn-emoji">📄</a>
-<a href="/feed/" title="RSS Feed" class="btn-emoji">📡</a>
+<a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
+<a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
 ${total > 1 ? `
   <a href="${getFullUrl(catInfo.list[prevI].id, allData)}" title="${catInfo.list[prevI].title}" class="btn-emoji">⏪</a>
   <a href="${getFullUrl(catInfo.list[nextI].id, allData)}" title="${catInfo.list[nextI].title}" class="btn-emoji">⏩</a>
