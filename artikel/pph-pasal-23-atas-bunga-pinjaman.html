@@ -1,35 +1,176 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-<!-- Meta Tag Dasar -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO Meta Tags -->
     <title>PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan - Layar Kosong</title> 
     <meta name="keywords" content="PPh 23, bunga pinjaman, pajak bunga pinjaman, PPh Pasal 23, pajak atas bunga, pinjaman antar perusahaan, pajak Indonesia">
-    <!-- Canonical URL -->
-    <!-- Open Graph / Facebook -->
-    <!-- CSS Sederhana (bisa diganti dengan file eksternal nanti) -->
-    <style>
+  <style>
+        /* --- 1. DEFINISI VARIABEL TEMA TERANG (Professional Corporate) --- */
+        :root {
+            --bg-color: #f9f9f9;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --heading-color: #1a5fb4;
+            --border-color: #dddddd;
+            
+            /* Komponen Kotak Highlight */
+            --highlight-bg: #fff3cd;
+            --highlight-border: #ffc107;
+            --highlight-text: #664d03;
+            
+            /* Komponen Tabel */
+            --th-bg: #1a5fb4;
+            --th-text: #ffffff;
+            
+            --max-width: 900px;
+            --transition-speed: 0.3s;
+        }
+
+        /* --- 2. OTOMATIS TEMA GELAP (Premium Slate Navy) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;       /* Slate gelap pekat yang adem di mata */
+                --container-bg: #1e293b;   /* Warna blok kontainer utama */
+                --text-color: #cbd5e1;     /* Putih abu-abu lembut untuk teks utama */
+                --heading-color: #38bdf8;  /* Biru langit elektrik cerah khusus judul malam */
+                --border-color: #334155;
+                
+                /* Penyesuaian Kotak Highlight di Mode Malam (Emas Redup) */
+                --highlight-bg: #2e2a16;
+                --highlight-border: #d97706;
+                --highlight-text: #fef08a;
+                
+                /* Penyesuaian Tabel Mode Malam */
+                --th-bg: #0284c7;
+                --th-text: #ffffff;
+            }
+        }
+
+        /* --- 3. RESET & BASE LAYOUT --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: "Segoe UI", Arial, sans-serif;
             line-height: 1.7;
-            color: #333;
-            max-width: 900px;
+            /* SELESAI: body dibebaskan dari max-width agar bebas berekspansi secara full-width */
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* --- 4. KONTAINER UTAMA (Wadah Pengganti Pembatas Lebar) --- */
+        /* Bungkus seluruh konten di dalam tag HTML kamu menggunakan <div class="container"> */
+        .container {
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 20px;
-            background: #f9f9f9;
+            padding: 30px 20px;
+            background-color: var(--container-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            transition: background-color var(--transition-speed);
         }
-        header, footer { text-align: center; padding: 20px 0; }
-        h1, h2, h3 { color: #1a5fb4; }
-        img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
-        .highlight { background: #fff3cd; padding: 15px; border-left: 5px solid #ffc107; margin: 20px 0; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        table, th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #1a5fb4; color: white; }
+
+        @media (prefers-color-scheme: dark) {
+            .container {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        header, footer { 
+            text-align: center; 
+            padding: 20px 0; 
+        }
+
+        /* --- 5. TIPOGRAFI RESPONSIF --- */
+        h1, h2, h3 { 
+            color: var(--heading-color); 
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            transition: color var(--transition-speed);
+        }
+        
+        /* Menggunakan clamp() agar ukuran font mengecil otomatis di HP tanpa media query tambahan */
+        h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-top: 10px; }
+        h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin-top: 1.5rem; }
+        h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); margin-top: 1.2rem; }
+
+        p {
+            margin-bottom: 1.2em;
+        }
+
+        /* --- 6. OPTIMASI MEDIA (ANTI RE-RENDERING) --- */
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            margin: 24px 0; 
+            display: block;
+        }
+
+        /* --- 7. KOMPONEN SEKSI ELEMEN --- */
+        .highlight { 
+            background: var(--highlight-bg); 
+            color: var(--highlight-text);
+            padding: 15px 20px; 
+            border-left: 5px solid var(--highlight-border); 
+            margin: 24px 0; 
+            border-radius: 0 8px 8px 0;
+            transition: background var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        /* --- 8. TAMENG RESPONSIF UNTUK ELEMEN TABEL --- */
+        /* Bungkus elemen <table> kamu di HTML dengan <div class="table-container"> */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Memunculkan scrollbar horizontal internal khusus jika kepentok di layar HP */
+            margin: 24px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            -webkit-overflow-scrolling: touch; /* Efek scrolling mulus di perangkat iOS */
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 550px; /* Memaksa tabel menjaga struktur kolomnya saat di layar kecil */
+        }
+
+        table, th, td { 
+            border: 1px solid var(--border-color); 
+            transition: border-color var(--transition-speed);
+        }
+
+        th, td { 
+            padding: 12px; 
+            text-align: left; 
+        }
+
+        th { 
+            background: var(--th-bg); 
+            color: var(--th-text); 
+            font-weight: 600;
+            transition: background var(--transition-speed), color var(--transition-speed);
+        }
+        
+        td {
+            background-color: var(--container-bg);
+        }
+
+        /* --- 9. OPTIMASI LAYAR MOBILE (Layar < 600px) --- */
         @media (max-width: 600px) {
-            body { padding: 10px; }
+            .container { 
+                padding: 20px 15px; 
+                margin: 10px;
+                border-radius: 8px;
+            }
         }
-    </style>
+</style>
 <meta name="ai:summary" content="PPh Pasal 23 adalah pajak yang dipotong atas bunga pinjaman dari peminjam kepada pemberi pinjaman WP Dalam Negeri atau BUT, dengan tarif 15% dari jumlah bruto bunga. Terdapat pengecualian untuk bunga dari bank, obligasi, pemerintah, dan WP Luar Negeri, serta kewajiban pemotong untuk menyetor dan melaporkan pajak tersebut.">
 <meta name="news_keywords" content="PPh Pasal 23, Bunga Pinjaman, Pajak, Tarif, Pengecualian">
 <meta name="ai:topics" content="PPh Pasal 23, Pajak Bunga Pinjaman, Perpajakan Indonesia">
