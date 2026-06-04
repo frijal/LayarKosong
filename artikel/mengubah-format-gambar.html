@@ -3,79 +3,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mengubah Format Gambar Massal dengan ImageMagick - Layar Kosong</title> 
 <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.7;
-            background: linear-gradient(120deg, #f0f9ff, #e0f2fe);
-            color: #222;
+   <style>
+    /* 1. Definisikan Variabel Tema Terang (Default) */
+    :root {
+        --bg-gradient-start: #f0f9ff;
+        --bg-gradient-end: #e0f2fe;
+        --text-color: #222222;
+        
+        --header-bg: #0284c7;
+        --header-text: #ffffff;
+        
+        --main-bg: #ffffff;
+        --title-color: #0369a1;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        
+        --pre-bg: #0f172a;
+        --pre-text: #ffffff;
+        
+        --copy-btn-bg: #10b981;
+        --copy-btn-hover: #059669;
+        
+        --footer-text: #555555;
+        --share-border: #cccccc;
+        --share-btn-bg: #e0f2fe;
+        --share-btn-text: #0369a1;
+        --share-btn-hover: #bae6fd;
+    }
+
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            /* Gradasi gelap yang elegan ala malam hari */
+            --bg-gradient-start: #0f172a;
+            --bg-gradient-end: #1e293b;
+            --text-color: #e2e8f0;
+            
+            --header-bg: #0369a1;
+            --header-text: #ffffff;
+            
+            --main-bg: #1e293b;
+            --title-color: #38bdf8; /* Biru muda cerah agar kontras di latar gelap */
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            
+            --pre-bg: #020617; /* Lebih gelap dari main background */
+            --pre-text: #f8fafc;
+            
+            --copy-btn-bg: #059669;
+            --copy-btn-hover: #10b981;
+            
+            --footer-text: #94a3b8;
+            --share-border: #334155;
+            
+            /* Menyesuaikan warna tombol share pastel versi gelap */
+            --share-btn-bg: #0c4a6e;
+            --share-btn-text: #e0f2fe;
+            --share-btn-hover: #0369a1;
         }
+    }
+
+    /* 3. Base Styles (Desktop & Tablet) */
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.7;
+        background: linear-gradient(120deg, var(--bg-gradient-start), var(--bg-gradient-end));
+        color: var(--text-color);
+        min-height: 100vh; /* Memastikan gradasi memenuhi layar penuh */
+        transition: background 0.3s, color 0.3s;
+    }
+    
+    header {
+        background: var(--header-bg);
+        color: var(--header-text);
+        padding: 20px;
+        text-align: center;
+        transition: background-color 0.3s;
+    }
+    
+    main {
+        max-width: 900px;
+        margin: 30px auto; /* Memberi jarak manis dari header di desktop */
+        padding: 20px;
+        background: var(--main-bg);
+        border-radius: 12px;
+        box-shadow: 0 6px 15px var(--shadow-color);
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    
+    h1, h2 {
+        color: var(--title-color);
+        transition: color 0.3s;
+    }
+    
+    pre {
+        border-radius: 8px;
+        padding: 12px;
+        background: var(--pre-bg);
+        color: var(--pre-text);
+        overflow-x: auto;
+        transition: background-color 0.3s;
+    }
+    
+    code {
+        font-family: Consolas, Monaco, monospace;
+    }
+    
+    .copy-btn {
+        background: var(--copy-btn-bg);
+        border: none;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 6px;
+        font-size: 12px;
+        transition: background-color 0.2s;
+    }
+    
+    .copy-btn:hover { 
+        background: var(--copy-btn-hover); 
+    }
+    
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 14px;
+        color: var(--footer-text);
+        padding-bottom: 20px;
+        transition: color 0.3s;
+    }
+    
+    /* Bagian Tombol Share */
+    .share-buttons {
+        margin-top: 20px;
+        padding: 15px 10px 0 10px;
+        border-top: 1px dashed var(--share-border);
+        text-align: center;
+        transition: border-color 0.3s;
+    }
+    
+    .share-buttons a {
+        margin: 0 6px;
+        text-decoration: none;
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--share-btn-bg);
+        color: var(--share-btn-text);
+        display: inline-block;
+        transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    
+    .share-buttons a:hover { 
+        background: var(--share-btn-hover); 
+        transform: translateY(-1px);
+    }
+
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
+    @media (max-width: 600px) {
         header {
-            background: #0284c7;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
+            padding: 15px 10px; /* Sedikit lebih ramping di HP */
         }
+        
+        header h1 {
+            font-size: 1.6rem; /* Biar judul gak kebesaran */
+        }
+
         main {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            margin: 15px 10px; /* Memberi ruang bernapas di kanan-kiri layar HP */
+            padding: 15px;      /* Padding dalam dikecilkan sedikit */
+            border-radius: 8px; /* Sudut lengkungan disesuaikan proporsinya */
         }
-        h1, h2 {
-            color: #0369a1;
-        }
-        pre {
-            border-radius: 8px;
-            padding: 12px;
-            background: #0f172a;
-            color: #fff; /* Tambahkan warna teks agar terlihat di background gelap */
-            overflow-x: auto;
-        }
-        code {
-            font-family: Consolas, Monaco, monospace;
-        }
-        .copy-btn {
-            background: #10b981;
-            border: none;
-            color: white;
-            padding: 6px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 6px;
-            font-size: 12px;
-        }
-        .copy-btn:hover { background: #059669; }
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-        }
-        /* Tombol share */
+
+        /* Merapikan deretan tombol share agar ramah jempol di HP */
         .share-buttons {
-            margin-top: 20px;
-            padding: 10px;
-            border-top: 1px dashed #ccc;
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
         }
+
         .share-buttons a {
-            margin: 0 6px;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 12px;
-            border-radius: 6px;
-            background: #e0f2fe;
-            color: #0369a1;
-            transition: 0.2s;
+            margin: 0;
+            flex: 1 1 40%; /* Tombol otomatis membagi ruang jadi 2 kolom seimbang */
+            text-align: center;
+            padding: 10px; /* Area sentuh diperluas sedikit */
         }
-        .share-buttons a:hover { background: #bae6fd; }
-        /* Hapus semua CSS untuk tombol floating, info box, dll. */
-    </style>
+    }
+</style>
     <meta name="date" content="2025-09-28">
 <meta name="ai:summary" content="mengubah format gambar secara massal menggunakan ImageMagick di Linux. Praktis, cepat, dengan contoh perintah mogrify.">
 <meta name="ai:prompt_hint" content="mengubah format gambar secara massal menggunakan ImageMagick di Linux. Praktis, cepat, dengan contoh perintah mogrify.">
