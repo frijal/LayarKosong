@@ -3,112 +3,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Cepat Menggabungkan Banyak File PDF Menjadi Satu Halaman - Layar Kosong</title> 
 <style>
+    /* 1. Definisikan Variabel Tema Terang (Default) */
+    :root {
+        --background-color: #f4f7f6;
+        --container-bg: #ffffff; /* Pindahkan warna container ke variabel */
+        --text-color: #333;
+        --heading-color: #2c3e50;
+        --accent-color: #3498db;
+        --accent-hover: #2980b9;
+        --border-color: #e0e0e0;
+        --code-bg: #2d2d2d;
+        --code-text: #f8f8f2;
+        --highlight-bg: #e8f5ff;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        
+        /* Variabel khusus untuk tombol sosial media warna hitam */
+        --btn-black-bg: #000000;
+        --btn-black-border: transparent;
+    }
+
+    /* 2. Otomatis Tema Gelap (Dark Mode) menggunakan prefers-color-scheme */
+    @media (prefers-color-scheme: dark) {
         :root {
-            --background-color: #f4f7f6;
-            --text-color: #333;
-            --heading-color: #2c3e50;
-            --accent-color: #3498db;
-            --border-color: #e0e0e0;
-            --code-bg: #2d2d2d;
-            --code-text: #f8f8f2;
-            --highlight-bg: #e8f5ff;
+            --background-color: #0d1117;
+            --container-bg: #161b22; /* Abu-abu gelap khas Github */
+            --text-color: #c9d1d9;
+            --heading-color: #58a6ff; /* Biru cerah agar kontras */
+            --accent-color: #1f6feb;
+            --accent-hover: #388bfd;
+            --border-color: #30363d;
+            --code-bg: #0d1117; /* Blok kode dibikin sedikit lebih gelap dari container */
+            --code-text: #f0f6fc;
+            --highlight-bg: #1c2128;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            
+            /* Ubah warna hitam pekat ke abu-abu gelap + border supaya gak 'gaib' di dark mode */
+            --btn-black-bg: #21262d;
+            --btn-black-border: #30363d;
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
+    }
+
+    /* 3. Base Styles (Desktop & Tablet) */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .container {
+        max-width: 1000px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: var(--container-bg); /* Diubah ke variabel */
+        box-shadow: 0 4px 6px var(--shadow-color); /* Diubah ke variabel */
+        margin: 20px 10px;
+        border-radius: 8px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    
+    h1, h2, h3 {
+        color: var(--heading-color);
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 5px;
+        transition: color 0.3s, border-color 0.3s;
+    }
+    
+    p, li {
+        text-align: justify;
+    }
+    
+    .code-block {
+        position: relative;
+        margin-bottom: 20px;
+        background: var(--code-bg);
+        border-radius: 6px;
+        padding: 15px;
+        overflow-x: auto;
+        font-size: 0.9em;
+        border: 1px solid var(--border-color);
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    
+    .code-block code {
+        color: var(--code-text);
+        font-family: "Fira Code", "JetBrains Mono", "Consolas", "Monaco", monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    
+    .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--accent-color);
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8em;
+        transition: background-color 0.2s;
+    }
+    
+    .copy-btn:hover {
+        background: var(--accent-hover);
+    }
+    
+    .sharing-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border-color);
+        transition: border-color 0.3s;
+    }
+    
+    .sharing-buttons a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        font-size: 0.9em;
+        transition: transform 0.2s, filter 0.2s;
+    }
+
+    .sharing-buttons a:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px); /* Efek melayang dikit pas di-hover */
+    }
+    
+    .btn-facebook { background: #1877F2; }
+    .btn-twitter { background: #1DA1F2; }
+    .btn-whatsapp { background: #25D366; }
+    .btn-telegram { background: #0088CC; }
+    .btn-instagram { background: #E4405F; }
+    
+    /* Menggunakan variabel baru untuk tombol bernuansa hitam */
+    .btn-x, .btn-threads, .btn-tiktok { 
+        background: var(--btn-black-bg); 
+        border: 1px solid var(--btn-black-border);
+    }
+
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) */
+    @media (max-width: 768px) {
+        .container {
+            margin: 10px;
+            padding: 15px;
+        }
+        
+        /* Memperbaiki alignment text di HP agar tidak renggang jelek akibat 'justify' */
+        p, li {
+            text-align: left;
+        }
+        
+        /* Memberikan ruang di atas kode block agar tidak tertutup tombol copy melayang */
+        .code-block {
+            padding-top: 40px; 
+        }
+
+        .sharing-buttons {
             justify-content: center;
         }
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 20px 10px;
-            border-radius: 8px;
-        }
-        h1, h2, h3 {
-            color: var(--heading-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 5px;
-        }
-        p, li {
-            text-align: justify;
-        }
-        .code-block {
-            position: relative;
-            margin-bottom: 20px;
-            background: var(--code-bg);
-            border-radius: 6px;
-            padding: 15px;
-            overflow-x: auto;
-            font-size: 0.9em;
-        }
-        .code-block code {
-            color: var(--code-text);
-            font-family: "Fira Code", "JetBrains Mono", "Consolas", "Monaco", monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8em;
-        }
-        .copy-btn:hover {
-            background: #2980b9;
-        }
-        .sharing-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--border-color);
-        }
+
         .sharing-buttons a {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            color: #fff;
-            font-size: 0.9em;
+            flex-grow: 1; /* Membuat tombol medsos melebar seimbang memenuhi layar HP */
+            justify-content: center;
         }
-        .btn-facebook { background: #1877F2; }
-        .btn-twitter { background: #1DA1F2; }
-        .btn-x { background: #000; }
-        .btn-whatsapp { background: #25D366; }
-        .btn-telegram { background: #0088CC; }
-        .btn-instagram { background: #E4405F; }
-        .btn-threads { background: #000; }
-        .btn-tiktok { background: #000; }
-        /* Responsif */
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                padding: 15px;
-            }
-            .sharing-buttons {
-                justify-content: center;
-            }
-        }
-    </style>
+    }
+</style>
     <link href="/ext/default.min.css" rel="stylesheet">
 <meta name="ai:summary" content="cara mudah dan efisien menggabungkan banyak file PDF menjadi satu dokumen tunggal menggunakan perintah pdftk di Linux.">
 <meta name="ai:prompt_hint" content="cara mudah dan efisien menggabungkan banyak file PDF menjadi satu dokumen tunggal menggunakan perintah pdftk di Linux.">
