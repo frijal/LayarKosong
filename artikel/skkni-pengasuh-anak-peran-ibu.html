@@ -2,53 +2,72 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="SKKNI, pengasuh anak, peran ibu, kapitalisme, pengasuhan anak, Islam, hadanah, hak anak, keluarga, parenting, pendidikan anak, sistem pengasuhan">
-    <!-- Open Graph Meta Tags -->
-    <!-- Twitter Card Meta Tags -->
-    <!-- Additional Meta Tags -->
     <meta name="news_keywords" content="SKKNI, pengasuh anak, peran ibu, keluarga, Islam, kapitalisme, pendidikan anak, hak asuh">
     <meta name="promphint" content="Artikel tentang SKKNI Pengasuh Anak, dampaknya terhadap peran ibu, dan solusi menurut perspektif Islam">
-    <!-- Canonical URL -->
-    <!-- Favicon -->
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <title>SKKNI Pengasuh Anak: Melindungi Hak Anak atau Menjauhkan Wanita dari Peran Ibu? - Suara Muslimah Jabar - Layar Kosong</title> 
-    <style>
+   <style>
         /* Reset dan Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
+        /* --- 1. Definisikan Variabel Tema Terang (Editorial Clean Vibe) --- */
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
-            --text-color: #333;
-            --light-text: #777;
-            --bg-color: #fff;
+            --text-color: #333333;
+            --light-text: #777777;
+            --bg-color: #ffffff;
             --card-bg: #f9f9f9;
             --border-color: #e0e0e0;
+            
+            /* Penyelamatan Komponen Footer (Variabel Khusus) */
+            --footer-bg: #2c3e50;
+            --footer-title: #3498db;
+            --footer-text: #dddddd;
+            --footer-bottom: #aaaaaa;
+            --footer-border: rgba(255, 255, 255, 0.1);
+            
+            /* Efek Bayangan Dinamis */
             --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+            
             --transition: all 0.3s ease;
             --max-width: 1000px;
-            --content-width: 1000px;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-heading: Georgia, 'Times New Roman', Times, serif;
         }
-        /* Dark Theme Variables */
+
+        /* --- 2. Otomatis Tema Gelap (Premium Midnight Editorial) --- */
         @media (prefers-color-scheme: dark) {
             :root {
+                /* Mengubah primary menjadi warna teks terang di malam hari */
                 --primary-color: #ecf0f1;
-                --secondary-color: #3498db;
-                --accent-color: #e74c3c;
+                --secondary-color: #5dade2; /* Dipercerah sedikit agar lolos uji kontras */
+                --accent-color: #ff6b6b;
                 --text-color: #f0f0f0;
                 --light-text: #b0b0b0;
                 --bg-color: #121212;
                 --card-bg: #1e1e1e;
-                --border-color: #333;
-                --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                --border-color: #333333;
+                
+                /* Footer diselamatkan: Tetap gelap/obsidian, bukan putih! */
+                --footer-bg: #0b0f17; 
+                --footer-title: #5dade2;
+                --footer-text: #94a3b8;
+                --footer-bottom: #64748b;
+                --footer-border: rgba(255, 255, 255, 0.05);
+                
+                /* Bayangan di malam hari diganti menjadi glow lembut beraura neon redup */
+                --shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+                --shadow-hover: 0 10px 25px rgba(52, 152, 219, 0.15); 
             }
         }
+
         body {
             font-family: var(--font-main);
             line-height: 1.7;
@@ -59,266 +78,87 @@
             margin: 0;
             font-size: 18px;
         }
+
         /* Layout Container */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 20px;
         }
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             font-size: 28px;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .logo i {
-            color: var(--secondary-color);
-        }
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
+            font-family: var(--font-heading); /* Sentuhan editorial pada logo */
+            color: var(--primary-color);
             transition: var(--transition);
         }
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-        /* Article Content */
-        .article-container {
-            max-width: var(--content-width);
-            margin: 0 auto 50px;
-        }
-        .article-header {
-            margin-bottom: 40px;
-        }
-        .article-title {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            line-height: 1.3;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        .article-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            color: var(--light-text);
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .article-author {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: bold;
-        }
-        .featured-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-        }
-        .image-caption {
-            text-align: center;
-            font-style: italic;
-            color: var(--light-text);
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        /* Article Content Styling */
-        .article-content {
-            font-size: 1.1rem;
-        }
-        .article-content h2 {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            margin: 40px 0 20px;
-            color: var(--primary-color);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-        .article-content h3 {
-            font-size: 1.5rem;
-            margin: 30px 0 15px;
-            color: var(--primary-color);
-        }
-        .article-content p {
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-        .article-content blockquote {
-            border-left: 4px solid var(--secondary-color);
-            padding-left: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            color: var(--light-text);
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-        }
-        .article-content ul, .article-content ol {
-            margin: 20px 0 20px 30px;
-        }
-        .article-content li {
-            margin-bottom: 10px;
-        }
-        .highlight-box {
-            background-color: var(--card-bg);
-            border-left: 4px solid var(--accent-color);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: var(--shadow);
-        }
-        .highlight-box h3 {
-            margin-top: 0;
-            color: var(--accent-color);
-        }
-        .definition-box {
-            background-color: var(--card-bg);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .definition-box h4 {
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        .study-reference {
-            background-color: var(--card-bg);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-            border-left: 4px solid var(--secondary-color);
-            font-size: 0.95rem;
-        }
-        .study-reference .title {
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: var(--primary-color);
-        }
-        /* 5W+1H Sections */
-        .wwh-section {
-            background-color: var(--card-bg);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 8px;
-            border-top: 4px solid var(--secondary-color);
-        }
-        .wwh-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-        /* Comment Section */
-        #related-articles-grid {
-            background-color: var(--card-bg);
-            padding: 30px;
-            margin: 50px 0;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .comment-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        /* Related Articles */
-        #response {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 50px 0;
-        }
-        .related-article {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        .related-article:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        .related-article img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-        .related-article-content {
-            padding: 20px;
-        }
-        .related-article h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        /* Footer */
+
+            /* --- Penyelamatan Mutlak Sektor Footer --- */
         .site-footer {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
             padding: 40px 0 20px;
             margin-top: 60px;
+            transition: var(--transition);
         }
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 30px;
         }
+
         .footer-section h3 {
             font-size: 1.3rem;
             margin-bottom: 20px;
-            color: var(--secondary-color);
+            color: var(--footer-title);
+            transition: var(--transition);
         }
+
         .footer-section p {
             margin-bottom: 15px;
-            color: #ddd;
+            color: var(--footer-text);
+            transition: var(--transition);
         }
+
         .footer-bottom {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
+            border-top: 1px solid var(--footer-border);
+            color: var(--footer-bottom);
             font-size: 0.9rem;
+            transition: var(--transition);
         }
-        /* Responsive Design */
+
+        /* --- Responsive Design (Mobile Optimization) --- */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 20px;
+                text-align: center;
             }
             .nav-links {
+                display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 15px;
             }
             .article-title {
                 font-size: 2rem;
+                text-align: center;
             }
             .article-meta {
                 flex-direction: column;
                 gap: 10px;
+                align-items: center;
             }
             #response {
                 grid-template-columns: 1fr;
@@ -326,8 +166,10 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                text-align: center; /* Meratakan teks footer di HP agar rapi */
             }
         }
+
         @media (max-width: 480px) {
             body {
                 font-size: 16px;
@@ -348,14 +190,17 @@
                 padding: 20px 15px;
             }
         }
+
         /* Utility Classes */
         .emoji {
             font-size: 1.2em;
             margin-right: 5px;
         }
+
         .text-center {
             text-align: center;
         }
+
         .author-signature {
             font-style: italic;
             text-align: right;
@@ -363,17 +208,20 @@
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
             color: var(--light-text);
+            transition: var(--transition);
         }
+
         /* Core Web Vitals Optimizations */
         img {
             max-width: 100%;
             height: auto;
         }
+
         /* Smooth scrolling for better UX */
         html {
             scroll-behavior: smooth;
         }
-    </style>
+</style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/skkni-pengasuh-anak-peran-ibu">
