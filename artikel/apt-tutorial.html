@@ -4,26 +4,198 @@
     <title>Tutorial APT (Advanced Package Tool) di Debian/Ubuntu - Layar Kosong</title> 
 <meta name="keywords" content="apt, debian, ubuntu, linux, package manager, install, upgrade, terminal, command line">
     <meta name="date" content="2025-09-27">
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
-        header { text-align: center; color: #005f73; padding-bottom: 10px; border-bottom: 2px solid #00796b; }
-        h1, h2 { color: #005f73; }
-        .gallery { margin: 2rem 0; }
-        .gallery img { width: 100%; height: auto; border-radius: 12px; cursor: pointer; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
-        .gallery img:hover { transform: scale(1.05); }
-        .social-sharing { text-align: center; margin-top: 2rem; }
-        .social-sharing h2 { border: none; font-size: 1.2em; }
-        .social-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-        .social-buttons a { display: inline-block; transition: transform 0.2s; }
-        .social-buttons a:hover { transform: scale(1.15); }
-        .social-buttons svg { width: 32px; height: 32px; }
-        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
-        .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: 12px; }
-        .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
-        pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; position: relative; }
-        code { font-family: 'Courier New', Courier, monospace; }
-        .copy-btn { position: absolute; top: 8px; right: 8px; background: #005f73; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
+   <style>
+        /* --- 1. DESIGN TOKENS (Deep Teal Fluid Ecosystem) --- */
+        :root {
+            /* Mode Terang (Light Mode - WCAG AA Compliant) */
+            --bg: #f4f4f9;
+            --bg-canvas: #ffffff;
+            --text: #333333;
+            --muted: #5c5c5c;
+            --accent: #005f73; /* Deep Teal */
+            --accent-hover: #00796b; /* Teal */
+            --border: #e5e7eb;
+            
+            /* Blok Kode (Dark Slate Syntax) */
+            --code-bg: #2d2d2d;
+            --code-text: #f8f8f2;
+            
+            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) */
+            --max-width: 62.5rem; 
+            --radius-lg: 0.75rem;  /* 12px */
+            --radius-md: 0.5rem;   /* 8px */
+            --radius-sm: 0.25rem;  /* 4px */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Mode Gelap (Dark Mode - Oceanic Tech) */
+                --bg: #0b0f19;
+                --bg-canvas: #111827;
+                --text: #e5e7eb;
+                --muted: #9ca3af;
+                --accent: #0ea5e9; /* Light Blue/Teal untuk kontras gelap */
+                --accent-hover: #38bdf8;
+                --border: #1f2937;
+                
+                --code-bg: #030712;
+                --code-text: #f3f4f6;
+            }
+        }
+
+        /* --- 2. ACCESSIBLE RESET & FONTS SYSTEM --- */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body { 
+            min-height: 100vh; 
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- 3. CONTAINER ENGINE (Murni 1 Kolom Linier Center) --- */
+        .container {
+            width: 100%;
+            max-width: var(--max-width); 
+            margin: 0 auto; 
+            padding: 1.25rem 1rem; /* Jarak aman tepi layar HP */
+        }
+
+        @media (min-width: 48rem) { /* Desktop & Tablet Up */
+            .container {
+                padding: 1.25rem 1.25rem;
+                margin: 1.25rem auto;
+                background-color: var(--bg-canvas);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                border-radius: var(--radius-md);
+            }
+        }
+
+        /* --- 4. SEMANTIC TYPOGRAPHY & HEADINGS --- */
+        header { 
+            text-align: center; 
+            color: var(--accent); 
+            padding-bottom: 0.625rem; 
+            border-bottom: 0.125rem solid var(--accent-hover); 
+            margin-bottom: 1.25rem;
+        }
+        
+        h1, h2 { 
+            color: var(--accent); 
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 { font-size: clamp(1.625rem, 5vw, 2.5rem); }
+        h2 { font-size: clamp(1.375rem, 4vw, 1.875rem); margin-top: 1.5rem; }
+
+        article, section {
+            margin-bottom: 1.25rem;
+            text-align: left; /* Menjaga aksesibilitas agar tidak justify */
+        }
+
+        /* --- 5. COMPONENT: RESPONSIBLE GALLERY --- */
+        .gallery { 
+            margin: 2rem 0; 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: var(--radius-lg); 
+            cursor: pointer; 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+            will-change: transform;
+            transition: transform 0.3s ease; 
+        }
+        
+        .gallery img:hover { 
+            transform: scale(1.03); 
+        }
+        
+        /* --- 6. COMPONENT: INTERACTIVE LIGHTBOX --- */
+        .lightbox { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(3, 7, 18, 0.95); 
+            justify-content: center; 
+            align-items: center; 
+            padding: 1rem;
+        }
+        
+        .lightbox-content { 
+            max-width: 90vw; 
+            max-height: 85vh; 
+            border-radius: var(--radius-lg); 
+            object-fit: contain;
+        }
+        
+        .lightbox-close { 
+            position: absolute; 
+            top: 1rem; 
+            right: 2.1875rem; 
+            color: #f1f1f1; 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            background: transparent;
+            border: none;
+            line-height: 1;
+        }
+        
+        /* --- 7. COMPONENT: HIGH-CONTRAST SYNTAX BLOCKS --- */
+        pre { 
+            background-color: var(--code-bg); 
+            color: var(--code-text); 
+            padding: 2rem 1rem 1rem 1rem; /* Memberi ruang aman untuk copy button melayang */
+            border-radius: var(--radius-md); 
+            overflow-x: auto; 
+            position: relative; 
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        code { 
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; 
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn { 
+            position: absolute; 
+            top: 0.5rem; 
+            right: 0.5rem; 
+            background-color: var(--accent); 
+            color: #ffffff; 
+            border: none; 
+            padding: 0.25rem 0.5rem; 
+            border-radius: var(--radius-sm); 
+            cursor: pointer; 
+            font-size: 0.75rem; 
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--accent-hover);
+        }
     </style>
 <meta name="ai:summary" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
 <meta name="ai:prompt_hint" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
