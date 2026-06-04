@@ -4,23 +4,163 @@
     <title>Linux Ringan: 9 Distro Terbaik untuk Komputer Lawas - Layar Kosong</title> 
 <meta name="keywords" content="linux ringan, distro linux, linux untuk pc kentang, puppy linux, tiny core, antix, linux lite, archbang, bodhi linux">
     <meta name="date" content="2025-09-28">
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
-        header { text-align: center; color: #26a69a; padding-bottom: 10px; border-bottom: 2px solid #00796b; }
-        h1, h2 { color: #26a69a; }
-        .gallery { margin: 2rem 0; }
-        .gallery img { width: 100%; height: auto; border-radius: 12px; cursor: pointer; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
-        .gallery img:hover { transform: scale(1.05); }
-        .social-sharing { text-align: center; margin-top: 2rem; }
-        .social-sharing h2 { border: none; font-size: 1.2em; }
-        .social-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-        .social-buttons a { display: inline-block; transition: transform 0.2s; }
-        .social-buttons a:hover { transform: scale(1.15); }
-        .social-buttons svg { width: 32px; height: 32px; }
-        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
-        .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: 12px; }
-        .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
+   <style>
+        /* --- 1. DESIGN TOKENS (Fresh Mint & Teal Fluid Ecosystem) --- */
+        :root {
+            /* Mode Terang (Light Mode - WCAG AA Compliant) */
+            --bg: #f4f4f9;
+            --bg-canvas: #ffffff;
+            --text: #333333;
+            --muted: #5c5c5c;
+            --accent: #00796b; /* Disesuaikan ke Teal Tua agar lolos kontras teks terang */
+            --accent-mint: #26a69a; /* Mint Green */
+            --border: #e5e7eb;
+            
+            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) */
+            --max-width: 62.5rem; 
+            --radius-lg: 0.75rem;  /* 12px */
+            --radius-md: 0.5rem;   /* 8px */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Mode Gelap (Dark Mode - Minty Dark) */
+                --bg: #0b0f17;
+                --bg-canvas: #111827;
+                --text: #e5e7eb;
+                --muted: #9ca3af;
+                --accent: #4db6ac; /* Mint lebih terang agar kontras di latar gelap */
+                --accent-mint: #80cbc4;
+                --border: #1f2937;
+            }
+        }
+
+        /* --- 2. ACCESSIBLE RESET & FONTS SYSTEM --- */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body { 
+            min-height: 100vh; 
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier Center) --- */
+        .container {
+            width: 100%;
+            max-width: var(--max-width); 
+            margin: 0 auto; 
+            padding: 1.25rem 1rem; /* Ruang aman sisi layar HP */
+        }
+
+        @media (min-width: 48rem) { /* Desktop & Tablet Up */
+            .container {
+                padding: 2rem;
+                margin: 1.25rem auto;
+                background-color: var(--bg-canvas);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                border-radius: var(--radius-md);
+            }
+        }
+
+        /* --- 4. SEMANTIC TYPOGRAPHY & ANTI-JUSTIFY --- */
+        header { 
+            text-align: center; 
+            color: var(--accent); 
+            padding-bottom: 0.625rem; 
+            border-bottom: 0.125rem solid var(--accent); 
+            margin-bottom: 1.25rem;
+        }
+        
+        h1, h2 { 
+            color: var(--accent); 
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 { font-size: clamp(1.625rem, 5vw, 2.5rem); }
+        h2 { font-size: clamp(1.375rem, 4vw, 1.875rem); margin-top: 1.5rem; }
+
+        /* Aksesibilitas: Teks wajib rata kiri untuk kenyamanan pembbaca disleksia */
+        article, section {
+            margin-bottom: 1.25rem;
+            text-align: left; 
+        }
+
+        p {
+            color: var(--text);
+            margin-bottom: 0.875rem;
+        }
+
+        /* --- 5. COMPONENT: RESPONSIBLE 1-COLUMN GALLERY --- */
+        .gallery { 
+            margin: 2rem 0; 
+            display: grid;
+            /* Responsif fluid tanpa merusak aturan 1 kolom utama */
+            grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: var(--radius-lg); 
+            cursor: pointer; 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+            will-change: transform;
+            transition: transform 0.3s ease; 
+        }
+        
+        .gallery img:hover { 
+            transform: scale(1.03); 
+        }
+        
+        /* --- 6. COMPONENT: INTERACTIVE LIGHTBOX OVERLAY --- */
+        .lightbox { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(11, 15, 23, 0.95); 
+            justify-content: center; 
+            align-items: center; 
+            padding: 1rem;
+        }
+        
+        .lightbox-content { 
+            max-width: 90vw; 
+            max-height: 85vh; 
+            border-radius: var(--radius-lg); 
+            object-fit: contain;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .lightbox-close { 
+            position: absolute; 
+            top: 1rem; 
+            right: 2rem; 
+            color: #f1f1f1; 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            background: transparent;
+            border: none;
+            line-height: 1;
+            padding: 0.5rem;
+        }
     </style>
 <meta name="ai:summary" content="9 distro Linux ringan terbaik seperti Puppy Linux, Tiny Core, dan antiX yang ideal untuk menghidupkan kembali komputer lawas dengan performa cepat.">
 <meta name="ai:prompt_hint" content="9 distro Linux ringan terbaik seperti Puppy Linux, Tiny Core, dan antiX yang ideal untuk menghidupkan kembali komputer lawas dengan performa cepat.">
