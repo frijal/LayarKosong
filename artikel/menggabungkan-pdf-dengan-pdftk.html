@@ -2,101 +2,328 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menggabungkan Berkas PDF dengan PDFtk - Layar Kosong</title> 
-  <!-- Favicon -->
-  <!-- SEO -->
-<!-- Open Graph -->
-  <!-- CSS -->
-  <style>
+ <style>
+  :root {
+    color-scheme: light dark;
+
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --bg: #f9fafb;
+    --text: #111827;
+    --muted: #6b7280;
+
+    --surface: #ffffff;
+    --surface-soft: #f1f5f9;
+    --border: rgba(15, 23, 42, 0.12);
+
+    --code-bg: #2d2d2d;
+    --code-text: #f8f8f2;
+
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+
+    --container: 960px;
+  }
+
+  @media (prefers-color-scheme: dark) {
     :root {
-      --primary: #2563eb;
-      --muted: #666;
-      --bg: #f9fafb;
+      --primary: #60a5fa;
+      --primary-hover: #93c5fd;
+
+      --bg: #0f172a;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+
+      --surface: #111827;
+      --surface-soft: #1f2937;
+      --border: rgba(255, 255, 255, 0.12);
+
+      --code-bg: #020617;
+      --code-text: #e5e7eb;
+
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  a:hover {
+    color: var(--primary-hover);
+  }
+
+  header {
+    background: var(--primary);
+    color: #ffffff;
+    padding: clamp(24px, 5vw, 48px) 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    color: #ffffff;
+    margin: 0;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  main {
+    width: min(100% - 32px, var(--container));
+    margin: 24px auto;
+    padding: clamp(18px, 4vw, 32px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  h1,
+  h2 {
+    color: var(--primary);
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    margin: 0 0 18px;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-top: 36px;
+    margin-bottom: 14px;
+  }
+
+  p {
+    margin: 0 0 18px;
+  }
+
+  pre {
+    position: relative;
+    margin: 22px 0;
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 18px 16px;
+    padding-top: 46px;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  pre code {
+    font-family: "Courier New", Courier, monospace;
+    white-space: pre;
+  }
+
+  button.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  button.copy-btn:hover {
+    background: var(--primary-hover);
+  }
+
+  button.copy-btn:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--primary), transparent 35%);
+    outline-offset: 3px;
+  }
+
+  .share-buttons {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .share-buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    background: var(--primary);
+    color: #ffffff;
+    transition: transform 0.18s ease, background-color 0.18s ease;
+  }
+
+  .share-buttons a:hover {
+    background: var(--primary-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  footer {
+    width: min(100% - 32px, var(--container));
+    margin: 40px auto 0;
+    padding: 24px 20px;
+    font-size: 14px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .env-info {
+    margin-top: 16px;
+    font-size: 13px;
+    background: var(--surface-soft);
+    color: var(--text);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+
+  .env-info svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .article-image {
+    text-align: center;
+    margin: 28px 0;
+  }
+
+  .article-image img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  @media (max-width: 768px) {
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: var(--bg);
-      color: #111;
+      font-size: 15.5px;
+      line-height: 1.65;
     }
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+
     main {
-      max-width: 960px;
-      margin: auto;
-      padding: 20px;
-      background: white;
+      width: min(100% - 20px, var(--container));
+      margin: 16px auto;
+      padding: 18px;
+      border-radius: 12px;
     }
-    h1, h2 {
-      color: var(--primary);
+
+    header {
+      padding: 28px 16px;
     }
+
     pre {
-      position: relative;
-      background: #2d2d2d;
-      color: #f8f8f2;
-      padding: 12px;
-      border-radius: 8px;
-      overflow-x: auto;
+      margin-inline: -4px;
+      padding: 16px 12px;
+      padding-top: 44px;
+      font-size: 0.88rem;
+      border-radius: 10px;
     }
+
+    .share-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .share-buttons a {
+      width: 100%;
+    }
+
+    footer {
+      width: min(100% - 20px, var(--container));
+      margin-top: 28px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      font-size: 15px;
+    }
+
+    main {
+      width: min(100% - 14px, var(--container));
+      padding: 15px;
+    }
+
+    .share-buttons {
+      grid-template-columns: 1fr;
+    }
+
     button.copy-btn {
-      position: absolute;
       top: 8px;
       right: 8px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 4px 8px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 12px;
+      padding: 6px 9px;
     }
-    .share-buttons {
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .share-buttons a {
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      background: var(--primary);
-      color: white;
-    }
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      font-size: 14px;
-      text-align: center;
-      color: var(--muted);
-    }
-    .env-info {
-      margin-top: 12px;
-      font-size: 13px;
-      background: #f1f5f9;
-      padding: 10px;
-      border-radius: 6px;
-    }
-    .env-info svg {
-      width: 20px; height: 20px;
-      vertical-align: middle;
-      margin-right: 6px;
-    }
+
     .article-image {
-      text-align: center;
-      margin: 20px 0;
+      margin: 22px 0;
     }
-    .article-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
-  </style>
-  <!-- Prism.js for syntax highlighting -->
+  }
+</style>
   <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js" defer=""></script>
