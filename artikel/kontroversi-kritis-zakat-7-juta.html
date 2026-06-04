@@ -2,200 +2,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nishab, Regulasi, dan Realitas Ekonomi Indonesia - Kontroversi Kritis Zakat 7 Juta - Layar Kosong</title> 
-<!-- Metadata wajib & SEO -->
 <meta name="news_keywords" content="zakat penghasilan, baznas, nishab zakat 7 juta, ekonomi islam, pajak">
     <meta name="promphint" content="zakat baznas nishab profesi indonesia">
-<!-- Open Graph / Facebook -->
-<!-- Twitter Card -->
-<!-- Artikel Spesifik -->
-<!-- Canonical & Ikon -->
-<!-- Font Awesome 6 (CDN) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-        /* VARIABEL TEMA LIGHT/DARK (prefers-color-scheme) */
+        /* --- 1. SINKRONISASI VARIABEL TEMA (LIGHT/DARK) --- */
         :root {
-            --bg-color: #ffffff;
+            --bg-color: #f8fafc;        /* Diubah sedikit dari #fff ke abu lembut agar tidak terlalu kontras di mata */
             --text-color: #222222;
             --heading-color: #111111;
             --link-color: #0056b3;
+            --link-hover: #003d82;
             --border-color: #dddddd;
-            --quote-bg: #f9f9f9;
+            --quote-bg: #f1f5f9;
             --card-bg: #ffffff;
-            --footer-bg: #f1f1f1;
+            --footer-bg: #e2e8f0;
+            
+            /* Efek Transisi Global */
+            --transition-speed: 0.3s;
         }
+
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #1a1a1a;
-                --text-color: #e0e0e0;
+                --bg-color: #0f172a;    /* Slate gelap yang lebih modern dibanding hitam pekat #1a1a1a */
+                --text-color: #e2e8f0;
                 --heading-color: #ffffff;
-                --link-color: #66b3ff;
-                --border-color: #444444;
-                --quote-bg: #2a2a2a;
-                --card-bg: #1e1e1e;
-                --footer-bg: #252525;
+                --link-color: #38bdf8;  /* Biru langit cerah khusus mode malam */
+                --link-hover: #7dd3fc;
+                --border-color: #334155;
+                --quote-bg: #1e293b;
+                --card-bg: #1e293b;
+                --footer-bg: #0f172a;
             }
         }
-        /* RESET & BASE */
+
+        /* --- 2. RESET & BASE LAYOUT --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             line-height: 1.8;
             font-size: 18px;
-            padding: 1rem;
-            content-visibility: auto;
+            /* SELESAI: content-visibility DIHAPUS dari body karena merusak scrollbar & Ctrl+F halaman */
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
-        /* KONTAINER UTAMA: 1 KOLOM, RESPONSIF, MIN WIDTH PADA DESurat KeputusanTOP 1000px */
+
+        /* Wrapper baru untuk mengisolasi padding halaman tanpa merusak posisi footer */
+        .page-wrapper {
+            padding: 1.5rem 1rem;
+        }
+
+        /* --- 3. KONTAINER UTAMA (1 KOLOM PREMIUM) --- */
         .container {
             width: 100%;
-            max-width: 1000px;       /* Lebar maksimal 1200px */
-            min-width: 320px;         /* Agar tidak terlalu kecil di mobile */
+            max-width: 1000px; /* Sesuai dengan spesifikasi variabel kamu */
             margin: 0 auto;
             background-color: var(--card-bg);
             border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             padding: 2.5rem;
             border: 1px solid var(--border-color);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
         }
-        /* Pada layar ≥ 1000px, konten tampil dengan proporsi nyaman (1 kolom) */
+
         @media (min-width: 1000px) {
+            .page-wrapper {
+                padding: 3rem 0; /* Memberikan ruang bernapas di atas dan bawah pada layar besar */
+            }
             .container {
                 padding: 3rem 3.5rem;
             }
         }
-        /* Pada layar kecil (mobile) padding dikurangi */
+
         @media (max-width: 768px) {
             .container {
-                padding: 1.5rem 1rem;
+                padding: 1.75rem 1.25rem;
+                border-radius: 16px; /* Mengecilkan sudut di HP agar rasio visualnya pas */
             }
         }
-        /* TIPOGRAFI */
+
+        /* --- 4. TIPOGRAFI & ELEMEN KONTEN --- */
         h1, h2, h3, h4 {
             color: var(--heading-color);
-            margin-top: 1.5em;
             margin-bottom: 0.5em;
-            line-height: 1.3;
+            font-weight: 700;
         }
+
         h1 {
-            font-size: 2.5em;
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Tipografi responsif cair tanpa media query tambahan */
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
+            margin-bottom: 1rem;
         }
-        h2 { font-size: 2em; }
-        h3 { font-size: 1.5em; }
-        h4 { font-size: 1.2em; }
+
+        h2 { font-size: clamp(1.4rem, 4vw, 2rem); margin-top: 1.5rem; }
+        h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); margin-top: 1.2rem; }
+        
         p { margin-bottom: 1.2em; }
+        
         a {
             color: var(--link-color);
             text-decoration: none;
+            transition: color var(--transition-speed);
         }
-        a:hover { text-decoration: underline; }
+        a:hover { 
+            color: var(--link-hover);
+            text-decoration: underline; 
+        }
+
         ul, ol {
             margin-bottom: 1.5em;
             padding-left: 2em;
         }
         li { margin-bottom: 0.5em; }
+
         blockquote {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--link-color);
             margin: 1.5em 0;
-            padding: 15px 20px;
+            padding: 18px 20px;
             font-style: italic;
+            border-radius: 0 12px 12px 0;
+            transition: background-color var(--transition-speed);
         }
-        /* GAMBAR responsif + cegah CLS */
+
+        /* GAMBAR (Anti CLS + Proteksi Distorsi) --- */
         img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 20px auto;
-            border-radius: 8px;
+            margin: 24px auto;
+            border-radius: 12px;
             aspect-ratio: 16 / 9;
             object-fit: cover;
             background-color: var(--border-color);
             border: 1px solid var(--border-color);
         }
-        /* TABEL */
+
+        /* --- 5. SISTEM PENYELAMATAN TABEL RESPONSIF --- */
+        /* Bungkus elemen <table> kamu dengan <div class="table-container"> di HTML */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Memunculkan scrollbar horizontal internal JIKA tabel kepentok lebar HP */
+            margin: 24px 0;
+            -webkit-overflow-scrolling: touch; /* Scroll super mulus di iOS Safari */
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            min-width: 500px; /* Memaksa tabel mempertahankan strukturnya di layar sekecil apa pun */
         }
+
         th, td {
-            border: 1px solid var(--border-color);
-            padding: 12px;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 16px;
             text-align: left;
         }
-        th { background-color: var(--quote-bg); }
+
+        th { 
+            background-color: var(--quote-bg); 
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none; /* Membersihkan garis sisa di baris paling bawah */
+        }
+
         hr {
             border: 0;
             height: 1px;
             background-color: var(--border-color);
             margin: 40px 0;
         }
-        /* NARASI PENULIS (AKU) */
+
+        /* --- 6. BLOK SEKSI KHUSUS --- */
         .zdummy {
             background-color: var(--quote-bg);
             padding: 1.5rem 2rem;
-            border-radius: 40px;
-            margin: 2rem 0 2.5rem 0;
+            border-radius: 20px; /* Dikurangi dari 40px agar teks tidak terhimpit radikal di sudut kiri-kanan */
+            margin: 2rem 0;
             border: 1px solid var(--border-color);
             font-size: 1.1rem;
         }
-        /* RESPONSE & RELATED GRID */
-        #related-articles-grid {
-            background-color: var(--quote-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 3rem 0 1.5rem 0;
-            border: 1px dashed var(--border-color);
-            text-align: center;
-        }
-        #response {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            background-color: var(--quote-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px dashed var(--border-color);
-        }
-        .grid-item {
+
+            .grid-item {
             background-color: var(--card-bg);
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 16px;
             border: 1px solid var(--border-color);
             text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+
+        .grid-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
         .grid-item i {
             color: #d32f2f;
             font-size: 2rem;
             margin-bottom: 0.5rem;
+            display: inline-block;
         }
-        /* FOOTER */
+
+        /* --- 7. FOOTER YANG DISELAMATKAN --- */
         footer {
-            margin-top: 3rem;
-            padding: 2rem 0 1rem 0;
-            border-top: 2px solid var(--border-color);
+            margin-top: 4rem;
+            padding: 3rem 1.5rem 2rem;
+            border-top: 1px solid var(--border-color);
             text-align: center;
             background-color: var(--footer-bg);
-            border-radius: 30px 30px 0 0;
+            /* Catatan: Jika ingin footer menempel full screen ke bawah, 
+               pastikan struktur HTML elemen <footer> ini diletakkan DI LUAR kontainer .page-wrapper */
         }
+
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
-        .footer-links a {
-            color: var(--link-color);
-        }
-    </style>
+</style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/kontroversi-kritis-zakat-7-juta">
