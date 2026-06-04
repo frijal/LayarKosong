@@ -1,103 +1,283 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-<!-- ===== Basic SEO ===== -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FFmpeg: Mengubah Gambar Menjadi Video (Image to Video) - Layar Kosong</title> 
 <meta name="keywords" content="FFmpeg gambar ke video, ffmpeg image to video, slideshow ffmpeg, konversi gambar video, multimedia editing">
-<!-- ===== Google Discover / News ===== -->
 <meta name="news_keywords" content="FFmpeg, Gambar ke Video, Image to Video, Slideshow FFmpeg, Multimedia Editing">
 <meta name="content-language" content="id">
-<!-- ===== Open Graph ===== -->
-<!-- ===== Twitter Card ===== -->
-<!-- ===== Schema.org JSON-LD ===== -->
 <style>
-:root {
-  --bg-color: #f5f5f5;
-  --text-color: #111;
-  --accent-color: #00bfff;
-}
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2.5rem;
-}
-h2 {
-  margin-top: 30px;
-  font-size: 1.8rem;
-  color: var(--accent-color);
-}
-p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-pre {
-  background-color: rgba(0,0,0,0.05);
-  padding: 15px;
-  border-radius: 10px;
-  overflow-x: auto;
-  position: relative;
-}
-pre code {
-  font-family: monospace;
-  font-size: 1.1rem;
-}
-.copy-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: var(--accent-color);
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-.copy-btn:hover {
-  opacity: 0.8;
-}
-.info-box {
-  margin-top: 50px;
-  padding: 20px;
-  background-color: rgba(0,191,255,0.1);
-  border-radius: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  font-size: 1.1rem;
-}
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.info-item img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  border-radius: 6px;
-}
-@media(max-width:600px){
-  h1 {font-size: 2rem;}
-  h2 {font-size: 1.5rem;}
-  p {font-size: 1rem;}
-  pre code {font-size: 1rem;}
-  .info-item {font-size: 0.9rem;}
-  .info-item img {width:24px;height:24px;}
-}
+  :root {
+    color-scheme: light dark;
+
+    --bg-color: #f5f5f5;
+    --text-color: #111111;
+    --muted-color: #5f6673;
+
+    --surface-color: #ffffff;
+    --surface-soft: rgba(0, 191, 255, 0.10);
+    --border-color: rgba(17, 17, 17, 0.12);
+
+    --accent-color: #00a6d6;
+    --accent-hover: #008bb5;
+
+    --code-bg: rgba(0, 0, 0, 0.06);
+    --code-text: #111111;
+
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+
+    --container-width: 1000px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #0f172a;
+      --text-color: #e5e7eb;
+      --muted-color: #a8b3c7;
+
+      --surface-color: #111827;
+      --surface-soft: rgba(56, 189, 248, 0.12);
+      --border-color: rgba(255, 255, 255, 0.12);
+
+      --accent-color: #38bdf8;
+      --accent-hover: #7dd3fc;
+
+      --code-bg: #020617;
+      --code-text: #e5e7eb;
+
+      --shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+    }
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background:
+      radial-gradient(circle at top left, color-mix(in srgb, var(--accent-color), transparent 88%), transparent 380px),
+      var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: var(--accent-color);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  a:hover {
+    color: var(--accent-hover);
+  }
+
+  .container {
+    width: min(100% - 32px, var(--container-width));
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 48px) 0;
+  }
+
+  h1 {
+    text-align: center;
+    margin: 0 0 30px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  h2 {
+    margin-top: 34px;
+    margin-bottom: 14px;
+    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    line-height: 1.25;
+    color: var(--accent-color);
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0 0 1.1rem;
+    font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem);
+    line-height: 1.7;
+  }
+
+  pre {
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 3.25rem 1rem 1rem;
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+  }
+
+  pre code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1.05rem);
+    line-height: 1.6;
+    white-space: pre;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 7px 11px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .copy-btn:hover {
+    background-color: var(--accent-hover);
+  }
+
+  .copy-btn:focus-visible,
+  a:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--accent-color), transparent 45%);
+    outline-offset: 3px;
+  }
+
+  .info-box {
+    margin-top: 50px;
+    padding: clamp(16px, 3vw, 24px);
+    background-color: var(--surface-soft);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.1rem);
+    box-shadow: var(--shadow);
+  }
+
+  .info-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    color: var(--text-color);
+  }
+
+  .info-item img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    flex: 0 0 auto;
+  }
+
+  .info-item span,
+  .info-item p,
+  .info-item a {
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(100% - 22px, var(--container-width));
+      padding: 28px 0;
+    }
+
+    pre {
+      padding: 3rem 0.85rem 0.9rem;
+      border-radius: 9px;
+    }
+
+    .info-box {
+      margin-top: 38px;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      width: min(100% - 16px, var(--container-width));
+      padding: 22px 0;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin-top: 28px;
+    }
+
+    .info-box {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .info-item {
+      width: 100%;
+      font-size: 0.95rem;
+    }
+
+    .info-item img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    pre {
+      padding-top: 4rem;
+    }
+
+    .copy-btn {
+      top: 8px;
+      right: 8px;
+      padding: 7px 10px;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 </style>
 <meta name="date" content="2025-09-28">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
