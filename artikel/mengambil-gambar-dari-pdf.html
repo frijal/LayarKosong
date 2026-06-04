@@ -5,24 +5,187 @@
 <link href="/ext/default.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js" defer=""></script>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
-    header { background: #c00; color: white; padding: 2rem; text-align: center; }
-    main { max-width: 1100px; margin: auto; padding: 2rem; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
-    h1, h2 { color: #c00; }
-    img { max-width: 200px; }
-    pre { border-radius: 8px; }
-    .share-buttons { margin: 1rem 0; }
-    .share-buttons a { margin: 0 5px; display: inline-block; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 14px; color: white;}
-    .facebook { background: #1877f2; }
-    .twitter { background: #1da1f2; }
-    .whatsapp { background: #25d366; }
-    .telegram { background: #0088cc; }
-    .instagram { background: #e4405f; }
-    .threads { background: #000; }
-    .tiktok { background: #000; }
-    footer { text-align: center; font-size: 14px; padding: 2rem; margin-top: 2rem; background: #f1f1f1; }
-  </style>
+ <style>
+    /* 1. Definisikan Variabel Tema Terang (Default) */
+    :root {
+        --background-color: #f4f7f6;
+        --container-bg: #ffffff; /* Pindahkan warna container ke variabel */
+        --text-color: #333;
+        --heading-color: #2c3e50;
+        --accent-color: #3498db;
+        --accent-hover: #2980b9;
+        --border-color: #e0e0e0;
+        --code-bg: #2d2d2d;
+        --code-text: #f8f8f2;
+        --highlight-bg: #e8f5ff;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        
+        /* Variabel khusus untuk tombol sosial media warna hitam */
+        --btn-black-bg: #000000;
+        --btn-black-border: transparent;
+    }
+
+    /* 2. Otomatis Tema Gelap (Dark Mode) menggunakan prefers-color-scheme */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --background-color: #0d1117;
+            --container-bg: #161b22; /* Abu-abu gelap khas Github */
+            --text-color: #c9d1d9;
+            --heading-color: #58a6ff; /* Biru cerah agar kontras */
+            --accent-color: #1f6feb;
+            --accent-hover: #388bfd;
+            --border-color: #30363d;
+            --code-bg: #0d1117; /* Blok kode dibikin sedikit lebih gelap dari container */
+            --code-text: #f0f6fc;
+            --highlight-bg: #1c2128;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            
+            /* Ubah warna hitam pekat ke abu-abu gelap + border supaya gak 'gaib' di dark mode */
+            --btn-black-bg: #21262d;
+            --btn-black-border: #30363d;
+        }
+    }
+
+    /* 3. Base Styles (Desktop & Tablet) */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .container {
+        max-width: 1000px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: var(--container-bg); /* Diubah ke variabel */
+        box-shadow: 0 4px 6px var(--shadow-color); /* Diubah ke variabel */
+        margin: 20px 10px;
+        border-radius: 8px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    
+    h1, h2, h3 {
+        color: var(--heading-color);
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 5px;
+        transition: color 0.3s, border-color 0.3s;
+    }
+    
+    p, li {
+        text-align: justify;
+    }
+    
+    .code-block {
+        position: relative;
+        margin-bottom: 20px;
+        background: var(--code-bg);
+        border-radius: 6px;
+        padding: 15px;
+        overflow-x: auto;
+        font-size: 0.9em;
+        border: 1px solid var(--border-color);
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    
+    .code-block code {
+        color: var(--code-text);
+        font-family: "Fira Code", "JetBrains Mono", "Consolas", "Monaco", monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    
+    .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--accent-color);
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8em;
+        transition: background-color 0.2s;
+    }
+    
+    .copy-btn:hover {
+        background: var(--accent-hover);
+    }
+    
+    .sharing-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border-color);
+        transition: border-color 0.3s;
+    }
+    
+    .sharing-buttons a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        font-size: 0.9em;
+        transition: transform 0.2s, filter 0.2s;
+    }
+
+    .sharing-buttons a:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px); /* Efek melayang dikit pas di-hover */
+    }
+    
+    .btn-facebook { background: #1877F2; }
+    .btn-twitter { background: #1DA1F2; }
+    .btn-whatsapp { background: #25D366; }
+    .btn-telegram { background: #0088CC; }
+    .btn-instagram { background: #E4405F; }
+    
+    /* Menggunakan variabel baru untuk tombol bernuansa hitam */
+    .btn-x, .btn-threads, .btn-tiktok { 
+        background: var(--btn-black-bg); 
+        border: 1px solid var(--btn-black-border);
+    }
+
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) */
+    @media (max-width: 768px) {
+        .container {
+            margin: 10px;
+            padding: 15px;
+        }
+        
+        /* Memperbaiki alignment text di HP agar tidak renggang jelek akibat 'justify' */
+        p, li {
+            text-align: left;
+        }
+        
+        /* Memberikan ruang di atas kode block agar tidak tertutup tombol copy melayang */
+        .code-block {
+            padding-top: 40px; 
+        }
+
+        .sharing-buttons {
+            justify-content: center;
+        }
+
+        .sharing-buttons a {
+            flex-grow: 1; /* Membuat tombol medsos melebar seimbang memenuhi layar HP */
+            justify-content: center;
+        }
+    }
+</style>
 <meta name="ai:summary" content="cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.">
 <meta name="ai:prompt_hint" content="cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
