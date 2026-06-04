@@ -3,54 +3,86 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>YUM Presto: Hemat Bandwidth Saat Update - Layar Kosong</title> 
 <link href="/ext/atom-one-light.min.css" rel="stylesheet">
-    <style>
+   <style>
+    /* --- 1. DESIGN TOKENS (Sunset Orange Fluid Ecosystem) --- */
+    :root {
+        /* Mode Terang (WCAG AA Compliant) */
+        --bg: #f4f4f9;
+        --bg-canvas: #ffffff;
+        --text: #333333;
+        --muted: #666666;
+        --accent: #e67e22; /* Orange utama */
+        --accent-sec: #f39c12; /* Aksen kuning cerah */
+        --border: #e0e0e0;
+        
+        --code-bg: #2d2d2d;
+        --code-text: #f1f1f1;
+        
+        /* Manifesto: Batas maksimal 1000px */
+        --max-width: 62.5rem; 
+        --radius: 0.75rem; /* 12px */
+    }
+
+    @media (prefers-color-scheme: dark) {
         :root {
-            --bg: #f7f9fc;
-            --fg: #1b2559;
-            --muted: #5b6b90;
-            --accent: #1aa2ff;
-            --accent-2: #7c4dff;
-            --card: #ffffff;
-            --border: #e6eef7;
-            --shadow: 0 10px 30px rgba(10,20,70,.08);
-            --maxw: 900px;
+            /* Mode Gelap (Dark Mode) */
+            --bg: #0b0c0f;
+            --bg-canvas: #161618;
+            --text: #e0e0e0;
+            --muted: #a0a0a0;
+            --accent: #f39c12; 
+            --accent-sec: #e67e22;
+            --border: #2a2a2a;
         }
-        html, body {
-            background: var(--bg); color: var(--fg);
-            font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            margin: 0; scroll-behavior: smooth;
+    }
+
+    /* --- 2. ACCESSIBLE RESET --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+        font-family: system-ui, -apple-system, sans-serif; 
+        background-color: var(--bg); 
+        color: var(--text); 
+        line-height: 1.7;
+        transition: background-color 0.3s ease;
+    }
+
+    /* --- 3. LAYOUT ENGINE (1 Kolom Mutlak) --- */
+    .container {
+        width: 100%;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 1.25rem 1rem;
+    }
+
+    @media (min-width: 48rem) {
+        .container {
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--bg-canvas);
+            border-radius: var(--radius);
+            box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.05);
         }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; border-radius: 8px; }
-        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
-        header.site {
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-            background: rgba(247, 249, 252, 0.7); backdrop-filter: blur(8px);
-            position: sticky; top: 0; z-index: 10;
-        }
-        .brand { font-weight: bold; font-size: 1.2rem; }
-        main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
-        .col { width: 100%; max-width: var(--maxw); }
-        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
-        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
-        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
-        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #eef5ff; color: var(--fg); cursor: pointer; text-decoration: none; }
-        .btn-share:hover { background: #dbeafe; }
-        .note { border-left: 4px solid var(--accent); background: #eef5ff; padding: 1rem; border-radius: 8px; margin: 1.5rem 0; }
-        figure { margin: 1.5rem 0; text-align: center; }
-        figure img { cursor: zoom-in; }
-        .lightbox { position: fixed; inset: 0; background: rgba(247,249,252,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
-        .lightbox.open { display: flex; }
-        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; box-shadow: var(--shadow); }
-        pre { position: relative; background: #f1f5f9; padding: 1.25rem; border-radius: 8px; overflow-x: auto; border: 1px solid #e2e8f0; margin-top: 1rem; }
-        code { font-family: 'Fira Code', 'Consolas', monospace; }
-        .copy-btn { position: absolute; top: 12px; right: 12px; background: #e2e8f0; border: none; color: #334155; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
-        .copy-btn:hover { background: var(--accent); color: white; }
-        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
-    </style>
+    }
+
+    /* --- 4. TYPOGRAPHY --- */
+    header { text-align: center; color: var(--accent); padding-bottom: 0.625rem; border-bottom: 0.125rem solid var(--accent-sec); }
+    h1, h2 { color: var(--accent); margin-top: 1.5rem; }
+    
+    /* --- 5. GALLERY (Responsive 1-Column Flow) --- */
+    .gallery { margin: 2rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; }
+    .gallery img { width: 100%; height: auto; border-radius: var(--radius); cursor: pointer; transition: transform 0.3s ease; }
+    .gallery img:hover { transform: scale(1.02); }
+
+    /* --- 6. LIGHTBOX --- */
+    .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 1rem; }
+    .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: var(--radius); }
+    .lightbox-close { position: absolute; top: 1rem; right: 2rem; color: #fff; font-size: 2.5rem; cursor: pointer; border: none; background: none; }
+
+    /* --- 7. CODE BLOCKS --- */
+    pre { background: var(--code-bg); color: var(--code-text); padding: 2rem 1rem 1rem 1rem; border-radius: var(--radius); overflow-x: auto; position: relative; margin: 1rem 0; }
+    code { font-family: ui-monospace, monospace; font-size: 0.9rem; }
+    .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--accent); color: #fff; border: none; padding: 0.3rem 0.6rem; border-radius: 0.3rem; cursor: pointer; font-size: 0.8rem; }
+</style>
 <meta name="ai:summary" content="Buat update di distro YUM jadi lebih hemat bandwidth dengan YUM Presto (delta RPM). Panduan mudah: apa itu Presto, cara pasang, dan tips.">
 <meta name="ai:prompt_hint" content="Buat update di distro YUM jadi lebih hemat bandwidth dengan YUM Presto (delta RPM). Panduan mudah: apa itu Presto, cara pasang, dan tips.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
