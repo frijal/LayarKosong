@@ -9,44 +9,116 @@
 <meta itemprop="description" content="untuk resize semua foto sekaligus menggunakan ImageMagick melalui shell script. Praktis, cepat, dan efisien untuk batch image processing di Linux atau sistem lainnya.">
 <!-- Artikel Published Date -->
     <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
-    <style>
-      body {
+   <style>
+    /* 1. Definisikan Variabel Tema Terang (Default) */
+    :root {
+        --bg-color: #fdfdfd;
+        --text-color: #333333;
+        --title-color: #0066cc;
+        
+        /* Tombol aksi menggunakan warna bawaanmu */
+        --btn-copy: #0066cc;
+        --btn-download: #28a745;
+        
+        /* Blok pre bawaanmu sudah gelap, kita pertahankan */
+        --pre-bg: #2d2d2d;
+        --pre-text: #f8f8f2;
+    }
+
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            
+            /* Biru dan hijau disesuaikan agar lebih ramah & kontras di latar gelap */
+            --title-color: #58a6ff; 
+            --btn-copy: #1f6feb;
+            --btn-download: #238636;
+            
+            /* Sedikit penyesuaian latar pre agar menyatu dengan dark mode GitHub-style */
+            --pre-bg: #161b22; 
+        }
+    }
+
+    /* 3. Base Styles (Desktop & Tablet) */
+    body {
         font-family: "Segoe UI", sans-serif;
         line-height: 1.6;
         margin: 20px;
-        background-color: #fdfdfd;
-        color: #333;
-      }
-      h1,
-      h2 {
-        color: #0066cc;
-      }
-      pre {
+        max-width: 850px; /* Ditambahkan max-width agar teks tidak molor terlalu panjang di monitor lebar */
+        margin: 40px auto; /* Dibikin centering di tengah layar desktop */
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    h1, h2 {
+        color: var(--title-color);
+        transition: color 0.3s;
+    }
+    
+    pre {
         position: relative;
         padding: 1em;
         border-radius: 8px;
-        background: #2d2d2d;
-        color: #f8f8f2;
+        background: var(--pre-bg);
+        color: var(--pre-text);
         overflow-x: auto;
-      }
-      .copy-btn,
-      .download-btn {
+        border: 1px solid transparent;
+        transition: background-color 0.3s;
+    }
+    
+    /* Tambahan border tipis di tema gelap agar blok kode terlihat punya batasan */
+    @media (prefers-color-scheme: dark) {
+        pre { border: 1px solid #30363d; }
+    }
+    
+    .copy-btn,
+    .download-btn {
         position: absolute;
         top: 8px;
         right: 8px;
-        background: #0066cc;
+        background: var(--btn-copy);
         color: #fff;
         border: none;
         padding: 4px 8px;
         border-radius: 4px;
         cursor: pointer;
         font-size: 0.8em;
-      }
-      .download-btn {
+        transition: background-color 0.2s;
+    }
+    
+    .download-btn {
         right: 70px;
-        background: #28a745;
-      }
-    </style>
+        background: var(--btn-download);
+    }
+    
+    .copy-btn:hover, .download-btn:hover {
+        filter: brightness(1.1); /* Efek hover universal (sedikit lebih terang) */
+    }
+
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
+    @media (max-width: 600px) {
+        body {
+            margin: 15px; /* Mengurangi margin luar agar space layar HP maksimal */
+            padding: 0;
+        }
+        
+        h1 { font-size: 1.8rem; }
+        h2 { font-size: 1.4rem; }
+
+        /* Trik khusus Mobile agar tombol tidak menutupi baris pertama kode */
+        pre {
+            padding-top: 2.8em; /* Memberikan ruang vertikal di atas isi kode */
+        }
+        
+        .copy-btn, .download-btn {
+            top: 6px; /* Geser sedikit ke atas agar lebih presisi di layar kecil */
+            padding: 5px 10px; /* Sedikit memperlebar target ketukan jari jempol */
+        }
+    }
+</style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/imagemagick-resize-semua-foto-dalam-satu-folder-lalu-menyimpannya-di-folder-tujuan">
