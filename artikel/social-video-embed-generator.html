@@ -10,18 +10,166 @@
 <!-- ===== Web App dan UX ===== -->
     <link rel="stylesheet" href="/ext/default.min.css">
     <style>
-        body { font-family: sans-serif; max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.6; background: #f4f4f4; color: #333; }
-        .container { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { border-bottom: 3px solid #1a1a1a; padding-bottom: 10px; font-size: 1.6rem; text-align: center; }
-        label { font-weight: bold; display: block; margin-top: 15px; }
-        select, input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        button#main-btn { background: #1a1a1a; color: #fff; border: none; padding: 16px; cursor: pointer; border-radius: 6px; font-weight: bold; width: 100%; margin-top: 15px; }
-        button#main-btn:hover { background: #000; }
-        .result-area { margin-top: 25px; background: #1e1e1e; color: #d4d4d4; padding: 18px; border-radius: 8px; position: relative; }
-        .copy-btn { position: absolute; top: 10px; right: 10px; padding: 6px 12px; font-size: 12px; background: #3a3a3a; color: #eee; border: 1px solid #555; cursor: pointer; border-radius: 4px; }
-        pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'Monaco', monospace; font-size: 13px; margin: 0; color: #9cdcfe; }
-        .preview { margin-top: 25px; border: 2px dashed #bbb; padding: 20px; min-height: 200px; background: #fff; border-radius: 8px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-    </style>
+    /* 1. Definisikan Variabel Tema Terang (Default) */
+    :root {
+        --bg-color: #f4f4f4;
+        --text-color: #333333;
+        --container-bg: #ffffff;
+        --h1-border: #1a1a1a;
+        
+        --input-bg: #ffffff;
+        --input-border: #cccccc;
+        --input-text: #333333;
+        
+        --btn-bg: #1a1a1a;
+        --btn-text: #ffffff;
+        --btn-hover: #000000;
+        
+        --preview-bg: #ffffff;
+        --preview-border: #bbbbbb;
+        --shadow-color: rgba(0,0,0,0.1);
+    }
+
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --container-bg: #161b22;
+            --h1-border: #30363d;
+            
+            --input-bg: #0d1117;
+            --input-border: #30363d;
+            --input-text: #c9d1d9;
+            
+            /* Di balik jadi terang penandanya biar kontras di tema gelap */
+            --btn-bg: #f0f6fc;
+            --btn-text: #0d1117;
+            --btn-hover: #ffffff;
+            
+            --preview-bg: #0d1117;
+            --preview-border: #444c56;
+            --shadow-color: rgba(0,0,0,0.5);
+        }
+    }
+
+    /* 3. Base Styles (Desktop & Tablet) */
+    body { 
+        font-family: sans-serif; 
+        max-width: 850px; 
+        margin: 40px auto; 
+        padding: 20px; 
+        line-height: 1.6; 
+        background-color: var(--bg-color); 
+        color: var(--text-color); 
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .container { 
+        background: var(--container-bg); 
+        padding: 30px; 
+        border-radius: 12px; 
+        box-shadow: 0 4px 15px var(--shadow-color); 
+        transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    h1 { 
+        border-bottom: 3px solid var(--h1-border); 
+        padding-bottom: 10px; 
+        font-size: 1.6rem; 
+        text-align: center; 
+        color: var(--text-color);
+        transition: border-color 0.3s;
+    }
+    
+    label { 
+        font-weight: bold; 
+        display: block; 
+        margin-top: 15px; 
+    }
+    
+    select, input { 
+        width: 100%; 
+        padding: 12px; 
+        margin: 8px 0; 
+        background-color: var(--input-bg);
+        color: var(--input-text);
+        border: 1px solid var(--input-border); 
+        border-radius: 6px; 
+        box-sizing: border-box; 
+        font-size: 16px; 
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    }
+    
+    /* Supaya pas diklik di dark mode tetap estetik */
+    select:focus, input:focus {
+        outline: none;
+        border-color: #58a6ff;
+    }
+    
+    button#main-btn { 
+        background: var(--btn-bg); 
+        color: var(--btn-text); 
+        border: none; 
+        padding: 16px; 
+        cursor: pointer; 
+        border-radius: 6px; 
+        font-weight: bold; 
+        width: 100%; 
+        margin-top: 15px; 
+        font-size: 16px;
+        transition: background-color 0.2s, color 0.2s;
+    }
+    
+    button#main-btn:hover { 
+        background: var(--btn-hover); 
+    }
+    
+    /* Area ini sengaja dipertahankan gelap di kedua mode karena sifatnya sebagai code box */
+    .result-area { 
+        margin-top: 25px; 
+        background: #1e1e1e; 
+        color: #d4d4d4; 
+        padding: 18px; 
+        border-radius: 8px; 
+        position: relative; 
+    }
+    
+    .copy-btn { 
+        position: absolute; top: 10px; right: 10px; 
+        padding: 6px 12px; font-size: 12px; 
+        background: #3a3a3a; color: #eee; 
+        border: 1px solid #555; cursor: pointer; 
+        border-radius: 4px; 
+        transition: background 0.2s;
+    }
+    .copy-btn:hover {
+        background: #4a4a4a;
+    }
+    
+    pre { 
+        white-space: pre-wrap; 
+        word-wrap: break-word; 
+        font-family: 'Monaco', monospace; 
+        font-size: 13px; 
+        margin: 0; 
+        color: #9cdcfe; 
+    }
+    
+    .preview { 
+        margin-top: 25px; 
+        border: 2px dashed var(--preview-border); 
+        padding: 20px; 
+        min-height: 200px; 
+        background: var(--preview-bg); 
+        border-radius: 8px; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        overflow: hidden; 
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+</style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/social-video-embed-generator">
