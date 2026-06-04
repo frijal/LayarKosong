@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
-    <style>
+  <style>
+      /* 1. Definisikan Variabel Tema Terang (Default) */
       :root {
         --primary-color: #4285f4;
         --dark-color: #202124;
@@ -15,7 +16,43 @@
         --grey-color: #f1f3f4;
         --text-color: #3c4043;
         --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        /* Variabel Semantik Baru untuk Menjinakkan Mode Gelap */
+        --body-bg: var(--light-color);
+        --main-text: var(--text-color);
+        --heading-color: var(--dark-color);
+        --strong-color: var(--dark-color);
+        --section-bg: var(--grey-color);
+        --caption-text: #70757a;
+        
+        --header-bg: var(--dark-color);
+        --header-text: var(--light-color);
+        --footer-bg: var(--dark-color);
+        --footer-text: var(--grey-color);
       }
+
+      /* 2. Otomatis Tema Gelap (Dark Mode) */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* Biru neon yang lebih soft agar tidak merusak retina di tempat gelap */
+          --primary-color: #8ab4f8; 
+          
+          --body-bg: #121212;      /* Latar belakang malam premium */
+          --main-text: #e8eaed;    /* Teks abu terang lembut */
+          --heading-color: #f1f3f4;/* Judul menyala terang */
+          --strong-color: #ffffff;  /* Teks tebal putih bersih */
+          --section-bg: #1f2023;   /* Kotak komentar & share jadi abu-abu gelap proporsional */
+          --caption-text: #9aa0a6;
+          --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+          --header-bg: #1f2023;    /* Header dibuat sedikit lebih terang dari bodi agar ada dimensi */
+          --header-text: #e8eaed;
+          --footer-bg: #1f2023;
+          --footer-text: #9aa0a6;
+        }
+      }
+
+      /* 3. Base Styles (Mempertahankan Struktur Asli Kamu) */
       * {
         margin: 0;
         padding: 0;
@@ -26,13 +63,14 @@
       }
       body {
         font-family: 'Poppins', sans-serif;
-        background-color: var(--light-color);
-        color: var(--text-color);
+        background-color: var(--body-bg); /* Diubah ke variabel dinamis */
+        color: var(--main-text);          /* Diubah ke variabel dinamis */
         line-height: 1.8;
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        transition: background-color 0.3s, color 0.3s;
       }
       .container {
         width: 100%;
@@ -43,28 +81,31 @@
       header {
         text-align: center;
         margin-bottom: 2rem;
-        padding: 2rem 1rem;
-        background: var(--dark-color);
-        color: var(--light-color);
+        padding: 3rem 1rem; /* Sedikit ditambah biar lebih bernapas */
+        background: var(--header-bg); /* Diubah ke variabel dinamis */
+        color: var(--header-text);   /* Diubah ke variabel dinamis */
+        transition: background-color 0.3s, color 0.3s;
       }
       header h1 {
-        font-size: 2.8rem;
+        font-size: clamp(2rem, 6vw, 2.8rem); /* Fleksibel mengikuti lebar device */
         font-weight: 700;
         margin-bottom: 0.5rem;
       }
       article h2 {
-        font-size: 2rem;
-        color: var(--dark-color);
+        font-size: clamp(1.5rem, 4vw, 2rem); /* Fleksibel di mobile */
+        color: var(--heading-color);         /* Diubah ke variabel dinamis (ANTI-HILANG) */
         margin-top: 2.5rem;
         margin-bottom: 1rem;
         border-bottom: 3px solid var(--primary-color);
         padding-bottom: 0.5rem;
+        transition: color 0.3s, border-color 0.3s;
       }
       article h3 {
         font-size: 1.5rem;
-        color: var(--dark-color);
+        color: var(--heading-color);         /* Diubah ke variabel dinamis */
         margin-top: 2rem;
         margin-bottom: 0.8rem;
+        transition: color 0.3s;
       }
       article p,
       article li {
@@ -95,14 +136,15 @@
         font-size: 1.1rem;
       }
       article strong {
-        color: var(--dark-color);
+        color: var(--strong-color); /* Diubah ke variabel dinamis */
         font-weight: 600;
+        transition: color 0.3s;
       }
       article a {
         color: var(--primary-color);
         text-decoration: none;
         font-weight: 600;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease, color 0.3s;
       }
       article a:hover {
         opacity: 0.8;
@@ -121,9 +163,7 @@
         border-radius: 12px;
         box-shadow: var(--shadow);
         cursor: pointer;
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .gallery-img:hover {
         transform: scale(1.02);
@@ -132,8 +172,9 @@
       figcaption {
         margin-top: 1rem;
         font-style: italic;
-        color: #70757a;
+        color: var(--caption-text); /* Diubah ke variabel dinamis */
         font-size: 0.95rem;
+        transition: color 0.3s;
       }
       .lightbox {
         display: none;
@@ -143,7 +184,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(0, 0, 0, 0.9); /* Tetap hitam pekat demi fokus mata */
         justify-content: center;
         align-items: center;
       }
@@ -166,24 +207,18 @@
         opacity: 0.7;
       }
       @keyframes zoomIn {
-        from {
-          transform: scale(0.8);
-        }
-        to {
-          transform: scale(1);
-        }
+        from { transform: scale(0.8); }
+        to { transform: scale(1); }
       }
       .action-button {
         display: inline-block;
         background-color: var(--primary-color);
-        color: var(--light-color);
+        color: #ffffff; /* Dipaku putih agar kontras di tombol biru */
         padding: 12px 25px;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 600;
-        transition:
-          background-color 0.3s ease,
-          transform 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         border: none;
       }
@@ -197,9 +232,10 @@
       .comments-section {
         margin-top: 3rem;
         padding: 2rem;
-        background-color: var(--grey-color);
+        background-color: var(--section-bg); /* Diubah ke variabel dinamis (ANTI-SILAU) */
         border-radius: 12px;
         text-align: center;
+        transition: background-color 0.3s;
       }
       .share-section h3,
       .comments-section h3 {
@@ -209,53 +245,50 @@
       .share-buttons {
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 20px; /* Jarak antar ikon agak dilebarkan */
         flex-wrap: wrap;
       }
       .share-btn {
         font-size: 1.8rem;
-        color: var(--text-color);
-        transition:
-          transform 0.3s ease,
-          color 0.3s ease;
+        color: var(--main-text); /* Menyelaraskan warna ikon sosmed default */
+        transition: transform 0.3s ease, color 0.3s ease;
       }
       .share-btn:hover {
         transform: scale(1.2);
       }
-      .share-btn.facebook:hover {
-        color: #1877f2;
-      }
-      .share-btn.twitter:hover {
-        color: #1da1f2;
-      }
-      .share-btn.whatsapp:hover {
-        color: #25d366;
-      }
-      .share-btn.telegram:hover {
-        color: #0088cc;
-      }
-      .share-btn.copy:hover {
-        color: var(--primary-color);
-      }
+      .share-btn.facebook:hover { color: #1877f2; }
+      .share-btn.twitter:hover { color: #1da1f2; }
+      .share-btn.whatsapp:hover { color: #25d366; }
+      .share-btn.telegram:hover { color: #0088cc; }
+      .share-btn.copy:hover { color: var(--primary-color); }
+      
       footer {
         text-align: center;
         padding: 2rem;
         margin-top: auto;
-        background-color: var(--dark-color);
-        color: var(--grey-color);
+        background-color: var(--footer-bg); /* Diubah ke variabel dinamis */
+        color: var(--footer-text);         /* Diubah ke variabel dinamis */
+        transition: background-color 0.3s, color 0.3s;
       }
+
+      /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) */
       @media (max-width: 768px) {
-        header h1 {
-          font-size: 2.2rem;
-        }
-        article h2 {
-          font-size: 1.8rem;
+        header {
+          padding: 2rem 1rem; /* Padding header dihemat di mobile */
         }
         .container {
-          padding: 1.5rem 1rem;
+          padding: 1.5rem 1rem; /* Ruang baca teks dimaksimalkan */
+        }
+        /* Memperbesar area ketukan tombol share sosmed agar ramah jempol */
+        .share-buttons {
+          gap: 25px;
+        }
+        .share-btn {
+          font-size: 2rem; 
+          padding: 5px;
         }
       }
-    </style>
+</style>
 <meta name="ai:summary" content="Yuk, kenalan sama Veo, generator video AI super canggih dari Google DeepMind! Cari tahu apa itu Veo, kemampuannya, dan gimana cara daftarnya di sini.">
 <meta name="ai:prompt_hint" content="Yuk, kenalan sama Veo, generator video AI super canggih dari Google DeepMind! Cari tahu apa itu Veo, kemampuannya, dan gimana cara daftarnya di sini.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
