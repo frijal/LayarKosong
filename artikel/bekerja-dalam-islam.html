@@ -6,112 +6,164 @@
 <!-- Open Graph -->
   <!-- CSS Prism.js -->
   <link href="/ext/default.min.css" rel="stylesheet">
-  <style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  line-height: 1.8;
-  color: #222;
-  background: #f7f9fb;
-}
-header {
-  background: linear-gradient(135deg,#0083b0,#00b4db);
-  color: white;
-  text-align: center;
-  padding: 40px 20px;
-}
-header h1 { margin: 0; font-size: 2rem; }
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,.1);
-}
-img.float-right {
-  float: right;
-  margin: 0 0 1em 1em;
-  border-radius: 8px;
-  max-width: 300px;
-  height: auto;
-}
-h2 { color: #0083b0; margin-top: 30px; }
-pre {
-  position: relative;
-}
-.copy-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  padding: 4px 8px;
-  background: #00b4db;
-  color: white;
-  font-size: 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  text-align: center;
-  font-size: 14px;
-  background: #eef2f5;
-  border-top: 1px solid #ddd;
-}
-/* Tombol Home */
-#btn-home-left, #btn-home-right {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  background-color: #0083b0;
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: background 0.3s ease, transform 0.2s ease;
-  z-index: 9999;
-}
-#btn-home-left:hover, #btn-home-right:hover {
-  background-color: #005f73;
-  transform: scale(1.05);
-}
-#btn-home-left { left: 10px; top: 30%; transform: translateY(-50%); }
-#btn-home-right { right: 10px; bottom: 20%; transform: translateY(50%); }
-#btn-home-left svg, #btn-home-right svg {
-  width: 18px;
-  height: 18px;
-  fill: white;
-  margin-right: 6px;
-}
-.share-buttons {
-  margin: 20px 0;
-  text-align: center;
-}
-.share-buttons a {
-  margin: 0 6px;
-  text-decoration: none;
-  font-size: 20px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  background: #00b4db;
-  color: #fff;
-  transition: 0.3s;
-}
-.share-buttons a:hover { background: #005f73; }
-.info-box {
-  margin-top: 30px;
-  padding: 16px;
-  background: #f0faff;
-  border-left: 4px solid #0083b0;
-  border-radius: 8px;
-  font-size: 14px;
-  text-align: left;
-}
+<style>
+        /* --- 1. DEKLARASI TOKEN WARNA (Modern Tech Theme) --- */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0083b0, #00b4db);
+            --primary-color: #0083b0;
+            --accent-color: #00b4db;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --bg-main: #f7f9fb;
+            --bg-card: #ffffff;
+            --bg-footer: #eef2f5;
+            --border-color: #e2e8f0;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius-lg: 12px;
+            --radius-md: 8px;
+            --radius-sm: 4px;
+            --transition: all 0.25s ease;
+        }
+
+        /* --- 2. BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- 3. COMPONENT HEADER --- */
+        header {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(1.75rem, 4vw, 2.5rem); /* Skala teks fleksibel otomatis */
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- 4. MAIN LAYOUT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            /* SOLUSI MEpet: Berikan jarak 40px atas-bawah agar kontainer bernapas */
+            margin: 40px auto; 
+            padding: 30px;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            /* SOLUSI FLOAT CLEARANCE: Membuat BFC agar kontainer tidak jebol oleh elemen float */
+            display: flow-root; 
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- 5. MEDIA OPTIMIZATION (Anti-Jebol Engine) --- */
+        img.float-right {
+            float: right;
+            margin: 0 0 1.5rem 1.5rem;
+            border-radius: var(--radius-md);
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            object-fit: cover;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* --- 6. SECURE CODE BLOCK COMPONENT --- */
+        /* SOLUSI TOMBOL: Gunakan wrapper khusus sebagai jangkar absolute posisi tombol */
+        .code-block-wrapper {
+            position: relative;
+            margin: 1.5rem 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        pre {
+            margin: 0;
+            padding: 1rem 1.25rem;
+            background-color: #1e293b; /* Warna latar gelap ala tema Pro Code */
+            color: #f8fafc;
+            font-family: 'Consolas', 'Fira Code', Monaco, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto; /* Mengaktifkan skrol horizontal pada kode */
+            white-space: pre;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 6px 12px;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            transition: var(--transition);
+            z-index: 10; /* Menjaga tombol tetap berada di lapisan teratas wrapper */
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        /* --- 7. FOOTER COMPONENT --- */
+        footer {
+            margin-top: 60px;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            background-color: var(--bg-footer);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- 8. MOBILE ENGINE BREAKPOINT --- */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+
+            /* SOLUSI PONSEL: Matikan fungsi float agar gambar tidak menjepit teks di layar sempit */
+            img.float-right {
+                float: none;
+                display: block;
+                margin: 0 auto 1.5rem;
+                max-width: 100%;
+            }
+        }
   </style>
 <meta name="date" content="2025-09-28">
 <meta name="ai:summary" content="Kumpulan hadits tentang bekerja dalam Islam, keutamaan mencari nafkah halal, menjaga martabat, dan penjelasan lengkap bahwa bekerja adalah bagian dari ibadah.">
