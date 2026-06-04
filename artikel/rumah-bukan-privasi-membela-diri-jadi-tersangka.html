@@ -1,142 +1,148 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Metadata SEO dan Social Media -->
     <title>Saat Membela Diri, Justru Jadi Tersangka - Layar Kosong</title> 
-    <!-- Canonical -->
-    <!-- Favicon -->
-    <!-- Open Graph -->
-    <!-- Twitter Card -->
-    <!-- Artikel Metadata -->
-    <meta name="news_keywords" content="hukum pembelaan diri, Castle Doctrine, KUHP, penganiayaan, hak membela diri, hukum Indonesia, hukum Amerika Serikat, keamanan rumah, korban jadi tersangka">
-    <!-- Prompt Hint untuk AI -->
+      <meta name="news_keywords" content="hukum pembelaan diri, Castle Doctrine, KUHP, penganiayaan, hak membela diri, hukum Indonesia, hukum Amerika Serikat, keamanan rumah, korban jadi tersangka">
     <meta name="promphint" content="Analisis komparatif hukum pembelaan diri di rumah antara Indonesia dan Amerika Serikat menggunakan pendekatan 5W+1H, membahas paradoks korban menjadi tersangka, serta tinjauan filosofis dan yuridis mengenai hak untuk mempertahankan diri.">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <!-- CSS Styles -->
-    <style>
+  <style>
+        /* --- 1. TOKENISASI VARIABEL GLOBAL (Executive Report Theme) --- */
         :root {
-            --primary-color: #1a5fb4;
-            --secondary-color: #e95420;
-            --text-color: #333333;
+            --primary-color: #1a5fb4;     /* Corporate Deep Blue */
+            --secondary-color: #e95420;   /* Alert/Accent Orange */
+            --text-color: #2d3748;        /* Slate Gray gelap untuk kenyamanan mata */
+            --text-muted: #64748b;       /* Token pengganti #666 */
             --bg-color: #ffffff;
             --card-bg: #f8f9fa;
-            --border-color: #e0e0e0;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
             --max-width: 1000px;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
             --font-heading: 'Georgia', 'Times New Roman', serif;
-            --line-height: 1.7;
-            --transition: all 0.3s ease;
+            --line-height: 1.8;
+            --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
-        /* Dark Theme */
+
+        /* --- 2. OPTIMALISASI AUTOMATIC DARK THEME --- */
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary-color: #62a0ea;
                 --secondary-color: #ff7800;
-                --text-color: #e0e0e0;
-                --bg-color: #1e1e1e;
-                --card-bg: #2d2d2d;
-                --border-color: #444444;
-                --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            }
-            body {
-                background-color: #121212;
-                color: var(--text-color);
+                --text-color: #e2e8f0;
+                --text-muted: #94a3b8;    /* Token pengganti #aaa */
+                --bg-color: #121212;       /* Disatukan ke dalam token root */
+                --card-bg: #1e1e1e;
+                --border-color: #2d2d2d;
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             }
         }
-        /* Reset & Base Styles */
+
+        /* --- 3. RESET & ACCESSIBLE BASE SYSTEM --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         html {
+            /* Menggunakan persentase agar fitur text-scaling pada browser pembaca tidak terkunci */
+            font-size: 112.5%; 
             scroll-behavior: smooth;
         }
+
         body {
             font-family: var(--font-main);
             line-height: var(--line-height);
             color: var(--text-color);
             background-color: var(--bg-color);
-            font-size: 18px;
+            transition: var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* SOLUSI LAYOUT: Kontainer pembungkus utama agar body tidak terkunci mati */
+        .main-wrapper {
+            width: 100%;
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 20px;
-            transition: var(--transition);
+            padding: 0 1.25rem;
         }
-        /* Typography */
+
+        /* --- 4. TATA ARSITEKTUR TIPOGRAFI --- */
         h1, h2, h3, h4 {
             font-family: var(--font-heading);
             font-weight: 700;
-            line-height: 1.3;
-            margin-top: 2rem;
+            line-height: 1.25;
+            margin-top: 2.5rem;
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Skala responsif tanpa media query tambahan */
             margin-top: 1.5rem;
             border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 0.5rem;
         }
+
         h2 {
-            font-size: 2rem;
-            margin-top: 2.5rem;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            margin-top: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.4rem;
         }
-        h3 {
-            font-size: 1.6rem;
-        }
+
+        h3 { font-size: 1.4rem; }
+        h4 { font-size: 1.15rem; font-family: var(--font-main); }
+
         p {
             margin-bottom: 1.5rem;
-            text-align: justify;
+            text-align: left; /* Menghindari white-space bolong akibat pembacaan istilah teknis */
         }
+
         a {
             color: var(--primary-color);
             text-decoration: none;
+            border-bottom: 1px transparent dashed;
             transition: var(--transition);
         }
-        a:hover {
+
+        a:hover, a:focus-visible {
             color: var(--secondary-color);
-            text-decoration: underline;
+            border-bottom-color: var(--secondary-color);
         }
-        /* Layout */
-        .container {
-            width: 100%;
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-        /* Header */
+
+        /* --- 5. STRUKTUR ARTIKEL & META --- */
         .article-header {
-            margin: 2rem 0 3rem;
-            padding-bottom: 2rem;
+            margin: 2rem 0 2.5rem;
+            padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--border-color);
         }
+
         .article-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
             margin-top: 1rem;
-            font-size: 0.95rem;
-            color: #666;
+            font-size: 0.875rem;
+            color: var(--text-muted); /* Memanfaatkan token global */
         }
-        @media (prefers-color-scheme: dark) {
-            .article-meta {
-                color: #aaa;
-            }
-        }
+
         .meta-item {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
         }
+
         .meta-item i {
             color: var(--secondary-color);
         }
-        /* Content */
+
         .content-section {
             margin-bottom: 3rem;
         }
+
+        /* --- 6. KOMPONEN LAYOUT SPESIAL --- */
         .intro-box {
             background-color: var(--card-bg);
             border-left: 5px solid var(--secondary-color);
@@ -145,239 +151,210 @@
             border-radius: 0 8px 8px 0;
             box-shadow: var(--shadow);
         }
+
         .intro-box h3 {
             margin-top: 0;
             color: var(--secondary-color);
         }
+
         .quote {
             font-style: italic;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             padding: 1.5rem;
             margin: 2rem 0;
             background-color: var(--card-bg);
             border-radius: 8px;
             border-left: 4px solid var(--primary-color);
         }
+
         .quote-author {
             text-align: right;
             font-weight: bold;
+            font-size: 0.95rem;
             margin-top: 0.5rem;
             color: var(--primary-color);
         }
-        .point-list {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
-        .point-list li {
-            margin-bottom: 1rem;
-            padding-left: 0.5rem;
-        }
+
         .highlight {
-            background-color: rgba(233, 84, 32, 0.1);
+            background-color: rgba(233, 84, 32, 0.04); /* Diturunkan ke 4% agar teks di dalamnya tetap kontras tinggi */
             padding: 1.5rem;
             border-radius: 8px;
             margin: 2rem 0;
             border: 1px solid var(--secondary-color);
         }
+
+        /* SOLUSI GAMBAR: Mengamankan relasi takarir agar anti-bentrok */
         .figure-container {
             margin: 2.5rem 0;
-            text-align: center;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
+
         .figure-img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .figure-caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 0.75rem 1rem;
+            font-style: italic;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* SOLUSI TABEL: Membungkus dengan wrapper div berkutub bulat */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
             border-radius: 8px;
             box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin: 2rem 0;
         }
-        .figure-caption {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
+
         .comparison-table {
             width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: var(--shadow);
-            border-radius: 8px;
-            overflow: hidden;
+            border-collapse: separate; /* Mengubah collapse menjadi separate agar radius bekerja */
+            border-spacing: 0;
         }
+
         .comparison-table th, .comparison-table td {
-            padding: 1.2rem;
+            padding: 1rem 1.2rem;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
         }
+
         .comparison-table th {
             background-color: var(--primary-color);
-            color: white;
-            font-weight: bold;
+            color: #ffffff;
+            font-weight: 600;
         }
+
+        /* Membuang border bawah pada baris terakhir tabel agar tidak double dengan border wrapper */
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
         .comparison-table tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.03);
+            background-color: rgba(0, 0, 0, 0.015);
         }
         @media (prefers-color-scheme: dark) {
             .comparison-table tr:nth-child(even) {
-                background-color: rgba(255, 255, 255, 0.05);
+                background-color: rgba(255, 255, 255, 0.02);
             }
         }
+
         .comparison-table tr:hover {
-            background-color: rgba(233, 84, 32, 0.1);
+            background-color: rgba(233, 84, 32, 0.05);
         }
-        .country-flag {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-        }
-        /* 5W+1H Section */
+
+        /* --- 7. GRID 5W+1H ANALISIS --- */
         .analysis-section {
             background-color: var(--card-bg);
             padding: 2rem;
             border-radius: 12px;
             margin: 3rem 0;
             box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
+
         .analysis-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
             margin-top: 1.5rem;
         }
+
         .analysis-item {
             background-color: var(--bg-color);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 8px;
             border-top: 4px solid var(--primary-color);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
+
         .analysis-item h4 {
             margin-top: 0;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
         }
-        /* Comment Section */
-        #related-articles-grid {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 3rem 0;
-            text-align: center;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 2px dashed var(--border-color);
+
+        .point-list {
+            margin: 1.25rem 0 1.25rem 1.5rem;
         }
-        #related-articles-grid h3 {
-            margin-bottom: 1rem;
+
+        .point-list li {
+            margin-bottom: 0.75rem;
         }
-        /* Related Articles */
-        #response {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-        .related-article {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-        .related-article:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        .related-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-        .related-content {
-            padding: 1.2rem;
-        }
-        .related-content h4 {
-            margin-top: 0;
-            font-size: 1.2rem;
-        }
-        /* Footer */
+
+        /* --- 8. FOOTER ENGINE --- */
         footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
-            border-top: 2px solid var(--border-color);
+            margin-top: 5rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            color: #666;
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
         }
+
         .footer-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            gap: 2rem;
+            margin-bottom: 1rem;
         }
-        .copyright {
-            margin-top: 1.5rem;
-        }
-        /* Mobile Responsiveness */
+
+        .country-flag { display: inline-block; margin-right: 4px; }
+        .text-accent { color: var(--accent-color); font-weight: bold; }
+        .text-primary { color: var(--primary-color); }
+        .text-center { text-align: center; }
+
+        /* --- 9. MOBILE RESPONSIVE ENGINE --- */
         @media (max-width: 768px) {
-            body {
-                font-size: 16px;
-                padding: 0 15px;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            h2 {
-                font-size: 1.6rem;
-            }
-            h3 {
-                font-size: 1.3rem;
-            }
-            .article-meta {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
             .analysis-grid {
                 grid-template-columns: 1fr;
             }
-            #response {
-                grid-template-columns: 1fr;
-            }
             .content-section, .analysis-section, .intro-box {
-                padding: 1.2rem;
+                padding: 1.25rem;
             }
-            .comparison-table {
-                display: block;
-                overflow-x: auto;
+            .footer-links {
+                flex-direction: column;
+                gap: 0.75rem;
             }
         }
-        /* Print Styles */
+
+        /* --- 10. CLEAN PRINT ENGINE --- */
         @media print {
             body {
-                font-size: 12pt;
-                color: #000;
-                background: #fff;
-                max-width: 100%;
+                font-size: 11pt;
+                color: #000000;
+                background: #ffffff;
             }
-            .intro-box, .highlight, .analysis-section {
+            .main-wrapper { padding: 0; max-width: 100%; }
+            .intro-box, .highlight, .analysis-section, .analysis-item {
                 break-inside: avoid;
-                border: 1px solid #ddd;
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+                background: #ffffff !important;
             }
-            #related-articles-grid, #response, footer {
-                display: none;
-            }
-            a {
-                color: #000;
-                text-decoration: underline;
-            }
-            .comparison-table {
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
+            footer, .footer-links { display: none !important; }
+            h1, h2, h3 { color: #000000 !important; border-bottom-color: #000000 !important; }
+            .comparison-table th { background-color: #f1f5f9 !important; color: #000000 !important; }
+            .comparison-table td, .comparison-table th { border-bottom: 1px solid #cbd5e1 !important; }
         }
-    </style>
+  </style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/rumah-bukan-privasi-membela-diri-jadi-tersangka">
