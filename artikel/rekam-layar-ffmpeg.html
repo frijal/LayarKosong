@@ -6,112 +6,236 @@
 <meta name="news_keywords" content="FFmpeg rekam layar, FFmpeg screen recording, x11grab FFmpeg, Linux rekam layar, FFmpeg tutorial, desktop recording Linux">
 <!-- ===== Icons ===== -->
 <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
-<!-- ===== Open Graph ===== -->
-<!-- ===== Article Meta ===== -->
-<!-- ===== Twitter Card ===== -->
-<!-- ===== Structured Image Hint ===== -->
-  <style>
-:root {
-  --primary-color: #007bff;
-  --secondary-color: #5DADE2;
-  --bg-color: #F8F9FA;
-  --text-color: #333;
-  --card-bg: #FFFFFF;
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --font-family: 'Segoe UI', 'Roboto', sans-serif;
-  --max-width: 900px;
-}
-body {
-  font-family: var(--font-family);
-  line-height: 1.8;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  padding: 20px;
-  box-sizing: border-box;
-}
-header {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: var(--card-shadow);
-}
-h1, h2, h3 { color: chocolate; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-.content {
-  background-color: var(--card-bg);
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  margin-bottom: 20px;
-}
-.zdummy1 {
-  background-color: #E8F6F3;
-  border-left: 5px solid #2ECC71;
-  padding: 20px;
-  margin: 25px 0;
-  border-radius: 6px;
-}
-.image-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease;
-}
-.image-container img:hover { transform: scale(1.02); }
-pre[class*="language-"] {
-  position: relative;
-  padding-top: 40px;
-  border-radius: 8px;
-  background-color: #2d2d2d !important;
-}
-.copy-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #FF5722;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.copy-button:hover { background-color: #E64A19; }
-.btn-social {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #555;
-  color: white;
-  text-decoration: none;
-  margin: 5px;
-  transition: background-color 0.3s, transform 0.2s;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-.btn-social:hover { transform: translateY(-2px); }
-.btn-facebook { background-color: #3b5998; }
-.btn-twitter { background-color: #1da1f2; }
-.btn-whatsapp { background-color: #25d366; }
-.btn-telegram { background-color: #0088cc; }
-.btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.btn-threads { background-color: #000; }
-.btn-tiktok { background-color: #000; }
-footer { text-align: center; padding: 20px; font-size: 0.8em; color: #777; }
+<style>
+    /* 1. Definisikan Variabel Tema Terang (Default) */
+    :root {
+        --primary-color: #007bff;
+        --secondary-color: #5DADE2;
+        --bg-color: #F8F9FA;
+        --text-color: #333333;
+        --card-bg: #FFFFFF;
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --font-family: 'Segoe UI', 'Roboto', sans-serif;
+        --max-width: 900px;
+        
+        /* Variabel tambahan dari elemen hardcoded kamu */
+        --heading-color: chocolate;
+        --dummy-bg: #E8F6F3;
+        --dummy-border: #2ECC71;
+        --footer-color: #777777;
+        
+        /* Pengaman tombol sosial media warna hitam */
+        --btn-black-bg: #000000;
+        --btn-black-border: transparent;
+    }
+
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --card-bg: #161b22;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            
+            /* Kalibrasi warna gradient header agar lebih adem */
+            --primary-color: #1f6feb;
+            --secondary-color: #388bfd;
+            
+            /* Chocolate versi malam: dibikin agak pastel/terang supaya kontras dan estetik */
+            --heading-color: #ffb066; 
+            
+            /* Kotak info .zdummy1 disulap jadi hijau gelap mewah */
+            --dummy-bg: #0f2d1e;
+            --dummy-border: #2ecc71;
+            
+            --footer-color: #8b949e;
+            
+            /* Mengubah tombol hitam pekat jadi abu-abu gelap bergaris */
+            --btn-black-bg: #21262d;
+            --btn-black-border: #30363d;
+        }
+    }
+
+    /* 3. Base Styles (Desktop & Tablet) */
+    body {
+        font-family: var(--font-family);
+        line-height: 1.8;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: var(--max-width);
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    header {
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: var(--card-shadow);
+        transition: background 0.3s, box-shadow 0.3s;
+    }
+    
+    h1, h2, h3 { 
+        color: var(--heading-color); 
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2); 
+        transition: color 0.3s;
+    }
+    
+    .content {
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 20px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .zdummy1 {
+        background-color: var(--dummy-bg);
+        border-left: 5px solid var(--dummy-border);
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 6px;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+    
+    .image-container img:hover { 
+        transform: scale(1.02); 
+    }
+    
+    /* Target khusus plugin code-editor PrismJS */
+    pre[class*="language-"] {
+        position: relative;
+        padding-top: 45px; /* Ditambah dikit biar gak terlalu mepet tombol di device kecil */
+        border-radius: 8px;
+        background-color: #2d2d2d !important;
+        /* Di dark mode sejati, kita bikin sedikit lebih pekat agar kontras dengan card-bg */
+    }
+    @media (prefers-color-scheme: dark) {
+        pre[class*="language-"] { background-color: #0d1117 !important; }
+    }
+    
+    .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #FF5722;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s;
+    }
+    
+    .copy-button:hover { 
+        background-color: #E64A19; 
+    }
+    .copy-button:active {
+        transform: scale(0.95); /* Efek klik membal mantap */
+    }
+    
+    /* Kelompok Tombol Medsos Lingkaran */
+    .btn-social {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #555;
+        color: white;
+        text-decoration: none;
+        margin: 5px;
+        transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .btn-social:hover { 
+        transform: translateY(-3px); /* Naik dikit pas di-hover */
+        filter: brightness(1.1);
+    }
+    
+    .btn-facebook { background-color: #3b5998; }
+    .btn-twitter { background-color: #1da1f2; }
+    .btn-whatsapp { background-color: #25d366; }
+    .btn-telegram { background-color: #0088cc; }
+    .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    
+    /* Tombol hitam yang sudah diamankan dengan variabel khusus */
+    .btn-threads, .btn-tiktok { 
+        background-color: var(--btn-black-bg); 
+        border: 1px solid var(--btn-black-border);
+    }
+    
+    footer { 
+        text-align: center; 
+        padding: 20px; 
+        font-size: 0.8em; 
+        color: var(--footer-color); 
+        transition: color 0.3s;
+    }
+
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px; /* Memperlebar ruang baca di HP */
+        }
+        
+        header {
+            padding: 25px 15px; /* Mengurangi ukuran raksasa header di layar kecil */
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        header h1 {
+            font-size: 1.6rem;
+        }
+
+        .content {
+            padding: 20px 15px; /* Menyesuaikan padding dalam box content */
+            margin-bottom: 15px;
+        }
+
+        .zdummy1 {
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Merapikan letak tombol medsos bulat agar simetris di tengah */
+        .social-share-container {
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        .btn-social {
+            width: 44px;  /* Ditambah 4px di HP biar lebih gampang ditarget jempol */
+            height: 44px; /* Ditambah 4px di HP biar lebih gampang ditarget jempol */
+            margin: 6px;
+        }
+    }
 </style>
 <meta name="ai:summary" content="Tutorial lengkap cara merekam sebagian area layar desktop di Linux menggunakan perintah FFmpeg. Pelajari cara menentukan area tangkapan dengan presisi.">
 <meta name="ai:prompt_hint" content="Tutorial lengkap cara merekam sebagian area layar desktop di Linux menggunakan perintah FFmpeg. Pelajari cara menentukan area tangkapan dengan presisi.">
