@@ -4,27 +4,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video Splitter One-Liner Generator - Layar Kosong</title>
 <meta name="title" content="Video Splitter One-Liner Generator">
-<!-- SEO -->
 <meta name="keywords" content="video splitter, ffmpeg, one-liner generator, split video, tool developer, video processing">
-<!-- Open Graph / Facebook -->
-<!-- Twitter -->
-<!-- Favicon -->
-<!-- Canonical URL -->
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; line-height: 1.6; background-color: #eef2f7; }
-        .container { max-width: 700px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h2 { color: #333; margin-top: 0; }
-        label { font-weight: bold; }
-        .flex-header { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
-        input { width: 100%; padding: 10px; margin: 8px 0 15px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        pre { background: #1e1e1e; color: #75beff; padding: 15px; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #007bff; min-height: 40px; }
-        button { background: #007bff; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; transition: 0.3s; }
-        button:hover { background: #0056b3; }
-        .btn-gen { width: 100%; margin-top: 10px; }
-        .btn-copy { padding: 5px 12px; font-size: 12px; background: #28a745; }
-        .btn-copy:hover { background: #218838; }
-        .copy-hint { font-size: 12px; color: #666; margin-top: 5px; }
-    </style>
+<style>
+        /* --- 1. Definisikan Variabel Tema Terang (Default Generator Vibe) --- */
+        :root {
+            --body-bg: #eef2f7;
+            --container-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            
+            /* Warna Input */
+            --input-bg: #ffffff;
+            --input-border: #dddddd;
+            --input-text: #333333;
+            
+            /* Warna Aksen (Tombol Utama & Sukses) */
+            --primary-color: #007bff;
+            --primary-hover: #0056b3;
+            --success-color: #28a745;
+            --success-hover: #218838;
+            
+            /* Output Code Box (Disemprot sedikit abu agar tidak terlalu jomplang di mode terang) */
+            --pre-bg: #1e1e1e;
+            --pre-text: #75beff;
+            --pre-border: #007bff;
+            
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 2. Otomatis Tema Gelap (Dark Mode Tech Premium) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --body-bg: #0f172a;       /* Slate 900 (Gelap super adem) */
+                --container-bg: #1e293b;  /* Slate 800 untuk kotak utama */
+                --text-main: #f1f5f9;     /* Putih abu lembut */
+                --text-muted: #94a3b8;    /* Abu-abu teks keterangan */
+                
+                /* Input diselamatkan agar tidak buta warna */
+                --input-bg: #334155;      /* Slate 700 */
+                --input-border: #475569;  /* Slate 600 */
+                --input-text: #f8fafc;
+                
+                /* Biru dan hijau versi pastel agar tidak menusuk mata di malam hari */
+                --primary-color: #38bdf8; 
+                --primary-hover: #0ea5e9;
+                --success-color: #4ade80;
+                --success-hover: #22c55e;
+                
+                /* Menyelaraskan kotak kode dengan tema malam */
+                --pre-bg: #0b0f19;        /* Lebih pekat dari kontainer agar kontras */
+                --pre-text: #38bdf8;
+                --pre-border: #38bdf8;
+                
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            padding: 20px; 
+            line-height: 1.6; 
+            background-color: var(--body-bg); 
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .container { 
+            max-width: 700px; 
+            margin: auto; 
+            background: var(--container-bg); 
+            padding: 25px; 
+            border-radius: 12px; 
+            box-shadow: var(--shadow); 
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        h2 { 
+            color: var(--text-main); 
+            margin-top: 0; 
+            transition: color 0.3s;
+        }
+        
+        label { 
+            font-weight: bold; 
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+        
+        .flex-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 20px; 
+            gap: 15px; /* Mengunci jarak aman antar elemen internal */
+        }
+        
+        /* --- Elemen Form & Input --- */
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            margin: 8px 0 15px 0; 
+            background-color: var(--input-bg);
+            color: var(--input-text);
+            border: 1px solid var(--input-border); 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-size: 14px; 
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color); /* Efek glow tipis saat input diklik */
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        }
+        
+        /* --- Blok Output Hasil Kode --- */
+        pre { 
+            background: var(--pre-bg); 
+            color: var(--pre-text); 
+            padding: 15px; 
+            border-radius: 8px; 
+            overflow-x: auto; 
+            white-space: pre-wrap; 
+            word-break: break-all; 
+            font-family: 'Courier New', Courier, monospace; 
+            border-left: 5px solid var(--pre-border); 
+            min-height: 40px; 
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        /* --- Sistem Tombol Interaktif --- */
+        button { 
+            background: var(--primary-color); 
+            color: white; 
+            border: none; 
+            padding: 12px 20px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold; 
+            transition: background-color 0.2s, transform 0.1s; 
+        }
+        button:hover { 
+            background: var(--primary-hover); 
+        }
+        button:active {
+            transform: scale(0.98); /* Efek membal saat tombol ditekan */
+        }
+        
+        .btn-gen { 
+            width: 100%; 
+            margin-top: 10px; 
+        }
+        
+        .btn-copy { 
+            padding: 6px 14px; /* Sedikit diperlebar agar ramah jempol */
+            font-size: 12px; 
+            background: var(--success-color); 
+        }
+        .btn-copy:hover { 
+            background: var(--success-hover); 
+        }
+        
+        .copy-hint { 
+            font-size: 12px; 
+            color: var(--text-muted); 
+            margin-top: 5px; 
+            transition: color 0.3s;
+        }
+
+        /* --- 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px; /* Menghemat ruang luar di layar handphone */
+            }
+            .container { 
+                padding: 20px 15px; 
+                border-radius: 8px; 
+            }
+            /* Amankan flex-header agar tombol tidak menabrak teks judul */
+            .flex-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .btn-copy {
+                width: 100%; /* Tombol copy berubah jadi full-width di HP agar gampang diklik */
+                text-align: center;
+            }
+        }
+</style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/video-splitter-one-liner-generator">
