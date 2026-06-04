@@ -2,62 +2,61 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Metadata Dasar & SEO -->
   <title>Kita ini sadar nggak sih? Jebakan Trump untuk Prabowo, tameng hidup di Gaza - Layar Kosong</title> 
   <meta name="keywords" content="Trump Prabowo Gaza, pasukan perdamaian Indonesia, jebakan Trump, Israel Palestina, tameng hidup, TNI di Gaza, analisis geopolitik, dalam.web.id">
   <meta name="news_keywords" content="Trump, Prabowo, Gaza, Israel, Palestina, TNI, pasukan perdamaian, jebakan diplomatik, Iron Dome, Zionis">
-  <!-- Canonical -->
-  <!-- Favicon -->
-  <!-- Open Graph / Facebook -->
-  <!-- Twitter Card -->
-  <!-- Preconnect dan Resource Hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <!-- Font Awesome 6 (gratis) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
-  <!-- Google Fonts: Inter & Merriweather untuk kenyamanan baca long-form -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&amp;family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;display=swap" rel="stylesheet">
-  <!-- CSS Tema Terang/Gelap otomatis (prefers-color-scheme) tanpa JavaScript -->
-  <style>
-    /* Variabel Root untuk Light Mode (default) */
+ <style>
+    /* --- 1. VARIABEL TEMA TERANG (Premium Editorial Journal) --- */
     :root {
       --bg-body: #faf9f7;
       --bg-card: #ffffff;
-      --text-main: #1e1e1e;
-      --text-muted: #3e3e3e;
-      --accent-red: #b33b3b;
-      --accent-gold: #a67c1e;
+      --text-main: #1a1a1a;       /* Sedikit lebih lembut dari #1e1e1e untuk font Serif */
+      --text-muted: #4a5568;      /* Kontras abu-abu yang lebih lolos uji WCAG AAA */
+      --accent-red: #b33b3b;      /* Crimson jurnalisme */
+      --accent-gold: #a67c1e;     /* Emas redup klasik */
       --border-light: #e6e4e0;
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.02);
+      --shadow-sm: 0 4px 20px rgba(179, 59, 59, 0.02);
+      
       --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --line-relaxed: 1.75;
-      --container-width: 1000px;
+      --line-relaxed: 1.8;        /* Dinaikkan tipis demi kenyamanan membaca font serif */
+      --container-width: 820px;   /* Dioptimalkan ke 820px agar jumlah kata per baris berada di angka ideal (65-75 karakter) */
+      --transition: 0.25s ease;
     }
-    /* Dark mode otomatis berdasarkan preferensi sistem */
+
+    /* --- 2. AUTOMATIC DARK MODE (Noble Obsidian Minimalist) --- */
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg-body: #121212;
-        --bg-card: #1e1e1e;
-        --text-main: #eaeaea;
-        --text-muted: #b4b4b4;
+        --bg-body: #0d0d0d;       /* Hitam pekat obsidian */
+        --bg-card: #161616;       /* Kartu abu-abu gelap dengan kontras rendah */
+        --text-main: #e2e8f0;     /* Putih pualam yang teduh untuk membaca lama */
+        --text-muted: #94a3b8;
         --accent-red: #ff8a8a;
-        --accent-gold: #e6c068;
-        --border-light: #3a3a3a;
-        --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+        --accent-gold: #f5d0a1;
+        --border-light: #262626;
+        --shadow-sm: 0 4px 24px rgba(0, 0, 0, 0.5);
       }
     }
-    /* Reset & Base */
+
+    /* --- 3. RESET & ACCESSIBLE BASE --- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     html {
-      font-size: 18px;
+      /* SOLUSI AKSESIBILITAS: Menggunakan persentase (112.5% = 18px pada browser normal) 
+         agar tetap mengikuti text-scaling pilihan pengguna */
+      font-size: 112.5%; 
       scroll-behavior: smooth;
     }
+
     body {
       background-color: var(--bg-body);
       color: var(--text-main);
@@ -66,182 +65,177 @@
       line-height: var(--line-relaxed);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      padding: 0 1.25rem;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      transition: background-color var(--transition), color var(--transition);
     }
-    /* Layout 1 kolom, lebar terpusat */
+
+    /* --- 4. TATA LETAK WADAH UTAMA --- */
     .article-container {
       max-width: var(--container-width);
-      margin: 2rem auto;
+      margin: 3rem auto;
       background-color: var(--bg-card);
-      border-radius: 24px;
-      padding: 2.2rem 2rem;
+      border-radius: 20px;
+      padding: 3rem 2.5rem;       /* Diperlebar agar proporsi teks esai terlihat megah */
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-light);
+      transition: background-color var(--transition), border-color var(--transition);
     }
-    /* Tipografi */
+
+    /* --- 5. ARSITEKTUR TIPOGRAFI --- */
     h1, h2, h3 {
       font-family: var(--font-sans);
-      font-weight: 700;
-      line-height: 1.3;
-      letter-spacing: -0.015em;
-      margin-top: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-top: 2.5rem;
       margin-bottom: 1rem;
       color: var(--text-main);
     }
+
     h1 {
-      font-size: 2.2rem;
+      font-size: clamp(1.8rem, 4vw, 2.4rem); /* Cair dinamis mengikuti dimensi layar */
       margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 800;
+      margin-bottom: 0.8rem;
       border-left: 6px solid var(--accent-red);
       padding-left: 1.25rem;
     }
+
     h2 {
-      font-size: 1.6rem;
-      margin-top: 2.5rem;
-      border-bottom: 2px solid var(--border-light);
-      padding-bottom: 0.5rem;
+      font-size: clamp(1.35rem, 3vw, 1.65rem);
+      margin-top: 3rem;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.6rem;
     }
+
     h3 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-top: 1.8rem;
-    }
-    p {
-      margin-bottom: 1.5rem;
-      font-size: 1.05rem;
-      color: var(--text-main);
-    }
-    .lead {
       font-size: 1.25rem;
-      font-weight: 400;
+      font-weight: 700;
+      margin-top: 2rem;
+    }
+
+    p {
+      margin-bottom: 1.6rem;
+      font-size: 1.05rem;
+      text-align: justify;       /* Ciri khas tata letak koran/jurnal premium */
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      line-height: 1.7;
       font-style: italic;
       color: var(--accent-red);
       border-left: 4px solid var(--accent-gold);
-      padding-left: 1.2rem;
-      margin-bottom: 2rem;
-      background: rgba(128, 128, 128, 0.02);
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding: 0.5rem 0 0.5rem 1.2rem;
+      margin-bottom: 2.2rem;
+      background: rgba(166, 124, 30, 0.03); /* Menggunakan tint warna emas tipis agar senada */
     }
-    /* Gambar responsif */
+
+    /* --- 6. MANAJEMEN MEDIA LCP STABIL --- */
     .featured-image {
-      margin: 2rem 0 1.5rem;
-      border-radius: 16px;
+      margin: 2.5rem 0 1.5rem;
+      border-radius: 14px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
-      background-color: var(--bg-body);
     }
+
     .featured-image img {
       width: 100%;
       height: auto;
       display: block;
       object-fit: cover;
-      aspect-ratio: 3 / 2;
+      aspect-ratio: 16 / 9;      /* Mengubah ke 16:9 standar sinematik editorial */
       border: 1px solid var(--border-light);
-      border-radius: 16px;
     }
+
     .caption {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 0.4rem;
+      margin-top: 0.6rem;
       font-family: var(--font-sans);
       text-align: right;
+      font-style: italic;
     }
-    /* Meta info artikel (5W+1H terintegrasi) */
+
+    /* --- 7. META INFORMASI ARTIKEL --- */
     .meta-artikel {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.25rem;
+      gap: 1.5rem;
       font-family: var(--font-sans);
       font-size: 0.85rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
       padding: 1rem 0;
-      margin: 1.5rem 0 2rem;
+      margin: 2rem 0;
     }
+
     .meta-item {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.4rem;
     }
+
     .meta-item i {
       color: var(--accent-red);
-      width: 1.1rem;
-      text-align: center;
     }
-    /* Blockquote */
+
+    /* --- 8. BLOK KUTIPAN MODERN --- */
     blockquote {
-      margin: 2rem 0;
-      padding: 1.2rem 1.8rem;
-      background: rgba(179, 59, 59, 0.04);
-      border-left: 6px solid var(--accent-red);
+      margin: 2.5rem 0;
+      padding: 1.2rem 2rem;
+      background: rgba(179, 59, 59, 0.03);
+      border-left: 5px solid var(--accent-red);
       font-style: italic;
-      font-size: 1.1rem;
-      color: var(--text-main);
-      border-radius: 0 20px 20px 0;
-      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      border-radius: 0 16px 16px 0;
     }
-    /* List lebih santai */
+
     ul, ol {
-      margin: 1.5rem 0 1.8rem 1.8rem;
+      margin: 1.5rem 0 1.8rem 1.5rem;
     }
+
     li {
       margin-bottom: 0.6rem;
+      padding-left: 0.2rem;
     }
-    /* Komentar & Related Grid sesuai permintaan */
-    #related-articles-grid {
-      margin: 3rem 0 1.5rem;
-      padding: 1.5rem;
-      background: rgba(128, 128, 128, 0.03);
-      border-radius: 20px;
-      border: 1px dashed var(--border-light);
-      font-family: var(--font-sans);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-    #related-articles-grid:before {
-      content: "💬 \00A0 Kolom Diskusi:";
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.75rem;
-      color: var(--text-main);
-      font-size: 1.1rem;
-    }
-    #response {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-      margin: 2rem 0 2.5rem;
-    }
-    #response:before {
-      content: "📌 \00A0 Artikel Lainnya:";
-      grid-column: 1 / -1;
-      font-family: var(--font-sans);
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 0.25rem;
-      color: var(--accent-gold);
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 0.6rem;
-    }
-    .zdummy3 {
+
+    /* --- 9. REFAKTOR KOMPONEN INFORMASI TAMBAHAN --- */
+    .info-note-box {
       background: var(--bg-body);
-      padding: 1.2rem 1rem;
-      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
       border: 1px solid var(--border-light);
-      transition: all 0.1s ease;
+      margin: 2rem 0;
+      transition: transform var(--transition), box-shadow var(--transition);
     }
-    .zdummy3 i {
+    
+    .info-note-box:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-note-box i {
       color: var(--accent-red);
-      margin-right: 0.4rem;
+      margin-right: 0.5rem;
     }
-    /* Footer */
+
+    /* --- 10. ELEMEN INTERAKTIF & AKSESIBILITAS LINK --- */
+    a {
+      color: var(--accent-red);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--accent-red);
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    a:hover, a:focus-visible {
+      color: var(--accent-gold);
+      border-bottom: 2px solid var(--accent-gold);
+      outline: none;
+    }
+
+    /* --- 11. AREA KAKI HALAMAN --- */
     footer {
-      margin-top: 3rem;
+      margin-top: 4rem;
       padding-top: 2rem;
       border-top: 1px solid var(--border-light);
       font-family: var(--font-sans);
@@ -251,28 +245,28 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
     }
-    .footer-credit i {
-      color: var(--accent-red);
+
+    /* --- 12. OPTIMALISASI LAYAR MOBILE (RESPONSIF EFISIEN) --- */
+    @media (max-width: 768px) {
+      .article-container {
+        padding: 2rem 1.5rem;   /* Mengurangi padding internal agar teks mendapat porsi lebar utama */
+        margin: 1rem;           /* Menjaga ruang luar tipis di sisi kiri-kanan layar HP */
+        border-radius: 16px;
+      }
+      p {
+        text-align: left;       /* Mematikan justify di ponsel agar spasi kata tidak renggang berantakan */
+      }
+      .meta-artikel {
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
     }
-    /* Tombol dan elemen interaktif kecil tanpa JS */
-    a {
-      color: var(--accent-red);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--accent-red);
-    }
-    a:hover {
-      border-bottom: 2px solid var(--accent-red);
-    }
-    /* Responsif mobile-first */
-    @media (max-width: 600px) {
-      html { font-size: 16px; }
-      .article-container { padding: 1.5rem 1.2rem; margin: 1rem auto; }
-      h1 { font-size: 1.9rem; }
-      .meta-artikel { flex-direction: column; gap: 0.5rem; }
-    }
-    /* Optimalisasi Core Web Vitals: LCP dengan gambar prioritas, CLS minimal, INP via no JS */
-    .featured-image img { content-visibility: auto; }
   </style>
 <meta name="promphint" content="artikel mendalam tentang rencana Trump dan Israel memanfaatkan pasukan Indonesia sebagai tameng hidup di Gaza, lengkap fakta dan dilema.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
