@@ -4,113 +4,140 @@
     <title>Kreativitas Satlantas Grobogan: Teguran Unik untuk Pengendara - Layar Kosong</title> 
 <script src="https://cdn.tailwindcss.com" defer=""></script>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Balsamiq+Sans:wght@400;700&display=swap');
-        body {
-            font-family: 'Roboto Slab', serif;
-            background: linear-gradient(120deg, #f0f9ff, #e0f2fe);
-            color: #334155;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
+   <style>
+        /* --- 1. TOKENISASI WARNA & TIPOGRAFI (Creative Story Theme) --- */
+        :root {
+            --font-title: 'Balsamiq Sans', cursive, sans-serif;
+            --font-body: 'Roboto Slab', serif;
+            
+            /* Palet Warna Langit Cerah */
+            --bg-gradient: linear-gradient(120deg, #f0f9ff, #e0f2fe);
+            --bg-canvas: #ffffff;
+            --brand-primary: #1a5276;
+            --brand-accent: #4f46e5;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            
+            /* Komponen Kotak Kreatif */
+            --bg-callout-info: #e3f2fd;
+            --bg-callout-note: #f1f5f9;
+            
+            --radius-playful: 1.5rem;
+            --radius-standard: 1rem;
+            --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --shadow-heavy: 0 15px 30px rgba(0, 0, 0, 0.12);
         }
+
+        /* --- 2. RESET & FONDASI DASAR --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            line-height: 1.75;
+            padding: 3rem 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- 3. TATA LETAK KANVAS UTAMA --- */
         .container {
             max-width: 900px;
-            margin: auto;
-            padding: 2rem;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background-color: var(--bg-canvas); /* Membuat teks aman dibaca di atas papan putih */
+            border-radius: var(--radius-playful);
+            box-shadow: var(--shadow-soft);
         }
+
         .prose {
-            line-height: 1.7;
             font-size: 1.1rem;
         }
-        h1 {
-            font-family: 'Balsamiq Sans', cursive;
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #1a5276;
-            text-align: center;
+
+        .prose p {
+            margin-bottom: 1.5rem;
         }
+
+        /* --- 4. KOMPONEN JUDUL & INTRO --- */
+        h1 {
+            font-family: var(--font-title);
+            font-size: clamp(2rem, 5vw, 3rem); /* Skala teks elastis otomatis */
+            font-weight: 700;
+            color: var(--brand-primary);
+            text-align: center;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
         .intro-text {
             text-align: center;
             font-style: italic;
-            color: #64748b;
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
         }
+
+        /* --- 5. KOMPONEN MEDIA (Buku Cerita Bergambar) --- */
         .main-image-container {
             text-align: center;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
+            margin: 2.5rem 0;
         }
+
         .main-image-container img {
-            border-radius: 1.5rem;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-radius: var(--radius-playful);
+            box-shadow: var(--shadow-heavy);
             max-width: 100%;
             height: auto;
-            border: 4px solid white;
+            border: 6px solid #ffffff; /* Bingkai putih tebal ala komik/foto fisik */
+            transition: transform 0.3s ease;
         }
-        .zdummy {
-            background-color: #e3f2fd;
-            border-radius: 1rem;
+
+        .main-image-container img:hover {
+            transform: scale(1.02); /* Efek interaktif mikro saat kursor lewat */
+        }
+
+        /* --- 6. KOTAK KREATIF SEMANTIK (Pengganti .zdummy) --- */
+        .callout-box {
+            margin: 2rem 0;
             padding: 2rem;
-            margin-top: 2rem;
+            border-radius: var(--radius-standard);
+            transition: all 0.3s ease;
         }
-        .nav-btn {
-            position: fixed;
-            z-index: 100;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            padding: 0.75rem;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: all 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 55px;
-            height: 55px;
+
+        .callout-box.info {
+            background-color: var(--bg-callout-info);
+            border-left: 5px solid var(--brand-primary);
         }
-        .nav-btn:hover {
-            background-color: rgba(255, 255, 255, 1);
-            transform: scale(1.1);
+
+        .callout-box.note {
+            background-color: var(--bg-callout-note);
+            border-left: 5px solid var(--brand-accent);
         }
-        #home-btn {
-            top: 30%;
-            left: 20px;
-            color: #1a5276;
-        }
-        #sitemap-btn {
-            bottom: 30%;
-            right: 20px;
-            color: #1a5276;
-        }
+
+        /* --- 7. MESIN RESPONSIVITAS (Mobile Friendly & Bebas Bocor) --- */
         @media (max-width: 768px) {
-            .nav-btn {
-                width: 45px;
-                height: 45px;
-                padding: 0.5rem;
+            body {
+                padding: 1rem 0;
             }
-            #home-btn {
-                top: 20%;
+
+            .container {
+                margin: 0 12px;
+                padding: 1.5rem;
+                border-radius: var(--radius-standard);
             }
-            #sitemap-btn {
-                bottom: 20%;
+
+            /* Adaptasi komponen kotak kreatif saat masuk layar ponsel */
+            .callout-box.info {
+                background-color: var(--bg-callout-note); /* Berganti rupa secara sistematis */
+                border-left-color: var(--brand-accent);
+                padding: 1.5rem;
             }
-        }
-        .social-share a {
-            color: #94a3b8;
-            transition: color 0.3s;
-        }
-        .social-share a:hover {
-            color: #1a5276;
-        }
-        .zdummy1 {
-            background-color: #e2e8f0;
-            border-left: 4px solid #4f46e5;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin-top: 2rem;
-        }
-    </style>
+        } /* <--- Kunci pengaman media query ditutup dengan aman di sini! */
+  </style>
 <meta name="ai:summary" content="cara unik Satlantas Polres Grobogan dalam mengingatkan pengendara untuk berhati-hati di jalan raya. Sebuah pendekatan yang kreatif dan menarik perhatian.">
 <meta name="ai:prompt_hint" content="cara unik Satlantas Polres Grobogan dalam mengingatkan pengendara untuk berhati-hati di jalan raya. Sebuah pendekatan yang kreatif dan menarik perhatian.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
