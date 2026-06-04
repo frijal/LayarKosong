@@ -3,149 +3,182 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pentingnya Menjalankan Rencana di Era Digital: Strategi Prioritas dan Produktivitas - Layar Kosong</title> 
 <style>
+        /* --- 1. DEFINISI VARIABEL TEMA TERANG (Clean Tech) --- */
         :root {
             --background-color: #f4f7f6;
-            --text-color: #333;
+            --container-bg: #ffffff;
+            --text-color: #333333;
             --heading-color: #2c3e50;
             --accent-color: #3498db;
+            --accent-hover: #2980b9;
             --border-color: #e0e0e0;
+            
+            /* Blok Kode */
             --code-bg: #2d2d2d;
             --code-text: #f8f8f2;
+            
             --highlight-bg: #e8f5ff;
-            --muted-text: #777;
+            --muted-text: #777777;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+            --transition-speed: 0.3s;
         }
+
+        /* --- 2. OTOMATIS TEMA GELAP (Premium Nordic Slate) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #0f172a; /* Slate gelap modern */
+                --container-bg: #1e293b;     /* Kontainer abu-abu gelap kebiruan */
+                --text-color: #cbd5e1;       /* Teks putih abu lembut agar mata nyaman */
+                --heading-color: #f8fafc;    /* Judul putih bersih murni */
+                --accent-color: #38bdf8;     /* Biru langit cerah khusus mode malam */
+                --accent-hover: #7dd3fc;
+                --border-color: #334155;
+                
+                /* Blok kode tetap mempertahankan skema gelapnya yang kontras */
+                --code-bg: #0b0f19;
+                --code-text: #e2e8f0;
+                
+                --highlight-bg: #1e293b;
+                --muted-text: #64748b;
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* --- 3. RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7; /* Sedikit dinaikkan untuk keterbacaan artikel teknis */
             color: var(--text-color);
             background-color: var(--background-color);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
+
+        /* --- 4. KONTAINER UTAMA --- */
         .container {
             max-width: 1000px;
             width: 100%;
-            padding: 20px;
+            padding: 30px; /* Dipertebal di desktop agar proporsional */
             box-sizing: border-box;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 20px 10px;
-            border-radius: 8px;
+            background-color: var(--container-bg);
+            box-shadow: var(--shadow);
+            margin: 30px 15px;
+            border-radius: 12px; /* Diperhalus sudut lekukannya */
+            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
         }
+
         h1, h2, h3 {
             color: var(--heading-color);
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 5px;
-            margin-top: 30px;
+            padding-bottom: 8px;
+            margin-top: 35px;
+            font-weight: 700;
+            transition: color var(--transition-speed), border-color var(--transition-speed);
         }
-        h1 { font-size: 2.2em; }
-        h2 { font-size: 1.8em; }
-        h3 { font-size: 1.4em; }
+
+        h1 { font-size: clamp(1.8rem, 4vw, 2.3rem); margin-top: 10px; border-bottom-width: 3px; }
+        h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
+        h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
         p, li {
             text-align: justify;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
+
         strong {
             color: var(--heading-color);
+            transition: color var(--transition-speed);
         }
+
+        /* --- 5. PENYELAMATAN BLOK KODE (ANTI EMBAL-EMBAL COPY BUTTON) --- */
         .code-block {
             position: relative;
-            margin-bottom: 20px;
+            margin: 20px 0;
             background: var(--code-bg);
-            border-radius: 6px;
-            padding: 15px;
+            border-radius: 8px;
+            /* SOLUSI: Padding atas ditambah (45px) agar baris pertama kode 
+               berada di bawah area Tombol Copy secara aman */
+            padding: 45px 15px 15px 15px; 
             overflow-x: auto;
             font-size: 0.9em;
+            border: 1px solid var(--border-color);
+            transition: background var(--transition-speed), border-color var(--transition-speed);
         }
+
         .code-block code {
             color: var(--code-text);
             font-family: "Fira Code", "JetBrains Mono", "Consolas", "Monaco", monospace;
             white-space: pre-wrap;
             word-wrap: break-word;
         }
+
         .copy-btn {
             position: absolute;
             top: 10px;
             right: 10px;
             background: var(--accent-color);
-            color: #fff;
+            color: #ffffff;
             border: none;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.8em;
-            transition: background 0.3s ease;
+            font-weight: 600;
+            transition: background var(--transition-speed), transform 0.1s ease;
+            z-index: 10; /* Menjamin tombol selalu berada di lapisan teratas */
         }
+
         .copy-btn:hover {
-            background: #2980b9;
+            background: var(--accent-hover);
         }
-        .sharing-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px dashed var(--border-color);
-            justify-content: center;
+        
+        .copy-btn:active {
+            transform: scale(0.95); /* Efek membal kecil saat ditekan */
         }
-        .sharing-buttons a {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            color: #fff;
-            font-size: 0.9em;
-            transition: opacity 0.3s ease;
-        }
-        .sharing-buttons a:hover {
-            opacity: 0.8;
-        }
-        .btn-facebook { background: #1877F2; }
-        .btn-twitter { background: #1DA1F2; }
-        .btn-x { background: #000; }
-        .btn-whatsapp { background: #25D366; }
-        .btn-telegram { background: #0088CC; }
+
+         /* --- 7. AREA METADATA & KOMENTAR --- */
         .info-box {
-            margin-top: 30px;
+            margin-top: 35px;
             padding-top: 20px;
             border-top: 2px solid var(--border-color);
             font-size: 0.85em;
             color: var(--muted-text);
+            transition: border-color var(--transition-speed), color var(--transition-speed);
         }
+
         .info-item {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 8px;
         }
-        .fb-comments-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--border-color);
-        }
-        /* Responsif */
+              /* --- 8. OPTIMALISASI MOBILE RESPONSIVE (Layar < 768px) --- */
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
-                padding: 15px;
+                padding: 20px 15px;
+                border-radius: 8px;
             }
-            h1 { font-size: 1.8em; }
-            h2 { font-size: 1.5em; }
-            h3 { font-size: 1.2em; }
-            .sharing-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .sharing-buttons a {
-                justify-content: center;
-            }
+            
+            h1 { font-size: 1.65em; }
+            h2 { font-size: 1.4em; }
+            h3 { font-size: 1.15em; }
+            
+            /* Mematikan paksa perataan justify di HP demi menghindari celah kata yang bolong-bolong */
+            p, li {
+                text-align: left; 
+            }         
         }
-    </style>
+</style>
     <link href="/ext/default.min.css" rel="stylesheet">
 <meta name="ai:summary" content="pentingnya menjalankan rencana dengan baik di era digital yang serba cepat. Temukan strategi prioritas tugas dan tips untuk meningkatkan produktivitas Anda.">
 <meta name="ai:prompt_hint" content="pentingnya menjalankan rencana dengan baik di era digital yang serba cepat. Temukan strategi prioritas tugas dan tips untuk meningkatkan produktivitas Anda.">
