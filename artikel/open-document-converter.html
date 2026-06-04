@@ -3,8 +3,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Mengubah Dokumen ke Open Document dengan OpenOffice &amp; LibreOffice - Layar Kosong</title> 
 <link href="/ext/atom-one-light.min.css" rel="stylesheet">
-    <!-- Styles: 1 kolom, light theme -->
-    <style>
+ <style>
+        /* 1. Definisikan Variabel Tema Terang (Default) */
         :root {
             --bg: #f7f9fc;
             --fg: #14213d;
@@ -15,44 +15,210 @@
             --border: #e6eef7;
             --shadow: 0 10px 30px rgba(17,24,39,.08);
             --maxw: 900px;
+            
+            /* Variabel tambahan untuk menjinakkan elemen hardcoded */
+            --header-bg: rgba(247, 249, 252, 0.7);
+            --lightbox-bg: rgba(247, 249, 252, 0.9);
+            --pre-bg: #f1f5f9;
+            --pre-border: #e2e8f0;
+            --copy-btn-bg: #e2e8f0;
+            --copy-btn-text: #334155;
+            --btn-share-bg: #eef5ff;
+            --btn-share-hover: #dbeafe;
         }
+
+        /* 2. Otomatis Tema Gelap (Dark Mode) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a; /* Slate 900 */
+                --fg: #f8fafc; /* Slate 50 */
+                --muted: #94a3b8;
+                --accent: #38bdf8; /* Biru langit cerah agar kontras di latar gelap */
+                --accent-2: #7dd3fc;
+                --card: #1e293b; /* Slate 800 */
+                --border: #334155;
+                --shadow: 0 10px 30px rgba(0,0,0,.4);
+                
+                /* Penyesuaian komponen transparan & blok kode di mode gelap */
+                --header-bg: rgba(15, 23, 42, 0.7);   /* Transparansi gelap */
+                --lightbox-bg: rgba(15, 23, 42, 0.95); /* Latar belakang pop-up gelap pekat */
+                --pre-bg: #0b0f19;                    /* Blok kode dibikin hitam elegan */
+                --pre-border: #1e293b;
+                --copy-btn-bg: #334155;
+                --copy-btn-text: #cbd5e1;
+                --btn-share-bg: #1e293b;
+                --btn-share-hover: #334155;
+            }
+        }
+
+        /* 3. Base Styles (Desktop & Tablet) */
         html, body {
-            background: var(--bg); color: var(--fg);
+            background: var(--bg); 
+            color: var(--fg);
             font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            margin: 0; scroll-behavior: smooth;
+            margin: 0; 
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
         }
-        a { color: var(--accent); text-decoration: none; }
+        
+        a { 
+            color: var(--accent); 
+            text-decoration: none; 
+            transition: color 0.2s;
+        }
         a:hover { text-decoration: underline; }
+        
         img { max-width: 100%; height: auto; border-radius: 8px; }
+        
         .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+        
         header.site {
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-            background: rgba(247, 249, 252, 0.7); backdrop-filter: blur(8px);
-            position: sticky; top: 0; z-index: 10;
+            padding: 1rem 1.5rem; 
+            border-bottom: 1px solid var(--border);
+            background: var(--header-bg); /* Diubah ke variabel */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); /* Dukungan untuk Safari */
+            position: sticky; 
+            top: 0; 
+            z-index: 10;
+            transition: background 0.3s, border-color 0.3s;
         }
+        
         .brand { font-weight: bold; font-size: 1.2rem; }
-        main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
+        
+        main { 
+            display: flex; 
+            justify-content: center; 
+            padding: 2rem 1rem 4rem; 
+            flex-grow: 1; 
+        }
+        
         .col { width: 100%; max-width: var(--maxw); }
-        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
-        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
-        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        
+        article { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; 
+            box-shadow: var(--shadow); 
+            padding: 2rem;
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        article h1 { 
+            font-size: clamp(1.75rem, 5vw, 2.5rem); 
+            line-height: 1.2; 
+            margin: 0 0 10px; 
+            color: var(--accent); 
+            transition: color 0.3s;
+        }
+        
+        article h2 { 
+            font-size: 1.5rem; 
+            margin-top: 2.5rem; 
+            border-bottom: 1px solid var(--border); 
+            padding-bottom: 0.5rem; 
+            transition: border-color 0.3s;
+        }
+        
+        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; transition: color 0.3s; }
+        
         .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
-        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #eef5ff; color: var(--fg); cursor: pointer; text-decoration: none; }
-        .btn-share:hover { background: #dbeafe; }
+        
+        .btn-share { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            padding: 8px 12px; 
+            border-radius: 999px; 
+            border: 1px solid var(--border); 
+            background: var(--btn-share-bg); /* Diubah ke variabel */
+            color: var(--fg); 
+            cursor: pointer; 
+            text-decoration: none;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .btn-share:hover { background: var(--btn-share-hover); }
+        
         ol { margin: 1rem 0 1rem 1.5rem; }
+        
         figure { margin: 1.5rem 0; text-align: center; }
         figure img { cursor: zoom-in; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-        .lightbox { position: fixed; inset: 0; background: rgba(247,249,252,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
+        
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Dioptimasi ke 240px agar muat 2 kolom di HP medium */
+            gap: 1rem; 
+            margin-top: 1.5rem; 
+        }
+        
+        .lightbox { 
+            position: fixed; 
+            inset: 0; 
+            background: var(--lightbox-bg); /* Diubah ke variabel */
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 9999; 
+            transition: background 0.3s;
+        }
         .lightbox.open { display: flex; }
-        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; box-shadow: var(--shadow); }
-        pre { position: relative; background: #f1f5f9; padding: 1.25rem; border-radius: 8px; overflow-x: auto; border: 1px solid #e2e8f0; margin-top: 1rem; }
+        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; box-shadow: var(--shadow); cursor: zoom-out; }
+        
+        pre { 
+            position: relative; 
+            background: var(--pre-bg); /* Diubah ke variabel */
+            padding: 1.25rem; 
+            border-radius: 8px; 
+            overflow-x: auto; 
+            border: 1px solid var(--pre-border); /* Diubah ke variabel */
+            margin-top: 1rem; 
+            transition: background-color 0.3s, border-color 0.3s;
+        }
         code { font-family: 'Fira Code', 'Consolas', monospace; }
-        .copy-btn { position: absolute; top: 12px; right: 12px; background: #e2e8f0; border: none; color: #334155; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
+        
+        .copy-btn { 
+            position: absolute; 
+            top: 12px; 
+            right: 12px; 
+            background: var(--copy-btn-bg); /* Diubah ke variabel */
+            border: none; 
+            color: var(--copy-btn-text); /* Diubah ke variabel */
+            padding: 5px 10px; 
+            border-radius: 5px; 
+            font-size: 12px; 
+            cursor: pointer; 
+            transition: background 0.2s, color 0.2s;
+        }
         .copy-btn:hover { background: var(--accent); color: white; }
-        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
-    </style>
+        
+        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; transition: color 0.3s, border-color 0.3s; }
+
+        /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem 0.5rem 2rem; /* Menghemat spasi luar di HP */
+            }
+
+            article {
+                padding: 1.25rem; /* Padding dalam box dikecilkan agar teks tidak terjepit */
+                border-radius: 10px; /* Lengkungan disesuaikan agar pas di layar kecil */
+            }
+
+            /* Antisipasi tombol salin menutupi baris pertama kode saat teks wrap */
+            pre {
+                padding-top: 3rem; 
+            }
+
+            .share-bar {
+                justify-content: center; /* Tombol share rata tengah di HP */
+            }
+
+            .btn-share {
+                flex-grow: 1; /* Tombol share membesar seimbang memenuhi baris */
+                justify-content: center;
+            }
+        }
+</style>
 <meta name="ai:summary" content="Panduan langkah demi langkah mengubah dokumen ke format Open Document (ODF) menggunakan OpenOffice atau LibreOffice dengan cepat dan mudah.">
 <meta name="ai:prompt_hint" content="Panduan langkah demi langkah mengubah dokumen ke format Open Document (ODF) menggunakan OpenOffice atau LibreOffice dengan cepat dan mudah.">
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
