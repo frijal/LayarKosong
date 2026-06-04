@@ -4,151 +4,348 @@
     <title>Cara Cek Semua Aplikasi Node.js (Paket Global) di Laptop - Layar Kosong</title> 
     <meta name="keywords" content="npm, node.js, list global packages, cek paket npm, npm list, yarn global, pnpm list, tutorial, cli, developer">
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
-    <style>
-    :root {
-      --bg: #ffffff;
-      --text: #1a1a1a;
-      --muted: #5c5c5c;
-      --accent: #2563eb;
-      --accent-2: #9333ea;
-      --card: #f7f7f9;
-      --border: #e5e7eb;
-      --code-bg: #0b1020;
-      --code-text: #e5f0ff;
-    }
-    /* Otomatis deteksi tema Dark/Light */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0f1a;
-        --text: #e8ecf8;
-        --muted: #a8b0c2;
-        --accent: #60a5fa;
-        --accent-2: #c084fc;
-        --card: #111628;
-        --border: #243049;
-        --code-bg: #0a0f1f;
-        --code-text: #dbe8ff;
-      }
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    .page { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
-    header {
-      position: sticky; top: 0;
-      backdrop-filter: saturate(150%) blur(6px);
-      background: color-mix(in oklab, var(--bg) 75%, transparent);
-      border-bottom: 1px solid var(--border);
-      z-index: 50;
-    }
-    .nav {
-      /* Widescreen design */
-      max-width: 1600px; margin: 0 auto; padding: 12px 24px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .logo {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-weight: 700; letter-spacing: 0.2px;
-      text-decoration: none; color: var(--text);
-    }
-    .logo svg { width: 28px; height: 28px; }
-    .spacer { flex: 1; }
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    .icon-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: 10px;
-      border: 1px solid var(--border); background: var(--card);
-      color: var(--text); text-decoration: none; cursor: pointer;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-    }
-    .icon-btn:hover { transform: translateY(-1px); border-color: var(--accent); }
-    .icon-btn svg { width: 20px; height: 20px; }
-    .hero {
-      /* Widescreen design */
-      max-width: 1600px; margin: 0 auto; padding: 40px 24px 10px;
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px;
-    }
-    /* Responsive */
-    @media (max-width: 1024px) { .hero { grid-template-columns: 1fr; } }
-    .title { font-size: clamp(26px, 4vw, 42px); margin: 0 0 10px; line-height: 1.2; }
-    .subtitle { font-size: clamp(16px, 2.2vw, 18px); color: var(--muted); margin: 4px 0 16px; }
-    .meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: 14px; }
-    .tag { padding: 4px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); }
-    .panel {
-      border: 1px solid var(--border); border-radius: 16px;
-      background: var(--card); padding: 16px;
-    }
-    .panel img { max-width: 100%; border-radius: 8px; }
-    main {
-      /* Widescreen design */
-      max-width: 1600px; margin: 0 auto; padding: 24px;
-      display: grid; grid-template-columns: 1fr 340px; gap: 24px;
-    }
-    /* Responsive */
-    @media (max-width: 980px) { main { grid-template-columns: 1fr; } }
-    h2, h3 { margin: 22px 0 8px; line-height: 1.3; }
-    .lead { font-size: 18px; color: var(--muted); }
-    .card {
-      border: 1px solid var(--border); border-radius: 16px;
-      background: var(--card); padding: 16px; margin-bottom: 16px;
-      position: relative; /* Untuk tombol copy */
-    }
-    pre, code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-    pre {
-      margin: 12px 0; padding: 14px; border-radius: 12px;
-      background: var(--code-bg); color: var(--code-text);
-      overflow: auto; border: 1px solid #1d2742;
-    }
-    /* Menghapus margin atas/bawah jika pre adalah elemen pertama/terakhir di .card */
-    .card > pre:first-child { margin-top: 0; }
-    .card > pre:last-child { margin-bottom: 0; }
-    /* Penyesuaian untuk pre di dalam card yang ada judulnya */
-    .card > strong + pre { margin-top: 12px; }
-    .copy-btn {
-      position: absolute; top: 12px; right: 12px;
-      background: color-mix(in oklab, var(--card) 60%, transparent);
-      border: 1px solid var(--border);
-      color: var(--text);
-      opacity: 0.5;
-      transition: all .2s ease;
-    }
-    .card:hover .copy-btn { opacity: 1; }
-    .copy-btn:hover { border-color: var(--accent); }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border);
-      background: var(--card); color: var(--text); cursor: pointer;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      user-select: none;
-    }
-    .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
-    .btn svg { width: 18px; height: 18px; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    /* Responsive */
-    @media (max-width: 780px) { .grid-2 { grid-template-columns: 1fr; } }
-    .footer {
-      border-top: 1px solid var(--border); padding: 18px 24px; color: var(--muted);
-    }
-    .footer-inner {
-      /* Widescreen design */
-      max-width: 1600px; margin: 0 auto; display: flex; align-items: center;
-      gap: 12px; justify-content: space-between; flex-wrap: wrap;
-    }
-    .kbd {
-      font-family: ui-monospace, Menlo, Consolas, monospace;
-      background: var(--card); border: 1px solid var(--border);
-      border-bottom-width: 2px; border-radius: 6px; padding: 2px 6px; color: var(--text);
-    }
-    .note { color: var(--muted); font-size: 14px; }
-    .accent { color: var(--accent); }
+  <style>
+        /* --- 1. DESIGN TOKENS (Modern Fluid Ecosystem) --- */
+        :root {
+            /* Mode Terang (Light Mode - WCAG AA Compliant) */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --muted: #5c5c5c;
+            --accent: #2563eb;
+            --accent-2: #9333ea;
+            --card: #f7f7f9;
+            --border: #e5e7eb;
+            --code-bg: #0b1020;
+            --code-text: #e5f0ff;
+            
+            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px) */
+            --max-width: 62.5rem; 
+            --radius-lg: 1rem;     /* 16px */
+            --radius-md: 0.75rem;  /* 12px */
+            --radius-sm: 0.375rem; /* 6px */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Mode Gelap (Dark Mode) */
+                --bg: #0b0f1a;
+                --text: #e8ecf8;
+                --muted: #a8b0c2;
+                --accent: #60a5fa;
+                --accent-2: #c084fc;
+                --card: #111628;
+                --border: #243049;
+                --code-bg: #0a0f1f;
+                --code-text: #dbe8ff;
+            }
+        }
+
+        /* --- 2. ACCESSIBLE RESET --- */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+        }
+        
+        html, body { 
+            height: 100%; 
+        }
+        
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- 3. LAYOUT ENGINE (Murni Mobile-First) --- */
+        .page { 
+            min-height: 100vh; 
+            display: grid; 
+            grid-template-rows: auto 1fr auto; 
+        }
+        
+        header {
+            position: sticky; 
+            top: 0;
+            -webkit-backdrop-filter: saturate(150%) blur(6px);
+            backdrop-filter: saturate(150%) blur(6px);
+            background: color-mix(in oklab, var(--bg) 75%, transparent);
+            border-bottom: 0.0625rem solid var(--border);
+            z-index: 50;
+        }
+        
+        /* Kontainer Pengawal Lebar Maksimal */
+        .nav, .hero, main, .footer-inner {
+            width: 100%;
+            max-width: var(--max-width); 
+            margin: 0 auto; 
+            padding: 1rem 1.5rem;
+        }
+
+        .nav {
+            display: flex; 
+            align-items: center; 
+            gap: 0.875rem;
+        }
+        
+        .logo {
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.625rem;
+            font-weight: 700; 
+            letter-spacing: 0.02em;
+            text-decoration: none; 
+            color: var(--text);
+        }
+        
+        .logo svg { 
+            width: 1.75rem; 
+            height: 1.75rem; 
+        }
+        
+        .spacer { 
+            flex: 1; 
+        }
+        
+        .actions { 
+            display: flex; 
+            gap: 0.5rem; 
+            flex-wrap: wrap; 
+        }
+
+        /* --- 4. KOMPONEN HERO (Susunan Vertikal Turun ke Grid Desktop) --- */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-top: 2.5rem;
+            padding-bottom: 0.625rem;
+        }
+
+        /* Pemicu Grid Desktop saat Layar Melebar */
+        @media (min-width: 64rem) { /* >= 1024px */
+            .hero {
+                display: grid;
+                grid-template-columns: 1.2fr 1fr;
+            }
+        }
+        
+        .title { 
+            font-size: clamp(1.625rem, 5vw, 2.625rem); 
+            margin: 0 0 0.625rem; 
+            line-height: 1.2; 
+        }
+        
+        .subtitle { 
+            font-size: clamp(1rem, 2.5vw, 1.125rem); 
+            color: var(--muted); 
+            margin: 0.25rem 0 1rem; 
+        }
+        
+        .meta { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 0.625rem; 
+            color: var(--muted); 
+            font-size: 0.875rem; 
+        }
+        
+        .tag { 
+            padding: 0.25rem 0.625rem; 
+            border-radius: 62.4375rem; 
+            background: var(--card); 
+            border: 0.0625rem solid var(--border); 
+        }
+        
+        .panel {
+            border: 0.0625rem solid var(--border); 
+            border-radius: var(--radius-lg);
+            background: var(--card); 
+            padding: 1rem;
+        }
+        
+        .panel img { 
+            max-width: 100%; 
+            height: auto;
+            border-radius: var(--radius-md); 
+        }
+
+        /* --- 5. AREA KONTEN UTAMA (Main Section) --- */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 61.25rem) { /* >= 980px */
+            main {
+                display: grid;
+                grid-template-columns: 1fr 21.25rem;
+            }
+        }
+        
+        h2, h3 { 
+            margin: 1.375rem 0 0.5rem; 
+            line-height: 1.3; 
+        }
+        
+        .lead { 
+            font-size: 1.125rem; 
+            color: var(--muted); 
+        }
+        
+        /* --- 6. KOMPONEN KARTU & KODE ELEMEN --- */
+        .card {
+            border: 0.0625rem solid var(--border); 
+            border-radius: var(--radius-lg);
+            background: var(--card); 
+            padding: 1rem; 
+            margin-bottom: 1rem;
+            position: relative; 
+        }
+        
+        pre, code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+        
+        pre {
+            margin: 0.75rem 0; 
+            padding: 0.875rem; 
+            border-radius: var(--radius-md);
+            background: var(--code-bg); 
+            color: var(--code-text);
+            overflow: auto; 
+            border: 0.0625rem solid #1d2742;
+        }
+        
+        .card > pre:first-child { margin-top: 0; }
+        .card > pre:last-child { margin-bottom: 0; }
+        .card > strong + pre { margin-top: 0.75rem; }
+        
+        /* --- 7. TOMBOL & INTERAKSI --- */
+        .icon-btn {
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            width: 2.25rem; 
+            height: 2.25rem; 
+            border-radius: var(--radius-md);
+            border: 0.0625rem solid var(--border); 
+            background: var(--card);
+            color: var(--text); 
+            text-decoration: none; 
+            cursor: pointer;
+            will-change: transform;
+            transition: transform .12s ease, border-color .12s ease, background .12s ease;
+        }
+        
+        .icon-btn:hover { 
+            transform: translateY(-0.0625rem); 
+            border-color: var(--accent); 
+        }
+        
+        .icon-btn svg { 
+            width: 1.25rem; 
+            height: 1.25rem; 
+        }
+
+        .copy-btn {
+            position: absolute; 
+            top: 0.75rem; 
+            right: 0.75rem;
+            background: color-mix(in oklab, var(--card) 60%, transparent);
+            border: 0.0625rem solid var(--border);
+            color: var(--text);
+            opacity: 0.5;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+        
+        .card:hover .copy-btn { 
+            opacity: 1; 
+        }
+        
+        .copy-btn:hover { 
+            border-color: var(--accent); 
+        }
+        
+        .btn {
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem; 
+            border-radius: var(--radius-md); 
+            border: 0.0625rem solid var(--border);
+            background: var(--card); 
+            color: var(--text); 
+            cursor: pointer;
+            user-select: none;
+            will-change: transform;
+            transition: transform .12s ease, border-color .12s ease, background .12s ease;
+        }
+        
+        .btn:hover { 
+            transform: translateY(-0.0625rem); 
+            border-color: var(--accent); 
+        }
+        
+        .btn svg { 
+            width: 1.125rem; 
+            height: 1.125rem; 
+        }
+        
+        /* --- 8. GRID INTERNAL & UTILITAS --- */
+        .grid-2 { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+        }
+
+        @media (min-width: 48rem) { /* >= 780px / tablet up */
+            .grid-2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .footer {
+            border-top: 0.0625rem solid var(--border); 
+            padding: 1.125rem 0; 
+            color: var(--muted);
+        }
+        
+        .footer-inner {
+            display: flex; 
+            align-items: center;
+            gap: 0.75rem; 
+            justify-content: space-between; 
+            flex-wrap: wrap;
+        }
+        
+        .kbd {
+            font-family: ui-monospace, Menlo, monospace;
+            background: var(--card); 
+            border: 0.0625rem solid var(--border);
+            border-bottom-width: 0.125rem; 
+            border-radius: 0.375rem; 
+            padding: 0.125rem 0.375rem; 
+            color: var(--text);
+            font-size: 0.875rem;
+        }
+        
+        .note { 
+            color: var(--muted); 
+            font-size: 0.875rem; 
+        }
+        
+        .accent { 
+            color: var(--accent); 
+        }
     </style>
 <meta name="ai:summary" content="Panduan cepat untuk melihat semua paket global npm yang terpasang di laptop kamu. Gunakan">
 <meta name="ai:prompt_hint" content="Panduan cepat untuk melihat semua paket global npm yang terpasang di laptop kamu. Gunakan">
