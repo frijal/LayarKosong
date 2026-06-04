@@ -2,276 +2,296 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Winner Takes It All: Analisis Kritis Board of Peace dan Masa Depan Gaza - Layar Kosong</title> 
-    <!-- Open Graph Meta Tags -->
-    <!-- Twitter Card Meta Tags -->
-    <!-- Additional Meta Tags -->
     <meta name="news_keywords" content="Board of Peace, Gaza, Palestina, Israel, perdamaian berbayar, Abraham Accords, kolonialisme, politik Timur Tengah, analisis konflik">
     <meta name="promptHint" content="analisis, board of peace, gaza, palestina, israel, perdamaian berbayar, politik internasional, ekonomi konflik">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <!-- CSS Styles -->
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+   <style>
+        /* --- 1. SETTING VARIABEL DASAR (Clean Tech Theme) --- */
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --text-color: #1f2937;
-            --bg-color: #ffffff;
-            --card-bg: #f8fafc;
+            --primary-color: #2563eb;    /* Royal Blue khas SaaS */
+            --secondary-color: #1e40af;  /* Deep Blue */
+            --text-color: #1f2937;       /* Charcoal Grey (sangat terbaca) */
+            --bg-color: #f8fafc;         /* Latar belakang bersih keabuan */
+            --card-bg: #ffffff;          /* Kartu kontainer putih bersih */
             --border-color: #e5e7eb;
-            --accent-color: #dc2626;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --accent-color: #dc2626;     /* Merah peringatan/notifikasi */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --container-width: 1000px;
         }
-        /* Dark Mode Variables */
+
+        /* --- 2. DARK MODE OPTIMIZATION (Developer Matrix) --- */
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary-color: #3b82f6;
                 --secondary-color: #60a5fa;
                 --text-color: #f3f4f6;
-                --bg-color: #111827;
-                --card-bg: #1f2937;
-                --border-color: #374151;
+                --bg-color: #0f172a;     /* Slate Dark pekat */
+                --card-bg: #1e293b;      /* Kartu abu-abu baja */
+                --border-color: #334155;
                 --accent-color: #f87171;
-                --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+                --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
             }
         }
+
+        /* --- 3. RESET & SEMANTIC BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.75;
             color: var(--text-color);
             background-color: var(--bg-color);
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            transition: var(--transition);
+            -webkit-font-smoothing: antialiased;
+            transition: background-color var(--transition), color var(--transition);
         }
-        /* Typography */
+
+        /* SOLUSI BODY: Membungkus konten ke wadah khusus, membebaskan body tetap fleksibel */
+        .page-wrapper {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 2rem 1.25rem;
+        }
+
+        /* --- 4. ARSITEKTUR TIPOGRAFI --- */
         h1, h2, h3, h4 {
             color: var(--primary-color);
-            margin-top: 1.5em;
-            margin-bottom: 0.8em;
+            font-weight: 700;
             line-height: 1.3;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
         }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
             text-align: center;
-            margin-top: 0.5em;
-            padding-bottom: 0.5em;
+            margin-top: 0.5rem;
+            padding-bottom: 0.75rem;
             border-bottom: 3px solid var(--primary-color);
         }
+
         h2 {
-            font-size: 1.8rem;
-            padding-bottom: 0.3em;
+            font-size: 1.6rem;
+            padding-bottom: 0.4rem;
             border-bottom: 2px solid var(--border-color);
         }
-        h3 {
-            font-size: 1.4rem;
-        }
+
+        h3 { font-size: 1.25rem; }
+
         p {
-            margin-bottom: 1.2em;
-            text-align: justify;
+            margin-bottom: 1.25rem;
+            text-align: left; /* SOLUSI: Dimatikan ke kiri agar teks teknis/kode tidak renggang rusak */
         }
-        /* Layout Components */
+
+        /* --- 5. KOMPONEN LAYOUT & DOKUMENTASI --- */
         .article-header {
-            margin-bottom: 2.5em;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
+
         .author-info {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 1em;
+            gap: 8px;
+            margin-top: 0.75rem;
             color: var(--secondary-color);
-            font-style: italic;
+            font-weight: 500;
+            font-size: 0.95rem;
         }
+
         .article-meta {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin: 1.5em 0;
-            padding: 1em;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1rem 1.25rem;
             background-color: var(--card-bg);
             border-radius: 8px;
             border-left: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-sm);
         }
+
         .meta-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin: 5px 0;
+            font-size: 0.875rem;
         }
+
+        /* Manajemen Media Kompak */
+        .featured-image-container {
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            background-color: var(--card-bg);
+        }
+
         .featured-image {
             width: 100%;
-            max-height: 500px;
+            max-height: 480px;
             object-fit: cover;
-            border-radius: 10px;
-            margin: 2em 0;
-            box-shadow: var(--shadow);
+            display: block;
         }
+
+        /* SOLUSI CAPTION: Menggunakan relasi kontainer penampung agar margin aman */
         .image-caption {
             text-align: center;
             font-style: italic;
             color: var(--secondary-color);
-            margin-top: -1.5em;
-            margin-bottom: 2em;
-            font-size: 0.9rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
         }
+
+        /* --- 6. BLOK KONTEN & KOTAK INSIGHT --- */
         .content-block {
-            margin-bottom: 2.5em;
-            padding: 1.5em;
+            margin-bottom: 2rem;
+            padding: 1.75rem;
             background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
         }
+
         .highlight-box {
             background-color: var(--card-bg);
             border-left: 5px solid var(--accent-color);
-            padding: 1.5em;
-            margin: 2em 0;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
             border-radius: 0 8px 8px 0;
+            box-sizing: border-box;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
+
         .quote {
             font-style: italic;
-            padding: 1.5em;
+            padding: 1.5rem 1.5rem 1.5rem 3rem;
             background-color: var(--card-bg);
             border-radius: 8px;
-            margin: 1.5em 0;
+            margin: 2rem 0;
             position: relative;
+            border: 1px solid var(--border-color);
         }
+
         .quote::before {
-            content: '"';
+            content: '“';
             font-size: 4rem;
             color: var(--primary-color);
             position: absolute;
-            top: -10px;
-            left: 10px;
-            opacity: 0.3;
+            top: -5px;
+            left: 12px;
+            opacity: 0.25;
+            line-height: 1;
         }
+
         .insight-section {
             background-color: var(--card-bg);
             border-radius: 10px;
-            padding: 2em;
-            margin: 2.5em 0;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
             border-top: 4px solid var(--primary-color);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
         }
+
         .insight-header {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 1.5em;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
-        /* Lists */
+
+        /* --- 7. DAFTAR LIST --- */
         ul, ol {
-            margin-left: 2em;
-            margin-bottom: 1.5em;
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
         }
+
         li {
-            margin-bottom: 0.5em;
+            margin-bottom: 0.5rem;
         }
-        /* Footer */
+
+        /* --- 8. ELEMEN UTENSIL & LINKS --- */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        /* --- 9. AREA KAKI HALAMAN --- */
         footer {
-            margin-top: 3em;
-            padding-top: 2em;
+            margin-top: 4rem;
+            padding-top: 2rem;
             border-top: 2px solid var(--border-color);
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             color: var(--secondary-color);
         }
+
         .footer-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            margin: 1.5em 0;
+            gap: 24px;
+            margin: 1.5rem 0;
         }
-        /* Comment and Related Sections */
-        #related-articles-grid, #response {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 2em;
-            margin: 2.5em 0;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border: 2px dashed var(--border-color);
-        }
-        #related-articles-grid::before, #response::before {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-        #related-articles-grid::before {
-            content: "💬";
-        }
-        #response::before {
-            content: "📰";
-        }
-        /* Responsive Design */
+
+        /* --- 10. RE-STANDARISASI UTILITAS (Semantic Sizing) --- */
+        .emoji { display: inline-block; margin-right: 6px; }
+        .text-accent { color: var(--accent-color); font-weight: 600; }
+        .text-primary { color: var(--primary-color); font-weight: 600; }
+        .text-center { text-align: center; }
+        
+        /* Mengubah em menjadi rem yang stabil, penamaan disesuaikan dengan skala riil */
+        .mt-large { margin-top: 2.5rem; }
+        .mb-large { margin-bottom: 2.5rem; }
+        .my-large { margin-top: 2.5rem; margin-bottom: 2.5rem; }
+
+        /* --- 11. RESPONSIVE ENGINE (BREAKPOINT CONTROL) --- */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-            h3 {
-                font-size: 1.2rem;
-            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.4rem; }
+            h3 { font-size: 1.15rem; }
+            
             .article-meta {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .content-block, .insight-section {
-                padding: 1.2em;
-            }
-            .featured-image {
-                max-height: 300px;
-            }
-        }
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-            .footer-links {
                 flex-direction: column;
                 gap: 10px;
             }
-            #related-articles-grid, #response {
-                padding: 1.5em;
+            .content-block, .insight-section {
+                padding: 1.25rem;
+            }
+            ul, ol {
+                margin-left: 1.5rem;
             }
         }
-        /* Utility Classes */
-        .emoji {
-            font-size: 1.2em;
-            margin-right: 5px;
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.65rem; }
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
         }
-        .text-accent {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-        .text-primary {
-            color: var(--primary-color);
-        }
-        .text-center {
-            text-align: center;
-        }
-        .mt-2 { margin-top: 2em; }
-        .mb-2 { margin-bottom: 2em; }
-        .my-2 { margin-top: 2em; margin-bottom: 2em; }
-    </style>
+  </style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/the-winner-takes-it-all-board-of-peace-gaza">
