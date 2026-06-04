@@ -2,23 +2,177 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DEWAN NASIONAL YVC INDONESIA MASA BAKTI 2025 - 2027 - Layar Kosong</title> 
-<!-- Meta Description -->
-<!-- Canonical (optional, jika dibutuhkan) -->
-<!-- Open Graph / Facebook -->
-<!-- Optional: Structured Data (JSON-LD) -->
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; }
-        h2 { color: #d7931e; text-align: center; border-bottom: 2px solid #d7931e; padding-bottom: 10px; }
-        h3 { background-color: #f4f4f4; padding: 5px 10px; border-left: 5px solid #d7931e; margin-top: 25px; }
-        .nomor-surat { text-align: center; font-weight: bold; margin-bottom: 20px; }
-        .content { margin-bottom: 20px; text-align: justify; }
-        ul { list-style-type: square; }
-        .quote { font-style: italic; background: #f9f9f9; border-left: 10px solid #ccc; margin: 1.5em 10px; padding: 0.5em 10px; }
-        .footer-table { width: 100%; margin-top: 30px; }
-        .footer-table td { vertical-align: top; width: 33%; }
-        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
-        .slogan { text-align: center; font-style: italic; color: #555; margin-top: 30px; }
-    </style>
+<style>
+        /* --- 1. Definisikan Variabel Tema Terang (Official Document Vibe) --- */
+        :root {
+            --html-bg: #f5f7fa;          /* Latar belakang luar kertas */
+            --doc-bg: #ffffff;           /* Warna kertas putih bersih */
+            --text-main: #333333;        /* Teks utama abu gelap formal */
+            --text-muted: #555555;       /* Teks slogan / sekunder */
+            --border-color: #dddddd;     /* Bingkai kertas */
+            --hr-color: #eeeeee;
+            
+            /* Warna Resmi Emas/Amber */
+            --primary-gold: #d7931e;
+            --sub-block-bg: #f4f4f4;
+            --quote-bg: #f9f9f9;
+            --quote-border: #cccccc;
+            
+            --page-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- 2. Otomatis Tema Gelap (Premium Midnight Document) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --html-bg: #0b0f19;       /* Latar luar gelap pekat */
+                --doc-bg: #1e293b;        /* Kertas berubah jadi Slate 800 (Adem & Premium) */
+                --text-main: #f1f5f9;     /* Teks utama putih lembut */
+                --text-muted: #94a3b8;    /* Teks slogan abu-abu tenang */
+                --border-color: #334155;  /* Bingkai diredam */
+                --hr-color: #334155;
+                
+                /* Penyesuaian blok dokumen di malam hari */
+                --primary-gold: #f5b041;  /* Emasnya dibuat sedikit lebih cerah/pastel agar kontras */
+                --sub-block-bg: #151f32;  /* Latar sub-judul gelap proporsional */
+                --quote-bg: #151f32;
+                --quote-border: #475569;
+                
+                --page-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        /* --- 3. Desain Utama Fondasi Dokumen --- */
+        html {
+            background-color: var(--html-bg);
+            transition: background-color 0.3s;
+        }
+
+        body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-main); 
+            background-color: var(--doc-bg);
+            max-width: 800px; 
+            margin: 40px auto; /* Ditambah jaraknya di desktop agar lebih megah */
+            padding: 40px;     /* Padding diperluas demi standar estetika dokumen resmi */
+            border: 1px solid var(--border-color); 
+            border-radius: 6px; /* Sudut kertas diperhalus tipis */
+            box-shadow: var(--page-shadow);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        /* --- Komponen Heading & Judul Surat --- */
+        h2 { 
+            color: var(--primary-gold); 
+            text-align: center; 
+            border-bottom: 2px solid var(--primary-gold); 
+            padding-bottom: 10px; 
+            font-size: clamp(1.5rem, 4vw, 2rem); /* Ukuran adaptif otomatis */
+            transition: color 0.3s, border-color 0.3s;
+        }
+        
+        h3 { 
+            background-color: var(--sub-block-bg); 
+            color: var(--text-main);
+            padding: 8px 14px; 
+            border-left: 5px solid var(--primary-gold); 
+            margin-top: 25px; 
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        
+        .nomor-surat { 
+            text-align: center; 
+            font-weight: bold; 
+            margin-bottom: 25px; 
+            font-size: clamp(13px, 2vw, 15px);
+        }
+        
+        .content { 
+            margin-bottom: 20px; 
+            text-align: left; /* Default aman untuk perangkat mobile */
+        }
+        
+        /* Mengaktifkan kembali tulisan rata kanan-kiri khusus di layar komputer lebar */
+        @media (min-width: 769px) {
+            .content {
+                text-align: justify;
+            }
+        }
+        
+        ul { 
+            list-style-type: square; 
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* --- Blok Kutipan / Fakta / Memorandum --- */
+        .quote { 
+            font-style: italic; 
+            background: var(--quote-bg); 
+            border-left: 8px solid var(--quote-border); /* Dikecilkan sedikit dari 10px agar lebih proporsional */
+            margin: 1.5em 0; 
+            padding: 10px 16px; 
+            border-radius: 0 6px 6px 0;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        
+        hr { 
+            border: 0; 
+            border-top: 1px solid var(--hr-color); 
+            margin: 25px 0; 
+            transition: border-color 0.3s;
+        }
+        
+        .slogan { 
+            text-align: center; 
+            font-style: italic; 
+            color: var(--text-muted); 
+            margin-top: 35px; 
+            transition: color 0.3s;
+        }
+
+        /* --- 4. Struktur Meja Tanda Tangan (Sangat Vital) --- */
+        .footer-table { 
+            width: 100%; 
+            margin-top: 40px; 
+            border-collapse: collapse;
+        }
+        .footer-table td { 
+            vertical-align: top; 
+            width: 33.33%; 
+            padding: 10px;
+        }
+
+        /* --- 5. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- */
+        @media (max-width: 768px) {
+            body { 
+                margin: 0; 
+                padding: 25px 15px; 
+                border: none; /* Menghilangkan bingkai kaku di HP agar bodi kertas memenuhi layar */
+                border-radius: 0;
+                box-shadow: none;
+            }
+            
+            /* Trik Sulap CSS: Membongkar paksa tabel tanda tangan menjadi vertikal di HP */
+            .footer-table, 
+            .footer-table tbody, 
+            .footer-table tr, 
+            .footer-table td { 
+                display: block; 
+                width: 100% !important; 
+                text-align: center; /* Dipaksa rata tengah di HP agar estetik saat menumpuk */
+                padding: 0;
+            }
+            
+            .footer-table td {
+                margin-bottom: 30px; /* Memberi jarak vertikal antar-pejabat yang bertanda tangan */
+            }
+            
+            .footer-table tr td:last-child {
+                margin-bottom: 0;
+            }
+        }
+</style>
 <link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/dewan-nasional-yvc-indonesia-2025-2027">
