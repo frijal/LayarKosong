@@ -217,7 +217,7 @@ async function processFile(file: string, baseUrl: string) {
             `<meta property="twitter:url" content="${canonicalUrl}">`,
             `<meta property="og:site_name" content="Layar Kosong">`,
             `<script defer src="/ext/data-provider.js"></script>`,
-            `<link rel="icon" href="/favicon.ico">`,
+            `<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">`,
             `<link rel="sitemap" type="application/xml" href="/sitemap.xml">`,
             `<link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="${baseUrl}/rss.xml">`,
             `<link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">`,
