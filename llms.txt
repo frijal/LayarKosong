@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 21.7
+document_version: 21.8
 last_updated: 2026-06-05
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 5 Juni 2026)
-> Menampilkan 1384 artikel versi 21.7.
+> Menampilkan 1384 artikel versi 21.8.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -767,7 +767,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Cara Membuat Auto Social Media Previewer Responsive](https://dalam.web.id/sistem-terbuka/auto-social-media-previewer) : cara bikin alat preview tautan media sosial otomatis yang responsif, lengkap dengan tombol share untuk X, Facebook, Mastodon, Tumblr, dan lainnya.
+- [Cara Membuat Auto Social Media Previewer Responsive](https://dalam.web.id/sistem-terbuka/auto-social-media-previewer) : Alat preview tautan media sosial multi-platform, lengkap dengan fallback API, caching, tombol share, dan debug panel.
 - [Mengapa Jam di Linux Desktop Minimalis Sering Ngaco? Ini Penyebab dan Solusinya](https://dalam.web.id/sistem-terbuka/jam-linux-desktop-minimalis) : Mengatasi eror sinkronisasi waktu otomatis dan jam melompat pada distro Linux minimalis seperti Debian 13 LXQt. Solusi tuntas dual-boot dan konfigurasi NTP.
 - [Cara Mengatasi Tombol Brightness Linux yang Mati di Laptop Lenovo (Debian 13)](https://dalam.web.id/sistem-terbuka/mengatasi-tombol-brightness-linux-lenovo) : dan praktis mengatasi tombol kecerahan layar yang tidak berfungsi di Linux Debian 13 pada laptop Lenovo. Pelajari cara memperbaiki konfigurasi ACPI dan modul kernel.
 - [Sejarah KDE: Evolusi Antarmuka Linux dari 1995 Hingga Era Steam Deck](https://dalam.web.id/sistem-terbuka/mula-sejarah-kde) : Menelusuri jejak sejarah KDE dari awal mula diciptakan pada 1996 hingga menjadi sistem operasi modern dan andalan di Steam Deck.
