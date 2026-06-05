@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 21.6
-last_updated: 2026-06-04
+document_version: 21.7
+last_updated: 2026-06-05
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 4 Juni 2026)
-> Menampilkan 1384 artikel versi 21.6.
+## Index Artikel Terbaru (Updated: 5 Juni 2026)
+> Menampilkan 1384 artikel versi 21.7.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -518,7 +518,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Recursive Image Album Viewer](https://dalam.web.id/olah-media/recursive-image-album-viewer) : Recursive Image Album Viewer adalah alat untuk menampilkan album gambar secara hierarkis dan interaktif. Mendukung navigasi folder, thumbnail, dan tampilan responsif.
 - [Recursive HTTP Album Viewer (via JSON)](https://dalam.web.id/olah-media/recursive-http-album-viewer-json) : Recursive HTTP Album Viewer (via JSON) memungkinkan penjelajahan album gambar langsung dari server HTTP dengan data JSON. Mendukung navigasi folder, thumbnail, dan tampilan responsif.
 - [Mengatasi Masalah Audio & EasyEffects di Ubuntu untuk Laptop HP B&O](https://dalam.web.id/olah-media/solusi-audio-easyeffects-ubuntu) : mengatasi suara speaker yang
-- [Mic Gak Nyala di Fedora 15? Ini Dia Solusi Simpelnya!](https://dalam.web.id/olah-media/solusi-mic-fedora-15) : Cara mudah dan cepat memperbaiki microphone yang tidak berfungsi di Fedora 15. Cukup satu perintah di terminal, dan mic kamu siap untuk Skype dan Google Hangout.
+- [Mic Fedora 15 Kamu tak Fungsi? Sini, Kita Bisikin Solusinya!](https://dalam.web.id/olah-media/solusi-mic-fedora-15) : Mengalami masalah mikrofon tak fungsi di Fedora 15 saat Skype atau Hangouts? Berikut adalah solusi cepat menggunakan alsamixer lewat terminal tanpa install driver.
 - [Workflow Perbaikan Foto ala National Geographic](https://dalam.web.id/olah-media/workflow-perbaikan-foto-ala-national-geographic) : Panduan teknis step-by-step memperbaiki foto agar jelas, tajam, dan bernuansa dokumenter ala National Geographic: dari basic adjustments, color grading, selective editing, hingga finishing dan export.
 - [Panduan Perbaikan Foto ala National Geographic](https://dalam.web.id/olah-media/perbaikan-foto-ala-national-geographic) : Panduan praktis memperbaiki foto agar mendekati kualitas majalah National Geographic: langkah teknis, color grading, detail enhancement, dan sentuhan artistik dokumenter.
 - [40 Tahun Excel: Kisah dari Layar Monokrom Mac Jadi Raja Spreadsheet](https://dalam.web.id/olah-media/40-tahun-excel-sejarah-spreadsheet) : Kisah perjalanan Microsoft Excel yang genap berusia 40 tahun. Dari rilis eksklusif di Mac hingga menjadi aplikasi spreadsheet paling dominan di dunia.
