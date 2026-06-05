@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/4/2026, 4:17:26 PM
+Generated on: 6/5/2026, 3:49:06 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/4/2026, 4:17:26 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v21.5 | LLM Index v21.5 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v21.8 | LLM Index v21.8 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1248,7 +1248,7 @@ Generated on: 6/4/2026, 4:17:26 PM
 | `artikel/solusi-laptop-asus-tuf-linux-auto-reboot.html` | Solusi Laptop ASUS TUF Gaming Linux Auto Reboot Setelah Shutdown - Layar Kosong | Solusi Laptop ASUS TUF Gaming Linux Auto Reboot Setelah Shutdown | Layar Kosong | ✅ Perfect |
 | `artikel/solusi-libreoffice-lambat-jaringan.html` | Solusi LibreOffice Lambat di Jaringan - Layar Kosong | Solusi LibreOffice Lambat di Jaringan | Layar Kosong | ✅ Perfect |
 | `artikel/solusi-login-loop-debian.html` | Solusi Gagal Login (Login Loop) di Debian Setelah Install - Layar Kosong | Solusi Gagal Login (Login Loop) di Debian Setelah Install | Layar Kosong | ✅ Perfect |
-| `artikel/solusi-mic-fedora-15.html` | Mic Gak Nyala di Fedora 15? Ini Dia Solusi Simpelnya! - Layar Kosong | Mic Gak Nyala di Fedora 15? Ini Dia Solusi Simpelnya! | Layar Kosong | ✅ Perfect |
+| `artikel/solusi-mic-fedora-15.html` | Mic Fedora 15 Kamu tak Fungsi? Sini, Kita Bisikin Solusinya! - Layar Kosong | Mic Fedora 15 Kamu tak Fungsi? Sini, Kita Bisikin Solusinya! | Layar Kosong | ✅ Perfect |
 | `artikel/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.html` | WiFi Realtek Linux: Sinyal Lemah Fix - Layar Kosong | WiFi Realtek Linux: Sinyal Lemah Fix | Layar Kosong | ✅ Perfect |
 | `artikel/sony-hentikan-produksi-memory-card-ssd-shortage.html` | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD - Layar Kosong | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD | Layar Kosong | ✅ Perfect |
 | `artikel/sop-kondisi-penindakan-tilang-lalu-lintas.html` | Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔 - Layar Kosong | Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔 | Layar Kosong | ✅ Perfect |
@@ -1950,7 +1950,7 @@ Generated on: 6/4/2026, 4:17:26 PM
 | `olah-media/social-video-embed-generator.html` | Sosial Media dan Video Embed Generator - Layar Kosong | Sosial Media dan Video Embed Generator | Layar Kosong | ✅ Perfect |
 | `olah-media/solusi-audio-easyeffects-ubuntu.html` | Mengatasi Masalah Audio & EasyEffects di Ubuntu untuk Laptop HP B&O - Layar Kosong | Mengatasi Masalah Audio & EasyEffects di Ubuntu untuk Laptop HP B&O | Layar Kosong | ✅ Perfect |
 | `olah-media/solusi-libreoffice-lambat-jaringan.html` | Solusi LibreOffice Lambat di Jaringan - Layar Kosong | Solusi LibreOffice Lambat di Jaringan | Layar Kosong | ✅ Perfect |
-| `olah-media/solusi-mic-fedora-15.html` | Mic Gak Nyala di Fedora 15? Ini Dia Solusi Simpelnya! - Layar Kosong | Mic Gak Nyala di Fedora 15? Ini Dia Solusi Simpelnya! | Layar Kosong | ✅ Perfect |
+| `olah-media/solusi-mic-fedora-15.html` | Mic Fedora 15 Kamu tak Fungsi? Sini, Kita Bisikin Solusinya! - Layar Kosong | Mic Fedora 15 Kamu tak Fungsi? Sini, Kita Bisikin Solusinya! | Layar Kosong | ✅ Perfect |
 | `olah-media/template-excel-dan-rekomendasi-cmms.html` | Template Excel Gratis & Rekomendasi CMMS Cocok Buat Industri Migas di Balikpapan 🛢️ - Layar Kosong | Template Excel Gratis & Rekomendasi CMMS Cocok Buat Industri Migas di Balikpapan 🛢️ | Layar Kosong | ✅ Perfect |
 | `olah-media/tutorial-menyatukan-film.html` | Menyatukan Pecahan Film dengan Terminal (Perintah cat) - Layar Kosong | Menyatukan Pecahan Film dengan Terminal (Perintah cat) | Layar Kosong | ✅ Perfect |
 | `olah-media/ubah-gabung.html` | Panduan Interaktif ImageMagick - CLI Media Manipulation 🛠️ - Layar Kosong | Panduan Interaktif ImageMagick - CLI Media Manipulation 🛠️ | Layar Kosong | ✅ Perfect |
