@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Membuat Auto Social Media Previewer Responsive - Layar Kosong</title>
     <meta name="news_keywords" content="tutorial html, social media card, open graph, twitter card, script javascript, multi-platform previewer">
     <meta name="promphint" content="Apa fungsi meta tag OG? Meta tag Open Graph berfungsi agar platform media sosial bisa membaca judul, deskripsi, dan gambar dari sebuah tautan.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
             --bg-color: #f8f9fa;
@@ -534,17 +530,22 @@
         }
         .meta-inline span { margin: 0 0.5rem; }
     </style>
-
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
     <meta property="og:locale" content="id_ID">
-    <link rel="canonical" href="https://dalam.web.id/artikel/auto-social-media-previewer.html">
-    <meta property="og:url" content="https://dalam.web.id/artikel/auto-social-media-previewer.html">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/auto-social-media-previewer.html">
+    <link rel="canonical" href="https://dalam.web.id/artikel/auto-social-media-previewer">
+    <meta property="og:url" content="https://dalam.web.id/artikel/auto-social-media-previewer">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/auto-social-media-previewer">
     <meta property="og:site_name" content="Layar Kosong">
-    <link rel="icon" href="/favicon.ico">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:widgets:new-embed-design" content="on">
-    <meta property="og:title" content="Cara Membuat Auto Social Media Previewer Responsive - Multi-Platform">
-    <meta name="twitter:title" content="Cara Membuat Auto Social Media Previewer Responsive - Multi-Platform">
+    <meta property="og:title" content="Cara Membuat Auto Social Media Previewer Responsive">
+    <meta name="twitter:title" content="Cara Membuat Auto Social Media Previewer Responsive">
     <meta name="description" content="Alat preview tautan media sosial multi-platform, lengkap dengan fallback API, caching, tombol share, dan debug panel.">
     <meta property="og:description" content="Script HTML/CSS/JS murni untuk merender tampilan tautan di 8+ platform. Dilengkapi fallback API, caching, loading skeleton, dan debug panel.">
     <meta name="twitter:description" content="Preview card URL untuk X, Facebook, LinkedIn, WhatsApp, Telegram, Discord, Pinterest, Slack — langsung di browser.">
@@ -552,7 +553,11 @@
     <meta property="og:type" content="article">
     <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
     <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
     <meta name="twitter:site" content="@responaja">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -572,20 +577,18 @@
 <body>
     <main role="main">
         <header>
-            <h1>🚀 Mengakali Tampilan Tautan dengan Auto Social Media Previewer Multi-Platform</h1>
+            <h1>🚀 Mengakali Tampilan Tautan dengan Auto Social Media Previewer Multi-Platform</h1><div id="iposbrowser"></div>
             <p style="color: var(--muted); font-size: 0.875rem; margin-bottom: 1.5rem;">Diterbitkan untuk mempermudah kerjaan para kreator web.</p>
         </header>
         <p>Pernahkah kamu mengirimkan tautan artikel terbaru ke grup obrolan atau <em>timeline medsos</em>, tapi yang terlihat muncul cuma URL mentah tanpa gambar?</p>
         <p>Itulah alasan kenapa setiap pembuat konten web dan pegiat media sosial butuh yang namanya alat pembuat <em>preview</em> otomatis. Platform seperti X, Facebook, LinkedIn, WhatsApp, Telegram, Discord, Pinterest, dan Slack akan memindai <em>meta tags</em> tersembunyi (Open Graph &amp; Twitter Cards) yang bersarang di dalam HTML. Jika metadata ini absen atau salah letak, algoritma mereka akan buta.</p>
         <h2>✨ Uji Coba Langsung — 8+ Platform</h2>
         <p>Masukkan URL artikel apapun di kolom berikut ini. Skrip akan merender tampilannya menjadi <em>card preview</em> untuk berbagai platform sekaligus.</p>
-
         <div class="search-panel">
             <h2>🔍 URL Inspector &amp; Multi-Platform Share</h2>
-
             <div class="input-group" style="position:relative;">
-                <input type="url" id="urlInput" placeholder="https://namadomain.com/artikel-keren" required autocomplete="off">
-                <button class="input-clear-btn" id="inputClearBtn" title="Bersihkan" aria-label="Bersihkan input">&times;</button>
+                <input type="url" id="urlInput" placeholder="https://namadomain.com/artikel-keren" required="" autocomplete="off">
+                <button class="input-clear-btn" id="inputClearBtn" title="Bersihkan" aria-label="Bersihkan input">×</button>
                 <button id="fetchBtn">
                     <span class="spinner-inline"></span>
                     <span class="btn-text">Preview Sekarang</span>
@@ -606,16 +609,13 @@
             <div id="errorMsg">Gagal memproses data. Pastikan URL valid dan publik. <span class="retry-link" id="retryLink">Coba lagi?</span></div>
             <button class="debug-toggle" id="debugToggle" style="display:none;">🛠️ Tampilkan Debug Panel</button>
         </div>
-
         <div class="stats-bar" id="statsBar">
             <span>⏱️ Waktu fetch: <strong id="statTime">-</strong> ms</span>
             <span>Sumber API: <span class="api-source primary" id="statSource">-</span></span>
             <span>📦 Cache: <strong id="statCache">-</strong></span>
             <span>🔄 Retry: <strong id="statRetry">-</strong></span>
         </div>
-
         <div class="debug-panel" id="debugPanel"></div>
-
         <div class="preview-panel" id="previewPanel">
             <div class="preview-row" id="previewRow1">
                 <div class="preview-box" data-platform="x">
@@ -718,7 +718,6 @@
                 </div>
             </div>
         </div>
-
         <div class="preview-panel" id="skeletonPanel" style="display:none;">
             <div class="preview-row">
                 <div class="preview-box"><div class="card-social"><div class="skeleton skeleton-img"></div><div class="card-social-content"><div class="skeleton skeleton-text title-sk"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text short"></div></div></div></div>
@@ -733,15 +732,13 @@
                 <div class="preview-box"><div class="card-social img-left"><div class="skeleton skeleton-img" style="width:8rem;min-width:8rem;aspect-ratio:auto;height:100%;"></div><div class="card-social-content"><div class="skeleton skeleton-text title-sk"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text short"></div></div></div></div>
             </div>
         </div>
-
         <h2>🧠 Kode di Balik Layar</h2>
                 <pre><code>// === ARSITEKTUR MULTI-FALLBACK ===
 const API_SOURCES = [
-    { name: 'Microlink', url: (u) => `https://api.microlink.io/?url=${u}`, parse: parseMicrolink },
-    { name: 'JSONLink', url: (u) => `https://jsonlink.io/api/extract?url=${u}`, parse: parseJSONLink },
-    { name: 'AllOrigins', url: (u) => `https://api.allorigins.win/raw?url=${u}`, parse: parseHTMLManual }
+    { name: 'Microlink', url: (u) =&gt; `https://api.microlink.io/?url=${u}`, parse: parseMicrolink },
+    { name: 'JSONLink', url: (u) =&gt; `https://jsonlink.io/api/extract?url=${u}`, parse: parseJSONLink },
+    { name: 'AllOrigins', url: (u) =&gt; `https://api.allorigins.win/raw?url=${u}`, parse: parseHTMLManual }
 ];
-
 async function fetchWithFallback(targetUrl) {
     for (const source of API_SOURCES) {
         try {
@@ -753,18 +750,15 @@ async function fetchWithFallback(targetUrl) {
     throw new Error('Semua API gagal');
 }</code></pre>
         <p>Skrip sederhana ini dibuat dengan kode yang mendukung *multiple API fallback*. Jika API utama (Microlink) gagal karena *rate limit* atau masalah CORS, skrip akan secara otomatis beralih ke JSONLink, lalu ke AllOrigins dengan teknik *parsing* manual pada *meta tag* dari HTML mentah. Untuk meningkatkan efisiensi dan stabilitas, skrip juga dilengkapi dengan fitur *caching* otomatis di *sessionStorage* selama 10 menit, *timeout handling*, *loading skeleton*, serta *debug panel* untuk inspeksi metadata secara *real-time*.</p>
-
         <footer>
             <div class="meta-inline">
                 <span>👤 Penulis: Frijal (Layar Kosong)</span> |
                 <span>🗓️ Terbit: 4 Juni 2026</span> |
                 <span>🔄 Diperbarui: 5 Juni 2026 (v2.0 Multi-Platform)</span>
             </div>
-                   </footer>
+                   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-
     <div class="toast-container" id="toastContainer"></div>
-
     <script>
         (function() {
             const urlInput = document.getElementById('urlInput');
@@ -778,15 +772,12 @@ async function fetchWithFallback(targetUrl) {
             const statsBar = document.getElementById('statsBar');
             const inputClearBtn = document.getElementById('inputClearBtn');
             const toastContainer = document.getElementById('toastContainer');
-
             const CACHE_KEY_PREFIX = 'sm_preview_cache_';
             const CACHE_DURATION_MS = 10 * 60 * 1000;
             const FETCH_TIMEOUT_MS = 12000;
             const MAX_RETRIES_PER_SOURCE = 2;
-
             let currentMetadata = null;
             let fetchStartTime = 0;
-
             function showToast(message, type = 'info') {
                 const toast = document.createElement('div');
                 toast.className = `toast ${type}`;
@@ -795,19 +786,16 @@ async function fetchWithFallback(targetUrl) {
                 toastContainer.appendChild(toast);
                 setTimeout(() => { if (toast.parentNode) toast.remove(); }, 3000);
             }
-
             function isValidURL(str) {
                 try { const url = new URL(str); return url.protocol === 'http:' || url.protocol === 'https:'; }
                 catch { return false; }
             }
-
             function normalizeURL(rawUrl) {
                 const trimmed = rawUrl.trim();
                 if (!trimmed) return null;
                 if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return trimmed;
                 return 'https://' + trimmed;
             }
-
             function getCached(url) {
                 try {
                     const key = CACHE_KEY_PREFIX + url;
@@ -821,14 +809,12 @@ async function fetchWithFallback(targetUrl) {
                     return parsed.data;
                 } catch { return null; }
             }
-
             function setCache(url, data) {
                 try {
                     const key = CACHE_KEY_PREFIX + url;
                     sessionStorage.setItem(key, JSON.stringify({ data, timestamp: Date.now() }));
                 } catch {}
             }
-
             function fetchWithTimeout(url, timeoutMs) {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
@@ -836,19 +822,16 @@ async function fetchWithFallback(targetUrl) {
                     .then(response => { clearTimeout(timeoutId); if (!response.ok) throw new Error(`HTTP ${response.status}`); return response; })
                     .catch(err => { clearTimeout(timeoutId); throw err; });
             }
-
             async function parseMicrolink(response) {
                 const json = await response.json();
                 if (json.status !== 'success') throw new Error('Microlink status not success');
                 const d = json.data;
                 return { title: d.title || '', description: d.description || '', image: d.image?.url || d.logo?.url || '', url: d.url || '', _raw: json };
             }
-
             async function parseJSONLink(response) {
                 const json = await response.json();
                 return { title: json.title || json.name || '', description: json.description || '', image: json.images?.[0] || json.image || json.favicon || '', url: json.url || '', _raw: json };
             }
-
             async function parseHTMLManual(response) {
                 const html = await response.text();
                 const parser = new DOMParser();
@@ -865,13 +848,11 @@ async function fetchWithFallback(targetUrl) {
                 const image = getMeta(['og:image','twitter:image','twitter:image:src']) || '';
                 return { title, description, image, url: '', _raw: { parsedFromHTML: true, title, description, image } };
             }
-
             const API_SOURCES = [
                 { name: 'Microlink', urlFn: (u) => `https://api.microlink.io/?url=${encodeURIComponent(u)}`, parser: parseMicrolink },
                 { name: 'JSONLink', urlFn: (u) => `https://jsonlink.io/api/extract?url=${encodeURIComponent(u)}`, parser: parseJSONLink },
                 { name: 'AllOrigins', urlFn: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`, parser: parseHTMLManual },
             ];
-
             async function fetchMetadataWithFallback(targetUrl) {
                 let lastError = null;
                 for (const source of API_SOURCES) {
@@ -893,7 +874,6 @@ async function fetchWithFallback(targetUrl) {
                 }
                 throw new Error(lastError?.message || 'Semua sumber API gagal setelah retry');
             }
-
             async function fetchMetadata() {
                 const rawUrl = urlInput.value.trim();
                 if (!rawUrl) {
@@ -909,7 +889,6 @@ async function fetchWithFallback(targetUrl) {
                     setTimeout(() => urlInput.classList.remove('error-shake'), 500);
                     return;
                 }
-
                 const cached = getCached(targetUrl);
                 if (cached) {
                     currentMetadata = cached;
@@ -920,7 +899,6 @@ async function fetchWithFallback(targetUrl) {
                     showToast('Data diambil dari cache ⚡', 'success');
                     return;
                 }
-
                 fetchBtn.classList.add('loading');
                 fetchBtn.disabled = true;
                 errorMsg.classList.remove('visible');
@@ -930,7 +908,6 @@ async function fetchWithFallback(targetUrl) {
                 debugToggle.style.display = 'none';
                 statsBar.classList.remove('visible');
                 fetchStartTime = performance.now();
-
                 try {
                     const metadata = await fetchMetadataWithFallback(targetUrl);
                     currentMetadata = metadata;
@@ -950,7 +927,6 @@ async function fetchWithFallback(targetUrl) {
                     skeletonPanel.style.display = 'none';
                 }
             }
-
             function showError(msg) {
                 errorMsg.innerHTML = `${msg} <span class="retry-link" id="retryLink">Coba lagi?</span>`;
                 errorMsg.classList.add('visible');
@@ -959,7 +935,6 @@ async function fetchWithFallback(targetUrl) {
                     fetchMetadata();
                 });
             }
-
             function updateStatsBar(timeMs, source, fromCache, attempts) {
                 statsBar.classList.add('visible');
                 document.getElementById('statTime').textContent = timeMs;
@@ -973,17 +948,14 @@ async function fetchWithFallback(targetUrl) {
                 document.getElementById('statCache').textContent = fromCache ? '✅ Ya' : '❌ Tidak';
                 document.getElementById('statRetry').textContent = attempts > 1 ? `${attempts}x` : 'Tidak';
             }
-
             function renderAllPreviews(targetUrl, metadata) {
                 const title = metadata.title || 'Judul Tidak Ditemukan';
                 const desc = metadata.description || 'Deskripsi tidak tersedia untuk tautan ini.';
                 const imgUrl = metadata.image || '';
                 let domainName = 'domain.com';
                 try { domainName = new URL(targetUrl).hostname.replace('www.', ''); } catch {}
-
                 const fallbackImg = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="418" fill="%23ddd"><rect width="800" height="418"/><text x="400" y="220" text-anchor="middle" font-size="28" fill="%23999">Tidak Ada Gambar</text></svg>');
                 const displayImg = imgUrl || fallbackImg;
-
                 const platforms = [
                     { prefix: 'x', imgId: 'xImg', titleId: 'xTitle', descId: 'xDesc', domainId: 'xDomain', shareBoxId: 'shareBoxX' },
                     { prefix: 'fb', imgId: 'fbImg', titleId: 'fbTitle', descId: 'fbDesc', domainId: 'fbDomain', shareBoxId: 'shareBoxFb', domainUpper: true },
@@ -994,14 +966,12 @@ async function fetchWithFallback(targetUrl) {
                     { prefix: 'pin', imgId: 'pinImg', titleId: 'pinTitle', descId: 'pinDesc', domainId: 'pinDomain', shareBoxId: 'shareBoxPin' },
                     { prefix: 'sl', imgId: 'slImg', titleId: 'slTitle', descId: 'slDesc', domainId: 'slDomain', shareBoxId: 'shareBoxSl' },
                 ];
-
                 platforms.forEach(p => {
                     const titleEl = document.getElementById(p.titleId);
                     const descEl = document.getElementById(p.descId);
                     const domainEl = document.getElementById(p.domainId);
                     const imgEl = document.getElementById(p.imgId);
                     const shareBoxEl = document.getElementById(p.shareBoxId);
-
                     if (titleEl) titleEl.textContent = title;
                     if (descEl) descEl.textContent = desc;
                     if (domainEl) domainEl.textContent = p.domainUpper ? domainName.toUpperCase() : domainName;
@@ -1025,12 +995,10 @@ async function fetchWithFallback(targetUrl) {
                     }
                     if (shareBoxEl) shareBoxEl.innerHTML = generateShareLinks(targetUrl, title);
                 });
-
                 previewPanel.classList.add('visible');
                 debugToggle.style.display = 'inline-block';
                 populateDebugPanel(targetUrl, metadata);
             }
-
             function generateShareLinks(url, text) {
                 const encodedLink = encodeURIComponent(url);
                 const encodedText = encodeURIComponent(text);
@@ -1047,7 +1015,6 @@ async function fetchWithFallback(targetUrl) {
                     <button class="copy-btn" onclick="navigator.clipboard.writeText('${url.replace(/'/g, "\\'")}').then(()=>{this.textContent='✅ Tersalin!';this.classList.add('copied');setTimeout(()=>{this.textContent='📋 Salin';this.classList.remove('copied');},2000);}).catch(()=>{this.textContent='❌ Gagal';setTimeout(()=>{this.textContent='📋 Salin';},1500);});" title="Salin URL">📋 Salin</button>
                 `;
             }
-
             function populateDebugPanel(targetUrl, metadata) {
                 let html = '<span class="section">=== DEBUG INFO ===</span>\n';
                 html += `<span class="key">URL Target:</span> <span class="val">${escapeHTML(targetUrl)}</span>\n`;
@@ -1065,14 +1032,12 @@ async function fetchWithFallback(targetUrl) {
                 }
                 debugPanel.innerHTML = html;
             }
-
             function escapeHTML(str) {
                 if (!str) return '(kosong)';
                 const div = document.createElement('div');
                 div.textContent = str;
                 return div.innerHTML;
             }
-
             fetchBtn.addEventListener('click', fetchMetadata);
             urlInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') fetchMetadata(); });
             urlInput.addEventListener('input', function() {
@@ -1104,5 +1069,6 @@ async function fetchWithFallback(targetUrl) {
             });
         })();
     </script>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
