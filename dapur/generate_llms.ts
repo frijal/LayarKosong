@@ -145,48 +145,17 @@ async function main() {
     const mdContent = `${txtContent}\n\n# 📚 ARSIP ARTIKEL LENGKAP\n\n> Bagian ini memuat teks penuh dari seluruh artikel Layar Kosong untuk analisis mendalam oleh LLM.\n\n---\n\n${fullContentLines.join("\n")}`;
 
     // ==========================================
-    // 🤖 GENERATOR FILE STANDAR AGEN AI
-    // ==========================================
-    const apiCatalog = JSON.stringify({"linkset": [{"anchor": `${DOMAIN}/rss.xml`,"service-desc": [{"href": `${DOMAIN}/llms.md`, "type": "text/markdown"}],"service-doc": [{"href": `${DOMAIN}/llms.txt`}],"status": [{"href": `${DOMAIN}/`}]}]}, null, 2);
-    const a2aCard = JSON.stringify({"$schema": "https://a2a-protocol.org/schema/v1/agent-card.json","name": "Layar Kosong Agent","version": version,"description": "Agen perwakilan resmi dari blog Layar Kosong.","supportedInterfaces": [{"type": "http", "url": DOMAIN, "transport": "https"}],"capabilities": ["content-retrieval"],"skills": [{"id": "read-llms", "name": "Read LLMS", "description": "Membaca ringkasan konten."}]}, null, 2);
-    const mcpCard = JSON.stringify({"$schema": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/main/schema/server-card.schema.json","serverInfo": {"name": "Layar Kosong MCP", "version": version},"transport": {"type": "sse", "endpoint": `${DOMAIN}/.well-known/agent-skills/index.json`},"capabilities": {"resources": {}, "prompts": {}, "tools": {}}}, null, 2);
-    const authMd = `# Authentication for Layar Kosong\n\nSemua data di ${DOMAIN} bersifat publik (Open Access). Agen AI tidak memerlukan API Key, OAuth, atau kredensial apa pun untuk membaca artikel.`;
-    const oauthProtected = JSON.stringify({"resource": DOMAIN,"authorization_servers": [],"scopes_supported": ["public_read"]}, null, 2);
-    const oauthServer = JSON.stringify({
-        "issuer": DOMAIN,
-        "authorization_endpoint": `${DOMAIN}/auth.md`,
-        "token_endpoint": `${DOMAIN}/auth.md`,
-        "scopes_supported": ["public_read"],
-        "response_types_supported": ["none"],
-        "grant_types_supported": ["none"],
-        "agent_auth": {
-            "register_uri": `${DOMAIN}/auth.md`,
-            "supported_identity_types": ["none"]
-        }
-    }, null, 2);
-
-    // ==========================================
     // ✍️ PENULISAN FILE (LOKASI ASLI)
-    // (Peringatan: Tidak ada penulisan _headers di sini!)
     // ==========================================
     try {
         await Promise.all([
-            // LLMS Output
             Bun.write(OUTPUTS.txt, txtContent),
             Bun.write(OUTPUTS.md, mdContent),
             Bun.write(OUTPUTS.html, buildHtmlPage(version, txtContent)),
             Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.txt}`, txtContent),
-            Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.md}`, mdContent),
-            
-            // AI Agents Output
-            Bun.write(`${WELL_KNOWN_DIR}/api-catalog`, apiCatalog),
-            Bun.write(`${WELL_KNOWN_DIR}/agent-card.json`, a2aCard),
-            Bun.write(`${WELL_KNOWN_DIR}/mcp/server-card.json`, mcpCard),
-            Bun.write(`auth.md`, authMd),
-            Bun.write(`${WELL_KNOWN_DIR}/oauth-protected-resource`, oauthProtected),
-            Bun.write(`${WELL_KNOWN_DIR}/oauth-authorization-server`, oauthServer)
+            Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.md}`, mdContent)
         ]);
-        console.log(`🚀 LLMS & File Standar AI berhasil! Versi ${version} terbit.`);
+        console.log(`🚀 Arsip LLMS berhasil di-generate! Versi ${version} terbit.`);
         console.log(`   📂 Total ${total} artikel diproses di lokasi aslinya.`);
     } catch (err) {
         console.error("❌ Gagal menulis file:", err);
