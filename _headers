@@ -151,4 +151,5 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /*
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
+  Link: </llms.txt>; rel="alternate"; type="text/markdown"
   Link: </llms.md>; rel="alternate"; type="text/markdown"
