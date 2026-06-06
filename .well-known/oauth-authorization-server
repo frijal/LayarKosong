@@ -1,0 +1,20 @@
+{
+  "issuer": "https://dalam.web.id",
+  "authorization_endpoint": "https://dalam.web.id/auth.md",
+  "token_endpoint": "https://dalam.web.id/auth.md",
+  "scopes_supported": [
+    "public_read"
+  ],
+  "response_types_supported": [
+    "none"
+  ],
+  "grant_types_supported": [
+    "none"
+  ],
+  "agent_auth": {
+    "register_uri": "https://dalam.web.id/auth.md",
+    "supported_identity_types": [
+      "none"
+    ]
+  }
+}
