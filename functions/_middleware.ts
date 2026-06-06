@@ -1,11 +1,15 @@
 export const onRequest = async (context) => {
   const request = context.request;
   const accept = request.headers.get("Accept") || "";
+  const url = new URL(request.url);
 
-  // Deteksi jika yang datang adalah bot AI spesifik yang meminta Markdown
+  // 🛑 PENGECUALIAN: Jangan bajak request kalau bot memang sedang mencari file asli (.md, .txt, .json)
+  if (url.pathname.endsWith('.md') || url.pathname.endsWith('.txt') || url.pathname.endsWith('.json')) {
+    return context.next();
+  }
+
+  // Deteksi jika yang datang adalah bot AI spesifik yang meminta Markdown (di halaman HTML)
   if (accept.includes("text/markdown")) {
-    const url = new URL(request.url);
-    
     // Alih-alih merender HTML, lempar bot tersebut ke file arsip raksasa llms.md kita
     const markdownResponse = await context.env.ASSETS.fetch(new Request(`${url.origin}/llms.md`));
     
@@ -19,6 +23,6 @@ export const onRequest = async (context) => {
     });
   }
 
-  // Kalau pengunjung manusia, biarkan melintas normal ke halaman HTML
+  // Kalau pengunjung manusia (atau tidak minta markdown), biarkan melintas normal
   return context.next();
 };
