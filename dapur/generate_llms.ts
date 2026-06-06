@@ -33,7 +33,7 @@ const cleanText = (text: string) => {
     if (!text) return "";
     return text
         .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-        .replace(/<[^>]+>/g, "") // Hapus Tag HTML
+        .replace(/<[^>]+>/g, "")
         .replace(/\s+/g, " ").trim();
 };
 
@@ -62,28 +62,25 @@ async function getNextVersion(): Promise<string> {
  */
 async function extractArticleToMarkdown(filePath: string, title: string, category: string, date: string, url: string) {
     const file = Bun.file(filePath);
-    if (!(await file.exists())) return ""; // Lewati kalau file HTML tidak ketemu
+    if (!(await file.exists())) return ""; 
 
     const html = await file.text();
     const $ = cheerio.load(html);
 
-    // Bersihkan elemen sampah yang mengganggu AI
     $('script, style, meta, link, noscript, header, footer, nav, aside, #header-placeholder, #loading-indicator').remove();
 
-    // Target area konten tulisan kamu
     const articleArea = $('article').length ? $('article') : $('main').length ? $('main') : $('body');
     
     let md = `### ${title}\n\n`;
     md += `**Kategori:** ${capitalize(category)} | **Tanggal:** ${date} | **Tautan Asli:** [Baca di Web](${url})\n\n`;
     
-    // Konversi tag HTML inti ke format Markdown dasar
     articleArea.find('p, h1, h2, h3, h4, li').each((_, el) => {
         const text = $(el).text().trim().replace(/\s+/g, ' ');
         if (!text) return;
         
         const tag = el.tagName.toLowerCase();
         if (tag === 'p') md += `${text}\n\n`;
-        else if (tag.startsWith('h')) md += `#### ${text}\n\n`; // Set semua sub-heading jadi H4 agar hirarkinya rapi
+        else if (tag.startsWith('h')) md += `#### ${text}\n\n`; 
         else if (tag === 'li') md += `- ${text}\n`;
     });
     
@@ -102,8 +99,8 @@ async function main() {
     const today = new Date().toISOString().split("T")[0];
     const readableDate = new Date().toLocaleDateString("id-ID", { day: 'numeric', month: 'long', year: 'numeric' });
 
-    let indexLines: string[] = [];       // Ringkasan untuk llms.txt
-    let fullContentLines: string[] = []; // Artikel Lengkap untuk llms.md
+    let indexLines: string[] = [];       
+    let fullContentLines: string[] = []; 
     let rssLinks: string[] = [];
     let total = 0;
 
@@ -130,40 +127,67 @@ async function main() {
                 const url = `${DOMAIN}/${catSlug}/${slug}`;
                 total++;
 
-                // 1. Tulis ke Ringkasan Index (llms.txt)
                 indexLines.push(`- [${title}](${url}) : ${summary}`);
 
-                // 2. Baca file HTML langsung dari root folder kategori
-                const htmlPath = `./${catSlug}/${slug}.html`; // <--- SEKARANG LANGSUNG KE ROOT FOLDER
+                const htmlPath = `./${catSlug}/${slug}.html`; 
                 const mdContent = await extractArticleToMarkdown(htmlPath, title, catSlug, date, url);
                 
                 if (mdContent) {
                     fullContentLines.push(mdContent);
                 }
             }
-            indexLines.push(""); // Jarak antar kategori
+            indexLines.push(""); 
         }
     }
 
     const aiMdHeader = buildAiInstructions(version, today, rssLinks);
-    
-    // Kompilasi llms.txt (Daftar URL + Deskripsi Pendek)
     const txtContent = `${aiMdHeader}\n## Index Artikel Terbaru (Updated: ${readableDate})\n> Menampilkan ${total} artikel versi ${version}.\n\n${indexLines.join("\n")}`;
-    
-    // Kompilasi llms.md (Daftar URL + ISI FULL ARTIKEL)
     const mdContent = `${txtContent}\n\n# 📚 ARSIP ARTIKEL LENGKAP\n\n> Bagian ini memuat teks penuh dari seluruh artikel Layar Kosong untuk analisis mendalam oleh LLM.\n\n---\n\n${fullContentLines.join("\n")}`;
 
-    // Penulisan File Serentak ke Root dan .well-known
+    // ==========================================
+    // 🤖 GENERATOR FILE STANDAR AGEN AI
+    // ==========================================
+    const apiCatalog = JSON.stringify({"linkset": [{"anchor": `${DOMAIN}/rss.xml`,"service-desc": [{"href": `${DOMAIN}/llms.md`, "type": "text/markdown"}],"service-doc": [{"href": `${DOMAIN}/llms.txt`}],"status": [{"href": `${DOMAIN}/`}]}]}, null, 2);
+    const a2aCard = JSON.stringify({"$schema": "https://a2a-protocol.org/schema/v1/agent-card.json","name": "Layar Kosong Agent","version": version,"description": "Agen perwakilan resmi dari blog Layar Kosong.","supportedInterfaces": [{"type": "http", "url": DOMAIN, "transport": "https"}],"capabilities": ["content-retrieval"],"skills": [{"id": "read-llms", "name": "Read LLMS", "description": "Membaca ringkasan konten."}]}, null, 2);
+    const mcpCard = JSON.stringify({"$schema": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/main/schema/server-card.schema.json","serverInfo": {"name": "Layar Kosong MCP", "version": version},"transport": {"type": "sse", "endpoint": `${DOMAIN}/.well-known/agent-skills/index.json`},"capabilities": {"resources": {}, "prompts": {}, "tools": {}}}, null, 2);
+    const authMd = `# Authentication for Layar Kosong\n\nSemua data di ${DOMAIN} bersifat publik (Open Access). Agen AI tidak memerlukan API Key, OAuth, atau kredensial apa pun untuk membaca artikel.`;
+    const oauthProtected = JSON.stringify({"resource": DOMAIN,"authorization_servers": [],"scopes_supported": ["public_read"]}, null, 2);
+    const oauthServer = JSON.stringify({
+        "issuer": DOMAIN,
+        "authorization_endpoint": `${DOMAIN}/auth.md`,
+        "token_endpoint": `${DOMAIN}/auth.md`,
+        "scopes_supported": ["public_read"],
+        "response_types_supported": ["none"],
+        "grant_types_supported": ["none"],
+        "agent_auth": {
+            "register_uri": `${DOMAIN}/auth.md`,
+            "supported_identity_types": ["none"]
+        }
+    }, null, 2);
+
+    // ==========================================
+    // ✍️ PENULISAN FILE (LOKASI ASLI)
+    // (Peringatan: Tidak ada penulisan _headers di sini!)
+    // ==========================================
     try {
         await Promise.all([
+            // LLMS Output
             Bun.write(OUTPUTS.txt, txtContent),
             Bun.write(OUTPUTS.md, mdContent),
             Bun.write(OUTPUTS.html, buildHtmlPage(version, txtContent)),
             Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.txt}`, txtContent),
-            Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.md}`, mdContent)
+            Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.md}`, mdContent),
+            
+            // AI Agents Output
+            Bun.write(`${WELL_KNOWN_DIR}/api-catalog`, apiCatalog),
+            Bun.write(`${WELL_KNOWN_DIR}/agent-card.json`, a2aCard),
+            Bun.write(`${WELL_KNOWN_DIR}/mcp/server-card.json`, mcpCard),
+            Bun.write(`auth.md`, authMd),
+            Bun.write(`${WELL_KNOWN_DIR}/oauth-protected-resource`, oauthProtected),
+            Bun.write(`${WELL_KNOWN_DIR}/oauth-authorization-server`, oauthServer)
         ]);
-        console.log(`🚀 LLMS berhasil! Versi ${version} terbit dengan ${total} artikel.`);
-        console.log(`   📝 llms.txt (Versi Ringan) & llms.md (Teks Penuh) sukses di-generate.`);
+        console.log(`🚀 LLMS & File Standar AI berhasil! Versi ${version} terbit.`);
+        console.log(`   📂 Total ${total} artikel diproses di lokasi aslinya.`);
     } catch (err) {
         console.error("❌ Gagal menulis file:", err);
     }
