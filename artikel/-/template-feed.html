@@ -208,5 +208,5 @@
     <div class="container">
       <h1><a href="/rss.xml" style="text-decoration: none; color: inherit;">RSS Feed 30 Artikel Terbaru</a></h1>
       <div id="feed-container"></div>
-    </div><script defer src="/ext/header.js"></script></body>
+    </div><script defer src="/ext/header.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body>
 </html>
