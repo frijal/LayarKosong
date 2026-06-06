@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/5/2026, 3:49:06 PM
+Generated on: 6/6/2026, 2:24:49 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/5/2026, 3:49:06 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v21.8 | LLM Index v21.8 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v21.10 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -488,6 +488,7 @@ Generated on: 6/5/2026, 3:49:06 PM
 | `artikel/gitignore-nodejs-standar.html` | Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache & node_modules Masuk Repo) - Layar Kosong | Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache & node_modules Masuk Repo) | Layar Kosong | ✅ Perfect |
 | `artikel/gmail-gemini-update-2026.html` | Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya - Layar Kosong | Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya | Layar Kosong | ✅ Perfect |
 | `artikel/gnome-49.html` | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar - Layar Kosong | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar | Layar Kosong | ✅ Perfect |
+| `artikel/gnome-50-2-rilis.html` | GNOME 50.2 Rilis: Bawa Segudang Perbaikan untuk Desktop Linux - Layar Kosong | GNOME 50.2 Rilis: Bawa Segudang Perbaikan untuk Desktop Linux | Layar Kosong | ✅ Perfect |
 | `artikel/gnome-50-beta-vrr-fractional-scaling.html` | GNOME 50 Beta Hadir dengan VRR, Fractional Scaling, dan Peningkatan Desktop Besar - Layar Kosong | GNOME 50 Beta Hadir dengan VRR, Fractional Scaling, dan Peningkatan Desktop Besar | Layar Kosong | ✅ Perfect |
 | `artikel/gnome-50-x11-wayland.html` | GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya - Layar Kosong | GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya | Layar Kosong | ✅ Perfect |
 | `artikel/gnome-firefox-middle-click-paste.html` | GNOME dan Firefox Mau Matikan Middle Click Paste? Akhir Era X11 "Dumpster Fire" - Layar Kosong | GNOME dan Firefox Mau Matikan Middle Click Paste? Akhir Era X11 "Dumpster Fire" | Layar Kosong | ✅ Perfect |
@@ -1212,7 +1213,7 @@ Generated on: 6/5/2026, 3:49:06 PM
 | `artikel/self-hosting-debian-pemula.html` | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! - Layar Kosong | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! | Layar Kosong | ✅ Perfect |
 | `artikel/selisih-utang-negara-indonesia.html` | Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi - Layar Kosong | Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi | Layar Kosong | ✅ Perfect |
 | `artikel/sembelit.html` | Sulit Buang Air Besar (Sembelit) - Penyebab, Cara Mengatasi & Pencegahan - Layar Kosong | Sulit Buang Air Besar (Sembelit) - Penyebab, Cara Mengatasi & Pencegahan | Layar Kosong | ✅ Perfect |
-| `artikel/semver-7-7-3.html` | semver@7.8.1: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.1: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
+| `artikel/semver-7-7-3.html` | semver@7.8.2: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.2: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
 | `artikel/seni-digital-masa-depan-kreativitas.html` | Eksplorasi Seni Digital: Dari Konsep Visual Hingga Peluang Masa DepanSeni Digital Masa Depan Kreativitas di Era Modern . Jaga Data Pribadi Tetap Aman - Layar Kosong | Eksplorasi Seni Digital: Dari Konsep Visual Hingga Peluang Masa DepanSeni Digital Masa Depan Kreativitas di Era Modern . Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `artikel/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `artikel/seni-menurut-tarjih-muhammadiyah.html` | Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨 - Layar Kosong | Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨 | Layar Kosong | ✅ Perfect |
@@ -2287,6 +2288,7 @@ Generated on: 6/5/2026, 3:49:06 PM
 | `sistem-terbuka/github-file-uploader.html` | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository - Layar Kosong | GitHub Uploader alat sederhana untuk Ngirim File tanpa masuk Repository | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/github-lambat-firefox-debian.html` | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! - Layar Kosong | Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-49.html` | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar - Layar Kosong | GNOME 49 Dirilis: Showtime, Papers, Wallpaper HDR, dan Peningkatan Besar | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/gnome-50-2-rilis.html` | GNOME 50.2 Rilis: Bawa Segudang Perbaikan untuk Desktop Linux - Layar Kosong | GNOME 50.2 Rilis: Bawa Segudang Perbaikan untuk Desktop Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-50-beta-vrr-fractional-scaling.html` | GNOME 50 Beta Hadir dengan VRR, Fractional Scaling, dan Peningkatan Desktop Besar - Layar Kosong | GNOME 50 Beta Hadir dengan VRR, Fractional Scaling, dan Peningkatan Desktop Besar | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-50-x11-wayland.html` | GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya - Layar Kosong | GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/gnome-firefox-middle-click-paste.html` | GNOME dan Firefox Mau Matikan Middle Click Paste? Akhir Era X11 "Dumpster Fire" - Layar Kosong | GNOME dan Firefox Mau Matikan Middle Click Paste? Akhir Era X11 "Dumpster Fire" | Layar Kosong | ✅ Perfect |
@@ -2795,7 +2797,7 @@ Generated on: 6/5/2026, 3:49:06 PM
 | `warta-tekno/sejarah-layout-keyboard-qwerty.html` | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ - Layar Kosong | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sejarah-sistem-operasi-unix-harmonyos.html` | Evolusi Sistem Operasi: Dari UNIX 1969 hingga HarmonyOS Modern - Layar Kosong | Evolusi Sistem Operasi: Dari UNIX 1969 hingga HarmonyOS Modern | Layar Kosong | ✅ Perfect |
 | `warta-tekno/self-hosting-debian-pemula.html` | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! - Layar Kosong | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! | Layar Kosong | ✅ Perfect |
-| `warta-tekno/semver-7-7-3.html` | semver@7.8.1: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.1: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
+| `warta-tekno/semver-7-7-3.html` | semver@7.8.2: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.2: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
 | `warta-tekno/shutdown-windows-cepat.html` | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh - Layar Kosong | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sony-hentikan-produksi-memory-card-ssd-shortage.html` | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD - Layar Kosong | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sqlite-bisa-seperti-mysql-postgre.html` | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? - Layar Kosong | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? | Layar Kosong | ✅ Perfect |
