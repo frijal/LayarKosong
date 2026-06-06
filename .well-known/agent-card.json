@@ -1,19 +1,23 @@
 {
-  "name": "Layar Kosong",
-  "version": "1.0.0",
-  "description": "Blog personal Fakhrul Rijal — arsip ringan tentang teknologi, gaya hidup, dan sejarah.",
-  "url": "https://dalam.web.id",
-  "author": {
-    "name": "Fakhrul Rijal",
-    "url": "https://dalam.web.id/about"
-  },
-  "supportedInterfaces": [],
-  "capabilities": ["read"],
+  "$schema": "https://a2a-protocol.org/schema/v1/agent-card.json",
+  "name": "Layar Kosong Agent",
+  "version": "1.0",
+  "description": "Agen perwakilan resmi dari blog Layar Kosong.",
+  "supportedInterfaces": [
+    {
+      "type": "http",
+      "url": "https://dalam.web.id",
+      "transport": "https"
+    }
+  ],
+  "capabilities": [
+    "content-retrieval"
+  ],
   "skills": [
     {
-      "id": "read-articles",
-      "name": "Read Articles",
-      "description": "Browse and read articles about tech, lifestyle, and history in Indonesian."
+      "id": "read-llms",
+      "name": "Read LLMS",
+      "description": "Membaca ringkasan konten."
     }
   ]
 }
