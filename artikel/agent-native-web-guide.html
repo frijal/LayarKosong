@@ -1,98 +1,117 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent-Native Web Guide • Bilingual • Layar Kosong (dalam.web.id)</title>
-        <link rel="canonical" href="https://dalam.web.id/artikel/agent-native-web-guide.html">    
-        <meta name="twitter:image" content="https://pbs.twimg.com/media/HKI2JFcakAE1l60?format=jpg&name=medium">
-        <meta name="twitter:description" content="Web terus berevolusi! Mmencapai Level 5 Agent-Native untuk AI modern dalam tutorial.">
-
-
+    <title>Agent-Native Web Guide • Bilingual • Layar Kosong (dalam.web.id) - Layar Kosong</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-
         :root {
             --accent: #22d3ee;
         }
-
         body {
             font-family: 'Inter', system_ui, sans-serif;
         }
-
         .font-display {
             font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
             font-weight: 600;
         }
-
         .section-header {
             scroll-margin-top: 80px;
         }
-
         .tech-card {
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
                        box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
-
         .tech-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-
         .code-block {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 13.5px;
             line-height: 1.6;
         }
-
         .nav-active {
             background-color: #18181b;
             color: white;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-
         .lang-content {
             animation: fadeIn 0.3s ease forwards;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .prose-custom h2 {
             font-size: 1.35rem;
             line-height: 1.3;
             font-weight: 600;
             color: #f4f4f5;
         }
-
         .prose-custom h3 {
             font-size: 1.05rem;
             font-weight: 600;
             color: #e4e4e7;
         }
-
         .prose-custom p {
             color: #a1a1aa;
             line-height: 1.75;
         }
-
         .toc-link {
             transition: all 0.1s ease;
         }
-
         .toc-link:hover {
             color: #22d3ee;
             padding-left: 4px;
         }
-
         .modern-gradient {
             background: linear-gradient(145deg, #18181b, #27251f);
         }
     </style>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/agent-native-web-guide">
+    <meta property="og:url" content="https://dalam.web.id/artikel/agent-native-web-guide">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/agent-native-web-guide">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Agent-Native Web Guide • Bilingual • Layar Kosong (dalam.web.id)">
+    <meta name="twitter:title" content="Agent-Native Web Guide • Bilingual • Layar Kosong (dalam.web.id)">
+    <meta name="description" content="Panduan Lengkap Transformasi Website Menjadi Agent-Native">
+    <meta property="og:description" content="Panduan Lengkap Transformasi Website Menjadi Agent-Native">
+    <meta name="twitter:description" content="Web terus berevolusi! Mmencapai Level 5 Agent-Native untuk AI modern dalam tutorial.">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/523dab53d4cfd20a.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/523dab53d4cfd20a.webp">
+    <meta property="og:image:alt" content="Agent-Native Web Guide • Bilingual • Layar Kosong (dalam.web.id)">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="618">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:published_time" content="2026-06-06T22:35:09.922Z">
+    <meta property="article:modified_time" content="2026-06-06T22:35:09.922Z">
 </head>
 <body class="bg-zinc-950 text-zinc-200">
     <!-- NAV -->
@@ -108,24 +127,17 @@
                         <span class="text-xs text-zinc-500 font-mono tracking-[2px] block -mt-1">WEB STANDARDS</span>
                     </div>
                 </div>
-
                 <!-- Language Switcher -->
                 <div class="flex items-center bg-zinc-900 rounded-3xl p-1 shadow-inner ring-1 ring-zinc-800">
-                    <button onclick="switchLanguage('en')"
-                            id="btn-en"
-                            class="px-5 py-2 text-sm font-semibold rounded-3xl flex items-center gap-x-2 transition-all active:scale-[0.985]">
+                    <button onclick="switchLanguage('en')" id="btn-en" class="px-5 py-2 text-sm font-semibold rounded-3xl flex items-center gap-x-2 transition-all active:scale-[0.985]">
                         <span>EN</span>
                     </button>
-                    <button onclick="switchLanguage('id')"
-                            id="btn-id"
-                            class="px-5 py-2 text-sm font-semibold rounded-3xl flex items-center gap-x-2 transition-all active:scale-[0.985] nav-active">
+                    <button onclick="switchLanguage('id')" id="btn-id" class="px-5 py-2 text-sm font-semibold rounded-3xl flex items-center gap-x-2 transition-all active:scale-[0.985] nav-active">
                         <span>ID</span>
                     </button>
                 </div>
-
                 <div class="hidden md:flex items-center gap-x-2 text-sm">
-                    <a href="https://dalam.web.id" target="_blank"
-                       class="flex items-center gap-x-2 px-4 py-2 text-zinc-400 hover:text-white transition-colors">
+                    <a href="https://dalam.web.id" target="_blank" class="flex items-center gap-x-2 px-4 py-2 text-zinc-400 hover:text-white transition-colors">
                         <i class="fa-solid fa-globe fa-sm"></i>
                         <span class="font-medium">dalam.web.id</span>
                     </a>
@@ -133,7 +145,6 @@
             </div>
         </div>
     </nav>
-
     <!-- HERO -->
     <div class="max-w-screen-xl mx-auto px-6 pt-12 pb-8">
         <div class="max-w-4xl">
@@ -144,19 +155,16 @@
                 </div>
                 <div class="text-xs px-3 py-1 bg-zinc-900 text-zinc-400 rounded-2xl font-mono">CASE STUDY</div>
             </div>
-
             <h1 class="font-display text-5xl md:text-6xl leading-[1.05] tracking-tighter font-semibold">
                 The Master Guide to Transforming<br>a Website into <span class="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">Agent-Native</span>
-            </h1>
-
+            </h1><div id="iposbrowser"></div>
             <p class="mt-4 text-2xl text-zinc-400 font-light tracking-tight">
                 Panduan Lengkap Transformasi Website Menjadi Agent-Native
             </p>
-
             <div class="mt-6 flex items-center gap-x-4 text-sm">
                 <div class="flex items-center">
                     <div class="w-8 h-8 rounded-full bg-zinc-800 ring-2 ring-zinc-900 overflow-hidden">
-                        <img src="https://picsum.photos/id/1011/32/32" alt="Author" class="w-full h-full object-cover">
+                        <img src="https://dalam.web.id/img/picsum.photos/67da7e2f4ba4f589.webp" alt="Author" class="w-full h-full object-cover">
                     </div>
                     <span class="ml-3 text-zinc-400">Layar Kosong • <span class="font-medium text-zinc-300">dalam.web.id</span></span>
                 </div>
@@ -168,13 +176,10 @@
             </div>
         </div>
     </div>
-
     <!-- MAIN CONTENT -->
     <div class="max-w-screen-xl mx-auto px-6 pb-20">
-
         <!-- ENGLISH CONTENT -->
         <div id="en-content" class="lang-content">
-
             <!-- TOC -->
             <div class="mb-10">
                 <div class="flex items-center justify-between mb-4">
@@ -203,14 +208,12 @@
                     </a>
                 </div>
             </div>
-
             <!-- Intro -->
             <div class="prose-custom max-w-none mb-12">
                 <p class="text-lg">The web is undergoing its most radical paradigm shift since its inception. While the last decade focused on building websites for human eyes (Human-Centric Web), today we must acknowledge that the most frequent visitors to our servers are robots, crawlers, and AI Agents like ChatGPT, Gemini, Claude, and Perplexity.</p>
                 <p>When these AI agents visit traditional websites, they often stumble over "visual garbage" like heavy JavaScript, complex CSS styling, ads, and inefficient HTML structures. To solve this, the global tech community has established a new standard called <strong class="text-white">Agent-Ready Web Standards</strong>.</p>
                 <p>This long-form article summarizes the complete, deep-dive process of how the blog <strong>Layar Kosong (dalam.web.id)</strong> was fully overhauled to achieve a perfect <strong class="text-emerald-400">100/100 score (Level 5 Agent-Native)</strong> on the global isitagentready.com audit system.</p>
             </div>
-
             <!-- PART 1 -->
             <div id="part1-en" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -219,25 +222,19 @@
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Part 1: High-Level Discoverability &amp; DNS-AID</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <p>Before an AI agent can process content, it must know the correct entry point without aimlessly crawling. This is achieved through two primary mechanisms:</p>
-
                     <h3 class="mt-8 mb-3">1. DNS for AI Discovery (DNS-AID) via SVCB/HTTPS Records</h3>
                     <p>Drawing from IETF draft <code class="text-xs bg-zinc-900 px-1.5 py-px rounded">draft-mozleywilliams-dnsop-dnsaid</code>, modern AI agents can perform direct lookups at the DNS level to find a domain's automation points.</p>
                     <p>For Layar Kosong, we implemented a public discovery zone secured with DNSSEC. Two specific SVCB/HTTPS (ServiceMode) records were published under the agent subdomain:</p>
-
                     <ul class="list-disc pl-5 space-y-1 text-zinc-400">
                         <li><code class="font-mono">_index._agents.dalam.web.id</code></li>
                         <li><code class="font-mono">_a2a._agents.dalam.web.id</code></li>
                     </ul>
-
                     <p class="mt-3">These records carry <code>alpn</code> (Application-Layer Protocol Negotiation) parameters and endpoint pointers, allowing DNS resolvers to return authenticated, valid data to AI agents even before an HTTP connection is established.</p>
-
                     <h3 class="mt-8 mb-3">2. HTTP Link Header Injection (RFC 8288)</h3>
                     <p>When an AI agent makes its first HTTP request to the home page, the server should not wait for the HTML file to load to announce its metadata locations. Through a permanent <code>_headers</code> configuration file hosted on Cloudflare Pages, the Layar Kosong server injects link relations directly into the HTTP Response Header:</p>
                 </div>
-
                 <!-- Code Block: Headers -->
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
@@ -252,15 +249,13 @@
   Link: &lt;/llms.txt&gt;; rel="alternate"; type="text/markdown"
   Link: &lt;/llms.md&gt;; rel="alternate"; type="text/markdown"
 */</code></pre>
-                    <button onclick="copyCode(this, 'code-headers-en')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-headers-en')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Copy</span>
                     </button>
                 </div>
                 <p class="text-sm text-zinc-500 mt-3">This mechanism acts as a giant signpost at the server gate. Before the bot finishes reading a single line of HTML, it already knows exactly where the agent skills index, API catalog, and clean text versions reside.</p>
             </div>
-
             <!-- PART 2 -->
             <div id="part2-en" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -269,20 +264,15 @@
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Part 2: Content Negotiation &amp; Dual LLMS Files</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <p>Stuffing thousands of full HTML pages into an AI's memory (Context Window Limit) is a colossal waste of tokens and cost. Layar Kosong solves this by building a dynamic article harvesting system using Bun and Cheerio that categorizes content into two forms:</p>
-
                     <h3 class="mt-8">1. llms.txt as the Menu (Light &amp; Fast)</h3>
                     <p>This file resides in the root and <code>.well-known</code> folders. It contains system instructions (AI Behavior Guidance), author identity, fallback pointers (RSS/Sitemap), and a concise index featuring article titles, one-line summaries, and original URLs. This file is super light and serves as a roadmap for AI to choose relevant articles.</p>
-
                     <h3 class="mt-8">2. llms.md as the Storage Warehouse (Full Text)</h3>
                     <p>When an AI agent needs in-depth context, it refers to <code>llms.md</code>. Our Bun script parses the original HTML files during the local build stage, strips away distracting elements (ad scripts, CSS, headers, footers), and converts core tags (<code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;li&gt;</code>) into a dense, clean Markdown format.</p>
-
                     <h3 class="mt-8">3. Markdown Negotiation via Cloudflare Pages</h3>
                     <p>To ensure human visitors get a beautiful HTML visual display while robots get clean Markdown on the same URL, we built a fast-path layer (Cloudflare Pages Functions Middleware) via <code>_middleware.ts</code>:</p>
                 </div>
-
                 <!-- Code Block: Middleware -->
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
@@ -295,11 +285,9 @@
   const request = context.request;
   const accept = request.headers.get("Accept") || "";
   const url = new URL(request.url);
-
   if (url.pathname.endsWith('.md') || url.pathname.endsWith('.txt') || url.pathname.endsWith('.json')) {
     return context.next();
   }
-
   if (accept.includes("text/markdown")) {
     const markdownResponse = await context.env.ASSETS.fetch(new Request(`${url.origin}/llms.md`));
     return new Response(markdownResponse.body, {
@@ -312,14 +300,12 @@
   }
   return context.next();
 };</code></pre>
-                    <button onclick="copyCode(this, 'code-middleware-en')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-middleware-en')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Copy</span>
                     </button>
                 </div>
             </div>
-
             <!-- PART 3 -->
             <div id="part3-en" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -328,34 +314,27 @@
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Part 3: Bot Access Control &amp; Content Signals</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <p>A smart website does not just broadcast its data; it firmly sets the boundaries of data usage for harvesting machines.</p>
-
                     <h3 class="mt-8">1. Content-Signal Directives in robots.txt</h3>
                     <p>Adopting the <strong>contentsignals.org</strong> draft specification, we embedded special instructions at the base of Layar Kosong’s <code>robots.txt</code>:</p>
                 </div>
-
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
                         <span class="text-xs font-semibold px-3 py-1 bg-zinc-900 rounded-2xl text-zinc-400">robots.txt — Content Signals</span>
                     </div>
                     <pre class="code-block bg-zinc-900 border border-zinc-800 p-5 rounded-3xl overflow-x-auto text-emerald-300"><code id="code-robots-en"># AI Content Signals (RFC Draft)
 Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
-                    <button onclick="copyCode(this, 'code-robots-en')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-robots-en')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Copy</span>
                     </button>
                 </div>
-
                 <div class="prose-custom max-w-none mt-6">
                     <p>This signal clearly tells major AI corporations (like OpenAI or Anthropic) that they are strictly forbidden from using this blog's content to train their foundation models (<code>ai-train=no</code>), but they are permitted to read it for intelligent search purposes (<code>search=yes</code>) and as direct user-requested context input (<code>ai-input=yes</code>).</p>
-
                     <h3 class="mt-8">2. Web Bot Auth Request Signing</h3>
                     <p>To perfect a two-way security fence, a static file without an extension named <code>http-message-signatures-directory</code> is published in the <code>.well-known</code> directory. This file holds JSON Web Key Sets (JWKS) based on Jst43255 cryptography:</p>
                 </div>
-
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
                         <span class="text-xs font-semibold px-3 py-1 bg-zinc-900 rounded-2xl text-zinc-400">.well-known/http-message-signatures-directory</span>
@@ -371,14 +350,12 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
     }
   ]
 }</code></pre>
-                    <button onclick="copyCode(this, 'code-jwks-en')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-jwks-en')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Copy</span>
                     </button>
                 </div>
             </div>
-
             <!-- PART 4 -->
             <div id="part4-en" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -387,10 +364,8 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Part 4: API Catalog, MCP Framework, &amp; Agent Auth Bureaucracy</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <p>The most tedious phase of AI agent-readiness often involves metadata directory compliance usually required by large-scale enterprise servers. Even though Layar Kosong is a free public blog without a login system, we built a static architecture replica to comply with automation protocols:</p>
-
                     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="tech-card bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
                             <h4 class="font-semibold mb-2">API Catalog (RFC 9727 &amp; RFC 9264)</h4>
@@ -401,10 +376,8 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                             <p class="text-sm text-zinc-400">Files <code>oauth-protected-resource</code> and <code>oauth-authorization-server</code> are published to announce public_read scope and agent registration flow.</p>
                         </div>
                     </div>
-
                     <h3 class="mt-8">Taming the auth.md Specification</h3>
                     <p>AI testing bots are extremely pedantic about the existence of <code>/auth.md</code> at the server root. We crafted <code>auth.md</code> to replicate the entire Agentic Registration process but inserted a bold Notice informing AI agents that they can skip the entire bureaucratic flow because Layar Kosong is <strong>Open Access</strong>.</p>
-
                     <h3 class="mt-8">Agent-to-Agent (A2A) &amp; MCP Server Card (SEP-1649)</h3>
                     <p>The final pieces to enable robot-to-robot communication:</p>
                     <ul class="list-disc pl-5 text-sm text-zinc-400 mt-2">
@@ -413,7 +386,6 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </ul>
                 </div>
             </div>
-
             <!-- CONCLUSION EN -->
             <div id="conclusion-en" class="section-header pt-6 border-t border-zinc-800">
                 <h2 class="font-display text-3xl tracking-tight mb-6">Conclusion: The New Era of the Web Has Arrived</h2>
@@ -424,10 +396,8 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                 </div>
             </div>
         </div>
-
         <!-- INDONESIAN CONTENT -->
         <div id="id-content" class="lang-content hidden">
-
             <!-- TOC ID -->
             <div class="mb-10">
                 <div class="flex items-center justify-between mb-4">
@@ -456,14 +426,12 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </a>
                 </div>
             </div>
-
             <!-- Intro ID -->
             <div class="prose-custom max-w-none mb-12">
                 <p class="text-lg">Dunia web sedang mengalami pergeseran paradigma yang paling radikal sejak pertama kali diciptakan. Kalau dekade lalu kita membangun website untuk dibaca oleh mata manusia (Human-Centric Web), hari ini kita harus mengakui bahwa pengunjung yang paling rajin mampir ke server kita adalah barisan robot, crawler, dan agen Kecerdasan Buatan (AI) seperti ChatGPT, Gemini, Claude, dan Perplexity.</p>
                 <p>Masalahnya, saat agen-agen AI ini mengunjungi website tradisional, mereka sering tersandung "sampah visual" seperti kode JavaScript yang berat, elemen desain CSS, iklan, dan struktur HTML yang tidak efisien. Untuk mengatasi masalah ini, komunitas teknologi global telah menetapkan standar baru yang disebut <strong class="text-white">Agent-Ready Web Standards</strong>.</p>
                 <p>Artikel panjang ini merangkum secara komplit dan mendalam tentang bagaimana blog <strong>Layar Kosong (dalam.web.id)</strong> berhasil dirombak total hingga sukses meraih skor mutlak <strong class="text-emerald-400">100/100 (Level 5 Agent-Native)</strong> pada sistem pengujian global isitagentready.com.</p>
             </div>
-
             <!-- PART 1 ID -->
             <div id="part1-id" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -472,10 +440,8 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Bagian 1: Discoverability Tingkat Tinggi &amp; DNS-AID</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <p>Sebelum sebuah agen AI bisa memproses konten, ia harus tahu letak pintu masuk yang benar tanpa harus merayap secara membabi buta. Proses ini diselesaikan melalui dua mekanisme utama:</p>
-
                     <h3 class="mt-8 mb-3">1. DNS for AI Discovery (DNS-AID) via Record SVCB/HTTPS</h3>
                     <p>Mengacu pada draf standar IETF, agen AI masa kini bisa melakukan pencarian langsung di tingkat DNS untuk menemukan titik automasi sebuah domain.</p>
                     <p>Pada sistem Layar Kosong, kita menerapkan zona penemuan publik yang diamankan dengan DNSSEC. Dua record khusus berjenis SVCB/HTTPS (ServiceMode) dipasang di bawah subdomain agensi:</p>
@@ -483,11 +449,9 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                         <li><code class="font-mono">_index._agents.dalam.web.id</code></li>
                         <li><code class="font-mono">_a2a._agents.dalam.web.id</code></li>
                     </ul>
-
                     <h3 class="mt-8 mb-3">2. Suntikan HTTP Link Headers (RFC 8288)</h3>
                     <p>Saat agen AI membuat request HTTP pertama ke halaman utama, server tidak perlu menunggu sampai file HTML selesai dimuat untuk memberi tahu lokasi metadata. Lewat konfigurasi file <code>_headers</code> statis yang di-host di Cloudflare Pages:</p>
                 </div>
-
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
                         <span class="text-xs font-semibold px-3 py-1 bg-zinc-900 rounded-2xl text-zinc-400">HTTP Response Headers</span>
@@ -498,14 +462,12 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
   Link: &lt;/llms.txt&gt;; rel="alternate"; type="text/markdown"
   Link: &lt;/llms.md&gt;; rel="alternate"; type="text/markdown"
 */</code></pre>
-                    <button onclick="copyCode(this, 'code-headers-id')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-headers-id')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Salin</span>
                     </button>
                 </div>
             </div>
-
             <!-- PART 2 ID -->
             <div id="part2-id" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -514,20 +476,15 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Bagian 2: Content Negotiation &amp; Dualitas File LLMS</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <p>Menyumpal ribuan halaman HTML utuh ke dalam memori AI adalah pemborosan token dan biaya yang luar biasa besar. Layar Kosong memecahkan isu ini dengan merakit sistem penambang artikel dinamis berbasis Bun dan Cheerio.</p>
-
                     <h3 class="mt-8">1. llms.txt sebagai Buku Menu (Ringan &amp; Cepat)</h3>
                     <p>File ini bersarang di root dan folder <code>.well-known</code>. Isinya mencakup instruksi sistem, identitas penulis, serta indeks ringkas berisi judul artikel dan URL asli.</p>
-
                     <h3 class="mt-8">2. llms.md sebagai Gudang Arsip (Teks Penuh)</h3>
                     <p>Ketika agen AI butuh konteks mendalam, ia akan merujuk ke <code>llms.md</code>. Skrip Bun membedah file HTML asli di tahap build lokal dan mengonversi menjadi Markdown murni.</p>
-
                     <h3 class="mt-8">3. Middleware Markdown Negotiation</h3>
                     <p>Biar pengunjung manusia tetap disuguhi tampilan HTML yang estetik sementara robot langsung diberi teks Markdown di URL yang sama:</p>
                 </div>
-
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
                         <span class="text-xs font-semibold px-3 py-1 bg-zinc-900 rounded-2xl text-zinc-400">_middleware.ts</span>
@@ -536,11 +493,9 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
   const request = context.request;
   const accept = request.headers.get("Accept") || "";
   const url = new URL(request.url);
-
   if (url.pathname.endsWith('.md') || url.pathname.endsWith('.txt') || url.pathname.endsWith('.json')) {
     return context.next();
   }
-
   if (accept.includes("text/markdown")) {
     const markdownResponse = await context.env.ASSETS.fetch(new Request(`${url.origin}/llms.md`));
     return new Response(markdownResponse.body, {
@@ -553,14 +508,12 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
   }
   return context.next();
 };</code></pre>
-                    <button onclick="copyCode(this, 'code-middleware-id')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-middleware-id')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Salin</span>
                     </button>
                 </div>
             </div>
-
             <!-- PART 3 ID -->
             <div id="part3-id" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -569,30 +522,25 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Bagian 3: Kontrol Akses Bot &amp; Content Signals</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <h3 class="mt-2">1. Content-Signal Directives di robots.txt</h3>
                     <p>Mengadopsi draf spesifikasi contentsignals.org, kita menyematkan instruksi khusus di dasar file <code>robots.txt</code> Layar Kosong:</p>
                 </div>
-
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
                         <span class="text-xs font-semibold px-3 py-1 bg-zinc-900 rounded-2xl text-zinc-400">robots.txt — Content Signals</span>
                     </div>
                     <pre class="code-block bg-zinc-900 border border-zinc-800 p-5 rounded-3xl overflow-x-auto text-emerald-300"><code id="code-robots-id"># AI Content Signals (RFC Draft)
 Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
-                    <button onclick="copyCode(this, 'code-robots-id')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-robots-id')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Salin</span>
                     </button>
                 </div>
-
                 <div class="prose-custom max-w-none mt-6">
                     <h3 class="mt-8">2. Autentikasi Request Web Bot</h3>
                     <p>Untuk menyempurnakan benteng keamanan dua arah, sebuah file statis tanpa ekstensi bernama <code>http-message-signatures-directory</code> dipublikasikan di dalam direktori <code>.well-known</code> berisi JWKS berbasis kriptografi Jst43255:</p>
                 </div>
-
                 <div class="mt-4 relative group">
                     <div class="flex items-center justify-between mb-2 px-1">
                         <span class="text-xs font-semibold px-3 py-1 bg-zinc-900 rounded-2xl text-zinc-400">.well-known/http-message-signatures-directory</span>
@@ -608,14 +556,12 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
     }
   ]
 }</code></pre>
-                    <button onclick="copyCode(this, 'code-jwks-id')"
-                            class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
+                    <button onclick="copyCode(this, 'code-jwks-id')" class="absolute top-4 right-4 px-3 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white rounded-2xl flex items-center gap-x-1.5 opacity-0 group-hover:opacity-100 transition-all">
                         <i class="fa-solid fa-copy fa-sm"></i>
                         <span>Salin</span>
                     </button>
                 </div>
             </div>
-
             <!-- PART 4 ID -->
             <div id="part4-id" class="section-header mb-14">
                 <div class="flex items-center gap-x-4 mb-6">
@@ -624,10 +570,8 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </div>
                     <h2 class="font-display text-3xl tracking-tight">Bagian 4: API Catalog, Framework MCP, &amp; Birokrasi Autentikasi Agen</h2>
                 </div>
-
                 <div class="prose-custom max-w-none">
                     <p>Tahap paling menjengkelkan dalam standarisasi AI biasanya adalah pemenuhan metadata direktori. Meski Layar Kosong hanyalah blog bacaan publik tanpa sistem login, kita membuat replika arsitektur statis berikut agar memenuhi birokrasi bot AI.</p>
-
                     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="tech-card bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
                             <h4 class="font-semibold mb-2">API Catalog (RFC 9727 &amp; RFC 9264)</h4>
@@ -638,10 +582,8 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                             <p class="text-sm text-zinc-400">Dua file krusial: <code>oauth-protected-resource</code> dan <code>oauth-authorization-server</code> dipaku di folder <code>.well-known</code>.</p>
                         </div>
                     </div>
-
                     <h3 class="mt-8">Penjinakan Spesifikasi auth.md</h3>
                     <p>Bot penguji AI sangat rewel soal keberadaan file <code>/auth.md</code>. Kita memanipulasi file ini agar menjiplak seluruh spesifikasi alur Agentic Registration, namun menanamkan blok peringatan bahwa seluruh birokrasi ini hanyalah formalitas karena konten bersifat <strong>Open Access</strong>.</p>
-
                     <h3 class="mt-8">Agent-to-Agent (A2A) &amp; MCP Server Card</h3>
                     <ul class="list-disc pl-5 text-sm text-zinc-400 mt-2">
                         <li><code>agent-card.json</code> — skema resmi a2a-protocol.org</li>
@@ -649,7 +591,6 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     </ul>
                 </div>
             </div>
-
             <!-- CONCLUSION ID -->
             <div id="conclusion-id" class="section-header pt-6 border-t border-zinc-800">
                 <h2 class="font-display text-3xl tracking-tight mb-6">Kesimpulan: Era Baru Website Masa Depan Telah Tiba</h2>
@@ -660,34 +601,29 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                 </div>
             </div>
         </div>
-
         <!-- FOOTER -->
         <div class="mt-16 pt-8 border-t border-zinc-800 text-center">
             <div class="flex flex-col items-center justify-center gap-y-3">
                 <div class="text-xs text-zinc-500 font-mono tracking-widest">AGENT-READY WEB STANDARDS • 2026</div>
                 <p class="text-sm text-zinc-400 max-w-md">Dibuat sebagai halaman bilingual interaktif dari artikel asli Layar Kosong.<br>Perfect 100/100 Agent-Native implementation showcase.</p>
                 <a href="https://dalam.web.id" target="_blank" class="inline-flex items-center text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
-                    Baca artikel asli di dalam.web.id <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 fa-xs"></i>
+                    Baca artikel asli di Jaga Data Pribadi Tetap Aman <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 fa-xs"></i>
                 </a>
             </div>
         </div>
     </div>
-
     <script>
         // Tailwind script
         function initializeTailwind() {
             document.documentElement.style.setProperty('--accent', '#22d3ee');
         }
-
         // Language Switcher
         let currentLang = 'id'; // Default to Indonesian
-
         function switchLanguage(lang) {
             const enContent = document.getElementById('en-content');
             const idContent = document.getElementById('id-content');
             const btnEn = document.getElementById('btn-en');
             const btnId = document.getElementById('btn-id');
-
             if (lang === 'en') {
                 enContent.classList.remove('hidden');
                 idContent.classList.add('hidden');
@@ -702,19 +638,15 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                 currentLang = 'id';
             }
         }
-
         // Copy to clipboard function
         function copyCode(button, codeId) {
             const codeElement = document.getElementById(codeId);
             if (!codeElement) return;
-
             const textToCopy = codeElement.innerText.trim();
-
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalHTML = button.innerHTML;
                 button.innerHTML = `<i class="fa-solid fa-check fa-sm"></i> <span>${currentLang === 'id' ? 'Tersalin!' : 'Copied!'}</span>`;
                 button.disabled = true;
-
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
                     button.disabled = false;
@@ -727,7 +659,6 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-
                 const originalHTML = button.innerHTML;
                 button.innerHTML = `<i class="fa-solid fa-check fa-sm"></i> <span>Copied!</span>`;
                 setTimeout(() => {
@@ -735,22 +666,18 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                 }, 2000);
             });
         }
-
         // Initialize everything
         function init() {
             initializeTailwind();
-
             // Set default language to Indonesian (matching user query language)
             const enContent = document.getElementById('en-content');
             const idContent = document.getElementById('id-content');
             const btnEn = document.getElementById('btn-en');
             const btnId = document.getElementById('btn-id');
-
             enContent.classList.add('hidden');
             idContent.classList.remove('hidden');
             btnEn.classList.remove('nav-active');
             btnId.classList.add('nav-active');
-
             // Keyboard support: press "E" for English, "I" for Indonesian
             document.addEventListener('keydown', function(e) {
                 if (e.key.toLowerCase() === 'e' && document.activeElement.tagName === 'BODY') {
@@ -760,7 +687,6 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     switchLanguage('id');
                 }
             });
-
             // Smooth scroll for all anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -774,15 +700,12 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     }
                 });
             });
-
             // Easter egg: Konami code for fun
             let konamiCode = [];
             const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-
             document.addEventListener('keydown', function(e) {
                 konamiCode.push(e.key);
                 if (konamiCode.length > konamiPattern.length) konamiCode.shift();
-
                 if (JSON.stringify(konamiCode) === JSON.stringify(konamiPattern)) {
                     document.body.style.transition = 'filter 0.4s ease';
                     document.body.style.filter = 'hue-rotate(180deg)';
@@ -792,12 +715,11 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                     konamiCode = [];
                 }
             });
-
             console.log('%c[Agent-Native] Bilingual HTML page initialized successfully. Press E or I to switch languages.', 'color:#64748b');
         }
-
         // Boot
         window.onload = init;
     </script>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
