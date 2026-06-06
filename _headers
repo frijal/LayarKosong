@@ -149,3 +149,5 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /warta-tekno/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/*
+  Link: </.well-known/agent-card.json>; rel="agent-card", </.well-known/agent-skills/index.json>; rel="agent-skills"
