@@ -1,8 +1,16 @@
 {
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/main/schema/server-card.schema.json",
   "serverInfo": {
-    "name": "Layar Kosong",
-    "version": "1.0.0",
-    "description": "Static blog by Fakhrul Rijal"
+    "name": "Layar Kosong MCP",
+    "version": "1.0"
   },
-  "capabilities": {}
+  "transport": {
+    "type": "sse",
+    "endpoint": "https://dalam.web.id/.well-known/agent-skills/index.json"
+  },
+  "capabilities": {
+    "resources": {},
+    "prompts": {},
+    "tools": {}
+  }
 }
