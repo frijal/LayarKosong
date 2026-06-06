@@ -1,4 +1,19 @@
 {
-  "$schema": "https://agentskills.io/schema/v0.2.0/index.schema.json",
-  "skills": []
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "skills": [
+    {
+      "name": "layar_kosong_rss_feed",
+      "type": "rss",
+      "description": "Feed RSS resmi dari blog Layar Kosong untuk mendapatkan update artikel terbaru tentang gaya hidup, opini sosial, dan warta tekno.",
+      "url": "https://dalam.web.id/feed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "layar_kosong_llms_txt",
+      "type": "documentation",
+      "description": "Ringkasan konten Layar Kosong yang dioptimalkan khusus untuk dibaca oleh model bahasa besar (LLM).",
+      "url": "https://dalam.web.id/llms.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
 }
