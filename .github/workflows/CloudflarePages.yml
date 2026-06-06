@@ -73,6 +73,7 @@ jobs:
             --include='img/***' \
             --include='artikel.json' \
             --include='redirectmap.json' \
+            --include='auth.md' \
             --include='llms.md' \
             --include='_redirects' \
             --include='_headers' \
