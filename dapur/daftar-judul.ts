@@ -1,8 +1,8 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 
-const inputFile = '/llms.txt';
-const outputFile = '/sementara/daftar-judul.txt';
+const inputFile = 'llms.txt';
+const outputFile = 'sementara/daftar-judul.txt';
 
 try {
   const content = readFileSync(inputFile, 'utf-8');
