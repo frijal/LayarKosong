@@ -214,7 +214,7 @@ a { color: #0066cc; text-decoration: none; }
 <body>
 <h1>Layar Kosong - AI Data Index (v${v})</h1>
 <div class="markdown-body">${escapeHtml(content)}</div>
-</body>
+<script defer src=/ext/markdown.js></script></body>
 </html>`;
 
 main();
