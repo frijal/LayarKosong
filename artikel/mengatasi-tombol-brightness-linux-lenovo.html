@@ -286,7 +286,7 @@ sudo apt install brightnessctl</code></pre>
       </blockquote>
       <p>Buka pengaturan *Keyboard Shortcuts* di Desktop Environment Debian yang kamu pakai (entah itu GNOME, KDE Plasma, atau XFCE), lalu daftarkan dua *Custom Shortcut* baru menggunakan perintah `brightnessctl` tadi. Pasangkan dengan tombol yang nyaman diraih jari.</p>
       <h2>3. "The Kernel Parameter Roulette"</h2>
-      <p>Mengutak-atik parameter `acpi_backlight` memang salah satu jalan ninja. Namun, satu hal krusial yang sering terlewat adalah meng-*update* GRUB setelah selesai mengedit file konfigurasi.</p>
+      <p>Mengutak-atik parameter `acpi_backlight` memang salah satu jalan pintas. Namun, satu hal krusial yang sering terlewat adalah meng-*update* GRUB setelah selesai mengedit file konfigurasi.</p>
       <p>Sebagai pengingat, saat kamu mengedit file `/etc/default/grub` dan memodifikasi baris `GRUB_CMDLINE_LINUX_DEFAULT`, kombinasi yang paling sering menyelamatkan laptop Lenovo adalah:</p>
 <pre><code>acpi_osi=Linux acpi_backlight=vendor</code></pre>
       <p>Atau opsi manipulasi *firmware* lainnya:</p>
