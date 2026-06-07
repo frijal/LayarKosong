@@ -75,7 +75,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     meta: any,
     isFirst: boolean
   ) {
-    const desktopWidth = meta.width > 1000 ? 1000 : meta.width;
+    const desktopWidth = meta.width > 1024 ? 1024 : meta.width;
     const mobileWidth  = 480;
     const mediumWidth  = 720;
     const hasMobile    = !!webMobileUrl && meta.width > mobileWidth;
@@ -83,7 +83,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     const willHaveSrcset = hasMobile;
 
     // FIX #1: calc(100vw - 40px) — sesuai padding container 20px kiri + kanan
-    // FIX #2: srcset tiga kandidat: 480w, 720w, 1000w
+    // FIX #2: srcset tiga kandidat: 480w, 720w, 1024w
     const srcsetCandidates: string[] = [];
     if (hasMobile) srcsetCandidates.push(`${webMobileUrl} ${mobileWidth}w`);
     if (hasMedium) srcsetCandidates.push(`${webMediumUrl} ${mediumWidth}w`);
@@ -91,7 +91,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
     const srcsetValue = willHaveSrcset ? srcsetCandidates.join(", ") : "";
     const sizesValue  = willHaveSrcset
-      ? "(max-width: 1040px) calc(100vw - 40px), 1000px"
+      ? "(max-width: 1064px) calc(100vw - 40px), 1024px"
       : "";
 
     let changed = false;
@@ -108,7 +108,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         // FIX #3: satu blok prepend — bukan dua kali — agar urutan source terjamin
         // FIX #4: media query 500px → 640px
         const mediumSource = hasMedium
-          ? `\n  <source type="image/webp" media="(min-width: 641px) and (max-width: 1040px)" srcset="${webMediumUrl}">`
+          ? `\n  <source type="image/webp" media="(min-width: 641px) and (max-width: 1064px)" srcset="${webMediumUrl}">`
           : "";
         parent.prepend(
           `<source type="image/webp" media="(max-width: 640px)" srcset="${webMobileUrl}">${mediumSource}\n  <source type="image/webp" srcset="${webDesktopUrl}">`
@@ -185,7 +185,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         if (!physicalComplete) {
           ensureDirForFile(absDesktopPath);
 
-          const targetWidth = meta.width > 1000 ? 1000 : meta.width;
+          const targetWidth = meta.width > 1024 ? 1024 : meta.width;
           await sharp(inputBuffer)
             .rotate()
             .resize(targetWidth, null, { withoutEnlargement: true })
