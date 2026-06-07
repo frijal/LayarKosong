@@ -1,47 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perbedaan Debian Stable, Testing & Unstable (Sid) — Panduan Lengkap</title>
-    <meta name="description" content="Pahami perbedaan tiga branch utama Debian: Stable yang super aman, Testing yang paling balance, dan Unstable (Sid) yang bleeding edge. Cari tahu mana yang cocok buat server, desktop, atau development kamu.">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    <title>Perbedaan Debian Stable, Testing &amp; Unstable (Sid) — Panduan Lengkap - Layar Kosong</title>
     <meta name="news_keywords" content="Debian Stable, Testing, Unstable, Sid, Linux, server, desktop, open source, distribusi Linux">
     <meta name="keywords" content="Debian, Stable, Testing, Unstable, Sid, Linux, perbandingan, server, desktop, development">
-
     <!-- Custom Meta: Promphint -->
     <meta name="promphint" content="Apa perbedaan utama antara Debian Stable, Testing, dan Unstable (Sid)? Debian Stable adalah branch paling aman dan matang untuk server, Testing cocok untuk desktop harian karena seimbang antara stabilitas dan fitur baru, sedangkan Unstable (Sid) hanya direkomendasikan untuk developer yang butuh package paling baru meski risikonya tinggi.">
-
     <!-- Canonical -->
-    <link rel="canonical" href="https://dalam.web.id/artikel/perbedaan-debian-stable-testing-dan-unstable-sid.html">
-
     <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Perbedaan Debian Stable, Testing & Unstable (Sid) — Panduan Lengkap">
-    <meta property="og:description" content="Debian punya tiga branch dengan tingkat kestabilan berbeda. Stable buat server yang gak boleh rewel, Testing buat desktop harian yang oke, dan Sid cuma buat yang berani eksperimen. Simak perbandingan lengkapnya di sini.">
-    <meta property="og:url" content="https://dalam.web.id/artikel/perbedaan-debian-stable-testing-dan-unstable-sid.html">
-    <meta property="og:image" content="https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&name=large">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="id_ID">
-    <meta property="article:published_time" content="2026-06-07T08:00:00+07:00">
-    <meta property="article:modified_time" content="2026-06-07T08:00:00+07:00">
-    <meta property="article:tag" content="Debian">
-    <meta property="article:tag" content="Linux">
-    <meta property="article:tag" content="Server">
-    <meta property="article:tag" content="Open Source">
-    <meta property="article:tag" content="Stable">
-    <meta property="article:tag" content="Testing">
-    <meta property="article:tag" content="Unstable">
-    <meta property="article:tag" content="Sid">
-
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Perbedaan Debian Stable, Testing & Unstable (Sid)">
-    <meta name="twitter:description" content="Masih bingung pilih Debian yang mana? Stable aman buat server, Testing pas buat desktop, Sid cuma buat yang jago ngoprek. Baca panduan lengkap perbandingan tiga branch Debian ini.">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&name=large">
-    <meta name="twitter:image:alt" content="Ilustrasi perbandingan tiga branch utama Debian — Stable, Testing, dan Unstable (Sid)">
-
     <!-- Critical CSS Inline -->
     <style>
         /* ============================================================
@@ -73,7 +40,6 @@
             --badge-unstable: #c0392b;
             --highlight-border: #a80030;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg: #1a1a1c;
@@ -101,7 +67,6 @@
                 --highlight-border: #e8435e;
             }
         }
-
         /* ============================================================
            RESET & BASE — MOBILE-FIRST
            ============================================================ */
@@ -112,14 +77,12 @@
             margin: 0;
             padding: 0;
         }
-
         html {
             font-size: 100%;
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
-
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             font-size: 1rem;
@@ -131,7 +94,6 @@
             display: flex;
             flex-direction: column;
         }
-
         /* ============================================================
            CONTAINER — MOBILE-FIRST, CENTERED PADA ≥64rem
            ============================================================ */
@@ -142,14 +104,12 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         @media (min-width: 40rem) {
             .container {
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;
             }
         }
-
         @media (min-width: 64rem) {
             .container {
                 max-width: 64rem;
@@ -157,7 +117,6 @@
                 padding-right: 2rem;
             }
         }
-
         /* ============================================================
            HEADER — TANPA HERO IMAGE RAKSASA
            ============================================================ */
@@ -168,14 +127,12 @@
             margin-bottom: 1.25rem;
             background: var(--bg-secondary);
         }
-
         @media (min-width: 64rem) {
             .site-header {
                 padding-top: 2rem;
                 padding-bottom: 1rem;
             }
         }
-
         .site-header .container {
             display: flex;
             flex-wrap: wrap;
@@ -183,7 +140,6 @@
             justify-content: space-between;
             gap: 0.5rem;
         }
-
         .site-branding {
             font-weight: 700;
             font-size: 1.15rem;
@@ -191,12 +147,10 @@
             text-decoration: none;
             letter-spacing: -0.01em;
         }
-
         .site-branding:hover {
             text-decoration: underline;
             text-underline-offset: 3px;
         }
-
         .breadcrumb {
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -205,22 +159,18 @@
             gap: 0.3rem;
             align-items: center;
         }
-
         .breadcrumb a {
             color: var(--text-muted);
             text-decoration: none;
         }
-
         .breadcrumb a:hover {
             color: var(--accent);
             text-decoration: underline;
             text-underline-offset: 2px;
         }
-
         .breadcrumb span {
             color: var(--text-secondary);
         }
-
         /* ============================================================
            MAIN CONTENT
            ============================================================ */
@@ -228,7 +178,6 @@
             flex: 1;
             padding-bottom: 2rem;
         }
-
         /* Article Meta Atas */
         .article-meta-top {
             display: flex;
@@ -241,18 +190,15 @@
             padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--border-light);
         }
-
         .article-meta-top .author {
             font-weight: 600;
             color: var(--text-secondary);
         }
-
         .article-meta-top .date::before {
             content: "•";
             margin-right: 0.5rem;
             color: var(--border);
         }
-
         .article-tags {
             display: flex;
             flex-wrap: wrap;
@@ -260,7 +206,6 @@
             margin-top: 0.25rem;
             width: 100%;
         }
-
         .article-tags .tag {
             display: inline-block;
             background: var(--tag-bg);
@@ -272,11 +217,9 @@
             font-weight: 500;
             transition: background 0.15s;
         }
-
         .article-tags .tag:hover {
             filter: brightness(0.92);
         }
-
         /* ============================================================
            TYPOGRAPHY
            ============================================================ */
@@ -288,19 +231,16 @@
             margin-bottom: 0.75rem;
             letter-spacing: -0.02em;
         }
-
         @media (min-width: 40rem) {
             h1 {
                 font-size: 2rem;
             }
         }
-
         @media (min-width: 64rem) {
             h1 {
                 font-size: 2.2rem;
             }
         }
-
         h2 {
             font-size: 1.3rem;
             line-height: 1.35;
@@ -312,13 +252,11 @@
             border-bottom: 2px solid var(--accent);
             letter-spacing: -0.01em;
         }
-
         @media (min-width: 40rem) {
             h2 {
                 font-size: 1.5rem;
             }
         }
-
         h3 {
             font-size: 1.1rem;
             line-height: 1.4;
@@ -327,28 +265,23 @@
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
-
         @media (min-width: 40rem) {
             h3 {
                 font-size: 1.2rem;
             }
         }
-
         p {
             margin-bottom: 1rem;
             color: var(--text-secondary);
         }
-
         strong {
             color: var(--text);
             font-weight: 700;
         }
-
         em {
             font-style: italic;
             color: var(--text-secondary);
         }
-
         a {
             color: var(--accent);
             text-decoration: underline;
@@ -356,12 +289,10 @@
             text-decoration-thickness: 1px;
             transition: color 0.15s;
         }
-
         a:hover {
             color: var(--accent-hover);
             text-decoration-thickness: 2px;
         }
-
         /* ============================================================
            GAMBAR — FULL CONTAINER WIDTH, TIDAK POTONG TINGGI
            ============================================================ */
@@ -369,7 +300,6 @@
             margin: 1.5rem 0;
             width: 100%;
         }
-
         .article-image-wrapper img {
             display: block;
             width: 100%;
@@ -378,7 +308,6 @@
             box-shadow: var(--shadow-md);
             background: var(--bg-tertiary);
         }
-
         .article-image-wrapper figcaption {
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -386,7 +315,6 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-
         /* ============================================================
            TABEL — RESPONSIVE DENGAN OVERFLOW-X
            ============================================================ */
@@ -400,7 +328,6 @@
             background: var(--bg);
             box-shadow: var(--shadow);
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
@@ -408,14 +335,12 @@
             min-width: 36rem;
             /* Memastikan tabel punya lebar minimum agar scroll bekerja */
         }
-
         @media (min-width: 48rem) {
             table {
                 font-size: 0.9rem;
                 min-width: auto;
             }
         }
-
         thead th {
             background: var(--table-header-bg);
             color: var(--text);
@@ -427,42 +352,35 @@
             font-size: 0.8rem;
             letter-spacing: 0.01em;
         }
-
         @media (min-width: 48rem) {
             thead th {
                 padding: 0.85rem 1rem;
                 font-size: 0.85rem;
             }
         }
-
         tbody td {
             padding: 0.6rem 0.75rem;
             border-bottom: 1px solid var(--border-light);
             color: var(--text-secondary);
             vertical-align: top;
         }
-
         @media (min-width: 48rem) {
             tbody td {
                 padding: 0.75rem 1rem;
             }
         }
-
         tbody tr:nth-child(even) td {
             background: var(--table-row-alt);
         }
-
         tbody tr:hover td {
             background: var(--accent-light);
             transition: background 0.15s;
         }
-
         tbody td:first-child {
             font-weight: 600;
             color: var(--text);
             white-space: nowrap;
         }
-
         /* Kolom "Pemenang" */
         .winner-cell {
             font-weight: 700;
@@ -470,7 +388,6 @@
             text-align: center;
             white-space: nowrap;
         }
-
         /* Badge kecil untuk indikator */
         .badge {
             display: inline-block;
@@ -482,22 +399,18 @@
             letter-spacing: 0.03em;
             white-space: nowrap;
         }
-
         .badge-stable {
             background: var(--badge-stable);
             color: #fff;
         }
-
         .badge-testing {
             background: var(--badge-testing);
             color: #fff;
         }
-
         .badge-unstable {
             background: var(--badge-unstable);
             color: #fff;
         }
-
         /* ============================================================
            CODE & PRE
            ============================================================ */
@@ -510,7 +423,6 @@
             border-radius: 0.3em;
             word-break: break-word;
         }
-
         pre {
             background: var(--bg-tertiary);
             border: 1px solid var(--border);
@@ -523,21 +435,18 @@
             line-height: 1.6;
             box-shadow: var(--shadow);
         }
-
         @media (min-width: 48rem) {
             pre {
                 font-size: 0.88rem;
                 padding: 1.25rem;
             }
         }
-
         pre code {
             background: none;
             color: var(--text-secondary);
             padding: 0;
             font-size: inherit;
         }
-
         /* ============================================================
            HIGHLIGHT BOX / CALLOUT
            ============================================================ */
@@ -550,18 +459,15 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
         }
-
         .callout strong {
             color: var(--accent);
         }
-
         @media (min-width: 48rem) {
             .callout {
                 padding: 1.25rem 1.5rem;
                 font-size: 0.95rem;
             }
         }
-
         /* ============================================================
            LIST
            ============================================================ */
@@ -570,16 +476,13 @@
             margin: 0.75rem 0 1rem 1.5rem;
             color: var(--text-secondary);
         }
-
         li {
             margin-bottom: 0.4rem;
             padding-left: 0.25rem;
         }
-
         li::marker {
             color: var(--accent);
         }
-
         /* ============================================================
            BLOCKQUOTE
            ============================================================ */
@@ -592,11 +495,9 @@
             color: var(--text-secondary);
             font-style: italic;
         }
-
         blockquote strong {
             font-style: normal;
         }
-
         /* ============================================================
            PLACEHOLDER DIVS — TANPA STYLING
            ============================================================ */
@@ -604,7 +505,6 @@
         #response {
             /* Sengaja kosong — placeholder tanpa styling */
         }
-
         /* ============================================================
            FOOTER — E-E-A-T INLINE CENTERED
            ============================================================ */
@@ -618,41 +518,34 @@
             color: var(--text-muted);
             line-height: 1.8;
         }
-
         @media (min-width: 48rem) {
             .site-footer {
                 font-size: 0.85rem;
                 padding: 1.5rem 2rem;
             }
         }
-
         .site-footer .footer-inline {
             display: inline;
             text-align: center;
         }
-
         .site-footer span,
         .site-footer a {
             display: inline;
             white-space: nowrap;
         }
-
         .site-footer .footer-sep {
             margin: 0 0.5rem;
             color: var(--border);
             display: inline;
         }
-
         .site-footer a {
             color: var(--accent);
             text-decoration: underline;
             text-underline-offset: 2px;
         }
-
         .site-footer a:hover {
             color: var(--accent-hover);
         }
-
         /* ============================================================
            UTILITY: SR-ONLY (screen reader only)
            ============================================================ */
@@ -667,7 +560,6 @@
             white-space: nowrap;
             border: 0;
         }
-
         /* ============================================================
            PRINT STYLES
            ============================================================ */
@@ -677,50 +569,93 @@
                 color: #000;
                 font-size: 12pt;
             }
-
             .site-header,
             .site-footer,
             #related-articles-grid,
             #response {
                 display: none;
             }
-
             .container {
                 max-width: 100%;
                 padding: 0;
             }
-
             a {
                 color: #000;
                 text-decoration: underline;
             }
-
             pre,
             code {
                 background: #f9f9f9;
                 border: 1px solid #ccc;
             }
-
             .table-wrapper {
                 overflow-x: visible;
                 box-shadow: none;
                 border: 1px solid #ccc;
             }
-
             table {
                 min-width: auto;
             }
         }
     </style>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/perbedaan-debian-stable-testing-dan-unstable-sid">
+    <meta property="og:url" content="https://dalam.web.id/artikel/perbedaan-debian-stable-testing-dan-unstable-sid">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/perbedaan-debian-stable-testing-dan-unstable-sid">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Perbedaan Debian Stable, Testing &amp; Unstable (Sid) — Panduan Lengkap">
+    <meta name="twitter:title" content="Perbedaan Debian Stable, Testing &amp; Unstable (Sid) — Panduan Lengkap">
+    <meta name="description" content="Pahami perbedaan tiga branch utama Debian: Stable yang super aman, Testing yang paling balance, dan Unstable (Sid) yang bleeding edge. Cari tahu mana yang cocok buat server, desktop, atau development kamu.">
+    <meta property="og:description" content="Debian punya tiga branch dengan tingkat kestabilan berbeda. Stable buat server yang gak boleh rewel, Testing buat desktop harian yang oke, dan Sid cuma buat yang berani eksperimen. Simak perbandingan lengkapnya di sini.">
+    <meta name="twitter:description" content="Masih bingung pilih Debian yang mana? Stable aman buat server, Testing pas buat desktop, Sid cuma buat yang jago ngoprek. Baca panduan lengkap perbandingan tiga branch Debian ini.">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/9d302938070f7f8f.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/9d302938070f7f8f.webp">
+    <meta property="og:image:alt" content="Perbedaan Debian Stable, Testing &amp; Unstable (Sid) — Panduan Lengkap">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="618">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:tag" content="Debian">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Server">
+    <meta property="article:tag" content="Open Source">
+    <meta property="article:tag" content="Stable">
+    <meta property="article:tag" content="Testing">
+    <meta property="article:tag" content="Unstable">
+    <meta property="article:tag" content="Sid">
+    <meta property="article:published_time" content="2026-06-07T08:00:00+07:00">
+    <meta property="article:modified_time" content="2026-06-07T08:00:00+07:00">
 </head>
 <body>
-
     <!-- ============================================================
     HEADER — TANPA HERO IMAGE RAKSASA
     ============================================================ -->
     <header class="site-header" role="banner">
         <div class="container">
-            <a href="https://dalam.web.id/" class="site-branding" aria-label="Dalam Web — Beranda">🐧 Dalam.web.id</a>
+            <a href="https://dalam.web.id/" class="site-branding" aria-label="Dalam Web — Beranda">🐧 Jaga Data Pribadi Tetap Aman</a>
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <a href="https://dalam.web.id/">Beranda</a> <span>/</span>
                 <a href="https://dalam.web.id/artikel/">Artikel</a> <span>/</span>
@@ -728,13 +663,11 @@
             </nav>
         </div>
     </header>
-
     <!-- ============================================================
     MAIN CONTENT
     ============================================================ -->
     <main class="main-content" role="main" id="main-content">
         <div class="container">
-
             <!-- Article Meta -->
             <div class="article-meta-top">
                 <span class="author">👤 FRijal</span>
@@ -748,10 +681,8 @@
                     <a href="#" class="tag">Open Source</a>
                 </div>
             </div>
-
             <!-- H1 -->
-            <h1>Perbedaan Debian Stable, Testing, dan Unstable (Sid) — Panduan Lengkap Buat Kamu yang Masih Galau</h1>
-
+            <h1>Perbedaan Debian Stable, Testing, dan Unstable (Sid) — Panduan Lengkap Buat Kamu yang Masih Galau</h1><div id="iposbrowser"></div>
             <!-- Paragraf Pembuka — 5W+1H mengalir natural -->
             <p>
                 Kalau kamu baru terjun ke dunia Debian atau sudah lama pakai tapi masih bingung bedanya <strong>Stable</strong>, <strong>Testing</strong>, dan <strong>Unstable (Sid)</strong>, kamu gak sendirian. Banyak pengguna—baik pemula maupun yang sudah cukup pengalaman—sering bertanya-tanya: <em>“Sebenarnya apa sih perbedaan ketiga branch ini? Kenapa Debian punya tiga cabang sekaligus? Dan yang paling penting: mana yang sebaiknya aku pakai?”</em>
@@ -759,24 +690,13 @@
             <p>
                 Nah, artikel ini hadir buat menjawab semua pertanyaan itu. Kita akan bedah satu per satu karakteristik masing-masing branch, mulai dari <strong>apa</strong> definisinya, <strong>kenapa</strong> Debian mendesain siklus rilis seperti ini, <strong>siapa</strong> target pengguna yang paling cocok, <strong>kapan</strong> waktu terbaik menggunakan masing-masing branch, <strong>di mana</strong> mereka biasanya dipakai (server, desktop, atau lingkungan development), dan tentu saja <strong>bagaimana</strong> kamu bisa memilih dengan bijak berdasarkan kebutuhanmu. Semua dijelaskan dengan bahasa santai tapi tetap profesional—karena ngomongin server dan distro Linux gak harus kaku, kan? 😄
             </p>
-
             <!-- GAMBAR UTAMA — LCP, Full Container Width -->
             <figure class="article-image-wrapper">
-                <img
-                src="https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&name=large"
-                srcset="https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&name=large 400w,
-                https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&name=large 800w,
-                https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&name=large 1200w"
-                sizes="(max-width: 40rem) 100vw, (max-width: 64rem) 90vw, 64rem"
-                alt="Ilustrasi tiga branch utama Debian — Stable, Testing, dan Unstable (Sid) — digambarkan sebagai tiga jalur berbeda dengan tingkat kestabilan yang bervariasi"
-                decoding="async"
-                width="1200"
-                height="630"
-                loading="eager"
-                >
+                <img src="https://dalam.web.id/img/pbs.twimg.com/9d302938070f7f8f.webp" srcset="https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&amp;name=large 400w,
+                https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&amp;name=large 800w,
+                https://pbs.twimg.com/media/HKKygNvboAAFCg3?format=jpg&amp;name=large 1200w" sizes="(max-width: 40rem) 100vw, (max-width: 64rem) 90vw, 64rem" alt="Ilustrasi tiga branch utama Debian — Stable, Testing, dan Unstable (Sid) — digambarkan sebagai tiga jalur berbeda dengan tingkat kestabilan yang bervariasi" decoding="async" width="1200" height="630" loading="eager">
                 <figcaption>🔍 Tiga jalur utama Debian: Stable (kokoh dan teruji), Testing (persiapan rilis), dan Unstable/Sid (paling depan, penuh eksperimen).</figcaption>
             </figure>
-
             <!-- ============================================================
             BAGIAN 1: Debian Stable
             ============================================================ -->
@@ -789,7 +709,7 @@
             </p>
             <h3>🔒 Kapan dan Siapa yang Cocok Pakai Stable?</h3>
             <ul>
-                <li><strong>Server & VPS:</strong> Ini adalah tempat di mana Stable benar-benar bersinar. Downtime karena update bermasalah itu mimpi buruk, dan Stable meminimalkan risiko itu.</li>
+                <li><strong>Server &amp; VPS:</strong> Ini adalah tempat di mana Stable benar-benar bersinar. Downtime karena update bermasalah itu mimpi buruk, dan Stable meminimalkan risiko itu.</li>
                 <li><strong>Lingkungan kantor/perusahaan:</strong> PC kantor yang dipakai banyak orang butuh sistem yang gak tiba-tiba error setelah update.</li>
                 <li><strong>Pengguna pemula:</strong> Kalau kamu baru migrasi ke Linux, Stable adalah tempat paling aman untuk belajar tanpa takut sistem rusak.</li>
                 <li><strong>Siapa saja yang gak suka kejutan:</strong> Sistem yang stabil, predictable, dan minim drama.</li>
@@ -797,7 +717,6 @@
             <div class="callout">
                 <strong>💡 Intinya:</strong> Debian Stable adalah pilihan <strong>paling aman</strong>. Kalau kamu menjalankan server produksi, VPS klien, atau komputer kerja harian yang gak boleh error, ini jawabannya. Gak perlu mikir dua kali.
             </div>
-
             <!-- ============================================================
             BAGIAN 2: Debian Testing
             ============================================================ -->
@@ -818,7 +737,6 @@
             <div class="callout">
                 <strong>⚖️ Intinya:</strong> Debian Testing adalah <strong>pilihan paling balance</strong>. Kalau kamu pengguna desktop yang ingin package lebih baru tapi gak mau sistem sering ngadat, ini rekomendasi terbaik. Testing memberi kamu rasa <em>rolling-release</em> dengan jaring pengaman yang masih cukup kuat.
             </div>
-
             <!-- ============================================================
             BAGIAN 3: Debian Unstable (Sid)
             ============================================================ -->
@@ -839,7 +757,6 @@
             <div class="callout">
                 <strong>🚨 Intinya:</strong> Debian Unstable (Sid) <strong>hanya untuk developer Debian, pengguna yang suka eksperimen ekstrem, atau mereka yang benar-benar butuh package paling baru</strong>. Kalau kamu cuma butuh library terbaru untuk development, Testing sebenarnya sudah cukup—kecuali kamu memang sengaja ingin hidup di tepi jurang. 😅
             </div>
-
             <!-- ============================================================
             BAGIAN 4: Perbandingan Lengkap
             ============================================================ -->
@@ -847,7 +764,6 @@
             <p>
                 Supaya lebih gampang membandingkan, berikut tabel perbandingan menyeluruh dari berbagai aspek. Tabel ini mencakup semua dimensi penting—dari stabilitas, usia package, sampai rekomendasi penggunaan di dunia nyata.
             </p>
-
             <div class="table-wrapper" role="region" aria-label="Tabel perbandingan Debian Stable, Testing, dan Unstable" tabindex="0">
                 <table>
                     <thead>
@@ -934,15 +850,13 @@
                 </table>
             </div>
             <p style="font-size:0.8rem;color:var(--text-muted);text-align:center;">📋 Tabel di atas bisa di-scroll horizontal di layar kecil.</p>
-
             <!-- ============================================================
             BAGIAN 5: Penjelasan Lebih Detail
             ============================================================ -->
-            <h2>🔬 Penjelasan Lebih Detail — Karakteristik & Use Case</h2>
+            <h2>🔬 Penjelasan Lebih Detail — Karakteristik &amp; Use Case</h2>
             <p>
                 Tabel di bawah ini merangkum <strong>karakteristik utama</strong> masing-masing branch beserta panduan <strong>kapan sebaiknya dipakai</strong>. Simpan baik-baik sebagai contekan sebelum kamu memutuskan install Debian.
             </p>
-
             <div class="table-wrapper" role="region" aria-label="Tabel karakteristik dan use case masing-masing branch Debian" tabindex="0">
                 <table>
                     <thead>
@@ -971,7 +885,6 @@
                     </tbody>
                 </table>
             </div>
-
             <!-- ============================================================
             BAGIAN 6: Siklus Rilis
             ============================================================ -->
@@ -996,24 +909,20 @@
             <blockquote>
                 <strong>📌 Catatan penting:</strong> Nama kode <strong>Sid</strong> gak pernah berubah dan akan selalu menjadi nama branch Unstable. Ini adalah satu-satunya branch Debian yang bersifat <em>permanen</em>—selalu ada dan terus mengalir tanpa henti.
             </blockquote>
-
             <!-- Contoh kode: cek versi Debian -->
             <h3>🖥️ Cara Cek Kamu di Branch Mana</h3>
             <p>
                 Kalau kamu udah punya Debian terpasang dan penasaran kamu ada di branch mana, jalankan perintah berikut di terminal:
             </p>
-            <pre><code># Cek versi Debian & branch
+            <pre><code># Cek versi Debian &amp; branch
         cat /etc/debian_version
-
         # Info lebih lengkap
         lsb_release -a
-
         # Atau lihat isi sources.list
         cat /etc/apt/sources.list | grep -v "^#" | grep .</code></pre>
             <p>
                 Di file <code>/etc/apt/sources.list</code>, kamu akan melihat kata kunci seperti <code>stable</code>, <code>testing</code>, <code>unstable</code>, atau nama kode seperti <code>bookworm</code>, <code>trixie</code>, <code>sid</code>. Itu penanda branch yang sedang kamu gunakan.
             </p>
-
             <!-- ============================================================
             BAGIAN 7: Rekomendasi Praktis
             ============================================================ -->
@@ -1021,7 +930,6 @@
             <p>
                 Setelah memahami semua perbedaan di atas, saatnya kita tarik kesimpulan praktis. Tabel berikut adalah panduan langsung yang bisa kamu jadikan acuan. Gak perlu mikir panjang-panjang—cukup cocokkan dengan kebutuhanmu.
             </p>
-
             <div class="table-wrapper" role="region" aria-label="Tabel rekomendasi praktis berdasarkan kebutuhan" tabindex="0">
                 <table>
                     <thead>
@@ -1053,7 +961,7 @@
                             <td>Testing lebih aman, Sid kalau butuh yang paling baru</td>
                         </tr>
                         <tr>
-                            <td>Suka eksperimen & tidak takut rusak</td>
+                            <td>Suka eksperimen &amp; tidak takut rusak</td>
                             <td><span class="badge badge-unstable">Sid</span></td>
                             <td>Paling up-to-date</td>
                         </tr>
@@ -1065,7 +973,6 @@
                     </tbody>
                 </table>
             </div>
-
             <!-- ============================================================
             BAGIAN 8: Ringkasan Singkat
             ============================================================ -->
@@ -1078,7 +985,6 @@
                 <li>🟡 <strong>Testing</strong> = <em>"Yang sedang dipersiapkan untuk rilis berikutnya"</em> → <strong>Paling recommended untuk desktop</strong> harian.</li>
                 <li>🔴 <strong>Unstable (Sid)</strong> = <em>"Yang masih dalam pengembangan aktif"</em> → <strong>Hanya untuk yang berani</strong> dan developer.</li>
             </ul>
-
             <!-- ============================================================
             KESIMPULAN
             ============================================================ -->
@@ -1092,37 +998,34 @@
             <p>
                 Semoga setelah membaca artikel ini, kamu gak galau lagi dan bisa menentukan pilihan dengan percaya diri. Selamat menggunakan Debian—apapun branch pilihanmu! 🐧✨
             </p>
-
             <!-- ============================================================
             PLACEHOLDER DIVS — WAJIB, TANPA STYLING
             ============================================================ -->
             <div id="related-articles-grid"></div>
             <div id="response"></div>
-
         </div><!-- /.container -->
     </main>
-
     <!-- ============================================================
     FOOTER — E-E-A T INLINE CENTERED
     ============================================================ -->
     <footer class="site-footer" role="contentinfo">
         <div class="container">
             <p class="footer-inline">
-                <span>✍️ <strong>Penulis:</strong> <a href="https://dalam.web.id/about" rel="author">FRijal</a> — Administrator Sistem & Kontributor Dokumentasi Linux</span>
+                <span>✍️ <strong>Penulis:</strong> <a href="https://dalam.web.id/about" rel="author">FRijal</a> — Administrator Sistem &amp; Kontributor Dokumentasi Linux</span>
                 <span class="footer-sep">|</span>
                 <span>📅 <strong>Terbit:</strong> <time datetime="2026-06-07">7 Juni 2026</time></span>
                 <span class="footer-sep">|</span>
                 <span>🔄 <strong>Diperbarui:</strong> <time datetime="2026-06-07">7 Juni 2026</time></span>
                 <span class="footer-sep">|</span>
-                <span>📋 <strong>Fakta diperiksa oleh:</strong> Tim Editor Dalam.web.id</span>
+                <span>📋 <strong>Fakta diperiksa oleh:</strong> Tim Editor Jaga Data Pribadi Tetap Aman</span>
                 <span class="footer-sep">|</span>
                 <span>🔗 <strong>Sumber:</strong> <a href="https://www.debian.org/releases/" rel="external nofollow" target="_blank">Debian Official Releases</a>, <a href="https://wiki.debian.org/DebianReleases" rel="external nofollow" target="_blank">Debian Wiki</a></span>
             </p>
             <p style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-muted);">
-                © 2026 <a href="https://dalam.web.id/">Dalam.web.id</a> — Konten ini disusun berdasarkan pengalaman langsung, dokumentasi resmi Debian, dan standar jurnalistik teknis. Kami berkomitmen menyajikan informasi akurat, terverifikasi, dan bebas dari konflik kepentingan.
+                🄯 2026 <a href="https://dalam.web.id/">Jaga Data Pribadi Tetap Aman</a> — Konten ini disusun berdasarkan pengalaman langsung, dokumentasi resmi Debian, dan standar jurnalistik teknis. Kami berkomitmen menyajikan informasi akurat, terverifikasi, dan bebas dari konflik kepentingan.
             </p>
         </div>
-    </footer>
-
-</body>
-</html>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
