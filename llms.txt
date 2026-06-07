@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 21.13
-last_updated: 2026-06-06
+document_version: 21.14
+last_updated: 2026-06-07
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 6 Juni 2026)
-> Menampilkan 1387 artikel versi 21.13.
+## Index Artikel Terbaru (Updated: 7 Juni 2026)
+> Menampilkan 1399 artikel versi 21.14.
 
 ## Gaya Hidup
 - [Tanpa Sadar Kesehatanmu Hancur Perlahan: 7 Kekurangan Sepele Penyebabnya](https://dalam.web.id/gaya-hidup/7-kekurangan-sepele-merusak-kesehatan) : Waspada! Tanpa sadar kesehatanmu bisa hancur perlahan bukan karena penyakit, tapi 7 kekurangan sepele ini. Simak daftarnya dan cegah dari sekarang!
@@ -767,6 +767,18 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Perbedaan Debian Stable, Testing & Unstable (Sid) — Panduan Lengkap](https://dalam.web.id/sistem-terbuka/perbedaan-debian-stable-testing-dan-unstable-sid) : Pahami perbedaan tiga branch utama Debian: Stable yang super aman, Testing yang paling balance, dan Unstable (Sid) yang bleeding edge. Cari tahu mana yang cocok buat server, desktop, atau development kamu.
+- [Cara Migrasi Debian Stable ke Testing (Bookworm ke Trixie) dengan Aman](https://dalam.web.id/sistem-terbuka/cara-migrasi-debian-stable-ke-testing) : cara migrasi sistem Debian dari versi Stable (Bookworm) ke Testing (Trixie). Ketahui langkah, risiko, dan persiapannya di sini.
+- [Panduan Aman: Cara Backup Data Sebelum Install Ulang Debian](https://dalam.web.id/sistem-terbuka/cara-backup-data-sebelum-install-ulang-debian) : Jangan sampai file pentingmu lenyap! Pelajari cara backup data, konfigurasi dotfiles, dan daftar package sebelum melakukan install ulang OS Debian.
+- [Perbedaan Debian Stable vs Testing: Panduan Lengkap 2026](https://dalam.web.id/sistem-terbuka/perbedaan-debian-stable-dan-testing) : memahami perbedaan Debian Stable dan Testing. Temukan branch mana yang paling cocok untuk server atau desktop kamu di tahun 2026.
+- [Shelly-ALPM: Package Manager Arch Linux Berbasis UI Modern](https://dalam.web.id/sistem-terbuka/shelly-alpm-arch-linux) : Mengenal Shelly-ALPM, manajer paket Arch Linux dan CachyOS yang mengandalkan GTK4 dan native libalpm. Pelajari fitur, cara instalasi, dan CLI terintegrasinya.
+- [Panduan Restore Data Linux Pakai Deja Dup & Timeshift](https://dalam.web.id/sistem-terbuka/panduan-restore-data-deja-dup-timeshift) : Pusing memulihkan data setelah install ulang Debian? Tenang, ini panduan lengkap restore file dan sistem menggunakan aplikasi GUI Deja Dup dan Timeshift tanpa ribet.
+- [Performa AUR: Shelly vs Octopi di Arch Linux](https://dalam.web.id/sistem-terbuka/performa-aur-shelly-vs-octopi) : Mengupas tuntas perbandingan performa AUR antara Shelly dan Octopi. Temukan mana graphical package manager yang paling cepat dan efisien untuk Arch Linux.
+- [Perbandingan Shelly vs Octopi vs pacseek: Package Manager Terbaik di Arch Linux](https://dalam.web.id/sistem-terbuka/perbandingan-shelly-vs-octopi-vs-pacseek) : Bingung memilih antara Shelly, Octopi, dan pacseek untuk mengelola paket di Arch Linux? Simak perbandingan lengkap GUI dan TUI package manager ini.
+- [Downgrade dari Debian Testing Kembali ke Stable](https://dalam.web.id/sistem-terbuka/downgrade-dari-debian-testing-kembali-ke-stable) : Ingin melakukan downgrade dari Debian Testing (Trixie) kembali ke Stable (Bookworm)? Ketahui risiko, kendala, dan panduan lengkap cara amannya di sini.
+- [Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable](https://dalam.web.id/sistem-terbuka/panduan-restore-data-debian-stable) : Selesai install ulang Debian Stable? Jangan bingung, ikuti panduan lengkap cara restore data, file konfigurasi dotfiles, hingga daftar package dengan aman.
+- [Perbandingan Shelly vs Pamac: GUI Package Manager Terbaik di Arch Linux](https://dalam.web.id/sistem-terbuka/perbandingan-shelly-vs-pamac) : Bingung memilih antara Shelly dan Pamac untuk distribusi berbasis Arch Linux? Temukan perbandingan lengkap fitur, performa, dan dukungannya di sini.
+- [Shelly 2.3.2.2 Rilis: Update Stabil untuk Arch Linux dan CachyOS](https://dalam.web.id/sistem-terbuka/shelly-2-3-2-2-update-arch-linux-cachyos) : Shelly 2.3.2.2 membawa dukungan downgrade package CachyOS, instalasi AppImage drag-and-drop, parsing berita Arch Linux ke Markdown, serta peningkatan UI dan perbaikan bug untuk pengalaman package manager yang lebih baik.
 - [GNOME 50.2 Rilis: Bawa Segudang Perbaikan untuk Desktop Linux](https://dalam.web.id/sistem-terbuka/gnome-50-2-rilis) : Kabar gembira buat pengguna Linux! GNOME 50.2 resmi dirilis dengan berbagai perbaikan bug penting di Mutter, Nautilus, GDM, hingga GNOME Software.
 - [Cara Membuat Auto Social Media Previewer Responsive](https://dalam.web.id/sistem-terbuka/auto-social-media-previewer) : Alat preview tautan media sosial multi-platform, lengkap dengan fallback API, caching, tombol share, dan debug panel.
 - [Mengapa Jam di Linux Desktop Minimalis Sering Ngaco? Ini Penyebab dan Solusinya](https://dalam.web.id/sistem-terbuka/jam-linux-desktop-minimalis) : Mengatasi eror sinkronisasi waktu otomatis dan jam melompat pada distro Linux minimalis seperti Debian 13 LXQt. Solusi tuntas dual-boot dan konfigurasi NTP.
