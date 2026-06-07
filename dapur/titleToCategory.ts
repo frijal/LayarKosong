@@ -47,14 +47,20 @@ const categories: Category[] = [
 ];
 
 /**
- * Mengonversi judul artikel menjadi nama kategori berdasarkan keyword
+ * Helper untuk mencegah error karakter khusus pada RegEx
  */
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 export function titleToCategory(title: string): string {
   if (!title) return "Lainnya";
 
-  const t = title.toLowerCase();
   const found = categories.find(cat =>
-  cat.keywords.some(k => t.includes(k))
+  cat.keywords.some(k => {
+    const regex = new RegExp(`\\b${escapeRegExp(k)}\\b`, 'i');
+    return regex.test(title);
+  })
   );
 
   return found ? found.name : "Lainnya";
