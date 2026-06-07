@@ -60,9 +60,8 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
 
         // Download
         const response = await fetch(externalUrl, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.160 Safari/537.36'
-            }
+        headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36'}
+        
         });
         if (!response.ok) throw new Error(`Download Gagal: ${response.status}`);
 
