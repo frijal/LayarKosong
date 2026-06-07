@@ -22,59 +22,59 @@ const categories: Category[] = [
       "foss", "open source", "oss", "distro", "desktop", "repo", "mirror", "ventoy", "rescuezilla", "rsync", "tar", "shell", "dotfiles", "lts", "glibc"
     ]
   },
-{
-  name: "Olah Media",
-  keywords: [
-    "ffmpeg", "handbrake", "imagemagick", "ghostscript", "pdftk", "gimp", "inkscape",
-    "video", "audio", "mp4", "mkv", "mp3", "ogg", "webp", "png", "svg",
-    "edit", "convert", "compress", "resize", "crop", "split", "gabung", "watermark",
-    "subtitle", "srt", "transcribe", "ocr", "metadata", "exif",
-    "batch", "rekam", "screencast", "thumbnail", "framerate", "bitrate", "codec", "h264", "h265", "av1"
-  ]
-},
-{
-  name: "Jejak Sejarah",
-  keywords: [
-    "nabi", "rasul", "sahabat", "khalifah", "sejarah", "islam", "muhammadiyah", "sirah",
-    "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin",
-    "shalahuddin", "fatih", "muhammad", "ibrahim", "musa", "isa", "nuh", "yunus",
-    "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah",
-    "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah"
-  ]
-},
-{
-  name: "Gaya Hidup",
-  keywords: [
-    "kesehatan", "pencernaan", "tidur", "diet", "herbal", "obat", "sakit",
-    "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan",
-    "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel",
-    "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga"
-  ]
-},
-{
-  name: "Opini Sosial",
-  keywords: [
-    "politik", "pemerintah", "korupsi", "demokrasi", "pemilu", "presiden",
-    "ojol", "mbg", "guru honorer", "pendidikan", "kesehatan", "ekonomi",
-    "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini",
-    "sosial", "masyarakat", "keadilan", "koruptor", "integritas"
-  ]
-},
-{
-  name: "Warta Tekno",
-  keywords: [
-    // AI & Modern Tech
-    "ai", "chatgpt", "gemini", "claude", "llm", "deep learning", "prompt",
-    // Programming & Development
-    "github", "git", "programming", "javascript", "python", "html", "css", "markdown",
-    "workflow", "github actions", "api", "backend", "frontend", "fullstack",
-    // Hardware & Software
-    "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware",
-    "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare",
-    // Security & Tools
-    "security", "phishing", "encryption", "privacy", "backup", "ssh"
-  ]
-}
+  {
+    name: "Olah Media",
+    keywords: [
+      "ffmpeg", "handbrake", "imagemagick", "ghostscript", "pdftk", "gimp", "inkscape",
+      "video", "audio", "mp4", "mkv", "mp3", "ogg", "webp", "png", "svg",
+      "edit", "convert", "compress", "resize", "crop", "split", "gabung", "watermark",
+      "subtitle", "srt", "transcribe", "ocr", "metadata", "exif",
+      "batch", "rekam", "screencast", "thumbnail", "framerate", "bitrate", "codec", "h264", "h265", "av1"
+    ]
+  },
+  {
+    name: "Jejak Sejarah",
+    keywords: [
+      "nabi", "rasul", "sahabat", "khalifah", "sejarah", "islam", "muhammadiyah", "sirah",
+      "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin",
+      "shalahuddin", "fatih", "muhammad", "ibrahim", "musa", "isa", "nuh", "yunus",
+      "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah",
+      "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah"
+    ]
+  },
+  {
+    name: "Gaya Hidup",
+    keywords: [
+      "kesehatan", "pencernaan", "tidur", "diet", "herbal", "obat", "sakit",
+      "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan",
+      "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel",
+      "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga"
+    ]
+  },
+  {
+    name: "Opini Sosial",
+    keywords: [
+      "politik", "pemerintah", "korupsi", "demokrasi", "pemilu", "presiden",
+      "ojol", "mbg", "guru honorer", "pendidikan", "kesehatan", "ekonomi",
+      "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini",
+      "sosial", "masyarakat", "keadilan", "koruptor", "integritas"
+    ]
+  },
+  {
+    name: "Warta Tekno",
+    keywords: [
+      // AI & Modern Tech
+      "ai", "chatgpt", "gemini", "claude", "llm", "deep learning", "prompt",
+      // Programming & Development
+      "github", "git", "programming", "javascript", "python", "html", "css", "markdown",
+      "workflow", "github actions", "api", "backend", "frontend", "fullstack",
+      // Hardware & Software
+      "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware",
+      "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare",
+      // Security & Tools
+      "security", "phishing", "encryption", "privacy", "backup", "ssh"
+    ]
+  }
 ];
 
 /**
@@ -88,10 +88,10 @@ export function titleToCategory(title: string): string {
   if (!title || typeof title !== 'string') return "Lainnya";
 
   const found = categories.find(cat =>
-  cat.keywords.some(keyword => {
-    const regex = new RegExp(`\\b${escapeRegExp(keyword)}\\b`, 'i');
-    return regex.test(title);
-  })
+    cat.keywords.some(keyword => {
+      const regex = new RegExp(`\\b${escapeRegExp(keyword)}\\b`, 'i');
+      return regex.test(title);
+    })
   );
 
   return found ? found.name : "Lainnya";
