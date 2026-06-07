@@ -33,8 +33,8 @@ jobs:
       - name: 🔰 Edit Komponen HTML (Bun.js)
         run: bun run dapur/Edit-Komponen-HTML.ts
 
-      - name: 🧹 Sterilize Schema (Bun.js)
-        run: bun run dapur/clean-schema.ts artikelx/
+    #  - name: 🧹 Sterilize Schema (Bun.js)
+    #    run: bun run dapur/clean-schema.ts artikelx/
 
       - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
         run: |
