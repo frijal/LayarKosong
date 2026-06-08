@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/7/2026, 2:47:06 PM
+Generated on: 6/8/2026, 4:44:22 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/7/2026, 2:47:06 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v21.20 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v21.24 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -917,6 +917,7 @@ Generated on: 6/7/2026, 2:47:06 PM
 | `artikel/misteri-alam-semesta-gerak-benda-langit.html` | Misteri Alam Semesta: Mengapa Matahari, Bulan, dan Bintang Tak Pernah Bertabrakan? 🌌 - Layar Kosong | Misteri Alam Semesta: Mengapa Matahari, Bulan, dan Bintang Tak Pernah Bertabrakan? 🌌 | Layar Kosong | ✅ Perfect |
 | `artikel/misteri-error-418-teko-ajaib.html` | Misteri Error 418: Kisah Teko Ajaib di Balik Protokol Internet Kita - Layar Kosong | Misteri Error 418: Kisah Teko Ajaib di Balik Protokol Internet Kita | Layar Kosong | ✅ Perfect |
 | `artikel/misteri-mr-crack-bj-habibie.html` | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara - Layar Kosong | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara | Layar Kosong | ✅ Perfect |
+| `artikel/misteri-potongan-token-listrik-ppj.html` | Misteri Token Listrik Rp100 Ribu Berkurang, Ke Mana Duitnya? - Layar Kosong | Misteri Token Listrik Rp100 Ribu Berkurang, Ke Mana Duitnya? | Layar Kosong | ✅ Perfect |
 | `artikel/mk-nyatakan-uu-pensiun-pejabat-inkonstitusional.html` | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat - Layar Kosong | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat | Layar Kosong | ✅ Perfect |
 | `artikel/mk-tolak-nikah-beda-agama.html` | Analisis Tajam: Mengapa MK Tolak Nikah Beda Agama dan Dampaknya Bagi Kita - Layar Kosong | Analisis Tajam: Mengapa MK Tolak Nikah Beda Agama dan Dampaknya Bagi Kita | Layar Kosong | ✅ Perfect |
 | `artikel/monitor-trafik-jaringan-linux-otomatis.html` | Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol - Layar Kosong | Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol | Layar Kosong | ✅ Perfect |
@@ -1853,6 +1854,7 @@ Generated on: 6/7/2026, 2:47:06 PM
 | `lainnya/menguasai-5w1h-penulisan-artikel.html` | Menguasai 5W+1H: Rahasia Artikel Berbobot - Layar Kosong | Menguasai 5W+1H: Rahasia Artikel Berbobot | Layar Kosong | ✅ Perfect |
 | `lainnya/mexico-tolak-trump-board-of-peace.html` | Meksiko Tolak Undangan ke Board of Peace - Layar Kosong | Meksiko Tolak Undangan ke Board of Peace | Layar Kosong | ✅ Perfect |
 | `lainnya/misteri-mr-crack-bj-habibie.html` | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara - Layar Kosong | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara | Layar Kosong | ✅ Perfect |
+| `lainnya/misteri-potongan-token-listrik-ppj.html` | Misteri Token Listrik Rp100 Ribu Berkurang, Ke Mana Duitnya? - Layar Kosong | Misteri Token Listrik Rp100 Ribu Berkurang, Ke Mana Duitnya? | Layar Kosong | ✅ Perfect |
 | `lainnya/mk-nyatakan-uu-pensiun-pejabat-inkonstitusional.html` | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat - Layar Kosong | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat | Layar Kosong | ✅ Perfect |
 | `lainnya/oss-sekolah.html` | Gunakan Perangkat Lunak Bebas Terbuka di Sekolah - Layar Kosong | Gunakan Perangkat Lunak Bebas Terbuka di Sekolah | Layar Kosong | ✅ Perfect |
 | `lainnya/panduan-lengkap-snbp-2026.html` | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator - Layar Kosong | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator | Layar Kosong | ✅ Perfect |
@@ -1865,7 +1867,6 @@ Generated on: 6/7/2026, 2:47:06 PM
 | `lainnya/polemik-mbg-bulan-puasa-2026.html` | Polemik MBG Ramadan 2026: Antara Gizi Anak, Nasib UMKM, dan Ujian Iman - Layar Kosong | Polemik MBG Ramadan 2026: Antara Gizi Anak, Nasib UMKM, dan Ujian Iman | Layar Kosong | ✅ Perfect |
 | `lainnya/polemik-qurban-presiden-apbn.html` | Polemik Qurban Presiden dari APBN: Membedah Dalil "Qurban Atas Nama Umat" - Layar Kosong | Polemik Qurban Presiden dari APBN: Membedah Dalil "Qurban Atas Nama Umat" | Layar Kosong | ✅ Perfect |
 | `lainnya/privasi-layar-kosong.html` | Privasi Kamu Prioritas Kami: Sistem Hapus Data Baru di Layar Kosong - Layar Kosong | Privasi Kamu Prioritas Kami: Sistem Hapus Data Baru di Layar Kosong | Layar Kosong | ⚠️ Partial |
-| `lainnya/program-mbg-bebani-guru-fokus-mengajar-malah-urus-ompreng.html` | Program MBG Bebani Guru: Fokus Mengajar Malah Urus Ompreng - Layar Kosong | Program MBG Bebani Guru: Fokus Mengajar Malah Urus Ompreng | Layar Kosong | ✅ Perfect |
 | `lainnya/prosedur-laporan-polisi-diterima.html` | Cara Agar Laporan Polisi Segera Diterima dan Tidak Ditolak - Layar Kosong | Cara Agar Laporan Polisi Segera Diterima dan Tidak Ditolak | Layar Kosong | ✅ Perfect |
 | `lainnya/pt-badak-ngl.html` | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat - Layar Kosong | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat | Layar Kosong | ✅ Perfect |
 | `lainnya/qanaah-kekayaan-hati-keberuntungan.html` | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati - Layar Kosong | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati | Layar Kosong | ✅ Perfect |
@@ -2147,6 +2148,7 @@ Generated on: 6/7/2026, 2:47:06 PM
 | `opini-sosial/ppdb-sktm-palsu.html` | Fenomena “kemiskinan mendadak” di PPDB - SKTM palsu dan jalan keluarnya - Layar Kosong | Fenomena “kemiskinan mendadak” di PPDB - SKTM palsu dan jalan keluarnya | Layar Kosong | ✅ Perfect |
 | `opini-sosial/pph-pasal-23-atas-bunga-pinjaman.html` | PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan - Layar Kosong | PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/prioritas-pendidikan-vs-makan-gratis.html` | Antara Sekolah Gratis dan Kotak Makan: Menggugat Logika Prioritas Bangsa - Layar Kosong | Antara Sekolah Gratis dan Kotak Makan: Menggugat Logika Prioritas Bangsa | Layar Kosong | ✅ Perfect |
+| `opini-sosial/program-mbg-bebani-guru-fokus-mengajar-malah-urus-ompreng.html` | Program MBG Bebani Guru: Fokus Mengajar Malah Urus Ompreng - Layar Kosong | Program MBG Bebani Guru: Fokus Mengajar Malah Urus Ompreng | Layar Kosong | ✅ Perfect |
 | `opini-sosial/prosedur-pemutusan-kontrak-kerja-sah.html` | Prosedur Pemutusan Kontrak Kerja yang Sah: Panduan Lengkap - Layar Kosong | Prosedur Pemutusan Kontrak Kerja yang Sah: Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `opini-sosial/proyek-produktif-orde-baru-kritik-utang-mbg.html` | Dari Proyek Produktif ke Program Katanya Bergizi - Kritik Utang dan MBG - Layar Kosong | Dari Proyek Produktif ke Program Katanya Bergizi - Kritik Utang dan MBG | Layar Kosong | ✅ Perfect |
 | `opini-sosial/rahmah-adab-dan-rasa.html` | Ketika Ekonomi Cuma Pemicu - Rahmah, Adab, Dan Rasa - Layar Kosong | Ketika Ekonomi Cuma Pemicu - Rahmah, Adab, Dan Rasa | Layar Kosong | ✅ Perfect |
