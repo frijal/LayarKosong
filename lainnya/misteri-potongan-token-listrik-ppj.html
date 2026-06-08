@@ -15,58 +15,84 @@ Hasil kWh yang Didapat = Rp 88.000 ÷ Rp 1.444,70
  const inputPpj = document.getElementById('input-ppj');
  const inputAdmin = document.getElementById('input-admin');
  const resPajak = document.getElementById('res-pajak');
- const resBersih = document.getElementById('res-bersih'); // Sesuaikan id jika ada typo di HTML kamu
+ const resBersih = document.getElementById('res-bersih'); 
  const resKwh = document.getElementById('res-kwh');
- // Fungsi mask ribuan otomatis saat mengetik (menjaga posisi kursor dari kanan)
+
+ // Fungsi mask ribuan otomatis saat mengetik
  function formatMaskRibuan(e) {
  let input = e.target;
  let nilaiLama = input.value;
- // Ambil angka saja
+ 
  let angkaSaja = nilaiLama.replace(/\D/g, '');
  if (!angkaSaja) {
  input.value = '';
  return;
  }
- // Hitung jarak kursor dari ujung kanan tekst agar tidak melompat semenit pun
+ 
  let dariKanan = nilaiLama.length - input.selectionStart;
- // Format ulang ke ribuan lokal (titik)
  let nilaiBaru = parseInt(angkaSaja, 10).toLocaleString('id-ID');
  input.value = nilaiBaru;
- // Kembalikan posisi kursor dengan presisi
+ 
  let posisiBaru = nilaiBaru.length - dariKanan;
  input.setSelectionRange(posisiBaru, posisiBaru);
  }
+
  function kalkulasiToken() {
- // 1. Bersihkan TITIK ribuan khusus untuk Nominal dan Admin uang
- const nominal = parseFloat(inputNominal.value.replace(/\./g, '')) || 0;
+ // 1. Ambil nilai input 
+ // Nominal = Konsumen bayar tanpa biaya admin
+ const nominal = parseFloat(inputNominal.value.replace(/\./g, '')) || 0; 
  const admin = parseFloat(inputAdmin.value.replace(/\./g, '')) || 0;
- // 2. Ambil nilai desimal asli dari browser untuk Tarif dan PPJ (jangan hapus titiknya!)
  const tarif = parseFloat(inputTarif.value) || 0;
  const ppj = parseFloat(inputPpj.value) || 0;
- // Proses Kalkulasi Matematika
+
+ // --- SELESAIKAN DAHULU PERHITUNGAN TANPA ADMIN ---
+ 
+ // Pajak dihitung dari nominal token (uang murni untuk listrik)
  const nilaiPajak = nominal * (ppj / 100);
- const nilaiBersih = nominal - admin - nilaiPajak;
+ 
+ // Nilai bersih = Nominal token dipotong pajak
+ const nilaiBersih = nominal - nilaiPajak;
+
+ // Hitung dapat berapa kWh berdasarkan nilai bersih
  let totalKwh = 0;
  if (tarif > 0 && nilaiBersih > 0) {
  totalKwh = nilaiBersih / tarif;
  }
- // Render hasil ke UI dengan format tampilan Indonesia
+
+ // --- BARU TAMBAHKAN BIAYA ADMIN DI SINI ---
+ 
+ // Admin ditambahkan ke nominal awal untuk jadi "Total Tagihan" konsumen
+ const totalBayar = nominal + admin;
+
+ // --- RENDER HASIL KE UI ---
  resPajak.innerText = 'Rp ' + Math.max(0, nilaiPajak).toLocaleString('id-ID', { maximumFractionDigits: 0 });
+ 
+ // resBersih menampilkan uang yang benar-benar dikonversi jadi listrik (tanpa campur tangan admin)
  resBersih.innerText = 'Rp ' + Math.max(0, nilaiBersih).toLocaleString('id-ID', { maximumFractionDigits: 0 });
- // Batasi 2 angka di belakang koma untuk hasil kuota kWh
+ 
  resKwh.innerText = Math.max(0, totalKwh).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kWh';
+
+ /* TIPS TAMBAHAN:
+ Kalau kamu punya elemen HTML untuk menampilkan "Total yang harus dibayar konsumen"
+ (misalnya <span id="res-total"></span>), kamu bisa aktifkan kode di bawah ini:
+ 
+ document.getElementById('res-total').innerText = 'Rp ' + Math.max(0, totalBayar).toLocaleString('id-ID');
+ */
  }
- // Pasang event pengetikan masker ribuan (hanya untuk kolom uang)
+
+ // Pasang event pengetikan masker ribuan
  [inputNominal, inputAdmin].forEach(element => {
  element.addEventListener('input', formatMaskRibuan);
  });
+
  // Daftarkan semua elemen agar hitung otomatis secara real-time
  [inputNominal, inputTarif, inputPpj, inputAdmin].forEach(element => {
  element.addEventListener('input', kalkulasiToken);
  });
+
  // Jalankan format otomatis saat halaman web pertama kali terbuka sempurna
  window.addEventListener('DOMContentLoaded', () => {
  if (inputNominal.value) inputNominal.value = parseInt(inputNominal.value.replace(/\D/g, ''), 10).toLocaleString('id-ID');
  if (inputAdmin.value) inputAdmin.value = parseInt(inputAdmin.value.replace(/\D/g, ''), 10).toLocaleString('id-ID');
  kalkulasiToken();
- });</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/markdown.js></script><script defer src=/ext/marquee-url.js></script><script defer src=/ext/lightbox.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/response.js></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-07</noscript></html><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+ });</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/markdown.js></script><script defer src=/ext/marquee-url.js></script><script defer src=/ext/lightbox.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/response.js></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-08</noscript></html><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
