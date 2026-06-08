@@ -287,38 +287,70 @@
             </blockquote>
             <p>Poin krusial yang harus digarisbawahi adalah tarif maksimal 10% itu merupakan batas atas nasional. Tarif aktual yang menjerat dompet kamu diatur mandiri oleh Pemerintah Daerah lewat Peraturan Daerah (Perda) masing-masing. Makanya, jangan heran kalau kamu merantau ke kota lain, isi token dengan nominal sama tapi dapet kWh-nya berbeda.</p>
             <h2>Simulasi Perhitungan Token Listrik yang Sebenarnya</h2>
-            <p>Supaya ada gambaran matematis yang jelas dan gak dikira asumsi belaka, mari kita bedah simulasi hitungan nyata di bawah ini menggunakan gaya penulisan kode terstruktur:</p>
+        <p>Supaya ada gambaran matematis yang jelas dan gak dikira asumsi belaka, mari kita bedah simulasi hitungan nyata di bawah ini menggunakan gaya penulisan kode terstruktur:</p>
 <pre><code class="language-math">Nominal Pembelian Token : Rp 100.000 (Uang murni untuk listrik)
 Tarif Listrik Gol R-1   : Rp   1.444,70 / kWh
 Skenario Pemda dengan PBJT / PPJ sebesar 10%:
 ===================================================
-Pajak Daerah (10% dari Nominal) = Rp 10.000
-Duit Bersih untuk Listrik       = Nominal - Pajak
-                                = Rp 100.000 - Rp 10.000
-                                = Rp 90.000
+Duit Bersih untuk Listrik = Nominal Token - Pajak (Sesuai rumus PLN)
+Pajak Daerah (10%)        = Rp 10.000
+Nilai Konversi Listrik    = Rp 100.000 - Rp 10.000
+                          = Rp 90.000
 
-Hasil kWh yang Didapat          = Rp 90.000 ÷ Rp 1.444,70
-                                = 62,3 kWh
-(Jika tanpa potongan pajak, harusnya kamu dapet 69,2 kWh!)
+Hasil kWh yang Didapat    = Rp 90.000 ÷ Rp 1.444,70
+                          = 62,30 kWh
+(Jika tanpa potongan pajak, harusnya kamu dapet 69,22 kWh!)
 ===================================================
-Biaya Admin Vendor (Ditambahkan)= Rp   2.000 
-Total Bayar Konsumen            = Nominal + Admin
-                                = Rp 102.000
+Biaya Admin Vendor        = Rp   2.000 (Sifatnya ditambahkan)
+Total Bayar Konsumen      = Rp 100.000 + Rp 2.000
+                          = Rp 102.000
 </code></pre>
 
 <section class="calc-wrapper">
     <h3>⚡ Kalkulator Simulasi Token Listrik</h3>
-    <p>Ubah nilai di bawah ini untuk menghitung secara riil potongan pajak daerah kamu dan melihat bersih kWh yang didapatkan:</p>
+    <p>Pilih golongan daya dan ubah nominal di bawah ini untuk menghitung secara riil potongan pajak daerah serta bersih kWh yang didapatkan:</p>
     
     <div class="calc-grid">
         <div class="form-group">
             <label for="input-nominal">Nominal Pembayaran Murni (Rp)</label>
             <input type="text" id="input-nominal" value="100.000">
         </div>
+        
+        <!-- Dropdown Tarif Listrik Berdasarkan Kompas -->
         <div class="form-group">
-            <label for="input-tarif">Tarif Listrik per kWh (Rp)</label>
-            <input type="number" id="input-tarif" value="1444.70" step="0.01">
+            <label for="input-tarif">Golongan & Daya Listrik</label>
+            <select id="input-tarif">
+                <optgroup label="Rumah Tangga (Non-Subsidi)">
+                    <option value="1352">900 VA - Rp 1.352/kWh</option>
+                    <option value="1444.70" selected>1.300 s/d 2.200 VA - Rp 1.444,70/kWh</option>
+                    <option value="1699.53">3.500 s/d 5.500 VA - Rp 1.699,53/kWh</option>
+                    <option value="1699.53">≥ 6.600 VA - Rp 1.699,53/kWh</option>
+                </optgroup>
+                <optgroup label="Rumah Tangga (Subsidi)">
+                    <option value="415">450 VA - Rp 415/kWh</option>
+                    <option value="605">900 VA - Rp 605/kWh</option>
+                </optgroup>
+                <optgroup label="Bisnis">
+                    <option value="325">450 VA - Rp 325/kWh</option>
+                    <option value="455">900 VA - Rp 455/kWh</option>
+                    <option value="708">1.300 VA - Rp 708/kWh</option>
+                    <option value="760">2.200 VA - Rp 760/kWh</option>
+                    <option value="900">3.500 VA s/d 200 kVA - Rp 900/kWh</option>
+                    <option value="1114.74">> 200 kVA - Rp 1.114,74/kWh</option>
+                </optgroup>
+                <optgroup label="Industri">
+                    <option value="1114.74">> 200 kVA - Rp 1.114,74/kWh</option>
+                    <option value="996.74">> 30.000 kVA - Rp 996,74/kWh</option>
+                </optgroup>
+                <optgroup label="Fasilitas Umum & Pemerintah">
+                    <option value="1699.53">6.600 VA s/d 200 kVA - Rp 1.699,53/kWh</option>
+                    <option value="1522.88">> 200 kVA - Rp 1.522,88/kWh</option>
+                    <option value="1699.53">Penerangan Jalan Umum - Rp 1.699,53/kWh</option>
+                    <option value="1644.52">Layanan Khusus (L) - Rp 1.644,52/kWh</option>
+                </optgroup>
+            </select>
         </div>
+
         <div class="form-group">
             <label for="input-ppj">Pajak Daerah / PBJT (%)</label>
             <input type="number" id="input-ppj" value="10" step="0.1">
@@ -340,7 +372,7 @@ Total Bayar Konsumen            = Nominal + Admin
         </div>
         <div class="result-row">
             <span>Total Kuota Listrik Didapat</span>
-            <span id="res-kwh">62.30 kWh</span>
+            <span id="res-kwh">62.30 kWh</span> 
         </div>
         <div class="result-row">
             <span>Total yang Harus Dibayar</span>
@@ -348,6 +380,87 @@ Total Bayar Konsumen            = Nominal + Admin
         </div>
     </div>
 </section>
+
+<script>
+    const inputNominal = document.getElementById('input-nominal');
+    const inputTarif = document.getElementById('input-tarif'); // Sekarang ini elemen <select>
+    const inputPpj = document.getElementById('input-ppj');
+    const inputAdmin = document.getElementById('input-admin');
+    const resPajak = document.getElementById('res-pajak');
+    const resBersih = document.getElementById('res-bersih');
+    const resKwh = document.getElementById('res-kwh');
+    const resTotal = document.getElementById('res-total');
+
+    function formatMaskRibuan(e) {
+        let input = e.target;
+        let nilaiLama = input.value;
+        let angkaSaja = nilaiLama.replace(/\D/g, '');
+        if (!angkaSaja) {
+            input.value = '';
+            return;
+        }
+        let dariKanan = nilaiLama.length - input.selectionStart;
+        let nilaiBaru = parseInt(angkaSaja, 10).toLocaleString('id-ID');
+        input.value = nilaiBaru;
+        let posisiBaru = nilaiBaru.length - dariKanan;
+        input.setSelectionRange(posisiBaru, posisiBaru);
+    }
+
+    function kalkulasiToken() {
+        const nominal = parseFloat(inputNominal.value.replace(/\./g, '')) || 0;
+        const admin = parseFloat(inputAdmin.value.replace(/\./g, '')) || 0;
+        
+        // Value dari dropdown yang dipilih langsung ditarik sebagai float
+        const tarif = parseFloat(inputTarif.value) || 0;
+        const ppj = parseFloat(inputPpj.value) || 0;
+
+        // --- RUMUS PLN ---
+        const nilaiPajak = nominal * (ppj / 100);
+        const nilaiBersih = nominal - nilaiPajak;
+
+        let totalKwh = 0;
+        if (tarif > 0 && nilaiBersih > 0) {
+            totalKwh = nilaiBersih / tarif;
+        }
+
+        const totalBayar = nominal + admin;
+
+        // --- RENDER UI ---
+        resPajak.innerText = 'Rp ' + Math.max(0, nilaiPajak).toLocaleString('id-ID', { maximumFractionDigits: 0 });
+        resBersih.innerText = 'Rp ' + Math.max(0, nilaiBersih).toLocaleString('id-ID', { maximumFractionDigits: 0 });
+        resKwh.innerText = Math.max(0, totalKwh).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kWh';
+        
+        if (resTotal) {
+            resTotal.innerText = 'Rp ' + Math.max(0, totalBayar).toLocaleString('id-ID', { maximumFractionDigits: 0 });
+        }
+    }
+
+    // Mask ribuan hanya untuk input uang
+    [inputNominal, inputAdmin].forEach(element => {
+        if (element) element.addEventListener('input', formatMaskRibuan);
+    });
+
+    // Pemicu kalkulasi untuk input text/number
+    [inputNominal, inputPpj, inputAdmin].forEach(element => {
+        if (element) element.addEventListener('input', kalkulasiToken);
+    });
+
+    // Pemicu khusus dropdown (menggunakan 'change' agar lebih responsif lintas browser)
+    if (inputTarif) {
+        inputTarif.addEventListener('change', kalkulasiToken);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (inputNominal && inputNominal.value) {
+            inputNominal.value = parseInt(inputNominal.value.replace(/\D/g, ''), 10).toLocaleString('id-ID');
+        }
+        if (inputAdmin && inputAdmin.value) {
+            inputAdmin.value = parseInt(inputAdmin.value.replace(/\D/g, ''), 10).toLocaleString('id-ID');
+        }
+        kalkulasiToken();
+    });
+</script>
+
 
             <p>Dari angka di atas, kelihatan jelas kalau selisihnya lumayan banget buat nyalain beberapa lampu hemat energi di dalam rumah sepanjang bulan.</p>
             <h2>Langkah Bijak Mulai Hari Ini</h2>
