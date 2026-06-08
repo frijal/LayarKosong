@@ -288,55 +288,67 @@
             <p>Poin krusial yang harus digarisbawahi adalah tarif maksimal 10% itu merupakan batas atas nasional. Tarif aktual yang menjerat dompet kamu diatur mandiri oleh Pemerintah Daerah lewat Peraturan Daerah (Perda) masing-masing. Makanya, jangan heran kalau kamu merantau ke kota lain, isi token dengan nominal sama tapi dapet kWh-nya berbeda.</p>
             <h2>Simulasi Perhitungan Token Listrik yang Sebenarnya</h2>
             <p>Supaya ada gambaran matematis yang jelas dan gak dikira asumsi belaka, mari kita bedah simulasi hitungan nyata di bawah ini menggunakan gaya penulisan kode terstruktur:</p>
-<pre><code class="language-math">Nominal Pembelian Token : Rp 100.000
-Biaya Admin Aplikasi    : Rp   2.000 (Asumsi)
+<pre><code class="language-math">Nominal Pembelian Token : Rp 100.000 (Uang murni untuk listrik)
 Tarif Listrik Gol R-1   : Rp   1.444,70 / kWh
 Skenario Pemda dengan PBJT / PPJ sebesar 10%:
 ===================================================
-Duit Bersih untuk Listrik = Nominal - Admin - Pajak
-Pajak Daerah (10%)        = Rp 10.000
-Nilai Konversi Listrik    = Rp 100.000 - Rp 2.000 - Rp 10.000
-                          = Rp 88.000
-Hasil kWh yang Didapat    = Rp 88.000 ÷ Rp 1.444,70
-                          = 60,9 kWh
+Pajak Daerah (10% dari Nominal) = Rp 10.000
+Duit Bersih untuk Listrik       = Nominal - Pajak
+                                = Rp 100.000 - Rp 10.000
+                                = Rp 90.000
+
+Hasil kWh yang Didapat          = Rp 90.000 ÷ Rp 1.444,70
+                                = 62,3 kWh
 (Jika tanpa potongan pajak, harusnya kamu dapet 69,2 kWh!)
+===================================================
+Biaya Admin Vendor (Ditambahkan)= Rp   2.000 
+Total Bayar Konsumen            = Nominal + Admin
+                                = Rp 102.000
 </code></pre>
-            <section class="calc-wrapper">
-                <h3>⚡ Kalkulator Simulasi Token Listrik</h3>
-                <p>Ubah nilai di bawah ini untuk menghitung secara riil potongan pajak daerah kamu dan melihat bersih kWh yang didapatkan:</p>
-                <div class="calc-grid">
-                    <div class="form-group">
-    <label for="input-nominal">Nominal Pembayaran (Rp)</label>
-    <input type="text" id="input-nominal" value="100.000">
-</div>
-<div class="form-group">
-    <label for="input-tarif">Tarif Listrik per kWh (Rp)</label>
-    <input type="number" id="input-tarif" value="1444.70" step="0.01">
-</div>
-<div class="form-group">
-    <label for="input-ppj">Pajak Daerah / PBJT (%)</label>
-    <input type="number" id="input-ppj" value="10" step="0.1">
-</div>
-<div class="form-group">
-    <label for="input-admin">Biaya Admin Vendor (Rp)</label>
-    <input type="text" id="input-admin" value="2.000">
-</div>
-                </div>
-                <div class="calc-results">
-                    <div class="result-row">
-                        <span>Potongan Pajak Daerah (PBJT)</span>
-                        <span id="res-pajak">Rp 10.000</span>
-                    </div>
-                    <div class="result-row">
-                        <span>Duit Bersih untuk Listrik</span>
-                        <span id="res-bersih">Rp 88.000</span>
-                    </div>
-                    <div class="result-row">
-                        <span>Total Kuota Listrik Didapat</span>
-                        <span id="res-kwh">60.91 kWh</span>
-                    </div>
-                </div>
-            </section>
+
+<section class="calc-wrapper">
+    <h3>⚡ Kalkulator Simulasi Token Listrik</h3>
+    <p>Ubah nilai di bawah ini untuk menghitung secara riil potongan pajak daerah kamu dan melihat bersih kWh yang didapatkan:</p>
+    
+    <div class="calc-grid">
+        <div class="form-group">
+            <label for="input-nominal">Nominal Pembayaran Murni (Rp)</label>
+            <input type="text" id="input-nominal" value="100.000">
+        </div>
+        <div class="form-group">
+            <label for="input-tarif">Tarif Listrik per kWh (Rp)</label>
+            <input type="number" id="input-tarif" value="1444.70" step="0.01">
+        </div>
+        <div class="form-group">
+            <label for="input-ppj">Pajak Daerah / PBJT (%)</label>
+            <input type="number" id="input-ppj" value="10" step="0.1">
+        </div>
+        <div class="form-group">
+            <label for="input-admin">Biaya Admin Vendor (Rp)</label>
+            <input type="text" id="input-admin" value="2.000">
+        </div>
+    </div>
+
+    <div class="calc-results">
+        <div class="result-row">
+            <span>Potongan Pajak Daerah (PBJT)</span>
+            <span id="res-pajak">Rp 10.000</span>
+        </div>
+        <div class="result-row">
+            <span>Duit Bersih untuk Listrik</span>
+            <span id="res-bersih">Rp 90.000</span>
+        </div>
+        <div class="result-row">
+            <span>Total Kuota Listrik Didapat</span>
+            <span id="res-kwh">62.30 kWh</span>
+        </div>
+        <div class="result-row">
+            <span>Total yang Harus Dibayar</span>
+            <span id="res-total">Rp 102.000</span>
+        </div>
+    </div>
+</section>
+
             <p>Dari angka di atas, kelihatan jelas kalau selisihnya lumayan banget buat nyalain beberapa lampu hemat energi di dalam rumah sepanjang bulan.</p>
             <h2>Langkah Bijak Mulai Hari Ini</h2>
             <p>Melihat realita yang ada, ada dua hal penting yang bisa kita lakukan sebagai konsumen yang cerdas mulai sekarang:</p>
