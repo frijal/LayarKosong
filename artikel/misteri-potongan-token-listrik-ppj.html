@@ -141,7 +141,7 @@
             font-size: 0.95rem;
             font-weight: 600;
         }
-        .form-group input {
+        .form-group input, .form-group select {
             padding: 0.6rem 0.75rem;
             font-size: 1rem;
             background-color: var(--input-bg);
@@ -150,7 +150,7 @@
             border-radius: 0.25rem;
             width: 100%;
         }
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus {
             outline: 2px solid var(--accent-color);
         }
         .calc-results {
@@ -381,9 +381,30 @@ Total Bayar Konsumen      = Rp 100.000 + Rp 2.000
     </div>
 </section>
 
+            <p>Dari angka di atas, kelihatan jelas kalau selisihnya lumayan banget buat nyalain beberapa lampu hemat energi di dalam rumah sepanjang bulan.</p>
+            <h2>Langkah Bijak Mulai Hari Ini</h2>
+            <p>Melihat realita yang ada, ada dua hal penting yang bisa kita lakukan sebagai konsumen yang cerdas mulai sekarang:</p>
+            <p>1. **Cek aplikasi atau struk fisik token kamu sekarang.** Cari baris komponen PPJ atau PBJT. Cari tahu daerah kamu mematok angka berapa persen. Itu adalah hak mutlak kamu sebagai warga negara dan pembayar pajak buat tahu ke mana uang itu pergi.</p>
+            <p>2. **Berhenti maki-maki petugas PLN atau CS mereka buat urusan ini.** Mereka cuma kasir administratif. Yang memegang duit melimpah dan bertanggung jawab penuh atas pengadaan lampu jalan itu adalah jajaran pemerintah daerah lo.</p>
+            <p>Pajak itu wajar dan penting buat pembangunan bersama. Tapi prinsip keadilan dasarnya adalah pajak yang kamu bayar secara rutin harusnya balik lagi ke kamu dalam bentuk fasilitas nyata: jalanan umum yang terang, aman, dan nyaman di malam hari. ~~Gak ada lagi cerita gang gelap berhantu~~ padahal tiap minggu warganya rajin beli token listrik.</p>
+            <p>Temen aku yang kerja di PLN tadi mengakhiri obrolan kopi kita dengan kalimat yang ngena banget. "Aku sih gak masalah ditugasin buat mungut pajak daerah itu lewat sistem kita. Yang bikin kesel itu cuma satu, kita yang kena semprot makian di gardu, padahal duitnya cuma numpang lewat doang ke rekening orang lain."</p>
+            <p>Jadi, lain kali kamu isi ulang token listrik dan ngerasa isi kWh-nya lemes atau kepotong banyak, kamu udah tahu sekarang siapa dalang di baliknya. Yang motong bukan yang kamu maki. Dan kalau lampu jalan di depan rumah kamu masih gelap gulita sampai detik ini, ingat baik-baik: *lo sebenernya udah bayar lunas porsi lo.*</p>
+        </article>
+        <hr>
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+        <footer class="footer-meta">
+            <span>Diterbitkan Oleh: <strong>Tim Redaksi Layar Kosong</strong></span>
+            <span>|</span>
+            <span>Tanggal Publikasi: <strong>7 Juni 2026</strong></span>
+            <span>|</span>
+            <span>Referensi Regulasi: <a href="https://peraturan.bpk.go.id/" target="_blank" rel="noopener noreferrer">JDIH BPK RI (PP No. 4 Tahun 2023)</a></span>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+    </main>
+
 <script>
     const inputNominal = document.getElementById('input-nominal');
-    const inputTarif = document.getElementById('input-tarif'); // Sekarang ini elemen <select>
+    const inputTarif = document.getElementById('input-tarif'); // Ini sudah berupa elemen select
     const inputPpj = document.getElementById('input-ppj');
     const inputAdmin = document.getElementById('input-admin');
     const resPajak = document.getElementById('res-pajak');
@@ -391,6 +412,7 @@ Total Bayar Konsumen      = Rp 100.000 + Rp 2.000
     const resKwh = document.getElementById('res-kwh');
     const resTotal = document.getElementById('res-total');
 
+    // Fungsi mask ribuan otomatis saat mengetik
     function formatMaskRibuan(e) {
         let input = e.target;
         let nilaiLama = input.value;
@@ -457,116 +479,6 @@ Total Bayar Konsumen      = Rp 100.000 + Rp 2.000
         if (inputAdmin && inputAdmin.value) {
             inputAdmin.value = parseInt(inputAdmin.value.replace(/\D/g, ''), 10).toLocaleString('id-ID');
         }
-        kalkulasiToken();
-    });
-</script>
-
-
-            <p>Dari angka di atas, kelihatan jelas kalau selisihnya lumayan banget buat nyalain beberapa lampu hemat energi di dalam rumah sepanjang bulan.</p>
-            <h2>Langkah Bijak Mulai Hari Ini</h2>
-            <p>Melihat realita yang ada, ada dua hal penting yang bisa kita lakukan sebagai konsumen yang cerdas mulai sekarang:</p>
-            <p>1. **Cek aplikasi atau struk fisik token kamu sekarang.** Cari baris komponen PPJ atau PBJT. Cari tahu daerah kamu mematok angka berapa persen. Itu adalah hak mutlak kamu sebagai warga negara dan pembayar pajak buat tahu ke mana uang itu pergi.</p>
-            <p>2. **Berhenti maki-maki petugas PLN atau CS mereka buat urusan ini.** Mereka cuma kasir administratif. Yang memegang duit melimpah dan bertanggung jawab penuh atas pengadaan lampu jalan itu adalah jajaran pemerintah daerah lo.</p>
-            <p>Pajak itu wajar dan penting buat pembangunan bersama. Tapi prinsip keadilan dasarnya adalah pajak yang kamu bayar secara rutin harusnya balik lagi ke kamu dalam bentuk fasilitas nyata: jalanan umum yang terang, aman, dan nyaman di malam hari. ~~Gak ada lagi cerita gang gelap berhantu~~ padahal tiap minggu warganya rajin beli token listrik.</p>
-            <p>Temen aku yang kerja di PLN tadi mengakhiri obrolan kopi kita dengan kalimat yang ngena banget. "Aku sih gak masalah ditugasin buat mungut pajak daerah itu lewat sistem kita. Yang bikin kesel itu cuma satu, kita yang kena semprot makian di gardu, padahal duitnya cuma numpang lewat doang ke rekening orang lain."</p>
-            <p>Jadi, lain kali kamu isi ulang token listrik dan ngerasa isi kWh-nya lemes atau kepotong banyak, kamu udah tahu sekarang siapa dalang di baliknya. Yang motong bukan yang kamu maki. Dan kalau lampu jalan di depan rumah kamu masih gelap gulita sampai detik ini, ingat baik-baik: *lo sebenernya udah bayar lunas porsi lo.*</p>
-        </article>
-        <hr>
-        <div id="related-articles-grid"></div>
-        <div id="response"></div>
-        <footer class="footer-meta">
-            <span>Diterbitkan Oleh: <strong>Tim Redaksi Layar Kosong</strong></span>
-            <span>|</span>
-            <span>Tanggal Publikasi: <strong>7 Juni 2026</strong></span>
-            <span>|</span>
-            <span>Referensi Regulasi: <a href="https://peraturan.bpk.go.id/" target="_blank" rel="noopener noreferrer">JDIH BPK RI (PP No. 4 Tahun 2023)</a></span>
-        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-    </main>
-  <script>
-    const inputNominal = document.getElementById('input-nominal');
-    const inputTarif = document.getElementById('input-tarif');
-    const inputPpj = document.getElementById('input-ppj');
-    const inputAdmin = document.getElementById('input-admin');
-    const resPajak = document.getElementById('res-pajak');
-    const resBersih = document.getElementById('res-bersih'); 
-    const resKwh = document.getElementById('res-kwh');
-
-    // Fungsi mask ribuan otomatis saat mengetik
-    function formatMaskRibuan(e) {
-        let input = e.target;
-        let nilaiLama = input.value;
-        
-        let angkaSaja = nilaiLama.replace(/\D/g, '');
-        if (!angkaSaja) {
-            input.value = '';
-            return;
-        }
-        
-        let dariKanan = nilaiLama.length - input.selectionStart;
-        let nilaiBaru = parseInt(angkaSaja, 10).toLocaleString('id-ID');
-        input.value = nilaiBaru;
-        
-        let posisiBaru = nilaiBaru.length - dariKanan;
-        input.setSelectionRange(posisiBaru, posisiBaru);
-    }
-
-    function kalkulasiToken() {
-        // 1. Ambil nilai input 
-        // Nominal = Konsumen bayar tanpa biaya admin
-        const nominal = parseFloat(inputNominal.value.replace(/\./g, '')) || 0; 
-        const admin = parseFloat(inputAdmin.value.replace(/\./g, '')) || 0;
-        const tarif = parseFloat(inputTarif.value) || 0;
-        const ppj = parseFloat(inputPpj.value) || 0;
-
-        // --- SELESAIKAN DAHULU PERHITUNGAN TANPA ADMIN ---
-        
-        // Pajak dihitung dari nominal token (uang murni untuk listrik)
-        const nilaiPajak = nominal * (ppj / 100);
-        
-        // Nilai bersih = Nominal token dipotong pajak
-        const nilaiBersih = nominal - nilaiPajak;
-
-        // Hitung dapat berapa kWh berdasarkan nilai bersih
-        let totalKwh = 0;
-        if (tarif > 0 && nilaiBersih > 0) {
-            totalKwh = nilaiBersih / tarif;
-        }
-
-        // --- BARU TAMBAHKAN BIAYA ADMIN DI SINI ---
-        
-        // Admin ditambahkan ke nominal awal untuk jadi "Total Tagihan" konsumen
-        const totalBayar = nominal + admin;
-
-        // --- RENDER HASIL KE UI ---
-        resPajak.innerText = 'Rp ' + Math.max(0, nilaiPajak).toLocaleString('id-ID', { maximumFractionDigits: 0 });
-        
-        // resBersih menampilkan uang yang benar-benar dikonversi jadi listrik (tanpa campur tangan admin)
-        resBersih.innerText = 'Rp ' + Math.max(0, nilaiBersih).toLocaleString('id-ID', { maximumFractionDigits: 0 });
-        
-        resKwh.innerText = Math.max(0, totalKwh).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kWh';
-
-        /* TIPS TAMBAHAN:
-        Kalau kamu punya elemen HTML untuk menampilkan "Total yang harus dibayar konsumen"
-        (misalnya <span id="res-total"></span>), kamu bisa aktifkan kode di bawah ini:
-        
-        document.getElementById('res-total').innerText = 'Rp ' + Math.max(0, totalBayar).toLocaleString('id-ID');
-        */
-    }
-
-    // Pasang event pengetikan masker ribuan
-    [inputNominal, inputAdmin].forEach(element => {
-        element.addEventListener('input', formatMaskRibuan);
-    });
-
-    // Daftarkan semua elemen agar hitung otomatis secara real-time
-    [inputNominal, inputTarif, inputPpj, inputAdmin].forEach(element => {
-        element.addEventListener('input', kalkulasiToken);
-    });
-
-    // Jalankan format otomatis saat halaman web pertama kali terbuka sempurna
-    window.addEventListener('DOMContentLoaded', () => {
-        if (inputNominal.value) inputNominal.value = parseInt(inputNominal.value.replace(/\D/g, ''), 10).toLocaleString('id-ID');
-        if (inputAdmin.value) inputAdmin.value = parseInt(inputAdmin.value.replace(/\D/g, ''), 10).toLocaleString('id-ID');
         kalkulasiToken();
     });
 </script>
