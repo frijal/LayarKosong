@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/10/2026, 4:29:52 PM
+Generated on: 6/11/2026, 4:45:18 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/10/2026, 4:29:52 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v21.25 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v21.26 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -889,6 +889,7 @@ Generated on: 6/10/2026, 4:29:52 PM
 | `artikel/mengubah-gambar-ke-pdf-imagemagick.html` | Mengubah Banyak Gambar Menjadi PDF dengan ImageMagick - Layar Kosong | Mengubah Banyak Gambar Menjadi PDF dengan ImageMagick | Layar Kosong | ✅ Perfect |
 | `artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html` | Batch Resize Foto dengan ImageMagick - Simpan ke Folder Terpisah - Layar Kosong | Batch Resize Foto dengan ImageMagick - Simpan ke Folder Terpisah | Layar Kosong | ✅ Perfect |
 | `artikel/mengulik-alat-sadap-canggih-kpk.html` | Mengulik Alat Sadap Canggih KPK Telinga Raksasa yang Membuat Koruptor Gemetar - Layar Kosong | Mengulik Alat Sadap Canggih KPK Telinga Raksasa yang Membuat Koruptor Gemetar | Layar Kosong | ✅ Perfect |
+| `artikel/mengurai-anatomi-harga-pertamax.html` | Anatomi Harga Pertamax dan Realitas Sektor Energi RI - Layar Kosong | Anatomi Harga Pertamax dan Realitas Sektor Energi RI | Layar Kosong | ✅ Perfect |
 | `artikel/meningkatkan-performa-firefox-dengan-tweaks-css.html` | Meningkatkan Performa Firefox dengan Tweaks CSS - Panduan Lengkap - Layar Kosong | Meningkatkan Performa Firefox dengan Tweaks CSS - Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/menjalankan-rencana.html` | Pentingnya Menjalankan Rencana di Era Digital: Strategi Prioritas dan Produktivitas - Layar Kosong | Pentingnya Menjalankan Rencana di Era Digital: Strategi Prioritas dan Produktivitas | Layar Kosong | ✅ Perfect |
 | `artikel/menonaktifkan-koneksi-otomatis-firefox.html` | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian - Layar Kosong | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian | Layar Kosong | ✅ Perfect |
@@ -1852,6 +1853,7 @@ Generated on: 6/10/2026, 4:29:52 PM
 | `lainnya/menggugat-koperasi-merah-putih.html` | Menggugat Koperasi Merah Putih: Proyek Rakyat atau Cuan Pejabat? - Layar Kosong | Menggugat Koperasi Merah Putih: Proyek Rakyat atau Cuan Pejabat? | Layar Kosong | ✅ Perfect |
 | `lainnya/menggugat-otoritas-keagamaan-mui.html` | MENGGUGAT OTORITAS KEAGAMAAN MUI: Tuhan Kok Diwakili? - Layar Kosong | MENGGUGAT OTORITAS KEAGAMAAN MUI: Tuhan Kok Diwakili? | Layar Kosong | ✅ Perfect |
 | `lainnya/menguasai-5w1h-penulisan-artikel.html` | Menguasai 5W+1H: Rahasia Artikel Berbobot - Layar Kosong | Menguasai 5W+1H: Rahasia Artikel Berbobot | Layar Kosong | ✅ Perfect |
+| `lainnya/mengurai-anatomi-harga-pertamax.html` | Anatomi Harga Pertamax dan Realitas Sektor Energi RI - Layar Kosong | Anatomi Harga Pertamax dan Realitas Sektor Energi RI | Layar Kosong | ✅ Perfect |
 | `lainnya/mexico-tolak-trump-board-of-peace.html` | Meksiko Tolak Undangan ke Board of Peace - Layar Kosong | Meksiko Tolak Undangan ke Board of Peace | Layar Kosong | ✅ Perfect |
 | `lainnya/misteri-mr-crack-bj-habibie.html` | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara - Layar Kosong | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara | Layar Kosong | ✅ Perfect |
 | `lainnya/misteri-potongan-token-listrik-ppj.html` | Misteri Token Listrik Rp100 Ribu Berkurang, Ke Mana Duitnya? - Layar Kosong | Misteri Token Listrik Rp100 Ribu Berkurang, Ke Mana Duitnya? | Layar Kosong | ✅ Perfect |
