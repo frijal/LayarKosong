@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/11/2026, 4:45:18 PM
+Generated on: 6/12/2026, 4:12:22 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/11/2026, 4:45:18 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v21.26 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v21.28 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1135,7 +1135,7 @@ Generated on: 6/11/2026, 4:45:18 PM
 | `artikel/prosedur-pemutusan-kontrak-kerja-sah.html` | Prosedur Pemutusan Kontrak Kerja yang Sah: Panduan Lengkap - Layar Kosong | Prosedur Pemutusan Kontrak Kerja yang Sah: Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/proyek-produktif-orde-baru-kritik-utang-mbg.html` | Dari Proyek Produktif ke Program Katanya Bergizi - Kritik Utang dan MBG - Layar Kosong | Dari Proyek Produktif ke Program Katanya Bergizi - Kritik Utang dan MBG | Layar Kosong | ✅ Perfect |
 | `artikel/pt-badak-ngl.html` | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat - Layar Kosong | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat | Layar Kosong | ✅ Perfect |
-| `artikel/pusat-instalasi-linux.html` | Pusat Instalasi Linux: Ide Gila yang Dibutuhkan - Layanan Tatap Muka untuk Semua - Layar Kosong | Pusat Instalasi Linux: Ide Gila yang Dibutuhkan - Layanan Tatap Muka untuk Semua | Layar Kosong | ✅ Perfect |
+| `artikel/pusat-instalasi-linux.html` | Pusat Instalasi Linux: Menjangkau Semua Kalangan Tanpa Ketakutan - Layar Kosong | Pusat Instalasi Linux: Menjangkau Semua Kalangan Tanpa Ketakutan | Layar Kosong | ✅ Perfect |
 | `artikel/qanaah-kekayaan-hati-keberuntungan.html` | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati - Layar Kosong | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati | Layar Kosong | ✅ Perfect |
 | `artikel/qordoba-kilau-peradaban-andalusia.html` | Qordoba: Kilau Peradaban Andalusia - Layar Kosong | Qordoba: Kilau Peradaban Andalusia | Layar Kosong | ✅ Perfect |
 | `artikel/qrcodegenerator.html` | QR Code Generator - Buat QR Code Gratis & Cepat - Layar Kosong | QR Code Generator - Buat QR Code Gratis & Cepat | Layar Kosong | ✅ Perfect |
@@ -1236,7 +1236,7 @@ Generated on: 6/11/2026, 4:45:18 PM
 | `artikel/self-hosting-debian-pemula.html` | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! - Layar Kosong | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! | Layar Kosong | ✅ Perfect |
 | `artikel/selisih-utang-negara-indonesia.html` | Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi - Layar Kosong | Analisis Selisih Utang Negara Indonesia Tiap Era Presiden dari Soekarno hingga Jokowi | Layar Kosong | ✅ Perfect |
 | `artikel/sembelit.html` | Sulit Buang Air Besar (Sembelit) - Penyebab, Cara Mengatasi & Pencegahan - Layar Kosong | Sulit Buang Air Besar (Sembelit) - Penyebab, Cara Mengatasi & Pencegahan | Layar Kosong | ✅ Perfect |
-| `artikel/semver-7-7-3.html` | semver@7.8.3: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.3: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
+| `artikel/semver-7-7-3.html` | semver@7.8.4: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.4: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
 | `artikel/seni-digital-masa-depan-kreativitas.html` | Eksplorasi Seni Digital: Dari Konsep Visual Hingga Peluang Masa DepanSeni Digital Masa Depan Kreativitas di Era Modern . Jaga Data Pribadi Tetap Aman - Layar Kosong | Eksplorasi Seni Digital: Dari Konsep Visual Hingga Peluang Masa DepanSeni Digital Masa Depan Kreativitas di Era Modern . Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `artikel/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `artikel/seni-menurut-tarjih-muhammadiyah.html` | Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨 - Layar Kosong | Panduan Santai Hukum Seni Menurut Tarjih Muhammadiyah Biar Nggak Salah Paham 🎨 | Layar Kosong | ✅ Perfect |
@@ -1293,7 +1293,7 @@ Generated on: 6/11/2026, 4:45:18 PM
 | `artikel/stricken-disturbed-makna-lirik.html` | Makna Mendalam Lagu Stricken Disturbed - Layar Kosong | Makna Mendalam Lagu Stricken Disturbed | Layar Kosong | ✅ Perfect |
 | `artikel/struktur-berkas-direktori-linux.html` | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai - Layar Kosong | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai | Layar Kosong | ✅ Perfect |
 | `artikel/stuttering-cachyos-i5-dual-core.html` | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 - Layar Kosong | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 | Layar Kosong | ✅ Perfect |
-| `artikel/suara-hati-foss-kaltim-pemilukada.html` | Suara Hati FOSS Kaltim Menjelang Pemilukada - Layar Kosong | Suara Hati FOSS Kaltim Menjelang Pemilukada | Layar Kosong | ✅ Perfect |
+| `artikel/suara-hati-foss-kaltim-pemilukada.html` | Pemilukada Kaltim: Suara Hati Penggiat FOSS & Aspirasi Digital - Layar Kosong | Pemilukada Kaltim: Suara Hati Penggiat FOSS & Aspirasi Digital | Layar Kosong | ✅ Perfect |
 | `artikel/suara-senyap-tembok-tinggi.html` | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat - Layar Kosong | Suara Senyap dari Tembok Tinggi Analisis Krisis Kepercayaan dan Dilema Perlawanan Rakyat | Layar Kosong | ✅ Perfect |
 | `artikel/sudah-jauh-banget-generasi-kita.html` | Sudah "Jauh" Banget Apa Ya, Generasi Penerus Kita? - Refleksi Pendidikan Islam - Layar Kosong | Sudah "Jauh" Banget Apa Ya, Generasi Penerus Kita? - Refleksi Pendidikan Islam | Layar Kosong | ✅ Perfect |
 | `artikel/sudo-tanpa-password.html` | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) - Layar Kosong | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) | Layar Kosong | ✅ Perfect |
@@ -2489,7 +2489,7 @@ Generated on: 6/11/2026, 4:45:18 PM
 | `sistem-terbuka/pip-cache-bersih.html` | Mengecilkan Folder pip Cache dan http-v2 di Linux - Layar Kosong | Mengecilkan Folder pip Cache dan http-v2 di Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/prediksi-linux-desktop-2026.html` | Ramalan Linux Desktop 2026: AI Lokal, Kejayaan Rust, hingga Invasi Wayland! 🐧 - Layar Kosong | Ramalan Linux Desktop 2026: AI Lokal, Kejayaan Rust, hingga Invasi Wayland! 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/presto-yum.html` | YUM Presto: Hemat Bandwidth Saat Update - Layar Kosong | YUM Presto: Hemat Bandwidth Saat Update | Layar Kosong | ✅ Perfect |
-| `sistem-terbuka/pusat-instalasi-linux.html` | Pusat Instalasi Linux: Ide Gila yang Dibutuhkan - Layanan Tatap Muka untuk Semua - Layar Kosong | Pusat Instalasi Linux: Ide Gila yang Dibutuhkan - Layanan Tatap Muka untuk Semua | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/pusat-instalasi-linux.html` | Pusat Instalasi Linux: Menjangkau Semua Kalangan Tanpa Ketakutan - Layar Kosong | Pusat Instalasi Linux: Menjangkau Semua Kalangan Tanpa Ketakutan | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/rating-distro-linux.html` | Rating distro Linux: makna, metrik, dan cara memilih bijak - Layar Kosong | Rating distro Linux: makna, metrik, dan cara memilih bijak | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/realtek-rtl8723be.html` | Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux - Layar Kosong | Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/refind-cachyos-theme.html` | rEFInd Theme CachyOS Arch Linux - Layar Kosong | rEFInd Theme CachyOS Arch Linux | Layar Kosong | ✅ Perfect |
@@ -2535,7 +2535,7 @@ Generated on: 6/11/2026, 4:45:18 PM
 | `sistem-terbuka/stop-educating-linux.html` | Stop Educating Linux: Mengapa Linux Bukan Windows dan Mengapa Itu Keren! - Layar Kosong | Stop Educating Linux: Mengapa Linux Bukan Windows dan Mengapa Itu Keren! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/struktur-berkas-direktori-linux.html` | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai - Layar Kosong | Struktur Berkas Direktori Linux - Panduan Lengkap & Penjelasan Santai | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/stuttering-cachyos-i5-dual-core.html` | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 - Layar Kosong | Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar Intel i5 | Layar Kosong | ✅ Perfect |
-| `sistem-terbuka/suara-hati-foss-kaltim-pemilukada.html` | Suara Hati FOSS Kaltim Menjelang Pemilukada - Layar Kosong | Suara Hati FOSS Kaltim Menjelang Pemilukada | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/suara-hati-foss-kaltim-pemilukada.html` | Pemilukada Kaltim: Suara Hati Penggiat FOSS & Aspirasi Digital - Layar Kosong | Pemilukada Kaltim: Suara Hati Penggiat FOSS & Aspirasi Digital | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/sudo-tanpa-password.html` | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) - Layar Kosong | Cara Setting Sudo Tanpa Password di Ubuntu (Aman & Gampang) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/sukses-instal-booster-cachyos.html` | Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi - Layar Kosong | Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/symlinks.html` | Membersihkan Symbolic Link Rusak dengan `symlinks` di Linux - Layar Kosong | Membersihkan Symbolic Link Rusak dengan `symlinks` di Linux | Layar Kosong | ✅ Perfect |
@@ -2848,7 +2848,7 @@ Generated on: 6/11/2026, 4:45:18 PM
 | `warta-tekno/sejarah-layout-keyboard-qwerty.html` | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ - Layar Kosong | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sejarah-sistem-operasi-unix-harmonyos.html` | Evolusi Sistem Operasi: Dari UNIX 1969 hingga HarmonyOS Modern - Layar Kosong | Evolusi Sistem Operasi: Dari UNIX 1969 hingga HarmonyOS Modern | Layar Kosong | ✅ Perfect |
 | `warta-tekno/self-hosting-debian-pemula.html` | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! - Layar Kosong | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! | Layar Kosong | ✅ Perfect |
-| `warta-tekno/semver-7-7-3.html` | semver@7.8.3: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.3: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
+| `warta-tekno/semver-7-7-3.html` | semver@7.8.4: Kalkulator Versi Node.js - Layar Kosong | semver@7.8.4: Kalkulator Versi Node.js | Layar Kosong | ✅ Perfect |
 | `warta-tekno/shutdown-windows-cepat.html` | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh - Layar Kosong | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sony-hentikan-produksi-memory-card-ssd-shortage.html` | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD - Layar Kosong | Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sqlite-bisa-seperti-mysql-postgre.html` | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? - Layar Kosong | SQLite vs MySQL/PostgreSQL: Mana yang Cocok? | Layar Kosong | ✅ Perfect |
