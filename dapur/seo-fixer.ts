@@ -14,9 +14,9 @@ const escapeHtmlAttr = (text: string) => {
     return text
     .replace(/&/g, '&amp;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/'/g, '&#39;');
+   // .replace(/</g, '&lt;')
+   // .replace(/>/g, '&gt;');
 };
 
 const prepareDesc = (text: string) => escapeHtmlAttr(text.replace(/\s+/g, ' ').trim());
