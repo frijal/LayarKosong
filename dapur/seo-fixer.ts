@@ -219,6 +219,7 @@ async function processFile(file: string, baseUrl: string) {
             `<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">`,
             `<link rel="sitemap" type="application/xml" href="/sitemap.xml">`,
             `<link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="${baseUrl}/rss.xml">`,
+            `<link rel="alternate" type="application/atom+xml" title="30 artikel baru bikin." href="${baseUrl}/atom.xml">`,
             `<link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">`,
             `<link rel="manifest" href="/site.webmanifest">`,
             `<meta name="twitter:card" content="summary_large_image">`,
