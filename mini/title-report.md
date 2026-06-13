@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/12/2026, 4:12:22 PM
+Generated on: 6/13/2026, 2:56:01 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/12/2026, 4:12:22 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v21.28 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v21.40 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -168,6 +168,7 @@ Generated on: 6/12/2026, 4:12:22 PM
 | `artikel/audio-visualizer.html` | 🎧 Script Bash Visualisasi Audio dengan FFmpeg - Layar Kosong | 🎧 Script Bash Visualisasi Audio dengan FFmpeg | Layar Kosong | ✅ Perfect |
 | `artikel/audit-kinerja-bukan-cari-salah.html` | Bukan Cari Salah! Ini Rahasia Audit Kinerja Bikin Layanan Makin Oke 🚀 - Itjen Kemenag - Layar Kosong | Bukan Cari Salah! Ini Rahasia Audit Kinerja Bikin Layanan Makin Oke 🚀 - Itjen Kemenag | Layar Kosong | ✅ Perfect |
 | `artikel/aur-explained.html` | Apa Itu AUR? Penjelasan Arch User Repository - Layar Kosong | Apa Itu AUR? Penjelasan Arch User Repository | Layar Kosong | ✅ Perfect |
+| `artikel/aurora-os-linux-desktop.html` | Aurora: OS Linux Desktop yang Anti Ribet - Layar Kosong | Aurora: OS Linux Desktop yang Anti Ribet | Layar Kosong | ✅ Perfect |
 | `artikel/auto-social-media-previewer.html` | Cara Membuat Auto Social Media Previewer Responsive - Layar Kosong | Cara Membuat Auto Social Media Previewer Responsive | Layar Kosong | ✅ Perfect |
 | `artikel/auto-upgrade-all-npm-packages.html` | Auto-Upgrade All NPM Packages - Workflow GitHub Actions (Analisis, perbaikan, dan template) - Layar Kosong | Auto-Upgrade All NPM Packages - Workflow GitHub Actions (Analisis, perbaikan, dan template) | Layar Kosong | ✅ Perfect |
 | `artikel/awal-puasa-ramadan-1447-h-18-februari-2026.html` | Kepastian Awal Puasa Ramadhan 1447 H: Mengapa 18 Februari 2026 adalah Pilihan Saintifik dan Syari - Layar Kosong | Kepastian Awal Puasa Ramadhan 1447 H: Mengapa 18 Februari 2026 adalah Pilihan Saintifik dan Syari | Layar Kosong | ✅ Perfect |
@@ -1069,7 +1070,7 @@ Generated on: 6/12/2026, 4:12:22 PM
 | `artikel/penyimpangan-ajaran-islam.html` | 10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif - Layar Kosong | 10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif | Layar Kosong | ✅ Perfect |
 | `artikel/peradaban-materialistik-vs-peradaban-masjid.html` | Peradaban Materialistik vs Peradaban Masjid: Mana yang Membangun Jiwa? - Layar Kosong | Peradaban Materialistik vs Peradaban Masjid: Mana yang Membangun Jiwa? | Layar Kosong | ✅ Perfect |
 | `artikel/peramban-ringan-linux-terbaik.html` | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel - Layar Kosong | Peramban web ringan terbaik untuk Linux mudah, cepat, tetap kompatibel | Layar Kosong | ✅ Perfect |
-| `artikel/peran-ai-bantu-umkm-bersaing.html` | Peran AI dalam Membantu UMKM Bersaing di Pasar Modern - Layar Kosong | Peran AI dalam Membantu UMKM Bersaing di Pasar Modern | Layar Kosong | ✅ Perfect |
+| `artikel/peran-ai-bantu-umkm-bersaing.html` | AI: Senjata Rahasia UMKM Buat Nyaingin Raksasa - Layar Kosong | AI: Senjata Rahasia UMKM Buat Nyaingin Raksasa | Layar Kosong | ✅ Perfect |
 | `artikel/peran-hr-it-cepat-tergantikan-ai.html` | Peran HR & IT yang Paling Cepat Tergantikan AI: Analisis, Dampak, dan Strategi Adaptasi - Layar Kosong | Peran HR & IT yang Paling Cepat Tergantikan AI: Analisis, Dampak, dan Strategi Adaptasi | Layar Kosong | ✅ Perfect |
 | `artikel/peran-krusial-vram-linux.html` | Peran Krusial VRAM di Linux: Lebih dari Sekadar Memori Layar - Layar Kosong | Peran Krusial VRAM di Linux: Lebih dari Sekadar Memori Layar | Layar Kosong | ✅ Perfect |
 | `artikel/perbaikan-foto-ala-national-geographic.html` | Panduan Perbaikan Foto ala National Geographic - Layar Kosong | Panduan Perbaikan Foto ala National Geographic | Layar Kosong | ✅ Perfect |
@@ -1192,6 +1193,7 @@ Generated on: 6/12/2026, 4:12:22 PM
 | `artikel/ringkasan-windows-vs-linux.html` | Ringkasan Keren: Windows vs Linux, Beda Kebiasaan Tanpa Debat - Layar Kosong | Ringkasan Keren: Windows vs Linux, Beda Kebiasaan Tanpa Debat | Layar Kosong | ✅ Perfect |
 | `artikel/risiko-fiskal-indonesia-2026.html` | Truk Tua Menuju Indonesia Emas: Antara Ambisi dan Realitas Fiskal 2026 - Layar Kosong | Truk Tua Menuju Indonesia Emas: Antara Ambisi dan Realitas Fiskal 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/rpul-rpal-search-engine-90an.html` | Duo Maut RPUL dan RPAL: Search Engine Asli Generasi 90an Sebelum Era AI 🌍✨ - Layar Kosong | Duo Maut RPUL dan RPAL: Search Engine Asli Generasi 90an Sebelum Era AI 🌍✨ | Layar Kosong | ✅ Perfect |
+| `artikel/rss-feed-fondasi-otomatisasi-blog-modern-anti-algoritma.html` | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma - Layar Kosong | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma | Layar Kosong | ✅ Perfect |
 | `artikel/rsync-a-vs-delete.html` | Kapan Pakai 'rsync -a' vs 'rsync -a --delete'? - Penjelasan Santai - Layar Kosong | Kapan Pakai 'rsync -a' vs 'rsync -a --delete'? - Penjelasan Santai | Layar Kosong | ✅ Perfect |
 | `artikel/rumah-bukan-privasi-membela-diri-jadi-tersangka.html` | Saat Membela Diri, Justru Jadi Tersangka - Layar Kosong | Saat Membela Diri, Justru Jadi Tersangka | Layar Kosong | ✅ Perfect |
 | `artikel/rumus-dan-tata-cara-touring-sepeda-motor.html` | Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️ - Layar Kosong | Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️ | Layar Kosong | ✅ Perfect |
@@ -2217,6 +2219,7 @@ Generated on: 6/12/2026, 4:12:22 PM
 | `sistem-terbuka/armoury-crate-linux-alternatif.html` | Cara Menjalankan Armoury Crate di Linux & Distro Terbaik untuk ROG - Layar Kosong | Cara Menjalankan Armoury Crate di Linux & Distro Terbaik untuk ROG | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/arti-peringatan-apt-policy-reject-signature.html` | Peringatan 'Policy will reject signature' di Linux? Ini Artinya! - Layar Kosong | Peringatan 'Policy will reject signature' di Linux? Ini Artinya! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/aur-explained.html` | Apa Itu AUR? Penjelasan Arch User Repository - Layar Kosong | Apa Itu AUR? Penjelasan Arch User Repository | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/aurora-os-linux-desktop.html` | Aurora: OS Linux Desktop yang Anti Ribet - Layar Kosong | Aurora: OS Linux Desktop yang Anti Ribet | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/auto-social-media-previewer.html` | Cara Membuat Auto Social Media Previewer Responsive - Layar Kosong | Cara Membuat Auto Social Media Previewer Responsive | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/berapa-banyak-disk-dan-partisi-ter-mount.html` | 💽 Melihat Berapa Banyak Disk dan Partisi yang Ter-mount di Linux - Layar Kosong | 💽 Melihat Berapa Banyak Disk dan Partisi yang Ter-mount di Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/bersih-pip-cache.html` | Skrip Shell Bersih Cache pip di Linux - Layar Kosong | Skrip Shell Bersih Cache pip di Linux | Layar Kosong | ✅ Perfect |
@@ -2821,7 +2824,7 @@ Generated on: 6/12/2026, 4:12:22 PM
 | `warta-tekno/penjelasan-generate-icons-js.html` | Bedah Skrip generate-icons.js: Bikin Ikon PWA & Manifest Otomatis. - Layar Kosong | Bedah Skrip generate-icons.js: Bikin Ikon PWA & Manifest Otomatis. | Layar Kosong | ✅ Perfect |
 | `warta-tekno/penjelasan-markdown-js.html` | Bedah Skrip markdown.js: Tingkatkan Markdown & Kode di HTML - Layar Kosong | Bedah Skrip markdown.js: Tingkatkan Markdown & Kode di HTML | Layar Kosong | ✅ Perfect |
 | `warta-tekno/penjelasan-workflow-upgrade-everything-yml.html` | Bedah Workflow upgrade-everything.yml: Otomatis Upgrade & Cleanup Dependensi. - Layar Kosong | Bedah Workflow upgrade-everything.yml: Otomatis Upgrade & Cleanup Dependensi. | Layar Kosong | ✅ Perfect |
-| `warta-tekno/peran-ai-bantu-umkm-bersaing.html` | Peran AI dalam Membantu UMKM Bersaing di Pasar Modern - Layar Kosong | Peran AI dalam Membantu UMKM Bersaing di Pasar Modern | Layar Kosong | ✅ Perfect |
+| `warta-tekno/peran-ai-bantu-umkm-bersaing.html` | AI: Senjata Rahasia UMKM Buat Nyaingin Raksasa - Layar Kosong | AI: Senjata Rahasia UMKM Buat Nyaingin Raksasa | Layar Kosong | ✅ Perfect |
 | `warta-tekno/peran-hr-it-cepat-tergantikan-ai.html` | Peran HR & IT yang Paling Cepat Tergantikan AI: Analisis, Dampak, dan Strategi Adaptasi - Layar Kosong | Peran HR & IT yang Paling Cepat Tergantikan AI: Analisis, Dampak, dan Strategi Adaptasi | Layar Kosong | ✅ Perfect |
 | `warta-tekno/perbandingan-ai-chatbot-terbaik.html` | Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖 - Layar Kosong | Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/perbedaan-firefox-esr-vs-biasa.html` | Perbedaan Firefox Biasa (Release) vs. Firefox ESR: ⚡ Mengapa Salah Satunya Lebih Cepat? - Layar Kosong | Perbedaan Firefox Biasa (Release) vs. Firefox ESR: ⚡ Mengapa Salah Satunya Lebih Cepat? | Layar Kosong | ✅ Perfect |
@@ -2843,6 +2846,7 @@ Generated on: 6/12/2026, 4:12:22 PM
 | `warta-tekno/rekor-ddos-29tbps-aisuru-botnet.html` | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! - Layar Kosong | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! | Layar Kosong | ✅ Perfect |
 | `warta-tekno/remove-windows-ai.html` | Remove Windows AI: Hapus Copilot dan Recall - Layar Kosong | Remove Windows AI: Hapus Copilot dan Recall | Layar Kosong | ✅ Perfect |
 | `warta-tekno/review-6-model-ai-terbaik.html` | Review 6 Model AI Terbaik Jangan Menghindari AI atau Ketinggalan Zaman - Layar Kosong | Review 6 Model AI Terbaik Jangan Menghindari AI atau Ketinggalan Zaman | Layar Kosong | ✅ Perfect |
+| `warta-tekno/rss-feed-fondasi-otomatisasi-blog-modern-anti-algoritma.html` | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma - Layar Kosong | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma | Layar Kosong | ✅ Perfect |
 | `warta-tekno/schema-validation-static-site.html` | Apakah Schema Validation Penting untuk Static Site? - Layar Kosong | Apakah Schema Validation Penting untuk Static Site? | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sejarah-gravitasi-ilmuwan-muslim.html` | Ilmuwan Muslim Temukan Gravitasi Berabad-abad Sebelum Newton - Layar Kosong | Ilmuwan Muslim Temukan Gravitasi Berabad-abad Sebelum Newton | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sejarah-layout-keyboard-qwerty.html` | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ - Layar Kosong | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ | Layar Kosong | ✅ Perfect |
