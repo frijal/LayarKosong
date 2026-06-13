@@ -25,6 +25,11 @@ const decodeHTML = (str: string) => {
     return t.trim();
 };
 
+/** Tanggal build hari ini (WITA, format YYYY-MM-DD) — buat %%DATE_MODIFIED%% */
+const buildDate = new Date(Date.now() + C.tzOffsetHours * 60 * 60 * 1000)
+.toISOString()
+.split('T')[0];
+
 const slug = (t: any) => t.toString().toLowerCase().trim()
 .replace(/^[^\w\s]*/u, '')
 .replace(/ & /g, '-and-')
@@ -387,7 +392,8 @@ if (feedTemplate) {
     const finalFeedPage = feedTemplate
     .replace('<div id="loading"></div>', '')
     .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
-    .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '');
+    .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '')
+    .replace('%%DATE_MODIFIED%%', buildDate);
 
     await Bun.write(`${C.root}/feed.html`, finalFeedPage);
     console.log('✨ Static Feed Page Generated.');
