@@ -405,7 +405,7 @@
 <div id="iposbrowser"></div>
         <p class="tagline">"Tolak diblokir, Terima ngeblokir. Karena Kominfo ngeblokir asal-asalan yang merugikan masyarakat luas, mari kita *unblokir!*"</p>
         <div class="disclaimer">
-            <p>**DISCLAIMER**: *KominFudge tidak bertanggung jawab atas kerusakan perangkat anda, ambil dengan risiko anda sendiri.*</p>
+            <p&gt;**DISCLAIMER**: *KominFudge tidak bertanggung jawab atas kerusakan perangkat anda, ambil dengan risiko anda sendiri.*</p>
         </div>
 <div class="video-container" style="position:relative;width:100%;height:0;padding-bottom:56.25%;">
   <iframe src="https://www.youtube.com/embed/HfgqTq0p8XY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
@@ -447,7 +447,7 @@
                 </div>
             </div>
             <div class="warning">
-                <p>**PERHATIAN:** KominFudge tidak bertanggung jawab atas kerusakan perangkat Anda, gunakan informasi yang diberikan dengan risiko Anda sendiri.</p>
+                <p&gt;**PERHATIAN:** KominFudge tidak bertanggung jawab atas kerusakan perangkat Anda, gunakan informasi yang diberikan dengan risiko Anda sendiri.</p>
             </div>
             <p>Silahkan baca dari awal sampai akhir, atau lihat bagian "Navigasi" untuk memilih bagian tertentu yang ingin dibaca.</p>
         </section>
@@ -485,12 +485,12 @@
             <h2><i class="fa-solid fa-wifi section-icon"></i> Memilih ISP yang tidak ketat</h2>
             <p>ISP adalah provider Internet, daftar isi ini akan membuat lebih tau bagaimana jenis ISP Indonesia memblokir.</p>
             <div class="note">
-                <p>**Catatan:** Untuk mengecek IP Transit apa yang ISP gunakan, silahkan check di <a target="_blank" href="https://bgp.tools">bgp.tools</a> atau <a target="_blank" href="https://bgp.he.net">bgp.he.net</a>.</p>
+                <p&gt;**Catatan:** Untuk mengecek IP Transit apa yang ISP gunakan, silahkan check di <a target="_blank" href="https://bgp.tools">bgp.tools</a> atau <a target="_blank" href="https://bgp.he.net">bgp.he.net</a>.</p>
             </div>
             <h3>IP Transit</h3>
             <p>ISP yang menggunakan upstream di bawah ini tidak bisa mengganti DNS dengan cara biasa, karena port 53 telah ditutupkan ke provider DNS IP Transit masing-masing sebagaimana DNS Nasional yang diusulkan di IDNOG 2022.</p>
             <h4>IP Transit yang membelokan DNS populer</h4>
-            <p>**IP Transit ini membelokan beberapa DNS populer sehingga wajib menggunakan DoH atau DNS yang kurang populer**</p>
+            <p&gt;**IP Transit ini membelokan beberapa DNS populer sehingga wajib menggunakan DoH atau DNS yang kurang populer**</p>
             <table>
                 <thead>
                     <tr>
@@ -533,7 +533,7 @@
                 <p>Jika di sisi ISP anda tidak mematuhi peraturan DNS Nasional tetapi menggunakan IP Transit di atas, maka akan sama terkena blokir dan harus menggunakan DNS terenkripsi. Atau memakai DNS yang tidak dijalurkan melalui IP Transit diatas *jika ada.*</p>
             </div>
             <h4>ISP yang wajib menggunakan WARP/VPN, GoodbyeDPI, atau GreenTunnel/PowerTunnel</h4>
-            <p>**Sedangkan ISP yang menggunakan upstream dibawah ini, wajib menggunakan WARP/VPN, GoodbyeDPI, atau GreenTunnel/PowerTunnel.**</p>
+            <p&gt;**Sedangkan ISP yang menggunakan upstream dibawah ini, wajib menggunakan WARP/VPN, GoodbyeDPI, atau GreenTunnel/PowerTunnel.**</p>
             <table>
                 <thead>
                     <tr>
@@ -601,15 +601,15 @@
             </div>
             <h3>ISP Fiber</h3>
             <div class="warning">
-                <p>**Catatan Penting:** Hampir semua ISP melanggar kebebasan dengan mengikuti DNS Nasional sehingga pengguna tidak dapat mengganti DNS atau mengecek DNS server selain punya ISP. Hal ini merugikan bagi pengguna yang ingin memakai layanan pemblokiran DNS lain misalkan OpenDNS dan NextDNS sehingga sangat tidak cocok digunakan untuk pengguna atau orang tua yang ingin menggunakan filter selain TrustPositif yang sering memblokir asal-asalan.</p>
+                <p&gt;**Catatan Penting:** Hampir semua ISP melanggar kebebasan dengan mengikuti DNS Nasional sehingga pengguna tidak dapat mengganti DNS atau mengecek DNS server selain punya ISP. Hal ini merugikan bagi pengguna yang ingin memakai layanan pemblokiran DNS lain misalkan OpenDNS dan NextDNS sehingga sangat tidak cocok digunakan untuk pengguna atau orang tua yang ingin menggunakan filter selain TrustPositif yang sering memblokir asal-asalan.</p>
                 <p>Namun, implementasi DNS Nasional tersebut berbeda beda di tiap ISP. Ada yang hanya membelokan atau memblokir UDP 53 (Contohnya FirstMedia), ada yang hanya ke arah internasional, adapun yang juga ikut memblokir TCP 53 (Contoh: MyRepublic dan Smartfren).</p>
             </div>
             <h4>Legenda DNS Nasional:</h4>
             <ul>
-                <li>**International** = Memblokir port 53 menuju internasional</li>
-                <li>**Local** = Memblokir port 53 menuju lokal (Sesama Indonesia) di OpenIXP, IIX, CXC, JKT-IX, dan sebagainya</li>
-                <li>**TCP** = Memblokir TCP port 53, Sehingga tidak bisa melakukan *Zone Transfer* bagi yang menggunakan provider yang memiliki tanda ini</li>
-                <li>**DoH/DoT** = Melakukan pemblokiran DNS terenkripsi bagi yang menggunakan provider yang memiliki tanda ini sehingga tidak cocok untuk digunakan bagi yang mau privasi</li>
+                <li&gt;**International** = Memblokir port 53 menuju internasional</li>
+                <li&gt;**Local** = Memblokir port 53 menuju lokal (Sesama Indonesia) di OpenIXP, IIX, CXC, JKT-IX, dan sebagainya</li>
+                <li&gt;**TCP** = Memblokir TCP port 53, Sehingga tidak bisa melakukan *Zone Transfer* bagi yang menggunakan provider yang memiliki tanda ini</li>
+                <li&gt;**DoH/DoT** = Melakukan pemblokiran DNS terenkripsi bagi yang menggunakan provider yang memiliki tanda ini sehingga tidak cocok untuk digunakan bagi yang mau privasi</li>
             </ul>
             <h4>ISP Rumah:</h4>
             <table>
@@ -837,7 +837,7 @@
                 </tbody>
             </table>
             <div class="note">
-                <p>**Catatan:** DATA INI BELUM DILENGKAPI. JIKA BERHARAP UNTUK DILENGKAPKAN, SILAKAN BERI INFORMASI TERLEBIH LANJUT.</p>
+                <p&gt;**Catatan:** DATA INI BELUM DILENGKAPI. JIKA BERHARAP UNTUK DILENGKAPKAN, SILAKAN BERI INFORMASI TERLEBIH LANJUT.</p>
                 <p>*Ambilkan semua dengan sedikit garam, semua ISP akan mengganti dengan cara pemblokirannya.*</p>
             </div>
         </section>
@@ -946,30 +946,30 @@
             <h3>Jenis Aplikasi DNS</h3>
             <p>Aplikasi DNS ini bisa buat memakai DNS lebih senang.</p>
             <div class="warning">
-                <p>**PERHATIAN:** Apabila ISP juga melakukan pemblokiran menggunakan DPI, hanya bisa gunakan [Jenis Aplikasi untuk menghilangkan DPI](#dpi).</p>
+                <p&gt;**PERHATIAN:** Apabila ISP juga melakukan pemblokiran menggunakan DPI, hanya bisa gunakan [Jenis Aplikasi untuk menghilangkan DPI](#dpi).</p>
             </div>
             <ul class="app-list">
-                <li>**<a target="_blank" href="https://nebulo.app">Nebulo</a>** [Android] - Aplikasi untuk mengganti DNS di Android dengan mudah.</li>
-                <li>**<a target="_blank" href="https://apps.apple.com/app/id1452162351">DNSCloak</a>** [iOS] - Aplikasi untuk mengganti DNS dan mengatur DNSCrypt di iOS.</li>
-                <li>**<a target="_blank" href="https://dnscrypt.info">DNSCrypt</a>** [Windows, macOS, Linux] - DNS untuk selfhost yang dapat melakukan forwarding ke server DNSCrypt dan DNS-over-HTTPS.</li>
-                <li>**<a target="_blank" href="https://simplednscrypt.org">SimpleDNSCrypt</a>** [Windows] - Aplikasi penginstalan DNSCrypt.</li>
-                <li>**<a target="_blank" href="https://dns.notjakob.com/tool.html">DNS Profile Creator</a>** [Browser] - Cara membuat dns.mobileconfig Apple dengan senang.</li>
-                <li>**<a target="_blank" href="https://yogadns.com">YogaDNS</a>** [Windows] - Aplikasi pengganti DNS untuk Windows.</li>
-                <li>**<a target="_blank" href="https://rethinkdns.com">RethinkDNS</a>** [Android] - Aplikasi untuk mengganti DNS dan pemblokiran iklan.</li>
-                <li>**<a target="_blank" href="https://getintra.org">Intra</a>** [Android] - Aplikasi pengganti DNS untuk Android.</li>
-                <li>**<a target="_blank" href="https://github.com/AdguardTeam/AdGuardHome">AdGuard Home</a>** [Windows, macOS, Linux] - DNS untuk selfhost dengan AdBlock, encrypted upstream dan downstream.</li>
+                <li&gt;**<a target="_blank" href="https://nebulo.app">Nebulo</a&gt;** [Android] - Aplikasi untuk mengganti DNS di Android dengan mudah.</li>
+                <li&gt;**<a target="_blank" href="https://apps.apple.com/app/id1452162351">DNSCloak</a&gt;** [iOS] - Aplikasi untuk mengganti DNS dan mengatur DNSCrypt di iOS.</li>
+                <li&gt;**<a target="_blank" href="https://dnscrypt.info">DNSCrypt</a&gt;** [Windows, macOS, Linux] - DNS untuk selfhost yang dapat melakukan forwarding ke server DNSCrypt dan DNS-over-HTTPS.</li>
+                <li&gt;**<a target="_blank" href="https://simplednscrypt.org">SimpleDNSCrypt</a&gt;** [Windows] - Aplikasi penginstalan DNSCrypt.</li>
+                <li&gt;**<a target="_blank" href="https://dns.notjakob.com/tool.html">DNS Profile Creator</a&gt;** [Browser] - Cara membuat dns.mobileconfig Apple dengan senang.</li>
+                <li&gt;**<a target="_blank" href="https://yogadns.com">YogaDNS</a&gt;** [Windows] - Aplikasi pengganti DNS untuk Windows.</li>
+                <li&gt;**<a target="_blank" href="https://rethinkdns.com">RethinkDNS</a&gt;** [Android] - Aplikasi untuk mengganti DNS dan pemblokiran iklan.</li>
+                <li&gt;**<a target="_blank" href="https://getintra.org">Intra</a&gt;** [Android] - Aplikasi pengganti DNS untuk Android.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/AdguardTeam/AdGuardHome">AdGuard Home</a&gt;** [Windows, macOS, Linux] - DNS untuk selfhost dengan AdBlock, encrypted upstream dan downstream.</li>
             </ul>
             <h3>Cara mengganti lewat DNS</h3>
             <p>Setelah sudah ada daftar isi DNS, gimana cara memakainya?</p>
             <h4>Android</h4>
             <ol class="method-list">
-                <li>**Settings** &gt; **Other Wireless Connections** &gt; **Private DNS**</li>
+                <li&gt;**Settings** &gt; **Other Wireless Connections** &gt; **Private DNS**</li>
                 <li>Masukkan hostname DNS lalu klik tombol **Save**.</li>
             </ol>
             <h4>Windows</h4>
-            <p>**Windows 7 sampai ke Windows 10:**</p>
+            <p&gt;**Windows 7 sampai ke Windows 10:**</p>
             <ol class="method-list">
-                <li>**Control Panel** &gt; **Network and Internet** &gt; **Network and Sharing Center** &gt; **Connections** &gt; **Properties**</li>
+                <li&gt;**Control Panel** &gt; **Network and Internet** &gt; **Network and Sharing Center** &gt; **Connections** &gt; **Properties**</li>
                 <li>Pencet di Tulisan **Internet Protocol Version 4 (TCP/IPv4)** dengan 2 kali.</li>
                 <li>Ubahkan **Obtain DNS server address automatically** ke **Use the following DNS server addresses**.</li>
                 <li>Masukkan hostname DNS di kolom DNS tersebut lalu klik tombol **Ok**.</li>
@@ -986,30 +986,30 @@
             </div>
             <p>Catatan: Ada beberapa komponen yang mungkin terpasang pada distro Linux (seperti NetworkManager) dapat mengubah isi file `/etc/resolv.conf` tanpa disadari, untuk mencegah hal tersebut dapat mengetik perintah `chattr +i /etc/resolv.conf` setelah selesai mengubah file tersebut. Apabila ingin mengubah isi file `/etc/resolv.conf` kembali, dapat mengetik perintah `chattr -i /etc/resolv.conf` tersebut.</p>
             <div class="note">
-                <p>**Bagaimana cara tau DNS-nya berhasil?** Pergi ke situs <a target="_blank" href="https://dnsleaktest.com">DNSLeakTest</a> atau <a target="_blank" href="https://browserleaks.com/dns">BrowserLeaks</a> untuk mengeteskan. Jika DNS ISP masih muncul daripada DNS yang sudah diubah, silahkan download <a target="_blank" href="https://dnscrypt.info">DNSCrypt</a> atau <a target="_blank" href="https://simplednscrypt.org">SimpleDNSCrypt</a>.</p>
+                <p&gt;**Bagaimana cara tau DNS-nya berhasil?** Pergi ke situs <a target="_blank" href="https://dnsleaktest.com">DNSLeakTest</a> atau <a target="_blank" href="https://browserleaks.com/dns">BrowserLeaks</a> untuk mengeteskan. Jika DNS ISP masih muncul daripada DNS yang sudah diubah, silahkan download <a target="_blank" href="https://dnscrypt.info">DNSCrypt</a> atau <a target="_blank" href="https://simplednscrypt.org">SimpleDNSCrypt</a>.</p>
             </div>
         </section>
         <section id="dpi" class="card">
             <h2><i class="fa-solid fa-shield-alt section-icon"></i> Jenis Aplikasi untuk menghilangkan DPI</h2>
             <p>Untuk sekarang, hanya banyak ISP blokirnya itu dengan menggunakan Deep Packet Inspection (DPI). Maka itu, DPI bisa dihilangkan dengan mudah dengan aplikasi dibawah ini:</p>
             <div class="warning">
-                <p>**PERHATIAN:** Jangan lupa untuk menggantikan DNS terlebih dahulu atau menggunakan Hosts file apabila ISP yang tidak ketat juga menggunakan DNS untuk pemblokiran tersebut.</p>
+                <p&gt;**PERHATIAN:** Jangan lupa untuk menggantikan DNS terlebih dahulu atau menggunakan Hosts file apabila ISP yang tidak ketat juga menggunakan DNS untuk pemblokiran tersebut.</p>
             </div>
             <div class="note">
-                <p>**Info:** KominFudge juga menyediakan config untuk Aplikasi &amp; ISP di folder, ada [disini](/dpi-circumvention-config).</p>
+                <p&gt;**Info:** KominFudge juga menyediakan config untuk Aplikasi &amp; ISP di folder, ada [disini](/dpi-circumvention-config).</p>
             </div>
             <ul class="app-list">
-                <li>**<a target="_blank" href="https://github.com/ValdikSS/GoodbyeDPI">GoodbyeDPI</a>** [Windows] - Aplikasi CLI untuk hilangkan DPI.</li>
-                <li>**<a target="_blank" href="https://github.com/SadeghHayeri/GreenTunnel">GreenTunnel</a>** [Windows, macOS, Linux] - Aplikasi GUI untuk hilangkan DPI dengan yang mudah.</li>
-                <li>**<a target="_blank" href="https://github.com/krlvm/PowerTunnel">PowerTunnel</a>** [Windows, macOS, Linux, Android] - Aplikasi GUI untuk hilangkan DPI dengan banyak fitur.</li>
-                <li>**<a target="_blank" href="https://github.com/macronut/SNI-Mask">SNI-Mask</a>** [Windows] - Proxy untuk menghilangkan DPI.</li>
-                <li>**<a target="_blank" href="https://github.com/URenko/Accesser">Accesser</a>** [Windows, macOS, Linux] - Aplikasi untuk menghilangkan TCP RST. Umumnya digunakan di Tiongkok.</li>
-                <li>**<a target="_blank" href="https://github.com/macronut/ghostcp">GhosTCP</a>** [Windows] - Mengamankan koneksi TCP.</li>
-                <li>**<a target="_blank" href="https://github.com/vecna/sniffjoke">sniffjoke</a>** [Linux] - Mengamankan WireTap/Sniff/IDS.</li>
-                <li>**<a target="_blank" href="https://github.com/xvzc/SpoofDPI">SpoofDPI</a>** [macOS, Linux] - Menipu DPI-mu.</li>
-                <li>**<a target="_blank" href="https://github.com/bol-van/zapret/blob/master/docs/readme.eng.md">Zapret</a>** [Linux, FreeBSD] - Alat penghindaran DPI.</li>
-                <li>**<a target="_blank" href="https://github.com/zhenyolka/DPITunnel-cli">DPITunnel</a>** [Linux, Android] - CLI untuk Linux.</li>
-                <li>**<a target="_blank" href="https://github.com/kkevsterrr/geneva">Geneva</a>** [Linux] - Alat penghindaran DPI berbasis AI.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/ValdikSS/GoodbyeDPI">GoodbyeDPI</a&gt;** [Windows] - Aplikasi CLI untuk hilangkan DPI.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/SadeghHayeri/GreenTunnel">GreenTunnel</a&gt;** [Windows, macOS, Linux] - Aplikasi GUI untuk hilangkan DPI dengan yang mudah.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/krlvm/PowerTunnel">PowerTunnel</a&gt;** [Windows, macOS, Linux, Android] - Aplikasi GUI untuk hilangkan DPI dengan banyak fitur.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/macronut/SNI-Mask">SNI-Mask</a&gt;** [Windows] - Proxy untuk menghilangkan DPI.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/URenko/Accesser">Accesser</a&gt;** [Windows, macOS, Linux] - Aplikasi untuk menghilangkan TCP RST. Umumnya digunakan di Tiongkok.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/macronut/ghostcp">GhosTCP</a&gt;** [Windows] - Mengamankan koneksi TCP.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/vecna/sniffjoke">sniffjoke</a&gt;** [Linux] - Mengamankan WireTap/Sniff/IDS.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/xvzc/SpoofDPI">SpoofDPI</a&gt;** [macOS, Linux] - Menipu DPI-mu.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/bol-van/zapret/blob/master/docs/readme.eng.md">Zapret</a&gt;** [Linux, FreeBSD] - Alat penghindaran DPI.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/zhenyolka/DPITunnel-cli">DPITunnel</a&gt;** [Linux, Android] - CLI untuk Linux.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/kkevsterrr/geneva">Geneva</a&gt;** [Linux] - Alat penghindaran DPI berbasis AI.</li>
             </ul>
             <h3>Trik untuk melewati DPI tanpa aplikasi</h3>
             <h4>Linux</h4>
@@ -1073,13 +1073,13 @@
                 <li>Tempelkan teks ke file **hosts** tersebut.</li>
             </ol>
             <h4>Android</h4>
-            <p>**Perangkat yang sudah di ROOT:**</p>
+            <p&gt;**Perangkat yang sudah di ROOT:**</p>
             <ol class="method-list">
                 <li>Salinkan teks didalam hosts file yang kamu pilih.</li>
                 <li>Buka File Explorer dan pergi ke `/system/etc`.</li>
                 <li>Tempelkan teks ke file **hosts**.</li>
             </ol>
-            <p>**Perangkat yang belum di ROOT:**</p>
+            <p&gt;**Perangkat yang belum di ROOT:**</p>
             <ol class="method-list">
                 <li>Salin teks didalam hosts file yang kamu pilih.</li>
                 <li>Buatkan file dan tempelkan teksnya di dalam file tersebut.</li>
@@ -1114,7 +1114,7 @@
                     </tr>
                     <tr>
                         <td><a target="_blank" href="https://ovpn.com">OVPN</a></td>
-                        <td>**Aman**</td>
+                        <td&gt;**Aman**</td>
                         <td>Berbayar</td>
                         <td>102</td>
                     </tr>
@@ -1141,17 +1141,17 @@
             <h3>VPN untuk para Pengguna Tingkat Lanjut</h3>
             <p>VPN di bagian ini memerlukan konfigurasi, jika hanya ingin VPN yang di luar kotak, silahkan abaikan di bawah ini.</p>
             <ul class="app-list">
-                <li>**<a target="_blank" href="https://openvpn.net">OpenVPN</a>** - Sistem VPN yang mengimplementasikan teknik-teknik untuk membuat koneksi arah-ke-arah atau situs-ke-situs yang aman</li>
-                <li>**<a target="_blank" href="https://softether.org">Softether</a>** - Seperti OpenVPN. Tapi, hanya ada server yang terbatas(?)</li>
-                <li>**<a target="_blank" href="https://wireguard.com">Wireguard</a>** - Seperti OpenVPN</li>
+                <li&gt;**<a target="_blank" href="https://openvpn.net">OpenVPN</a&gt;** - Sistem VPN yang mengimplementasikan teknik-teknik untuk membuat koneksi arah-ke-arah atau situs-ke-situs yang aman</li>
+                <li&gt;**<a target="_blank" href="https://softether.org">Softether</a&gt;** - Seperti OpenVPN. Tapi, hanya ada server yang terbatas(?)</li>
+                <li&gt;**<a target="_blank" href="https://wireguard.com">Wireguard</a&gt;** - Seperti OpenVPN</li>
             </ul>
             <h3>Jenis Aplikasi Tor</h3>
             <p>Ini adalah bagian yang ekstrim dengan memakai Tor ada di bawah ini.</p>
             <ul class="app-list">
-                <li>**<a target="_blank" href="https://www.torproject.org">Tor Browser</a>** [Windows, macOS, Linux, Android] - Resmi Browser Tor.</li>
-                <li>**<a target="_blank" href="https://guardianproject.info/apps/org.torproject.android">Orbot</a>** [Android] - Proxy dengan Tor.</li>
-                <li>**<a target="_blank" href="https://onionbrowser.com">Onion Browser</a>** [iOS] - Browser Tor untuk iOS.</li>
-                <li>**<a target="_blank" href="https://github.com/Gedsh/InviZible">InviZible</a>** [Android] - Aplikasi Android untuk DNS dan Tor.</li>
+                <li&gt;**<a target="_blank" href="https://www.torproject.org">Tor Browser</a&gt;** [Windows, macOS, Linux, Android] - Resmi Browser Tor.</li>
+                <li&gt;**<a target="_blank" href="https://guardianproject.info/apps/org.torproject.android">Orbot</a&gt;** [Android] - Proxy dengan Tor.</li>
+                <li&gt;**<a target="_blank" href="https://onionbrowser.com">Onion Browser</a&gt;** [iOS] - Browser Tor untuk iOS.</li>
+                <li&gt;**<a target="_blank" href="https://github.com/Gedsh/InviZible">InviZible</a&gt;** [Android] - Aplikasi Android untuk DNS dan Tor.</li>
             </ul>
         </section>
         <!-- Bagian Komentar -->
@@ -1171,14 +1171,14 @@
         <i class="fa-solid fa-moon"></i>
     </button>
     <footer>
-        <p>**KominFudge** - Panduan Menembus Pemblokiran Indonesia, Dokumentasi ini dibuat untuk edukasi dan membantu masyarakat mengakses internet secara bebas.</p>
+        <p&gt;**KominFudge** - Panduan Menembus Pemblokiran Indonesia, Dokumentasi ini dibuat untuk edukasi dan membantu masyarakat mengakses internet secara bebas.</p>
         <div class="footer-links">
             <a target="_blank" href="https://github.com/bebasid/KominFudge"><i class="fa-brands fa-github"></i> GitHub</a>
             <a target="_blank" href="https://bebasid.com"><i class="fa-solid fa-globe"></i> BebasID</a>
             <a href="/about"><i class="fa-solid fa-info-circle"></i> Tentang</a>
         </div>
         <div class="disclaimer">
-            <p>**DISCLAIMER:** *KominFudge tidak bertanggung jawab atas kerusakan perangkat anda, ambil dengan risiko anda sendiri. Gunakan informasi ini dengan bijak dan bertanggung jawab.*</p>
+            <p&gt;**DISCLAIMER:** *KominFudge tidak bertanggung jawab atas kerusakan perangkat anda, ambil dengan risiko anda sendiri. Gunakan informasi ini dengan bijak dan bertanggung jawab.*</p>
         </div>
         <p>🄯 2024 KominFudge. Semua informasi bersifat edukatif dan dapat berubah sesuai perkembangan teknologi.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 

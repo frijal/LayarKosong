@@ -209,10 +209,10 @@
             <h2>2. Cara Membaca Output `zramctl` 📊</h2>
             <p>Saat kamu mengetik `zramctl`, ada beberapa kolom penting yang perlu diperhatikan secara saksama:</p>
             <ul>
-                <li>**ALGORITHM:** Biasanya berisi `zstd` atau `lz4`. Ini adalah algoritma kompresinya. `zstd` adalah favorit masa kini karena rasio kompresinya sangat tinggi dengan beban CPU yang sangat ringan (sangat cocok untuk arsitektur CPU *dual-core* seperti i5-7200U kamu).</li>
-                <li>**DISKSIZE:** Ini adalah batas maksimal memori virtual yang disediakan. Biasanya diatur sekitar 50% hingga 100% dari total RAM fisik (sekitar 8GB atau 16GB di mesin standar). Jangan panik, angka ini *tidak* langsung memakan RAM 16GB-mu. Ini cuma "batas atas" atau plafon.</li>
-                <li>**DATA:** Ini adalah jumlah memori asli (sebelum dikompres) yang sedang dilempar untuk diurus oleh sistem.</li>
-                <li>**COMPR:** Ini adalah ukuran memori *setelah* dikompresi. (Misal: DATA 1GB bisa menyusut jadi COMPR 250MB. Bayangkan betapa banyak ruang RAM yang bisa diselamatkan!).</li>
+                <li&gt;**ALGORITHM:** Biasanya berisi `zstd` atau `lz4`. Ini adalah algoritma kompresinya. `zstd` adalah favorit masa kini karena rasio kompresinya sangat tinggi dengan beban CPU yang sangat ringan (sangat cocok untuk arsitektur CPU *dual-core* seperti i5-7200U kamu).</li>
+                <li&gt;**DISKSIZE:** Ini adalah batas maksimal memori virtual yang disediakan. Biasanya diatur sekitar 50% hingga 100% dari total RAM fisik (sekitar 8GB atau 16GB di mesin standar). Jangan panik, angka ini *tidak* langsung memakan RAM 16GB-mu. Ini cuma "batas atas" atau plafon.</li>
+                <li&gt;**DATA:** Ini adalah jumlah memori asli (sebelum dikompres) yang sedang dilempar untuk diurus oleh sistem.</li>
+                <li&gt;**COMPR:** Ini adalah ukuran memori *setelah* dikompresi. (Misal: DATA 1GB bisa menyusut jadi COMPR 250MB. Bayangkan betapa banyak ruang RAM yang bisa diselamatkan!).</li>
             </ul>
             <h2>3. Di Mana Letak Pengaturannya? ⚙️</h2>
             <p>Kalau kamu gatal ingin mengutak-atik (misalnya mengubah ukuran maksimalnya), distro Linux modern biasanya menggunakan paket pembantu seperti `systemd-zram-setup` atau `zram-generator`.</p>
@@ -233,17 +233,17 @@
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
             <p>Mantap! Hasilnya sangat sempurna. Konfigurasi bawaan sistem memang tidak pernah mengecewakan. Ini adalah buktinya:</p>
             <ul>
-                <li>**ALGORITHM (`zstd`)**: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan *ngos-ngosan* saat harus memampatkan instruksi secara *real-time*.</li>
-                <li>**DISKSIZE (`15,5G`)**: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar "kapasitas wadah". Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
-                <li>**DATA (`4K`) &amp; COMPR (`64B`)**: Nah, ini bagian yang paling fantastis! Saat sistem sedang santai (baru ada beban 4 Kilobytes), algoritma berhasil memampatkannya hingga sekecil 64 Bytes saja. Bayangkan betapa ekstrem penghematan memorinya saat nanti sistem sedang padat-padatnya!</li>
-                <li>**MOUNTPOINT (`[SWAP]`)**: Ini konfirmasi akhir bahwa partisi virtual sudah resmi bertugas. Ketimbang Linux membuang tumpahan data ke *storage* yang bisa memperpendek umur SSD, ia akan langsung mengompresnya secara instan.</li>
+                <li&gt;**ALGORITHM (`zstd`)**: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan *ngos-ngosan* saat harus memampatkan instruksi secara *real-time*.</li>
+                <li&gt;**DISKSIZE (`15,5G`)**: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar "kapasitas wadah". Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
+                <li&gt;**DATA (`4K`) &amp; COMPR (`64B`)**: Nah, ini bagian yang paling fantastis! Saat sistem sedang santai (baru ada beban 4 Kilobytes), algoritma berhasil memampatkannya hingga sekecil 64 Bytes saja. Bayangkan betapa ekstrem penghematan memorinya saat nanti sistem sedang padat-padatnya!</li>
+                <li&gt;**MOUNTPOINT (`[SWAP]`)**: Ini konfirmasi akhir bahwa partisi virtual sudah resmi bertugas. Ketimbang Linux membuang tumpahan data ke *storage* yang bisa memperpendek umur SSD, ia akan langsung mengompresnya secara instan.</li>
             </ul>
             <p>Kesimpulannya: Perangkatmu sekarang memiliki perlindungan manajemen antrean yang sangat solid. Kombinasi RAM 16GB, *setup* kompresi yang berjalan paripurna ini, ditambah paket *booster* CachyOS (`kcgroups`, `dmemcg-booster`, dan `plasma-foreground-booster`), adalah racikan paling optimal.</p>
             <p>Sekarang kamu bisa jauh lebih leluasa melakukan *multitasking* intens—mulai dari membuka ratusan referensi, menjalankan *script* otomasi web berbasis Bun, hingga melakukan *batch processing* ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka *desktop* mendadak *stuttering* atau *freeze*. Mesinmu sudah mengerti dengan sangat jelas siapa yang harus diprioritaskan! ⚡</p>
         </article>
         <aside class="author-box">
             <h3>Editor</h3>
-            <p>**Fakhrul Rijal**</p>
+            <p&gt;**Fakhrul Rijal**</p>
             <p>Penulis adalah seorang *Linux Enthusiast* dan praktisi optimalisasi sistem berbasis Arch yang berfokus pada efisiensi *runtime* serta arsitektur komputer modern. Temukan pemikiran dan tulisan teknis lainnya melalui proyek pribadi di <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">Layar Kosong</a>.</p>
         </aside>
         <div id="related-articles-grid"></div>

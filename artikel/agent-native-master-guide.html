@@ -229,8 +229,8 @@
             <h2>Bagian 2: Content Negotiation &amp; Dualitas File LLMS</h2>
             <p>Menyumpal ribuan halaman HTML utuh ke memori AI adalah pemborosan token. Layar Kosong merakit penambang artikel dinamis berbasis **Bun** yang memilah konten menjadi dua wujud, tanpa perlu berurusan dengan relasi *database creation* yang rumit:</p>
             <ul>
-                <li>**llms.txt (Buku Menu):** File ringan di folder `.well-known` berisi judul, ringkasan satu baris, dan URL asli sebagai peta jalan agen AI.</li>
-                <li>**llms.md (Gudang Arsip):** Skrip *Bun* membedah file HTML asli, membuang elemen pengganggu, dan mengonversi tag inti menjadi format *Markdown* padat gizi.</li>
+                <li&gt;**llms.txt (Buku Menu):** File ringan di folder `.well-known` berisi judul, ringkasan satu baris, dan URL asli sebagai peta jalan agen AI.</li>
+                <li&gt;**llms.md (Gudang Arsip):** Skrip *Bun* membedah file HTML asli, membuang elemen pengganggu, dan mengonversi tag inti menjadi format *Markdown* padat gizi.</li>
             </ul>
             <p>Melalui lapisan *middleware* via `_middleware.ts`, bot yang membawa *header* `Accept: text/markdown` akan otomatis dibelokkan untuk disuapi file *Markdown* tanpa merusak antarmuka HTML bagi pengunjung manusia.</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/75f836916a86e2b9.webp" alt="100 persen 2" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
@@ -264,8 +264,8 @@
             <h2>Part 2: Content Negotiation &amp; Dual LLMS Files</h2>
             <p>Stuffing full HTML pages into an AI's memory is a colossal waste of tokens. Layar Kosong built a dynamic harvesting system using **Bun** that categorizes content without the overhead of traditional *database creation*:</p>
             <ul>
-                <li>**llms.txt (The Menu):** A super light file acting as a roadmap, featuring article titles, summaries, and URLs.</li>
-                <li>**llms.md (The Warehouse):** Our *Bun* script parses HTML files during build, strips distracting elements, and converts core tags into clean *Markdown*.</li>
+                <li&gt;**llms.txt (The Menu):** A super light file acting as a roadmap, featuring article titles, summaries, and URLs.</li>
+                <li&gt;**llms.md (The Warehouse):** Our *Bun* script parses HTML files during build, strips distracting elements, and converts core tags into clean *Markdown*.</li>
             </ul>
             <p>A fast-path layer via `_middleware.ts` ensures that bots carrying the `Accept: text/markdown` header are invisibly rerouted to the *Markdown* content, keeping the HTML visual display beautiful for humans.</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/75f836916a86e2b9.webp" alt="100 persen 2" width="100%" style="display: block; margin-left: auto; margin-right: auto;">

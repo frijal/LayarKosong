@@ -212,19 +212,19 @@
             <h2>1. Restore Menggunakan Deja Dup (GUI) — *Paling Direkomendasikan*</h2>
             <p>Jika tujuan utamamu murni ingin menyelamatkan dokumen pribadi, tugas kuliah, koleksi foto *meme*, dan *file* unduhan, maka **Deja Dup** adalah sang juru selamat. Aplikasi ini sering kali sudah terpasang bawaan di banyak distro berbasis Debian atau Ubuntu. Antarmukanya sangat sederhana sehingga ramah bagi pemula.</p>
             <h3>Langkah-langkah Eksekusi Deja Dup</h3>
-            <p>**Langkah 1: Install Deja Dup**<br>
+            <p&gt;**Langkah 1: Install Deja Dup**<br>
             Buka *Terminal* kesayanganmu sebentar saja dan jalankan:</p>
 <pre><code><span class="keyword">sudo apt</span> update
 <span class="keyword">sudo apt</span> install deja-dup -y</code></pre>
-            <p>**Langkah 2: Buka Aplikasinya**<br>
+            <p&gt;**Langkah 2: Buka Aplikasinya**<br>
             Cari ikon aplikasi bernama **"Backups"** di menu deretan aplikasi kamu, atau cukup panggil lewat terminal dengan mengetik `deja-dup`.</p>
-            <p>**Langkah 3: Tentukan Lokasi Harta Karunmu**<br>
+            <p&gt;**Langkah 3: Tentukan Lokasi Harta Karunmu**<br>
             Di jendela aplikasi, klik *tab* **Restore**. Setelah itu, tekan tombol tebal bertuliskan *"Restore from a previous backup"*. Arahkan ke *flashdisk* atau HDD eksternal tempat kamu menyimpan data lamamu, lalu klik **Forward**.</p>
-            <p>**Langkah 4: Pilih Data yang Ingin Dikembalikan**<br>
+            <p&gt;**Langkah 4: Pilih Data yang Ingin Dikembalikan**<br>
             Aplikasi canggih ini akan membaca arsipmu dan menampilkan struktur folder layaknya *file manager* biasa. Centang folder-folder krusial seperti `Documents`, `Pictures`, `Downloads`, atau `.config` (jika kamu juga menyimpan pengaturan *dotfiles*). Setelah yakin, klik **Forward** lagi.</p>
-            <p>**Langkah 5: Tentukan Lokasi Pendaratan**<br>
+            <p&gt;**Langkah 5: Tentukan Lokasi Pendaratan**<br>
             Sistem akan bertanya di mana data ini mau diletakkan. Sangat disarankan untuk memilih opsi *"Restore files to original locations"* agar sistem secara otomatis meletakkannya kembali ke `/home` milikmu. Klik **Restore**.</p>
-            <p>**Langkah 6: Tunggu Sambil Ngopi**<br>
+            <p&gt;**Langkah 6: Tunggu Sambil Ngopi**<br>
             Biarkan sistem memindahkan data. Proses ini bisa berjalan beberapa menit hingga hitungan jam tergantung ukuran datamu. Jika sudah selesai, *reboot* komputermu biar afdal.</p>
             <h3>Kelebihan &amp; Kekurangan Deja Dup</h3>
             <table>
@@ -250,27 +250,27 @@
                 </tbody>
             </table>
             <h2>2. Restore Menggunakan Timeshift (Mesin Waktu Sistem)</h2>
-            <p>**Timeshift** memiliki arena bermain yang berbeda. Daripada mengurusi *file* Excel atau PDF-mu, ia lebih fokus untuk mengambil gambar utuh *(snapshot)* dari sistem operasimu. Mirip seperti fitur *System Restore* di Windows.</p>
+            <p&gt;**Timeshift** memiliki arena bermain yang berbeda. Daripada mengurusi *file* Excel atau PDF-mu, ia lebih fokus untuk mengambil gambar utuh *(snapshot)* dari sistem operasimu. Mirip seperti fitur *System Restore* di Windows.</p>
             <blockquote>
                 <p><i class="fa-solid fa-triangle-exclamation"></i> **Peringatan Ringan:** Karena kamu berada pada skenario **baru selesai install ulang**, cara ini **hanya** bisa dilakukan jika di OS yang lama kamu sempat membuat arsip *snapshot* Timeshift dan menyimpannya di partisi atau diska eksternal yang terpisah.</p>
             </blockquote>
             <h3>Langkah-langkah Eksekusi Timeshift</h3>
-            <p>**Langkah 1: Install Timeshift**</p>
+            <p&gt;**Langkah 1: Install Timeshift**</p>
 <pre><code><span class="keyword">sudo apt</span> install timeshift -y</code></pre>
-            <p>**Langkah 2: Buka dan Autentikasi**<br>
+            <p&gt;**Langkah 2: Buka dan Autentikasi**<br>
             Cari ikon aplikasinya atau jalankan `sudo timeshift`. Ia butuh akses penuh *(root)* untuk memanipulasi tulang punggung sistem.</p>
-            <p>**Langkah 3: Pilih Titik Kembalimu**<br>
+            <p&gt;**Langkah 3: Pilih Titik Kembalimu**<br>
             Di halaman utama, klik opsi **Restore**. Arahkan pembacaan data ke HDD eksternalmu. Pilih *snapshot* dengan tanggal terbaru sebelum OS lamamu rusak atau diinstal ulang.</p>
-            <p>**Langkah 4: Pilih Mode Target**<br>
+            <p&gt;**Langkah 4: Pilih Mode Target**<br>
             Timeshift akan menyuguhkan dua menu makanan:</p>
             <ul>
                 <li>*Restore system files only* (Cuma *file* sistem root).</li>
                 <li>*Restore system + home files* (Sistem di-*rollback* + data pribadi juga ikut diubah).</li>
             </ul>
             <p>Pilih sesuai seleramu, lalu klik **Next**.</p>
-            <p>**Langkah 5: Konfirmasi Maut**<br>
+            <p&gt;**Langkah 5: Konfirmasi Maut**<br>
             Tinjau ulang apa saja partisi yang akan ditimpa. Jika sudah yakin 100%, klik **Restore**. Ingat, proses ini akan menimpa seluruh sistem barumu kembali ke state saat *snapshot* diambil.</p>
-            <p>**Langkah 6: Wajib Reboot**<br>
+            <p&gt;**Langkah 6: Wajib Reboot**<br>
             Setelah indikator progres penuh, *restart* komputermu agar *kernel* Linux memuat sistem dari posisi masa lalunya.</p>
             <h2>Kesimpulan: Mana yang Harus Dipilih?</h2>
             <p>Masih bingung mau klik yang mana? Mari kita adu keduanya agar kamu bisa menentukan keputusan terbaik:</p>
@@ -285,22 +285,22 @@
                 <tbody>
                     <tr>
                         <td>Cuma mau menyelamatkan *file* kerjaan, foto, dan lagu.</td>
-                        <td>**Deja Dup**</td>
+                        <td&gt;**Deja Dup**</td>
                         <td>Sangat aman, tidak akan membuat OS *crash*.</td>
                     </tr>
                     <tr>
                         <td>Ingin data pribadi + pengaturan *desktop environment* balik.</td>
-                        <td>**Deja Dup**</td>
+                        <td&gt;**Deja Dup**</td>
                         <td>Tinggal *checklist* folder `.config` di dalamnya.</td>
                     </tr>
                     <tr>
                         <td>Pengen OS barunya langsung berubah jadi OS lamanya secara ajaib.</td>
-                        <td>**Timeshift**</td>
+                        <td&gt;**Timeshift**</td>
                         <td>Kemampuan *rollback* menyeluruh skala mesin.</td>
                     </tr>
                     <tr>
-                        <td>**Baru banget install ulang Debian Stable.**</td>
-                        <td>**Deja Dup**</td>
+                        <td&gt;**Baru banget install ulang Debian Stable.**</td>
+                        <td&gt;**Deja Dup**</td>
                         <td>Metode paling direkomendasikan &amp; realistis.</td>
                     </tr>
                 </tbody>

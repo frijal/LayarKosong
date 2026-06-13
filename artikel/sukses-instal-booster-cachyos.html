@@ -240,18 +240,18 @@ Press enter to exit</code></pre>
             <p>Kalau kita perhatikan *log* terminal yang kamu *paste* di atas, ada satu bagian yang sangat menarik dan menguntungkan buat kamu sebagai pengguna:</p>
 <pre><code>Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service' → ...
 Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → ...</code></pre>
-            <p>**Apa artinya itu?**</p>
+            <p&gt;**Apa artinya itu?**</p>
             <p>Artinya, CachyOS memiliki mekanisme cerdas yang sudah otomatis mendaftarkan dan menghidupkan *service* `dmemcg-booster` ini di dua level sekaligus: level sistem (*root*) dan level pengguna (*user session*). Kamu **tidak perlu repot-repot** mengetik perintah `sudo systemctl enable ...` secara manual ke dalam terminal. Tinggal duduk manis, sistem distribusi modern ini yang mengatur semuanya untukmu secara mulus dari belakang layar.</p>
             <h2>Apa yang Harus Dilakukan Sekarang?</h2>
             <p>Karena ketiga paket krusial ini (`kcgroups`, `dmemcg-booster`, dan `plasma-foreground-booster`) berinteraksi langsung dengan cara kernel Linux dan antarmuka desktop (KDE Plasma) membagikan jatah memori, langkah paling sakti selanjutnya adalah:</p>
-            <p>**Lakukan Restart (Reboot) pada laptopmu.**</p>
+            <p&gt;**Lakukan Restart (Reboot) pada laptopmu.**</p>
             <p>Meski *post-transaction hooks* dari manajer paket di atas sudah secara otomatis me-`reload` konfigurasi *systemd*, melakukan proses *restart* pada laptop akan memastikan aturan kernel (*cgroups*) yang baru benar-benar dimuat dari kondisi yang sangat bersih (*fresh boot*). Selain itu, *booster* untuk layar depan (KDE Plasma) bisa langsung mulai mengawasi dan memprioritaskan jendela aplikasimu sejak pertama kali kamu melakukan *login*.</p>
             <p>Silakan tekan tombol **Enter** untuk keluar dari layar terminal tersebut, lalu *restart* laptopnya. Setelah sistem menyala kembali, cobalah siksa perangkatmu dengan rutinitas berat yang biasa kamu lakukan—buka banyak tab peramban, jalankan berbagai *script*, dan rasakan sendiri apakah kendala *stuttering* serta *lag* yang selama ini mengganggu sudah jauh berkurang! 🚀</p>
         </article>
         <!-- Profil Penulis -->
         <aside class="author-meta">
             <h3>Editor</h3>
-            <p>**Fakhrul Rijal** adalah seorang pengembang sistem independen dan penggiat komunitas *open-source* yang berbasis di Balikpapan. Rutin membagikan catatan teknis, eksperimen kernel Linux, dan panduan optimalisasi *server* maupun *desktop* melalui blog pribadinya.</p>
+            <p&gt;**Fakhrul Rijal** adalah seorang pengembang sistem independen dan penggiat komunitas *open-source* yang berbasis di Balikpapan. Rutin membagikan catatan teknis, eksperimen kernel Linux, dan panduan optimalisasi *server* maupun *desktop* melalui blog pribadinya.</p>
             <div class="social-links">
                 <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">🌐 Layar Kosong</a>
                 <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>

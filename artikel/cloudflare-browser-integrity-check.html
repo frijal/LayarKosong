@@ -155,14 +155,14 @@
         <p>Bagaimana Cloudflare tahu apakah Anda manusia atau *script* bot yang buruk? Jawabannya ada di **HTTP Header**. Setiap kali peramban Anda meminta halaman web, ia mengirimkan serangkaian informasi (*header*) yang mendeskripsikan dirinya, seperti tipe peramban, bahasa yang disukai, dan versi sistem operasi.</p>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIN3IHYdd3q3H_1LKwEk9pB25RsuXyYwufFtf5WslgMMRCSRSsVZLwf9W3FhfKL4WqHORtixomyiJx34pMFjHTHO49t8n4ez7HDF-4ugelYE0yvT3oGq6CqvZo9mWgPB6JCI54R1Os0Ahdx6mZOejOELOS2i3r6xPYuNYWQ4ojZOnH0_TJ4PaU9b0QlhU/s1600/integrity.webp" alt="Diagram proses pemeriksaan integritas browser oleh Cloudflare">
-            <p style="font-size:0.9em;">**Gambar:** Proses pemindaian dan pemeriksaan *header* yang dilakukan Cloudflare di lapisan Edge Network.</p>
+            <p style="font-size:0.9em;"&gt;**Gambar:** Proses pemindaian dan pemeriksaan *header* yang dilakukan Cloudflare di lapisan Edge Network.</p>
         </div>
         <h3><i class="fa-solid fa-bug"></i> Anomali yang Dicari Cloudflare</h3>
         <p>Bot sederhana sering kali gagal meniru *header* ini dengan sempurna, dan disitulah Cloudflare memergoki mereka:</p>
         <ul>
             <li><b>Header yang Hilang atau Tidak Lengkap:</b> Peramban sungguhan harus memiliki <em>header</em> standar seperti <code>User-Agent</code> dan <code>Accept-Encoding</code>. Jika <em>header</em> ini hilang atau terlalu singkat, maka adalah tanda bahwa itu bukan peramban sungguhan.</li>
-            <li>**Format yang Salah (*Mal-Formed*):** Jika nilai *header* memiliki format yang secara teknis tidak mungkin ada (misalnya, *User-Agent* yang tidak terdaftar atau tidak sesuai sintaks HTTP), itu akan ditandai sebagai ancaman.</li>
-            <li>**Ketidaksesuaian Logika:** Misalnya, *browser* menyatakan dirinya sebagai Chrome terbaru tetapi tidak meminta *header* tertentu yang seharusnya diminta oleh Chrome (perilaku yang didasarkan pada basis data Cloudflare tentang perilaku *browser* normal).</li>
+            <li&gt;**Format yang Salah (*Mal-Formed*):** Jika nilai *header* memiliki format yang secara teknis tidak mungkin ada (misalnya, *User-Agent* yang tidak terdaftar atau tidak sesuai sintaks HTTP), itu akan ditandai sebagai ancaman.</li>
+            <li&gt;**Ketidaksesuaian Logika:** Misalnya, *browser* menyatakan dirinya sebagai Chrome terbaru tetapi tidak meminta *header* tertentu yang seharusnya diminta oleh Chrome (perilaku yang didasarkan pada basis data Cloudflare tentang perilaku *browser* normal).</li>
         </ul>
         <hr>
         <h2><i class="fa-solid fa-clipboard-check"></i> 2. Mekanisme Blokir dan Keuntungannya</h2>
@@ -170,8 +170,8 @@
         <h3><i class="fa-solid fa-stop-circle"></i> Apa yang Terjadi Ketika Bot Ditemukan?</h3>
         <p>Bila ancaman terdeteksi, Cloudflare akan memberikan respons yang keras:</p>
         <ul>
-            <li>**Block Page Delivered:** Bot tersebut tidak akan pernah melihat konten situs Anda. Mereka akan langsung mendapatkan halaman blokir standar dari Cloudflare dengan kode error, yang menghentikan upaya *scraping* atau serangan mereka.</li>
-            <li>**Log Peringatan:** Cloudflare mencatat peristiwa ini, memungkinkan Anda melihat seberapa banyak *traffic* bot yang buruk yang berhasil dihalau oleh fitur ini.</li>
+            <li&gt;**Block Page Delivered:** Bot tersebut tidak akan pernah melihat konten situs Anda. Mereka akan langsung mendapatkan halaman blokir standar dari Cloudflare dengan kode error, yang menghentikan upaya *scraping* atau serangan mereka.</li>
+            <li&gt;**Log Peringatan:** Cloudflare mencatat peristiwa ini, memungkinkan Anda melihat seberapa banyak *traffic* bot yang buruk yang berhasil dihalau oleh fitur ini.</li>
         </ul>
         <h3><i class="fa-solid fa-hand-holding-usd"></i> Keuntungan Nyata untuk Situs Anda</h3>
         <table class="specs-table">
@@ -183,15 +183,15 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>**Pengurangan Beban CPU**</td>
+                    <td&gt;**Pengurangan Beban CPU**</td>
                     <td>Server Anda tidak perlu menghabiskan siklus CPU dan *bandwidth* untuk memproses permintaan dari *bot* yang buruk dan tidak sah.</td>
                 </tr>
                 <tr>
-                    <td>**Pertahanan Lini Pertama**</td>
+                    <td&gt;**Pertahanan Lini Pertama**</td>
                     <td>Fitur ini menyaring ancaman paling dasar (*low-hanging fruit*) seperti *scanner* kerentanan otomatis dan *scraper* yang malas sebelum mereka bertemu WAF yang lebih canggih.</td>
                 </tr>
                 <tr>
-                    <td>**Menghemat Kuota Aturan WAF**</td>
+                    <td&gt;**Menghemat Kuota Aturan WAF**</td>
                     <td>Karena *traffic* buruk sudah diblokir di tahap ini, Anda tidak perlu membuat aturan WAF kustom yang rumit hanya untuk menangani *bot* yang cacat, sehingga aturan WAF Anda dapat fokus pada ancaman yang lebih canggih.</td>
                 </tr>
             </tbody>

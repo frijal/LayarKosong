@@ -201,12 +201,12 @@
             <p>Halo pengguna Linux! Pernahkah kamu merasa paket perangkat lunak di Debian Stable milikmu terlalu tertinggal versinya? *Yup*, ini adalah dilema yang sering dialami oleh para administrator sistem maupun pengguna *desktop*. Debian Stable memang juara soal stabilitas, tapi buat kamu yang butuh fitur terbaru hari ini juga, melakukan migrasi ke Debian Testing (saat ini bernama sandi Trixie) seringkali menjadi solusi yang paling masuk akal.</p>
             <p>Pada artikel ini, kita akan membedah secara lengkap apa saja persiapannya, langkah demi langkah melakukan pembaruan, hingga mitigasi risikonya. Semua proses ini akan kita lakukan langsung melalui terminal.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/e27780f5a65fe467.webp" srcset="https://pbs.twimg.com/media/HKK1qN-aIAAvNBK?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK1qN-aIAAvNBK?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK1qN-aIAAvNBK?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="article-image" alt="Ilustrasi migrasi repositori terminal Debian">
-            <h2>**Peringatan Penting Sebelum Memulai:** <i class="fa-solid fa-triangle-exclamation"></i></h2>
+            <h2&gt;**Peringatan Penting Sebelum Memulai:** <i class="fa-solid fa-triangle-exclamation"></i></h2>
             <p>Migrasi dari **Stable** ke **Testing** **tidak direkomendasikan secara resmi** oleh pengembang Debian untuk pengguna kasual. Mengapa? Proses ini bisa menyebabkan sistem rusak, *package conflict* yang rumit, atau bahkan gagal *booting*. **Lebih aman** jika kamu melakukan **instalasi ulang** Debian Testing dari awal. Namun jika kamu sudah paham risikonya dan tetap ingin mencoba migrasi *in-place*, ikuti panduan di bawah ini dengan sangat hati-hati.</p>
             <h2>Persiapan Sebelum Migrasi</h2>
             <p>Sebelum mengetikkan perintah apa pun, pastikan kamu sudah melakukan tindakan preventif berikut:</p>
             <ol>
-                <li>**Backup data penting** (Ini adalah langkah mutlak, jangan dilewati).</li>
+                <li&gt;**Backup data penting** (Ini adalah langkah mutlak, jangan dilewati).</li>
                 <li>Perbarui sistem Stable milikmu ke status terbaru terlebih dahulu:
 <pre><code>sudo apt update &amp;&amp; sudo apt full-upgrade</code></pre>
                 </li>
@@ -224,7 +224,7 @@
 <pre><code>deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware</code></pre>
-            <p>**Contoh setelah** diubah menjadi Trixie:</p>
+            <p&gt;**Contoh setelah** diubah menjadi Trixie:</p>
 <pre><code>deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware
 deb http://deb.debian.org/debian trixie-updates main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security trixie-security main contrib non-free non-free-firmware</code></pre>
@@ -263,25 +263,25 @@ sudo apt autoclean</code></pre>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>**Instalasi Ulang**</td>
+                        <td&gt;**Instalasi Ulang**</td>
                         <td>Sangat Rendah</td>
-                        <td>**Paling Direkomendasikan**</td>
+                        <td&gt;**Paling Direkomendasikan**</td>
                         <td>Instal OS dari awal. Paling bersih dan dijamin aman tanpa konflik paket sisa.</td>
                     </tr>
                     <tr>
-                        <td>**Migrasi Manual**</td>
+                        <td&gt;**Migrasi Manual**</td>
                         <td>Tinggi</td>
                         <td>Hanya Jika Berani</td>
                         <td>Cara yang kita bahas di artikel ini. Berisiko *broken package*.</td>
                     </tr>
                     <tr>
-                        <td>**Gunakan `apt-listbugs`**</td>
+                        <td&gt;**Gunakan `apt-listbugs`**</td>
                         <td>Sedang</td>
                         <td>Sangat Disarankan</td>
                         <td>Sebuah *tools* untuk mengecek *bug* kritis sebelum sistem meng-install pembaruan.</td>
                     </tr>
                     <tr>
-                        <td>**Upgrade Bertahap**</td>
+                        <td&gt;**Upgrade Bertahap**</td>
                         <td>Sedang</td>
                         <td>Bisa Dicoba</td>
                         <td>Melakukan *upgrade* pada beberapa komponen dasar terlebih dahulu.</td>

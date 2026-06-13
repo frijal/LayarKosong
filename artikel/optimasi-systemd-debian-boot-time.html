@@ -163,9 +163,9 @@
         <h2>Kenapa Harus Repot Melakukan Ini? (Why)</h2>
         <p>Ada tiga alasan kuat:
             </p><ul>
-                <li>**Efisiensi Waktu:** Menghemat 5-10 detik setiap kali boot sangat berharga untuk produktivitas.</li>
-                <li>**Hemat Resource:** Layanan yang tidak aktif berarti pemakaian RAM dan baterai (di laptop) jadi lebih irit.</li>
-                <li>**Keamanan:** Semakin sedikit layanan yang terbuka, semakin sedikit pintu masuk bagi potensi ancaman (*attack surface reduction*).</li>
+                <li&gt;**Efisiensi Waktu:** Menghemat 5-10 detik setiap kali boot sangat berharga untuk produktivitas.</li>
+                <li&gt;**Hemat Resource:** Layanan yang tidak aktif berarti pemakaian RAM dan baterai (di laptop) jadi lebih irit.</li>
+                <li&gt;**Keamanan:** Semakin sedikit layanan yang terbuka, semakin sedikit pintu masuk bagi potensi ancaman (*attack surface reduction*).</li>
             </ul>
         <p></p>
         <div class="info-box">
@@ -186,17 +186,17 @@
         <h2>Service Mana yang Aman Dimatikan? (Where &amp; When)</h2>
         <p>Setelah melakukan analisis, biasanya ada beberapa "sampah" layanan yang bisa kita singkirkan, tergantung kebutuhanmu:</p>
         <ul class="step-list">
-            <li>**ModemManager.service:** Kamu tidak pakai modem USB atau kartu SIM? Matikan saja!</li>
-            <li>**avahi-daemon.service:** Berguna untuk penemuan jaringan otomatis. Jika kamu di lingkungan server statis, ini jarang dibutuhkan.</li>
-            <li>**bluetooth.service:** Matikan jika PC/Server kamu tidak memiliki atau tidak memakai Bluetooth.</li>
-            <li>**cups.service / cups-browsed.service:** Matikan jika kamu tidak menggunakan printer. <i class="fa-solid fa-print"></i></li>
-            <li>**exim4.service:** Jika kamu tidak butuh server email lokal di mesin Debian-mu.</li>
+            <li&gt;**ModemManager.service:** Kamu tidak pakai modem USB atau kartu SIM? Matikan saja!</li>
+            <li&gt;**avahi-daemon.service:** Berguna untuk penemuan jaringan otomatis. Jika kamu di lingkungan server statis, ini jarang dibutuhkan.</li>
+            <li&gt;**bluetooth.service:** Matikan jika PC/Server kamu tidak memiliki atau tidak memakai Bluetooth.</li>
+            <li&gt;**cups.service / cups-browsed.service:** Matikan jika kamu tidak menggunakan printer. <i class="fa-solid fa-print"></i></li>
+            <li&gt;**exim4.service:** Jika kamu tidak butuh server email lokal di mesin Debian-mu.</li>
         </ul>
         <h2>Langkah Eksekusi: Cara Mematikan Service</h2>
         <p>Ada dua cara untuk menghentikan layanan. Pertama adalah `disable` (mencegah jalan otomatis), dan yang kedua adalah `mask` (mengunci total agar tidak bisa dipanggil layanan lain).</p>
-        <p>**Contoh mematikan Bluetooth:**</p>
+        <p&gt;**Contoh mematikan Bluetooth:**</p>
         <pre>sudo systemctl disable --now bluetooth.service</pre>
-        <p>**Jika layanan tersebut bandel dan hidup lagi:**</p>
+        <p&gt;**Jika layanan tersebut bandel dan hidup lagi:**</p>
         <pre>sudo systemctl mask bluetooth.service</pre>
         <div class="info-box">
             <i class="fa-solid fa-lightbulb"></i> **Pro Tip:** Gunakan `systemctl list-unit-files --state=enabled` untuk melihat semua layanan yang saat ini aktif saat boot.

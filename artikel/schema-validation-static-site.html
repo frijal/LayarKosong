@@ -156,8 +156,8 @@
         <h3><i class="fa-solid fa-search"></i> Permintaan yang Dominan adalah GET</h3>
         <p>Situs statis (yang dihasilkan oleh *generator* seperti Jekyll, Hugo, atau 11ty) sebagian besar hanya melayani permintaan **GET** atau **HEAD**.</p>
         <ul>
-            <li>**GET Request:** Meminta file. Permintaan ini tidak membawa *body* (payload) data yang kompleks.</li>
-            <li>**Tujuan Schema Validation:** Memeriksa *body* (payload) dari permintaan **POST**, **PUT**, atau **PATCH**.</li>
+            <li&gt;**GET Request:** Meminta file. Permintaan ini tidak membawa *body* (payload) data yang kompleks.</li>
+            <li&gt;**Tujuan Schema Validation:** Memeriksa *body* (payload) dari permintaan **POST**, **PUT**, atau **PATCH**.</li>
         </ul>
         <p>Karena Static Site tidak menerima *body* data yang rumit, tidak ada skema yang perlu divalidasi oleh Cloudflare.</p>
         <h3><i class="fa-solid fa-server"></i> Tidak Ada Logika Backend yang Berbahaya</h3>
@@ -173,19 +173,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>**Data Input**</td>
+                    <td&gt;**Data Input**</td>
                     <td>Menerima data kompleks (JSON/XML).</td>
                     <td>Hanya menerima URL/Header sederhana (Tidak ada *payload*).</td>
                 </tr>
                 <tr>
-                    <td>**Ancaman**</td>
+                    <td&gt;**Ancaman**</td>
                     <td>Serangan Injeksi, *Payload* Aneh.</td>
                     <td>Serangan DDoS/Lalu Lintas (*Bandwidth*).</td>
                 </tr>
                 <tr>
-                    <td>**Relevansi Schema Validation**</td>
-                    <td>**Sangat Krusial**</td>
-                    <td>**Tidak Relevan**</td>
+                    <td&gt;**Relevansi Schema Validation**</td>
+                    <td&gt;**Sangat Krusial**</td>
+                    <td&gt;**Tidak Relevan**</td>
                 </tr>
             </tbody>
         </table>
@@ -197,12 +197,12 @@
         </blockquote>
         <p>Pada skenario ini, **Schema Validation menjadi relevan lagi!**</p>
         <ul>
-            <li>**Target Perlindungan:** Bukan lagi Static Site itu sendiri, melainkan **endpoint API** dari *Serverless Function* yang menangani formulir kontak atau pencarian Anda.</li>
-            <li>**Kegunaannya:** Anda dapat mendefinisikan skema untuk formulir tersebut. Misalnya, kolom email harus berjenis *string* dan kolom pesan tidak boleh melebihi 500 karakter. Jika *spammer* mengirim data acak dengan string 10.000 karakter, Cloudflare akan **memblokirnya di lapisan Edge** sebelum *Worker* Anda harus mengonsumsi CPU dan durasi eksekusi yang mahal.</li>
+            <li&gt;**Target Perlindungan:** Bukan lagi Static Site itu sendiri, melainkan **endpoint API** dari *Serverless Function* yang menangani formulir kontak atau pencarian Anda.</li>
+            <li&gt;**Kegunaannya:** Anda dapat mendefinisikan skema untuk formulir tersebut. Misalnya, kolom email harus berjenis *string* dan kolom pesan tidak boleh melebihi 500 karakter. Jika *spammer* mengirim data acak dengan string 10.000 karakter, Cloudflare akan **memblokirnya di lapisan Edge** sebelum *Worker* Anda harus mengonsumsi CPU dan durasi eksekusi yang mahal.</li>
         </ul>
 <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQC7Nszo1bkHxdtRkpiTZgOunG6CqyDbSi9U2EJtV1Q_KkKEpsy3AGIgJfpga9IdIst9V8Dicc2SMtJ0Pwj-JaaV_Rn-bxQoxN6Y30QFBId5diryFWWXfzalvAH7_7Kv_Hd-gnrvj6WdGkvkvxRfJMunExkTI3L4b1-JxKbQMg8vejVj6IvnK77rdUZWc/s1600/scemastatis.webp" alt="Ilustrasi data API yang dicek oleh Cloudflare">
-            <p style="font-size:0.9em;">**Gambar:** Cloudflare menjalankan pemeriksaan Schema sebelum permintaan mencapai *origin server*.</p>
+            <p style="font-size:0.9em;"&gt;**Gambar:** Cloudflare menjalankan pemeriksaan Schema sebelum permintaan mencapai *origin server*.</p>
         </div>
         <hr>
         <h2><i class="fa-solid fa-lightbulb"></i> Kesimpulan Akhir</h2>

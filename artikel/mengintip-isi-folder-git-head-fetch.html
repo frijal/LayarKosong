@@ -214,7 +214,7 @@
                 <p>Lalu, kapan pointer ini bergeser? Jawabannya: setiap kali kamu berpindah branch menggunakan <code>git switch</code>. Saat itu juga, isi teks file HEAD akan otomatis diperbarui untuk menunjuk ke branch tujuan barumu. Selain itu, saat kamu mencetak *commit* baru, HEAD (melalui branch yang sedang ditunjuknya) akan otomatis melangkah maju mengekor ke *commit* paling mutakhir.</p>
                 <p>Sistem referensi berantai inilah yang menjadi kunci rahasia Git. Alurnya bekerja dengan cerdas: HEAD umumnya menunjuk ke sebuah Branch, dan Branch tersebut akan menunjuk ke Hash Commit terbaru. Contoh rantai sederhananya: <code>HEAD -&gt; refs/heads/master -&gt; a1b2c3d...</code>. Kalau kamu iseng membuka terminal di projectmu dan mengetik <code>cat .git/HEAD</code>, kamu akan langsung melihat validasi posisi referensi ini.</p>
                 <div class="highlight-box">
-                    <p>**⚠️ Peringatan: Detached HEAD!**</p>
+                    <p&gt;**⚠️ Peringatan: Detached HEAD!**</p>
                     <p>Ini adalah kondisi horor di mana kamu melakukan checkout langsung merujuk ke sebuah *commit hash*, bukan mendarat ke nama branch yang utuh. Imbasnya, HEAD jadi nggak punya "rumah" branch. Kalau kamu nekat melakukan *commit* di fase ini, *commit*-nya berpotensi raib jika kamu pindah ke branch lain tanpa menyimpannya dulu. Hati-hati ya! Jangan sampai kerja keras seharian menguap gara-gara status "terlepas" ini.</p>
                 </div>
                 <h2>2. Mengenal FETCH_HEAD: Sang Kurir Berita 📬</h2>
@@ -234,22 +234,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>**Fokus Area**</td>
+                            <td&gt;**Fokus Area**</td>
                             <td>Internal / Kondisi lokal saat ini</td>
                             <td>Eksternal / Tangkapan remote terakhir</td>
                         </tr>
                         <tr>
-                            <td>**Sifat Ekstensi**</td>
+                            <td&gt;**Sifat Ekstensi**</td>
                             <td>Permanen (wajib menunjuk sesuatu)</td>
                             <td>Efemer (usang dan diperbarui tiap *fetch*)</td>
                         </tr>
                         <tr>
-                            <td>**Fungsi Esensial**</td>
+                            <td&gt;**Fungsi Esensial**</td>
                             <td>Navigasi lalu lintas antar branch lokal</td>
                             <td>Jembatan aman integrasi data *remote*</td>
                         </tr>
                         <tr>
-                            <td>**Lokasi di .git**</td>
+                            <td&gt;**Lokasi di .git**</td>
                             <td><code>.git/HEAD</code></td>
                             <td><code>.git/FETCH_HEAD</code></td>
                         </tr>

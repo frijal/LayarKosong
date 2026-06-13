@@ -195,38 +195,38 @@
             <h2>1. Dependabot: Si Anak Emas GitHub</h2>
             <p>Karena Dependabot ini dirawat langsung oleh ekosistem GitHub, keunggulan utamanya ada di integrasi yang sangat mulus kalau kamu memang *hosting* kode di *platform* tersebut.</p>
             <ul>
-                <li>**Keunggulan Utama:**
+                <li&gt;**Keunggulan Utama:**
                     <ul>
-                        <li>**Praktis &amp; Instan:** *Setup*-nya luar biasa gampang. Tinggal bikin file `dependabot.yml` sebaris-dua-baris, dan *boom*! Dia langsung jalan di latar belakang mengawasi repomu secara konsisten.</li>
-                        <li>**Fokus Keamanan (*Security*):** Dia terintegrasi langsung dengan GitHub Advisory Database. Begitu ada celah keamanan (CVE) baru di *library* yang kamu pakai, Dependabot bisa langsung menembak PR khusus *security update* tanpa harus nunggu jadwal *cron job* rutin.</li>
-                        <li>**Nggak Perlu Server:** Karena jalan di atas infrastruktur GitHub Actions secara terpusat, kamu sama sekali nggak perlu mikirin cara *hosting bot*-nya.</li>
+                        <li&gt;**Praktis &amp; Instan:** *Setup*-nya luar biasa gampang. Tinggal bikin file `dependabot.yml` sebaris-dua-baris, dan *boom*! Dia langsung jalan di latar belakang mengawasi repomu secara konsisten.</li>
+                        <li&gt;**Fokus Keamanan (*Security*):** Dia terintegrasi langsung dengan GitHub Advisory Database. Begitu ada celah keamanan (CVE) baru di *library* yang kamu pakai, Dependabot bisa langsung menembak PR khusus *security update* tanpa harus nunggu jadwal *cron job* rutin.</li>
+                        <li&gt;**Nggak Perlu Server:** Karena jalan di atas infrastruktur GitHub Actions secara terpusat, kamu sama sekali nggak perlu mikirin cara *hosting bot*-nya.</li>
                     </ul>
                 </li>
-                <li>**Kelemahan:**
+                <li&gt;**Kelemahan:**
                     <ul>
-                        <li>**Kaku:** Fitur kustomisasinya sangat terbatas. Walaupun sekarang Dependabot sudah punya fitur *Grouped PRs* (biar PR nggak nyampah belasan biji di halaman muka repositori), jujur saja fiturnya masih agak primitif dan kurang pintar dibanding kompetitor utamanya.</li>
+                        <li&gt;**Kaku:** Fitur kustomisasinya sangat terbatas. Walaupun sekarang Dependabot sudah punya fitur *Grouped PRs* (biar PR nggak nyampah belasan biji di halaman muka repositori), jujur saja fiturnya masih agak primitif dan kurang pintar dibanding kompetitor utamanya.</li>
                     </ul>
                 </li>
             </ul>
             <h2>2. Renovate: Si *Overpowered* buat Pemuja Kustomisasi</h2>
             <p>Di sisi lain, Renovate adalah "monster" di dunia *dependency management*. Konfigurasinya sangat granular dan didesain khusus untuk alur kerja yang jauh lebih kompleks di skala *enterprise*.</p>
             <ul>
-                <li>**Keunggulan Utama:**
+                <li&gt;**Keunggulan Utama:**
                     <ul>
-                        <li>**Kustomisasi Dewa:** Renovate bisa disuruh ngapain aja. Kamu bisa bikin aturan segila: *"Kalau update tipe patch (1.0.1 ke 1.0.2), langsung auto-merge kalau CI hijau. Kalau minor, bikin PR. Kalau major, bikin PR tapi langsung assign ke Lead Developer."* Dependabot nggak bisa melakukan trik ini secara *native*.</li>
-                        <li>**Raja *Monorepo* &amp; *Grouping*:** Kalau kamu pakai sistem *monorepo* (seperti Lerna, Nx, atau Turborepo), Renovate sangat pintar membaca struktur tersebut. Dia tahu bahwa `eslint`, `eslint-plugin-react`, dan `babel-eslint` itu satu keluarga, jadi dia akan jadikan satu PR saja biar nggak menuh-menuhin layar *reviewer*.</li>
-                        <li>**Agnostik *Platform*:** Dependabot agak repot kalau mau dipakai di luar GitHub. Renovate sebaliknya, dia hidup rukun dan damai berkat integrasi penuh dengan GitLab, Bitbucket, Gitea, maupun Azure DevOps.</li>
+                        <li&gt;**Kustomisasi Dewa:** Renovate bisa disuruh ngapain aja. Kamu bisa bikin aturan segila: *"Kalau update tipe patch (1.0.1 ke 1.0.2), langsung auto-merge kalau CI hijau. Kalau minor, bikin PR. Kalau major, bikin PR tapi langsung assign ke Lead Developer."* Dependabot nggak bisa melakukan trik ini secara *native*.</li>
+                        <li&gt;**Raja *Monorepo* &amp; *Grouping*:** Kalau kamu pakai sistem *monorepo* (seperti Lerna, Nx, atau Turborepo), Renovate sangat pintar membaca struktur tersebut. Dia tahu bahwa `eslint`, `eslint-plugin-react`, dan `babel-eslint` itu satu keluarga, jadi dia akan jadikan satu PR saja biar nggak menuh-menuhin layar *reviewer*.</li>
+                        <li&gt;**Agnostik *Platform*:** Dependabot agak repot kalau mau dipakai di luar GitHub. Renovate sebaliknya, dia hidup rukun dan damai berkat integrasi penuh dengan GitLab, Bitbucket, Gitea, maupun Azure DevOps.</li>
                     </ul>
                 </li>
-                <li>**Kelemahan:**
+                <li&gt;**Kelemahan:**
                     <ul>
-                        <li>**Kurva Belajar Curam:** File `renovate.json` bisa membengkak jadi sangat panjang kalau kamu *setting* macam-macam aturannya. Buat pemula, melihat dokumentasi konfigurasinya bisa bikin sakit kepala di awal karena banyaknya *parameter* yang ditawarkan.</li>
+                        <li&gt;**Kurva Belajar Curam:** File `renovate.json` bisa membengkak jadi sangat panjang kalau kamu *setting* macam-macam aturannya. Buat pemula, melihat dokumentasi konfigurasinya bisa bikin sakit kepala di awal karena banyaknya *parameter* yang ditawarkan.</li>
                     </ul>
                 </li>
             </ul>
             <h2>Kesimpulan: Jadi Pilih Mana?</h2>
-            <p>**Pilih Dependabot kalau:** Proyekmu relatif simpel, repositorinya ada di GitHub, timnya kecil, dan filosofi kamu adalah *"set and forget"* (pasang lalu lupakan). Selama kamu cuma butuh *library* ditambal kalau ada *bug* atau celah keamanan tanpa butuh aturan kustom yang aneh-aneh, Dependabot sudah sangat cukup untuk mengawal proyekmu.</p>
-            <p>**Pilih Renovate kalau:** Kamu mengurus proyek skala besar/*enterprise*, punya banyak repositori atau sistem *monorepo*, benci melihat puluhan PR menumpuk tiap Senin pagi, dan butuh alur kerja (*workflow*) yang *highly-automated* seperti *auto-merge* otomatis untuk *update* kecil yang lolos *unit testing*. Alat ini juga wajib dipilih kalau repo kamu kebetulan berada di server lokal, GitLab, atau Bitbucket.</p>
+            <p&gt;**Pilih Dependabot kalau:** Proyekmu relatif simpel, repositorinya ada di GitHub, timnya kecil, dan filosofi kamu adalah *"set and forget"* (pasang lalu lupakan). Selama kamu cuma butuh *library* ditambal kalau ada *bug* atau celah keamanan tanpa butuh aturan kustom yang aneh-aneh, Dependabot sudah sangat cukup untuk mengawal proyekmu.</p>
+            <p&gt;**Pilih Renovate kalau:** Kamu mengurus proyek skala besar/*enterprise*, punya banyak repositori atau sistem *monorepo*, benci melihat puluhan PR menumpuk tiap Senin pagi, dan butuh alur kerja (*workflow*) yang *highly-automated* seperti *auto-merge* otomatis untuk *update* kecil yang lolos *unit testing*. Alat ini juga wajib dipilih kalau repo kamu kebetulan berada di server lokal, GitLab, atau Bitbucket.</p>
             <p>Singkatnya: Untuk sekadar ketenangan batin dan *maintenance* dasar, **Dependabot** menang mutlak. Tapi kalau dependensi kodemu sudah sangat kompleks hingga bikin rambut rontok ngurusin konflik PR-nya, **Renovate** adalah rajanya!</p>
             <!-- Kredibilitas Konten & E-E-A-T -->
             <div class="author-box" aria-label="Informasi Penulis">

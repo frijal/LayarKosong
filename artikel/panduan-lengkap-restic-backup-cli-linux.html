@@ -202,7 +202,7 @@
             </header>
             <p>Mari kita bahas sesuatu yang sering dilupakan namun krusial: **pencadangan data**. Pernahkah kamu mengalami mimpi buruk kehilangan data penting karena salah mengeksekusi perintah atau *hardisk* tiba-tiba mati? Sebagai *sysadmin*, itu adalah ritual yang menyakitkan. Untuk mencegah tragedi mengerikan tersebut terulang, kita butuh alat pelindung yang solid. Perkenalkan, **Restic**!</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/4460ddc0414d1005.webp" srcset="https://pbs.twimg.com/media/HKLDaM-bMAAJ3HV?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKLDaM-bMAAJ3HV?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKLDaM-bMAAJ3HV?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="hero-img" alt="Ilustrasi server linux dan proses pencadangan menggunakan Restic CLI">
-            <p>**Restic** adalah salah satu perkakas *backup* berbasis baris perintah *(CLI)* terbaik di ekosistem Linux saat ini. Ia sangat gesit, super aman berkat sistem enkripsi modern, dan luar biasa hemat ruang karena menggunakan mekanisme deduplikasi. Ia juga sangat fleksibel; kamu bisa menyemprotkan datamu ke *drive* lokal, SFTP, Amazon S3, Google Drive, hingga Backblaze B2.</p>
+            <p&gt;**Restic** adalah salah satu perkakas *backup* berbasis baris perintah *(CLI)* terbaik di ekosistem Linux saat ini. Ia sangat gesit, super aman berkat sistem enkripsi modern, dan luar biasa hemat ruang karena menggunakan mekanisme deduplikasi. Ia juga sangat fleksibel; kamu bisa menyemprotkan datamu ke *drive* lokal, SFTP, Amazon S3, Google Drive, hingga Backblaze B2.</p>
             <h2>Mengenal Apa Itu Restic Secara Mendalam</h2>
             <p>Secara teknis, **Restic** adalah program pencadangan berarsitektur modern yang dibangun menggunakan bahasa pemrograman Go *(Golang)*. Alih-alih menyalin *file* secara utuh setiap kali jadwal *backup* tiba, ia menggunakan metode **snapshot-based**. Artinya, ia hanya akan memfoto wujud data pada detik tersebut. Jika kamu melakukan pencadangan hari ini dan esok, ia hanya akan menyimpan data tambahan yang berubah saja.</p>
             <h3>Senjata Utama Restic:</h3>
@@ -247,7 +247,7 @@
             <h2>Panduan Praktis Menggunakan Restic</h2>
             <h3>1. Inisialisasi Repository Backup</h3>
             <p>Sama seperti sistem Git, langkah pertama yang wajib dilakukan adalah membangun "gudang" penyimpanan atau biasa disebut **repository**.</p>
-            <p>**Skenario A: Backup ke folder lokal (Misal *Hardisk* Eksternal)**</p>
+            <p&gt;**Skenario A: Backup ke folder lokal (Misal *Hardisk* Eksternal)**</p>
 <pre><code><span class="comment"># Buat folder khusus sebagai tempat repository</span>
 <span class="keyword">mkdir</span> -p ~/backup/restic-repo
 <span class="comment"># Inisialisasi repository (Sistem akan langsung meminta password)</span>
@@ -256,7 +256,7 @@
                 <p><i class="fa-solid fa-triangle-exclamation"></i> **Peringatan Sangat Keras:** Simpan *password* yang kamu masukkan dengan benar dan aman! karena Restic tidak memiliki fitur "Lupa Password". Jika kata sandi ini hilang, data di dalam *repository* selamanya akan menjadi rongsokan biner yang tidak bisa dibaca.</p>
 <script type="text/javascript" src="https://asciinema.org/a/anro1vq39k80ae7c46s9nj6bs.js" id="asciicast-23554" async=""></script>
             </blockquote>
-            <p>**Skenario B: Backup ke *server* jauh via protokol SFTP**</p>
+            <p&gt;**Skenario B: Backup ke *server* jauh via protokol SFTP**</p>
 <pre><code><span class="keyword">restic</span> init --repo <span class="string">sftp:user@server.example.com:/backup/restic</span></code></pre>
             <h3>2. Melakukan Pencadangan Perdana</h3>
             <p>Waktunya memasukkan data. Parameter `-r` digunakan untuk menunjuk lokasi *repository* kamu.</p>
@@ -264,18 +264,18 @@
 <span class="keyword">restic</span> -r ~/backup/restic-repo backup /home/namauser
 <span class="comment"># Mengamankan banyak folder sekaligus dalam satu kali tembak</span>
 <span class="keyword">restic</span> -r ~/backup/restic-repo backup /home/namauser/Documents /home/namauser/Pictures</code></pre>
-            <p>**Tips Pro:** Ingin melihat *file* apa saja yang sedang diproses agar terminal tidak terasa sepi? Tambahkan bendera `--verbose`.</p>
+            <p&gt;**Tips Pro:** Ingin melihat *file* apa saja yang sedang diproses agar terminal tidak terasa sepi? Tambahkan bendera `--verbose`.</p>
 <pre><code><span class="keyword">restic</span> -r ~/backup/restic-repo backup --verbose /home/namauser</code></pre>
             <h3>3. Mengecek Daftar Mesin Waktu *(Snapshots)*</h3>
             <p>Setiap kali kamu menjalankan perintah *backup*, sistem akan menciptakan satu *ID snapshot*. Untuk melihat riwayatnya:</p>
 <pre><code><span class="keyword">restic</span> -r ~/backup/restic-repo snapshots</code></pre>
             <h3>4. Memulihkan Data *(Restore)* ke Dunia Nyata</h3>
             <p>Tidak ada gunanya rajin *backup* jika tidak tahu cara mengembalikannya. Restic menyediakan fleksibilitas luar biasa di sini.</p>
-            <p>**Mengembalikan seluruh data dari snapshot paling baru:**</p>
+            <p&gt;**Mengembalikan seluruh data dari snapshot paling baru:**</p>
 <pre><code><span class="keyword">restic</span> -r ~/backup/restic-repo restore latest --target /tmp/restore</code></pre>
-            <p>**Memulihkan versi dari tanggal spesifik (gunakan ID unik dari daftar snapshot):**</p>
+            <p&gt;**Memulihkan versi dari tanggal spesifik (gunakan ID unik dari daftar snapshot):**</p>
 <pre><code><span class="keyword">restic</span> -r ~/backup/restic-repo restore <span class="string">abc12345</span> --target /tmp/restore</code></pre>
-            <p>**Hanya ingin memulihkan satu folder kecil di dalam lautan data? Bisa!**</p>
+            <p&gt;**Hanya ingin memulihkan satu folder kecil di dalam lautan data? Bisa!**</p>
 <pre><code><span class="keyword">restic</span> -r ~/backup/restic-repo restore latest --target /home/namauser --path /home/namauser/Documents</code></pre>
             <h2>Kamus Cepat Perintah Restic</h2>
             <p>Berikut adalah ringkasan mantra *(commands)* yang akan menjadi sahabat sehari-harimu:</p>
@@ -355,35 +355,35 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>**Restic**</td>
+                        <td&gt;**Restic**</td>
                         <td>CLI</td>
                         <td>Iya</td>
                         <td>Iya</td>
-                        <td>**Sangat Direkomendasikan** untuk *sysadmin* &amp; pencadangan awan *(cloud)*.</td>
+                        <td&gt;**Sangat Direkomendasikan** untuk *sysadmin* &amp; pencadangan awan *(cloud)*.</td>
                     </tr>
                     <tr>
-                        <td>**rsync**</td>
+                        <td&gt;**rsync**</td>
                         <td>CLI</td>
                         <td>Tidak</td>
                         <td>Tidak</td>
                         <td>Sekadar sinkronisasi data sederhana antar mesin lokal.</td>
                     </tr>
                     <tr>
-                        <td>**Deja Dup**</td>
+                        <td&gt;**Deja Dup**</td>
                         <td>GUI</td>
                         <td>Iya</td>
                         <td>Iya</td>
                         <td>Pengguna *desktop* kasual yang butuh kemudahan klik-klik.</td>
                     </tr>
                     <tr>
-                        <td>**Timeshift**</td>
+                        <td&gt;**Timeshift**</td>
                         <td>GUI/CLI</td>
                         <td>Iya</td>
                         <td>Tidak</td>
                         <td>Spesialis pengaman sistem inti *(System Snapshot)*.</td>
                     </tr>
                     <tr>
-                        <td>**BorgBackup**</td>
+                        <td&gt;**BorgBackup**</td>
                         <td>CLI</td>
                         <td>Iya</td>
                         <td>Iya</td>

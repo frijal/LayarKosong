@@ -217,17 +217,17 @@
             <h2>Bedah Fitur: Otot Kawat Tulang Besi</h2>
             <p>Bukan tanpa alasan alat ini diberi gelar *"Fast"*. Frp membawa sejumlah kemampuan teknis yang membuatnya ditakuti oleh layanan komersial:</p>
             <ul>
-                <li>**Tangguh di Medan High-Traffic:** Dibangun menggunakan bahasa pemrograman *Go* (Golang), ia sangat efisien dalam memanajemen konkurensi data. Ia tak akan tersedak meski diserang ribuan permintaan (*request*) serentak.</li>
-                <li>**Lord of Protocols:** Berbeda dengan batasan Cloudflare Tunnel standar, Frp sanggup menyalurkan lalu lintas TCP, UDP, HTTP, maupun HTTPS sekaligus. Dari lalu lintas *website* hingga koneksi *database* mentah, semuanya tembus.</li>
-                <li>**Load Balancing Bawaan:** Ini adalah fitur mahalnya. Kamu bisa membagi beban lalu lintas jaringan ke beberapa mesin lokal yang terhubung dalam satu *tunnel* Frp, mencegah matinya *server* akibat kelebihan beban kerja (*overload*).</li>
-                <li>**Kontrol Akses Granular:** Menawarkan opsi pengaturan kontrol akses (*access control lists*) yang sangat terperinci demi menjaga keamanan infrastruktur.</li>
-                <li>**Dashboard Pemantauan Internal:** Ya, alat ini juga menyertakan *dashboard web* ringan yang bisa kamu jalankan untuk memantau status *proxy* jaringanmu sendiri.</li>
+                <li&gt;**Tangguh di Medan High-Traffic:** Dibangun menggunakan bahasa pemrograman *Go* (Golang), ia sangat efisien dalam memanajemen konkurensi data. Ia tak akan tersedak meski diserang ribuan permintaan (*request*) serentak.</li>
+                <li&gt;**Lord of Protocols:** Berbeda dengan batasan Cloudflare Tunnel standar, Frp sanggup menyalurkan lalu lintas TCP, UDP, HTTP, maupun HTTPS sekaligus. Dari lalu lintas *website* hingga koneksi *database* mentah, semuanya tembus.</li>
+                <li&gt;**Load Balancing Bawaan:** Ini adalah fitur mahalnya. Kamu bisa membagi beban lalu lintas jaringan ke beberapa mesin lokal yang terhubung dalam satu *tunnel* Frp, mencegah matinya *server* akibat kelebihan beban kerja (*overload*).</li>
+                <li&gt;**Kontrol Akses Granular:** Menawarkan opsi pengaturan kontrol akses (*access control lists*) yang sangat terperinci demi menjaga keamanan infrastruktur.</li>
+                <li&gt;**Dashboard Pemantauan Internal:** Ya, alat ini juga menyertakan *dashboard web* ringan yang bisa kamu jalankan untuk memantau status *proxy* jaringanmu sendiri.</li>
             </ul>
             <h2>Sisi Gelap: Kompleksitas Konfigurasi</h2>
             <p>Sebagai perangkat kelas *enterprise*, tentu Frp kurang ramah bagi pengguna awam:</p>
             <ul>
-                <li>**Wajib Sediakan Server Sendiri:** Sama halnya dengan Rathole, kamu harus menyediakan peladen *cloud* publik (VPS) yang bertindak sebagai mesin *frps* (Frp Server), sementara mesin lokalmu akan bertindak sebagai *frpc* (Frp Client).</li>
-                <li>**Perang Konfigurasi File:** Tidak ada antarmuka GUI untuk mengatur tautannya. Kamu wajib menyusun berkas berekstensi `.ini` (atau `.toml` di versi terbaru) yang parameter isiannya bisa sangat panjang dan membuat kepala pusing jika kamu salah ketik.</li>
+                <li&gt;**Wajib Sediakan Server Sendiri:** Sama halnya dengan Rathole, kamu harus menyediakan peladen *cloud* publik (VPS) yang bertindak sebagai mesin *frps* (Frp Server), sementara mesin lokalmu akan bertindak sebagai *frpc* (Frp Client).</li>
+                <li&gt;**Perang Konfigurasi File:** Tidak ada antarmuka GUI untuk mengatur tautannya. Kamu wajib menyusun berkas berekstensi `.ini` (atau `.toml` di versi terbaru) yang parameter isiannya bisa sangat panjang dan membuat kepala pusing jika kamu salah ketik.</li>
             </ul>
             <h2>Persiapan dan Proses Eksekusi</h2>
             <p>Karena berstatus *self-hosted*, ada dua tahap yang harus dilakukan. Pertama, di sisi *server* publik, kamu harus menjalankan `frps`. Kemudian, di komputer lokal atau peladen kantormu, unduh klien pelaksana, modifikasi berkas konfigurasinya (`frpc.ini`), dan nyalakan *tunnel* dengan perintah eksekusi terminal berikut:</p>
