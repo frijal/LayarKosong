@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Metadata SEO & E-E-A-T -->
-    <title>5 Gerakan Shalat yang Membantu Ketenangan Jiwa Rahasia Sehat Mental dalam Ibadah - Layar Kosong</title> 
+    <title>5 Gerakan Shalat yang Membantu Ketenangan Jiwa Rahasia Sehat Mental dalam Ibadah - Layar Kosong</title>
     <meta name="news_keywords" content="Gerakan Shalat, Ketenangan Jiwa, Kesehatan Mental, Manfaat Shalat bagi Saraf, Meditasi Islam, Terapi Psikis, Olahraga Otak">
     <meta name="promphint" content="mengenai hubungan antara kinetik shalat dengan stabilitas emosional dan neurologis">
     <!-- Open Graph / Facebook -->
@@ -20,7 +20,35 @@
             --link-color: #2563eb;
             --border-color: #e5e7eb;
         }
-        /* Base Styles & Core Web Vitals Optimization */
+
+        /* Dark Mode Override via prefers-color-scheme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;       /* Latar belakang gelap (Slate 900) */
+                --text-color: #e2e8f0;     /* Teks terang kontras tinggi (Slate 200) */
+                --accent-color: #38bdf8;   /* Warna aksen h1 & h2 yang menyala di mode gelap (Sky 400) */
+                --secondary-bg: #1e293b;   /* Latar belakang kartu & footer (Slate 800) */
+                --link-color: #60a5fa;     /* Warna tautan yang ramah di mata (Blue 400) */
+                --border-color: #334155;   /* Warna pembatas halus (Slate 700) */
+            }
+
+            /* Penyesuaian elemen spesifik untuk visibilitas optimal di mode gelap */
+            .meta-info {
+                color: #94a3b8; /* Mencerahkan teks meta-info agar terbaca */
+            }
+
+            .featured-image, article img {
+                filter: brightness(0.85) contrast(1.1); /* Mengurangi silau gambar pada layar gelap */
+            }
+
+            .highlight-card {
+                border-left-color: var(--accent-color); /* Menyelaraskan border kartu dengan aksen baru */
+            }
+
+            footer p {
+                color: #94a3b8; /* Memastikan teks disclaimer bawah tetap ramah dibaca */
+            }
+        }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
@@ -156,7 +184,7 @@
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
     <meta property="fb:app_id" content="175216696195384">
     <meta property="fb:pages" content="917962134736490">
-    
+
     <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBHcZVqakAIa9EI.webp">
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBHcZVqakAIa9EI.webp">
     <meta property="og:image:alt" content="5 Gerakan Shalat yang Membantu Ketenangan Jiwa Rahasia Sehat Mental dalam Ibadah">
@@ -212,7 +240,7 @@
     </div>
     <footer>
         <p style="margin-top: 15px; opacity: 0.7; font-size: 0.85rem;">Konten ini disusun untuk tujuan edukasi dan peningkatan kesadaran kesehatan mental melalui perspektif spiritual dan sains.</p>
-     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a>
 </footer>
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
