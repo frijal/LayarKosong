@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cara Jitu Aktifkan Mirror Fedora Tercepat Lewat Skrip</title>
+
+    <meta name="description" content="Pusing update Fedora lemot? Pelajari cara ampuh mengaktifkan plugin fastestmirror DNF menggunakan skrip bash praktis agar download paket makin kencang.">
+    <meta name="news_keywords" content="fedora linux, dnf fastestmirror, skrip bash fedora, update fedora cepat, mirror fedora tercepat, optimasi dnf">
+    <link rel="canonical" href="https://dalam.web.id/artikel/fedora-mirror.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cara Jitu Aktifkan Mirror Fedora Tercepat Lewat Skrip">
+    <meta property="og:description" content="Tingkatkan kecepatan unduh repositori Fedora Linux Anda hari ini. Panduan lengkap menggunakan skrip fedora-mirror.sh untuk optimasi manajer paket DNF.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/fedora-mirror.html">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HKwidG5bcAA1Vn7?format=jpg&name=large">
+    <meta property="article:tag" content="Fedora">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Bash Script">
+    <meta property="article:tag" content="Sysadmin">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cara Jitu Aktifkan Mirror Fedora Tercepat Lewat Skrip">
+    <meta name="twitter:description" content="Jangan biarkan update sistem Fedora membuang waktu Anda! Ikuti tutorial santai ini untuk mengatur fastestmirror DNF otomatis lewat bash script ringkas.">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HKwidG5bcAA1Vn7?format=jpg&name=large">
+
+    <meta name="promphint" content="Bagaimana cara mempercepat update Fedora? | Aktifkan plugin fastestmirror pada konfigurasi DNF menggunakan skrip bash agar otomatis mencari server tercepat.">
+
+    <style>
+        /* CSS Reset & Tokens */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Light Theme */
+            --bg-color: #f8fafc;
+            --text-main: #334155;
+            --text-heading: #0f172a;
+            --text-muted: #64748b;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
+
+            /* Code Block Light */
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --code-comment: #94a3b8;
+            --code-keyword: #c084fc;
+            --code-string: #34d399;
+            --code-cmd: #60a5fa;
+
+            /* Callout Light */
+            --callout-bg: #fef2f2;
+            --callout-border: #f87171;
+            --callout-text: #991b1b;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Theme */
+                --bg-color: #0f172a;
+                --text-main: #cbd5e1;
+                --text-heading: #f8fafc;
+                --text-muted: #94a3b8;
+                --accent: #3b82f6;
+                --accent-hover: #60a5fa;
+                --border-color: #334155;
+
+                /* Code Block Dark */
+                --code-bg: #020617;
+                --code-text: #e2e8f0;
+                --code-comment: #64748b;
+                --code-keyword: #d8b4fe;
+                --code-string: #6ee7b7;
+                --code-cmd: #93c5fd;
+
+                /* Callout Dark */
+                --callout-bg: #450a0a;
+                --callout-border: #ef4444;
+                --callout-text: #fca5a5;
+            }
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            font-size: 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Mobile-First Container Layout */
+        .container {
+            width: 100%;
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 2rem 1.25rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            margin-top: 1rem;
+            border-bottom: 0.25rem solid var(--accent);
+            padding-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            border-left: 0.3rem solid var(--accent);
+            padding-left: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 0.1rem dashed var(--accent);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            border-bottom-style: solid;
+        }
+
+        strong {
+            color: var(--text-heading);
+        }
+
+        /* Image Optimization & CLS Prevention */
+        .lcp-image-wrapper {
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        .lcp-image-wrapper img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9; /* Mencegah layout shift */
+            object-fit: cover;
+            border-radius: 0.75rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        /* Callout / Warning Box */
+        .callout {
+            background-color: var(--callout-bg);
+            border-left: 0.4rem solid var(--callout-border);
+            color: var(--callout-text);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+        }
+
+        /* Syntax Highlighting CSS */
+        pre {
+            background-color: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 0.0625rem solid var(--border-color);
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            color: var(--code-text);
+        }
+
+        p code, li code {
+            background-color: var(--border-color);
+            color: var(--text-heading);
+            padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        /* Pure CSS Tokens */
+        .token.comment { color: var(--code-comment); font-style: italic; }
+        .token.keyword { color: var(--code-keyword); font-weight: bold; }
+        .token.string { color: var(--code-string); }
+        .token.command { color: var(--code-cmd); }
+        .token.operator { color: var(--text-muted); }
+
+        /* Footer / E-E-A-T Area */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 0.1rem solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .eeat-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <article>
+            <header>
+                <h1>Skrip fedora-mirror.sh: Aktifkan Mirror Tercepat</h1>
+            </header>
+
+            <p>
+                Pernahkah Anda duduk memandangi terminal, menunggu proses instalasi paket di Fedora Linux selesai, sambil bertanya-tanya mengapa kecepatannya hanya mentok di beberapa kilobyte per detik? Apalagi jika Anda sedang bersantai menikmati kopi di Balikpapan, rasanya waktu terbuang sia-sia hanya untuk mengunduh pembaruan sistem yang seharusnya bisa secepat kilat.
+            </p>
+
+            <p>
+                Masalah ini sebenarnya cukup klasik. Secara bawaan, Fedora menggunakan <code>dnf</code> sebagai manajer paket andalannya. Namun, sistem sering kali secara buta mengunduh dari server <em>mirror</em> yang letak geografisnya jauh dari lokasi Anda, tanpa memperhitungkan latensi dan <em>bandwidth</em> yang tersedia. Padahal, untuk mempercepat <em>update</em> dan instalasi, kita hanya perlu mengaktifkan plugin bawaan yang sangat cerdas: <strong>fastestmirror</strong>.
+            </p>
+
+            <div class="lcp-image-wrapper">
+                <img src="https://pbs.twimg.com/media/HKwidG5bcAA1Vn7?format=jpg&name=large"
+                     alt="Logo Fedora Linux dengan ilustrasi jaringan mirror server yang terhubung secara global untuk optimasi kecepatan unduh"
+                     loading="eager"
+                     width="1200"
+                     height="675">
+            </div>
+
+            <h2>Mengapa Anda Membutuhkan fastestmirror?</h2>
+
+            <p>
+                Plugin <em>fastestmirror</em> bekerja dengan cara yang elegan. Saat Anda menjalankan perintah pembaruan atau instalasi, plugin ini akan secara proaktif mengukur waktu respons koneksi dari daftar cermin publik Fedora. Ia kemudian menyeleksi dan otomatis memilih server dengan ping terendah, memastikan aliran data yang masuk ke komputer Anda berada pada kecepatan optimal. Ini adalah solusi "sekali atur, lupakan" yang wajib diterapkan oleh setiap administrator maupun pengguna harian Fedora.
+            </p>
+
+            <div class="callout">
+                <p>
+                    ⚠️ <strong>Peringatan Akses:</strong> Jalankan skrip di bawah ini dengan mode <code>sudo</code> (Superuser). Kita perlu merombak dan menulis ulang konfigurasi inti manajer paket yang bersarang di dalam direktori sistem <code>/etc/dnf/dnf.conf</code>.
+                </p>
+            </div>
+
+            <h2>Automasi Lewat Skrip Bash yang Rapi</h2>
+
+            <p>
+                Daripada membuka teks editor dan mengetik konfigurasi secara manual yang rentan mengalami salah ketik (<em>typo</em>), mari kita buat proses ini sepenuhnya otomatis. Skrip <em>bash</em> sederhana di bawah ini bernama <code>fedora-mirror.sh</code>. Ia tidak hanya menyuntikkan baris konfigurasi yang dibutuhkan, tetapi juga memiliki inisiatif tinggi untuk mem-<em>backup</em> konfigurasi lama Anda demi keamanan, serta menyapu bersih <em>cache</em> DNF agar pengaturan baru segera berlaku.
+            </p>
+
+            <p>
+                Salin kode berikut, simpan sebagai file <code>fedora-mirror.sh</code>, berikan izin eksekusi menggunakan perintah <code>chmod +x fedora-mirror.sh</code>, dan jalankan.
+            </p>
+
+            <pre><code><span class="token comment">#!/bin/bash</span>
+<span class="token comment"># fedora-mirror.sh - Mengaktifkan mirror DNF tercepat di Fedora</span>
+
+<span class="token keyword">set</span> -e
+
+<span class="token command">echo</span> <span class="token string">"[INFO] Mem-backup konfigurasi DNF..."</span>
+<span class="token keyword">sudo</span> <span class="token command">cp</span> /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak
+
+<span class="token command">echo</span> <span class="token string">"[INFO] Mengaktifkan 'fastestmirror' di /etc/dnf/dnf.conf..."</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token command">grep</span> -q <span class="token string">"fastestmirror=True"</span> /etc/dnf/dnf.conf<span class="token operator">;</span> <span class="token keyword">then</span>
+    <span class="token command">echo</span> <span class="token string">"fastestmirror=True"</span> <span class="token operator">|</span> <span class="token keyword">sudo</span> <span class="token command">tee</span> -a /etc/dnf/dnf.conf
+<span class="token keyword">fi</span>
+
+<span class="token command">echo</span> <span class="token string">"[INFO] Membersihkan cache DNF..."</span>
+<span class="token keyword">sudo</span> <span class="token command">dnf</span> clean all
+
+<span class="token command">echo</span> <span class="token string">"[SELESAI] Plugin 'fastestmirror' berhasil diaktifkan!"</span></code></pre>
+
+            <p>
+                Setelah skrip di atas menampilkan pesan sukses, cobalah lakukan <code>sudo dnf update</code>. Anda akan langsung merasakan perbedaan aliran data yang jauh lebih gesit dari sebelumnya, karena sistem kini mengambil paket langsung dari server terdekat yang sehat. Selamat tinggal unduhan lelet, dan selamat mengoprek!
+            </p>
+        </article>
+
+        <div id="related-articles-grid"></div><div id="response"></div>
+
+        <footer>
+            <div class="eeat-meta">
+                <span>👨‍💻 Ditulis oleh: <strong>Fakhrul Rijal</strong></span>
+                <span>•</span>
+                <span>📅 Dipublikasikan: 14 Juni 2026</span>
+                <span>•</span>
+                <span>🔗 Sumber Eksternal: <a href="https://docs.fedoraproject.org/en-US/quick-docs/dnf/" target="_blank" rel="noopener noreferrer">Dokumentasi Resmi DNF Fedora</a></span>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>
