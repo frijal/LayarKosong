@@ -7,6 +7,50 @@
             --bg:#fbfdff; --card:#ffffff; --accent:#2563eb; --muted:#6b7280;
             --radius:14px;
         }
+    /* Dark Mode Override via prefers-color-scheme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;      /* Latar belakang gelap utama (Slate 900) */
+                --card: #1e293b;    /* Latar kartu pembungkus (Slate 800) */
+                --accent: #38bdf8;  /* Warna aksen h1 & h2 beralih ke biru cerah (Sky 400) */
+                --muted: #94a3b8;   /* Warna teks sekunder/redup (Slate 400) */
+            }
+
+            body {
+                background: linear-gradient(180deg, #0f172a, #020617); /* Gradien malam yang lembut */
+                color: #e2e8f0;     /* Mengubah warna teks dasar menjadi terang (Slate 200) */
+            }
+
+            .wrap {
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* Mengganti bayangan lembut menjadi lebih tegas di area gelap */
+            }
+
+            .kicker {
+                background: rgba(56, 189, 248, 0.15); /* Menyesuaikan transparansi badge dengan aksen baru */
+            }
+
+            .lead {
+                color: #f1f5f9;     /* Menyesuaikan warna paragraf pembuka (Slate 100) */
+            }
+
+            .meta-item {
+                background: #334155; /* Menggelapkan latar belakang item info meta (Slate 700) */
+                color: #cbd5e1;
+            }
+
+            article {
+                color: #e2e8f0;     /* Memastikan teks isi artikel tetap kontras tinggi */
+            }
+
+            .share a {
+                background: #334155; /* Menyesuaikan tombol bagikan agar tidak silau */
+                color: #f8fafc;
+            }
+
+            .gallery img {
+                filter: brightness(0.85) contrast(1.05); /* Mencegah gambar terlalu mencolok di ruang gelap */
+            }
+        }
         *{box-sizing:border-box}
         body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Arial; background:linear-gradient(180deg,#f7fbff,#eef7ff); color:#0f172a; -webkit-font-smoothing:antialiased}
         .wrap{max-width:960px;margin:28px auto;padding:22px;background:var(--card);border-radius:var(--radius);box-shadow:0 12px 30px rgba(16,24,40,0.08)}
