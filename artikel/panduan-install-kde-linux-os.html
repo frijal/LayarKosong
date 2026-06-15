@@ -173,7 +173,7 @@
     <meta property="og:type" content="article">
     <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
     <meta name="author" content="Fakhrul Rijal">
-    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0">
     <meta name="twitter:creator" content="@responaja">
     <meta name="bluesky:creator" content="@dalam.web.id">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
@@ -204,7 +204,7 @@
         <p>Siapa yang tidak penasaran dengan pengalaman murni dari ekosistem KDE? Saat ini, edisi Testing dari KDE Linux telah resmi tersedia! Versi ini secara khusus menampilkan versi pengembangan terbaru dan terhebat dari <a target="_blank" href="https://kde.org/plasma-desktop">lingkungan desktop Plasma</a> serta <a target="_blank" href="https://apps.kde.org">jajaran aplikasinya</a>.</p>
         <img src="https://dalam.web.id/img/pbs.twimg.com/70246ec0510af8e0.webp" alt="Ilustrasi desktop dan sistem instalasi KDE Linux" fetchpriority="high" loading="eager" decoding="async">
         <p>Tentu saja, karena ini adalah edisi percobaan, kamu harus siap menghadapi perubahan yang sangat sering terjadi maupun potensi *regresi* (penurunan fungsi). Gunakan di lingkungan produksi (*production environment*) **dengan risiko ditanggung sendiri**! Untuk edisi yang lebih stabil dan cocok digunakan oleh masyarakat umum, pihak pengembang menyatakan saat ini masih dalam tahap pengerjaan.</p>
-        <p>Bagi kamu yang lebih memilih mencoba tanpa menyentuh *hardware* fisik, panduan instalasi menggunakan *Virtual Machine* bisa <a target="_blank" href="https://linux.kde.org/docs/install-vm/">kamu temukan di sini</a>. Namun, jika kamu ingin mengujinya langsung di perangkatmu, mari kita perhatikan persyaratannya di bawah ini.</p>
+        <p>Bagi kamu yang lebih memilih mencoba tanpa menyentuh *hardware* fisik, panduan instalasi menggunakan *Virtual Machine* bisa <a target="_blank" href="https://linux.kde.org/docs/install-vm">kamu temukan di sini</a>. Namun, jika kamu ingin mengujinya langsung di perangkatmu, mari kita perhatikan persyaratannya di bawah ini.</p>
         <h2>Persyaratan Sistem Minimum <i class="fa-solid fa-microchip"></i></h2>
         <p>KDE Linux dirancang untuk mendukung hampir semua PC desktop dan laptop dengan spesifikasi berikut:</p>
         <ul>
@@ -217,10 +217,10 @@
         <p>Sebelum melangkah jauh, pastikan perangkatmu tidak masuk dalam daftar yang belum sepenuhnya didukung ini:</p>
         <ul>
             <li>**CPU berbasis ARM:** Perangkat seperti seri Apple "M" atau Qualcomm Snapdragon saat ini ~~belum didukung~~.</li>
-            <li>**Kartu Grafis NVIDIA:** Kartu grafis dari seri "Turing" ke atas (contohnya GTX 1630 atau yang lebih baru) bisa langsung berjalan lancar (*out of the box*). Namun, untuk kartu grafis yang lebih tua, sistem terbatas pada *driver* "Nouveau", yang <a target="_blank" href="https://linux.kde.org/docs/pre-turing-nvidia/">membutuhkan pengaturan manual</a> (<a target="_blank" href="https://linux.kde.org/nvidia/">pelajari lebih lanjut</a>).</li>
+            <li>**Kartu Grafis NVIDIA:** Kartu grafis dari seri "Turing" ke atas (contohnya GTX 1630 atau yang lebih baru) bisa langsung berjalan lancar (*out of the box*). Namun, untuk kartu grafis yang lebih tua, sistem terbatas pada *driver* "Nouveau", yang <a target="_blank" href="https://linux.kde.org/docs/pre-turing-nvidia">membutuhkan pengaturan manual</a> (<a target="_blank" href="https://linux.kde.org/nvidia">pelajari lebih lanjut</a>).</li>
             <li>**Kartu Jaringan Nirkabel Broadcom:** Hanya kartu jaringan yang <a target="_blank" href="https://wireless.docs.kernel.org/en/latest/en/users/drivers/brcm80211.html#supported-chips">terdaftar di sini</a> yang didukung langsung. Kartu di luar daftar kemungkinan besar tidak akan berfungsi.</li>
             <li>**Layar DisplayLink:** Saat ini tidak didukung. Namun, penggunaan *DisplayPort* biasa bekerja tanpa masalah.</li>
-            <li>**Printer:** Sebagian besar printer nirkabel modern yang mendukung fitur *"driverless"* (diproduksi 10 tahun terakhir) — termasuk <a target="_blank" href="https://openprinting.github.io/printers/">semua yang ada di daftar ini</a> — akan langsung berfungsi. *Driver* untuk beberapa printer kabel lawas disertakan, namun tidak semuanya kompatibel. Kamu bisa mengecek daftar <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/?sort=created_date&amp;state=opened&amp;label_name[]=Hardware%20compatibility&amp;label_name[]=Printers%20%f0%9f%94%a8">printer yang diketahui tidak kompatibel di sini</a>.</li>
+            <li>**Printer:** Sebagian besar printer nirkabel modern yang mendukung fitur *"driverless"* (diproduksi 10 tahun terakhir) — termasuk <a target="_blank" href="https://openprinting.github.io/printers">semua yang ada di daftar ini</a> — akan langsung berfungsi. *Driver* untuk beberapa printer kabel lawas disertakan, namun tidak semuanya kompatibel. Kamu bisa mengecek daftar <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/?sort=created_date&amp;state=opened&amp;label_name[]=Hardware%20compatibility&amp;label_name[]=Printers%20%f0%9f%94%a8">printer yang diketahui tidak kompatibel di sini</a>.</li>
         </ul>
         <h2>Masalah Perangkat Lunak yang Diketahui</h2>
         <p>Karena statusnya yang masih *testing*, silakan lihat daftar <a target="_blank" href="https://invent.kde.org/groups/kde-linux/-/issues?sort=created_date&amp;state=opened&amp;label_name%5B%5D=Significant%20user-facing%20issue&amp;not%5Blabel_name%5D%5B%5D=Hardware%20compatibility&amp;first_page_size=100">batasan signifikan dan masalah yang diketahui di sini</a>.</p>
@@ -230,7 +230,7 @@
         <ol>
             <li>Unduh *image* file `*.raw*` terbaru <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">dari sini</a>.</li>
             <li>Verifikasi keaslian file `*.raw*` tersebut! Kunjungi <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">halaman unduhan ini</a> dan klik *Details* pada file yang diunduh. Salin teks karakter acak di sebelah tulisan *SHA256*. Di komputermu, klik kanan pada file `*.raw*` yang sudah diunduh, pilih **Properties**, lalu buka *tab* **Checksums**. Tempelkan karakter tadi dan tekan tombol *Enter*. Jika kolom berubah menjadi hijau, file tersebut aman. Jika tidak, file mungkin korup dan kamu harus mengunduhnya ulang.</li>
-            <li>Jika file divalidasi asli, instal aplikasi <a target="_blank" href="https://apps.kde.org/isoimagewriter/">ISO Image Writer</a> dan jalankan aplikasinya.</li>
+            <li>Jika file divalidasi asli, instal aplikasi <a target="_blank" href="https://apps.kde.org/isoimagewriter">ISO Image Writer</a> dan jalankan aplikasinya.</li>
             <li>Klik opsi *"Path to ISO Image..."* lalu cari file `*.raw*` tadi.</li>
             <li>Colokkan *flash drive* USB kamu dan pastikan perangkat tersebut muncul di bagian *"To this USB Drive"*.</li>
             <li>Klik tombol **Create** dan tunggu proses penulisan selesai.</li>
@@ -238,7 +238,7 @@
         <h2>Langkah 2: Menyiapkan Komputer Target <i class="fa-solid fa-gear"></i></h2>
         <p>Kamu harus memastikan bahwa fitur **Secure Boot** dalam keadaan nonaktif. Jika belum yakin, masuklah ke antarmuka UEFI komputermu untuk mematikannya:</p>
         <ol>
-            <li>Pertama, konsultasikan <a target="_blank" href="https://forums.malwarebytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys/">tabel panduan di sini</a> dan cari tombol *BIOS/UEFI Key* yang sesuai dengan merek komputermu.</li>
+            <li>Pertama, konsultasikan <a target="_blank" href="https://forums.malwarebytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys">tabel panduan di sini</a> dan cari tombol *BIOS/UEFI Key* yang sesuai dengan merek komputermu.</li>
             <li>Lakukan *reboot* (hidupkan ulang) komputer dan tekan tombol tersebut berulang kali saat layar baru menyala.</li>
             <li>Setelah masuk ke antarmuka UEFI (tampilannya biasanya cukup kaku dan lawas), cari opsi untuk mematikan **Secure Boot** lalu nonaktifkan. Letak menu ini berbeda-beda tiap pabrikan, jadi kamu mungkin perlu sedikit mencari.</li>
             <li>Setelah dimatikan, cari opsi *"Exit and save changes"* untuk menyimpan pengaturan.</li>
@@ -247,7 +247,7 @@
         <h2>Langkah 3: Booting ke Live USB <i class="fa-solid fa-power-off"></i></h2>
         <ol>
             <li>Pastikan USB drive sudah tertancap di komputermu.</li>
-            <li>Sekali lagi, konsultasikan <a target="_blank" href="https://forums.malwarebytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys/">tabel pintasan ini</a> dan catat tombol *Boot Menu Key* sesuai merek perangkatmu.</li>
+            <li>Sekali lagi, konsultasikan <a target="_blank" href="https://forums.malwarebytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys">tabel pintasan ini</a> dan catat tombol *Boot Menu Key* sesuai merek perangkatmu.</li>
             <li>*Reboot* komputer dan tekan tombol tersebut berulang-ulang saat *startup*.</li>
             <li>Saat menu *boot* muncul, gunakan tombol panah atas/bawah untuk memilih *entry* yang mewakili *flash drive* USB kamu, lalu tekan **Enter**.</li>
         </ol>
@@ -266,5 +266,5 @@
         <span><i class="fa-solid fa-pen-nib"></i> Ditulis oleh: **Nate Graham**</span> |
         <span><i class="fa-regular fa-calendar"></i> Terakhir diperbarui: 3 Juni 2026</span>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
