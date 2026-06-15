@@ -96,11 +96,12 @@ const buildAtom = (
     t: string,
     items: any[],
     feedUrl: string,
-    desc: string
+    desc: string,
+    sizes: Map<string, number> = new Map()
 ) => {
     const rootDate = calculateFeedRootDate(items);
     return `<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="id-ID"><title>${escapeXML(decodeHTML(t))}</title><subtitle>${escapeXML(desc)}</subtitle><link href="${escapeXML(C.base)}/" rel="alternate"/><link href="${escapeXML(feedUrl)}" rel="self" type="application/atom+xml"/><id>${escapeXML(C.base)}/</id><updated>${rootDate.toISOString()}</updated>${items.map(it =>
-        `<entry><title>${escapeXML(decodeHTML(it.title))}</title><link href="${escapeXML(it.loc)}" rel="alternate"/><id>${escapeXML(it.loc)}</id><updated>${it.lastmod}</updated><published>${it.lastmod}</published><author><name>Fakhrul Rijal</name></author><category term="${escapeXML(it.category)}"/><content type="html"><![CDATA[${safeCDATA(it.desc || sanitize(decodeHTML(it.title)))}]]></content></entry>`
+        `<entry><title>${escapeXML(decodeHTML(it.title))}</title><link href="${escapeXML(it.loc)}" rel="alternate"/><link rel="enclosure" href="${escapeXML(it.img)}" type="${mime(it.img)}" length="${sizes.get(it.img) ?? 0}"/><id>${escapeXML(it.loc)}</id><updated>${it.lastmod}</updated><published>${it.lastmod}</published><author><name>Fakhrul Rijal</name></author><category term="${escapeXML(it.category)}"/><content type="html"><![CDATA[${safeCDATA(it.desc || sanitize(decodeHTML(it.title)))}]]></content></entry>`
     ).join('')}</feed>`;
 };
 
@@ -240,7 +241,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 for (const it of flat) {
     const [txt, size] = await Promise.all([
         Bun.file(`${C.art}/${it.file}`).text(),
-                                          imgSize(it.img)
+        imgSize(it.img)
     ]);
     globalSizes.set(it.img, size);
 
@@ -286,19 +287,20 @@ ${combinedXmlEntries}
 
 await Promise.all([
     Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent),
-                  Bun.write(`${C.root}/rss.xml`, buildRss(
-                      'Layar Kosong',
-                      flat.slice(0, C.limit),
-                      `${C.base}/rss.xml`,
-                      'RSS Feed artikel terbaru dari Layar Kosong',
-                      globalSizes
-                  )),
-                  Bun.write(`${C.root}/atom.xml`, buildAtom(
-                      'Layar Kosong',
-                      flat.slice(0, C.limit),
-                      `${C.base}/atom.xml`,
-                      'Atom Feed artikel terbaru dari Layar Kosong'
-                  )),
+    Bun.write(`${C.root}/rss.xml`, buildRss(
+        'Layar Kosong',
+        flat.slice(0, C.limit),
+        `${C.base}/rss.xml`,
+        'RSS Feed artikel terbaru dari Layar Kosong',
+        globalSizes
+    )),
+    Bun.write(`${C.root}/atom.xml`, buildAtom(
+        'Layar Kosong',
+        flat.slice(0, C.limit),
+        `${C.base}/atom.xml`,
+        'Atom Feed artikel terbaru dari Layar Kosong',
+        globalSizes
+    )),
 ]);
 
 console.log('✅ Sitemap, JSON, RSS & Atom seluruhnya telah terkunci dalam zona waktu UTC!');
@@ -355,17 +357,18 @@ if (tmp) {
 
         await Promise.all([
             Bun.write(`${C.root}/${s}/index.html`, pg),
-                          Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
-                              `Kategori ${categoryNameClean}`,
-                              catItems, rUrl,
-                              `Artikel ${cat}`,
-                              globalSizes
-                          )),
-                          Bun.write(`${C.root}/feed-${s}-atom.xml`, buildAtom(
-                              `Kategori ${categoryNameClean}`,
-                              catItems, rAtomUrl,
-                              `Artikel ${cat}`
-                          )),
+            Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
+                `Kategori ${categoryNameClean}`,
+                catItems, rUrl,
+                `Artikel ${cat}`,
+                globalSizes
+            )),
+            Bun.write(`${C.root}/feed-${s}-atom.xml`, buildAtom(
+                `Kategori ${categoryNameClean}`,
+                catItems, rAtomUrl,
+                `Artikel ${cat}`,
+                globalSizes
+            )),
         ]);
     }
 }
