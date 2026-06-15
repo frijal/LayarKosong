@@ -289,15 +289,15 @@ await Promise.all([
                   Bun.write(`${C.root}/rss.xml`, buildRss(
                       'Layar Kosong',
                       flat.slice(0, C.limit),
-                                                          `${C.base}/rss.xml`,
-                                                          'Feed artikel terbaru dari Layar Kosong',
-                                                          globalSizes
+                    `${C.base}/rss.xml`,
+                    'RSS Feed artikel terbaru dari Layar Kosong',
+                    globalSizes
                   )),
                   Bun.write(`${C.root}/atom.xml`, buildAtom(
-                      'Layar Kosong',
-                      flat.slice(0, C.limit),
-                                                          `${C.base}/atom.xml`,
-                                                          'Feed artikel terbaru dari Layar Kosong'
+                    'Layar Kosong',
+                    flat.slice(0, C.limit),
+                    `${C.base}/atom.xml`,
+                    'Atom Feed artikel terbaru dari Layar Kosong'
                   )),
 ]);
 
