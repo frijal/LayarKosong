@@ -189,7 +189,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
           await sharp(inputBuffer)
             .rotate()
             .resize(targetWidth, null, { withoutEnlargement: true })
-            .webp({ quality: 85 })
+            .webp({ quality: 90 })
             .toFile(absDesktopPath);
 
           if (needsMedium) {
@@ -197,7 +197,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
             await sharp(inputBuffer)
               .rotate()
               .resize(720, null, { withoutEnlargement: true })
-              .webp({ quality: 80 })
+              .webp({ quality: 85 })
               .toFile(absMediumPath);
           }
 
@@ -206,7 +206,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
             await sharp(inputBuffer)
               .rotate()
               .resize(480, null, { withoutEnlargement: true })
-              .webp({ quality: 75 })
+              .webp({ quality: 80 })
               .toFile(absMobilePath);
           }
 
