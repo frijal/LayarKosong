@@ -25,7 +25,6 @@ const decodeHTML = (str: string) => {
     return t.trim();
 };
 
-/** Tanggal build hari ini (WITA, format YYYY-MM-DD) — buat %%DATE_MODIFIED%% */
 const buildDate = new Date(Date.now() + C.tzOffsetHours * 60 * 60 * 1000)
 .toISOString()
 .split('T')[0];
@@ -51,18 +50,14 @@ const mime = (u: string) =>
 
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
-/** Escape karakter spesial XML untuk teks/atribut di luar CDATA (URL, dll) */
 const escapeXML = (s: string) => s
 .replace(/&/g, '&amp;')
 .replace(/</g, '&lt;')
 .replace(/>/g, '&gt;')
 .replace(/"/g, '&quot;');
 
-/** Cegah CDATA injection — pecah ]]> agar tidak menutup CDATA lebih awal */
 const safeCDATA = (s: string) => s.replace(/]]>/g, ']]]]><![CDATA[>');
 
-/** Baca ukuran file gambar dari disk lokal.
- * Gambar eksternal (bukan C.base) langsung return 0. */
 const imgSize = async (url: string): Promise<number> => {
     try {
         if (!url.startsWith(C.base)) return 0;
@@ -77,13 +72,12 @@ const calculateFeedRootDate = (items: any[]): Date => {
     const now = new Date();
     if (!items || items.length === 0) return now;
     
-    // Karena item sudah disortir menurun, items[0] adalah artikel paling baru
     const newestItemDate = new Date(items[0].lastmod);
     
-    // Jika waktu server/sekarang lebih lampau atau sama dengan artikel terbaru,
-    // paksa waktu feed bergeser +2 menit setelah artikel rilis agar terlihat alami.
+    // Memberikan jeda acak 1-3 menit setelah artikel rilis agar terlihat alami
     if (now.getTime() <= newestItemDate.getTime()) {
-        return new Date(newestItemDate.getTime() + 2 * 60 * 1000);
+        const randomFeedOffset = Math.floor(Math.random() * (180000 - 60000 + 1)) + 60000;
+        return new Date(newestItemDate.getTime() + randomFeedOffset);
     }
     return now;
 };
@@ -101,7 +95,6 @@ const buildRss = (
     ).join('')}</channel></rss>`;
 };
 
-/** Atom 1.0 (RFC 4287) — pasangan dari buildRss, sumber data sama */
 const buildAtom = (
     t: string,
     items: any[],
@@ -128,7 +121,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
 // =============================================================================
 (async () => {
-    console.log('🚀 Diet Mode V9.0 - RSS + Atom, XML-safe');
+    console.log('🚀 Diet Mode V9.0 - Anti-Ambigu Time Manipulator Activated');
 
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
@@ -138,21 +131,19 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
     const urls  = new Set(stm.split('\n').filter(Boolean));
     const files = [...new Bun.Glob("*.html").scanSync(C.art)].filter(f => !f.startsWith('-'));
-    const final: any = {};
+    let final: any = {};
     const flat:  any[] = [];
     const valid = new Set();
 
-    // ── Proses setiap file artikel ───────────────────────────────────────────
+    // ── 1. Koleksi Semua Data ke Flat Array Dulu ───────────────────────────
     for (const f of files) {
         let d: any = null, cat: any = null;
 
-        // 1. Cari di cache (artikel.json root)
         for (const [c, its] of Object.entries(eta)) {
             const found = (its as any[]).find(i => i[1] === f);
             if (found) { d = [...found]; d[0] = decodeHTML(d[0]); cat = c; break; }
         }
 
-        // Otomatisasi pemindahan kategori
         if (d) {
             let targetCat = null;
             for (const [mc, mits] of Object.entries(mst)) {
@@ -165,15 +156,12 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
             }
         }
 
-        // Lanjut jika cache masih valid
         if (d && urls.has(`${C.base}/${slug(cat)}/${f.replace('.html', '')}`)) {
-            (final[cat] ??= []).push(d);
             flat.push({ title: d[0], file: f, img: d[2], lastmod: d[3], desc: d[4], category: cat, loc: `${C.base}/${slug(cat)}/${f.replace('.html', '')}` });
             valid.add(`${slug(cat)}/${f}`);
             continue;
         }
 
-        // 2. Cache tidak valid — baca file fisik
         const txt  = await Bun.file(`${C.art}/${f}`).text();
         const rawT = (
             txt.match(/property="og:title" content="(.*?)"/i)?.[1] ||
@@ -182,7 +170,6 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         ).trim();
         const t = decodeHTML(rawT);
 
-        // Tentukan kategori: Master JSON → titleToCategory
         let c: any = null;
         for (const [mc, mits] of Object.entries(mst)) {
             if ((mits as any[]).find(i => i[1] === f)) { c = mc; break; }
@@ -191,7 +178,6 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
         const url = `${C.base}/${slug(c)}/${f.replace('.html', '')}`;
 
-        // Prioritas tanggal: Master JSON → og:article:published_time → mtime
         let masterDate: string | null = null;
         for (const [, mits] of Object.entries(mst)) {
             const found = (mits as any[]).find(i => i[1] === f);
@@ -205,10 +191,38 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         const desc = (txt.match(/description" content="(.*?)"/i)?.[1] || '').trim();
 
         await distribute(f, c, url, txt);
-        (final[c] ??= []).push([t, f, img, iso(date), desc]);
+        
+        // Kita hanya push ke flat array di sini, 'final' object di-build nanti setelah manipulasi waktu.
         flat.push({ title: t, file: f, img, lastmod: iso(date), desc, category: c, loc: url });
         urls.add(url);
         valid.add(`${slug(c)}/${f}`);
+    }
+
+    // ── 2. Sortir Berdasarkan Waktu Asli (Terbaru ke Terlama) ─────────────────
+    flat.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+
+    // ── 3. MANIPULASI WAKTU ANTI-AMBIGU (Unique Time Enforcer) ────────────────
+    let lastProcessedTime = Infinity;
+    for (const it of flat) {
+        let currentItemTime = new Date(it.lastmod).getTime();
+        
+        // Cek bentrok: Jika waktu artikel ini sama atau lebih baru dari artikel di urutan atasnya
+        // (yang mana tidak logis secara hierarki kecuali terjadi duplikasi jam)
+        if (currentItemTime >= lastProcessedTime) {
+            // Mundurkan waktu secara acak antara 1 sampai 7 menit dari lastProcessedTime
+            // Algoritma ini memastikan jarak antar postingan selalu renggang alami.
+            const randomGap = Math.floor(Math.random() * (7 * 60000 - 60000 + 1)) + 60000;
+            currentItemTime = lastProcessedTime - randomGap;
+        }
+        
+        lastProcessedTime = currentItemTime;
+        // Timpa `lastmod` dengan string ISO baru hasil manipulasi yang sudah dijamin unik
+        it.lastmod = iso(currentItemTime);
+    }
+
+    // ── 4. Bangun Ulang Object 'final' Berdasarkan Data yang Sudah Unik ───────
+    for (const it of flat) {
+        (final[it.category] ??= []).push([it.title, it.file, it.img, it.lastmod, it.desc]);
     }
 
     // ── Cleanup file lama (artikel) + feed kategori basi ─────────────────────
@@ -224,18 +238,16 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
             }
         }
 
-        // Kategori sudah tidak punya artikel sama sekali → hapus feed basi-nya
         if (!finalSlugs.has(s)) {
             await fs.rm(`${C.root}/feed-${s}.xml`, { force: true });
             await fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true });
         }
     }
 
-    flat.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
-
+    // Simpan ke cache (yang kini sudah berisikan jam-jam yang anti-ambigu)
     await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
-    // ── Build XML Sitemap + globalSizes (satu pass) ──────────────────────────
+    // ── Build XML Sitemap + globalSizes ──────────────────────────────────────
     const globalSizes      = new Map<string, number>();
     let combinedXmlEntries = '';
 
@@ -254,8 +266,8 @@ for (const it of flat) {
 vids.forEach(s => {
     const id = s.match(/embed\/([^/?]+)/)?.[1];
     if (id) {
-        const videoTitle = decodeHTML(it.title).substring(0, 100); // Max 100 chars
-        const videoDesc = (it.desc || decodeHTML(it.title)).substring(0, 2048); // Max 2048 chars
+        const videoTitle = decodeHTML(it.title).substring(0, 100);
+        const videoDesc = (it.desc || decodeHTML(it.title)).substring(0, 2048);
 
         videoXml += `
         <video:video>
@@ -289,19 +301,19 @@ await Promise.all([
                   Bun.write(`${C.root}/rss.xml`, buildRss(
                       'Layar Kosong',
                       flat.slice(0, C.limit),
-                    `${C.base}/rss.xml`,
-                    'RSS Feed artikel terbaru dari Layar Kosong',
-                    globalSizes
+                                                          `${C.base}/rss.xml`,
+                                                          'Feed artikel terbaru dari Layar Kosong',
+                                                          globalSizes
                   )),
                   Bun.write(`${C.root}/atom.xml`, buildAtom(
-                    'Layar Kosong',
-                    flat.slice(0, C.limit),
-                    `${C.base}/atom.xml`,
-                    'Atom Feed artikel terbaru dari Layar Kosong'
+                      'Layar Kosong',
+                      flat.slice(0, C.limit),
+                                                          `${C.base}/atom.xml`,
+                                                          'Feed artikel terbaru dari Layar Kosong'
                   )),
 ]);
 
-console.log('✅ Sitemap Tunggal Berhasil Dibuat: sitemap.xml (Google Compliant)');
+console.log('✅ Sitemap Tunggal Berhasil Dibuat (Anti-Ambigu XML Compliant)');
 console.log('📡 RSS Feed Global Berhasil Dibuat: rss.xml');
 console.log('⚛️  Atom Feed Global Berhasil Dibuat: atom.xml');
 
@@ -355,7 +367,6 @@ if (tmp) {
             loc: `${C.base}/${s}/${a[1].replace('.html', '')}`
         })).slice(0, C.limit);
 
-        // Tulis index.html + feed RSS + feed Atom kategori sekaligus
         await Promise.all([
             Bun.write(`${C.root}/${s}/index.html`, pg),
                           Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
@@ -371,7 +382,7 @@ if (tmp) {
                           )),
         ]);
     }
-    console.log('📂 Static Category Pages Generated (Clean Mode).');
+    console.log('📂 Static Category Pages Generated (Time-Fixed Mode).');
 }
 
 // ── Build feed.html ──────────────────────────────────────────────────────
@@ -417,5 +428,5 @@ if (feedTemplate) {
     console.log('✨ Static Feed Page Generated.');
 }
 
-console.log('✅ Selesai. RSS + Atom + XML-safe + cleanup feed kategori.');
+console.log('✅ Eksekusi Rampung: Semua duplikasi tanggal berhasil dilibas.');
 })();
