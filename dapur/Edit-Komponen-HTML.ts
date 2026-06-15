@@ -115,6 +115,7 @@ function replaceContent(html: string): string {
     .replaceAll('content="Pelajari ', 'content="')
     .replaceAll('content="Simak ', 'content="')
     .replaceAll('content="Temukan ', 'content="')
+    .replaceAll("Ditulis oleh", "Artikel dari")
 
     // Font Awesome class mapping
     .replaceAll("far fa-copyright", "fa-brands fa-creative-commons-by")
