@@ -9,7 +9,7 @@ const IMG_FOLDER = path.join(ROOT_DIR, "img");
 const OUTPUT_FILE = path.join(IMG_FOLDER, "gambarnganggur.txt");
 const CACHE_FILE = path.join(ROOT_DIR, "mini", "srcset-gambar.txt");
 
-// Kalau mau cek dulu tanpa hapus, ubah ke true
+// Ubah ke true kalau mau tes dulu tanpa benar-benar menghapus file
 const DRY_RUN = false;
 
 const ALLOWED_CATEGORIES = [
@@ -37,7 +37,7 @@ const IMAGE_EXTENSIONS = [
   ".tiff",
 ];
 
-// Varian WebP hasil resize/generator yang harus ikut dilindungi
+// Varian WebP hasil resize/generator yang ikut dilindungi
 const WEBP_VARIANT_SUFFIXES = ["-sm", "-md"];
 
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
@@ -66,10 +66,11 @@ function isImageFile(fileName: string): boolean {
 }
 
 /**
- * Ambil semua file gambar dari folder img
+ * Ambil semua file gambar dari folder img secara rekursif
  */
 function getAllPhysicalImages(dir: string): ImageFile[] {
   let results: ImageFile[] = [];
+
   if (!fs.existsSync(dir)) return results;
 
   const list = fs.readdirSync(dir, { withFileTypes: true });
@@ -113,7 +114,7 @@ function protectImageReference(ref: string) {
   // Lindungi nama asli sebagaimana muncul di HTML/cache
   usedBasenames.add(baseName);
 
-  // Lindungi juga versi ekstensi lowercase, misal Foto.JPG -> Foto.jpg
+  // Lindungi versi ekstensi lowercase
   usedBasenames.add(`${nameSafe}${ext}`);
 
   // Lindungi versi WebP utama
@@ -122,6 +123,24 @@ function protectImageReference(ref: string) {
   // Lindungi varian resize WebP
   for (const suffix of WEBP_VARIANT_SUFFIXES) {
     usedBasenames.add(`${nameSafe}${suffix}.webp`);
+  }
+}
+
+/**
+ * Baca satu file HTML dan ambil semua referensi gambar
+ */
+async function scanHtmlFile(fullPath: string) {
+  try {
+    const content = await bunFile(fullPath).text();
+    const matches = content.match(IMAGE_REF_REGEX);
+
+    if (matches) {
+      for (const match of matches) {
+        protectImageReference(match);
+      }
+    }
+  } catch {
+    console.warn(`⚠️  Gagal baca: ${fullPath}`);
   }
 }
 
@@ -145,10 +164,11 @@ function loadSrcsetCache() {
 }
 
 /**
- * Ambil semua HTML secara rekursif dari folder kategori
+ * Ambil semua HTML secara rekursif dari folder tertentu
  */
-function getHtmlFiles(dir: string): string[] {
+function getHtmlFilesRecursive(dir: string, excludeIndex = false): string[] {
   let results: string[] = [];
+
   if (!fs.existsSync(dir)) return results;
 
   const list = fs.readdirSync(dir, { withFileTypes: true });
@@ -157,8 +177,11 @@ function getHtmlFiles(dir: string): string[] {
     const fullPath = path.join(dir, entry.name);
 
     if (entry.isDirectory()) {
-      results = results.concat(getHtmlFiles(fullPath));
-    } else if (entry.name.endsWith(".html") && entry.name !== "index.html") {
+      results = results.concat(getHtmlFilesRecursive(fullPath, excludeIndex));
+    } else if (
+      entry.name.endsWith(".html") &&
+      !(excludeIndex && entry.name === "index.html")
+    ) {
       results.push(fullPath);
     }
   }
@@ -167,28 +190,51 @@ function getHtmlFiles(dir: string): string[] {
 }
 
 /**
+ * Scan file HTML yang berada langsung di root repo.
+ *
+ * Contoh yang ikut dibaca:
+ * - /index.html
+ * - /404.html
+ * - /sitemap.html
+ * - /feed.html
+ * - /home.html
+ */
+async function scanRootHtmlFiles() {
+  if (!fs.existsSync(ROOT_DIR)) return;
+
+  const list = fs.readdirSync(ROOT_DIR, { withFileTypes: true });
+
+  const rootHtmlFiles = list
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
+    .map((entry) => path.join(ROOT_DIR, entry.name));
+
+  if (rootHtmlFiles.length > 0) {
+    console.log(`🏠 Root HTML: ${rootHtmlFiles.length} file akan dipindai.`);
+  }
+
+  for (const fullPath of rootHtmlFiles) {
+    await scanHtmlFile(fullPath);
+  }
+}
+
+/**
  * Scan HTML di folder kategori
  */
 async function scanCategoryFolders() {
   for (const category of ALLOWED_CATEGORIES) {
     const categoryPath = path.join(ROOT_DIR, category);
+
     if (!fs.existsSync(categoryPath)) continue;
 
-    const htmlFiles = getHtmlFiles(categoryPath);
+    // index.html di folder kategori tetap diabaikan
+    const htmlFiles = getHtmlFilesRecursive(categoryPath, true);
+
+    if (htmlFiles.length > 0) {
+      console.log(`📂 ${category}: ${htmlFiles.length} file HTML dipindai.`);
+    }
 
     for (const fullPath of htmlFiles) {
-      try {
-        const content = await bunFile(fullPath).text();
-        const matches = content.match(IMAGE_REF_REGEX);
-
-        if (matches) {
-          for (const match of matches) {
-            protectImageReference(match);
-          }
-        }
-      } catch {
-        console.warn(`⚠️  Gagal baca: ${fullPath}`);
-      }
+      await scanHtmlFile(fullPath);
     }
   }
 }
@@ -229,7 +275,7 @@ function findOrphanWebpVariants(allImages: ImageFile[]): string[] {
 }
 
 async function runCleaner() {
-  console.log("🚀 Memulai Pembersih Gambar V11 + WebP Variant Protector...");
+  console.log("🚀 Memulai Pembersih Gambar V11.1 + Root HTML Scanner...");
 
   const allImages = getAllPhysicalImages(IMG_FOLDER);
 
@@ -237,7 +283,14 @@ async function runCleaner() {
     return console.log("📭 Tidak ada file gambar di folder img.");
   }
 
+  console.log(`🖼️  Total gambar fisik ditemukan: ${allImages.length}`);
+
   loadSrcsetCache();
+
+  // Baru: scan HTML yang berada langsung di root repo
+  await scanRootHtmlFiles();
+
+  // Tetap scan HTML di folder kategori
   await scanCategoryFolders();
 
   const orphanVariantFiles = findOrphanWebpVariants(allImages);
@@ -263,6 +316,7 @@ async function runCleaner() {
     await write(OUTPUT_FILE, finalDeleteList.join("\n") + "\n");
 
     console.log(`🗑️  Total file akan dihapus: ${finalDeleteList.length}`);
+    console.log(`📝 Daftar ditulis ke: ${OUTPUT_FILE}`);
 
     let cleanedCount = 0;
 
@@ -274,6 +328,7 @@ async function runCleaner() {
           console.log(`DRY RUN → git rm ${fullPath}`);
         } else {
           console.log(`→ git rm ${fullPath}`);
+
           execFileSync("git", ["rm", "-f", fullPath], {
             stdio: "ignore",
           });
