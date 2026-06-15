@@ -199,7 +199,7 @@ gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1</code>
 git sparse-checkout init</code></pre>
             <h3>3. Menetapkan Aturan "Gaib"</h3>
             <p>Ini adalah bagian inti. Kita memberitahu Git untuk mengambil semua file di semua folder (<code>/*</code>), tapi abaikan folder <code>img/</code> dan <code>.github/workflows/</code> secara spesifik.</p>
-<pre><code>git sparse-checkout set --no-cone "/*" "!/img/" "!/.github/workflows/"</code></pre>
+<pre><code>git sparse-checkout set --no-cone "/*" "!/img" "!/.github/workflows/"</code></pre>
 <p>Seketika, folder <code>img/</code> dan <code>.github/workflows/</code> akan menghilang dari File Explorer, namun mereka tetap berada di dalam server repo Github, dan status repositori kamu tetap <code>clean</code>, aman sentosa.</p>
         </section>
         <section class="content-section">

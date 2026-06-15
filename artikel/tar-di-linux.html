@@ -121,7 +121,7 @@
                     <h3>Membuat Backup dengan Nama Bertanggal</h3>
                     <pre class="language-bash"><code id="code4">tar -czf backup-$(date +%Y-%m-%d).tar.gz /path/to/data/</code><button class="copy-btn" data-target="code4">Salin</button></pre>
                     <h3>Mengompres Sambil Mengabaikan File Tertentu</h3>
-                    <pre class="language-bash"><code id="code5">tar -czf arsip.tar.gz --exclude="*.tmp" --exclude="cache/" folder/</code><button class="copy-btn" data-target="code5">Salin</button></pre>
+                    <pre class="language-bash"><code id="code5">tar -czf arsip.tar.gz --exclude="*.tmp" --exclude="cache" folder/</code><button class="copy-btn" data-target="code5">Salin</button></pre>
                     <h2>Penjelasan Opsi (Parameter)</h2>
                     <ul>
                         <li><code>-c</code>: <strong>Create</strong>, untuk membuat arsip baru.</li>

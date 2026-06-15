@@ -368,7 +368,7 @@
         const total = document.getElementById("total-belanja").value;
         const items = document.querySelectorAll("#daftar-item tr");
         const o = new Date();
-        const tgl = String(o.getDate()).padStart(2, "0") + "/" + String(o.getMonth() + 1).padStart(2, "0") + "/" + o.getFullYear();
+        const tgl = String(o.getDate()).padStart(2, "0") + "" + String(o.getMonth() + 1).padStart(2, "0") + "" + o.getFullYear();
         const jam = String(o.getHours()).padStart(2, "0") + ":" + String(o.getMinutes()).padStart(2, "0");
         const fileDate = String(o.getDate()).padStart(2, "0") + String(o.getMonth() + 1).padStart(2, "0") + String(o.getFullYear()).slice(-2) + "-" + String(o.getHours()).padStart(2, "0") + String(o.getMinutes()).padStart(2, "0");
         let itemsHtml = '';

@@ -231,7 +231,7 @@ jobs:
             echo "Pinging: $FEED_URL"
             curl -s -o /dev/null -X POST \
               --data-urlencode "title=$BLOG_TITLE" \
-              --data-urlencode "blogurl=$BASE_URL/" \
+              --data-urlencode "blogurl=$BASE_URL" \
               --data-urlencode "rssurl=$FEED_URL" \
               https://pingomatic.com/ping/
           done

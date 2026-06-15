@@ -275,7 +275,7 @@ cpx --version</code></pre>
         <h3>⚡ Menyalin dengan Paralel 8 Thread dan Progress Bar</h3>
         <pre><code>cpx -r -j 8 dataset-foto/ /media/backup/foto/</code></pre>
         <h3>🚫 Mengecualikan Pola Tertentu</h3>
-        <pre><code>cpx -r -e "*.log" -e "tmp/" -e "node_modules" webapp/ /arsip/webapp/</code></pre>
+        <pre><code>cpx -r -e "*.log" -e "tmp" -e "node_modules" webapp/ /arsip/webapp/</code></pre>
         <h3>🔁 Melanjutkan Transfer yang Terputus</h3>
         <pre><code>cpx -r --resume backup-partial/ /mnt/backup/full/</code></pre>
         <h3>🔗 Mempertahankan Semua Atribut (seperti cp -a)</h3>

@@ -1016,7 +1016,7 @@
             <p>Untuk Drop TCP RST dan lamanlabuh di IPTables, jalankan perintah:</p>
             <div class="code-block">
                 sudo iptables -I INPUT -p tcp --tcp-flags ALL RST,ACK -j DROP<br>
-                sudo iptables -A INPUT -p tcp -m string --string "Location: http://lamanlabuh.aduankonten.id/" --algo bm -j DROP
+                sudo iptables -A INPUT -p tcp -m string --string "Location: http://lamanlabuh.aduankonten.id" --algo bm -j DROP
             </div>
             <p>Untuk firewall-cmd, jalankan perintah:</p>
             <div class="code-block">
