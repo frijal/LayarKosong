@@ -125,8 +125,8 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
-                                                      Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
-                                                      Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
+        Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
+        Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
     const urls  = new Set(stm.split('\n').filter(Boolean));
@@ -254,7 +254,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 for (const it of flat) {
     const [txt, size] = await Promise.all([
         Bun.file(`${C.art}/${it.file}`).text(),
-                                          imgSize(it.img)
+        imgSize(it.img)
     ]);
     globalSizes.set(it.img, size);
 
@@ -301,15 +301,15 @@ await Promise.all([
                   Bun.write(`${C.root}/rss.xml`, buildRss(
                       'Layar Kosong',
                       flat.slice(0, C.limit),
-                                                          `${C.base}/rss.xml`,
-                                                          'Feed artikel terbaru dari Layar Kosong',
-                                                          globalSizes
+                      `${C.base}/rss.xml`,
+                      'RSS Feed artikel terbaru dari Layar Kosong',
+                      globalSizes
                   )),
                   Bun.write(`${C.root}/atom.xml`, buildAtom(
                       'Layar Kosong',
                       flat.slice(0, C.limit),
-                                                          `${C.base}/atom.xml`,
-                                                          'Feed artikel terbaru dari Layar Kosong'
+                      `${C.base}/atom.xml`,
+                      'Atom Feed artikel terbaru dari Layar Kosong'
                   )),
 ]);
 
