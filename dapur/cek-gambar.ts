@@ -1,6 +1,6 @@
 import { file as bunFile, write } from "bun";
 import * as fs from "node:fs";
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 
 // ========== CONFIG ==========
@@ -8,6 +8,9 @@ const ROOT_DIR = process.cwd();
 const IMG_FOLDER = path.join(ROOT_DIR, "img");
 const OUTPUT_FILE = path.join(IMG_FOLDER, "gambarnganggur.txt");
 const CACHE_FILE = path.join(ROOT_DIR, "mini", "srcset-gambar.txt");
+
+// Kalau mau cek dulu tanpa hapus, ubah ke true
+const DRY_RUN = false;
 
 const ALLOWED_CATEGORIES = [
   "gaya-hidup",
@@ -19,7 +22,34 @@ const ALLOWED_CATEGORIES = [
   "warta-tekno",
 ];
 
-const FORBIDDEN_CHARS = /[*:"<>|?]/g; 
+// Semua ekstensi gambar yang akan dicek di folder img/
+const IMAGE_EXTENSIONS = [
+  ".webp",
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".gif",
+  ".svg",
+  ".avif",
+  ".ico",
+  ".bmp",
+  ".tif",
+  ".tiff",
+];
+
+// Varian WebP hasil resize/generator yang harus ikut dilindungi
+const WEBP_VARIANT_SUFFIXES = ["-sm", "-md"];
+
+const FORBIDDEN_CHARS = /[*:"<>|?]/g;
+
+const IMAGE_EXT_PATTERN = IMAGE_EXTENSIONS
+  .map((ext) => ext.replace(".", ""))
+  .join("|");
+
+const IMAGE_REF_REGEX = new RegExp(
+  String.raw`([^/\\\"']+\.(?:${IMAGE_EXT_PATTERN}))`,
+  "gi"
+);
 
 interface ImageFile {
   fullPath: string;
@@ -29,41 +59,111 @@ interface ImageFile {
 const usedBasenames = new Set<string>();
 
 /**
- * Ambil semua file .webp dari folder img
+ * Cek apakah file termasuk ekstensi gambar yang dipantau
+ */
+function isImageFile(fileName: string): boolean {
+  return IMAGE_EXTENSIONS.includes(path.extname(fileName).toLowerCase());
+}
+
+/**
+ * Ambil semua file gambar dari folder img
  */
 function getAllPhysicalImages(dir: string): ImageFile[] {
   let results: ImageFile[] = [];
   if (!fs.existsSync(dir)) return results;
 
   const list = fs.readdirSync(dir, { withFileTypes: true });
+
   for (const entry of list) {
     const fullPath = path.join(dir, entry.name);
+
     if (entry.isDirectory()) {
       results = results.concat(getAllPhysicalImages(fullPath));
-    } else if (entry.name.toLowerCase().endsWith(".webp")) {
-      results.push({ fullPath, basename: entry.name });
+    } else if (isImageFile(entry.name)) {
+      results.push({
+        fullPath,
+        basename: entry.name,
+      });
     }
   }
+
   return results;
+}
+
+/**
+ * Lindungi nama gambar yang ditemukan.
+ *
+ * Contoh:
+ * artikel.jpg akan melindungi:
+ * - artikel.jpg
+ * - artikel.webp
+ * - artikel-sm.webp
+ * - artikel-md.webp
+ */
+function protectImageReference(ref: string) {
+  const cleanRef = ref.split("?")[0].split("#")[0];
+  const baseName = path.basename(cleanRef);
+  const ext = path.extname(baseName).toLowerCase();
+
+  if (!IMAGE_EXTENSIONS.includes(ext)) return;
+
+  const rawName = path.basename(baseName, path.extname(baseName));
+  const nameSafe = rawName.replace(FORBIDDEN_CHARS, "-");
+
+  // Lindungi nama asli sebagaimana muncul di HTML/cache
+  usedBasenames.add(baseName);
+
+  // Lindungi juga versi ekstensi lowercase, misal Foto.JPG -> Foto.jpg
+  usedBasenames.add(`${nameSafe}${ext}`);
+
+  // Lindungi versi WebP utama
+  usedBasenames.add(`${nameSafe}.webp`);
+
+  // Lindungi varian resize WebP
+  for (const suffix of WEBP_VARIANT_SUFFIXES) {
+    usedBasenames.add(`${nameSafe}${suffix}.webp`);
+  }
 }
 
 /**
  * Proteksi berbasis Cache Srcset
  */
 function loadSrcsetCache() {
-  if (fs.existsSync(CACHE_FILE)) {
-    const cacheLines = fs.readFileSync(CACHE_FILE, "utf-8")
-      .split("\n").map(l => l.trim()).filter(Boolean);
+  if (!fs.existsSync(CACHE_FILE)) return;
 
-    for (const line of cacheLines) {
-      const baseName = path.basename(line);
-      const ext = path.extname(baseName);
-      const nameSafe = path.basename(baseName, ext).replace(FORBIDDEN_CHARS, "-");
-      usedBasenames.add(`${nameSafe}.webp`);
-      usedBasenames.add(`${nameSafe}-sm.webp`);
-    }
-    console.log(`🛡️  Whitelist Cache: ${cacheLines.length} entri dilindungi.`);
+  const cacheLines = fs
+    .readFileSync(CACHE_FILE, "utf-8")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  for (const line of cacheLines) {
+    protectImageReference(line);
   }
+
+  console.log(`🛡️  Whitelist Cache: ${cacheLines.length} entri dilindungi.`);
+}
+
+/**
+ * Ambil semua HTML secara rekursif dari folder kategori
+ */
+function getHtmlFiles(dir: string): string[] {
+  let results: string[] = [];
+  if (!fs.existsSync(dir)) return results;
+
+  const list = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of list) {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      results = results.concat(getHtmlFiles(fullPath));
+    } else if (entry.name.endsWith(".html") && entry.name !== "index.html") {
+      results.push(fullPath);
+    }
+  }
+
+  return results;
 }
 
 /**
@@ -74,88 +174,124 @@ async function scanCategoryFolders() {
     const categoryPath = path.join(ROOT_DIR, category);
     if (!fs.existsSync(categoryPath)) continue;
 
-    const files = fs.readdirSync(categoryPath);
-    for (const fileName of files) {
-      if (fileName.endsWith(".html") && fileName !== "index.html") {
-        const fullPath = path.join(categoryPath, fileName);
-        try {
-          const content = await bunFile(fullPath).text();
-          const matches = content.match(/([^/\\\"']+\.(?:webp|jpg|jpeg|png|gif|svg))/gi);
+    const htmlFiles = getHtmlFiles(categoryPath);
 
-          if (matches) {
-            matches.forEach(m => {
-              const baseName = path.basename(m);
-              const ext = path.extname(baseName);
-              const nameSafe = path.basename(baseName, ext).replace(FORBIDDEN_CHARS, "-");
+    for (const fullPath of htmlFiles) {
+      try {
+        const content = await bunFile(fullPath).text();
+        const matches = content.match(IMAGE_REF_REGEX);
 
-              usedBasenames.add(baseName);
-              usedBasenames.add(`${nameSafe}.webp`);
-              usedBasenames.add(`${nameSafe}-sm.webp`);
-            });
+        if (matches) {
+          for (const match of matches) {
+            protectImageReference(match);
           }
-        } catch {
-          console.warn(`⚠️  Gagal baca: ${fullPath}`);
         }
+      } catch {
+        console.warn(`⚠️  Gagal baca: ${fullPath}`);
       }
     }
   }
 }
 
+/**
+ * Deteksi file -sm.webp dan -md.webp yang yatim.
+ *
+ * Contoh yatim:
+ * - artikel-sm.webp ada
+ * - artikel.webp tidak ada
+ *
+ * Maka artikel-sm.webp dianggap orphan.
+ */
+function findOrphanWebpVariants(allImages: ImageFile[]): string[] {
+  const orphanFiles: string[] = [];
+  const allBasenames = new Set(allImages.map((img) => img.basename));
+
+  for (const img of allImages) {
+    const lowerName = img.basename.toLowerCase();
+
+    for (const suffix of WEBP_VARIANT_SUFFIXES) {
+      const variantEnding = `${suffix}.webp`;
+
+      if (lowerName.endsWith(variantEnding)) {
+        const parentName = img.basename.replace(
+          new RegExp(`${suffix}\\.webp$`, "i"),
+          ".webp"
+        );
+
+        if (!allBasenames.has(parentName)) {
+          orphanFiles.push(img.fullPath);
+        }
+      }
+    }
+  }
+
+  return orphanFiles;
+}
+
 async function runCleaner() {
-  console.log("🚀 Memulai Pembersih WebP V10.2 + Orphan Detector...");
+  console.log("🚀 Memulai Pembersih Gambar V11 + WebP Variant Protector...");
 
   const allImages = getAllPhysicalImages(IMG_FOLDER);
-  if (allImages.length === 0) return console.log("📭 Tidak ada .webp.");
+
+  if (allImages.length === 0) {
+    return console.log("📭 Tidak ada file gambar di folder img.");
+  }
 
   loadSrcsetCache();
   await scanCategoryFolders();
 
-  // --- LOGIKA BARU: DETEKSI FILE -SM.WEBP YATIM ---
-  const orphanSmallFiles: string[] = [];
-  const allBasenames = new Set(allImages.map(img => img.basename));
+  const orphanVariantFiles = findOrphanWebpVariants(allImages);
 
-  for (const img of allImages) {
-    if (img.basename.endsWith("-sm.webp")) {
-      const parentName = img.basename.replace("-sm.webp", ".webp");
-      // Jika file -sm ada tapi file .webp aslinya TIDAK ADA di folder img
-      if (!allBasenames.has(parentName)) {
-        orphanSmallFiles.push(img.fullPath);
-      }
-    }
+  if (orphanVariantFiles.length > 0) {
+    console.log(
+      `🕵️  Menemukan ${orphanVariantFiles.length} file varian WebP yatim.`
+    );
   }
 
-  if (orphanSmallFiles.length > 0) {
-    console.log(`🕵️  Menemukan ${orphanSmallFiles.length} file '-sm.webp' yatim.`);
-  }
+  const unusedFromHtml = allImages.filter(
+    (img) => !usedBasenames.has(img.basename)
+  );
 
-  // --- GABUNGKAN HASIL ---
-  const unusedFromHtml = allImages.filter(img => !usedBasenames.has(img.basename));
-  
-  // Gabungkan daftar hapus (Unused + Orphan), pastikan unik
-  const toDeletePaths = new Set([
-    ...unusedFromHtml.map(img => img.fullPath),
-    ...orphanSmallFiles
+  const toDeletePaths = new Set<string>([
+    ...unusedFromHtml.map((img) => img.fullPath),
+    ...orphanVariantFiles,
   ]);
 
   if (toDeletePaths.size > 0) {
     const finalDeleteList = Array.from(toDeletePaths).sort();
+
     await write(OUTPUT_FILE, finalDeleteList.join("\n") + "\n");
 
-    console.log(`🗑️  Total file akan dihapus: ${finalDeleteList.size}`);
+    console.log(`🗑️  Total file akan dihapus: ${finalDeleteList.length}`);
 
     let cleanedCount = 0;
+
     for (const fullPath of finalDeleteList) {
-      if (fs.existsSync(fullPath)) {
-        try {
+      if (!fs.existsSync(fullPath)) continue;
+
+      try {
+        if (DRY_RUN) {
+          console.log(`DRY RUN → git rm ${fullPath}`);
+        } else {
           console.log(`→ git rm ${fullPath}`);
-          execSync(`git rm -f "${fullPath}"`, { stdio: "ignore" });
-          cleanedCount++;
-        } catch {
-          console.error(`❌ Gagal hapus: ${fullPath}`);
+          execFileSync("git", ["rm", "-f", fullPath], {
+            stdio: "ignore",
+          });
         }
+
+        cleanedCount++;
+      } catch {
+        console.error(`❌ Gagal hapus: ${fullPath}`);
       }
     }
-    console.log(`✨ Selesai! ${cleanedCount} file dibersihkan.`);
+
+    if (DRY_RUN) {
+      console.log(
+        `🧪 Dry run selesai. ${cleanedCount} file terdeteksi, belum dihapus.`
+      );
+    } else {
+      console.log(`✨ Selesai! ${cleanedCount} file dibersihkan.`);
+    }
   } else {
     await write(OUTPUT_FILE, "");
     console.log("😎 Semua gambar aman, terpakai, dan punya keluarga lengkap.");
