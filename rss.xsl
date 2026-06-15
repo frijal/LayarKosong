@@ -27,7 +27,7 @@ tr:hover { background: #fdfdfd; }
 .article-desc { font-size: 13px; color: #555; margin: 0 0 8px 0; line-height: 1.4; }
 .badge { display: inline-block; background: #eee; color: #555; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
 
-/* Image Thumbnail & Lightbox */
+/* Image ThumbnailLightbox */
 .img-container { cursor: zoom-in; display: inline-block; transition: transform 0.2s; }
 .img-container:hover { transform: scale(1.05); }
 .img-thumb { width: 120px; height: 80px; object-fit: cover; border-radius: 6px; background: #eee; border: 1px solid #ddd; }
