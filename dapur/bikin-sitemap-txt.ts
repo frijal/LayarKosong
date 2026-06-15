@@ -32,10 +32,8 @@ try {
 
     // 3. URL Statis
     const manualUrls = [
-        "", "/jejak-sejarah", "/lainnya", "/olah-media",
-        "/opini-sosial", "/sistem-terbuka", "/warta-tekno",
-        "/gaya-hidup", "/about", "/privacy", "/search",
-        "/security-policy", "/data-deletion-form", "/disclaimer", "/disclosure",
+        "", "/jejak-sejarah", "/lainnya", "/olah-media", "/opini-sosial", "/sistem-terbuka", "/warta-tekno",
+        "/gaya-hidup", "/about", "/privacy", "/security-policy", "/data-deletion-form", "/disclaimer", "/disclosure",
         "/feed", "/img", "/lisensi", "/sitemap"
     ].map(u => `${BASE_URL}${u}`);
 
