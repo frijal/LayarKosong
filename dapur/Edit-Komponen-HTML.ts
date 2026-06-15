@@ -151,7 +151,7 @@ function addElements(html: string): string {
 
   // 3. IPosBrowser Container setelah H1
   if (!html.includes('id="iposbrowser"')) {
-    html = html.replace("</h1>", `</h1><div id="iposbrowser"></div>`);
+    html = html.replace("<h1>", `<div id="iposbrowser"></div><h1>`);
   }
 
   // 4. Gabungkan semua elemen Body
