@@ -41,7 +41,7 @@ iframe.lightbox-content { width: 85vw; height: 48vw; max-width: 1024px; max-heig
 .close-lightbox:hover { color: #ccc; }
 @keyframes zoomModal { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-/* Pagination & Links */
+/* PaginationLinks */
 .pagination-wrapper { display: flex; align-items: center; gap: 15px; }
 .pagination-bottom { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; justify-content: space-between; }
 .nav-buttons { display: flex; gap: 8px; }
