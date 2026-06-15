@@ -1,13 +1,13 @@
-/artikel        /sitemap.html    301
-/artikel/       /sitemap.html    301
-/artikel.html   /sitemap.html    301
+/artikel        /sitemap    301
+/artikel/       /sitemap    301
+/artikel.html   /sitemap    301
 
 /home           /index.html      301
 /home.html      /index.html      301
 
-/rss            /feed.html       301
-/rss/           /feed.html       301
-/rss.html       /feed.html       301
+/rss            /feed       301
+/rss/           /feed       301
+/rss.html       /feed       301
 
 /apple-touch-icon.png /artikel/apple-touch-icon.png 301
 /artikel/-/opini-sosial /opini-sosial   301
@@ -25,3 +25,29 @@
 /artikel/-/olah-media/   /olah-media 301
 /artikel/-/jejak-sejarah/    /jejak-sejarah  301
 /artikel/-/warta-tekno/  /warta-tekno    301
+
+# Menangani semua halaman agregat lama
+/lainnya/agregat-* /  410
+/opini-sosial/agregat-* /  410
+
+# Menangani URL rusak atau pola salah
+/artikel/${url}              /  410
+/artikel/github-             /  410
+/artikel/microsoft-365-* /  410
+/artikel/FFmpeg-* /  410
+/artikel/rekor-ddos          /  410
+/artikel/fix-partial-* /  410
+/artikel/published-time-* /  410
+
+# Menangani path spesifik lainnya
+/s480/* /  410
+/s1600/* /  410
+/s0/* /  410
+/home/user                   /  410
+/video/* /  410
+/dpi-circumvention-config    /  410
+/undefined                   /  410
+/image-sitemap-1.xml         /  410
+
+# Menangani legacy URL dengan domain lama
+/enc1/1-1342-1230/* /  410
