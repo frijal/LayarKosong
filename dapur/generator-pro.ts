@@ -6,8 +6,7 @@ const C = {
     art:  `${import.meta.dir}/../artikel`,
     base: 'https://dalam.web.id',
     limit: 30,
-    cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'],
-    tzOffsetHours: 8 // WITA (Balikpapan, UTC+8)
+    cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno']
 };
 
 const BASE_RE = C.base.replace(/\./g, '\\.');
@@ -25,9 +24,8 @@ const decodeHTML = (str: string) => {
     return t.trim();
 };
 
-const buildDate = new Date(Date.now() + C.tzOffsetHours * 60 * 60 * 1000)
-.toISOString()
-.split('T')[0];
+// Langsung ambil UTC murni untuk YYYY-MM-DD
+const buildDate = new Date().toISOString().split('T')[0];
 
 const slug = (t: any) => t.toString().toLowerCase().trim()
 .replace(/^[^\w\s]*/u, '')
@@ -36,11 +34,11 @@ const slug = (t: any) => t.toString().toLowerCase().trim()
 .replace(/\s+/g, '-')
 .replace(/-+/g, '-');
 
+// Fungsi ISO: Format UTC Mutlak berakhiran 'Z'
 const iso = (d: any) => {
     const parsed = new Date(d);
     const base   = isNaN(parsed.getTime()) ? new Date() : parsed;
-    const wita   = new Date(base.getTime() + C.tzOffsetHours * 60 * 60 * 1000);
-    return wita.toISOString().replace(/\.\d+Z$/, `+${String(C.tzOffsetHours).padStart(2, '0')}:00`);
+    return base.toISOString(); 
 };
 
 const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
@@ -67,14 +65,13 @@ const imgSize = async (url: string): Promise<number> => {
     }
 };
 
-/** Fungsi pembantu untuk menghitung waktu build root feed yang logis dan alami */
+/** Menghitung waktu root feed yang logis, tetap dalam koridor waktu UTC */
 const calculateFeedRootDate = (items: any[]): Date => {
     const now = new Date();
     if (!items || items.length === 0) return now;
     
     const newestItemDate = new Date(items[0].lastmod);
     
-    // Memberikan jeda acak 1-3 menit setelah artikel rilis agar terlihat alami
     if (now.getTime() <= newestItemDate.getTime()) {
         const randomFeedOffset = Math.floor(Math.random() * (180000 - 60000 + 1)) + 60000;
         return new Date(newestItemDate.getTime() + randomFeedOffset);
@@ -121,7 +118,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
 // =============================================================================
 (async () => {
-    console.log('🚀 Diet Mode V9.0 - Anti-Ambigu Time Manipulator Activated');
+    console.log('🚀 Diet Mode V9.2 - Absolute UTC Synchronization Activated');
 
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
@@ -135,7 +132,6 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     const flat:  any[] = [];
     const valid = new Set();
 
-    // ── 1. Koleksi Semua Data ke Flat Array Dulu ───────────────────────────
     for (const f of files) {
         let d: any = null, cat: any = null;
 
@@ -192,40 +188,32 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
         await distribute(f, c, url, txt);
         
-        // Kita hanya push ke flat array di sini, 'final' object di-build nanti setelah manipulasi waktu.
+        // it.lastmod otomatis tersimpan sebagai string UTC (berakhiran Z) dari fungsi iso()
         flat.push({ title: t, file: f, img, lastmod: iso(date), desc, category: c, loc: url });
         urls.add(url);
         valid.add(`${slug(c)}/${f}`);
     }
 
-    // ── 2. Sortir Berdasarkan Waktu Asli (Terbaru ke Terlama) ─────────────────
     flat.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
 
-    // ── 3. MANIPULASI WAKTU ANTI-AMBIGU (Unique Time Enforcer) ────────────────
     let lastProcessedTime = Infinity;
     for (const it of flat) {
         let currentItemTime = new Date(it.lastmod).getTime();
         
-        // Cek bentrok: Jika waktu artikel ini sama atau lebih baru dari artikel di urutan atasnya
-        // (yang mana tidak logis secara hierarki kecuali terjadi duplikasi jam)
         if (currentItemTime >= lastProcessedTime) {
-            // Mundurkan waktu secara acak antara 1 sampai 7 menit dari lastProcessedTime
-            // Algoritma ini memastikan jarak antar postingan selalu renggang alami.
             const randomGap = Math.floor(Math.random() * (7 * 60000 - 60000 + 1)) + 60000;
             currentItemTime = lastProcessedTime - randomGap;
         }
         
         lastProcessedTime = currentItemTime;
-        // Timpa `lastmod` dengan string ISO baru hasil manipulasi yang sudah dijamin unik
-        it.lastmod = iso(currentItemTime);
+        it.lastmod = iso(currentItemTime); // Selalu kembalikan dalam bentuk UTC ISO string
     }
 
-    // ── 4. Bangun Ulang Object 'final' Berdasarkan Data yang Sudah Unik ───────
+    // JSON otomatis akan berisi string UTC, mantap!
     for (const it of flat) {
         (final[it.category] ??= []).push([it.title, it.file, it.img, it.lastmod, it.desc]);
     }
 
-    // ── Cleanup file lama (artikel) + feed kategori basi ─────────────────────
     const finalSlugs = new Set(Object.keys(final).map(slug));
 
     for (const s of C.cats) {
@@ -244,17 +232,15 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         }
     }
 
-    // Simpan ke cache (yang kini sudah berisikan jam-jam yang anti-ambigu)
     await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
-    // ── Build XML Sitemap + globalSizes ──────────────────────────────────────
     const globalSizes      = new Map<string, number>();
     let combinedXmlEntries = '';
 
 for (const it of flat) {
     const [txt, size] = await Promise.all([
         Bun.file(`${C.art}/${it.file}`).text(),
-        imgSize(it.img)
+                                          imgSize(it.img)
     ]);
     globalSizes.set(it.img, size);
 
@@ -269,6 +255,7 @@ vids.forEach(s => {
         const videoTitle = decodeHTML(it.title).substring(0, 100);
         const videoDesc = (it.desc || decodeHTML(it.title)).substring(0, 2048);
 
+        // pub date untuk video juga otomatis pakai UTC (it.lastmod)
         videoXml += `
         <video:video>
         <video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc>
@@ -281,6 +268,7 @@ vids.forEach(s => {
     }
 });
 
+// <lastmod> sitemap menggunakan nilai mentah it.lastmod yang sudah murni UTC (misal: 2026-06-14T23:59:07.000Z)
 combinedXmlEntries += `
 <url>
 <loc>${escapeXML(it.loc)}</loc>
@@ -313,16 +301,14 @@ await Promise.all([
                   )),
 ]);
 
-console.log('✅ Sitemap Tunggal Berhasil Dibuat (Anti-Ambigu XML Compliant)');
-console.log('📡 RSS Feed Global Berhasil Dibuat: rss.xml');
-console.log('⚛️  Atom Feed Global Berhasil Dibuat: atom.xml');
+console.log('✅ Sitemap, JSON, RSS & Atom seluruhnya telah terkunci dalam zona waktu UTC!');
 
-// ── Build Category Pages (Static) ────────────────────────────────────────
 const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
 
-if (tmp) {
-    const dateFormatter = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' });
+// Parameter timeZone: 'UTC' dikunci di sini agar tampilan tanggal pada HTML tidak berubah di manapun script ini di-run
+const dateFormatter = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' });
 
+if (tmp) {
     for (const [cat, arts] of Object.entries(final)) {
         const s                 = slug(cat);
         const rUrl              = `${C.base}/feed-${s}.xml`;
@@ -382,17 +368,16 @@ if (tmp) {
                           )),
         ]);
     }
-    console.log('📂 Static Category Pages Generated (Time-Fixed Mode).');
 }
 
-// ── Build feed.html ──────────────────────────────────────────────────────
 const feedTemplate = await Bun.file(`${C.art}/-/template-feed.html`).text().catch(() => '');
 
 if (feedTemplate) {
     const feedItemsHTML = flat.slice(0, C.limit).map(it => {
         const encodedLink = encodeURIComponent(it.loc);
         const encodedText = encodeURIComponent(it.desc || it.title);
-        const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(it.lastmod));
+        // Parameter timeZone: 'UTC' dikunci di sini juga
+        const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(it.lastmod));
         const cleanCat    = it.category.replace(/\p{Emoji_Presentation}\s*/gu, '').trim();
         return `
         <div class="feed-item">
@@ -425,8 +410,8 @@ if (feedTemplate) {
     .replace('%%DATE_MODIFIED%%', buildDate);
 
     await Bun.write(`${C.root}/feed.html`, finalFeedPage);
-    console.log('✨ Static Feed Page Generated.');
+    console.log('✨ Static Pages Generated (Locked to UTC).');
 }
 
-console.log('✅ Eksekusi Rampung: Semua duplikasi tanggal berhasil dilibas.');
+console.log('✅ Eksekusi Rampung: Semua lini dari Sitemap, JSON, Feed, hingga HTML resmi sinkron dalam UTC tunggal!');
 })();
