@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjaro 26.1 Bian-May: Fitur Baru & Review Lengkap</title>
+    <meta name="description" content="Manjaro 26.1 Bian-May versi preview resmi dirilis dengan pembaruan GNOME 50, KDE Plasma 6.6, Xfce 4.20, dan Kernel 7.0. Cek detail fitur terbarunya!">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/manjaro-26-1-bian-may-fitur-baru-review-lengkap.html">
+    <meta property="og:title" content="Manjaro 26.1 Bian-May: Review Fitur & Update Linux">
+    <meta property="og:description" content="Eksplorasi fitur baru Manjaro 26.1 Bian-May. Dari GNOME 50 yang makin mulus hingga KDE Plasma 6.6 yang fleksibel, temukan semua peningkatannya di sini.">
+    <meta property="og:image" content="https://scontent-sin2-1.xx.fbcdn.net/v/t39.30808-6/720111729_991786880446299_4833781083351861872_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x630&ctp=s1200x630&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEbxdRycVFXOvJx7BszqD73y90LNu0PuZbL3Qs27Q-5luKCiGA5oo55As_Ays1hsv0&_nc_ohc=3rbkvjCtOiEQ7kNvwG2eVEI&_nc_oc=AdrEC7tQfct-SOnnd8rLzQ2txrB6qMPwpU4fVxoK-ry4d-7kM3hqHKcwhKO_G2owY0bncN6WW5DMgwTDf9Nm1Tul&_nc_zt=23&_nc_ht=scontent-sin2-1.xx&_nc_gid=oHeMKFtbI3VBxDs4vk3Veg&_nc_ss=7b2a8&oh=00_Af-DNqTgKyhPqwjyZVPmpHY5QTPB6TpqCbjvX7zTm8aTdg&oe=6A365EAC">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dalam.web.id/artikel/manjaro-26-1-bian-may-fitur-baru-review-lengkap.html">
+    <meta name="twitter:title" content="Manjaro 26.1 Bian-May: Eksplorasi Fitur OS Terbaru">
+    <meta name="twitter:description" content="Intip rilis preview Manjaro 26.1 Bian-May! Update besar di desktop GNOME, KDE, dan Xfce, plus Linux Kernel 7.0. Apakah layak untuk dijadikan daily driver?">
+    <meta name="twitter:image" content="https://scontent-sin2-1.xx.fbcdn.net/v/t39.30808-6/720111729_991786880446299_4833781083351861872_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x630&ctp=s1200x630&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEbxdRycVFXOvJx7BszqD73y90LNu0PuZbL3Qs27Q-5luKCiGA5oo55As_Ays1hsv0&_nc_ohc=3rbkvjCtOiEQ7kNvwG2eVEI&_nc_oc=AdrEC7tQfct-SOnnd8rLzQ2txrB6qMPwpU4fVxoK-ry4d-7kM3hqHKcwhKO_G2owY0bncN6WW5DMgwTDf9Nm1Tul&_nc_zt=23&_nc_ht=scontent-sin2-1.xx&_nc_gid=oHeMKFtbI3VBxDs4vk3Veg&_nc_ss=7b2a8&oh=00_Af-DNqTgKyhPqwjyZVPmpHY5QTPB6TpqCbjvX7zTm8aTdg&oe=6A365EAC">
+
+    <meta name="news_keywords" content="Manjaro 26.1, Bian-May, rilis Manjaro terbaru, GNOME 50, KDE Plasma 6.6, Xfce 4.20, Linux Kernel 7.0">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Manjaro">
+    <meta property="article:tag" content="Open Source">
+    <meta property="article:tag" content="Sistem Operasi">
+    <link rel="canonical" href="https://dalam.web.id/artikel/manjaro-26-1-bian-may-fitur-baru-review-lengkap.html">
+
+    <meta name="promphint" content="Apa yang baru di Manjaro 26.1 Bian-May? | Update besar meliputi lingkungan desktop GNOME 50, KDE Plasma 6.6, Xfce 4.20, serta penggunaan default Linux Kernel 7.0.">
+
+    <style>
+        /* CSS Reset & Variabel */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #fcfcfc;
+            --text-color: #2b2b2b;
+            --primary-color: #35bf5c; /* Manjaro Green */
+            --secondary-color: #4a4a4a;
+            --border-color: #e2e8f0;
+            --accent-bg: #f8fafc;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --container-max: 64rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121418;
+                --text-color: #e2e8f0;
+                --primary-color: #38d667;
+                --secondary-color: #94a3b8;
+                --border-color: #2d3748;
+                --accent-bg: #1a202c;
+            }
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 1rem;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 0.2rem solid var(--primary-color);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            line-height: 1.3;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        article {
+            margin-bottom: 3.5rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1rem 0;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.75rem 0;
+            color: var(--text-color);
+        }
+
+        .hero-img-container {
+            margin: 0 0 2rem 0;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 0.1rem solid var(--border-color);
+            display: block;
+        }
+
+        .highlight-box {
+            background-color: var(--accent-bg);
+            border: 0.1rem solid var(--border-color);
+            border-left: 0.4rem solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+        }
+
+        a.anchor-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a.anchor-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            border-top: 0.1rem solid var(--border-color);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        .footer-inline {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 48rem) {
+            .footer-inline {
+                flex-direction: row;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Manjaro 26.1 Bian-May Preview: Sekadar Update Minor atau Lompatan Besar?</h1>
+                </header>
+
+        <main>
+            <article>
+                <p>Kalau kamu rutin mengikuti pergerakan ekosistem Linux akhir-akhir ini, berita yang satu ini pantang buat dilewatkan. Tim pengembang Manjaro secara resmi telah melepas <em>preview build</em> untuk Manjaro 26.1 dengan <em>codename</em> "Bian-May" pada 5 Mei 2026 kemarin. Sejujurnya? Kesan pertama saya lumayan bikin kagum.</p>
+
+                <p>Mengingat rilis versi 26.0 (Anh-Linh) baru saja meluncur pada bulan Januari 2026 lalu, ritme kerja tim Manjaro patut diacungi jempol. Mereka tidak sekadar menambal <em>bug</em>, tapi benar-benar mendorong masuk sederet fitur baru dari aliran <em>upstream</em> yang sukses bikin sistem ini terasa jauh lebih matang. Yuk, kita bedah apa saja yang ditawarkan Bian-May dan kenapa kamu harus peduli.</p>
+                <div class="hero-img-container">
+                    <img src="https://scontent-sin2-1.xx.fbcdn.net/v/t39.30808-6/720111729_991786880446299_4833781083351861872_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x630&ctp=s1200x630&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEbxdRycVFXOvJx7BszqD73y90LNu0PuZbL3Qs27Q-5luKCiGA5oo55As_Ays1hsv0&_nc_ohc=3rbkvjCtOiEQ7kNvwG2eVEI&_nc_oc=AdrEC7tQfct-SOnnd8rLzQ2txrB6qMPwpU4fVxoK-ry4d-7kM3hqHKcwhKO_G2owY0bncN6WW5DMgwTDf9Nm1Tul&_nc_zt=23&_nc_ht=scontent-sin2-1.xx&_nc_gid=oHeMKFtbI3VBxDs4vk3Veg&_nc_ss=7b2a8&oh=00_Af-DNqTgKyhPqwjyZVPmpHY5QTPB6TpqCbjvX7zTm8aTdg&oe=6A365EAC" alt="Ilustrasi Manjaro 26.1 Bian-May Desktop" width="1024" height="576" loading="eager" fetchpriority="high">
+                </div>
+
+
+                <h2>🟢 GNOME 50: Era Baru Desktop Sehari-hari</h2>
+                <p>Di rilis kali ini, edisi GNOME rasanya mendapatkan porsi perhatian paling jumbo. Lingkungan desktop GNOME 50 yang debut secara <em>upstream</em> pada bulan Maret 2026 langsung dicomot dan dipoles halus oleh Manjaro.</p>
+
+                <p>Kabar paling melegakan? Fitur <em>Parental Controls</em> akhirnya berfungsi sebagaimana mestinya! Fitur yang sudah lama diidam-idamkan ini kini memungkinkan para orang tua mengatur batasan waktu layar (<em>screen time</em>), membuat jadwal jam tidur, hingga mengunci layar secara otomatis saat batas waktu tersebut terlewati. Bukan sekadar tempelan, fitur ini mendarat dengan implementasi yang sangat solid.</p>
+
+                <p>Tidak cuma itu, sektor <em>remote desktop</em> juga mendapatkan suntikan tenaga kuda. Sesi <em>remote</em> sekarang diakselerasi secara <em>hardware</em> menggunakan Vulkan dan VA-API. Hasilnya? <em>Streaming</em> jadi jauh lebih mulus, minim <em>lag</em>, dan tentunya lebih ramah baterai. Buat kamu yang pakai kartu grafis NVIDIA, masalah <em>stuttering</em> dan ritme <em>frame-timing</em> yang kerap bikin emosi kini sudah langsung dibereskan dari akar.</p>
+
+                <p>Beralih ke urusan visual, fitur <em>Variable Refresh Rate</em> (VRR) dan <em>fractional scaling</em> kini jauh lebih stabil. Kamu bisa dengan leluasa memilih skala antarmuka seperti 125% atau 150% langsung secara <em>native</em> dari Pengaturan Tampilan. Oh ya, satu lagi buat para pembuat konten: pembagian layar (<em>screen sharing</em>) HDR kini sudah didukung penuh! Apa yang tampak menyala di layarmu, itulah yang akan terekam oleh audiens.</p>
+
+                <h2>🟢 KDE Plasma 6.6: Fleksibilitas di Titik Tertinggi</h2>
+                <p>Edisi KDE di Manjaro 26.1 Bian-May meluncur garang dengan paket Plasma 6.6, Frameworks 6.25, dan KDE Gear 26.04. Kalau kamu tipe <em>power user</em> yang gatal ngoprek tampilan, ada satu fitur yang bakal bikin kamu senyum-senyum sendiri: sekarang kamu bisa menyimpan seluruh <em>setup</em> desktop kamu saat ini sebagai tema global kustom, dan menggunakannya untuk skenario perpindahan otomatis siang/malam (<em>day/night switching</em>).</p>
+
+                <p>Aspek aksesibilitas (A11y) juga makin diperhatikan. KDE menambahkan filter koreksi untuk buta warna yang sangat membantu. Di samping itu, Spectacle—alat <em>screenshot</em> andalan KDE—sekarang dibekali kemampuan canggih untuk mengekstrak teks langsung dari gambar (OCR). Untuk urusan produktivitas harian, fitur kecil ini adalah <em>game-changer</em> sejati.</p>
+
+                <h2>🟢 Xfce 4.20: Tetap Ringan, Makin Pintar</h2>
+                <p>Penggemar desktop minimalis Xfce tentu tidak ditinggalkan. Menjalankan versi 4.20, file manajer Thunar kini punya fitur <em>colour highlighting</em>. Kamu bisa menandai file-file tertentu dengan warna kustom, jadi lebih gampang dicari saat folder lagi penuh-penuhnya. Pencarian rekursif (<em>recursive search</em>) juga akhirnya hadir, menambal lubang fitur yang selama ini lumayan terasa absennya.</p>
+
+                <p>Untuk bagian panel desktop, sekarang mendukung pengaturan ukuran berbasis piksel, serta opsi baru "<em>keep above windows</em>". Kedengarannya sepele, tapi bagi kamu yang menjadikan Xfce sebagai <em>daily driver</em>, <em>Quality of Life</em> (QoL) semacam ini nilainya sangat mahal.</p>
+
+                <h2>🟢 Peringatan Kecil Seputar Kernel 7.0</h2>
+                <div class="highlight-box">
+                    <p>Secara <em>default</em>, Manjaro Bian-May mengusung <strong>Linux Kernel 7.0</strong> yang tentunya membawa dukungan <em>driver</em> paling segar. <strong>Namun ada satu catatan penting:</strong> kalau rutinitas harianmu sangat bergantung pada baca-tulis *drive* berformat NTFS (biasanya hardisk eksternal Windows), saya sangat menyarankan untuk bertahan di varian Kernel LTS 6.18 atau 6.12 untuk sementara waktu.</p>
+                </div>
+                <p>Ada beberapa isu kompatibilitas NTFS yang sudah diketahui pada Kernel 7.0 ini, dan perbaikannya diproyeksikan baru akan stabil di Kernel 7.1 mendatang.</p>
+
+                <h2>🟢 Jadi, Layak Dicoba?</h2>
+                <p>Kalau kamu tipe orang yang suka mencicipi <em>pre-release build</em> dan ingin berkontribusi memberi masukan sebelum versi finalnya dirilis, silakan langsung pasang! Tim Manjaro sedang sangat aktif menjaring <em>feedback</em>. Tapi ingat aturan emasnya: <strong>jangan jadikan versi preview ini sebagai sistem operasi tunggal di perangkat kerjamu yang kritis.</strong></p>
+
+                <p>Rilis stabilnya sudah di depan mata. Jika berkaca dari pondasi versi <em>preview</em> ini, Manjaro 26.1 Bian-May memiliki potensi besar untuk menjadi salah satu rilis Manjaro terbaik dan paling matang dalam beberapa tahun terakhir. Patut kita tunggu eksekusi finalnya!</p>
+            </article>
+
+            <div id="related-articles-grid"></div><div id="response"></div>
+        </main>
+
+        <footer>
+            <div class="footer-inline">
+                <span>Ditulis oleh: <strong>Frijal</strong></span>
+                <span>&bull;</span>
+                <span>Terbit: 16 Juni 2026</span>
+                <span>&bull;</span>
+                <span>Diskusi di Twitter <a href="https://twitter.com/responaja" class="anchor-link" target="_blank" rel="noopener">@responaja</a> atau mampir ke <a href="https://dalam.web.id/" class="anchor-link" target="_blank" rel="noopener">Layar Kosong</a></span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
