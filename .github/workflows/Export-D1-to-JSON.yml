@@ -1,0 +1,37 @@
+name: Export D1 to JSON
+
+# Trigger manual, jadi kamu bisa jalanin kapan aja dari tab "Actions" di GitHub
+on:
+  workflow_dispatch: 
+
+jobs:
+  export-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Tarik Data dari D1 jadi JSON
+        # Pastikan kamu sudah set secrets ini di repo GitHub kamu
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        # Ganti 'layarkosong-db' dengan nama database D1 aslimu jika berbeda
+        run: |
+          npx wrangler d1 execute layarkosong-db --command="SELECT id, title, content FROM articles_fts" --remote --json > artikel_layarkosong.json
+
+      - name: Upload JSON sebagai Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: d1-json-backup
+          path: artikel_layarkosong.json
+          retention-days: 7 # File zip akan tersimpan selama 7 hari sebelum otomatis dihapus GitHub
