@@ -42,7 +42,11 @@
         <div class="pembungkus-lebar">
             <header class="status-pencarian">
                 <h2 id="search-query-display">Mencari...</h2>
-            </header><a href="https://dalam.web.id/atom.xml"
+            </header>
+            <div id="loading-indicator" style="display: none; text-align: center; padding: 2rem;">
+                <div class="spinner-pencarian"></div>
+                <p>Mencari artikel terbaik untukmu...</p>
+            </div><a href="https://dalam.web.id/atom.xml"
    aria-label="Atom Feed"
    title="Atom Feed"
    target="_blank"
@@ -93,10 +97,6 @@
           stroke-linecap="round"></path>
   </svg>
 </a>
-            <div id="loading-indicator" style="display: none; text-align: center; padding: 2rem;">
-                <div class="spinner-pencarian"></div>
-                <p>Mencari artikel terbaik untukmu...</p>
-            </div>
             <div id="search-results">
                 </div>
             <div id="pagination-container"></div>
