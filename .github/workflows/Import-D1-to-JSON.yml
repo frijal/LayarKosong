@@ -1,8 +1,22 @@
 name: Import D1 to JSON via Bun
-
-# Trigger manual dari tab "Actions" di GitHub
+# Membuat menu dropdown saat menjalankan workflow secara manual
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      kategori:
+        description: 'Pilih Kategori Artikel yang Ingin Ditarik'
+        required: true
+        type: choice
+        default: 'opini-sosial' # Opsi default yang langsung terpilih
+        options:
+          - gaya-hidup
+          - jejak-sejarah
+          - lainnya
+          - olah-media
+          - opini-sosial
+          - sistem-terbuka
+          - warta-tekno
+          - SEMUA-KATEGORI # Opsi tambahan buat narik semua data (jaga-jaga)
 
 jobs:
   export-data:
@@ -15,25 +29,39 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
-      # Setup environment Bun resmi di GitHub Actions
       - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: latest
 
-      # Jalankan perintah export menggunakan bunx
-      - name: Tarik Data dari D1 jadi JSON
+      - name: Tarik Data dari D1 via Bunx
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-        # Ganti 'layarkosong-db' dengan nama database aslimu
         run: |
-          bunx wrangler d1 execute layarkosong-db --command="SELECT id, title, content FROM articles_fts" --remote --json > artikel_layarkosong.json
+          KATEGORI="${{ github.event.inputs.kategori }}"
+          
+          # Logika untuk merakit perintah SQL secara dinamis
+          if [ "$KATEGORI" == "SEMUA-KATEGORI" ]; then
+            echo "🚀 Mengekspor seluruh artikel dari database..."
+            QUERY="SELECT id, title, content, category FROM articles_fts;"
+            FILE_OUT="artikel_semua.json"
+          else
+            echo "🚀 Mengekspor artikel khusus kategori: $KATEGORI..."
+            QUERY="SELECT id, title, content, category FROM articles_fts WHERE category = '$KATEGORI';"
+            FILE_OUT="artikel_${KATEGORI}.json"
+          fi
+          
+          # Eksekusi Wrangler untuk tarik data
+          bunx wrangler d1 execute layarkosong-db --command="$QUERY" --remote --json > "$FILE_OUT"
+          
+          # Daftarkan nama file hasil ekspor ke environment variabel GitHub
+          echo "OUTPUT_FILE=$FILE_OUT" >> $GITHUB_ENV
 
-      # Bungkus file hasilnya agar bisa di-download
       - name: Upload JSON sebagai Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: d1-json-backup
-          path: artikel_layarkosong.json
+          # Nama artifact otomatis menyesuaikan kategori yang dipilih
+          name: json-${{ github.event.inputs.kategori }}
+          path: ${{ env.OUTPUT_FILE }}
           retention-days: 1
