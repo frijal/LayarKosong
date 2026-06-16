@@ -187,7 +187,7 @@
         code {
             font-family: inherit;
         }
-        .cmd-prompt {
+        .zdummy {
             color: var(--terminal-prompt);
             font-weight: bold;
             margin-right: 0.5rem;
@@ -295,7 +295,7 @@
                     <div class="terminal-dot dot-yellow"></div>
                     <div class="terminal-dot dot-green"></div>
                 </div>
-                <pre><code><span class="cmd-prompt">$</span>glxinfo | grep -i "OpenGL renderer"
+                <pre><code><span class="zdummy">$</span>glxinfo | grep -i "OpenGL renderer"
 <span class="cmd-output">OpenGL renderer string: llvmpipe (LLVM 15.0.6, 256 bits)</span></code></pre>
             </div>
             <p>Buat kamu yang belum tahu, <code>llvmpipe</code> adalah indikator maut bahwa sistem komputermu mengalami <em>fallback</em> ke <strong>software rendering</strong>. Artinya secara harfiah: selama ini GPU pintarku cuma nongkrong nganggur, sementara sang CPU disuruh kerja rodi untuk merender semua animasi desktop, pemutaran video, hingga efek bayangan jendela aplikasi. Pantesan aja belakangan ini *touchpad* kadang terasa sedikit *ngelag* dan sasis bawah laptop lumayan anget biarpun cuma buka *browser*.</p>
@@ -319,14 +319,14 @@
                 </div>
                 <pre><code><span class="cmd-output"># 1. Cek status renderer grafis saat ini.
 # Waspada jika outputnya memunculkan kata "llvmpipe"!</span>
-<span class="cmd-prompt">$</span>glxinfo -B | grep -i "OpenGL renderer"
+<span class="zdummy">$</span>glxinfo -B | grep -i "OpenGL renderer"
 <span class="cmd-output"># 2. Hapus driver DDX Intel jadul yang memicu konflik</span>
-<span class="cmd-prompt">$</span>sudo apt purge xserver-xorg-video-intel
+<span class="zdummy">$</span>sudo apt purge xserver-xorg-video-intel
 <span class="cmd-output"># 3. Reboot sistem agar Xorg/Wayland menggunakan modesetting bawaan</span>
-<span class="cmd-prompt">$</span>sudo reboot
+<span class="zdummy">$</span>sudo reboot
 <span class="cmd-output"># 4. Verifikasi ulang setelah laptop menyala.
 # Seharusnya nama Intel UHD/Iris sudah muncul di sini.</span>
-<span class="cmd-prompt">$</span>glxinfo -B | grep -i "OpenGL renderer"</code></pre>
+<span class="zdummy">$</span>glxinfo -B | grep -i "OpenGL renderer"</code></pre>
             </div>
             <p>Selesai! Kamu sekarang punya sistem operasi yang benar-benar memanfaatkan tenaga grafisnya secara optimal. Bagaimana denganmu, ada yang pernah ngalamin kejutan <em>software rendering</em> konyol kayak gini juga di distro favorit kalian?</p>
         </article>
