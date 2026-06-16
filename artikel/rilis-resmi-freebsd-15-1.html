@@ -138,7 +138,7 @@
             background-color: transparent;
         }
         .cmd-comment { color: #64748b; }
-        .cmd-prompt { color: #38bdf8; }
+        .zdummy { color: #38bdf8; }
         /* Blockquotes */
         blockquote {
             background-color: var(--blockquote-bg);
@@ -250,25 +250,25 @@
             <h3>1. Image <code>dvd1</code></h3>
             <p>Ini adalah paket super lengkap! Berisi OS dasar FreeBSD, dokumentasi, *debugging*, dan sekumpulan paket *pra-bangun* untuk kebutuhan *workstation* grafis. Mendukung juga <em>livefs rescue mode</em>.</p>
 <pre><code><span class="cmd-comment"># Menulis ke USB flash drive untuk instalasi amd64</span>
-<span class="cmd-prompt">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-dvd1.iso of=/dev/da0 bs=1m conv=sync</code></pre>
+<span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-dvd1.iso of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>2. Image <code>disc1</code></h3>
             <p>Image klasik untuk sistem operasi dasar. Tidak menyertakan paket pihak ketiga pra-bangun, tetapi tetap mendukung mode <em>livefs</em>.</p>
 <pre><code><span class="cmd-comment"># Menulis ke USB flash drive untuk instalasi amd64</span>
-<span class="cmd-prompt">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-disc1.iso of=/dev/da0 bs=1m conv=sync</code></pre>
+<span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-disc1.iso of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>3. Image <code>bootonly</code></h3>
             <p>Sesuai namanya, ini murni hanya untuk melakukan <em>boot</em>. Distribusi instalasinya akan ditarik dari jaringan (HTTP/FTP). Sangat cocok untuk *deployment* masal via server lokal.</p>
 <pre><code><span class="cmd-comment"># Persiapan bootonly di flash drive</span>
-<span class="cmd-prompt">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-bootonly.iso of=/dev/da0 bs=1m conv=sync</code></pre>
+<span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-bootonly.iso of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>4. Image <code>memstick</code> &amp; <code>mini-memstick</code></h3>
             <p>Format <code>.img</code> yang dirancang khusus dari awal untuk *flash drive* USB. <code>memstick</code> berisi set dasar instalasi, sedangkan <code>mini-memstick</code> menarik data dari jaringan layaknya versi <em>bootonly</em>.</p>
 <pre><code><span class="cmd-comment"># Menggunakan image memstick standar</span>
-<span class="cmd-prompt">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-memstick.img of=/dev/da0 bs=1m conv=sync
+<span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-memstick.img of=/dev/da0 bs=1m conv=sync
 <span class="cmd-comment"># Menggunakan image mini-memstick</span>
-<span class="cmd-prompt">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-mini-memstick.img of=/dev/da0 bs=1m conv=sync</code></pre>
+<span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-mini-memstick.img of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>5. Image Kartu SD untuk FreeBSD/arm</h3>
             <p>Punya Raspberry Pi atau board berbasis ARM lainnya? FreeBSD menyediakan image kartu SD yang bisa muat bahkan di kartu sekecil 5 GB. Ingat, *username* bawaan adalah <code>freebsd</code> (password: <code>freebsd</code>) dan *root* punya password default <code>root</code>. <strong>Segera ganti password ini!</strong></p>
 <pre><code><span class="cmd-comment"># Ganti 'KERNEL' sesuai arsitektur, contoh untuk RPI:</span>
-<span class="cmd-prompt">#</span> dd if=FreeBSD-15.1-RELEASE-arm64-aarch64-RPI.img of=/dev/da0 bs=1m conv=sync</code></pre>
+<span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-arm64-aarch64-RPI.img of=/dev/da0 bs=1m conv=sync</code></pre>
             <hr>
             <h2>☁️ Ketersediaan di Era Cloud (AWS, GCP, Azure)</h2>
             <p>Buat kamu yang bermain di ekosistem Cloud, FreeBSD 15.1 sudah nangkring dengan cantik di platform raksasa dunia dalam format QCOW2, VHD, VMDK, dan *raw image*.</p>
@@ -276,8 +276,8 @@
             <p>Kunci Parameter Store AWS (SSM) telah disediakan untuk memudahkan pencarian AMI <strong>FreeBSD/amd64</strong> dan <strong>FreeBSD/aarch64</strong> (mendukung format UFS maupun ZFS). Kamu bisa mencari kunci seperti <code>/aws/service/freebsd/amd64/base/zfs/15.1/RELEASE</code> langsung di tiap region AWS. Selain itu, *image* ini juga tersedia langsung di AWS Marketplace.</p>
             <h3>Google Compute Engine (GCP)</h3>
             <p>Buat instance baru semudah mengetik dua baris perintah gcloud berikut (jangan lupa ganti <code>INSTANCE</code> dengan nama servermu):</p>
-<pre><code><span class="cmd-prompt">%</span> gcloud compute instances create INSTANCE --image freebsd-15-1-release-amd64-ufs --image-project=freebsd-org-cloud-dev
-<span class="cmd-prompt">%</span> gcloud compute ssh INSTANCE</code></pre>
+<pre><code><span class="zdummy">%</span> gcloud compute instances create INSTANCE --image freebsd-15-1-release-amd64-ufs --image-project=freebsd-org-cloud-dev
+<span class="zdummy">%</span> gcloud compute ssh INSTANCE</code></pre>
             <h3>Microsoft Azure</h3>
             <p>Pengguna layanan Microsoft tidak perlu gigit jari, karena FreeBSD 15.1-RELEASE dapat segera diputar dari <a href="https://azuremarketplace.microsoft.com/marketplace/apps/freebsd.freebsd-15_1" target="_blank" rel="noopener">Azure Marketplace</a>.</p>
             <hr>
