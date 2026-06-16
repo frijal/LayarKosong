@@ -137,7 +137,7 @@
             padding: 0;
             background-color: transparent;
         }
-        .cmd-comment { color: #64748b; }
+        .zdummy1 { color: #64748b; }
         .zdummy { color: #38bdf8; }
         /* Blockquotes */
         blockquote {
@@ -249,25 +249,25 @@
             <p>Tergantung dari bagaimana kamu akan memasang sistem ini, FreeBSD telah menyediakan bermacam-macam *image* instalasi. Di bawah ini adalah panduan singkat serta contoh cara nge-<em>burn</em> image-nya menggunakan terminal (asumsi *flash drive* USB kamu terbaca sebagai <code>/dev/da0</code>, <strong>pastikan targetnya benar agar data lain tidak terhapus!</strong>):</p>
             <h3>1. Image <code>dvd1</code></h3>
             <p>Ini adalah paket super lengkap! Berisi OS dasar FreeBSD, dokumentasi, *debugging*, dan sekumpulan paket *pra-bangun* untuk kebutuhan *workstation* grafis. Mendukung juga <em>livefs rescue mode</em>.</p>
-<pre><code><span class="cmd-comment"># Menulis ke USB flash drive untuk instalasi amd64</span>
+<pre><code><span class="zdummy1"># Menulis ke USB flash drive untuk instalasi amd64</span>
 <span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-dvd1.iso of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>2. Image <code>disc1</code></h3>
             <p>Image klasik untuk sistem operasi dasar. Tidak menyertakan paket pihak ketiga pra-bangun, tetapi tetap mendukung mode <em>livefs</em>.</p>
-<pre><code><span class="cmd-comment"># Menulis ke USB flash drive untuk instalasi amd64</span>
+<pre><code><span class="zdummy1"># Menulis ke USB flash drive untuk instalasi amd64</span>
 <span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-disc1.iso of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>3. Image <code>bootonly</code></h3>
             <p>Sesuai namanya, ini murni hanya untuk melakukan <em>boot</em>. Distribusi instalasinya akan ditarik dari jaringan (HTTP/FTP). Sangat cocok untuk *deployment* masal via server lokal.</p>
-<pre><code><span class="cmd-comment"># Persiapan bootonly di flash drive</span>
+<pre><code><span class="zdummy1"># Persiapan bootonly di flash drive</span>
 <span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-bootonly.iso of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>4. Image <code>memstick</code> &amp; <code>mini-memstick</code></h3>
             <p>Format <code>.img</code> yang dirancang khusus dari awal untuk *flash drive* USB. <code>memstick</code> berisi set dasar instalasi, sedangkan <code>mini-memstick</code> menarik data dari jaringan layaknya versi <em>bootonly</em>.</p>
-<pre><code><span class="cmd-comment"># Menggunakan image memstick standar</span>
+<pre><code><span class="zdummy1"># Menggunakan image memstick standar</span>
 <span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-memstick.img of=/dev/da0 bs=1m conv=sync
-<span class="cmd-comment"># Menggunakan image mini-memstick</span>
+<span class="zdummy1"># Menggunakan image mini-memstick</span>
 <span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-amd64-mini-memstick.img of=/dev/da0 bs=1m conv=sync</code></pre>
             <h3>5. Image Kartu SD untuk FreeBSD/arm</h3>
             <p>Punya Raspberry Pi atau board berbasis ARM lainnya? FreeBSD menyediakan image kartu SD yang bisa muat bahkan di kartu sekecil 5 GB. Ingat, *username* bawaan adalah <code>freebsd</code> (password: <code>freebsd</code>) dan *root* punya password default <code>root</code>. <strong>Segera ganti password ini!</strong></p>
-<pre><code><span class="cmd-comment"># Ganti 'KERNEL' sesuai arsitektur, contoh untuk RPI:</span>
+<pre><code><span class="zdummy1"># Ganti 'KERNEL' sesuai arsitektur, contoh untuk RPI:</span>
 <span class="zdummy">#</span> dd if=FreeBSD-15.1-RELEASE-arm64-aarch64-RPI.img of=/dev/da0 bs=1m conv=sync</code></pre>
             <hr>
             <h2>☁️ Ketersediaan di Era Cloud (AWS, GCP, Azure)</h2>
