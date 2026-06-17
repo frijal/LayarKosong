@@ -253,7 +253,7 @@
             <p>Tahu nggak? Ternyata <code>du</code> itu bisa "ketipu". Kalau di sistem file kamu banyak terdapat <strong>hard link</strong> (satu file yang punya banyak nama/lokasi tapi sebenernya cuma satu data di disk), <code>du</code> standar kemungkinan besar bakal ngitung file itu berkali-kali.</p>
             <p>Hasilnya? Laporan penggunaan disk jadi bengkak dan nggak akurat. Ini sering terjadi kalau kamu pakai tool backup kayak <em>Rsnapshot</em> atau sistem snapshot lainnya.</p>
             <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Solusi Akurat dengan Skrip Perl</h2>
-            <p>Biar nggak ketipu sama hard link, kita bisa pakai skrip cerdas yang melacak nomor <em>inode</em>. Skrip ini bakal mastiin kalau satu file fisik cuma dihitung satu kali aja, seberapa banyak pun nama panggilannya di terminal.</p>
+            <p>Biar nggak ketipu sama hard link, kita bisa pakai skrip cerdas yang melacak nomor <em>inode</em>. Skrip ini bakal mastiin kalau satu file fisik cuma dihitung satu kali aja, seberapa banyak pun nama pangdi luar nalarnnya di terminal.</p>
             <pre><code class="language-perl">#!/usr/bin/perl -w
 # Skrip Cek Disk Akurat
 use strict;

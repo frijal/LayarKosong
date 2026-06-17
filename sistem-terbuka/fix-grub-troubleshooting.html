@@ -9,7 +9,7 @@ update-grub
 sudo add-apt-repository ppa:yannubuntu/boot-repair
 # Perbarui indeks daftar paket
 sudo apt update
-# Instal aplikasi dan langsung jalankan panggilannya
+# Instal aplikasi dan langsung jalankan pangdi luar nalarnnya
 sudo apt install -y boot-repair && boot-repair
 </code></pre><h2><i class="fa-solid fa-hard-drive" style=color:var(--accent-color);margin-right:.5rem></i> 3. Cek Mode Boot & Integritas File Sistem</h2><p>Jika kedua langkah di atas sudah ditempuh namun menu GRUB masih tetap enggan membaca *kernel* Linux Anda, masalahnya mungkin tidak terletak pada *bootloader* itu sendiri.<p>Pertama, periksalah konfigurasi BIOS/UEFI di *motherboard* komputer Anda. Pastikan mode *boot* yang aktif (antara *Legacy/CSM* atau *UEFI*) harus selalu konsisten dengan mode yang digunakan saat Anda menginstal sistem operasi pertama kali. Mengubah opsi ini secara tidak sengaja dapat membuat *drive* Anda gagal terdeteksi sebagai *bootable device*.<p>Kedua, kerusakan atau inkonsistensi pada sistem berkas (*filesystem corruption*) akibat mati listrik mendadak bisa menghalangi GRUB untuk memuat memori awal. Solusinya adalah melakukan pengecekan dan perbaikan bad sektor logis menggunakan utilitas `fsck`.<pre><code># PERINGATAN: Jangan pernah menjalankan fsck pada partisi yang sedang aktif (mounted).
 # Jalankan melalui mode Live USB. Ganti sda1 dengan partisi root Anda yang sesungguhnya.

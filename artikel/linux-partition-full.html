@@ -184,7 +184,7 @@
         <h2>Penyebab Umum di Dunia Nyata ("What")</h2>
         <p>Berdasarkan pengalaman aku mengelola server di <strong>Layar Kosong</strong>, inilah Pihak yang bertanggung jawab utamanya:</p>
         <ol>
-            <li><strong>Log File Tak Terkendali:</strong> File di <code>/var/log</code> yang ukurannya gila-gilaan karena *debug mode* lupa dimatiin.</li>
+            <li><strong>Log File Tak Terkendali:</strong> File di <code>/var/log</code> yang ukurannya di luar nalar-di luar nalaran karena *debug mode* lupa dimatiin.</li>
             <li><strong>Docker Bloat:</strong> Lapisan (*layers*) container dan image lama yang numpuk. Solusinya seringkali cuma butuh <code>docker system prune</code>.</li>
             <li><strong>Core Dumps:</strong> Kalau aplikasi kamu sering *crash*, Linux mungkin nyimpen file dump besar buat keperluan analisa.</li>
             <li><strong>Backup Kadaluarsa:</strong> Script backup otomatis yang nyimpen file di <code>/var</code> atau <code>/tmp</code> tapi lupa dihapus setelah di-upload ke cloud.</li>
