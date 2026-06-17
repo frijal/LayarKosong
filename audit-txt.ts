@@ -27,7 +27,6 @@ async function dapatkanFileHtml(dir) {
 
 /**
  * Memproses file berdasarkan kamus dinamis
- * Mengembalikan string log jika ada perubahan/error, dan null jika dilewati
  */
 async function prosesFile(filePath, kamusKustom) {
   try {
@@ -51,10 +50,8 @@ async function prosesFile(filePath, kamusKustom) {
       return `[BERHASIL] ${filePath}\n   ➔ Perubahan: ${rincianPerubahan.join(", ")}`;
     }
     
-    // Jika tidak ada perubahan, kembalikan null (tidak akan dicetak di log browser)
     return null; 
   } catch (error) {
-    // Error tetap ditampilkan agar kamu tahu kalau ada file yang corrupt/terkunci
     return `[GAGAL] Error pada ${filePath}: ${error.message}`;
   }
 }
@@ -88,7 +85,7 @@ const htmlTemplate = `
         .btn-danger:hover { background: #dc2626; }
         
         .action-area { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-        #status { font-style: italic; color: #ffb300; }
+        #status { font-style: italic; color: #ffb300; font-weight: bold; font-size: 15px; }
         #logs { background: #121214; color: #00e676; padding: 20px; margin-top: 20px; height: 300px; overflow-y: auto; font-family: 'Fira Code', monospace; border-radius: 5px; border: 1px solid #29292e; white-space: pre-wrap; font-size: 13px; }
     </style>
 </head>
@@ -180,7 +177,15 @@ const htmlTemplate = `
                 
                 const data = await response.json();
                 logsDiv.innerHTML = data.results.join('\\n');
-                statusDiv.innerHTML = "Status: Selesai! Log bersih ditampilkan.";
+                
+                // MENGHITUNG JUMLAH YANG BERHASIL SECARA REALTIME
+                const jumlahBerhasil = data.results.filter(function(line) {
+                    return line.indexOf('[BERHASIL]') === 0;
+                }).length;
+                
+                // MENAMPILKAN JUMLAH PADA BARIS STATUS
+                statusDiv.innerHTML = "Status: Selesai! " + jumlahBerhasil + " file berhasil diproses.";
+                
             } catch (err) {
                 logsDiv.innerHTML += "\\n[ERROR] Hubungan ke server terputus: " + err;
                 statusDiv.innerHTML = "Status: Gagal.";
@@ -217,10 +222,8 @@ Bun.serve({
         const janjiProses = semuaFile.map(file => prosesFile(file, kamusKustom));
         const hasilProses = await Promise.all(janjiProses);
         
-        // SULAPNYA DI SINI: Menyaring hanya log yang berisi string (Bukan null)
         const logBersih = hasilProses.filter(log => log !== null);
         
-        // Antisipasi kalau dari sekian banyak file, ternyata TIDAK ADA satupun yang cocok
         if (logBersih.length === 0) {
           logBersih.push("[INFO] Pemindaian selesai. Semua file sudah bersih, tidak ada teks pemicu yang ditemukan.");
         }
