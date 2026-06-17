@@ -4,8 +4,8 @@ use warnings;
 use File::Find;
 
 my $target_dir = '.';
-my $cari       = 'secara membabi buta';
-my $ganti      = 'secara tidak terkendali';
+my $cari       = 'Menipu DPI-mu';
+my $ganti      = 'Optimalkan akses jaringan';
 
 print "Memulai proses penggantian...\n";
 

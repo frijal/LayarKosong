@@ -166,7 +166,7 @@
         <h3>2. Identifikasi Direktori Raksasa</h3>
         <p>Setelah tahu partisi mana yang penuh, saatnya mencari "pelaku" utamanya. Kita akan cek direktori mana yang paling rakus memakan ruang.</p>
         <pre>$ sudo du -sch /* | sort -rh | head -10</pre>
-        <p>Perintah ini akan mengurutkan 10 direktori terbesar di root. Biasanya tersangka utamanya adalah <code>/var</code> atau <code>/home</code>.</p>
+        <p>Perintah ini akan mengurutkan 10 direktori terbesar di root. Biasanya Pihak yang bertanggung jawab utamanya adalah <code>/var</code> atau <code>/home</code>.</p>
         <h3>3. Telusuri Area Masalah secara Spesifik</h3>
         <p>Misalnya kamu menemukan <code>/var</code> sangat besar, masuk lebih dalam lagi:</p>
         <pre>$ sudo du -ah /var | sort -rh | head -10</pre>

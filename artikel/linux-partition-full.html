@@ -170,7 +170,7 @@
         <h3>2. Identifikasi Direktori Raksasa</h3>
         <p>Sekarang kita perlu tahu folder mana yang paling rakus makan tempat. Kita mulai dari level teratas:</p>
         <pre>$ sudo du -sch /* | sort -rh | head -10</pre>
-        <p>Perintah ini bakal nge-list 10 folder teratas yang ukurannya paling gede. Biasanya folder <code>/var</code> atau <code>/home</code> sering jadi tersangkanya.</p>
+        <p>Perintah ini bakal nge-list 10 folder teratas yang ukurannya paling gede. Biasanya folder <code>/var</code> atau <code>/home</code> sering jadi Pihak yang bertanggung jawabnya.</p>
         <h3>3. Telusuri Lebih Dalam (Drill Down)</h3>
         <p>Kalau ternyata folder <code>/var</code> yang bengkak, masuk lebih dalam buat nyari file atau folder spesifik:</p>
         <pre>$ sudo du -ah /var | sort -rh | head -10</pre>
@@ -182,7 +182,7 @@
             <i class="fa-solid fa-exclamation-triangle"></i> <strong>Peringatan Produksi:</strong> Selalu analisa file tersebut milik siapa sebelum dihapus. Jangan pernah hapus file database (`.ibd` atau `.sock`) secara manual!
         </div>
         <h2>Penyebab Umum di Dunia Nyata ("What")</h2>
-        <p>Berdasarkan pengalaman aku mengelola server di <strong>Layar Kosong</strong>, inilah tersangka utamanya:</p>
+        <p>Berdasarkan pengalaman aku mengelola server di <strong>Layar Kosong</strong>, inilah Pihak yang bertanggung jawab utamanya:</p>
         <ol>
             <li><strong>Log File Tak Terkendali:</strong> File di <code>/var/log</code> yang ukurannya gila-gilaan karena *debug mode* lupa dimatiin.</li>
             <li><strong>Docker Bloat:</strong> Lapisan (*layers*) container dan image lama yang numpuk. Solusinya seringkali cuma butuh <code>docker system prune</code>.</li>
