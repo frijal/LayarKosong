@@ -236,7 +236,7 @@
     <p><i class="fa-solid fa-calendar-alt fa-icon-margin"></i> 26 Februari 2026 · <i class="fa-solid fa-clock"></i> 12 menit membaca · <i class="fa-solid fa-user-ninja"></i> Admin Pinggiran</p>
     <!-- Pendahuluan dengan 5W+1H santai -->
     <h2>1. Pendahuluan: Perintah Git yang Kritis <i class="fa-solid fa-exclamation-triangle" style="color:#e67e22;"></i></h2>
-    <p>Hai, para pejuang kode! Kalau kamu sudah pernah berkutat dengan Git, pasti pernah dengar cerita horor tentang <strong>git push --force origin main, git reset --hard</strong>. Dua perintah ini sakti mandraguna — bisa nyelametin hidup, tapi juga bisa bikin jantung copot kalau salah pake. <i class="fa-solid fa-skull"></i> Tenang, di artikel ini gue bakal kupas tuntas: apa, mengapa, siapa, kapan, di mana, dan bagaimana menggunakan perintah ini dengan aman. Semua disajikan bahasa santai, lengkap, dan nggak ada yang diringkas. Siap? Ayo gas!</p>
+    <p>Hai, para pejuang kode! Kalau kamu sudah pernah berkutat dengan Git, pasti pernah dengar cerita horor tentang <strong>git push --force origin main, git reset --hard</strong>. Dua perintah ini sakti mandraguna — bisa nyelametin hidup, tapi juga bisa membuat sangat terkejut kalau salah pake. <i class="fa-solid fa-skull"></i> Tenang, di artikel ini gue bakal kupas tuntas: apa, mengapa, siapa, kapan, di mana, dan bagaimana menggunakan perintah ini dengan aman. Semua disajikan bahasa santai, lengkap, dan nggak ada yang diringkas. Siap? Ayo gas!</p>
     <h3>Mengapa Developer Menggunakan Force Push dan Hard Reset? <i class="fa-solid fa-question-circle"></i></h3>
     <p>Biasanya karena panik <i class="fa-solid fa-face-surprise"></i> atau ingin membersihkan riwayat. Misalnya, kamu nge-commit file .env berisi password, atau tiba-tiba branch lokal kacau karena merge conflict yang ruwet. Force push bisa bikin remote branch sesuai dengan lokal. Hard reset bisa mengembalikan keadaan ke commit tertentu sambil buang semua perubahan. Tapi kalau asal pake, siap-siap gigit jari.</p>
     <h2>2. Memahami Dasar Git Sebelum Menggunakan Perintah Berbahaya</h2>
@@ -257,7 +257,7 @@
     <img src="https://dalam.web.id/img/i.sstatic.net/Hg5bt.webp" alt="Diagram Git reset" loading="lazy">
     <h2>4. Skenario Dunia Nyata Menggunakan Perintah Ini</h2>
     <h3>Memperbaiki Commit yang Rusak <i class="fa-solid fa-bug"></i></h3>
-    <p>Misal kamu nge-commit API key. Daripada ketahuan hacker, mending force push setelah amend commit. Tapi ingat, kalo branch itu udah dipake orang lain, mending pake cara lain.</p>
+    <p>Misal kamu nge-commit API key. Daripada disalahgunakan pihak tak bertanggung jawab, mending force push setelah amend commit. Tapi ingat, kalo branch itu udah dipake orang lain, mending pake cara lain.</p>
     <h3>Membersihkan Repositori Lokal <i class="fa-solid fa-broom"></i></h3>
     <p>Lagi eksperimen branch kotor, pengen balik ke kondisi bersih. Hard reset lokal aman banget, asal nggak ada perubahan penting yang belum di-commit. Tapi inget, yang lokal ya, jangan ngeremote.</p>
     <img src="https://dalam.web.id/img/user-images.githubusercontent.com/1256329/80170009-f9d03200-85b4-11ea-94d3-3041887565ac.webp" alt="Contoh force push di console" loading="lazy">
@@ -320,7 +320,7 @@
     <h3>6. Mengapa tim melarang force push?</h3>
     <p>Karena bisa menghapus riwayat yang jadi acuan anggota tim lain, menyebabkan konflik dan kerja ganda.</p>
     <h2>12. Kesimpulan</h2>
-    <p><i class="fa-solid fa-gem"></i> Git itu ibarat pisau dapur: bisa motong sayur, bisa juga motong jari. <strong>git push --force origin main, git reset --hard</strong> adalah pisau paling tajam. Pahami kapan, di mana, dan bagaimana menggunakannya. Jangan lupa komunikasi, backup, dan selalu utamakan keselamatan kerja tim. Dengan bekal artikel ini, kamu sekarang lebih pede dan siap ngadepin situasi genting. Selamat coding, jangan lupa tersenyum! 😎</p>
+    <p><i class="fa-solid fa-gem"></i> Git itu ibarat pisau dapur: bisa sangat berguna, bisa juga berisiko. <strong>git push --force origin main, git reset --hard</strong> adalah pisau paling tajam. Pahami kapan, di mana, dan bagaimana menggunakannya. Jangan lupa komunikasi, backup, dan selalu utamakan keselamatan kerja tim. Dengan bekal artikel ini, kamu sekarang lebih pede dan siap ngadepin situasi genting. Selamat coding, jangan lupa tersenyum! 😎</p>
       <p>Punya pengalaman pahit atau manis soal force push? Atau punya trik lain? Tulis di sini, kita bisa belajar bareng. Karena berbagi itu indah.</p>
     <div id="related-articles-grid">
         </div>
