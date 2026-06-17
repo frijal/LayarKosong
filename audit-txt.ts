@@ -26,7 +26,8 @@ async function dapatkanFileHtml(dir) {
 }
 
 /**
- * Memproses file berdasarkan kamus dinamis yang dikirim dari browser
+ * Memproses file berdasarkan kamus dinamis
+ * Mengembalikan string log jika ada perubahan/error, dan null jika dilewati
  */
 async function prosesFile(filePath, kamusKustom) {
   try {
@@ -36,7 +37,6 @@ async function prosesFile(filePath, kamusKustom) {
     let rincianPerubahan = [];
 
     for (const item of kamusKustom) {
-      // Validasi agar tidak memproses string kosong
       if (!item.cari) continue; 
       
       if (content.includes(item.cari)) {
@@ -51,13 +51,15 @@ async function prosesFile(filePath, kamusKustom) {
       return `[BERHASIL] ${filePath}\n   ➔ Perubahan: ${rincianPerubahan.join(", ")}`;
     }
     
-    return `[DILEWATI] Tidak ada kecocokan di: ${filePath}`;
+    // Jika tidak ada perubahan, kembalikan null (tidak akan dicetak di log browser)
+    return null; 
   } catch (error) {
+    // Error tetap ditampilkan agar kamu tahu kalau ada file yang corrupt/terkunci
     return `[GAGAL] Error pada ${filePath}: ${error.message}`;
   }
 }
 
-// TEMPLATE UI BROWSER DENGAN INPUT DINAMIS
+// TEMPLATE UI BROWSER
 const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="id">
@@ -69,7 +71,6 @@ const htmlTemplate = `
         .container { max-width: 950px; margin: 0 auto; background: #202024; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         h2 { color: #00e676; border-bottom: 2px solid #29292e; padding-bottom: 10px; margin-top: 0; }
         
-        /* Form & Tabel */
         table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
         th, td { border: 1px solid #29292e; padding: 10px; text-align: left; }
         th { background: #29292e; color: #00e676; }
@@ -78,7 +79,6 @@ const htmlTemplate = `
         input[type="text"] { width: 93%; padding: 8px; background: #121214; border: 1px solid #45475a; color: #e1e1e6; border-radius: 4px; }
         input[type="text"]:focus { border-color: #00e676; outline: none; }
         
-        /* Tombol-tombol */
         .btn { padding: 10px 20px; font-size: 14px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; margin-right: 5px; }
         .btn-success { background: #00e676; color: #121214; font-size: 16px; padding: 12px 24px; }
         .btn-success:hover { background: #00c853; }
@@ -123,7 +123,6 @@ const htmlTemplate = `
     </div>
 
     <script>
-        // Data default saat pertama kali dashboard dibuka di browser
         const dataAwal = [
             { cari: "peretasan tingkat tinggi yang dilakukan oleh para hacker", ganti: "modifikasi sistem tingkat tinggi yang dilakukan oleh oknum tak bertanggung jawab" },
             { cari: "brengsek", ganti: "kurang tepat" },
@@ -132,7 +131,6 @@ const htmlTemplate = `
 
         const tbody = document.getElementById('kamus-body');
 
-        // Fungsi membuat baris input baru
         function tambahBaris(cariText = "", gantiText = "") {
             const tr = document.createElement('tr');
             tr.innerHTML = \`
@@ -148,10 +146,8 @@ const htmlTemplate = `
             row.parentNode.removeChild(row);
         }
 
-        // Load data awal ke layar browser
         dataAwal.forEach(item => tambahBaris(item.cari, item.ganti));
 
-        // Fungsi mengumpulkan data dari browser lalu mengirimkannya ke Bun backend
         async function jalankanProses() {
             const logsDiv = document.getElementById('logs');
             const statusDiv = document.getElementById('status');
@@ -172,7 +168,7 @@ const htmlTemplate = `
                 return;
             }
 
-            logsDiv.innerHTML = "Mengirim data aturan ke server dan memproses file HTML...\\n";
+            logsDiv.innerHTML = "Memindai berkas dan menerapkan aturan kustom...\\n";
             statusDiv.innerHTML = "Status: Sedang memproses konten...";
 
             try {
@@ -184,7 +180,7 @@ const htmlTemplate = `
                 
                 const data = await response.json();
                 logsDiv.innerHTML = data.results.join('\\n');
-                statusDiv.innerHTML = "Status: Selesai! Semua file berhasil diperbarui.";
+                statusDiv.innerHTML = "Status: Selesai! Log bersih ditampilkan.";
             } catch (err) {
                 logsDiv.innerHTML += "\\n[ERROR] Hubungan ke server terputus: " + err;
                 statusDiv.innerHTML = "Status: Gagal.";
@@ -195,20 +191,18 @@ const htmlTemplate = `
 </html>
 `;
 
-// MENJALANKAN SERVER HTTP BUN
+// SERVER HTTP BUN
 Bun.serve({
   port: 5000,
   async fetch(request) {
     const url = new URL(request.url);
     
-    // Endpoint UI (GET)
     if (url.pathname === "/" && request.method === "GET") {
       return new Response(htmlTemplate, {
         headers: { "Content-Type": "text/html; charset=utf-8" },
       });
     }
     
-    // Endpoint Eksekusi (POST)
     if (url.pathname === "/run" && request.method === "POST") {
       try {
         const body = await request.json();
@@ -220,11 +214,18 @@ Bun.serve({
           return Response.json({ results: ["[INFO] Tidak ditemukan file .html atau .htm di folder ini."] });
         }
         
-        // Memproses seluruh file secara paralel menggunakan map
         const janjiProses = semuaFile.map(file => prosesFile(file, kamusKustom));
         const hasilProses = await Promise.all(janjiProses);
         
-        return Response.json({ results: hasilProses });
+        // SULAPNYA DI SINI: Menyaring hanya log yang berisi string (Bukan null)
+        const logBersih = hasilProses.filter(log => log !== null);
+        
+        // Antisipasi kalau dari sekian banyak file, ternyata TIDAK ADA satupun yang cocok
+        if (logBersih.length === 0) {
+          logBersih.push("[INFO] Pemindaian selesai. Semua file sudah bersih, tidak ada teks pemicu yang ditemukan.");
+        }
+        
+        return Response.json({ results: logBersih });
       } catch (e) {
         return Response.json({ results: [`[ERROR] Gagal membaca data input: ${e.message}`] }, { status: 400 });
       }
@@ -234,4 +235,4 @@ Bun.serve({
   },
 });
 
-console.log("🚀 Engine Bun aktif! Silakan buka di browser Anda: http://localhost:5000");
+console.log("🚀 Engine Bun aktif! Jalankan di: http://localhost:5000");
