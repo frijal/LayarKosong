@@ -199,7 +199,7 @@
         </div>
     </header>
     <section class="intro">
-        <p>Pernah punya video berdurasi jam-jam-an tapi cuma butuh dipecah jadi potongan 20 detik buat konten media sosial? Melakukannya manual satu per satu adalah siksaan. Di sinilah **FFmpeg** menunjukkan taringnya sebagai raja multimedia.</p>
+        <p>Pernah punya video berdurasi jam-jam-an tapi cuma butuh dipecah jadi potongan 20 detik buat konten media sosial? Melakukannya manual satu per satu adalah siksaan. Di sinilah **FFmpeg** menunjukkan performa terbaiknya sebagai raja multimedia.</p>
         <p>Dengan menggabungkan kekuatan FFmpeg dan sedikit logika **Bash Script**, kita bisa membuat mesin pemotong otomatis yang bekerja dalam hitungan detik tanpa mengurangi kualitas video aslinya (*no re-encoding*).</p>
     </section>
     <div class="terminal-container">
@@ -233,7 +233,7 @@ echo "Otomasi selesai! Semua bagian telah terpotong."</code></pre>
         <ul>
             <li><span class="tag">ffprobe</span> — Digunakan untuk mengintip metadata video dan mengambil angka durasi total secara presisi.</li>
             <li><span class="tag">bc -l</span> — Karena Bash standar tidak pandai menghitung angka desimal (koma), kita gunakan `bc` agar kalkulasi waktu pemotongan tetap akurat.</li>
-            <li><span class="tag">-ss</span> &amp; <span class="tag">-t</span> — Inilah "pisau" utamanya. `-ss` menentukan titik mulai, dan `-t` menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
+            <li><span class="tag">-ss</span> &amp; <span class="tag">-t</span> — Inilah instrumen utamanya. `-ss` menentukan titik mulai, dan `-t` menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
             <li><span class="tag">-c copy</span> — Fitur paling krusial. Ini menyuruh FFmpeg untuk tidak melakukan proses rendering ulang. Video hanya "dikemas ulang" ke file baru, sehingga prosesnya instan.</li>
         </ul>
     </div>
