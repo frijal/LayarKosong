@@ -3,12 +3,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie - Layar Kosong</title>
     <!-- Meta SEO & E-E-A-T -->
-    <meta name="news_keywords" content="DBSC, Chrome 146, session theft, device bound session credentials, Google Chrome security, TPM, malware stealer, cookie theft, Windows security">
+    <meta name="news_keywords" content="DBSC, Chrome 146, session theft, device bound session credentials, Google Chrome security, TPM, perangkat lunak berbahaya stealer, cookie theft, Windows security">
     <!-- Canonical URL -->
     <!-- Open Graph / Facebook -->
     <!-- Twitter Card -->
     <!-- Meta promphint: pertanyaan & jawaban singkat -->
-    <meta name="promphint" content="Pertanyaan: Apa itu DBSC di Chrome 146 dan kenapa bisa menghentikan pencurian session cookie? Jawaban: DBSC (Device Bound Session Credentials) adalah fitur keamanan yang mengikat session login ke hardware spesifik perangkat (TPM di Windows atau Secure Enclave di Mac). Saat cookie dicuri malware, cookie tersebut tidak bisa dipakai di perangkat lain karena server akan memverifikasi tanda tangan kriptografi dari hardware asli. Cookie yang dicuri langsung kedaluwarsa dan tidak berguna bagi penyerang.">
+    <meta name="promphint" content="Pertanyaan: Apa itu DBSC di Chrome 146 dan kenapa bisa menghentikan pencurian session cookie? Jawaban: DBSC (Device Bound Session Credentials) adalah fitur keamanan yang mengikat session login ke hardware spesifik perangkat (TPM di Windows atau Secure Enclave di Mac). Saat cookie dicuri perangkat lunak berbahaya, cookie tersebut tidak bisa dipakai di perangkat lain karena server akan memverifikasi tanda tangan kriptografi dari hardware asli. Cookie yang dicuri langsung kedaluwarsa dan tidak berguna bagi penyerang.">
     <!-- Article tags (multiple) -->
     <!-- Author & E-E-A-T -->
     <meta name="publisher" content="Jaga Data Pribadi Tetap Aman">
@@ -239,9 +239,9 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta property="og:title" content="DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie">
     <meta name="twitter:title" content="DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie">
-    <meta name="description" content="Google resmi luncurkan Device Bound Session Credentials (DBSC) di Chrome 146 untuk Windows. Fitur ini kunci session cookie ke hardware TPM, bikin malware stealer gigit jari. Simak cara kerja dan masa depan keamanan browser.">
-    <meta property="og:description" content="Fitur DBSC bikin cookie tidak bisa dipakai meskipun dicuri malware. Sudah rilis untuk Windows, pakai TPM dan Secure Enclave. Penjelasan santai + 5W+1H.">
-    <meta name="twitter:description" content="Session cookie yang dicuri malware bakal hangus dalam sekejap. DBSC pakai kunci kriptografi yang terikat perangkat. Penjelasan lengkap.">
+    <meta name="description" content="Google resmi luncurkan Device Bound Session Credentials (DBSC) di Chrome 146 untuk Windows. Fitur ini kunci session cookie ke hardware TPM, bikin perangkat lunak berbahaya stealer gigit jari. Simak cara kerja dan masa depan keamanan browser.">
+    <meta property="og:description" content="Fitur DBSC bikin cookie tidak bisa dipakai meskipun dicuri perangkat lunak berbahaya. Sudah rilis untuk Windows, pakai TPM dan Secure Enclave. Penjelasan santai + 5W+1H.">
+    <meta name="twitter:description" content="Session cookie yang dicuri perangkat lunak berbahaya bakal hangus dalam sekejap. DBSC pakai kunci kriptografi yang terikat perangkat. Penjelasan lengkap.">
     <meta property="twitter:domain" content="https://dalam.web.id">
     <meta property="og:type" content="article">
     <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
@@ -268,7 +268,7 @@
     <meta property="article:tag" content="DBSC">
     <meta property="article:tag" content="Keamanan Browser">
     <meta property="article:tag" content="Session Theft">
-    <meta property="article:tag" content="Malware Stealer">
+    <meta property="article:tag" content="Perangkat Lunak Berbahaya Stealer">
     <meta property="article:tag" content="TPM">
     <meta property="article:tag" content="Google Chrome">
     <meta property="article:published_time" content="2026-04-11T04:03:45.447Z">
@@ -278,12 +278,12 @@
 <div class="container">
     <div id=iposbrowser></div><h1>
         <i class="fa-brands fa-chrome icon-text"></i>
-        Google Rilis DBSC di Chrome 146: Akhirnya Session Cookie Tidak Bisa Dicuri Malware
+        Google Rilis DBSC di Chrome 146: Akhirnya Session Cookie Tidak Bisa Dicuri Perangkat Lunak Berbahaya
         <i class="fa-solid fa-shield-haltered icon-text"></i>
     </h1>
     <div class="lead">
         <i class="fa-solid fa-microchip"></i>  Mulai Chrome versi 146 untuk Windows, Google aktifkan fitur DBSC (Device Bound Session Credentials).
-        Fitur ini mengikat session cookie ke hardware spesifik pakai TPM. Hasilnya: malware pencuri cookie bakal gagal total.
+        Fitur ini mengikat session cookie ke hardware spesifik pakai TPM. Hasilnya: perangkat lunak berbahaya pencuri cookie bakal gagal total.
         Yuk kita bahas tuntas dengan 5W+1H dan gaya santai.
     </div>
     <div class="featured-img">
@@ -294,23 +294,23 @@
         <h3 style="margin-top:0; border-bottom: none; padding-bottom:0;"><i class="fa-solid fa-list-check"></i> 📌 Outline 5W+1H – DBSC Chrome 146</h3>
         <div class="outline-grid">
             <div class="zdummy3"><strong>🧠 APA itu DBSC?</strong><br>Device Bound Session Credentials adalah mekanisme keamanan yang mengikat sesi login pengguna ke perangkat keras tertentu. DBSC menggunakan pasangan kunci kriptografi yang dihasilkan oleh TPM (Windows) atau Secure Enclave (macOS). Kunci privat tidak bisa diekspor. Server hanya memberikan cookie sesi singkat jika browser bisa membuktikan kepemilikan kunci tersebut. Jika cookie dicuri, tidak bisa dipakai di perangkat lain.</div>
-            <div class="zdummy3"><strong>👥 SIAPA yang merilis dan terkena dampak?</strong><br>Google merilis DBSC untuk semua pengguna Chrome 146 di Windows. Pengguna macOS menyusul dalam rilis berikutnya. Pengguna Linux? Untuk sementara belum, tapi Google berencana memperluas. Yang paling diuntungkan adalah korban potensial malware stealer (Lumma, Vidar, Atomic dll). Penyerang dan penjual cookie di dark web jadi gigit jari.</div>
+            <div class="zdummy3"><strong>👥 SIAPA yang merilis dan terkena dampak?</strong><br>Google merilis DBSC untuk semua pengguna Chrome 146 di Windows. Pengguna macOS menyusul dalam rilis berikutnya. Pengguna Linux? Untuk sementara belum, tapi Google berencana memperluas. Yang paling diuntungkan adalah korban potensial perangkat lunak berbahaya stealer (Lumma, Vidar, Atomic dll). Penyerang dan penjual cookie di dark web jadi gigit jari.</div>
             <div class="zdummy3"><strong>📅 KAPAN tersedia?</strong><br>Mulai Chrome 146 yang dirilis secara stabil pada Oktober 2025 (atau awal 2026 tergantung jadwal). Fitur ini sebelumnya sudah diuji dalam beta selama beberapa bulan. Sekarang sudah general availability untuk Windows. Google mengumumkan secara resmi di blog keamanan Chrome pada pekan ini.</div>
             <div class="zdummy3"><strong>📍 DI MANA bekerja?</strong><br>Di perangkat Windows yang memiliki TPM (Trusted Platform Module) versi 2.0 ke atas. Sebagian besar laptop dan PC Windows modern sudah punya TPM. Jika perangkat tidak mendukung, DBSC akan fallback ke perilaku standar tanpa mematahkan alur login. Jadi tetap aman dan tidak bikin error.</div>
-            <div class="zdummy3"><strong>🤔 MENGAPA DBSC penting?</strong><br>Karena session theft (pencurian cookie) adalah ancaman nomor satu setelah password. Malware stealer seperti Lumma dan Vidar dengan mudah mengambil cookie dari browser, lalu penjahat menggunakannya untuk membajak akun tanpa perlu tahu password. Dengan DBSC, cookie yang dicuri tidak berguna karena server akan meminta bukti kepemilikan kunci privat yang hanya ada di perangkat asli. Ini mengakhiri kejahatan cookie massal.</div>
-            <div class="zdummy3"><strong>⚙️ BAGAIMANA cara kerjanya teknis?</strong><br>Saat login, Chrome meminta TPM membuat sepasang kunci (public/private). Kunci publik dikirim ke server (Google, atau situs yang mendukung standar). Server kemudian mengeluarkan session cookie jangka pendek. Setiap request yang membawa cookie juga harus disertai tanda tangan digital dari kunci privat. Karena kunci privat tidak bisa diekspor dari TPM, malware tidak bisa meniru tanda tangan. Cookie kedaluwarsa dalam hitungan menit/jam, sehingga pencuri tidak punya waktu untuk menyalahgunakannya.</div>
+            <div class="zdummy3"><strong>🤔 MENGAPA DBSC penting?</strong><br>Karena session theft (pencurian cookie) adalah ancaman nomor satu setelah password. Perangkat Lunak Berbahaya stealer seperti Lumma dan Vidar dengan mudah mengambil cookie dari browser, lalu penjahat menggunakannya untuk membajak akun tanpa perlu tahu password. Dengan DBSC, cookie yang dicuri tidak berguna karena server akan meminta bukti kepemilikan kunci privat yang hanya ada di perangkat asli. Ini mengakhiri kejahatan cookie massal.</div>
+            <div class="zdummy3"><strong>⚙️ BAGAIMANA cara kerjanya teknis?</strong><br>Saat login, Chrome meminta TPM membuat sepasang kunci (public/private). Kunci publik dikirim ke server (Google, atau situs yang mendukung standar). Server kemudian mengeluarkan session cookie jangka pendek. Setiap request yang membawa cookie juga harus disertai tanda tangan digital dari kunci privat. Karena kunci privat tidak bisa diekspor dari TPM, perangkat lunak berbahaya tidak bisa meniru tanda tangan. Cookie kedaluwarsa dalam hitungan menit/jam, sehingga pencuri tidak punya waktu untuk menyalahgunakannya.</div>
         </div>
         <p style="margin-top: 12px; font-size:0.9rem;"><i class="fa-solid fa-lightbulb"></i> Inti: DBSC adalah pengubah permainan. Tidak ada lagi jual-beli session cookie di forum gelap. Hardware security menjadi benteng terakhir yang mematikan.</p>
     </div>
     <!-- Gambar kedua (cookie.png) -->
     <!-- Artikel panjang (Long Form) sesuai E-E-A-T, bahasa Indonesia santai -->
     <h2><i class="fa-solid fa-skull-crosswalk"></i> Ancaman Pencurian Session Cookie Selama Ini Sangat Nyata</h2>
-    <p>Teman-teman, pasti pernah dengar soal malware <strong>stealer</strong> kayak Lumma, Vidar, atau Atomic. Mereka menyusup lewat file bajakan, tidak resmi, atau email phishing. Begitu masuk, mereka menggasak semua cookie session yang tersimpan di browser. Karena cookie biasanya punya masa hidup lama (biar kita nggak login ulang terus), penjahat bisa langsung pakai cookie itu untuk mengakses akun korban — Gmail, Facebook, media sosial, bahkan akun perbankan. Tanpa perlu tahu password, tanpa 2FA (karena session sudah terverifikasi). Ini mimpi buruk yang sudah bertahun-tahun merajalela.</p>
+    <p>Teman-teman, pasti pernah dengar soal perangkat lunak berbahaya <strong>stealer</strong> kayak Lumma, Vidar, atau Atomic. Mereka menyusup lewat file bajakan, tidak resmi, atau email phishing. Begitu masuk, mereka menggasak semua cookie session yang tersimpan di browser. Karena cookie biasanya punya masa hidup lama (biar kita nggak login ulang terus), penjahat bisa langsung pakai cookie itu untuk mengakses akun korban — Gmail, Facebook, media sosial, bahkan akun perbankan. Tanpa perlu tahu password, tanpa 2FA (karena session sudah terverifikasi). Ini mimpi buruk yang sudah bertahun-tahun merajalela.</p>
    <div class="img-dua">
         <img src="https://dalam.web.id/img/blogger.googleusercontent.com/7e1d250568b97986.webp" alt="Cookie digital yang diamankan dengan gembok kriptografi" width="1000" height="500" loading="lazy">
     </div>
     <div class="info-box">
-        <i class="fa-solid fa-chart-simple"></i> Data dari laporan keamanan 2025: lebih dari 60% insiden akun terambil alih berawal dari pencurian session cookie, bukan brute force password. Malware stealer menjadi komoditas utama di pasar gelap.
+        <i class="fa-solid fa-chart-simple"></i> Data dari laporan keamanan 2025: lebih dari 60% insiden akun terambil alih berawal dari pencurian session cookie, bukan brute force password. Perangkat Lunak Berbahaya stealer menjadi komoditas utama di pasar gelap.
     </div>
     <h2><i class="fa-solid fa-key"></i> DBSC: Cookie Dikunci ke TPM, Maling Pusing</h2>
     <p>Google akhirnya menjawab tantangan ini dengan <strong>Device Bound Session Credentials (DBSC)</strong>. Cara kerjanya sederhana secara konsep, tapi brilliant secara teknis: setiap sesi login diikat ke hardware perangkat. Di Windows, ia menggunakan <strong>TPM (Trusted Platform Module)</strong> — sebuah chip khusus yang menyimpan kunci kriptografi secara aman. Chrome meminta TPM membuat sepasang kunci: privat dan publik. Kunci publik dikirim ke server, sedangkan kunci privat <strong>tidak pernah bisa keluar dari TPM</strong>, bahkan browser pun tidak bisa mengekspornya.</p>
@@ -323,10 +323,10 @@
         <i class="fa-solid fa-globe"></i> Google juga bekerja sama dengan Microsoft untuk menjadikan DBSC sebagai <strong>standar web terbuka</strong>. Artinya, nantinya browser lain seperti Edge, Firefox, atau Brave bisa mengimplementasikan mekanisme serupa. Ini langkah besar untuk keamanan ekosistem secara keseluruhan.
     </div>
     <h2><i class="fa-solid fa-chart-line"></i> Hasil Awal: Penurunan Drastis Session Theft</h2>
-    <p>Google mengaku telah mengamati <strong>pengurangan signifikan</strong> kasus pencurian session sejak uji coba DBSC dalam beta. Meskipun belum merilis angka pasti, tim keamanan Chrome optimistis bahwa fitur ini akan mengubah lanskap ancaman. Para penjual cookie di forum gelap seperti Genesis Market (yang sudah dibongkar) pasti akan kewalahan karena cookie yang mereka curi jadi sampah digital. Namun, Google juga sadar bahwa penjahat akan mencari celah lain — misalnya menyerang langsung TPM atau menggunakan malware yang berjalan di sesi yang sama (sebelum logout). Tapi setidaknya, ini adalah <strong>peningkatan pertahanan yang sangat besar</strong>.</p>
+    <p>Google mengaku telah mengamati <strong>pengurangan signifikan</strong> kasus pencurian session sejak uji coba DBSC dalam beta. Meskipun belum merilis angka pasti, tim keamanan Chrome optimistis bahwa fitur ini akan mengubah lanskap ancaman. Para penjual cookie di forum gelap seperti Genesis Market (yang sudah dibongkar) pasti akan kewalahan karena cookie yang mereka curi jadi sampah digital. Namun, Google juga sadar bahwa penjahat akan mencari celah lain — misalnya menyerang langsung TPM atau menggunakan perangkat lunak berbahaya yang berjalan di sesi yang sama (sebelum logout). Tapi setidaknya, ini adalah <strong>peningkatan pertahanan yang sangat besar</strong>.</p>
     <h2><i class="fa-solid fa-calendar-check"></i> Apa yang Harus Dilakukan Pengguna Chrome?</h2>
     <p>Untuk pengguna Chrome di Windows, pastikan versi browser Anda minimal <strong>146</strong>. Cek di chrome://settings/help. Jika sudah, fitur DBSC akan aktif secara otomatis untuk situs-situs yang mendukung standar tersebut. Saat ini, Google sudah menerapkannya untuk akun Google (Gmail, Drive, dll) dan bekerja sama dengan penyedia layanan besar lainnya. Ke depannya, situs web dapat mengadopsi API DBSC untuk melindungi login pengguna mereka. Anda tidak perlu melakukan konfigurasi tambahan — cukup nikmati keamanan ekstra.</p>
-    <p>Buat para pengguna macOS dan Linux, bersabarlah. Google akan segera merilis untuk macOS dalam rilis Chrome berikutnya. Untuk pengguna Linux yang menggunakan TPM (misalnya melalui utilitas tpm2-tools), mungkin akan menyusul. Yang jelas, <strong>masa depan session cookie yang tidak terkunci sudah berakhir</strong>. Selamat tinggal malware stealer, selamat datang era device-bound credentials.</p>
+    <p>Buat para pengguna macOS dan Linux, bersabarlah. Google akan segera merilis untuk macOS dalam rilis Chrome berikutnya. Untuk pengguna Linux yang menggunakan TPM (misalnya melalui utilitas tpm2-tools), mungkin akan menyusul. Yang jelas, <strong>masa depan session cookie yang tidak terkunci sudah berakhir</strong>. Selamat tinggal perangkat lunak berbahaya stealer, selamat datang era device-bound credentials.</p>
     <p><i class="fa-solid fa-quote-left"></i> <em>Dengan DBSC, kami membuat cookie yang dicuri menjadi sampah digital. Penyerang tidak bisa memakainya meskipun berhasil mengambilnya dari komputer korban.</em> — Tim Keamanan Chrome Google.</p>
     <!-- related-articles-grid -->
     <div id="related-articles-grid">
