@@ -56,19 +56,19 @@ async function prosesFile(filePath, kamusKustom) {
   }
 }
 
-// TEMPLATE UI BROWSER (NEW LAYOUT)
+// TEMPLATE UI BROWSER DENGAN INTEGRASI CSV
 const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Dynamic Content Audit Dashboard</title>
+    <title>AdSense Safety Audit Dashboard</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; margin: 40px; background: #121214; color: #e1e1e6; }
-        .container { max-width: 950px; margin: 0 auto; background: #202024; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+        .container { max-width: 1000px; margin: 0 auto; background: #202024; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         h2 { color: #00e676; border-bottom: 2px solid #29292e; padding-bottom: 10px; margin-top: 0; }
+        h3 { margin-top: 30px; color: #3b82f6; }
         
-        /* Panel Kontrol Atas */
         .top-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; background: #18181c; padding: 15px; border-radius: 6px; border: 1px solid #29292e; }
         .top-controls label { font-size: 14px; color: #a4a4a8; }
         
@@ -81,7 +81,6 @@ const htmlTemplate = `
         input[type="text"]:focus { border-color: #00e676; outline: none; }
         
         input[type="number"] { width: 60px; padding: 8px; background: #121214; border: 1px solid #45475a; color: #e1e1e6; border-radius: 4px; text-align: center; font-weight: bold; }
-        input[type="number"]:focus { border-color: #3b82f6; outline: none; }
         
         .btn { padding: 10px 20px; font-size: 14px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .btn-success { background: #00e676; color: #121214; font-size: 16px; padding: 12px 24px; }
@@ -90,31 +89,38 @@ const htmlTemplate = `
         .btn-primary:hover { background: #2563eb; }
         .btn-danger { background: #ef4444; color: white; padding: 6px 12px; font-size: 12px; }
         .btn-danger:hover { background: #dc2626; }
+        .btn-secondary { background: #4f46e5; color: white; }
+        .btn-secondary:hover { background: #4338ca; }
         
         .action-area { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
         #status { font-style: italic; color: #ffb300; font-weight: bold; font-size: 15px; }
         #logs { background: #121214; color: #00e676; padding: 20px; margin-top: 20px; height: 300px; overflow-y: auto; font-family: 'Fira Code', monospace; border-radius: 5px; border: 1px solid #29292e; white-space: pre-wrap; font-size: 13px; }
+        
+        /* CSV Box CSS */
+        .csv-box { background: #18181c; padding: 20px; border-radius: 6px; border: 1px solid #29292e; margin-top: 40px; }
+        textarea { width: 97%; height: 120px; background: #121214; color: #a6e3a1; border: 1px solid #45475a; border-radius: 4px; padding: 10px; font-family: monospace; font-size: 12px; resize: vertical; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Content Safety Audit - Dynamic Dashboard</h2>
-        <p>Target Direktori: <strong>${resolve(TARGET_DIR)}</strong></p>
+        <h2>AdSense Safety Audit - Bun Dashboard</h2>
+        <p>Target Direktori File HTML: <strong>${resolve(TARGET_DIR)}</strong></p>
         
-        <h3>Atur Pasangan Kata (Pekerjaan)</h3>
+        <h3>Atur Pasangan Kata (Pekerjaan Saat Ini)</h3>
         
         <div class="top-controls">
             <label for="jumlah-baris">Tambah sebanyak:</label>
             <input type="number" id="jumlah-baris" value="1" min="1" max="100">
             <label>baris kosong</label>
             <button class="btn btn-primary" onclick="tambahBanyakBaris()">+ Tambah Baris</button>
+            <button class="btn btn-danger" onclick="bersihkanSemuaTabel()" style="margin-left: auto;">Kosongkan Semua Aturan</button>
         </div>
 
         <table id="tabel-kamus">
             <thead>
                 <tr>
-                    <th style="width: 45%;">Teks yang Dicari (Cari)</th>
-                    <th style="width: 45%;">Teks Pengganti (Ganti)</th>
+                    <th style="width: 45%;">Kutipan Bermasalah (Cari)</th>
+                    <th style="width: 45%;">Saran Kalimat Pengganti (Ganti)</th>
                     <th style="width: 10%;">Aksi</th>
                 </tr>
             </thead>
@@ -122,45 +128,59 @@ const htmlTemplate = `
                 </tbody>
         </table>
         
-        <hr style="border: 0; border-top: 1px solid #29292e; margin: 30px 0;">
-        
         <div class="action-area">
-            <button class="btn btn-success" onclick="jalankanProses()">Jalankan Semua Pekerjaan di Atas</button>
-            <div id="status">Status: Standby. Siap memproses.</div>
+            <button class="btn btn-success" onclick="jalankanProses()">Jalankan Semua Pembersihan</button>
+            <div id="status">Status: Standby. 15 data pemicu AdSense siap dieksekusi.</div>
         </div>
         
         <div id="logs">Log aktivitas pembersihan akan muncul di sini...</div>
+
+        <div class="csv-box">
+            <h4 style="margin-top: 0; color: #f38ba8;">💡 Impor Massal via Raw Data CSV</h4>
+            <p style="font-size: 12px; color: #a6adc8; margin-top: -5px;">Punya data mentah CSV lagi? Tempel teks CSV utuh di bawah (termasuk baris header), sistem akan otomatis mendeteksi kolom Kutipan dan Saran Pengganti.</p>
+            <textarea id="csv-input" placeholder='Paste data CSV kamu di sini...\nContoh:\n"No","Judul Artikel","Kutipan Bermasalah","Jenis Pelanggaran AdSense","Saran Kalimat Pengganti"\n"1","Judul A","Kata Jelek","Pelanggaran","Kata Baik"'></textarea>
+            <div style="margin-top: 10px;">
+                <button class="btn btn-secondary" onclick="imporDataCSV()">⚡ Impor Masuk ke Tabel</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Data default bawaan saat pertama kali load halaman
+        // 15 DATA UTUH DARI USER DIJADIKAN DATA BAWAAN
         const dataAwal = [
-            { cari: "peretasan tingkat tinggi yang dilakukan oleh para hacker", ganti: "modifikasi sistem tingkat tinggi yang dilakukan oleh oknum tak bertanggung jawab" },
-            { cari: "brengsek", ganti: "kurang tepat" },
-            { cari: "bajingan", ganti: "tidak etis" }
+            { cari: "ngehajar kesehatan tubuh", ganti: "berdampak negatif pada kesehatan tubuh" },
+            { cari: "buat jualan obat pelangsing", ganti: "untuk menawarkan produk pengontrol berat badan" },
+            { cari: "Penghancur Kolesterol", ganti: "Pengurang Kadar Kolesterol" },
+            { cari: "menyebabkan perilaku kriminal", ganti: "menyebabkan tindakan melanggar hukum" },
+            { cari: "SDA dikeruk, lingkungan hancur", ganti: "SDA dieksploitasi, ekosistem terdampak" },
+            { cari: "menghamburkan uang negara", ganti: "menyebabkan inefisiensi anggaran negara" },
+            { cari: "abusive partner", ganti: "pasangan yang melakukan tekanan psikologis" },
+            { cari: "celah mafia lokal ini", ganti: "celah jaringan tidak resmi ini" },
+            { cari: "pemimpin zalim fasik", ganti: "oknum pemimpin yang melanggar aturan" },
+            { cari: "fans garis keras", ganti: "penggemar yang sangat loyal" },
+            { cari: "membuat \\"sup bakteri\\".", ganti: "menciptakan \\"campuran mikroorganisme berbahaya\\"." },
+            { cari: "Ia tidak akan menjerit saat rusak.", ganti: "Ia tidak akan memberikan gejala rasa sakit saat fungsinya menurun." },
+            { cari: "mati mesin.", ganti: "berhenti beraktivitas." },
+            { cari: "di-bully habis-habisan.", ganti: "diintimidasi secara massal." },
+            { cari: "sasaran empuk karena bodoh,", ganti: "target utama karena kurang informasi," }
         ];
 
         const tbody = document.getElementById('kamus-body');
 
-        // Fungsi dasar membuat 1 baris
         function tambahBaris(cariText = "", gantiText = "") {
             const tr = document.createElement('tr');
             tr.innerHTML = \`
-                <td><input type="text" class="input-cari" value="\${cariText}" placeholder="Contoh: hacker"></td>
-                <td><input type="text" class="input-ganti" value="\${gantiText}" placeholder="Contoh: ahli IT"></td>
+                <td><input type="text" class="input-cari" value="\${escapeHtml(cariText)}" placeholder="Kutipan pemicu..."></td>
+                <td><input type="text" class="input-ganti" value="\${escapeHtml(gantiText)}" placeholder="Kalimat alternatif aman..."></td>
                 <td><button class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button></td>
             \`;
             tbody.appendChild(tr);
         }
 
-        // FUNGSI BARU: Mengambil input angka lalu melakukan looping pembuatan baris
         function tambahBanyakBaris() {
             const inputJumlah = document.getElementById('jumlah-baris');
             const jumlah = parseInt(inputJumlah.value) || 1;
-            
-            for (let i = 0; i < jumlah; i++) {
-                tambahBaris("", ""); // Generate kolom kosong
-            }
+            for (let i = 0; i < jumlah; i++) tambahBaris("", "");
         }
 
         function hapusBaris(btn) {
@@ -168,8 +188,62 @@ const htmlTemplate = `
             row.parentNode.removeChild(row);
         }
 
-        // Load data default awal
+        function bersihkanSemuaTabel() {
+            if(confirm("Apakah Anda yakin ingin mengosongkan semua daftar aturan di tabel?")) {
+                tbody.innerHTML = "";
+            }
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // LOAD DATA UTAMA SAAT BROWSER DIBUKA
         dataAwal.forEach(item => tambahBaris(item.cari, item.ganti));
+
+        // ENGINE PENGURAI TEXT CSV MENTAH SECARA AKURAT
+        function imporDataCSV() {
+            const rawCSV = document.getElementById('csv-input').value.trim();
+            if(!rawCSV) {
+                alert("Silakan paste data teks CSV terlebih dahulu di kotak!");
+                return;
+            }
+
+            const lines = rawCSV.split(/\\r?\\n/);
+            let barisBerhasil = 0;
+
+            // Regex untuk memecah kolom CSV dengan batasan tanda kutip ganda secara aman
+            const csvRegex = /"([^"]*(?:""[^"]*)*)"|([^",\\n]+)/g;
+
+            lines.forEach((line, index) => {
+                // Lewati baris pertama jika itu adalah header teks ("No","Judul Artikel", dll)
+                if (index === 0 && (line.toLowerCase().includes("kutipan") || line.toLowerCase().includes("judul"))) return;
+                if (!line.trim()) return;
+
+                let matches = [];
+                let match;
+                csvRegex.lastIndex = 0; // Reset state regex
+                
+                while ((match = csvRegex.exec(line)) !== null) {
+                    matches.push(match[1] ? match[1].replace(/""/g, '"') : match[2]);
+                }
+
+                // Berdasarkan format kamu: Kolom ke-3 (index 2) = Cari, Kolom ke-5 (index 4) = Ganti
+                if (matches.length >= 5) {
+                    const cari = matches[2].trim();
+                    const ganti = matches[4].trim();
+                    tambahBaris(cari, ganti);
+                    barisBerhasil++;
+                }
+            });
+
+            if(barisBerhasil > 0) {
+                alert("Sukses mengurai! " + barisBerhasil + " aturan baru ditambahkan ke tabel.");
+                document.getElementById('csv-input').value = ""; // Bersihkan kolom text area
+            } else {
+                alert("Gagal membaca struktur data CSV. Pastikan format kolom sesuai.");
+            }
+        }
 
         async function jalankanProses() {
             const logsDiv = document.getElementById('logs');
@@ -181,18 +255,16 @@ const htmlTemplate = `
             rows.forEach(row => {
                 const cari = row.querySelector('.input-cari').value.trim();
                 const ganti = row.querySelector('.input-ganti').value.trim();
-                if(cari) {
-                    rules.push({ cari, ganti });
-                }
+                if(cari) rules.push({ cari, ganti });
             });
 
             if (rules.length === 0) {
-                alert("Isi minimal satu pekerjaan (kata) terlebih dahulu!");
+                alert("Tabel kosong! Isi atau impor kata terlebih dahulu.");
                 return;
             }
 
-            logsDiv.innerHTML = "Memindai berkas dan menerapkan aturan kustom...\\n";
-            statusDiv.innerHTML = "Status: Sedang memproses konten...";
+            logsDiv.innerHTML = "Memindai file HTML di folder aktif dan mencocokkan " + rules.length + " aturan AdSense...\\n";
+            statusDiv.innerHTML = "Status: Sedang memproses audit konten...";
 
             try {
                 const response = await fetch('/run', {
@@ -204,14 +276,11 @@ const htmlTemplate = `
                 const data = await response.json();
                 logsDiv.innerHTML = data.results.join('\\n');
                 
-                const jumlahBerhasil = data.results.filter(function(line) {
-                    return line.indexOf('[BERHASIL]') === 0;
-                }).length;
-                
+                const jumlahBerhasil = data.results.filter(line => line.indexOf('[BERHASIL]') === 0).length;
                 statusDiv.innerHTML = "Status: Selesai! " + jumlahBerhasil + " file berhasil diproses.";
                 
             } catch (err) {
-                logsDiv.innerHTML += "\\n[ERROR] Hubungan ke server terputus: " + err;
+                logsDiv.innerHTML += "\\n[ERROR] Koneksi ke backend Bun terputus: " + err;
                 statusDiv.innerHTML = "Status: Gagal.";
             }
         }
@@ -220,7 +289,7 @@ const htmlTemplate = `
 </html>
 `;
 
-// SERVER HTTP BUN
+// LIVE SERVER BUN
 Bun.serve({
   port: 5000,
   async fetch(request) {
@@ -249,12 +318,12 @@ Bun.serve({
         const logBersih = hasilProses.filter(log => log !== null);
         
         if (logBersih.length === 0) {
-          logBersih.push("[INFO] Pemindaian selesai. Semua file sudah bersih, tidak ada teks pemicu yang ditemukan.");
+          logBersih.push("[INFO] Pemindaian selesai. Konten aman, tidak ditemukan kecocokan pelanggaran AdSense.");
         }
         
         return Response.json({ results: logBersih });
       } catch (e) {
-        return Response.json({ results: [`[ERROR] Gagal membaca data input: ${e.message}`] }, { status: 400 });
+        return Response.json({ results: [`[ERROR] Kegagalan sistem: ${e.message}`] }, { status: 400 });
       }
     }
     
@@ -262,4 +331,4 @@ Bun.serve({
   },
 });
 
-console.log("🚀 Engine Bun aktif! Jalankan di: http://localhost:5000");
+console.log("🚀 Engine Bun Aktif! Jalankan browser di: http://localhost:5000");
