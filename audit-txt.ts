@@ -56,7 +56,7 @@ async function prosesFile(filePath, kamusKustom) {
   }
 }
 
-// TEMPLATE UI BROWSER
+// TEMPLATE UI BROWSER (NEW LAYOUT)
 const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="id">
@@ -68,7 +68,11 @@ const htmlTemplate = `
         .container { max-width: 950px; margin: 0 auto; background: #202024; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         h2 { color: #00e676; border-bottom: 2px solid #29292e; padding-bottom: 10px; margin-top: 0; }
         
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+        /* Panel Kontrol Atas */
+        .top-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; background: #18181c; padding: 15px; border-radius: 6px; border: 1px solid #29292e; }
+        .top-controls label { font-size: 14px; color: #a4a4a8; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 10px 0 20px 0; font-size: 14px; }
         th, td { border: 1px solid #29292e; padding: 10px; text-align: left; }
         th { background: #29292e; color: #00e676; }
         tr:nth-child(even) { background: #18181c; }
@@ -76,7 +80,10 @@ const htmlTemplate = `
         input[type="text"] { width: 93%; padding: 8px; background: #121214; border: 1px solid #45475a; color: #e1e1e6; border-radius: 4px; }
         input[type="text"]:focus { border-color: #00e676; outline: none; }
         
-        .btn { padding: 10px 20px; font-size: 14px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; margin-right: 5px; }
+        input[type="number"] { width: 60px; padding: 8px; background: #121214; border: 1px solid #45475a; color: #e1e1e6; border-radius: 4px; text-align: center; font-weight: bold; }
+        input[type="number"]:focus { border-color: #3b82f6; outline: none; }
+        
+        .btn { padding: 10px 20px; font-size: 14px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .btn-success { background: #00e676; color: #121214; font-size: 16px; padding: 12px 24px; }
         .btn-success:hover { background: #00c853; }
         .btn-primary { background: #3b82f6; color: white; }
@@ -95,6 +102,14 @@ const htmlTemplate = `
         <p>Target Direktori: <strong>${resolve(TARGET_DIR)}</strong></p>
         
         <h3>Atur Pasangan Kata (Pekerjaan)</h3>
+        
+        <div class="top-controls">
+            <label for="jumlah-baris">Tambah sebanyak:</label>
+            <input type="number" id="jumlah-baris" value="1" min="1" max="100">
+            <label>baris kosong</label>
+            <button class="btn btn-primary" onclick="tambahBanyakBaris()">+ Tambah Baris</button>
+        </div>
+
         <table id="tabel-kamus">
             <thead>
                 <tr>
@@ -107,8 +122,6 @@ const htmlTemplate = `
                 </tbody>
         </table>
         
-        <button class="btn btn-primary" onclick="tambahBaris()">+ Tambah Baris Pekerjaan</button>
-        
         <hr style="border: 0; border-top: 1px solid #29292e; margin: 30px 0;">
         
         <div class="action-area">
@@ -120,6 +133,7 @@ const htmlTemplate = `
     </div>
 
     <script>
+        // Data default bawaan saat pertama kali load halaman
         const dataAwal = [
             { cari: "peretasan tingkat tinggi yang dilakukan oleh para hacker", ganti: "modifikasi sistem tingkat tinggi yang dilakukan oleh oknum tak bertanggung jawab" },
             { cari: "brengsek", ganti: "kurang tepat" },
@@ -128,6 +142,7 @@ const htmlTemplate = `
 
         const tbody = document.getElementById('kamus-body');
 
+        // Fungsi dasar membuat 1 baris
         function tambahBaris(cariText = "", gantiText = "") {
             const tr = document.createElement('tr');
             tr.innerHTML = \`
@@ -138,11 +153,22 @@ const htmlTemplate = `
             tbody.appendChild(tr);
         }
 
+        // FUNGSI BARU: Mengambil input angka lalu melakukan looping pembuatan baris
+        function tambahBanyakBaris() {
+            const inputJumlah = document.getElementById('jumlah-baris');
+            const jumlah = parseInt(inputJumlah.value) || 1;
+            
+            for (let i = 0; i < jumlah; i++) {
+                tambahBaris("", ""); // Generate kolom kosong
+            }
+        }
+
         function hapusBaris(btn) {
             const row = btn.parentNode.parentNode;
             row.parentNode.removeChild(row);
         }
 
+        // Load data default awal
         dataAwal.forEach(item => tambahBaris(item.cari, item.ganti));
 
         async function jalankanProses() {
@@ -178,12 +204,10 @@ const htmlTemplate = `
                 const data = await response.json();
                 logsDiv.innerHTML = data.results.join('\\n');
                 
-                // MENGHITUNG JUMLAH YANG BERHASIL SECARA REALTIME
                 const jumlahBerhasil = data.results.filter(function(line) {
                     return line.indexOf('[BERHASIL]') === 0;
                 }).length;
                 
-                // MENAMPILKAN JUMLAH PADA BARIS STATUS
                 statusDiv.innerHTML = "Status: Selesai! " + jumlahBerhasil + " file berhasil diproses.";
                 
             } catch (err) {
