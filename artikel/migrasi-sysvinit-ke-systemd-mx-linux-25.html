@@ -295,7 +295,7 @@
             <p>Di MX Linux, para *developer* menanamkan beberapa alat penengah khusus yang disebut <code>init-diversity</code>. Fungsi alat ini adalah meredam konflik jika *user* berpindah-pindah antara SysVinit dan systemd. Karena sekarang kita sudah berkomitmen 100% pada systemd, alat peredam ini sudah usang dan harus dibersihkan agar tidak menjadi beban sistem.</p>
             <p>Eksekusi perintah di bawah ini untuk menyapu bersih sisa-sisanya:</p>
 <pre><code>sudo apt remove --allow-remove-essential init-diversity-tools elogind-init-diversity systemd-init-diversity</code></pre>
-            <p><strong>Proses di balik layar:</strong> Pembersihan ini juga akan menendang modul pengatur sesi lama (<code>elogind</code>). Jangan khawatir, tugas manajemen daya, mode *suspend*, dan *login* sekarang sudah ditangani secara native dan jauh lebih tangguh oleh modul bawaan <code>systemd-logind</code>.</p>
+            <p><strong>Proses di balik layar:</strong> Pembersihan ini juga akan menghapus modul pengatur sesi lama (<code>elogind</code>). Jangan khawatir, tugas manajemen daya, mode *suspend*, dan *login* sekarang sudah ditangani secara native dan jauh lebih tangguh oleh modul bawaan <code>systemd-logind</code>.</p>
             <h2>Langkah 4: Bersihkan Paket yang Tidak Dipakai</h2>
             <p>Untuk memastikan tidak ada file konfigurasi yatim piatu (*orphaned dependencies*) milik SysVinit yang tertinggal di dalam hardisk, gunakan senjata pamungkas pembersih dari APT:</p>
 <pre><code>sudo apt autoremove --purge</code></pre>
