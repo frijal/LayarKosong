@@ -4,8 +4,8 @@ use warnings;
 use File::Find;
 
 my $target_dir = '.';
-my $cari       = 'langkah yang sangat keliru';
-my $ganti      = 'sangat keliru';
+my $cari       = 'jatah preman';
+my $ganti      = 'biaya siluman';
 
 print "Memulai proses penggantian...\n";
 
