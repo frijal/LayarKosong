@@ -4,8 +4,8 @@ use warnings;
 use File::Find;
 
 my $target_dir = '.';
-my $cari       = 'Pembaruan Brutal';
-my $ganti      = 'Pembaruan Masif';
+my $cari       = 'secara membabi buta';
+my $ganti      = 'secara tidak terkendali';
 
 print "Memulai proses penggantian...\n";
 
