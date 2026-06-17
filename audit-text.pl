@@ -4,8 +4,8 @@ use warnings;
 use File::Find;
 
 my $target_dir = '.';
-my $cari       = 'simbol era bajakan';
-my $ganti      = 'simbol era perangkat lunak tidak berlisensi';
+my $cari       = 'jelas merupakan bentuk penipuan';
+my $ganti      = 'jelas merupakan potensi ketidaktransparanan';
 
 print "Memulai proses penggantian...\n";
 
