@@ -32,7 +32,7 @@
         radial-gradient(800px 600px at 85% 20%, #201e17, transparent 60%),
         linear-gradient(180deg, #181611, #141310);
       line-height:1.7;
-      letter-spacing:.2px;
+      letter-spacing - 2px;
     }
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
@@ -59,7 +59,7 @@
     }
     .hero .kicker{
       max-width:56ch;
-      margin:.5rem auto 0;
+      margin - 5rem auto 0;
       color:var(--muted);
       font-size:1.05rem;
     }
@@ -67,20 +67,20 @@
     .chips{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap:.75rem;
+      gap - 75rem;
       padding:1rem;
       background:rgba(29,27,22,.5);
       border-top:1px solid var(--border);
       border-bottom:1px solid var(--border);
     }
     .chip{
-      display:flex;align-items:center;gap:.6rem;
-      padding:.6rem .8rem;
+      display:flex;align-items:center;gap - 6rem;
+      padding - 6rem .8rem;
       background:var(--paper);
       border:1px solid var(--border);
       border-radius:12px;
       box-shadow: var(--shadow);
-      font-size:.98rem;
+      font-size - 98rem;
     }
     .chip .i{font-size:1.2rem}
     /* Single-column article */
@@ -94,12 +94,12 @@
       box-shadow: var(--shadow);
     }
     .article h2,.article h3{
-      margin-top:1.2rem;margin-bottom:.5rem;
+      margin-top:1.2rem;margin-bottom - 5rem;
       font-size:clamp(1.3rem,2.6vw,1.7rem);
     }
     .article p,.article li{color:#f3eee3}
     .article blockquote{
-      margin:1rem 0;padding:.6rem .9rem;
+      margin:1rem 0;padding - 6rem .9rem;
       border-left:3px solid var(--accent);
       background:#191711;
       color:#eaddc8;
@@ -110,7 +110,7 @@
     .gallery{
       width:min(100%, var(--maxw));
       margin:2rem auto;
-      display:grid;grid-template-columns:1fr;gap:.9rem;
+      display:grid;grid-template-columns:1fr;gap - 9rem;
     }
     .thumb{
       position:relative;overflow:hidden;cursor:zoom-in;
@@ -124,9 +124,9 @@
     .thumb:hover img{transform:scale(1.02)}
     .caption{
       position:absolute;left:0;right:0;bottom:0;
-      padding:.6rem .8rem;
+      padding - 6rem .8rem;
       background:linear-gradient(180deg, transparent, rgba(0,0,0,.35) 40%, rgba(0,0,0,.6));
-      color:#efe9dd;font-size:.95rem;
+      color:#efe9dd;font-size - 95rem;
     }
     /* Lightbox */
     .lightbox{position:fixed;inset:0;display:none;background:rgba(0,0,0,.82);backdrop-filter: blur(2px);z-index:9999}
@@ -138,7 +138,7 @@
     .lb-btn{
       pointer-events:auto;position:fixed;top:50%;transform:translateY(-50%);
       background:rgba(29,27,22,.95);border:1px solid var(--border);color:#efe9dd;
-      padding:.6rem .9rem;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)
+      padding - 6rem .9rem;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)
     }
     .lb-prev{left:2vw}
     .lb-next{right:2vw}
@@ -147,11 +147,11 @@
     .share{
       width:min(100%, var(--maxw));
       margin:1rem auto 2rem;
-      display:flex;flex-wrap:wrap;gap:.6rem;align-items:center
+      display:flex;flex-wrap:wrap;gap - 6rem;align-items:center
     }
     .btn{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:.55rem .8rem;border-radius:10px;border:1px solid var(--border);
+      display:inline-flex;align-items:center;gap - 5rem;
+      padding - 55rem .8rem;border-radius:10px;border:1px solid var(--border);
       background:#201e17;color:#efe9dd;cursor:pointer
     }
     .btn .sicon{font-size:1.15rem}
@@ -159,8 +159,8 @@
     .float-left{position:fixed;left:1rem;top:30%;z-index:999}
     .float-right{position:fixed;right:1rem;bottom:20%;z-index:999}
     .float-btn{
-      display:inline-flex;align-items:center;gap:.6rem;
-      padding:.7rem 1rem;background:linear-gradient(180deg, #e0a14f, #b0722e);
+      display:inline-flex;align-items:center;gap - 6rem;
+      padding - 7rem 1rem;background:linear-gradient(180deg, #e0a14f, #b0722e);
       color:white;border:none;border-radius:12px;box-shadow:var(--shadow);cursor:pointer
     }
     .float-btn:hover{filter:brightness(1.05)}

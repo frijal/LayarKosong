@@ -47,7 +47,7 @@
     }
     header .title{
       font-weight:800;
-      letter-spacing:.2px;
+      letter-spacing - 2px;
       line-height:1.1;
       font-size: clamp(24px, 3.8vw, 42px);
       background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
@@ -68,11 +68,11 @@
     .chip{
       background: color-mix(in oklab, var(--card) 85%, black);
       border:1px solid #31407a;
-      padding:.45rem .7rem;
+      padding - 45rem .7rem;
       border-radius: 999px;
-      display:inline-flex; gap:.5rem; align-items:center;
+      display:inline-flex; gap - 5rem; align-items:center;
     }
-    .chip svg{width:16px;height:16px;opacity:.9}
+    .chip svg{width:16px;height:16px;opacity - 9}
     main{
       max-width: var(--max);
       margin-inline:auto;
@@ -99,11 +99,11 @@
       display:grid; gap:14px; align-content:center;
     }
     .hero .badge{
-      display:inline-flex; gap:.5rem; align-items:center;
+      display:inline-flex; gap - 5rem; align-items:center;
       background:#0b2b2b; color:#b8fff0; border:1px solid #215f55; border-radius:999px;
-      padding:.35rem .7rem; width:max-content; font-size:12.5px;
+      padding - 35rem .7rem; width:max-content; font-size:12.5px;
     }
-    .hero .content p{color:#e6f7ff; opacity:.9; margin:0}
+    .hero .content p{color:#e6f7ff; opacity - 9; margin:0}
     .grid{
       margin-top: clamp(18px,4vw,28px);
       display:grid; gap: var(--gap);
@@ -123,9 +123,9 @@
     }
     .prose h2{
       margin:0; font-size: clamp(18px, 2vw, 22px);
-      color:#bfe1ff; letter-spacing:.2px;
+      color:#bfe1ff; letter-spacing - 2px;
     }
-    .prose p{margin:0; color:#ebf7ff; opacity:.95}
+    .prose p{margin:0; color:#ebf7ff; opacity - 95}
     .gallery{
       grid-column: span 5;
       padding: clamp(10px, 2vw, 18px);
@@ -146,7 +146,7 @@
     .thumb .tag{
       position:absolute; bottom:8px; left:8px; z-index:2;
       background:#001a1a; color:#9ff7e9; border:1px solid #1f5d53;
-      padding:.22rem .5rem; border-radius:999px; font-size:11px;
+      padding - 22rem .5rem; border-radius:999px; font-size:11px;
     }
     .section{
       margin-top: clamp(18px,4vw,28px);
@@ -160,7 +160,7 @@
       border:1px solid #2b356b; border-radius: var(--radius); padding: clamp(14px, 2.4vw, 22px);
     }
     .bullets{display:grid; gap:10px}
-    .bullets li{list-style:none; display:grid; grid-template-columns:auto 1fr; gap:.6rem; align-items:start}
+    .bullets li{list-style:none; display:grid; grid-template-columns:auto 1fr; gap - 6rem; align-items:start}
     .bullets svg{width:18px; height:18px; color: var(--accent-2); margin-top:2px}
     .infobar{
       display:flex; gap:8px; flex-wrap:wrap; align-items:center;
@@ -172,15 +172,15 @@
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
     }
     .share a{
-      display:inline-flex; align-items:center; gap:.5rem;
+      display:inline-flex; align-items:center; gap - 5rem;
       text-decoration:none; color:#092018; background:var(--accent);
-      padding:.5rem .7rem; border-radius:10px; border:1px solid #0d9e83; font-weight:600;
+      padding - 5rem .7rem; border-radius:10px; border:1px solid #0d9e83; font-weight:600;
       transition: transform .15s ease;
     }
     .share a:hover{ transform: translateY(-1px); box-shadow:0 6px 18px #19c2a34a}
     .share a svg{width:18px;height:18px}
     .notice{
-      font-size:12.5px; color:#cfe7ff; opacity:.9; margin-top:6px
+      font-size:12.5px; color:#cfe7ff; opacity - 9; margin-top:6px
     }
     footer{
       max-width: var(--max);
@@ -205,8 +205,8 @@
     }
     .btn{
       pointer-events:all; border:none; background:#0a2238d1; color:#dff3ff;
-      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:.6rem .8rem; border-radius:12px; cursor:pointer; backdrop-filter: blur(6px);
+      display:inline-flex; align-items:center; justify-content:center; gap - 5rem;
+      padding - 6rem .8rem; border-radius:12px; cursor:pointer; backdrop-filter: blur(6px);
       border:1px solid #2b4f7a;
       transition: transform .15s ease, background .2s ease;
     }
@@ -217,14 +217,14 @@
     .btn-next{ position:absolute; right:10px; top:50%; transform:translateY(-50%) }
     .lb-count{
       position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
-      background:#08111f; color:#cfe7ff; border:1px solid #244a7a; padding:.2rem .6rem; border-radius:999px; font-size:12px;
+      background:#08111f; color:#cfe7ff; border:1px solid #244a7a; padding - 2rem .6rem; border-radius:999px; font-size:12px;
     }
     /* Floating nav buttons */
     .jump{
-      position:fixed; z-index:60; display:flex; align-items:center; gap:.6rem;
+      position:fixed; z-index:60; display:flex; align-items:center; gap - 6rem;
       text-decoration:none; color:#04241c; background:linear-gradient(135deg,var(--accent),#0fd1ae);
-      padding:.6rem .8rem; border-radius:999px; border:1px solid #0d9e83; box-shadow:0 10px 30px #19c2a347;
-      font-weight:700; letter-spacing:.2px;
+      padding - 6rem .8rem; border-radius:999px; border:1px solid #0d9e83; box-shadow:0 10px 30px #19c2a347;
+      font-weight:700; letter-spacing - 2px;
     }
     .jump svg{width:18px;height:18px}
     .jump-left{ left:12px; top:30% }
@@ -241,7 +241,7 @@
     }
     @media (max-width: 640px){
       .gallery{ grid-template-columns: repeat(2,1fr) }
-      .jump{ padding:.55rem .7rem }
+      .jump{ padding - 55rem .7rem }
       .jump-left{ top:auto; bottom:84px }
       .jump-right{ bottom:16px }
     }
