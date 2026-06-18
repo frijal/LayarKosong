@@ -140,8 +140,6 @@ for (const cat of Object.keys(CATEGORY_MAP)) {
     });
 }
 
-// ... (sisanya tetap sama: writeFileSync, execSync, etc)
-
 writeFileSync(SQL_FILE, sqlCommands.join("\n"));
 
 try {
