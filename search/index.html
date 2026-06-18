@@ -39,17 +39,27 @@
 <body>
     <div id="header-placeholder"></div>
     <main class="area-konten-pencarian">
-        <div class="pembungkus-lebar">
+        <div class="pembungkus-lebar">            
             <header class="status-pencarian">
-                <h2 id="search-query-display">Mencari...</h2>
-            </header>
-            <div id="loading-indicator" style="display: none; text-align: center; padding: 2rem;">
-                <div class="spinner-pencarian"></div>
-                <p>Mencari artikel terbaik untukmu...</p>
-            </div>
-            <div id="search-results">
+                <h2 id="search-query-display">Pencarian</h2>
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>                    
+                    <input 
+                        type="search" 
+                        name="q" 
+                        id="live-search-box"
+                        placeholder="Cari artikel, kategori, atau ketik kode..." 
+                        autocomplete="off"
+                        autofocus
+                    >
                 </div>
-            <div id="pagination-container"></div>
+            </header>
+            <div id="loading-indicator" style="display: none;">
+                <div class="spinner-pencarian"></div>
+                <p>Mencari sinyal artikel...</p>
+            </div>            
+            <div id="search-results"></div>            
+            <div id="pagination-container"></div>            
         </div>
     </main>
     <footer class="footer-pencarian">
