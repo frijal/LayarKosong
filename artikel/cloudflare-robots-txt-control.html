@@ -171,7 +171,7 @@
         <p>Cloudflare memberikan tiga cara untuk memublikasikan atau menonaktifkan file `robots.txt` di situs Anda. Pilihan ini sebagian besar didasarkan pada seberapa besar Anda ingin Cloudflare turun tangan dalam mengatur kebijakan akses konten Anda.</p>
         <div class="option-detail">
             <h3><i class="fa-solid fa-signal"></i> 1. Content Signals Policy (Kebijakan Sinyal Konten)</h3>
-            <p>**Deskripsi Opsi:** *Cloudflare deploys a robots.txt file that displays a content access framework for any bots that visit your site. This file will only include the framework and will not disallow any crawlers.*</p>
+            <p>**Deskripsi Opsi:***Cloudflare deploys a robots.txt file that displays a content access framework for any bots that visit your site. This file will only include the framework and will not disallow any crawlers.*</p>
             <p>Ini adalah opsi yang paling ringan dan informatif. Cloudflare akan memastikan file `robots.txt` Anda ada dan menyertakan semacam "pernyataan hak" atau kerangka kerja akses konten yang terstandarisasi. </p>
             <ul>
                 <li>**Apa yang Terjadi?** Cloudflare menyuntikkan teks kebijakan, tetapi **TIDAK** menyertakan perintah `Disallow` untuk memblokir bot apa pun.</li>
@@ -185,7 +185,7 @@ Allow: /</pre>
         </div>
         <div class="option-detail">
             <h3><i class="fa-solid fa-user-slash"></i> 2. Instruct AI bots to not scrape content (Menginstruksikan bot AI untuk tidak mengumpulkan konten)</h3>
-            <p>**Deskripsi Opsi:** *Creates or updates your robots.txt file to signal that your content should not be used for AI training.*</p>
+            <p>**Deskripsi Opsi:***Creates or updates your robots.txt file to signal that your content should not be used for AI training.*</p>
             <p>Ini adalah pilihan yang paling spesifik untuk melindungi konten Anda dari AI, dan ini adalah langkah yang sangat direkomendasikan jika Anda tidak ingin konten Anda digunakan untuk pelatihan model AI. </p>
             <ul>
                 <li>**Apa yang Terjadi?** Cloudflare akan menambahkan baris `Disallow` yang secara spesifik menargetkan *User-Agent* yang diketahui digunakan oleh *AI training bots*.</li>
@@ -200,7 +200,7 @@ Disallow: /</pre>
         </div>
         <div class="option-detail">
             <h3><i class="fa-solid fa-times-circle"></i> 3. Disable robots.txt configuration (Nonaktifkan konfigurasi robots.txt)</h3>
-            <p>**Deskripsi Opsi:** *Turn off Cloudflare’s robots.txt configuration to stop managing how bots and crawlers access your site.*</p>
+            <p>**Deskripsi Opsi:***Turn off Cloudflare’s robots.txt configuration to stop managing how bots and crawlers access your site.*</p>
             <p>Opsi ini memberikan kendali 100% kembali kepada Anda, tanpa intervensi dari Cloudflare.</p>
             <ul>
                 <li>**Apa yang Terjadi?** Cloudflare berhenti membuat, mengedit, atau menyajikan file `robots.txt`. File yang disajikan ke *bot* adalah file yang ada di *server* asal (*origin server*) Anda.</li>
