@@ -1,7 +1,7 @@
 /* =============================================================
  * STYLE HALAMAN PENCARIAN (v11.0 - CSS-FIRST THEME EDITION)
  * Theme detection 100% menggunakan CSS prefers-color-scheme
- * Bye-bye JavaScript theme engine! 👋
+ * Live Explorer Edition 🚀
  * ============================================================= */
 
 /* ========================================
@@ -74,7 +74,7 @@ body {
 }
 
 /* ========================================
- * 2️⃣ KONTEN UTAMA
+ * 2️⃣ KONTEN UTAMA & KOTAK PENCARIAN
  * ======================================== */
 .area-konten-pencarian {
     flex: 1;
@@ -82,19 +82,62 @@ body {
 }
 
 .status-pencarian {
-    margin-bottom: 2rem;
-    border-left: 4px solid var(--warna-aksen);
-    padding-left: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
 }
 
 .status-pencarian h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin: 0;
+    margin-bottom: 1.5rem;
+    color: var(--warna-teks-utama);
 }
 
 .status-pencarian .font-bold {
     color: var(--warna-aksen);
+}
+
+/* 🔍 Kotak Input Live Search */
+.search-input-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    color: var(--warna-teks-sekunder);
+}
+
+#live-search-box {
+width: 100%;
+padding: 16px 20px 16px 50px;
+border-radius: 12px;
+border: 2px solid var(--warna-garis);
+background-color: var(--warna-permukaan);
+color: var(--warna-teks-utama);
+font-size: 1.1rem;
+font-family: inherit;
+outline: none;
+box-shadow: 0 4px 12px var(--warna-bayangan);
+transition: all 0.3s ease;
+box-sizing: border-box;
+}
+
+#live-search-box:focus {
+border-color: var(--warna-aksen);
+box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    #live-search-box:focus {
+    box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.15);
+    }
 }
 
 /* ========================================
@@ -108,7 +151,7 @@ body {
 }
 
 /* ========================================
- * 4️⃣ CARD STYLING
+ * 4️⃣ CARD STYLING (Live Explorer Update)
  * ======================================== */
 .result-card {
     background-color: var(--warna-permukaan);
@@ -119,6 +162,9 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
 }
 
 .result-card:hover {
@@ -127,12 +173,38 @@ body {
     border-color: var(--warna-aksen);
 }
 
-.result-card img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+/* Wrapper Thumbnail & Animasi */
+.card-img-wrapper {
+    position: relative;
+    height: 180px;
     background-color: var(--warna-garis);
-    display: block;
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.result-card:hover .card-img-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Badge Kode Artikel (Misal: 7-1) */
+.card-code {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    font-weight: bold;
 }
 
 .card-content {
@@ -143,20 +215,20 @@ body {
 }
 
 .card-tag {
-    font-size: 0.625rem;
+    font-size: 0.65rem;
     color: var(--warna-aksen);
-    font-weight: bold;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
 }
 
 .card-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin: 0.5rem 0;
+    margin: 0 0 0.5rem 0;
     color: var(--warna-teks-utama);
     line-height: 1.4;
-    /* Max 2 lines */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -164,33 +236,55 @@ body {
 }
 
 .card-desc {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--warna-teks-sekunder);
     margin-bottom: 1rem;
-    line-height: 1.5;
-    /* Max 3 lines */
+    line-height: 1.6;
+    flex-grow: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
+/* Footer Kartu (Tanggal & Tombol Baca) */
+.card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--warna-garis);
+    font-size: 0.8rem;
+    color: var(--warna-teks-sekunder);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-read-more {
+    color: var(--warna-aksen);
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.result-card:hover .card-read-more {
+    transform: translateX(4px);
+}
+
 /* ========================================
- * 5️⃣ HIGHLIGHT MARKER
+ * 5️⃣ HIGHLIGHT MARKER (FTS SQLite)
  * ======================================== */
 mark {
     background-color: var(--warna-aksen);
     color: #ffffff;
-    padding: 0 2px;
-    border-radius: 2px;
-    font-weight: 500;
+    padding: 0 3px;
+    border-radius: 3px;
+    font-weight: 600;
 }
 
-/* Dark mode: sedikit adjustment untuk mark */
+/* Dark mode: penyesuaian kontras untuk mark */
 @media (prefers-color-scheme: dark) {
     mark {
-        background-color: var(--warna-aksen);
-        color: #0d1117;
+        background-color: rgba(88, 166, 255, 0.25);
+        color: var(--warna-aksen);
     }
 }
 
@@ -269,29 +363,44 @@ color: var(--warna-teks-sekunder);
     margin-top: auto;
 }
 
+.footer-pencarian a {
+    text-decoration: none;
+    margin: 0 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer-pencarian a:hover {
+    opacity: 1;
+}
+
 /* ========================================
  * 9️⃣ RESPONSIVE - MOBILE
  * ======================================== */
 @media (max-width: 640px) {
     .search-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        gap: 1rem;
     }
 
     .pembungkus-lebar {
         padding: 0 1rem;
     }
 
+    .card-img-wrapper {
+        height: 140px;
+    }
+
     .card-content {
-        padding: 0.75rem;
+        padding: 1rem;
     }
 
     .card-title {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .card-desc {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         -webkit-line-clamp: 2;
     }
 
@@ -304,9 +413,13 @@ color: var(--warna-teks-sekunder);
 /* ========================================
  * 🔟 EXTRA SMALL DEVICES
  * ======================================== */
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .search-grid {
         grid-template-columns: 1fr;
+    }
+
+    #live-search-box {
+    font-size: 1rem;
     }
 
     .btn-nav {
