@@ -138,7 +138,7 @@
                 <pre><code>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</code></pre>
             </div>
             <h2 id="wav-mp3">🎵 WAV → MP3</h2>
-            <p>WAV biasanya besar, ubah ke MP3 biar lebih kompak dengan kualitas bagus.</p>
+            <p>Berkas format WAV umumnya memiliki ukuran data yang signifikan; konversi ke format MP3 dapat meminimalkan volume data dengan tetap mempertahankan stabilitas kualitas audio.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</code></pre>
