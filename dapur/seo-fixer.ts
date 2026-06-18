@@ -232,54 +232,65 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
     ].join(', ')).remove();
 
     // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
-    const metaTags = [
-        `<meta property="og:locale" content="id_ID">`,
+   const metaTags = [
+        // === 1. PRIORITAS UTAMA: METADATA UTAMA & IDENTITAS SITUS (WAJIB PALING ATAS) ===
         `<meta property="og:site_name" content="Layar Kosong">`,
+        `<meta property="og:locale" content="id_ID">`,
+        `<meta property="og:type" content="article">`,
+        `<meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">`,
+        `<meta name="googlebot" content="max-image-preview:large">`,
+        `<meta name="author" content="Fakhrul Rijal">`,
+        `<meta name="theme-color" content="#00b0ed">`,
+
+        // === 2. PRIORITAS KEDUA: URL CANONICAL & DOMAIN ===
         `<link rel="canonical" href="${canonicalUrl}">`,
         `<meta property="og:url" content="${canonicalUrl}">`,
-        `<meta property="twitter:url" content="${canonicalUrl}">`,        
-        `<script defer src="/ext/data-provider.js"></script>`,
-        `<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">`,
-        `<link rel="sitemap" type="application/xml" href="/sitemap.xml">`,
-        `<link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="${baseUrl}/rss.xml">`,
-        `<link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="${baseUrl}/atom.xml">`,
-        `<link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">`,
-        `<link rel="manifest" href="/site.webmanifest">`,
-        `<meta name="twitter:card" content="summary_large_image">`,
-        `<meta name="twitter:widgets:new-embed-design" content="on">`,
+        `<meta property="twitter:url" content="${canonicalUrl}">`,
+        `<meta property="twitter:domain" content="https://dalam.web.id">`,
+
+        // === 3. PRIORITAS KETIGA: JUDUL DAN DESKRIPSI (KRUSIAL UNTUK SNIPPET/PREVIEW) ===
         `<meta property="og:title" content="${escapedOgTitle}">`,
         `<meta name="twitter:title" content="${escapedOgTitle}">`,
         `<meta name="description" content="${finalMetaDesc}">`,
         `<meta property="og:description" content="${finalOgDesc}">`,
         `<meta name="twitter:description" content="${finalTwitterDesc}">`,
-        `<meta property="twitter:domain" content="https://dalam.web.id">`,
-        `<meta property="og:type" content="article">`,
-        `<meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">`,
-        `<meta name="author" content="Fakhrul Rijal">`,
-        `<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">`,
-        `<meta name="twitter:creator" content="@responaja">`,
-        `<meta name="bluesky:creator" content="@dalam.web.id">`,
-        `<meta name="fediverse:creator" content="@frijal@mastodon.social">`,
-        `<meta name="googlebot" content="max-image-preview:large">`,
-        `<meta name="twitter:site" content="@responaja">`,
-        `<meta property="article:author" content="https://facebook.com/frijal">`,
-        `<meta property="article:publisher" content="https://facebook.com/frijalpage">`,
-        `<meta property="fb:app_id" content="175216696195384">`,
-        `<meta property="fb:pages" content="917962134736490">`,
-        `<meta name="twitter:image" content="${metaImgUrl}">`,
+
+        // === 4. PRIORITAS KEEMPAT: PREVIEW GAMBAR (RICH MEDIA PREVIEW) ===
         `<meta property="og:image" content="${metaImgUrl}">`,
+        `<meta name="twitter:image" content="${metaImgUrl}">`,
         `<meta property="og:image:alt" content="${escapedOgTitle}">`,
         `<meta property="og:image:width" content="1024">`,
         `<meta property="og:image:height" content="633">`,
         `<meta property="og:image:type" content="image/webp">`,
-        `<meta name="theme-color" content="#00b0ed">`
+
+        // === 5. PRIORITAS KELIMA: CARD & INTEGRASI SOSIAL MEDIA (FACEBOOK, X, BLUESKY, FEDIVERSE) ===
+        `<meta name="twitter:card" content="summary_large_image">`,
+        `<meta name="twitter:widgets:new-embed-design" content="on">`,
+        `<meta name="twitter:site" content="@responaja">`,
+        `<meta name="twitter:creator" content="@responaja">`,
+        `<meta name="bluesky:creator" content="@dalam.web.id">`,
+        `<meta name="fediverse:creator" content="@frijal@mastodon.social">`,
+        `<meta property="article:author" content="https://facebook.com/frijal">`,
+        `<meta property="article:publisher" content="https://facebook.com/frijalpage">`,
+        `<meta property="fb:app_id" content="175216696195384">`,
+        `<meta property="fb:pages" content="917962134736490">`,
+
+        // === 6. PRIORITAS KEENAM: FEEDS, ASSET ICONS, SITEMAP, LISENSI, & SCRIPTS ===
+        `<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">`,
+        `<link rel="manifest" href="/site.webmanifest">`,
+        `<link rel="sitemap" type="application/xml" href="/sitemap.xml">`,
+        `<link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="${baseUrl}/rss.xml">`,
+        `<link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="${baseUrl}/atom.xml">`,
+        `<link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">`,
+        `<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">`,
+        `<script defer src="/ext/data-provider.js"></script>`
     ];
 
     existingTags.forEach(tag => metaTags.push(`<meta property="article:tag" content="${tag}">`));
     metaTags.push(`<meta property="article:published_time" content="${publishedTime}">`);
     metaTags.push(`<meta property="article:modified_time" content="${modifiedTime}">`);
 
-    head.append('\n    ' + metaTags.join('\n    ') + '\n');
+    head.prepend('\n    ' + metaTags.join('\n    ') + '\n');
 
     $('img').each((_, el) => {
         if (!$(el).attr('alt')) $(el).attr('alt', seoTitle);
