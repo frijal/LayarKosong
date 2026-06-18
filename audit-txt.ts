@@ -64,8 +64,10 @@ const htmlTemplate = `
     <meta charset="UTF-8">
     <title>AdSense Safety Audit Dashboard</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 40px; background: #121214; color: #e1e1e6; }
-        .container { max-width: 1000px; margin: 0 auto; background: #202024; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+        * { box-sizing: border-box; }
+        html, body { width: 100%; min-height: 100vh; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 24px 32px; background: #121214; color: #e1e1e6; }
+        .container { width: 100%; max-width: none; margin: 0; background: #202024; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         h2 { color: #00e676; border-bottom: 2px solid #29292e; padding-bottom: 10px; margin-top: 0; }
         h3 { margin-top: 30px; color: #3b82f6; }
         
