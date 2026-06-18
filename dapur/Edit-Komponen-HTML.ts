@@ -179,6 +179,8 @@ function addElements(html: string): string {
     const section = `<section id="related-marquee-section"><div id="related-marquee-container"></div></section>`;
 
     const scripts = [
+      `<script defer src="/ext/marked.min.js"></script>`,
+      `<script defer src="/ext/highlight.js"></script>`,
       `<script defer src="/ext/markdown.js"></script>`,
       `<script defer src="/ext/marquee-url.js"></script>`,
       `<script defer src="/ext/lightbox.js"></script>`,
