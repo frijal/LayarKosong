@@ -84,8 +84,7 @@ jobs:
       - name: 🌈 Sync & Map Assets
         if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
-          # 1. Pastikan marked terinstall (qrcode diangkut via curl di bawah)
-          # ✨ TAMBAHAN: Tambahkan `marked@latest` di akhir perintah bun add
+          # 1. Pastikan marked terinstall (untuk mendapatkan versi rilis terbarunya)
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest html2pdf.js@latest marked@latest --no-save --trusted
           bun pm untrusted
           
@@ -105,10 +104,12 @@ jobs:
           cp node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js
           cp node_modules/html2pdf.js/dist/html2pdf.bundle.min.js dapur/html2pdf.bundle.min.js
           
-          # ✨ TAMBAHAN: Copy file marked.min.js ke folder dapur
-          cp node_modules/marked/marked.min.js dapur/marked.min.js
+          # ✨ PERBAIKAN: Ekstrak versi marked dan download langsung minified JS-nya via CDN
+          MARKED_VER=$(jq -r .version node_modules/marked/package.json)
+          curl -sS -L "https://cdn.jsdelivr.net/npm/marked@${MARKED_VER}/marked.min.js" -o dapur/marked.min.js
           
-          curl -sS https://raw.githubusercontent.com/davidshimjs/qrcodejs/master/qrcode.min.js -o dapur/qrcode.min.js
+          # qrcodejs tetap pakai curl
+          curl -sS -L https://raw.githubusercontent.com/davidshimjs/qrcodejs/master/qrcode.min.js -o dapur/qrcode.min.js
                               
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
           
@@ -120,10 +121,8 @@ jobs:
           H2C_VER=$(jq -r .version node_modules/html2canvas/package.json)
           H2PDF_VER=$(jq -r .version node_modules/html2pdf.js/package.json)
           HLJS_VER=$(jq -r .version node_modules/@highlightjs/cdn-assets/package.json)
-          # ✨ TAMBAHAN: Ambil versi marked
-          MARKED_VER=$(jq -r .version node_modules/marked/package.json)
           
-          # ✨ TAMBAHAN: Masukkan variabel marked ke dalam daftar info
+          # Simpan ke asset-info.txt
           echo -e "fontawesome=$FA_VER\nhtml2canvas=$H2C_VER\nhtml2pdf=$H2PDF_VER\nhljs=$HLJS_VER\nmarked=$MARKED_VER\nqrcode=1.0.0-davidshimjs" | sort > mini/asset-info.txt
 
       # --- STEP 3: AUDIT (Selalu Jalan untuk SEMUA mode) ---
