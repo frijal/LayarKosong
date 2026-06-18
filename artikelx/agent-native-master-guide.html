@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="id" dir="ltr" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="canonical" href="https://dalam.web.id/artikel/agent-native-master-guide">
+    <meta property="og:url" content="https://dalam.web.id/artikel/agent-native-master-guide">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/agent-native-master-guide">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:title" content="The Master Guide to Transforming a Website into Agent-Native">
+    <meta name="twitter:title" content="The Master Guide to Transforming a Website into Agent-Native">
+    <meta name="description" content="Tutorial lengkap perombakan arsitektur web Layar Kosong menjadi Agent-Native dengan skor 100/100 untuk AI crawler. Discover the DNS-AID &amp; llms.txt integration.">
+    <meta property="og:description" content="arsitektur di balik skor 100/100 Agent-Native. Studi kasus ini membedah implementasi DNS-AID, llms.txt, dan MCP framework di dalam.web.id.">
+    <meta name="twitter:description" content="Web terus berevolusi! Pelajari bagaimana Layar Kosong mencapai Level 5 Agent-Native untuk AI modern dalam tutorial mendalam ini.">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/76226e49ba25f002.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/76226e49ba25f002.webp">
+    <meta property="og:image:alt" content="The Master Guide to Transforming a Website into Agent-Native">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-06-06T15:03:54.900Z">
+    <meta property="article:modified_time" content="2026-06-06T15:03:54.900Z">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Master Guide to Transforming a Website into Agent-Native - Layar Kosong</title>
+    <meta name="news_keywords" content="Agent-Native, AI crawlers, SEO for AI, LLM web standards, DNS-AID, Layar Kosong, Web Development">
+    <meta name="article:tag" content="Web Development">
+    <meta name="article:tag" content="Artificial Intelligence">
+    <meta name="article:tag" content="SEO">
+    <meta name="promphint" content="Bagaimana cara membuat website Agent-Native? Terapkan protokol DNS-AID, file llms.txt, dan sinyal konten yang valid untuk AI crawler.">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <style>
+        /* System Font Stack & Native Variables */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --heading-color: #000000;
+            --link-color: #0056b3;
+            --code-bg: #f4f4f4;
+            --code-text: #24292e;
+            --border-color: #e1e4e8;
+            --meta-color: #586069;
+            --accent-bg: #f1f8ff;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0d1117;
+                --text-color: #c9d1d9;
+                --heading-color: #ffffff;
+                --link-color: #58a6ff;
+                --code-bg: #161b22;
+                --code-text: #e6edf3;
+                --border-color: #30363d;
+                --meta-color: #8b949e;
+                --accent-bg: #1f2428;
+            }
+        }
+        /* Base Resets */
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 1.5rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Container Layout: Center di Desktop (min-width: 64rem) */
+        .site-wrapper { width: 100%; margin: 0 auto; }
+        @media (min-width: 64rem) {
+            body { padding: 3rem 2rem; }
+            .site-wrapper { max-width: 64rem; }
+        }
+        /* Headings */
+        h1, h2, h3 { color: var(--heading-color); line-height: 1.3; margin-top: 2rem; margin-bottom: 0.75rem; }
+        h1 { font-size: 2.5rem; margin-top: 0; border-bottom: 0.0625rem solid var(--border-color); padding-bottom: 1rem; }
+        h2 { font-size: 1.75rem; border-left: 0.25rem solid var(--link-color); padding-left: 0.75rem; }
+        h3 { font-size: 1.25rem; color: var(--link-color); }
+        /* Links Custom Selector Rules */
+        a.content-link {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 0.0625rem dashed var(--link-color);
+            transition: opacity 0.2s;
+        }
+        a.content-link:hover { opacity: 0.7; border-bottom-style: solid; }
+        /* Media / Images (LCP Optimized, No Hero Above Fold issues) */
+        img.feature-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            background-color: var(--border-color); /* CLS mitigation */
+        }
+        /* Syntax Highlighting Base Theme */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.875rem;
+            border: 0.0625rem solid var(--border-color);
+        }
+        code { font-family: inherit; }
+        p code, li code {
+            background-color: var(--code-bg);
+            color: var(--heading-color);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+        /* Language Toggle Switch (Pure CSS) */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .lang-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1.25rem;
+            background-color: var(--accent-bg);
+            color: var(--heading-color);
+            border: 0.0625rem solid var(--border-color);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+        .lang-toggle-btn:hover { background-color: var(--code-bg); }
+        /* CSS Toggle Logic */
+        .content-en, .lang-text-en { display: none; }
+        .content-id, .lang-text-id { display: block; }
+        #lang-toggle:checked ~ .site-wrapper .content-id { display: none; }
+        #lang-toggle:checked ~ .site-wrapper .content-en { display: block; }
+        #lang-toggle:checked ~ .site-wrapper .lang-text-id { display: none; }
+        #lang-toggle:checked ~ .site-wrapper .lang-text-en { display: inline; }
+        /* Footer & Meta */
+        .article-meta {
+            color: var(--meta-color);
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        footer.site-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--meta-color);
+        }
+        .eeat-block { display: inline-block; margin: 0 0.5rem; }
+    </style>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+</head>
+<body>
+<input type="checkbox" id="lang-toggle" hidden="" aria-hidden="true">
+<div class="site-wrapper">
+    <header role="banner">
+        <div class="toggle-container">
+            <label for="lang-toggle" class="lang-toggle-btn" title="Toggle Language">
+                <i class="fa-solid fa-language"></i>
+                <span class="lang-text-id">English Language</span>
+                <span class="lang-text-en">Bahasa Indonesia</span>
+            </label>
+        </div>
+        <div id="iposbrowser"></div><h1 class="content-id">Panduan Lengkap Transformasi Website Menjadi Agent-Native</h1>
+        <h1 class="content-en">The Master Guide to Transforming a Website into Agent-Native</h1>
+        <div class="article-meta">
+            <i class="fa-regular fa-folder-open"></i>
+            <span class="content-id">Studi Kasus Layar Kosong (dalam.web.id)</span>
+            <span class="content-en">A Case Study of Layar Kosong (dalam.web.id)</span>
+        </div>
+    </header>
+    <img src="https://dalam.web.id/img/pbs.twimg.com/76226e49ba25f002.webp" alt="Layar Kosong Agent-Native Web Architecture" class="feature-image" fetchpriority="high" decoding="async" srcset="https://pbs.twimg.com/media/HKI2tTUboAArhjn?format=jpg&amp;name=large 1024w, https://pbs.twimg.com/media/HKI2tTUboAArhjn?format=jpg&amp;name=large 640w" sizes="(max-width: 64rem) 100vw, 64rem">
+    <main role="main">
+        <article class="content-id">
+            <p>Dunia web sedang mengalami pergeseran paradigma yang paling radikal sejak pertama kali diciptakan. Kalau dekade lalu kita fokus membangun website untuk dibaca oleh mata manusia (*Human-Centric Web*), bulan Juni 2026 ini kita harus mengakui bahwa pengunjung yang paling rajin menguras trafik server kita adalah barisan robot, *crawler*, dan agen AI seperti ChatGPT, Gemini, Claude, dan Perplexity.</p>
+            <p>Masalahnya, saat agen-agen AI ini mengunjungi website tradisional, mereka sering tersandung oleh sampah visual. Mereka kebingungan membaca skrip JavaScript yang berat, CSS yang berantakan, dan struktur HTML yang tidak efisien. Berangkat dari masalah ini, komunitas teknologi global menetapkan standar baru yang disebut **Agent-Ready Web Standards**.</p>
+            <p>Artikel ini merangkum secara komplit proses perombakan blog Layar Kosong oleh saya sendiri di Balikpapan. Perombakan total ini sukses meraih skor mutlak 100/100 (*Level 5 Agent-Native*) pada sistem audit global `isitagentready.com`.</p>
+<img src="https://dalam.web.id/img/pbs.twimg.com/bb5c1dfb8c1ee136.webp" alt="100 persen 1" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
+            <h2>Bagian 1: Discoverability Tingkat Tinggi &amp; DNS-AID</h2>
+            <p>Sebelum agen AI memproses konten, ia harus tahu letak pintu masuk yang benar tanpa harus menjelajah tanpa arah yang jelas. Kita menggunakan ekosistem *Cloudflare DNS* untuk mengeksekusi dua mekanisme ini:</p>
+            <h3>1. DNS for AI Discovery (DNS-AID)</h3>
+            <p>Mengacu pada draf IETF (`draft-mozleywilliams-dnsop-dnsaid`), AI masa kini bisa melakukan pencarian langsung di tingkat DNS. Pada sistem Layar Kosong, dua *record* berjenis `SVCB/HTTPS` dipasang di bawah subdomain agensi:</p>
+            <ul>
+                <li>`_index._agents.dalam.web.id`</li>
+                <li>`_a2a._agents.dalam.web.id`</li>
+            </ul>
+            <p>Record ini membawa parameter `alpn` dan penunjuk *endpoint*. DNS resolver langsung mengembalikan data otentik kepada bot AI bahkan sebelum koneksi HTTP terjadi.</p>
+            <h3>2. Suntikan HTTP Link Headers</h3>
+            <p>Lewat file `_headers` statis di *Cloudflare Pages*, server menyuntikkan relasi *link* langsung ke dalam *HTTP Response Header* tanpa menunggu HTML selesai dimuat:</p>
+<pre><code class="language-plaintext">/*
+  Link: <!--.well-known/agent-skills/index.json-->; rel="agent-skills"
+  Link: <!--.well-known/api-catalog-->; rel="api-catalog"
+  Link: ; rel="alternate"; type="text/markdown"
+  Link: ; rel="alternate"; type="text/markdown"
+</code></pre>
+            <h2>Bagian 2: Content Negotiation &amp; Dualitas File LLMS</h2>
+            <p>Menyumpal ribuan halaman HTML utuh ke memori AI adalah pemborosan token. Layar Kosong merakit penambang artikel dinamis berbasis **Bun** yang memilah konten menjadi dua wujud, tanpa perlu berurusan dengan relasi *database creation* yang rumit:</p>
+            <ul>
+                <li>**llms.txt (Buku Menu):** File ringan di folder `.well-known` berisi judul, ringkasan satu baris, dan URL asli sebagai peta jalan agen AI.</li>
+                <li>**llms.md (Gudang Arsip):** Skrip *Bun* membedah file HTML asli, membuang elemen pengganggu, dan mengonversi tag inti menjadi format *Markdown* padat gizi.</li>
+            </ul>
+            <p>Melalui lapisan *middleware* via `_middleware.ts`, bot yang membawa *header* `Accept: text/markdown` akan otomatis dibelokkan untuk disuapi file *Markdown* tanpa merusak antarmuka HTML bagi pengunjung manusia.</p>
+<img src="https://dalam.web.id/img/pbs.twimg.com/75f836916a86e2b9.webp" alt="100 persen 2" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
+            <h2>Bagian 3: Kontrol Akses Bot &amp; Content Signals</h2>
+            <p>Situs cerdas tegas mengatur batasan hukum penggunaan datanya.</p>
+            <h3>1. Sinyal Konten di robots.txt</h3>
+            <p>Sesuai draf `contentsignals.org`, kita menanamkan instruksi yang melarang keras raksasa AI melatih model dasar mereka memakai konten kita (`ai-train=no`), tapi tetap mengizinkan pembacaan untuk keperluan pencarian (`search=yes`).</p>
+            <h3>2. Web Bot Auth Request Signing</h3>
+            <p>Sebuah file tanpa ekstensi `http-message-signatures-directory` dipublikasikan. Isinya adalah *JSON Web Key Sets* (JWKS) kriptografi Ed25519 untuk verifikasi *HTTP Message Signatures* yang absolut.</p>
+            <h2>Bagian 4: API Catalog &amp; Birokrasi Autentikasi</h2>
+            <p>Karena konten Layar Kosong bersifat **Open Access** dan *public domain*, kita membuat replika arsitektur statis untuk melompati birokrasi ini dengan mulus. File `.well-known/api-catalog` disajikan untuk mendeklarasikan peta website. Kita juga menjinakkan spesifikasi `auth.md` dengan menanamkan blok peringatan bahwa bot bisa melewati birokrasi ini karena tidak ada sistem *login*.</p>
+            <p>Akhirnya, file `agent-card.json` dan `mcp/server-card.json` diaktifkan untuk menyambut ekosistem *Model Context Protocol* (MCP). Meracik web modern bukan sekadar visual yang wah, tapi struktur yang patuh protokol.!</p>
+        </article>
+        <article class="content-en">
+            <p>The web is undergoing its most radical paradigm shift since its inception. While the last decade focused on building websites for human eyes (*Human-Centric Web*), this June 2026, we must acknowledge that the most frequent visitors draining our servers are robots, crawlers, and AI Agents like ChatGPT, Gemini, Claude, and Perplexity.</p>
+            <p>When these AI agents visit traditional websites, they often stumble over visual garbage like heavy JavaScript, complex CSS styling, and inefficient HTML structures. To solve this, the global tech community established a new standard called **Agent-Ready Web Standards**.</p>
+            <p>This article summarizes the complete process of how I overhauled the blog Layar Kosong from my base in Balikpapan. This deep-dive resulted in a perfect 100/100 score (*Level 5 Agent-Native*) on the global `isitagentready.com` audit system.</p>
+<img src="https://dalam.web.id/img/pbs.twimg.com/bb5c1dfb8c1ee136.webp" alt="100 persen 1" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
+            <h2>Part 1: High-Level Discoverability &amp; DNS-AID</h2>
+            <p>Before an AI agent can process content, it must know the correct entry point. We utilize *Cloudflare DNS* to implement two primary mechanisms:</p>
+            <h3>1. DNS for AI Discovery (DNS-AID)</h3>
+            <p>Drawing from the IETF draft (`draft-mozleywilliams-dnsop-dnsaid`), modern AI agents perform direct lookups at the DNS level. Two specific `SVCB/HTTPS` records were published under the agent subdomain: `_index._agents.dalam.web.id` and `_a2a._agents.dalam.web.id`. DNS resolvers return authenticated data to AI agents before an HTTP connection is even established.</p>
+            <h3>2. HTTP Link Header Injection</h3>
+            <p>Through a permanent `_headers` configuration file hosted on *Cloudflare Pages*, the server injects link relations directly into the *HTTP Response Header*:</p>
+<pre><code class="language-plaintext">/*
+  Link: <!--.well-known/agent-skills/index.json-->; rel="agent-skills"
+  Link: <!--.well-known/api-catalog-->; rel="api-catalog"
+  Link: ; rel="alternate"; type="text/markdown"
+  Link: ; rel="alternate"; type="text/markdown"
+</code></pre>
+            <h2>Part 2: Content Negotiation &amp; Dual LLMS Files</h2>
+            <p>Stuffing full HTML pages into an AI's memory is a colossal waste of tokens. Layar Kosong built a dynamic harvesting system using **Bun** that categorizes content without the overhead of traditional *database creation*:</p>
+            <ul>
+                <li>**llms.txt (The Menu):** A super light file acting as a roadmap, featuring article titles, summaries, and URLs.</li>
+                <li>**llms.md (The Warehouse):** Our *Bun* script parses HTML files during build, strips distracting elements, and converts core tags into clean *Markdown*.</li>
+            </ul>
+            <p>A fast-path layer via `_middleware.ts` ensures that bots carrying the `Accept: text/markdown` header are invisibly rerouted to the *Markdown* content, keeping the HTML visual display beautiful for humans.</p>
+<img src="https://dalam.web.id/img/pbs.twimg.com/75f836916a86e2b9.webp" alt="100 persen 2" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
+            <h2>Part 3: Bot Access Control &amp; Content Signals</h2>
+            <p>A smart website firmly sets the boundaries of data usage.</p>
+            <h3>1. Content-Signals in robots.txt</h3>
+            <p>Adopting the `contentsignals.org` draft, we embedded instructions forbidding major AI corporations from training their foundation models on our data (`ai-train=no`), but permitting intelligent search reads (`search=yes`).</p>
+            <h3>2. Web Bot Auth Request Signing</h3>
+            <p>A static file named `http-message-signatures-directory` is published holding *JSON Web Key Sets* (JWKS) based on Ed25519 cryptography for digital signature verification.</p>
+            <h2>Part 4: API Catalog &amp; Auth Bureaucracy</h2>
+            <p>Since Layar Kosong relies on **Open Access** and *public domain* licensing, we built a static architecture replica to skip strict enterprise bureaucracy. The `.well-known/api-catalog` declares the resource map. We crafted `/auth.md` to replicate the Agentic Registration process but inserted a bold notice informing bots they can skip the flow entirely.</p>
+            <p>Finally, `agent-card.json` and `mcp/server-card.json` signal readiness to connect to the *Model Context Protocol* (MCP). Modern web craftsmanship is about protocol compliance legible to AI.!</p>
+        </article>
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+    </main>
+    <footer class="site-footer">
+        <span class="eeat-block"><i class="fa-solid fa-pen-nib"></i> Fakhrul Rijal</span>
+        <span class="eeat-block">|</span>
+        <span class="eeat-block"><i class="fa-regular fa-calendar-check"></i> Juni 2026</span>
+        <span class="eeat-block">|</span>
+        <span class="eeat-block"><i class="fa-solid fa-location-dot"></i> Balikpapan, Indonesia</span>
+        <span class="eeat-block">|</span>
+        <span class="eeat-block"><i class="fa-brands fa-creative-commons"></i> Open Access</span>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>

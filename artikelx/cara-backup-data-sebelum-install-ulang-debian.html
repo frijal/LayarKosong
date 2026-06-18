@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-backup-data-sebelum-install-ulang-debian">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cara-backup-data-sebelum-install-ulang-debian">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/cara-backup-data-sebelum-install-ulang-debian">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:title" content="Panduan Aman: Cara Backup Data Sebelum Install Ulang Debian">
+    <meta name="twitter:title" content="Panduan Aman: Cara Backup Data Sebelum Install Ulang Debian">
+    <meta name="description" content="Jangan sampai file pentingmu lenyap! Pelajari cara backup data, konfigurasi dotfiles, dan daftar package sebelum melakukan install ulang OS Debian.">
+    <meta property="og:description" content="Install ulang Debian memang bikin sistem fresh, tapi pastikan kamu sudah melakukan backup dengan benar. Berikut panduan rsync, dotfiles, dan dpkg selections.">
+    <meta name="twitter:description" content="Tutorial lengkap cara mengamankan data sebelum wipe atau reinstall Debian Linux. Mulai dari rsync folder home sampai backup daftar aplikasi via terminal!">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/f65c2bf23757852c.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/f65c2bf23757852c.webp">
+    <meta property="og:image:alt" content="Panduan Aman: Cara Backup Data Sebelum Install Ulang Debian">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Debian">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Tutorial">
+    <meta property="article:published_time" content="2026-06-07T00:35:27.784Z">
+    <meta property="article:modified_time" content="2026-06-07T00:35:27.784Z">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Aman: Cara Backup Data Sebelum Install Ulang Debian - Layar Kosong</title>
+    <meta name="news_keywords" content="Backup Debian, Linux, rsyc, dpkg, Install Ulang Linux, Sysadmin, Dotfiles">
+    <meta name="promphint" content="Bagaimana cara melakukan backup data sebelum install ulang Debian? Kamu bisa menggunakan perintah rsync untuk menyalin folder /home ke penyimpanan eksternal serta menyimpan daftar paket menggunakan dpkg.">
+    <style>
+        /* Mobile-first variables & Tema Terang/Gelap */
+        :root {
+            --bg-color: #fafafa;
+            --text-color: #2d3748;
+            --text-muted: #718096;
+            --link-color: #3182ce;
+            --link-hover: #2b6cb0;
+            --border-color: #e2e8f0;
+            --table-head-bg: #edf2f7;
+            --code-bg: #282a36; /* Dracula Theme base */
+            --code-text: #f8f8f2;
+            --code-keyword: #ff79c6;
+            --code-string: #f1fa8c;
+            --code-comment: #6272a4;
+            --alert-bg: #ebf8ff;
+            --alert-text: #2c5282;
+            --alert-border: #bee3f8;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1.25rem;
+            --spacing-lg: 2rem;
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --radius: 0.5rem;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a202c;
+                --text-color: #e2e8f0;
+                --text-muted: #a0aec0;
+                --link-color: #63b3ed;
+                --link-hover: #90cdf4;
+                --border-color: #4a5568;
+                --table-head-bg: #2d3748;
+                --code-bg: #1e1e1e;
+                --alert-bg: #2a4365;
+                --alert-text: #bee3f8;
+                --alert-border: #2c5282;
+            }
+        }
+        /* Base styles */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+        /* Container centering */
+        .wrapper {
+            width: 100%;
+            padding: var(--spacing-md);
+            box-sizing: border-box;
+        }
+        @media (min-width: 64rem) {
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .wrapper {
+                max-width: 64rem;
+                padding: var(--spacing-lg);
+            }
+        }
+        /* Typography sizing (rem) */
+        h1 { font-size: 2.25rem; line-height: 1.2; margin-top: 0; margin-bottom: var(--spacing-md); }
+        h2 { font-size: 1.75rem; line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+        p, ul, li { font-size: 1.125rem; margin-bottom: var(--spacing-md); }
+        a { color: var(--link-color); text-decoration: none; border-bottom: 0.0625rem dashed var(--link-color); transition: all 0.2s ease; }
+        a:hover { color: var(--link-hover); border-bottom-style: solid; }
+        /* LCP Image: Lebar penuh container, tinggi natural agar tidak terpotong */
+        .hero-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius);
+            margin: var(--spacing-lg) 0;
+            background-color: var(--border-color); /* Fallback warna */
+        }
+        /* Syntax Highlighting (Dracula-ish) */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: var(--spacing-md);
+            border: 0.0625rem solid var(--border-color);
+        }
+        code { font-family: inherit; }
+        .comment { color: var(--code-comment); }
+        .keyword { color: var(--code-keyword); }
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.05rem;
+        }
+        th, td {
+            border: 0.0625rem solid var(--border-color);
+            padding: 0.875rem;
+            text-align: left;
+        }
+        th { background-color: var(--table-head-bg); font-weight: 600; }
+        /* Checklist style */
+        .checklist {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .checklist li::before {
+            content: "\f14a"; /* FontAwesome square-check */
+            font-family: "Font Awesome 7 Free";
+            font-weight: 900;
+            margin-right: 0.5rem;
+            color: var(--link-color);
+        }
+        /* Box Catatan */
+        blockquote {
+            background-color: var(--alert-bg);
+            color: var(--alert-text);
+            border-left: 0.375rem solid var(--alert-border);
+            margin: 1.5rem 0;
+            padding: 1rem 1.25rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 1.05rem;
+        }
+        blockquote p { margin: 0; }
+        /* Footer E-E-A-T Inline */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .footer-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .footer-meta a { border: none; }
+        .footer-meta a:hover { text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+</head>
+<body>
+    <main role="main" class="wrapper">
+        <article>
+            <header>
+                <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Cara Backup Data Sebelum Install Ulang Debian Agar Tidak Menyesal</h1>
+            </header>
+            <p>Pernahkah kamu merasa *server* atau laptop Debian milikmu sudah terlalu berantakan dan butuh penyegaran? Menginstal ulang sistem operasi memang seringkali menjadi jalan pintas untuk mendapatkan performa yang kembali *fresh*. Namun, tunggu dulu! Melakukan **backup data** sebelum eksekusi adalah langkah **paling penting** agar kamu tidak menangisi *file-file* penting yang lenyap ditelan format partisi.</p>
+            <img src="https://dalam.web.id/img/pbs.twimg.com/f65c2bf23757852c.webp" srcset="https://pbs.twimg.com/media/HKK5ASMakAEqARN?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK5ASMakAEqARN?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK5ASMakAEqARN?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="hero-img" alt="Ilustrasi server dan proses pencadangan data Linux">
+            <p>Pada panduan kali ini, kita akan membahas secara santai namun mendalam mengenai cara *backup* data di Debian (atau distro Linux lainnya) secara efisien. Siapkan kopimu, dan mari kita amankan data-data tersebut!</p>
+            <h2>1. Persiapan Krusial Sebelum Mulai Backup</h2>
+            <p>Sebelum mengetikkan perintah apa pun di terminal, pastikan kamu sudah menyiapkan hal-hal fundamental ini:</p>
+            <ul>
+                <li>Siapkan **media penyimpanan eksternal** (bisa berupa USB HDD/SSD, *external drive*, atau minimal partisi lain yang tidak akan ikut diformat).</li>
+                <li>Pastikan kapasitas *drive* tujuan mencukupi untuk menampung seluruh *file* kamu.</li>
+                <li>Mutakhirkan sistem terlebih dahulu agar tidak ada konflik dependensi saat membaca daftar paket. Jalankan perintah ini:</li>
+            </ul>
+<pre><code><span class="keyword">sudo apt</span> update &amp;&amp; <span class="keyword">sudo apt</span> upgrade</code></pre>
+            <h2>2. Backup File Pribadi (Prioritas Utama)</h2>
+            <p>Di ekosistem Linux, hampir seluruh nyawa kehidupan digitalmu tersimpan di dalam folder **Home** (`/home/namauser`). Mulai dari dokumen kerja, unduhan, hingga foto-foto.</p>
+            <h3>Cara Paling Cepat &amp; Tangguh (Menggunakan rsync)</h3>
+            <p>Aplikasi `rsync` adalah sahabat terbaik *sysadmin*. Kenapa? Karena ia bekerja sangat cepat dan punya kemampuan magis untuk melanjutkan proses *copy* jika tiba-tiba koneksi terputus atau lampu mati.</p>
+<pre><code><span class="comment"># Contoh: Backup ke USB drive yang ter-mount di /media/user/Backup</span>
+<span class="keyword">rsync</span> -aP --delete /home/namauser/ /media/user/Backup/home-backup/</code></pre>
+            <p>Bingung dengan kode di atas? Berikut penjelasan santainya:</p>
+            <ul>
+                <li>`-a` (archive mode): Berfungsi menjaga *permission*, kepemilikan, dan *timestamp* *file* agar tidak berantakan saat dikembalikan nanti.</li>
+                <li>`-P` (progress + partial): Menampilkan bilah progres di terminal dan memungkinkan proses dilanjutkan jika terhenti di tengah jalan.</li>
+                <li>`--delete`: Ini opsi opsional. Fungsinya menghapus *file* di folder tujuan jika *file* tersebut sudah tidak ada lagi di folder sumber.</li>
+            </ul>
+            <h3>Ingin Lebih Spesifik? Eksekusi Folder Tertentu Saja</h3>
+            <p>Kalau mem-backup seluruh `/home` memakan waktu terlalu lama (misal karena banyak folder *cache* yang tidak penting), kamu bisa menembak langsung folder-folder intinya saja:</p>
+<pre><code><span class="keyword">rsync</span> -aP /home/namauser/Documents/   /media/user/Backup/Documents/
+<span class="keyword">rsync</span> -aP /home/namauser/Pictures/    /media/user/Backup/Pictures/
+<span class="keyword">rsync</span> -aP /home/namauser/Videos/      /media/user/Backup/Videos/
+<span class="keyword">rsync</span> -aP /home/namauser/Downloads/   /media/user/Backup/Downloads/
+<span class="keyword">rsync</span> -aP /home/namauser/Desktop/     /media/user/Backup/Desktop/</code></pre>
+            <h2>3. Backup Daftar Package (Aplikasi) yang Terinstall</h2>
+            <p>Pernah merasa malas mengingat aplikasi apa saja yang sudah kamu pasang? Tenang, Debian punya fitur keren untuk mengekspor daftar *package* yang aktif. Dengan begitu, setelah instalasi ulang selesai, kamu tinggal "menyuntikkan" daftar ini dan membiarkan sistem mengunduhnya secara otomatis.</p>
+<pre><code><span class="keyword">dpkg</span> --get-selections &gt; ~/installed-packages.txt</code></pre>
+            <p>Jangan lupa, salin *file* teks tersebut ke media penyimpanan eksternalmu:</p>
+<pre><code><span class="keyword">cp</span> ~/installed-packages.txt /media/user/Backup/</code></pre>
+            <blockquote>
+                <p><i class="fa-solid fa-lightbulb"></i> **Catatan Restore:** Setelah OS barumu terpasang, kamu bisa memanggil kembali pasukan aplikasimu dengan mengeksekusi: `sudo dpkg --set-selections &lt; installed-packages.txt` dilanjutkan dengan `sudo apt-get dselect-upgrade`.</p>
+            </blockquote>
+            <h2>4. Mengamankan Konfigurasi Penting (Dotfiles)</h2>
+            <p>Aplikasi Linux punya kebiasaan menyimpan pengaturan kustom di dalam folder tersembunyi (diawali dengan titik, makanya disebut *dotfiles*). Kalau kamu tidak mau capek mengatur ulang tema terminal atau koneksi SSH, amankan folder ini:</p>
+<pre><code><span class="keyword">rsync</span> -aP /home/namauser/.config/      /media/user/Backup/.config/
+<span class="keyword">rsync</span> -aP /home/namauser/.ssh/         /media/user/Backup/.ssh/
+<span class="keyword">rsync</span> -aP /home/namauser/.gnupg/       /media/user/Backup/.gnupg/
+<span class="keyword">rsync</span> -aP /home/namauser/.local/       /media/user/Backup/.local/</code></pre>
+            <p>Berikut adalah peta harta karun *file* penting yang wajib masuk radar *backup* kamu:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Folder / File</th>
+                        <th>Keterangan</th>
+                        <th>Tingkat Kepentingan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>`~/.config`</td>
+                        <td>Konfigurasi sebagian besar aplikasi desktop.</td>
+                        <td>**Sangat Penting**</td>
+                    </tr>
+                    <tr>
+                        <td>`~/.ssh`</td>
+                        <td>Kunci rahasia untuk akses *server* via SSH.</td>
+                        <td>**Sangat Penting**</td>
+                    </tr>
+                    <tr>
+                        <td>`~/.gnupg`</td>
+                        <td>Kunci enkripsi GPG kamu.</td>
+                        <td>**Sangat Penting**</td>
+                    </tr>
+                    <tr>
+                        <td>`~/.bashrc`, `~/.zshrc`</td>
+                        <td>Personalisasi dan alias terminal *shell*.</td>
+                        <td>Penting</td>
+                    </tr>
+                    <tr>
+                        <td>`~/.gitconfig`</td>
+                        <td>Pengaturan identitas Git.</td>
+                        <td>Penting</td>
+                    </tr>
+                    <tr>
+                        <td>`~/.mozilla` / `~/.config/google-chrome`</td>
+                        <td>Data *browser*, *history*, dan markah.</td>
+                        <td>Penting</td>
+                    </tr>
+                    <tr>
+                        <td>`/etc`</td>
+                        <td>Konfigurasi global sistem. Hanya *backup* jika kamu melakukan *tweak* manual.</td>
+                        <td>Opsional</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>5. Malas Pake Terminal? Gunakan Cara GUI</h2>
+            <p>Jika melihat layar hitam terminal bikin pusing, ekosistem Linux juga menyediakan aplikasi grafis yang *user-friendly*.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Aplikasi</th>
+                        <th>Kelebihan Utama</th>
+                        <th>Target Pengguna</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>**Deja Dup**</td>
+                        <td>Antarmuka simpel, otomatis, dan mendukung enkripsi.</td>
+                        <td>Pemula</td>
+                    </tr>
+                    <tr>
+                        <td>**Timeshift**</td>
+                        <td>Cocok untuk *snapshot* sistem OS keseluruhan (bukan sekadar data *user*).</td>
+                        <td>Menengah ke Atas</td>
+                    </tr>
+                    <tr>
+                        <td>**rsync** *(via Grsync)*</td>
+                        <td>Fleksibilitas rsync namun dibungkus dalam tampilan jendela klik-klik.</td>
+                        <td>Semua Kalangan</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Untuk menginstal Deja Dup, cukup ketik: `sudo apt install deja-dup`.</p>
+            <h2>6. Checklist Final Sebelum Format Disk</h2>
+            <p>Sebelum kamu benar-benar meratakan disk dengan *installer* Debian, mari lakukan *cross-check* terakhir:</p>
+            <ul class="checklist">
+                <li>File Dokumen, Foto, Video, dan Musik sudah disalin.</li>
+                <li>Folder *Downloads* &amp; *Desktop* tidak ada yang tertinggal.</li>
+                <li>Daftar *package* terinstall (`installed-packages.txt`) sudah aman di *flashdisk*.</li>
+                <li>Folder sakral `.config`, `.ssh`, dan `.gnupg` sudah ter-backup.</li>
+                <li>*Bookmark* dan kata sandi *browser* sudah diekspor (jika tidak menggunakan sinkronisasi *cloud*).</li>
+                <li>*Database* lokal (MySQL/PostgreSQL) sudah di-*dump*.</li>
+            </ul>
+            <p>Satu tips ekstra: Usahakan untuk menerapkan prinsip *redundancy*. *Backup* data pentingmu ke **dua lokasi berbeda** (misalnya satu di *Hardisk* Eksternal, satu lagi di *Cloud Storage*). Ingat, sedia payung sebelum hujan itu baik, tapi sedia dua payung itu lebih menyelamatkan!</p>
+            <p>Selamat melakukan instalasi ulang Debian. Semoga sistem barumu berjalan mulus dan lebih cepat! 🚀</p>
+        </article>
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+        <footer>
+            <div class="footer-meta">
+                <span><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <a href="https://github.com/frijal" rel="author">Frijal</a></span>
+                <span>•</span>
+                <span><i class="fa-regular fa-calendar-check"></i> 7 Juni 2026</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-book"></i> Referensi: <a href="https://wiki.debian.org/BackupAndRecovery" target="_blank" rel="noopener noreferrer">Debian Backup &amp; Recovery Wiki</a></span>
+            </div>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+    </main>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
