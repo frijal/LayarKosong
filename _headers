@@ -9,39 +9,41 @@ https://:project.pages.dev/*
   X-Robots-Tag: noindex
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
+
 # =========================================================
-# 2. DATA & XML (Wajib Fresh / No-Cache)
+# 2. DATA & XML (Ringkas Menggunakan Wildcard)
 # =========================================================
-/feed-gaya-hidup.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
-/feed-jejak-sejarah.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
-/feed-lainnya.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
-/feed-olah-media.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
-/feed-opini-sosial.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
-/feed-sistem-terbuka.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
-/feed-warta-tekno.xml
+/*.xml
   Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /artikel.json
   Cache-Control: public, max-age=1800, s-maxage=1800, stale-while-revalidate=2419200
-/ext/data-provider.js
-  Cache-Control: public, max-age=1800, s-maxage=1800, stale-while-revalidate=2419200
-/rss.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
-/sitemap.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /sitemap.txt
   Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /llms.txt
   Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 /.well-known/llms.txt
   Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
+
 # =========================================================
-# 3. ASSET STATIS (Long-term Cache)
+# 3. ATURAN KHUSUS SCRIPT TANPA VERSIONING (KRUSIAL!)
+# Memaksa browser revalidasi ke Cloudflare. Efektif untuk Purge Manual.
+# =========================================================
+/ext/data-provider.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/markdown.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/marquee-url.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/lightbox.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/iposbrowser.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/response.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+
+# =========================================================
+# 4. ASSET STATIS (Long-term Cache)
+# Sisa file di folder /ext/ (seperti .css / fonts) tetap aman di sini.
 # =========================================================
 /img/*
   Cache-Control: public, max-age=31536000, immutable
@@ -73,8 +75,9 @@ https://:version.:project.pages.dev/*
 /logo.png
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+
 # =========================================================
-# 4. HALAMAN HTML (Ultra Long-term dengan SWR)
+# 5. HALAMAN HTML (Ultra Long-term dengan SWR)
 # =========================================================
 /404.html
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
@@ -134,6 +137,7 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /sitemap
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+
 # --- Artikel Berdasarkan Kategori ---
 /gaya-hidup/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
