@@ -41,10 +41,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Cek juga 'search' kalau-kalau form HTML-nya pakai name="search" bukan "q"
     const query = urlParams.get('q')?.trim() || urlParams.get('search')?.trim() || '';
 
+    // 🛡️ SATPAM XSS: Mengubah karakter berbahaya menjadi HTML Entities
+    const escapeHTML = (str: string) => {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag)
+        );
+    };
+
+    // Buat versi query yang sudah steril
+    const safeQuery = escapeHTML(query);
+
+    // 💡 UX FIX 1: Pertahankan teks di kotak input biar pengunjung gampang mengedit ketikannya
+    // Mencari elemen input berdasarkan tipe atau nama (sesuaikan jika di HTML beda)
+    const searchInput = document.querySelector('input[type="search"], input[name="q"], input[name="search"]') as HTMLInputElement;
+    if (searchInput) {
+        searchInput.value = query; // Aman pakai 'query' asli karena mengisi property .value, bukan merender HTML
+    }
+
     if (queryDisplay) {
         queryDisplay.innerHTML = query
-            ? `Hasil Pencarian untuk: <span class="font-bold">"${query}"</span>`
+            ? `Hasil Pencarian untuk: <span class="font-bold">"${safeQuery}"</span>`
             : 'Pencarian';
+        // document.title aman menggunakan 'query' asli karena murni teks
         document.title = query ? `${query} - Cari di Layar Kosong` : 'Pencarian di Layar Kosong';
     }
 
@@ -106,7 +130,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (matches.length === 0) {
                 if (page === 1) {
-                    if(resultsContainer) resultsContainer.innerHTML = `<p style="text-align:center; padding: 40px 0;">Tidak ditemukan artikel untuk "<b>${query}</b>"</p>`;
+                    // 💡 UX FIX 2: Tambahan CSS word-break & overflow-wrap supaya text panjang nggak bikin layout jebol
+                    if(resultsContainer) {
+                        resultsContainer.innerHTML = `<p style="text-align:center; padding: 40px 0; word-break: break-word; overflow-wrap: break-word;">Tidak ditemukan artikel untuk "<b>${safeQuery}</b>"</p>`;
+                    }
                 } else {
                     if(resultsContainer) resultsContainer.innerHTML = `<p style="text-align:center; padding: 40px 0;">Tidak ada lagi artikel untuk ditampilkan.</p>`;
                 }
@@ -121,7 +148,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error("❌ Gagal Fetch API:", err); // DEBUG: Cek pesan error aslinya
             if (loadingIndicator) loadingIndicator.style.display = 'none';
             if (resultsContainer) {
-                resultsContainer.innerHTML = `<p style="text-align:center; color: red;">Error memuat data: ${err.message}</p>`;
+                // Di-escape juga sekalian biar kalau pesan error-nya dari server ngaco, tetap aman
+                resultsContainer.innerHTML = `<p style="text-align:center; color: red;">Error memuat data: ${escapeHTML(err.message)}</p>`;
             }
         }
     }
@@ -139,6 +167,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const infoText = document.createElement('p');
         infoText.className = 'text-muted';
         infoText.style.cssText = 'margin-bottom: 1rem; text-align: center; color: gray;';
+        // Aman menggunakan 'query' asli karena .textContent tidak merender HTML
         infoText.textContent = `Menampilkan hasil ${startIdx} - ${endIdx} untuk "${query}"`;
         resultsContainer.appendChild(infoText);
 
