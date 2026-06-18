@@ -200,7 +200,7 @@
             <p>Sistem akan mencari data di atas RAM yang sedang tidak aktif, lalu membuangnya sementara ke dalam *drive* penyimpanan utama (SSD/HDD). Kecepatan akses SSD jauh berada di bawah RAM. Proses bongkar-muat data inilah yang membuat laptopmu mendadak *freeze*.</p>
             <h2>5. zRAM: Kompresi Memori Modern 🪄</h2>
             <p>Untuk mengatasi kelambatan ekstrem dari metode SWAP konvensional, distribusi Linux modern menerapkan teknologi yang disebut **zRAM**.</p>
-            <p>zRAM menggantikan peran SWAP fisik di *storage* dengan membuat blok terkompresi langsung di dalam RAM itu sendiri. Saat RAM penuh, data dipampatkan menggunakan algoritma super cepat. [Revisi: gunakan diksi yang lebih netral, bersyarat, dan sesuai konteks teknis.] Berikut adalah bukti nyata sistem yang menggunakan zRAM (berjalan dengan algoritma zstd):</p>
+            <p>zRAM menggantikan peran SWAP fisik di *storage* dengan membuat blok terkompresi langsung di dalam RAM itu sendiri. Saat RAM penuh, data dipampatkan menggunakan algoritma super cepat. Berikut adalah bukti nyata sistem yang menggunakan zRAM (berjalan dengan algoritma zstd):</p>
 <pre class="terminal"><code>$ zramctl
 NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
