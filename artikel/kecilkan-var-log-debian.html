@@ -45,9 +45,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Ampuh Mengecilkan /var/log/ di Debian 13 - Layar Kosong</title> 
 <style>
-        /* 1. Reset dan Variabel Warna */
+        /<em> 1. Reset dan Variabel Warna </em>/
         :root {
-            /* Tema Terang (Default) */
+            /<em> Tema Terang (Default) </em>/
             --bg-color: #ffffff;
             --text-color: #333333;
             --heading-color: #111111;
@@ -62,7 +62,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Tema Gelap */
+                /<em> Tema Gelap </em>/
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
                 --heading-color: #ffffff;
@@ -82,7 +82,7 @@
             padding: 0;
         }
         html, body {
-            height: 100%; /* Untuk layout "fullscreen" */
+            height: 100%; /<em> Untuk layout "fullscreen" </em>/
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -92,17 +92,17 @@
             transition: background-color 0.3s ease, color 0.3s ease;
             font-size: 16px;
         }
-        /* 2. Tata Letak Utama (Widescreen & Responsif) */
+        /<em> 2. Tata Letak Utama (Widescreen & Responsif) </em>/
         .container {
-            max-width: 1200px; /* Desain Widescreen */
-            margin: 0 auto; /* Tengah */
+            max-width: 1200px; /<em> Desain Widescreen </em>/
+            margin: 0 auto; /<em> Tengah </em>/
             padding: 2.5rem 2rem;
         }
         article {
-            max-width: 800px; /* Lebar artikel optimal untuk dibaca */
+            max-width: 800px; /<em> Lebar artikel optimal untuk dibaca </em>/
             margin: 0 auto;
         }
-        /* Mobile Friendly */
+        /<em> Mobile Friendly </em>/
         @media (max-width: 768px) {
             body {
                 font-size: 15px;
@@ -118,7 +118,7 @@
                 font-size: 1.8rem !important;
             }
         }
-        /* 3. Tipografi */
+        /<em> 3. Tipografi </em>/
         h1, h2, h3 {
             color: var(--heading-color);
             margin-bottom: 1rem;
@@ -156,7 +156,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /* 4. Elemen Konten */
+        /<em> 4. Elemen Konten </em>/
         img {
             max-width: 100%;
             height: auto;
@@ -182,7 +182,7 @@
         code {
             font-family: inherit;
         }
-        /* Ikon inline */
+        /<em> Ikon inline </em>/
         .inline-icon {
             display: inline-block;
             vertical-align: -0.2em;
@@ -192,7 +192,7 @@
             fill: currentColor;
             color: var(--icon-color);
         }
-        /* Kotak Peringatan */
+        /<em> Kotak Peringatan </em>/
         .warning-box {
             background-color: var(--warning-bg);
             color: var(--warning-text);
@@ -217,7 +217,7 @@
             background-color: var(--border-color);
             margin: 3rem 0;
         }
-        /* 5. Tombol Share Media Sosial */
+        /<em> 5. Tombol Share Media Sosial </em>/
         .social-share {
             text-align: center;
             margin-top: 2rem;
@@ -248,7 +248,7 @@
             transform: scale(1.1);
             text-decoration: none;
         }
-        /* Warna hover spesifik */
+        /<em> Warna hover spesifik </em>/
         .share-buttons a.twitter:hover { background-color: #1DA1F2; }
         .share-buttons a.facebook:hover { background-color: #1877F2; }
         .share-buttons a.whatsapp:hover { background-color: #25D366; }
@@ -264,7 +264,7 @@
             fill: var(--icon-color);
             transition: fill 0.2s ease;
         }
-        /* 6. Footer */
+        /<em> 6. Footer </em>/
         footer {
             text-align: center;
             margin-top: 3rem;
@@ -326,7 +326,7 @@
                     <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.22-1.05-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"></path></svg>
                     A. Bersihkan Sekarang (Vacuum) - Cara Cepat
                 </h3>
-                <p>Ini untuk langsung mengecilkan ukurannya *saat ini juga*. Kamu bisa pilih salah satu dari dua cara ini:</p>
+                <p>Ini untuk langsung mengecilkan ukurannya <em>saat ini juga</em>. Kamu bisa pilih salah satu dari dua cara ini:</p>
                 <p><strong>1. Berdasarkan Ukuran</strong> (Contoh: sisakan 500MB log terbaru):</p>
                 <pre><code>sudo journalctl --vacuum-size=500M</code></pre>
                 <p><strong>2. Berdasarkan Waktu</strong> (Contoh: sisakan log 7 hari terakhir):</p>
@@ -379,7 +379,7 @@ SystemMaxUse=1G
                     </strong>
                     <p>Jangan pernah gunakan perintah <code>rm</code> (remove) untuk menghapus file log yang sedang aktif dipakai aplikasi. Ini bisa bikin aplikasinya error karena "kehilangan" file yang sedang dia tulis.</p>
                 </div>
-                <p>Cara yang **AMAN** adalah mengosongkan isinya tanpa menghapus filenya. Gunakan perintah <code>truncate</code>:</p>
+                <p>Cara yang <strong>AMAN</strong> adalah mengosongkan isinya tanpa menghapus filenya. Gunakan perintah <code>truncate</code>:</p>
                 <pre><code>sudo truncate -s 0 /var/log/nama-file-besar.log</code></pre>
                 <p>Perintah ini akan membuat ukuran file <code>nama-file-besar.log</code> menjadi 0 byte, tapi filenya tetap ada. Aplikasi yang tadinya nulis di situ akan lanjut nulis dari awal lagi tanpa error. Aman!</p>
                   <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitn6kRu7uHYnbDUs-rAyeF7I6V0qIVl1tzMtE1k5bFXlUTCH6W6u-E9SFCa5jzgvq6xQwTqM45TbAfninQiKWni-699OqwTTgYd28V3xyt9RcNbHK9RYH5hlLVcxBPPzA4IoGpKjpWkUooRnFJ11-ixirwmoq1gxyKCvo89VSp_yu-ASQDYQf3IRwjN0c/s1600/varlog.webp" alt="Struktur folder /var/log/ di Debian">

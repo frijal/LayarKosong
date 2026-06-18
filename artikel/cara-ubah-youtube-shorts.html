@@ -49,7 +49,7 @@
 <meta name="prompthint" content="Masukkan URL Shorts untuk sulap instan jadi video biasa.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* Variabel Warna & Tema */
+        /<em> Variabel Warna & Tema </em>/
         :root {
             --bg-color: #f8fafc;
             --text-color: #1e293b;
@@ -65,15 +65,15 @@
             --card-bg: #0f172a;
             --border-color: #1e293b;
         }
-        /* Reset & Base Style */
+        /<em> Reset & Base Style </em>/
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background 0.3s; }
         .container { max-width: 850px; margin: 0 auto; padding: 40px 20px; }
-        /* Header */
+        /<em> Header </em>/
         header { text-align: center; margin-bottom: 50px; }
         h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.025em; }
         .subtitle { opacity: 0.7; font-size: 1.1rem; }
-        /* Tool Section */
+        /<em> Tool Section </em>/
         .tool-card {
             background: var(--card-bg);
             padding: 30px;
@@ -113,7 +113,7 @@
         }
         .btn-convert:hover { background: #b91c1c; }
         .btn-convert:active { transform: scale(0.98); }
-        /* Result Section */
+        /<em> Result Section </em>/
         #resultBox {
             margin-top: 35px;
             padding: 25px;
@@ -155,7 +155,7 @@
         }
         .btn-copy { background: #334155; color: white; border: none; }
         .btn-open { background: var(--primary-blue); color: white; }
-        /* Article Styles */
+        /<em> Article Styles </em>/
         article img { width: 100%; border-radius: 15px; margin-bottom: 30px; }
         article h2 { margin: 40px 0 20px; font-size: 1.8rem; }
         article p { margin-bottom: 20px; opacity: 0.9; }
@@ -168,20 +168,20 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .zdummy strong { display: block; margin-bottom: 5px; color: var(--primary-red); }
-        /* Widgets */
+        /<em> Widgets </em>/
  /*       #related-articles-grid { padding: 20px; background: rgba(0,0,0,0.05); border-radius: 10px; font-style: italic; margin-bottom: 20px; }
         #response { min-height: 150px; border: 1px solid var(--border-color); border-radius: 15px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; }
-        /* Footer */
+        /<em> Footer </em>/
         footer { margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border-color); text-align: center; opacity: 0.7; font-size: 0.9rem; }
         .social-links { margin: 20px 0; font-size: 1.5rem; display: flex; justify-content: center; gap: 25px; }
         .social-links a { color: var(--text-color); }
-        /* Toast */
+        /<em> Toast </em>/
         #toast {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
             background: #1e293b; color: white; padding: 12px 25px; border-radius: 50px;
             opacity: 0; transition: opacity 0.3s; z-index: 999;
         }
-        /* Mobile View Optimization */
+        /<em> Mobile View Optimization </em>/
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .action-btns { grid-template-columns: 1fr; }
@@ -262,11 +262,11 @@
             const match = input.match(shortsRegex);
             if (match && match[1]) {
                 const videoId = match[1];
-                const regularUrl = `https://www.youtube.com/watch?v=${videoId}`;
-                const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                const regularUrl = <code>https://www.youtube.com/watch?v=${videoId}</code>;
+                const embedUrl = <code>https://www.youtube.com/embed/${videoId}</code>;
                 outputUrl.innerText = regularUrl;
                 openLink.href = regularUrl;
-                videoPreview.innerHTML = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
+                videoPreview.innerHTML = <code><iframe src="${embedUrl}" allowfullscreen></iframe></code>;
                 resultBox.style.display = 'block';
                 resultBox.scrollIntoView({ behavior: 'smooth' });
                 showToast("Sulap berhasil! ✨");

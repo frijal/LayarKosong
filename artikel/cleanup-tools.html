@@ -142,7 +142,7 @@ import depcheck from "depcheck";
   const all = [...unused.dependencies, ...unused.devDependencies];
   if (all.length === 0) return console.log("✅ Tidak ada paket tak terpakai.");
   console.log("🗑️ Menghapus:", all.join(", "));
-  execSync(`npm uninstall ${all.join(" ")} --silent`, { stdio: "inherit" });
+  execSync(<code>npm uninstall ${all.join(" ")} --silent</code>, { stdio: "inherit" });
   console.log("♻️ Membersihkan dan reinstall...");
   execSync("rm -rf node_modules package-lock.json", { stdio: "inherit" });
   execSync("npm install --silent", { stdio: "inherit" });

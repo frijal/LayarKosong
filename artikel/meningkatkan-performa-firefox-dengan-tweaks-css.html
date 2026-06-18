@@ -251,7 +251,7 @@
         <h4><i class="fa-solid fa-ban"></i> 1. Matikan Semua Animasi &amp; Transisi</h4>
         <p>Menonaktifkan animasi UI secara global. Ini efek paling signifikan untuk performa.</p>
         <div class="code-block">
-            <pre><code>/* Matikan semua animasi dan transisi di seluruh UI */
+            <pre><code>/<em> Matikan semua animasi dan transisi di seluruh UI </em>/
 * {
     transition: none !important;
     animation: none !important;
@@ -262,7 +262,7 @@
         <h4><i class="fa-solid fa-eye-slash"></i> 2. Hilangkan Efek Blur &amp; Transparansi</h4>
         <p>Backdrop-filter dan opacity menyebabkan komposisi ulang layer yang berat. Matikan saja.</p>
         <div class="code-block">
-            <pre><code>/* Nonaktifkan efek blur dan transparansi */
+            <pre><code>/<em> Nonaktifkan efek blur dan transparansi </em>/
 * {
     backdrop-filter: none !important;
     opacity: 1 !important;
@@ -273,7 +273,7 @@
         <h4><i class="fa-solid fa-border-all"></i> 3. Sederhanakan Tab (Tanpa Background &amp; Hover)</h4>
         <p>Tab dengan efek hover dan background gradien bisa dikurangi.</p>
         <div class="code-block">
-            <pre><code>/* Tab polos tanpa background hover */
+            <pre><code>/<em> Tab polos tanpa background hover </em>/
 .tabbrowser-tab .tab-background {
     background: transparent !important;
 }
@@ -286,7 +286,7 @@
         <h4><i class="fa-solid fa-stop"></i> 4. Matikan Efek Bayangan (Box Shadow)</h4>
         <p>Bayangan di toolbar, popup, dan elemen lain bisa dihilangkan.</p>
         <div class="code-block">
-            <pre><code>/* Hilangkan semua box shadow */
+            <pre><code>/<em> Hilangkan semua box shadow </em>/
 * {
     box-shadow: none !important;
 }</code></pre>
@@ -296,7 +296,7 @@
         <h4><i class="fa-solid fa-palette"></i> 5. Gunakan Warna Solid untuk Background Toolbar</h4>
         <p>Hindari gradien atau gambar latar yang memicu repaint.</p>
         <div class="code-block">
-            <pre><code>/* Toolbar warna solid */
+            <pre><code>/<em> Toolbar warna solid </em>/
 #nav-bar, #TabsToolbar, #PersonalToolbar {
     background: var(--toolbar-bgcolor, #2c3e50) !important;
     background-image: none !important;
@@ -307,7 +307,7 @@
         <h4><i class="fa-solid fa-compress-alt"></i> 6. Kurangi Padding &amp; Margin Berlebih</h4>
         <p>Memperkecil jarak antar elemen membuat UI lebih ringan dan tampilan lebih rapat.</p>
         <div class="code-block">
-            <pre><code>/* Minimalkan spacing */
+            <pre><code>/<em> Minimalkan spacing </em>/
 .tabbrowser-tab {
     padding: 0 2px !important;
 }
@@ -321,7 +321,7 @@
         <h4><i class="fa-solid fa-sync-alt"></i> 7. Nonaktifkan Animasi Loading pada Tab</h4>
         <p>Animasi throbber (spinner) saat loading bisa dimatikan.</p>
         <div class="code-block">
-            <pre><code>/* Matikan animasi loading spinner */
+            <pre><code>/<em> Matikan animasi loading spinner </em>/
 .tab-throbber[busy] {
     display: none !important;
 }</code></pre>
@@ -331,7 +331,7 @@
         <h4><i class="fa-solid fa-window-close"></i> 8. Sembunyikan Elemen yang Tidak Diperlukan</h4>
         <p>Tombol, ikon, atau sidebar yang tidak pernah dipakai hanya membebani render.</p>
         <div class="code-block">
-            <pre><code>/* Sembunyikan tombol library, pocket, dll */
+            <pre><code>/<em> Sembunyikan tombol library, pocket, dll </em>/
 #library-button, #pocket-button, #fxa-toolbar-menu-button {
     display: none !important;
 }</code></pre>
@@ -341,7 +341,7 @@
         <h4><i class="fa-solid fa-tint"></i> 9. Gunakan Gambar Sederhana untuk Scrollbar</h4>
         <p>Scrollbar modern dengan efek blur bisa diganti dengan versi klasik.</p>
         <div class="code-block">
-            <pre><code>/* Scrollbar minimalis */
+            <pre><code>/<em> Scrollbar minimalis </em>/
 scrollbar {
     appearance: none !important;
     background: #ccc !important;
@@ -355,7 +355,7 @@ scrollbar thumb {
         <h4><i class="fa-solid fa-font"></i> 10. Matikan Font Smoothing &amp; Subpixel Rendering</h4>
         <p>Mengurangi beban rendering teks (efeknya kecil, tapi tetap membantu).</p>
         <div class="code-block">
-            <pre><code>/* Matikan font smoothing */
+            <pre><code>/<em> Matikan font smoothing </em>/
 * {
     -webkit-font-smoothing: none !important;
     text-rendering: optimizeSpeed !important;
@@ -365,7 +365,7 @@ scrollbar thumb {
     <h2>🌐 Tweak Tambahan: userContent.css untuk Halaman Web</h2>
     <p>Buat file <strong>userContent.css</strong> di folder chrome yang sama, lalu tambahkan kode berikut untuk mematikan animasi di semua situs web. Ini sangat membantu saat browsing di situs yang berat.</p>
     <div class="code-block">
-        <pre><code>/* Matikan animasi di semua situs web (pakai hati-hati) */
+        <pre><code>/<em> Matikan animasi di semua situs web (pakai hati-hati) </em>/
 @-moz-document url-prefix(http), url-prefix(https) {
     * {
         transition: none !important;

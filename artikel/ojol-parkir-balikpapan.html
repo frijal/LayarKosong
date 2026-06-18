@@ -51,15 +51,15 @@
   <!-- CSS: Single-column, wide fullscreen, mobile-friendly; gaya berbeda (newspaper clean) -->
   <style>
     :root {
-      --bg: #faf7f2;       /* sand */
+      --bg: #faf7f2;       /<em> sand </em>/
       --paper: #ffffff;
       --ink: #23221f;
       --muted: #6b655e;
       --line: #e8e2d9;
-      --brand: #b66a2a;    /* caramel */
-      --accent: #1f7a8c;   /* teal */
-      --ok: #2e7d32;       /* green */
-      --warn: #c62828;     /* red */
+      --brand: #b66a2a;    /<em> caramel </em>/
+      --accent: #1f7a8c;   /<em> teal </em>/
+      --ok: #2e7d32;       /<em> green </em>/
+      --warn: #c62828;     /<em> red </em>/
       --maxw: 800px;
       --lh: 1.8;
     }
@@ -77,13 +77,13 @@
     a { color: var(--accent); text-decoration: none }
     a:hover { text-decoration: underline }
     img { max-width: 100%; height: auto; border-radius: 12px }
-    /* Container */
+    /<em> Container </em>/
     main {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 26px clamp(16px, 5vw, 36px) 100px;
     }
-    /* Title block */
+    /<em> Title block </em>/
     .title {
       position: relative;
       padding: clamp(18px, 3vw, 28px);
@@ -105,7 +105,7 @@
       color: var(--muted);
       font-size: clamp(15px, 2.6vw, 18px);
     }
-    /* Chips row */
+    /<em> Chips row </em>/
     .chips {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -118,7 +118,7 @@
       font-size: 13px;
     }
     .chip svg { width: 16px; height: 16px }
-    /* Content blocks */
+    /<em> Content blocks </em>/
     .block {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -141,7 +141,7 @@
       border-radius: 8px;
       font-style: italic;
     }
-    /* Responsive video (iframe) */
+    /<em> Responsive video (iframe) </em>/
     .video {
       position: relative;
       border-radius: 12px;
@@ -154,7 +154,7 @@
       width: 100%; height: 100%;
       border: 0;
     }
-    /* Gallery */
+    /<em> Gallery </em>/
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -176,7 +176,7 @@
       font-size: 13px;
     }
     .zoomable { cursor: zoom-in }
-    /* Lightbox */
+    /<em> Lightbox </em>/
     .lightbox {
       position: fixed; inset: 0; z-index: 50;
       display: none; align-items: center; justify-content: center;
@@ -208,7 +208,7 @@
       color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    /* Share strip */
+    /<em> Share strip </em>/
     .share-strip {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -221,7 +221,7 @@
     }
     .share-btn svg { width: 18px; height: 18px }
     .copy-ok { color: var(--ok) }
-    /* Floating controls */
+    /<em> Floating controls </em>/
     .float-btn {
       position: fixed; z-index: 40;
       display: inline-flex; align-items: center; gap: 8px;
@@ -232,12 +232,12 @@
     .btn-sitemap { left: 16px; top: 30% }
     .btn-home { right: 16px; bottom: 20% }
     .float-btn svg { width: 18px; height: 18px }
-    /* Comments */
+    /<em> Comments </em>/
     .comments {
       margin-top: 10px;
       background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px;
     }
-    /* Accessibility & motion preferences */
+    /<em> Accessibility & motion preferences </em>/
     :focus-visible { outline: 2px solid rgba(31,122,140,0.45); outline-offset: 2px }
     @media (min-width: 1100px) {
       :root { --maxw: 900px }
@@ -336,7 +336,7 @@
   </div>
   <script>
     (function() {
-      const safe = (f) => { try { f(); } catch (e) { /* lanjut */ } };
+      const safe = (f) => { try { f(); } catch (e) { /<em> lanjut </em>/ } };
       // Canonical & OG/Twitter url/image meta auto + fallback artikel/*.jpg bila tak ada gambar
       safe(() => {
         const url = new URL(window.location.href);
@@ -369,7 +369,7 @@
         const words = text.trim().split(/\s+/).length;
         const min = Math.max(3, Math.round(words / 200));
         const el = document.querySelector('#read-time span');
-        if (el) el.textContent = `Waktu baca: ~${min} menit`;
+        if (el) el.textContent = <code>Waktu baca: ~${min} menit</code>;
       });
       // Lightbox gallery with arrow keys (graceful when empty)
       safe(() => {
@@ -386,7 +386,7 @@
           idx = i;
           lbImg.src = items[idx].src;
           lb.classList.add('open');
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
           document.body.style.overflow = 'hidden';
         };
         const closeLb = () => {
@@ -398,7 +398,7 @@
           if (!items.length) return;
           idx = (idx + d + items.length) % items.length;
           lbImg.src = items[idx].src;
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
         };
         document.querySelectorAll('.zoomable').forEach((fig, i) => {
           fig.addEventListener('click', () => openAt(i));
@@ -414,7 +414,7 @@
           if (e.key === 'ArrowRight') step(+1);
         });
         // Index label when empty
-        if (!items.length) lbIndex.textContent = `0 / 0`;
+        if (!items.length) lbIndex.textContent = <code>0 / 0</code>;
       });
     })();
   </script>

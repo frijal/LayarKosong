@@ -85,7 +85,7 @@
             font-size: 2rem;
             margin-bottom: 10px;
         }
-        /* 2 Kolom Input di Awal */
+        /<em> 2 Kolom Input di Awal </em>/
         .input-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -115,7 +115,7 @@
             outline: none;
         }
         input:focus { border-color: var(--primary); }
-        /* Hasil Tabel */
+        /<em> Hasil Tabel </em>/
         .result-section {
             overflow-x: auto;
         }
@@ -144,7 +144,7 @@
             font-size: 0.9rem;
             color: #888;
         }
-        /* Responsive Mobile View */
+        /<em> Responsive Mobile View </em>/
         @media (max-width: 600px) {
             .input-grid { grid-template-columns: 1fr; }
             header h1 { font-size: 1.5rem; }
@@ -225,21 +225,21 @@
                 // Input adalah Lebar
                 width = val;
                 height = Math.round((val * r.h) / r.w);
-                ratioText = `${r.w}:${r.h}`;
+                ratioText = <code>${r.w}:${r.h}</code>;
             } else {
                 // Input adalah Tinggi
                 height = val;
                 width = Math.round((val * r.w) / r.h);
                 // Kita balik tampilannya kalau portrait (misal 16:9 jadi 9:16)
-                ratioText = `${r.h}:${r.w}`;
+                ratioText = <code>${r.h}:${r.w}</code>;
             }
             const tr = document.createElement('tr');
-            tr.innerHTML = `
+            tr.innerHTML = <code>
             <td>${ratioText}</td>
                 <td><strong>${r.name}</strong></td>
                 <td><span class="highlight-val">${width}</span> x <span class="highlight-val">${height}</span></td>
                 <td><small>${r.note}</small></td>
-            `;
+            </code>;
             tbody.appendChild(tr);
         });
     }

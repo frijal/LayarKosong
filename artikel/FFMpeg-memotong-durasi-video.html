@@ -53,7 +53,7 @@
             --bg: #ffffff;
             --text: #0f172a;
             --muted: #64748b;
-            --accent: #10b981; /* Emerald Green */
+            --accent: #10b981; /<em> Emerald Green </em>/
             --terminal: #1e293b;
             --code-text: #34d399;
             --card: #f8fafc;
@@ -77,7 +77,7 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.3rem; /* Teks besar sesuai permintaan */
+            font-size: 1.3rem; /<em> Teks besar sesuai permintaan </em>/
             line-height: 1.8;
         }
         main {
@@ -103,7 +103,7 @@
             border-bottom: 1px solid var(--border);
             padding-bottom: 20px;
         }
-        /* Terminal Style for Code */
+        /<em> Terminal Style for Code </em>/
         .terminal-box {
             background-color: var(--terminal);
             border-radius: 16px;
@@ -145,7 +145,7 @@
             transition: all 0.2s;
         }
         .copy-btn:hover { background: var(--accent); color: #000; }
-        /* Penjelasan Section */
+        /<em> Penjelasan Section </em>/
         .desc-grid {
             display: grid;
             gap: 20px;
@@ -192,8 +192,8 @@
         </div>
     </header>
     <section class="intro">
-        <p>Bagi pegiat multimedia atau sysadmin, **FFmpeg** adalah perangkat andalan. Penggunaan baris perintah menawarkan alternatif efisiensi resource yang tinggi dibandingkan dengan pemrosesan melalui antarmuka grafis standar. Lebih cepat, tanpa *re-encoding* (kualitas tetap asli), dan sangat hemat *resource*.</p>
-        <p>Inilah cara memotong video dengan kecepatan cahaya menggunakan teknik *stream copy*:</p>
+        <p>Bagi pegiat multimedia atau sysadmin, <strong>FFmpeg</strong> adalah perangkat andalan. Penggunaan baris perintah menawarkan alternatif efisiensi resource yang tinggi dibandingkan dengan pemrosesan melalui antarmuka grafis standar. Lebih cepat, tanpa <em>re-encoding</em> (kualitas tetap asli), dan sangat hemat <em>resource</em>.</p>
+        <p>Inilah cara memotong video dengan kecepatan cahaya menggunakan teknik <em>stream copy</em>:</p>
     </section>
     <div class="terminal-box">
         <div class="terminal-header">
@@ -206,7 +206,7 @@
     </div>
     <section class="breakdown">
         <h2>Bedah Perintah: Apa yang Terjadi?</h2>
-        <p>Jangan asal *copy-paste*, yuk pahami parameternya agar kamu bisa memodifikasi sesuai kebutuhan proyek multimedia kamu:</p>
+        <p>Jangan asal <em>copy-paste</em>, yuk pahami parameternya agar kamu bisa memodifikasi sesuai kebutuhan proyek multimedia kamu:</p>
         <div class="desc-grid">
             <div class="desc-item">
                 <strong>-i input.mp4</strong><br>
@@ -214,7 +214,7 @@
             </div>
             <div class="desc-item">
                 <strong>-ss 00:00:10</strong><br>
-                <em>Start Seek</em>. Titik mulai pemotongan. Formatnya `HH:MM:SS`. Di sini kita mulai dari detik ke-10.
+                <em>Start Seek</em>. Titik mulai pemotongan. Formatnya <code>HH:MM:SS</code>. Di sini kita mulai dari detik ke-10.
             </div>
             <div class="desc-item">
                 <strong>-to 00:01:30</strong><br>
@@ -222,17 +222,17 @@
             </div>
             <div class="desc-item">
                 <strong>-c copy</strong><br>
-                **Kuncian utama!** Parameter ini menyuruh FFmpeg menyalin stream audio &amp; video tanpa melakukan proses encoding ulang. Hasilnya? Proses selesai dalam milidetik dan kualitas tidak berkurang 1% pun.
+                <strong>Kuncian utama!</strong> Parameter ini menyuruh FFmpeg menyalin stream audio &amp; video tanpa melakukan proses encoding ulang. Hasilnya? Proses selesai dalam milidetik dan kualitas tidak berkurang 1% pun.
             </div>
             <div class="desc-item">
                 <strong>output.mp4</strong><br>
-                Nama file tujuan. Kamu bisa ganti ekstensinya jika ingin sekalian melakukan *remuxing* (misal ke .mkv).
+                Nama file tujuan. Kamu bisa ganti ekstensinya jika ingin sekalian melakukan <em>remuxing</em> (misal ke .mkv).
             </div>
         </div>
     </section>
     <section class="tips">
         <h2><i class="fa-solid fa-lightbulb" style="color:var(--accent)"></i> Tips Pro</h2>
-        <p>Jika hasil potongan terasa "patah" atau tidak tepat di detik yang diminta, letakkan `-ss` **sebelum** `-i`. Ini akan membuat FFmpeg mencari *keyframes* terdekat lebih cepat, meskipun akurasinya mungkin sedikit berbeda tergantung struktur video asal.</p>
+        <p>Jika hasil potongan terasa "patah" atau tidak tepat di detik yang diminta, letakkan <code>-ss</code> <strong>sebelum</strong> <code>-i</code>. Ini akan membuat FFmpeg mencari <em>keyframes</em> terdekat lebih cepat, meskipun akurasinya mungkin sedikit berbeda tergantung struktur video asal.</p>
     </section>
 <i class="fa-solid fa-terminal fa-3x" style="color: var(--accent); margin-bottom: 20px;"></i>
         <p><strong>Punya kendala saat memotong video?</strong><br>Atau punya trik FFmpeg lain yang lebih sakti?</p>

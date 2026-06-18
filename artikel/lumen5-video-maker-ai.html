@@ -193,7 +193,7 @@
             konten video sedang merajai dunia digital. Algoritma suka, penonton
             juga betah. Tapi, membuat video itu kan rumit? Kenalkan
             <strong>Lumen5</strong>, sihir AI yang siap membantu Anda membuat
-            video keren, bahkan tanpa pengalaman *editing* sama sekali!
+            video keren, bahkan tanpa pengalaman <em>editing</em> sama sekali!
           </p>
           <p>
             Cara kerjanya simpel: Anda tinggal masukkan tautan artikel blog atau
@@ -213,10 +213,10 @@
           <ul class="feature-list">
             <li>Konversi teks ke video secara otomatis, hemat waktu.</li>
             <li>
-              *Subtitle* otomatis untuk menjangkau penonton yang lebih luas.
+              <em>Subtitle</em> otomatis untuk menjangkau penonton yang lebih luas.
             </li>
             <li>
-              Banyak pilihan *template* profesional yang siap pakai.
+              Banyak pilihan <em>template</em> profesional yang siap pakai.
             </li>
             <li>Koleksi jutaan klip video dan musik bebas royalti.</li>
           </ul>
@@ -250,11 +250,11 @@
             const prevBtn = document.querySelector('.lightbox-prev');
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
-            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${130 + i}/800/600`);
+            const images = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${130 + i}/800/600</code>);
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = `Contoh video yang dibuat dengan Lumen5 ${index + 1}`;
+                img.alt = <code>Contoh video yang dibuat dengan Lumen5 ${index + 1}</code>;
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });

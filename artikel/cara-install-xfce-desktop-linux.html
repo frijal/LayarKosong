@@ -59,7 +59,7 @@
     <!-- FontAwesome Icons (Asynchronous) -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
+        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
         :root {
             --bg-color: #fafafa;
             --text-color: #334155;
@@ -101,7 +101,7 @@
             font-size: 16px;
             padding: 0;
         }
-        /* Tata Letak Mobile-first, Maksimal 1000px, Sentralisasi Desktop */
+        /<em> Tata Letak Mobile-first, Maksimal 1000px, Sentralisasi Desktop </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -144,7 +144,7 @@
         strong {
             color: var(--heading-color);
         }
-        /* Aturan Selektor Kustom Tautan Berdasarkan Panduan */
+        /<em> Aturan Selektor Kustom Tautan Berdasarkan Panduan </em>/
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
@@ -154,7 +154,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /* Blok Metadata E-E-A-T */
+        /<em> Blok Metadata E-E-A-T </em>/
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -172,7 +172,7 @@
             align-items: center;
             gap: 0.35rem;
         }
-        /* Blok Kontainer Gambar Mengurangi Layout Shift (CLS) */
+        /<em> Blok Kontainer Gambar Mengurangi Layout Shift (CLS) </em>/
         .img-container {
             margin: 1.5rem 0;
             background-color: var(--card-bg);
@@ -195,7 +195,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /* Struktur Tampilan Blok Kode Terminal */
+        /<em> Struktur Tampilan Blok Kode Terminal </em>/
         .terminal-block {
             background-color: var(--code-bg);
             border-left: 4px solid var(--accent-border);
@@ -248,7 +248,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /* Responsivitas Desktop */
+        /<em> Responsivitas Desktop </em>/
         @media (min-width: 768px) {
             .container {
                 padding: 2.5rem;
@@ -277,14 +277,14 @@
                 </div>
             </header>
             <p>Bagi para pengguna Linux, memilih <em>Desktop Environment</em> (DE) yang tepat adalah separuh dari kebahagiaan komputasi. Mengapa banyak dari kita yang berpaling ke XFCE? Jawabannya sederhana: <strong>kecepatan, efisiensi resource, dan modularitas tingkat tinggi</strong>. XFCE menawarkan fungsionalitas desktop penuh tanpa menguras RAM atau membebani CPU, menjadikannya pilihan optimal untuk membangkitkan laptop lawas atau memaksimalkan performa rig modern kita. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
-            <p>Di mana pun lingkungan kerja Anda berada—baik mengelola server headless, setup desktop minimalis, atau sekadar ingin mengganti DE bawaan yang terasa kembung (*bloated*)—XFCE adalah jawaban yang andal. Artikel ini menyajikan panduan komprehensif mengenai cara memasang lingkungan desktop modular ini di berbagai keluarga distribusi Linux populer.</p>
+            <p>Di mana pun lingkungan kerja Anda berada—baik mengelola server headless, setup desktop minimalis, atau sekadar ingin mengganti DE bawaan yang terasa kembung (<em>bloated</em>)—XFCE adalah jawaban yang andal. Artikel ini menyajikan panduan komprehensif mengenai cara memasang lingkungan desktop modular ini di berbagai keluarga distribusi Linux populer.</p>
             <!-- Gambar Utama / LCP (Tanpa elemen hero raksasa di atas fold) -->
             <div class="img-container">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/879f7aa2f6fcf15e.webp" alt="Ilustrasi instalasi XFCE Desktop Environment di terminal Linux" fetchpriority="high" decoding="async">
                 <div class="img-caption">Transformasi Linux Anda dengan XFCE: Ringan, responsif, dan mudah dikonfigurasi melalui baris perintah.</div>
             </div>
             <h2>Panduan Instalasi XFCE Berdasarkan Keluarga Distribusi</h2>
-            <p>Bagaimana cara memasangnya? Proses pemasangan XFCE sangat bergantung pada pengelola paket (*package manager*) dari masing-masing distribusi. Di bawah ini adalah daftar perintah lengkap yang dieksekusi langsung melalui terminal kesayangan Anda. Pastikan Anda memiliki hak akses <code>sudo</code> sebelum menjalankan perintah berikut.</p>
+            <p>Bagaimana cara memasangnya? Proses pemasangan XFCE sangat bergantung pada pengelola paket (<em>package manager</em>) dari masing-masing distribusi. Di bawah ini adalah daftar perintah lengkap yang dieksekusi langsung melalui terminal kesayangan Anda. Pastikan Anda memiliki hak akses <code>sudo</code> sebelum menjalankan perintah berikut.</p>
             <h3>Debian-based</h3>
             <p>Mencakup distribusi populer seperti Ubuntu, Debian, Linux Mint, LMDE, Pop!_OS, Zorin OS, Elementary OS, Kali Linux, MX Linux, dan Peppermint. Keluarga ini memanfaatkan manajer paket <code>apt</code> untuk menarik metapackage XFCE beserta seluruh komponen penunjangnya secara otomatis.</p>
             <div class="terminal-block">
@@ -294,7 +294,7 @@ sudo apt install xfce4 xfce4-goodies lightdm
 sudo systemctl enable lightdm</code></pre>
             </div>
             <h3>Arch-based</h3>
-            <p>Bagi penikmat ekosistem rilis bergulir (*rolling release*) seperti Arch Linux, Manjaro, EndeavourOS, Garuda, CachyOS, ArcoLinux, hingga BlackArch, pemasangan dilakukan lewat <code>pacman</code>. Kita juga menyertakan kelompok paket <code>xfce4-goodies</code> untuk perkakas ekstra yang fungsional.</p>
+            <p>Bagi penikmat ekosistem rilis bergulir (<em>rolling release</em>) seperti Arch Linux, Manjaro, EndeavourOS, Garuda, CachyOS, ArcoLinux, hingga BlackArch, pemasangan dilakukan lewat <code>pacman</code>. Kita juga menyertakan kelompok paket <code>xfce4-goodies</code> untuk perkakas ekstra yang fungsional.</p>
             <div class="terminal-block">
                 <span class="distro-title">Arch Linux &amp; Turunannya</span>
 <pre><code>sudo pacman -S xfce4 xfce4-goodies lightdm
@@ -320,14 +320,14 @@ sudo systemctl enable lightdm</code></pre>
 sudo systemctl enable lightdm</code></pre>
             </div>
             <h3>openSUSE</h3>
-            <p>Baik Anda menggunakan kestabilan openSUSE Leap maupun pergerakan dinamis openSUSE Tumbleweed, pemasangan berbasis pola (*pattern*) dari <code>zypper</code> akan memastikan seluruh dependensi terpenuhi.</p>
+            <p>Baik Anda menggunakan kestabilan openSUSE Leap maupun pergerakan dinamis openSUSE Tumbleweed, pemasangan berbasis pola (<em>pattern</em>) dari <code>zypper</code> akan memastikan seluruh dependensi terpenuhi.</p>
             <div class="terminal-block">
                 <span class="distro-title">openSUSE Leap / Tumbleweed</span>
 <pre><code>sudo zypper install -t pattern xfce
 sudo systemctl enable lightdm</code></pre>
             </div>
             <h3>Void Linux</h3>
-            <p>Void Linux yang berjalan tanpa <code>systemd</code> menggunakan mekanisme <code>runit</code> untuk manajemen layanan (*services*). Langkah instalasi dan pembuatan tautan simbolik layanannya adalah sebagai berikut:</p>
+            <p>Void Linux yang berjalan tanpa <code>systemd</code> menggunakan mekanisme <code>runit</code> untuk manajemen layanan (<em>services</em>). Langkah instalasi dan pembuatan tautan simbolik layanannya adalah sebagai berikut:</p>
             <div class="terminal-block">
                 <span class="distro-title">Void Linux (Runit Service)</span>
 <pre><code>sudo xbps-install -S xfce4 xfce4-plugins lightdm
@@ -368,7 +368,7 @@ services.xserver.desktopManager.xfce.enable = true;</code></pre>
 <pre><code>sudo nixos-rebuild switch</code></pre>
             </div>
             <h3>Clear Linux</h3>
-            <p>Distro besutan Intel yang dioptimalkan untuk performa maksimal ini mengelompokkan perangkat lunak dalam bentuk *bundle*. Pasang bundle desktop XFCE dengan satu perintah praktis:</p>
+            <p>Distro besutan Intel yang dioptimalkan untuk performa maksimal ini mengelompokkan perangkat lunak dalam bentuk <em>bundle</em>. Pasang bundle desktop XFCE dengan satu perintah praktis:</p>
             <div class="terminal-block">
                 <span class="distro-title">Clear Linux OS</span>
 <pre><code>sudo swupd bundle-add desktop-xfce</code></pre>
@@ -379,7 +379,7 @@ services.xserver.desktopManager.xfce.enable = true;</code></pre>
                 <span class="distro-title">Penyelesaian Sistem</span>
 <pre><code>Reboot</code></pre>
             </div>
-            <p>Setelah komputer Anda menyala kembali, pada layar kunci (*display manager* atau LightDM), pastikan Anda memilih opsi sesi <strong>XFCE Session</strong> sebelum memasukkan kata sandi akun Anda. Selamat menikmati desktop baru yang super gegas dan ringan!</p>
+            <p>Setelah komputer Anda menyala kembali, pada layar kunci (<em>display manager</em> atau LightDM), pastikan Anda memilih opsi sesi <strong>XFCE Session</strong> sebelum memasukkan kata sandi akun Anda. Selamat menikmati desktop baru yang super gegas dan ringan!</p>
         </article>
         <!-- Struktur Wajib Akhir Konten Sesuai Instruksi Tanpa Tambahan Styling -->
         <div id="related-articles-grid"></div>

@@ -54,12 +54,12 @@
     <noscript><link rel="stylesheet" href="/ext/fontawesome.css"></noscript>
     <link rel="preload" as="image" href="https://img.youtube.com/vi/xNiyLQuuwAc/maxresdefault.jpg" fetchpriority="high">
     <style>
-        /* CSS Variables untuk Tema Terang & Gelap */
+        /<em> CSS Variables untuk Tema Terang & Gelap </em>/
         :root {
             --bg-color: #fdfdfd;
             --text-main: #2d3748;
             --text-muted: #718096;
-            --accent-color: #e95420; /* Warna khas Ubuntu */
+            --accent-color: #e95420; /<em> Warna khas Ubuntu </em>/
             --accent-hover: #c3461a;
             --border-color: #e2e8f0;
             --card-bg: #ffffff;
@@ -77,8 +77,8 @@
                 --code-bg: #171923;
             }
         }
-        /* Base & Reset */
-        *, *::before, *::after {
+        /<em> Base & Reset </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -91,7 +91,7 @@
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
         }
-        /* Layout & Container (Mobile First, Max 1000px Desktop) */
+        /<em> Layout & Container (Mobile First, Max 1000px Desktop) </em>/
         .container {
             width: 100%;
             max-width: 1000px;
@@ -112,25 +112,25 @@
             color: var(--accent-color);
             text-decoration: none;
         }
-/* Styling dasar untuk list download */
+/<em> Styling dasar untuk list download </em>/
 .download-list {
-    column-count: 1; /* Default untuk mobile: 1 kolom */
-    column-gap: 2rem; /* Jarak bernapas antar kolom */
+    column-count: 1; /<em> Default untuk mobile: 1 kolom </em>/
+    column-gap: 2rem; /<em> Jarak bernapas antar kolom </em>/
     padding-left: 1.5rem;
     margin-bottom: 1.5rem;
 }
-/* Mencegah list item terpotong di tengah jalan saat pindah kolom */
+/<em> Mencegah list item terpotong di tengah jalan saat pindah kolom </em>/
 .download-list li {
     break-inside: avoid;
     margin-bottom: 0.5rem;
 }
-/* Breakpoint untuk Desktop/Tablet (layar 768px ke atas) */
+/<em> Breakpoint untuk Desktop/Tablet (layar 768px ke atas) </em>/
 @media (min-width: 768px) {
     .download-list {
-        column-count: 2; /* Berubah jadi 2 kolom di layar lebar */
+        column-count: 2; /<em> Berubah jadi 2 kolom di layar lebar </em>/
     }
 }
-        /* Article Typography & Elements */
+        /<em> Article Typography & Elements </em>/
         h1, h2, h3 {
             line-height: 1.3;
             margin-top: 2rem;
@@ -156,7 +156,7 @@
             color: var(--accent-hover);
             text-decoration: underline;
         }
-        /* Author Meta & E-E-A-T */
+        /<em> Author Meta & E-E-A-T </em>/
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -173,21 +173,21 @@
             align-items: center;
             gap: 0.5rem;
         }
-        /* Images & Media */
+        /<em> Images & Media </em>/
         .img-container {
             margin: 1.5rem 0;
             border-radius: 8px;
             overflow: hidden;
-            background-color: var(--border-color); /* Placeholder saat loading */
+            background-color: var(--border-color); /<em> Placeholder saat loading </em>/
         }
         img {
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 16/9; /* Mencegah Layout Shift */
+            aspect-ratio: 16/9; /<em> Mencegah Layout Shift </em>/
             object-fit: cover;
         }
-        /* Lists */
+        /<em> Lists </em>/
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -195,7 +195,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /* Analysis Box (5W+1H) */
+        /<em> Analysis Box (5W+1H) </em>/
         .analysis-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -210,7 +210,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        /* References Section */
+        /<em> References Section </em>/
         .references {
             font-size: 0.9rem;
             color: var(--text-muted);
@@ -223,7 +223,7 @@
             margin-top: 0;
             font-size: 1.1rem;
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer.site-footer {
             margin-top: 3rem;
             padding: 2rem 0;

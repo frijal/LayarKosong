@@ -152,7 +152,7 @@
         th { text-align: left; font-size: 0.8em; padding: 10px; border-bottom: 2px solid var(--border); }
         td { padding: 6px; border-bottom: 1px solid var(--border); }
         .month-name { font-weight: 500; font-size: 0.9em; min-width: 120px; }
-        /* Input text yang diformat */
+        /<em> Input text yang diformat </em>/
         input.money-input {
             width: 100%;
             padding: 10px;
@@ -301,11 +301,11 @@
         const currentNeeds = Array.from(document.querySelectorAll('.needs-input')).map(i => i.value);
         tbody.innerHTML = '';
         months.forEach((m, i) => {
-            const row = `<tr>
+            const row = <code><tr>
                 <td class="month-name">${m}</td>
                 <td><input type="text" class="money-input income-input" placeholder="0" oninput="formatThis(this)" value="${currentInputs[i] || ''}"></td>
                 <td><input type="text" class="money-input needs-input" placeholder="0" oninput="formatThis(this)" value="${currentNeeds[i] || ''}"></td>
-            </tr>`;
+            </tr></code>;
             tbody.insertAdjacentHTML('beforeend', row);
         });
         updateNisab();
@@ -331,20 +331,20 @@
         if (sisaBersih >= nisab) {
             const zakat = sisaBersih * 0.025;
             document.getElementById('statusText').innerHTML = "✅ <strong>Wajib Zakat</strong>";
-            document.getElementById('calculationDetail').innerHTML = `
+            document.getElementById('calculationDetail').innerHTML = <code>
                 Sisa Bersih Setahun: <strong>${format(sisaBersih)}</strong><br>
                 (Melebihi Nisab ${format(nisab)})<br>
                 <span class="highlight">Zakat: ${format(zakat)}</span>
                 <small style="opacity:0.7">Setara ${format(zakat/12)} / bulan</small>
-            `;
+            </code>;
             resultBox.style.borderColor = "var(--primary)";
         } else {
             document.getElementById('statusText').innerHTML = "🌸 <strong>Belum Wajib Zakat</strong>";
-            document.getElementById('calculationDetail').innerHTML = `
+            document.getElementById('calculationDetail').innerHTML = <code>
                 Sisa Bersih Setahun: <strong>${format(sisaBersih)}</strong><br>
                 Masih di bawah nisab tahunan ${format(nisab)}.<br>
                 Anda tetap disarankan berinfak sesukanya.
-            `;
+            </code>;
             resultBox.style.borderColor = "var(--accent)";
         }
         resultBox.scrollIntoView({ behavior: 'smooth' });
@@ -352,5 +352,5 @@
     updateMonths();
 </script>
 <footer><a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><noscript>markdown_oleh_Fakhrul_Rijal</noscript>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><noscript>html_hasil_reverse</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

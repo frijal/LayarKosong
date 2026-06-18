@@ -62,7 +62,7 @@
   <script src="/ext/html2pdf.bundle.min.js" data-cfasync="false"></script>
   <script src="/ext/qrcode.min.js" data-cfasync="false"></script>
   <style>
-    /* Styling untuk halaman generator (UI) */
+    /<em> Styling untuk halaman generator (UI) </em>/
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f6f9;
@@ -93,7 +93,7 @@
       text-decoration: none;
       color: inherit;
     }
-    /* Grid layout untuk form agar tidak terlalu panjang ke bawah */
+    /<em> Grid layout untuk form agar tidak terlalu panjang ke bawah </em>/
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -123,7 +123,7 @@
       text-transform: capitalize;
     }
     .form-group input[type="date"] {
-      text-transform: none; /* Tanggal tidak perlu kapitalisasi */
+      text-transform: none; /<em> Tanggal tidak perlu kapitalisasi </em>/
     }
     .form-group input:focus {
       border-color: #80bdff;
@@ -148,7 +148,7 @@
     .btn-pdf:hover { background-color: #bd2130; }
     .btn-img { background-color: #28a745; }
     .btn-img:hover { background-color: #218838; }
-    /* KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI */
+    /<em> KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI </em>/
     .paper-wrapper {
       background: white;
       width: 210mm;
@@ -161,7 +161,7 @@
     #surat-template {
       font-family: "Times New Roman", Times, serif;
       color: black;
-      font-size: 16px; /* Disesuaikan agar muat 1 halaman */
+      font-size: 16px; /<em> Disesuaikan agar muat 1 halaman </em>/
       line-height: 1.5;
       background: white;
     }
@@ -182,7 +182,7 @@
     }
     .identitas {
       margin-bottom: 15px;
-      margin-left: 20px; /* Indentasi list profil */
+      margin-left: 20px; /<em> Indentasi list profil </em>/
     }
     .row-identitas {
       display: flex;
@@ -196,7 +196,7 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    /* Bagian Tanda Tangan & QR Code */
+    /<em> Bagian Tanda Tangan & QR Code </em>/
     .blok-tanda-tangan {
       margin-top: 40px;
       display: flex;
@@ -245,7 +245,7 @@
       padding-bottom: 2px;
       min-height: 20px;
     }
-    /* Responsive Preview di Browser */
+    /<em> Responsive Preview di Browser </em>/
     @media (max-width: 850px) {
       .form-grid { grid-template-columns: 1fr; }
       .paper-wrapper {
@@ -374,14 +374,14 @@
     function formatTanggalIndonesia() {
       const bulanIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
       const hariIni = new Date();
-      return `${hariIni.getDate()} ${bulanIndo[hariIni.getMonth()]} ${hariIni.getFullYear()}`;
+      return <code>${hariIni.getDate()} ${bulanIndo[hariIni.getMonth()]} ${hariIni.getFullYear()}</code>;
     }
     // Fungsi format tanggal dari input <input type="date">
     function formatTanggalPilih(dateString) {
       if (!dateString) return "[Tanggal Hari Terakhir Bekerja]";
       const date = new Date(dateString);
       const bulanIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-      return `${date.getDate()} ${bulanIndo[date.getMonth()]} ${date.getFullYear()}`;
+      return <code>${date.getDate()} ${bulanIndo[date.getMonth()]} ${date.getFullYear()}</code>;
     }
     const tanggalSekarang = formatTanggalIndonesia();
     window.addEventListener('DOMContentLoaded', () => {
@@ -400,7 +400,7 @@
       const tglAkhirRaw = document.getElementById('input-tglakhir').value;
       const tglAkhirStr = formatTanggalPilih(tglAkhirRaw);
       // Inject ke DOM (Surat)
-      document.getElementById('preview-kota-tgl').innerText = `${kota}, ${tanggalSekarang}`;
+      document.getElementById('preview-kota-tgl').innerText = <code>${kota}, ${tanggalSekarang}</code>;
       document.getElementById('preview-atasan').innerText = atasan;
       document.getElementById('preview-pt').innerText = pt;
       document.getElementById('preview-alamat').innerText = alamat;
@@ -416,7 +416,7 @@
       // Update QR Code
       const qrContainer = document.getElementById("qrcode");
       qrContainer.innerHTML = "";
-      const textQR = `Surat Pengunduran Diri - ${nama} - ${pt} - Ditandatangani: ${tanggalSekarang}`;
+      const textQR = <code>Surat Pengunduran Diri - ${nama} - ${pt} - Ditandatangani: ${tanggalSekarang}</code>;
       new QRCode(qrContainer, {
         text: textQR,
         width: 85,
@@ -432,7 +432,7 @@
       const nama = rawNama.replace(/\s+/g, '_');
       const opt = {
         margin:   0,
-        filename:  `Surat_Resign_${nama}.pdf`,
+        filename:  <code>Surat_Resign_${nama}.pdf</code>,
         image:    { type: 'jpeg', quality: 1 },
         html2canvas: { scale: 2, useCORS: true, scrollY: 0, windowY: 0 },
         jsPDF:    { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -445,12 +445,12 @@
       const nama = rawNama.replace(/\s+/g, '_');
       html2canvas(element, { scale: 2, useCORS: true, scrollY: 0, windowY: 0 }).then(canvas => {
         const link = document.createElement('a');
-        link.download = `Surat_Resign_${nama}.png`;
+        link.download = <code>Surat_Resign_${nama}.png</code>;
         link.href = canvas.toDataURL('image/png');
         link.click();
       });
     }
   </script>
-<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+<noscript>html_hasil_reverse</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -51,7 +51,7 @@
         :root {
             --bg: #ffffff;
             --text: #1a202c;
-            --accent: #059669; /* Green Automation */
+            --accent: #059669; /<em> Green Automation </em>/
             --code-bg: #0f172a;
             --border: #e2e8f0;
         }
@@ -69,7 +69,7 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.8;
-            font-size: 1.25rem; /* Teks besar sesuai preferensi */
+            font-size: 1.25rem; /<em> Teks besar sesuai preferensi </em>/
         }
         main {
             max-width: 850px;
@@ -173,7 +173,7 @@ import fs from 'node:fs';
     console.log('✅ Bersih! Tidak ada paket yang perlu dihapus.');
   } else {
     console.log('🧹 Menghapus paket tak terpakai:', unused.join(', '));
-    execSync(`npm uninstall ${unused.join(' ')}`, { stdio: 'inherit' });
+    execSync(<code>npm uninstall ${unused.join(' ')}</code>, { stdio: 'inherit' });
   }
   console.log('🗑️ Membersihkan node_modules &amp; lockfile...');
   fs.rmSync('node_modules', { recursive: true, force: true });
@@ -187,7 +187,7 @@ import fs from 'node:fs';
     <pre><code class="language-yaml">name: Weekly Dependency Cleanup
 on:
   schedule:
-    - cron: '0 21 * * 0' # Setiap Minggu Malam (WIB menyesuaikan)
+    - cron: '0 21 <em> </em> 0' # Setiap Minggu Malam (WIB menyesuaikan)
   workflow_dispatch:
 jobs:
   automation:

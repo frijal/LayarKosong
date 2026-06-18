@@ -61,11 +61,11 @@
     <!-- Critical Native CSS -->
     <style>
         :root {
-            /* Tema Terang */
+            /<em> Tema Terang </em>/
             --bg-color: #f8fafc;
             --text-color: #1e293b;
             --text-muted: #64748b;
-            --accent-color: #1e3a8a; /* Biru khas korporat/developer */
+            --accent-color: #1e3a8a; /<em> Biru khas korporat/developer </em>/
             --border-color: #e2e8f0;
             --surface-color: #ffffff;
             --link-color: #2563eb;
@@ -74,7 +74,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Tema Gelap */
+                /<em> Tema Gelap </em>/
                 --bg-color: #0f172a;
                 --text-color: #f8fafc;
                 --text-muted: #94a3b8;
@@ -86,7 +86,7 @@
                 --code-text: #e2e8f0;
             }
         }
-        *, *::before, *::after {
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -100,7 +100,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .container {
-            max-width: 62.5rem; /* 1000px */
+            max-width: 62.5rem; /<em> 1000px </em>/
             margin: 0 auto;
             padding: 1.25rem;
         }
@@ -163,7 +163,7 @@
             font-size: 0.875rem;
             margin-bottom: 1.5rem;
         }
-        /* LCP Image Configuration */
+        /<em> LCP Image Configuration </em>/
         .content-img {
             width: 100%;
             height: auto;
@@ -173,7 +173,7 @@
             background-color: var(--surface-color);
             box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
         }
-        /* Kotak Kredibilitas / Author Box */
+        /<em> Kotak Kredibilitas / Author Box </em>/
         .author-box {
             background-color: var(--surface-color);
             border: 0.0625rem solid var(--border-color);
@@ -210,44 +210,44 @@
             </div>
         </header>
         <main role="main">
-            <p>Jika kita membicarakan layanan *tunneling* atau pembuka jalan *localhost* ke internet, mustahil rasanya jika tidak menyebut nama **ngrok**. Alat ini bukan sekadar pemain lama, melainkan bisa dibilang sebagai standar industri yang merintis popularitas layanan semacam ini sebelum raksasa seperti Cloudflare ikut campur. ngrok adalah solusi mapan yang dikenal akan kekayaan fiturnya, dirancang khusus untuk memuaskan rasa haus pengembang profesional terhadap kendali penuh atas lalu lintas data mereka.</p>
+            <p>Jika kita membicarakan layanan <em>tunneling</em> atau pembuka jalan <em>localhost</em> ke internet, mustahil rasanya jika tidak menyebut nama <strong>ngrok</strong>. Alat ini bukan sekadar pemain lama, melainkan bisa dibilang sebagai standar industri yang merintis popularitas layanan semacam ini sebelum raksasa seperti Cloudflare ikut campur. ngrok adalah solusi mapan yang dikenal akan kekayaan fiturnya, dirancang khusus untuk memuaskan rasa haus pengembang profesional terhadap kendali penuh atas lalu lintas data mereka.</p>
             <!-- LCP Image (Full Width, Height Auto) -->
             <img src="https://dalam.web.id/img/pinggy.io/adc993f0b84878cf.webp" alt="Tangkapan layar antarmuka dashboard ngrok yang menampilkan rincian lalu lintas HTTP secara real-time" class="content-img" fetchpriority="high" decoding="async">
             <h2>Skenario Penggunaan ngrok</h2>
-            <p>ngrok bukan sekadar jembatan biasa; ini adalah laboratorium observasi. Alat ini sempurna bagi pengembang yang membutuhkan *tunnel* yang aman, cepat, dan kaya fitur untuk menguji integrasi API yang rumit, melakukan verifikasi *webhook* dari layanan pihak ketiga seperti Stripe atau Twilio, hingga menjalankan aplikasi demo untuk klien perusahaan. Tim skala besar sangat menyukai ngrok karena kemampuannya menangani banyak sesi secara simultan dan integrasinya yang dalam dengan jalur pipa (*pipeline*) otomatisasi.</p>
+            <p>ngrok bukan sekadar jembatan biasa; ini adalah laboratorium observasi. Alat ini sempurna bagi pengembang yang membutuhkan <em>tunnel</em> yang aman, cepat, dan kaya fitur untuk menguji integrasi API yang rumit, melakukan verifikasi <em>webhook</em> dari layanan pihak ketiga seperti Stripe atau Twilio, hingga menjalankan aplikasi demo untuk klien perusahaan. Tim skala besar sangat menyukai ngrok karena kemampuannya menangani banyak sesi secara simultan dan integrasinya yang dalam dengan jalur pipa (<em>pipeline</em>) otomatisasi.</p>
             <h2>Bedah Fitur: Kelebihan ngrok</h2>
-            <p>Sebagai pemain lama, ngrok telah memoles dirinya menjadi senjata *Swiss Army knife* bagi para *developer*. Berikut adalah sederet keunggulan utamanya:</p>
+            <p>Sebagai pemain lama, ngrok telah memoles dirinya menjadi senjata <em>Swiss Army knife</em> bagi para <em>developer</em>. Berikut adalah sederet keunggulan utamanya:</p>
             <ul>
-                <li>**Lintas Platform Sempurna:** Bekerja sangat mulus di Windows, macOS, dan Linux, menjadikannya sangat serbaguna untuk diimplementasikan di berbagai lingkungan server maupun mesin lokal.</li>
-                <li>**Inspeksi Lalu Lintas Visual:** Menyediakan antarmuka web yang sangat intuitif. Kamu bisa membedah setiap *request* dan *response* secara *real-time*, dan bahkan melakukan *replay request* dengan satu kali klik. Ini adalah fitur idaman untuk *debugging*.</li>
-                <li>**Keamanan Lapis Baja:** Jika Cloudflare Tunnel unggul di *firewall*, ngrok unjuk gigi dengan perlindungan *endpoint*. Mereka menawarkan otentikasi OAuth, perlindungan JWT, hingga fitur *whitelist IP* untuk membatasi siapa saja yang berhak masuk ke dalam *tunnel*.</li>
-                <li>**Otomatisasi Penuh:** Tidak suka bekerja lewat GUI? ngrok menyediakan API yang sangat ekstensif untuk akses programatik, memungkinkan pengaturan *tunnel* otomatis langsung dari skrip CI/CD kamu.</li>
-                <li>**Manajemen Jarak Jauh:** Seluruh *tunnel* yang sedang aktif di berbagai belahan dunia dapat dikelola, dipantau, dan dimatikan dari jarak jauh melalui dasbor ngrok terpusat.</li>
-                <li>**Personalisasi URL:** Mendukung penggunaan nama *domain custom*, sehingga tautan yang kamu bagikan terlihat jauh lebih profesional dan meningkatkan visibilitas merek (*brand*).</li>
+                <li><strong>Lintas Platform Sempurna:</strong> Bekerja sangat mulus di Windows, macOS, dan Linux, menjadikannya sangat serbaguna untuk diimplementasikan di berbagai lingkungan server maupun mesin lokal.</li>
+                <li><strong>Inspeksi Lalu Lintas Visual:</strong> Menyediakan antarmuka web yang sangat intuitif. Kamu bisa membedah setiap <em>request</em> dan <em>response</em> secara <em>real-time</em>, dan bahkan melakukan <em>replay request</em> dengan satu kali klik. Ini adalah fitur idaman untuk <em>debugging</em>.</li>
+                <li><strong>Keamanan Lapis Baja:</strong> Jika Cloudflare Tunnel unggul di <em>firewall</em>, ngrok unjuk gigi dengan perlindungan <em>endpoint</em>. Mereka menawarkan otentikasi OAuth, perlindungan JWT, hingga fitur <em>whitelist IP</em> untuk membatasi siapa saja yang berhak masuk ke dalam <em>tunnel</em>.</li>
+                <li><strong>Otomatisasi Penuh:</strong> Tidak suka bekerja lewat GUI? ngrok menyediakan API yang sangat ekstensif untuk akses programatik, memungkinkan pengaturan <em>tunnel</em> otomatis langsung dari skrip CI/CD kamu.</li>
+                <li><strong>Manajemen Jarak Jauh:</strong> Seluruh <em>tunnel</em> yang sedang aktif di berbagai belahan dunia dapat dikelola, dipantau, dan dimatikan dari jarak jauh melalui dasbor ngrok terpusat.</li>
+                <li><strong>Personalisasi URL:</strong> Mendukung penggunaan nama <em>domain custom</em>, sehingga tautan yang kamu bagikan terlihat jauh lebih profesional dan meningkatkan visibilitas merek (<em>brand</em>).</li>
             </ul>
             <h2>Sisi Gelap: Kekurangan ngrok</h2>
             <p>Tentu saja, statusnya sebagai alat kelas berat membawa beberapa konsekuensi yang mungkin kurang cocok bagi pengembang kasual:</p>
             <ul>
-                <li>**Kewajiban Registrasi:** Berbeda dengan layanan instan lain, ngrok mengharuskanmu membuat akun dan menyematkan token otentikasi (*auth token*) ke dalam konfigurasi lokal sebelum bisa digunakan.</li>
-                <li>**Limitasi Paket Gratis:** Skema gratis ngrok sangat dibatasi. *Bandwidth* yang sempit dan batas jumlah koneksi per menit mungkin tidak akan cukup untuk menguji aplikasi dengan simulasi lalu lintas yang tinggi.</li>
-                <li>**Absennya UDP:** Sayangnya, sama seperti pesaing utamanya, ngrok berfokus murni pada protokol TCP dan HTTP/HTTPS, sehingga mereka belum menyediakan dukungan untuk *tunnel* UDP.</li>
+                <li><strong>Kewajiban Registrasi:</strong> Berbeda dengan layanan instan lain, ngrok mengharuskanmu membuat akun dan menyematkan token otentikasi (<em>auth token</em>) ke dalam konfigurasi lokal sebelum bisa digunakan.</li>
+                <li><strong>Limitasi Paket Gratis:</strong> Skema gratis ngrok sangat dibatasi. <em>Bandwidth</em> yang sempit dan batas jumlah koneksi per menit mungkin tidak akan cukup untuk menguji aplikasi dengan simulasi lalu lintas yang tinggi.</li>
+                <li><strong>Absennya UDP:</strong> Sayangnya, sama seperti pesaing utamanya, ngrok berfokus murni pada protokol TCP dan HTTP/HTTPS, sehingga mereka belum menyediakan dukungan untuk <em>tunnel</em> UDP.</li>
             </ul>
             <h2>Proses Instalasi dan Menjalankan ngrok</h2>
             <p>Memulai ngrok sebenarnya cukup mudah jika kamu sudah terbiasa dengan terminal komputer. Berikut adalah langkah dasarnya:</p>
             <ol>
-                <li>Unduh *file binary* ngrok dari tautan resmi mereka di *ngrok.com/download*.</li>
-                <li>Ekstrak arsip tersebut, lalu daftarkan token otentikasi dari dasbormu menggunakan perintah `ngrok config add-authtoken <token_milikmu>`.</token_milikmu></li>
+                <li>Unduh <em>file binary</em> ngrok dari tautan resmi mereka di <em>ngrok.com/download</em>.</li>
+                <li>Ekstrak arsip tersebut, lalu daftarkan token otentikasi dari dasbormu menggunakan perintah <code>ngrok config add-authtoken <token_milikmu></code>.</token_milikmu></li>
                 <li>Untuk mulai mengekspos aplikasi lokal yang berjalan di port 8080, cukup jalankan perintah berikut:</li>
             </ol>
             <pre><code>./ngrok http 8080</code></pre>
             <h2>Skema Harga</h2>
-            <p>Model bisnis <a href="https://ngrok.com/" target="_blank" rel="noopener noreferrer">ngrok</a> sangat terstruktur. Mereka menawarkan paket gratis untuk kebutuhan dasar pengembang individu. Namun, jika kamu membutuhkan *domain custom*, koneksi simultan tanpa batas, dan integrasi OAuth penuh, paket berbayarnya dimulai dari **$8 per bulan**. Semakin tinggi kelas tim atau organisasi kamu, mereka juga menyediakan paket *Enterprise* dengan harga yang dapat disesuaikan dengan kebutuhan lalu lintas datamu.</p>
+            <p>Model bisnis <a href="https://ngrok.com/" target="_blank" rel="noopener noreferrer">ngrok</a> sangat terstruktur. Mereka menawarkan paket gratis untuk kebutuhan dasar pengembang individu. Namun, jika kamu membutuhkan <em>domain custom</em>, koneksi simultan tanpa batas, dan integrasi OAuth penuh, paket berbayarnya dimulai dari <strong>$8 per bulan</strong>. Semakin tinggi kelas tim atau organisasi kamu, mereka juga menyediakan paket <em>Enterprise</em> dengan harga yang dapat disesuaikan dengan kebutuhan lalu lintas datamu.</p>
             <!-- Kotak Kredibilitas -->
             <div class="author-box" aria-label="Informasi Penulis dan Kredibilitas Artikel">
-                <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: **Fakhrul Rijal**</p>
-                <p><i class="fa-solid fa-map-marker-alt"></i> Lokasi: **Balikpapan, Kalimantan Timur**</p>
-                <p><i class="fa-regular fa-clock"></i> Dipublikasikan pada: **30 Mei 2026**</p>
-                <p style="margin-top: 0.75rem; color: var(--text-muted);">Konten ini merupakan ulasan teknis independen. Seluruh pengujian fitur inspeksi lalu lintas web dan antarmuka *dashboard* dilakukan berdasarkan evaluasi mandiri terhadap klien ngrok versi termutakhir untuk lingkungan pengembangan *server-side*.</p>
+                <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Fakhrul Rijal</strong></p>
+                <p><i class="fa-solid fa-map-marker-alt"></i> Lokasi: <strong>Balikpapan, Kalimantan Timur</strong></p>
+                <p><i class="fa-regular fa-clock"></i> Dipublikasikan pada: <strong>30 Mei 2026</strong></p>
+                <p style="margin-top: 0.75rem; color: var(--text-muted);">Konten ini merupakan ulasan teknis independen. Seluruh pengujian fitur inspeksi lalu lintas web dan antarmuka <em>dashboard</em> dilakukan berdasarkan evaluasi mandiri terhadap klien ngrok versi termutakhir untuk lingkungan pengembangan <em>server-side</em>.</p>
             </div>
         </main>
         <!-- Elemen Wajib Tanpa Styling Tepat Sebelum Footer -->

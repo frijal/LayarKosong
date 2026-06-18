@@ -57,13 +57,13 @@
 <!-- Article meta (wajib untuk artikel) -->
 <!-- CSS inline untuk performa, tanpa JavaScript tema, responsif, dark/light mode -->
   <style>
-    /* Reset & variabel tema */
+    /<em> Reset & variabel tema </em>/
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /* Tema default (light) dengan preferensi gelap nanti */
+    /<em> Tema default (light) dengan preferensi gelap nanti </em>/
     :root {
       color-scheme: light dark;
       --bg-body: #f9fafc;
@@ -76,7 +76,7 @@
       --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
       --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     }
-    /* Mode gelap otomatis (prefers-color-scheme) */
+    /<em> Mode gelap otomatis (prefers-color-scheme) </em>/
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-body: #0f172a;
@@ -100,7 +100,7 @@
       font-size: 1.0625rem;
       transition: background-color 0.2s, color 0.2s;
     }
-    /* Layout satu kolom, sederhana */
+    /<em> Layout satu kolom, sederhana </em>/
     article {
       background-color: var(--bg-card);
       border-radius: 1.5rem;
@@ -109,7 +109,7 @@
       margin: 1rem 0 2rem;
       border: 1px solid var(--border-light);
     }
-    /* Tipografi */
+    /<em> Tipografi </em>/
     h1 {
       font-size: 2.4rem;
       line-height: 1.2;
@@ -135,12 +135,12 @@
       margin-bottom: 1.2rem;
       text-align: justify;
     }
-    /* emoji dan ikon */
+    /<em> emoji dan ikon </em>/
     .emoji-lg {
       font-size: 1.4em;
       margin-right: 0.3rem;
     }
-    /* tautan */
+    /<em> tautan </em>/
     a {
       color: var(--accent);
       text-decoration: underline;
@@ -150,7 +150,7 @@
     a:hover {
       opacity: 0.8;
     }
-    /* tabel perbedaan */
+    /<em> tabel perbedaan </em>/
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
@@ -175,7 +175,7 @@
     .comparison-table tr:nth-child(even) {
       background-color: var(--bg-card);
     }
-    /* blockquote / catatan */
+    /<em> blockquote / catatan </em>/
     blockquote {
       border-left: 6px solid var(--accent);
       background-color: var(--bg-body);
@@ -185,7 +185,7 @@
       font-style: italic;
       color: var(--text-muted);
     }
-    /* gambar hero (bukan hero section, hanya gambar biasa) */
+    /<em> gambar hero (bukan hero section, hanya gambar biasa) </em>/
     .featured-image {
       width: 100%;
       max-height: 400px;
@@ -195,14 +195,14 @@
       box-shadow: var(--shadow);
       border: 2px solid var(--border-light);
     }
-    /* grid untuk related articles (masih kosong) */
+    /<em> grid untuk related articles (masih kosong) </em>/
     #related-articles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1.5rem;
       margin: 2rem 0;
     }
-    /* placeholder styling */
+    /<em> placeholder styling </em>/
     .related-placeholder {
       background-color: var(--bg-body);
       border: 2px dashed var(--border-light);
@@ -211,7 +211,7 @@
       text-align: center;
       color: var(--text-muted);
     }
-    /* div response (komentar) */
+    /<em> div response (komentar) </em>/
     #response {
       background-color: var(--bg-body);
       border-radius: 1.5rem;
@@ -222,7 +222,7 @@
       color: var(--text-muted);
       font-size: 1.1rem;
     }
-    /* footer */
+    /<em> footer </em>/
     footer {
       margin-top: 3rem;
       padding: 1.8rem 0.5rem;
@@ -231,7 +231,7 @@
       font-size: 0.95rem;
       color: var(--text-muted);
     }
-    /* mobile fine-tuning */
+    /<em> mobile fine-tuning </em>/
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       article { padding: 1.5rem 1rem; }
@@ -239,7 +239,7 @@
       h2 { font-size: 1.6rem; }
       h3 { font-size: 1.4rem; }
     }
-    /* faq style */
+    /<em> faq style </em>/
     .faq-item {
       background-color: var(--bg-body);
       margin: 1.2rem 0;

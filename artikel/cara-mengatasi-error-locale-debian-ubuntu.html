@@ -250,7 +250,7 @@
             border-top: 1px solid var(--border-color);
             margin-top: 40px;
         }
-        /* Mobile First Utilities */
+        /<em> Mobile First Utilities </em>/
         @media (max-width: 600px) {
             .container {
                 padding: 16px;
@@ -280,15 +280,15 @@
             <img class="article-image" src="https://dalam.web.id/img/AAAAAA/sdfghsdfh.webp" alt="Ilustrasi penanganan error locale di terminal linux debian" fetchpriority="high" decoding="async">
             <div class="image-caption">Gambar 1: Terminal yang mengalami kendala konfigurasi regional environment.</div>
             <h2>What: Apa Itu Sebenarnya Error Locale Ini?</h2>
-            <p>Error locale ini merupakan sebuah pesan peringatan (*warning*) yang dikeluarkan oleh interpreter bahasa pemrograman Perl dan pustaka antarmuka grafis GTK. Pesan ini muncul karena sistem mendeteksi adanya permintaan untuk menggunakan format regional tertentu—dalam kasus kita adalah format Indonesia (<code>id_ID.UTF-8</code>)—namun sistem Linux gagal menemukan berkas lokalisasi resmi yang terkompilasi di dalamnya.</p>
-            <p>Akibat kegagalan tersebut, sistem akan terpaksa beralih kembali (*fallback*) menggunakan setelan bahasa standar pabrik, yaitu <code>C.UTF-8</code>. Meski proses instalasi atau upgrade paket bawaan tetap selesai secara sukses (<em>Finished Successfully</em>), hadirnya runtunan pesan peringatan ini tentu mengganggu pemandangan terminal dan berpotensi memicu ketidakcocokan karakter format pada skrip otomatisasi tertentu.</p>
+            <p>Error locale ini merupakan sebuah pesan peringatan (<em>warning</em>) yang dikeluarkan oleh interpreter bahasa pemrograman Perl dan pustaka antarmuka grafis GTK. Pesan ini muncul karena sistem mendeteksi adanya permintaan untuk menggunakan format regional tertentu—dalam kasus kita adalah format Indonesia (<code>id_ID.UTF-8</code>)—namun sistem Linux gagal menemukan berkas lokalisasi resmi yang terkompilasi di dalamnya.</p>
+            <p>Akibat kegagalan tersebut, sistem akan terpaksa beralih kembali (<em>fallback</em>) menggunakan setelan bahasa standar pabrik, yaitu <code>C.UTF-8</code>. Meski proses instalasi atau upgrade paket bawaan tetap selesai secara sukses (<em>Finished Successfully</em>), hadirnya runtunan pesan peringatan ini tentu mengganggu pemandangan terminal dan berpotensi memicu ketidakcocokan karakter format pada skrip otomatisasi tertentu.</p>
             <h2>Why: Mengapa Peringatan Ini Tiba-tiba Muncul?</h2>
-            <p>Akar masalah utama dari fenomena ini adalah ketidakcocokan antara variabel lingkungan (*environment variables*) yang aktif di terminal dengan data berkas *locale* yang sebenarnya terpasang di direktori sistem OS. Saat kamu melakukan instalasi OS atau pembaruan paket via terminal, variabel seperti <code>LC_NUMERIC</code>, <code>LC_TIME</code>, atau <code>LC_MESSAGES</code> kerap secara otomatis tersetel ke <code>id_ID.UTF-8</code> guna menyesuaikan dengan preferensi wilayah pengguna.</p>
+            <p>Akar masalah utama dari fenomena ini adalah ketidakcocokan antara variabel lingkungan (<em>environment variables</em>) yang aktif di terminal dengan data berkas <em>locale</em> yang sebenarnya terpasang di direktori sistem OS. Saat kamu melakukan instalasi OS atau pembaruan paket via terminal, variabel seperti <code>LC_NUMERIC</code>, <code>LC_TIME</code>, atau <code>LC_MESSAGES</code> kerap secara otomatis tersetel ke <code>id_ID.UTF-8</code> guna menyesuaikan dengan preferensi wilayah pengguna.</p>
             <p>Namun, jika data biner untuk bahasa target belum di-<em>generate</em> di dalam berkas konfigurasi internal pusat komputer, perkakas sistem operasi seperti Perl dan C Library akan langsung protes karena tidak mampu menerjemahkan atau memformat data sesuai standarisasi regional tersebut.</p>
             <h2>Who &amp; When: Siapa yang Terpengaruh dan Kapan Ini Terjadi?</h2>
-            <p>Masalah ini umumnya menyerang para pengembang web, *system administrator*, maupun pengguna harian distro berbasis Debian, Ubuntu, Linux Mint, hingga varian lanjutannya. Biasanya, *error* ini muncul di saat-saat berikut:</p>
+            <p>Masalah ini umumnya menyerang para pengembang web, <em>system administrator</em>, maupun pengguna harian distro berbasis Debian, Ubuntu, Linux Mint, hingga varian lanjutannya. Biasanya, <em>error</em> ini muncul di saat-saat berikut:</p>
             <ul>
-                <li>Ketika baru saja menyelesaikan proses migrasi server atau konfigurasi *environment* baru.</li>
+                <li>Ketika baru saja menyelesaikan proses migrasi server atau konfigurasi <em>environment</em> baru.</li>
                 <li>Saat menjalankan perintah manajemen paket penting seperti <code>sudo apt upgrade</code> atau <code>sudo nala upgrade</code>.</li>
                 <li>Ketika kamu melakukan koneksi jarak jauh melalui SSH dari komputer lokal yang memiliki konfigurasi bahasa berbeda dengan server tujuan.</li>
             </ul>
@@ -297,7 +297,7 @@
             <h2>Where: Di Mana Letak Konfigurasi yang Bermasalah?</h2>
             <p>Letak akar permasalahan ini berada di dalam file konfigurasi sistem <code>/etc/locale.gen</code> dan <code>/etc/default/locale</code>. Di sanalah daftar bahasa yang didukung oleh mesin disimpan. Jika baris kode untuk <code>id_ID.UTF-8 UTF-8</code> masih dalam kondisi nonaktif (terkomentari dengan tanda pagar <code>#</code>) atau belum terdaftar, maka sistem dipastikan tidak akan bisa memanggil setelan bahasa Indonesia tersebut.</p>
             <h2>How: Bagaimana Cara Mengatasinya Secara Permanen?</h2>
-            <p>Untuk menghilangkan baris *warning* yang mengganggu pemandangan terminal ini secara tuntas, kamu dapat menerapkan salah satu dari dua metode praktis di bawah ini lewat hak akses administrator (<code>root</code>/<code>sudo</code>).</p>
+            <p>Untuk menghilangkan baris <em>warning</em> yang mengganggu pemandangan terminal ini secara tuntas, kamu dapat menerapkan salah satu dari dua metode praktis di bawah ini lewat hak akses administrator (<code>root</code>/<code>sudo</code>).</p>
             <h3>Metode 1: Menggunakan Perintah CLI Cepat (Sangat Direkomendasikan)</h3>
             <p>Ini adalah jalan pintas tercepat tanpa perlu membuka editor teks secara manual. Jalankan rangkaian perintah ini secara berurutan di terminal kamu:</p>
             <pre><code># 1. Generate paket locale Indonesia yang hilang
@@ -312,7 +312,7 @@ sudo update-locale LANG=id_ID.UTF-8</code></pre>
                 <li>Gunakan tombol panah bawah di keyboard untuk mencari pilihan <code>id_ID.UTF-8 UTF-8</code>.</li>
                 <li>Tekan tombol <strong>Spasi</strong> untuk memberikan tanda centang pada opsi tersebut.</li>
                 <li>Tekan tombol <strong>Tab</strong> untuk memilih tombol &lt;Ok&gt;, lalu tekan <strong>Enter</strong>.</li>
-                <li>Pada jendela berikutnya, sistem akan menanyakan *locale* default. Anda bisa memilih <code>C.UTF-8</code> atau langsung menggunakan <code>id_ID.UTF-8</code> demi kenyamanan regional Anda.</li>
+                <li>Pada jendela berikutnya, sistem akan menanyakan <em>locale</em> default. Anda bisa memilih <code>C.UTF-8</code> atau langsung menggunakan <code>id_ID.UTF-8</code> demi kenyamanan regional Anda.</li>
             </ol>
             <div class="alert-box">
                 <p><strong>Tips Tambahan:</strong> Setelah menjalankan langkah-langkah di atas, pastikan kamu menutup aplikasi terminal atau melakukan putus-sambung sesi SSH (jika di server), kemudian buka kembali agar variabel lingkungan baru teraplikasi secara sempurna.</p>

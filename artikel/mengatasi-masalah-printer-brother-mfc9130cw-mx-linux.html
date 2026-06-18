@@ -52,7 +52,7 @@
     <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJgMPPFbcAAOkNf?format=jpg&amp;name=large" fetchpriority="high">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        *, *::before, *::after {
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         :root {
@@ -60,7 +60,7 @@
             --card-bg: #ffffff;
             --text-color: #2c3e50;
             --text-muted: #7f8c8d;
-            --primary-color: #2980b9; /* Biru MX Linux */
+            --primary-color: #2980b9; /<em> Biru MX Linux </em>/
             --accent-color: #e74c3c;
             --border-color: #bdc3c7;
             --blockquote-bg: #eaf2f8;
@@ -69,7 +69,7 @@
             --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             --mono-stack: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         }
-        /* Dark Mode Support via prefers-color-scheme */
+        /<em> Dark Mode Support via prefers-color-scheme </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -91,13 +91,13 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.65;
-            font-size: 1.1rem; /* Base size menggunakan rem agar responsif dan nyaman dibaca */
+            font-size: 1.1rem; /<em> Base size menggunakan rem agar responsif dan nyaman dibaca </em>/
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
         .container {
             width: 100%;
-            max-width: 1000px; /* Center layout untuk desktop */
+            max-width: 1000px; /<em> Center layout untuk desktop </em>/
             margin: 0 auto;
             padding: 1.5rem 1.25rem;
         }
@@ -122,7 +122,7 @@
                 padding: 2.5rem 3rem;
             }
         }
-        /* Meta Penulis (E-E-A-T) */
+        /<em> Meta Penulis (E-E-A-T) </em>/
         .meta-container {
             display: flex;
             flex-wrap: wrap;
@@ -140,7 +140,7 @@
             font-weight: 700;
             color: var(--primary-color);
         }
-        /* Gambar Konten (Bukan Hero Besar, diletakkan aman di bawah paragraf awal) */
+        /<em> Gambar Konten (Bukan Hero Besar, diletakkan aman di bawah paragraf awal) </em>/
         figure.content-image {
             margin: 2.5rem 0;
             text-align: center;
@@ -159,7 +159,7 @@
             color: var(--text-muted);
             font-style: italic;
         }
-        /* Tipografi Artikel */
+        /<em> Tipografi Artikel </em>/
         article p {
             margin-top: 0;
             margin-bottom: 1.5rem;
@@ -191,7 +191,7 @@
         li {
             margin-bottom: 0.6rem;
         }
-        /* Styling Kode & Terminal */
+        /<em> Styling Kode & Terminal </em>/
         code:not(pre code) {
             font-family: var(--mono-stack);
             background-color: rgba(127, 140, 141, 0.2);
@@ -228,7 +228,7 @@
             margin-top: 0;
             color: var(--primary-color);
         }
-        /* Referensi Section (E-E-A-T) */
+        /<em> Referensi Section (E-E-A-T) </em>/
         .references {
             margin-top: 4rem;
             padding-top: 1.5rem;
@@ -278,17 +278,17 @@
                 Kombinasi antara MX Linux dan laptop tangguh seperti Lenovo Thinkpad E550 sejatinya adalah lingkungan kerja yang luar biasa stabil. Namun, tentu sangat menjengkelkan ketika urusan pekerjaan terhambat gara-gara printer bermasalah—apalagi sampai membuang banyak kertas akibat mesin yang mencetak tanpa kendali.
             </p>
             <p>
-                Kabar baiknya, Anda tidak sendirian. Kedua masalah yang sering Anda alami—yaitu <strong>printer yang sering tidak terdeteksi di <em>browser</em> Firefox</strong> dan <strong>perintah cetak (jumlah kopi) yang tidak dipatuhi</strong>—adalah kasus *bug* yang sudah sangat dikenal pada jajaran printer Brother saat beroperasi di sistem Linux. Berikut adalah analisis akar masalah dan solusi tuntas yang bisa Anda coba sekarang juga.
+                Kabar baiknya, Anda tidak sendirian. Kedua masalah yang sering Anda alami—yaitu <strong>printer yang sering tidak terdeteksi di <em>browser</em> Firefox</strong> dan <strong>perintah cetak (jumlah kopi) yang tidak dipatuhi</strong>—adalah kasus <em>bug</em> yang sudah sangat dikenal pada jajaran printer Brother saat beroperasi di sistem Linux. Berikut adalah analisis akar masalah dan solusi tuntas yang bisa Anda coba sekarang juga.
             </p>
             <figure class="content-image">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/cddd949958a4ef1.webp" alt="Ilustrasi troubleshooting printer Brother di lingkungan MX Linux" width="800" height="450" fetchpriority="high" decoding="async">
                 <figcaption>Menyelesaikan drama printer "ngambek" di sistem operasi Linux.</figcaption>
             </figure>
             <h2>🔍 Penyebab Umum Error Printer Brother di Linux</h2>
-            <p>Sebelum masuk ke ranah teknis, mari kita pahami dulu mengapa dua *error* aneh ini bisa terjadi secara bersamaan:</p>
+            <p>Sebelum masuk ke ranah teknis, mari kita pahami dulu mengapa dua <em>error</em> aneh ini bisa terjadi secara bersamaan:</p>
             <ul>
-                <li><strong>Printer tidak konsisten muncul:</strong> Masalah ini biasanya diakibatkan oleh alamat IP printer di jaringan yang berubah-ubah (DHCP dinamis). Aplikasi seperti Firefox tidak akan bisa menemukan printer di jaringan lokal sampai terjadi *broadcast* penemuan perangkat secara ulang.</li>
-                <li><strong>Cetak banyak kopi / tidak terkendali:</strong> Ini adalah *bug* klasik pada struktur <em>file</em> PPD (konfigurasi profil printer) bawaan dari Brother. Karena ada parameter yang tidak kompatibel dengan <em>print server</em> CUPS modern, printer akhirnya mengabaikan batasan perintah jumlah kopi dari sistem, sehingga mencetak terus-menerus atau justru salah membaca instruksi dokumen.</li>
+                <li><strong>Printer tidak konsisten muncul:</strong> Masalah ini biasanya diakibatkan oleh alamat IP printer di jaringan yang berubah-ubah (DHCP dinamis). Aplikasi seperti Firefox tidak akan bisa menemukan printer di jaringan lokal sampai terjadi <em>broadcast</em> penemuan perangkat secara ulang.</li>
+                <li><strong>Cetak banyak kopi / tidak terkendali:</strong> Ini adalah <em>bug</em> klasik pada struktur <em>file</em> PPD (konfigurasi profil printer) bawaan dari Brother. Karena ada parameter yang tidak kompatibel dengan <em>print server</em> CUPS modern, printer akhirnya mengabaikan batasan perintah jumlah kopi dari sistem, sehingga mencetak terus-menerus atau justru salah membaca instruksi dokumen.</li>
             </ul>
             <h2>✅ Perbaikan 1: Printer Sering Tidak Muncul di Firefox</h2>
             <p>
@@ -303,32 +303,32 @@
                     <li><strong>Gunakan installer resmi Brother terbaru:</strong>
                         <ul>
                             <li>Unduh <code>Driver Install Tool</code> langsung dari <a href="https://support.brother.com/g/b/producttop.aspx?c=us&amp;lang=en&amp;prod=mfc9130cw_all" target="_blank" rel="noopener">halaman dukungan resmi Brother MFC-9130CW</a> khusus untuk sistem operasi Linux.</li>
-                            <li>Buka terminal Anda, masuk ke folder <em>Downloads</em> tempat *file* tersebut berada, ekstrak <em>file</em> <code>.gz</code>-nya, lalu jalankan perintah instalasi berikut:</li>
+                            <li>Buka terminal Anda, masuk ke folder <em>Downloads</em> tempat <em>file</em> tersebut berada, ekstrak <em>file</em> <code>.gz</code>-nya, lalu jalankan perintah instalasi berikut:</li>
                         </ul>
                     </li>
                 </ol>
                 <div class="terminal-block">
                     <code>
-<span style="color: #66d9ef;">user@thinkpad:~$</span> gunzip linux-brprinter-installer-*.*.*-*.gz<br>
+<span style="color: #66d9ef;">user@thinkpad:~$</span> gunzip linux-brprinter-installer-<em>.</em>.<em>-</em>.gz<br>
 <span style="color: #66d9ef;">user@thinkpad:~$</span> su<br>
-<span style="color: #66d9ef;">root@thinkpad:#</span> bash linux-brprinter-installer-*.*.*-* MFC-9130CW
+<span style="color: #66d9ef;">root@thinkpad:#</span> bash linux-brprinter-installer-<em>.</em>.<em>-</em> MFC-9130CW
                     </code>
                 </div>
                 <p>
-                    Saat *script installer* berjalan, ia akan menanyakan beberapa hal dasar. Jawab <strong>Yes (Y)</strong> untuk menyetujui lisensi. Ketika ditanya <em>"Will you specify the Device URI?"</em>, tekan <strong>Y</strong>, lalu masukkan alamat IP Statis (<code>192.168.1.100</code>) yang sudah Anda tetapkan di langkah pertama tadi.
+                    Saat <em>script installer</em> berjalan, ia akan menanyakan beberapa hal dasar. Jawab <strong>Yes (Y)</strong> untuk menyetujui lisensi. Ketika ditanya <em>"Will you specify the Device URI?"</em>, tekan <strong>Y</strong>, lalu masukkan alamat IP Statis (<code>192.168.1.100</code>) yang sudah Anda tetapkan di langkah pertama tadi.
                 </p>
             </div>
             <h2>✅ Perbaikan 2: Mengatasi Bug Jumlah Cetak (Copies) yang Diabaikan</h2>
             <p>
-                Setelah printer berhasil terdeteksi permanen di Firefox, kita harus menyembuhkan penyakit kedua: printer yang suka menghambur-hamburkan kertas karena *bug* PPD.
+                Setelah printer berhasil terdeteksi permanen di Firefox, kita harus menyembuhkan penyakit kedua: printer yang suka menghambur-hamburkan kertas karena <em>bug</em> PPD.
             </p>
             <p>
                 Masalah <em>multi-copy</em> ini terjadi karena sistem filter Brother bentrok dengan penanganan jumlah kopi pada komponen CUPS di Linux. Untuk mengatasinya:
             </p>
             <ol>
-                <li>Buka *browser* (Firefox) Anda, lalu ketik alamat ini di URL bar: <code>http://localhost:631</code> (Ini adalah antarmuka web pengaturan CUPS).</li>
+                <li>Buka <em>browser</em> (Firefox) Anda, lalu ketik alamat ini di URL bar: <code>http://localhost:631</code> (Ini adalah antarmuka web pengaturan CUPS).</li>
                 <li>Pilih tab <strong>Printers</strong>, lalu klik pada nama printer Brother MFC-9130CW Anda.</li>
-                <li>Pada menu *dropdown* "Administration", pilih opsi <strong>Set Default Options</strong>.</li>
+                <li>Pada menu <em>dropdown</em> "Administration", pilih opsi <strong>Set Default Options</strong>.</li>
                 <li>Cari dan pastikan bahwa manajemen filter diserahkan pada sistem operasi. Jika opsi di antarmuka kurang spesifik, Anda harus memperbaiki <em>file</em> PPD secara manual melalui terminal.</li>
             </ol>
             <p>Buka terminal dan edit <em>file</em> PPD tersebut sebagai <em>root</em> (gunakan editor teks kesayangan Anda, misalnya <code>nano</code>):</p>
@@ -338,7 +338,7 @@
                 </code>
             </div>
             <p>
-                Di dalam <em>file</em> tersebut, carilah baris perintah konfigurasi yang mengatur fungsi <em>copies</em>. Anda mungkin akan menemukan atau perlu menambahkan parameter manipulasi *hardware* agar CUPS tidak membodohi printer. Simpan perubahan tersebut (Ctrl+O, Enter, Ctrl+X), lalu *restart* layanan CUPS:
+                Di dalam <em>file</em> tersebut, carilah baris perintah konfigurasi yang mengatur fungsi <em>copies</em>. Anda mungkin akan menemukan atau perlu menambahkan parameter manipulasi <em>hardware</em> agar CUPS tidak membodohi printer. Simpan perubahan tersebut (Ctrl+O, Enter, Ctrl+X), lalu <em>restart</em> layanan CUPS:
             </p>
             <div class="terminal-block">
                 <code>
@@ -346,7 +346,7 @@
                 </code>
             </div>
             <p>
-                Dengan mengunci alamat IP dan membereskan komunikasi PPD di level *systemd*, perangkat Lenovo Thinkpad dan MX Linux Anda kini seharusnya bisa memerintah printer Brother tanpa drama kertas terbuang. Selamat mencoba dan semoga pekerjaan Anda kembali lancar!
+                Dengan mengunci alamat IP dan membereskan komunikasi PPD di level <em>systemd</em>, perangkat Lenovo Thinkpad dan MX Linux Anda kini seharusnya bisa memerintah printer Brother tanpa drama kertas terbuang. Selamat mencoba dan semoga pekerjaan Anda kembali lancar!
             </p>
         </article>
         <aside class="references">
@@ -354,7 +354,7 @@
             <ul>
                 <li>Dukungan Resmi Perangkat Keras: <a href="https://support.brother.com/g/b/producttop.aspx?c=us&amp;lang=en&amp;prod=mfc9130cw_all" target="_blank" rel="noopener">Brother MFC-9130CW Linux FAQs &amp; Troubleshooting</a>.</li>
                 <li>Dokumentasi Pengelolaan Printer Linux: Manajer pencetakan lintas platform <em>CUPS (Common UNIX Printing System)</em>.</li>
-                <li>MX Linux Forum: Diskusi komunitas seputar *bug* PPD pada instalasi printer jaringan pihak ketiga.</li>
+                <li>MX Linux Forum: Diskusi komunitas seputar <em>bug</em> PPD pada instalasi printer jaringan pihak ketiga.</li>
             </ul>
         </aside>
   <div id="related-articles-grid"></div>

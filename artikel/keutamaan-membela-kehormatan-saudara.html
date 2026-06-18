@@ -70,7 +70,7 @@
     }
     a { color: var(--accent-2); text-decoration: none }
     a:hover { text-decoration: underline }
-    /* Single wide column */
+    /<em> Single wide column </em>/
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
@@ -94,7 +94,7 @@
       margin: 4px 0 0;
       font-size: clamp(14px, 2.2vw, 16px);
     }
-    /* Hero image full-bleed with soft shadow */
+    /<em> Hero image full-bleed with soft shadow </em>/
     .hero {
       margin: 24px 0;
       border-radius: var(--radius);
@@ -110,7 +110,7 @@
       aspect-ratio: 16 / 9;
       filter: saturate(1.05) contrast(1.05);
     }
-    /* Article body */
+    /<em> Article body </em>/
     article {
       background: linear-gradient(180deg, var(--bg-soft), rgba(17,22,28,0.6));
       border: 1px solid rgba(255,255,255,0.06);
@@ -133,7 +133,7 @@
       color: var(--text);
       border-radius: 10px;
     }
-    /* Gallery + Lightbox */
+    /<em> Gallery + Lightbox </em>/
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -198,7 +198,7 @@
     }
     .btn:hover { background: rgba(255,255,255,0.18) }
     .btn:active { transform: translateY(1px) }
-    /* Share icons row */
+    /<em> Share icons row </em>/
     .share {
       display: flex;
       gap: 12px;
@@ -207,7 +207,7 @@
       margin: 18px 0 6px;
     }
     .share .btn svg { width: 18px; height: 18px }
-    /* Info chips */
+    /<em> Info chips </em>/
     .info {
       display: grid;
       grid-template-columns: 1fr;
@@ -226,7 +226,7 @@
     }
     .chip .label { color: var(--muted); min-width: 120px }
     .chip .value { font-weight: 600 }
-    /* Floating controls */
+    /<em> Floating controls </em>/
     .float-sitemap, .float-home {
       position: fixed;
       z-index: 9998;
@@ -239,13 +239,13 @@
       right: 16px;
       bottom: 20%;
     }
-    /* Footer + comments */
+    /<em> Footer + comments </em>/
     footer {
       margin: 20px 0 80px;
       color: var(--muted);
       font-size: 14px;
     }
-    /* Small screens */
+    /<em> Small screens </em>/
     @media (max-width: 560px) {
       .chip .label { min-width: 90px }
       .lightbox .nav { bottom: 16px }
@@ -318,7 +318,7 @@
       // If no hero image or fails, fallback to artikel/*.jpg derived from path
       const path = location.pathname;
       const baseName = path.split('/').pop()?.replace(/\.html?$/i, '') || 'artikel';
-      const fallbackImg = `https://dalam.web.id/artikel/${baseName}.jpg`;
+      const fallbackImg = <code>https://dalam.web.id/artikel/${baseName}.jpg</code>;
       const heroImg = document.getElementById('hero-img');
       const setOG = (src) => {
         document.getElementById('og-image').setAttribute('content', src);

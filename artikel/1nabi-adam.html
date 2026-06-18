@@ -51,15 +51,15 @@
   <!-- CSS: Single-column, wide fullscreen, mobile-friendly; gaya baru (serif calm) -->
   <style>
     :root {
-      --bg: #f4f6f3;         /* soft moss */
+      --bg: #f4f6f3;         /<em> soft moss </em>/
       --paper: #ffffff;
-      --ink: #1f2937;        /* slate */
-      --muted: #6b7280;      /* gray */
+      --ink: #1f2937;        /<em> slate </em>/
+      --muted: #6b7280;      /<em> gray </em>/
       --line: #e5e7eb;
-      --brand: #0ea5a5;      /* teal */
-      --accent: #84cc16;     /* lime */
-      --warn: #dc2626;       /* red */
-      --ok: #16a34a;         /* green */
+      --brand: #0ea5a5;      /<em> teal </em>/
+      --accent: #84cc16;     /<em> lime </em>/
+      --warn: #dc2626;       /<em> red </em>/
+      --ok: #16a34a;         /<em> green </em>/
       --maxw: 800px;
       --lh: 1.85;
     }
@@ -77,13 +77,13 @@
     a { color: var(--brand); text-decoration: none }
     a:hover { text-decoration: underline }
     img { max-width: 100%; height: auto; border-radius: 14px }
-    /* Container */
+    /<em> Container </em>/
     main {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 28px clamp(16px, 5vw, 36px) 100px;
     }
-    /* Title block */
+    /<em> Title block </em>/
     .title {
       position: relative;
       padding: clamp(20px, 3.6vw, 30px);
@@ -103,7 +103,7 @@
       color: var(--muted);
       font-size: clamp(15px, 2.6vw, 18px);
     }
-    /* Chips row */
+    /<em> Chips row </em>/
     .chips {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -115,7 +115,7 @@
       font-size: 13px;
     }
     .chip svg { width: 16px; height: 16px }
-    /* Content blocks */
+    /<em> Content blocks </em>/
     .block {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -138,7 +138,7 @@
       border-radius: 8px;
       font-style: italic;
     }
-    /* Gallery */
+    /<em> Gallery </em>/
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -160,7 +160,7 @@
       font-size: 13px;
     }
     .zoomable { cursor: zoom-in }
-    /* Lightbox */
+    /<em> Lightbox </em>/
     .lightbox {
       position: fixed; inset: 0; z-index: 50;
       display: none; align-items: center; justify-content: center;
@@ -192,7 +192,7 @@
       color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    /* Share strip */
+    /<em> Share strip </em>/
     .share-strip {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -205,7 +205,7 @@
     }
     .share-btn svg { width: 18px; height: 18px }
     .copy-ok { color: var(--ok) }
-    /* Floating controls */
+    /<em> Floating controls </em>/
     .float-btn {
       position: fixed; z-index: 40;
       display: inline-flex; align-items: center; gap: 8px;
@@ -216,12 +216,12 @@
     .btn-sitemap { left: 16px; top: 30% }
     .btn-home { right: 16px; bottom: 20% }
     .float-btn svg { width: 18px; height: 18px }
-    /* Comments */
+    /<em> Comments </em>/
     .comments {
       margin-top: 10px;
       background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px;
     }
-    /* Accessibility & motion preferences */
+    /<em> Accessibility & motion preferences </em>/
     :focus-visible { outline: 2px solid rgba(14,165,165,0.45); outline-offset: 2px }
     @media (min-width: 1100px) {
       :root { --maxw: 900px }
@@ -328,7 +328,7 @@
   <!-- JS: SEO hydration, share, lightbox, info chips (browser/OS/IP/flag), fallbacks -->
   <script>
     (function() {
-      const safe = (f) => { try { f(); } catch (e) { /* lanjut */ } };
+      const safe = (f) => { try { f(); } catch (e) { /<em> lanjut </em>/ } };
       // Canonical & OG/Twitter url/image meta auto + fallback artikel/*.jpg
       safe(() => {
         const url = new URL(window.location.href);
@@ -357,7 +357,7 @@
         const words = text.trim().split(/\s+/).length;
         const min = Math.max(3, Math.round(words / 200));
         const el = document.querySelector('#read-time span');
-        if (el) el.textContent = `Waktu baca: ~${min} menit`;
+        if (el) el.textContent = <code>Waktu baca: ~${min} menit</code>;
       });
       // Lightbox gallery with arrow keys (include hero image + gallery)
       safe(() => {
@@ -373,7 +373,7 @@
           idx = i;
           lbImg.src = items[idx].src;
           lb.classList.add('open');
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
           document.body.style.overflow = 'hidden';
         };
         const closeLb = () => {
@@ -384,7 +384,7 @@
         const step = (d) => {
           idx = (idx + d + items.length) % items.length;
           lbImg.src = items[idx].src;
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
         };
         document.querySelectorAll('.zoomable').forEach((fig, i) => {
           fig.addEventListener('click', () => openAt(i));

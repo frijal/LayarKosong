@@ -71,8 +71,8 @@
     --border: #1f3b57;
     --accent: #82aaff;
   }
-  /* === Inline Night Owl Theme (Prism.js) === */
-  code[class*="language-"], pre[class*="language-"] {
+  /<em> === Inline Night Owl Theme (Prism.js) === </em>/
+  code[class<em>="language-"], pre[class</em>="language-"] {
     color: #d6deeb;
     background: #011627;
     text-shadow: none;
@@ -166,7 +166,7 @@ on:
       - 'artikel/*.html'
   workflow_dispatch:
   schedule:
-    - cron: '0 21 * * *'  # Jalankan otomatis setiap pukul 21:00 UTC
+    - cron: '0 21 <em> </em> *'  # Jalankan otomatis setiap pukul 21:00 UTC
 jobs:
   build:
     runs-on: ubuntu-latest

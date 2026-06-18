@@ -76,7 +76,7 @@
             transition: background 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1000px; /* Widescreen 1 kolom */
+            max-width: 1000px; /<em> Widescreen 1 kolom </em>/
             margin: 0 auto;
             padding: 20px;
         }
@@ -126,7 +126,7 @@
             background: var(--secondary-bg);
             border-radius: 8px;
         }
-        /* Mobile Responsive */
+        /<em> Mobile Responsive </em>/
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             .container { padding: 15px; }
@@ -147,38 +147,38 @@
     </header>
     <article class="content-body">
         <p>Halo sobat tech! Balik lagi bareng aku di <strong>Layar Kosong</strong>. Gak kerasa ya, kita sudah masuk di awal tahun 2026. Buat kamu para pemuja kecepatan dan performa di Linux, ada kabar gembira yang datang dari keluarga besar Arch Linux. Salah satu distro paling "gercep" (gerak cepat) saat ini, <strong>CachyOS</strong>, baru saja melepas ISO terbarunya untuk Januari 2026. <a target="_blank" href="https://cachyos.org/blog/2601-january-release/">https://cachyos.org/blog/2601-january-release</a></p>
-        <p>Kalau kamu belum tahu, CachyOS ini ibaratnya Arch Linux yang sudah dikasih "turbo". Mereka fokus banget pada optimasi *compiler* dan performa *kernel* yang bikin hardware lama berasa baru, dan hardware baru berasa terbang. Nah, rilis kali ini bukan cuma sekadar *update* paket biasa, tapi ada perubahan fundamental yang bakal bikin pengalaman pakai Linux kamu makin modern.</p>
+        <p>Kalau kamu belum tahu, CachyOS ini ibaratnya Arch Linux yang sudah dikasih "turbo". Mereka fokus banget pada optimasi <em>compiler</em> dan performa <em>kernel</em> yang bikin hardware lama berasa baru, dan hardware baru berasa terbang. Nah, rilis kali ini bukan cuma sekadar <em>update</em> paket biasa, tapi ada perubahan fundamental yang bakal bikin pengalaman pakai Linux kamu makin modern.</p>
         <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_qpSvdWEAAIYQ7.webp" alt="CachyOS 2026 Release Desktop">
         <div class="highlight-box">
             <p><strong>Kenapa artikel ini panjang banget?</strong> Karena kita akan bahas tuntas pakai prinsip <strong>5W+1H</strong> (What, Who, When, Where, Why, dan How) supaya kamu paham luar dalamnya CachyOS rilis terbaru ini. Yuk, seduh kopi dulu!</p>
         </div>
         <h2>Apa Itu CachyOS Rilis Januari 2026? (What)</h2>
-        <p>CachyOS rilis Januari 2026 adalah versi stabil terbaru dari distribusi berbasis Arch Linux yang dirancang khusus untuk efisiensi tinggi. Di rilis ini, mereka melakukan perombakan besar pada *stack* grafis dan manajemen sistem. Fokus utamanya adalah meninggalkan teknologi lama (X11) dan merangkul masa depan (Wayland), serta mengganti komponen manajer *login* yang lebih terintegrasi dengan ekosistem KDE Plasma.</p>
+        <p>CachyOS rilis Januari 2026 adalah versi stabil terbaru dari distribusi berbasis Arch Linux yang dirancang khusus untuk efisiensi tinggi. Di rilis ini, mereka melakukan perombakan besar pada <em>stack</em> grafis dan manajemen sistem. Fokus utamanya adalah meninggalkan teknologi lama (X11) dan merangkul masa depan (Wayland), serta mengganti komponen manajer <em>login</em> yang lebih terintegrasi dengan ekosistem KDE Plasma.</p>
         <h2>Siapa yang Paling Diuntungkan? (Who)</h2>
         <p>Rilis ini ditujukan untuk beberapa kalangan spesifik:</p>
         <ul>
-            <li><i class="fa-solid fa-display"></i> <strong>Penggemar Visual:</strong> Pengguna yang mendambakan tampilan desktop bersih tanpa *tearing*.</li>
-            <li><i class="fa-solid fa-gamepad"></i> <strong>Linux Gamers:</strong> Kamu yang butuh FPS stabil dan *latency* rendah.</li>
+            <li><i class="fa-solid fa-display"></i> <strong>Penggemar Visual:</strong> Pengguna yang mendambakan tampilan desktop bersih tanpa <em>tearing</em>.</li>
+            <li><i class="fa-solid fa-gamepad"></i> <strong>Linux Gamers:</strong> Kamu yang butuh FPS stabil dan <em>latency</em> rendah.</li>
             <li><i class="fa-solid fa-laptop"></i> <strong>Pemilik Laptop Baru:</strong> Terutama yang pakai prosesor AMD Zen 5 atau laptop Framework.</li>
             <li><i class="fa-solid fa-microchip"></i> <strong>Power Users:</strong> Pengguna yang suka oprek sistem sampai ke akar-akarnya.</li>
         </ul>
         <h2>Kapan dan Di Mana Rilis Ini Bisa Dinikmati? (When dan Where)</h2>
-        <p>Berita ini resmi diumumkan oleh Michael Larabel pada akhir Januari 2026. Kamu bisa langsung meluncur ke situs resmi mereka di <strong>cachyos.org</strong> untuk mengunduh ISO terbarunya. Rilis ini sudah tersedia secara global di berbagai *mirror* server, termasuk yang paling dekat dengan kita di Indonesia supaya *download*-nya makin ngebut.</p>
+        <p>Berita ini resmi diumumkan oleh Michael Larabel pada akhir Januari 2026. Kamu bisa langsung meluncur ke situs resmi mereka di <strong>cachyos.org</strong> untuk mengunduh ISO terbarunya. Rilis ini sudah tersedia secara global di berbagai <em>mirror</em> server, termasuk yang paling dekat dengan kita di Indonesia supaya <em>download</em>-nya makin ngebut.</p>
         <h2>Mengapa Transisi Ini Sangat Penting? (Why)</h2>
-        <p>Mungkin kamu bertanya, <em>"Kenapa sih harus ganti ke Wayland? X11 kan masih jalan?"</em>. Jawabannya simpel: <strong>Keamanan dan Efisiensi.</strong> X11 itu teknologi yang umurnya sudah puluhan tahun dan sudah sulit untuk dikembangkan lagi untuk menangani layar modern dengan *refresh rate* tinggi atau HDR.</p>
-        <p>CachyOS ingin memastikan penggunanya mendapatkan teknologi paling mutakhir. Penggantian SDDM menjadi <strong>Plasma Login Manager</strong> juga krusial karena integrasi yang lebih mulus dengan sesi Wayland, mengurangi *glitch* saat transisi dari layar *boot* ke desktop.</p>
+        <p>Mungkin kamu bertanya, <em>"Kenapa sih harus ganti ke Wayland? X11 kan masih jalan?"</em>. Jawabannya simpel: <strong>Keamanan dan Efisiensi.</strong> X11 itu teknologi yang umurnya sudah puluhan tahun dan sudah sulit untuk dikembangkan lagi untuk menangani layar modern dengan <em>refresh rate</em> tinggi atau HDR.</p>
+        <p>CachyOS ingin memastikan penggunanya mendapatkan teknologi paling mutakhir. Penggantian SDDM menjadi <strong>Plasma Login Manager</strong> juga krusial karena integrasi yang lebih mulus dengan sesi Wayland, mengurangi <em>glitch</em> saat transisi dari layar <em>boot</em> ke desktop.</p>
         <h2>Bagaimana Detail Perubahan Teknisnya? (How)</h2>
         <p>Mari kita bedah satu per satu secara mendalam. Jangan skip bagian ini kalau kamu mau tahu apa saja yang berubah di balik kap mesinnya:</p>
         <h3>1. Limine Jadi Bootloader Default 🛠️</h3>
-        <p>Lupakan sejenak GRUB yang terkadang ribet. CachyOS kini secara resmi menjadikan <strong>Limine</strong> sebagai *bootloader* default mereka. Limine dikenal sangat ringan, modern, dan mendukung protokol *boot* yang lebih luas tanpa drama konfigurasi yang berbelit. Ini bikin proses *startup* terasa lebih instan.</p>
+        <p>Lupakan sejenak GRUB yang terkadang ribet. CachyOS kini secara resmi menjadikan <strong>Limine</strong> sebagai <em>bootloader</em> default mereka. Limine dikenal sangat ringan, modern, dan mendukung protokol <em>boot</em> yang lebih luas tanpa drama konfigurasi yang berbelit. Ini bikin proses <em>startup</em> terasa lebih instan.</p>
         <h3>2. Optimasi Btrfs dengan Kompresi Level 1 💾</h3>
-        <p>Buat kamu yang suka pakai file system Btrfs, sekarang instalasi default akan langsung mengaktifkan kompresi zstd level 1. Kenapa cuma level 1? Karena ini adalah *sweet spot* antara menghemat ruang penyimpanan tanpa membebani kerja CPU. Efeknya? Baca-tulis data jadi lebih efisien!</p>
+        <p>Buat kamu yang suka pakai file system Btrfs, sekarang instalasi default akan langsung mengaktifkan kompresi zstd level 1. Kenapa cuma level 1? Karena ini adalah <em>sweet spot</em> antara menghemat ruang penyimpanan tanpa membebani kerja CPU. Efeknya? Baca-tulis data jadi lebih efisien!</p>
         <h3>3. Full Wayland dan Plasma Login Manager 🖥️</h3>
-        <p>Ini bintang utamanya. Mengikuti jejak Fedora 44, CachyOS kini default ke sesi Wayland. Tidak ada lagi drama layar robek (*screen tearing*) saat nonton video atau main game. Plasma Login Manager yang baru juga memberikan tampilan yang lebih konsisten dengan tema desktop yang kamu pilih.</p>
+        <p>Ini bintang utamanya. Mengikuti jejak Fedora 44, CachyOS kini default ke sesi Wayland. Tidak ada lagi drama layar robek (<em>screen tearing</em>) saat nonton video atau main game. Plasma Login Manager yang baru juga memberikan tampilan yang lebih konsisten dengan tema desktop yang kamu pilih.</p>
         <h3>4. Dukungan NVIDIA Kepler dan Hardware Baru 🏎️</h3>
-        <p>Meskipun kita bicara masa depan, CachyOS gak lupa sama pengguna hardware lama. Mereka menyertakan paket `nouveau-fw` untuk kartu grafis NVIDIA seri Kepler agar bisa menikmati akselerasi video VA-API. Di sisi lain, mereka juga memperbaiki *bug* instalasi pada laptop Framework yang menggunakan prosesor AMD Zen 5 terbaru. Jadi, dari hardware jadul sampai yang paling baru, semua dirangkul!</p>
+        <p>Meskipun kita bicara masa depan, CachyOS gak lupa sama pengguna hardware lama. Mereka menyertakan paket <code>nouveau-fw</code> untuk kartu grafis NVIDIA seri Kepler agar bisa menikmati akselerasi video VA-API. Di sisi lain, mereka juga memperbaiki <em>bug</em> instalasi pada laptop Framework yang menggunakan prosesor AMD Zen 5 terbaru. Jadi, dari hardware jadul sampai yang paling baru, semua dirangkul!</p>
         <h2>Analisis E-E-A-T: Pengalaman dan Keahlian</h2>
-        <p>Sebagai pengguna yang juga hobi mantau perkembangan kernel Linux di GitHub, aku melihat langkah CachyOS ini sangat berani. Mereka tidak menunggu "mapan" seperti distro besar lainnya (seperti Debian atau Ubuntu LTS), tapi langsung memberikan apa yang dibutuhkan komunitas *bleeding-edge*. Keahlian tim pengembang CachyOS dalam meramu *v3* dan *v4* x86-64 instruksi set pada paket mereka memberikan bukti nyata bahwa distro ini bukan sekadar *skin* dari Arch, melainkan hasil rekayasa performa yang serius.</p>
+        <p>Sebagai pengguna yang juga hobi mantau perkembangan kernel Linux di GitHub, aku melihat langkah CachyOS ini sangat berani. Mereka tidak menunggu "mapan" seperti distro besar lainnya (seperti Debian atau Ubuntu LTS), tapi langsung memberikan apa yang dibutuhkan komunitas <em>bleeding-edge</em>. Keahlian tim pengembang CachyOS dalam meramu <em>v3</em> dan <em>v4</em> x86-64 instruksi set pada paket mereka memberikan bukti nyata bahwa distro ini bukan sekadar <em>skin</em> dari Arch, melainkan hasil rekayasa performa yang serius.</p>
         <h2>Kesimpulan</h2>
         <p>CachyOS rilis Januari 2026 adalah bukti bahwa ekosistem Linux terus bergerak maju tanpa henti. Dengan transisi ke Wayland secara penuh dan penyederhanaan komponen sistem lewat Limine dan Plasma Login Manager, pengguna mendapatkan sistem yang tidak hanya cepat, tapi juga modern dan siap menghadapi tantangan komputasi masa depan.</p>
         <p>Kalau kamu bosan dengan distro yang itu-itu saja dan ingin merasakan sensasi Arch Linux yang sesungguhnya tanpa harus pusing konfigurasi dari nol, rilis terbaru CachyOS ini wajib masuk daftar coba kamu minggu ini!</p>

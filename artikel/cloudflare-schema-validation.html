@@ -47,18 +47,18 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /* Default Light Theme */
+            /<em> Default Light Theme </em>/
             --bg-color: #ffffff;
             --text-color: #333333;
-            --primary-color: #f6941f; /* Warna Khas Cloudflare */
-            --secondary-color: #2ECC71; /* Warna untuk Keamanan/Validasi */
+            --primary-color: #f6941f; /<em> Warna Khas Cloudflare </em>/
+            --secondary-color: #2ECC71; /<em> Warna untuk Keamanan/Validasi </em>/
             --code-bg: #f4f4f4;
             --code-border: #ddd;
             --table-header: #f8f8f8;
             --blockquote-bg: #fffbe6;
             --blockquote-border: #ffcc00;
         }
-        /* Dark Theme Detection */
+        /<em> Dark Theme Detection </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -82,7 +82,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1000px; /* Widescreen 1 Kolom */
+            max-width: 1000px; /<em> Widescreen 1 Kolom </em>/
             margin: 0 auto;
             padding: 20px;
         }
@@ -155,24 +155,24 @@
 <body>
     <div class="container">
         <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>🔒 Validasi Skema API: Satpam Cerdas di Cloudflare</h1>
-        <p>Fitur **Schema Validation** di Cloudflare adalah bagian dari Web Application Firewall (WAF) yang sangat canggih, dirancang khusus untuk melindungi **API** (Antarmuka Pemrograman Aplikasi) Anda dari serangan dan permintaan data yang aneh. </p>
+        <p>Fitur <strong>Schema Validation</strong> di Cloudflare adalah bagian dari Web Application Firewall (WAF) yang sangat canggih, dirancang khusus untuk melindungi <strong>API</strong> (Antarmuka Pemrograman Aplikasi) Anda dari serangan dan permintaan data yang aneh. </p>
         <p>Bayangkan ini: API Anda adalah pintu masuk ke jantung data Anda. Validasi Skema memastikan bahwa setiap orang yang mencoba masuk perlu menunjukkan ID yang bentuk, ukuran, dan jenis datanya sudah sesuai dengan "aturan main" atau kontrak yang Anda buat. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.</p>
         <hr>
         <h2><i class="fa-solid fa-file-contract"></i> 1. Apa Itu Skema (Schema) dalam Konteks API?</h2>
-        <p>Skema adalah **cetak biru resmi** dari struktur data yang boleh diterima atau dikirim oleh API Anda. Biasanya skema ditulis dalam format seperti **OpenAPI Specification (Swagger)** atau **JSON Schema**.</p>
+        <p>Skema adalah <strong>cetak biru resmi</strong> dari struktur data yang boleh diterima atau dikirim oleh API Anda. Biasanya skema ditulis dalam format seperti <strong>OpenAPI Specification (Swagger)</strong> atau <strong>JSON Schema</strong>.</p>
         <p>Skema mendefinisikan secara detail:</p>
         <ul>
-            <li>**Field Wajib:** Kolom data apa saja yang harus ada (misalnya, nama pengguna, kata sandi).</li>
-            <li>**Tipe Data:** Data harus berupa apa (misalnya, umur harus *integer*, email harus *string* berformat email).</li>
-            <li>**Batasan:** Panjang karakter maksimal, nilai minimal, atau pola regex tertentu.</li>
+            <li><strong>Field Wajib:</strong> Kolom data apa saja yang harus ada (misalnya, nama pengguna, kata sandi).</li>
+            <li><strong>Tipe Data:</strong> Data harus berupa apa (misalnya, umur harus <em>integer</em>, email harus <em>string</em> berformat email).</li>
+            <li><strong>Batasan:</strong> Panjang karakter maksimal, nilai minimal, atau pola regex tertentu.</li>
         </ul>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp" alt="Ilustrasi data API yang dicek oleh Cloudflare">
-            <p style="font-size:0.9em;">**Gambar:** Cloudflare menjalankan pemeriksaan struktur data di *edge network* sebelum permintaan mencapai *origin server*.</p>
+            <p style="font-size:0.9em;"><strong>Gambar:</strong> Cloudflare menjalankan pemeriksaan struktur data di <em>edge network</em> sebelum permintaan mencapai <em>origin server</em>.</p>
         </div>
         <hr>
         <h2><i class="fa-solid fa-bolt"></i> 2. Mengapa Validasi Skema Penting di Cloudflare?</h2>
-        <p>Validasi Skema Cloudflare sangat efektif karena dilakukan di **Edge Network** (jaringan tepi), yang berarti pemeriksaan dilakukan di lokasi Cloudflare terdekat dengan pengguna, **sebelum** permintaan tersebut diteruskan ke *origin server* (server *hosting* Anda).</p>
+        <p>Validasi Skema Cloudflare sangat efektif karena dilakukan di <strong>Edge Network</strong> (jaringan tepi), yang berarti pemeriksaan dilakukan di lokasi Cloudflare terdekat dengan pengguna, <strong>sebelum</strong> permintaan tersebut diteruskan ke <em>origin server</em> (server <em>hosting</em> Anda).</p>
         <table class="specs-table">
             <thead>
                 <tr>
@@ -182,37 +182,37 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>**Keamanan Tingkat Tinggi**</td>
-                    <td>Memblokir *payload* yang tidak valid (disebut *malicious payload*). Contoh: Hacker mencoba mengirim string yang sangat panjang ke kolom yang seharusnya hanya menerima 10 karakter, bertujuan menyebabkan *buffer overflow*.</td>
+                    <td><strong>Keamanan Tingkat Tinggi</strong></td>
+                    <td>Memblokir <em>payload</em> yang tidak valid (disebut <em>malicious payload</em>). Contoh: Hacker mencoba mengirim string yang sangat panjang ke kolom yang seharusnya hanya menerima 10 karakter, bertujuan menyebabkan <em>buffer overflow</em>.</td>
                 </tr>
                 <tr>
-                    <td>**Efisiensi Server (Origin)**</td>
-                    <td>Server Anda tidak perlu menyia-nyiakan waktu CPU dan memori untuk memproses *request* yang sudah jelas-jelas cacat. Permintaan yang tidak valid akan ditolak langsung di lapisan Cloudflare.</td>
+                    <td><strong>Efisiensi Server (Origin)</strong></td>
+                    <td>Server Anda tidak perlu menyia-nyiakan waktu CPU dan memori untuk memproses <em>request</em> yang sudah jelas-jelas cacat. Permintaan yang tidak valid akan ditolak langsung di lapisan Cloudflare.</td>
                 </tr>
                 <tr>
-                    <td>**Penegakan Kontrak API**</td>
+                    <td><strong>Penegakan Kontrak API</strong></td>
                     <td>Memastikan bahwa klien atau aplikasi pihak ketiga yang menggunakan API Anda benar-benar mematuhi aturan API yang Anda publikasikan. Jika mereka salah mengirim tipe data, mereka langsung mendapat respon tolak dari Cloudflare.</td>
                 </tr>
             </tbody>
         </table>
         <hr>
         <h2><i class="fa-solid fa-cogs"></i> 3. Mekanisme Kerja</h2>
-        <p>Cara kerja fitur ini cukup *straightforward*:</p>
+        <p>Cara kerja fitur ini cukup <em>straightforward</em>:</p>
         <ol>
-            <li>**Anda Unggah Skema:** Anda mengunggah atau mendefinisikan skema API Anda (misalnya, file `.json` atau `.yaml` yang mendeskripsikan API Anda) ke Cloudflare.</li>
-            <li>**Pemeriksaan di Edge:** Ketika permintaan API (misalnya, `POST /api/user`) masuk ke Cloudflare, Cloudflare akan membaca *body* (payload) permintaan tersebut.</li>
-            <li>**Validasi Cepat:** Cloudflare membandingkan payload yang masuk dengan skema yang Anda tentukan. Apakah kolomnya lengkap? Apakah tipe datanya benar? Apakah panjangnya sesuai?</li>
-            <li>**Tindakan:**
+            <li><strong>Anda Unggah Skema:</strong> Anda mengunggah atau mendefinisikan skema API Anda (misalnya, file <code>.json</code> atau <code>.yaml</code> yang mendeskripsikan API Anda) ke Cloudflare.</li>
+            <li><strong>Pemeriksaan di Edge:</strong> Ketika permintaan API (misalnya, <code>POST /api/user</code>) masuk ke Cloudflare, Cloudflare akan membaca <em>body</em> (payload) permintaan tersebut.</li>
+            <li><strong>Validasi Cepat:</strong> Cloudflare membandingkan payload yang masuk dengan skema yang Anda tentukan. Apakah kolomnya lengkap? Apakah tipe datanya benar? Apakah panjangnya sesuai?</li>
+            <li><strong>Tindakan:</strong>
                 <ul>
-                    <li>Jika valid: Permintaan diteruskan ke *origin server* Anda.</li>
-                    <li>Jika **TIDAK** valid (melanggar skema): Cloudflare akan langsung **Block** permintaan tersebut atau hanya **Log** permintaan tersebut (sesuai setting Anda), dan mengirimkan balasan error ke klien.</li>
+                    <li>Jika valid: Permintaan diteruskan ke <em>origin server</em> Anda.</li>
+                    <li>Jika <strong>TIDAK</strong> valid (melanggar skema): Cloudflare akan langsung <strong>Block</strong> permintaan tersebut atau hanya <strong>Log</strong> permintaan tersebut (sesuai setting Anda), dan mengirimkan balasan error ke klien.</li>
                 </ul>
             </li>
         </ol>
         <blockquote style="border-left: 6px solid #2ECC71;">
-            <p><i class="fa-solid fa-check-shield"></i> **Penting:** Schema Validation adalah salah satu bentuk pertahanan paling efektif terhadap serangan injeksi *payload* yang menargetkan logika atau struktur data API Anda, menjadikannya fitur wajib bagi siapa pun yang mengelola API dengan volume tinggi.</p>
+            <p><i class="fa-solid fa-check-shield"></i> <strong>Penting:</strong> Schema Validation adalah salah satu bentuk pertahanan paling efektif terhadap serangan injeksi <em>payload</em> yang menargetkan logika atau struktur data API Anda, menjadikannya fitur wajib bagi siapa pun yang mengelola API dengan volume tinggi.</p>
         </blockquote>
-        <p style="margin-top: 30px;">Dengan mengaktifkan Schema Validation, Anda bisa tidur lebih nyenyak karena tahu bahwa Cloudflare sudah menyaring semua permintaan API yang "mencurigakan" sebelum permintaan tersebut bahkan menyentuh *server* Anda! Luar biasa bukan? 🎉</p>
+        <p style="margin-top: 30px;">Dengan mengaktifkan Schema Validation, Anda bisa tidur lebih nyenyak karena tahu bahwa Cloudflare sudah menyaring semua permintaan API yang "mencurigakan" sebelum permintaan tersebut bahkan menyentuh <em>server</em> Anda! Luar biasa bukan? 🎉</p>
         <h2 style="margin-top: 50px;"><i class="fa-solid fa-comments"></i> Kolom Diskusi</h2>
         <p>Apakah Anda sudah menggunakan validasi skema di API Anda?</p><p>Tantangan apa yang Anda hadapi saat mengimplementasikannya?</p>
         <div id="related-articles-grid"></div><div id="response"></div>

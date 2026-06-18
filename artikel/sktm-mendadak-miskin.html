@@ -55,41 +55,41 @@
 <!-- ===== Structured Image Hint ===== -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
    <style>
-        /* --- 1. Definisikan Variabel Tema Terang (Default Neon Creative) --- */
+        /<em> --- 1. Definisikan Variabel Tema Terang (Default Neon Creative) --- </em>/
         :root {
             --bg-light: #f0f2f5;
             --card-bg: #ffffff;
             --text-dark: #333333;
             --text-muted: #555555;
-            /* Palet Seni Ungu-Oranye */
+            /<em> Palet Seni Ungu-Oranye </em>/
             --primary-color: #6a0dad;
             --secondary-color: #ff9800;
             --text-light: #ffffff;
             --header-gradient: linear-gradient(-45deg, #6a0dad, #9c27b0, #ff4081, #ff9800);
-            /* Komponen Spesifik */
+            /<em> Komponen Spesifik </em>/
             --blockquote-bg: #f9f9f9;
             --border-radius: 15px;
             --shadow: 0 6px 15px rgba(0,0,0,0.1);
             --header-shadow: 0 6px 15px rgba(0,0,0,0.2);
         }
-        /* --- 2. Otomatis Tema Gelap (Cosmic Midnight Theme) --- */
+        /<em> --- 2. Otomatis Tema Gelap (Cosmic Midnight Theme) --- </em>/
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-light: #090514;       /* Ungu gelap pekat mendekati hitam */
-                --card-bg: #150e26;        /* Ungu obsidian untuk kontainer kartu */
-                --text-dark: #f1ecf9;      /* Teks putih dengan sentuhan lila lembut */
-                --text-muted: #bdaec6;     /* Abu-abu keunguan untuk elemen sekunder */
-                /* Menjaga kontras warna aksen di latar gelap */
-                --primary-color: #bf7fff;  /* Ungu neon pastel agar menyala proporsional */
-                --secondary-color: #ffb74d; /* Oranye hangat lembut */
-                /* Gradasi header diredam sedikit agar tidak terlalu mencolok di malam hari */
+                --bg-light: #090514;       /<em> Ungu gelap pekat mendekati hitam </em>/
+                --card-bg: #150e26;        /<em> Ungu obsidian untuk kontainer kartu </em>/
+                --text-dark: #f1ecf9;      /<em> Teks putih dengan sentuhan lila lembut </em>/
+                --text-muted: #bdaec6;     /<em> Abu-abu keunguan untuk elemen sekunder </em>/
+                /<em> Menjaga kontras warna aksen di latar gelap </em>/
+                --primary-color: #bf7fff;  /<em> Ungu neon pastel agar menyala proporsional </em>/
+                --secondary-color: #ffb74d; /<em> Oranye hangat lembut </em>/
+                /<em> Gradasi header diredam sedikit agar tidak terlalu mencolok di malam hari </em>/
                 --header-gradient: linear-gradient(-45deg, #4a0880, #6d1b7b, #b32655, #b36b00);
-                --blockquote-bg: #22173b;  /* Latar kutipan gelap */
+                --blockquote-bg: #22173b;  /<em> Latar kutipan gelap </em>/
                 --shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
                 --header-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
             }
         }
-        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
+        /<em> --- 3. Desain Utama & Tipografi (Base Styles) --- </em>/
         * { 
             box-sizing: border-box; 
             margin: 0; 
@@ -108,13 +108,13 @@
             margin: 2rem auto; 
             padding: 0 1.25rem; 
         }
-        /* --- Header Animasi Gradasi --- */
+        /<em> --- Header Animasi Gradasi --- </em>/
         header {
             background: var(--header-gradient);
             background-size: 400% 400%;
             color: var(--text-light);
             text-align: center;
-            padding: 3rem 1.5rem; /* Diperlonggar sedikit agar layout bernapas */
+            padding: 3rem 1.5rem; /<em> Diperlonggar sedikit agar layout bernapas </em>/
             border-radius: var(--border-radius);
             box-shadow: var(--header-shadow);
             animation: gradientBG 15s ease infinite;
@@ -126,7 +126,7 @@
             100% { background-position: 0% 50%; }
         }
         header h1 { 
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Ukuran teks adaptif otomatis di mobile */
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /<em> Ukuran teks adaptif otomatis di mobile </em>/
             margin-bottom: 0.5rem; 
             opacity: 0; 
             transform: translateY(-20px); 
@@ -138,7 +138,7 @@
             transform: translateY(-20px); 
             animation: fadeIn 0.8s forwards 0.5s;
         }
-        /* --- Kartu Konten Artikel --- */
+        /<em> --- Kartu Konten Artikel --- </em>/
         .article-card {
             background-color: var(--card-bg);
             padding: 2.5rem 2rem;
@@ -160,10 +160,10 @@
         .article-card p, 
         .article-card li {
             font-size: 1.1rem;
-            text-align: left; /* Mengamankan teks dari isu renggang berantakan di HP */
+            text-align: left; /<em> Mengamankan teks dari isu renggang berantakan di HP </em>/
             margin-bottom: 1.25rem;
         }
-        /* Mengembalikan justify hanya untuk layar desktop lebar */
+        /<em> Mengembalikan justify hanya untuk layar desktop lebar </em>/
         @media (min-width: 769px) {
             .article-card p {
                 text-align: justify;
@@ -179,10 +179,10 @@
             margin-bottom: 1.5rem;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
-        /* --- Wadah Video Responsif (Aman & Proporsional) --- */
+        /<em> --- Wadah Video Responsif (Aman & Proporsional) --- </em>/
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Rasio aspek standar 16:9 */
+            padding-bottom: 56.25%; /<em> Rasio aspek standar 16:9 </em>/
             height: 0;
             overflow: hidden;
             border-radius: var(--border-radius);
@@ -202,13 +202,13 @@
             border: 0;
             border-radius: var(--border-radius); 
         }
-        /* --- Elemen Footer & Komentar --- */
+        /<em> --- Elemen Footer & Komentar --- </em>/
         .fb-comments { 
             margin-top: 2rem; 
             opacity: 0; 
             transform: translateY(20px); 
             animation: fadeIn 0.8s forwards 1.1s; 
-            width: 100%; /* Memastikan widget facebook memenuhi kontainer */
+            width: 100%; /<em> Memastikan widget facebook memenuhi kontainer </em>/
         }
         footer { 
             text-align: center; 
@@ -220,22 +220,22 @@
             animation: fadeIn 0.8s forwards 1.3s; 
             transition: color 0.3s;
         }
-        /* --- Animasi Pemunculan Halus --- */
+        /<em> --- Animasi Pemunculan Halus --- </em>/
         @keyframes fadeIn {
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        /* --- 4. Penjinak Gerakan Otomatis (Aksesibilitas Tinggi) --- */
+        /<em> --- 4. Penjinak Gerakan Otomatis (Aksesibilitas Tinggi) --- </em>/
         @media (prefers-reduced-motion: reduce) {
             header {
-                animation: none; /* Mematikan gradasi berputar jika user tidak tahan animasi */
+                animation: none; /<em> Mematikan gradasi berputar jika user tidak tahan animasi </em>/
             }
             header h1, header p, .article-card, .video-container, .fb-comments, footer {
                 animation: none;
                 opacity: 1;
-                transform: none; /* Langsung muncul tanpa efek lompat */
+                transform: none; /<em> Langsung muncul tanpa efek lompat </em>/
             }
         }
-        /* --- 5. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- */
+        /<em> --- 5. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- </em>/
         @media (max-width: 768px) {
             .container { 
                 margin: 1rem auto; 
@@ -243,10 +243,10 @@
             }
             header {
                 padding: 2.5rem 1rem;
-                border-radius: 10px; /* Radius sedikit dikecilkan di HP agar seimbang */
+                border-radius: 10px; /<em> Radius sedikit dikecilkan di HP agar seimbang </em>/
             }
             .article-card {
-                padding: 1.75rem 1.25rem; /* Menghemat ruang padding dalam di layar sempit */
+                padding: 1.75rem 1.25rem; /<em> Menghemat ruang padding dalam di layar sempit </em>/
                 margin-top: 1.25rem;
                 border-radius: 10px;
             }
@@ -287,7 +287,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = `https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=1471267430691023&autoLogAppEvents=1`;
+            js.src = <code>https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=1471267430691023&autoLogAppEvents=1</code>;
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>

@@ -45,13 +45,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Ulang Tahun ke-33 Vim! Editor Teks Legendaris - Layar Kosong</title> 
 <style>
-        /* CSS3 Reset Sederhana */
+        /<em> CSS3 Reset Sederhana </em>/
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /* Variabel Warna untuk Tema */
+        /<em> Variabel Warna untuk Tema </em>/
         :root {
             --bg-color: #fcfcfc;
             --text-color: #222222;
@@ -63,7 +63,7 @@
             --quote-bg: #f9f9f9;
             --code-bg: #e9e9e9;
         }
-        /* Deteksi Tema Gelap (Dark Mode) */
+        /<em> Deteksi Tema Gelap (Dark Mode) </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
@@ -78,7 +78,7 @@
             }
         }
         html, body {
-            height: 100%; /* Untuk layout fullscreen */
+            height: 100%; /<em> Untuk layout fullscreen </em>/
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -88,15 +88,15 @@
             display: flex;
             flex-direction: column;
         }
-        /* Kontainer Utama (Widescreen & Terpusat) */
+        /<em> Kontainer Utama (Widescreen & Terpusat) </em>/
         #page-container {
             width: 100%;
-            max-width: 1200px; /* Desain Widescreen */
+            max-width: 1200px; /<em> Desain Widescreen </em>/
             margin: 0 auto;
             padding: 20px;
-            flex: 1 0 auto; /* Mendorong footer ke bawah */
+            flex: 1 0 auto; /<em> Mendorong footer ke bawah </em>/
         }
-        /* Header */
+        /<em> Header </em>/
         .page-header {
             background-color: var(--header-bg);
             padding: 25px;
@@ -123,7 +123,7 @@
       font-size: 2rem;
       margin-top: 0.5rem;
     }
-        /* Konten Artikel */
+        /<em> Konten Artikel </em>/
         article {
             width: 100%;
         }
@@ -149,7 +149,7 @@
         article a:hover {
             text-decoration: underline;
         }
-        /* Teks Asli (Quote) */
+        /<em> Teks Asli (Quote) </em>/
         .original-text {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--link-color);
@@ -158,7 +158,7 @@
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
-        /* Kode inline */
+        /<em> Kode inline </em>/
         code {
             background-color: var(--code-bg);
             padding: 3px 6px;
@@ -166,10 +166,10 @@
             font-family: "Courier New", Courier, monospace;
             font-size: 1rem;
         }
-        /* Kontainer Video Responsif */
+        /<em> Kontainer Video Responsif </em>/
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%; /<em> 16:9 aspect ratio </em>/
             height: 0;
             overflow: hidden;
             width: 100%;
@@ -184,15 +184,15 @@
             width: 100%;
             height: 100%;
         }
-        /* Kolom Komentar Disqus */
+        /<em> Kolom Komentar Disqus </em>/
         #related-articles-grid {
             margin-top: 40px;
             padding-top: 20px;
             border-top: 2px solid var(--border-color);
         }
-        /* Footer */
+        /<em> Footer </em>/
         .page-footer {
-            flex-shrink: 0; /* Mencegah footer mengecil */
+            flex-shrink: 0; /<em> Mencegah footer mengecil </em>/
             text-align: center;
             padding: 25px;
             background-color: var(--footer-bg);
@@ -200,7 +200,7 @@
             margin-top: 40px;
             width: 100%;
         }
-        /* Mobile-Friendly & Responsif */
+        /<em> Mobile-Friendly & Responsif </em>/
         @media (max-width: 768px) {
             #page-container {
                 padding: 15px;
@@ -235,7 +235,7 @@
                     <p>"Vim was released 33 years ago. To celebrate, try this: open Vim and type <code>:smile</code> to see an Easter egg. Happy birthday the best programmers text editor out there."</p>
                 </div>
                 <p>Yap, bener banget! Coba deh kamu buka terminal kamu, ketik <code>vim</code>, terus pas udah masuk, langsung ketik <code>:smile</code> (titik dua, s-m-i-l-e) terus tekan Enter.</p>
-                <p>Nanti bakal muncul pesan kecil yang manis dari Bram Moolenaar (kreator Vim). Ini salah satu *easter egg* legendaris yang nunjukkin kalo di balik editor yang super teknis ini, ada hati yang hangat juga. Selamat ulang tahun, Vim!</p>
+                <p>Nanti bakal muncul pesan kecil yang manis dari Bram Moolenaar (kreator Vim). Ini salah satu <em>easter egg</em> legendaris yang nunjukkin kalo di balik editor yang super teknis ini, ada hati yang hangat juga. Selamat ulang tahun, Vim!</p>
                                <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/LY1ZmjtxKMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy">
                     </iframe>
@@ -244,19 +244,19 @@
                 <p>Ngomongin 33 tahun, rasanya tidak lengkap kalo tidak bahas sejarahnya. Perjalanan Vim itu panjang dan menarik, berakar dari editor lain yang lebih tua lagi.</p>
                 <ul>
                     <li><strong>Awal Mula (1976):</strong> Akarnya dimulai dari editor legendaris <code>vi</code> (Visual Editor) yang dibuat oleh Bill Joy untuk sistem operasi BSD (Berkeley Software Distribution). <code>vi</code> sendiri udah revolusioner pada masanya.</li>
-                    <li><strong>Kloningan Muncrat (1980-an):</strong> Karena <code>vi</code> itu *powerful*, banyak yang bikin kloningannya. Salah satunya adalah "Stevie" (ST Editor for VI Enthusiasts), yang dibuat untuk Atari ST.</li>
+                    <li><strong>Kloningan Muncrat (1980-an):</strong> Karena <code>vi</code> itu <em>powerful</em>, banyak yang bikin kloningannya. Salah satunya adalah "Stevie" (ST Editor for VI Enthusiasts), yang dibuat untuk Atari ST.</li>
                     <li><strong>Lahirnya "Vi IMitation" (1991):</strong> Di sinilah Bram Moolenaar masuk. Beliau pengen editor yang mirip <code>vi</code> tapi bisa jalan di komputer Amiga-nya. Beliau ambil basis "Stevie" dan mulai mengembangkannya. Versi pertama ini dirilis pada 2 November 1991 dengan nama "Vi IMitation". Ini adalah hari yang kita rayakan!</li>
                     <li><strong>Evolusi Jadi "Vi IMproved":</strong> Tidak lama setelah rilis, Bram Moolenaar nambahin banyak banget fitur baru yang bahkan melampaui <code>vi</code> aslinya. Karena udah bukan "imitasi" lagi, namanya pun diganti jadi <strong>Vim</strong> atau <strong>Vi IMproved</strong>.</li>
-                    <li><strong>Open Source &amp; Charityware:</strong> Vim dirilis sebagai *open-source* dan juga *charityware*. Pengguna didorong untuk berdonasi ke ICCF Holland untuk membantu anak-anak di Uganda. Ini nunjukkin visi mulia dari sang kreator, mendiang Bram Moolenaar.</li>
-                    <li><strong>Sekarang (33 Tahun Kemudian):</strong> Vim tetap jadi standar di hampir semua sistem berbasis UNIX (termasuk macOS dan Linux). Komunitasnya melahirkan banyak turunan (seperti <a href="https://neovim.io/" target="_blank" rel="noopener">Neovim</a>) dan ekosistem plugin yang super kaya. Filosofi *modal editing*-nya (Mode Normal, Insert, Visual) terbukti super efisien buat *expert user*.</li>
+                    <li><strong>Open Source &amp; Charityware:</strong> Vim dirilis sebagai <em>open-source</em> dan juga <em>charityware</em>. Pengguna didorong untuk berdonasi ke ICCF Holland untuk membantu anak-anak di Uganda. Ini nunjukkin visi mulia dari sang kreator, mendiang Bram Moolenaar.</li>
+                    <li><strong>Sekarang (33 Tahun Kemudian):</strong> Vim tetap jadi standar di hampir semua sistem berbasis UNIX (termasuk macOS dan Linux). Komunitasnya melahirkan banyak turunan (seperti <a href="https://neovim.io/" target="_blank" rel="noopener">Neovim</a>) dan ekosistem plugin yang super kaya. Filosofi <em>modal editing</em>-nya (Mode Normal, Insert, Visual) terbukti super efisien buat <em>expert user</em>.</li>
                 </ul>
 <h2>Kenapa Vim Tetap Eksis?</h2>
       <p>Meski sudah berusia tiga dekade lebih, Vim tetap relevan di tengah derasnya kemunculan editor modern seperti VS Code atau Sublime. Alasannya sederhana — kecepatan, efisiensi, dan kesederhanaannya tak tertandingi. Semua dilakukan langsung dari keyboard, tanpa perlu klik sana-sini.</p>
       <p>Lebih dari itu, Vim mengajarkan disiplin dan kepekaan terhadap alur kerja. Editor ini bisa jadi ‘kasar’ di awal, tapi begitu kamu terbiasa, rasanya seperti menyetir kendaraan sport: cepat, presisi, dan menyenangkan.</p>
-                <p>Jadi, setiap kali kamu ngetik <code>:w</code> atau <code>:q!</code>, kamu lagi nerusin warisan sejarah *computing* yang udah berusia puluhan tahun. Keren, kan?</p>
+                <p>Jadi, setiap kali kamu ngetik <code>:w</code> atau <code>:q!</code>, kamu lagi nerusin warisan sejarah <em>computing</em> yang udah berusia puluhan tahun. Keren, kan?</p>
                 <h2>Gimana Pendapat Kamu?</h2>
                 <p>Kamu tim Vim? Tim Emacs? Atau tim VS Code pake ekstensi Vim? Apapun pilihan kamu, kita semua harus angkat topi buat editor yang satu ini.</p>
-                <p>Yuk, bagiin pengalaman kamu pake Vim, *easter egg* favorit kamu, atau mungkin ucapan selamat ulang tahun di kolom komentar di bawah!</p>
+                <p>Yuk, bagiin pengalaman kamu pake Vim, <em>easter egg</em> favorit kamu, atau mungkin ucapan selamat ulang tahun di kolom komentar di bawah!</p>
                 <div id="related-articles-grid"></div><div id="response"></div>
     </article>
         </main>

@@ -92,7 +92,7 @@
       line-height:1.6;
       font-size:16px;
     }
-    /* Layout */
+    /<em> Layout </em>/
     .wrap{
       max-width:var(--maxw);
       margin:24px auto;
@@ -150,7 +150,7 @@
       aspect-ratio:16/9;
       object-fit:cover;
     }
-    /* Article content */
+    /<em> Article content </em>/
     .content h2{
       margin-top:20px;
       margin-bottom:8px;
@@ -170,7 +170,7 @@
       margin:12px 0;
       border-radius:6px;
     }
-    /* Calculator card */
+    /<em> Calculator card </em>/
     .calc{
       display:block;
       margin:18px 0;
@@ -218,7 +218,7 @@
       background:rgba(0,0,0,0.03);
       color:var(--text);
     }
-    /* Related and comments columns */
+    /<em> Related and comments columns </em>/
     #related-articles-grid, #response{
       margin-top:18px;
       padding:12px;
@@ -233,14 +233,14 @@
       font-size:14px;
       text-align:center;
     }
-    /* Responsive tweaks */
+    /<em> Responsive tweaks </em>/
     @media (max-width:720px){
       .row{ grid-template-columns:1fr; }
       .wrap{ margin:12px; padding:12px; }
     }
-    /* Prevent layout shift for fonts and icons */
+    /<em> Prevent layout shift for fonts and icons </em>/
     .fa, .fas, .fa-regular { font-family: "Font Awesome 7 Free"; font-weight:900; }
-    /* Small helper */
+    /<em> Small helper </em>/
     .small{ font-size:0.95rem; color:var(--muted); }
     cite{ display:inline-block; color:var(--muted); font-style:normal; font-size:0.95rem; margin-left:6px; }
   </style>
@@ -418,7 +418,7 @@
           if(i === Math.ceil(hours) && hours % 1 !== 0){
             hourPortion = hours % 1;
           }
-          const amount = upahSejam * multiplier * hourPortion;
+          const amount = upahSejam <em> multiplier </em> hourPortion;
           total += amount;
           breakdown.push({hour:i, multiplier:multiplier, amount:amount});
         }

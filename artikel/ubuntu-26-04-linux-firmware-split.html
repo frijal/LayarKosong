@@ -53,11 +53,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* CSS Variabel untuk Tema Terang/Gelap */
+        /<em> CSS Variabel untuk Tema Terang/Gelap </em>/
         :root {
             --bg-color: #ffffff;
             --text-color: #2c3e50;
-            --primary-color: #E95420; /* Warna Khas Ubuntu */
+            --primary-color: #E95420; /<em> Warna Khas Ubuntu </em>/
             --secondary-color: #f7f7f7;
             --accent-color: #772953;
             --border-color: #eeeeee;
@@ -71,7 +71,7 @@
                 --border-color: #444444;
             }
         }
-        /* Layout Widescreen 1 Kolom & Responsif */
+        /<em> Layout Widescreen 1 Kolom & Responsif </em>/
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -142,7 +142,7 @@
             background: var(--secondary-color);
             border-radius: 8px;
         }
-        /* Mobile Adjustments */
+        /<em> Mobile Adjustments </em>/
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             article { width: 95%; }
@@ -162,24 +162,24 @@
         </div>
     </header>
     <section id="pengantar">
-        <p>Tiba-tiba ada notifikasi update sistem di Ubuntu, terus pas dicek ukurannya sampai 600MB lebih? Padahal, isinya cuma perbaikan kecil buat kartu jaringan yang bahkan tidak kamu pakai. Nah, kalau kamu pernah merasa "gemes" sama hal ini, ada kabar super bahagia dari markas **Canonical**! 🥳</p>
+        <p>Tiba-tiba ada notifikasi update sistem di Ubuntu, terus pas dicek ukurannya sampai 600MB lebih? Padahal, isinya cuma perbaikan kecil buat kartu jaringan yang bahkan tidak kamu pakai. Nah, kalau kamu pernah merasa "gemes" sama hal ini, ada kabar super bahagia dari markas <strong>Canonical</strong>! 🥳</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBPyTiHbsAAIbYw.webp" alt="Ubuntu 26.04, Resolute Raccoon" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
-        <p>Di versi terbaru **Ubuntu 26.04 LTS (Resolute Raccoon)**, tim pengembang resmi melakukan revolusi pada cara sistem menangani <em>firmware</em> perangkat keras. Mereka memecah paket raksasa menjadi potongan-potongan kecil yang spesifik. Kenapa ini penting? Karena ini adalah langkah besar untuk efisiensi bandwidth global dan kenyamanan pengguna seperti kita.</p>
+        <p>Di versi terbaru <strong>Ubuntu 26.04 LTS (Resolute Raccoon)</strong>, tim pengembang resmi melakukan revolusi pada cara sistem menangani <em>firmware</em> perangkat keras. Mereka memecah paket raksasa menjadi potongan-potongan kecil yang spesifik. Kenapa ini penting? Karena ini adalah langkah besar untuk efisiensi bandwidth global dan kenyamanan pengguna seperti kita.</p>
     </section>
     <section id="apa-itu-firmware">
         <h2><i class="fa-solid fa-microchip"></i> Apa Itu Masalah Linux Firmware Selama Ini? (What)</h2>
         <p>Selama bertahun-tahun, Ubuntu (dan banyak distro Linux lainnya) menggunakan satu paket tunggal bernama <code>linux-firmware</code>. Paket ini ibarat sebuah "tas raksasa" yang berisi semua instruksi perangkat lunak (driver/firmware) untuk hampir semua hardware di dunia—mulai dari kartu Wi-Fi Intel, grafis AMD, sampai perangkat khusus server yang sangat jarang dipakai pengguna biasa.</p>
-        <p>Masalahnya? Paket ini terus membengkak! Saat ini, ukurannya sudah tembus **500MB sampai 800MB** saat di-download, dan memakan ruang disk hingga **1GB** setelah diinstal. Bayangkan, setiap kali ada update kecil untuk kartu jaringan Mellanox (yang biasanya cuma dipakai di pusat data/server besar), kamu yang pakai laptop biasa perlu tetap men-download keseluruhan 600MB+ paket tersebut. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Inefisiensi inilah yang ingin diberantas oleh Ubuntu 26.04.</p>
+        <p>Masalahnya? Paket ini terus membengkak! Saat ini, ukurannya sudah tembus <strong>500MB sampai 800MB</strong> saat di-download, dan memakan ruang disk hingga <strong>1GB</strong> setelah diinstal. Bayangkan, setiap kali ada update kecil untuk kartu jaringan Mellanox (yang biasanya cuma dipakai di pusat data/server besar), kamu yang pakai laptop biasa perlu tetap men-download keseluruhan 600MB+ paket tersebut. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Inefisiensi inilah yang ingin diberantas oleh Ubuntu 26.04.</p>
     </section>
     <section id="siapa-dibalik-perubahan">
         <h2><i class="fa-solid fa-users-cog"></i> Siapa yang Mencetuskan Ide Hebat Ini? (Who)</h2>
-        <p>Inisiatif ini digawangi oleh insinyur senior Canonical, **Juerg Haefliger**. Diskusi ini sebenarnya sudah dimulai sejak tahun 2022 lewat sebuah laporan bug yang menyoroti betapa borosnya infrastruktur Ubuntu jika terus mempertahankan paket tunggal yang masif. </p>
-        <p>Selain para pengembang, perubahan ini sangat ditujukan bagi **pengguna dengan koneksi internet terbatas** atau kuota mahal. Di banyak belahan dunia, mendownload file 600MB setiap minggu hanya untuk update "sampah" (file yang tidak relevan dengan hardware kita) adalah beban yang nyata. Dengan sistem baru, beban ini hilang seketika!</p>
+        <p>Inisiatif ini digawangi oleh insinyur senior Canonical, <strong>Juerg Haefliger</strong>. Diskusi ini sebenarnya sudah dimulai sejak tahun 2022 lewat sebuah laporan bug yang menyoroti betapa borosnya infrastruktur Ubuntu jika terus mempertahankan paket tunggal yang masif. </p>
+        <p>Selain para pengembang, perubahan ini sangat ditujukan bagi <strong>pengguna dengan koneksi internet terbatas</strong> atau kuota mahal. Di banyak belahan dunia, mendownload file 600MB setiap minggu hanya untuk update "sampah" (file yang tidak relevan dengan hardware kita) adalah beban yang nyata. Dengan sistem baru, beban ini hilang seketika!</p>
     </section>
     <section id="dimana-perubahan-terjadi">
         <h2><i class="fa-solid fa-archive"></i> Dimana Perubahan Ini Diterapkan? (Where)</h2>
-        <p>Perubahan ini terjadi di dalam repositori resmi (arsip) Ubuntu versi **Resolute Raccoon**. Tim pengembang memperkenalkan apa yang disebut sebagai *meta-packaging*. Jadi, alih-alih satu file <code>.deb</code> raksasa, sekarang ada 17 sub-paket vendor yang berbeda. </p>
-        <p>Hal menarik lainnya adalah penanganan di repositori **-security**. Sebelumnya, update keamanan firmware seringkali membebani server tunggal karena repo security tidak umumnya diduplikasi (mirror) ke banyak server seperti repo utama. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Dengan paket yang kecil, beban server Canonical pun jadi lebih ringan. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah kemenangan untuk infrastruktur Ubuntu di seluruh dunia!</p>
+        <p>Perubahan ini terjadi di dalam repositori resmi (arsip) Ubuntu versi <strong>Resolute Raccoon</strong>. Tim pengembang memperkenalkan apa yang disebut sebagai <em>meta-packaging</em>. Jadi, alih-alih satu file <code>.deb</code> raksasa, sekarang ada 17 sub-paket vendor yang berbeda. </p>
+        <p>Hal menarik lainnya adalah penanganan di repositori <strong>-security</strong>. Sebelumnya, update keamanan firmware seringkali membebani server tunggal karena repo security tidak umumnya diduplikasi (mirror) ke banyak server seperti repo utama. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Dengan paket yang kecil, beban server Canonical pun jadi lebih ringan. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah kemenangan untuk infrastruktur Ubuntu di seluruh dunia!</p>
     </section>
     <div class="zdummy1">
         <h3><i class="fa-solid fa-list-ul"></i> Daftar 17 Sub-Paket Baru di Ubuntu 26.04</h3>
@@ -206,18 +206,18 @@
     </div>
     <section id="kapan-dan-mengapa">
         <h2><i class="fa-solid fa-calendar-alt"></i> Kapan Dirilis dan Mengapa Baru Sekarang? (When &amp; Why)</h2>
-        <p>Ubuntu 26.04 LTS dijadwalkan meluncur pada **April 2026**. Kenapa baru sekarang? Karena memecah paket inti seperti ini berisiko tinggi. Jika ada salah satu paket yang tidak terinstal otomatis, hardware pengguna bisa mendadak mati (misalnya Wi-Fi hilang setelah install ulang). </p>
-        <p>Oleh karena itu, Canonical butuh waktu lama untuk memastikan sistem "deteksi hardware" mereka benar-benar cerdas. Alasannya jelas: **Efisiensi Energi dan Bandwidth**. Di dunia yang makin peduli pada jejak karbon, mentransfer data ratusan Megabyte yang tidak berguna ke jutaan komputer adalah pemborosan energi listrik dan sumber daya server yang masif.</p>
+        <p>Ubuntu 26.04 LTS dijadwalkan meluncur pada <strong>April 2026</strong>. Kenapa baru sekarang? Karena memecah paket inti seperti ini berisiko tinggi. Jika ada salah satu paket yang tidak terinstal otomatis, hardware pengguna bisa mendadak mati (misalnya Wi-Fi hilang setelah install ulang). </p>
+        <p>Oleh karena itu, Canonical butuh waktu lama untuk memastikan sistem "deteksi hardware" mereka benar-benar cerdas. Alasannya jelas: <strong>Efisiensi Energi dan Bandwidth</strong>. Di dunia yang makin peduli pada jejak karbon, mentransfer data ratusan Megabyte yang tidak berguna ke jutaan komputer adalah pemborosan energi listrik dan sumber daya server yang masif.</p>
     </section>
     <section id="bagaimana-kerjanya">
         <h2><i class="fa-solid fa-cogs"></i> Bagaimana Cara Kerjanya di Komputer Kita? (How)</h2>
-        <p>Tenang saja, sebagai pengguna, kamu tidak perlu melakukan apa-apa secara manual! Secara teknis, Ubuntu tetap menyediakan paket <code>linux-firmware</code>, tapi sekarang paket itu bertindak sebagai **"Meta-Package"**. </p>
-        <p>Artinya, saat kamu instal Ubuntu, paket utama ini akan otomatis menarik ke-17 sub-paket agar komputer kamu tetap bisa mendeteksi hardware apapun (prinsip <em>"Just Works"</em> khas Ubuntu). Namun, keajaibannya terjadi saat **Update**. Jika ada perbaikan untuk driver Intel Wireless, sistem kamu hanya akan men-download paket <code>linux-firmware-intel-wireless</code> yang mungkin ukurannya cuma **5MB**, bukan lagi 600MB! Hemat banget, kan? 😎</p>
+        <p>Tenang saja, sebagai pengguna, kamu tidak perlu melakukan apa-apa secara manual! Secara teknis, Ubuntu tetap menyediakan paket <code>linux-firmware</code>, tapi sekarang paket itu bertindak sebagai <strong>"Meta-Package"</strong>. </p>
+        <p>Artinya, saat kamu instal Ubuntu, paket utama ini akan otomatis menarik ke-17 sub-paket agar komputer kamu tetap bisa mendeteksi hardware apapun (prinsip <em>"Just Works"</em> khas Ubuntu). Namun, keajaibannya terjadi saat <strong>Update</strong>. Jika ada perbaikan untuk driver Intel Wireless, sistem kamu hanya akan men-download paket <code>linux-firmware-intel-wireless</code> yang mungkin ukurannya cuma <strong>5MB</strong>, bukan lagi 600MB! Hemat banget, kan? 😎</p>
     </section>
     <section id="eeat-section">
         <h2><i class="fa-solid fa-award"></i> Analisis Ahli: Dampak Terhadap Ekosistem Linux</h2>
-        <p>Kita harus melihat sisi otoritas dan kepercayaan. Ubuntu sebagai sistem operasi Linux salah satu yang populer untuk desktop, seringkali menjadi trendsetter. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Langkah Canonical ini kemungkinan besar akan diikuti oleh distro turunan seperti **Linux Mint, Pop!_OS, dan Zorin OS**.</p>
-        <p>Ini bukan sekadar soal ukuran file, tapi soal **Keamanan**. Dengan paket yang terpisah, tim security bisa merilis tambalan darurat untuk satu vendor spesifik dengan lebih cepat tanpa perlu melakukan pengujian ulang (re-testing) pada keseluruhan blob firmware vendor lain yang tidak terdampak. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah standar baru dalam manajemen paket Linux modern.</p>
+        <p>Kita harus melihat sisi otoritas dan kepercayaan. Ubuntu sebagai sistem operasi Linux salah satu yang populer untuk desktop, seringkali menjadi trendsetter. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Langkah Canonical ini kemungkinan besar akan diikuti oleh distro turunan seperti <strong>Linux Mint, Pop!_OS, dan Zorin OS</strong>.</p>
+        <p>Ini bukan sekadar soal ukuran file, tapi soal <strong>Keamanan</strong>. Dengan paket yang terpisah, tim security bisa merilis tambalan darurat untuk satu vendor spesifik dengan lebih cepat tanpa perlu melakukan pengujian ulang (re-testing) pada keseluruhan blob firmware vendor lain yang tidak terdampak. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah standar baru dalam manajemen paket Linux modern.</p>
     </section>
     <section id="penutup">
         <p>Kesimpulannya, Ubuntu 26.04 LTS "Resolute Raccoon" bukan cuma soal wallpaper baru atau kernel terbaru, tapi soal optimasi cerdas di balik layar. Dengan pemisahan paket ini, Ubuntu membuktikan diri tetap relevan untuk semua orang, baik yang punya internet cepat maupun yang perlu berhemat kuota di pelosok negeri. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. 🌏✨</p>

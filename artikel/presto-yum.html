@@ -46,25 +46,25 @@
     <title>YUM Presto: Hemat Bandwidth Saat Update - Layar Kosong</title> 
 <link href="/ext/atom-one-light.min.css" rel="stylesheet">
    <style>
-    /* --- 1. DESIGN TOKENS (Sunset Orange Fluid Ecosystem) --- */
+    /<em> --- 1. DESIGN TOKENS (Sunset Orange Fluid Ecosystem) --- </em>/
     :root {
-        /* Mode Terang (WCAG AA Compliant) */
+        /<em> Mode Terang (WCAG AA Compliant) </em>/
         --bg: #f4f4f9;
         --bg-canvas: #ffffff;
         --text: #333333;
         --muted: #666666;
-        --accent: #e67e22; /* Orange utama */
-        --accent-sec: #f39c12; /* Aksen kuning cerah */
+        --accent: #e67e22; /<em> Orange utama </em>/
+        --accent-sec: #f39c12; /<em> Aksen kuning cerah </em>/
         --border: #e0e0e0;
         --code-bg: #2d2d2d;
         --code-text: #f1f1f1;
-        /* Manifesto: Batas maksimal 1000px */
+        /<em> Manifesto: Batas maksimal 1000px </em>/
         --max-width: 62.5rem; 
-        --radius: 0.75rem; /* 12px */
+        --radius: 0.75rem; /<em> 12px </em>/
     }
     @media (prefers-color-scheme: dark) {
         :root {
-            /* Mode Gelap (Dark Mode) */
+            /<em> Mode Gelap (Dark Mode) </em>/
             --bg: #0b0c0f;
             --bg-canvas: #161618;
             --text: #e0e0e0;
@@ -74,8 +74,8 @@
             --border: #2a2a2a;
         }
     }
-    /* --- 2. ACCESSIBLE RESET --- */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /<em> --- 2. ACCESSIBLE RESET --- </em>/
+    <em>, </em>::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { 
         font-family: system-ui, -apple-system, sans-serif; 
         background-color: var(--bg); 
@@ -83,7 +83,7 @@
         line-height: 1.7;
         transition: background-color 0.3s ease;
     }
-    /* --- 3. LAYOUT ENGINE (1 Kolom Mutlak) --- */
+    /<em> --- 3. LAYOUT ENGINE (1 Kolom Mutlak) --- </em>/
     .container {
         width: 100%;
         max-width: var(--max-width);
@@ -99,18 +99,18 @@
             box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.05);
         }
     }
-    /* --- 4. TYPOGRAPHY --- */
+    /<em> --- 4. TYPOGRAPHY --- </em>/
     header { text-align: center; color: var(--accent); padding-bottom: 0.625rem; border-bottom: 0.125rem solid var(--accent-sec); }
     h1, h2 { color: var(--accent); margin-top: 1.5rem; }
-    /* --- 5. GALLERY (Responsive 1-Column Flow) --- */
+    /<em> --- 5. GALLERY (Responsive 1-Column Flow) --- </em>/
     .gallery { margin: 2rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; }
     .gallery img { width: 100%; height: auto; border-radius: var(--radius); cursor: pointer; transition: transform 0.3s ease; }
     .gallery img:hover { transform: scale(1.02); }
-    /* --- 6. LIGHTBOX --- */
+    /<em> --- 6. LIGHTBOX --- </em>/
     .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 1rem; }
     .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: var(--radius); }
     .lightbox-close { position: absolute; top: 1rem; right: 2rem; color: #fff; font-size: 2.5rem; cursor: pointer; border: none; background: none; }
-    /* --- 7. CODE BLOCKS --- */
+    /<em> --- 7. CODE BLOCKS --- </em>/
     pre { background: var(--code-bg); color: var(--code-text); padding: 2rem 1rem 1rem 1rem; border-radius: var(--radius); overflow-x: auto; position: relative; margin: 1rem 0; }
     code { font-family: ui-monospace, monospace; font-size: 0.9rem; }
     .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--accent); color: #fff; border: none; padding: 0.3rem 0.6rem; border-radius: 0.3rem; cursor: pointer; font-size: 0.8rem; }

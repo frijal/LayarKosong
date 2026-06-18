@@ -107,9 +107,9 @@ let changes=[];
 const logBox=document.getElementById("log");
 const diffBox=document.getElementById("diffBox");
 const log=m=>logBox.textContent+=m+"\n";
-/* STRICT: harus ada "YYYY-MM-DDT */
+/<em> STRICT: harus ada "YYYY-MM-DDT </em>/
 const STRICT_REGEX = /"\d{4}-\d{2}-\d{2}T/g;
-/* ===== PICKERS ===== */
+/<em> ===== PICKERS ===== </em>/
 pickFolder.onclick=async()=>{
   if(window.showDirectoryPicker){
     try{
@@ -124,7 +124,7 @@ pickFolder.onclick=async()=>{
 folderFallback.onchange=e=>{
   fallbackFiles=[...e.target.files];
   folderHandle=null;
-  log(`✔ Folder fallback (${fallbackFiles.length} file)`);
+  log(<code>✔ Folder fallback (${fallbackFiles.length} file)</code>);
 };
 pickList.onclick=async()=>{
   if(window.showOpenFilePicker){
@@ -144,7 +144,7 @@ listFallback.onchange=e=>{
   listHandle=null;
   log("✔ ubahtanggal.txt dipilih (fallback)");
 };
-/* ===== PREVIEW ===== */
+/<em> ===== PREVIEW ===== </em>/
 preview.onclick=async()=>{
   diffBox.innerHTML="";
   logBox.textContent="";
@@ -175,35 +175,35 @@ preview.onclick=async()=>{
         html=await file.text();
       }else{
         file=fallbackFiles.find(f=>f.name===name);
-        if(!file){log(`⚠ Tidak ada: ${name}`);continue;}
+        if(!file){log(<code>⚠ Tidak ada: ${name}</code>);continue;}
         html=await file.text();
       }
       if(!STRICT_REGEX.test(html)){
-        log(`⚠ Pola tidak ditemukan: ${name}`);
+        log(<code>⚠ Pola tidak ditemukan: ${name}</code>);
         continue;
       }
       const beforeMatches=[...html.matchAll(STRICT_REGEX)]
         .map(m=>m[0]);
       const newHtml=html.replace(
         STRICT_REGEX,
-        `"${newDate}T`
+        <code>"${newDate}T</code>
       );
       const afterMatches=[...newHtml.matchAll(STRICT_REGEX)]
         .map(m=>m[0]);
       changes.push({name,html:newHtml});
-      diffBox.innerHTML+=`
+      diffBox.innerHTML+=<code>
 <div class="diff">
 <strong>${name}</strong><br>
 <del>${beforeMatches[0]}</del><br>
 <ins>"${newDate}T</ins>
-</div>`;
+</div></code>;
     }catch{
-      log(`✖ Gagal proses: ${name}`);
+      log(<code>✖ Gagal proses: ${name}</code>);
     }
   }
-  log(`Preview selesai (${changes.length} file)`);
+  log(<code>Preview selesai (${changes.length} file)</code>);
 };
-/* ===== APPLY ===== */
+/<em> ===== APPLY ===== </em>/
 apply.onclick=async()=>{
   if(!changes.length){
     alert("Tidak ada perubahan untuk diterapkan");
@@ -219,16 +219,16 @@ apply.onclick=async()=>{
         const w=await fh.createWritable();
         await w.write(f.html);
         await w.close();
-        log(`✔ Updated ${f.name}`);
+        log(<code>✔ Updated ${f.name}</code>);
       }else{
         const a=document.createElement("a");
         a.href=URL.createObjectURL(new Blob([f.html],{type:"text/html"}));
         a.download=f.name;
         a.click();
-        log(`⬇ Download ${f.name}`);
+        log(<code>⬇ Download ${f.name}</code>);
       }
     }catch{
-      log(`✖ Gagal tulis ${f.name}`);
+      log(<code>✖ Gagal tulis ${f.name}</code>);
     }
   }
 };

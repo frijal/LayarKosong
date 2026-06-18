@@ -48,10 +48,10 @@
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
     <style>
         :root{
-            --emerald:#54B59F;      /* 600 */
-            --emerald-weak:#D5F2EA;   /* 100 */
-            --gold:#F6C76D;         /* 400 */
-            --gold-weak:#FFF1D6;     /* 50 */
+            --emerald:#54B59F;      /<em> 600 </em>/
+            --emerald-weak:#D5F2EA;   /<em> 100 </em>/
+            --gold:#F6C76D;         /<em> 400 </em>/
+            --gold-weak:#FFF1D6;     /<em> 50 </em>/
             --ink:#0C2E2B;
             --rose:#DB7A6A;
             --bg0:#0b1514; --bg1:#0f1d1b; --bg2:#102120;
@@ -70,7 +70,7 @@
             font:16px/1.74 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
         }
         a{color:var(--gold); text-decoration:none}
-        /* Header sticky */
+        /<em> Header sticky </em>/
         header.site{
             position:sticky; top:0; z-index:50;
             backdrop-filter:saturate(140%) blur(10px);
@@ -94,14 +94,14 @@
             padding:8px 12px; border:1px solid var(--line); border-radius:999px;
             background:#0b1a19; color:var(--muted);
         }
-        /* Layout 1 kolom */
+        /<em> Layout 1 kolom </em>/
         .wrap{width:min(980px,92vw); margin:0 auto; padding:24px 0 80px;}
         main.card{
             margin-top:18px; border:1px solid var(--line); border-radius:20px; overflow:hidden;
             background:linear-gradient(180deg, #0c1818, #0a1515);
             box-shadow:var(--shadow);
         }
-        /* Hero */
+        /<em> Hero </em>/
         .hero{
             padding:32px 22px 18px;
             background:
@@ -110,7 +110,7 @@
         }
         .hero h2{margin:0 0 8px; font-size:clamp(1.6rem, 4.8vw, 2.5rem)}
         .hero p{margin:0; color:var(--muted); max-width:72ch}
-        /* Konten */
+        /<em> Konten </em>/
         article.content{padding:24px 22px; position:relative;}
         article.content p{margin:0 0 16px;}
         article.content h3{margin:22px 0 8px; font-size:1.18rem; color:#e8f1f1}
@@ -123,7 +123,7 @@
             margin:18px 0; padding:14px 16px; border-radius:14px; background:var(--card); border:1px solid var(--line);
             color:#e7edff; box-shadow:var(--shadow);
         }
-        /* Micro-timeline dengan glow */
+        /<em> Micro-timeline dengan glow </em>/
         .timeline{
             border-left:3px dashed var(--emerald); padding-left:14px; margin:20px 0;
         }
@@ -142,7 +142,7 @@
             padding:4px 8px; border-radius:999px; border:1px solid var(--line);
             background:#0b1a19; color:#e7f4f3;
         }
-        /* Galeri */
+        /<em> Galeri </em>/
         .gallery{
             display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
             gap:14px; margin:20px 0;
@@ -153,7 +153,7 @@
             transition:transform .15s ease, box-shadow .15s ease;
         }
         .gallery img:hover{transform:translateY(-2px); box-shadow:0 18px 32px rgba(0,0,0,.4);}
-        /* Lightbox */
+        /<em> Lightbox </em>/
         .lightbox{position:fixed; inset:0; background:rgba(10,16,16,.88); display:none; align-items:center; justify-content:center; z-index:1000;}
         .lightbox.active{display:flex;}
         .lightbox img{max-width:min(92vw,1200px); max-height:82vh; border-radius:18px; border:1px solid var(--line); box-shadow:var(--shadow)}
@@ -164,16 +164,16 @@
             background:#122423; color:var(--text); border:1px solid var(--line); padding:10px 14px; border-radius:10px;
         }
         .btn:hover{background:#17302e}
-        /* Share */
+        /<em> Share </em>/
         .share{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 4px;}
         .share a, .share button{border:none}
         footer.site{margin-top:24px; padding:18px 22px; color:var(--muted); text-align: center;}
-        /* Floating buttons, related posts, etc. removed */
+        /<em> Floating buttons, related posts, etc. removed </em>/
         @media (max-width:640px){
             .pill{padding:6px 10px; font-size:9rem}
             .gallery img{height:160px}
         }
-        /* Section styling */
+        /<em> Section styling </em>/
         .section {
          margin-bottom: 40px;
          line-height: 1.7;
@@ -251,7 +251,7 @@
          cursor: pointer;
          box-shadow: var(--shadow);
         }
-        /* Lightbox (basic) */
+        /<em> Lightbox (basic) </em>/
         .lightbox {
          display: none;
          position: fixed;

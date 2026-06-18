@@ -49,8 +49,8 @@
     <meta name="news_keywords" content="openSUSE, Zypper, Shell Script, Linux Mirror, Mirrorlist, Optimasi Linux, Sysadmin">
     <meta name="promphint" content="Bagaimana mempercepat download repo openSUSE? | Gunakan skrip opensuse-mirror.sh untuk mengalihkan repo lama ke infrastruktur mirrorlist otomatis.">
     <style>
-        /* Modern Reset & Variabel Tema */
-        *, *::before, *::after {
+        /<em> Modern Reset & Variabel Tema </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         :root {
@@ -91,7 +91,7 @@
                 --syntax-comment: #475569;
             }
         }
-        /* Arsitektur Tipografi & Layout (Tanpa PX/PT) --> Kontainer Max 64rem Rata Tengah */
+        /<em> Arsitektur Tipografi & Layout (Tanpa PX/PT) --> Kontainer Max 64rem Rata Tengah </em>/
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-base);
@@ -168,7 +168,7 @@
         strong {
             color: var(--heading-color);
         }
-        /* Optimasi Gambar Penuh Kontainer & Anti Layout Shift (CLS) */
+        /<em> Optimasi Gambar Penuh Kontainer & Anti Layout Shift (CLS) </em>/
         .image-container {
             width: 100%;
             margin: 2rem 0;
@@ -182,7 +182,7 @@
             border-radius: 0.5rem;
             background-color: var(--border-color);
         }
-        /* Komponen Blok Kode & Syntax Highlighting Murni Bawaan */
+        /<em> Komponen Blok Kode & Syntax Highlighting Murni Bawaan </em>/
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             background-color: var(--code-inline-bg);
@@ -212,7 +212,7 @@
         .syn-kw { color: var(--syntax-keyword); font-weight: bold; }
         .syn-str { color: var(--syntax-string); }
         .syn-cmt { color: var(--syntax-comment); font-style: italic; }
-        /* Footer Rata Tengah Elegan */
+        /<em> Footer Rata Tengah Elegan </em>/
         footer {
             margin-top: 4rem;
             padding-top: 1.5rem;
@@ -247,13 +247,13 @@
                 </div>
             </header>
             <p>Bagi para pengguna setia ekosistem Linux, kelancaran dalam melakukan pembaruan aplikasi dan sistem operasi merupakan kunci utama dalam menjaga stabilitas produktivitas harian. Di dalam lingkungan openSUSE, proses manajemen paket ini ditangani oleh sebuah utilitas andal bernama <code>zypper</code>. Namun, kendala klasik yang sering dihadapi oleh para pengembang maupun administrator sistem lokal di Indonesia adalah lambatnya kecepatan unduhan data apabila sistem secara pasif terhubung pada server repositori global bawaan yang letak geografisnya terlampau jauh.</p>
-            <p>Untuk mengatasi persoalan latensi jaringan tersebut, komunitas pengembang menyediakan infrastruktur cerdas berupa tautan dinamis yang beralamat di <strong>mirrorlist.opensuse.org</strong>. Layanan web penyeimbang beban (*load balancer*) ini bertugas mendeteksi lokasi geografis alamat IP Anda secara seketika, kemudian mengalihkan permintaan data menuju server jaringan cermin (*mirror*) terdekat yang paling responsif di wilayah Anda. Memanfaatkan skrip otomatisasi adalah langkah paling praktis untuk merombak konfigurasi jaringan distribusi paket ini.</p>
+            <p>Untuk mengatasi persoalan latensi jaringan tersebut, komunitas pengembang menyediakan infrastruktur cerdas berupa tautan dinamis yang beralamat di <strong>mirrorlist.opensuse.org</strong>. Layanan web penyeimbang beban (<em>load balancer</em>) ini bertugas mendeteksi lokasi geografis alamat IP Anda secara seketika, kemudian mengalihkan permintaan data menuju server jaringan cermin (<em>mirror</em>) terdekat yang paling responsif di wilayah Anda. Memanfaatkan skrip otomatisasi adalah langkah paling praktis untuk merombak konfigurasi jaringan distribusi paket ini.</p>
             <div class="image-container">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/abbd97c62a84104c.webp" alt="Ilustrasi optimasi infrastruktur server jaringan cermin repositori lokal openSUSE Linux tercepat" fetchpriority="high">
             </div>
             <h2>Penjelasan Cara Kerja Sistem Mirrorlist</h2>
             <p>Secara default, instalasi baru openSUSE menyematkan alamat server utama yang bersifat statis. Ketika ribuan pengguna mengakses server tersebut secara bersamaan, antrean bandwidth memicu penurunan performa kecepatan unduhan. Melalui skrip <code>opensuse-mirror.sh</code>, paradigma manajemen repositori diubah sepenuhnya menjadi dinamis.</p>
-            <p>Skrip cerdas ini dirancang untuk bekerja secara berurutan guna meminimalkan risiko kerusakan sistem. Mekanismenya dimulai dari mengamankan data lama melalui proses pencadangan (*backup*), mendeteksi varian versi distribusi Leap yang sedang berjalan secara akurat via berkas sistem, menghapus daftar repositori lawas yang lambat, hingga menginjeksikan parameter berbasis pelacak geografis (*geo-location tracker*) secara otomatis ke dalam konfigurasi package manager.</p>
+            <p>Skrip cerdas ini dirancang untuk bekerja secara berurutan guna meminimalkan risiko kerusakan sistem. Mekanismenya dimulai dari mengamankan data lama melalui proses pencadangan (<em>backup</em>), mendeteksi varian versi distribusi Leap yang sedang berjalan secara akurat via berkas sistem, menghapus daftar repositori lawas yang lambat, hingga menginjeksikan parameter berbasis pelacak geografis (<em>geo-location tracker</em>) secara otomatis ke dalam konfigurasi package manager.</p>
             <blockquote>
                 <p>⚠️ Peringatan Keamanan: Karena proses ini memodifikasi berkas konfigurasi sistem yang bersifat vital di dalam direktori <code>/etc/zypp/repos.d</code>, Anda diwajibkan untuk menjalankan skrip ini dengan hak akses administrator penuh menggunakan perintah <code>sudo</code>.</p>
             </blockquote>

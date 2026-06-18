@@ -177,9 +177,9 @@
           <h2>Stop Buang Waktu, Mulai Bikin Konten yang Menjual!</h2>
           <p>
             Membuat konten yang menarik itu butuh waktu dan energi. Kadang kita
-            bisa seharian hanya untuk memikirkan satu *caption* Instagram. Nah,
+            bisa seharian hanya untuk memikirkan satu <em>caption</em> Instagram. Nah,
             lupakan cara lama! Dengan <strong>Copy.ai</strong>, Anda bisa
-            membuat teks iklan, deskripsi produk, dan *postingan* media sosial
+            membuat teks iklan, deskripsi produk, dan <em>postingan</em> media sosial
             yang super persuasif hanya dalam hitungan detik.
           </p>
           <div class="highlight-box">
@@ -234,11 +234,11 @@
             const prevBtn = document.querySelector('.lightbox-prev');
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
-            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${80 + i}/800/600`);
+            const images = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${80 + i}/800/600</code>);
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = `Contoh antarmuka Copy.ai ${index + 1}`;
+                img.alt = <code>Contoh antarmuka Copy.ai ${index + 1}</code>;
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });

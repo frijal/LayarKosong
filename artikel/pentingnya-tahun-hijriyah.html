@@ -45,9 +45,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pentingnya Pakai Tahun Hijriyah dalam Fiqih, Jangan Keliru! - Layar Kosong</title> 
 <style>
-        /* CSS3 untuk Tema Terang dan Gelap Otomatis */
+        /<em> CSS3 untuk Tema Terang dan Gelap Otomatis </em>/
         :root {
-            /* Tema Terang (Default) */
+            /<em> Tema Terang (Default) </em>/
             --bg-color: #f9f9f9;
             --text-color: #333;
             --card-bg: #ffffff;
@@ -65,7 +65,7 @@
                 --code-bg: #2a2a2a;
             }
         }
-        /* Reset dan Pengaturan Dasar */
+        /<em> Reset dan Pengaturan Dasar </em>/
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -75,9 +75,9 @@
             line-height: 1.7;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* Desain Widescreen dan Konten Utama */
+        /<em> Desain Widescreen dan Konten Utama </em>/
         article {
-            max-width: 900px; /* Lebar untuk widescreen */
+            max-width: 900px; /<em> Lebar untuk widescreen </em>/
             margin: 2rem auto;
             padding: 2rem 3rem;
             background-color: var(--card-bg);
@@ -108,7 +108,7 @@
             color: var(--accent-color);
             margin-top: 1.5rem;
         }
-        /* Gambar Responsif */
+        /<em> Gambar Responsif </em>/
         img {
             max-width: 100%;
             height: auto;
@@ -126,7 +126,7 @@
         li {
             margin-bottom: 1.2rem;
         }
-        /* Kutipan dan Hadits */
+        /<em> Kutipan dan Hadits </em>/
         blockquote {
             font-style: italic;
             border-left: 4px solid var(--accent-color);
@@ -138,7 +138,7 @@
             padding: 1rem;
             border-radius: 0 8px 8px 0;
         }
-        /* Kalkulator */
+        /<em> Kalkulator </em>/
         .kalkulator {
             background-color: var(--code-bg);
             border: 1px solid var(--border-color);
@@ -159,7 +159,7 @@
             border-radius: 6px;
             background-color: var(--card-bg);
             color: var(--text-color);
-            box-sizing: border-box; /* Agar padding tidak merusak lebar */
+            box-sizing: border-box; /<em> Agar padding tidak merusak lebar </em>/
         }
         .kalkulator button {
             background-color: var(--accent-color);
@@ -183,7 +183,7 @@
             font-weight: bold;
             color: var(--accent-color);
         }
-        /* Tombol Share */
+        /<em> Tombol Share </em>/
         .share-section {
             margin-top: 3rem;
             text-align: center;
@@ -222,7 +222,7 @@
         .twitter { background-color: #1DA1F2; }
         .facebook { background-color: #1877F2; }
         .telegram { background-color: #26A5E4; }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             text-align: center;
             margin-top: 2rem;
@@ -230,7 +230,7 @@
             color: var(--text-color);
             opacity: 0.7;
         }
-        /* Mobile-Friendly / Responsif */
+        /<em> Mobile-Friendly / Responsif </em>/
         @media (max-width: 768px) {
             article {
                 margin: 1rem;
@@ -317,7 +317,7 @@
                 const today = new Date();
                 // Hitung selisih hari
                 const diffMs = today.getTime() - birthDate.getTime();
-                const diffDays = diffMs / (1000 * 60 * 60 * 24);
+                const diffDays = diffMs / (1000 <em> 60 </em> 60 * 24);
                 if (diffDays < 0) {
                     resultDiv.textContent = 'Tanggal lahirnya tidak boleh di masa depan dong :)';
                     resultDiv.style.color = 'red';
@@ -343,13 +343,13 @@
                 tempDaysHijri %= (daysInHijriYear / 12);
                 const daysHijri = Math.floor(tempDaysHijri);
                 resultDiv.style.color = 'var(--accent-color)';
-                resultDiv.innerHTML = `
+                resultDiv.innerHTML = <code>
                     Perkiraan Umur Kamu:<br>
                     <strong>Umur Masehi:</strong> ${yearsGreg} tahun, ${monthsGreg} bulan, ${daysGreg} hari<br>
                     <strong>Umur Hijriyah:</strong> ${yearsHijri} tahun, ${monthsHijri} bulan, ${daysHijri} hari
                     <br><br>
                     <span style="font-size: 0.9rem; opacity: 0.8;">(Umur Hijriyah kamu ${ageHijri > ageGregorian ? 'lebih tua' : 'lebih muda'} sekitar <strong>${(ageHijri - ageGregorian).toFixed(1)}</strong> tahun!)</span>
-                `;
+                </code>;
             } catch (e) {
                 resultDiv.textContent = 'Oops, ada kesalahan. Coba cek lagi tanggalnya.';
                 resultDiv.style.color = 'red';

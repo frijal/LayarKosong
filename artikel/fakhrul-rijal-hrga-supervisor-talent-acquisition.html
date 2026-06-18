@@ -58,9 +58,9 @@
             padding: 0;
             box-sizing: border-box;
         }
-        /* Variabel CSS untuk tema */
+        /<em> Variabel CSS untuk tema </em>/
         :root {
-            /* Light Mode (Default) */
+            /<em> Light Mode (Default) </em>/
             --bg-color: #ffffff;
             --text-color: #333333;
             --header-bg: #1a365d;
@@ -76,7 +76,7 @@
             --footer-bg: #1a365d;
             --footer-text: #cbd5e0;
         }
-        /* Dark Mode */
+        /<em> Dark Mode </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121826;
@@ -106,7 +106,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-        /* Container untuk konten utama */
+        /<em> Container untuk konten utama </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -114,7 +114,7 @@ body {
             width: 100%;
             flex: 1;
         }
-        /* Header Styles */
+        /<em> Header Styles </em>/
         .header {
             background-color: var(--header-bg);
             color: var(--header-text);
@@ -169,7 +169,7 @@ body {
             opacity: 0.8;
             text-decoration: underline;
         }
-        /* Button Styles */
+        /<em> Button Styles </em>/
         .language-toggle {
             position: absolute;
             top: 20px;
@@ -207,7 +207,7 @@ body {
             background-color: var(--hover-color);
             transform: translateY(-2px);
         }
-        /* Content Sections */
+        /<em> Content Sections </em>/
         .content {
             padding-bottom: 40px;
         }
@@ -227,7 +227,7 @@ body {
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 8px;
         }
-        /* Skills Grid */
+        /<em> Skills Grid </em>/
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -247,7 +247,7 @@ body {
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        /* Experience Items */
+        /<em> Experience Items </em>/
         .experience-item, .education-item {
             margin-bottom: 25px;
             padding-bottom: 25px;
@@ -280,7 +280,7 @@ body {
         .description {
             margin-top: 10px;
         }
-        /* Languages */
+        /<em> Languages </em>/
         .languages-list {
             display: flex;
             flex-wrap: wrap;
@@ -294,7 +294,7 @@ body {
             border-radius: 20px;
             font-weight: 500;
         }
-        /* Footer */
+        /<em> Footer </em>/
         .footer {
             background-color: var(--footer-bg);
             color: var(--footer-text);
@@ -312,7 +312,7 @@ body {
             opacity: 0.8;
             text-decoration: underline;
         }
-        /* Hidden ATS Keywords */
+        /<em> Hidden ATS Keywords </em>/
         .ats-keywords {
             position: absolute;
             left: -9999px;
@@ -323,14 +323,14 @@ body {
             font-size: 1px;
             color: transparent;
         }
-        /* Language Toggle System */
+        /<em> Language Toggle System </em>/
         .lang-id {
             display: block;
         }
         .lang-en {
             display: none;
         }
-        /* Responsive Styles */
+        /<em> Responsive Styles </em>/
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -385,33 +385,33 @@ body {
                 align-items: center;
             }
         }
-                /* Optimasi Core Web Vitals */
+                /<em> Optimasi Core Web Vitals </em>/
         img {
             max-width: 100%;
             height: auto;
             display: block;
         }
-        /* Mencegah Cumulative Layout Shift */
+        /<em> Mencegah Cumulative Layout Shift </em>/
         .profile-img {
             aspect-ratio: 1/1;
         }
-        /* Mencegah invisible text selama font loading */
-        /* .fonts-loaded body { visibility: visible; } */
+        /<em> Mencegah invisible text selama font loading </em>/
+        /<em> .fonts-loaded body { visibility: visible; } </em>/
         body.fonts-loaded {
         visibility: visible;
         }
         body {
         visibility: hidden;
         }
-        /* Smooth scrolling */
+        /<em> Smooth scrolling </em>/
         html {
             scroll-behavior: smooth;
         }
-/* Print/PDF Styles */
+/<em> Print/PDF Styles </em>/
 @media print {
-    /* 1. Reset Dasar */
+    /<em> 1. Reset Dasar </em>/
     @page {
-    /*    margin: 10mm; */
+    /<em>    margin: 10mm; </em>/
         size: A4;
     }
     * {
@@ -428,7 +428,7 @@ body {
         line-height: 1.6;
         font-size: 11pt;
     }
-    /* 2. Header & Foto */
+    /<em> 2. Header & Foto </em>/
     .header {
         display: block !important;
         text-align: center;
@@ -446,7 +446,7 @@ body {
     }
     h1 { font-size: 20pt; margin-bottom: 5px; }
     .title { font-size: 11pt; font-weight: bold; margin-bottom: 8px; }
-    /* KONTAK BERJEJER KE SAMPING */
+    /<em> KONTAK BERJEJER KE SAMPING </em>/
     .contact-info {
         margin-top: 1px;
         font-size: 10.5pt;
@@ -456,7 +456,7 @@ body {
         color: #000 !important;
         text-decoration: none;
     }
-    /* 3. Section & Tabulasi */
+    /<em> 3. Section & Tabulasi </em>/
     .section {
         display: block !important;
         margin-top: 10px !important;
@@ -468,7 +468,7 @@ body {
         margin-bottom: 8px !important;
         padding-bottom: 2px !important;
     }
-    /* 5. Experience & Education */
+    /<em> 5. Experience & Education </em>/
     .experience-item, .education-item {
         margin-bottom: 12px !important;
         page-break-inside: avoid;
@@ -476,11 +476,11 @@ body {
     .job-title { font-weight: bold; }
     .company { font-weight: bold; font-style: italic; }
     .date-location { font-size: 9pt; display: block; margin-bottom: 2px; }
-    /* 6. Hilangkan Elemen UI & Ikon */
+    /<em> 6. Hilangkan Elemen UI & Ikon </em>/
     .download-btn, .language-toggle, .footer {
         display: none !important;
     }
-/* Skills grid jadi rapi 3 kolom */
+/<em> Skills grid jadi rapi 3 kolom </em>/
     .skills-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

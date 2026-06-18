@@ -56,7 +56,7 @@
         .diagram-box { border: 2px dashed #9ca3af; background-color: #f3f4f6; padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100px; margin-bottom: 1rem; }
         .diagram-step { text-align: center; font-family: monospace; font-size: 0.875rem; }
         .diagram-arrow { font-size: 2rem; color: #3b82f6; margin: 0 1rem; }
-        /* Social Sharing Icons */
+        /<em> Social Sharing Icons </em>/
         .social-share a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 6px; font-weight: 600; color: white; transition: background-color 0.2s; }
         .btn-facebook { background-color: #1877f2; }
         .btn-twitter { background-color: #1da1f2; }
@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
             contentDisplay.appendChild(template.content.cloneNode(true));
         }
         if(navLinks.length > 0 && contentMap[hash]){
-            const targetLink = document.querySelector(`a[href="${hash}"]`);
+            const targetLink = document.querySelector(<code>a[href="${hash}"]</code>);
             if (targetLink) targetLink.classList.add("active-nav");
         }
         // Update current URL display and Facebook comments data-href

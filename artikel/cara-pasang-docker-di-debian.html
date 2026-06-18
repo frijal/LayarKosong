@@ -51,7 +51,7 @@
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
-            --accent-color: #007bff; /* Docker Blue */
+            --accent-color: #007bff; /<em> Docker Blue </em>/
             --card-bg: #f8f9fa;
             --code-bg: #272822;
             --code-text: #f8f8f2;
@@ -93,7 +93,7 @@
         .info-box { background: var(--card-bg); border: 1px solid var(--border-color); padding: 20px; border-radius: 10px; margin: 25px 0; }
         footer { margin-top: 80px; padding: 30px 0; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.9rem; }
         .fa-icon { margin-right: 8px; color: var(--accent-color); }
-        /* Mobile-friendly adjustments */
+        /<em> Mobile-friendly adjustments </em>/
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             article { font-size: 1.05rem; }
@@ -129,19 +129,19 @@
         <section>
             <h2>Siapa yang Membutuhkan Ini? (Who)</h2>
             <p>
-                Siapa saja yang ingin jadi *Self-hoster* sejati. Mau pasang Nextcloud? Pakai Docker. Mau pasang Ad-guard Home? Pakai Docker. Mau belajar coding Python atau Node.js tanpa ribet instal dependensi? Docker solusinya. Ini wajib buat kamu yang pengen punya *Home Lab* yang rapi.
+                Siapa saja yang ingin jadi <em>Self-hoster</em> sejati. Mau pasang Nextcloud? Pakai Docker. Mau pasang Ad-guard Home? Pakai Docker. Mau belajar coding Python atau Node.js tanpa ribet instal dependensi? Docker solusinya. Ini wajib buat kamu yang pengen punya <em>Home Lab</em> yang rapi.
             </p>
         </section>
         <section>
             <h2>Kapan dan Di Mana Melakukannya? (When &amp; Where)</h2>
             <p>
-                Lakukan ini segera setelah kamu selesai instalasi dasar Debian. Kamu bisa melakukan ini di PC lama, VPS murah, atau bahkan Raspberry Pi. Pastikan kamu punya akses internet dan akses `sudo` atau root.
+                Lakukan ini segera setelah kamu selesai instalasi dasar Debian. Kamu bisa melakukan ini di PC lama, VPS murah, atau bahkan Raspberry Pi. Pastikan kamu punya akses internet dan akses <code>sudo</code> atau root.
             </p>
         </section>
         <section>
             <h2>Bagaimana Cara Pasangnya? (How)</h2>
             <p>
-                Jangan gunakan `apt install docker.io` bawaan Debian jika ingin versi terbaru. Ikuti langkah resmi ini biar keren:
+                Jangan gunakan <code>apt install docker.io</code> bawaan Debian jika ingin versi terbaru. Ikuti langkah resmi ini biar keren:
             </p>
             <h3>1. Update dan Instal Dependensi</h3>
             <p>Pertama, kita siapkan dulu bahan-bahannya:</p>
@@ -152,7 +152,7 @@ sudo apt install ca-certificates curl gnupg lsb-release</pre>
             <pre>sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg</pre>
             <h3>3. Setup Repositori</h3>
-            <p>Masukkan alamat repositori Docker ke daftar belanjaan `apt` kamu:</p>
+            <p>Masukkan alamat repositori Docker ke daftar belanjaan <code>apt</code> kamu:</p>
             <pre>echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</pre>
             <h3>4. Instal Docker Engine</h3>
             <p>Sekarang, saatnya instalasi inti:</p>
@@ -160,7 +160,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o 
 sudo apt install containerd.io docker-cli docker-compose docker-buildx</pre>
             <div class="info-box">
                 <i class="fa-solid fa-circle-info fa-icon"></i>
-                <strong>Tips Pro:</strong> Agar kamu tidak perlu ngetik `sudo` terus tiap kali mau jalanin perintah Docker, masukkan user kamu ke grup docker:
+                <strong>Tips Pro:</strong> Agar kamu tidak perlu ngetik <code>sudo</code> terus tiap kali mau jalanin perintah Docker, masukkan user kamu ke grup docker:
                 <br><code>sudo usermod -aG docker $USER</code>
                 <br><em>*Setelah ini, logout dan login kembali ya!</em>
             </div>

@@ -113,7 +113,7 @@
                     <h2>Langkah-langkah Membersihkan Kernel</h2>
                     <h3>1. Lihat Daftar Kernel yang Terpasang</h3>
                     <p>Gunakan perintah <code>dpkg</code> untuk melihat semua paket kernel (image dan headers) yang ada di sistem Anda.</p>
-                    <pre class="language-bash"><code id="code1">dpkg -l "linux-image*" "linux-headers*"</code><button class="copy-btn" data-target="code1">Salin</button></pre>
+                    <pre class="language-bash"><code id="code1">dpkg -l "linux-image<em>" "linux-headers</em>"</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                     <p class="muted">Perhatikan outputnya. Baris yang diawali dengan "ii" menandakan paket terpasang, sedangkan "rc" berarti sudah dihapus tapi konfigurasinya masih ada.</p>
                     <h3>2. Hapus Kernel Secara Spesifik (Opsional)</h3>
                     <p>Jika Anda tahu persis versi mana yang ingin dihapus, gunakan <code>apt purge</code>. Perintah ini akan menghapus paket beserta file konfigurasinya.</p>

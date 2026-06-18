@@ -191,7 +191,7 @@
           </p>
           <p>
             Tidio adalah chatbot berbasis AI yang bisa Anda pasang di website
-            atau toko online. Ia bertugas menjadi *Customer Service* (CS)
+            atau toko online. Ia bertugas menjadi <em>Customer Service</em> (CS)
             virtual yang siap sedia 24/7. Ia bisa menjawab pertanyaan umum,
             memberi rekomendasi produk, bahkan membantu memproses pesanan awal.
           </p>
@@ -240,11 +240,11 @@
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
             // Mengisi galeri dengan gambar
-            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${120 + i}/800/600`);
+            const images = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${120 + i}/800/600</code>);
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = `Contoh antarmuka Tidio Chatbot ${index + 1}`;
+                img.alt = <code>Contoh antarmuka Tidio Chatbot ${index + 1}</code>;
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });

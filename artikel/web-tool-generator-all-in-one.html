@@ -127,7 +127,7 @@
             padding: 15px;
             border: 1px solid #e2e8f0;
             border-radius: 6px;
-            text-align: left; /* List preview usually left aligned */
+            text-align: left; /<em> List preview usually left aligned </em>/
             min-height: 50px;
             background: white;
             overflow-x: auto;
@@ -141,7 +141,7 @@
         }
         figcaption { font-size: 0.9em; color: #64748b; margin-top: 5px; }
         img.preview-img { max-width: 100%; height: auto; border-radius: 4px; }
-        /* List Preview Styling */
+        /<em> List Preview Styling </em>/
         .preview ul, .preview ol { margin-left: 20px; }
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
@@ -324,21 +324,21 @@ Mangga" oninput="genList()"></textarea>
         const text = document.getElementById('l-text').value || 'Link';
         const target = document.getElementById('l-target').value;
         const rel = document.getElementById('l-rel').value;
-        let relAttr = rel !== 'none' ? ` rel="${rel}"` : '';
-        document.getElementById('l-output').value = `<a href="${url}" target="${target}"${relAttr}>${text}</a>`;
+        let relAttr = rel !== 'none' ? <code> rel="${rel}"</code> : '';
+        document.getElementById('l-output').value = <code><a href="${url}" target="${target}"${relAttr}>${text}</a></code>;
     }
     function genYT() {
         const url = document.getElementById('yt-url').value;
         const output = document.getElementById('yt-output');
         const preview = document.getElementById('yt-preview');
         let videoId = "";
-        const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+        const regExp = /^.<em>(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]</em>).*/;
         const match = url.match(regExp);
         if (match && match[2].length == 11) {
             videoId = match[2];
-            const thumbUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-            preview.innerHTML = `<img src="${thumbUrl}" class="preview-img">`;
-            output.value = `<img src="${thumbUrl}" alt="YouTube Thumbnail">`;
+            const thumbUrl = <code>https://img.youtube.com/vi/${videoId}/maxresdefault.jpg</code>;
+            preview.innerHTML = <code><img src="${thumbUrl}" class="preview-img"></code>;
+            output.value = <code><img src="${thumbUrl}" alt="YouTube Thumbnail"></code>;
         } else" {\n            preview.innerHTML = \"URL tidak valid\";\n            output.value = \"\";\n        }\n    "}
     function toggleCustomSize() {
         document.getElementById('custom-size-inputs').style.display = (document.getElementById('i-size').value === 'custom') ? 'flex' : 'none';
@@ -360,16 +360,16 @@ Mangga" oninput="genList()"></textarea>
         else if(sizeMode === 'custom') {
             const w = document.getElementById('i-w').value;
             const h = document.getElementById('i-h').value;
-            if(w) attrs += ` width="${w}"`;
-            if(h) attrs += ` height="${h}"`;
+            if(w) attrs += <code> width="${w}"</code>;
+            if(h) attrs += <code> height="${h}"</code>;
         }
-        let result = `<img src="${url}" alt="${alt}"${attrs}${style ? ` style="${style}"` : ''}>`;
+        let result = <code><img src="${url}" alt="${alt}"${attrs}${style ? </code> style="${style}"<code> : ''}></code>;
         if(document.getElementById('i-linkable').value === 'yes') {
-            result = `<a href="${url}" target="${document.getElementById('i-tab').value}">${result}</a>`;
+            result = <code><a href="${url}" target="${document.getElementById('i-tab').value}">${result}</a></code>;
         }
         if(caption) {
             let figStyle = (align === 'center') ? 'text-align: center;' : (align === 'right' ? 'text-align: right;' : 'text-align: left;');
-            result = `<figure style="${figStyle}">\n  ${result}\n  <figcaption>${caption}</figcaption>\n</figure>`;
+            result = <code><figure style="${figStyle}">\n  ${result}\n  <figcaption>${caption}</figcaption>\n</figure></code>;
         }
         document.getElementById('i-output').value = result;
         document.getElementById('i-preview').innerHTML = result;
@@ -386,14 +386,14 @@ Mangga" oninput="genList()"></textarea>
             return;
         }
         const items = input.split('\n').filter(item => item.trim() !== "");
-        const listItemsHtml = items.map(item => `  <li>${item.trim()}</li>`).join('\n');
+        const listItemsHtml = items.map(item => <code>  <li>${item.trim()}</li></code>).join('\n');
         let finalHtml = "";
         const [tag, val] = type.split('-');
         if (tag === 'ul') {
-            const style = val !== 'disc' ? ` style="list-style-type: ${val};"` : '';
-            finalHtml = `<ul${style}>\n${listItemsHtml}\n</ul>`;
+            const style = val !== 'disc' ? <code> style="list-style-type: ${val};"</code> : '';
+            finalHtml = <code><ul${style}>\n${listItemsHtml}\n</ul></code>;
         } else {
-            finalHtml = `<ol type="${val}">\n${listItemsHtml}\n</ol>`;
+            finalHtml = <code><ol type="${val}">\n${listItemsHtml}\n</ol></code>;
         }
         output.value = finalHtml;
         preview.innerHTML = finalHtml;

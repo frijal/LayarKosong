@@ -191,7 +191,7 @@
       margin: 1.5rem 0;
       border-radius: 0.5rem;
     }
-    /* Calculator styling */
+    /<em> Calculator styling </em>/
     .calculator {
       background: #ffffff;
       border-radius: 1rem;
@@ -588,8 +588,8 @@
     const pesangonFactor = getPesangonFactor(totalMonths);
     const upmkFactor = getUPMKFactor(totalMonths);
     const [multPesangon, multUPMK] = getAlasanMultiplier(alasan);
-    let pesangon = pesangonFactor * upah * multPesangon;
-    let upmk = upmkFactor * upah * multUPMK;
+    let pesangon = pesangonFactor <em> upah </em> multPesangon;
+    let upmk = upmkFactor <em> upah </em> multUPMK;
     // UPH: 15% dari (pesangon+UPMK) + cuti
     const perumahanPengobatan = 0.15 * (pesangon + upmk);
     const cutiValue = (sisaCuti / 22) * upah; // asumsi 22 hari kerja
@@ -604,5 +604,5 @@
     document.getElementById('hasil').style.display = 'block';
   });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><noscript>markdown_oleh_Fakhrul_Rijal</noscript>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><noscript>html_hasil_reverse</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

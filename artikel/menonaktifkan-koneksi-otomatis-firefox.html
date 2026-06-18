@@ -49,12 +49,12 @@
         :root {
             --text-color: #2c3e50;
             --bg-color: #ffffff;
-            --primary-color: #e67e22; /* Warna khas Firefox/Oranye */
+            --primary-color: #e67e22; /<em> Warna khas Firefox/Oranye </em>/
             --secondary-color: #3498db;
             --code-bg: #f4f4f9;
             --border-color: #ecf0f1;
         }
-        /* Dark Theme Detection */
+        /<em> Dark Theme Detection </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --text-color: #ecf0f1;
@@ -78,7 +78,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1200px; /* Widescreen layout */
+            max-width: 1200px; /<em> Widescreen layout </em>/
             margin: 0 auto;
             padding: 20px;
         }
@@ -122,7 +122,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            min-width: 600px; /* Agar tetap terbaca di mobile */
+            min-width: 600px; /<em> Agar tetap terbaca di mobile </em>/
         }
  footer {
       text-align: center;
@@ -165,7 +165,7 @@
             border-left: 5px solid var(--primary-color);
             margin: 20px 0;
         }
-        /* Mobile Adjustments */
+        /<em> Mobile Adjustments </em>/
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -192,16 +192,16 @@
         <article>
             <section id="penjelasan-narasi">
                 <h2><span role="img" aria-label="Magnifying Glass">🔍</span> Narasi Awal: Mengapa Firefox 'Ngobrol' Otomatis?</h2>
-                <p>Halo pengguna Firefox! Sadar atau tidak, peramban kesayangan kita ini ternyata sangat 'rajin' berinteraksi dengan dunia luar begitu kita membukanya. Yup, **Firefox secara default melakukan beberapa koneksi otomatis ke server Mozilla, bahkan ke pihak ketiga, tanpa meminta izin eksplisit dari kita**. Tujuannya sih baik: untuk keamanan (anti-phishing), fungsionalitas (pembaruan), dan terkadang untuk data statistik (Telemetry).</p>
-                <p>Buat kamu yang sangat peduli privasi, koneksi-koneksi ini tentu bikin penasaran. Mozilla sendiri cukup transparan soal ini dan mendokumentasikan daftarnya di halaman resmi mereka: <a href="https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections" target="_blank" style="color: var(--secondary-color);">**How to stop Firefox from making automatic connections**</a> (silakan cek, link ini sangat berguna!).</p>
+                <p>Halo pengguna Firefox! Sadar atau tidak, peramban kesayangan kita ini ternyata sangat 'rajin' berinteraksi dengan dunia luar begitu kita membukanya. Yup, <strong>Firefox secara default melakukan beberapa koneksi otomatis ke server Mozilla, bahkan ke pihak ketiga, tanpa meminta izin eksplisit dari kita</strong>. Tujuannya sih baik: untuk keamanan (anti-phishing), fungsionalitas (pembaruan), dan terkadang untuk data statistik (Telemetry).</p>
+                <p>Buat kamu yang sangat peduli privasi, koneksi-koneksi ini tentu bikin penasaran. Mozilla sendiri cukup transparan soal ini dan mendokumentasikan daftarnya di halaman resmi mereka: <a href="https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections" target="_blank" style="color: var(--secondary-color);"><strong>How to stop Firefox from making automatic connections</strong></a> (silakan cek, link ini sangat berguna!).</p>
                 <div class="note-box">
                     <strong>⚠️ Catatan Penting dari Admin:</strong>
-                    <p>Tabel perbandingan di bawah ini dibuat pada **23 September 2018** berdasarkan versi **Firefox ESR 60.2.1esr-1** dan profil kosong. Artinya, **pengaturan ini SANGAT mungkin sudah usang** karena Firefox terus berkembang. Namun, perbandingan ini tetap memberikan gambaran historis yang luar biasa tentang perbedaan filosofi antara Mozilla (upstream) dan Debian dalam hal privasi. Pastikan kredensial tidak dibagikan dan data pribadi dikelola sesuai kebutuhan keamanan.</p>
+                    <p>Tabel perbandingan di bawah ini dibuat pada <strong>23 September 2018</strong> berdasarkan versi <strong>Firefox ESR 60.2.1esr-1</strong> dan profil kosong. Artinya, <strong>pengaturan ini SANGAT mungkin sudah usang</strong> karena Firefox terus berkembang. Namun, perbandingan ini tetap memberikan gambaran historis yang luar biasa tentang perbedaan filosofi antara Mozilla (upstream) dan Debian dalam hal privasi. Pastikan kredensial tidak dibagikan dan data pribadi dikelola sesuai kebutuhan keamanan.</p>
                 </div>
             </section>
             <section id="tabel-perbandingan">
                 <h2><span role="img" aria-label="Table">📊</span> Tabel Perbandingan Pengaturan Koneksi Otomatis (2018)</h2>
-                <p>Mari kita lihat perbedaannya. Fokuskan perhatianmu pada kolom **Debian (Default)**. Parameter-parameter inilah yang bisa kamu cek dan ubah di `about:config` perambanmu.</p>
+                <p>Mari kita lihat perbedaannya. Fokuskan perhatianmu pada kolom <strong>Debian (Default)</strong>. Parameter-parameter inilah yang bisa kamu cek dan ubah di <code>about:config</code> perambanmu.</p>
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -213,33 +213,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>**Daftar perlindungan anti-phishing &amp; perangkat lunak berbahaya**</td><td>`browser.safebrowsing.downloads.remote.enabled`</td><td>`true`</td><td>`true`</td></tr>
-                            <tr><td>**Deteksi portal tertutup (captive portal)**</td><td>`network.captive-portal-service.enabled`</td><td>`true`</td><td>`true`</td></tr>
-                            <tr><td>**Firefox Sync**</td><td>*Memerlukan opt-in pengguna*</td><td>N/A</td><td>N/A</td></tr>
-                            <tr><td>**Geolokasi untuk mesin pencari default**</td><td>`browser.search.geoip.url`</td><td>Aktif</td><td>Aktif</td></tr>
-                            <tr><td>**Halaman "What's New" setelah update**</td><td>`browser.startup.homepage_override.mstone`</td><td>Aktif</td><td>Aktif</td></tr>
-                            <tr><td>**Kirim Video ke Perangkat (Casting)**</td><td>`browser.casting.enabled`</td><td>`false`</td><td>N/A?</td></tr>
-                            <tr><td>**Koneksi loopback**</td><td>*Tidak bisa dinonaktifkan*</td><td>Aktif</td><td>**Dinonaktifkan di Linux**</td></tr>
-                            <tr><td>**Koneksi spekulatif paralel**</td><td>`network.http.speculative-parallel-limit`</td><td>`6`</td><td>`0`</td></tr>
-                            <tr><td>**Melanjutkan unduhan otomatis**</td><td>*Hanya jika diaktifkan pengguna*</td><td>N/A</td><td>N/A</td></tr>
-                            <tr><td>**Pembaruan Live Bookmarks**</td><td>*Hanya jika diaktifkan pengguna*</td><td>Tidak aktif secara default</td><td>Tidak aktif</td></tr>
-                            <tr><td>**Pembaruan daftar blokir ekstensi**</td><td>`extensions.blocklist.enabled`</td><td>`true`</td><td>`true`</td></tr>
-                            <tr><td>**Pembaruan mesin pencari otomatis**</td><td>`browser.search.update`</td><td>`true`</td><td>`true`</td></tr>
-                            <tr><td>**Pembaruan metadata add-on**</td><td>`extensions.getAddons.cache.enabled`</td><td>Aktif</td><td>Aktif</td></tr>
-                            <tr><td>**Pemuatan ikon plugin pencarian**</td><td>`?`</td><td>`?`</td><td>`?`</td></tr>
-                            <tr><td>**Pengecekan pembaruan ekstensi**</td><td>`extensions.update.enabled`</td><td>`true`</td><td>`true`</td></tr>
-                            <tr><td>**Pengecekan pembaruan otomatis**</td><td>`app.update.enabled`</td><td>`true`</td><td>`false`</td></tr>
-                            <tr><td>**Perlindungan pelacakan (Tracking Protection)**</td><td>`privacy.trackingprotection.enabled`</td><td>`false`</td><td>`false`</td></tr>
-                            <tr><td>**Prefetching DNS**</td><td>`network.dns.disablePrefetch`</td><td>`false` (aktif)</td><td>`false`</td></tr>
-                            <tr><td>**Prefetching daftar add-on**</td><td>*Tidak ada opsi*</td><td>Aktif</td><td>Aktif</td></tr>
-                            <tr><td>**Prefetching tautan**</td><td>`network.prefetch-next`</td><td>`true`</td><td>`true`</td></tr>
-                            <tr><td>**Sertifikat website aman (OCSP)**</td><td>`security.OCSP.enabled`</td><td>`1`</td><td>`1`</td></tr>
-                            <tr><td>**Snippets (konten promosi di halaman baru)**</td><td>`browser.aboutHomeSnippets.updateUrl`</td><td>Aktif</td><td>Aktif</td></tr>
-                            <tr><td>**Telemetry (pengumpulan data penggunaan)**</td><td>`browser.selfsupport.url`</td><td>N/A?</td><td>N/A?</td></tr>
-                            <tr><td>**Telemetry (utama)**</td><td>`toolkit.telemetry.enabled`</td><td>`false` (rilis), `true` (nightly)</td><td>`false?` (ada parameter lain)</td></tr>
-                            <tr><td>**Telemetry coverage**</td><td>`toolkit.telemetry.coverage.opt-out`</td><td>Tidak ada (aktif)</td><td>Tidak ada</td></tr>
-                            <tr><td>**Unduh plugin OpenH264 otomatis**</td><td>`media.gmp-gmpopenh264.enabled`</td><td>`true`</td><td>`false`</td></tr>
-                            <tr><td>**WebRTC**</td><td>*Beberapa parameter*</td><td>Aktif</td><td>Mungkin aktif</td></tr>
+                            <tr><td><strong>Daftar perlindungan anti-phishing &amp; perangkat lunak berbahaya</strong></td><td><code>browser.safebrowsing.downloads.remote.enabled</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+                            <tr><td><strong>Deteksi portal tertutup (captive portal)</strong></td><td><code>network.captive-portal-service.enabled</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+                            <tr><td><strong>Firefox Sync</strong></td><td><em>Memerlukan opt-in pengguna</em></td><td>N/A</td><td>N/A</td></tr>
+                            <tr><td><strong>Geolokasi untuk mesin pencari default</strong></td><td><code>browser.search.geoip.url</code></td><td>Aktif</td><td>Aktif</td></tr>
+                            <tr><td><strong>Halaman "What's New" setelah update</strong></td><td><code>browser.startup.homepage_override.mstone</code></td><td>Aktif</td><td>Aktif</td></tr>
+                            <tr><td><strong>Kirim Video ke Perangkat (Casting)</strong></td><td><code>browser.casting.enabled</code></td><td><code>false</code></td><td>N/A?</td></tr>
+                            <tr><td><strong>Koneksi loopback</strong></td><td><em>Tidak bisa dinonaktifkan</em></td><td>Aktif</td><td><strong>Dinonaktifkan di Linux</strong></td></tr>
+                            <tr><td><strong>Koneksi spekulatif paralel</strong></td><td><code>network.http.speculative-parallel-limit</code></td><td><code>6</code></td><td><code>0</code></td></tr>
+                            <tr><td><strong>Melanjutkan unduhan otomatis</strong></td><td><em>Hanya jika diaktifkan pengguna</em></td><td>N/A</td><td>N/A</td></tr>
+                            <tr><td><strong>Pembaruan Live Bookmarks</strong></td><td><em>Hanya jika diaktifkan pengguna</em></td><td>Tidak aktif secara default</td><td>Tidak aktif</td></tr>
+                            <tr><td><strong>Pembaruan daftar blokir ekstensi</strong></td><td><code>extensions.blocklist.enabled</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+                            <tr><td><strong>Pembaruan mesin pencari otomatis</strong></td><td><code>browser.search.update</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+                            <tr><td><strong>Pembaruan metadata add-on</strong></td><td><code>extensions.getAddons.cache.enabled</code></td><td>Aktif</td><td>Aktif</td></tr>
+                            <tr><td><strong>Pemuatan ikon plugin pencarian</strong></td><td><code>?</code></td><td><code>?</code></td><td><code>?</code></td></tr>
+                            <tr><td><strong>Pengecekan pembaruan ekstensi</strong></td><td><code>extensions.update.enabled</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+                            <tr><td><strong>Pengecekan pembaruan otomatis</strong></td><td><code>app.update.enabled</code></td><td><code>true</code></td><td><code>false</code></td></tr>
+                            <tr><td><strong>Perlindungan pelacakan (Tracking Protection)</strong></td><td><code>privacy.trackingprotection.enabled</code></td><td><code>false</code></td><td><code>false</code></td></tr>
+                            <tr><td><strong>Prefetching DNS</strong></td><td><code>network.dns.disablePrefetch</code></td><td><code>false</code> (aktif)</td><td><code>false</code></td></tr>
+                            <tr><td><strong>Prefetching daftar add-on</strong></td><td><em>Tidak ada opsi</em></td><td>Aktif</td><td>Aktif</td></tr>
+                            <tr><td><strong>Prefetching tautan</strong></td><td><code>network.prefetch-next</code></td><td><code>true</code></td><td><code>true</code></td></tr>
+                            <tr><td><strong>Sertifikat website aman (OCSP)</strong></td><td><code>security.OCSP.enabled</code></td><td><code>1</code></td><td><code>1</code></td></tr>
+                            <tr><td><strong>Snippets (konten promosi di halaman baru)</strong></td><td><code>browser.aboutHomeSnippets.updateUrl</code></td><td>Aktif</td><td>Aktif</td></tr>
+                            <tr><td><strong>Telemetry (pengumpulan data penggunaan)</strong></td><td><code>browser.selfsupport.url</code></td><td>N/A?</td><td>N/A?</td></tr>
+                            <tr><td><strong>Telemetry (utama)</strong></td><td><code>toolkit.telemetry.enabled</code></td><td><code>false</code> (rilis), <code>true</code> (nightly)</td><td><code>false?</code> (ada parameter lain)</td></tr>
+                            <tr><td><strong>Telemetry coverage</strong></td><td><code>toolkit.telemetry.coverage.opt-out</code></td><td>Tidak ada (aktif)</td><td>Tidak ada</td></tr>
+                            <tr><td><strong>Unduh plugin OpenH264 otomatis</strong></td><td><code>media.gmp-gmpopenh264.enabled</code></td><td><code>true</code></td><td><code>false</code></td></tr>
+                            <tr><td><strong>WebRTC</strong></td><td><em>Beberapa parameter</em></td><td>Aktif</td><td>Mungkin aktif</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -248,23 +248,23 @@
                 <h2><span role="img" aria-label="Light Bulb">💡</span> Poin Penting: Apa Bedanya Debian &amp; Mozilla?</h2>
                 <p>Dari tabel di atas, jelas terlihat bahwa Debian mengambil langkah ekstra untuk privasi dan mengurangi lalu lintas jaringan:</p>
                 <ul>
-                    <li>**Anti-Cisco OpenH264**: Plugin OpenH264 diunduh otomatis dari server Cisco di versi Mozilla, tapi di Debian, fitur ini dimatikan (`media.gmp-gmpopenh264.enabled = false`). Ini menghindari koneksi otomatis ke server pihak ketiga (Cisco).</li>
-                    <li>**Debian Lebih Anti-Pembaruan Otomatis**: Secara default, Debian mematikan **pembaruan otomatis Firefox** (`app.update.enabled = false`). Ini membuat kamu harus mengandalkan manajer paket Debian (APT) untuk update keamanan, yang notabene lebih terpusat dan terkontrol.</li>
-                    <li>**Koneksi Spekulatif Nol!**: Debian mengatur `speculative-parallel-limit = 0`. Ini adalah fitur yang mencoba memuat tautan yang mungkin akan kamu klik berikutnya, tujuannya mempercepat *loading*, tapi mengorbankan privasi dan menggunakan *bandwidth*. Debian memilih matikan!</li>
-                    <li>**Loopback Lokal Mati**: Fitur koneksi loopback yang biasanya aktif untuk komunikasi internal, ternyata **dinonaktifkan di Linux versi Debian**. Ini mencegah komunikasi lokal yang dianggap tidak perlu.</li>
+                    <li><strong>Anti-Cisco OpenH264</strong>: Plugin OpenH264 diunduh otomatis dari server Cisco di versi Mozilla, tapi di Debian, fitur ini dimatikan (<code>media.gmp-gmpopenh264.enabled = false</code>). Ini menghindari koneksi otomatis ke server pihak ketiga (Cisco).</li>
+                    <li><strong>Debian Lebih Anti-Pembaruan Otomatis</strong>: Secara default, Debian mematikan <strong>pembaruan otomatis Firefox</strong> (<code>app.update.enabled = false</code>). Ini membuat kamu harus mengandalkan manajer paket Debian (APT) untuk update keamanan, yang notabene lebih terpusat dan terkontrol.</li>
+                    <li><strong>Koneksi Spekulatif Nol!</strong>: Debian mengatur <code>speculative-parallel-limit = 0</code>. Ini adalah fitur yang mencoba memuat tautan yang mungkin akan kamu klik berikutnya, tujuannya mempercepat <em>loading</em>, tapi mengorbankan privasi dan menggunakan <em>bandwidth</em>. Debian memilih matikan!</li>
+                    <li><strong>Loopback Lokal Mati</strong>: Fitur koneksi loopback yang biasanya aktif untuk komunikasi internal, ternyata <strong>dinonaktifkan di Linux versi Debian</strong>. Ini mencegah komunikasi lokal yang dianggap tidak perlu.</li>
                 </ul>
                 <h3>Yang Masih Aktif (dan Perlu Diperhatikan):</h3>
-                <p>Meskipun sudah lebih ketat, Debian tetap menjaga fungsionalitas dan keamanan inti, yang berarti **masih ada koneksi otomatis yang aktif**:</p>
+                <p>Meskipun sudah lebih ketat, Debian tetap menjaga fungsionalitas dan keamanan inti, yang berarti <strong>masih ada koneksi otomatis yang aktif</strong>:</p>
                 <ul>
-                    <li>**Fitur 'Gaya'**: Snippets (konten promosi di halaman baru), geolokasi pencarian, dan DNS prefetching masih aktif.</li>
-                    <li>**Keamanan Inti**: Anti-phishing, blocklist ekstensi, dan OCSP tetap aktif (koneksi ke Mozilla/Google).</li>
+                    <li><strong>Fitur 'Gaya'</strong>: Snippets (konten promosi di halaman baru), geolokasi pencarian, dan DNS prefetching masih aktif.</li>
+                    <li><strong>Keamanan Inti</strong>: Anti-phishing, blocklist ekstensi, dan OCSP tetap aktif (koneksi ke Mozilla/Google).</li>
                 </ul>
                 <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvb2590XSslMHBkUpR67zZ2m-S6Gl3KiRC0J6Z6CVrZbwk0q_e8zNFV7mXDtxnpNe0NKrEDI4OQWyjU56RgW0hWd8kWJ2SEURXcoT3kpmlQeP1bnJ204nTDpNv00Tearq2G9B05VEL0152Tt_gxrxyA9EXbw_W_c0D-7kjmEmrQJ52XePJ8OcSC59J0m8/s1600/firefoxesrdebian13.webp" alt="Tampilan antarmuka Firefox ESR Debian" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
                 <p class="image-caption">Contoh tampilan antarmuka Firefox ESR di lingkungan Debian (Kredit: Narasi Asli)</p>
             </section>
             <section id="cara-manual">
                 <h2><span role="img" aria-label="Wrench">🛠️</span> Panduan Eksklusif: Mematikan Koneksi Otomatis Secara Manual</h2>
-                <p>Mau privasi maksimal, bahkan lebih dari yang ditawarkan Debian? Kamu bisa 'mengoprek' Firefox sendiri! Caranya mudah, cukup ketik **`about:config`** di *address bar* Firefox, terima peringatannya, lalu ubah nilai parameter berikut:</p>
+                <p>Mau privasi maksimal, bahkan lebih dari yang ditawarkan Debian? Kamu bisa 'mengoprek' Firefox sendiri! Caranya mudah, cukup ketik <strong><code>about:config</code></strong> di <em>address bar</em> Firefox, terima peringatannya, lalu ubah nilai parameter berikut:</p>
                 <p><strong>Daftar Parameter untuk Privasi Maksimal:</strong></p>
                 <code>
 app.update.enabled = false<br>
@@ -277,13 +277,13 @@ network.http.speculative-parallel-limit = 0<br>
 network.prefetch-next = false
                 </code>
                 <blockquote>
-                    **Peringatan Keras dari Admin:** Mengubah pengaturan di `about:config` ini dapat **mengurangi fungsionalitas** (misalnya, kamu tidak akan mendapatkan *snippets* atau pembaruan geolokasi otomatis) dan bahkan **berpotensi menurunkan tingkat keamanan** (misalnya, mematikan perlindungan perangkat lunak berbahaya). Lakukan dengan bijak dan tahu risikonya!
+                    <strong>Peringatan Keras dari Admin:</strong> Mengubah pengaturan di <code>about:config</code> ini dapat <strong>mengurangi fungsionalitas</strong> (misalnya, kamu tidak akan mendapatkan <em>snippets</em> atau pembaruan geolokasi otomatis) dan bahkan <strong>berpotensi menurunkan tingkat keamanan</strong> (misalnya, mematikan perlindungan perangkat lunak berbahaya). Lakukan dengan bijak dan tahu risikonya!
                 </blockquote>
             </section>
             <section id="kesimpulan">
                 <h2><span role="img" aria-label="Conclusion">✅</span> Kesimpulan Santai</h2>
-                <p>Secara garis besar, **Firefox ESR dari Debian adalah pilihan yang lebih privat** dibandingkan versi Firefox *upstream* dari Mozilla. Debian telah mematikan fitur yang dianggap invasif atau memakan *bandwidth* seperti pembaruan otomatis dan koneksi spekulatif.</p>
-                <p>Namun, jika kamu adalah seorang "Privacy Maximalist" sejati, menggunakan **Firefox ESR dari Debian + konfigurasi `about:config` tambahan** seperti di atas adalah kombinasi yang sangat kuat. Alternatifnya? Coba lirik **Tor Browser** atau peramban yang memang fokus pada privasi seperti **Librewolf**!</p>
+                <p>Secara garis besar, <strong>Firefox ESR dari Debian adalah pilihan yang lebih privat</strong> dibandingkan versi Firefox <em>upstream</em> dari Mozilla. Debian telah mematikan fitur yang dianggap invasif atau memakan <em>bandwidth</em> seperti pembaruan otomatis dan koneksi spekulatif.</p>
+                <p>Namun, jika kamu adalah seorang "Privacy Maximalist" sejati, menggunakan <strong>Firefox ESR dari Debian + konfigurasi <code>about:config</code> tambahan</strong> seperti di atas adalah kombinasi yang sangat kuat. Alternatifnya? Coba lirik <strong>Tor Browser</strong> atau peramban yang memang fokus pada privasi seperti <strong>Librewolf</strong>!</p>
                 <div id="related-articles-grid"></div><div id="response"></div>
             </section>
     </article>

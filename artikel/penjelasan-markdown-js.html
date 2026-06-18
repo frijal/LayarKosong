@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedah Skrip markdown.js: Tingkatkan Markdown &amp; Kode di HTML - Layar Kosong</title> 
 <style>
-        /* --- Variabel Warna (Dark/Light Mode Otomatis) --- */
+        /<em> --- Variabel Warna (Dark/Light Mode Otomatis) --- </em>/
         :root {
             --bg-color: #f8f9fa;
             --text-color: #212529;
@@ -58,8 +58,8 @@
             --code-bg: #e9ecef;
             --inline-code-bg: #f1f1f1;
             --inline-code-border: #ddd;
-            --pre-bg: #2d2d2d; /* Warna background untuk pre/code block */
-            --pre-text: #ccc;  /* Warna teks dasar di code block */
+            --pre-bg: #2d2d2d; /<em> Warna background untuk pre/code block </em>/
+            --pre-text: #ccc;  /<em> Warna teks dasar di code block </em>/
         }
         @media (prefers-color-scheme: dark) {
             :root {
@@ -74,11 +74,11 @@
                 --code-bg: #2a2a2a;
                 --inline-code-bg: #333;
                 --inline-code-border: #444;
-                --pre-bg: #1e1e1e; /* Sesuaikan jika perlu */
-                --pre-text: #d4d4d4; /* Sesuaikan jika perlu */
+                --pre-bg: #1e1e1e; /<em> Sesuaikan jika perlu </em>/
+                --pre-text: #d4d4d4; /<em> Sesuaikan jika perlu </em>/
             }
         }
-        /* --- Global & Desain Fullscreen --- */
+        /<em> --- Global & Desain Fullscreen --- </em>/
         * {
             box-sizing: border-box;
             margin: 0;
@@ -96,9 +96,9 @@
             font-size: 17px;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* --- Desain Widescreen & Responsif --- */
+        /<em> --- Desain Widescreen & Responsif --- </em>/
         main {
-            max-width: 900px; /* Layout widescreen untuk artikel */
+            max-width: 900px; /<em> Layout widescreen untuk artikel </em>/
             margin: 2rem auto;
             padding: 1rem 2rem;
         }
@@ -114,7 +114,7 @@
             border-bottom: none;
             padding-bottom: 0;
         }
-        /* --- Tipografi & Elemen --- */
+        /<em> --- Tipografi & Elemen --- </em>/
         h1 {
             font-size: 2.4rem;
             color: var(--header-color);
@@ -140,7 +140,7 @@
             margin-bottom: 1.2rem;
         }
         strong {
-            font-weight: 600; /* Sedikit lebih tebal dari default */
+            font-weight: 600; /<em> Sedikit lebih tebal dari default </em>/
         }
         em {
             font-style: italic;
@@ -154,39 +154,39 @@
             text-decoration: underline;
         }
         ul {
-           list-style: disc; /* Biar list tetap terlihat seperti list */
+           list-style: disc; /<em> Biar list tetap terlihat seperti list </em>/
            margin-left: 1.5rem;
            margin-bottom: 1rem;
         }
         li {
             margin-bottom: 0.5rem;
         }
-        /* --- Kode --- */
-        code.inline { /* Kode inline */
+        /<em> --- Kode --- </em>/
+        code.inline { /<em> Kode inline </em>/
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             background-color: var(--inline-code-bg);
             border: 1px solid var(--inline-code-border);
             padding: 0.2rem 0.4rem;
             border-radius: 6px;
             font-size: 0.9em;
-            color: var(--text-color); /* Sesuaikan warnanya */
+            color: var(--text-color); /<em> Sesuaikan warnanya </em>/
         }
-        pre { /* Blok Kode */
+        pre { /<em> Blok Kode </em>/
             background-color: var(--pre-bg);
             color: var(--pre-text);
             padding: 1rem;
             border-radius: 8px;
-            overflow-x: auto; /* Agar bisa scroll horizontal jika kode panjang */
+            overflow-x: auto; /<em> Agar bisa scroll horizontal jika kode panjang </em>/
             margin-bottom: 1.5rem;
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             font-size: 0.9em;
         }
-        pre code { /* Pastikan style highlight.js tidak menimpa background/padding pre */
+        pre code { /<em> Pastikan style highlight.js tidak menimpa background/padding pre </em>/
             background: none !important;
             padding: 0 !important;
-            color: inherit; /* Ambil warna dari <pre> */
+            color: inherit; /<em> Ambil warna dari <pre> </em>/
         }
-        /* --- Blockquote --- */
+        /<em> --- Blockquote --- </em>/
          blockquote {
             border-left: 5px solid var(--accent-color);
             background-color: var(--card-bg);
@@ -197,9 +197,9 @@
             position: relative;
         }
         blockquote p:last-child {
-            margin-bottom: 0; /* Hapus margin bawah paragraf terakhir di quote */
+            margin-bottom: 0; /<em> Hapus margin bawah paragraf terakhir di quote </em>/
         }
-        /* --- Gambar --- */
+        /<em> --- Gambar --- </em>/
         img {
             max-width: 100%;
             height: auto;
@@ -208,7 +208,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        /* --- Ikon Sharing Media Sosial --- */
+        /<em> --- Ikon Sharing Media Sosial --- </em>/
         .social-share {
             text-align: center;
             padding: 2rem 0;
@@ -232,9 +232,9 @@
         .social-share svg {
             width: 32px;
             height: 32px;
-            fill: var(--text-color); /* Otomatis ganti warna di dark mode */
+            fill: var(--text-color); /<em> Otomatis ganti warna di dark mode </em>/
         }
-        /* --- Footer --- */
+        /<em> --- Footer --- </em>/
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -246,7 +246,7 @@
             color: var(--accent-color);
             text-decoration: none;
         }
-        /* --- Mobile-Friendly (Responsif) --- */
+        /<em> --- Mobile-Friendly (Responsif) --- </em>/
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -276,9 +276,9 @@
             </header>
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEis473lJfe5AkwWgSSW-mcRtTDNAcw8N44zlzR0iMgxDagu_-7zRAmOEfFY7AVeGsK2mmFBBTCrXVNXl1uD_Uk86xhhjVDnrtUzl62q-3RrerotOBvDm5ifAl5fNj9-UmF9FfJ0FEfp4MDYKpSxPubp5zRHcVa_r6kSazA1Uh3kSflsxjLzQtQTW8OS4EI/s1600/makrdown.webp" alt="Ilustrasi Kode Markdown dan HTML">
             <section id="pendahuluan">
-                <h2>Apa Sih `markdown.js` Itu? 🤔</h2>
+                <h2>Apa Sih <code>markdown.js</code> Itu? 🤔</h2>
                 <p>Gampangnya, <code>markdown.js</code> ini kayak asisten pribadi buat halaman web kamu. Tugasnya simpel tapi keren: <strong>nyulap tulisan bergaya Markdown</strong> (kayak yang biasa kamu pakai di GitHub atau chat) dan <strong>blok kode pemrograman</strong> biar tampil lebih cakep dan rapi di browser.</p>
-                <p>Jadi, kalau kamu nulis <code class="inline">**tebal**</code> atau <code class="inline">*miring*</code> langsung di paragraf HTML, skrip ini bakal otomatis mengubahnya jadi tag <code class="inline">&lt;strong&gt;</code> dan <code class="inline">&lt;em&gt;</code>. Begitu juga buat heading, link, list, bahkan blok kode, biar warnanya sesuai sintaks bahasa pemrograman.</p>
+                <p>Jadi, kalau kamu nulis <code class="inline"><strong>tebal</strong></code> atau <code class="inline"><em>miring</em></code> langsung di paragraf HTML, skrip ini bakal otomatis mengubahnya jadi tag <code class="inline">&lt;strong&gt;</code> dan <code class="inline">&lt;em&gt;</code>. Begitu juga buat heading, link, list, bahkan blok kode, biar warnanya sesuai sintaks bahasa pemrograman.</p>
                 <p>Yang lebih asyik, skrip ini pinter! Dia cuma bakal ngunduh pustaka tambahan (namanya <code>highlight.js</code>) kalau di halaman kamu emang ada blok kode yang perlu diwarnai. Hemat kuota, kan? 😉</p>
             </section>
              <section id="ambil-kode">
@@ -306,14 +306,14 @@
                     </li>
                     <li>
                         <strong>Sulap Markdown Jadi HTML (<code>convertInlineMarkdown</code>):</strong>
-                        <p>Ini bagian intinya. Dia punya 'mantra-mantra' (pakai *regular expression*) buat ngenalin sintaks Markdown yang umum:</p>
+                        <p>Ini bagian intinya. Dia punya 'mantra-mantra' (pakai <em>regular expression</em>) buat ngenalin sintaks Markdown yang umum:</p>
                         <ul>
                             <li><code class="inline">#</code> sampai <code class="inline">######</code> jadi heading <code class="inline">&lt;h1&gt;</code> sampai <code class="inline">&lt;h6&gt;</code>.</li>
                             <li><code class="inline">&gt; Kutipan</code> jadi <code class="inline">&lt;blockquote&gt;</code>.</li>
-                            <li><code class="inline">**Tebal**</code>, <code class="inline">*Miring*</code>, dan <code class="inline">`Kode Inline`</code> jadi tag HTML yang sesuai (<code class="inline">&lt;strong&gt;</code>, <code class="inline">&lt;em&gt;</code>, <code class="inline">&lt;code&gt;</code>).</li>
-                            <li><code class="inline">[Teks Link](url)</code> jadi link <code class="inline">&lt;a href="..."&gt;</code> yang otomatis buka di tab baru.</li>
+                            <li><code class="inline"><strong>Tebal</strong></code>, <code class="inline"><em>Miring</em></code>, dan <code class="inline"><code>Kode Inline</code></code> jadi tag HTML yang sesuai (<code class="inline">&lt;strong&gt;</code>, <code class="inline">&lt;em&gt;</code>, <code class="inline">&lt;code&gt;</code>).</li>
+                            <li><code class="inline"><a href="url">Teks Link</a></code> jadi link <code class="inline">&lt;a href="..."&gt;</code> yang otomatis buka di tab baru.</li>
                             <li>List <code class="inline">- Item</code> jadi <code class="inline">&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code> (untuk list sederhana).</li>
-                            <li>Blok kode <code class="inline">```...```</code> atau <code class="inline">```js ... ```</code> diubah jadi struktur <code class="inline">&lt;pre&gt;&lt;code class="language-js"&gt;...&lt;/code&gt;&lt;/pre&gt;</code>. Bahasa kodenya (kalau ada) bakal dicatat buat pewarnaan nanti.</li>
+                            <li>Blok kode <code class="inline">``<code>...</code>`<code></code> atau <code class="inline"></code>`<code>js ... </code>``</code> diubah jadi struktur <code class="inline">&lt;pre&gt;&lt;code class="language-js"&gt;...&lt;/code&gt;&lt;/pre&gt;</code>. Bahasa kodenya (kalau ada) bakal dicatat buat pewarnaan nanti.</li>
                             <li>Tabel Markdown sederhana juga coba diubah jadi tabel HTML (<code class="inline">&lt;table&gt;</code>).</li>
                         </ul>
                     </li>
@@ -350,7 +350,7 @@
                     <li><strong>Bisa Di-skip:</strong> Tambahin kelas <code class="inline">no-md</code> kalau tidak mau elemen tertentu diubah.</li>
                     <li><strong>Tidak Bikin Lemot:</strong> Proses muat <code>highlight.js</code> dibikin asinkron biar tidak ganggu.</li>
                  </ul>
-                 <p>Intinya, <code>markdown.js</code> ini solusi praktis buat bikin halaman web yang nyampur HTML, Markdown, dan kode jadi lebih enak dilihat, tanpa perlu pusing mikirin *build tools* di server.</p>
+                 <p>Intinya, <code>markdown.js</code> ini solusi praktis buat bikin halaman web yang nyampur HTML, Markdown, dan kode jadi lebih enak dilihat, tanpa perlu pusing mikirin <em>build tools</em> di server.</p>
             </section>
             <hr>
             <div id="related-articles-grid"></div><div id="response"></div>

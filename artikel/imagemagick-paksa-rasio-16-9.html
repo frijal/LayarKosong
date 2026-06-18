@@ -112,7 +112,7 @@ figcaption {
   font-size: 0.9rem;
   margin-top: 0.4rem;
 }
-/* Lightbox */
+/<em> Lightbox </em>/
 #lightbox {
   display: none;
   position: fixed;
@@ -130,7 +130,7 @@ figcaption {
   border-radius: 10px;
 }
 #lightbox:target { display: block; }
-/* Navigation arrows */
+/<em> Navigation arrows </em>/
 .nav-arrows {
   display: flex;
   justify-content: space-between;
@@ -149,7 +149,7 @@ footer {
   font-size: 0.9rem;
   color: gray;
 }
-/* === Prism.js minimal theme (inline, no CDN) === */
+/<em> === Prism.js minimal theme (inline, no CDN) === </em>/
 code[class*="language-"],
 pre[class*="language-"] {
   color: #f8f8f2;
@@ -198,7 +198,7 @@ WIDTH=1920
 HEIGHT=1080
 OUTDIR="output-16-9"
 mkdir -p "$OUTDIR"
-for img in *.webp *.jpeg *.png *.webp 2&gt;/dev/null; do
+for img in <em>.webp </em>.jpeg <em>.png </em>.webp 2&gt;/dev/null; do
   [[ -f "$img" ]] || continue
   echo "🎨 Memproses: $img → $MODE mode"
   if [[ "$MODE" == "crop" ]]; then
@@ -243,7 +243,7 @@ echo "✅ Semua gambar selesai dikonversi ke $OUTDIR/"</code></pre>
 </footer>
 <!-- Prism.js inline -->
 <script>
-!function(){var e="undefined"!=typeof self&&self.Prism||"undefined"!=typeof global&&global.Prism;!e&&"undefined"!=typeof window&&(e=window.Prism),e.languages.bash={comment:{pattern:/(^|[^"{\\])#.*/,lookbehind:!0},string:{pattern:/(["'])(?:\\[\s\S]|(?!\1)[^\\])*\1/,greedy:!0},variable:/\$[a-zA-Z_]\w*/,function:{pattern:/(^|\s|;)(?:if|then|else|elif|fi|for|while|in|do|done|echo|exit|return|break|continue|case|esac|function)(?=\s|$)/,lookbehind:!0},operator:/&&|\|\||[&;<>|]/,punctuation:/[{}[\]()]/};}();
+!function(){var e="undefined"!=typeof self&&self.Prism||"undefined"!=typeof global&&global.Prism;!e&&"undefined"!=typeof window&&(e=window.Prism),e.languages.bash={comment:{pattern:/(^|[^"{\\])#.<em>/,lookbehind:!0},string:{pattern:/(["'])(?:\\[\s\S]|(?!\1)[^\\])</em>\1/,greedy:!0},variable:/\$[a-zA-Z_]\w*/,function:{pattern:/(^|\s|;)(?:if|then|else|elif|fi|for|while|in|do|done|echo|exit|return|break|continue|case|esac|function)(?=\s|$)/,lookbehind:!0},operator:/&&|\|\||[&;<>|]/,punctuation:/<a href="">{}[\</a>]/};}();
 Prism.highlightAll();
 </script>
 <script>

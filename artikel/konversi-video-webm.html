@@ -161,14 +161,14 @@ const videoExtensions = ["mp4", "mkv", "avi", "mov", "flv", "wmv"];
 if (!existsSync(outputDir)) {
   mkdirSync(outputDir, { recursive: true });
 }
-const glob = new Glob(`*.{${videoExtensions.join(",")}}`);
+const glob = new Glob(<code>*.{${videoExtensions.join(",")}}</code>);
 console.log("🎬 Memulai proses konversi ke WebM (VP9)...");
 let processed = 0;
 for (const file of glob.scanSync(sourceDir)) {
   const inputPath = path.join(sourceDir, file);
   const fileName = path.parse(file).name;
-  const outputPath = path.join(outputDir, `${fileName}.webm`);
-  console.log(`\n⏳ Mengonversi [${processed + 1}/64]: ${file}`);
+  const outputPath = path.join(outputDir, <code>${fileName}.webm</code>);
+  console.log(<code>\n⏳ Mengonversi [${processed + 1}/64]: ${file}</code>);
   const proc = Bun.spawn([
     "ffmpeg",
     "-i", inputPath,
@@ -187,7 +187,7 @@ for (const file of glob.scanSync(sourceDir)) {
   await proc.exited;
   processed++;
 }
-console.log(`\n✨ Selesai! ${processed} video telah dikonversi ke WebM di: ${outputDir}`);
+console.log(<code>\n✨ Selesai! ${processed} video telah dikonversi ke WebM di: ${outputDir}</code>);
             </code></pre>
             <h3>3. Cara Menjalankan</h3>
             <p>Buka terminal favoritmu dan jalankan perintah berikut:</p>

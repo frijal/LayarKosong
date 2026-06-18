@@ -53,28 +53,28 @@
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&amp;family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;display=swap" rel="stylesheet">
  <style>
-    /* --- 1. VARIABEL TEMA TERANG (Premium Editorial Journal) --- */
+    /<em> --- 1. VARIABEL TEMA TERANG (Premium Editorial Journal) --- </em>/
     :root {
       --bg-body: #faf9f7;
       --bg-card: #ffffff;
-      --text-main: #1a1a1a;       /* Sedikit lebih lembut dari #1e1e1e untuk font Serif */
-      --text-muted: #4a5568;      /* Kontras abu-abu yang lebih lolos uji WCAG AAA */
-      --accent-red: #b33b3b;      /* Crimson jurnalisme */
-      --accent-gold: #a67c1e;     /* Emas redup klasik */
+      --text-main: #1a1a1a;       /<em> Sedikit lebih lembut dari #1e1e1e untuk font Serif </em>/
+      --text-muted: #4a5568;      /<em> Kontras abu-abu yang lebih lolos uji WCAG AAA </em>/
+      --accent-red: #b33b3b;      /<em> Crimson jurnalisme </em>/
+      --accent-gold: #a67c1e;     /<em> Emas redup klasik </em>/
       --border-light: #e6e4e0;
       --shadow-sm: 0 4px 20px rgba(179, 59, 59, 0.02);
       --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --line-relaxed: 1.8;        /* Dinaikkan tipis demi kenyamanan membaca font serif */
-      --container-width: 820px;   /* Dioptimalkan ke 820px agar jumlah kata per baris berada di angka ideal (65-75 karakter) */
+      --line-relaxed: 1.8;        /<em> Dinaikkan tipis demi kenyamanan membaca font serif </em>/
+      --container-width: 820px;   /<em> Dioptimalkan ke 820px agar jumlah kata per baris berada di angka ideal (65-75 karakter) </em>/
       --transition: 0.25s ease;
     }
-    /* --- 2. AUTOMATIC DARK MODE (Noble Obsidian Minimalist) --- */
+    /<em> --- 2. AUTOMATIC DARK MODE (Noble Obsidian Minimalist) --- </em>/
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg-body: #0d0d0d;       /* Hitam pekat obsidian */
-        --bg-card: #161616;       /* Kartu abu-abu gelap dengan kontras rendah */
-        --text-main: #e2e8f0;     /* Putih pualam yang teduh untuk membaca lama */
+        --bg-body: #0d0d0d;       /<em> Hitam pekat obsidian </em>/
+        --bg-card: #161616;       /<em> Kartu abu-abu gelap dengan kontras rendah </em>/
+        --text-main: #e2e8f0;     /<em> Putih pualam yang teduh untuk membaca lama </em>/
         --text-muted: #94a3b8;
         --accent-red: #ff8a8a;
         --accent-gold: #f5d0a1;
@@ -82,7 +82,7 @@
         --shadow-sm: 0 4px 24px rgba(0, 0, 0, 0.5);
       }
     }
-    /* --- 3. RESET & ACCESSIBLE BASE --- */
+    /<em> --- 3. RESET & ACCESSIBLE BASE --- </em>/
     * {
       margin: 0;
       padding: 0;
@@ -104,18 +104,18 @@
       -moz-osx-font-smoothing: grayscale;
       transition: background-color var(--transition), color var(--transition);
     }
-    /* --- 4. TATA LETAK WADAH UTAMA --- */
+    /<em> --- 4. TATA LETAK WADAH UTAMA --- </em>/
     .article-container {
       max-width: var(--container-width);
       margin: 3rem auto;
       background-color: var(--bg-card);
       border-radius: 20px;
-      padding: 3rem 2.5rem;       /* Diperlebar agar proporsi teks esai terlihat megah */
+      padding: 3rem 2.5rem;       /<em> Diperlebar agar proporsi teks esai terlihat megah </em>/
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-light);
       transition: background-color var(--transition), border-color var(--transition);
     }
-    /* --- 5. ARSITEKTUR TIPOGRAFI --- */
+    /<em> --- 5. ARSITEKTUR TIPOGRAFI --- </em>/
     h1, h2, h3 {
       font-family: var(--font-sans);
       font-weight: 800;
@@ -126,7 +126,7 @@
       color: var(--text-main);
     }
     h1 {
-      font-size: clamp(1.8rem, 4vw, 2.4rem); /* Cair dinamis mengikuti dimensi layar */
+      font-size: clamp(1.8rem, 4vw, 2.4rem); /<em> Cair dinamis mengikuti dimensi layar </em>/
       margin-top: 0.5rem;
       margin-bottom: 0.8rem;
       border-left: 6px solid var(--accent-red);
@@ -146,7 +146,7 @@
     p {
       margin-bottom: 1.6rem;
       font-size: 1.05rem;
-      text-align: justify;       /* Ciri khas tata letak koran/jurnal premium */
+      text-align: justify;       /<em> Ciri khas tata letak koran/jurnal premium </em>/
     }
     .lead {
       font-size: 1.2rem;
@@ -156,9 +156,9 @@
       border-left: 4px solid var(--accent-gold);
       padding: 0.5rem 0 0.5rem 1.2rem;
       margin-bottom: 2.2rem;
-      background: rgba(166, 124, 30, 0.03); /* Menggunakan tint warna emas tipis agar senada */
+      background: rgba(166, 124, 30, 0.03); /<em> Menggunakan tint warna emas tipis agar senada </em>/
     }
-    /* --- 6. MANAJEMEN MEDIA LCP STABIL --- */
+    /<em> --- 6. MANAJEMEN MEDIA LCP STABIL --- </em>/
     .featured-image {
       margin: 2.5rem 0 1.5rem;
       border-radius: 14px;
@@ -170,7 +170,7 @@
       height: auto;
       display: block;
       object-fit: cover;
-      aspect-ratio: 16 / 9;      /* Mengubah ke 16:9 standar sinematik editorial */
+      aspect-ratio: 16 / 9;      /<em> Mengubah ke 16:9 standar sinematik editorial </em>/
       border: 1px solid var(--border-light);
     }
     .caption {
@@ -181,7 +181,7 @@
       text-align: right;
       font-style: italic;
     }
-    /* --- 7. META INFORMASI ARTIKEL --- */
+    /<em> --- 7. META INFORMASI ARTIKEL --- </em>/
     .meta-artikel {
       display: flex;
       flex-wrap: wrap;
@@ -202,7 +202,7 @@
     .meta-item i {
       color: var(--accent-red);
     }
-    /* --- 8. BLOK KUTIPAN MODERN --- */
+    /<em> --- 8. BLOK KUTIPAN MODERN --- </em>/
     blockquote {
       margin: 2.5rem 0;
       padding: 1.2rem 2rem;
@@ -219,7 +219,7 @@
       margin-bottom: 0.6rem;
       padding-left: 0.2rem;
     }
-    /* --- 9. REFAKTOR KOMPONEN INFORMASI TAMBAHAN --- */
+    /<em> --- 9. REFAKTOR KOMPONEN INFORMASI TAMBAHAN --- </em>/
     .info-note-box {
       background: var(--bg-body);
       padding: 1.2rem 1.5rem;
@@ -236,7 +236,7 @@
       color: var(--accent-red);
       margin-right: 0.5rem;
     }
-    /* --- 10. ELEMEN INTERAKTIF & AKSESIBILITAS LINK --- */
+    /<em> --- 10. ELEMEN INTERAKTIF & AKSESIBILITAS LINK --- </em>/
     a {
       color: var(--accent-red);
       text-decoration: none;
@@ -248,7 +248,7 @@
       border-bottom: 2px solid var(--accent-gold);
       outline: none;
     }
-    /* --- 11. AREA KAKI HALAMAN --- */
+    /<em> --- 11. AREA KAKI HALAMAN --- </em>/
     footer {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -262,15 +262,15 @@
       align-items: center;
       gap: 1rem;
     }
-    /* --- 12. OPTIMALISASI LAYAR MOBILE (RESPONSIF EFISIEN) --- */
+    /<em> --- 12. OPTIMALISASI LAYAR MOBILE (RESPONSIF EFISIEN) --- </em>/
     @media (max-width: 768px) {
       .article-container {
-        padding: 2rem 1.5rem;   /* Mengurangi padding internal agar teks mendapat porsi lebar utama */
-        margin: 1rem;           /* Menjaga ruang luar tipis di sisi kiri-kanan layar HP */
+        padding: 2rem 1.5rem;   /<em> Mengurangi padding internal agar teks mendapat porsi lebar utama </em>/
+        margin: 1rem;           /<em> Menjaga ruang luar tipis di sisi kiri-kanan layar HP </em>/
         border-radius: 16px;
       }
       p {
-        text-align: left;       /* Mematikan justify di ponsel agar spasi kata tidak renggang berantakan */
+        text-align: left;       /<em> Mematikan justify di ponsel agar spasi kata tidak renggang berantakan </em>/
       }
       .meta-artikel {
         flex-direction: column;

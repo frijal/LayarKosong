@@ -46,25 +46,25 @@
     <title>e-BPKB Resmi Berlaku Maret 2025: Mutasi Kendaraan Jauh Lebih Cepat! - Layar Kosong</title> 
 <meta name="keywords" content="e-BPKB, BPKB elektronik, Korlantas Polri, mutasi kendaraan, BPKB baru 2025, chip RFID, digitalisasi BPKB, Kombes Pol Sumardji">
     <style>
-        /* CSS3 untuk Desain, Responsif, dan Tema Gelap/Terang */
-        /* 1. Pengaturan Tema Otomatis (Dark/Light Mode) */
+        /<em> CSS3 untuk Desain, Responsif, dan Tema Gelap/Terang </em>/
+        /<em> 1. Pengaturan Tema Otomatis (Dark/Light Mode) </em>/
         :root {
-            /* Default ke Light Mode */
+            /<em> Default ke Light Mode </em>/
             --bg-color: #f8f9fa;
             --card-bg-color: #ffffff;
             --text-color: #212529;
-            --heading-color: #004a99; /* Biru Korlantas */
+            --heading-color: #004a99; /<em> Biru Korlantas </em>/
             --accent-color: #0062cc;
             --border-color: #e9ecef;
             --list-item-bg: #f1f3f5;
-            --quote-bg: #e6f0ff; /* Biru sangat muda */
+            --quote-bg: #e6f0ff; /<em> Biru sangat muda </em>/
             --shadow-color: rgba(0, 0, 0, 0.05);
             --icon-bg: #f1f3f5;
             --icon-fill: #333;
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Override untuk Dark Mode */
+                /<em> Override untuk Dark Mode </em>/
                 --bg-color: #121212;
                 --card-bg-color: #1e1e1e;
                 --text-color: #e0e0e0;
@@ -72,13 +72,13 @@
                 --accent-color: #3b82f6;
                 --border-color: #3a3a3a;
                 --list-item-bg: #2a2a2a;
-                --quote-bg: #1a2a45; /* Biru sangat gelap */
+                --quote-bg: #1a2a45; /<em> Biru sangat gelap </em>/
                 --shadow-color: rgba(0, 0, 0, 0.2);
                 --icon-bg: #333;
                 --icon-fill: #e0e0e0;
             }
         }
-        /* 2. Reset dan Gaya Dasar */
+        /<em> 2. Reset dan Gaya Dasar </em>/
         * {
             box-sizing: border-box;
             margin: 0;
@@ -95,9 +95,9 @@
             font-size: 16px;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* 3. Tata Letak Utama (Widescreen & Responsif) */
+        /<em> 3. Tata Letak Utama (Widescreen & Responsif) </em>/
         .container {
-            max-width: 900px; /* Desain Widescreen */
+            max-width: 900px; /<em> Desain Widescreen </em>/
             margin: 2rem auto;
             padding: 2.5rem;
             background-color: var(--card-bg-color);
@@ -105,7 +105,7 @@
             box-shadow: 0 8px 20px var(--shadow-color);
             border: 1px solid var(--border-color);
         }
-        /* 4. Tipografi dan Konten */
+        /<em> 4. Tipografi dan Konten </em>/
         h1 {
             font-size: 2.8rem;
             color: var(--heading-color);
@@ -140,13 +140,13 @@
             font-weight: 400;
             line-height: 1.4;
         }
-        /* Memberi penekanan pada sumber berita */
+        /<em> Memberi penekanan pada sumber berita </em>/
         .source {
             font-size: 0.9rem;
             font-style: italic;
             opacity: 0.7;
         }
-        /* 5. Gambar Utama (CSS BARU DITAMBAHKAN) */
+        /<em> 5. Gambar Utama (CSS BARU DITAMBAHKAN) </em>/
         figure {
             margin: 2rem 0;
         }
@@ -164,7 +164,7 @@
             opacity: 0.7;
             margin-top: 0.5rem;
         }
-        /* 6. Daftar Info & Manfaat */
+        /<em> 6. Daftar Info & Manfaat </em>/
         .info-list {
             list-style: none;
             padding-left: 0;
@@ -179,7 +179,7 @@
             border-left: 5px solid var(--accent-color);
             border-radius: 8px;
         }
-        /* 7. Poin Penting (Quote) */
+        /<em> 7. Poin Penting (Quote) </em>/
         .poin-penting {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--accent-color);
@@ -201,7 +201,7 @@
             margin-top: 0.5rem;
             display: block;
         }
-        /* 8. Kesimpulan */
+        /<em> 8. Kesimpulan </em>/
         .kesimpulan {
             margin-top: 2rem;
             padding: 1.5rem;
@@ -220,7 +220,7 @@
             font-size: 1.1rem;
             margin-bottom: 0;
         }
-        /* 9. Widget Bagikan */
+        /<em> 9. Widget Bagikan </em>/
         .share-widget {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -256,7 +256,7 @@
         .share-icons button:hover {
             transform: scale(1.1) translateY(-3px);
         }
-        /* Warna hover spesifik */
+        /<em> Warna hover spesifik </em>/
         .share-icons a[data-brand="facebook"]:hover { background-color: #1877F2; }
         .share-icons a[data-brand="twitter"]:hover { background-color: #1DA1F2; }
         .share-icons a[data-brand="whatsapp"]:hover { background-color: #25D366; }
@@ -274,10 +274,10 @@
             font-size: 0.9rem;
             margin-top: 1rem;
             color: var(--accent-color);
-            min-height: 1.2em; /* Cadangan ruang agar layout tidak lompat */
+            min-height: 1.2em; /<em> Cadangan ruang agar layout tidak lompat </em>/
             font-weight: 600;
         }
-        /* 10. Media Query (Mobile-Friendly) */
+        /<em> 10. Media Query (Mobile-Friendly) </em>/
         @media (max-width: 960px) {
             .container {
                 margin: 1rem auto;

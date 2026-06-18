@@ -46,7 +46,7 @@
 <title>Renungan Niat: Menjadi Pegawai Negeri atau Pengusaha? - Layar Kosong</title> 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Libre+Baskerville:ital@0;1&amp;display=swap" rel="stylesheet">
 <style>
-        /* --- 1. Definisikan Variabel Tema Terang (Classic Literary Vibe) --- */
+        /<em> --- 1. Definisikan Variabel Tema Terang (Classic Literary Vibe) --- </em>/
         :root {
             --bg: #f5f6f8;
             --paper: #ffffff;
@@ -55,28 +55,28 @@
             --accent: #2563eb;
             --soft: #f3f4f6;
             --moral: #fef3c7;
-            /* Warna khusus teks di dalam kotak moral agar kontrasnya aman */
+            /<em> Warna khusus teks di dalam kotak moral agar kontrasnya aman </em>/
             --moral-text: #1f2937; 
             --shadow-article: 0 18px 40px rgba(0, 0, 0, 0.08);
             --shadow-figure: 0 12px 28px rgba(0, 0, 0, 0.15);
         }
-        /* --- 2. Otomatis Tema Gelap (Obsidian Reader Mode) --- */
+        /<em> --- 2. Otomatis Tema Gelap (Obsidian Reader Mode) --- </em>/
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg: #090d16;           /* Hitam pekat dengan sentuhan deep navy */
-                --paper: #131a26;         /* Warna kertas berubah jadi Slate Dark */
-                --ink: #f3f4f6;           /* Teks utama menjadi putih pualam lembut */
-                --muted: #9ca3af;         /* Teks sekunder dinaikkan kecerahannya agar terbaca */
-                --accent: #60a5fa;        /* Biru aksen diubah ke variasi pastel cerah */
-                /* Penyelamatan komponen esai di malam hari */
-                --soft: #1e293b;          /* Latar dialog menjadi abu-abu gelap dingin */
-                --moral: #2d2412;         /* Kotak moral bertransformasi jadi cokelat amber emas pekat */
-                --moral-text: #fde68a;    /* Teks moral disesuaikan menjadi emas muda hangat */
+                --bg: #090d16;           /<em> Hitam pekat dengan sentuhan deep navy </em>/
+                --paper: #131a26;         /<em> Warna kertas berubah jadi Slate Dark </em>/
+                --ink: #f3f4f6;           /<em> Teks utama menjadi putih pualam lembut </em>/
+                --muted: #9ca3af;         /<em> Teks sekunder dinaikkan kecerahannya agar terbaca </em>/
+                --accent: #60a5fa;        /<em> Biru aksen diubah ke variasi pastel cerah </em>/
+                /<em> Penyelamatan komponen esai di malam hari </em>/
+                --soft: #1e293b;          /<em> Latar dialog menjadi abu-abu gelap dingin </em>/
+                --moral: #2d2412;         /<em> Kotak moral bertransformasi jadi cokelat amber emas pekat </em>/
+                --moral-text: #fde68a;    /<em> Teks moral disesuaikan menjadi emas muda hangat </em>/
                 --shadow-article: 0 18px 40px rgba(0, 0, 0, 0.4);
                 --shadow-figure: 0 12px 28px rgba(0, 0, 0, 0.3);
             }
         }
-        /* --- 3. Fondasi Dasar & Tipografi --- */
+        /<em> --- 3. Fondasi Dasar & Tipografi --- </em>/
         * {
             box-sizing: border-box;
         }
@@ -89,16 +89,16 @@
             font-family: Inter, system-ui, -apple-system, sans-serif;
             color: var(--ink);
             line-height: 1.9;
-            transition: background 0.3s ease, color 0.3s ease; /* Transisi halus saat ganti mode */
+            transition: background 0.3s ease, color 0.3s ease; /<em> Transisi halus saat ganti mode </em>/
         }
-        /* Layout Container */
+        /<em> Layout Container </em>/
         .page {
             max-width: 980px;
             margin: auto;
             padding: 3rem 1rem 4rem;
             transition: padding 0.3s ease;
         }
-        /* Kertas Artikel Utama */
+        /<em> Kertas Artikel Utama </em>/
         .article {
             background: var(--paper);
             padding: 3rem 2.5rem;
@@ -106,14 +106,14 @@
             box-shadow: var(--shadow-article);
             transition: background 0.3s ease, box-shadow 0.3s ease;
         }
-        /* --- Komponen Header --- */
+        /<em> --- Komponen Header --- </em>/
         header {
             margin-bottom: 3rem;
             text-align: center;
         }
         header h1 {
-            font-family: 'Libre Baskerville', Georgia, serif; /* Ditambahkan fallback font Serif standar */
-            font-size: clamp(1.8rem, 4vw, 2.8rem); /* Dioptimalkan batas bawahnya agar pas di HP */
+            font-family: 'Libre Baskerville', Georgia, serif; /<em> Ditambahkan fallback font Serif standar </em>/
+            font-size: clamp(1.8rem, 4vw, 2.8rem); /<em> Dioptimalkan batas bawahnya agar pas di HP </em>/
             margin: 0 0 .75rem;
             line-height: 1.3;
         }
@@ -123,32 +123,32 @@
             font-style: italic;
             transition: color 0.3s ease;
         }
-        /* --- Konten & Paragraf --- */
+        /<em> --- Konten & Paragraf --- </em>/
         .content {
-            font-size: 1.1rem; /* Dinaikkan sedikit demi kenyamanan membaca long-form */
+            font-size: 1.1rem; /<em> Dinaikkan sedikit demi kenyamanan membaca long-form </em>/
         }
         .content p {
             margin: 0 0 1.6rem;
         }
-        /* --- Komponen Dialog Karakter --- */
+        /<em> --- Komponen Dialog Karakter --- </em>/
         .dialogue {
             font-family: 'Libre Baskerville', Georgia, serif;
             font-style: italic;
             background: var(--soft);
             border-left: 4px solid var(--accent);
-            padding: 1.2rem 1.6rem; /* Sedikit diperluas ruangnya */
+            padding: 1.2rem 1.6rem; /<em> Sedikit diperluas ruangnya </em>/
             margin: 2.5rem 0;
-            border-radius: 0 8px 8px 0; /* Sudut kanan diperhalus */
+            border-radius: 0 8px 8px 0; /<em> Sudut kanan diperhalus </em>/
             transition: background 0.3s ease, border-color 0.3s ease;
         }
-        /* --- Komponen Kotak Moral Cerita --- */
+        /<em> --- Komponen Kotak Moral Cerita --- </em>/
         .moral {
             background: var(--moral);
             color: var(--moral-text);
             padding: 2rem;
             border-radius: 14px;
             margin: 3rem 0;
-            box-shadow: inset 0 0 0 1px rgba(213, 141, 30, 0.1); /* Border dalam tipis untuk tekstur */
+            box-shadow: inset 0 0 0 1px rgba(213, 141, 30, 0.1); /<em> Border dalam tipis untuk tekstur </em>/
             transition: background 0.3s ease, color 0.3s ease;
         }
         .moral p {
@@ -156,9 +156,9 @@
             font-style: italic;
         }
         .moral p:last-child {
-            margin-bottom: 0; /* Menghilangkan margin sisa di paragraf terakhir */
+            margin-bottom: 0; /<em> Menghilangkan margin sisa di paragraf terakhir </em>/
         }
-        /* --- Manajemen Gambar (Core Web Vitals) --- */
+        /<em> --- Manajemen Gambar (Core Web Vitals) --- </em>/
         .figure {
             margin: 3rem auto;
             text-align: center;
@@ -172,7 +172,7 @@
             display: block;
             margin: 0 auto;
         }
-        /* --- Blok Penutup / Tanda Tangan --- */
+        /<em> --- Blok Penutup / Tanda Tangan --- </em>/
         .closing {
             margin-top: 3.5rem;
             text-align: center;
@@ -184,17 +184,17 @@
         }
         .closing em {
             color: var(--muted);
-            font-style: normal; /* Mengubah em standar menjadi tegak jika teks di atasnya sudah tebal */
+            font-style: normal; /<em> Mengubah em standar menjadi tegak jika teks di atasnya sudah tebal </em>/
             transition: color 0.3s ease;
         }
-        /* --- 4. Optimasi Responsif Layar Sempit (Layar < 640px) --- */
+        /<em> --- 4. Optimasi Responsif Layar Sempit (Layar < 640px) --- </em>/
         @media (max-width: 640px) {
             .page {
-                padding: 1.5rem 0.5rem 3rem; /* Memotong jarak kosong atas di HP agar langsung fokus ke judul */
+                padding: 1.5rem 0.5rem 3rem; /<em> Memotong jarak kosong atas di HP agar langsung fokus ke judul </em>/
             }
             .article {
-                padding: 2.2rem 1.2rem; /* Menyesuaikan padding kiri-kanan agar teks tidak terlalu terhimpit */
-                border-radius: 12px; /* Dikecilkan radiusnya agar proporsional */
+                padding: 2.2rem 1.2rem; /<em> Menyesuaikan padding kiri-kanan agar teks tidak terlalu terhimpit </em>/
+                border-radius: 12px; /<em> Dikecilkan radiusnya agar proporsional </em>/
             }
             .dialogue {
                 padding: 1rem 1.2rem;

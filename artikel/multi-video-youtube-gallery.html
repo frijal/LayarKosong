@@ -133,22 +133,22 @@ validateBtn.addEventListener('click', ()=>{
   if(videoList.length>0){
     currentIndex = 0;
     updatePreview();
-    msg.textContent = `✅ ${videoList.length} video valid. Klik thumbnail atau video untuk fullscreen & navigasi.`;
+    msg.textContent = <code>✅ ${videoList.length} video valid. Klik thumbnail atau video untuk fullscreen & navigasi.</code>;
     // Generate embed code
     const ratio = document.getElementById('ratio').value;
     let embedHtml = '';
     gallery.innerHTML = '';
     videoList.forEach((id,index)=>{
-      const embedUrl = `https://www.youtube.com/embed/${id}`;
-      embedHtml += `<div class="video-container" style="position:relative;width:100%;height:0;padding-bottom:${ratio}%;">
+      const embedUrl = <code>https://www.youtube.com/embed/${id}</code>;
+      embedHtml += <code><div class="video-container" style="position:relative;width:100%;height:0;padding-bottom:${ratio}%;">
   <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-</div>\n`;
+</div>\n</code>;
       // Tambah thumbnail gallery
       const thumbDiv = document.createElement('div');
       thumbDiv.classList.add('thumbnail');
       const img = document.createElement('img');
       img.loading='lazy';
-      img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+      img.src = <code>https://img.youtube.com/vi/${id}/hqdefault.jpg</code>;
       thumbDiv.appendChild(img);
       thumbDiv.onclick = ()=>{
         currentIndex = index;
@@ -169,7 +169,7 @@ validateBtn.addEventListener('click', ()=>{
 function updatePreview(){
   const id = videoList[currentIndex];
   const ratio = document.getElementById('ratio').value;
-  const embedUrl = `https://www.youtube.com/embed/${id}`;
+  const embedUrl = <code>https://www.youtube.com/embed/${id}</code>;
   preview.src = embedUrl;
   previewContainer.style.paddingBottom = ratio + '%';
   preview.onclick = ()=>{
@@ -186,12 +186,12 @@ lbClose.addEventListener('click', ()=>{
 lbPrev.addEventListener('click', ()=>{
   if(videoList.length===0) return;
   currentIndex = (currentIndex-1+videoList.length)%videoList.length;
-  lbFrame.src = `https://www.youtube.com/embed/${videoList[currentIndex]}`;
+  lbFrame.src = <code>https://www.youtube.com/embed/${videoList[currentIndex]}</code>;
 });
 lbNext.addEventListener('click', ()=>{
   if(videoList.length===0) return;
   currentIndex = (currentIndex+1)%videoList.length;
-  lbFrame.src = `https://www.youtube.com/embed/${videoList[currentIndex]}`;
+  lbFrame.src = <code>https://www.youtube.com/embed/${videoList[currentIndex]}</code>;
 });
 // Swipe support untuk mobile
 let touchStartX = 0;

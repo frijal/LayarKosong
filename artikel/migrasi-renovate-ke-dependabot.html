@@ -84,7 +84,7 @@
                 --warning-text: #fde68a;
             }
         }
-        *, *::before, *::after {
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -151,7 +151,7 @@
             border-radius: 0.25rem;
             font-size: 0.875em;
         }
-        /* LCP Image: Full width container, no fixed height to prevent cropping */
+        /<em> LCP Image: Full width container, no fixed height to prevent cropping </em>/
         .content-img {
             width: 100%;
             height: auto;
@@ -169,7 +169,7 @@
             margin-bottom: 1.5rem;
             border-left: 0.25rem solid #d97706;
         }
-        /* E-E-A-T Box */
+        /<em> E-E-A-T Box </em>/
         .author-box {
             background-color: var(--code-bg);
             border: 0.0625rem solid var(--border-color);
@@ -206,19 +206,19 @@
             </div>
         </header>
         <main role="main">
-            <p>Memutuskan untuk ganti gigi dari Renovate ke Dependabot adalah langkah yang cukup masuk akal, apalagi kalau kamu ingin ekosistem yang lebih menyatu dengan infrastruktur *native* GitHub. File konfigurasimu sebelumnya memang sudah cukup matang, lengkap dengan aturan pengelompokan (*grouping*) hingga skema *automerge*. Namun, menerjemahkannya ke format Dependabot butuh sedikit penyesuaian karena kedua sistem ini punya filosofi kerja yang berbeda.</p>
+            <p>Memutuskan untuk ganti gigi dari Renovate ke Dependabot adalah langkah yang cukup masuk akal, apalagi kalau kamu ingin ekosistem yang lebih menyatu dengan infrastruktur <em>native</em> GitHub. File konfigurasimu sebelumnya memang sudah cukup matang, lengkap dengan aturan pengelompokan (<em>grouping</em>) hingga skema <em>automerge</em>. Namun, menerjemahkannya ke format Dependabot butuh sedikit penyesuaian karena kedua sistem ini punya filosofi kerja yang berbeda.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/bd28d41dc6848985.webp" alt="Ilustrasi pemindahan konfigurasi dari JSON Renovate ke YAML Dependabot" class="content-img" fetchpriority="high" decoding="async">
             <div class="alert-box">
-                <i class="fa-solid fa-exclamation-triangle"></i> **Realita Pahit Migrasi:**
-                Ada beberapa fitur Renovate yang ~~harus kamu ikhlaskan~~ tidak didukung langsung oleh Dependabot:
+                <i class="fa-solid fa-exclamation-triangle"></i> <strong>Realita Pahit Migrasi:</strong>
+                Ada beberapa fitur Renovate yang <del>harus kamu ikhlaskan</del> tidak didukung langsung oleh Dependabot:
                 <ul>
-                    <li>**Dukungan Bun:** Dependabot belum memiliki ekosistem `bun` yang terpisah secara *native* seperti Renovate. Dia akan membaca *project* Bun kamu di bawah payung ekosistem `npm` (akan mem-parsing `package.json`, tapi perbaikan lockfile `bun.lockb` mungkin tidak semulus Renovate).</li>
-                    <li>**Aturan Waktu (Hourly Limit &amp; Release Age):** Dependabot tidak punya fitur untuk menunda rilis selama "2 days" atau membatasi pembuatan PR per jam. Dia hanya membatasi total PR yang terbuka saja.</li>
-                    <li>**Dashboard:** File `dependencyDashboard` digantikan secara otomatis oleh tab *Security &amp; Insights* bawaan GitHub.</li>
+                    <li><strong>Dukungan Bun:</strong> Dependabot belum memiliki ekosistem <code>bun</code> yang terpisah secara <em>native</em> seperti Renovate. Dia akan membaca <em>project</em> Bun kamu di bawah payung ekosistem <code>npm</code> (akan mem-parsing <code>package.json</code>, tapi perbaikan lockfile <code>bun.lockb</code> mungkin tidak semulus Renovate).</li>
+                    <li><strong>Aturan Waktu (Hourly Limit &amp; Release Age):</strong> Dependabot tidak punya fitur untuk menunda rilis selama "2 days" atau membatasi pembuatan PR per jam. Dia hanya membatasi total PR yang terbuka saja.</li>
+                    <li><strong>Dashboard:</strong> File <code>dependencyDashboard</code> digantikan secara otomatis oleh tab <em>Security &amp; Insights</em> bawaan GitHub.</li>
                 </ul>
             </div>
-            <h2>Langkah 1: Membuat File `dependabot.yml`</h2>
-            <p>Alih-alih JSON, Dependabot menggunakan format YAML. Kamu harus membuat file ini dan meletakkannya di *path* `.github/dependabot.yml` di dalam repositorimu. Berdasarkan konfigurasimu, kita akan menyetel batasan 5 PR serentak (`open-pull-requests-limit`), mengelompokkan *web-optimizers* dan *external-services*, serta menugaskan PR tersebut ke akun `frijal`.</p>
+            <h2>Langkah 1: Membuat File <code>dependabot.yml</code></h2>
+            <p>Alih-alih JSON, Dependabot menggunakan format YAML. Kamu harus membuat file ini dan meletakkannya di <em>path</em> <code>.github/dependabot.yml</code> di dalam repositorimu. Berdasarkan konfigurasimu, kita akan menyetel batasan 5 PR serentak (<code>open-pull-requests-limit</code>), mengelompokkan <em>web-optimizers</em> dan <em>external-services</em>, serta menugaskan PR tersebut ke akun <code>frijal</code>.</p>
 <pre><code>version: 2
 updates:
   # Ekosistem 1: GitHub Actions
@@ -255,8 +255,8 @@ updates:
     # Dependabot tetap akan bikin PR Major,
     # tapi kita tidak akan meng-automerge-nya nanti.</code></pre>
             <h2>Langkah 2: Mengembalikan "Sihir" Automerge</h2>
-            <p>Di masa lalu, Dependabot punya fitur `automerge` di dalam YAML-nya. Namun, GitHub sudah menghapus fitur tersebut demi alasan keamanan. Untuk meniru perilaku di file JSON lamamu—yaitu melakukan *automerge* untuk `patch` dan `minor` (kecuali yang berawalan `0.x`), serta *automerge* keamanan—kamu wajib membuat *GitHub Actions Workflow* khusus.</p>
-            <p>Buat file baru di `.github/workflows/dependabot-automerge.yml` dengan konfigurasi berikut:</p>
+            <p>Di masa lalu, Dependabot punya fitur <code>automerge</code> di dalam YAML-nya. Namun, GitHub sudah menghapus fitur tersebut demi alasan keamanan. Untuk meniru perilaku di file JSON lamamu—yaitu melakukan <em>automerge</em> untuk <code>patch</code> dan <code>minor</code> (kecuali yang berawalan <code>0.x</code>), serta <em>automerge</em> keamanan—kamu wajib membuat <em>GitHub Actions Workflow</em> khusus.</p>
+            <p>Buat file baru di <code>.github/workflows/dependabot-automerge.yml</code> dengan konfigurasi berikut:</p>
 <pre><code>name: Dependabot Auto-merge
 on: pull_request
 permissions:
@@ -285,12 +285,12 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}</code></pre>
             <h3>Penyesuaian Ekstra di Repository Settings</h3>
-            <p>Agar alur kerja GitHub Actions di atas berjalan mulus, pastikan kamu mengaktifkan opsi **"Allow auto-merge"** di pengaturan repositorimu (*Settings* -&gt; *General* -&gt; *Pull Requests*). Dengan kombinasi `dependabot.yml` dan *workflow* rahasia ini, kamu berhasil meniru sekitar 80% kekuatan file konfigurasi Renovate lamamu ke dalam ekosistem Dependabot yang jauh lebih ringan.</p>
+            <p>Agar alur kerja GitHub Actions di atas berjalan mulus, pastikan kamu mengaktifkan opsi <strong>"Allow auto-merge"</strong> di pengaturan repositorimu (<em>Settings</em> -&gt; <em>General</em> -&gt; <em>Pull Requests</em>). Dengan kombinasi <code>dependabot.yml</code> dan <em>workflow</em> rahasia ini, kamu berhasil meniru sekitar 80% kekuatan file konfigurasi Renovate lamamu ke dalam ekosistem Dependabot yang jauh lebih ringan.</p>
             <!-- Kredibilitas Konten -->
             <div class="author-box" aria-label="Informasi Keandalan Artikel">
-                <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: **Fakhrul Rijal**</p>
-                <p><i class="fa-regular fa-clock"></i> Diperbarui pada: **30 Mei 2026**</p>
-                <p style="margin-top: 0.5rem; color: var(--text-muted);">Panduan translasi skema konfigurasi ini diverifikasi berdasarkan spesifikasi YAML Dependabot v2 terbaru dan manajemen Dependabot Metadata API untuk *workflow* GitHub Actions. Resolusi paket Bun dalam Dependabot mungkin mengalami penyesuaian seiring dengan rilis tambalan platform GitHub di masa mendatang.</p>
+                <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Fakhrul Rijal</strong></p>
+                <p><i class="fa-regular fa-clock"></i> Diperbarui pada: <strong>30 Mei 2026</strong></p>
+                <p style="margin-top: 0.5rem; color: var(--text-muted);">Panduan translasi skema konfigurasi ini diverifikasi berdasarkan spesifikasi YAML Dependabot v2 terbaru dan manajemen Dependabot Metadata API untuk <em>workflow</em> GitHub Actions. Resolusi paket Bun dalam Dependabot mungkin mengalami penyesuaian seiring dengan rilis tambalan platform GitHub di masa mendatang.</p>
             </div>
         </main>
         <!-- Elemen Akhir Wajib -->

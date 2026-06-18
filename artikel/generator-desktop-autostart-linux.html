@@ -133,7 +133,7 @@
           const exec = document.getElementById('exec').value.trim();
           const terminal = document.getElementById('terminal').value;
           const enabled = document.getElementById('enabled').value;
-          const output = `[Desktop Entry]
+          const output = <code>[Desktop Entry]
 Type=Application
 Version=1.0
 Name=${name || 'Autostart App'}
@@ -141,7 +141,7 @@ Comment=${comment || 'Autostart via .desktop'}
 Exec=${exec || '/path/to/script.sh'}
 StartupNotify=false
 Terminal=${terminal}
-X-GNOME-Autostart-enabled=${enabled}`;
+X-GNOME-Autostart-enabled=${enabled}</code>;
           document.getElementById('output').textContent = output;
         }
         // Expose function globally so button can call it (if needed outside DOMContentLoaded)

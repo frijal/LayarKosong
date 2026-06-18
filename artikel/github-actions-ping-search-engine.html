@@ -51,7 +51,7 @@
   <meta name="promphint" content="Bagaimana cara otomatis ping sitemap ke Google? | Gunakan perintah curl di dalam workflow GitHub Actions untuk memanggil URL ping Google setiap kali deploy.">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /* CSS Kritis & Variabel Tema */
+    /<em> CSS Kritis & Variabel Tema </em>/
     :root {
       --bg-color: #f8fafc;
       --surface-color: #ffffff;
@@ -82,8 +82,8 @@
         --img-bg: #1e293b;
       }
     }
-    /* Reset Dasar */
-    *, *::before, *::after {
+    /<em> Reset Dasar </em>/
+    <em>, </em>::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -96,14 +96,14 @@
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
-    /* Layout Mobile-First */
+    /<em> Layout Mobile-First </em>/
     .container {
       max-width: 64rem;
       width: 100%;
       margin: 0 auto;
       padding: 2.5rem 1.5rem;
     }
-    /* Tipografi Dasar */
+    /<em> Tipografi Dasar </em>/
     h1, h2, h3 {
       color: var(--text-heading);
       font-weight: 700;
@@ -138,7 +138,7 @@
       color: var(--accent-hover);
       border-bottom-style: solid;
     }
-    /* Komponen Visual: Kutipan & List */
+    /<em> Komponen Visual: Kutipan & List </em>/
     blockquote {
       background-color: var(--surface-color);
       border-left: 0.375rem solid var(--quote-border);
@@ -156,7 +156,7 @@
     li {
       margin-bottom: 0.75rem;
     }
-    /* Penanganan Gambar & CLS */
+    /<em> Penanganan Gambar & CLS </em>/
     .media-wrapper {
       margin: 2.5rem 0;
       border-radius: 0.75rem;
@@ -167,7 +167,7 @@
     .lcp-image {
       width: 100%;
       height: auto;
-      aspect-ratio: 16 / 9; /* Dimensi eksplisit mencegah CLS */
+      aspect-ratio: 16 / 9; /<em> Dimensi eksplisit mencegah CLS </em>/
       object-fit: cover;
       display: block;
     }
@@ -179,7 +179,7 @@
       border-top: 0.0625rem solid var(--border-color);
       font-style: italic;
     }
-    /* Blok Kode & Syntax Highlighting Alami */
+    /<em> Blok Kode & Syntax Highlighting Alami </em>/
     pre {
       background-color: var(--code-bg);
       color: var(--code-text);
@@ -202,12 +202,12 @@
       font-size: 0.9em;
       border: 0.0625rem solid var(--border-color);
     }
-    /* Ikon */
+    /<em> Ikon </em>/
     .icon-spacing {
       margin-right: 0.5rem;
       color: var(--accent-color);
     }
-    /* Footer E-E-A-T Inline */
+    /<em> Footer E-E-A-T Inline </em>/
     footer {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -255,11 +255,11 @@
         <p>Penerapannya sangat mudah. Kamu hanya perlu menukar bagian <code>[URL_LENGKAP_SITEMAP]</code> dengan alamat absolut dari sitemap yang ada di server produksimu. Sebagai contoh, jika domainmu adalah <em>dalam.web.id</em>, maka URL yang kamu panggil menjadi <code>https://www.google.com/ping?sitemap=https://dalam.web.id/sitemap.xml</code>.</p>
         <h2><i class="fa-solid fa-code-branch icon-spacing"></i> Di Sinilah Peran Magis GitHub Actions Bermula</h2>
         <p>Nah, di sinilah ide untuk menciptakan sebuah otomatisasi tingkat lanjut menjadi sangat berguna. Daripada kamu harus menyalin dan mengakses URL ping tersebut secara manual melalui <em>browser</em> setiap kali selesai menulis, kita bisa meletakkan beban kerja ini ke pundak <strong>GitHub Actions</strong>.</p>
-        <p>Jika situsmu di-*hosting* atau di-*deploy* menggunakan ekosistem GitHub, alur kerja (<em>workflow</em>) yang ideal akan berjalan persis seperti ini:</p>
+        <p>Jika situsmu di-<em>hosting</em> atau di-<em>deploy</em> menggunakan ekosistem GitHub, alur kerja (<em>workflow</em>) yang ideal akan berjalan persis seperti ini:</p>
         <ol>
           <li><strong>Kejadian (Event):</strong> Kamu baru saja selesai menulis dan melakukan instruksi <code>push</code> ke <em>branch</em> <code>main</code>. <em>Push</em> ini berisi artikel baru sekaligus pembaruan pada <em>file</em> generator <code>sitemap.xml</code> dan <code>rss.xml</code>.</li>
           <li><strong>Pemicu (Trigger):</strong> Mesin GitHub Actions akan mendeteksi perubahan tersebut dan menjalankan <em>workflow deployment</em> secara otomatis.</li>
-          <li><strong>Tindakan (Action):</strong> Tepat setelah situs sukses ter-*deploy*, kita menyisipkan sebuah langkah pamungkas. Langkah ini akan menjalankan perintah <code>curl</code> pada terminal Linux di peladen GitHub untuk "mengetuk pintu" mesin pencari.</li>
+          <li><strong>Tindakan (Action):</strong> Tepat setelah situs sukses ter-<em>deploy</em>, kita menyisipkan sebuah langkah pamungkas. Langkah ini akan menjalankan perintah <code>curl</code> pada terminal Linux di peladen GitHub untuk "mengetuk pintu" mesin pencari.</li>
         </ol>
         <h2><i class="fa-solid fa-terminal icon-spacing"></i> Contoh Skrip Langkah di GitHub Actions</h2>
         <p>Pengintegrasiannya ke dalam file konfigurasi YAML milikmu sangatlah mulus. Kamu cukup menempelkan blok perintah sederhana ini pada bagian paling bawah dari tugas (<em>job</em>) <em>deploy</em> yang sudah ada.</p>

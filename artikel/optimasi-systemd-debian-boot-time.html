@@ -56,7 +56,7 @@
         :root {
             --bg: #ffffff;
             --text: #1a1a1a;
-            --accent: #d70a53; /* Debian Pink */
+            --accent: #d70a53; /<em> Debian Pink </em>/
             --bg-code: #282c34;
             --text-code: #abb2bf;
             --card-bg: #f8f9fa;
@@ -98,7 +98,7 @@
         h2 { margin: 40px 0 20px; color: var(--accent); border-bottom: 2px solid var(--accent); display: inline-block; }
         h3 { margin: 30px 0 15px; }
         p { margin-bottom: 25px; }
-        /* Code Blocks */
+        /<em> Code Blocks </em>/
         pre {
             background-color: var(--bg-code);
             color: var(--text-code);
@@ -154,56 +154,56 @@
         <div id="iposbrowser"></div><div id="iposbrowser"></div><h1><i class="fa-solid fa-rocket"></i> Optimasi Systemd di Debian: Cara Mempercepat Boot Time dengan Matikan Service Tidak Perlu</h1>
     </header>
     <article>
-        <p>Halo sobat Linuxer! <i class="fa-solid fa-hand-spock"></i> Setelah sebelumnya kita sepakat bahwa Debian adalah pilihan paling stabil, sekarang muncul pertanyaan: *"Bisa tidak sih Debian yang stabil ini booting lebih cepat lagi?"* Jawabannya: **Bisa banget!**</p>
-        <p>Rahasianya ada di tangan kamu sendiri, yaitu bagaimana kamu mengelola **systemd**. Secara default, Debian menyalakan berbagai layanan (services) untuk memastikan kompatibilitas maksimal. Tapi jujur saja, kita tidak butuh semuanya jalan di waktu bersamaan, kan?</p>
+        <p>Halo sobat Linuxer! <i class="fa-solid fa-hand-spock"></i> Setelah sebelumnya kita sepakat bahwa Debian adalah pilihan paling stabil, sekarang muncul pertanyaan: <em>"Bisa tidak sih Debian yang stabil ini booting lebih cepat lagi?"</em> Jawabannya: <strong>Bisa banget!</strong></p>
+        <p>Rahasianya ada di tangan kamu sendiri, yaitu bagaimana kamu mengelola <strong>systemd</strong>. Secara default, Debian menyalakan berbagai layanan (services) untuk memastikan kompatibilitas maksimal. Tapi jujur saja, kita tidak butuh semuanya jalan di waktu bersamaan, kan?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAOl9gMbUAI-j0E.webp" alt="Linux Terminal Tuning" class="hero-img">
         <h2>Apa Itu Optimasi Systemd? (What)</h2>
-        <p>Optimasi `systemd` adalah seni memilah mana layanan yang wajib jalan saat startup dan mana yang bisa kita "istirahatkan". Dengan melakukan ini, kita mengurangi beban CPU dan antrean pembacaan disk (I/O) saat komputer pertama kali dinyalakan. Hasilnya? Desktop atau prompt server kamu muncul lebih cepat!</p>
+        <p>Optimasi <code>systemd</code> adalah seni memilah mana layanan yang wajib jalan saat startup dan mana yang bisa kita "istirahatkan". Dengan melakukan ini, kita mengurangi beban CPU dan antrean pembacaan disk (I/O) saat komputer pertama kali dinyalakan. Hasilnya? Desktop atau prompt server kamu muncul lebih cepat!</p>
         <h2>Kenapa Harus Repot Melakukan Ini? (Why)</h2>
         <p>Ada tiga alasan kuat:
             </p><ul>
-                <li>**Efisiensi Waktu:** Menghemat 5-10 detik setiap kali boot sangat berharga untuk produktivitas.</li>
-                <li>**Hemat Resource:** Layanan yang tidak aktif berarti pemakaian RAM dan baterai (di laptop) jadi lebih irit.</li>
-                <li>**Keamanan:** Semakin sedikit layanan yang terbuka, semakin sedikit pintu masuk bagi potensi ancaman (*attack surface reduction*).</li>
+                <li><strong>Efisiensi Waktu:</strong> Menghemat 5-10 detik setiap kali boot sangat berharga untuk produktivitas.</li>
+                <li><strong>Hemat Resource:</strong> Layanan yang tidak aktif berarti pemakaian RAM dan baterai (di laptop) jadi lebih irit.</li>
+                <li><strong>Keamanan:</strong> Semakin sedikit layanan yang terbuka, semakin sedikit pintu masuk bagi potensi ancaman (<em>attack surface reduction</em>).</li>
             </ul>
         <p></p>
         <div class="info-box">
-            <i class="fa-solid fa-triangle-exclamation"></i> **Peringatan:** Selalu pastikan kamu tahu fungsi layanan yang akan dimatikan. Jangan mematikan layanan inti sistem jika tidak ingin Debian-mu mogok!
+            <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan:</strong> Selalu pastikan kamu tahu fungsi layanan yang akan dimatikan. Jangan mematikan layanan inti sistem jika tidak ingin Debian-mu mogok!
         </div>
         <h2>Bagaimana Cara Menganalisisnya? (How)</h2>
-        <p>Langkah pertama bukan langsung mematikan, tapi **menganalisis**. Untungnya, `systemd` punya tool bawaan yang sangat informatif.</p>
+        <p>Langkah pertama bukan langsung mematikan, tapi <strong>menganalisis</strong>. Untungnya, <code>systemd</code> punya tool bawaan yang sangat informatif.</p>
         <h3>1. Melihat Waktu Boot Total</h3>
         <p>Gunakan perintah ini untuk melihat berapa lama Debian kamu menghabiskan waktu di kernel dan userspace:</p>
         <pre>systemd-analyze</pre>
         <h3>2. Mencari "Tersangka" Utama (Blame Game)</h3>
         <p>Perintah ini akan mengurutkan layanan dari yang paling lama proses startup-nya. Di sinilah kita mencari target operasi:</p>
         <pre>systemd-analyze blame</pre>
-        <p>Seringkali kamu akan menemukan `NetworkManager-wait-online.service` atau `plymouth-quit-wait.service` memakan waktu paling banyak. <i class="fa-solid fa-magnifying-glass"></i></p>
+        <p>Seringkali kamu akan menemukan <code>NetworkManager-wait-online.service</code> atau <code>plymouth-quit-wait.service</code> memakan waktu paling banyak. <i class="fa-solid fa-magnifying-glass"></i></p>
         <h3>3. Analisis Rantai Kritis</h3>
         <p>Ingin tahu urutan layanan yang saling menunggu satu sama lain? Gunakan:</p>
         <pre>systemd-analyze critical-chain</pre>
         <h2>Service Mana yang Aman Dimatikan? (Where &amp; When)</h2>
         <p>Setelah melakukan analisis, biasanya ada beberapa "sampah" layanan yang bisa kita singkirkan, tergantung kebutuhanmu:</p>
         <ul class="step-list">
-            <li>**ModemManager.service:** Kamu tidak pakai modem USB atau kartu SIM? Matikan saja!</li>
-            <li>**avahi-daemon.service:** Berguna untuk penemuan jaringan otomatis. Jika kamu di lingkungan server statis, ini jarang dibutuhkan.</li>
-            <li>**bluetooth.service:** Matikan jika PC/Server kamu tidak memiliki atau tidak memakai Bluetooth.</li>
-            <li>**cups.service / cups-browsed.service:** Matikan jika kamu tidak menggunakan printer. <i class="fa-solid fa-print"></i></li>
-            <li>**exim4.service:** Jika kamu tidak butuh server email lokal di mesin Debian-mu.</li>
+            <li><strong>ModemManager.service:</strong> Kamu tidak pakai modem USB atau kartu SIM? Matikan saja!</li>
+            <li><strong>avahi-daemon.service:</strong> Berguna untuk penemuan jaringan otomatis. Jika kamu di lingkungan server statis, ini jarang dibutuhkan.</li>
+            <li><strong>bluetooth.service:</strong> Matikan jika PC/Server kamu tidak memiliki atau tidak memakai Bluetooth.</li>
+            <li><strong>cups.service / cups-browsed.service:</strong> Matikan jika kamu tidak menggunakan printer. <i class="fa-solid fa-print"></i></li>
+            <li><strong>exim4.service:</strong> Jika kamu tidak butuh server email lokal di mesin Debian-mu.</li>
         </ul>
         <h2>Langkah Eksekusi: Cara Mematikan Service</h2>
-        <p>Ada dua cara untuk menghentikan layanan. Pertama adalah `disable` (mencegah jalan otomatis), dan yang kedua adalah `mask` (mengunci total agar tidak bisa dipanggil layanan lain).</p>
-        <p>**Contoh mematikan Bluetooth:**</p>
+        <p>Ada dua cara untuk menghentikan layanan. Pertama adalah <code>disable</code> (mencegah jalan otomatis), dan yang kedua adalah <code>mask</code> (mengunci total agar tidak bisa dipanggil layanan lain).</p>
+        <p><strong>Contoh mematikan Bluetooth:</strong></p>
         <pre>sudo systemctl disable --now bluetooth.service</pre>
-        <p>**Jika layanan tersebut bandel dan hidup lagi:**</p>
+        <p><strong>Jika layanan tersebut bandel dan hidup lagi:</strong></p>
         <pre>sudo systemctl mask bluetooth.service</pre>
         <div class="info-box">
-            <i class="fa-solid fa-lightbulb"></i> **Pro Tip:** Gunakan `systemctl list-unit-files --state=enabled` untuk melihat semua layanan yang saat ini aktif saat boot.
+            <i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Gunakan <code>systemctl list-unit-files --state=enabled</code> untuk melihat semua layanan yang saat ini aktif saat boot.
         </div>
         <h2>Siapa yang Perlu Melakukan Ini? (Who)</h2>
-        <p>Kamu, pengguna Debian yang menginginkan performa maksimal. Baik kamu seorang *developer* yang butuh lingkungan kerja cepat, maupun pengguna laptop yang ingin efisiensi baterai lebih baik. <i class="fa-solid fa-user-gear"></i></p>
+        <p>Kamu, pengguna Debian yang menginginkan performa maksimal. Baik kamu seorang <em>developer</em> yang butuh lingkungan kerja cepat, maupun pengguna laptop yang ingin efisiensi baterai lebih baik. <i class="fa-solid fa-user-gear"></i></p>
         <h2>Kesimpulan</h2>
-        <p>Optimasi `systemd` di Debian bukan sekadar angka di terminal, tapi tentang bagaimana kita memegang kendali penuh atas sistem kita. Dengan membuang layanan yang tidak perlu, Debian kamu bukan cuma makin cepat, tapi juga makin "bersih" dan aman. Jangan lupa jalankan lagi `systemd-analyze` setelah optimasi untuk melihat bedanya! <i class="fa-solid fa-face-laugh-wink"></i></p>
+        <p>Optimasi <code>systemd</code> di Debian bukan sekadar angka di terminal, tapi tentang bagaimana kita memegang kendali penuh atas sistem kita. Dengan membuang layanan yang tidak perlu, Debian kamu bukan cuma makin cepat, tapi juga makin "bersih" dan aman. Jangan lupa jalankan lagi <code>systemd-analyze</code> setelah optimasi untuk melihat bedanya! <i class="fa-solid fa-face-laugh-wink"></i></p>
     </article>
         <p>Berapa detik waktu boot Debian kamu sekarang? Service apa yang paling banyak memakan waktu?</p>
     <div id="response">    </div>

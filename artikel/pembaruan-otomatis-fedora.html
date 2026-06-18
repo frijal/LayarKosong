@@ -179,7 +179,7 @@ sudo nano /etc/dnf/automatic.conf</code></pre>
       <details>
         <summary>Langkah 2: Jalankan dan Aktifkan Layanan</summary>
         <div class="accordion-content">
-          <p>Gunakan `systemctl` untuk mengaktifkan dan menjalankan timer yang akan memicu pembaruan.</p>
+          <p>Gunakan <code>systemctl</code> untuk mengaktifkan dan menjalankan timer yang akan memicu pembaruan.</p>
           <pre><code id="code2">sudo systemctl enable --now dnf-automatic.timer
 systemctl status dnf-automatic.timer</code></pre>
           <button class="copy-btn" data-target="code2">Salin</button>

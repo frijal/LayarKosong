@@ -53,7 +53,7 @@
     <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJahrxxasAAaQfH?format=jpg&amp;name=large" fetchpriority="high">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
+        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
         :root {
             --bg-color: #f8fafc;
             --text-color: #334155;
@@ -96,7 +96,7 @@
             line-height: 1.75;
             font-size: 16px;
         }
-        /* Desain Mobile-first, Maksimal 1000px di Tengah */
+        /<em> Desain Mobile-first, Maksimal 1000px di Tengah </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -138,7 +138,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /* Blok Metadata E-E-A-T */
+        /<em> Blok Metadata E-E-A-T </em>/
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -155,7 +155,7 @@
             align-items: center;
             gap: 0.4rem;
         }
-        /* Blok Kontainer Gambar Anti-CLS */
+        /<em> Blok Kontainer Gambar Anti-CLS </em>/
         .img-container {
             margin: 1.5rem 0;
             background-color: var(--card-bg);
@@ -173,7 +173,7 @@
             margin: 0 auto;
         }
         .img-container.hero img {
-            max-width: 600px; /* Ukuran proporsional, mencegah hero image raksasa */
+            max-width: 600px; /<em> Ukuran proporsional, mencegah hero image raksasa </em>/
         }
         .img-caption {
             font-size: 0.85rem;
@@ -181,7 +181,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /* Tabel Responsif */
+        /<em> Tabel Responsif </em>/
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -227,7 +227,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /* UI Kuis Interaktif */
+        /<em> UI Kuis Interaktif </em>/
         .quiz-container {
             margin: 2.5rem 0;
         }
@@ -321,7 +321,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /* Responsivitas Layar Lebar */
+        /<em> Responsivitas Layar Lebar </em>/
         @media (min-width: 768px) {
             .container {
                 padding: 2rem;
@@ -380,7 +380,7 @@
                         <tr>
                             <td><strong>Fish</strong> <em>(Friendly Interactive Shell)</em></td>
                             <td>Cerdas dan cantik secara <em>out-of-the-box</em>. Punya fitur autosugesti mirip web browser tanpa perlu repot bongkar file konfigurasi.</td>
-                            <td>User kasual hingga *developer* yang benci keribetan, dan rela mengorbankan kompatibilitas Bash murni.</td>
+                            <td>User kasual hingga <em>developer</em> yang benci keribetan, dan rela mengorbankan kompatibilitas Bash murni.</td>
                         </tr>
                         <tr>
                             <td><strong>PowerShell</strong></td>
@@ -423,14 +423,14 @@
                     <div class="quiz-options">
                         <label class="quiz-option"><input type="radio" name="q3" value="A"> <span>A. Kestabilan yang tidak tertandingi; asalkan dieksekusi tanpa meleset, saya sudah bahagia.</span></label>
                         <label class="quiz-option"><input type="radio" name="q3" value="B"> <span>B. <em>Tab-completion</em> yang sangat canggih dan kemampuan terminal mengoreksi <em>typo</em> ejaan saya secara otomatis.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q3" value="C"> <span>C. <em>Autosuggestions</em> yang transparan dan pewarnaan sintaks (<em>syntax highlighting</em>) super *fluid* saat saya mengetik.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="C"> <span>C. <em>Autosuggestions</em> yang transparan dan pewarnaan sintaks (<em>syntax highlighting</em>) super <em>fluid</em> saat saya mengetik.</span></label>
                         <label class="quiz-option"><input type="radio" name="q3" value="D"> <span>D. Kemampuan mem-<em>parsing</em> file data kompleks (seperti JSON/XML/CSV) secara <em>native</em> bagaikan menangani objek.</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
                     <p class="question-text">4. Jika Anda dihadapkan pada tugas memproses data panjang dari sistem, Anda lebih suka menangani data tersebut sebagai...</p>
                     <div class="quiz-options">
-                        <label class="quiz-option"><input type="radio" name="q4" value="A"> <span>A. Teks murni (<em>plain text</em>) klasik dan deretan <em>string</em> dasar pakai `grep` atau `awk`.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="A"> <span>A. Teks murni (<em>plain text</em>) klasik dan deretan <em>string</em> dasar pakai <code>grep</code> atau <code>awk</code>.</span></label>
                         <label class="quiz-option"><input type="radio" name="q4" value="B"> <span>B. <em>String</em>, tapi dibantu dengan manipulasi <em>array</em> dan <em>globbing</em> yang jauh lebih ekstensif.</span></label>
                         <label class="quiz-option"><input type="radio" name="q4" value="C"> <span>C. Teks biasa, tapi menggunakan gaya penulisan fungsi dan <em>loop</em> yang manusiawi dan bersih.</span></label>
                         <label class="quiz-option"><input type="radio" name="q4" value="D"> <span>D. Sebuah Objek (<em>Object</em>) utuh! Di mana saya bisa memanggil properti dan metodenya secara spesifik.</span></label>
@@ -475,7 +475,7 @@ function calculateShellResult() {
     let answeredCount = 0;
     // Evaluasi radio button yang dipilih user
     for (let i = 1; i <= totalQuestions; i++) {
-        const checkedOption = document.querySelector(`input[name="q${i}"]:checked`);
+        const checkedOption = document.querySelector(<code>input[name="q${i}"]:checked</code>);
         if (checkedOption) {
             counts[checkedOption.value]++;
             answeredCount++;
@@ -505,19 +505,19 @@ function calculateShellResult() {
             break;
         case 'B':
             shellName = "Zsh (Z Shell)";
-            shellDesc = "Anda adalah pengguna kekuatan penuh (*power user*)! Zsh adalah paduan sempurna antara stabilitas skrip POSIX ala Bash, dengan kualitas hidup (*quality of life*) kelas modern. Dengan Zsh, Anda bisa menginstal ratusan plugin, tema yang memukau, auto-koreksi ejaan yang canggih, dan merombak total tampilan terminal harian Anda.";
+            shellDesc = "Anda adalah pengguna kekuatan penuh (<em>power user</em>)! Zsh adalah paduan sempurna antara stabilitas skrip POSIX ala Bash, dengan kualitas hidup (<em>quality of life</em>) kelas modern. Dengan Zsh, Anda bisa menginstal ratusan plugin, tema yang memukau, auto-koreksi ejaan yang canggih, dan merombak total tampilan terminal harian Anda.";
             break;
         case 'C':
             shellName = "Fish (Friendly Interactive Shell)";
-            shellDesc = "Anda membenci konfigurasi rumit namun mencintai keindahan fungsional. Fish adalah Shell harian yang sangat cantik dan pintar sejak detik pertama Anda menginstalnya. Dengan *inline autosuggestions* layaknya web browser dan *syntax highlighting* yang mulus, Fish akan mempercepat pekerjaan harian Anda, meski harus rela berpisah dari sintaks standar Bash murni.";
+            shellDesc = "Anda membenci konfigurasi rumit namun mencintai keindahan fungsional. Fish adalah Shell harian yang sangat cantik dan pintar sejak detik pertama Anda menginstalnya. Dengan <em>inline autosuggestions</em> layaknya web browser dan <em>syntax highlighting</em> yang mulus, Fish akan mempercepat pekerjaan harian Anda, meski harus rela berpisah dari sintaks standar Bash murni.";
             break;
         case 'D':
             shellName = "PowerShell (Core)";
-            shellDesc = "Anda adalah sang *outsider* revolusioner! Anda melihat data bukan sebagai deretan teks kosong yang harus dipotong-potong, melainkan sebagai sebuah 'Objek' dengan hierarki terstruktur. PowerShell sangat tangguh untuk menangani data kompleks (JSON/API), otomatisasi infrastruktur cloud silang OS (Linux ke Azure/Windows), dan mengesampingkan tradisi shell Unix konvensional.";
+            shellDesc = "Anda adalah sang <em>outsider</em> revolusioner! Anda melihat data bukan sebagai deretan teks kosong yang harus dipotong-potong, melainkan sebagai sebuah 'Objek' dengan hierarki terstruktur. PowerShell sangat tangguh untuk menangani data kompleks (JSON/API), otomatisasi infrastruktur cloud silang OS (Linux ke Azure/Windows), dan mengesampingkan tradisi shell Unix konvensional.";
             break;
     }
     // Render output visual pada container DOM target hasil kalkulasi kuis
-    document.getElementById("result-shell-name").innerText = `${shellName} (Dominasi Skor: ${maxScore}/5)`;
+    document.getElementById("result-shell-name").innerText = <code>${shellName} (Dominasi Skor: ${maxScore}/5)</code>;
     document.getElementById("result-shell-desc").innerText = shellDesc;
     const resultBox = document.getElementById("quiz-result");
     resultBox.style.display = "block";

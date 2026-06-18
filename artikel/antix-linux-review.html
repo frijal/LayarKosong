@@ -50,13 +50,13 @@
         :root {
             --bg-color: #ffffff;
             --text-color: #222222;
-            --accent-color: #0056b3; /* Biru Linux ish */
+            --accent-color: #0056b3; /<em> Biru Linux ish </em>/
             --secondary-text: #555555;
             --border-color: #e0e0e0;
             --card-bg: #f4f6f8;
             --code-bg: #eeeeee;
         }
-        /* Deteksi Otomatis Dark Mode User */
+        /<em> Deteksi Otomatis Dark Mode User </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -78,10 +78,10 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
-            font-size: 18px; /* Ukuran font nyaman baca */
+            font-size: 18px; /<em> Ukuran font nyaman baca </em>/
             transition: background-color 0.3s, color 0.3s;
         }
-        /* Layout Widescreen 1 Kolom tapi tetap readable (max-width) */
+        /<em> Layout Widescreen 1 Kolom tapi tetap readable (max-width) </em>/
         .content-wrapper {
             max-width: 850px;
             margin: 0 auto;
@@ -111,7 +111,7 @@
             margin-bottom: 1.5rem;
             text-align: left;
         }
-        /* Styling Gambar Utama */
+        /<em> Styling Gambar Utama </em>/
         .main-image {
             width: 100%;
             height: auto;
@@ -120,7 +120,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: block;
         }
-        /* Styling Narasi Tambahan (Callout) */
+        /<em> Styling Narasi Tambahan (Callout) </em>/
         .narrative-box {
             background-color: var(--card-bg);
             border-left: 5px solid var(--accent-color);
@@ -143,16 +143,16 @@
             position: relative;
         }
         ul li::before {
-            content: "\f058"; /* FontAwesome Check Circle */
+            content: "\f058"; /<em> FontAwesome Check Circle </em>/
             font-family: "Font Awesome 7 Free";
             font-weight: 900;
             position: absolute;
             left: 0;
             color: var(--accent-color);
         }
-        /* List Edisi (Flavors) */
+        /<em> List Edisi (Flavors) </em>/
         .flavor-list li::before {
-            content: "\f1cd"; /* Life Ring Icon */
+            content: "\f1cd"; /<em> Life Ring Icon </em>/
         }
         code {
             background-color: var(--code-bg);
@@ -161,7 +161,7 @@
             font-family: monospace;
             font-size: 0.9em;
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             margin-top: 80px;
             padding: 40px 0;
@@ -177,7 +177,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /* Mobile Responsiveness */
+        /<em> Mobile Responsiveness </em>/
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             body { font-size: 16px; }

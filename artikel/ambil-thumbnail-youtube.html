@@ -155,7 +155,7 @@
                 <p>karena YouTube tidak nyediain tombol "Save Image" yang gampang di halaman videonya. Kalau klik kanan pun kadang yang muncul menu player, bukan menu gambar. Ribet kan kalau harus screenshot dulu? Kerap kali resolusi gambar yang dihasilkan kurang optimal serta terdapat elemen antarmuka pemutar video yang menghalangi visual.
                 </p>
                 <p>
-                    Oleh karena itu, platform ini dikembangkan untuk mempermudah akses pengunduhan aset visual tersebut secara praktis. Di sini, sistem kita bakal langsung "ngobrol" sama server gambar YouTube buat minta file aslinya. Jadi, gambar yang kalian dapet itu murni file `.jpg` mentahan dari server mereka, tanpa watermark player video.
+                    Oleh karena itu, platform ini dikembangkan untuk mempermudah akses pengunduhan aset visual tersebut secara praktis. Di sini, sistem kita bakal langsung "ngobrol" sama server gambar YouTube buat minta file aslinya. Jadi, gambar yang kalian dapet itu murni file <code>.jpg</code> mentahan dari server mereka, tanpa watermark player video.
                 </p>            <div id="related-articles-grid"></div><div id="response"></div>
 </main>
   <footer style="margin-top:1rem;">
@@ -215,20 +215,20 @@
     // Bangun URL thumbnail dengan urutan prioritas
     function buildThumbCandidates(videoId) {
       // Urutan: maxresdefault -> sddefault -> hqdefault -> mqdefault -> default
-      const base = `https://img.youtube.com/vi/${videoId}`;
+      const base = <code>https://img.youtube.com/vi/${videoId}</code>;
       return [
-        { label: 'Max Res', url: `${base}/maxresdefault.jpg` },
-        { label: 'SD',      url: `${base}/sddefault.jpg` },
-        { label: 'HQ',      url: `${base}/hqdefault.jpg` },
-        { label: 'MQ',      url: `${base}/mqdefault.jpg` },
-        { label: 'Default', url: `${base}/default.jpg` }
+        { label: 'Max Res', url: <code>${base}/maxresdefault.jpg</code> },
+        { label: 'SD',      url: <code>${base}/sddefault.jpg</code> },
+        { label: 'HQ',      url: <code>${base}/hqdefault.jpg</code> },
+        { label: 'MQ',      url: <code>${base}/mqdefault.jpg</code> },
+        { label: 'Default', url: <code>${base}/default.jpg</code> }
       ];
     }
     // Render satu kartu thumbnail + aksi
     function renderThumbCard(container, label, url, videoId) {
       const card = document.createElement('article');
       card.className = 'thumb';
-      card.innerHTML = `
+      card.innerHTML = <code>
         <header>${label}</header>
         <div class="imgbox">
           <img src="${url}" alt="Thumbnail ${label} untuk video ${videoId}" loading="lazy" decoding="async" />
@@ -243,7 +243,7 @@
           </a>
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-      `;
+      </code>;
       container.appendChild(card);
     }
     function setStatus(msg, type) {
@@ -283,7 +283,7 @@
       const candidates = buildThumbCandidates(id);
       // Render semua kandidat; gambar yang tidak ada akan gagal load (tetap aman)
       candidates.forEach(({ label, url }) => renderThumbCard(wrap, label, url, id));
-      setStatus(`Ditemukan video ID: ${id}. Coba beberapa resolusi thumbnail.`, 'ok');
+      setStatus(<code>Ditemukan video ID: ${id}. Coba beberapa resolusi thumbnail.</code>, 'ok');
       // Delegasi untuk tombol copy di setiap kartu
       wrap.addEventListener('click', (evt) => {
         const btn = evt.target.closest('button[data-action="copy"]');

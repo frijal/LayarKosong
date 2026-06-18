@@ -82,8 +82,8 @@
                 <img loading="lazy" src="https://dalam.web.id/img/usb-bootable-ubuntu.webp" alt="USB flashdisk dengan logo Ubuntu">
             </section>
             <section>
-                <h2>Menggunakan Perintah `dd`</h2>
-                <p>Jika file ISO Linux Anda sudah berjenis *Hybrid ISO* (seperti Fedora atau rilis Ubuntu modern), Anda bisa membuat USB bootable langsung dari terminal menggunakan perintah <code>dd</code>. Pastikan Anda sangat berhati-hati saat menentukan nama perangkat USB (misalnya <code>/dev/sdb</code>) agar tidak salah format hard disk utama.</p>
+                <h2>Menggunakan Perintah <code>dd</code></h2>
+                <p>Jika file ISO Linux Anda sudah berjenis <em>Hybrid ISO</em> (seperti Fedora atau rilis Ubuntu modern), Anda bisa membuat USB bootable langsung dari terminal menggunakan perintah <code>dd</code>. Pastikan Anda sangat berhati-hati saat menentukan nama perangkat USB (misalnya <code>/dev/sdb</code>) agar tidak salah format hard disk utama.</p>
                 <pre><code id="code1"># Ganti 'ubuntu.iso' dengan nama file Anda
 # Ganti '/dev/sdX' dengan path USB Anda (cek dengan 'lsblk')
 sudo dd if=ubuntu.iso of=/dev/sdX bs=4M status=progress oflag=sync</code><button class="copy-btn" onclick="copyCode('code1')">Copy</button></pre>

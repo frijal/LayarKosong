@@ -413,7 +413,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(templateId){
       const template=document.getElementById(templateId);
       contentDisplay.appendChild(template.content.cloneNode(true));
-      document.querySelector(`a[href="${hash}"]`)?.classList.add("active-nav");
+      document.querySelector(<code>a[href="${hash}"]</code>)?.classList.add("active-nav");
     } else {
       const welcomeTemplate=document.getElementById("welcome-content");
       contentDisplay.appendChild(welcomeTemplate.content.cloneNode(true));

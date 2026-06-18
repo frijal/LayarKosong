@@ -65,7 +65,7 @@
             --code-bg: #f3f4f6;
             --quote-bg: #f9fafb;
         }
-        /* prefers-color-scheme untuk Tema Gelap (Tanpa JavaScript) */
+        /<em> prefers-color-scheme untuk Tema Gelap (Tanpa JavaScript) </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -83,14 +83,14 @@
             box-sizing: border-box;
         }
         body {
-            /* System font stack untuk performa teks instan */
+            /<em> System font stack untuk performa teks instan </em>/
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
             font-size: 16px;
         }
-        /* Mobile-first: max-width 1000px, center di desktop */
+        /<em> Mobile-first: max-width 1000px, center di desktop </em>/
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -151,7 +151,7 @@
             font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 0.9em;
         }
-        /* Membedakan inline code dan block code */
+        /<em> Membedakan inline code dan block code </em>/
         p > code, li > code {
             background-color: var(--code-bg);
             padding: 0.15rem 0.3rem;
@@ -179,7 +179,7 @@
             font-size: 0.9rem;
             color: var(--meta-color);
         }
-        /* Desktop Adjustments */
+        /<em> Desktop Adjustments </em>/
         @media (min-width: 768px) {
             body { font-size: 17px; }
             h1 { font-size: 2.4rem; }
@@ -223,10 +223,10 @@
             <ol>
                 <li><strong>Rekam layar dulu:</strong> Buka terminal, lalu jalankan perintah FFmpeg di atas.</li>
                 <li><strong>Rekam suara terpisah:</strong> Pakai aplikasi perekam suara favoritmu (seperti Audacity atau sekadar perekam suara bawaan Linux).</li>
-                <li><strong>Gabungkan (Render) di editor:</strong> Sinkronkan visual dan suara di *video editor* seperti Kdenlive, Olive, atau DaVinci Resolve.</li>
+                <li><strong>Gabungkan (Render) di editor:</strong> Sinkronkan visual dan suara di <em>video editor</em> seperti Kdenlive, Olive, atau DaVinci Resolve.</li>
             </ol>
             <blockquote>
-                💡 <strong>Tips Audio Langsung:</strong> Kalau kamu tetap <em>kekeuh</em> ingin merekam audio sekaligus (misal untuk presentasi *live*), tambahkan parameter <code>-f pulse -i default</code> (jika menggunakan PulseAudio) di dalam skrip FFmpeg-mu, atau set input ALSA yang sesuai dengan perangkat keras mikrofonmu.
+                💡 <strong>Tips Audio Langsung:</strong> Kalau kamu tetap <em>kekeuh</em> ingin merekam audio sekaligus (misal untuk presentasi <em>live</em>), tambahkan parameter <code>-f pulse -i default</code> (jika menggunakan PulseAudio) di dalam skrip FFmpeg-mu, atau set input ALSA yang sesuai dengan perangkat keras mikrofonmu.
             </blockquote>
             <h2>Cuplikan Hasil Lapangan 📸</h2>
             <p>Berikut ini adalah contoh cuplikan hasil rekaman layar yang sudah siap disajikan atau masuk dapur <em>editing</em>:</p>

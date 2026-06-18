@@ -52,9 +52,9 @@
     <style>
         :root{
             --bg:#080b12; --fg:#f4f7fb; --muted:#b9c0d0;
-            --c1:#8b5cf6; /* violet */
-            --c2:#22c55e; /* emerald */
-            --c3:#06b6d4; /* cyan */
+            --c1:#8b5cf6; /<em> violet </em>/
+            --c2:#22c55e; /<em> emerald </em>/
+            --c3:#06b6d4; /<em> cyan </em>/
             --panel:#0d111a; --border:#1b2333;
             --radius:18px; --shadow:0 12px 32px rgba(0,0,0,.35);
         }
@@ -100,21 +100,21 @@
         @media (max-width:560px){.grid{grid-template-columns:1fr}}
         .grid img{width:100%;height:240px;object-fit:cover;border-radius:12px;border:1px solid #0a0f1a;background:#0a0f1a;cursor:zoom-in;transition:transform .25s, box-shadow .25s}
         .grid img:hover{transform:translateY(-2px) scale(1.01); box-shadow:0 14px 30px rgba(0,0,0,.35)}
-        /* Lightbox */
+        /<em> Lightbox </em>/
         .lightbox{position:fixed;inset:0;display:none;place-items:center;background:rgba(1,4,10,.85);z-index:9990;padding:2rem}
         .lightbox.open{display:grid}
         .lightbox img{max-width:95vw;max-height:82vh;border-radius:14px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
         .lightbox .nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:2rem}
         .lightbox button{background:#0b1220d0;border:1px solid var(--border);color:#e7ecf7;border-radius:999px;width:44px;height:44px;display:grid;place-items:center;cursor:pointer}
         .lightbox .close{position:absolute;top:1rem;right:1rem}
-        /* Share */
+        /<em> Share </em>/
         .share{display:flex;gap:6rem;flex-wrap:wrap;margin-top:1rem}
         .share a{display:inline-flex;align-items:center;gap:5rem;padding:6rem .8rem;border-radius:12px;background:#0a0f1a;border:1px solid var(--border);color:#e7ecf7;text-decoration:none;box-shadow:var(--shadow)}
         .share a:hover{transform:translateY(-1px)}
         .share svg{width:18px;height:18px}
-        /* Info bar removed */
-        /* Floating nav buttons removed */
-        /* Quran block */
+        /<em> Info bar removed </em>/
+        /<em> Floating nav buttons removed </em>/
+        /<em> Quran block </em>/
         .quran{margin:2rem 0;padding:1.25rem;border:1px solid var(--border);border-radius:14px;background:#0b121fcc}
         .quran h2{font-size:1.45rem;margin:0 0 .75rem;color:#93c5fd}
         .toc{margin:1rem 0 1.5rem;padding:1rem;border-radius:10px;background:#0a0f1a;border:1px solid var(--border)}
@@ -319,10 +319,10 @@
                 const title = document.title;
                 const url = 'https://dalam.web.id/artikel/bahtera-nuh-mukjizat.html'; // Use canonical URL
                 let shareUrl = url;
-                if (net === 'fb') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                if (net === 'tw') shareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}&via=frijal`;
-                if (net === 'wa') shareUrl = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
-                if (net === 'tg') shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+                if (net === 'fb') shareUrl = <code>https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}</code>;
+                if (net === 'tw') shareUrl = <code>https://x.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}&via=frijal</code>;
+                if (net === 'wa') shareUrl = <code>https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}</code>;
+                if (net === 'tg') shareUrl = <code>https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}</code>;
                 if (net === 'cp') {
                     navigator.clipboard?.writeText(url).then(() => {
                         const originalText = btn.innerHTML;

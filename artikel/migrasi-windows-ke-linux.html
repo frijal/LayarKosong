@@ -47,27 +47,27 @@
     <meta name="keywords" content="migrasi linux, windows ke linux, panduan linux pemula, ubuntu, linux mint, instalasi linux">
     <meta name="date" content="2025-09-28">
   <style>
-        /* --- 1. DESIGN TOKENS (Modern Fluid Ecosystem) --- */
+        /<em> --- 1. DESIGN TOKENS (Modern Fluid Ecosystem) --- </em>/
         :root {
-            /* Mode Terang (Light Mode - WCAG AA Compliant) */
+            /<em> Mode Terang (Light Mode - WCAG AA Compliant) </em>/
             --bg: #ffffff;
             --text: #1a1a1a;
             --muted: #5c5c5c;
-            --accent: #005a9e; /* Biru korporat pekat lolos kontras */
+            --accent: #005a9e; /<em> Biru korporat pekat lolos kontras </em>/
             --accent-hover: #0078d4;
             --card: #f7f7f9;
             --border: #e5e7eb;
-            /* Komponen Edukatif */
+            /<em> Komponen Edukatif </em>/
             --bg-note: #eef7ff;
-            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) */
+            /<em> Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) </em>/
             --max-width: 62.5rem; 
-            --radius-lg: 1rem;     /* 16px */
-            --radius-md: 0.5rem;   /* 8px */
-            --radius-sm: 0.3125rem; /* 5px */
+            --radius-lg: 1rem;     /<em> 16px </em>/
+            --radius-md: 0.5rem;   /<em> 8px </em>/
+            --radius-sm: 0.3125rem; /<em> 5px </em>/
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Mode Gelap (Dark Mode) */
+                /<em> Mode Gelap (Dark Mode) </em>/
                 --bg: #0b0f1a;
                 --text: #e8ecf8;
                 --muted: #a8b0c2;
@@ -78,8 +78,8 @@
                 --bg-note: #0f2447;
             }
         }
-        /* --- 2. ACCESSIBLE RESET & ANTI-JUSTIFY --- */
-        *, *::before, *::after { 
+        /<em> --- 2. ACCESSIBLE RESET & ANTI-JUSTIFY --- </em>/
+        <em>, </em>::before, *::after { 
             box-sizing: border-box; 
         }
         html, body { 
@@ -94,12 +94,12 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier Center) --- */
+        /<em> --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier Center) --- </em>/
         .container {
             width: 100%;
             max-width: var(--max-width); 
             margin: 0 auto; 
-            padding: 1.25rem 1rem; /* Ruang aman tepi layar HP */
+            padding: 1.25rem 1rem; /<em> Ruang aman tepi layar HP </em>/
         }
         @media (min-width: 48rem) {
             .container {
@@ -107,7 +107,7 @@
                 margin: 2.5rem auto;
             }
         }
-        /* --- 4. SEMANTIC TYPOGRAPHY & HEADINGS --- */
+        /<em> --- 4. SEMANTIC TYPOGRAPHY & HEADINGS --- </em>/
         h1, h2, h3 {
             color: var(--accent);
             text-align: center;
@@ -120,12 +120,12 @@
         }
         h1 { font-size: clamp(1.625rem, 5vw, 2.5rem); }
         h2 { font-size: clamp(1.375rem, 4vw, 1.875rem); margin-top: 2rem; }
-        /* Aksesibilitas Terjaga: Menggunakan rata kiri, bukan justify! */
+        /<em> Aksesibilitas Terjaga: Menggunakan rata kiri, bukan justify! </em>/
         article, section { 
             margin-bottom: 1.25rem; 
             text-align: left; 
         }
-        /* --- 5. COMPONENT: ACCESSIBLE NOTE --- */
+        /<em> --- 5. COMPONENT: ACCESSIBLE NOTE --- </em>/
         .note { 
             background-color: var(--bg-note); 
             border-left: 0.25rem solid var(--accent); 
@@ -134,10 +134,10 @@
             border-radius: 0 var(--radius-md) var(--radius-md) 0; 
             font-size: 0.95rem;
         }
-        /* --- 6. COMPONENT: 1-COLUMN RESPONSIBLE GALLERY --- */
+        /<em> --- 6. COMPONENT: 1-COLUMN RESPONSIBLE GALLERY --- </em>/
         .gallery { 
             display: grid; 
-            /* Menggunakan satuan rem dinamis untuk lebar minimum kolom gambar */
+            /<em> Menggunakan satuan rem dinamis untuk lebar minimum kolom gambar </em>/
             grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr)); 
             gap: 1rem; 
             margin: 1.25rem 0; 
@@ -154,7 +154,7 @@
         .gallery img:hover { 
             transform: scale(1.03); 
         }
-        /* --- 7. COMPONENT: INTERACTIVE MULTI-IMAGE LIGHTBOX --- */
+        /<em> --- 7. COMPONENT: INTERACTIVE MULTI-IMAGE LIGHTBOX --- </em>/
         .lightbox { 
             display: none; 
             position: fixed; 
@@ -163,7 +163,7 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background-color: rgba(11, 15, 26, 0.95); /* Menggunakan warna dasar super gelap */
+            background-color: rgba(11, 15, 26, 0.95); /<em> Menggunakan warna dasar super gelap </em>/
             justify-content: center; 
             align-items: center; 
             padding: 1rem;
@@ -175,7 +175,7 @@
             object-fit: contain;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        /* Tombol Kontrol Lightbox */
+        /<em> Tombol Kontrol Lightbox </em>/
         .lightbox-close { 
             position: absolute; 
             top: 1.25rem; 
@@ -209,7 +209,7 @@
         }
         .prev { left: 1rem; }
         .next { right: 1rem; }
-        /* --- 8. FOOTER SECTION --- */
+        /<em> --- 8. FOOTER SECTION --- </em>/
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -244,7 +244,7 @@
             </div>
             <section>
                 <h2>3. Pemasangan Perangkat Lunak: Terpusat &amp; Terkurasi</h2>
-                <p>Ini adalah salah satu perbedaan terbesar dari Windows. Lupakan kebiasaan mengunduh dan mengklik file `*.exe` dari berbagai situs web. Di Linux, instalasi perangkat lunak dilakukan melalui manajer paket dan pusat aplikasi (Software Center). Anggap saja ini seperti "App Store" atau "Play Store" resmi untuk desktop Anda—lebih aman, lebih mudah, dan terintegrasi.</p>
+                <p>Ini adalah salah satu perbedaan terbesar dari Windows. Lupakan kebiasaan mengunduh dan mengklik file <code>*.exe</code> dari berbagai situs web. Di Linux, instalasi perangkat lunak dilakukan melalui manajer paket dan pusat aplikasi (Software Center). Anggap saja ini seperti "App Store" atau "Play Store" resmi untuk desktop Anda—lebih aman, lebih mudah, dan terintegrasi.</p>
             </section>
                        <div id="related-articles-grid"></div><div id="response"></div>
     </article>

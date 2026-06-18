@@ -50,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
   <style>
-      /* 1. Definisikan Variabel Tema Terang (Default) */
+      /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
       :root {
         --primary-color: #4285f4;
         --dark-color: #202124;
@@ -58,7 +58,7 @@
         --grey-color: #f1f3f4;
         --text-color: #3c4043;
         --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        /* Variabel Semantik Baru untuk Menjinakkan Mode Gelap */
+        /<em> Variabel Semantik Baru untuk Menjinakkan Mode Gelap </em>/
         --body-bg: var(--light-color);
         --main-text: var(--text-color);
         --heading-color: var(--dark-color);
@@ -70,25 +70,25 @@
         --footer-bg: var(--dark-color);
         --footer-text: var(--grey-color);
       }
-      /* 2. Otomatis Tema Gelap (Dark Mode) */
+      /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
       @media (prefers-color-scheme: dark) {
         :root {
-          /* Biru neon yang lebih soft agar tidak merusak retina di tempat gelap */
+          /<em> Biru neon yang lebih soft agar tidak merusak retina di tempat gelap </em>/
           --primary-color: #8ab4f8; 
-          --body-bg: #121212;      /* Latar belakang malam premium */
-          --main-text: #e8eaed;    /* Teks abu terang lembut */
-          --heading-color: #f1f3f4;/* Judul menyala terang */
-          --strong-color: #ffffff;  /* Teks tebal putih bersih */
-          --section-bg: #1f2023;   /* Kotak komentar & share jadi abu-abu gelap proporsional */
+          --body-bg: #121212;      /<em> Latar belakang malam premium </em>/
+          --main-text: #e8eaed;    /<em> Teks abu terang lembut </em>/
+          --heading-color: #f1f3f4;/<em> Judul menyala terang </em>/
+          --strong-color: #ffffff;  /<em> Teks tebal putih bersih </em>/
+          --section-bg: #1f2023;   /<em> Kotak komentar & share jadi abu-abu gelap proporsional </em>/
           --caption-text: #9aa0a6;
           --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-          --header-bg: #1f2023;    /* Header dibuat sedikit lebih terang dari bodi agar ada dimensi */
+          --header-bg: #1f2023;    /<em> Header dibuat sedikit lebih terang dari bodi agar ada dimensi </em>/
           --header-text: #e8eaed;
           --footer-bg: #1f2023;
           --footer-text: #9aa0a6;
         }
       }
-      /* 3. Base Styles (Mempertahankan Struktur Asli Kamu) */
+      /<em> 3. Base Styles (Mempertahankan Struktur Asli Kamu) </em>/
       * {
         margin: 0;
         padding: 0;
@@ -99,8 +99,8 @@
       }
       body {
         font-family: 'Poppins', sans-serif;
-        background-color: var(--body-bg); /* Diubah ke variabel dinamis */
-        color: var(--main-text);          /* Diubah ke variabel dinamis */
+        background-color: var(--body-bg); /<em> Diubah ke variabel dinamis </em>/
+        color: var(--main-text);          /<em> Diubah ke variabel dinamis </em>/
         line-height: 1.8;
         overflow-x: hidden;
         display: flex;
@@ -117,19 +117,19 @@
       header {
         text-align: center;
         margin-bottom: 2rem;
-        padding: 3rem 1rem; /* Sedikit ditambah biar lebih bernapas */
-        background: var(--header-bg); /* Diubah ke variabel dinamis */
-        color: var(--header-text);   /* Diubah ke variabel dinamis */
+        padding: 3rem 1rem; /<em> Sedikit ditambah biar lebih bernapas </em>/
+        background: var(--header-bg); /<em> Diubah ke variabel dinamis </em>/
+        color: var(--header-text);   /<em> Diubah ke variabel dinamis </em>/
         transition: background-color 0.3s, color 0.3s;
       }
       header h1 {
-        font-size: clamp(2rem, 6vw, 2.8rem); /* Fleksibel mengikuti lebar device */
+        font-size: clamp(2rem, 6vw, 2.8rem); /<em> Fleksibel mengikuti lebar device </em>/
         font-weight: 700;
         margin-bottom: 0.5rem;
       }
       article h2 {
-        font-size: clamp(1.5rem, 4vw, 2rem); /* Fleksibel di mobile */
-        color: var(--heading-color);         /* Diubah ke variabel dinamis (ANTI-HILANG) */
+        font-size: clamp(1.5rem, 4vw, 2rem); /<em> Fleksibel di mobile </em>/
+        color: var(--heading-color);         /<em> Diubah ke variabel dinamis (ANTI-HILANG) </em>/
         margin-top: 2.5rem;
         margin-bottom: 1rem;
         border-bottom: 3px solid var(--primary-color);
@@ -138,7 +138,7 @@
       }
       article h3 {
         font-size: 1.5rem;
-        color: var(--heading-color);         /* Diubah ke variabel dinamis */
+        color: var(--heading-color);         /<em> Diubah ke variabel dinamis </em>/
         margin-top: 2rem;
         margin-bottom: 0.8rem;
         transition: color 0.3s;
@@ -172,7 +172,7 @@
         font-size: 1.1rem;
       }
       article strong {
-        color: var(--strong-color); /* Diubah ke variabel dinamis */
+        color: var(--strong-color); /<em> Diubah ke variabel dinamis </em>/
         font-weight: 600;
         transition: color 0.3s;
       }
@@ -208,7 +208,7 @@
       figcaption {
         margin-top: 1rem;
         font-style: italic;
-        color: var(--caption-text); /* Diubah ke variabel dinamis */
+        color: var(--caption-text); /<em> Diubah ke variabel dinamis </em>/
         font-size: 0.95rem;
         transition: color 0.3s;
       }
@@ -220,7 +220,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.9); /* Tetap hitam pekat demi fokus mata */
+        background-color: rgba(0, 0, 0, 0.9); /<em> Tetap hitam pekat demi fokus mata </em>/
         justify-content: center;
         align-items: center;
       }
@@ -249,7 +249,7 @@
       .action-button {
         display: inline-block;
         background-color: var(--primary-color);
-        color: #ffffff; /* Dipaku putih agar kontras di tombol biru */
+        color: #ffffff; /<em> Dipaku putih agar kontras di tombol biru </em>/
         padding: 12px 25px;
         border-radius: 50px;
         text-decoration: none;
@@ -268,7 +268,7 @@
       .comments-section {
         margin-top: 3rem;
         padding: 2rem;
-        background-color: var(--section-bg); /* Diubah ke variabel dinamis (ANTI-SILAU) */
+        background-color: var(--section-bg); /<em> Diubah ke variabel dinamis (ANTI-SILAU) </em>/
         border-radius: 12px;
         text-align: center;
         transition: background-color 0.3s;
@@ -281,12 +281,12 @@
       .share-buttons {
         display: flex;
         justify-content: center;
-        gap: 20px; /* Jarak antar ikon agak dilebarkan */
+        gap: 20px; /<em> Jarak antar ikon agak dilebarkan </em>/
         flex-wrap: wrap;
       }
       .share-btn {
         font-size: 1.8rem;
-        color: var(--main-text); /* Menyelaraskan warna ikon sosmed default */
+        color: var(--main-text); /<em> Menyelaraskan warna ikon sosmed default </em>/
         transition: transform 0.3s ease, color 0.3s ease;
       }
       .share-btn:hover {
@@ -301,19 +301,19 @@
         text-align: center;
         padding: 2rem;
         margin-top: auto;
-        background-color: var(--footer-bg); /* Diubah ke variabel dinamis */
-        color: var(--footer-text);         /* Diubah ke variabel dinamis */
+        background-color: var(--footer-bg); /<em> Diubah ke variabel dinamis </em>/
+        color: var(--footer-text);         /<em> Diubah ke variabel dinamis </em>/
         transition: background-color 0.3s, color 0.3s;
       }
-      /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) */
+      /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) </em>/
       @media (max-width: 768px) {
         header {
-          padding: 2rem 1rem; /* Padding header dihemat di mobile */
+          padding: 2rem 1rem; /<em> Padding header dihemat di mobile </em>/
         }
         .container {
-          padding: 1.5rem 1rem; /* Ruang baca teks dimaksimalkan */
+          padding: 1.5rem 1rem; /<em> Ruang baca teks dimaksimalkan </em>/
         }
-        /* Memperbesar area ketukan tombol share sosmed agar ramah jempol */
+        /<em> Memperbesar area ketukan tombol share sosmed agar ramah jempol </em>/
         .share-buttons {
           gap: 25px;
         }

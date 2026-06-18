@@ -87,7 +87,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
-            padding: 16px 8px; /* Mobile first padding */
+            padding: 16px 8px; /<em> Mobile first padding </em>/
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
         }
@@ -142,7 +142,7 @@
             color: var(--text-color);
             font-weight: 600;
         }
-        /* Prevent layout shift with aspect-ratio */
+        /<em> Prevent layout shift with aspect-ratio </em>/
         .article-image {
             width: 100%;
             height: auto;
@@ -151,7 +151,7 @@
             border-radius: 8px;
             margin: 16px 0 8px 0;
             border: 1px solid var(--border-color);
-            background-color: var(--list-bg); /* placeholder color */
+            background-color: var(--list-bg); /<em> placeholder color </em>/
         }
         .image-caption {
             font-size: 0.85rem;
@@ -180,7 +180,7 @@
             color: var(--primary-accent);
         }
         .alert-box {
-            background-color: rgba(239, 68, 68, 0.1); /* Subtle Red */
+            background-color: rgba(239, 68, 68, 0.1); /<em> Subtle Red </em>/
             border-left: 4px solid #ef4444;
             padding: 16px;
             border-radius: 0 8px 8px 0;
@@ -225,7 +225,7 @@
             border-top: 1px solid var(--border-color);
             margin-top: 40px;
         }
-        /* Desktop Adjustments */
+        /<em> Desktop Adjustments </em>/
         @media (min-width: 768px) {
             body {
                 padding: 32px 16px;
@@ -245,7 +245,7 @@
                 display: inline-block;
             }
         }
-        /* Mobile separator hide */
+        /<em> Mobile separator hide </em>/
         @media (max-width: 767px) {
             .author-meta .separator {
                 display: none;
@@ -267,28 +267,28 @@
             </div>
         </header>
         <main role="main" class="main-content">
-            <p>Kalau kamu menggunakan lingkungan desktop GNOME di sistem operasi Linux, kamu pasti setuju bahwa desain bawaannya sangat bersih (*clean*), sederhana, dan memang dibuat sangat minimalis by design. Tidak ada distraksi berlebih yang mengganggu produktivitas.</p>
-            <p>Namun, inilah sisi indah dari menggunakan sistem operasi Linux: kamu tidak akan pernah dibatasi hanya pada setelan "default" atau bawaan pabrik saja. Melalui sebuah fitur powerful bernama <strong>GNOME Extensions</strong>, kamu memiliki kebebasan absolut untuk membentuk, merombak, dan mengkustomisasi *desktop* kamu persis seperti yang kamu inginkan.</p>
+            <p>Kalau kamu menggunakan lingkungan desktop GNOME di sistem operasi Linux, kamu pasti setuju bahwa desain bawaannya sangat bersih (<em>clean</em>), sederhana, dan memang dibuat sangat minimalis by design. Tidak ada distraksi berlebih yang mengganggu produktivitas.</p>
+            <p>Namun, inilah sisi indah dari menggunakan sistem operasi Linux: kamu tidak akan pernah dibatasi hanya pada setelan "default" atau bawaan pabrik saja. Melalui sebuah fitur powerful bernama <strong>GNOME Extensions</strong>, kamu memiliki kebebasan absolut untuk membentuk, merombak, dan mengkustomisasi <em>desktop</em> kamu persis seperti yang kamu inginkan.</p>
             <img class="article-image" src="https://dalam.web.id/img/www.debugpoint.com/8a9c29a22ab84e85.webp" alt="Ilustrasi antarmuka desktop GNOME Linux yang sudah dikustomisasi dengan berbagai ekstensi modern" fetchpriority="high" decoding="async">
             <div class="image-caption">Gambar 1: Tampilan desktop Linux GNOME yang dinamis dan fleksibel.</div>
             <h2>Who &amp; Where: Siapa Saja yang Bisa Melakukan Ini?</h2>
-            <p>Jawaban singkatnya: <strong>Siapa pun!</strong> Selama distro Linux yang kamu pakai menjalankan *Desktop Environment* GNOME, ekstensi-ekstensi ini siap digunakan. Baik kamu pengguna setia <strong>Ubuntu, Fedora, Debian, Arch Linux, Manjaro, ataupun openSUSE</strong>, kamu tidak perlu mengganti distro hanya untuk mendapatkan tampilan yang berbeda.</p>
+            <p>Jawaban singkatnya: <strong>Siapa pun!</strong> Selama distro Linux yang kamu pakai menjalankan <em>Desktop Environment</em> GNOME, ekstensi-ekstensi ini siap digunakan. Baik kamu pengguna setia <strong>Ubuntu, Fedora, Debian, Arch Linux, Manjaro, ataupun openSUSE</strong>, kamu tidak perlu mengganti distro hanya untuk mendapatkan tampilan yang berbeda.</p>
             <p>Untuk mendapatkan ekstensi-ekstensi ini, kamu memiliki dua lokasi utama (<em>Where</em>):</p>
             <ol>
                 <li>Mengunjungi situs web resmi melalui browser di <a class="link-out" href="https://extensions.gnome.org" target="_blank" rel="noopener noreferrer">extensions.gnome.org</a>.</li>
-                <li>Atau cara yang jauh lebih praktis dan rapi: mengunduh aplikasi <strong>Extension Manager</strong> (tersedia di Flathub/repositori bawaan distro). Aplikasi ini menawarkan pengalaman pencarian, instalasi, dan pembaruan ekstensi dalam satu jendela (*cleaner experience*).</li>
+                <li>Atau cara yang jauh lebih praktis dan rapi: mengunduh aplikasi <strong>Extension Manager</strong> (tersedia di Flathub/repositori bawaan distro). Aplikasi ini menawarkan pengalaman pencarian, instalasi, dan pembaruan ekstensi dalam satu jendela (<em>cleaner experience</em>).</li>
             </ol>
             <h2>Why: Mengapa Kita Membutuhkan Ekstensi GNOME?</h2>
             <p>GNOME sengaja menjaga segala sesuatunya agar tetap simpel. Namun, alur kerja tiap pengguna tentu berbeda-beda. Di sinilah GNOME Extensions mengambil peran penting. Ekstensi ini memberikan kekuatan tambahan padamu untuk:</p>
             <ul>
                 <li>Menambahkan <em>taskbar</em> bawah layaknya sistem operasi Windows.</li>
                 <li>Mendapatkan menu daftar aplikasi (<em>applications menu</em>) yang lebih intuitif dan terstruktur.</li>
-                <li>Menyuntikkan efek *blur* transparan yang modern ke seluruh elemen sistem (*Shell*).</li>
-                <li>Menghidupkan kembali fungsi ikon di layar desktop (*desktop icons*) yang pada versi modern sering dimatikan.</li>
-                <li>Mengelola riwayat teks yang pernah di-copy (*clipboard history*) agar kerja lebih sat-set.</li>
+                <li>Menyuntikkan efek <em>blur</em> transparan yang modern ke seluruh elemen sistem (<em>Shell</em>).</li>
+                <li>Menghidupkan kembali fungsi ikon di layar desktop (<em>desktop icons</em>) yang pada versi modern sering dimatikan.</li>
+                <li>Mengelola riwayat teks yang pernah di-copy (<em>clipboard history</em>) agar kerja lebih sat-set.</li>
                 <li>Meningkatkan fungsi navigasi <em>workspaces</em>.</li>
-                <li>Mengubah secara drastis perilaku layout (*layout behavior*) pada jendela aplikasi.</li>
-                <li>Menyesuaikan aksen warna dan susunan ikon sesuai *mood*.</li>
+                <li>Mengubah secara drastis perilaku layout (<em>layout behavior</em>) pada jendela aplikasi.</li>
+                <li>Menyesuaikan aksen warna dan susunan ikon sesuai <em>mood</em>.</li>
             </ul>
             <img class="article-image" src="https://dalam.web.id/img/scontent_sin6_2.xx.fbcdn.net/cddae55c6e399277.webp" alt="Daftar ekstensi populer pada aplikasi Extension Manager di Linux" loading="lazy" decoding="async">
             <div class="image-caption">Gambar 2: Mengelola ekstensi menggunakan aplikasi pihak ketiga.</div>
@@ -296,21 +296,21 @@
             <p>Bagaimana cara membuat desktop GNOME kamu terlihat sepenuhnya berbeda hanya dengan beberapa klik? Berikut adalah jajaran ekstensi favorit yang sering dibicarakan oleh komunitas pengguna GNOME:</p>
             <ul class="extension-list">
                 <li><strong>ArcMenu</strong> – Menghadirkan menu aplikasi yang lebih tradisional, terstruktur, dan tentu saja sangat bisa dikustomisasi.</li>
-                <li><strong>App Icons Taskbar</strong> – Mengembalikan nuansa *taskbar* klasik yang sering dirindukan oleh mantan pengguna Windows atau pengguna Linux *old-school*.</li>
-                <li><strong>Blur My Shell</strong> – Mengaplikasikan efek *blur* (kabur) yang sangat halus pada panel, *dash*, dan aplikasi untuk memberikan sentuhan gaya modern yang elegan.</li>
-                <li><strong>Clipboard Indicator</strong> – Penyelamat hidup para pekerja digital! Simpan riwayat *copy-paste* teks panjang, dan kamu tidak akan pernah kehilangan teks penting lagi.</li>
-                <li><strong>GTK4 Desktop Icons (DING)</strong> – Solusi tuntas bagi kamu yang merasa "wajib" menyimpan file atau folder langsung di area *desktop*.</li>
-                <li><strong>V-Shell</strong> – Modifikasi level dewa untuk mengubah cara kerja dan tampilan *workspace* di GNOME.</li>
+                <li><strong>App Icons Taskbar</strong> – Mengembalikan nuansa <em>taskbar</em> klasik yang sering dirindukan oleh mantan pengguna Windows atau pengguna Linux <em>old-school</em>.</li>
+                <li><strong>Blur My Shell</strong> – Mengaplikasikan efek <em>blur</em> (kabur) yang sangat halus pada panel, <em>dash</em>, dan aplikasi untuk memberikan sentuhan gaya modern yang elegan.</li>
+                <li><strong>Clipboard Indicator</strong> – Penyelamat hidup para pekerja digital! Simpan riwayat <em>copy-paste</em> teks panjang, dan kamu tidak akan pernah kehilangan teks penting lagi.</li>
+                <li><strong>GTK4 Desktop Icons (DING)</strong> – Solusi tuntas bagi kamu yang merasa "wajib" menyimpan file atau folder langsung di area <em>desktop</em>.</li>
+                <li><strong>V-Shell</strong> – Modifikasi level dewa untuk mengubah cara kerja dan tampilan <em>workspace</em> di GNOME.</li>
                 <li><strong>Accent Icons</strong> – Memberikan kamu kontrol penuh untuk mengganti warna aksen pada ikon maupun folder.</li>
             </ul>
             <h2>When: Kapan perlu Mengerem Kustomisasi? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. (Saran Sesama Pengguna)</h2>
             <p>Penting untuk diingat bahwa kebebasan yang besar datang dengan tanggung jawab besar pula.</p>
             <div class="alert-box">
                 <h3>⚠️ Nasihat Kecil dari Sesama Pengguna Linux</h3>
-                <p>Tolong, jangan langsung menginstal 20 ekstensi sekaligus pada saat bersamaan (<em>When</em>). Jaga agar sistem tetap bersih. Uji coba ekstensi-ekstensi tersebut satu per satu secara perlahan. Beberapa ekstensi, terutama yang berurusan dengan modifikasi *shell* level dalam, bisa jadi saling berkonflik atau justru memakan banyak memori (*affect performance*).</p>
+                <p>Tolong, jangan langsung menginstal 20 ekstensi sekaligus pada saat bersamaan (<em>When</em>). Jaga agar sistem tetap bersih. Uji coba ekstensi-ekstensi tersebut satu per satu secara perlahan. Beberapa ekstensi, terutama yang berurusan dengan modifikasi <em>shell</em> level dalam, bisa jadi saling berkonflik atau justru memakan banyak memori (<em>affect performance</em>).</p>
             </div>
-            <p>Pada dasarnya, GNOME itu sangat stabil dan mulus secara default. Modifikasilah dengan bijak dan proporsional. Keindahan utama dari Linux dan *Free Software* adalah kenyataan bahwa kamu tidak pernah dipaksa masuk ke dalam satu pengalaman kaku (*You're not forced into one experience*). Kamulah yang membangun pengalamanmu sendiri.</p>
-            <p>Jadi, untuk para pengguna GNOME di luar sana... Apakah kamu setia menjalankan GNOME *stock* yang bersih, atau desktop kamu sudah <em>fully customized</em>? 😄</p>
+            <p>Pada dasarnya, GNOME itu sangat stabil dan mulus secara default. Modifikasilah dengan bijak dan proporsional. Keindahan utama dari Linux dan <em>Free Software</em> adalah kenyataan bahwa kamu tidak pernah dipaksa masuk ke dalam satu pengalaman kaku (<em>You're not forced into one experience</em>). Kamulah yang membangun pengalamanmu sendiri.</p>
+            <p>Jadi, untuk para pengguna GNOME di luar sana... Apakah kamu setia menjalankan GNOME <em>stock</em> yang bersih, atau desktop kamu sudah <em>fully customized</em>? 😄</p>
             <section class="references">
                 <h4>📚 Referensi Terkait:</h4>
                 <ul>

@@ -56,9 +56,9 @@
       --ink: #1a1d21;
       --muted: #5f6b7a;
       --line: #e7eaf0;
-      --brand: #7c3aed;   /* violet */
-      --accent: #16a34a;  /* green */
-      --warn: #e11d48;    /* rose */
+      --brand: #7c3aed;   /<em> violet </em>/
+      --accent: #16a34a;  /<em> green </em>/
+      --warn: #e11d48;    /<em> rose </em>/
       --maxw: 780px;
       --lh: 1.8;
     }
@@ -76,13 +76,13 @@
     a { color: var(--brand); text-decoration: none }
     a:hover { text-decoration: underline }
     img { max-width: 100%; height: auto; border-radius: 14px }
-    /* Single column container */
+    /<em> Single column container </em>/
     main {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 26px clamp(16px, 5vw, 36px) 90px;
     }
-    /* Title block, with subtle grid accent */
+    /<em> Title block, with subtle grid accent </em>/
     .title {
       position: relative;
       padding: clamp(18px, 3vw, 28px);
@@ -104,7 +104,7 @@
       color: var(--muted);
       font-size: clamp(15px, 2.6vw, 18px);
     }
-    /* Info chips row */
+    /<em> Info chips row </em>/
     .chips {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -117,7 +117,7 @@
       font-size: 13px;
     }
     .chip svg { width: 16px; height: 16px }
-    /* Content blocks */
+    /<em> Content blocks </em>/
     .block {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -140,7 +140,7 @@
       border-radius: 8px;
       font-style: italic;
     }
-    /* Gallery */
+    /<em> Gallery </em>/
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -162,7 +162,7 @@
       font-size: 13px;
     }
     .zoomable { cursor: zoom-in }
-    /* Lightbox */
+    /<em> Lightbox </em>/
     .lightbox {
       position: fixed; inset: 0; z-index: 50;
       display: none; align-items: center; justify-content: center;
@@ -194,7 +194,7 @@
       color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    /* Share strip */
+    /<em> Share strip </em>/
     .share-strip {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -207,7 +207,7 @@
     }
     .share-btn svg { width: 18px; height: 18px }
     .copy-ok { color: #16a34a }
-    /* Accessibility & motion preferences */
+    /<em> Accessibility & motion preferences </em>/
     :focus-visible { outline: 2px solid rgba(124,58,237,0.45); outline-offset: 2px }
     @media (min-width: 1100px) {
       :root { --maxw: 880px }
@@ -323,7 +323,7 @@
   </div>
   <script>
     (function() {
-      const safe = (f) => { try { f(); } catch (e) { /* tetap lanjut */ } };
+      const safe = (f) => { try { f(); } catch (e) { /<em> tetap lanjut </em>/ } };
       safe(() => {
         const url = new URL(window.location.href);
         const canonical = document.querySelector('#canonical-link');
@@ -354,7 +354,7 @@
         const words = text.trim().split(/\s+/).length;
         const min = Math.max(3, Math.round(words / 200));
         const el = document.querySelector('#read-time span');
-        if (el) el.textContent = `Waktu baca: ~${min} menit`;
+        if (el) el.textContent = <code>Waktu baca: ~${min} menit</code>;
       });
       // Lightbox gallery with arrow keys
       safe(() => {
@@ -370,7 +370,7 @@
           idx = i;
           lbImg.src = items[idx].src;
           lb.classList.add('open');
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
           document.body.style.overflow = 'hidden';
         };
         const closeLb = () => {
@@ -381,7 +381,7 @@
         const step = (d) => {
           idx = (idx + d + items.length) % items.length;
           lbImg.src = items[idx].src;
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
         };
         document.querySelectorAll('.zoomable').forEach((fig, i) => {
           fig.addEventListener('click', () => openAt(i));

@@ -47,9 +47,9 @@
     <meta name="keywords" content="npm, node.js, list global packages, cek paket npm, npm list, yarn global, pnpm list, tutorial, cli, developer">
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
  <style>
-        /* --- 1. DESIGN TOKENS (Modern Fluid Ecosystem) --- */
+        /<em> --- 1. DESIGN TOKENS (Modern Fluid Ecosystem) --- </em>/
         :root {
-            /* Mode Terang (Light Mode - WCAG AA Compliant) */
+            /<em> Mode Terang (Light Mode - WCAG AA Compliant) </em>/
             --bg: #ffffff;
             --text: #1a1a1a;
             --muted: #5c5c5c;
@@ -59,7 +59,7 @@
             --border: #e5e7eb;
             --code-bg: #0b1020;
             --code-text: #e5f0ff;
-            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Center) */
+            /<em> Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Center) </em>/
             --max-width: 62.5rem; 
             --radius-lg: 1rem;     
             --radius-md: 0.75rem;  
@@ -67,7 +67,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Mode Gelap (Dark Mode) */
+                /<em> Mode Gelap (Dark Mode) </em>/
                 --bg: #0b0f1a;
                 --text: #e8ecf8;
                 --muted: #a8b0c2;
@@ -79,8 +79,8 @@
                 --code-text: #dbe8ff;
             }
         }
-        /* --- 2. ACCESSIBLE RESET --- */
-        *, *::before, *::after { 
+        /<em> --- 2. ACCESSIBLE RESET --- </em>/
+        <em>, </em>::before, *::after { 
             box-sizing: border-box; 
         }
         html, body { 
@@ -95,7 +95,7 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier) --- */
+        /<em> --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier) --- </em>/
         .page { 
             min-height: 100vh; 
             display: grid; 
@@ -110,7 +110,7 @@
             border-bottom: 0.0625rem solid var(--border);
             z-index: 50;
         }
-        /* Semua Kontainer Mengikuti Struktur Tunggal */
+        /<em> Semua Kontainer Mengikuti Struktur Tunggal </em>/
         .nav, .hero, main, .footer-inner {
             width: 100%;
             max-width: var(--max-width); 
@@ -143,7 +143,7 @@
             gap: 0.5rem; 
             flex-wrap: wrap; 
         }
-        /* --- 4. HERO SECTION (1 Kolom Vertikal) --- */
+        /<em> --- 4. HERO SECTION (1 Kolom Vertikal) --- </em>/
         .hero {
             display: flex;
             flex-direction: column;
@@ -185,7 +185,7 @@
             height: auto;
             border-radius: var(--radius-md); 
         }
-        /* --- 5. MAIN CONTENT SECTION (1 Kolom Linier) --- */
+        /<em> --- 5. MAIN CONTENT SECTION (1 Kolom Linier) --- </em>/
         main {
             display: flex;
             flex-direction: column;
@@ -199,7 +199,7 @@
             font-size: 1.125rem; 
             color: var(--muted); 
         }
-        /* --- 6. KOMPONEN KARTU & KODE ELEMEN --- */
+        /<em> --- 6. KOMPONEN KARTU & KODE ELEMEN --- </em>/
         .card {
             border: 0.0625rem solid var(--border); 
             border-radius: var(--radius-lg);
@@ -223,7 +223,7 @@
         .card > pre:first-child { margin-top: 0; }
         .card > pre:last-child { margin-bottom: 0; }
         .card > strong + pre { margin-top: 0.75rem; }
-        /* --- 7. TOMBOL & INTERAKSI --- */
+        /<em> --- 7. TOMBOL & INTERAKSI --- </em>/
         .icon-btn {
             display: inline-flex; 
             align-items: center; 
@@ -289,7 +289,7 @@
             width: 1.125rem; 
             height: 1.125rem; 
         }
-        /* --- 8. GRID INTERNAL & UTILITAS (Linear Stacked) --- */
+        /<em> --- 8. GRID INTERNAL & UTILITAS (Linear Stacked) --- </em>/
         .grid-2 { 
             display: flex; 
             flex-direction: column; 
@@ -409,7 +409,7 @@
           <pre><code>npm root -g</code></pre>
         </div>
         <h2>Bonus: Kalo Maksudmu Paket di Dalam Proyek (Lokal)</h2>
-        <p>Ini beda kasus ya. Kalau yang kamu maksud adalah "aplikasi" atau paket yang terpasang *di dalam* satu folder proyek spesifik (yang ada di <span class="kbd">package.json</span>), caranya gampang:</p>
+        <p>Ini beda kasus ya. Kalau yang kamu maksud adalah "aplikasi" atau paket yang terpasang <em>di dalam</em> satu folder proyek spesifik (yang ada di <span class="kbd">package.json</span>), caranya gampang:</p>
         <ol>
           <li>Masuk dulu ke folder proyeknya:</li>
         </ol>
@@ -428,7 +428,7 @@
             </button>
             <pre><code>npm list</code></pre>
         </div>
-        <p>Itu bakal nampilin semua paket yang dipake *hanya* untuk proyek itu.</p>
+        <p>Itu bakal nampilin semua paket yang dipake <em>hanya</em> untuk proyek itu.</p>
     </article>
       <aside>
         <div class="card">
@@ -473,7 +473,7 @@
           docEl.msRequestFullscreen();
         }
         // Ganti ikon ke 'exit fullscreen'
-        fsBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 16h3v3h2v-5H5v2Zm3-8H5v2h5V5H8v3Zm6 11h2v-3h3v-2h-5v5Zm2-11V5h-2v5h5V8h-3Z"></path></svg>`;
+        fsBtn.innerHTML = <code><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 16h3v3h2v-5H5v2Zm3-8H5v2h5V5H8v3Zm6 11h2v-3h3v-2h-5v5Zm2-11V5h-2v5h5V8h-3Z"></path></svg></code>;
       } else {
         // Keluar fullscreen
         if (document.exitFullscreen) {
@@ -486,7 +486,7 @@
           document.msExitFullscreen();
         }
         // Ganti ikon kembali ke 'enter fullscreen'
-        fsBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3Zm-2-4h2V7h3V5H5v5Zm12 7h-3v2h5v-5h-2v3ZM14 5v2h3v3h2V5h-5Z"></path></svg>`;
+        fsBtn.innerHTML = <code><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3Zm-2-4h2V7h3V5H5v5Zm12 7h-3v2h5v-5h-2v3ZM14 5v2h3v3h2V5h-5Z"></path></svg></code>;
       }
     }
     // --- Fitur Copy Kode ---
@@ -499,7 +499,7 @@
         try {
           await navigator.clipboard.writeText(codeEl.innerText);
           // Ganti ikon jadi centang
-          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5 1.4-1.4L9 13.4l8.1-8.1 1.4 1.4z"></path></svg>`;
+          btn.innerHTML = <code><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5 1.4-1.4L9 13.4l8.1-8.1 1.4 1.4z"></path></svg></code>;
           btn.title = "Tersalin!";
           // Kembalikan setelah 2 detik
           setTimeout(() => {

@@ -52,9 +52,9 @@
     <style>
         :root{
             --bg:#0a0c11; --fg:#f7fafc; --muted:#cbd5e1;
-            --p1:#a3e635; /* lime */
-            --p2:#f472b6; /* pink */
-            --p3:#60a5fa; /* blue */
+            --p1:#a3e635; /<em> lime </em>/
+            --p2:#f472b6; /<em> pink </em>/
+            --p3:#60a5fa; /<em> blue </em>/
             --panel:#0f131d; --border:#182236;
             --radius:18px; --shadow:0 12px 32px rgba(0,0,0,.35);
         }
@@ -99,19 +99,19 @@
         @media (max-width:560px){.grid{grid-template-columns:1fr}}
         .grid img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid #0a0f1a;background:#0a0f1a;cursor:zoom-in;transition:transform .25s,box-shadow .25s}
         .grid img:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 14px 30px rgba(0,0,0,.35)}
-        /* Lightbox */
+        /<em> Lightbox </em>/
         .lightbox{position:fixed;inset:0;display:none;place-items:center;background:rgba(1,4,10,.86);z-index:9990;padding:2rem}
         .lightbox.open{display:grid}
         .lightbox img{max-width:95vw;max-height:82vh;border-radius:14px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
         .lightbox .nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:2rem}
         .lightbox button{background:#0b1220d0;border:1px solid var(--border);color:#e7ecf7;border-radius:999px;width:44px;height:44px;display:grid;place-items:center;cursor:pointer}
         .lightbox .close{position:absolute;top:1rem;right:1rem}
-        /* Share */
+        /<em> Share </em>/
         .share{display:flex;gap:6rem;flex-wrap:wrap;margin-top:1rem}
         .share a{display:inline-flex;align-items:center;gap:5rem;padding:6rem .8rem;border-radius:12px;background:#0a0f1a;border:1px solid var(--border);color:#e7ecf7;text-decoration:none;box-shadow:var(--shadow)}
         .share a:hover{transform:translateY(-1px)}
         .share svg{width:18px;height:18px}
-        /* Quote */
+        /<em> Quote </em>/
         blockquote{margin:1rem 0;padding:1rem 1.25rem;border-left:4px solid #a3e635;background:#0b121fcc;border-radius:10px;color:#f0f5ff}
         blockquote footer{margin-top:5rem;color:#cbd5e1;font-size:95rem}
         footer{max-width:1200px;margin:2rem auto 5rem;padding:0 1rem;color:#b1bbd3;font-size:9rem}

@@ -162,7 +162,7 @@ function processJSON() {
       if (isNaN(date)) return;
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
-      const key = `${item.kategori}-${year}-${month.toString().padStart(2,'0')}`;
+      const key = <code>${item.kategori}-${year}-${month.toString().padStart(2,'0')}</code>;
       if (!grouped[key]) grouped[key] = { bulan: month, tahun: year, kategori: item.kategori, artikel: [] };
       grouped[key].artikel.push(item);
     });
@@ -170,15 +170,15 @@ function processJSON() {
     let links = "";
     Object.keys(grouped).sort().forEach(key => {
       const group = grouped[key];
-      html += `<h3>${group.kategori} - ${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</h3><ul>`;
+      html += <code><h3>${group.kategori} - ${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</h3><ul></code>;
       group.artikel.forEach(a => {
-        html += `<li><strong>${a.judul}</strong> - <a href="${a.url}" target="_blank">${a.url}</a></li>`;
+        html += <code><li><strong>${a.judul}</strong> - <a href="${a.url}" target="_blank">${a.url}</a></li></code>;
       });
       html += "</ul>";
       // Buat file JSON untuk download
       const blob = new Blob([JSON.stringify(group, null, 2)], {type: "application/json"});
       const url = URL.createObjectURL(blob);
-      links += `<a href="${url}" download="${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')}.json">${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</a>`;
+      links += <code><a href="${url}" download="${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')}.json">${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</a></code>;
     });
     document.getElementById('output').innerHTML = html;
     document.getElementById('downloadLinks').innerHTML = "<h3>Unduh per Bulan & Kategori:</h3>" + links;

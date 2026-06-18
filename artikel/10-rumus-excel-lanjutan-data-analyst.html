@@ -52,7 +52,7 @@
     <meta name="news_keywords" content="excel lanjutan, data analyst, rumus excel, iferror, textsplit, sumproduct, belajar excel, tips data">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* Optimasi CSS Native - Light/Dark Mode Murni tanpa JS/Framework */
+        /<em> Optimasi CSS Native - Light/Dark Mode Murni tanpa JS/Framework </em>/
         :root {
             --bg-color: #fdfdfd;
             --text-color: #2c3e50;
@@ -60,7 +60,7 @@
             --link-color: #2980b9;
             --code-bg: #f1f2f6;
             --border-color: #e0e0e0;
-            --accent-color: #d35400; /* Warna aksen beda untuk artikel ini */
+            --accent-color: #d35400; /<em> Warna aksen beda untuk artikel ini </em>/
         }
         @media (prefers-color-scheme: dark) {
             :root {
@@ -82,7 +82,7 @@
             padding: 0 20px;
             font-size: 18px;
         }
-        /* Layout 1 Kolom Tengah Max 1000px */
+        /<em> Layout 1 Kolom Tengah Max 1000px </em>/
         main {
             max-width: 1000px;
             margin: 40px auto;
@@ -94,7 +94,7 @@
         h1 { font-size: 2.5rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; }
         h2 { font-size: 1.8rem; margin-top: 40px; }
         h3 { font-size: 1.4rem; color: var(--accent-color); }
-        /* Optimasi CLS: Ukuran rasio aman */
+        /<em> Optimasi CLS: Ukuran rasio aman </em>/
         img {
             max-width: 100%;
             height: auto;
@@ -155,10 +155,10 @@
         <p>Siap untuk meningkatkan kecepatan kerjamu? Mari kita bahas 10 rumus saktinya!</p>
         <hr style="border:0; border-top:1px solid var(--border-color); margin:40px 0;">
         <h2>1. IFERROR <i class="fa-solid fa-triangle-exclamation"></i></h2>
-        <p>Paling males kan kalau rumus udah bener, eh malah muncul `#N/A`, `#DIV/0!`, atau `#VALUE!` gara-gara ada sel yang kosong atau salah format? IFERROR ini tamengnya. Dia bakal mengganti pesan error bawaan Excel dengan teks yang lebih manusiawi.</p>
+        <p>Paling males kan kalau rumus udah bener, eh malah muncul <code>#N/A</code>, <code>#DIV/0!</code>, atau <code>#VALUE!</code> gara-gara ada sel yang kosong atau salah format? IFERROR ini tamengnya. Dia bakal mengganti pesan error bawaan Excel dengan teks yang lebih manusiawi.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=IFERROR(rumus_asli, nilai_jika_error)</code></li>
-            <li><strong>Contoh Kasus:</strong> Kamu membagi target (A1) dengan realisasi (B1), tapi B1 kebetulan nol. Biar tidak `#DIV/0!`, ganti jadi teks "Belum Ada Data".</li>
+            <li><strong>Contoh Kasus:</strong> Kamu membagi target (A1) dengan realisasi (B1), tapi B1 kebetulan nol. Biar tidak <code>#DIV/0!</code>, ganti jadi teks "Belum Ada Data".</li>
         </ul>
         <pre><code>=IFERROR(A1/B1, "Belum Ada Data")</code></pre>
         <h2>2. INDEX &amp; MATCH <i class="fa-solid fa-handshake"></i></h2>
@@ -218,7 +218,7 @@
         </ul>
         <pre><code>=XMATCH("RES123", A:A)</code></pre>
         <h2>10. AGGREGATE <i class="fa-solid fa-cubes"></i></h2>
-        <p>Ini adalah versi super saiyan dari fungsi SUBTOTAL. Kalau kamu ngitung total (SUM) tapi di rentang datanya ada pesan error (kayak `#N/A`), fungsi SUM biasa akan ikutan error. Tapi dengan AGGREGATE, kamu bisa kasih perintah: "Hitung totalnya, tapi acuhkan baris yang error atau yang lagi di-hide."</p>
+        <p>Ini adalah versi super saiyan dari fungsi SUBTOTAL. Kalau kamu ngitung total (SUM) tapi di rentang datanya ada pesan error (kayak <code>#N/A</code>), fungsi SUM biasa akan ikutan error. Tapi dengan AGGREGATE, kamu bisa kasih perintah: "Hitung totalnya, tapi acuhkan baris yang error atau yang lagi di-hide."</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=AGGREGATE(nomor_fungsi, opsi_abaikan, rentang_data)</code></li>
             <li><strong>Contoh Kasus:</strong> Menjumlahkan data di kolom A (Fungsi 9 untuk SUM), dengan mengabaikan pesan error (Opsi 6).</li>

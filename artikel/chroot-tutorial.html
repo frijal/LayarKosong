@@ -51,7 +51,7 @@
     <meta name="promphint" content="Apa itu chroot di Linux? | Chroot adalah perintah untuk mengganti direktori root sebuah proses agar terisolasi dari sistem utama, berguna untuk perbaikan dan keamanan.">
     <link rel="preload" as="image" href="https://pbs.twimg.com/media/HKweS5AawAAUBcN?format=jpg&amp;name=large">
     <style>
-        /* CSS Variables untuk Tema Terang dan Gelap */
+        /<em> CSS Variables untuk Tema Terang dan Gelap </em>/
         :root {
             --bg-color: #f8fafc;
             --text-main: #334155;
@@ -82,8 +82,8 @@
                 --quote-bg: #1e293b;
             }
         }
-        /* Reset & Base Typography */
-        *, *::before, *::after {
+        /<em> Reset & Base Typography </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -96,14 +96,14 @@
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        /* Layout Container (Mobile First) */
+        /<em> Layout Container (Mobile First) </em>/
         .container {
             max-width: 64rem;
             width: 100%;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /* Typography */
+        /<em> Typography </em>/
         h1, h2, h3 {
             color: var(--text-heading);
             font-weight: 700;
@@ -138,7 +138,7 @@
             color: var(--accent-hover);
             border-bottom-style: solid;
         }
-        /* Daftar / Lists */
+        /<em> Daftar / Lists </em>/
         ul, ol {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -146,7 +146,7 @@
         li {
             margin-bottom: 0.75rem;
         }
-        /* Blockquote */
+        /<em> Blockquote </em>/
         blockquote {
             background-color: var(--quote-bg);
             border-left: 0.375rem solid var(--quote-border);
@@ -156,7 +156,7 @@
             font-style: italic;
             color: var(--text-heading);
         }
-        /* Optimasi Gambar & Mencegah CLS */
+        /<em> Optimasi Gambar & Mencegah CLS </em>/
         .hero-wrapper {
             margin: 2rem 0;
             border-radius: 0.75rem;
@@ -167,7 +167,7 @@
         .hero-img {
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /* Mencegah Layout Shift (CLS) */
+            aspect-ratio: 16 / 9; /<em> Mencegah Layout Shift (CLS) </em>/
             object-fit: cover;
             display: block;
         }
@@ -178,7 +178,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /* Kode & Syntax Highlighting CSS Murni */
+        /<em> Kode & Syntax Highlighting CSS Murni </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -202,11 +202,11 @@
             font-size: 0.875em;
             border: 0.0625rem solid var(--border-color);
         }
-        /* Emoji/Icon Styling */
+        /<em> Emoji/Icon Styling </em>/
         .icon {
             margin-right: 0.5rem;
         }
-        /* Footer E-E-A-T */
+        /<em> Footer E-E-A-T </em>/
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -250,9 +250,9 @@
             </ul>
             <h2>Persiapan yang Melelahkan dan Solusinya</h2>
             <p>Meskipun kegunaannya sangat krusial, satu hal yang kerap membuat pengguna malas menggunakan <code>chroot</code> untuk pemulihan sistem adalah proses persiapannya yang cukup merepotkan. Agar lingkungan isolasi dapat berjalan sempurna selayaknya sistem nyata (misalnya agar program tahu informasi perangkat keras dan proses CPU), kita wajib mengaitkan (<em>mount bind</em>) beberapa direktori virtual penting seperti <code>/dev</code>, <code>/proc</code>, dan <code>/sys</code> secara manual.</p>
-            <p>Bila diketik satu per satu, proses ini tidak hanya memakan waktu tetapi juga rawan terjadi salah ketik (*typo*). Belum lagi, setelah selesai melakukan perbaikan, kita juga wajib melepas kaitan (<em>unmount</em>) direktori tersebut satu demi satu agar tidak terjadi korupsi data saat sistem di-<em>restart</em>.</p>
+            <p>Bila diketik satu per satu, proses ini tidak hanya memakan waktu tetapi juga rawan terjadi salah ketik (<em>typo</em>). Belum lagi, setelah selesai melakukan perbaikan, kita juga wajib melepas kaitan (<em>unmount</em>) direktori tersebut satu demi satu agar tidak terjadi korupsi data saat sistem di-<em>restart</em>.</p>
             <h2>Skrip Bash Otomatis: Setup &amp; Cleanup</h2>
-            <p>Untuk menyederhanakan siklus pekerjaan tersebut, mari kita manfaatkan kekuatan otomatisasi. Di bawah ini adalah sebuah draf skrip Bash sederhana yang akan mengambil alih pekerjaan kotor merangkai <em>mount</em> dan <em>unmount</em> setiap kali kamu perlu memasuki lingkungan chroot. Skrip ini sangat efisien dan layak untuk kamu simpan di dalam *flashdisk* utilitasmu.</p>
+            <p>Untuk menyederhanakan siklus pekerjaan tersebut, mari kita manfaatkan kekuatan otomatisasi. Di bawah ini adalah sebuah draf skrip Bash sederhana yang akan mengambil alih pekerjaan kotor merangkai <em>mount</em> dan <em>unmount</em> setiap kali kamu perlu memasuki lingkungan chroot. Skrip ini sangat efisien dan layak untuk kamu simpan di dalam <em>flashdisk</em> utilitasmu.</p>
 <pre><code>#!/bin/bash
 # Skrip untuk masuk dan keluar dari lingkungan chroot dengan mudah
 # Pastikan Anda menjalankan skrip ini dengan hak akses root (sudo)

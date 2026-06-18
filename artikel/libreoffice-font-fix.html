@@ -47,14 +47,14 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /* Light Theme Defaults */
+            /<em> Light Theme Defaults </em>/
             --bg-color: #ffffff;
             --text-color: #333333;
             --primary-color: #0056b3;
             --secondary-bg: #f5f5f5;
             --border-color: #dddddd;
         }
-        /* Dark Theme Detection */
+        /<em> Dark Theme Detection </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -72,13 +72,13 @@
             padding: 0;
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
-            min-height: 100vh; /* Fullscreen */
+            min-height: 100vh; /<em> Fullscreen </em>/
             display: flex;
             flex-direction: column;
         }
         .container {
             width: 100%;
-            max-width: 900px; /* Widescreen 1 kolom, tapi tetap ada batas agar mudah dibaca */
+            max-width: 900px; /<em> Widescreen 1 kolom, tapi tetap ada batas agar mudah dibaca </em>/
             margin: 0 auto;
             padding: 20px;
             flex-grow: 1;
@@ -100,7 +100,7 @@
             margin: 20px 0;
             border-radius: 4px;
         }
-        /* Styling Gambar dan Caption */
+        /<em> Styling Gambar dan Caption </em>/
         .image-container {
             margin: 25px 0;
             text-align: center;
@@ -121,7 +121,7 @@
             margin-top: 10px;
             font-style: italic;
         }
-        /* Table Styling */
+        /<em> Table Styling </em>/
         table {
             width: 100%;
             border-collapse: collapse;
@@ -137,7 +137,7 @@
             background-color: var(--primary-color);
             color: var(--bg-color);
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             text-align: center;
             padding: 20px;
@@ -146,7 +146,7 @@
             font-size: 0.9em;
             color: #888;
         }
-        /* Mobile Adjustments */
+        /<em> Mobile Adjustments </em>/
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
@@ -157,7 +157,7 @@
             table, thead, tbody, th, td, tr {
                 display: block;
             }
-            /* Menyembunyikan header tabel di mobile (Opsional, untuk tata letak yang lebih ringkas) */
+            /<em> Menyembunyikan header tabel di mobile (Opsional, untuk tata letak yang lebih ringkas) </em>/
             thead tr {
                 position: absolute;
                 top: -9999px;
@@ -167,11 +167,11 @@
                 border: none;
                 border-bottom: 1px solid var(--border-color);
                 position: relative;
-                padding-left: 50%; /* Membuat ruang untuk label */
+                padding-left: 50%; /<em> Membuat ruang untuk label </em>/
                 text-align: right;
             }
             td::before {
-                /* Membuat label dari header tabel */
+                /<em> Membuat label dari header tabel </em>/
                 content: attr(data-label);
                 position: absolute;
                 left: 6px;
@@ -192,32 +192,32 @@
     <div class="container">
         <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>LibreOffice Menyediakan Fitur Substitusi Tipografi Komersial Guna Menjaga Konsistensi Tata Letak Dokumen Lintas Platform 🥳</h1>
         <p class="alert">
-            <i class="fa-solid fa-bullhorn"></i> **Kabar Gembira buat Pengguna Lintas Platform!** The Document Foundation tengah mengembangkan solusi jangka panjang guna mengatasi hambatan kompatibilitas tipografi Microsoft. Siap-siap sambut kolaborasi tanpa drama!
+            <i class="fa-solid fa-bullhorn"></i> <strong>Kabar Gembira buat Pengguna Lintas Platform!</strong> The Document Foundation tengah mengembangkan solusi jangka panjang guna mengatasi hambatan kompatibilitas tipografi Microsoft. Siap-siap sambut kolaborasi tanpa drama!
         </p>
-        <p>LibreOffice, *suite* perkantoran *open-source* kesayangan kita, sedang giat-giatnya menggeber perbaikan pada fitur penggantian font-nya. Kenapa ini penting? Karena di dunia nyata, dokumen tidak hidup di satu sistem operasi saja. Jutaan file mengalir antara Windows, macOS, dan Linux. Dan di situlah masalahnya selalu muncul: **font *proprietary* (berbayar) Microsoft.**</p>
+        <p>LibreOffice, <em>suite</em> perkantoran <em>open-source</em> kesayangan kita, sedang giat-giatnya menggeber perbaikan pada fitur penggantian font-nya. Kenapa ini penting? Karena di dunia nyata, dokumen tidak hidup di satu sistem operasi saja. Jutaan file mengalir antara Windows, macOS, dan Linux. Dan di situlah masalahnya selalu muncul: <strong>font <em>proprietary</em> (berbayar) Microsoft.</strong></p>
         <h2>1. 💥 Era ClearType Berakhir, Aptos Menggantikan</h2>
-        <p>Belakangan ini, ada pergeseran radikal dari markas Microsoft. Mereka telah resmi berpaling dari font ClearType legendaris yang sudah kita kenal bertahun-tahun. Nama-nama seperti **Calibri, Cambria, Candara, Consolas, Constantia, Corbel, dan Segoe** — yang dulu menjadi standar de facto — kini perlahan digeser posisinya.</p>
-        <p>Sekarang, Microsoft telah menunjuk **Aptos** sebagai font *default* baru untuk bahasa Barat. Pergeseran besar ini yang kabarnya memicu The Document Foundation (TDF) untuk segera menyegarkan panduan dan perkakas mereka. TDF sadar, ini bukan hanya masalah font baru, tapi kesempatan untuk menutup pintu *font lock-in* selamanya.</p>
-        <h3>Font *Proprietary* sebagai Tembok Pemisah 🧱</h3>
-        <p>Selama bertahun-tahun, font standar di Windows dan macOS memang terasa seperti alat *lock-in* yang kuat. Kalau Anda tidak punya lisensi yang tepat, begitu dokumen DOCX dari rekan kerja dibuka di Linux, tata letaknya bisa amburadul total! Siapa yang tidak pernah melihat font tiba-tiba berubah menjadi karakter aneh atau tata letak paragraf yang berantakan? Dokumen yang semestinya tersusun teratur berpotensi mengalami disorientasi tata letak karakter serta ketidaksesuaian spasi halaman. 😭</p>
-        <p>Inilah inti masalahnya: integritas dokumen sangat bergantung pada kemampuan sistem Anda untuk menampilkan font yang dimaksudkan dengan benar, atau minimal, menggantinya dengan sesuatu yang harus **setara secara metrik**.</p>
+        <p>Belakangan ini, ada pergeseran radikal dari markas Microsoft. Mereka telah resmi berpaling dari font ClearType legendaris yang sudah kita kenal bertahun-tahun. Nama-nama seperti <strong>Calibri, Cambria, Candara, Consolas, Constantia, Corbel, dan Segoe</strong> — yang dulu menjadi standar de facto — kini perlahan digeser posisinya.</p>
+        <p>Sekarang, Microsoft telah menunjuk <strong>Aptos</strong> sebagai font <em>default</em> baru untuk bahasa Barat. Pergeseran besar ini yang kabarnya memicu The Document Foundation (TDF) untuk segera menyegarkan panduan dan perkakas mereka. TDF sadar, ini bukan hanya masalah font baru, tapi kesempatan untuk menutup pintu <em>font lock-in</em> selamanya.</p>
+        <h3>Font <em>Proprietary</em> sebagai Tembok Pemisah 🧱</h3>
+        <p>Selama bertahun-tahun, font standar di Windows dan macOS memang terasa seperti alat <em>lock-in</em> yang kuat. Kalau Anda tidak punya lisensi yang tepat, begitu dokumen DOCX dari rekan kerja dibuka di Linux, tata letaknya bisa amburadul total! Siapa yang tidak pernah melihat font tiba-tiba berubah menjadi karakter aneh atau tata letak paragraf yang berantakan? Dokumen yang semestinya tersusun teratur berpotensi mengalami disorientasi tata letak karakter serta ketidaksesuaian spasi halaman. 😭</p>
+        <p>Inilah inti masalahnya: integritas dokumen sangat bergantung pada kemampuan sistem Anda untuk menampilkan font yang dimaksudkan dengan benar, atau minimal, menggantinya dengan sesuatu yang harus <strong>setara secara metrik</strong>.</p>
         <h2>2. 🔧 Jurus Rahasia: Metrik Kompatibel dan FontSubstTable</h2>
-        <p>Kunci untuk mengatasi masalah ini adalah mengkonfigurasi fitur penggantian font LibreOffice dengan benar. Secara manual, Anda bisa menemukan pengaturan ini di **Tools &gt; Options &gt; LibreOffice &gt; Fonts**. Di sanalah Anda bisa membuat **Tabel Penggantian Font (Font Replacement Table)**.</p>
+        <p>Kunci untuk mengatasi masalah ini adalah mengkonfigurasi fitur penggantian font LibreOffice dengan benar. Secara manual, Anda bisa menemukan pengaturan ini di <strong>Tools &gt; Options &gt; LibreOffice &gt; Fonts</strong>. Di sanalah Anda bisa membuat <strong>Tabel Penggantian Font (Font Replacement Table)</strong>.</p>
         <div class="alert">
-            <i class="fa-solid fa-ruler-combined"></i> **Pentingnya Kesetaraan Metrik:** Penggantian font yang ideal haruslah *metrically equivalent* (setara secara metrik). Artinya, font pengganti harus memiliki dimensi karakter dan spasi yang sama persis dengan font aslinya. Jika metriknya cocok, *layout* dokumen Anda di Linux akan tetap sama persis seperti saat dibuat di Windows, meskipun menggunakan font yang berbeda.
+            <i class="fa-solid fa-ruler-combined"></i> <strong>Pentingnya Kesetaraan Metrik:</strong> Penggantian font yang ideal haruslah <em>metrically equivalent</em> (setara secara metrik). Artinya, font pengganti harus memiliki dimensi karakter dan spasi yang sama persis dengan font aslinya. Jika metriknya cocok, <em>layout</em> dokumen Anda di Linux akan tetap sama persis seperti saat dibuat di Windows, meskipun menggunakan font yang berbeda.
         </div>
         <h3>Perbandingan Visual: Aptos vs. Alternatif Open-Source</h3>
-        <p>Berikut adalah perbandingan yang menunjukkan bagaimana Aptos, font *default* baru Microsoft, terlihat berdampingan dengan font LibreOffice yang setara secara metrik (Liberation Sans). Anda bisa lihat seberapa penting kesamaan lebar karakter agar tata letak tidak berantakan.</p>
+        <p>Berikut adalah perbandingan yang menunjukkan bagaimana Aptos, font <em>default</em> baru Microsoft, terlihat berdampingan dengan font LibreOffice yang setara secara metrik (Liberation Sans). Anda bisa lihat seberapa penting kesamaan lebar karakter agar tata letak tidak berantakan.</p>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHqdRBcWgmWxyjVj3M3UMJ_K-jC-Ao98bAGopllX6rE5-q0mXVK1ZB52OU8Coxy9DevPLl8_sOdKefpA5hzOFykDBex4agLfPmAn1Rw4MyjmbsEhYoJ3m8z6DNWH1eekEqAHLtYYEQlbS-cpzR1xcarhU69-_mgEdEskeUCgtfbJJMm0FM8PXhf2_Yxa8/s1600/1two-fonts-microsoft-aptos-and-another-aptos-being-compared-to-each-other.webp" alt="Perbandingan font Aptos dengan font lain">
-            <p class="caption">Perbandingan Aptos di MS 365 dengan Aptos LibreOffice (yang mungkin merupakan versi berbeda) menunjukkan sedikit perbedaan yang sudah bisa merusak *layout*.</p>
+            <p class="caption">Perbandingan Aptos di MS 365 dengan Aptos LibreOffice (yang mungkin merupakan versi berbeda) menunjukkan sedikit perbedaan yang sudah bisa merusak <em>layout</em>.</p>
         </div>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhED8iV_MHaJaMFB7bBASQT03xdKmBWlJCpLTsiZ4RAwlc0mrxjxoRNebbV8lIx_z0RAAZ28QNixl95-clmDSR8o7b58SsC7ZF10pK7l5PR4Bd4u4B91Ot5a30nkcNHLaD2VfbDRHbaShEBDX3Sf4gNQVmQn9e9aiia2qKyBbUm4OpRep9_GfmVp62v-eY/s1600/2two-fonts-microsoft-aptos-and-liberation-sans-being-compared-to-each-other.webp" alt="Perbandingan font Aptos dengan Liberation Sans">
-            <p class="caption">Perbandingan Aptos (kiri) dengan Liberation Sans (kanan). Walaupun terlihat berbeda, tujuan *metrically compatible* adalah menyamakan lebar karakter untuk menjaga tata letak baris.</p>
+            <p class="caption">Perbandingan Aptos (kiri) dengan Liberation Sans (kanan). Walaupun terlihat berbeda, tujuan <em>metrically compatible</em> adalah menyamakan lebar karakter untuk menjaga tata letak baris.</p>
         </div>
         <h3>Tabel Penggantian yang Sudah Dikenal Baik</h3>
-        <p>Untuk ClearType dan font lama Microsoft, kita sudah punya banyak alternatif *open-source* yang setara metrik. Font-font ini sering disebut sebagai **CrOS Fonts** (Chrome OS Fonts) atau **Croscore Fonts**:</p>
+        <p>Untuk ClearType dan font lama Microsoft, kita sudah punya banyak alternatif <em>open-source</em> yang setara metrik. Font-font ini sering disebut sebagai <strong>CrOS Fonts</strong> (Chrome OS Fonts) atau <strong>Croscore Fonts</strong>:</p>
         <table>
             <thead>
                 <tr>
@@ -255,20 +255,20 @@
             </tbody>
         </table>
         <h2>3. 🔓 Solusi Jangka Panjang: Aptos dan Lisensi yang Lemah</h2>
-        <p>Meskipun Aptos adalah font *proprietary* Microsoft, ada sedikit secercah harapan. Lisensi Aptos ini sedikit lebih "lemah" daripada font ClearType yang lebih tua. Meskipun lisensi tersebut melarang redistribusi, lisensi ini **memungkinkan pengguna individu untuk mengunduh dan menginstalnya** dari halaman resmi Microsoft. Artinya, jika Anda adalah pengguna Linux dan benar-benar butuh Aptos, Anda bisa mendapatkannya secara legal, meskipun ini tetap bukan solusi *open-source* sejati.</p>
-        <p>Namun, lisensi yang lemah ini tidak menyelesaikan masalah semua font *proprietary* lain yang memiliki batasan lebih ketat. Font-font inilah yang masih tidak bisa diinstal oleh pengguna Linux atau siapa pun tanpa lisensi khusus. Dan inilah yang membuat kolaborasi lintas platform jadi mengerikan saat berurusan dengan file-file lama.</p>
+        <p>Meskipun Aptos adalah font <em>proprietary</em> Microsoft, ada sedikit secercah harapan. Lisensi Aptos ini sedikit lebih "lemah" daripada font ClearType yang lebih tua. Meskipun lisensi tersebut melarang redistribusi, lisensi ini <strong>memungkinkan pengguna individu untuk mengunduh dan menginstalnya</strong> dari halaman resmi Microsoft. Artinya, jika Anda adalah pengguna Linux dan benar-benar butuh Aptos, Anda bisa mendapatkannya secara legal, meskipun ini tetap bukan solusi <em>open-source</em> sejati.</p>
+        <p>Namun, lisensi yang lemah ini tidak menyelesaikan masalah semua font <em>proprietary</em> lain yang memiliki batasan lebih ketat. Font-font inilah yang masih tidak bisa diinstal oleh pengguna Linux atau siapa pun tanpa lisensi khusus. Dan inilah yang membuat kolaborasi lintas platform jadi mengerikan saat berurusan dengan file-file lama.</p>
         <h2>4. 🎯 Menyambut LibreOffice 26.2: Otomatisasi Penyelamat</h2>
-        <p>Inilah bagian yang paling dinantikan! Rencana besar TDF adalah memperbarui **ekstensi FontSubstTable** utama. Tujuannya: menyertakan semua font *proprietary* Microsoft yang memiliki lisensi restriktif dan benar-benar butuh penggantian ke dalam tabel bawaan.</p>
+        <p>Inilah bagian yang paling dinantikan! Rencana besar TDF adalah memperbarui <strong>ekstensi FontSubstTable</strong> utama. Tujuannya: menyertakan semua font <em>proprietary</em> Microsoft yang memiliki lisensi restriktif dan benar-benar butuh penggantian ke dalam tabel bawaan.</p>
         <div class="alert">
-            <i class="fa-solid fa-bolt"></i> **Simpelnya:** Anda tidak perlu ekstensi itu untuk membuat fitur penggantian font berfungsi; kemampuan untuk menukar font sudah ada. TAPI, tabel bawaan itu kosong. Anda bisa menghabiskan waktu seharian penuh untuk meneliti dan mengetik manual satu per satu font Microsoft dan padanan gratisnya. Ekstensi ini, atau pembaruan tabel bawaan, akan melakukan semua pekerjaan **data *entry* yang membosankan itu** untuk Anda dalam sekali klik! **Itu penting sekali.**
+            <i class="fa-solid fa-bolt"></i> <strong>Simpelnya:</strong> Anda tidak perlu ekstensi itu untuk membuat fitur penggantian font berfungsi; kemampuan untuk menukar font sudah ada. TAPI, tabel bawaan itu kosong. Anda bisa menghabiskan waktu seharian penuh untuk meneliti dan mengetik manual satu per satu font Microsoft dan padanan gratisnya. Ekstensi ini, atau pembaruan tabel bawaan, akan melakukan semua pekerjaan <strong>data <em>entry</em> yang membosankan itu</strong> untuk Anda dalam sekali klik! <strong>Itu penting sekali.</strong>
         </div>
-        <p>Pembaruan ini idealnya dijadwalkan untuk mendarat sebelum rilis **LibreOffice 26.2**, yang menurut rencana rilis TDF, akan terjadi sekitar **akhir Januari hingga Februari 2026**.</p>
-        <p>Jadi, bagi Anda yang sering frustasi dengan dokumen yang berantakan karena masalah font, tandai kalender Anda! Rilis LibreOffice 26.2 akan membawa solusi otomatis dan komprehensif yang telah lama kita impikan. Kolaborasi lintas-OS tidak akan sesulit dulu lagi. **Waktunya *move on* dari drama font!** 🎉</p>
+        <p>Pembaruan ini idealnya dijadwalkan untuk mendarat sebelum rilis <strong>LibreOffice 26.2</strong>, yang menurut rencana rilis TDF, akan terjadi sekitar <strong>akhir Januari hingga Februari 2026</strong>.</p>
+        <p>Jadi, bagi Anda yang sering frustasi dengan dokumen yang berantakan karena masalah font, tandai kalender Anda! Rilis LibreOffice 26.2 akan membawa solusi otomatis dan komprehensif yang telah lama kita impikan. Kolaborasi lintas-OS tidak akan sesulit dulu lagi. <strong>Waktunya <em>move on</em> dari drama font!</strong> 🎉</p>
         <hr>
         <div id="related-articles-grid"></div><div id="response"></div>
            </div>
     <footer>
-        <p>🄯 2025 Dibuat dengan semangat *open-source*.</p>
+        <p>🄯 2025 Dibuat dengan semangat <em>open-source</em>.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>

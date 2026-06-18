@@ -50,7 +50,7 @@
     <meta name="news_keywords" content="zRAM, CachyOS, Linux, Optimasi RAM, zstd, swappiness, Arch Linux">
     <meta name="promphint" content="Bagaimana cara mengecek status zRAM di Linux? Buka terminal dan jalankan perintah zramctl untuk melihat ukuran dan algoritma kompresi yang aktif.">
     <style>
-        /* CSS Variabel & Warna WCAG AA */
+        /<em> CSS Variabel & Warna WCAG AA </em>/
         :root {
             --bg-color: #f8f9fa;
             --text-color: #212529;
@@ -73,8 +73,8 @@
                 --muted-text: #a0a0a0;
             }
         }
-        /* Reset & Base Typography */
-        *, *::before, *::after {
+        /<em> Reset & Base Typography </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -86,7 +86,7 @@
             line-height: 1.6;
             font-size: 1rem;
         }
-        /* Layout Utama */
+        /<em> Layout Utama </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -97,7 +97,7 @@
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
         }
-        /* Tipografi Menggunakan 'rem' */
+        /<em> Tipografi Menggunakan 'rem' </em>/
         h1 {
             font-size: 2rem;
             margin-bottom: 0.5rem;
@@ -136,7 +136,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /* Gambar Resolusi Penuh Tanpa Crop */
+        /<em> Gambar Resolusi Penuh Tanpa Crop </em>/
         .hero-image {
             width: 100%;
             height: auto;
@@ -144,9 +144,9 @@
             border-radius: 0.5rem;
             margin: 2rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: var(--card-bg); /* Placeholder anti layout shift */
+            background-color: var(--card-bg); /<em> Placeholder anti layout shift </em>/
         }
-        /* Blok Kode */
+        /<em> Blok Kode </em>/
         pre {
             background-color: var(--code-bg);
             padding: 1rem;
@@ -159,7 +159,7 @@
         code {
             font-family: inherit;
         }
-        /* Meta Author (E-E-A-T) */
+        /<em> Meta Author (E-E-A-T) </em>/
         .author-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -197,55 +197,55 @@
             <span class="meta-date">📅 31 Mei 2026 | Jakarta, Indonesia</span>
         </header>
         <article>
-            <p>Pernah bertanya-tanya bagaimana cara menggunakan fitur kompresi memori virtual yang sering dibicarakan para pengguna Linux? Kabar baiknya: karena kamu menggunakan **CachyOS** (yang berbasis Arch Linux dan sangat berorientasi pada performa ekstrem), kemungkinan besar **zRAM** sudah aktif secara otomatis dari sananya! 🐧</p>
-            <p>Tim pengembang CachyOS mengonfigurasi ini di luar kotak (*out of the box*) karena mereka tahu persis betapa krusialnya fitur ini untuk manajemen memori modern, terutama ketika kita dihadapkan pada keterbatasan sumber daya sistem inti. Namun, sebagai seorang *power user*, tentu kurang afdal rasanya kalau kita tidak mengecek dan memahami cara kerjanya secara fundamental.</p>
+            <p>Pernah bertanya-tanya bagaimana cara menggunakan fitur kompresi memori virtual yang sering dibicarakan para pengguna Linux? Kabar baiknya: karena kamu menggunakan <strong>CachyOS</strong> (yang berbasis Arch Linux dan sangat berorientasi pada performa ekstrem), kemungkinan besar <strong>zRAM</strong> sudah aktif secara otomatis dari sananya! 🐧</p>
+            <p>Tim pengembang CachyOS mengonfigurasi ini di luar kotak (<em>out of the box</em>) karena mereka tahu persis betapa krusialnya fitur ini untuk manajemen memori modern, terutama ketika kita dihadapkan pada keterbatasan sumber daya sistem inti. Namun, sebagai seorang <em>power user</em>, tentu kurang afdal rasanya kalau kita tidak mengecek dan memahami cara kerjanya secara fundamental.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/14d2fc4a546d8456.webp" alt="Ilustrasi Terminal Linux dan Performa CachyOS" class="hero-image" fetchpriority="high" decoding="async">
-            <p>Berikut adalah panduan santai untuk mengecek, membaca, dan (jika perlu) mengoptimalkan **zRAM** di sistem komputermu agar sesi *multitasking* harian tetap mulus.</p>
+            <p>Berikut adalah panduan santai untuk mengecek, membaca, dan (jika perlu) mengoptimalkan <strong>zRAM</strong> di sistem komputermu agar sesi <em>multitasking</em> harian tetap mulus.</p>
             <h2>1. Cara Mengecek Apakah zRAM Sudah Aktif 💻</h2>
             <p>Buka terminal kesayanganmu dan ketik perintah sakti ini:</p>
 <pre><code>zramctl</code></pre>
-            <p>Jika **zRAM** sudah aktif, kamu akan melihat *output* berupa tabel status. Jika tidak muncul apa-apa, berarti belum aktif (walau di ekosistem CachyOS kejadian seperti ini sangat jarang terjadi). Kamu juga bisa memverifikasinya lewat perintah pengecekan memori virtual (*swap*) standar:</p>
+            <p>Jika <strong>zRAM</strong> sudah aktif, kamu akan melihat <em>output</em> berupa tabel status. Jika tidak muncul apa-apa, berarti belum aktif (walau di ekosistem CachyOS kejadian seperti ini sangat jarang terjadi). Kamu juga bisa memverifikasinya lewat perintah pengecekan memori virtual (<em>swap</em>) standar:</p>
 <pre><code>swapon --show</code></pre>
-            <p>Kalau di kolom `NAME` muncul `/dev/zram0`, selamat! Sistemmu sudah menggunakan fitur kompresi memori yang efisien.</p>
-            <h2>2. Cara Membaca Output `zramctl` 📊</h2>
-            <p>Saat kamu mengetik `zramctl`, ada beberapa kolom penting yang perlu diperhatikan secara saksama:</p>
+            <p>Kalau di kolom <code>NAME</code> muncul <code>/dev/zram0</code>, selamat! Sistemmu sudah menggunakan fitur kompresi memori yang efisien.</p>
+            <h2>2. Cara Membaca Output <code>zramctl</code> 📊</h2>
+            <p>Saat kamu mengetik <code>zramctl</code>, ada beberapa kolom penting yang perlu diperhatikan secara saksama:</p>
             <ul>
-                <li>**ALGORITHM:** Biasanya berisi `zstd` atau `lz4`. Ini adalah algoritma kompresinya. `zstd` adalah favorit masa kini karena rasio kompresinya sangat tinggi dengan beban CPU yang sangat ringan (sangat cocok untuk arsitektur CPU *dual-core* seperti i5-7200U kamu).</li>
-                <li>**DISKSIZE:** Ini adalah batas maksimal memori virtual yang disediakan. Biasanya diatur sekitar 50% hingga 100% dari total RAM fisik (sekitar 8GB atau 16GB di mesin standar). Jangan panik, angka ini *tidak* langsung memakan RAM 16GB-mu. Ini cuma "batas atas" atau plafon.</li>
-                <li>**DATA:** Ini adalah jumlah memori asli (sebelum dikompres) yang sedang dilempar untuk diurus oleh sistem.</li>
-                <li>**COMPR:** Ini adalah ukuran memori *setelah* dikompresi. (Misal: DATA 1GB bisa menyusut jadi COMPR 250MB. Bayangkan betapa banyak ruang RAM yang bisa diselamatkan!).</li>
+                <li><strong>ALGORITHM:</strong> Biasanya berisi <code>zstd</code> atau <code>lz4</code>. Ini adalah algoritma kompresinya. <code>zstd</code> adalah favorit masa kini karena rasio kompresinya sangat tinggi dengan beban CPU yang sangat ringan (sangat cocok untuk arsitektur CPU <em>dual-core</em> seperti i5-7200U kamu).</li>
+                <li><strong>DISKSIZE:</strong> Ini adalah batas maksimal memori virtual yang disediakan. Biasanya diatur sekitar 50% hingga 100% dari total RAM fisik (sekitar 8GB atau 16GB di mesin standar). Jangan panik, angka ini <em>tidak</em> langsung memakan RAM 16GB-mu. Ini cuma "batas atas" atau plafon.</li>
+                <li><strong>DATA:</strong> Ini adalah jumlah memori asli (sebelum dikompres) yang sedang dilempar untuk diurus oleh sistem.</li>
+                <li><strong>COMPR:</strong> Ini adalah ukuran memori <em>setelah</em> dikompresi. (Misal: DATA 1GB bisa menyusut jadi COMPR 250MB. Bayangkan betapa banyak ruang RAM yang bisa diselamatkan!).</li>
             </ul>
             <h2>3. Di Mana Letak Pengaturannya? ⚙️</h2>
-            <p>Kalau kamu gatal ingin mengutak-atik (misalnya mengubah ukuran maksimalnya), distro Linux modern biasanya menggunakan paket pembantu seperti `systemd-zram-setup` atau `zram-generator`.</p>
-            <p>File konfigurasinya biasanya ada di direktori: `/etc/systemd/zram-generator.conf`</p>
-            <p>Kalau kamu membuka file tersebut menggunakan editor teks (seperti `nano` atau *vim* dengan akses `sudo`), kamu bisa melihat atau mengubah parameternya. *Rule of thumb* yang aman: biarkan ukurannya setara dengan RAM fisikmu atau minimal setengahnya.</p>
+            <p>Kalau kamu gatal ingin mengutak-atik (misalnya mengubah ukuran maksimalnya), distro Linux modern biasanya menggunakan paket pembantu seperti <code>systemd-zram-setup</code> atau <code>zram-generator</code>.</p>
+            <p>File konfigurasinya biasanya ada di direktori: <code>/etc/systemd/zram-generator.conf</code></p>
+            <p>Kalau kamu membuka file tersebut menggunakan editor teks (seperti <code>nano</code> atau <em>vim</em> dengan akses <code>sudo</code>), kamu bisa melihat atau mengubah parameternya. <em>Rule of thumb</em> yang aman: biarkan ukurannya setara dengan RAM fisikmu atau minimal setengahnya.</p>
             <h2>4. Bumbu Rahasia: Swappiness 🚀</h2>
-            <p>Agar kompresi ini bekerja maksimal, sistem operasi harus tahu seberapa "agresif" dia harus melempar data yang tidak terpakai. Ini diatur oleh parameter kernel bernama `swappiness`. Untuk mengecek nilainya saat ini, jalankan:</p>
+            <p>Agar kompresi ini bekerja maksimal, sistem operasi harus tahu seberapa "agresif" dia harus melempar data yang tidak terpakai. Ini diatur oleh parameter kernel bernama <code>swappiness</code>. Untuk mengecek nilainya saat ini, jalankan:</p>
 <pre><code>cat /proc/sys/vm/swappiness</code></pre>
             <ul>
                 <li>Nilai ideal biasanya cukup tinggi, di kisaran 100 hingga 150 (maksimal 200 di kernel terbaru).</li>
-                <li>Kenapa tinggi? Karena kita *ingin* sistem lebih sering memampatkan data ke RAM (yang secepat kilat) daripada membuangnya ke kepingan SSD yang lambat saat memori mulai penuh gara-gara puluhan *tab browser* dan alokasi VRAM dadakan.</li>
+                <li>Kenapa tinggi? Karena kita <em>ingin</em> sistem lebih sering memampatkan data ke RAM (yang secepat kilat) daripada membuangnya ke kepingan SSD yang lambat saat memori mulai penuh gara-gara puluhan <em>tab browser</em> dan alokasi VRAM dadakan.</li>
                 <li>Tim CachyOS biasanya sudah menyetel nilai ini dengan sangat presisi, jadi kemungkinan kamu tidak perlu merusaknya lagi.</li>
             </ul>
-            <p>Intinya, fitur ini ibarat *set-and-forget* (pasang dan lupakan). Sistem operasi yang akan bekerja keras di belakang layar, memampatkan dan mengekstrak data dalam hitungan milidetik.</p>
+            <p>Intinya, fitur ini ibarat <em>set-and-forget</em> (pasang dan lupakan). Sistem operasi yang akan bekerja keras di belakang layar, memampatkan dan mengekstrak data dalam hitungan milidetik.</p>
             <h2>Menganalisis Kinerja Sistem Secara Langsung 🔍</h2>
-            <p>Mari kita telusuri contoh spesifik dari *output* terminal di bawah ini supaya kamu tahu persis seberapa keren sistem yang sedang berjalan:</p>
+            <p>Mari kita telusuri contoh spesifik dari <em>output</em> terminal di bawah ini supaya kamu tahu persis seberapa keren sistem yang sedang berjalan:</p>
 <pre><code>NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
             <p>Mantap! Hasilnya sangat optimal. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Konfigurasi bawaan sistem memang tidak pernah mengecewakan. Ini adalah buktinya:</p>
             <ul>
-                <li>**ALGORITHM (`zstd`)**: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan *ngos-ngosan* saat harus memampatkan instruksi secara *real-time*.</li>
-                <li>**DISKSIZE (`15,5G`)**: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar "kapasitas wadah". Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
-                <li>**DATA (`4K`) &amp; COMPR (`64B`)**: Nah, ini bagian yang paling fantastis! Saat sistem sedang santai (baru ada beban 4 Kilobytes), algoritma berhasil memampatkannya hingga sekecil 64 Bytes saja. Bayangkan betapa ekstrem penghematan memorinya saat nanti sistem sedang padat-padatnya!</li>
-                <li>**MOUNTPOINT (`[SWAP]`)**: Ini konfirmasi akhir bahwa partisi virtual sudah resmi bertugas. Ketimbang Linux membuang tumpahan data ke *storage* yang bisa memperpendek umur SSD, ia akan langsung mengompresnya secara instan.</li>
+                <li><strong>ALGORITHM (<code>zstd</code>)</strong>: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan <em>ngos-ngosan</em> saat harus memampatkan instruksi secara <em>real-time</em>.</li>
+                <li><strong>DISKSIZE (<code>15,5G</code>)</strong>: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar "kapasitas wadah". Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
+                <li><strong>DATA (<code>4K</code>) &amp; COMPR (<code>64B</code>)</strong>: Nah, ini bagian yang paling fantastis! Saat sistem sedang santai (baru ada beban 4 Kilobytes), algoritma berhasil memampatkannya hingga sekecil 64 Bytes saja. Bayangkan betapa ekstrem penghematan memorinya saat nanti sistem sedang padat-padatnya!</li>
+                <li><strong>MOUNTPOINT (<code>[SWAP]</code>)</strong>: Ini konfirmasi akhir bahwa partisi virtual sudah resmi bertugas. Ketimbang Linux membuang tumpahan data ke <em>storage</em> yang bisa memperpendek umur SSD, ia akan langsung mengompresnya secara instan.</li>
             </ul>
-            <p>Kesimpulannya: Perangkatmu sekarang memiliki perlindungan manajemen antrean yang sangat solid. Kombinasi RAM 16GB, *setup* kompresi yang berjalan paripurna ini, ditambah paket *booster* CachyOS (`kcgroups`, `dmemcg-booster`, dan `plasma-foreground-booster`), adalah racikan paling optimal.</p>
-            <p>Sekarang kamu bisa jauh lebih leluasa melakukan *multitasking* intens—mulai dari membuka ratusan referensi, menjalankan *script* otomasi web berbasis Bun, hingga melakukan *batch processing* ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka *desktop* mendadak *stuttering* atau *freeze*. Mesinmu sudah mengerti dengan sangat jelas siapa yang perlu diprioritaskan! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ⚡</p>
+            <p>Kesimpulannya: Perangkatmu sekarang memiliki perlindungan manajemen antrean yang sangat solid. Kombinasi RAM 16GB, <em>setup</em> kompresi yang berjalan paripurna ini, ditambah paket <em>booster</em> CachyOS (<code>kcgroups</code>, <code>dmemcg-booster</code>, dan <code>plasma-foreground-booster</code>), adalah racikan paling optimal.</p>
+            <p>Sekarang kamu bisa jauh lebih leluasa melakukan <em>multitasking</em> intens—mulai dari membuka ratusan referensi, menjalankan <em>script</em> otomasi web berbasis Bun, hingga melakukan <em>batch processing</em> ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka <em>desktop</em> mendadak <em>stuttering</em> atau <em>freeze</em>. Mesinmu sudah mengerti dengan sangat jelas siapa yang perlu diprioritaskan! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ⚡</p>
         </article>
         <aside class="author-box">
             <h3>Editor</h3>
-            <p>**Fakhrul Rijal**</p>
-            <p>Penulis adalah seorang *Linux Enthusiast* dan praktisi optimalisasi sistem berbasis Arch yang berfokus pada efisiensi *runtime* serta arsitektur komputer modern. Temukan pemikiran dan tulisan teknis lainnya melalui proyek pribadi di <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">Layar Kosong</a>.</p>
+            <p><strong>Fakhrul Rijal</strong></p>
+            <p>Penulis adalah seorang <em>Linux Enthusiast</em> dan praktisi optimalisasi sistem berbasis Arch yang berfokus pada efisiensi <em>runtime</em> serta arsitektur komputer modern. Temukan pemikiran dan tulisan teknis lainnya melalui proyek pribadi di <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">Layar Kosong</a>.</p>
         </aside>
         <div id="related-articles-grid"></div>
         <div id="response"></div>

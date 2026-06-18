@@ -47,7 +47,7 @@
 <title>UANG alias DUIT - Refleksi tentang Kuasa, Godaan, dan Tanggung Jawab 💰 - Layar Kosong</title> 
 <meta name="date" content="2025-09-27">
 <style>
-        /* --- 1. Definisikan Variabel Tema Terang (Sunset Tech Vibe) --- */
+        /<em> --- 1. Definisikan Variabel Tema Terang (Sunset Tech Vibe) --- </em>/
         :root {
             --bg: #f8fafc;
             --card: #ffffff;
@@ -55,34 +55,34 @@
             --muted: #64748b;
             --accent: #f59e0b;
             --accent-hover: #d97706;
-            /* Komponen Khusus */
+            /<em> Komponen Khusus </em>/
             --header-gradient: linear-gradient(90deg, rgba(245, 158, 11, 0.08), rgba(14, 165, 164, 0.04));
             --section-title-color: #333333;
             --quote-bg: #fffaf1;
             --border-dashed: #eef2f7;
-            /* Sistem Bayangan */
+            /<em> Sistem Bayangan </em>/
             --shadow-card: 0 10px 30px rgba(9, 12, 20, 0.06);
             --shadow-aside: 0 6px 18px rgba(12, 20, 30, 0.04);
         }
-        /* --- 2. Otomatis Tema Gelap (Amber Obsidian Premium) --- */
+        /<em> --- 2. Otomatis Tema Gelap (Amber Obsidian Premium) --- </em>/
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg: #0b0f17;           /* Hitam arang dengan sub-tone biru malam */
-                --card: #161e2e;         /* Slate gelap untuk kontainer utama */
-                --text-main: #f1f5f9;    /* Putih abu lembut agar mata tidak lelah */
-                --muted: #94a3b8;        /* Slate abu untuk teks sekunder */
-                --accent: #fbbf24;       /* Amber pastel cerah agar kontras di latar gelap */
+                --bg: #0b0f17;           /<em> Hitam arang dengan sub-tone biru malam </em>/
+                --card: #161e2e;         /<em> Slate gelap untuk kontainer utama </em>/
+                --text-main: #f1f5f9;    /<em> Putih abu lembut agar mata tidak lelah </em>/
+                --muted: #94a3b8;        /<em> Slate abu untuk teks sekunder </em>/
+                --accent: #fbbf24;       /<em> Amber pastel cerah agar kontras di latar gelap </em>/
                 --accent-hover: #f59e0b;
-                /* Penyesuaian Komponen Malam Hari */
+                /<em> Penyesuaian Komponen Malam Hari </em>/
                 --header-gradient: linear-gradient(90deg, rgba(251, 191, 36, 0.1), rgba(14, 165, 164, 0.04));
                 --section-title-color: #e2e8f0;
-                --quote-bg: #241a08;     /* Cokelat amber gelap pekat yang sangat teduh */
+                --quote-bg: #241a08;     /<em> Cokelat amber gelap pekat yang sangat teduh </em>/
                 --border-dashed: #2d3748;
                 --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
                 --shadow-aside: 0 6px 18px rgba(0, 0, 0, 0.3);
             }
         }
-        /* --- 3. Desain Utama & Tata Letak --- */
+        /<em> --- 3. Desain Utama & Tata Letak --- </em>/
         * { 
             box-sizing: border-box; 
         }
@@ -92,14 +92,14 @@
             font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
             background: var(--bg); 
             color: var(--text-main);
-            transition: background 0.3s, color 0.3s; /* Efek transisi halus saat ganti tema */
+            transition: background 0.3s, color 0.3s; /<em> Efek transisi halus saat ganti tema </em>/
         }
         .wrap { 
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
         }
-        /* --- Header dengan Efek Blur Transparan --- */
+        /<em> --- Header dengan Efek Blur Transparan --- </em>/
         header { 
             padding: 22px 24px; 
             background: var(--header-gradient); 
@@ -136,7 +136,7 @@
             font-size: clamp(13px, 1.8vw, 15px); 
             transition: color 0.3s;
         }
-        /* --- Sistem Grid Dua Kolom --- */
+        /<em> --- Sistem Grid Dua Kolom --- </em>/
         main { 
             flex: 1; 
             padding: 28px 0; 
@@ -147,7 +147,7 @@
             gap: 28px; 
             align-items: start; 
         }
-        /* --- Kartu Artikel Konten --- */
+        /<em> --- Kartu Artikel Konten --- </em>/
         article.card { 
             background: var(--card); 
             padding: 28px; 
@@ -182,7 +182,7 @@
             color: var(--section-title-color); 
             transition: color 0.3s;
         }
-        /* --- Penyelamatan Blok Kutipan --- */
+        /<em> --- Penyelamatan Blok Kutipan --- </em>/
         .quote { 
             font-style: italic; 
             padding: 12px 16px; 
@@ -205,7 +205,7 @@
             height: auto; 
             display: block; 
         }
-        /* --- Sidebar Konten --- */
+        /<em> --- Sidebar Konten --- </em>/
         aside.card { 
             background: var(--card); 
             padding: 18px; 
@@ -229,7 +229,7 @@
             color: var(--muted); 
             transition: color 0.3s;
         }
-        /* --- Bagian Kaki Web --- */
+        /<em> --- Bagian Kaki Web --- </em>/
         footer { 
             padding: 18px 0; 
             background: transparent; 
@@ -244,7 +244,7 @@
             color: var(--muted);
             transition: color 0.3s;
         }
-        /* --- 4. Sistem Navigasi Tombol Floating Desktop --- */
+        /<em> --- 4. Sistem Navigasi Tombol Floating Desktop --- </em>/
         #btn-sitemap-left, #btn-home-right {
             position: fixed; 
             display: flex; 
@@ -267,7 +267,7 @@
             transform: scale(1.05); 
         }
         #btn-sitemap-left { 
-            left: 20px; /* Ditambah sedikit jarak agar lebih bernapas dari tepi layar */
+            left: 20px; /<em> Ditambah sedikit jarak agar lebih bernapas dari tepi layar </em>/
             top: 30%; 
             transform: translateY(-50%); 
         }
@@ -280,7 +280,7 @@
             flex-shrink: 0; 
             margin-right: 6px; 
         }
-        /* --- 5. Otomatis Deteksi Mobile-Responsive (Layar < 880px) --- */
+        /<em> --- 5. Otomatis Deteksi Mobile-Responsive (Layar < 880px) --- </em>/
         @media (max-width: 880px) { 
             .grid { 
                 grid-template-columns: 1fr; 
@@ -290,7 +290,7 @@
                 order: 2; 
             } 
             main {
-                padding: 16px 0 80px 0; /* Ditambah padding bawah agar konten tidak tertutup dock mobile */
+                padding: 16px 0 80px 0; /<em> Ditambah padding bawah agar konten tidak tertutup dock mobile </em>/
             }
             /* Penyelamatan Tombol Floating di Mobile:
                Dipindahkan ke bawah layar, berjajar rapi membentuk Bottom Dock Navbar
@@ -300,9 +300,9 @@
                 top: auto !important;
                 bottom: 16px !important;
                 transform: none !important;
-                width: calc(50% - 20px); /* Membagi layar rata dua sisi kiri-kanan */
+                width: calc(50% - 20px); /<em> Membagi layar rata dua sisi kiri-kanan </em>/
                 box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-                padding: 14px 10px; /* Dipertebal agar ramah ketukan jari */
+                padding: 14px 10px; /<em> Dipertebal agar ramah ketukan jari </em>/
             }
             #btn-sitemap-left {
                 left: 12px !important;

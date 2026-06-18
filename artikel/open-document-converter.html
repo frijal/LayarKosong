@@ -46,18 +46,18 @@
     <title>Mengubah Dokumen ke Open Document dengan OpenOffice &amp; LibreOffice - Layar Kosong</title> 
 <link href="/ext/atom-one-light.min.css" rel="stylesheet">
  <style>
-        /* 1. Definisikan Variabel Tema Terang (Default) */
+        /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
         :root {
             --bg: #f7f9fc;
             --fg: #14213d;
             --muted: #64748b;
-            --accent: #1976d2; /* Blue */
+            --accent: #1976d2; /<em> Blue </em>/
             --accent-2: #42a5f5;
             --card: #ffffff;
             --border: #e6eef7;
             --shadow: 0 10px 30px rgba(17,24,39,.08);
             --maxw: 900px;
-            /* Variabel tambahan untuk menjinakkan elemen hardcoded */
+            /<em> Variabel tambahan untuk menjinakkan elemen hardcoded </em>/
             --header-bg: rgba(247, 249, 252, 0.7);
             --lightbox-bg: rgba(247, 249, 252, 0.9);
             --pre-bg: #f1f5f9;
@@ -67,21 +67,21 @@
             --btn-share-bg: #eef5ff;
             --btn-share-hover: #dbeafe;
         }
-        /* 2. Otomatis Tema Gelap (Dark Mode) */
+        /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg: #0f172a; /* Slate 900 */
-                --fg: #f8fafc; /* Slate 50 */
+                --bg: #0f172a; /<em> Slate 900 </em>/
+                --fg: #f8fafc; /<em> Slate 50 </em>/
                 --muted: #94a3b8;
-                --accent: #38bdf8; /* Biru langit cerah agar kontras di latar gelap */
+                --accent: #38bdf8; /<em> Biru langit cerah agar kontras di latar gelap </em>/
                 --accent-2: #7dd3fc;
-                --card: #1e293b; /* Slate 800 */
+                --card: #1e293b; /<em> Slate 800 </em>/
                 --border: #334155;
                 --shadow: 0 10px 30px rgba(0,0,0,.4);
-                /* Penyesuaian komponen transparan & blok kode di mode gelap */
-                --header-bg: rgba(15, 23, 42, 0.7);   /* Transparansi gelap */
-                --lightbox-bg: rgba(15, 23, 42, 0.95); /* Latar belakang pop-up gelap pekat */
-                --pre-bg: #0b0f19;                    /* Blok kode dibikin hitam elegan */
+                /<em> Penyesuaian komponen transparan & blok kode di mode gelap </em>/
+                --header-bg: rgba(15, 23, 42, 0.7);   /<em> Transparansi gelap </em>/
+                --lightbox-bg: rgba(15, 23, 42, 0.95); /<em> Latar belakang pop-up gelap pekat </em>/
+                --pre-bg: #0b0f19;                    /<em> Blok kode dibikin hitam elegan </em>/
                 --pre-border: #1e293b;
                 --copy-btn-bg: #334155;
                 --copy-btn-text: #cbd5e1;
@@ -89,7 +89,7 @@
                 --btn-share-hover: #334155;
             }
         }
-        /* 3. Base Styles (Desktop & Tablet) */
+        /<em> 3. Base Styles (Desktop & Tablet) </em>/
         html, body {
             background: var(--bg); 
             color: var(--fg);
@@ -109,9 +109,9 @@
         header.site {
             padding: 1rem 1.5rem; 
             border-bottom: 1px solid var(--border);
-            background: var(--header-bg); /* Diubah ke variabel */
+            background: var(--header-bg); /<em> Diubah ke variabel </em>/
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px); /* Dukungan untuk Safari */
+            -webkit-backdrop-filter: blur(8px); /<em> Dukungan untuk Safari </em>/
             position: sticky; 
             top: 0; 
             z-index: 10;
@@ -156,7 +156,7 @@
             padding: 8px 12px; 
             border-radius: 999px; 
             border: 1px solid var(--border); 
-            background: var(--btn-share-bg); /* Diubah ke variabel */
+            background: var(--btn-share-bg); /<em> Diubah ke variabel </em>/
             color: var(--fg); 
             cursor: pointer; 
             text-decoration: none;
@@ -168,14 +168,14 @@
         figure img { cursor: zoom-in; }
         .gallery { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Dioptimasi ke 240px agar muat 2 kolom di HP medium */
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /<em> Dioptimasi ke 240px agar muat 2 kolom di HP medium </em>/
             gap: 1rem; 
             margin-top: 1.5rem; 
         }
         .lightbox { 
             position: fixed; 
             inset: 0; 
-            background: var(--lightbox-bg); /* Diubah ke variabel */
+            background: var(--lightbox-bg); /<em> Diubah ke variabel </em>/
             display: none; 
             align-items: center; 
             justify-content: center; 
@@ -186,11 +186,11 @@
         .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; box-shadow: var(--shadow); cursor: zoom-out; }
         pre { 
             position: relative; 
-            background: var(--pre-bg); /* Diubah ke variabel */
+            background: var(--pre-bg); /<em> Diubah ke variabel </em>/
             padding: 1.25rem; 
             border-radius: 8px; 
             overflow-x: auto; 
-            border: 1px solid var(--pre-border); /* Diubah ke variabel */
+            border: 1px solid var(--pre-border); /<em> Diubah ke variabel </em>/
             margin-top: 1rem; 
             transition: background-color 0.3s, border-color 0.3s;
         }
@@ -199,9 +199,9 @@
             position: absolute; 
             top: 12px; 
             right: 12px; 
-            background: var(--copy-btn-bg); /* Diubah ke variabel */
+            background: var(--copy-btn-bg); /<em> Diubah ke variabel </em>/
             border: none; 
-            color: var(--copy-btn-text); /* Diubah ke variabel */
+            color: var(--copy-btn-text); /<em> Diubah ke variabel </em>/
             padding: 5px 10px; 
             border-radius: 5px; 
             font-size: 12px; 
@@ -210,24 +210,24 @@
         }
         .copy-btn:hover { background: var(--accent); color: white; }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; transition: color 0.3s, border-color 0.3s; }
-        /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
+        /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) </em>/
         @media (max-width: 600px) {
             main {
-                padding: 1rem 0.5rem 2rem; /* Menghemat spasi luar di HP */
+                padding: 1rem 0.5rem 2rem; /<em> Menghemat spasi luar di HP </em>/
             }
             article {
-                padding: 1.25rem; /* Padding dalam box dikecilkan agar teks tidak terjepit */
-                border-radius: 10px; /* Lengkungan disesuaikan agar pas di layar kecil */
+                padding: 1.25rem; /<em> Padding dalam box dikecilkan agar teks tidak terjepit </em>/
+                border-radius: 10px; /<em> Lengkungan disesuaikan agar pas di layar kecil </em>/
             }
-            /* Antisipasi tombol salin menutupi baris pertama kode saat teks wrap */
+            /<em> Antisipasi tombol salin menutupi baris pertama kode saat teks wrap </em>/
             pre {
                 padding-top: 3rem; 
             }
             .share-bar {
-                justify-content: center; /* Tombol share rata tengah di HP */
+                justify-content: center; /<em> Tombol share rata tengah di HP </em>/
             }
             .btn-share {
-                flex-grow: 1; /* Tombol share membesar seimbang memenuhi baris */
+                flex-grow: 1; /<em> Tombol share membesar seimbang memenuhi baris </em>/
                 justify-content: center;
             }
         }

@@ -118,10 +118,10 @@
         strong {
             color: var(--secondary-color);
         }
-        /* Galeri Foto: 3 Kolom */
+        /<em> Galeri Foto: 3 Kolom </em>/
         .photo-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 foto per baris */
+            grid-template-columns: repeat(3, 1fr); /<em> 3 foto per baris </em>/
             gap: 1rem;
             margin-top: 2rem;
         }
@@ -148,12 +148,12 @@
         .photo-gallery a:hover img {
             filter: brightness(1.1);
         }
-        /* Lightbox styling */
+        /<em> Lightbox styling </em>/
         .basicLightbox__placeholder img {
             max-width: 90vw;
             max-height: 90vh;
         }
-        /* Social Share */
+        /<em> Social Share </em>/
         .social-share {
             margin-top: 3rem;
             padding-top: 2rem;
@@ -197,7 +197,7 @@
         .instagram { background: #d6249f; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
         .threads { background-color: #000000; }
         .tiktok { background-color: #000000; }
-        /* Footer Info Section */
+        /<em> Footer Info Section </em>/
         .user-info-footer {
             margin-top: 3rem;
             padding: 2rem;
@@ -229,10 +229,10 @@
             width: 28px;
             border-radius: 4px;
         }
-                /* Responsive Design */
+                /<em> Responsive Design </em>/
         @media (max-width: 1024px) {
             .photo-gallery {
-                grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
+                grid-template-columns: repeat(2, 1fr); /<em> 2 kolom untuk tablet </em>/
             }
         }
         @media (max-width: 768px) {
@@ -246,7 +246,7 @@
                 font-size: 2.2rem;
             }
             .photo-gallery {
-                grid-template-columns: 1fr; /* 1 kolom untuk mobile */
+                grid-template-columns: 1fr; /<em> 1 kolom untuk mobile </em>/
             }
             #btn-home-left, #btn-home-right {
                 padding: 8px 12px;
@@ -318,9 +318,9 @@
                 link.addEventListener('click', (event) => {
                     event.preventDefault(); // Mencegah link membuka tab baru
                     const imageUrl = link.href;
-                    basicLightbox.create(`
+                    basicLightbox.create(<code>
                         <img src="${imageUrl}" alt="Tampilan Penuh">
-                    `).show();
+                    </code>).show();
                 });
             });
                                          });

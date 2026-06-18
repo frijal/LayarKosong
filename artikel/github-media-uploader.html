@@ -48,7 +48,7 @@
     <meta name="keywords" content="github uploader, upload ke github, tools github, layar kosong, frijal, upload file github online, web tools github">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-    /* 1. Definisikan Variabel Tema Terang (Default) */
+    /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
     :root {
         --bg-color: #f9f9f9;
         --card-bg: #ffffff;
@@ -61,7 +61,7 @@
         --btn-bg: #2ea44f;
         --btn-hover: #2c974b;
         --btn-disabled: #94d3a2;
-        /* Variabel Baru Khusus Fitur Preview & Textarea */
+        /<em> Variabel Baru Khusus Fitur Preview & Textarea </em>/
         --preview-item-bg: #fdfdfd;
         --preview-media-bg: #f1f1f1;
         --textarea-bg: #ffffff;
@@ -73,7 +73,7 @@
         --shadow-color: rgba(149,157,165,0.1);
         --focus-ring: rgba(3,102,214,0.3);
     }
-    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
     @media (prefers-color-scheme: dark) {
         :root {
             --bg-color: #0d1117;
@@ -87,7 +87,7 @@
             --btn-bg: #238636;
             --btn-hover: #2ea043;
             --btn-disabled: #1b4721;
-            /* Variabel Baru Mode Gelap */
+            /<em> Variabel Baru Mode Gelap </em>/
             --preview-item-bg: #1c2128;
             --preview-media-bg: #0d1117;
             --textarea-bg: #0d1117;
@@ -100,7 +100,7 @@
             --focus-ring: rgba(88,166,255,0.3);
         }
     }
-    /* 3. Base Styles (Desktop & Tablet) */
+    /<em> 3. Base Styles (Desktop & Tablet) </em>/
     body { 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         max-width: 900px; 
@@ -167,7 +167,7 @@
         cursor: not-allowed; 
         color: rgba(255,255,255,0.6);
     }
-    /* === Bagian Baru yang Sudah Dimodifikasi untuk Dark Mode === */
+    /<em> === Bagian Baru yang Sudah Dimodifikasi untuk Dark Mode === </em>/
     .preview-grid { 
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
@@ -229,7 +229,7 @@
         margin-top: 10px; 
         color: var(--status-color); 
     }
-    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
+    /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) </em>/
     @media (max-width: 600px) {
         body {
             margin: 10px auto; 
@@ -250,13 +250,13 @@
             padding: 10px; 
             font-size: 15px;
         }
-        /* Optimasi tambahan untuk Grid Preview di HP kecil */
+        /<em> Optimasi tambahan untuk Grid Preview di HP kecil </em>/
         .preview-grid {
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Mengecilkan limit kolom biar muat 2 kolom di layar HP */
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /<em> Mengecilkan limit kolom biar muat 2 kolom di layar HP </em>/
             gap: 10px;
         }
         .preview-item img, .preview-item video {
-            max-height: 100px; /* Di HP jangan terlalu tinggi biar tidak menimbun layar */
+            max-height: 100px; /<em> Di HP jangan terlalu tinggi biar tidak menimbun layar </em>/
         }
     }
 </style>
@@ -275,7 +275,7 @@
         <label for="path">Path Folder di Repo (opsional):</label>
         <input type="text" id="path" placeholder="misal: img/posts">
         <label for="fileInput">Pilih File (Gambar/Video) - Maks. 4:</label>
-        <input type="file" id="fileInput" accept="image/*,video/*" multiple="" required="">
+        <input type="file" id="fileInput" accept="image/<em>,video/</em>" multiple="" required="">
         <div id="localPreviewContainer" class="preview-grid"></div>
         <button type="submit" id="uploadBtn">Gas Upload ke GitHub</button>
     </form>
@@ -328,13 +328,13 @@
             const itemDiv = document.createElement('div');
             itemDiv.className = 'preview-item';
             let mediaTag = file.type.startsWith('video/')
-                ? `<video src="${fileUrl}" controls></video>`
-                : `<img src="${fileUrl}" alt="Local Preview">`;
-            itemDiv.innerHTML = `
+                ? <code><video src="${fileUrl}" controls></video></code>
+                : <code><img src="${fileUrl}" alt="Local Preview"></code>;
+            itemDiv.innerHTML = <code>
                 <div class="file-name-label">${file.name}</div>
                 ${mediaTag}
                 <div style="font-size: 11px; color: #666;">(Siap diupload)</div>
-            `;
+            </code>;
             localPreviewContainer.appendChild(itemDiv);
         });
     });
@@ -353,14 +353,14 @@
         uploadedResultsContainer.innerHTML = '';
         result.style.display = "none";
         uploadBtn.disabled = true;
-        status.innerText = `⏳ Sedang mengangkut ${files.length} file ke awan... Sabar ya!`;
+        status.innerText = <code>⏳ Sedang mengangkut ${files.length} file ke awan... Sabar ya!</code>;
         let successCount = 0;
         // Looping untuk upload setiap file (diproses berurutan/berbarengan)
         for(let i = 0; i < files.length; i++) {
             const file = files[i];
             const fileName = file.name;
             const cleanPath = path.replace(/^\/+|\/+$/g, '');
-            const fullPath = cleanPath ? `${cleanPath}/${fileName}` : fileName;
+            const fullPath = cleanPath ? <code>${cleanPath}/${fileName}</code> : fileName;
             try {
                 // Baca file sebagai Base64
                 const base64Content = await new Promise((resolve) => {
@@ -369,14 +369,14 @@
                     reader.onload = () => resolve(reader.result.split(',')[1]);
                 });
                 // Tembak ke GitHub API
-                const response = await fetch(`https://api.github.com/repos/${repo}/contents/${fullPath}`, {
+                const response = await fetch(<code>https://api.github.com/repos/${repo}/contents/${fullPath}</code>, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `token ${token}`,
+                        'Authorization': <code>token ${token}</code>,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        message: `Upload media ${fileName} via Layar Kosong`,
+                        message: <code>Upload media ${fileName} via Layar Kosong</code>,
                         content: base64Content
                     })
                 });
@@ -388,29 +388,29 @@
                     // Ekstrak URL raw.githubusercontent.com dari response GitHub
                     const rawUrl = data.content.download_url;
                     let mediaTag = file.type.startsWith('video/')
-                        ? `<video src="${rawUrl}" controls></video>`
-                        : `<img src="${rawUrl}" alt="Uploaded Preview">`;
-                    itemDiv.innerHTML = `
+                        ? <code><video src="${rawUrl}" controls></video></code>
+                        : <code><img src="${rawUrl}" alt="Uploaded Preview"></code>;
+                    itemDiv.innerHTML = <code>
                         <strong style="color: #22863a; font-size: 13px;">✅ Sukses!</strong>
                         ${mediaTag}
                         <textarea class="raw-textarea" readonly>${rawUrl}</textarea>
                         <button type="button" onclick="copyRawUrl(this)" style="background: #0366d6; margin-top: 8px; padding: 8px 5px; font-size: 13px;">Salin URL Raw</button>
-                    `;
+                    </code>;
                 } else {
-                    itemDiv.innerHTML = `
+                    itemDiv.innerHTML = <code>
                         <strong style="color: #d73a49; font-size: 13px;">❌ Gagal</strong>
                         <div style="font-size: 12px; margin-top: 10px; color: #555;">${fileName}<br><br>${data.message || 'Cek token/izin repository'}</div>
-                    `;
+                    </code>;
                 }
                 uploadedResultsContainer.appendChild(itemDiv);
             } catch (err) {
                 console.error(err);
-                alert(`Error pas upload ${fileName}: ${err.message}`);
+                alert(<code>Error pas upload ${fileName}: ${err.message}</code>);
             }
         } // akhir looping
         if(successCount > 0) {
             result.style.display = "block";
-            status.innerText = `✨ ${successCount} File berhasil bersarang di GitHub!`;
+            status.innerText = <code>✨ ${successCount} File berhasil bersarang di GitHub!</code>;
         } else {
             status.innerText = "💥 Waduh, gagal upload semua nih. Coba cek token lagi deh.";
         }

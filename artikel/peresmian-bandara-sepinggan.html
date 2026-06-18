@@ -49,12 +49,12 @@
     <meta name="promphint" content="nostalgia-gallery-casual-storytelling">
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* CSS Variables untuk Dark/Light Mode & Konsistensi */
+        /<em> CSS Variables untuk Dark/Light Mode & Konsistensi </em>/
         :root {
             --bg-color: #ffffff;
             --text-color: #222222;
             --link-color: #0066cc;
-            --accent-color: #e67e22; /* Jeruk nostalgia */
+            --accent-color: #e67e22; /<em> Jeruk nostalgia </em>/
             --meta-color: #666;
             --border-color: #eeeeee;
             --card-bg: #f9f9f9;
@@ -71,7 +71,7 @@
                 --card-bg: #252525;
             }
         }
-        /* Basic Reset & Typography */
+        /<em> Basic Reset & Typography </em>/
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: var(--font-main);
@@ -81,13 +81,13 @@
             font-size: 18px;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        /* Layout Single Column Widescreen Friendly */
+        /<em> Layout Single Column Widescreen Friendly </em>/
         .container {
-            max-width: 1060px; /* Optimal reading width */
+            max-width: 1060px; /<em> Optimal reading width </em>/
             margin: 0 auto;
             padding: 20px;
         }
-        /* Headers */
+        /<em> Headers </em>/
         h1 {
             font-size: 2rem;
             margin-bottom: 0.5em;
@@ -106,7 +106,7 @@
         p { margin-bottom: 1.5em; }
         a { color: var(--link-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        /* Meta Info */
+        /<em> Meta Info </em>/
         .article-meta {
             font-size: 0.9rem;
             color: var(--meta-color);
@@ -115,7 +115,7 @@
             gap: 15px;
             flex-wrap: wrap;
         }
-        /* Gallery Grid - Optimized for CLS */
+        /<em> Gallery Grid - Optimized for CLS </em>/
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -134,7 +134,7 @@
         }
         .gallery-item a {
             display: block;
-            aspect-ratio: 4/3; /* Mencegah CLS saat loading */
+            aspect-ratio: 4/3; /<em> Mencegah CLS saat loading </em>/
             overflow: hidden;
         }
         .gallery-item img {
@@ -143,7 +143,7 @@
             object-fit: cover;
             transition: opacity 0.3s;
         }
-        /* Caption dalam foto */
+        /<em> Caption dalam foto </em>/
         .photo-caption {
             padding: 10px;
             font-size: 0.85rem;
@@ -151,7 +151,7 @@
             text-align: center;
             border-top: 1px solid var(--border-color);
         }
-        /* Quote Box */
+        /<em> Quote Box </em>/
         .highlight-box {
             background-color: rgba(230, 126, 34, 0.1);
             border-left: 4px solid var(--accent-color);
@@ -160,7 +160,7 @@
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
-        /* Injection Points */
+        /<em> Injection Points </em>/
         #related-articles-grid, #response {
             margin-top: 3em;
             padding: 20px;
@@ -171,7 +171,7 @@
         }
         #related-articles-grid::before { content: "👇 Kolom Komentar"; }
         #response::before { content: "📚 Artikel Terkait"; }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             margin-top: 4em;
             padding-top: 2em;

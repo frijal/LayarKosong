@@ -50,14 +50,14 @@
     <meta name="news_keywords" content="Git, HEAD, FETCH_HEAD, GitHub, Version Control System, Tutorial Git">
     <meta name="promphint" content="Apa perbedaan utama antara HEAD dan FETCH_HEAD dalam Git? HEAD adalah penunjuk posisi branch lokal saat ini, sedangkan FETCH_HEAD adalah penanda sementara yang mencatat pembaruan dari remote server setelah perintah git fetch.">
     <style>
-        *, *::before, *::after {
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         :root {
-            /* Tema Terang */
+            /<em> Tema Terang </em>/
             --bg-color: #f8f9fa;
             --text-color: #212529;
-            --accent-color: #f14e32; /* Warna khas Git */
+            --accent-color: #f14e32; /<em> Warna khas Git </em>/
             --muted-color: #6c757d;
             --border-color: #dee2e6;
             --code-bg: #e9ecef;
@@ -67,7 +67,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Tema Gelap */
+                /<em> Tema Gelap </em>/
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
                 --accent-color: #ff6b52;
@@ -89,7 +89,7 @@
             font-size: 1rem;
         }
         .container {
-            max-width: 62.5rem; /* 1000px */
+            max-width: 62.5rem; /<em> 1000px </em>/
             margin: 0 auto;
             padding: 1.5rem 1.25rem;
         }
@@ -143,7 +143,7 @@
             height: auto;
             display: block;
             border-radius: 0.5rem;
-            background-color: var(--border-color); /* Mencegah layout shift visual saat load */
+            background-color: var(--border-color); /<em> Mencegah layout shift visual saat load </em>/
         }
         .highlight-box {
             background-color: var(--box-bg);
@@ -204,27 +204,27 @@
         </header>
         <main role="main" itemscope="" itemtype="http://schema.org/BlogPosting">
             <article itemprop="articleBody">
-                <p>👋 Pas lagi asyik nge-code buat project atau lagi rapihin repo di GitHub, kamu tiba-tiba kepikiran: **"Sebenarnya Git itu tahu dari mana ya kalau aku lagi di branch ini?"** atau **"Pas aku ngetik git fetch, datanya lari ke mana sih sebelum aku merge?"**.</p>
+                <p>👋 Pas lagi asyik nge-code buat project atau lagi rapihin repo di GitHub, kamu tiba-tiba kepikiran: <strong>"Sebenarnya Git itu tahu dari mana ya kalau aku lagi di branch ini?"</strong> atau <strong>"Pas aku ngetik git fetch, datanya lari ke mana sih sebelum aku merge?"</strong>.</p>
                 <div class="hero-img-container">
                     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza.webp" alt="Ilustrasi perbandingan cara kerja folder HEAD dan FETCH_HEAD di dalam sistem Git" decoding="async" fetchpriority="high">
                 </div>
                 <p>Nah, buat kamu yang sering bergelut di terminal, memahami folder <code>.git</code> itu ibarat tahu cara kerja mesin mobil. Kamu tidak cuma bisa nyetir (push/pull), tapi juga bisa benerin kalau mogok. Hari ini kita bakal kupas tuntas dua makhluk penting: <code>git/HEAD</code> dan <code>git/FETCH_HEAD</code> agar tercerahkan sampai ke akar-akarnya! 🧭</p>
                 <h2>1. HEAD: Sang Kompas Utama 🧭</h2>
-                <p>Secara teknis, **HEAD** adalah sebuah file teks sederhana yang bernaung di dalam folder <code>.git/HEAD</code>. Isinya bukanlah jajaran kode rumit, melainkan sebuah referensi (*pointer*) presisi yang menunjukkan di mana posisi kamu saat ini berada di dalam sejarah *commit* repositorimu. Kalau di dunia nyata, HEAD itu beroperasi layaknya penanda "You Are Here" di peta jalanan. Tanpanya, sistem kontrol versi ini bakal kebingungan menentukan di mana revisi terbarumu harus diletakkan.</p>
+                <p>Secara teknis, <strong>HEAD</strong> adalah sebuah file teks sederhana yang bernaung di dalam folder <code>.git/HEAD</code>. Isinya bukanlah jajaran kode rumit, melainkan sebuah referensi (<em>pointer</em>) presisi yang menunjukkan di mana posisi kamu saat ini berada di dalam sejarah <em>commit</em> repositorimu. Kalau di dunia nyata, HEAD itu beroperasi layaknya penanda "You Are Here" di peta jalanan. Tanpanya, sistem kontrol versi ini bakal kebingungan menentukan di mana revisi terbarumu harus diletakkan.</p>
                 <p>File navigasi ini diandalkan secara langsung oleh Git setiap waktu. Tiap kali kamu mengeksekusi <code>git commit</code>, <code>git checkout</code>, atau <code>git reset</code>, Git akan selalu bertanya pada HEAD: "Eh, bos kita sekarang lagi berdiri di mana?". Kehadirannya sukses menjaga integritas struktur data Git agar tetap terjaga utuh dan sejarah project kamu tidak berantakan. Ia adalah sang jangkar yang kokoh menahan seluruh alur kerja tim.</p>
-                <p>Lalu, kapan pointer ini bergeser? Jawabannya: setiap kali kamu berpindah branch menggunakan <code>git switch</code>. Saat itu juga, isi teks file HEAD akan dapat diperbarui untuk menunjuk ke branch tujuan barumu. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Selain itu, saat kamu mencetak *commit* baru, HEAD (melalui branch yang sedang ditunjuknya) akan otomatis melangkah maju mengekor ke *commit* paling mutakhir.</p>
+                <p>Lalu, kapan pointer ini bergeser? Jawabannya: setiap kali kamu berpindah branch menggunakan <code>git switch</code>. Saat itu juga, isi teks file HEAD akan dapat diperbarui untuk menunjuk ke branch tujuan barumu. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Selain itu, saat kamu mencetak <em>commit</em> baru, HEAD (melalui branch yang sedang ditunjuknya) akan otomatis melangkah maju mengekor ke <em>commit</em> paling mutakhir.</p>
                 <p>Sistem referensi berantai inilah yang menjadi kunci rahasia Git. Alurnya bekerja dengan cerdas: HEAD umumnya menunjuk ke sebuah Branch, dan Branch tersebut akan menunjuk ke Hash Commit terbaru. Contoh rantai sederhananya: <code>HEAD -&gt; refs/heads/master -&gt; a1b2c3d...</code>. Kalau kamu iseng membuka terminal di projectmu dan mengetik <code>cat .git/HEAD</code>, kamu akan langsung melihat validasi posisi referensi ini.</p>
                 <div class="highlight-box">
-                    <p>**⚠️ Peringatan: Detached HEAD!**</p>
-                    <p>Ini adalah kondisi horor di mana kamu melakukan checkout langsung merujuk ke sebuah *commit hash*, bukan mendarat ke nama branch yang utuh. Imbasnya, HEAD jadi tidak punya "rumah" branch. Kalau kamu nekat melakukan *commit* di fase ini, *commit*-nya berpotensi raib jika kamu pindah ke branch lain tanpa menyimpannya dulu. Hati-hati ya! Jangan sampai kerja keras seharian menguap gara-gara status "terlepas" ini.</p>
+                    <p><strong>⚠️ Peringatan: Detached HEAD!</strong></p>
+                    <p>Ini adalah kondisi horor di mana kamu melakukan checkout langsung merujuk ke sebuah <em>commit hash</em>, bukan mendarat ke nama branch yang utuh. Imbasnya, HEAD jadi tidak punya "rumah" branch. Kalau kamu nekat melakukan <em>commit</em> di fase ini, <em>commit</em>-nya berpotensi raib jika kamu pindah ke branch lain tanpa menyimpannya dulu. Hati-hati ya! Jangan sampai kerja keras seharian menguap gara-gara status "terlepas" ini.</p>
                 </div>
                 <h2>2. FETCH_HEAD: Sang Kurir Berita 📬</h2>
-                <p>Berbeda nasib dengan kompatriotnya yang menetap permanen, **FETCH_HEAD** murni merupakan file temporer (sementara) yang dilahirkan oleh Git khusus untuk mencatat apa saja muatan yang baru ditarik dari *remote repository* lewat perintah <code>git fetch</code>. Anggap saja utilitas ini sebagai nota pengiriman barang paket yang baru mendarat di gudang, tapi belum dibongkar sepenuhnya ke rak utama sistem.</p>
-                <p>Pemain utama yang meramaikan siklus file ini adalah Remote Server (seperti GitHub) dan *Local Machine* kamu. FETCH_HEAD bertindak mulia sebagai saksi mata yang merekam kondisi aktual server terkini. Developer yang berkolaborasi dalam tim akan sangat mendewakan file yang bersembunyi di <code>.git/FETCH_HEAD</code> ini untuk memantau perubahan rekan kerjanya, tentunya tanpa menanggung risiko merusak tatanan kode yang sedang diracik mandiri.</p>
-                <p>Bayangkan kamu *kepo* ingin tahu *update* terbaru dari teman sebelah, tapi ogah langsung menggabungkannya ke pekerjaanmu lantaran paranoid terjadi *conflict*. Kamu cukup menembakkan <code>git fetch</code>. Seketika itu, Git membungkus info *update* tersebut rapi ke dalam FETCH_HEAD. Fitur *safety net* ini memfasilitasimu untuk melakukan inspeksi (*diff*) sebelum benar-benar berani melakukan *merge*. Sistem tidak akan membiarkanmu asal "tabrak" masuk mengubah kode tanpa izin orang lain.</p>
-                <p>Catatan kurir berita ini akan terus ditimpa isinya setiap kali perintah *fetch* dieksekusi. Tahukah kamu? Jika kamu memakai <code>git pull</code>, di balik layar Git sebenarnya mengeksekusi *fetch* terlebih dahulu (yang langsung memanipulasi FETCH_HEAD), barulah kemudian memaksakan aksi *merge*. Kamu bisa mengintip ringkasan kargo yang baru ditarik tanpa harus menggabungkannya menggunakan instruksi aman: <code>git log FETCH_HEAD</code>.</p>
+                <p>Berbeda nasib dengan kompatriotnya yang menetap permanen, <strong>FETCH_HEAD</strong> murni merupakan file temporer (sementara) yang dilahirkan oleh Git khusus untuk mencatat apa saja muatan yang baru ditarik dari <em>remote repository</em> lewat perintah <code>git fetch</code>. Anggap saja utilitas ini sebagai nota pengiriman barang paket yang baru mendarat di gudang, tapi belum dibongkar sepenuhnya ke rak utama sistem.</p>
+                <p>Pemain utama yang meramaikan siklus file ini adalah Remote Server (seperti GitHub) dan <em>Local Machine</em> kamu. FETCH_HEAD bertindak mulia sebagai saksi mata yang merekam kondisi aktual server terkini. Developer yang berkolaborasi dalam tim akan sangat mendewakan file yang bersembunyi di <code>.git/FETCH_HEAD</code> ini untuk memantau perubahan rekan kerjanya, tentunya tanpa menanggung risiko merusak tatanan kode yang sedang diracik mandiri.</p>
+                <p>Bayangkan kamu <em>kepo</em> ingin tahu <em>update</em> terbaru dari teman sebelah, tapi ogah langsung menggabungkannya ke pekerjaanmu lantaran paranoid terjadi <em>conflict</em>. Kamu cukup menembakkan <code>git fetch</code>. Seketika itu, Git membungkus info <em>update</em> tersebut rapi ke dalam FETCH_HEAD. Fitur <em>safety net</em> ini memfasilitasimu untuk melakukan inspeksi (<em>diff</em>) sebelum benar-benar berani melakukan <em>merge</em>. Sistem tidak akan membiarkanmu asal "tabrak" masuk mengubah kode tanpa izin orang lain.</p>
+                <p>Catatan kurir berita ini akan terus ditimpa isinya setiap kali perintah <em>fetch</em> dieksekusi. Tahukah kamu? Jika kamu memakai <code>git pull</code>, di balik layar Git sebenarnya mengeksekusi <em>fetch</em> terlebih dahulu (yang langsung memanipulasi FETCH_HEAD), barulah kemudian memaksakan aksi <em>merge</em>. Kamu bisa mengintip ringkasan kargo yang baru ditarik tanpa harus menggabungkannya menggunakan instruksi aman: <code>git log FETCH_HEAD</code>.</p>
                 <h2>Perbedaan Utama yang Harus Kamu Ingat 📝</h2>
-                <p>Kadang kita masih sering tersandung kebingungan membedakan keduanya. Supaya *mindset*-mu makin tajam, silakan cermati tabel matriks komparasinya di bawah ini:</p>
+                <p>Kadang kita masih sering tersandung kebingungan membedakan keduanya. Supaya <em>mindset</em>-mu makin tajam, silakan cermati tabel matriks komparasinya di bawah ini:</p>
                 <table>
                     <thead>
                         <tr>
@@ -235,33 +235,33 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>**Fokus Area**</td>
+                            <td><strong>Fokus Area</strong></td>
                             <td>Internal / Kondisi lokal saat ini</td>
                             <td>Eksternal / Tangkapan remote terakhir</td>
                         </tr>
                         <tr>
-                            <td>**Sifat Ekstensi**</td>
+                            <td><strong>Sifat Ekstensi</strong></td>
                             <td>Permanen (wajib menunjuk sesuatu)</td>
-                            <td>Efemer (usang dan diperbarui tiap *fetch*)</td>
+                            <td>Efemer (usang dan diperbarui tiap <em>fetch</em>)</td>
                         </tr>
                         <tr>
-                            <td>**Fungsi Esensial**</td>
+                            <td><strong>Fungsi Esensial</strong></td>
                             <td>Navigasi lalu lintas antar branch lokal</td>
-                            <td>Jembatan aman integrasi data *remote*</td>
+                            <td>Jembatan aman integrasi data <em>remote</em></td>
                         </tr>
                         <tr>
-                            <td>**Lokasi di .git**</td>
+                            <td><strong>Lokasi di .git</strong></td>
                             <td><code>.git/HEAD</code></td>
                             <td><code>.git/FETCH_HEAD</code></td>
                         </tr>
                     </tbody>
                 </table>
                 <h2>Kenapa Memahami Ini Bikin Kamu Jadi Nyaman? 😎</h2>
-                <p>Mengerti seluk-beluk kedua orkestrator ini dijamin bakal mendongkrak rasa percaya dirimu ketika diadang error semacam "merge conflict" atau saat sedang mendesak ingin me-*undo* eksekusi fatal. Instingmu akan otomatis tahu apakah biang keroknya bermuara di "posisi berdiri" kamu (HEAD) atau malah cacat di "berita yang dibawa" dari server (FETCH_HEAD).</p>
-                <p>Masih banyak kawan-kawan kita yang terjebak buta dalam rutinitas <code>add - commit - push</code> tanpa mau membedah apa yang sesungguhnya bergejolak di belakang layar. Sekalinya pecah konflik, mereka auto panik. Padahal, berbekal pengetahuan bahwa HEAD hanyalah sebuah *pointer* belaka, kamu bisa dengan tenang melempar <code>git reset --hard</code> karena kamu sadar betul kamu sebatas menggeser jarum "kompas" kembali ke titik aman.</p>
-                <p>Begitu halnya dengan FETCH_HEAD. Lewat pemahaman konsep ini, kamu akan tobat dari kebiasaan barbar asal pencet <code>git pull</code>. Siklusmu akan jauh lebih elegan: rutin <code>git fetch</code>, intip log-nya, riset risikonya, baru mantap mengeksekusi *merge*. Inilah manifestasi dari developer yang paham akar dari cara kerja fundamental Git.</p>
+                <p>Mengerti seluk-beluk kedua orkestrator ini dijamin bakal mendongkrak rasa percaya dirimu ketika diadang error semacam "merge conflict" atau saat sedang mendesak ingin me-<em>undo</em> eksekusi fatal. Instingmu akan otomatis tahu apakah biang keroknya bermuara di "posisi berdiri" kamu (HEAD) atau malah cacat di "berita yang dibawa" dari server (FETCH_HEAD).</p>
+                <p>Masih banyak kawan-kawan kita yang terjebak buta dalam rutinitas <code>add - commit - push</code> tanpa mau membedah apa yang sesungguhnya bergejolak di belakang layar. Sekalinya pecah konflik, mereka auto panik. Padahal, berbekal pengetahuan bahwa HEAD hanyalah sebuah <em>pointer</em> belaka, kamu bisa dengan tenang melempar <code>git reset --hard</code> karena kamu sadar betul kamu sebatas menggeser jarum "kompas" kembali ke titik aman.</p>
+                <p>Begitu halnya dengan FETCH_HEAD. Lewat pemahaman konsep ini, kamu akan tobat dari kebiasaan barbar asal pencet <code>git pull</code>. Siklusmu akan jauh lebih elegan: rutin <code>git fetch</code>, intip log-nya, riset risikonya, baru mantap mengeksekusi <em>merge</em>. Inilah manifestasi dari developer yang paham akar dari cara kerja fundamental Git.</p>
                 <h3>Kesimpulan</h3>
-                <p>Git bukan sekadar kotak perkakas usang untuk menimbun baris kode, tapi lebih kepada sebuah sistem manajemen histori yang mahakarya. HEAD mewakili kanvas "masa sekarang", di sisi lain FETCH_HEAD adalah jendela pengintai "dunia luar sana". Lewat menjaga dua elemen ini senantiasa sinkron, dijamin *workflow* perakitan sistemmu bakal melesat mulus dan bersih dari drama senggol-bacok konflik kode.</p>
+                <p>Git bukan sekadar kotak perkakas usang untuk menimbun baris kode, tapi lebih kepada sebuah sistem manajemen histori yang mahakarya. HEAD mewakili kanvas "masa sekarang", di sisi lain FETCH_HEAD adalah jendela pengintai "dunia luar sana". Lewat menjaga dua elemen ini senantiasa sinkron, dijamin <em>workflow</em> perakitan sistemmu bakal melesat mulus dan bersih dari drama senggol-bacok konflik kode.</p>
                 <p>Gimana? Otak udah tidak ngebul lagi kan sama anatomi isi perut Git? Kalau kamu menyimpan rekam jejak pengalaman epik (atau malah tragis) gara-gara disleding urusan HEAD ini, mari rapatkan barisan dan ceritain di kolom komentar ya... 👨💻👩💻</p>
             </article>
         </main>
@@ -269,9 +269,9 @@
         <div id="response"></div>
         <footer role="contentinfo">
             <div class="e-e-a-t-flex">
-                <span>👤 **Penulis:** Frijal (<a href="https://layarkosong.com" target="_blank" rel="noopener">Layar Kosong</a>)</span>
-                <span>📅 **Diterbitkan:** 2 Juni 2026</span>
-                <span>🌐 **Sosial:** <a href="https://x.com/responaja" target="_blank" rel="noopener">X/Twitter</a> | <a href="https://github.com/frijal" target="_blank" rel="noopener">GitHub</a></span>
+                <span>👤 <strong>Penulis:</strong> Frijal (<a href="https://layarkosong.com" target="_blank" rel="noopener">Layar Kosong</a>)</span>
+                <span>📅 <strong>Diterbitkan:</strong> 2 Juni 2026</span>
+                <span>🌐 <strong>Sosial:</strong> <a href="https://x.com/responaja" target="_blank" rel="noopener">X/Twitter</a> | <a href="https://github.com/frijal" target="_blank" rel="noopener">GitHub</a></span>
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>

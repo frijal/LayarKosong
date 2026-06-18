@@ -51,7 +51,7 @@
     <meta name="promphint" content="Bagaimana cara paling aman mencoba KDE Linux tanpa menghapus data komputer? Kamu bisa membuat Live USB menggunakan ISO Image Writer, lalu boot komputer menggunakan mode Live Session untuk mengeksplorasi sistem sebelum melakukan instalasi penuh.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* Variabel Tema Terang/Gelap (prefers-color-scheme) */
+        /<em> Variabel Tema Terang/Gelap (prefers-color-scheme) </em>/
         :root {
             --bg-color: #f9fafb;
             --text-color: #1f2937;
@@ -85,7 +85,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-            font-size: 1.125rem; /* 18px base untuk keterbacaan mobile */
+            font-size: 1.125rem; /<em> 18px base untuk keterbacaan mobile </em>/
             line-height: 1.7;
             max-width: 1000px;
             margin: 0 auto;
@@ -130,16 +130,16 @@
         a:hover {
             text-decoration: none;
         }
-        /* Optimasi Gambar CWV (Full Container Width) */
+        /<em> Optimasi Gambar CWV (Full Container Width) </em>/
         img {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 0.5rem;
             margin: 2rem 0;
-            background-color: var(--border-color); /* Fallback saat loading */
+            background-color: var(--border-color); /<em> Fallback saat loading </em>/
         }
-        /* Syntax Highlighting Base (Dark Theme) */
+        /<em> Syntax Highlighting Base (Dark Theme) </em>/
         code {
             background-color: var(--border-color);
             color: var(--text-color);
@@ -174,7 +174,7 @@
             background-color: var(--border-color);
             margin: 3rem 0;
         }
-        /* Footer E-E-A-T (Inline Center) */
+        /<em> Footer E-E-A-T (Inline Center) </em>/
         footer {
             text-align: center;
             font-size: 0.95rem;
@@ -187,7 +187,7 @@
             display: inline-block;
             margin: 0 0.5rem;
         }
-        /* Responsif Media Queries */
+        /<em> Responsif Media Queries </em>/
         @media (max-width: 768px) {
             h1 { font-size: 1.875rem; }
             h2 { font-size: 1.5rem; }
@@ -204,59 +204,59 @@
     <main role="main">
         <p>Siapa yang tidak penasaran dengan pengalaman murni dari ekosistem KDE? Saat ini, edisi Testing dari KDE Linux telah resmi tersedia! Versi ini secara khusus menampilkan versi pengembangan terbaru dan terhebat dari <a target="_blank" href="https://kde.org/plasma-desktop">lingkungan desktop Plasma</a> serta <a target="_blank" href="https://apps.kde.org">jajaran aplikasinya</a>.</p>
         <img src="https://dalam.web.id/img/pbs.twimg.com/70246ec0510af8e0.webp" alt="Ilustrasi desktop dan sistem instalasi KDE Linux" fetchpriority="high" loading="eager" decoding="async">
-        <p>Tentu saja, karena ini adalah edisi percobaan, kamu harus siap menghadapi perubahan yang sangat sering terjadi maupun potensi *regresi* (penurunan fungsi). Gunakan di lingkungan produksi (*production environment*) **dengan risiko ditanggung sendiri**! Untuk edisi yang lebih stabil dan cocok digunakan oleh masyarakat umum, pihak pengembang menyatakan saat ini masih dalam tahap pengerjaan.</p>
-        <p>Bagi kamu yang lebih memilih mencoba tanpa menyentuh *hardware* fisik, panduan instalasi menggunakan *Virtual Machine* bisa <a target="_blank" href="https://linux.kde.org/docs/install-vm/">kamu temukan di sini</a>. Namun, jika kamu ingin mengujinya langsung di perangkatmu, mari kita perhatikan persyaratannya di bawah ini.</p>
+        <p>Tentu saja, karena ini adalah edisi percobaan, kamu harus siap menghadapi perubahan yang sangat sering terjadi maupun potensi <em>regresi</em> (penurunan fungsi). Gunakan di lingkungan produksi (<em>production environment</em>) <strong>dengan risiko ditanggung sendiri</strong>! Untuk edisi yang lebih stabil dan cocok digunakan oleh masyarakat umum, pihak pengembang menyatakan saat ini masih dalam tahap pengerjaan.</p>
+        <p>Bagi kamu yang lebih memilih mencoba tanpa menyentuh <em>hardware</em> fisik, panduan instalasi menggunakan <em>Virtual Machine</em> bisa <a target="_blank" href="https://linux.kde.org/docs/install-vm/">kamu temukan di sini</a>. Namun, jika kamu ingin mengujinya langsung di perangkatmu, mari kita perhatikan persyaratannya di bawah ini.</p>
         <h2>Persyaratan Sistem Minimum <i class="fa-solid fa-microchip"></i></h2>
         <p>KDE Linux dirancang untuk mendukung hampir semua PC desktop dan laptop dengan spesifikasi berikut:</p>
         <ul>
-            <li>Firmware **UEFI** (mencakup hampir semua komputer yang dijual dalam 15 tahun terakhir).</li>
-            <li>Prosesor berbasis **AMD** atau **Intel**.</li>
-            <li>Minimal memori RAM sebesar **2 GB**.</li>
-            <li>Ruang penyimpanan kosong minimal **15 GB**.</li>
+            <li>Firmware <strong>UEFI</strong> (mencakup hampir semua komputer yang dijual dalam 15 tahun terakhir).</li>
+            <li>Prosesor berbasis <strong>AMD</strong> atau <strong>Intel</strong>.</li>
+            <li>Minimal memori RAM sebesar <strong>2 GB</strong>.</li>
+            <li>Ruang penyimpanan kosong minimal <strong>15 GB</strong>.</li>
         </ul>
         <h2>Keterbatasan Perangkat Keras (Saat Ini)</h2>
         <p>Sebelum melangkah jauh, pastikan perangkatmu tidak masuk dalam daftar yang belum sepenuhnya didukung ini:</p>
         <ul>
-            <li>**CPU berbasis ARM:** Perangkat seperti seri Apple "M" atau Qualcomm Snapdragon saat ini ~~belum didukung~~.</li>
-            <li>**Kartu Grafis NVIDIA:** Kartu grafis dari seri "Turing" ke atas (contohnya GTX 1630 atau yang lebih baru) bisa langsung berjalan lancar (*out of the box*). Namun, untuk kartu grafis yang lebih tua, sistem terbatas pada *driver* "Nouveau", yang <a target="_blank" href="https://linux.kde.org/docs/pre-turing-nvidia/">membutuhkan pengaturan manual</a> (<a target="_blank" href="https://linux.kde.org/nvidia/">pelajari lebih lanjut</a>).</li>
-            <li>**Kartu Jaringan Nirkabel Broadcom:** Hanya kartu jaringan yang <a target="_blank" href="https://wireless.docs.kernel.org/en/latest/en/users/drivers/brcm80211.html#supported-chips">terdaftar di sini</a> yang didukung langsung. Kartu di luar daftar kemungkinan besar tidak akan berfungsi.</li>
-            <li>**Layar DisplayLink:** Saat ini tidak didukung. Namun, penggunaan *DisplayPort* biasa bekerja tanpa masalah.</li>
-            <li>**Printer:** Sebagian besar printer nirkabel modern yang mendukung fitur *"driverless"* (diproduksi 10 tahun terakhir) — termasuk <a target="_blank" href="https://openprinting.github.io/printers/">semua yang ada di daftar ini</a> — akan langsung berfungsi. *Driver* untuk beberapa printer kabel lawas disertakan, namun tidak semuanya kompatibel. Kamu bisa mengecek daftar <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/?sort=created_date&amp;state=opened&amp;label_name[]=Hardware%20compatibility&amp;label_name[]=Printers%20%f0%9f%94%a8">printer yang diketahui tidak kompatibel di sini</a>.</li>
+            <li><strong>CPU berbasis ARM:</strong> Perangkat seperti seri Apple "M" atau Qualcomm Snapdragon saat ini <del>belum didukung</del>.</li>
+            <li><strong>Kartu Grafis NVIDIA:</strong> Kartu grafis dari seri "Turing" ke atas (contohnya GTX 1630 atau yang lebih baru) bisa langsung berjalan lancar (<em>out of the box</em>). Namun, untuk kartu grafis yang lebih tua, sistem terbatas pada <em>driver</em> "Nouveau", yang <a target="_blank" href="https://linux.kde.org/docs/pre-turing-nvidia/">membutuhkan pengaturan manual</a> (<a target="_blank" href="https://linux.kde.org/nvidia/">pelajari lebih lanjut</a>).</li>
+            <li><strong>Kartu Jaringan Nirkabel Broadcom:</strong> Hanya kartu jaringan yang <a target="_blank" href="https://wireless.docs.kernel.org/en/latest/en/users/drivers/brcm80211.html#supported-chips">terdaftar di sini</a> yang didukung langsung. Kartu di luar daftar kemungkinan besar tidak akan berfungsi.</li>
+            <li><strong>Layar DisplayLink:</strong> Saat ini tidak didukung. Namun, penggunaan <em>DisplayPort</em> biasa bekerja tanpa masalah.</li>
+            <li><strong>Printer:</strong> Sebagian besar printer nirkabel modern yang mendukung fitur <em>"driverless"</em> (diproduksi 10 tahun terakhir) — termasuk <a target="_blank" href="https://openprinting.github.io/printers/">semua yang ada di daftar ini</a> — akan langsung berfungsi. <em>Driver</em> untuk beberapa printer kabel lawas disertakan, namun tidak semuanya kompatibel. Kamu bisa mengecek daftar <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/?sort=created_date&amp;state=opened&amp;label_name[]=Hardware%20compatibility&amp;label_name[]=Printers%20%f0%9f%94%a8">printer yang diketahui tidak kompatibel di sini</a>.</li>
         </ul>
         <h2>Masalah Perangkat Lunak yang Diketahui</h2>
-        <p>Karena statusnya yang masih *testing*, silakan lihat daftar <a target="_blank" href="https://invent.kde.org/groups/kde-linux/-/issues?sort=created_date&amp;state=opened&amp;label_name%5B%5D=Significant%20user-facing%20issue&amp;not%5Blabel_name%5D%5B%5D=Hardware%20compatibility&amp;first_page_size=100">batasan signifikan dan masalah yang diketahui di sini</a>.</p>
-        <p>Pada dasarnya, cara paling ideal untuk mengetahui apakah KDE Linux cocok untuk kebutuhan dan perangkat kerasmu adalah dengan membuat USB *Live Drive*. Cara ini memungkinkanmu melihat *preview* langsung di komputer tanpa mengambil risiko pada data yang sudah ada.</p>
+        <p>Karena statusnya yang masih <em>testing</em>, silakan lihat daftar <a target="_blank" href="https://invent.kde.org/groups/kde-linux/-/issues?sort=created_date&amp;state=opened&amp;label_name%5B%5D=Significant%20user-facing%20issue&amp;not%5Blabel_name%5D%5B%5D=Hardware%20compatibility&amp;first_page_size=100">batasan signifikan dan masalah yang diketahui di sini</a>.</p>
+        <p>Pada dasarnya, cara paling ideal untuk mengetahui apakah KDE Linux cocok untuk kebutuhan dan perangkat kerasmu adalah dengan membuat USB <em>Live Drive</em>. Cara ini memungkinkanmu melihat <em>preview</em> langsung di komputer tanpa mengambil risiko pada data yang sudah ada.</p>
         <h2>Langkah 1: Membuat Live USB Drive <i class="fa-brands fa-usb"></i></h2>
         <p>Mari kita mulai proses pembuatannya dengan langkah-langkah berikut:</p>
         <ol>
-            <li>Unduh *image* file `*.raw*` terbaru <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">dari sini</a>.</li>
-            <li>Verifikasi keaslian file `*.raw*` tersebut! Kunjungi <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">halaman unduhan ini</a> dan klik *Details* pada file yang diunduh. Salin teks karakter acak di sebelah tulisan *SHA256*. Di komputermu, klik kanan pada file `*.raw*` yang sudah diunduh, pilih **Properties**, lalu buka *tab***Checksums**. Tempelkan karakter tadi dan tekan tombol *Enter*. Jika kolom berubah menjadi hijau, file tersebut aman. Jika tidak, file mungkin korup dan kamu harus mengunduhnya ulang.</li>
+            <li>Unduh <em>image</em> file <code><em>.raw</em></code> terbaru <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">dari sini</a>.</li>
+            <li>Verifikasi keaslian file <code><em>.raw</em></code> tersebut! Kunjungi <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">halaman unduhan ini</a> dan klik <em>Details</em> pada file yang diunduh. Salin teks karakter acak di sebelah tulisan <em>SHA256</em>. Di komputermu, klik kanan pada file <code><em>.raw</em></code> yang sudah diunduh, pilih <strong>Properties</strong>, lalu buka <em>tab<strong></em>Checksums</strong>. Tempelkan karakter tadi dan tekan tombol <em>Enter</em>. Jika kolom berubah menjadi hijau, file tersebut aman. Jika tidak, file mungkin korup dan kamu harus mengunduhnya ulang.</li>
             <li>Jika file divalidasi asli, instal aplikasi <a target="_blank" href="https://apps.kde.org/isoimagewriter/">ISO Image Writer</a> dan jalankan aplikasinya.</li>
-            <li>Klik opsi *"Path to ISO Image..."* lalu cari file `*.raw*` tadi.</li>
-            <li>Colokkan *flash drive* USB kamu dan pastikan perangkat tersebut muncul di bagian *"To this USB Drive"*.</li>
-            <li>Klik tombol **Create** dan tunggu proses penulisan selesai.</li>
+            <li>Klik opsi <em>"Path to ISO Image..."</em> lalu cari file <code><em>.raw</em></code> tadi.</li>
+            <li>Colokkan <em>flash drive</em> USB kamu dan pastikan perangkat tersebut muncul di bagian <em>"To this USB Drive"</em>.</li>
+            <li>Klik tombol <strong>Create</strong> dan tunggu proses penulisan selesai.</li>
         </ol>
         <h2>Langkah 2: Menyiapkan Komputer Target <i class="fa-solid fa-gear"></i></h2>
-        <p>Kamu harus memastikan bahwa fitur **Secure Boot** dalam keadaan nonaktif. Jika belum yakin, masuklah ke antarmuka UEFI komputermu untuk mematikannya:</p>
+        <p>Kamu harus memastikan bahwa fitur <strong>Secure Boot</strong> dalam keadaan nonaktif. Jika belum yakin, masuklah ke antarmuka UEFI komputermu untuk mematikannya:</p>
         <ol>
-            <li>Pertama, konsultasikan <a target="_blank" href="https://forums.perangkat lunak berbahayabytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys/">tabel panduan di sini</a> dan cari tombol *BIOS/UEFI Key* yang sesuai dengan merek komputermu.</li>
-            <li>Lakukan *reboot* (hidupkan ulang) komputer dan tekan tombol tersebut berulang kali saat layar baru menyala.</li>
-            <li>Setelah masuk ke antarmuka UEFI (tampilannya biasanya cukup kaku dan lawas), cari opsi untuk mematikan **Secure Boot** lalu nonaktifkan. Letak menu ini berbeda-beda tiap pabrikan, jadi kamu mungkin perlu sedikit mencari.</li>
-            <li>Setelah dimatikan, cari opsi *"Exit and save changes"* untuk menyimpan pengaturan.</li>
+            <li>Pertama, konsultasikan <a target="_blank" href="https://forums.perangkat lunak berbahayabytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys/">tabel panduan di sini</a> dan cari tombol <em>BIOS/UEFI Key</em> yang sesuai dengan merek komputermu.</li>
+            <li>Lakukan <em>reboot</em> (hidupkan ulang) komputer dan tekan tombol tersebut berulang kali saat layar baru menyala.</li>
+            <li>Setelah masuk ke antarmuka UEFI (tampilannya biasanya cukup kaku dan lawas), cari opsi untuk mematikan <strong>Secure Boot</strong> lalu nonaktifkan. Letak menu ini berbeda-beda tiap pabrikan, jadi kamu mungkin perlu sedikit mencari.</li>
+            <li>Setelah dimatikan, cari opsi <em>"Exit and save changes"</em> untuk menyimpan pengaturan.</li>
         </ol>
-        <p>*Catatan: Syarat mematikan fitur ini akan dihilangkan di masa mendatang setelah <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/3">KDE Linux sepenuhnya mendukung Secure Boot</a>.*</p>
+        <p><em>Catatan: Syarat mematikan fitur ini akan dihilangkan di masa mendatang setelah <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/3">KDE Linux sepenuhnya mendukung Secure Boot</a>.</em></p>
         <h2>Langkah 3: Booting ke Live USB <i class="fa-solid fa-power-off"></i></h2>
         <ol>
             <li>Pastikan USB drive sudah tertancap di komputermu.</li>
-            <li>Sekali lagi, konsultasikan <a target="_blank" href="https://forums.perangkat lunak berbahayabytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys/">tabel pintasan ini</a> dan catat tombol *Boot Menu Key* sesuai merek perangkatmu.</li>
-            <li>*Reboot* komputer dan tekan tombol tersebut berulang-ulang saat *startup*.</li>
-            <li>Saat menu *boot* muncul, gunakan tombol panah atas/bawah untuk memilih *entry* yang mewakili *flash drive* USB kamu, lalu tekan **Enter**.</li>
+            <li>Sekali lagi, konsultasikan <a target="_blank" href="https://forums.perangkat lunak berbahayabytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys/">tabel pintasan ini</a> dan catat tombol <em>Boot Menu Key</em> sesuai merek perangkatmu.</li>
+            <li><em>Reboot</em> komputer dan tekan tombol tersebut berulang-ulang saat <em>startup</em>.</li>
+            <li>Saat menu <em>boot</em> muncul, gunakan tombol panah atas/bawah untuk memilih <em>entry</em> yang mewakili <em>flash drive</em> USB kamu, lalu tekan <strong>Enter</strong>.</li>
         </ol>
         <h2>Langkah 4: Eksplorasi Live Session &amp; Instalasi <i class="fa-solid fa-desktop"></i></h2>
-        <p>Selamat! Sekarang kamu berada di dalam *"Live Session"* KDE Linux. Di tahap ini, silakan selesaikan *wizard* penyambutan dan mulailah bereksplorasi. Uji coba semua periferal andalanmu (seperti *mouse*, *headset*, atau periferal lain yang sering digunakan) untuk memastikan semuanya berfungsi dengan baik.</p>
-        <p>Jika kamu sudah siap untuk melakukan instalasi permanen, klik ganda pada ikon **"Install KDE Linux"** di layar *desktop* dan ikuti panduan dari *installer*.</p>
+        <p>Selamat! Sekarang kamu berada di dalam <em>"Live Session"</em> KDE Linux. Di tahap ini, silakan selesaikan <em>wizard</em> penyambutan dan mulailah bereksplorasi. Uji coba semua periferal andalanmu (seperti <em>mouse</em>, <em>headset</em>, atau periferal lain yang sering digunakan) untuk memastikan semuanya berfungsi dengan baik.</p>
+        <p>Jika kamu sudah siap untuk melakukan instalasi permanen, klik ganda pada ikon <strong>"Install KDE Linux"</strong> di layar <em>desktop</em> dan ikuti panduan dari <em>installer</em>.</p>
         <div class="alert-box">
-            <p>**PERINGATAN:** Menginstal KDE Linux pada keseluruhan disk (menghapus seluruh isi data) adalah opsi yang paling bisa diandalkan. Metode instalasi lain mungkin bisa bekerja, namun diketahui <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/work_items?label_name%5B%5D=Live%20session%2Finstaller">bisa gagal pada kondisi tertentu</a> sehingga **tidak direkomendasikan**. Jika kamu memilih menghapus disk, semua file kamu akan musnah! Pastikan data penting sudah di-*backup* di tempat lain.</p>
+            <p><strong>PERINGATAN:</strong> Menginstal KDE Linux pada keseluruhan disk (menghapus seluruh isi data) adalah opsi yang paling bisa diandalkan. Metode instalasi lain mungkin bisa bekerja, namun diketahui <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/work_items?label_name%5B%5D=Live%20session%2Finstaller">bisa gagal pada kondisi tertentu</a> sehingga <strong>tidak direkomendasikan</strong>. Jika kamu memilih menghapus disk, semua file kamu akan musnah! Pastikan data penting sudah di-<em>backup</em> di tempat lain.</p>
         </div>
         <h2>Langkah 5: Nikmati Sistem Barumu! <i class="fa-regular fa-face-smile"></i></h2>
         <p>Kami sangat berharap kamu menyukai pengalaman ini. Selamat berselancar dengan KDE Linux!</p>
@@ -264,7 +264,7 @@
     <div id="related-articles-grid"></div>
     <div id="response"></div>
     <footer>
-        <span><i class="fa-solid fa-pen-nib"></i> Artikel oleh: **Nate Graham**</span> |
+        <span><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Nate Graham</strong></span> |
         <span><i class="fa-regular fa-calendar"></i> Terakhir diperbarui: 3 Juni 2026</span>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>

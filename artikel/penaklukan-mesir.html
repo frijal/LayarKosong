@@ -71,7 +71,7 @@
             margin:0 auto;
             padding:clamp(18px,2.8vw,30px);
         }
-        /* ===== HEADER ===== */
+        /<em> ===== HEADER ===== </em>/
         header.site {
             margin:28px auto 14px;
             padding:26px;
@@ -94,7 +94,7 @@
             display:inline-flex; align-items:center; gap:8px; padding:7px 11px;
             border-radius:999px; background:rgba(34,18,63,.55); border:1px solid rgba(255,255,255,.10);
         }
-        /* ===== ARTICLE CARD ===== */
+        /<em> ===== ARTICLE CARD ===== </em>/
         article.post {
             margin:26px auto;
             background:linear-gradient(180deg, rgba(34,18,63,.72), rgba(34,18,63,.50));
@@ -131,7 +131,7 @@
             margin:1.2em 0 .6em; font-weight:700; color:#dbe6ff;
             border-left:4px solid var(--accent-2); padding-left:6em;
         }
-        /* ===== GALLERY ===== */
+        /<em> ===== GALLERY ===== </em>/
         .gallery {
             display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0;
         }
@@ -151,7 +151,7 @@
             padding:6px 8px; border-radius:8px; font-size:88rem; color:#eaf6ff;
             background:linear-gradient(180deg, rgba(25,13,43,.55), rgba(25,13,43,.85)); backdrop-filter:blur(4px);
         }
-        /* ===== LIGHTBOX ===== */
+        /<em> ===== LIGHTBOX ===== </em>/
         .lightbox{ position:fixed; inset:0; background:rgba(7,4,14,.88); display:none; align-items:center; justify-content:center; z-index:9999; }
         .lightbox.open{ display:flex; }
         .lightbox img{ max-width:min(92vw, 1200px); max-height:80vh; border-radius:12px; box-shadow:0 20px 50px rgba(0,0,0,.5); }
@@ -161,7 +161,7 @@
             border-radius:999px; padding:10px 14px; cursor:pointer; font-size:16px;
         }
         .lb-btn:hover, .lb-close:hover{ background:rgba(255,255,255,.18); }
-        /* ===== SHARE BAR ===== */
+        /<em> ===== SHARE BAR ===== </em>/
         .share{ display:flex; gap:12px; flex-wrap:wrap; margin:18px 0; }
         .share a{
             display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
@@ -169,46 +169,46 @@
             color:var(--text); text-decoration:none; transition:transform .05s ease, background .2s ease;
         }
         .share a:hover{ background:rgba(34,18,63,.70); transform:translateY(-1px); }
-        /* ===== FOOTER ===== */
+        /<em> ===== FOOTER ===== </em>/
         footer.site{
             margin:26px auto 90px; padding:18px 20px; border-radius:var(--radius);
             background:linear-gradient(135deg, rgba(125,211,252,.10), rgba(255,122,200,.12));
             border:1px solid rgba(255,255,255,.10); box-shadow:var(--shadow);
             text-align: center; color: var(--muted);
         }
-        /* Sys-info removed */
-        /* ===== FLOATING BUTTONS REMOVED ===== */
-        /* ===== COMMENTS REMOVED ===== */
-        /* ===== RELATED POSTS REMOVED ===== */
-        /* ===== TIMELINE / SUB-SECTIONS ===== */
+        /<em> Sys-info removed </em>/
+        /<em> ===== FLOATING BUTTONS REMOVED ===== </em>/
+        /<em> ===== COMMENTS REMOVED ===== </em>/
+        /<em> ===== RELATED POSTS REMOVED ===== </em>/
+        /<em> ===== TIMELINE / SUB-SECTIONS ===== </em>/
         sub-section {
-            display: block; position: relative; width: 100%; /* Full width for simplicity */ padding: 1rem 1.5rem;
+            display: block; position: relative; width: 100%; /<em> Full width for simplicity </em>/ padding: 1rem 1.5rem;
             margin: 2rem 0; background: var(--panel); border-radius: 10px;
             border: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             box-sizing: border-box; text-align: left; transition: transform 0.3s ease, border-color 0.3s ease;
-            color: var(--text); /* Ensure text color contrast */
-            animation: fadeZoomIn 0.8s ease both; /* Apply animation */
+            color: var(--text); /<em> Ensure text color contrast </em>/
+            animation: fadeZoomIn 0.8s ease both; /<em> Apply animation </em>/
         }
         sub-section:hover { transform: scale(1.02); border-color: var(--accent-2); }
         sub-section::before {
-            content: attr(data-icon); position: absolute; top: 1rem; left: -1.2rem; /* Adjusted position */
+            content: attr(data-icon); position: absolute; top: 1rem; left: -1.2rem; /<em> Adjusted position </em>/
             width: 2.5rem; height: 2.5rem; border-radius: 50%; display: flex;
             align-items: center; justify-content: center; color: #fff; font-size:1.2rem;
             box-shadow:0 0 8px rgba(0,0,0,0.2); background: var(--accent-2);
         }
-        /* Even/odd styling removed for simplicity */
+        /<em> Even/odd styling removed for simplicity </em>/
         sub-section h3 { margin-top:0; font-size:1.3rem; color:var(--accent-2); }
         sub-section ul { list-style:none; padding-left:0; margin:0.5rem 0 0; }
         sub-section ul li { margin:0.4rem 0; padding-left:1.2rem; position:relative; color:var(--muted); line-height:1.5; }
         sub-section ul li::before { content:"✔"; position:absolute; left:0; color:var(--accent-2); font-weight:bold; }
-        /* Paragraf khusus Refleksi */
+        /<em> Paragraf khusus Refleksi </em>/
         sub-section#refleksi p {
             font-style: italic; font-size:1.05rem; color:var(--muted);
             background:rgba(34,18,63,.55); padding:1rem; border-left:4px solid var(--accent); border-radius:6px;
         }
-        /* ===== ANIMASI ===== */
+        /<em> ===== ANIMASI ===== </em>/
         @keyframes fadeZoomIn { from { opacity:0; transform:scale(0.9); } to { opacity:1; transform:scale(1); } }
-        /* RESPONSIVE SUB-SECTIONS */
+        /<em> RESPONSIVE SUB-SECTIONS </em>/
         @media (max-width: 768px) {
             sub-section::before { left: -1rem; width: 2rem; height: 2rem; font-size: 1rem; }
         }

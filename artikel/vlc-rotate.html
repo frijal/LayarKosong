@@ -47,40 +47,40 @@
 <meta name="keywords" content="vlc player, putar video, rotasi video, video terbalik, vlc rotate, vlc transform, tutorial vlc">
     <meta name="date" content="2025-09-28">
    <style>
-        /* --- 1. Definisikan Variabel Tema Terang (Default Korporat) --- */
+        /<em> --- 1. Definisikan Variabel Tema Terang (Default Korporat) --- </em>/
         :root {
             --body-bg: #f4f4f9;
             --container-bg: #ffffff;
             --text-main: #333333;
-            /* Palet Biru Fluent Microsoft */
+            /<em> Palet Biru Fluent Microsoft </em>/
             --primary-color: #005a9e;
             --accent-color: #0078d4;
             --border-color: #0078d4;
-            /* Lightbox & Navigasi */
+            /<em> Lightbox & Navigasi </em>/
             --lightbox-overlay: rgba(0, 0, 0, 0.85);
             --nav-button-bg: rgba(0, 0, 0, 0.5);
             --nav-button-text: #ffffff;
             --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             --img-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        /* --- 2. Otomatis Tema Gelap (Dark Mode Premium) --- */
+        /<em> --- 2. Otomatis Tema Gelap (Dark Mode Premium) --- </em>/
         @media (prefers-color-scheme: dark) {
             :root {
-                --body-bg: #0b0f19;       /* Slate gelap pekat malam */
-                --container-bg: #161b26;  /* Kontainer abu-biru gelap yang adem */
-                --text-main: #e2e8f0;     /* Teks putih-abu lembut */
-                /* Mengubah biru tua menjadi biru neon pastel agar kontras di latar gelap */
+                --body-bg: #0b0f19;       /<em> Slate gelap pekat malam </em>/
+                --container-bg: #161b26;  /<em> Kontainer abu-biru gelap yang adem </em>/
+                --text-main: #e2e8f0;     /<em> Teks putih-abu lembut </em>/
+                /<em> Mengubah biru tua menjadi biru neon pastel agar kontras di latar gelap </em>/
                 --primary-color: #60cdff; 
                 --accent-color: #47a7ff;
                 --border-color: #47a7ff;
-                /* Penyesuaian Lightbox di malam hari */
+                /<em> Penyesuaian Lightbox di malam hari </em>/
                 --lightbox-overlay: rgba(5, 5, 10, 0.95);
-                --nav-button-bg: rgba(255, 255, 255, 0.15); /* Tombol navigasi lebih transparan terang */
+                --nav-button-bg: rgba(255, 255, 255, 0.15); /<em> Tombol navigasi lebih transparan terang </em>/
                 --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
                 --img-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
             }
         }
-        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
+        /<em> --- 3. Desain Utama & Tipografi (Base Styles) --- </em>/
         body { 
             margin: 0; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -92,7 +92,7 @@
         .container { 
             max-width: 800px; 
             margin: 20px auto; 
-            padding: 2rem; /* Diubah ke rem agar lebih proporsional */
+            padding: 2rem; /<em> Diubah ke rem agar lebih proporsional </em>/
             background-color: var(--container-bg); 
             box-shadow: var(--shadow); 
             border-radius: 8px; 
@@ -110,10 +110,10 @@
             transition: color 0.3s;
         }
         header h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Judul fleksibel otomatis mengecil di HP */
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /<em> Judul fleksibel otomatis mengecil di HP </em>/
             margin-top: 0.5rem;
         }
-        /* --- Galeri Gambar --- */
+        /<em> --- Galeri Gambar --- </em>/
         .gallery { 
             margin: 25px 0; 
         }
@@ -126,9 +126,9 @@
             transition: transform 0.2s, box-shadow 0.3s; 
         }
         .gallery img:hover { 
-            transform: scale(1.03); /* Dikurangi sedikit dari 1.05 agar gambar tidak pecah melewati container */
+            transform: scale(1.03); /<em> Dikurangi sedikit dari 1.05 agar gambar tidak pecah melewati container </em>/
         }
-        /* --- Bagian Share Sosial Media --- */
+        /<em> --- Bagian Share Sosial Media --- </em>/
         .social-sharing { 
             text-align: center; 
             margin: 35px 0 15px; 
@@ -140,7 +140,7 @@
         .social-buttons { 
             display: flex; 
             justify-content: center; 
-            gap: 16px; /* Jarak tombol agak dilonggarkan */
+            gap: 16px; /<em> Jarak tombol agak dilonggarkan </em>/
             flex-wrap: wrap; 
         }
         .social-buttons a { 
@@ -148,14 +148,14 @@
             transition: transform 0.2s; 
         }
         .social-buttons a:hover { 
-            transform: translateY(-4px); /* Efek melayang ke atas terasa lebih elegan */
+            transform: translateY(-4px); /<em> Efek melayang ke atas terasa lebih elegan </em>/
         }
         .social-buttons svg { 
             width: 32px; 
             height: 32px; 
-            fill: currentColor; /* Memaksa SVG mengikuti warna teks jika tidak pakai warna brand resmi */
+            fill: currentColor; /<em> Memaksa SVG mengikuti warna teks jika tidak pakai warna brand resmi </em>/
         }
-        /* --- Sistem Lightbox Interaktif --- */
+        /<em> --- Sistem Lightbox Interaktif --- </em>/
         .lightbox { 
             display: none; 
             position: fixed; 
@@ -174,7 +174,7 @@
             max-height: 80%; 
             border-radius: 8px; 
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-            animation: lancarMasuk 0.25s ease-out; /* Animasi pop-up halus */
+            animation: lancarMasuk 0.25s ease-out; /<em> Animasi pop-up halus </em>/
         }
         @keyframes lancarMasuk {
             from { transform: scale(0.95); opacity: 0; }
@@ -195,7 +195,7 @@
             opacity: 0.8;
             transform: scale(1.1);
         }
-        /* Tombol Navigasi Lightbox (Prev & Next) */
+        /<em> Tombol Navigasi Lightbox (Prev & Next) </em>/
         .lightbox-nav { 
             position: absolute; 
             top: 50%; 
@@ -208,7 +208,7 @@
             cursor: pointer; 
             padding: 14px 18px; 
             user-select: none; 
-            border-radius: 50%; /* Dibikin bulat penuh agar terlihat modern seperti UI kekinian */
+            border-radius: 50%; /<em> Dibikin bulat penuh agar terlihat modern seperti UI kekinian </em>/
             transition: background-color 0.2s, transform 0.2s; 
         }
         .lightbox-nav:hover { 
@@ -218,23 +218,23 @@
         }
         .prev { left: 20px; }
         .next { right: 20px; }
-        /* --- 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- */
+        /<em> --- 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- </em>/
         @media (max-width: 768px) {
             .container { 
                 margin: 0; 
                 padding: 1.25rem 1rem; 
-                border-radius: 0; /* Menghilangkan radius di HP agar kontainer penuh memenuhi layar */
+                border-radius: 0; /<em> Menghilangkan radius di HP agar kontainer penuh memenuhi layar </em>/
                 box-shadow: none; 
             }
             .lightbox-content {
-                max-width: 95%; /* Memberi ruang gambar lebih besar di layar sempit */
+                max-width: 95%; /<em> Memberi ruang gambar lebih besar di layar sempit </em>/
                 max-height: 70%;
             }
-            /* Optimasi tombol navigasi di HP agar tidak menutupi gambar dan ramah sentuhan jari */
+            /<em> Optimasi tombol navigasi di HP agar tidak menutupi gambar dan ramah sentuhan jari </em>/
             .lightbox-nav {
                 padding: 10px 14px;
                 font-size: 18px;
-                background-color: rgba(0, 0, 0, 0.7); /* Dipertegas di HP agar kelihatan */
+                background-color: rgba(0, 0, 0, 0.7); /<em> Dipertegas di HP agar kelihatan </em>/
             }
             .prev { left: 10px; }
             .next { right: 10px; }

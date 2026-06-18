@@ -66,7 +66,7 @@
             background-attachment:fixed;
         }
         a{color:#cdd6ff}
-        /* Floating sitemap/home removed */
+        /<em> Floating sitemap/home removed </em>/
         header.hero{
             padding:6rem 1rem 2.2rem;text-align:center;
             background:linear-gradient(135deg, rgba(124,58,237,.35), rgba(16,185,129,.28));
@@ -225,7 +225,7 @@
             const images = Array.from(document.querySelectorAll(".gallery img"));
             const lb = document.createElement("div");
             lb.className = "lightbox";
-            lb.innerHTML = `
+            lb.innerHTML = <code>
                 <button class="btn lb-close" title="Tutup">
                     <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
                 </button>
@@ -234,7 +234,7 @@
                     <button class="btn lb-prev" title="Sebelumnya"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
                     <button class="btn lb-next" title="Berikutnya"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
                 </div>
-            `;
+            </code>;
             document.body.appendChild(lb);
             const img = lb.querySelector("img");
             const closeBtn = lb.querySelector(".lb-close");

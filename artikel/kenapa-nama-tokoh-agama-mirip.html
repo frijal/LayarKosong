@@ -112,7 +112,7 @@
         color: gray;
         margin-bottom: 30px;
     }
-    /* Table Styles */
+    /<em> Table Styles </em>/
     .table-responsive {
         overflow-x: auto;
         margin: 30px 0;
@@ -157,7 +157,7 @@
     .nice-table tbody tr:hover {
         background: var(--table-hover);
     }
-    /* Blocks */
+    /<em> Blocks </em>/
     .quote-box {
         background: var(--card-bg);
         padding: 20px;
@@ -171,7 +171,7 @@
         text-align: center;
         display: block;
         margin: 30px 0;
-        direction: rtl; /* Penting untuk teks Arab */
+        direction: rtl; /<em> Penting untuk teks Arab </em>/
     }
     footer {
         margin-top: 10px;
@@ -179,21 +179,21 @@
         background: var(--card-bg);
         text-align: center;
     }
- /* Responsive adjustments */
+ /<em> Responsive adjustments </em>/
     @media (max-width: 768px) {
-        /* Reset box-sizing untuk menghindari padding menambah lebar elemen */
+        /<em> Reset box-sizing untuk menghindari padding menambah lebar elemen </em>/
         * { box-sizing: border-box; }
         .table-responsive {
-            border: 0; /* Hilangkan scrollbar luar karena kita pakai model kartu */
+            border: 0; /<em> Hilangkan scrollbar luar karena kita pakai model kartu </em>/
             overflow: visible;
         }
         .nice-table {
             min-width: 0;
-            display: block; /* Pastikan tabel jadi elemen blok */
+            display: block; /<em> Pastikan tabel jadi elemen blok </em>/
             border: 0;
         }
         .nice-table thead {
-            display: none; /* Sembunyikan header asli */
+            display: none; /<em> Sembunyikan header asli </em>/
         }
         .nice-table tbody,
         .nice-table tr,
@@ -207,40 +207,40 @@
             border-radius: 12px;
             overflow: hidden;
             background: var(--bg-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Tambah bayangan halus */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /<em> Tambah bayangan halus </em>/
         }
         .nice-table td {
             padding: 12px 15px;
             border: 0;
             border-bottom: 1px solid var(--table-border);
-            /* Gunakan Flexbox dengan wrap agar tidak terpotong */
+            /<em> Gunakan Flexbox dengan wrap agar tidak terpotong </em>/
             display: flex;
             flex-wrap: wrap;
             justify-content:衔 space-between;
-            align-items: flex-start; /* Aliran teks dari atas jika wrap */
+            align-items: flex-start; /<em> Aliran teks dari atas jika wrap </em>/
             text-align: right;
         }
         .nice-table td:last-child {
             border-bottom: 0;
         }
-        /* Label di sebelah kiri */
+        /<em> Label di sebelah kiri </em>/
         .nice-table td::before {
             content: attr(data-label);
             font-weight: 700;
             color: var(--link-color);
             font-size: 0.75em;
             text-transform: uppercase;
-            flex: 1; /* Ambil ruang kiri */
+            flex: 1; /<em> Ambil ruang kiri </em>/
             text-align: left;
             margin-right: 10px;
-            min-width: 100px; /* Jaga jarak minimal label */
+            min-width: 100px; /<em> Jaga jarak minimal label </em>/
         }
-        /* Isi data di sebelah kanan */
-        /* Kita bungkus konten asli td agar bisa kita kontrol */
+        /<em> Isi data di sebelah kanan </em>/
+        /<em> Kita bungkus konten asli td agar bisa kita kontrol </em>/
         .nice-table td {
-            word-break: break-word; /* Cegah teks panjang menjebol layout */
+            word-break: break-word; /<em> Cegah teks panjang menjebol layout </em>/
         }
-        /* Spesifik untuk kolom nomor di mobile agar tidak aneh */
+        /<em> Spesifik untuk kolom nomor di mobile agar tidak aneh </em>/
         .nice-table td[data-label="#"] {
             background: var(--table-zebra);
             font-weight: bold;

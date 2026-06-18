@@ -45,9 +45,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axel: Download Accelerator Ampuh Solusi Koneksi Mobile Lambat - Layar Kosong</title> 
     <style>
-        /* 1. CSS Reset & Dasar */
+        /<em> 1. CSS Reset & Dasar </em>/
         :root {
-            /* Tema Terang (Light Mode) - Default */
+            /<em> Tema Terang (Light Mode) - Default </em>/
             --bg-color: #f9f9f9;
             --text-color: #333333;
             --header-color: #000000;
@@ -59,7 +59,7 @@
             --caption-color: #666;
         }
         @media (prefers-color-scheme: dark) {
-            /* Tema Gelap (Dark Mode) - Otomatis terdeteksi */
+            /<em> Tema Gelap (Dark Mode) - Otomatis terdeteksi </em>/
             :root {
                 --bg-color: #1e1e1e;
                 --text-color: #e0e0e0;
@@ -88,16 +88,16 @@
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
         }
-        /* 2. Tata Letak (Widescreen & Responsif) */
+        /<em> 2. Tata Letak (Widescreen & Responsif) </em>/
         main {
-            max-width: 900px; /* Desain Widescreen */
+            max-width: 900px; /<em> Desain Widescreen </em>/
             margin: 0 auto;
-            padding: 2rem 1.5rem 4rem 1.5rem; /* Padding atas-bawah-kiri-kanan */
+            padding: 2rem 1.5rem 4rem 1.5rem; /<em> Padding atas-bawah-kiri-kanan </em>/
         }
         article {
             width: 100%;
         }
-        /* 3. Tipografi & Elemen Konten */
+        /<em> 3. Tipografi & Elemen Konten </em>/
         .article-header {
             display: flex;
             align-items: center;
@@ -141,7 +141,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /* Styling untuk code inline */
+        /<em> Styling untuk code inline </em>/
         code {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -150,13 +150,13 @@
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
             font-size: 0.95em;
         }
-        /* Styling untuk block code */
+        /<em> Styling untuk block code </em>/
         pre {
             background-color: var(--code-bg);
             border: 1px solid var(--pre-border);
             border-radius: 8px;
             padding: 1rem;
-            overflow-x: auto; /* Memastikan bisa di-scroll horizontal jika code terlalu panjang */
+            overflow-x: auto; /<em> Memastikan bisa di-scroll horizontal jika code terlalu panjang </em>/
             font-size: 0.95em;
         }
         pre code {
@@ -164,8 +164,8 @@
             padding: 0;
             font-size: 1em;
         }
-        /* 4. Elemen Khusus */
-        /* Mengganti [caption] dengan figure */
+        /<em> 4. Elemen Khusus </em>/
+        /<em> Mengganti [caption] dengan figure </em>/
         figure {
             margin: 2rem 0;
             background-color: var(--code-bg);
@@ -186,7 +186,7 @@
         #komentar {
             margin-top: 4rem;
         }
-        /* 5. Mobile-Friendly */
+        /<em> 5. Mobile-Friendly </em>/
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
@@ -232,7 +232,7 @@
             <p>
                 Untuk kegiatan sedot-menyedot biasanya menggunakan <code>wget</code>, namun ternyata ketika diterapkan pada koneksi broadband, harus membuat saya lebih bersabar... sembari menunggu proses sedot rampung, saya iseng buka Synaptic untuk mencari <em>tool download</em> yang mungkin bisa mengatasi kendala lambatnya koneksi <em>mobile-broadband</em>…
             </p>
-            <h2>Penemuan Ajaib: `axel`</h2>
+            <h2>Penemuan Ajaib: <code>axel</code></h2>
             <p>
                 Akhirnya menemukan sebuah paket bernama <strong>AXEL</strong> yang sangat ringan dan ampuh... dari keterangan yang didapat ketika mengetikkan <code>axel -h</code> ternyata paket ini menggunakan <em>multiple akses</em> ke sebuah sumber tujuan URL tempat berkas yang akan saya ambil berada…
             </p>

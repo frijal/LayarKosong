@@ -72,7 +72,7 @@
                 --border-color: #4a5568;
             }
         }
-        *, *::before, *::after {
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -136,7 +136,7 @@
             font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 0.95rem;
         }
-        /* Custom Syntax Highlighting */
+        /<em> Custom Syntax Highlighting </em>/
         .code-block .token-cmd {
             color: var(--code-cmd);
             font-weight: bold;
@@ -175,22 +175,22 @@
             <header>
                 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>🎙️ Mic Fedora 15 Kamu tak Fungsi? Sini, Kita Bisikin Solusinya!</h1>
             </header>
-     <p>Pas lagi semangat-semangatnya mau *Skype-an* atau *Google Hangout* sama temen kerja atau gebetan, eh... mic-nya malah gak kedeteksi atau mendadak tak fungsi di **Fedora 15**? Kondisi kendala operasional seperti ini memerlukan penanganan taktis harian; Anda mungkin telah mengupayakan pengujian input suara sampai tenggorokan kering, tapi indikator suara tetep aja bergeming alias gak ada respon sama sekali.</p>
-            <p>Kejadian mic tak fungsi ini sebenarnya sering banget dialami oleh para pengguna distro Linux legendaris ini ketika mereka baru selesai melakukan instalasi atau setelah sistem melakukan pembaruan berkala. Banyak yang langsung panik dan mengira bahwa perangkat keras atau *hardware* mic laptop mereka rusak, padahal masalah utamanya sering kali hanyalah miskonfigurasi sederhana di sistem audio dasarnya.</p>
+     <p>Pas lagi semangat-semangatnya mau <em>Skype-an</em> atau <em>Google Hangout</em> sama temen kerja atau gebetan, eh... mic-nya malah gak kedeteksi atau mendadak tak fungsi di <strong>Fedora 15</strong>? Kondisi kendala operasional seperti ini memerlukan penanganan taktis harian; Anda mungkin telah mengupayakan pengujian input suara sampai tenggorokan kering, tapi indikator suara tetep aja bergeming alias gak ada respon sama sekali.</p>
+            <p>Kejadian mic tak fungsi ini sebenarnya sering banget dialami oleh para pengguna distro Linux legendaris ini ketika mereka baru selesai melakukan instalasi atau setelah sistem melakukan pembaruan berkala. Banyak yang langsung panik dan mengira bahwa perangkat keras atau <em>hardware</em> mic laptop mereka rusak, padahal masalah utamanya sering kali hanyalah miskonfigurasi sederhana di sistem audio dasarnya.</p>
             <img class="article-image" src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWlcYNHVF4_bhKCVkCkSKhUd23zEvuqryn7pyaC4rts1cM0tsKYBAgceNQKDZiQkw4ZTeAS403ghyphenhyphenUZTHrP-WfInswMY8HWhE4kHOcAFw5nrlO-OlMQcWJWvV9UUTDu5TYnY7jbt_qUSeH/s1600/Screenshot-fr@kurang-gawean-2.webp" srcset="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWlcYNHVF4_bhKCVkCkSKhUd23zEvuqryn7pyaC4rts1cM0tsKYBAgceNQKDZiQkw4ZTeAS403ghyphenhyphenUZTHrP-WfInswMY8HWhE4kHOcAFw5nrlO-OlMQcWJWvV9UUTDu5TYnY7jbt_qUSeH/s1600/Screenshot-fr@kurang-gawean-2.webp 1200w, https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWlcYNHVF4_bhKCVkCkSKhUd23zEvuqryn7pyaC4rts1cM0tsKYBAgceNQKDZiQkw4ZTeAS403ghyphenhyphenUZTHrP-WfInswMY8HWhE4kHOcAFw5nrlO-OlMQcWJWvV9UUTDu5TYnY7jbt_qUSeH/s1600/Screenshot-fr@kurang-gawean-2.webp 800w, https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWlcYNHVF4_bhKCVkCkSKhUd23zEvuqryn7pyaC4rts1cM0tsKYBAgceNQKDZiQkw4ZTeAS403ghyphenhyphenUZTHrP-WfInswMY8HWhE4kHOcAFw5nrlO-OlMQcWJWvV9UUTDu5TYnY7jbt_qUSeH/s1600/Screenshot-fr@kurang-gawean-2.webp 400w" sizes="(max-width: 64rem) 100vw, 64rem" alt="Solusi mikrofon tak fungsi di Linux Fedora 15" fetchpriority="high" decoding="async">
             <p>Tanpa perlu melakukan instalasi perangkat lunak pengendali sekunder eksternal yang berpotensi memengaruhi stabilitas konfigurasi sistem, atau mempertimbangkan dengan sangat saksama bongkar pasang konfigurasi server audio PulseAudio yang rumit itu. Cukup jalankan satu perintah spesifik melalui antarmuka baris perintah sistem Anda, masalah audio capture ini bisa beres dalam hitungan detik!</p>
             <h2>🛠️ Langkah Ajaib di Terminal</h2>
-            <p>Masalah ini biasanya terjadi karena saluran input (*capture*) pada arsitektur audio dasar ALSA secara tidak sengaja berada dalam kondisi mati (*muted*) atau level volumenya diset ke angka nol secara bawaan. Sistem grafis modern kadang tidak sinkron dengan pengaturan dasar ini, sehingga kita perlu menyelaraskannya secara manual.</p>
-            <p>Yuk, kita eksekusi solusinya sekarang. Silakan buka aplikasi terminal kesayanganmu, biasanya menggunakan kombinasi tombol **Ctrl + Alt + T** pada keyboard. Setelah jendela terminal terbuka dan siap menerima instruksi, ketik atau langsung *copy-paste* perintah sakti di bawah ini:</p>
+            <p>Masalah ini biasanya terjadi karena saluran input (<em>capture</em>) pada arsitektur audio dasar ALSA secara tidak sengaja berada dalam kondisi mati (<em>muted</em>) atau level volumenya diset ke angka nol secara bawaan. Sistem grafis modern kadang tidak sinkron dengan pengaturan dasar ini, sehingga kita perlu menyelaraskannya secara manual.</p>
+            <p>Yuk, kita eksekusi solusinya sekarang. Silakan buka aplikasi terminal kesayanganmu, biasanya menggunakan kombinasi tombol <strong>Ctrl + Alt + T</strong> pada keyboard. Setelah jendela terminal terbuka dan siap menerima instruksi, ketik atau langsung <em>copy-paste</em> perintah sakti di bawah ini:</p>
             <pre class="code-block"><code class="language-bash"><span class="token-cmd">alsamixer</span> <span class="token-param">-c0 -Vcapture</span></code></pre>
-            <p>Perintah di atas akan langsung membuka antarmuka berbasis teks dari **Alsamixer** khusus untuk kartu suara pertama kamu (`-c0`) dan langsung mengarah pada tab pengaturan perekaman suara (`-Vcapture`). Di dalam tampilan tersebut, kamu tinggal menggunakan tombol arah panah pada keyboard untuk menggeser volume ke atas.</p>
-            <p>Jangan lupa untuk memperhatikan bagian bawah slider; jika terdapat huruf **M**, itu artinya mic kamu masih dalam kondisi *muted*. Tekan tombol **Space** atau **M** pada keyboard untuk mengubahnya menjadi aktif. Setelah konfigurasi tersebut disesuaikan, fungsi penangkapan audio perangkat akan berjalan optimal dan siap dipakai kembali untuk berkomunikasi secara lancar!</p>
+            <p>Perintah di atas akan langsung membuka antarmuka berbasis teks dari <strong>Alsamixer</strong> khusus untuk kartu suara pertama kamu (<code>-c0</code>) dan langsung mengarah pada tab pengaturan perekaman suara (<code>-Vcapture</code>). Di dalam tampilan tersebut, kamu tinggal menggunakan tombol arah panah pada keyboard untuk menggeser volume ke atas.</p>
+            <p>Jangan lupa untuk memperhatikan bagian bawah slider; jika terdapat huruf <strong>M</strong>, itu artinya mic kamu masih dalam kondisi <em>muted</em>. Tekan tombol <strong>Space</strong> atau <strong>M</strong> pada keyboard untuk mengubahnya menjadi aktif. Setelah konfigurasi tersebut disesuaikan, fungsi penangkapan audio perangkat akan berjalan optimal dan siap dipakai kembali untuk berkomunikasi secara lancar!</p>
         </article>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
             <div class="footer-inline">
-                <span>✍️ **Fakhrul Rijal** (<a href="https://dalam.web.id">Layar Kosong</a>)</span>
+                <span>✍️ <strong>Fakhrul Rijal</strong> (<a href="https://dalam.web.id">Layar Kosong</a>)</span>
                 <span>📅 5 Juni 2026</span>
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>

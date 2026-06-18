@@ -49,7 +49,7 @@
             --bg: #1e2a38;
             --fg: #e0e6ec;
             --muted: #a8b0bb;
-            --accent: #5FABFF; /* Fedora Blue */
+            --accent: #5FABFF; /<em> Fedora Blue </em>/
             --accent-2: #82c0ff;
             --card: #2a3847;
             --border: #3a4857;
@@ -104,13 +104,13 @@
             <div class="col">
                 <article>
                     <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Solusi Broadcom Wireless di Fedora</h1>
-                    <p class="lead">Setelah melakukan pembaruan kernel di Fedora, beberapa perangkat wireless Broadcom mungkin berhenti berfungsi. Hal ini biasanya terjadi karena konflik antara modul kernel `bcma` bawaan dengan driver Broadcom yang sebenarnya dibutuhkan.</p>
+                    <p class="lead">Setelah melakukan pembaruan kernel di Fedora, beberapa perangkat wireless Broadcom mungkin berhenti berfungsi. Hal ini biasanya terjadi karena konflik antara modul kernel <code>bcma</code> bawaan dengan driver Broadcom yang sebenarnya dibutuhkan.</p>
                     <p>Untungnya, solusinya sangat mudah dan hanya memerlukan satu baris perintah di terminal.</p>
                     <figure>
                         <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_2V202CIKxIMvkPVWaUWTje6nvsynBctApvHIPFRRGcozz25Y2SwLnu8DwgVZ3w255aEJPi27xzg43WbMDA7TxKRNqHF0s0oQo3RAWGm2R5ek8nY24JqPyP2Yom0yEKjhxiUPF_8C2kW-/s320/broadcom.webp" alt="Logo Broadcom Wireless">
                     </figure>
                     <h2>Langkah Perbaikan</h2>
-                    <p>Buka terminal, lalu masuk sebagai <strong>root</strong> (misalnya dengan perintah <code>sudo -i</code>). Setelah itu, salin dan jalankan perintah di bawah ini untuk memasukkan modul `bcma` ke dalam daftar hitam (blacklist), sehingga tidak akan dimuat saat boot.</p>
+                    <p>Buka terminal, lalu masuk sebagai <strong>root</strong> (misalnya dengan perintah <code>sudo -i</code>). Setelah itu, salin dan jalankan perintah di bawah ini untuk memasukkan modul <code>bcma</code> ke dalam daftar hitam (blacklist), sehingga tidak akan dimuat saat boot.</p>
                     <pre><code id="code1">echo "blacklist bcma" &gt;&gt; /etc/modprobe.d/broadcom-wl-blacklist.conf</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                     <p>Setelah menjalankan perintah tersebut, <strong>reboot</strong> komputer Anda. Perangkat wireless Broadcom Anda seharusnya sudah dapat berfungsi kembali dengan normal.</p>
                     <div id="related-articles-grid"></div><div id="response"></div>

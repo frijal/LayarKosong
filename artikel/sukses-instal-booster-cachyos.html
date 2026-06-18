@@ -54,7 +54,7 @@
     <meta name="promphint" content="Apa yang harus dilakukan setelah menginstal paket dmemcg-booster di CachyOS? Lakukan restart (reboot) agar aturan kernel cgroups yang baru dimuat secara sempurna dari awal.">
     <!-- CSS Kritis -->
     <style>
-        /* Variabel CSS Tema Terang & Gelap (WCAG AA Minimal) */
+        /<em> Variabel CSS Tema Terang & Gelap (WCAG AA Minimal) </em>/
         :root {
             --bg-body: #f8f9fa;
             --text-main: #212529;
@@ -79,8 +79,8 @@
                 --code-text: #f06292;
             }
         }
-        /* Reset & Aksesibilitas Dasar */
-        *, *::before, *::after {
+        /<em> Reset & Aksesibilitas Dasar </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -93,9 +93,9 @@
             font-size: 1rem;
             -webkit-font-smoothing: antialiased;
         }
-        /* Layout & Responsivitas */
+        /<em> Layout & Responsivitas </em>/
         .container {
-            max-width: 62.5rem; /* 1000px asumsi 1rem = 16px */
+            max-width: 62.5rem; /<em> 1000px asumsi 1rem = 16px </em>/
             margin: 0 auto;
             padding: 1.5rem;
         }
@@ -104,7 +104,7 @@
             border-bottom: 0.0625rem solid var(--border-color);
             padding-bottom: 1rem;
         }
-        /* Tipografi Skala Rem */
+        /<em> Tipografi Skala Rem </em>/
         h1 {
             font-size: 2.25rem;
             line-height: 1.3;
@@ -136,17 +136,17 @@
             color: var(--accent-hover);
             text-decoration: underline;
         }
-        /* Gambar Resolusi Penuh & Bebas Layout Shift */
+        /<em> Gambar Resolusi Penuh & Bebas Layout Shift </em>/
         .img-fluid {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 0.5rem;
             margin: 2rem 0;
-            background-color: var(--card-bg); /* Placeholder */
+            background-color: var(--card-bg); /<em> Placeholder </em>/
             box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
         }
-        /* Blok Kode Terminal (Auto-wrap Terpasang) */
+        /<em> Blok Kode Terminal (Auto-wrap Terpasang) </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--text-main);
@@ -156,15 +156,15 @@
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
             border: 0.0625rem solid var(--border-color);
-            /* Optimasi Auto-Wrap */
-            white-space: pre-wrap;       /* Mempertahankan spasi tapi otomatis turun baris */
-            word-wrap: break-word;       /* Mencegah teks panjang keluar dari kontainer (legacy) */
-            overflow-wrap: break-word;   /* Standar modern untuk memotong kata yang terlalu panjang */
+            /<em> Optimasi Auto-Wrap </em>/
+            white-space: pre-wrap;       /<em> Mempertahankan spasi tapi otomatis turun baris </em>/
+            word-wrap: break-word;       /<em> Mencegah teks panjang keluar dari kontainer (legacy) </em>/
+            overflow-wrap: break-word;   /<em> Standar modern untuk memotong kata yang terlalu panjang </em>/
         }
         code {
             font-family: inherit;
         }
-        /* Komponen Profil Penulis (E-E-A-T) */
+        /<em> Komponen Profil Penulis (E-E-A-T) </em>/
         .author-meta {
             background-color: var(--card-bg);
             border: 0.0625rem solid var(--border-color);
@@ -210,7 +210,7 @@
             <span class="publish-date">📅 31 Mei 2026</span>
         </header>
         <article>
-            <p>Sah! Instalasinya sukses besar dan berjalan sangat mulus. Melihat deretan proses di terminal yang bersih tanpa *error* ini menandakan bahwa sistem operasi komputermu kini siap diajak berlari maraton tanpa takut kehabisan tenaga.</p>
+            <p>Sah! Instalasinya sukses besar dan berjalan sangat mulus. Melihat deretan proses di terminal yang bersih tanpa <em>error</em> ini menandakan bahwa sistem operasi komputermu kini siap diajak berlari maraton tanpa takut kehabisan tenaga.</p>
             <!-- LCP Image: Lebar penuh, fetchpriority tinggi, async -->
             <img src="https://dalam.web.id/img/pbs.twimg.com/7a91fada53977f74.webp" alt="Ilustrasi terminal Linux yang sukses menginstal paket booster" class="img-fluid" fetchpriority="high" decoding="async">
             <p>Bagi kamu yang mungkin bertanya-tanya apa yang sebenarnya baru saja dieksekusi oleh sistem saat mengunduh paket optimasi memori tersebut, mari kita lihat perlahan. Ini adalah hasil eksekusi dari terminal:</p>
@@ -238,21 +238,21 @@ Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-boo
 (4/4) Updating the desktop file MIME type cache...
 Press enter to exit</code></pre>
             <h2>Rahasia di Balik Log Terminal</h2>
-            <p>Kalau kita perhatikan *log* terminal yang kamu *paste* di atas, ada satu bagian yang sangat menarik dan menguntungkan buat kamu sebagai pengguna:</p>
+            <p>Kalau kita perhatikan <em>log</em> terminal yang kamu <em>paste</em> di atas, ada satu bagian yang sangat menarik dan menguntungkan buat kamu sebagai pengguna:</p>
 <pre><code>Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service' → ...
 Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → ...</code></pre>
-            <p>**Apa artinya itu?**</p>
-            <p>Artinya, CachyOS memiliki mekanisme cerdas yang sudah otomatis mendaftarkan dan menghidupkan *service* `dmemcg-booster` ini di dua level sekaligus: level sistem (*root*) dan level pengguna (*user session*). Kamu **tidak perlu repot-repot** mengetik perintah `sudo systemctl enable ...` secara manual ke dalam terminal. Tinggal duduk manis, sistem distribusi modern ini yang mengatur semuanya untukmu secara mulus dari belakang layar.</p>
+            <p><strong>Apa artinya itu?</strong></p>
+            <p>Artinya, CachyOS memiliki mekanisme cerdas yang sudah otomatis mendaftarkan dan menghidupkan <em>service</em> <code>dmemcg-booster</code> ini di dua level sekaligus: level sistem (<em>root</em>) dan level pengguna (<em>user session</em>). Kamu <strong>tidak perlu repot-repot</strong> mengetik perintah <code>sudo systemctl enable ...</code> secara manual ke dalam terminal. Tinggal duduk manis, sistem distribusi modern ini yang mengatur semuanya untukmu secara mulus dari belakang layar.</p>
             <h2>Apa yang Harus Dilakukan Sekarang?</h2>
-            <p>Karena ketiga paket krusial ini (`kcgroups`, `dmemcg-booster`, dan `plasma-foreground-booster`) berinteraksi langsung dengan cara kernel Linux dan antarmuka desktop (KDE Plasma) membagikan jatah memori, langkah paling sakti selanjutnya adalah:</p>
-            <p>**Lakukan Restart (Reboot) pada laptopmu.**</p>
-            <p>Meski *post-transaction hooks* dari manajer paket di atas sudah secara otomatis me-`reload` konfigurasi *systemd*, melakukan proses *restart* pada laptop akan memastikan aturan kernel (*cgroups*) yang baru benar-benar dimuat dari kondisi yang sangat bersih (*fresh boot*). Selain itu, *booster* untuk layar depan (KDE Plasma) bisa langsung mulai mengawasi dan memprioritaskan jendela aplikasimu sejak pertama kali kamu melakukan *login*.</p>
-            <p>Silakan tekan tombol **Enter** untuk keluar dari layar terminal tersebut, lalu *restart* laptopnya. Setelah sistem menyala kembali, cobalah siksa perangkatmu dengan rutinitas berat yang biasa kamu lakukan—buka banyak tab peramban, jalankan berbagai *script*, dan rasakan sendiri apakah kendala *stuttering* serta *lag* yang selama ini mengganggu sudah jauh berkurang! 🚀</p>
+            <p>Karena ketiga paket krusial ini (<code>kcgroups</code>, <code>dmemcg-booster</code>, dan <code>plasma-foreground-booster</code>) berinteraksi langsung dengan cara kernel Linux dan antarmuka desktop (KDE Plasma) membagikan jatah memori, langkah paling sakti selanjutnya adalah:</p>
+            <p><strong>Lakukan Restart (Reboot) pada laptopmu.</strong></p>
+            <p>Meski <em>post-transaction hooks</em> dari manajer paket di atas sudah secara otomatis me-<code>reload</code> konfigurasi <em>systemd</em>, melakukan proses <em>restart</em> pada laptop akan memastikan aturan kernel (<em>cgroups</em>) yang baru benar-benar dimuat dari kondisi yang sangat bersih (<em>fresh boot</em>). Selain itu, <em>booster</em> untuk layar depan (KDE Plasma) bisa langsung mulai mengawasi dan memprioritaskan jendela aplikasimu sejak pertama kali kamu melakukan <em>login</em>.</p>
+            <p>Silakan tekan tombol <strong>Enter</strong> untuk keluar dari layar terminal tersebut, lalu <em>restart</em> laptopnya. Setelah sistem menyala kembali, cobalah siksa perangkatmu dengan rutinitas berat yang biasa kamu lakukan—buka banyak tab peramban, jalankan berbagai <em>script</em>, dan rasakan sendiri apakah kendala <em>stuttering</em> serta <em>lag</em> yang selama ini mengganggu sudah jauh berkurang! 🚀</p>
         </article>
         <!-- Profil Penulis -->
         <aside class="author-meta">
             <h3>Editor</h3>
-            <p>**Fakhrul Rijal** adalah seorang pengembang sistem independen dan penggiat komunitas *open-source* yang berbasis di Balikpapan. Rutin membagikan catatan teknis, eksperimen kernel Linux, dan panduan optimalisasi *server* maupun *desktop* melalui blog pribadinya.</p>
+            <p><strong>Fakhrul Rijal</strong> adalah seorang pengembang sistem independen dan penggiat komunitas <em>open-source</em> yang berbasis di Balikpapan. Rutin membagikan catatan teknis, eksperimen kernel Linux, dan panduan optimalisasi <em>server</em> maupun <em>desktop</em> melalui blog pribadinya.</p>
             <div class="social-links">
                 <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">🌐 Layar Kosong</a>
                 <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>

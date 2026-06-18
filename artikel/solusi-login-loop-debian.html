@@ -54,7 +54,7 @@
         --bg-color: #121212;
         --primary-text-color: #e0e0e0;
         --secondary-text-color: #b3b3b3;
-        --accent-color: #d70a53; /* Aksen warna merah khas Debian */
+        --accent-color: #d70a53; /<em> Aksen warna merah khas Debian </em>/
         --surface-color: #1e1e1e;
         --border-color: #2c2c2c;
         --link-color: #e84c8a;
@@ -233,11 +233,11 @@
         <h4>B. Solusi untuk NVIDIA</h4>
         <p>
           Kita perlu install driver proprietary. Pertama, izinkan Debian
-          mengambil software `non-free` dengan mengedit file `sources.list`:
+          mengambil software <code>non-free</code> dengan mengedit file <code>sources.list</code>:
         </p>
         <pre><code>sudo nano /etc/apt/sources.list</code></pre>
         <p>
-          Tambahkan `contrib non-free non-free-firmware` di setiap baris sumber.
+          Tambahkan <code>contrib non-free non-free-firmware</code> di setiap baris sumber.
           Contoh:
         </p>
         <pre><code>deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware</code></pre>
@@ -260,14 +260,14 @@ sudo reboot</code></pre>
         <h3>2. Perbaiki Hak Akses (Permission) di Home Directory</h3>
         <p>
           Kadang, sistem tidak bisa membuat file sesi login karena permission
-          folder `home` kamu salah. Perbaiki dengan perintah ini di TTY:
+          folder <code>home</code> kamu salah. Perbaiki dengan perintah ini di TTY:
         </p>
         <pre><code>sudo chown -R $(whoami):$(whoami) $HOME
 sudo chown $(whoami):$(whoami) ~/.Xauthority</code></pre>
-        <p>Setelah itu, coba `sudo reboot`.</p>
+        <p>Setelah itu, coba <code>sudo reboot</code>.</p>
         <h3>3. Cek Sisa Ruang Disk</h3>
         <p>
-          Jika partisi root (`/`) atau `/home` penuh 100%, kamu juga tidak akan
+          Jika partisi root (<code>/</code>) atau <code>/home</code> penuh 100%, kamu juga tidak akan
           bisa login. Cek dengan:
         </p>
         <pre><code>df -h</code></pre>
@@ -286,7 +286,7 @@ sudo chown $(whoami):$(whoami) ~/.Xauthority</code></pre>
           <li><strong>Untuk Xfce:</strong></li>
           <pre><code>sudo apt install --reinstall xfce4 lightdm</code></pre>
         </ul>
-        <p>Pilih sesuai desktop yang kamu install, lalu `sudo reboot`.</p>
+        <p>Pilih sesuai desktop yang kamu install, lalu <code>sudo reboot</code>.</p>
         <div id="related-articles-grid"></div><div id="response"></div>
     </article>
  <footer>

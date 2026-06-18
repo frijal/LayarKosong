@@ -48,13 +48,13 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <link rel="stylesheet" href="/ext/atom-one-dark.min.css">
     <style>
-        /* CSS Variables untuk Tema Otomatis */
+        /<em> CSS Variables untuk Tema Otomatis </em>/
         :root {
             --bg-color: #ffffff;
             --text-color: #374151;
             --heading-color: #111827;
             --link-color: #2563eb;
-            --code-bg: #282c34; /* Dark bg for code block override */
+            --code-bg: #282c34; /<em> Dark bg for code block override </em>/
             --border-color: #e5e7eb;
             --quote-bg: #eff6ff;
             --quote-border: #3b82f6;
@@ -72,7 +72,7 @@
                 --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
             }
         }
-        /* Reset & Base Styles */
+        /<em> Reset & Base Styles </em>/
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -82,13 +82,13 @@
             font-size: 18px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Layout */
+        /<em> Layout </em>/
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        /* Typography */
+        /<em> Typography </em>/
         h1, h2, h3 {
             color: var(--heading-color);
             margin-bottom: 1rem;
@@ -111,7 +111,7 @@
             left: 0;
             color: var(--link-color);
         }
-        /* Images */
+        /<em> Images </em>/
         .main-image {
             width: 100%;
             height: auto;
@@ -119,7 +119,7 @@
             margin: 30px 0;
             box-shadow: var(--card-shadow);
         }
-        /* Code Wrapper & Highlight JS overrides */
+        /<em> Code Wrapper & Highlight JS overrides </em>/
         .code-wrapper {
             position: relative;
             margin-bottom: 2rem;
@@ -127,7 +127,7 @@
             box-shadow: var(--card-shadow);
             overflow: hidden;
         }
-        /* Header kecil di atas code block */
+        /<em> Header kecil di atas code block </em>/
         .code-header {
             background-color: #21252b;
             color: #abb2bf;
@@ -155,9 +155,9 @@
             font-family: "Menlo", "Consolas", "Monaco", monospace;
             font-size: 0.9em;
             line-height: 1.5;
-            border-radius: 0 0 8px 8px; /* round bottom corners */
+            border-radius: 0 0 8px 8px; /<em> round bottom corners </em>/
         }
-        /* Inline Code styling for text */
+        /<em> Inline Code styling for text </em>/
         .inline-code {
             background-color: rgba(125, 125, 125, 0.15);
             color: var(--link-color);
@@ -166,7 +166,7 @@
             font-family: monospace;
             font-size: 0.9em;
         }
-        /* Quote/Note Box */
+        /<em> Quote/Note Box </em>/
         blockquote {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--quote-border);
@@ -175,7 +175,7 @@
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             margin-top: 60px;
             padding-top: 30px;
@@ -184,7 +184,7 @@
             font-size: 0.9rem;
             color: #888;
         }
-        /* Mobile Adjustments */
+        /<em> Mobile Adjustments </em>/
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .container { padding: 20px 15px; }
@@ -217,7 +217,7 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1 9 * *' # setiap tanggal 9 pukul 01:00 UTC (08:00 WIB)
+    - cron: '0 1 9 <em> </em>' # setiap tanggal 9 pukul 01:00 UTC (08:00 WIB)
 jobs:
   maintenance-pr:
     runs-on: ubuntu-latest
@@ -268,7 +268,7 @@ jobs:
           ALERT="mini/fontawesome-alert.txt"
           [ -f "$OUTPUT" ] &amp;&amp; cp "$OUTPUT" "$PREV"
           echo "📄 Font + ukuran + hash SHA-256:" &gt; "$OUTPUT"
-          find "$FONT_DIR" -type f \( -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" \) | sort | while read f; do
+          find "$FONT_DIR" -type f \( -name "<em>.woff" -o -name "</em>.woff2" -o -name "*.ttf" \) | sort | while read f; do
             echo "$(basename "$f")|$(stat -c%s "$f")|$(sha256sum "$f" | awk '{print $1}')" &gt;&gt; "$OUTPUT"
           done
           if [ -f "$PREV" ]; then
@@ -294,7 +294,7 @@ jobs:
           title: 'chore: Auto Maintenance (Deps + Assets + Font Integrity)'
           commit-message: 'chore: upgrade deps, sync Highlight.js &amp; Font Awesome, verify font hash'
           body: |
-            🔧 **Pemeliharaan Otomatis Compact**
+            🔧 <strong>Pemeliharaan Otomatis Compact</strong>
             Perubahan:
             - Upgrade Dependencies
             - Highlight.js JS &amp; CSS (CSS selalu versi terbaru)
@@ -317,7 +317,7 @@ jobs:
         </p>
         <ul>
             <li><strong>Manual (<span class="inline-code">workflow_dispatch</span>):</strong> Tombol darurat. Kalau kamu lagi pengen update sekarang juga tanpa nunggu jadwal, kamu bisa klik tombol "Run Workflow" di GitHub.</li>
-            <li><strong>Terjadwal (<span class="inline-code">schedule</span>):</strong> Ini sihirnya. Kode <span class="inline-code">cron: '0 1 9 * *'</span> artinya bot ini bakal jalan otomatis setiap <strong>tanggal 9, jam 01:00 UTC</strong> (atau jam 08:00 pagi WIB). Pas kamu lagi ngopi pagi, dia udah kerja!</li>
+            <li><strong>Terjadwal (<span class="inline-code">schedule</span>):</strong> Ini sihirnya. Kode <span class="inline-code">cron: '0 1 9 <em> </em>'</span> artinya bot ini bakal jalan otomatis setiap <strong>tanggal 9, jam 01:00 UTC</strong> (atau jam 08:00 pagi WIB). Pas kamu lagi ngopi pagi, dia udah kerja!</li>
         </ul>
         <h2>2. Menyiapkan Bengkel (Setup Job)</h2>
         <p>

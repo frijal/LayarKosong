@@ -61,11 +61,11 @@
     <!-- Critical Native CSS -->
     <style>
         :root {
-            /* Tema Terang */
+            /<em> Tema Terang </em>/
             --bg-color: #f8fafc;
             --text-color: #0f172a;
             --text-muted: #64748b;
-            --accent-color: #0284c7; /* Biru industrial khas DevOps */
+            --accent-color: #0284c7; /<em> Biru industrial khas DevOps </em>/
             --border-color: #cbd5e1;
             --surface-color: #ffffff;
             --link-color: #0369a1;
@@ -74,7 +74,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Tema Gelap */
+                /<em> Tema Gelap </em>/
                 --bg-color: #020617;
                 --text-color: #f8fafc;
                 --text-muted: #94a3b8;
@@ -86,7 +86,7 @@
                 --code-text: #f1f5f9;
             }
         }
-        *, *::before, *::after {
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -100,7 +100,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .container {
-            max-width: 62.5rem; /* 1000px */
+            max-width: 62.5rem; /<em> 1000px </em>/
             margin: 0 auto;
             padding: 1.25rem;
         }
@@ -163,7 +163,7 @@
             font-size: 0.875rem;
             margin-bottom: 1.5rem;
         }
-        /* Konfigurasi LCP Image (Lebar penuh, proporsional) */
+        /<em> Konfigurasi LCP Image (Lebar penuh, proporsional) </em>/
         .content-img {
             width: 100%;
             height: auto;
@@ -173,7 +173,7 @@
             background-color: var(--surface-color);
             box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
         }
-        /* Kotak Kredibilitas / Author Box */
+        /<em> Kotak Kredibilitas / Author Box </em>/
         .author-box {
             background-color: var(--surface-color);
             border: 0.0625rem solid var(--border-color);
@@ -210,45 +210,45 @@
             </div>
         </header>
         <main role="main">
-            <p>Sampai kita di penghujung daftar panjang alternatif *reverse proxy*. Sebagai sajian penutup, kita sengaja menyimpan senjata pamungkas yang diperuntukkan bagi kalian yang berurusan dengan jaringan raksasa. Mari kita bedah **Frp** (kependekan dari *Fast Reverse Proxy*), sebuah monster arsitektur peladen yang sering digunakan diam-diam oleh *sysadmin* dan tim DevOps senior ketika mereka butuh kendali mutlak tanpa embel-embel SaaS berbayar.</p>
+            <p>Sampai kita di penghujung daftar panjang alternatif <em>reverse proxy</em>. Sebagai sajian penutup, kita sengaja menyimpan senjata pamungkas yang diperuntukkan bagi kalian yang berurusan dengan jaringan raksasa. Mari kita bedah <strong>Frp</strong> (kependekan dari <em>Fast Reverse Proxy</em>), sebuah monster arsitektur peladen yang sering digunakan diam-diam oleh <em>sysadmin</em> dan tim DevOps senior ketika mereka butuh kendali mutlak tanpa embel-embel SaaS berbayar.</p>
             <!-- LCP Image (Prioritas Tinggi, Lebar Penuh) -->
             <img src="https://dalam.web.id/img/pinggy.io/6a667cd9a3652e43.webp" alt="Ilustrasi dokumentasi dan logo dari Fast Reverse Proxy (Frp) untuk jaringan lokal dan publik" class="content-img" fetchpriority="high" decoding="async">
             <h2>Skenario Penggunaan Tingkat Lanjut</h2>
-            <p>Frp bukanlah alat *plug-and-play* yang kamu pakai sekadar untuk memamerkan desain halaman web (meskipun ia bisa saja melakukannya). Lingkungan habitat aslinya adalah arsitektur *microservices* yang kompleks, penggabungan API (*Application Programming Interface*) skala penuh, atau perusahaan penyedia layanan yang membutuhkan *tunneling* massal. Jika kamu memiliki banyak peladen lokal yang wajib mendistribusikan beban kerjanya ke internet publik namun tidak ingin menyandarkan nasib infrastrukturmu pada Cloudflare, Frp adalah tulang punggung yang paling kokoh.</p>
+            <p>Frp bukanlah alat <em>plug-and-play</em> yang kamu pakai sekadar untuk memamerkan desain halaman web (meskipun ia bisa saja melakukannya). Lingkungan habitat aslinya adalah arsitektur <em>microservices</em> yang kompleks, penggabungan API (<em>Application Programming Interface</em>) skala penuh, atau perusahaan penyedia layanan yang membutuhkan <em>tunneling</em> massal. Jika kamu memiliki banyak peladen lokal yang wajib mendistribusikan beban kerjanya ke internet publik namun tidak ingin menyandarkan nasib infrastrukturmu pada Cloudflare, Frp adalah tulang punggung yang paling kokoh.</p>
             <h2>Bedah Fitur: Otot Kawat Tulang Besi</h2>
-            <p>Bukan tanpa alasan alat ini diberi gelar *"Fast"*. Frp membawa sejumlah kemampuan teknis yang membuatnya ditakuti oleh layanan komersial:</p>
+            <p>Bukan tanpa alasan alat ini diberi gelar <em>"Fast"</em>. Frp membawa sejumlah kemampuan teknis yang membuatnya ditakuti oleh layanan komersial:</p>
             <ul>
-                <li>**Tangguh di Medan High-Traffic:** Dibangun menggunakan bahasa pemrograman *Go* (Golang), ia sangat efisien dalam memanajemen konkurensi data. Ia tak akan tersedak meski diserang ribuan permintaan (*request*) serentak.</li>
-                <li>**Lord of Protocols:** Berbeda dengan batasan Cloudflare Tunnel standar, Frp sanggup menyalurkan lalu lintas TCP, UDP, HTTP, maupun HTTPS sekaligus. Dari lalu lintas *website* hingga koneksi *database* mentah, semuanya tembus.</li>
-                <li>**Load Balancing Bawaan:** Ini adalah fitur mahalnya. Kamu bisa membagi beban lalu lintas jaringan ke beberapa mesin lokal yang terhubung dalam satu *tunnel* Frp, mencegah matinya *server* akibat kelebihan beban kerja (*overload*).</li>
-                <li>**Kontrol Akses Granular:** Menawarkan opsi pengaturan kontrol akses (*access control lists*) yang sangat terperinci demi menjaga keamanan infrastruktur.</li>
-                <li>**Dashboard Pemantauan Internal:** Ya, alat ini juga menyertakan *dashboard web* ringan yang bisa kamu jalankan untuk memantau status *proxy* jaringanmu sendiri.</li>
+                <li><strong>Tangguh di Medan High-Traffic:</strong> Dibangun menggunakan bahasa pemrograman <em>Go</em> (Golang), ia sangat efisien dalam memanajemen konkurensi data. Ia tak akan tersedak meski diserang ribuan permintaan (<em>request</em>) serentak.</li>
+                <li><strong>Lord of Protocols:</strong> Berbeda dengan batasan Cloudflare Tunnel standar, Frp sanggup menyalurkan lalu lintas TCP, UDP, HTTP, maupun HTTPS sekaligus. Dari lalu lintas <em>website</em> hingga koneksi <em>database</em> mentah, semuanya tembus.</li>
+                <li><strong>Load Balancing Bawaan:</strong> Ini adalah fitur mahalnya. Kamu bisa membagi beban lalu lintas jaringan ke beberapa mesin lokal yang terhubung dalam satu <em>tunnel</em> Frp, mencegah matinya <em>server</em> akibat kelebihan beban kerja (<em>overload</em>).</li>
+                <li><strong>Kontrol Akses Granular:</strong> Menawarkan opsi pengaturan kontrol akses (<em>access control lists</em>) yang sangat terperinci demi menjaga keamanan infrastruktur.</li>
+                <li><strong>Dashboard Pemantauan Internal:</strong> Ya, alat ini juga menyertakan <em>dashboard web</em> ringan yang bisa kamu jalankan untuk memantau status <em>proxy</em> jaringanmu sendiri.</li>
             </ul>
             <h2>Sisi Gelap: Kompleksitas Konfigurasi</h2>
-            <p>Sebagai perangkat kelas *enterprise*, tentu Frp kurang ramah bagi pengguna awam:</p>
+            <p>Sebagai perangkat kelas <em>enterprise</em>, tentu Frp kurang ramah bagi pengguna awam:</p>
             <ul>
-                <li>**Wajib Sediakan Server Sendiri:** Sama halnya dengan Rathole, kamu harus menyediakan peladen *cloud* publik (VPS) yang bertindak sebagai mesin *frps* (Frp Server), sementara mesin lokalmu akan bertindak sebagai *frpc* (Frp Client).</li>
-                <li>**Perang Konfigurasi File:** Tidak ada antarmuka GUI untuk mengatur tautannya. Kamu wajib menyusun berkas berekstensi `.ini` (atau `.toml` di versi terbaru) yang parameter isiannya bisa sangat panjang dan membuat kepala pusing jika kamu salah ketik.</li>
+                <li><strong>Wajib Sediakan Server Sendiri:</strong> Sama halnya dengan Rathole, kamu harus menyediakan peladen <em>cloud</em> publik (VPS) yang bertindak sebagai mesin <em>frps</em> (Frp Server), sementara mesin lokalmu akan bertindak sebagai <em>frpc</em> (Frp Client).</li>
+                <li><strong>Perang Konfigurasi File:</strong> Tidak ada antarmuka GUI untuk mengatur tautannya. Kamu wajib menyusun berkas berekstensi <code>.ini</code> (atau <code>.toml</code> di versi terbaru) yang parameter isiannya bisa sangat panjang dan membuat kepala pusing jika kamu salah ketik.</li>
             </ul>
             <h2>Persiapan dan Proses Eksekusi</h2>
-            <p>Karena berstatus *self-hosted*, ada dua tahap yang harus dilakukan. Pertama, di sisi *server* publik, kamu harus menjalankan `frps`. Kemudian, di komputer lokal atau peladen kantormu, unduh klien pelaksana, modifikasi berkas konfigurasinya (`frpc.ini`), dan nyalakan *tunnel* dengan perintah eksekusi terminal berikut:</p>
+            <p>Karena berstatus <em>self-hosted</em>, ada dua tahap yang harus dilakukan. Pertama, di sisi <em>server</em> publik, kamu harus menjalankan <code>frps</code>. Kemudian, di komputer lokal atau peladen kantormu, unduh klien pelaksana, modifikasi berkas konfigurasinya (<code>frpc.ini</code>), dan nyalakan <em>tunnel</em> dengan perintah eksekusi terminal berikut:</p>
             <pre><code>./frpc -c ./frpc.ini</code></pre>
-            <p>Begitu klien berhasil menghubungi peladen pusat, semua lalu lintas yang mengetuk pintu *server* publikmu akan diteruskan langsung secara presisi ke dalam jaringan lokalmu sesuai dengan aturan distribusi di dalam konfigurasi.</p>
+            <p>Begitu klien berhasil menghubungi peladen pusat, semua lalu lintas yang mengetuk pintu <em>server</em> publikmu akan diteruskan langsung secara presisi ke dalam jaringan lokalmu sesuai dengan aturan distribusi di dalam konfigurasi.</p>
             <h2>Skema Harga: Hadiah Terbaik Komunitas Open-Source</h2>
-            <p>Mengelola lalu lintas data sekelas korporat raksasa tidak pernah semurah ini. Perangkat lunak Frp didistribusikan dengan lisensi *open-source*, yang berarti ia **sepenuhnya gratis**. Kamu hanya perlu mengeluarkan biaya investasi bulanan untuk menyewa peladen *cloud* yang akan kamu jadikan sebagai penampang utama jalur datamu (biasanya mulai dari $5 hingga puluhan dolar, tergantung spesifikasi peladen).</p>
+            <p>Mengelola lalu lintas data sekelas korporat raksasa tidak pernah semurah ini. Perangkat lunak Frp didistribusikan dengan lisensi <em>open-source</em>, yang berarti ia <strong>sepenuhnya gratis</strong>. Kamu hanya perlu mengeluarkan biaya investasi bulanan untuk menyewa peladen <em>cloud</em> yang akan kamu jadikan sebagai penampang utama jalur datamu (biasanya mulai dari $5 hingga puluhan dolar, tergantung spesifikasi peladen).</p>
             <!-- Kotak Kredibilitas E-E-A-T -->
             <div class="author-box" aria-label="Informasi Penulis dan Kredibilitas Artikel">
-                <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: **Fakhrul Rijal**</p>
-                <p><i class="fa-solid fa-calendar-check"></i> Diperbarui pada: **30 Mei 2026**</p>
-                <p><i class="fa-solid fa-location-dot"></i> Kantor Redaksi: **Balikpapan, Kalimantan Timur**</p>
-                <p style="margin-top: 0.75rem; color: var(--text-muted);">Konten tinjauan di atas dirangkum dari pengujian arsitektur perangkat lunak lintas peladen (*reverse proxy &amp; load balancer*) berbasis Golang. Segala detail fungsi konfigurasi, ketersediaan protokol (TCP/UDP), dan struktur biaya operasional dikalkulasi berdasarkan dokumentasi inti repositori Frp publik (*gofrp.org/en/*) pada tahun rilis yang relevan.</p>
+                <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Fakhrul Rijal</strong></p>
+                <p><i class="fa-solid fa-calendar-check"></i> Diperbarui pada: <strong>30 Mei 2026</strong></p>
+                <p><i class="fa-solid fa-location-dot"></i> Kantor Redaksi: <strong>Balikpapan, Kalimantan Timur</strong></p>
+                <p style="margin-top: 0.75rem; color: var(--text-muted);">Konten tinjauan di atas dirangkum dari pengujian arsitektur perangkat lunak lintas peladen (<em>reverse proxy &amp; load balancer</em>) berbasis Golang. Segala detail fungsi konfigurasi, ketersediaan protokol (TCP/UDP), dan struktur biaya operasional dikalkulasi berdasarkan dokumentasi inti repositori Frp publik (<em>gofrp.org/en/</em>) pada tahun rilis yang relevan.</p>
             </div>
         </main>
         <!-- Elemen Wajib Tanpa Styling Tepat Sebelum Footer -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>🄯 2026 Layar Kosong. Dibuat bersih tanpa *framework* eksternal untuk melestarikan performa penjelajahan internet berkecepatan tinggi.</p>
+            <p>🄯 2026 Layar Kosong. Dibuat bersih tanpa <em>framework</em> eksternal untuk melestarikan performa penjelajahan internet berkecepatan tinggi.</p>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>

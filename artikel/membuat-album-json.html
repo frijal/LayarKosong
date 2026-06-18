@@ -46,57 +46,57 @@
     <title>Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js) - Layar Kosong</title> 
 <link rel="stylesheet" href="/ext/fontawesome.css">
  <style>
-        /* --- 1. Definisikan Variabel Tema Terang (Default) --- */
+        /<em> --- 1. Definisikan Variabel Tema Terang (Default) --- </em>/
         :root {
             --body-bg: #f4f7f6;
             --text-main: #333333;
             --container-bg: #ffffff;
             --border-color: #eeeeee;
-            /* Komponen Header & Footer */
+            /<em> Komponen Header & Footer </em>/
             --header-bg: #2c3e50;
             --header-text: #ffffff;
             --subtitle-text: #ecf0f1;
-            /* Tipografi & Aksen */
+            /<em> Tipografi & Aksen </em>/
             --heading-color: #2c3e50;
-            --accent-color: #3498db; /* Blue */
+            --accent-color: #3498db; /<em> Blue </em>/
             --link-hover: #2980b9;
-            /* Blok Khusus & Kotak Info */
+            /<em> Blok Khusus & Kotak Info </em>/
             --pre-bg: #2d2d2d;
             --pre-text: #f1f1f1;
             --terminal-bg: #e0e0e0;
             --terminal-text: #333333;
             --infobox-bg: #eaf5ff;
-            /* Sosial Media Share */
+            /<em> Sosial Media Share </em>/
             --share-title: #555555;
             --share-icon: #444444;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        /* --- 2. Otomatis Tema Gelap (Dark Mode) --- */
+        /<em> --- 2. Otomatis Tema Gelap (Dark Mode) --- </em>/
         @media (prefers-color-scheme: dark) {
             :root {
-                --body-bg: #0f172a;       /* Slate 900 (Adem banget di mata) */
-                --text-main: #cbd5e1;     /* Teks abu terang lembut */
-                --container-bg: #1e293b;  /* Slate 800 untuk kontainer utama */
-                --border-color: #334155;  /* Border gelap proporsional */
-                /* Header & Footer malam (dibikin sedikit lebih gelap dari bodi) */
+                --body-bg: #0f172a;       /<em> Slate 900 (Adem banget di mata) </em>/
+                --text-main: #cbd5e1;     /<em> Teks abu terang lembut </em>/
+                --container-bg: #1e293b;  /<em> Slate 800 untuk kontainer utama </em>/
+                --border-color: #334155;  /<em> Border gelap proporsional </em>/
+                /<em> Header & Footer malam (dibikin sedikit lebih gelap dari bodi) </em>/
                 --header-bg: #0b0f19;
                 --header-text: #f8fafc;
                 --subtitle-text: #94a3b8;
-                /* Judul diselamatkan agar menyala cerah */
+                /<em> Judul diselamatkan agar menyala cerah </em>/
                 --heading-color: #f8fafc;
-                --accent-color: #60a5fa;  /* Biru pastel agar kontras di latar gelap */
+                --accent-color: #60a5fa;  /<em> Biru pastel agar kontras di latar gelap </em>/
                 --link-hover: #93c5fd;
-                /* Blok khusus di malam hari */
-                --pre-bg: #0b0f19;        /* Kode pre lebih pekat */
-                --terminal-bg: #334155;   /* Terminal tidak lagi jadi flashbang */
+                /<em> Blok khusus di malam hari </em>/
+                --pre-bg: #0b0f19;        /<em> Kode pre lebih pekat </em>/
+                --terminal-bg: #334155;   /<em> Terminal tidak lagi jadi flashbang </em>/
                 --terminal-text: #f1f5f9;
-                --infobox-bg: #1e293b;    /* Menyamakan kontainer atau bisa pakai navy gelap (#172554) */
+                --infobox-bg: #1e293b;    /<em> Menyamakan kontainer atau bisa pakai navy gelap (#172554) </em>/
                 --share-title: #94a3b8;
-                --share-icon: #94a3b8;    /* Ikon sosmed default jadi abu terang */
+                --share-icon: #94a3b8;    /<em> Ikon sosmed default jadi abu terang </em>/
                 --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             }
         }
-        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
+        /<em> --- 3. Desain Utama & Tipografi (Base Styles) --- </em>/
         *,
         *::before,
         *::after {
@@ -113,7 +113,7 @@
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
         }
-        /* --- Kontainer Widescreen --- */
+        /<em> --- Kontainer Widescreen --- </em>/
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -122,7 +122,7 @@
             width: 100%;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
-        /* --- Header Artikel --- */
+        /<em> --- Header Artikel --- </em>/
         .article-header {
             background-color: var(--header-bg);
             color: var(--header-text);
@@ -131,7 +131,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .article-header h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Menggunakan fluid typography */
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /<em> Menggunakan fluid typography </em>/
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1rem;
@@ -142,7 +142,7 @@
             color: var(--subtitle-text);
             transition: color 0.3s;
         }
-        /* --- Konten Artikel --- */
+        /<em> --- Konten Artikel --- </em>/
         .article-content {
             padding: 2.5rem;
         }
@@ -157,7 +157,7 @@
             margin-bottom: 1.5rem;
         }
         .article-content h2 {
-            font-size: clamp(1.4rem, 4vw, 1.8rem); /* Fleksibel di mobile */
+            font-size: clamp(1.4rem, 4vw, 1.8rem); /<em> Fleksibel di mobile </em>/
             font-weight: 600;
             margin-top: 2.5rem;
             margin-bottom: 1.5rem;
@@ -201,7 +201,7 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        /* --- Blok Kode --- */
+        /<em> --- Blok Kode --- </em>/
         .article-content pre {
             background-color: var(--pre-bg);
             color: var(--pre-text);
@@ -216,20 +216,20 @@
         .article-content pre code {
             font-family: inherit;
         }
-        /* Blok untuk terminal */
+        /<em> Blok untuk terminal </em>/
         .terminal-code {
             background: var(--terminal-bg);
             color: var(--terminal-text);
-            padding: 0.2rem 0.6rem; /* Disesuaikan agar rapi kalau dipakai sebagai inline-code */
+            padding: 0.2rem 0.6rem; /<em> Disesuaikan agar rapi kalau dipakai sebagai inline-code </em>/
             border-radius: 4px;
             font-family: 'Courier New', Courier, monospace;
-            display: inline-block; /* Lebih aman menahan layout teks panjang */
+            display: inline-block; /<em> Lebih aman menahan layout teks panjang </em>/
             max-width: 100%;
             overflow-x: auto;
             vertical-align: middle;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* --- Info Box untuk "Cara Pakai" --- */
+        /<em> --- Info Box untuk "Cara Pakai" --- </em>/
         .info-box {
             background: var(--infobox-bg);
             border-left: 5px solid var(--accent-color);
@@ -252,7 +252,7 @@
             margin-bottom: 0.75rem;
             line-height: 1.6;
         }
-        /* --- Bagian Share Media Sosial --- */
+        /<em> --- Bagian Share Media Sosial --- </em>/
         .share-section {
             text-align: center;
             padding: 2rem;
@@ -283,11 +283,11 @@
         .share-buttons .fa-facebook:hover { color: #1877F2; }
         .share-buttons .fa-telegram:hover { color: #0088cc; }
         .share-buttons .fa-linkedin:hover { color: #0077b5; }
-        /* --- Footer --- */
+        /<em> --- Footer --- </em>/
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: var(--header-bg); /* Disinkronkan dengan warna header malam */
+            background-color: var(--header-bg); /<em> Disinkronkan dengan warna header malam </em>/
             color: var(--subtitle-text);
             transition: background-color 0.3s, color 0.3s;
         }
@@ -295,7 +295,7 @@
             margin: 0;
             font-size: 0.9rem;
         }
-        /* --- CSS Responsif (Mobile-Friendly) --- */
+        /<em> --- CSS Responsif (Mobile-Friendly) --- </em>/
         @media (max-width: 900px) {
             .container {
                 margin: 0;
@@ -307,14 +307,14 @@
                 padding: 2.5rem 1.25rem;
             }
             .article-content {
-                padding: 1.5rem 1rem; /* Ruang baca di HP dimaksimalkan */
+                padding: 1.5rem 1rem; /<em> Ruang baca di HP dimaksimalkan </em>/
             }
             .article-content p,
             .info-box li {
                 font-size: 1rem;
             }
             .info-box {
-                padding: 1.25rem 1rem 1.25rem 1.5rem; /* Sisi kiri dikasih kelonggaran */
+                padding: 1.25rem 1rem 1.25rem 1.5rem; /<em> Sisi kiri dikasih kelonggaran </em>/
             }
             .article-content pre {
                 padding: 1rem;
@@ -324,7 +324,7 @@
                 padding: 1.5rem 1rem;
             }
             .share-buttons a {
-                margin: 0 8px; /* Jarak ikon sosmed dirapatkan sedikit di HP biar gak patah baris */
+                margin: 0 8px; /<em> Jarak ikon sosmed dirapatkan sedikit di HP biar gak patah baris </em>/
                 font-size: 1.8rem;
             }
         }
@@ -336,13 +336,13 @@
 <body>
     <div class="container">
         <header class="article-header">
-            <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Buat File `album.json` Otomatis untuk Galeri Online-mu</h1>
+            <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Buat File <code>album.json</code> Otomatis untuk Galeri Online-mu</h1>
             <p class="subtitle">Gunakan script Python atau Node.js untuk memindai folder album rekursif dengan cepat.</p>
         </header>
         <main>
             <article class="article-content">
-                <p>Tentu. Karena browser tidak bisa *memindai* folder di komputer Anda, kita tidak bisa membuatnya dari halaman web.</p>
-                <p>Sebagai gantinya, kita bisa menggunakan script pendek di komputer Anda untuk *membuat* file `album.json` tersebut. Setelah file itu jadi, Anda bisa mengunggahnya bersama semua gambar Anda ke server.</p>
+                <p>Tentu. Karena browser tidak bisa <em>memindai</em> folder di komputer Anda, kita tidak bisa membuatnya dari halaman web.</p>
+                <p>Sebagai gantinya, kita bisa menggunakan script pendek di komputer Anda untuk <em>membuat</em> file <code>album.json</code> tersebut. Setelah file itu jadi, Anda bisa mengunggahnya bersama semua gambar Anda ke server.</p>
                 <p>Saya akan berikan dua opsi script yang paling umum: <strong>Python</strong> (seringkali sudah ada di Mac/Linux dan mudah di-install di Windows) dan <strong>Node.js</strong> (jika Anda lebih suka JavaScript).</p>
                 <p>Keduanya melakukan hal yang sama:</p>
                 <ul>
@@ -422,7 +422,7 @@ const SCRIPT_NAME = path.basename(__filename); // Nama script ini agar diabaikan
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
 // --------------------
 const imagePaths = [];
-console.log(`Memindai '${START_DIR}' untuk mencari gambar...`);
+console.log(<code>Memindai '${START_DIR}' untuk mencari gambar...</code>);
 // Fungsi rekursif untuk memindai folder
 function findImages(currentDir) {
   try {
@@ -446,12 +446,12 @@ function findImages(currentDir) {
           // 4. Ganti backslash (\) Windows menjadi forward slash (/) untuk URL
           const urlPath = relativePath.replace(/\\/g, '/');
           imagePaths.push(urlPath);
-          console.log(`  Menemukan: ${urlPath}`);
+          console.log(<code>  Menemukan: ${urlPath}</code>);
         }
       }
     }
   } catch (err) {
-    console.error(`Gagal membaca folder: ${currentDir}`, err);
+    console.error(<code>Gagal membaca folder: ${currentDir}</code>, err);
   }
 }
 // Mulai pemindaian
@@ -463,9 +463,9 @@ try {
   // JSON.stringify dengan 'null, 2' membuat file rapi dan mudah dibaca
   const jsonContent = JSON.stringify(imagePaths, null, 2);
   fs.writeFileSync(OUTPUT_FILE, jsonContent, 'utf8');
-  console.log(`\n✅ Sukses! ${imagePaths.length} gambar telah disimpan ke '${OUTPUT_FILE}'`);
+  console.log(<code>\n✅ Sukses! ${imagePaths.length} gambar telah disimpan ke '${OUTPUT_FILE}'</code>);
 } catch (err) {
-  console.error(`\n❌ Gagal menulis file: ${err}`);
+  console.error(<code>\n❌ Gagal menulis file: ${err}</code>);
 }
 </code></pre>
                 <h3><i class="fa-solid fa-terminal"></i>Cara Menjalankan (Node.js)</h3>

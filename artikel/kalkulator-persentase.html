@@ -169,20 +169,20 @@
         if (isNaN(a) || isNaN(b) || a === 0) return;
         const p = ((b - a) / a) * 100;
         const formatted = Number(p.toFixed(2)) + "%";
-        const indicator = p >= 0 ? `<span class="text-up">↑ ${formatted}</span>` : `<span class="text-down">↓ ${formatted}</span>`;
-        showResult(`Hasil: ${indicator}`, formatted);
-        debouncedSave(`${a.toLocaleString('id-ID')} → ${b.toLocaleString('id-ID')} = ${indicator}`);
+        const indicator = p >= 0 ? <code><span class="text-up">↑ ${formatted}</span></code> : <code><span class="text-down">↓ ${formatted}</span></code>;
+        showResult(<code>Hasil: ${indicator}</code>, formatted);
+        debouncedSave(<code>${a.toLocaleString('id-ID')} → ${b.toLocaleString('id-ID')} = ${indicator}</code>);
     }
     function hitungNilai() {
         const a = getRawValue('awal2');
         const p = parseFloat(document.getElementById('persen2').value);
         const aksi = document.getElementById('aksi').value;
         if (isNaN(a) || isNaN(p)) return;
-        const akhir = aksi === 'tambah' ? a * (1 + (p/100)) : a * (1 - (p/100));
+        const akhir = aksi === 'tambah' ? a <em> (1 + (p/100)) : a </em> (1 - (p/100));
         const formatted = Math.round(akhir).toLocaleString('id-ID');
-        showResult(`Hasil: ${formatted}`, formatted);
+        showResult(<code>Hasil: ${formatted}</code>, formatted);
         const simbol = aksi === 'tambah' ? '+' : '-';
-        debouncedSave(`${a.toLocaleString('id-ID')} ${simbol} ${p}% = <b>${formatted}</b>`);
+        debouncedSave(<code>${a.toLocaleString('id-ID')} ${simbol} ${p}% = <b>${formatted}</b></code>);
     }
     function showResult(text, rawValue) {
         currentResultValue = rawValue;
@@ -212,7 +212,7 @@
     function renderHistory() {
         const list = document.getElementById('historyList');
         const history = JSON.parse(localStorage.getItem('calc_history') || "[]");
-        list.innerHTML = history.map(item => `<div class="history-item">${item}</div>`).join('');
+        list.innerHTML = history.map(item => <code><div class="history-item">${item}</div></code>).join('');
     }
     function clearHistory() {
         localStorage.removeItem('calc_history');

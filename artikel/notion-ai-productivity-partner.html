@@ -186,12 +186,12 @@
             </li>
             <li>
               <strong>Merencanakan Kalender Konten:</strong> Bingung mau
-              *posting* apa besok di media sosial? Notion AI bisa membantu Anda
+              <em>posting</em> apa besok di media sosial? Notion AI bisa membantu Anda
               merencanakan jadwal dan memberi ide konten.
             </li>
             <li>
               <strong>Menghasilkan Ide Baru:</strong> Sedang buntu? Ajak Notion
-              AI *brainstorming*. Dari ide *postingan* blog sampai nama produk,
+              AI <em>brainstorming</em>. Dari ide <em>postingan</em> blog sampai nama produk,
               ia bisa jadi sumber inspirasi Anda.
             </li>
           </ul>
@@ -234,11 +234,11 @@
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
             // Mengisi galeri dengan gambar
-            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${60 + i}/800/600`);
+            const images = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${60 + i}/800/600</code>);
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = `Contoh template Notion ${index + 1}`;
+                img.alt = <code>Contoh template Notion ${index + 1}</code>;
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });

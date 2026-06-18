@@ -59,7 +59,7 @@
     <!-- Critical CSS Kustom (Aman dari Layout Shift, Native Dark/Light Mode) -->
     <style>
         :root {
-            /* Tema Terang (Default) */
+            /<em> Tema Terang (Default) </em>/
             --bg-color: #f9fafb;
             --container-bg: #ffffff;
             --text-main: #374151;
@@ -74,7 +74,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Tema Gelap */
+                /<em> Tema Gelap </em>/
                 --bg-color: #111827;
                 --container-bg: #1f2937;
                 --text-main: #d1d5db;
@@ -115,7 +115,7 @@
                 border-radius: 8px;
             }
         }
-        /* Typography */
+        /<em> Typography </em>/
         h1, h2, h3 {
             color: var(--text-heading);
             margin-bottom: 16px;
@@ -131,7 +131,7 @@
         p { margin-bottom: 20px; }
         a { color: var(--accent-color); text-decoration: none; font-weight: 500; }
         a:hover { color: var(--accent-hover); text-decoration: underline; }
-        /* Meta & Author (E-E-A-T) */
+        /<em> Meta & Author (E-E-A-T) </em>/
         .article-meta {
             display: flex;
             flex-wrap: wrap;
@@ -151,7 +151,7 @@
         }
         .author-box h3 { margin: 0 0 8px 0; font-size: 1.1rem; }
         .author-box p { margin: 0; font-size: 0.95rem; }
-        /* Images - Optimized for CWV (Zero Layout Shift) */
+        /<em> Images - Optimized for CWV (Zero Layout Shift) </em>/
         .img-wrapper {
             width: 100%;
             background-color: var(--code-bg);
@@ -175,7 +175,7 @@
             background-color: var(--code-bg);
             border-top: 1px solid var(--border-color);
         }
-        /* Formatting: Code, Lists, Quotes */
+        /<em> Formatting: Code, Lists, Quotes </em>/
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             background-color: var(--code-bg);
@@ -210,7 +210,7 @@
             font-style: italic;
             color: var(--text-muted);
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             margin-top: 48px;
             padding-top: 24px;
@@ -246,18 +246,18 @@
                     "ALERT! /dev/mapper/root-xxxxxxxx does not exist" <br>
                     "mdadm: No arrays found in config file or automatically"
                 </blockquote>
-                <p><strong>Apa yang salah?</strong> Detail krusial di sini adalah sistem aku <strong>tidak menggunakan LVM (Logical Volume Manager)</strong> ataupun enkripsi <em>disk</em>. Sistem *root* aku murni berada di partisi <code>ext4</code> biasa, tepatnya di <code>/dev/sda2</code>. File sistemnya sendiri sangat sehat, terbukti saat aku mengeceknya dengan perintah <code>fsck -f /dev/sda2</code>.</p>
-                <p>Kesimpulannya: Proses pembaruan malam sebelumnya meninggalkan konfigurasi <em>boot</em> atau <em>initramfs</em> dalam kondisi kacau. Konfigurasi <em>kernel command line</em> mendadak berhalusinasi dan mencoba melakukan <em>booting</em> dari perangkat <code>/dev/mapper/root-...</code> (yang notabene tidak ada) alih-alih membaca UUID asli dari sistem file *root* aku.</p>
+                <p><strong>Apa yang salah?</strong> Detail krusial di sini adalah sistem aku <strong>tidak menggunakan LVM (Logical Volume Manager)</strong> ataupun enkripsi <em>disk</em>. Sistem <em>root</em> aku murni berada di partisi <code>ext4</code> biasa, tepatnya di <code>/dev/sda2</code>. File sistemnya sendiri sangat sehat, terbukti saat aku mengeceknya dengan perintah <code>fsck -f /dev/sda2</code>.</p>
+                <p>Kesimpulannya: Proses pembaruan malam sebelumnya meninggalkan konfigurasi <em>boot</em> atau <em>initramfs</em> dalam kondisi kacau. Konfigurasi <em>kernel command line</em> mendadak berhalusinasi dan mencoba melakukan <em>booting</em> dari perangkat <code>/dev/mapper/root-...</code> (yang notabene tidak ada) alih-alih membaca UUID asli dari sistem file <em>root</em> aku.</p>
                 <h2>Dua Jalan Keluar: Pilih Jalur Ninja atau Jalur Santai?</h2>
                 <p>Setelah menelusuri literatur dan sedikit berdiskusi dengan AI, aku menemukan dua cara untuk keluar dari mimpi buruk ini. Cara pertama cukup <em>hardcore</em> ala pengguna terminal murni, dan cara kedua... yah, cara yang seandainya aku tahu dari awal, aku tak perlu repot-repot mengetik banyak perintah.</p>
                 <h3>Metode 1: Memperbaiki via CLI (Chroot)</h3>
                 <p>Ini adalah metode klasik untuk memperbaiki <em>bootloader</em> atau <em>kernel image</em> yang rusak. Sedikit panjang, tapi dijamin ampuh:</p>
                 <ol>
                     <li>Nyalakan komputer dan lakukan <em>booting</em> menggunakan <strong>Live USB MX Linux</strong>.</li>
-                    <li>Buka aplikasi Terminal. Pertama, kita *mount* sistem yang rusak (berada di partisi kedua):
+                    <li>Buka aplikasi Terminal. Pertama, kita <em>mount</em> sistem yang rusak (berada di partisi kedua):
                         <pre><code>sudo mount /dev/sda2 /mnt</code></pre>
                     </li>
-                    <li>Kemudian, *mount* partisi EFI (biasanya ada di partisi pertama):
+                    <li>Kemudian, <em>mount</em> partisi EFI (biasanya ada di partisi pertama):
                         <pre><code>sudo mount /dev/sda1 /mnt/boot/efi</code></pre>
                     </li>
                     <li>Lakukan proses <em>binding</em> untuk direktori sistem esensial agar kernel Live USB bisa berkomunikasi dengan sistem instalasi kita:
@@ -301,7 +301,7 @@ sudo reboot</code></pre>
                     <h3>📚 Referensi Pemecahan Masalah</h3>
                     <ul style="margin-bottom: 0;">
                         <li>Dokumentasi Resmi <em>MX Linux User Manual: System Rescue and Boot Repair</em>.</li>
-                        <li>Pengalaman *(Field Troubleshooting)* dari kegagalan <em>kernel image update</em> pada distro turunan Debian.</li>
+                        <li>Pengalaman <em>(Field Troubleshooting)</em> dari kegagalan <em>kernel image update</em> pada distro turunan Debian.</li>
                         <li>Manual sistem: <code>man update-initramfs</code> dan <code>man chroot</code>.</li>
                     </ul>
                 </section><br>

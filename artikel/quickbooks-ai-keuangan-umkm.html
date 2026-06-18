@@ -321,13 +321,13 @@
           const lightboxImg = document.getElementById('lightboxImg');
           const galleryImages = Array.from(
             { length: 6 },
-            (_, i) => `https://picsum.photos/id/${100 + i}/800/600`
+            (_, i) => <code>https://picsum.photos/id/${100 + i}/800/600</code>
           );
           let currentIndex;
           galleryImages.forEach((src) => {
             const img = document.createElement('img');
             img.setAttribute('data-src', src);
-            img.alt = `Contoh dashboard QuickBooks`;
+            img.alt = <code>Contoh dashboard QuickBooks</code>;
             img.loading = 'lazy';
             img.className = 'lazy-load';
             gallery.appendChild(img);

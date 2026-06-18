@@ -83,7 +83,7 @@ input[type="text"], input[type="search"], select {
 font-size: 13px; margin-top: 15px; padding: 10px; border-radius: 8px;
 background: rgba(0, 176, 237, 0.1); color: var(--accent); display: none;
 }
-/* Grid & Card */
+/<em> Grid & Card </em>/
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
 .card {
   background: var(--card); border-radius: 14px; overflow: hidden;
@@ -91,7 +91,7 @@ background: rgba(0, 176, 237, 0.1); color: var(--accent); display: none;
   display: flex; flex-direction: column; position: relative;
 }
 .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-/* Checkbox Style */
+/<em> Checkbox Style </em>/
 .card-checkbox {
   position: absolute; top: 12px; left: 12px; z-index: 10;
   width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent);
@@ -171,7 +171,7 @@ async function crawlUrl() {
   if (!url) return showStatus("URL tidak boleh kosong!", true);
   showStatus("⏳ Sedang mengambil data pelan-pelan...");
   try {
-    const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
+    const response = await fetch(<code>https://api.microlink.io?url=${encodeURIComponent(url)}</code>);
     const res = await response.json();
     if (res.status !== 'success') throw new Error();
     const info = res.data;
@@ -181,25 +181,25 @@ async function crawlUrl() {
       title: info.title || "No Title",
       desc: info.description || "No description.",
       img: info.image?.url || info.screenshot?.url || '/thumbnail.webp',
-      favicon: info.logo?.url || `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`,
+      favicon: info.logo?.url || <code>https://www.google.com/s2/favicons?domain=${new URL(url).hostname}</code>,
       date: new Date().toISOString()
     };
     if (db.find(i => i.url === entry.url)) return showStatus("⚠️ URL sudah ada.", true);
     db.unshift(entry);
     render();
     urlInput.value = '';
-    showStatus(`✅ Ditambahkan: ${entry.title}`);
+    showStatus(<code>✅ Ditambahkan: ${entry.title}</code>);
   } catch (e) { showStatus("❌ Gagal merayap.", true); }
 }
 // FUNGSI HAPUS MASSAL
 function deleteSelected() {
   const checked = document.querySelectorAll('.card-checkbox:checked');
   if (checked.length === 0) return alert("Pilih link yang ingin dihapus!");
-  if (confirm(`Hapus ${checked.length} link terpilih?`)) {
+  if (confirm(<code>Hapus ${checked.length} link terpilih?</code>)) {
     const idsToDelete = Array.from(checked).map(cb => parseInt(cb.value));
     db = db.filter(item => !idsToDelete.includes(item.id));
     render();
-    showStatus(`🗑️ ${checked.length} link berhasil dihapus dari memori.`);
+    showStatus(<code>🗑️ ${checked.length} link berhasil dihapus dari memori.</code>);
   }
 }
 function exportToJson() {
@@ -217,7 +217,7 @@ async function loadJson() {
     if (!res.ok) throw new Error();
     db = await res.json();
     render();
-    showStatus(`📂 Memuat ${db.length} link.`);
+    showStatus(<code>📂 Memuat ${db.length} link.</code>);
   } catch (e) { showStatus("ℹ️ bookmark.json tidak ditemukan."); }
 }
 function render() {
@@ -227,7 +227,7 @@ function render() {
   let filtered = db.filter(i => (i.title+i.desc+i.url).toLowerCase().includes(search));
   if (sort === 'title') filtered.sort((a,b) => a.title.localeCompare(b.title));
   if (sort === 'oldest') filtered = [...filtered].reverse();
-  grid.innerHTML = filtered.map(item => `
+  grid.innerHTML = filtered.map(item => <code>
   <div class="card" id="card-${item.id}">
   <input type="checkbox" class="card-checkbox" value="${item.id}">
   <a href="${item.url}" target="_blank" class="card-link">
@@ -242,7 +242,7 @@ function render() {
   </div>
   </a>
   </div>
-  `).join('');
+  </code>).join('');
 }
 document.addEventListener('DOMContentLoaded', () => {
   getEl('crawlBtn').onclick = crawlUrl;

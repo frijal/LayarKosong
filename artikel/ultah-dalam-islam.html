@@ -56,9 +56,9 @@
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/ext/fontawesome.css"></noscript>
     <style>
-        /* ============ CSS RESET & CUSTOM PROPERTIES ============ */
+        /<em> ============ CSS RESET & CUSTOM PROPERTIES ============ </em>/
         :root {
-            /* Light theme (default) */
+            /<em> Light theme (default) </em>/
             --bg: #fefefe;
             --bg-secondary: #f5f3ef;
             --bg-card: #ffffff;
@@ -99,7 +99,7 @@
                 --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
             }
         }
-        /* ============ BASE STYLES ============ */
+        /<em> ============ BASE STYLES ============ </em>/
         *,
         *::before,
         *::after {
@@ -123,7 +123,7 @@
             flex-direction: column;
             transition: background-color var(--transition), color var(--transition);
         }
-        /* ============ CONTAINER ============ */
+        /<em> ============ CONTAINER ============ </em>/
         .site-container {
             width: 100%;
             max-width: 1000px;
@@ -141,7 +141,7 @@
                 padding: 0 2rem;
             }
         }
-        /* ============ HEADER / BREADCRUMB ============ */
+        /<em> ============ HEADER / BREADCRUMB ============ </em>/
         .site-header {
             padding: 1rem 0;
             border-bottom: 1px solid var(--border);
@@ -168,7 +168,7 @@
             opacity: 0.6;
             user-select: none;
         }
-        /* ============ MAIN CONTENT ============ */
+        /<em> ============ MAIN CONTENT ============ </em>/
         .article-main {
             background-color: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -187,7 +187,7 @@
                 padding: 2.5rem 3rem;
             }
         }
-        /* ============ ARTICLE META ============ */
+        /<em> ============ ARTICLE META ============ </em>/
         .article-meta {
             display: flex;
             flex-wrap: wrap;
@@ -249,7 +249,7 @@
             letter-spacing: 0.01em;
             white-space: nowrap;
         }
-        /* ============ HEADINGS ============ */
+        /<em> ============ HEADINGS ============ </em>/
         .article-title {
             font-family: var(--font-heading);
             font-size: 1.6rem;
@@ -299,7 +299,7 @@
                 font-size: 1.2rem;
             }
         }
-        /* ============ PARAGRAPH & INLINE ============ */
+        /<em> ============ PARAGRAPH & INLINE ============ </em>/
         .article-main p {
             margin-bottom: 1.1rem;
             color: var(--text-secondary);
@@ -324,7 +324,7 @@
             border: 1px solid var(--border);
             word-break: break-word;
         }
-        /* ============ BLOCKQUOTE ============ */
+        /<em> ============ BLOCKQUOTE ============ </em>/
         .article-main blockquote {
             background-color: var(--bg-secondary);
             border-left: 4px solid var(--accent);
@@ -356,7 +356,7 @@
         .article-main blockquote p:last-child {
             margin-bottom: 0;
         }
-        /* ============ WARNING BOX ============ */
+        /<em> ============ WARNING BOX ============ </em>/
         .warning-box {
             background-color: var(--warning-bg);
             border: 1px solid var(--warning-border);
@@ -381,7 +381,7 @@
         .warning-box p:last-child {
             margin-bottom: 0;
         }
-        /* ============ IMAGES ============ */
+        /<em> ============ IMAGES ============ </em>/
         .article-main img {
             max-width: 100%;
             height: auto;
@@ -390,7 +390,7 @@
             margin: 1.5rem auto;
             background-color: var(--bg-secondary);
             border: 1px solid var(--border);
-            /* Mencegah CLS dengan aspect-ratio fallback */
+            /<em> Mencegah CLS dengan aspect-ratio fallback </em>/
             aspect-ratio: auto;
         }
         .article-main figure {
@@ -403,7 +403,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /* ============ LIST ============ */
+        /<em> ============ LIST ============ </em>/
         .article-main ul,
         .article-main ol {
             margin: 1rem 0 1.25rem 1.5rem;
@@ -416,14 +416,14 @@
         .article-main li::marker {
             color: var(--accent);
         }
-        /* ============ DIVIDERS ============ */
+        /<em> ============ DIVIDERS ============ </em>/
         .section-divider {
             border: none;
             border-top: 1px dashed var(--border);
             margin: 2rem 0 1.5rem;
             opacity: 0.7;
         }
-        /* ============ AUTHOR BIO (E-E-A-T) ============ */
+        /<em> ============ AUTHOR BIO (E-E-A-T) ============ </em>/
         .author-bio {
             display: flex;
             gap: 1rem;
@@ -469,12 +469,12 @@
             font-weight: 600;
             margin-top: 0.25rem;
         }
-        /* ============ RELATED & RESPONSE PLACEHOLDERS ============ */
+        /<em> ============ RELATED & RESPONSE PLACEHOLDERS ============ </em>/
         #related-articles-grid,
         #response {
-            /* Tanpa styling - sesuai permintaan */
+            /<em> Tanpa styling - sesuai permintaan </em>/
         }
-        /* ============ FOOTER ============ */
+        /<em> ============ FOOTER ============ </em>/
         .site-footer {
             text-align: center;
             padding: 1.5rem 1rem;
@@ -493,7 +493,7 @@
         .site-footer a:hover {
             text-decoration: underline;
         }
-        /* ============ UTILITY ============ */
+        /<em> ============ UTILITY ============ </em>/
         .sr-only {
             position: absolute;
             width: 1px;
@@ -508,14 +508,14 @@
         .text-center {
             text-align: center;
         }
-        /* ============ FOCUS & ACCESSIBILITY ============ */
+        /<em> ============ FOCUS & ACCESSIBILITY ============ </em>/
         a:focus-visible,
         button:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
             border-radius: 2px;
         }
-        /* ============ PRINT STYLES ============ */
+        /<em> ============ PRINT STYLES ============ </em>/
         @media print {
             body {
                 background: #fff;

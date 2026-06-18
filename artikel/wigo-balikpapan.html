@@ -58,13 +58,13 @@
     <meta name="promphint" content="Kapan Blogger Balikpapan mengunjungi WiGO 4G? | Kunjungan tersebut dilaksanakan pada Jumat, 27 April 2012.">
     <!-- Critical CSS (Mobile-First, Unit Rem, WCAG AA) -->
     <style>
-        /* CSS Reset Dasar */
-        *, *::before, *::after {
+        /<em> CSS Reset Dasar </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        /* Variabel Warna (Tema Terang) */
+        /<em> Variabel Warna (Tema Terang) </em>/
         :root {
             --bg-color: #f8fafc;
             --text-main: #1e293b;
@@ -75,7 +75,7 @@
             --surface-bg: #ffffff;
             --img-fallback-bg: #e2e8f0;
         }
-        /* Dukungan Mode Gelap Terintegrasi */
+        /<em> Dukungan Mode Gelap Terintegrasi </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0f172a;
@@ -88,7 +88,7 @@
                 --img-fallback-bg: #1e293b;
             }
         }
-        /* Pengaturan Body dan Tipografi */
+        /<em> Pengaturan Body dan Tipografi </em>/
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
@@ -97,14 +97,14 @@
             font-size: 1.125rem;
             -webkit-font-smoothing: antialiased;
         }
-        /* Kontainer Utama - Mobile First dengan Max Width */
+        /<em> Kontainer Utama - Mobile First dengan Max Width </em>/
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /* Headings */
+        /<em> Headings </em>/
         h1, h2, h3 {
             color: var(--text-main);
             font-weight: 700;
@@ -138,7 +138,7 @@
             color: var(--accent-hover);
             text-decoration: underline;
         }
-        /* Lists */
+        /<em> Lists </em>/
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -149,23 +149,23 @@
         strong {
             font-weight: 600;
         }
-        /* Gambar dengan Pencegahan CLS Tanpa Memotong Rasio Asli */
+        /<em> Gambar dengan Pencegahan CLS Tanpa Memotong Rasio Asli </em>/
         .img-wrapper {
             width: 100%;
             margin: 2rem 0;
             border-radius: 0.5rem;
             overflow: hidden;
             background-color: var(--img-fallback-bg);
-            /* Aspect ratio estimasi untuk reserving space; object-fit contain mencegah pemotongan */
+            /<em> Aspect ratio estimasi untuk reserving space; object-fit contain mencegah pemotongan </em>/
             aspect-ratio: 4 / 3; 
         }
         .img-wrapper img {
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Menjaga rasio asli gambar */
+            object-fit: contain; /<em> Menjaga rasio asli gambar </em>/
         }
-        /* Figcaption untuk deskripsi gambar */
+        /<em> Figcaption untuk deskripsi gambar </em>/
         figcaption {
             text-align: center;
             font-size: 0.95rem;
@@ -173,7 +173,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /* Kotak Spesifikasi */
+        /<em> Kotak Spesifikasi </em>/
         .specs-box {
             background-color: var(--surface-bg);
             border: 0.0625rem solid var(--border-color);
@@ -181,7 +181,7 @@
             padding: 1.5rem;
             margin: 2rem 0;
         }
-        /* Footer Inline Styling */
+        /<em> Footer Inline Styling </em>/
         footer {
             margin-top: 4rem;
             padding-top: 2rem;

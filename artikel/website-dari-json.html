@@ -62,7 +62,7 @@
             --text-color: #333;
             --light-gray: #f4f7f6;
             --border-color: #e0e0e0;
-            --max-width: 960px; /* Desain Widescreen */
+            --max-width: 960px; /<em> Desain Widescreen </em>/
             --code-bg: #f9f9f9;
         }
         * {
@@ -71,7 +71,7 @@
             padding: 0;
         }
         html, body {
-            height: 100%; /* Memastikan body bisa mengisi tinggi layar */
+            height: 100%; /<em> Memastikan body bisa mengisi tinggi layar </em>/
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -79,7 +79,7 @@
             color: var(--text-color);
             line-height: 1.7;
             display: flex;
-            flex-direction: column; /* Struktur layout fullscreen */
+            flex-direction: column; /<em> Struktur layout fullscreen </em>/
             font-size: 17px;
         }
         .container {
@@ -87,9 +87,9 @@
             max-width: var(--max-width);
             margin-left: auto;
             margin-right: auto;
-            padding: 0 20px; /* Padding untuk mobile */
+            padding: 0 20px; /<em> Padding untuk mobile </em>/
         }
-        /* Header */
+        /<em> Header </em>/
         header.main-header {
             width: 100%;
             background-color: var(--primary-color);
@@ -102,9 +102,9 @@
             font-size: 1.8rem;
             margin: 0;
         }
-        /* Konten Utama */
+        /<em> Konten Utama </em>/
         main.content {
-            flex-grow: 1; /* Mendorong footer ke bawah */
+            flex-grow: 1; /<em> Mendorong footer ke bawah </em>/
             padding: 30px 0 50px;
         }
         article.article-content h1 {
@@ -135,7 +135,7 @@
         article.article-content ul {
             padding-left: 25px;
         }
-        /* Analogi Restoran */
+        /<em> Analogi Restoran </em>/
         .analogy-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -157,13 +157,13 @@
             font-size: 1rem;
             margin-bottom: 0;
         }
-        /* Blok Kode */
+        /<em> Blok Kode </em>/
         pre {
             background-color: var(--code-bg);
             border: 1px solid var(--border-color);
             padding: 15px;
             border-radius: 6px;
-            overflow-x: auto; /* Penting untuk kode yang panjang */
+            overflow-x: auto; /<em> Penting untuk kode yang panjang </em>/
             font-size: 0.9rem;
             line-height: 1.5;
             margin: 1.5rem 0;
@@ -171,7 +171,7 @@
         code {
             font-family: "Consolas", "Menlo", "Monaco", "Courier New", monospace;
         }
-        /* Inline code */
+        /<em> Inline code </em>/
         p > code, li > code {
             background-color: #ffe8cc;
             color: #c25700;
@@ -179,7 +179,7 @@
             border-radius: 4px;
             font-size: 0.9em;
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer.main-footer {
             width: 100%;
             background-color: var(--light-gray);
@@ -193,7 +193,7 @@
             margin-bottom: 20px;
             color: var(--text-color);
         }
-        /* Ikon Media Sosial (Styling Button) */
+        /<em> Ikon Media Sosial (Styling Button) </em>/
         .social-share {
             display: flex;
             justify-content: center;
@@ -232,7 +232,7 @@
             margin-top: 30px;
             font-size: 0.9rem;
         }
-        /* CSS3 Responsif */
+        /<em> CSS3 Responsif </em>/
         @media (max-width: 768px) {
             article.article-content h1 {
                 font-size: 2rem;
@@ -265,7 +265,7 @@
             <article class="article-content">
                 <h2>Membuat Website dari Data .json? Tentu Saja Bisa!</h2>
                 <p>Tentu saja bisa. Membuat website yang datanya berasal dari file <code>.json</code> bukan hanya mungkin, tetapi juga merupakan <strong>praktik standar dan sangat umum</strong> dalam pengembangan web modern.</p>
-                <p>Konsep ini dikenal sebagai "Data-Driven Website," di mana tampilan (desain) dan konten (data) dipisahkan. Ini adalah salah satu konsep inti yang membuat *framework* modern seperti React, Vue, dan Angular sangat populer.</p>
+                <p>Konsep ini dikenal sebagai "Data-Driven Website," di mana tampilan (desain) dan konten (data) dipisahkan. Ini adalah salah satu konsep inti yang membuat <em>framework</em> modern seperti React, Vue, dan Angular sangat populer.</p>
                 <h2>Analogi Sederhana: Restoran 🍽️</h2>
                 <p>Bayangkan membuat sebuah website itu seperti menjalankan restoran:</p>
                 <div class="analogy-container">
@@ -293,7 +293,7 @@
                 <h2>Bagaimana Cara Kerjanya?</h2>
                 <p>Prosesnya secara umum mengikuti tiga langkah utama. Mari kita buat contoh blog sederhana.</p>
                 <h3>Langkah 1: Siapkan Data dalam Format JSON</h3>
-                <p>Pertama, Anda siapkan semua konten Anda dalam sebuah file, misalnya <code>data.json</code>. JSON (JavaScript Object Notation) menggunakan format kunci-nilai (*key-value*) yang mudah dibaca manusia dan mesin.</p>
+                <p>Pertama, Anda siapkan semua konten Anda dalam sebuah file, misalnya <code>data.json</code>. JSON (JavaScript Object Notation) menggunakan format kunci-nilai (<em>key-value</em>) yang mudah dibaca manusia dan mesin.</p>
 <pre><code>
 {
   "posts": [
@@ -351,9 +351,9 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
             let htmlContent = ''; // Siapkan variabel string kosong untuk menampung HTML
             // Lakukan perulangan (looping) untuk setiap post di dalam data.posts
             data.posts.forEach(post =&gt; {
-                // Buat string HTML untuk setiap post menggunakan template literal (backtick ``)
+                // Buat string HTML untuk setiap post menggunakan template literal (backtick `<code>)
                 // Ini seperti "mencetak" data ke dalam cetakan HTML
-                htmlContent += `
+                htmlContent += </code>
                     &lt;article class="post"&gt;
                         &lt;h2&gt;${post.title}&lt;/h2&gt;
                         &lt;p class="meta"&gt;Artikel oleh ${post.author} pada ${post.date}&lt;/p&gt;

@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /* Tema Default (Light) */
+            /<em> Tema Default (Light) </em>/
             --bg-color: #f8f9fa;
             --text-color: #212529;
             --link-color: #007bff;
@@ -60,7 +60,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Tema Dark */
+                /<em> Tema Dark </em>/
                 --bg-color: #212529;
                 --text-color: #f8f9fa;
                 --link-color: #92b4f9;
@@ -81,7 +81,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1100px; /* Desain Widescreen 1 kolom */
+            max-width: 1100px; /<em> Desain Widescreen 1 kolom </em>/
             margin: 0 auto;
             padding: 20px;
         }
@@ -134,7 +134,7 @@
         ul {
             padding-left: 20px;
         }
-        /* Footer Style */
+        /<em> Footer Style </em>/
         footer {
             text-align: center;
             padding: 20px;
@@ -143,7 +143,7 @@
             color: var(--blockquote-border);
             font-size: 0.9em;
         }
-        /* Mobile Adjustments (Responsif) */
+        /<em> Mobile Adjustments (Responsif) </em>/
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -161,22 +161,22 @@
     <div class="container">
         <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Perubahan Epochal! Git 3.0 Ganti 'master' Jadi 'main' sebagai Default Branch! 🥳</h1>
         <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiRg9YOJEgxGG_yYHUcYgGmf3rPt0wugSTdmXtQ0X6BYKRwbbIJuw1CqvvHNjrsmrXoMj2WblIxkmuWcjacLXksFfpcL8XTwBkEbGQtsGibZamJiJJYYfaQWJwyqQjN_XQNo1G9mxEmW6OPhbFx21q5rsIn4-0ah5xZ58dNWOaUsoGC2Bls1C8tLCmb2hk/s1600/master-to-main-banner.webp" alt="Banner Perubahan master ke main di Git" title="Selamat datang, main!">
-        <p>Ada kabar **super penting** nih dari dunia Git yang wajib banget kamu tahu. Versi terbaru Git, yaitu **Git 3.0**, bakal membawa perubahan fundamental yang sudah lama dinanti-nanti. Intinya: Kita bakal **selamat tinggal pada branch default 'master'** dan menyambut **'main'** sebagai gantinya! 🎊</p>
-        <p>Mulai Git 3.0 ke depan, kamu tidak perlu repot-repot lagi *ngeset* branch default buat repository baru. Secara otomatis, sistem Git akan langsung menggunakan **'main'**! Ini adalah langkah kecil yang punya makna besar, lho. Perubahan ini juga sejalan dengan upaya komunitas *developer* global untuk menggunakan terminologi yang lebih inklusif dan netral. Keren kan? 😎</p>
+        <p>Ada kabar <strong>super penting</strong> nih dari dunia Git yang wajib banget kamu tahu. Versi terbaru Git, yaitu <strong>Git 3.0</strong>, bakal membawa perubahan fundamental yang sudah lama dinanti-nanti. Intinya: Kita bakal <strong>selamat tinggal pada branch default 'master'</strong> dan menyambut <strong>'main'</strong> sebagai gantinya! 🎊</p>
+        <p>Mulai Git 3.0 ke depan, kamu tidak perlu repot-repot lagi <em>ngeset</em> branch default buat repository baru. Secara otomatis, sistem Git akan langsung menggunakan <strong>'main'</strong>! Ini adalah langkah kecil yang punya makna besar, lho. Perubahan ini juga sejalan dengan upaya komunitas <em>developer</em> global untuk menggunakan terminologi yang lebih inklusif dan netral. Keren kan? 😎</p>
         <p>Starting with Git 3.0, developers will no longer have to configure the default branch for new repositories.</p>
-        <p>Pengumuman resminya sudah nongol di Git 2.52 yang dirilis minggu ini. Perhatikan baik-baik *patch notes*-nya, ada baris kecil tapi bermakna yang bilang begini:</p>
+        <p>Pengumuman resminya sudah nongol di Git 2.52 yang dirilis minggu ini. Perhatikan baik-baik <em>patch notes</em>-nya, ada baris kecil tapi bermakna yang bilang begini:</p>
         <blockquote>
             <p>Declare that “git init” that is not otherwise configured uses ‘main’ as the initial branch, not ‘master’, starting Git 3.0.</p>
         </blockquote>
-        <p>Secara bahasa santai: **"Mulai Git 3.0, perintah 'git init' yang belum dikonfigurasi akan pakai 'main' sebagai branch awal, bukan 'master'."** Sudah jelas banget kan? Ini menunjukkan bahwa perubahan ini sudah dikunci dan tinggal menunggu tanggal rilis resminya.</p>
+        <p>Secara bahasa santai: <strong>"Mulai Git 3.0, perintah 'git init' yang belum dikonfigurasi akan pakai 'main' sebagai branch awal, bukan 'master'."</strong> Sudah jelas banget kan? Ini menunjukkan bahwa perubahan ini sudah dikunci dan tinggal menunggu tanggal rilis resminya.</p>
         <p>Perubahan ini memang bukan barang baru. Proyek Git, yang berada di bawah naungan Software Freedom Conservancy, sudah mengumumkan niat mereka untuk mengganti nama branch default sejak 23 Juni 2020. Platform <em>hosting</em> repo raksasa seperti GitHub juga bergerak cepat, mereka sudah <b>mengubah branch default menjadi <code class="language-plaintext highlighter-rouge">main</code></b> untuk <em>repository</em> baru sejak 1 Oktober 2020. Jadi, bisa dibilang ini adalah langkah konsolidasi dari Git untuk mengikuti tren yang sudah diadopsi oleh ekosistemnya. 👍</p>
-        <p>Sayangnya, Git 3.0 belum punya tanggal rilis pasti saat ini. Tapi, kabar burung (atau lebih tepatnya, *current estimates*) memprediksi bahwa kita mungkin baru bisa menikmati versi *major* ini menjelang **akhir tahun 2026**. Masih lama ya? Tapi setidaknya kita tahu apa yang perlu dinantikan! Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. **Bersabar *is a virtue*, teman-teman!** 🙏</p>
+        <p>Sayangnya, Git 3.0 belum punya tanggal rilis pasti saat ini. Tapi, kabar burung (atau lebih tepatnya, <em>current estimates</em>) memprediksi bahwa kita mungkin baru bisa menikmati versi <em>major</em> ini menjelang <strong>akhir tahun 2026</strong>. Masih lama ya? Tapi setidaknya kita tahu apa yang perlu dinantikan! Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. <strong>Bersabar <em>is a virtue</em>, teman-teman!</strong> 🙏</p>
         <h2><i class="fa-solid fa-shield-alt"></i> Bukan Cuma Nama! Fitur Keren Lain di Git 3.0</h2>
         <p>Perubahan ke <em>branch</em> <code class="language-plaintext highlighter-rouge">main</code> hanyalah salah satu <em>highlight</em> saja. Git 3.0 juga membawa perubahan <em>breaking changes</em> penting lainnya (cek <a href="https://git-scm.com/docs/BreakingChanges.html">di sini</a> untuk detailnya) yang bakal bikin kerjaan kita makin aman dan <em>ngebut</em>. Beberapa di antaranya adalah:</p>
         <ul>
-            <li>**Keamanan Lebih Kuat:** Fungsi *hash* default akan diganti dari **SHA-1** ke **SHA-256**. Ini adalah *upgrade* keamanan yang signifikan. SHA-1 sudah dianggap rentan, jadi pindah ke SHA-256 adalah langkah *pro* banget! 🛡️</li>
-            <li>**Performa dan Kompatibilitas:** Ada perubahan format penyimpanan default untuk *support* yang lebih baik di sistem operasi seperti **macOS dan Windows**, sekaligus meningkatkan performa secara keseluruhan. Siapa sih yang gak mau Git-nya makin cepat? 🚀</li>
-            <li>**Integrasi Rust:****Rust** akan diintegrasikan secara lebih formal ke dalam proses *build* Git. Ini bisa berarti peningkatan keamanan dan performa karena Rust terkenal dengan *memory safety*-nya.</li>
+            <li><strong>Keamanan Lebih Kuat:</strong> Fungsi <em>hash</em> default akan diganti dari <strong>SHA-1</strong> ke <strong>SHA-256</strong>. Ini adalah <em>upgrade</em> keamanan yang signifikan. SHA-1 sudah dianggap rentan, jadi pindah ke SHA-256 adalah langkah <em>pro</em> banget! 🛡️</li>
+            <li><strong>Performa dan Kompatibilitas:</strong> Ada perubahan format penyimpanan default untuk <em>support</em> yang lebih baik di sistem operasi seperti <strong>macOS dan Windows</strong>, sekaligus meningkatkan performa secara keseluruhan. Siapa sih yang gak mau Git-nya makin cepat? 🚀</li>
+            <li><strong>Integrasi Rust:</strong><strong>Rust</strong> akan diintegrasikan secara lebih formal ke dalam proses <em>build</em> Git. Ini bisa berarti peningkatan keamanan dan performa karena Rust terkenal dengan <em>memory safety</em>-nya.</li>
         </ul>
         <p>Singkatnya, Git 3.0 bukan sekadar <em>ganti nama</em>. Ini adalah pembaruan besar yang berfokus pada <b>keamanan, kinerja, dan inklusivitas</b>. Mari kita nantikan bersama kedatangannya sambil terus <em>ngoding</em> dengan <em>branch</em> <code class="language-plaintext highlighter-rouge">main</code> di proyek-proyek baru kita! Selamat <em>ngoding</em>! 💻</p>
         <h2><i class="fa-solid fa-comments"></i> Kolom Komentar</h2>

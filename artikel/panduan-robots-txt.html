@@ -65,7 +65,7 @@
             --code-bg: #161b22;
             --quote-bg: rgba(48, 165, 252, 0.1);
         }
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        <em>,</em>::before,*::after{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth}
         body{
             font-family:'Inter', sans-serif;
@@ -129,7 +129,7 @@
         .copy-btn{position:absolute;top:5px;right:10px;background-color:#484f58;color:#c9d1d9;border:1px solid #6e7681;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:0.8rem;transition:background-color .2s}
         .copy-btn:hover{background-color:#6e7681}
         .copy-btn.copied{background-color:#238636;color:white}
-        /* === POSISI TOMBOL NAVIGASI === */
+        /<em> === POSISI TOMBOL NAVIGASI === </em>/
         .floating-btn{
             position:fixed;
             width:48px;
@@ -153,9 +153,9 @@
             bottom: 25%;
         }
         #sitemap-btn {
-            bottom: calc(25% + 60px); /* 48px tinggi + 12px spasi */
+            bottom: calc(25% + 60px); /<em> 48px tinggi + 12px spasi </em>/
         }
-        /* ============================ */
+        /<em> ============================ </em>/
         .gallery{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));gap:15px}
         .gallery img{width:100%;height:auto;border-radius:8px;cursor:pointer;transition:opacity .3s; border: 1px solid var(--border-color);}
         .gallery img:hover{opacity:0.8}
@@ -197,13 +197,13 @@
         <article>
             <p>Halo, para blogger dan webmaster! Kalau kamu serius ingin websitemu muncul dan berprestasi di hasil pencarian Google, ada satu file kecil yang seringkali disalahpahami tapi punya peran penting: <code>robots.txt</code>. File ini ibarat satpam digital yang berjaga di gerbang depan websitemu.</p>
             <p>Banyak yang mengira <code>robots.txt</code> adalah "surat undangan" untuk Google. Padahal, fungsinya justru sebaliknya. Yuk, kita bedah tuntas apa itu <code>robots.txt</code>, cara membuatnya dengan benar, dan kesalahan fatal yang harus dihindari.</p>
-            <h2>Apa Sih Sebenarnya Fungsi `robots.txt`? 🤔</h2>
-            <p>Fungsi utama <code>robots.txt</code> adalah untuk **memberi tahu robot mesin pencari** (seperti Googlebot) area mana dari websitemu yang **TIDAK BOLEH** mereka kunjungi atau "crawl".</p>
+            <h2>Apa Sih Sebenarnya Fungsi <code>robots.txt</code>? 🤔</h2>
+            <p>Fungsi utama <code>robots.txt</code> adalah untuk <strong>memberi tahu robot mesin pencari</strong> (seperti Googlebot) area mana dari websitemu yang <strong>TIDAK BOLEH</strong> mereka kunjungi atau "crawl".</p>
             <blockquote>
                 Ini bukan undangan, tapi lebih seperti denah area terlarang. Jika kamu tidak melarang apa pun, robot akan menganggap seluruh area websitemu adalah area publik yang boleh dijelajahi.
             </blockquote>
             <p>Jadi, dengan <code>robots.txt</code>, kita bisa mencegah Google mengindeks halaman-halaman yang tidak penting, seperti halaman login admin, folder skrip, atau halaman hasil pencarian internal.</p>
-            <h2>Contoh `robots.txt` Paling Benar untuk 99% Blogger ✅</h2>
+            <h2>Contoh <code>robots.txt</code> Paling Benar untuk 99% Blogger ✅</h2>
             <p>Untuk sebagian besar blog, tujuannya adalah agar semua konten bisa ditemukan Google. Oleh karena itu, konfigurasi terbaik adalah yang paling sederhana: izinkan semua, dan beri tahu di mana letak "peta"-nya.</p>
             <h3>Versi Paling Direkomendasikan (Izinkan Semua + Peta Situs)</h3>
             <div class="code-block">
@@ -214,11 +214,11 @@ Disallow:
 Sitemap: https://www.domainbloganda.com/sitemap.xml</code></pre>
             </div>
             <ul>
-                <li><strong>User-agent: *</strong> Tanda bintang `(*)` berarti aturan ini berlaku untuk SEMUA robot (Google, Bing, Yahoo, dll).</li>
-                <li><strong>Disallow:</strong> Dengan membiarkannya **kosong**, kamu bilang, "Tidak ada yang dilarang, silakan jelajahi semuanya!"</li>
-                <li><strong>Sitemap: ...</strong> Ini bagian yang super penting. Kamu memberi tahu robot, "Hei, kalau mau lihat daftar lengkap semua halamanku yang penting, ini petanya (`sitemap.xml`)." Ini sangat mempercepat proses pengenalan dan indeksasi.</li>
+                <li><strong>User-agent: <em></strong> Tanda bintang <code>(</em>)</code> berarti aturan ini berlaku untuk SEMUA robot (Google, Bing, Yahoo, dll).</li>
+                <li><strong>Disallow:</strong> Dengan membiarkannya <strong>kosong</strong>, kamu bilang, "Tidak ada yang dilarang, silakan jelajahi semuanya!"</li>
+                <li><strong>Sitemap: ...</strong> Ini bagian yang super penting. Kamu memberi tahu robot, "Hei, kalau mau lihat daftar lengkap semua halamanku yang penting, ini petanya (<code>sitemap.xml</code>)." Ini sangat mempercepat proses pengenalan dan indeksasi.</li>
             </ul>
-            <p>Jangan lupa ganti `https://www.domainbloganda.com/sitemap.xml` dengan URL sitemap-mu yang sebenarnya!</p>
+            <p>Jangan lupa ganti <code>https://www.domainbloganda.com/sitemap.xml</code> dengan URL sitemap-mu yang sebenarnya!</p>
             <h2>Contoh untuk Pengguna Tingkat Lanjut 🚀</h2>
             <p>Seiring waktu, mungkin kamu ingin memblokir area tertentu. Misalnya, jika kamu menggunakan WordPress, kamu tidak mau halaman admin muncul di Google.</p>
             <h3>Versi dengan Pengecualian (Contoh WordPress)</h3>
@@ -230,7 +230,7 @@ Disallow: /wp-admin/
 Disallow: /wp-login.php
 Sitemap: https://www.domainbloganda.com/sitemap.xml</code></pre>
             </div>
-            <p>Di sini, kita secara spesifik melarang robot masuk ke folder `/wp-admin/` dan file `/wp-login.php`, yang merupakan praktik keamanan dan SEO yang baik.</p>
+            <p>Di sini, kita secara spesifik melarang robot masuk ke folder <code>/wp-admin/</code> dan file <code>/wp-login.php</code>, yang merupakan praktik keamanan dan SEO yang baik.</p>
             <h2>Kesalahan Fatal yang Harus Dihindari! ❌</h2>
             <p>Jangan pernah, dalam kondisi apapun, menggunakan konfigurasi ini kecuali kamu benar-benar ingin menghilang dari peredaran internet.</p>
             <div class="code-block">
@@ -239,7 +239,7 @@ Sitemap: https://www.domainbloganda.com/sitemap.xml</code></pre>
                 <pre><code class="language-bash">User-agent: *
 Disallow: /</code></pre>
             </div>
-            <blockquote>Perintah `Disallow: /` artinya: "Larang akses ke seluruh situs". Ini sama saja dengan memasang papan "TUTUP SELAMANYA" di gerbang websitemu.</blockquote>
+            <blockquote>Perintah <code>Disallow: /</code> artinya: "Larang akses ke seluruh situs". Ini sama saja dengan memasang papan "TUTUP SELAMANYA" di gerbang websitemu.</blockquote>
     </article>
                 <section class="interaction-section">
             <div>

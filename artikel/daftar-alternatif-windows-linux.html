@@ -46,7 +46,7 @@
     <title>Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel) - Layar Kosong</title> 
 <meta name="keywords" content="alternatif software, open source, gratis, tabel software, perbandingan software, GIMP, Inkscape, LibreOffice, Blender, free software">
     <style>
-        /* Menggunakan font dari Google Fonts biar lebih cakep */
+        /<em> Menggunakan font dari Google Fonts biar lebih cakep </em>/
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         :root {
             --bg-color: #121212;
@@ -56,7 +56,7 @@
             --accent-color: #03dac6;
             --border-color: #333333;
         }
-        /* Reset dasar & pengaturan global */
+        /<em> Reset dasar & pengaturan global </em>/
         * {
             box-sizing: border-box;
             margin: 0;
@@ -72,13 +72,13 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /* Kontainer utama */
+        /<em> Kontainer utama </em>/
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /* Header */
+        /<em> Header </em>/
         header {
             text-align: center;
             margin-bottom: 3rem;
@@ -116,9 +116,9 @@
         strong {
             color: #ffffff;
         }
-        /* Styling untuk Tabel Software */
+        /<em> Styling untuk Tabel Software </em>/
         .table-container {
-            overflow-x: auto; /* Penting untuk responsif di mobile */
+            overflow-x: auto; /<em> Penting untuk responsif di mobile </em>/
             -webkit-overflow-scrolling: touch;
         }
         .software-table {
@@ -145,12 +145,12 @@
         .software-table tbody tr:hover {
             background-color: #2c2c2c;
         }
-        /* CSS BARU: Mengatur pemotongan kata pada URL yang panjang */
+        /<em> CSS BARU: Mengatur pemotongan kata pada URL yang panjang </em>/
         .software-table td:nth-child(3) a {
             word-break: break-all;
         }
-        /* Styling untuk bagian lainnya tetap sama */
-        /* Galeri Foto */
+        /<em> Styling untuk bagian lainnya tetap sama </em>/
+        /<em> Galeri Foto </em>/
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -169,7 +169,7 @@
             transform: scale(1.05);
             filter: brightness(1.2);
         }
-        /* Lightbox */
+        /<em> Lightbox </em>/
         .lightbox {
             display: none;
             position: fixed;
@@ -210,7 +210,7 @@
         .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); }
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
-        /* Ikon Berbagi */
+        /<em> Ikon Berbagi </em>/
         .share-buttons {
             display: flex;
             justify-content: center;
@@ -226,7 +226,7 @@
             transform: scale(1.2);
             color: #ffffff;
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             text-align: center;
             margin-top: 3rem;
@@ -234,7 +234,7 @@
             border-top: 1px solid var(--border-color);
             color: var(--secondary-text-color);
         }
-        /* Media Queries untuk Responsif */
+        /<em> Media Queries untuk Responsif </em>/
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.5rem; }
@@ -271,7 +271,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- Data Software ---
-            const softwareDataRaw = `
+            const softwareDataRaw = <code>
                 3D Home Architect | Sweet Home 3D | http://sweethome3d.sourceforge.net/index.html
                 3D Studio Max | Art of Illusion | http://www.artofillusion.org
                 3D Studio Max | Blender | http://www.blender.org
@@ -524,11 +524,11 @@
                 ZoneAlarm | Firestarter | http://www.fs-security.com
                 ZoneAlarm | Guarddog | http://www.simonzone.com/software/guarddog
                 Zscreen | Shutter | http://shutter-project.org
-            `;
+            </code>;
             // --- Fungsi untuk memproses dan menampilkan tabel software ---
             function renderSoftwareTable() {
                 const lines = softwareDataRaw.trim().split('\n');
-                let tableHTML = `
+                let tableHTML = <code>
                     <table class="software-table">
                         <thead>
                             <tr>
@@ -538,21 +538,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                `;
+                </code>;
                 lines.forEach(line => {
                     const parts = line.split('|').map(part => part.trim());
                     if (parts.length === 3) {
                         const [commercial, alternative, url] = parts;
-                        tableHTML += `
+                        tableHTML += <code>
                             <tr>
                                 <td>${commercial}</td>
                                 <td><strong>${alternative}</strong></td>
                                 <td><a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a></td>
                             </tr>
-                        `;
+                        </code>;
                     }
                 });
-                tableHTML += `</tbody></table>`;
+                tableHTML += <code></tbody></table></code>;
                 const container = document.getElementById('software-table-container');
                 container.innerHTML = tableHTML;
             }

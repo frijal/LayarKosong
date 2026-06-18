@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedah Skrip generate-icons.js: Bikin Ikon PWA &amp; Manifest Otomatis. - Layar Kosong</title> 
 <style>
-        /* --- Variabel Warna (Dark/Light Mode Otomatis) --- */
+        /<em> --- Variabel Warna (Dark/Light Mode Otomatis) --- </em>/
         :root {
             --bg-color: #f8f9fa;
             --text-color: #212529;
@@ -60,7 +60,7 @@
             --inline-code-border: #ddd;
             --pre-bg: #2d2d2d;
             --pre-text: #ccc;
-            --button-bg: #007bff; /* Warna tombol */
+            --button-bg: #007bff; /<em> Warna tombol </em>/
             --button-text: #ffffff;
             --button-hover-bg: #0056b3;
         }
@@ -79,12 +79,12 @@
                 --inline-code-border: #444;
                 --pre-bg: #1e1e1e;
                 --pre-text: #d4d4d4;
-                --button-bg: #00aaff; /* Warna tombol dark mode */
+                --button-bg: #00aaff; /<em> Warna tombol dark mode </em>/
                 --button-text: #121212;
                 --button-hover-bg: #0088cc;
             }
         }
-        /* --- Global & Desain Fullscreen --- */
+        /<em> --- Global & Desain Fullscreen --- </em>/
         * {
             box-sizing: border-box;
             margin: 0;
@@ -102,9 +102,9 @@
             font-size: 17px;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* --- Desain Widescreen & Responsif --- */
+        /<em> --- Desain Widescreen & Responsif --- </em>/
         main {
-            max-width: 900px; /* Layout widescreen untuk artikel */
+            max-width: 900px; /<em> Layout widescreen untuk artikel </em>/
             margin: 2rem auto;
             padding: 1rem 2rem;
         }
@@ -120,7 +120,7 @@
             border-bottom: none;
             padding-bottom: 0;
         }
-        /* --- Tipografi & Elemen --- */
+        /<em> --- Tipografi & Elemen --- </em>/
         h1 {
             font-size: 2.4rem;
             color: var(--header-color);
@@ -167,8 +167,8 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /* --- Kode --- */
-        code { /* Kode inline & di dalam pre */
+        /<em> --- Kode --- </em>/
+        code { /<em> Kode inline & di dalam pre </em>/
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             background-color: var(--inline-code-bg);
             border: 1px solid var(--inline-code-border);
@@ -177,23 +177,23 @@
             font-size: 0.9em;
             color: var(--text-color);
         }
-        pre { /* Blok Kode */
+        pre { /<em> Blok Kode </em>/
             background-color: var(--pre-bg);
             color: var(--pre-text);
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
             margin-bottom: 1.5rem;
-            font-size: 0.9em; /* Ukuran font di pre sedikit lebih kecil */
+            font-size: 0.9em; /<em> Ukuran font di pre sedikit lebih kecil </em>/
         }
-        pre code { /* Reset style code di dalam pre */
+        pre code { /<em> Reset style code di dalam pre </em>/
             background: none !important;
             padding: 0 !important;
             border: none !important;
             color: inherit;
-            font-size: inherit; /* Ikuti ukuran font pre */
+            font-size: inherit; /<em> Ikuti ukuran font pre </em>/
         }
-        /* --- Blockquote --- */
+        /<em> --- Blockquote --- </em>/
          blockquote {
             border-left: 5px solid var(--accent-color);
             background-color: var(--card-bg);
@@ -206,7 +206,7 @@
         blockquote p:last-child {
             margin-bottom: 0;
         }
-        /* --- Gambar --- */
+        /<em> --- Gambar --- </em>/
         img {
             max-width: 100%;
             height: auto;
@@ -215,7 +215,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        /* --- Ikon Sharing Media Sosial --- */
+        /<em> --- Ikon Sharing Media Sosial --- </em>/
         .social-share {
             text-align: center;
             padding: 2rem 0;
@@ -241,7 +241,7 @@
             height: 32px;
             fill: var(--text-color);
         }
-        /* --- Footer --- */
+        /<em> --- Footer --- </em>/
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -254,7 +254,7 @@
             color: var(--accent-color);
             text-decoration: none;
         }
-        /* --- Mobile-Friendly (Responsif) --- */
+        /<em> --- Mobile-Friendly (Responsif) --- </em>/
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -269,7 +269,7 @@
              pre {
                 font-size: 0.85em;
              }
-             code { /* Kecilkan sedikit kode inline di mobile */
+             code { /<em> Kecilkan sedikit kode inline di mobile </em>/
                  font-size: 0.85em;
              }
         }

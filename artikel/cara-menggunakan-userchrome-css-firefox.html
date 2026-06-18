@@ -51,7 +51,7 @@
     <meta name="news_keywords" content="userChrome.css, Firefox custom CSS, kustomisasi Firefox, Firefox userChrome tutorial, ubah tampilan Firefox, Firefox pemula, userChrome pemula">
     <meta name="promphint" content="Q: Bagaimana cara menggunakan userChrome.css di Firefox untuk pemula? A: Aktifkan toolkit.legacyUserProfileCustomizations.stylesheets di about:config, buka folder profil, buat folder chrome, buat file userChrome.css, lalu tulis kode CSS dan restart Firefox.">
     <style>
-        /* Reset & Base */
+        /<em> Reset & Base </em>/
         * {
             margin: 0;
             padding: 0;
@@ -295,7 +295,7 @@
     <div class="css-snippet">
         <h4>1️⃣ Sembunyikan Tombol Close di Tab (biar gak ke-klik salah)</h4>
         <div class="code-block">
-            <pre><code>/* Hapus tombol X di tab */
+            <pre><code>/<em> Hapus tombol X di tab </em>/
 .tabbrowser-tab .tab-close-button {
     display: none !important;
 }</code></pre>
@@ -304,7 +304,7 @@
     <div class="css-snippet">
         <h4>2️⃣ Tab Aktif Jadi Garis Tipis (ultra minimalis)</h4>
         <div class="code-block">
-            <pre><code>/* Indikator tab aktif hanya garis di kiri */
+            <pre><code>/<em> Indikator tab aktif hanya garis di kiri </em>/
 .tabbrowser-tab[selected="true"] {
     position: relative !important;
 }
@@ -318,7 +318,7 @@
     background: var(--tab-active-border, currentColor);
     border-radius: 1px;
 }
-/* Hilangkan background highlight default */
+/<em> Hilangkan background highlight default </em>/
 .tabbrowser-tab:not([selected="true"]) .tab-background,
 .tabbrowser-tab[selected="true"] .tab-background {
     background: transparent !important;
@@ -328,7 +328,7 @@
     <div class="css-snippet">
         <h4>3️⃣ Sembunyikan Tombol + New Tab (muncul saat hover saja)</h4>
         <div class="code-block">
-            <pre><code>/* Tombol new tab tersembunyi sampai di-hover */
+            <pre><code>/<em> Tombol new tab tersembunyi sampai di-hover </em>/
 #tabs-newtab-button {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -343,7 +343,7 @@
     <div class="css-snippet">
         <h4>4️⃣ Toolbar Semi Transparan</h4>
         <div class="code-block">
-            <pre><code>/* Toolbar sedikit transparan */
+            <pre><code>/<em> Toolbar sedikit transparan </em>/
 #nav-bar {
   backdrop-filter: blur(10px);
   transition: opacity .25s ease-in-out;
@@ -357,7 +357,7 @@
     <div class="css-snippet">
         <h4>5️⃣ Sembunyikan Tab Bar (kalau pakai ekstensi vertical tabs)</h4>
         <div class="code-block">
-            <pre><code>/* Sembunyikan tab bar horizontal */
+            <pre><code>/<em> Sembunyikan tab bar horizontal </em>/
 #TabsToolbar {
     visibility: collapse;
 }</code></pre>

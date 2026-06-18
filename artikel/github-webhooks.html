@@ -46,11 +46,11 @@
     <title>Apa Gunanya Webhooks di GitHub? - Layar Kosong</title> 
 <style>
         :root {
-            --bg-color: #f9fafb; /* bg-gray-50 */
-            --text-color: #111827; /* bg-gray-900 */
+            --bg-color: #f9fafb; /<em> bg-gray-50 </em>/
+            --text-color: #111827; /<em> bg-gray-900 </em>/
             --card-bg: #ffffff;
-            --primary-color: #4f46e5; /* indigo-600 */
-            --border-color: #e5e7eb; /* gray-200 */
+            --primary-color: #4f46e5; /<em> indigo-600 </em>/
+            --border-color: #e5e7eb; /<em> gray-200 </em>/
             --max-width: 960px;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,18 +71,18 @@
             margin-right: auto;
             padding: 0 20px;
         }
-        /* Header */
+        /<em> Header </em>/
         header.main-header {
-            background-color: #1f2937; /* gray-800 */
+            background-color: #1f2937; /<em> gray-800 </em>/
             color: white;
             padding: 2.5rem 0;
             text-align: center;
         }
         header.main-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
-        header.main-header p { color: #d1d5db; /* gray-300 */ }
-        /* Konten Utama */
+        header.main-header p { color: #d1d5db; /<em> gray-300 </em>/ }
+        /<em> Konten Utama </em>/
         main.content {
-            flex-grow: 1; /* Mendorong footer ke bawah */
+            flex-grow: 1; /<em> Mendorong footer ke bawah </em>/
             padding: 3rem 0;
         }
         article h2 {
@@ -98,7 +98,7 @@
             font-size: 1.1rem;
             margin-bottom: 1.5em;
         }
-        /* Styling untuk langkah-langkah */
+        /<em> Styling untuk langkah-langkah </em>/
         .steps-container {
             display: grid;
             gap: 1.5rem;
@@ -127,7 +127,7 @@
             font-size: 1.2rem;
         }
         .zdummy p { font-size: 1rem; margin: 0; }
-        /* Styling untuk contoh penggunaan */
+        /<em> Styling untuk contoh penggunaan </em>/
         .examples-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -144,7 +144,7 @@
         .example-card-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
         .example-card p { font-size: 1rem; margin: 0; }
         .example-icon { font-size: 2rem; margin-bottom: 1rem; }
-        /* Gambar */
+        /<em> Gambar </em>/
         .main-image {
             width: 100%;
             max-width: 800px;
@@ -154,10 +154,10 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border: 1px solid var(--border-color);
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer.main-footer {
-            background-color: #e5e7eb; /* gray-200 */
-            color: #4b5563; /* gray-600 */
+            background-color: #e5e7eb; /<em> gray-200 </em>/
+            color: #4b5563; /<em> gray-600 </em>/
             padding: 3rem 0;
             text-align: center;
         }
@@ -183,7 +183,7 @@
     <main class="content">
         <div class="container">
             <article>
-                <p>Saat menjelajahi pengaturan repositori di GitHub, kamu mungkin menemukan bagian "Webhooks". Ini adalah fitur yang sangat *powerful*, seperti **sistem notifikasi otomatis** yang canggih untuk menghubungkan repositori GitHub Anda dengan dunia luar.</p>
+                <p>Saat menjelajahi pengaturan repositori di GitHub, kamu mungkin menemukan bagian "Webhooks". Ini adalah fitur yang sangat <em>powerful</em>, seperti <strong>sistem notifikasi otomatis</strong> yang canggih untuk menghubungkan repositori GitHub Anda dengan dunia luar.</p>
                 <h2>Gampangnya Begini:</h2>
                 <div class="steps-container">
                     <div class="zdummy">
@@ -195,13 +195,13 @@
                     <div class="zdummy">
                         <div class="step-number">2</div>
                         <div>
-                            <p><strong>Kejadian Terjadi:</strong> Misalnya, kamu melakukan <code>push</code> kode baru, ada yang membuka *pull request*, atau ada yang membuat *issue* baru.</p>
+                            <p><strong>Kejadian Terjadi:</strong> Misalnya, kamu melakukan <code>push</code> kode baru, ada yang membuka <em>pull request</em>, atau ada yang membuat <em>issue</em> baru.</p>
                         </div>
                     </div>
                     <div class="zdummy">
                         <div class="step-number">3</div>
                         <div>
-                            <p><strong>GitHub Kirim "Pesan":</strong> GitHub akan langsung mengirim "pesan" (data via `POST request`) ke alamat web yang kamu berikan. Isinya adalah detail lengkap tentang kejadian tadi.</p>
+                            <p><strong>GitHub Kirim "Pesan":</strong> GitHub akan langsung mengirim "pesan" (data via <code>POST request</code>) ke alamat web yang kamu berikan. Isinya adalah detail lengkap tentang kejadian tadi.</p>
                         </div>
                     </div>
                      <div class="zdummy">
@@ -213,27 +213,27 @@
                 </div>
                 <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJQ9O9Fv4VvwAx4K95ZUkE-DzsncmQG-rv3MCoXp_akUVlk_fDbpS2UnKXaWSfJZbMbBzmrtwBGGd2qSCdEpz6taMMwKC74IGHYD19SV2Epo-V6Icou9q027qF0K0xghEOTDngPm9fy8jw-09EfOe1wfHtPIIQZt7AX3l-GYo06qVqvlpZfyzCbTmeCSk/s1600/github-webhooks.webp" alt="Ilustrasi cara kerja Webhooks di GitHub" class="main-image">
                 <h2>Gunanya Apa? Banyak Banget!</h2>
-                <p>Intinya, Webhooks adalah **perekat** yang memungkinkan GitHub berkomunikasi secara *real-time* dengan aplikasi lain untuk **mengotomatiskan berbagai macam alur kerja (workflow)**. Contoh paling umumnya:</p>
+                <p>Intinya, Webhooks adalah <strong>perekat</strong> yang memungkinkan GitHub berkomunikasi secara <em>real-time</em> dengan aplikasi lain untuk <strong>mengotomatiskan berbagai macam alur kerja (workflow)</strong>. Contoh paling umumnya:</p>
                 <div class="examples-grid">
                     <div class="example-card">
                         <div class="example-icon">🚀</div>
                         <h3 class="example-card-title">Otomatis Deploy Website (CI/CD)</h3>
-                        <p>Saat kamu <code>push</code> ke branch <code>main</code>, webhook memberi tahu Vercel atau Netlify untuk otomatis membangun (*build*) dan menayangkan (*deploy*) versi terbaru website kamu.</p>
+                        <p>Saat kamu <code>push</code> ke branch <code>main</code>, webhook memberi tahu Vercel atau Netlify untuk otomatis membangun (<em>build</em>) dan menayangkan (<em>deploy</em>) versi terbaru website kamu.</p>
                     </div>
                     <div class="example-card">
                         <div class="example-icon">✅</div>
                         <h3 class="example-card-title">Update Status Tugas Proyek</h3>
-                        <p>Saat kamu menutup sebuah *issue* di GitHub, webhook bisa memberi tahu Trello atau Jira untuk otomatis memindahkan kartu tugas terkait ke kolom "Selesai".</p>
+                        <p>Saat kamu menutup sebuah <em>issue</em> di GitHub, webhook bisa memberi tahu Trello atau Jira untuk otomatis memindahkan kartu tugas terkait ke kolom "Selesai".</p>
                     </div>
                     <div class="example-card">
                         <div class="example-icon">💬</div>
                         <h3 class="example-card-title">Notifikasi ke Tim</h3>
-                        <p>Saat ada *pull request* baru yang butuh di-review, webhook bisa mengirim notifikasi ke channel Slack atau Discord tim kamu, lengkap dengan link-nya.</p>
+                        <p>Saat ada <em>pull request</em> baru yang butuh di-review, webhook bisa mengirim notifikasi ke channel Slack atau Discord tim kamu, lengkap dengan link-nya.</p>
                     </div>
                     <div class="example-card">
                         <div class="example-icon">⚙️</div>
                         <h3 class="example-card-title">Menjalankan Skrip Otomatis</h3>
-                        <p>Saat *release* baru dibuat, webhook dapat memicu skrip di server kamu untuk melakukan tugas-tugas spesifik, misalnya mengupdate dokumentasi atau membersihkan *cache*.</p>
+                        <p>Saat <em>release</em> baru dibuat, webhook dapat memicu skrip di server kamu untuk melakukan tugas-tugas spesifik, misalnya mengupdate dokumentasi atau membersihkan <em>cache</em>.</p>
                     </div>
                 </div>
                 <h2>Kesimpulan</h2>

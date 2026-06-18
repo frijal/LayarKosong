@@ -57,7 +57,7 @@
     <!-- FontAwesome CDN (Tanpa JavaScript & Tanpa Atribut ARIA) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* CSS Variables - Tema Terang (Default) */
+        /<em> CSS Variables - Tema Terang (Default) </em>/
         :root {
             --bg-color: #f8f9fa;
             --text-color: #2b2b2b;
@@ -69,7 +69,7 @@
             --accent-color: #d32f2f;
             --highlight-bg: #fef2f2;
         }
-        /* Tema Gelap Otomatis via CSS prefers-color-scheme */
+        /<em> Tema Gelap Otomatis via CSS prefers-color-scheme </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -83,7 +83,7 @@
                 --highlight-bg: #2d1818;
             }
         }
-        /* Reset Dasar & Optimasi INP/CLS */
+        /<em> Reset Dasar & Optimasi INP/CLS </em>/
         * {
             box-sizing: border-box;
             margin: 0;
@@ -96,10 +96,10 @@
             line-height: 1.8;
             padding: 1.5rem;
             margin: 0 auto;
-            max-width: 1000px; /* Widescreen 1 Kolom Tengah */
+            max-width: 1000px; /<em> Widescreen 1 Kolom Tengah </em>/
             font-size: 18px;
         }
-        /* Tipografi & Heading */
+        /<em> Tipografi & Heading </em>/
         h1, h2, h3 {
             color: var(--heading-color);
             line-height: 1.35;
@@ -121,17 +121,17 @@
             opacity: 0.8;
             border-bottom-style: solid;
         }
-        /* Optimasi LCP & CLS pada Gambar Utama */
+        /<em> Optimasi LCP & CLS pada Gambar Utama </em>/
         img {
             max-width: 100%;
             height: auto;
             display: block;
             border-radius: 12px;
             margin: 2.5rem auto;
-            background-color: var(--border-color); /* Mencegah Layout Shift */
+            background-color: var(--border-color); /<em> Mencegah Layout Shift </em>/
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
-        /* Meta Data Artikel */
+        /<em> Meta Data Artikel </em>/
         .article-meta {
             color: var(--meta-color);
             font-size: 0.95rem;
@@ -140,7 +140,7 @@
             flex-wrap: wrap;
             gap: 1.5rem;
         }
-        /* Kotak Penjelasan / Alert Box */
+        /<em> Kotak Penjelasan / Alert Box </em>/
         .sop-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -155,7 +155,7 @@
             background-color: var(--highlight-bg);
         }
         .sop-box h3 { margin-top: 0; display: flex; align-items: center; gap: 8px;}
-        /* Styling List */
+        /<em> Styling List </em>/
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -169,7 +169,7 @@
             color: var(--link-color);
             margin-right: 8px;
         }
-        /* E-E-A-T Author Box */
+        /<em> E-E-A-T Author Box </em>/
         .author-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -181,7 +181,7 @@
             gap: 0.5rem;
         }
         .author-card h3 { margin-top: 0; margin-bottom: 0.5rem; border-left: none; padding-left: 0; color: var(--heading-color);}
-        /* Footer Integrasi Sosmed */
+        /<em> Footer Integrasi Sosmed </em>/
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -203,7 +203,7 @@
             border: none;
         }
         .social-icons a:hover { color: var(--link-color); }
-        /* Responsif Tampilan Mobile */
+        /<em> Responsif Tampilan Mobile </em>/
         @media (max-width: 768px) {
             body { padding: 1.2rem; font-size: 16px; }
             h1 { font-size: 1.8rem; }
@@ -257,7 +257,7 @@
             <div class="sop-box alert">
                 <h3><i class="fa-solid fa-ban"></i> 3. Polisi Tidak Sedang Bertugas (Off-Duty)</h3>
                 <p>Jawabannya tegas: <strong>Polisi yang sedang dalam perjalanan pribadi (misalnya baru berangkat kerja dari rumah, atau sekadar lewat mau beli makan) TIDAK BISA serta-merta memberhentikan dan menilang pelanggar lalu lintas.</strong></p>
-                <p>Kenapa demikian? Karena saat itu mereka sedang <strong>di luar agenda penegakan hukum lalu lintas</strong>. Kewenangan menilang itu aktif ketika mereka berada dalam payung tugas (seperti sedang razia stasioner atau piket patroli <em>hunting</em>). Jika seorang polisi *off-duty* melihat pelanggaran, tindakan paling tepat yang biasa mereka lakukan adalah memberikan teguran lisan demi keselamatan, bukan mencabut kunci kontak lalu mengeluarkan buku tilang.</p>
+                <p>Kenapa demikian? Karena saat itu mereka sedang <strong>di luar agenda penegakan hukum lalu lintas</strong>. Kewenangan menilang itu aktif ketika mereka berada dalam payung tugas (seperti sedang razia stasioner atau piket patroli <em>hunting</em>). Jika seorang polisi <em>off-duty</em> melihat pelanggaran, tindakan paling tepat yang biasa mereka lakukan adalah memberikan teguran lisan demi keselamatan, bukan mencabut kunci kontak lalu mengeluarkan buku tilang.</p>
             </div>
             <p>Jadi, kalau kamu berhadapan dengan situasi di mana ada oknum berpakaian preman atau petugas yang jelas-jelas tidak dalam agenda dinas mencoba menilang dan menahan surat-suratmu, kamu punya hak penuh untuk bertanya secara sopan: <em>"Mohon maaf Pak, apakah Bapak sedang dalam giat patroli resmi atau operasi razia? Boleh saya lihat surat tugasnya?"</em></p>
         </section>
@@ -270,7 +270,7 @@
         <!-- Kotak Penulis (E-E-A-T Framework) -->
         <div class="author-card">
             <h3><i class="fa-solid fa-user-astronaut"></i> Catatan Layar Kosong</h3>
-            <p>Artikel edukasi hukum dan lalu lintas ini ditulis dengan santai namun berbobot oleh <strong>Layar Kosong</strong>, terus berkomitmen membedah realitas sosial, aturan publik, dan isu sehari-hari agar masyarakat tidak mudah dibodohi oleh ketidaktahuan. Jangan ragu *share* tulisan ini ke grup keluarga atau *circle* nongkrongmu!</p>
+            <p>Artikel edukasi hukum dan lalu lintas ini ditulis dengan santai namun berbobot oleh <strong>Layar Kosong</strong>, terus berkomitmen membedah realitas sosial, aturan publik, dan isu sehari-hari agar masyarakat tidak mudah dibodohi oleh ketidaktahuan. Jangan ragu <em>share</em> tulisan ini ke grup keluarga atau <em>circle</em> nongkrongmu!</p>
         </div>
     </article>
     <!-- Slot Wajib Berdasarkan Instruksi Sistem (Tanpa Modifikasi) -->

@@ -51,7 +51,7 @@
     <meta name="promphint" content="Apa itu Shelly-ALPM? Shelly adalah package manager modern untuk Arch Linux berbasis GTK4 dan native libalpm yang mendukung AUR, Flatpak, serta AppImage.">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /* System Variables & Dark Mode Native */
+        /<em> System Variables & Dark Mode Native </em>/
         :root {
             --bg-body: #ffffff;
             --text-main: #24292f;
@@ -80,8 +80,8 @@
                 --img-placeholder: #21262d;
             }
         }
-        /* Base Resets */
-        *, *::before, *::after { box-sizing: border-box; }
+        /<em> Base Resets </em>/
+        <em>, </em>::before, *::after { box-sizing: border-box; }
         body {
             margin: 0;
             padding: 1.25rem;
@@ -92,7 +92,7 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
-        /* Container Layout: Mobile First -> Center Desktop */
+        /<em> Container Layout: Mobile First -> Center Desktop </em>/
         .wrapper {
             width: 100%;
             margin: 0 auto;
@@ -101,7 +101,7 @@
             body { padding: 3rem 2rem; }
             .wrapper { max-width: 64rem; }
         }
-        /* Typography */
+        /<em> Typography </em>/
         h1, h2, h3, h4 {
             color: var(--heading);
             line-height: 1.3;
@@ -114,7 +114,7 @@
         h4 { font-size: 1.1rem; }
         p, li { margin-bottom: 1rem; }
         ul, ol { padding-left: 1.5rem; }
-        /* Links */
+        /<em> Links </em>/
         a.content-link {
             color: var(--link);
             text-decoration: none;
@@ -122,7 +122,7 @@
             transition: color 0.2s;
         }
         a.content-link:hover { color: var(--link-hover); border-bottom-style: solid; }
-        /* Images LCP & Anti-CLS */
+        /<em> Images LCP & Anti-CLS </em>/
         .img-fluid {
             width: 100%;
             height: auto;
@@ -145,7 +145,7 @@
             max-height: 3rem;
             width: auto;
         }
-        /* Details / Summary */
+        /<em> Details / Summary </em>/
         details {
             background-color: var(--bg-alt);
             padding: 1rem;
@@ -165,7 +165,7 @@
             margin-top: 1rem;
             display: block;
         }
-        /* Syntax Highlighting Base (Code Blocks) */
+        /<em> Syntax Highlighting Base (Code Blocks) </em>/
         pre {
             background-color: var(--bg-code);
             color: var(--text-code);
@@ -187,7 +187,7 @@
             border-radius: 0.25rem;
             font-size: 0.875rem;
         }
-        /* Footer E-E-A-T (Inline Center) */
+        /<em> Footer E-E-A-T (Inline Center) </em>/
         .eeat-footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -210,10 +210,10 @@
         <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Shelly-ALPM: Arsitektur Modern Package Manager Arch Linux</h1>
     </header>
     <article>
-        <p>Bagi pegiat sistem operasi berbasis Arch Linux, manajemen perangkat lunak seringkali diidentikkan dengan antarmuka baris perintah yang kaku. Selama bertahun-tahun, utilitas visual seperti Octopi menjadi sandaran utama, meski tak jarang terasa ketinggalan zaman. Memasuki era yang lebih modern, lahir sebuah solusi ambisius bernama **Shelly-ALPM**. Dirancang ulang dari nol, aplikasi ini menantang dominasi *wrapper* konvensional dengan menawarkan antarmuka ramah pengguna berbasis GTK4 tanpa mengorbankan ketangguhan *native library*.</p>
+        <p>Bagi pegiat sistem operasi berbasis Arch Linux, manajemen perangkat lunak seringkali diidentikkan dengan antarmuka baris perintah yang kaku. Selama bertahun-tahun, utilitas visual seperti Octopi menjadi sandaran utama, meski tak jarang terasa ketinggalan zaman. Memasuki era yang lebih modern, lahir sebuah solusi ambisius bernama <strong>Shelly-ALPM</strong>. Dirancang ulang dari nol, aplikasi ini menantang dominasi <em>wrapper</em> konvensional dengan menawarkan antarmuka ramah pengguna berbasis GTK4 tanpa mengorbankan ketangguhan <em>native library</em>.</p>
         <img src="https://dalam.web.id/img/raw.githubusercontent.com/11f58f757c63dce5.webp" alt="Banner arsitektur Shelly ALPM Package Manager Arch Linux" class="img-fluid" fetchpriority="high" decoding="async" srcset="https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 1200w, https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 800w, https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 400w" sizes="(max-width: 64rem) 100vw, 64rem">
         <h2>Tentang Shelly</h2>
-        <p>Shelly adalah interpretasi ulang (*reimagination*) modern dari manajer paket Arch Linux. Tujuan utamanya adalah menjadi alternatif yang jauh lebih intuitif dan *user-friendly* dibandingkan <code>pacman</code> murni maupun <code>octopi</code>. Kesalahan fatal yang sering dilakukan *tool* sejenis adalah membangun program hanya sebagai *wrapper* atau perantara antarmuka untuk <code>pacman</code>. Shelly **BUKAN** sekadar *front-end* biasa; ia berinteraksi langsung secara *native* dengan sistem untuk menghadirkan pengalaman visual yang mulus dan terintegrasi penuh.</p>
+        <p>Shelly adalah interpretasi ulang (<em>reimagination</em>) modern dari manajer paket Arch Linux. Tujuan utamanya adalah menjadi alternatif yang jauh lebih intuitif dan <em>user-friendly</em> dibandingkan <code>pacman</code> murni maupun <code>octopi</code>. Kesalahan fatal yang sering dilakukan <em>tool</em> sejenis adalah membangun program hanya sebagai <em>wrapper</em> atau perantara antarmuka untuk <code>pacman</code>. Shelly <strong>BUKAN</strong> sekadar <em>front-end</em> biasa; ia berinteraksi langsung secara <em>native</em> dengan sistem untuk menghadirkan pengalaman visual yang mulus dan terintegrasi penuh.</p>
         <details>
             <summary><i class="fa-solid fa-image"></i> Tangkapan Layar (Screenshots)</summary>
             <p>Pencarian paket Standar, AUR, dan Flatpak terintegrasi di satu tempat.</p>
@@ -222,7 +222,7 @@
             <img alt="Screenshot Pengaturan Shelly 3" src="https://dalam.web.id/img/github.com/840dd8f9e311a315.webp" width="1768" height="1177" loading="lazy" decoding="async">
         </details>
         <h2>Cara Instalasi Cepat</h2>
-        <p>Metode pemasangan yang paling direkomendasikan adalah jika kamu menggunakan distribusi **CachyOS**, karena sistem sudah menyediakan repositori asali yang sangat teroptimasi.</p>
+        <p>Metode pemasangan yang paling direkomendasikan adalah jika kamu menggunakan distribusi <strong>CachyOS</strong>, karena sistem sudah menyediakan repositori asali yang sangat teroptimasi.</p>
 <pre><code>sudo pacman -S shelly</code></pre>
         <p>Perintah di atas akan mengunduh rilis terbaru yang mencakup baik antarmuka visual (UI) maupun perangkat baris perintah (CLI). Bagi pengguna Arch Linux reguler yang memanfaatkan asisten AUR seperti <code>yay</code> atau <code>paru</code>, eksekusi perintah berikut:</p>
 <pre><code>yay -S shelly
@@ -238,30 +238,30 @@ paru -S shelly</code></pre>
 paru -Rns shelly</code></pre>
         <h2>Fitur Andalan</h2>
         <ul>
-            <li>**Modern-CLI**: Menyediakan antarmuka baris perintah bertenaga bagi *power user* dan otomatisasi sistem, namun tetap mengutamakan kemudahan pemakaian.</li>
-            <li>**Native Arch Integration**: Melakukan injeksi instruksi langsung menuju <code>libalpm</code> sehingga akurasi dan kecepatan manajemen paket tak bisa dikompromi.</li>
-            <li>**Native Wayland Support**: Antarmuka dibangun penuh menggunakan pustaka **GTK4** yang sangat responsif di ekosistem grafis modern.</li>
-            <li>**Manajemen Paket**: Pencarian, penyaringan (*filtering*), instalasi, pembaruan, hingga penghapusan aplikasi.</li>
-            <li>**Manajemen Repositori**: Sinkronisasi instan dengan repositori resmi untuk memastikan daftar (*mirror*) selalu mutakhir.</li>
-            <li>**AUR Support**: Integrasi Arch User Repository tanpa kerumitan untuk katalog *software* yang nyaris tak terbatas.</li>
-            <li>**Flatpak Support**: Mengelola aplikasi format Flatpak berdampingan secara harmonis dengan paket *native* Arch.</li>
+            <li><strong>Modern-CLI</strong>: Menyediakan antarmuka baris perintah bertenaga bagi <em>power user</em> dan otomatisasi sistem, namun tetap mengutamakan kemudahan pemakaian.</li>
+            <li><strong>Native Arch Integration</strong>: Melakukan injeksi instruksi langsung menuju <code>libalpm</code> sehingga akurasi dan kecepatan manajemen paket tak bisa dikompromi.</li>
+            <li><strong>Native Wayland Support</strong>: Antarmuka dibangun penuh menggunakan pustaka <strong>GTK4</strong> yang sangat responsif di ekosistem grafis modern.</li>
+            <li><strong>Manajemen Paket</strong>: Pencarian, penyaringan (<em>filtering</em>), instalasi, pembaruan, hingga penghapusan aplikasi.</li>
+            <li><strong>Manajemen Repositori</strong>: Sinkronisasi instan dengan repositori resmi untuk memastikan daftar (<em>mirror</em>) selalu mutakhir.</li>
+            <li><strong>AUR Support</strong>: Integrasi Arch User Repository tanpa kerumitan untuk katalog <em>software</em> yang nyaris tak terbatas.</li>
+            <li><strong>Flatpak Support</strong>: Mengelola aplikasi format Flatpak berdampingan secara harmonis dengan paket <em>native</em> Arch.</li>
         </ul>
         <h2>Peta Jalan Pengembangan (Roadmap)</h2>
         <p>Pengembang masih terus menggeber berbagai fitur kunci di masa mendatang:</p>
         <ul>
-            <li>**Modifikasi Repositori**: Memungkinkan penyesuaian daftar repositori yang didukung secara langsung (*Dalam Pengerjaan*).</li>
-            <li>**AppImage Support**: Perluasan dukungan integrasi AppImage layaknya utilitas <a href="https://github.com/mijorus/gearlever" class="content-link">AppLever</a> (*Dalam Pengerjaan*).</li>
-            <li>**Package Import**: Fasilitas mengimpor rekam jejak paket terdahulu untuk memulihkan sistem ke status *backup* semula (*Belum Dimulai*).</li>
-            <li>**Dukungan Multi-Bahasa**: Lapisan translasi antarmuka di luar bahasa Inggris.</li>
-            <li>**Pembaruan Luring (Offline)**: Mekanisme fungsional layaknya skrip <code>pacman-offline</code>.</li>
-            <li>**Kustomisasi Tata Letak**: Opsi penyesuaian tata letak visual untuk setiap profil pengguna yang berbeda.</li>
+            <li><strong>Modifikasi Repositori</strong>: Memungkinkan penyesuaian daftar repositori yang didukung secara langsung (<em>Dalam Pengerjaan</em>).</li>
+            <li><strong>AppImage Support</strong>: Perluasan dukungan integrasi AppImage layaknya utilitas <a href="https://github.com/mijorus/gearlever" class="content-link">AppLever</a> (<em>Dalam Pengerjaan</em>).</li>
+            <li><strong>Package Import</strong>: Fasilitas mengimpor rekam jejak paket terdahulu untuk memulihkan sistem ke status <em>backup</em> semula (<em>Belum Dimulai</em>).</li>
+            <li><strong>Dukungan Multi-Bahasa</strong>: Lapisan translasi antarmuka di luar bahasa Inggris.</li>
+            <li><strong>Pembaruan Luring (Offline)</strong>: Mekanisme fungsional layaknya skrip <code>pacman-offline</code>.</li>
+            <li><strong>Kustomisasi Tata Letak</strong>: Opsi penyesuaian tata letak visual untuk setiap profil pengguna yang berbeda.</li>
         </ul>
         <h2>Persyaratan Sistem (Prerequisites)</h2>
         <ul>
-            <li>**Arch Linux** atau distribusi turunannya.</li>
-            <li>**.NET 10.0 SDK** (Khusus untuk proses kompilasi manual).</li>
-            <li>**libalpm** (Sudah disediakan otomatis oleh pustaka dasar <code>pacman</code>).</li>
-            <li>**Flatpak** *(Opsional)*: Bisa diaktifkan mandiri melalui menu pengaturan Shelly.</li>
+            <li><strong>Arch Linux</strong> atau distribusi turunannya.</li>
+            <li><strong>.NET 10.0 SDK</strong> (Khusus untuk proses kompilasi manual).</li>
+            <li><strong>libalpm</strong> (Sudah disediakan otomatis oleh pustaka dasar <code>pacman</code>).</li>
+            <li><strong>Flatpak</strong> <em>(Opsional)</em>: Bisa diaktifkan mandiri melalui menu pengaturan Shelly.</li>
         </ul>
         <h2>Membangun dari Kode Sumber (Instalasi Manual)</h2>
         <h3>Menggunakan PKGBUILD</h3>
@@ -284,19 +284,19 @@ dotnet publish Shelly-CLI/Shelly-CLI.csproj -c Release -o publish/shelly-notific
             <li>Sistem notifikasi baki latar belakang: ketik <code>shelly-notifications</code></li>
         </ul>
         <h2>Mendalami Shelly-CLI</h2>
-        <p>Keberadaan komponen <code>shelly-cli</code> adalah oase bagi puritan terminal yang masih menginginkan logika manajemen cepat tanpa harus melepaskan format yang *scriptable*. Dokumentasi parameter seutuhnya bisa dibedah melalui <a href="https://www.seafoam-labs.org/shelly-alpm/docs/cli-reference/" class="content-link">Shelly CLI Reference</a>.</p>
+        <p>Keberadaan komponen <code>shelly-cli</code> adalah oase bagi puritan terminal yang masih menginginkan logika manajemen cepat tanpa harus melepaskan format yang <em>scriptable</em>. Dokumentasi parameter seutuhnya bisa dibedah melalui <a href="https://www.seafoam-labs.org/shelly-alpm/docs/cli-reference/" class="content-link">Shelly CLI Reference</a>.</p>
         <p>Mesin CLI ini juga dikemudikan oleh sebuah berkas konfigurasi format JSON. Pada eksekusi perdananya, berkas bawaan otomatis tercipta di direktori: <code>~/.config/shelly/config.json</code>. Daftar parameternya tercantum pada halaman <a href="https://www.seafoam-labs.org/shelly-alpm/docs/config/" class="content-link">Shelly Configuration</a>.</p>
         <h2>Anatomi Kode untuk Developer</h2>
         <p>Arsitektur repositori dipecah ke dalam beberapa subsistem mandiri:</p>
         <ul>
-            <li>**Shelly.Gtk**: Jantung aplikasi antarmuka grafis untuk desktop.</li>
-            <li>**Shelly-CLI**: Modul interaksi terminal bagi kaum puritan.</li>
-            <li>**Shelly-Notifications**: Layanan area baki (tray) pelaporan status.</li>
-            <li>**PackageManager**: Otak logika inti yang menyerap seluruh interaksi abstraksi <code>libalpm</code>.</li>
-            <li>**PackageManager.Tests**: Serangkaian unit uji komprehensif bagi ketahanan program.</li>
+            <li><strong>Shelly.Gtk</strong>: Jantung aplikasi antarmuka grafis untuk desktop.</li>
+            <li><strong>Shelly-CLI</strong>: Modul interaksi terminal bagi kaum puritan.</li>
+            <li><strong>Shelly-Notifications</strong>: Layanan area baki (tray) pelaporan status.</li>
+            <li><strong>PackageManager</strong>: Otak logika inti yang menyerap seluruh interaksi abstraksi <code>libalpm</code>.</li>
+            <li><strong>PackageManager.Tests</strong>: Serangkaian unit uji komprehensif bagi ketahanan program.</li>
         </ul>
         <p>Siklus kompilasi harian dan pengujian unit cukup dipanggil dengan perintah <code>dotnet build</code> dilanjutkan <code>dotnet test</code>.</p>
-        <p>Seluruh ekosistem kode sumber terbuka (Open Source) revolusioner ini bernaung di bawah bendera **GPL-3.0 License**.</p>
+        <p>Seluruh ekosistem kode sumber terbuka (Open Source) revolusioner ini bernaung di bawah bendera <strong>GPL-3.0 License</strong>.</p>
     </article>
     <div id="related-articles-grid"></div>
     <div id="response"></div>

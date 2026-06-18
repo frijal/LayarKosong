@@ -57,7 +57,7 @@
     <!-- FontAwesome CDN (Tanpa JavaScript & Tanpa Atribut ARIA) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* CSS Variables - Tema Terang (Default) */
+        /<em> CSS Variables - Tema Terang (Default) </em>/
         :root {
             --bg-color: #fafafa;
             --text-color: #333333;
@@ -69,7 +69,7 @@
             --accent-color: #27ae60;
             --alert-color: #c0392b;
         }
-        /* Tema Gelap Otomatis via CSS prefers-color-scheme */
+        /<em> Tema Gelap Otomatis via CSS prefers-color-scheme </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -83,7 +83,7 @@
                 --alert-color: #e74c3c;
             }
         }
-        /* Reset Dasar (Optimasi INP & CLS) */
+        /<em> Reset Dasar (Optimasi INP & CLS) </em>/
         * {
             box-sizing: border-box;
             margin: 0;
@@ -96,10 +96,10 @@
             line-height: 1.8;
             padding: 1.5rem;
             margin: 0 auto;
-            max-width: 1000px; /* Widescreen 1 kolom di tengah */
+            max-width: 1000px; /<em> Widescreen 1 kolom di tengah </em>/
             font-size: 18px;
         }
-        /* Tipografi & Heading */
+        /<em> Tipografi & Heading </em>/
         h1, h2, h3 {
             color: var(--heading-color);
             line-height: 1.4;
@@ -121,17 +121,17 @@
             opacity: 0.8;
             border-bottom-style: solid;
         }
-        /* Optimasi LCP & CLS pada Gambar */
+        /<em> Optimasi LCP & CLS pada Gambar </em>/
         img {
             max-width: 100%;
             height: auto;
             display: block;
             border-radius: 12px;
             margin: 2.5rem auto;
-            background-color: var(--border-color); /* Mencegah Layout Shift */
+            background-color: var(--border-color); /<em> Mencegah Layout Shift </em>/
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        /* Meta Data Artikel */
+        /<em> Meta Data Artikel </em>/
         .meta-header {
             color: var(--meta-color);
             font-size: 0.95rem;
@@ -140,7 +140,7 @@
             flex-wrap: wrap;
             gap: 1.5rem;
         }
-        /* Kotak Sorotan (Pasal/Aturan) */
+        /<em> Kotak Sorotan (Pasal/Aturan) </em>/
         .pasal-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -166,7 +166,7 @@
             color: var(--accent-color);
             margin-right: 8px;
         }
-        /* Kotak E-E-A-T (Penulis) */
+        /<em> Kotak E-E-A-T (Penulis) </em>/
         .author-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -175,7 +175,7 @@
             margin: 4rem 0 2rem 0;
         }
         .author-card h3 { margin-top: 0; margin-bottom: 0.5rem; border-left: none; padding-left: 0; color: var(--heading-color); }
-        /* Footer Integrasi */
+        /<em> Footer Integrasi </em>/
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -197,7 +197,7 @@
             border: none;
         }
         .social-grid a:hover { color: var(--link-color); }
-        /* Responsif Tampilan Mobile */
+        /<em> Responsif Tampilan Mobile </em>/
         @media (max-width: 768px) {
             body { padding: 1.2rem; font-size: 16px; }
             h1 { font-size: 1.8rem; }
@@ -294,7 +294,7 @@
         <!-- Blok Penulis (E-E-A-T Framework) -->
         <div class="author-card">
             <h3><i class="fa-solid fa-users-viewfinder"></i> Catatan Editor Layar Kosong</h3>
-            <p>Dokumen analisa yuridis ini disebarkan pertama kali oleh <strong>Khasa Hebran</strong> pada 5 Mei 2026 di Jakarta. Dipublikasikan ulang secara utuh di <strong>Layar Kosong</strong>, agar pesan penting mengenai advokasi hak-hak pekerja lepas digital (*gig economy*) ini dapat menjangkau seluruh jaringan pengemudi ojek online di Nusantara. Jangan lelah bersuara demi keadilan!</p>
+            <p>Dokumen analisa yuridis ini disebarkan pertama kali oleh <strong>Khasa Hebran</strong> pada 5 Mei 2026 di Jakarta. Dipublikasikan ulang secara utuh di <strong>Layar Kosong</strong>, agar pesan penting mengenai advokasi hak-hak pekerja lepas digital (<em>gig economy</em>) ini dapat menjangkau seluruh jaringan pengemudi ojek online di Nusantara. Jangan lelah bersuara demi keadilan!</p>
         </div>
     </article>
     <!-- Slot Wajib Berdasarkan Instruksi -->

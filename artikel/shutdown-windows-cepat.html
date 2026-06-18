@@ -51,7 +51,7 @@
             --bg: #1e2a38;
             --fg: #e0e6ec;
             --muted: #a8b0bb;
-            --accent: #0078D7; /* Windows Blue */
+            --accent: #0078D7; /<em> Windows Blue </em>/
             --accent-2: #5FABFF;
             --card: #2a3847;
             --border: #3a4857;
@@ -116,7 +116,7 @@
                     <ol>
                         <li>Buka Registry Editor (tekan <code>Win + R</code>, ketik <code>regedit</code>, lalu Enter).</li>
                         <li>Navigasi ke <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control</code>.</li>
-                        <li>Cari key <code>WaitToKillServiceTimeout</code> dan ubah nilainya dari `12000` (12 detik) menjadi <code>2000</code> (2 detik).</li>
+                        <li>Cari key <code>WaitToKillServiceTimeout</code> dan ubah nilainya dari <code>12000</code> (12 detik) menjadi <code>2000</code> (2 detik).</li>
                         <li>Selanjutnya, navigasi ke <code>HKEY_CURRENT_USER\Control Panel\Desktop</code>.</li>
                         <li>Cari <code>WaitToKillAppTimeout</code> dan ubah nilainya menjadi <code>2000</code>. Jika tidak ada, buat String Value baru dengan nama tersebut.</li>
                         <li>Cari <code>AutoEndTasks</code> dan ubah nilainya menjadi <code>1</code>.</li>

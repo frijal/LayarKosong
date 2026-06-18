@@ -139,7 +139,7 @@
         padding: 0 10px 20px 10px;
         color: var(--text-muted);
       }
-      /* Galeri Foto */
+      /<em> Galeri Foto </em>/
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -160,7 +160,7 @@
         transform: scale(1.05);
         filter: brightness(1.2);
       }
-      /* Lightbox */
+      /<em> Lightbox </em>/
       .lightbox {
         display: none;
         position: fixed;
@@ -217,7 +217,7 @@
       .lightbox-next {
         right: 15px;
       }
-      /* Sharing & Info Box */
+      /<em> Sharing & Info Box </em>/
       .action-section {
         text-align: center;
         margin: 40px 0;
@@ -382,14 +382,14 @@
         const galleryImages = Array.from(
           { length: 6 },
           // Menggunakan placeholder picsum untuk demo galeri
-          (_, i) => `https://picsum.photos/id/${40 + i}/800/600`
+          (_, i) => <code>https://picsum.photos/id/${40 + i}/800/600</code>
         );
         let currentIndex;
         // 1. Generate dan append gambar ke galeri
         galleryImages.forEach((src) => {
           const img = document.createElement('img');
           img.setAttribute('data-src', src);
-          img.alt = `Contoh hasil kreasi AI`;
+          img.alt = <code>Contoh hasil kreasi AI</code>;
           img.loading = 'lazy';
           img.className = 'lazy-load';
           gallery.appendChild(img);

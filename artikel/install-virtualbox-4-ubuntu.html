@@ -115,7 +115,7 @@
                     <p>Selanjutnya, tambahkan kunci GPG dari Oracle agar repositori yang baru ditambahkan dapat dipercaya oleh sistem Anda.</p>
                     <pre><code id="code2">wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -</code><button class="copy-btn" data-target="code2">Salin</button></pre>
                     <h3>Langkah 3: Update dan Install VirtualBox 4.0</h3>
-                    <p>Terakhir, perbarui daftar paket Anda dan install VirtualBox 4.0. Kita juga akan memasang `guest-utils` untuk integrasi yang lebih baik antara sistem host dan guest.</p>
+                    <p>Terakhir, perbarui daftar paket Anda dan install VirtualBox 4.0. Kita juga akan memasang <code>guest-utils</code> untuk integrasi yang lebih baik antara sistem host dan guest.</p>
                     <pre><code id="code3">sudo apt-get update; sudo apt-get install virtualbox-4.0; sudo apt-get install virtualbox-ose-guest-utils</code><button class="copy-btn" data-target="code3">Salin</button></pre>
                     <p>Setelah selesai, Anda dapat menemukan VirtualBox di menu aplikasi Anda. Selamat bernostalgia!</p>
                     <figure>

@@ -65,12 +65,12 @@
             --color-border-light: #e0e0e0;
             --color-bg-dark: #111;
             --color-text-dark: #eaeaea;
-            --color-code-bg-dark: #1e1e1e; /* Warna VSC Dark+ */
+            --color-code-bg-dark: #1e1e1e; /<em> Warna VSC Dark+ </em>/
             --color-tip-bg-dark: rgba(62,166,255,0.08);
             --color-kbd-bg-dark: rgba(62,166,255,0.15);
             --color-border-dark: #333;
             --transition: 0.25s ease;
-            /* Default Dark */
+            /<em> Default Dark </em>/
             --bg: var(--color-bg-dark);
             --text: var(--color-text-dark);
             --code-bg: var(--color-code-bg-dark);
@@ -85,9 +85,9 @@
       body {
         margin: 0;
         font-family: var(--font-sans);
-        /* TINGKATKAN line-height & tambahkan font-size dasar */
-        line-height: 1.8; /* Contoh: Naikkan dari 1.7 */
-        font-size: 17px; /* Contoh: Tambahkan ukuran dasar (default biasanya 16px) */
+        /<em> TINGKATKAN line-height & tambahkan font-size dasar </em>/
+        line-height: 1.8; /<em> Contoh: Naikkan dari 1.7 </em>/
+        font-size: 17px; /<em> Contoh: Tambahkan ukuran dasar (default biasanya 16px) </em>/
         background: var(--bg);
         color: var(--text);
         transition: background var(--transition), color var(--transition);
@@ -101,15 +101,15 @@
                 --kbd-bg: var(--color-kbd-bg-light);
                 --border: var(--color-border-light);
             }
-            /* Override Prism theme for light mode */
+            /<em> Override Prism theme for light mode </em>/
             pre[class*="language-"] {
                 background: var(--code-bg);
                 border: 1px solid var(--border);
-                color: var(--text); /* Adjust text color for light mode code */
+                color: var(--text); /<em> Adjust text color for light mode code </em>/
                 text-shadow: none;
             }
-            /* Adjust specific token colors if needed */
-             :not(pre) > code[class*="language-"], pre[class*="language-"] {
+            /<em> Adjust specific token colors if needed </em>/
+             :not(pre) > code[class<em>="language-"], pre[class</em>="language-"] {
                  background: var(--code-bg);
              }
             .token.comment, .token.prolog, .token.doctype, .token.cdata { color: slategray; }
@@ -134,7 +134,7 @@
             margin-bottom: 1.5rem;
         }
         h1.title {
-            font-size: clamp(2rem, 5vw, 2.6rem); /* Responsif */
+            font-size: clamp(2rem, 5vw, 2.6rem); /<em> Responsif </em>/
             font-weight: 700;
             margin-top: 1.2rem;
             color: var(--color-accent);
@@ -154,7 +154,7 @@
         h2, h3 {
             color: var(--color-accent);
             margin-top: 2.5rem;
-            scroll-margin-top: 80px; /* Offset for sticky header if added later */
+            scroll-margin-top: 80px; /<em> Offset for sticky header if added later </em>/
             border-bottom: 1px solid var(--border);
             padding-bottom: 0.5rem;
             margin-bottom: 1rem;
@@ -163,7 +163,7 @@
         h3 { font-size: 1.5rem; margin-top: 2rem;}
         p, li {
             margin-top: 0.6rem;
-            margin-bottom: 0.8rem; /* Added margin-bottom */
+            margin-bottom: 0.8rem; /<em> Added margin-bottom </em>/
             font-size: 1.1rem;
         }
         ul {
@@ -197,20 +197,20 @@
             box-shadow: var(--shadow);
             overflow-x: auto;
             margin: 1.5rem 0;
-            border: 1px solid var(--border); /* Added border */
+            border: 1px solid var(--border); /<em> Added border </em>/
         }
-        /* Override Prism background based on theme */
+        /<em> Override Prism background based on theme </em>/
         pre[class*="language-"] {
          background: var(--code-bg);
          padding: 1.2em;
-         font-size: 14.5px; /* Contoh: Naikkan dari 13.5px atau pakai '1rem' */
-         line-height: 1.6; /* Sesuaikan line-height kode */
+         font-size: 14.5px; /<em> Contoh: Naikkan dari 13.5px atau pakai '1rem' </em>/
+         line-height: 1.6; /<em> Sesuaikan line-height kode </em>/
     }
         code {
             font-family: "JetBrains Mono", "Fira Code", monospace;
             font-size: 1rem;
         }
-        /* --- Share Section --- */
+        /<em> --- Share Section --- </em>/
         .share-section {
             margin-top: 3rem;
             padding-top: 2rem;
@@ -221,7 +221,7 @@
             margin: 0 0 1.5rem 0;
             font-size: 1.2rem;
             color: var(--text);
-            border-bottom: none; /* Remove border from heading */
+            border-bottom: none; /<em> Remove border from heading </em>/
         }
         .share-buttons {
             display: flex;
@@ -236,7 +236,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: var(--kbd-bg); /* Use KBD background for consistency */
+            background-color: var(--kbd-bg); /<em> Use KBD background for consistency </em>/
             color: var(--text);
             text-decoration: none;
             transition: transform 0.2s ease, background-color 0.2s ease;
@@ -249,7 +249,7 @@
             width: 24px;
             height: 24px;
         }
-        /* Specific hover colors */
+        /<em> Specific hover colors </em>/
         .share-buttons a[title*="Twitter"]:hover { background-color: #1DA1F2; color: white; border-color: #1DA1F2; }
         .share-buttons a[title*="Facebook"]:hover { background-color: #1877F2; color: white; border-color: #1877F2; }
         .share-buttons a[title*="LinkedIn"]:hover { background-color: #0077b5; color: white; border-color: #0077b5; }
@@ -260,9 +260,9 @@
             color: gray;
             border-top: 1px solid var(--border);
             margin-top: 4rem;
-            background: var(--bg); /* Match body background */
+            background: var(--bg); /<em> Match body background </em>/
         }
-        @media (max-width: 600px) { /* Adjusted breakpoint */
+        @media (max-width: 600px) { /<em> Adjusted breakpoint </em>/
             body { padding: 16px; }
             main { padding: 1rem 1rem 3rem; }
             h1.title { font-size: 1.8rem; }
@@ -307,13 +307,13 @@
                 <h3>1) Trigger</h3>
                 <p>
                     Workflow berjalan manual lewat <code class="kbd">workflow_dispatch</code>, dan terjadwal per bulan, pada tanggal 1, setiap jam 02:00 UTC melalui cron.
-                    <code class="kbd">0 2 1 * *</code>. Ini bagus untuk maintenance rutin sekaligus fleksibilitas eksekusi manual.
+                    <code class="kbd">0 2 1 <em> </em></code>. Ini bagus untuk maintenance rutin sekaligus fleksibilitas eksekusi manual.
                 </p>
                 <pre><code class="language-yaml">name: Auto-Upgrade All NPM Packages
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 1 * *'
+    - cron: '0 2 1 <em> </em>'
 </code></pre>
                 <h3>2) Lingkungan</h3>
                 <p>Runner menggunakan <code class="kbd">ubuntu-latest</code> dan Node.js versi 20. Versi Node terbaru memberi kecepatan dan kompatibilitas yang baik, tapi tetap perlu memastikan project kamu kompatibel (misalnya engine constraints di <code class="kbd">package.json</code>).</p>
@@ -375,7 +375,7 @@ jobs:
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 1 * *' # Setiap awal bulan jam 2 UTC
+    - cron: '0 2 1 <em> </em>' # Setiap awal bulan jam 2 UTC
 jobs:
   upgrade-dependencies:
     runs-on: ubuntu-latest
@@ -427,20 +427,20 @@ jobs:
           body: |
             Upgrade otomatis dependencies menggunakan npm-check-updates (target: minor/patch).
             - Build dan test dijalankan di CI.
-            - Perubahan dapat dilihat pada file `package.json` dan `package-lock.json`.
+            - Perubahan dapat dilihat pada file <code>package.json</code> dan <code>package-lock.json</code>.
             - Mohon review sebelum di-merge.
           labels: dependencies, chore, automated pr
           reviewers: frijal # Ganti dengan username GitHub Anda/tim
           # assignees: user1,user2
           draft: false # Set true jika ingin PR dibuat sebagai draft</code></pre>
           <p>
-                    Nama workflow mudah dikenali di tab Actions. Triggernya <code class="kbd">workflow_dispatch</code> (tombol manual Run workflow) dan <code class="kbd">schedule</code> dengan cron <code class="kbd">0 2 1 * *</code> yang berarti jalan otomatis tiap tanggal 1 jam 02:00 UTC (sekitar jam 9 atau 10 pagi WIB tergantung DST). Job utama (<code class="kbd">upgrade-dependencies</code>) berjalan di runner <code class="kbd">ubuntu-latest</code>. Langkah-langkahnya: checkout kode, setup Node.js versi 20, lalu upgrade semua paket memakai <code class="kbd">npm-check-updates</code> dengan flag <code class="kbd">-u</code> (update <code class="kbd">package.json</code>), baru <code class="kbd">npm install</code> untuk memperbarui <code class="kbd">package-lock.json</code>. Di akhir, kalau ada perubahan pada kedua file tersebut, ia akan melakukan commit dan push langsung ke branch tempat workflow berjalan (biasanya `main` atau `master`).
+                    Nama workflow mudah dikenali di tab Actions. Triggernya <code class="kbd">workflow_dispatch</code> (tombol manual Run workflow) dan <code class="kbd">schedule</code> dengan cron <code class="kbd">0 2 1 <em> </em></code> yang berarti jalan otomatis tiap tanggal 1 jam 02:00 UTC (sekitar jam 9 atau 10 pagi WIB tergantung DST). Job utama (<code class="kbd">upgrade-dependencies</code>) berjalan di runner <code class="kbd">ubuntu-latest</code>. Langkah-langkahnya: checkout kode, setup Node.js versi 20, lalu upgrade semua paket memakai <code class="kbd">npm-check-updates</code> dengan flag <code class="kbd">-u</code> (update <code class="kbd">package.json</code>), baru <code class="kbd">npm install</code> untuk memperbarui <code class="kbd">package-lock.json</code>. Di akhir, kalau ada perubahan pada kedua file tersebut, ia akan melakukan commit dan push langsung ke branch tempat workflow berjalan (biasanya <code>main</code> atau <code>master</code>).
                 </p>
                 <p>
-                    Kelebihannya jelas: sederhana banget setup-nya, otomatis berjalan rutin, aman karena hanya commit jika benar-benar ada perubahan (<code class="kbd">git diff --cached --quiet</code>), dan fleksibel karena bisa dipicu manual kapan saja perlu. Namun, ada potensi masalah serius: <code class="kbd">ncu -u</code> tanpa filter akan menaikkan versi ke *major release* terbaru yang hampir pasti mengandung *breaking changes*. Workflow ini juga tidak punya langkah *testing* (<code class="kbd">npm test</code>) atau *build* (<code class="kbd">npm run build</code>) setelah upgrade, jadi bisa saja kode yang di-push itu rusak. Ditambah lagi, commit langsung ke branch utama tanpa *Pull Request* (PR) itu berisiko mengganggu tim atau bahkan menyebabkan *downtime* jika branch itu langsung ter-deploy. Terakhir, kadang kita hanya perlu update minor/patch di lockfile untuk keamanan tanpa mengubah range versi di `package.json`.
+                    Kelebihannya jelas: sederhana banget setup-nya, otomatis berjalan rutin, aman karena hanya commit jika benar-benar ada perubahan (<code class="kbd">git diff --cached --quiet</code>), dan fleksibel karena bisa dipicu manual kapan saja perlu. Namun, ada potensi masalah serius: <code class="kbd">ncu -u</code> tanpa filter akan menaikkan versi ke <em>major release</em> terbaru yang hampir pasti mengandung <em>breaking changes</em>. Workflow ini juga tidak punya langkah <em>testing</em> (<code class="kbd">npm test</code>) atau <em>build</em> (<code class="kbd">npm run build</code>) setelah upgrade, jadi bisa saja kode yang di-push itu rusak. Ditambah lagi, commit langsung ke branch utama tanpa <em>Pull Request</em> (PR) itu berisiko mengganggu tim atau bahkan menyebabkan <em>downtime</em> jika branch itu langsung ter-deploy. Terakhir, kadang kita hanya perlu update minor/patch di lockfile untuk keamanan tanpa mengubah range versi di <code>package.json</code>.
                 </p>
                 <p>
-                    Rekomendasi versi yang jauh lebih aman adalah: gunakan <code class="kbd">ncu -u --target minor</code> untuk membatasi upgrade hanya ke versi minor dan patch terbaru dalam range yang diizinkan semver. Setelah upgrade, **wajib** jalankan langkah <code class="kbd">npm install</code>, <code class="kbd">npm run build --if-present</code> (jika ada script build), dan <code class="kbd">npm test --if-present</code> (jika ada script test). Terakhir, gunakan action seperti <code class="kbd">peter-evans/create-pull-request</code> untuk membuat PR otomatis ke branch utama. Dengan begini, perubahan tetap diisolasi di branch baru, diuji oleh CI, dan bisa direview oleh tim sebelum di-merge. Kamu bisa menambahkan label (<code class="kbd">dependencies</code>, <code class="kbd">chore</code>), mengatur reviewer otomatis, dan bahkan menautkan changelog jika perlu di body PR. Untuk monorepo, pertimbangkan menjalankan workflow ini per paket/workspace menggunakan matrix strategy agar lebih terkelola.
+                    Rekomendasi versi yang jauh lebih aman adalah: gunakan <code class="kbd">ncu -u --target minor</code> untuk membatasi upgrade hanya ke versi minor dan patch terbaru dalam range yang diizinkan semver. Setelah upgrade, <strong>wajib</strong> jalankan langkah <code class="kbd">npm install</code>, <code class="kbd">npm run build --if-present</code> (jika ada script build), dan <code class="kbd">npm test --if-present</code> (jika ada script test). Terakhir, gunakan action seperti <code class="kbd">peter-evans/create-pull-request</code> untuk membuat PR otomatis ke branch utama. Dengan begini, perubahan tetap diisolasi di branch baru, diuji oleh CI, dan bisa direview oleh tim sebelum di-merge. Kamu bisa menambahkan label (<code class="kbd">dependencies</code>, <code class="kbd">chore</code>), mengatur reviewer otomatis, dan bahkan menautkan changelog jika perlu di body PR. Untuk monorepo, pertimbangkan menjalankan workflow ini per paket/workspace menggunakan matrix strategy agar lebih terkelola.
                 </p>
                 <p>
                     Kalau kamu ingin hanya lockfile saja tanpa mengubah versi di <code class="kbd">package.json</code>, gantilah langkah upgrade menjadi:
@@ -457,11 +457,11 @@ npm update --package-lock-only</code></pre>
                 </ul>
                 <h2>Bagaimana cara pakai cepat</h2>
                 <ul>
-                    <li><strong>Salin template:</strong> Ambil workflow “Safe Auto-Upgrade” di atas dan simpan sebagai file `.github/workflows/upgrade-npm.yml` di repo Anda.</li>
-                    <li><strong>Sesuaikan jadwal:</strong> Ubah nilai `cron` jika ingin jadwal berbeda (misalnya, `0 2 * * 1` untuk setiap Senin jam 2 UTC).</li>
-                    <li><strong>Tambah test:</strong> Pastikan project Anda punya script `test` (dan `build` jika perlu) di `package.json` yang bisa dijalankan dengan `npm test`.</li>
-                    <li><strong>Review PR:</strong> Aktifkan *branch protection rules* di GitHub untuk branch utama Anda dan wajibkan *status checks* (termasuk test dari workflow ini) lulus sebelum PR bisa di-merge.</li>
-                    <li><strong>Reviewer (Opsional):</strong> Ganti `frijal` di bagian `reviewers` pada action `create-pull-request` dengan username GitHub Anda atau tim Anda.</li>
+                    <li><strong>Salin template:</strong> Ambil workflow “Safe Auto-Upgrade” di atas dan simpan sebagai file <code>.github/workflows/upgrade-npm.yml</code> di repo Anda.</li>
+                    <li><strong>Sesuaikan jadwal:</strong> Ubah nilai <code>cron</code> jika ingin jadwal berbeda (misalnya, <code>0 2 <em> </em> 1</code> untuk setiap Senin jam 2 UTC).</li>
+                    <li><strong>Tambah test:</strong> Pastikan project Anda punya script <code>test</code> (dan <code>build</code> jika perlu) di <code>package.json</code> yang bisa dijalankan dengan <code>npm test</code>.</li>
+                    <li><strong>Review PR:</strong> Aktifkan <em>branch protection rules</em> di GitHub untuk branch utama Anda dan wajibkan <em>status checks</em> (termasuk test dari workflow ini) lulus sebelum PR bisa di-merge.</li>
+                    <li><strong>Reviewer (Opsional):</strong> Ganti <code>frijal</code> di bagian <code>reviewers</code> pada action <code>create-pull-request</code> dengan username GitHub Anda atau tim Anda.</li>
                 </ul>
                 <!-- Share Section Moved Here -->
                 <aside class="aside share-section">

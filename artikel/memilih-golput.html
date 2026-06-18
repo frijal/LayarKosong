@@ -45,9 +45,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Memilih Golput - Alasan Teknis, Psikologis, dan Ideologis - Layar Kosong</title> 
 <style>
-        /* --- 1. DESIGN TOKENS & UTILITIES (Modern Tech Blog Theme) --- */
+        /<em> --- 1. DESIGN TOKENS & UTILITIES (Modern Tech Blog Theme) --- </em>/
         :root {
-            /* Mode Terang (Light Mode) */
+            /<em> Mode Terang (Light Mode) </em>/
             --bg: #f7fafc;
             --card: #ffffff;
             --card-border: rgba(15, 23, 42, 0.05);
@@ -65,10 +65,10 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Mode Gelap Premium (Dark Mode Typography Safe) */
+                /<em> Mode Gelap Premium (Dark Mode Typography Safe) </em>/
                 --bg: #0b1329;          
                 --card: #1e293b; 
-                /* Solusi Elevasi: Gunakan border tipis sebagai pengganti shadow di mode gelap */
+                /<em> Solusi Elevasi: Gunakan border tipis sebagai pengganti shadow di mode gelap </em>/
                 --card-border: rgba(255, 255, 255, 0.08);      
                 --text-main: #f1f5f9;    
                 --muted: #94a3b8;        
@@ -81,8 +81,8 @@
                 --shadow-aside: transparent;
             }
         }
-        /* --- 2. UNIVERSAL ACCESSIBLE RESET --- */
-        *, *::before, *::after { 
+        /<em> --- 2. UNIVERSAL ACCESSIBLE RESET --- </em>/
+        <em>, </em>::before, *::after { 
             box-sizing: border-box; 
         }
         html, body { 
@@ -91,7 +91,7 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif; 
             background-color: var(--bg); 
             color: var(--text-main);
-            /* Transisi diperhalus saat user mengubah setelan tema OS mereka */
+            /<em> Transisi diperhalus saat user mengubah setelan tema OS mereka </em>/
             transition: background-color 0.4s ease, color 0.4s ease; 
         }
         .wrap { 
@@ -99,11 +99,11 @@
             display: flex; 
             flex-direction: column; 
         }
-        /* --- 3. GLOBAL HEADER WITH APPLE GLASS FIX --- */
+        /<em> --- 3. GLOBAL HEADER WITH APPLE GLASS FIX --- </em>/
         header { 
             padding: 1.25rem 0; 
             background-color: var(--header-bg); 
-            /* Perbaikan kompatibilitas Safari */
+            /<em> Perbaikan kompatibilitas Safari </em>/
             -webkit-backdrop-filter: blur(8px); 
             backdrop-filter: blur(8px); 
             border-bottom: 1px solid var(--card-border);
@@ -142,7 +142,7 @@
             color: var(--muted); 
             font-size: 0.875rem;
         }
-        /* --- 4. ENGINE TATA LETAK UTAMA --- */
+        /<em> --- 4. ENGINE TATA LETAK UTAMA --- </em>/
         main { 
             flex: 1; 
             padding: 2rem 0; 
@@ -153,7 +153,7 @@
             gap: 2rem; 
             align-items: start; 
         }
-        /* --- 5. KOMPONEN ARTIKEL & KARTU SIDEBAR --- */
+        /<em> --- 5. KOMPONEN ARTIKEL & KARTU SIDEBAR --- </em>/
         article.card, aside.card { 
             background-color: var(--card); 
             border: 1px solid var(--card-border); 
@@ -186,7 +186,7 @@
         article p { 
             line-height: 1.8;
             color: var(--text-main);
-            opacity: 0.95; /* Menjaga kenyamanan membaca teks panjang */
+            opacity: 0.95; /<em> Menjaga kenyamanan membaca teks panjang </em>/
             margin-bottom: 1.25rem; 
         }
         .section-title { 
@@ -197,7 +197,7 @@
             margin-bottom: 1rem; 
             color: var(--accent);
         }
-        /* --- 6. KOMPONEN KONTEN KHUSUS --- */
+        /<em> --- 6. KOMPONEN KONTEN KHUSUS --- </em>/
         .illustration { 
             width: 100%; 
             border-radius: var(--radius-md); 
@@ -206,7 +206,7 @@
             background-color: rgba(0,0,0,0.02);
         }
         .illustration img { 
-            max-width: 100%; /* Pengaman: mencegah gambar kecil pecah/melar terpaksa */
+            max-width: 100%; /<em> Pengaman: mencegah gambar kecil pecah/melar terpaksa </em>/
             height: auto; 
             display: block; 
             margin: 0 auto;
@@ -235,7 +235,7 @@
             font-size: 0.825rem; 
             color: var(--muted); 
         }
-        /* --- 7. KAKI HALAMAN (FOOTER) --- */
+        /<em> --- 7. KAKI HALAMAN (FOOTER) --- </em>/
         footer { 
             padding: 1.5rem 0; 
             border-top: 1px solid var(--card-border);
@@ -249,13 +249,13 @@
             color: var(--muted);
             font-size: 0.825rem;
         }
-        /* --- 8. ADAPTASI LAYAR RESPONSIVE (Mobile Engine) --- */
+        /<em> --- 8. ADAPTASI LAYAR RESPONSIVE (Mobile Engine) --- </em>/
         @media (max-width: 880px) {
             .grid { 
                 grid-template-columns: 1fr; 
                 gap: 1.5rem;
             }
-            /* Menggeser sidebar ke bawah artikel dengan urutan semantik yang benar */
+            /<em> Menggeser sidebar ke bawah artikel dengan urutan semantik yang benar </em>/
             aside.card { 
                 order: 2; 
             }

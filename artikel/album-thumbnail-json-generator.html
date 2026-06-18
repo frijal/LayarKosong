@@ -47,7 +47,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
 <meta name="keywords" content="JSON generator, thumbnail viewer, recursive gallery, web album, alat web, Frijal">
     <style>
-        *, *::before, *::after { box-sizing: border-box; }
+        <em>, </em>::before, *::after { box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f4f7f6; color: #333; margin: 0; padding: 24px;
@@ -75,7 +75,7 @@
         .controls .note { width: 100%; font-size: 0.9rem; margin: 10px 0 0 0; color: #777; }
         .welcome-message { text-align: center; padding: 40px; font-size: 1.2rem; color: #777; }
         .viewer-area { display: flex; flex-grow: 1; margin-top: 20px; gap: 20px; min-height: 0; }
-        /* --- Kolom Kiri (Info) --- */
+        /<em> --- Kolom Kiri (Info) --- </em>/
         .main-display-wrapper { flex: 3; display: flex; flex-direction: column; min-width: 0; }
         .info-area {
             border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;
@@ -106,7 +106,7 @@
         .action-btn { padding: 10px 20px; font-size: 1rem; font-weight: 600; border: none; border-radius: 6px; }
         .action-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; color: white; }
         .note { font-size: 0.9rem; color: #7f8c8d; margin-top: 10px; }
-        /* --- Kolom Kanan (Galeri) --- */
+        /<em> --- Kolom Kanan (Galeri) --- </em>/
         .album-grid-wrapper {
             flex: 1; background: #fff; border: 1px solid #ddd; border-radius: 8px;
             padding: 16px; display: flex; flex-direction: column; overflow-y: auto; min-width: 0;
@@ -265,10 +265,10 @@
             const thumbDiv = document.createElement('div');
             thumbDiv.className = 'thumbnail';
             thumbDiv.dataset.index = index;
-            thumbDiv.innerHTML = `
+            thumbDiv.innerHTML = <code>
                 <img src="${imgData.url}" alt="${imgData.name}" loading="lazy">
                 <p title="${imgData.path}">${imgData.name}</p>
-            `;
+            </code>;
             thumbDiv.addEventListener('click', () => {
                 displayImageInfo(index); // Ganti nama fungsi
             });
@@ -282,7 +282,7 @@
             copyBtn.disabled = false;
             showLocalAction(); // Tetap tampilkan note
             document.querySelectorAll('.thumbnail.active').forEach(th => th.classList.remove('active'));
-            document.querySelector(`.thumbnail[data-index="${index}"]`).classList.add('active');
+            document.querySelector(<code>.thumbnail[data-index="${index}"]</code>).classList.add('active');
         }
         function cleanupOldAlbum() {
             currentObjectUrls.forEach(url => URL.revokeObjectURL(url));

@@ -51,14 +51,14 @@
     <meta name="promphint" content="Bagaimana cara mengatasi llvmpipe di Debian 13 Intel? | Hapus paket xserver-xorg-video-intel dan biarkan sistem menggunakan kernel modesetting dengan Mesa Iris.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* CSS Variables untuk Tema Terang dan Gelap */
+        /<em> CSS Variables untuk Tema Terang dan Gelap </em>/
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
             --bg-muted: #f1f5f9;
             --text-main: #0f172a;
             --text-muted: #475569;
-            --accent-color: #d94154; /* Debian Crimson */
+            --accent-color: #d94154; /<em> Debian Crimson </em>/
             --link-color: #0ea5e9;
             --border-color: #cbd5e1;
             --code-bg: #1e293b;
@@ -79,14 +79,14 @@
                 --link-color: #38bdf8;
                 --border-color: #334155;
                 --code-bg: #0b0f19;
-                --quote-bg: #4c1d95; /* Deep Purple hint */
+                --quote-bg: #4c1d95; /<em> Deep Purple hint </em>/
                 --quote-border: #d94154;
                 --terminal-header: #1e293b;
                 --terminal-prompt: #22c55e;
             }
         }
-        /* Reset & Base Typography (Unit full rem) */
-        *, *::before, *::after {
+        /<em> Reset & Base Typography (Unit full rem) </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -100,7 +100,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /* Layout Container (Mobile First) */
+        /<em> Layout Container (Mobile First) </em>/
         .container {
             width: 100%;
             max-width: 64rem;
@@ -110,7 +110,7 @@
             min-height: 100vh;
             box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1);
         }
-        /* Typography Styling */
+        /<em> Typography Styling </em>/
         h1, h2, h3 {
             color: var(--text-main);
             line-height: 1.3;
@@ -170,7 +170,7 @@
             color: var(--text-main);
             font-size: 1.125rem;
         }
-        /* LCP Image Optimization & Media */
+        /<em> LCP Image Optimization & Media </em>/
         figure {
             margin: 2.5rem 0;
             width: 100%;
@@ -183,7 +183,7 @@
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /* Mencegah Layout Shift (CLS) saat dimuat */
+            aspect-ratio: 16 / 9; /<em> Mencegah Layout Shift (CLS) saat dimuat </em>/
             object-fit: cover;
             background-color: var(--bg-muted);
         }
@@ -196,7 +196,7 @@
             border-top: 0.0625rem solid var(--border-color);
             background-color: var(--bg-body);
         }
-        /* Terminal/Code Block Styling */
+        /<em> Terminal/Code Block Styling </em>/
         .terminal-container {
             border-radius: 0.5rem;
             overflow: hidden;
@@ -242,7 +242,7 @@
             color: #94a3b8;
             font-style: italic;
         }
-        /* Inline code */
+        /<em> Inline code </em>/
         p code, li code {
             background-color: var(--bg-muted);
             color: var(--accent-color);
@@ -250,7 +250,7 @@
             border-radius: 0.25rem;
             font-size: 0.875em;
         }
-        /* Header & Footer */
+        /<em> Header & Footer </em>/
         header {
             margin-bottom: 3.5rem;
             text-align: center;
@@ -281,14 +281,14 @@
            </header>
     <main>
         <article>
-            <p>Ketika sistem operasi Linux yang kamu pakai rasanya udah jalan normal, tapi insting *ngoprek*-mu bilang ada yang sedikit mengganjal? Nah, kejadian komedi tapi nyata ini baru saja menimpa <em>setup</em> Debian 13 di laptop bertenaga Intel Ice Lake yang aku pakai.</p>
+            <p>Ketika sistem operasi Linux yang kamu pakai rasanya udah jalan normal, tapi insting <em>ngoprek</em>-mu bilang ada yang sedikit mengganjal? Nah, kejadian komedi tapi nyata ini baru saja menimpa <em>setup</em> Debian 13 di laptop bertenaga Intel Ice Lake yang aku pakai.</p>
             <figure>
                 <img src="https://dalam.web.id/img/scontent_sin11_2.xx.fbcdn.net/2634dfd2db536d88.webp" alt="Ilustrasi layar terminal Linux yang menampilkan error rendering grafis di Debian" fetchpriority="high" loading="eager">
                 <figcaption>Kadang kala, ilusi kelancaran desktop menutupi fakta bahwa CPU sedang disiksa habis-habisan karena GPU tertidur lelap.</figcaption>
             </figure>
             <h2>Misteri Hilangnya Akselerasi GPU</h2>
-            <p>Awal ceritanya sungguh sederhana. Aku cuma iseng ingin sedikit *tuning* performa multimedia. Seperti biasa, ritual wajib pertama sebagai pengguna Linux adalah mengecek pengenalan <em>hardware</em> lewat terminal. Eksekusi perintah <code>lspci</code>, aman. GPU Intel Iris Plus G1 terbaca dengan gagah, modul kernel <code>i915</code> juga sukses dimuat tanpa *error*. Secara kasat mata, semuanya terlihat baik-baik saja.</p>
-            <p>Tapi, firasat ganjil itu makin kuat, apalagi setelah aku sedikit berdiskusi alias <em>crosscheck</em> dengan *Large Language Model* (LLM) langgananku. Atas sarannya, aku iseng mengecek status <em>renderer</em> grafis yang aktif menggunakan perintah <code>glxinfo</code>. Dan... *jeng jeng!* Keluar tulisan yang sukses bikin senyum kecut di depan monitor:</p>
+            <p>Awal ceritanya sungguh sederhana. Aku cuma iseng ingin sedikit <em>tuning</em> performa multimedia. Seperti biasa, ritual wajib pertama sebagai pengguna Linux adalah mengecek pengenalan <em>hardware</em> lewat terminal. Eksekusi perintah <code>lspci</code>, aman. GPU Intel Iris Plus G1 terbaca dengan gagah, modul kernel <code>i915</code> juga sukses dimuat tanpa <em>error</em>. Secara kasat mata, semuanya terlihat baik-baik saja.</p>
+            <p>Tapi, firasat ganjil itu makin kuat, apalagi setelah aku sedikit berdiskusi alias <em>crosscheck</em> dengan <em>Large Language Model</em> (LLM) langgananku. Atas sarannya, aku iseng mengecek status <em>renderer</em> grafis yang aktif menggunakan perintah <code>glxinfo</code>. Dan... <em>jeng jeng!</em> Keluar tulisan yang sukses bikin senyum kecut di depan monitor:</p>
             <div class="terminal-container">
                 <div class="terminal-header">
                     <div class="terminal-dot dot-red"></div>
@@ -298,14 +298,14 @@
                 <pre><code><span class="zdummy">$</span>glxinfo | grep -i "OpenGL renderer"
 <span class="cmd-output">OpenGL renderer string: llvmpipe (LLVM 15.0.6, 256 bits)</span></code></pre>
             </div>
-            <p>Buat kamu yang belum tahu, <code>llvmpipe</code> adalah indikator maut bahwa sistem komputermu mengalami <em>fallback</em> ke <strong>software rendering</strong>. Artinya secara harfiah: selama ini GPU pintarku cuma nongkrong nganggur, sementara sang CPU disuruh kerja rodi untuk merender semua animasi desktop, pemutaran video, hingga efek bayangan jendela aplikasi. Pantesan aja belakangan ini *touchpad* kadang terasa sedikit *ngelag* dan sasis bawah laptop lumayan anget biarpun cuma buka *browser*.</p>
+            <p>Buat kamu yang belum tahu, <code>llvmpipe</code> adalah indikator maut bahwa sistem komputermu mengalami <em>fallback</em> ke <strong>software rendering</strong>. Artinya secara harfiah: selama ini GPU pintarku cuma nongkrong nganggur, sementara sang CPU disuruh kerja rodi untuk merender semua animasi desktop, pemutaran video, hingga efek bayangan jendela aplikasi. Pantesan aja belakangan ini <em>touchpad</em> kadang terasa sedikit <em>ngelag</em> dan sasis bawah laptop lumayan anget biarpun cuma buka <em>browser</em>.</p>
             <h2>Bongkar Log, Temukan Biang Keroknya!</h2>
             <p>Dipersenjatai panduan investigasi, pelacakan pun dimulai. Cek log kernel lewat <code>dmesg</code>, hasilnya bersih tanpa peringatan berarti. Lanjut bongkar catatan aktivitas <em>display server</em> di log Xorg. Nah, di situlah ketahuan siapa biang kerok aslinya.</p>
             <p>Ternyata, terjadi miskomunikasi fatal antara paket <em>driver</em> Xorg lawas dengan arsitektur Mesa versi terbaru (25.x) yang aku pakai di Debian 13. Paket jadul bernama <code>xserver-xorg-video-intel</code> ini dengan ngotot terus mencari berkas <code>i965_dri.so</code>. Padahal faktanya, di arsitektur Mesa modern (terutama untuk prosesor Intel Generasi ke-8 ke atas), <em>driver</em> lawas itu sudah "almarhum" dan posisinya digantikan oleh <em>driver</em> <code>iris</code>.</p>
             <p>Karena berkas yang dicari tidak pernah ketemu, Xorg akhirnya mengibarkan bendera putih, menyerah, dan melempar seluruh beban pemrosesan grafis ke CPU lewat jalur <code>llvmpipe</code>.</p>
             <h2>Solusi Mind-Blowing: "Delete" untuk Memperbaiki</h2>
             <p>Solusi dari drama panjang ini ternyata sangat simpel dan sukses bikin <em>mind-blowing</em>. Alih-alih menginstal <em>driver</em> baru, yang perlu aku lakukan hanyalah membuang <em>driver</em> lamanya.</p>
-            <p>Begitu paket usang tersebut didepak dan sistem di-<em>reboot</em>, Xorg secara cerdas langsung menggunakan fitur <em>modesetting</em> bawaan kernel untuk melakukan <em>binding</em> otomatis ke Mesa Iris. Cek lagi pakai <code>glxinfo</code>, dan akhirnya muncul output indah <code>Mesa Intel(R) UHD Graphics (ICL GT1)</code>. Akselerasi *hardware* aktif, beban CPU terjun bebas, suhu mesin kembali adem, dan performa multimedia langsung ngebut tanpa kompromi.</p>
+            <p>Begitu paket usang tersebut didepak dan sistem di-<em>reboot</em>, Xorg secara cerdas langsung menggunakan fitur <em>modesetting</em> bawaan kernel untuk melakukan <em>binding</em> otomatis ke Mesa Iris. Cek lagi pakai <code>glxinfo</code>, dan akhirnya muncul output indah <code>Mesa Intel(R) UHD Graphics (ICL GT1)</code>. Akselerasi <em>hardware</em> aktif, beban CPU terjun bebas, suhu mesin kembali adem, dan performa multimedia langsung ngebut tanpa kompromi.</p>
             <blockquote>
                 "Pelajaran mahal yang bisa diambil: Kalau kamu pakai Linux modern dengan <em>hardware</em> Intel keluaran lumayan baru (Gen 8 ke atas), lupakan paket <code>xserver-xorg-video-intel</code>. Terkadang di dunia <em>open-source</em>, menghapus justru menyelesaikan masalah jauh lebih baik daripada menginstal."
             </blockquote>
@@ -334,7 +334,7 @@
     </main>
     <footer>
         <div class="footer-content">
-            Ditulis dan dieksplorasi oleh <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">Frijal</a> di <a href="https://dalam.web.id/" target="_blank" rel="noopener noreferrer">Layar Kosong</a> pada 16 Juni 2026. Analisis *troubleshooting* arsitektur grafis Linux ini disusun berdasarkan uji coba empiris pada kernel Linux modern dan dokumentasi repositori Debian 13.
+            Ditulis dan dieksplorasi oleh <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">Frijal</a> di <a href="https://dalam.web.id/" target="_blank" rel="noopener noreferrer">Layar Kosong</a> pada 16 Juni 2026. Analisis <em>troubleshooting</em> arsitektur grafis Linux ini disusun berdasarkan uji coba empiris pada kernel Linux modern dan dokumentasi repositori Debian 13.
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>

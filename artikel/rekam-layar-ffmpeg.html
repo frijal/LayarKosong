@@ -49,7 +49,7 @@
 <!-- ===== Icons ===== -->
 <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
 <style>
-    /* 1. Definisikan Variabel Tema Terang (Default) */
+    /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
     :root {
         --primary-color: #007bff;
         --secondary-color: #5DADE2;
@@ -59,37 +59,37 @@
         --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         --font-family: 'Segoe UI', 'Roboto', sans-serif;
         --max-width: 900px;
-        /* Variabel tambahan dari elemen hardcoded kamu */
+        /<em> Variabel tambahan dari elemen hardcoded kamu </em>/
         --heading-color: chocolate;
         --dummy-bg: #E8F6F3;
         --dummy-border: #2ECC71;
         --footer-color: #777777;
-        /* Pengaman tombol sosial media warna hitam */
+        /<em> Pengaman tombol sosial media warna hitam </em>/
         --btn-black-bg: #000000;
         --btn-black-border: transparent;
     }
-    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
     @media (prefers-color-scheme: dark) {
         :root {
             --bg-color: #0d1117;
             --text-color: #c9d1d9;
             --card-bg: #161b22;
             --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            /* Kalibrasi warna gradient header agar lebih adem */
+            /<em> Kalibrasi warna gradient header agar lebih adem </em>/
             --primary-color: #1f6feb;
             --secondary-color: #388bfd;
-            /* Chocolate versi malam: dibikin agak pastel/terang supaya kontras dan estetik */
+            /<em> Chocolate versi malam: dibikin agak pastel/terang supaya kontras dan estetik </em>/
             --heading-color: #ffb066; 
-            /* Kotak info .zdummy1 disulap jadi hijau gelap mewah */
+            /<em> Kotak info .zdummy1 disulap jadi hijau gelap mewah </em>/
             --dummy-bg: #0f2d1e;
             --dummy-border: #2ecc71;
             --footer-color: #8b949e;
-            /* Mengubah tombol hitam pekat jadi abu-abu gelap bergaris */
+            /<em> Mengubah tombol hitam pekat jadi abu-abu gelap bergaris </em>/
             --btn-black-bg: #21262d;
             --btn-black-border: #30363d;
         }
     }
-    /* 3. Base Styles (Desktop & Tablet) */
+    /<em> 3. Base Styles (Desktop & Tablet) </em>/
     body {
         font-family: var(--font-family);
         line-height: 1.8;
@@ -149,13 +149,13 @@
     .image-container img:hover { 
         transform: scale(1.02); 
     }
-    /* Target khusus plugin code-editor PrismJS */
+    /<em> Target khusus plugin code-editor PrismJS </em>/
     pre[class*="language-"] {
         position: relative;
-        padding-top: 45px; /* Ditambah dikit biar gak terlalu mepet tombol di device kecil */
+        padding-top: 45px; /<em> Ditambah dikit biar gak terlalu mepet tombol di device kecil </em>/
         border-radius: 8px;
         background-color: #2d2d2d !important;
-        /* Di dark mode sejati, kita bikin sedikit lebih pekat agar kontras dengan card-bg */
+        /<em> Di dark mode sejati, kita bikin sedikit lebih pekat agar kontras dengan card-bg </em>/
     }
     @media (prefers-color-scheme: dark) {
         pre[class*="language-"] { background-color: #0d1117 !important; }
@@ -176,9 +176,9 @@
         background-color: #E64A19; 
     }
     .copy-button:active {
-        transform: scale(0.95); /* Efek klik membal mantap */
+        transform: scale(0.95); /<em> Efek klik membal mantap </em>/
     }
-    /* Kelompok Tombol Medsos Lingkaran */
+    /<em> Kelompok Tombol Medsos Lingkaran </em>/
     .btn-social {
         display: inline-flex;
         align-items: center;
@@ -194,7 +194,7 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     .btn-social:hover { 
-        transform: translateY(-3px); /* Naik dikit pas di-hover */
+        transform: translateY(-3px); /<em> Naik dikit pas di-hover </em>/
         filter: brightness(1.1);
     }
     .btn-facebook { background-color: #3b5998; }
@@ -202,7 +202,7 @@
     .btn-whatsapp { background-color: #25d366; }
     .btn-telegram { background-color: #0088cc; }
     .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    /* Tombol hitam yang sudah diamankan dengan variabel khusus */
+    /<em> Tombol hitam yang sudah diamankan dengan variabel khusus </em>/
     .btn-threads, .btn-tiktok { 
         background-color: var(--btn-black-bg); 
         border: 1px solid var(--btn-black-border);
@@ -214,13 +214,13 @@
         color: var(--footer-color); 
         transition: color 0.3s;
     }
-    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) */
+    /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) </em>/
     @media (max-width: 768px) {
         .container {
-            padding: 10px; /* Memperlebar ruang baca di HP */
+            padding: 10px; /<em> Memperlebar ruang baca di HP </em>/
         }
         header {
-            padding: 25px 15px; /* Mengurangi ukuran raksasa header di layar kecil */
+            padding: 25px 15px; /<em> Mengurangi ukuran raksasa header di layar kecil </em>/
             border-radius: 8px;
             margin-bottom: 15px;
         }
@@ -228,7 +228,7 @@
             font-size: 1.6rem;
         }
         .content {
-            padding: 20px 15px; /* Menyesuaikan padding dalam box content */
+            padding: 20px 15px; /<em> Menyesuaikan padding dalam box content </em>/
             margin-bottom: 15px;
         }
         .zdummy1 {
@@ -236,14 +236,14 @@
             margin: 15px 0;
             font-size: 0.95rem;
         }
-        /* Merapikan letak tombol medsos bulat agar simetris di tengah */
+        /<em> Merapikan letak tombol medsos bulat agar simetris di tengah </em>/
         .social-share-container {
             text-align: center;
             padding: 10px 0;
         }
         .btn-social {
-            width: 44px;  /* Ditambah 4px di HP biar lebih gampang ditarget jempol */
-            height: 44px; /* Ditambah 4px di HP biar lebih gampang ditarget jempol */
+            width: 44px;  /<em> Ditambah 4px di HP biar lebih gampang ditarget jempol </em>/
+            height: 44px; /<em> Ditambah 4px di HP biar lebih gampang ditarget jempol </em>/
             margin: 6px;
         }
     }

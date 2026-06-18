@@ -57,7 +57,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <!-- Critical CSS (Mobile-First, WCAG AA, No Layout Shift) -->
     <style>
-        /* System Font Stack & Native Variables */
+        /<em> System Font Stack & Native Variables </em>/
         :root {
             --bg-color: #ffffff;
             --text-color: #24292f;
@@ -86,8 +86,8 @@
                 --image-placeholder: #21262d;
             }
         }
-        /* Base Resets */
-        *, *::before, *::after { box-sizing: border-box; }
+        /<em> Base Resets </em>/
+        <em>, </em>::before, *::after { box-sizing: border-box; }
         body {
             margin: 0;
             padding: 1.25rem;
@@ -98,7 +98,7 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
-        /* Container Layout: Center di Desktop */
+        /<em> Container Layout: Center di Desktop </em>/
         .site-wrapper {
             width: 100%;
             margin: 0 auto;
@@ -107,7 +107,7 @@
             body { padding: 3rem 2rem; }
             .site-wrapper { max-width: 64rem; }
         }
-        /* Typography */
+        /<em> Typography </em>/
         h1, h2, h3 {
             color: var(--heading-color);
             line-height: 1.3;
@@ -118,7 +118,7 @@
         h2 { font-size: 1.75rem; border-left: 0.25rem solid var(--link-color); padding-left: 0.75rem; }
         h3 { font-size: 1.25rem; color: var(--link-color); }
         p, li { margin-bottom: 1rem; }
-        /* Custom Link Selector Rule */
+        /<em> Custom Link Selector Rule </em>/
         a.content-link {
             color: var(--link-color);
             text-decoration: none;
@@ -126,18 +126,18 @@
             transition: opacity 0.2s;
         }
         a.content-link:hover { opacity: 0.8; border-bottom-style: solid; }
-        /* Media / Images (LCP Optimized) */
+        /<em> Media / Images (LCP Optimized) </em>/
         img.feature-image {
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /* Mitigasi Cumulative Layout Shift (CLS) */
+            aspect-ratio: 16 / 9; /<em> Mitigasi Cumulative Layout Shift (CLS) </em>/
             object-fit: cover;
             border-radius: 0.5rem;
             margin: 2rem 0;
             background-color: var(--image-placeholder);
             display: block;
         }
-        /* Tables (Responsive Scroll) */
+        /<em> Tables (Responsive Scroll) </em>/
         .table-responsive {
             overflow-x: auto;
             margin: 2rem 0;
@@ -148,7 +148,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.95rem;
-            min-width: 45rem; /* Paksa scroll di mobile agar rapi */
+            min-width: 45rem; /<em> Paksa scroll di mobile agar rapi </em>/
         }
         th, td {
             padding: 0.875rem 1rem;
@@ -163,7 +163,7 @@
         }
         tr:nth-child(even) { background-color: var(--table-row-alt); }
         tr:last-child td { border-bottom: none; }
-        /* Inline Code */
+        /<em> Inline Code </em>/
         code {
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
             background-color: var(--code-bg);
@@ -172,7 +172,7 @@
             border-radius: 0.25rem;
             font-size: 0.875rem;
         }
-        /* Footer E-E-A-T Inline */
+        /<em> Footer E-E-A-T Inline </em>/
         .site-footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -195,8 +195,8 @@
         <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Perbandingan Shelly vs Octopi vs pacseek: Package Manager Terbaik di Arch Linux</h1>
     </header>
     <main role="main">
-        <p>Ekosistem distribusi berbasis Arch Linux terkenal dengan manajer paket bawaannya yang solid, yakni pacman. Namun, seiring berkembangnya kebutuhan, tidak semua orang mau atau punya waktu untuk terus-menerus mengetikkan perintah di terminal setiap kali ingin merapikan sistem atau mencari aplikasi baru. Di pertengahan tahun 2026 ini, kita dihadapkan pada tiga solusi pengelola paket yang mendominasi komunitas: **Shelly**, **Octopi**, dan **pacseek**.</p>
-        <p>Ketiga *tool* ini lahir untuk menjawab tantangan pengelolaan paket di ekosistem Arch, tetapi masing-masing membawa filosofi dan antarmuka yang sangat berbeda. Shelly hadir sebagai *Graphical Package Manager* modern, Octopi mempertahankan gaya klasik yang transparan, sementara pacseek menjadi primadona bagi penganut *Terminal User Interface* (TUI). Mari kita bongkar anatomi ketiganya agar kamu bisa menentukan mana yang paling sesuai dengan gaya kerjamu.</p>
+        <p>Ekosistem distribusi berbasis Arch Linux terkenal dengan manajer paket bawaannya yang solid, yakni pacman. Namun, seiring berkembangnya kebutuhan, tidak semua orang mau atau punya waktu untuk terus-menerus mengetikkan perintah di terminal setiap kali ingin merapikan sistem atau mencari aplikasi baru. Di pertengahan tahun 2026 ini, kita dihadapkan pada tiga solusi pengelola paket yang mendominasi komunitas: <strong>Shelly</strong>, <strong>Octopi</strong>, dan <strong>pacseek</strong>.</p>
+        <p>Ketiga <em>tool</em> ini lahir untuk menjawab tantangan pengelolaan paket di ekosistem Arch, tetapi masing-masing membawa filosofi dan antarmuka yang sangat berbeda. Shelly hadir sebagai <em>Graphical Package Manager</em> modern, Octopi mempertahankan gaya klasik yang transparan, sementara pacseek menjadi primadona bagi penganut <em>Terminal User Interface</em> (TUI). Mari kita bongkar anatomi ketiganya agar kamu bisa menentukan mana yang paling sesuai dengan gaya kerjamu.</p>
         <!-- Gambar LCP - Diletakkan di bawah paragraf pembuka untuk menghindari monopoli fold atas -->
         <img src="https://dalam.web.id/img/pbs.twimg.com/888d28090b555e47.webp" alt="Ilustrasi arsitektur package manager Arch Linux Shelly, Octopi, dan pacseek" class="feature-image" fetchpriority="high" decoding="async" srcset="https://pbs.twimg.com/media/HKKt_d7b0AAXARo?format=jpg&amp;name=large 1024w, https://pbs.twimg.com/media/HKKt_d7b0AAXARo?format=jpg&amp;name=large 640w" sizes="(max-width: 64rem) 100vw, 64rem">
         <h2>Peta Kekuatan: Head-to-Head Tiga Kandidat Utama</h2>
@@ -213,87 +213,87 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>**Tipe**</td>
-                        <td>GUI (*Graphical*)</td>
-                        <td>GUI (*Graphical*)</td>
-                        <td>**TUI** (*Terminal*)</td>
+                        <td><strong>Tipe</strong></td>
+                        <td>GUI (<em>Graphical</em>)</td>
+                        <td>GUI (<em>Graphical</em>)</td>
+                        <td><strong>TUI</strong> (<em>Terminal</em>)</td>
                         <td>-</td>
                     </tr>
                     <tr>
-                        <td>**Teknologi**</td>
+                        <td><strong>Teknologi</strong></td>
                         <td>GTK 4 + Native libalpm</td>
                         <td>Qt</td>
                         <td>Go (sangat ringan)</td>
-                        <td>Shelly (*native*)</td>
+                        <td>Shelly (<em>native</em>)</td>
                     </tr>
                     <tr>
-                        <td>**Fokus Utama**</td>
-                        <td>CachyOS (*default* sejak April 2026)</td>
+                        <td><strong>Fokus Utama</strong></td>
+                        <td>CachyOS (<em>default</em> sejak April 2026)</td>
                         <td>Arch Linux &amp; banyak distro</td>
-                        <td>*Power user* yang suka terminal</td>
+                        <td><em>Power user</em> yang suka terminal</td>
                         <td>Tergantung gaya user</td>
                     </tr>
                     <tr>
-                        <td>**Dukungan AUR**</td>
+                        <td><strong>Dukungan AUR</strong></td>
                         <td>Ya (baik)</td>
                         <td>Ya (baik)</td>
                         <td>Ya (sangat baik)</td>
                         <td>Seri</td>
                     </tr>
                     <tr>
-                        <td>**Dukungan AppImage**</td>
-                        <td>**Sangat baik** (*Drag &amp; Drop*)</td>
+                        <td><strong>Dukungan AppImage</strong></td>
+                        <td><strong>Sangat baik</strong> (<em>Drag &amp; Drop</em>)</td>
                         <td>Terbatas</td>
                         <td>Tidak ada</td>
-                        <td>**Shelly**</td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**Dukungan Flatpak**</td>
+                        <td><strong>Dukungan Flatpak</strong></td>
                         <td>Ya</td>
                         <td>Terbatas</td>
                         <td>Tidak ada</td>
-                        <td>**Shelly**</td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**UI/UX**</td>
+                        <td><strong>UI/UX</strong></td>
                         <td>Modern, bersih, intuitif</td>
-                        <td>Klasik, fungsional, agak *outdated*</td>
-                        <td>Terminal interaktif (mirip *fzf*)</td>
+                        <td>Klasik, fungsional, agak <em>outdated</em></td>
+                        <td>Terminal interaktif (mirip <em>fzf</em>)</td>
                         <td>Shelly (modern)</td>
                     </tr>
                     <tr>
-                        <td>**Performa**</td>
+                        <td><strong>Performa</strong></td>
                         <td>Sangat baik (MemoryPack di v2.3+)</td>
-                        <td>Sedang (kadang terasa lambat/*lock up*)</td>
-                        <td>**Sangat cepat &amp; ringan**</td>
+                        <td>Sedang (kadang terasa lambat/<em>lock up</em>)</td>
+                        <td><strong>Sangat cepat &amp; ringan</strong></td>
                         <td>pacseek</td>
                     </tr>
                     <tr>
-                        <td>**Kemudahan Pemula**</td>
-                        <td>**Sangat baik**</td>
+                        <td><strong>Kemudahan Pemula</strong></td>
+                        <td><strong>Sangat baik</strong></td>
                         <td>Baik</td>
                         <td>Sedang (harus nyaman di terminal)</td>
-                        <td>**Shelly**</td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**Transparansi**</td>
+                        <td><strong>Transparansi</strong></td>
                         <td>Bagus</td>
-                        <td>**Sangat bagus** (tampilkan *output* terminal)</td>
+                        <td><strong>Sangat bagus</strong> (tampilkan <em>output</em> terminal)</td>
                         <td>Bagus</td>
                         <td>Octopi</td>
                     </tr>
                     <tr>
-                        <td>**Pembaruan**</td>
+                        <td><strong>Pembaruan</strong></td>
                         <td>Sangat aktif (menggantikan Octopi di CachyOS)</td>
                         <td>Masih aktif (v0.19.0 di 2026)</td>
                         <td>Aktif</td>
                         <td>Shelly</td>
                     </tr>
                     <tr>
-                        <td>**Ukuran &amp; Beban**</td>
+                        <td><strong>Ukuran &amp; Beban</strong></td>
                         <td>Sedang</td>
                         <td>Sedang</td>
-                        <td>**Sangat ringan**</td>
+                        <td><strong>Sangat ringan</strong></td>
                         <td>pacseek</td>
                     </tr>
                 </tbody>
@@ -301,24 +301,24 @@
         </div>
         <h2>Penjelasan Lebih Detail: Karakteristik Tiap Tool</h2>
         <h3>1. Shelly: Si GUI Modern yang Menggebrak</h3>
-        <p>Shelly bukan sekadar *wrapper* (pembungkus) perintah CLI ke dalam bentuk visual. Ia dibangun dari bawah menggunakan pendekatan **native libalpm**. Dengan balutan GTK 4, antarmukanya terlihat sangat kekinian, bersih, dan memanjakan mata. Salah satu terobosan terbesarnya adalah dukungan eksklusif terhadap **AppImage** via mekanisme *drag-and-drop* yang luar biasa praktis. Karena kecepatan inovasinya inilah, distribusi berkinerja tinggi seperti CachyOS resmi menjadikannya aplikasi bawaan menggantikan pendahulunya sejak April 2026. Sangat direkomendasikan bagi mereka yang menginginkan sinkronisasi format *Flatpak* dan *AppImage* dalam satu atap yang apik.</p>
+        <p>Shelly bukan sekadar <em>wrapper</em> (pembungkus) perintah CLI ke dalam bentuk visual. Ia dibangun dari bawah menggunakan pendekatan <strong>native libalpm</strong>. Dengan balutan GTK 4, antarmukanya terlihat sangat kekinian, bersih, dan memanjakan mata. Salah satu terobosan terbesarnya adalah dukungan eksklusif terhadap <strong>AppImage</strong> via mekanisme <em>drag-and-drop</em> yang luar biasa praktis. Karena kecepatan inovasinya inilah, distribusi berkinerja tinggi seperti CachyOS resmi menjadikannya aplikasi bawaan menggantikan pendahulunya sejak April 2026. Sangat direkomendasikan bagi mereka yang menginginkan sinkronisasi format <em>Flatpak</em> dan <em>AppImage</em> dalam satu atap yang apik.</p>
         <h3>2. Octopi: Veteran Tangguh dengan Transparansi Penuh</h3>
-        <p>Hadir sejak 2013, Octopi adalah legenda hidup di ekosistem Arch. Berbasis *framework* Qt, tampilannya memang terasa lebih kaku dan "tradisional" jika disandingkan dengan Shelly. Namun, Octopi punya satu perangkat andalan yang membuatnya sulit ditinggalkan *sysadmin* veteran: **transparansi absolut**. Ia menayangkan *output* terminal murni langsung ke layar pengguna, sehingga kamu tahu persis apa yang sedang dieksekusi di balik layar tanpa ada proses yang disembunyikan. Sayangnya, performanya belakangan kerap dilaporkan mengalami *lock up* ringan saat memuat pangkalan data besar dari *mirror*.</p>
+        <p>Hadir sejak 2013, Octopi adalah legenda hidup di ekosistem Arch. Berbasis <em>framework</em> Qt, tampilannya memang terasa lebih kaku dan "tradisional" jika disandingkan dengan Shelly. Namun, Octopi punya satu perangkat andalan yang membuatnya sulit ditinggalkan <em>sysadmin</em> veteran: <strong>transparansi absolut</strong>. Ia menayangkan <em>output</em> terminal murni langsung ke layar pengguna, sehingga kamu tahu persis apa yang sedang dieksekusi di balik layar tanpa ada proses yang disembunyikan. Sayangnya, performanya belakangan kerap dilaporkan mengalami <em>lock up</em> ringan saat memuat pangkalan data besar dari <em>mirror</em>.</p>
         <h3>3. pacseek: Ninja Terminal yang Super Cepat</h3>
-        <p>Berbeda dari dua kompetitornya, pacseek sama sekali tidak memiliki jendela antarmuka grafis. Ia adalah aplikasi murni terminal (TUI) yang ditulis dalam bahasa pemrograman **Go**. Dampaknya? Performa pencarian dan eksekusi paket berjalan secepat kilat tanpa membebani RAM sedikit pun. Jika alur kerjamu lebih banyak dihabiskan tanpa menyentuh *mouse* dan kamu memuja kecepatan *fzf*, pacseek akan membuatmu merasa seperti seorang peretas profesional. Tentu saja, komprominya adalah ketidakmampuannya membaca format modern lintas distro seperti *AppImage* maupun *Flatpak* secara bawaan.</p>
+        <p>Berbeda dari dua kompetitornya, pacseek sama sekali tidak memiliki jendela antarmuka grafis. Ia adalah aplikasi murni terminal (TUI) yang ditulis dalam bahasa pemrograman <strong>Go</strong>. Dampaknya? Performa pencarian dan eksekusi paket berjalan secepat kilat tanpa membebani RAM sedikit pun. Jika alur kerjamu lebih banyak dihabiskan tanpa menyentuh <em>mouse</em> dan kamu memuja kecepatan <em>fzf</em>, pacseek akan membuatmu merasa seperti seorang peretas profesional. Tentu saja, komprominya adalah ketidakmampuannya membaca format modern lintas distro seperti <em>AppImage</em> maupun <em>Flatpak</em> secara bawaan.</p>
         <h2>Rekomendasi Berdasarkan Kebutuhanmu</h2>
-        <p>Memilih satu dari ketiganya sangat bergantung pada lingkungan *desktop* dan seberapa dalam keintimanmu dengan *command line*.</p>
+        <p>Memilih satu dari ketiganya sangat bergantung pada lingkungan <em>desktop</em> dan seberapa dalam keintimanmu dengan <em>command line</em>.</p>
         <ul>
-            <li>Ingin GUI modern sekaligus dukungan mumpuni untuk **AppImage**? Pilih **Shelly**.</li>
-            <li>Suka dengan GUI, tapi memiliki obsesi untuk melihat detail **transparansi terminal**? Pilih **Octopi**.</li>
-            <li>Kamu adalah *power user* yang benci menggunakan *mouse* dan butuh respons instan? Pilih **pacseek**.</li>
-            <li>Menjalankan **CachyOS** saat ini? Tetaplah bersama **Shelly** karena sistem ini sudah meraciknya sebagai aplikasi asali yang terintegrasi penuh.</li>
-            <li>Baru melakukan migrasi ke Arch Linux dan butuh kemudahan layaknya *App Store*? **Shelly** adalah pintu masuk yang paling ramah.</li>
-            <li>Mencari utilitas dengan jejak memori paling kecil (super ringan)? **pacseek** tidak akan mengkhianatimu.</li>
+            <li>Ingin GUI modern sekaligus dukungan mumpuni untuk <strong>AppImage</strong>? Pilih <strong>Shelly</strong>.</li>
+            <li>Suka dengan GUI, tapi memiliki obsesi untuk melihat detail <strong>transparansi terminal</strong>? Pilih <strong>Octopi</strong>.</li>
+            <li>Kamu adalah <em>power user</em> yang benci menggunakan <em>mouse</em> dan butuh respons instan? Pilih <strong>pacseek</strong>.</li>
+            <li>Menjalankan <strong>CachyOS</strong> saat ini? Tetaplah bersama <strong>Shelly</strong> karena sistem ini sudah meraciknya sebagai aplikasi asali yang terintegrasi penuh.</li>
+            <li>Baru melakukan migrasi ke Arch Linux dan butuh kemudahan layaknya <em>App Store</em>? <strong>Shelly</strong> adalah pintu masuk yang paling ramah.</li>
+            <li>Mencari utilitas dengan jejak memori paling kecil (super ringan)? <strong>pacseek</strong> tidak akan mengkhianatimu.</li>
         </ul>
         <h2>Kesimpulan Akhir</h2>
-        <p>Tahun 2026 membawa kejelasan pembagian peran di ekosistem Arch. **Shelly** terbukti menjadi visi masa depan yang lebih ramah pengguna, modern, dan sangat inovatif. Di sisi lain, **Octopi** menolak untuk mati karena keunggulannya mempertahankan pengalaman klasik yang sangat *verbose*. Namun jika kecepatan mentah dan kesederhanaan adalah segalanya bagimu, **pacseek** tetap menjadi jawara tak tertandingi di alam terminal.</p>
-        <p>Saran teknis bagi kamu yang sedang bersiap mengatur *environment* baru: Bagi pengguna <a href="https://cachyos.org" class="content-link">CachyOS</a>, cukup nikmati fitur bawaan dari Shelly. Jika kamu pengguna murni terminal, *install* TUI favorit ini menggunakan baris perintah <code>paru -S pacseek</code>. Dan jika kamu masih kerasan memakai Octopi, tak perlu dipaksakan untuk pindah, karena pada akhirnya stabilitas *workflow* pribadi adalah yang utama.</p>
+        <p>Tahun 2026 membawa kejelasan pembagian peran di ekosistem Arch. <strong>Shelly</strong> terbukti menjadi visi masa depan yang lebih ramah pengguna, modern, dan sangat inovatif. Di sisi lain, <strong>Octopi</strong> menolak untuk mati karena keunggulannya mempertahankan pengalaman klasik yang sangat <em>verbose</em>. Namun jika kecepatan mentah dan kesederhanaan adalah segalanya bagimu, <strong>pacseek</strong> tetap menjadi jawara tak tertandingi di alam terminal.</p>
+        <p>Saran teknis bagi kamu yang sedang bersiap mengatur <em>environment</em> baru: Bagi pengguna <a href="https://cachyos.org" class="content-link">CachyOS</a>, cukup nikmati fitur bawaan dari Shelly. Jika kamu pengguna murni terminal, <em>install</em> TUI favorit ini menggunakan baris perintah <code>paru -S pacseek</code>. Dan jika kamu masih kerasan memakai Octopi, tak perlu dipaksakan untuk pindah, karena pada akhirnya stabilitas <em>workflow</em> pribadi adalah yang utama.</p>
         <!-- Elemen Wajib Akhir Konten (Tanpa Styling Tambahan) -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>

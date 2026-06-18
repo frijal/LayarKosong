@@ -66,11 +66,11 @@
     --header-color: #ffffff;
     --code-bg: #2d2d44;
     --border-color: #3a3a5a;
-    --accent-init: #3498db;   /* Biru */
-    --accent-clean: #e67e22;  /* Oranye */
-    --accent-process: #9b59b6; /* Ungu */
-    --accent-heal: #2ecc71;   /* Hijau */
-    --accent-write: #e74c3c;  /* Merah */
+    --accent-init: #3498db;   /<em> Biru </em>/
+    --accent-clean: #e67e22;  /<em> Oranye </em>/
+    --accent-process: #9b59b6; /<em> Ungu </em>/
+    --accent-heal: #2ecc71;   /<em> Hijau </em>/
+    --accent-write: #e74c3c;  /<em> Merah </em>/
 }
 body {
     font-family: 'Poppins', sans-serif;
@@ -230,7 +230,7 @@ footer a { color: var(--header-color); text-decoration: none; }
     <div class="container">
         <header>
             <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Bedah Skrip Generator Konten Cerdas 🧠</h1>
-            <p class="subtitle">Melihat lebih dalam cara kerja `generator.js`, sebuah skrip otomasi canggih yang menjadi tulang punggung pengelolaan konten situs ini.</p>
+            <p class="subtitle">Melihat lebih dalam cara kerja <code>generator.js</code>, sebuah skrip otomasi canggih yang menjadi tulang punggung pengelolaan konten situs ini.</p>
         </header>
         <main>
             <article>
@@ -275,7 +275,7 @@ const CONFIG = {
 function formatISO8601(date) {
   const d = new Date(date);
   if (isNaN(d)) {
-    console.warn(`⚠️ Tanggal tidak valid, fallback ke sekarang.`);
+    console.warn(<code>⚠️ Tanggal tidak valid, fallback ke sekarang.</code>);
     return new Date().toISOString();
   }
   const tzOffset = -d.getTimezoneOffset();
@@ -283,11 +283,11 @@ function formatISO8601(date) {
   const pad = (n) =&gt; String(Math.floor(Math.abs(n))).padStart(2, '0');
   const hours = pad(tzOffset / 60);
   const minutes = pad(tzOffset % 60);
-  return d.toISOString().replace('Z', `${diff}${hours}:${minutes}`);
+  return d.toISOString().replace('Z', <code>${diff}${hours}:${minutes}</code>);
 }
 function extractPubDate(content) {
   const match = content.match(
-    /&lt;meta\s+property=["']article:published_time["'][^&gt;]+content=["']([^"']+)["']/i,
+    /&lt;meta\s+property=["']article:published_time["'][^&gt;]+content=<a href="[^"']+">"'</a>["']/i,
   );
   return match ? match[1].trim() : null;
 }
@@ -297,26 +297,26 @@ function extractTitle(content) {
 }
 function extractDescription(content) {
   const match = content.match(
-    /&lt;meta\s+name=["']description["'][^&gt;]+content=["']([^"']+)["']/i,
+    /&lt;meta\s+name=["']description["'][^&gt;]+content=<a href="[^"']+">"'</a>["']/i,
   );
   return match ? match[1].trim() : '';
 }
 function fixTitleOneLine(content) {
   return content.replace(
     /&lt;title&gt;([\s\S]*?)&lt;\/title&gt;/gi,
-    (m, p1) =&gt; `&lt;title&gt;${p1.trim()}&lt;/title&gt;`,
+    (m, p1) =&gt; <code>&lt;title&gt;${p1.trim()}&lt;/title&gt;</code>,
   );
 }
 function extractImage(content) {
   const ogMatch = content.match(
-    /&lt;meta[^&gt;]+property=["']og:image["'][^&gt;]+content=["'](.*?)["']/i,
+    /&lt;meta[^&gt;]+property=["']og:image["'][^&gt;]+content=<a href=".*?">"'</a>["']/i,
   );
   if (ogMatch &amp;&amp; ogMatch[1]) {
     const src = ogMatch[1].trim();
     const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
     if (validExt.test(src.split('?')[0])) return src;
   }
-  const imgMatch = content.match(/&lt;img[^&gt;]+src=["'](.*?)["']/i);
+  const imgMatch = content.match(/&lt;img[^&gt;]+src=<a href=".*?">"'</a>["']/i);
   if (imgMatch &amp;&amp; imgMatch[1]) {
     const src = imgMatch[1].trim();
     const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
@@ -347,23 +347,23 @@ async function generateCategoryPages(groupedData) {
         .replace(/\s+/g, '-')
         .replace(/-+/g, '-');
       // RSS URL untuk kategori
-      const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
+      const rssUrl = <code>${CONFIG.baseUrl}/feed-${slug}.xml</code>;
       // URL halaman kategori
-      const fileName = `${slug}.html`;
-      const canonicalUrl = `${CONFIG.baseUrl}/artikel/-/${fileName}`;
+      const fileName = <code>${slug}.html</code>;
+      const canonicalUrl = <code>${CONFIG.baseUrl}/artikel/-/${fileName}</code>;
       // Ambil emoji pertama (atau fallback)
       const icon = categoryName.match(/(\p{Emoji})/u)?.[0] || '📁';
       // Ganti placeholder di template
       let pageContent = templateContent
         .replace(/%%TITLE%%/g, noEmoji)
-        .replace(/%%DESCRIPTION%%/g, `topik ${noEmoji}`)
+        .replace(/%%DESCRIPTION%%/g, <code>topik ${noEmoji}</code>)
         .replace(/%%CANONICAL_URL%%/g, canonicalUrl)
         .replace(/%%CATEGORY_NAME%%/g, categoryName)
         .replace(/%%ICON%%/g, icon)
         .replace(/%%RSS_URL%%/g, rssUrl);
       // Tulis file HTML hasil render
       await fs.writeFile(path.join(kategoriDir, fileName), pageContent, 'utf8');
-      console.log(`✅ Halaman kategori dibuat: ${fileName}`);
+      console.log(<code>✅ Halaman kategori dibuat: ${fileName}</code>);
     }
     console.log('👍 Semua halaman kategori berhasil dibuat.');
   } catch (error) {
@@ -404,7 +404,7 @@ const generate = async () =&gt; {
     const survivingArticles = grouped[category].filter((item) =&gt; {
       if (!existingFilesOnDisk.has(item[1])) {
         console.log(
-          `🗑️ File terhapus terdeteksi, menghapus dari data: ${item[1]}`,
+          <code>🗑️ File terhapus terdeteksi, menghapus dari data: ${item[1]}</code>,
         );
         deletedCount++;
         return false;
@@ -432,7 +432,7 @@ const generate = async () =&gt; {
       if (fixedTitleContent !== content) {
         content = fixedTitleContent;
         needsSave = true;
-        console.log(`🔧 Merapikan &lt;title&gt; di ${file}`);
+        console.log(<code>🔧 Merapikan &lt;title&gt; di ${file}</code>);
       }
       const title = extractTitle(content);
       const category = titleToCategory(title);
@@ -442,11 +442,11 @@ const generate = async () =&gt; {
       if (!pubDate) {
         const stats = await fs.stat(fullPath);
         pubDate = stats.mtime;
-        const newMetaTag = `      &lt;meta property="article:published_time" content="${formatISO8601(pubDate)}"&gt;`;
+        const newMetaTag = <code>      &lt;meta property="article:published_time" content="${formatISO8601(pubDate)}"&gt;</code>;
         if (content.includes('&lt;/head&gt;')) {
-          content = content.replace('&lt;/head&gt;', `${newMetaTag}\n&lt;/head&gt;`);
+          content = content.replace('&lt;/head&gt;', <code>${newMetaTag}\n&lt;/head&gt;</code>);
           needsSave = true;
-          console.log(`➕ Menambahkan meta tanggal ke '${file}'`);
+          console.log(<code>➕ Menambahkan meta tanggal ke '${file}'</code>);
         }
       }
       if (needsSave) {
@@ -456,9 +456,9 @@ const generate = async () =&gt; {
       if (!grouped[category]) grouped[category] = [];
       grouped[category].push([title, file, image, lastmod, description]);
       newArticlesCount++;
-      console.log(`➕ Memproses artikel baru: ${file}`);
+      console.log(<code>➕ Memproses artikel baru: ${file}</code>);
     } catch (error) {
-      console.error(`❌ Gagal memproses file ${file}:`, error.message);
+      console.error(<code>❌ Gagal memproses file ${file}:</code>, error.message);
     }
   }
   // Cek apakah file output (artikel.json di root) sudah ada
@@ -480,16 +480,16 @@ const generate = async () =&gt; {
       .forEach((item) =&gt; {
         const [, file, image, lastmod] = item;
         xmlUrls.push(
-          `  &lt;url&gt;\n    &lt;loc&gt;${CONFIG.baseUrl}/artikel/${file}&lt;/loc&gt;\n    &lt;lastmod&gt;${lastmod}&lt;/lastmod&gt;\n    &lt;priority&gt;${CONFIG.xmlPriority}&lt;/priority&gt;\n    &lt;changefreq&gt;${CONFIG.xmlChangeFreq}&lt;/changefreq&gt;\n    &lt;image:image&gt;\n      &lt;image:loc&gt;${image}&lt;/image:loc&gt;\n    &lt;/image:image&gt;\n  &lt;/url&gt;`,
+          <code>  &lt;url&gt;\n    &lt;loc&gt;${CONFIG.baseUrl}/artikel/${file}&lt;/loc&gt;\n    &lt;lastmod&gt;${lastmod}&lt;/lastmod&gt;\n    &lt;priority&gt;${CONFIG.xmlPriority}&lt;/priority&gt;\n    &lt;changefreq&gt;${CONFIG.xmlChangeFreq}&lt;/changefreq&gt;\n    &lt;image:image&gt;\n      &lt;image:loc&gt;${image}&lt;/image:loc&gt;\n    &lt;/image:image&gt;\n  &lt;/url&gt;</code>,
         );
       });
     const jsonString = formatJsonOutput(grouped);
     await fs.writeFile(CONFIG.jsonOut, jsonString, 'utf8');
-    const xmlContent = `&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n&lt;urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;\n${xmlUrls.join('\n')}\n&lt;/urlset&gt;`;
+    const xmlContent = <code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n&lt;urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;\n${xmlUrls.join('\n')}\n&lt;/urlset&gt;</code>;
     await fs.writeFile(CONFIG.xmlOut, xmlContent, 'utf8');
     await generateCategoryPages(grouped);
     console.log(
-      `\n✅ Ringkasan: ${newArticlesCount} artikel baru ditambahkan, ${deletedCount} artikel lama dihapus.`,
+      <code>\n✅ Ringkasan: ${newArticlesCount} artikel baru ditambahkan, ${deletedCount} artikel lama dihapus.</code>,
     );
     if (isJsonOutMissing &amp;&amp; newArticlesCount === 0 &amp;&amp; deletedCount === 0) {
         console.log('✅ File artikel.json di root dibuat ulang karena tidak ada.');

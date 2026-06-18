@@ -53,8 +53,8 @@
 <meta name="keywords" content="Recursive HTTP Album Viewer, JSON album viewer, galeri HTTP, viewer interaktif, web album, responsive gallery">
   <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <style>
-        /* --- Global & Tipografi --- */
-        *, *::before, *::after {
+        /<em> --- Global & Tipografi --- </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -72,7 +72,7 @@
             color: #2c3e50;
             margin-top: 0;
         }
-        /* --- Kontainer Utama --- */
+        /<em> --- Kontainer Utama --- </em>/
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -80,9 +80,9 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            min-height: 0; /* Mencegah flexbox overflow */
+            min-height: 0; /<em> Mencegah flexbox overflow </em>/
         }
-        /* --- Kontrol & Pesan --- */
+        /<em> --- Kontrol & Pesan --- </em>/
         .controls {
             padding: 16px;
             background: #fff;
@@ -125,7 +125,7 @@
             font-size: 1.2rem;
             color: #777;
         }
-        /* --- Area Viewer (Dua Kolom) --- */
+        /<em> --- Area Viewer (Dua Kolom) --- </em>/
         .viewer-area {
             display: flex;
             flex-grow: 1;
@@ -133,9 +133,9 @@
             gap: 20px;
             min-height: 0;
         }
-        /* --- 1. Kolom Viewer Utama --- */
+        /<em> --- 1. Kolom Viewer Utama --- </em>/
         .main-display-wrapper {
-            flex: 3; /* Kolom kiri lebih besar */
+            flex: 3; /<em> Kolom kiri lebih besar </em>/
             display: flex;
             flex-direction: column;
             min-width: 0;
@@ -174,7 +174,7 @@
             word-break: break-all;
             line-height: 1.5;
             flex-grow: 1;
-            overflow-x: auto; /* Scroll jika URL terlalu panjang */
+            overflow-x: auto; /<em> Scroll jika URL terlalu panjang </em>/
         }
         figcaption:empty::before {
             content: "Pilih gambar dari galeri...";
@@ -212,9 +212,9 @@
             border-radius: 6px;
         }
         .action-btn:hover { background-color: #27ae60; }
-        /* --- 2. Kolom Galeri Album --- */
+        /<em> --- 2. Kolom Galeri Album --- </em>/
         .album-grid-wrapper {
-            flex: 1; /* Kolom kanan lebih kecil */
+            flex: 1; /<em> Kolom kanan lebih kecil </em>/
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -269,7 +269,7 @@
             background: #f9f9f9;
             color: #555;
         }
-        /* --- Responsif (Mobile) --- */
+        /<em> --- Responsif (Mobile) --- </em>/
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -371,7 +371,7 @@
                 // 1. Ambil file JSON
                 const related-articles-grid = await fetch(url, { cache: 'no-store' }); // Jangan cache list
                 if (!related-articles-grid.ok) {
-                    throw new Error(`Gagal mengambil data: ${related-articles-grid.statusText}`);
+                    throw new Error(<code>Gagal mengambil data: ${related-articles-grid.statusText}</code>);
                 }
                 // 2. Parse JSON
                 const imagePaths = await related-articles-grid.json();
@@ -404,7 +404,7 @@
                     imageCaption.textContent = 'Tidak ada gambar yang ditemukan dalam file JSON.';
                 }
             } catch (err) {
-                alert(`Error: ${err.message}. Pastikan URL benar dan file JSON valid.`);
+                alert(<code>Error: ${err.message}. Pastikan URL benar dan file JSON valid.</code>);
                 console.error(err);
                 welcomeMessage.style.display = 'block'; // Tampilkan lagi pesan
                 viewerArea.style.display = 'none';
@@ -420,10 +420,10 @@
             const thumbDiv = document.createElement('div');
             thumbDiv.className = 'thumbnail';
             thumbDiv.dataset.index = index;
-            thumbDiv.innerHTML = `
+            thumbDiv.innerHTML = <code>
                 <img src="${imgData.fullUrl}" alt="${imgData.name}" loading="lazy">
                 <p title="${imgData.path}">${imgData.name}</p>
-            `;
+            </code>;
             thumbDiv.addEventListener('click', () => {
                 displayImage(index);
             });
@@ -443,7 +443,7 @@
             showRemoteAction(imgData.fullUrl);
             // Beri highlight pada thumbnail yang aktif
             document.querySelectorAll('.thumbnail.active').forEach(th => th.classList.remove('active'));
-            document.querySelector(`.thumbnail[data-index="${index}"]`).classList.add('active');
+            document.querySelector(<code>.thumbnail[data-index="${index}"]</code>).classList.add('active');
         }
         /**
          * Membersihkan data album sebelumnya

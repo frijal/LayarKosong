@@ -95,7 +95,7 @@
                 Memotong Gambar secara Horizontal (Slicing)
             </h2>
             <p class="text-gray-600 mb-6">
-                Perintah ini menggunakan opsi `-crop` dengan penanda `@` untuk memotong gambar menjadi <strong>N bagian yang sama rata</strong> dari atas ke bawah.
+                Perintah ini menggunakan opsi <code>-crop</code> dengan penanda <code>@</code> untuk memotong gambar menjadi <strong>N bagian yang sama rata</strong> dari atas ke bawah.
             </p>
             <h3 class="font-semibold mb-2 text-gray-700">Visualisasi (Potong jadi 2)</h3>
             <div class="diagram-box mb-6 rounded-md flex space-x-2">
@@ -114,7 +114,7 @@
             <h3 class="font-semibold mb-2 text-gray-700">Penjelasan Parameter</h3>
             <ul class="list-disc list-inside text-gray-600 space-y-2">
                 <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">N</code>: Ganti dengan jumlah potongan horizontal yang Anda inginkan (e.g., 2 untuk memotong jadi dua bagian atas/bawah).</li>
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop 1xN@</code>: Membagi gambar menjadi 1 baris dan N kolom. Penanda `@` (chop/slice) penting untuk pembagian rata.</li>
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop 1xN@</code>: Membagi gambar menjadi 1 baris dan N kolom. Penanda <code>@</code> (chop/slice) penting untuk pembagian rata.</li>
                 <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">+repage</code>: Menghapus informasi kanvas virtual sehingga file hasil memiliki dimensi yang tepat.</li>
             </ul>
         </div>
@@ -144,7 +144,7 @@
             <h3 class="font-semibold mb-2 text-gray-700">Penjelasan Parameter</h3>
             <ul class="list-disc list-inside text-gray-600 space-y-2">
                 <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">N</code>: Ganti dengan jumlah potongan vertikal yang Anda inginkan (e.g., 2 untuk memotong jadi dua bagian kiri/kanan).</li>
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop Nx1@</code>: Membagi gambar menjadi **N kolom** dan 1 baris.</li>
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop Nx1@</code>: Membagi gambar menjadi <strong>N kolom</strong> dan 1 baris.</li>
                 <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">+repage</code>: Memastikan file hasil memiliki dimensi yang tepat.</li>
             </ul>
         </div>
@@ -171,7 +171,7 @@
                     const clone = template.content.cloneNode(true);
                     contentDisplay.appendChild(clone);
                 }
-                const activeLink = document.querySelector(`a[href="${hash}"]`);
+                const activeLink = document.querySelector(<code>a[href="${hash}"]</code>);
                 if (activeLink) {
                     activeLink.classList.add("active-nav");
                 }

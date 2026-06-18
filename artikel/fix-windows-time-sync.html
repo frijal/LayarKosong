@@ -66,7 +66,7 @@
             transition: background 0.2s, color 0.2s;
             padding: 2rem 1rem;
         }
-        /* Light mode (default) */
+        /<em> Light mode (default) </em>/
         body {
             background-color: #f8fafc;
             color: #0f172a;
@@ -76,7 +76,7 @@
             margin: 0 auto;
             background: inherit;
         }
-        /* card / article styling */
+        /<em> card / article styling </em>/
         .article-card {
             background: #ffffff;
             border-radius: 28px;
@@ -85,7 +85,7 @@
             padding: 2rem 1.8rem;
             transition: background 0.2s, box-shadow 0.2s;
         }
-        /* Typography & spacing */
+        /<em> Typography & spacing </em>/
         h1 {
             font-size: 1.9rem;
             font-weight: 800;
@@ -133,7 +133,7 @@
             max-height: 380px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        /* Step styling */
+        /<em> Step styling </em>/
         .step-box {
             background: #f1f5f9;
             padding: 1.2rem 1.5rem;
@@ -210,7 +210,7 @@
             height: 1px;
             background: linear-gradient(90deg, #cbd5e0, transparent);
         }
-        /* related grid + response */
+        /<em> related grid + response </em>/
         #related-articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -249,7 +249,7 @@
             font-size: 0.85rem;
             color: #475569;
         }
-        /* Dark mode */
+        /<em> Dark mode </em>/
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #0f172a;
@@ -327,7 +327,7 @@
             background: none;
         }
         .no-hero {
-            /* no hero banner */
+            /<em> no hero banner </em>/
         }
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
@@ -345,75 +345,75 @@
             <span><i class="fa-solid fa-sync-alt"></i> Diperbarui: Maret 2026</span>
         </div>
         <p>Pernahkah jam di laptop atau PC kamu tiba-tiba meleset beberapa menit, bahkan hingga hitungan jam? Atau saat mencoba <strong>sinkronisasi waktu</strong> di pengaturan, muncul error "Time synchronization failed"? Jangan panik! 🧘♂️ Masalah ini lebih sering terjadi daripada yang dibayangkan, dan kabar baiknya: hampir selalu bisa diperbaiki tanpa harus bawa ke tukang servis.</p>
-        <p>Waktu sistem yang salah bisa mengacaukan banyak hal: **sertifikat keamanan website jadi error**, akun Microsoft susah login, update Windows gagal, bahkan jadwal backup atau task otomatis berantakan. Di artikel ini, kita akan bahas **tuntas dari akar masalah** – mulai dari cek zona waktu, memastikan **Windows Time service** berjalan, hingga mengatur ulang **NTP server** biar jam komputer kembali akurat.</p>
+        <p>Waktu sistem yang salah bisa mengacaukan banyak hal: <strong>sertifikat keamanan website jadi error</strong>, akun Microsoft susah login, update Windows gagal, bahkan jadwal backup atau task otomatis berantakan. Di artikel ini, kita akan bahas <strong>tuntas dari akar masalah</strong> – mulai dari cek zona waktu, memastikan <strong>Windows Time service</strong> berjalan, hingga mengatur ulang <strong>NTP server</strong> biar jam komputer kembali akurat.</p>
         <!-- PREREQUISITE -->
         <div class="note">
             <i class="fa-solid fa-check-circle"></i> <strong>📋 Prasyarat:</strong> Pastikan PC terhubung internet, kamu punya hak administrator, zona waktu sudah benar, serta pakai Windows 10 atau 11. (Tampilan antarmuka sedikit berbeda antar versi, tapi opsi intinya mirip).
         </div>
         <h2>🔍 Mengapa Jam Windows Bisa Salah? (5W+1H)</h2>
-        <p>Secara default, Windows menyinkronkan waktu melalui internet dengan server NTP (Network Time Protocol). Namun layanan **Windows Time** bisa mati, server default `time.windows.com` kadang tidak merespon, atau pengaturan CMOS baterai melemah. Belum lagi jika PC tergabung dalam domain kantor – maka sinkronisasi dikontrol server perusahaan. Pahami dulu akar masalah biar solusi tepat sasaran!</p>
+        <p>Secara default, Windows menyinkronkan waktu melalui internet dengan server NTP (Network Time Protocol). Namun layanan <strong>Windows Time</strong> bisa mati, server default <code>time.windows.com</code> kadang tidak merespon, atau pengaturan CMOS baterai melemah. Belum lagi jika PC tergabung dalam domain kantor – maka sinkronisasi dikontrol server perusahaan. Pahami dulu akar masalah biar solusi tepat sasaran!</p>
         <!-- STEP 1 -->
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-globe-asia"></i> Langkah 1: Periksa Zona Waktu &amp; Pengaturan Dasar</div>
-            <p>Sebelum ambil pusing, pastikan zona waktu sudah sesuai. Tekan **Windows + I** untuk buka **Settings** → *Time &amp; Language* → *Date &amp; time*. Di Windows 11, masuk ke *Time &amp; language &gt; Date &amp; time*. Aktifkan opsi **Set time automatically** dan **Set time zone automatically** jika tersedia. Pastikan zona waktu yang muncul sesuai daerahmu. Jika deteksi otomatis salah, nonaktifkan lalu pilih zona waktu secara manual.</p>
-            <p><i class="fa-solid fa-lightbulb"></i> *Tip: Zona waktu yang salah bisa membuat jam tampak meleset meskipun sinkronisasi internet berhasil.*</p>
+            <p>Sebelum ambil pusing, pastikan zona waktu sudah sesuai. Tekan <strong>Windows + I</strong> untuk buka <strong>Settings</strong> → <em>Time &amp; Language</em> → <em>Date &amp; time</em>. Di Windows 11, masuk ke <em>Time &amp; language &gt; Date &amp; time</em>. Aktifkan opsi <strong>Set time automatically</strong> dan <strong>Set time zone automatically</strong> jika tersedia. Pastikan zona waktu yang muncul sesuai daerahmu. Jika deteksi otomatis salah, nonaktifkan lalu pilih zona waktu secara manual.</p>
+            <p><i class="fa-solid fa-lightbulb"></i> <em>Tip: Zona waktu yang salah bisa membuat jam tampak meleset meskipun sinkronisasi internet berhasil.</em></p>
         </div>
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-hand-pointer"></i> Langkah 2: Sinkronisasi Manual Lewat Settings</div>
-            <p>Di halaman *Date &amp; time* yang sama, scroll ke bawah hingga menemukan **Additional settings** atau *Synchronize your clock*. Klik tombol **Sync now**. Jika berhasil, akan muncul keterangan waktu sinkron terakhir. Kalau gagal (muncul error), lanjut ke langkah berikutnya.</p>
+            <p>Di halaman <em>Date &amp; time</em> yang sama, scroll ke bawah hingga menemukan <strong>Additional settings</strong> atau <em>Synchronize your clock</em>. Klik tombol <strong>Sync now</strong>. Jika berhasil, akan muncul keterangan waktu sinkron terakhir. Kalau gagal (muncul error), lanjut ke langkah berikutnya.</p>
         </div>
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-cogs"></i> Langkah 3: Pastikan Layanan Windows Time Berjalan</div>
-            <p>Windows punya service bernama **Windows Time** (W32Time) yang bertanggung jawab atas sinkronisasi jam. Tekan **Windows + R**, ketik `services.msc`, lalu *Enter*. Di jendela Services, cari **Windows Time**. Double‑klik, atur *Startup type* menjadi **Automatic** atau **Automatic (Trigger Start)**, dan pastikan *Service status* bertuliskan **Running**. Jika tidak, klik **Start**. Bila perlu, klik **Stop** lalu **Start** lagi untuk me-restart service.</p>
+            <p>Windows punya service bernama <strong>Windows Time</strong> (W32Time) yang bertanggung jawab atas sinkronisasi jam. Tekan <strong>Windows + R</strong>, ketik <code>services.msc</code>, lalu <em>Enter</em>. Di jendela Services, cari <strong>Windows Time</strong>. Double‑klik, atur <em>Startup type</em> menjadi <strong>Automatic</strong> atau <strong>Automatic (Trigger Start)</strong>, dan pastikan <em>Service status</em> bertuliskan <strong>Running</strong>. Jika tidak, klik <strong>Start</strong>. Bila perlu, klik <strong>Stop</strong> lalu <strong>Start</strong> lagi untuk me-restart service.</p>
             <div class="warning"><i class="fa-solid fa-exclamation-triangle"></i> Peringatan: Jika layanan Windows Time dinonaktifkan, tombol Sync di Settings tidak akan berfungsi optimal.</div>
         </div>
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-terminal"></i> Langkah 4: Paksa Sinkronisasi Ulang via Command Prompt (Admin)</div>
-            <p>Jika langkah sebelumnya belum mempan, kita panggil kekuatan command line. Buka **Command Prompt sebagai Administrator** (klik kanan Start → *Terminal Admin* atau *Command Prompt Admin*). Jalankan perintah ini satu per satu:</p>
+            <p>Jika langkah sebelumnya belum mempan, kita panggil kekuatan command line. Buka <strong>Command Prompt sebagai Administrator</strong> (klik kanan Start → <em>Terminal Admin</em> atau <em>Command Prompt Admin</em>). Jalankan perintah ini satu per satu:</p>
             <pre><code>net stop w32time
 w32tm /unregister
 w32tm /register
 net start w32time
 w32tm /resync</code></pre>
-            <p>Setelah perintah terakhir, jika muncul pesan `The command completed successfully.` artinya sync berhasil. Jika gagal, jangan khawatir – lanjut ke step berikutnya untuk mengganti server NTP.</p>
+            <p>Setelah perintah terakhir, jika muncul pesan <code>The command completed successfully.</code> artinya sync berhasil. Jika gagal, jangan khawatir – lanjut ke step berikutnya untuk mengganti server NTP.</p>
         </div>
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-network-wired"></i> Langkah 5: Konfigurasi Server NTP yang Andal</div>
-            <p>Kadang server default `time.windows.com` sedang sibuk atau tidak stabil. Kita bisa mengganti ke server publik seperti **pool.ntp.org**.</p>
-            <p><strong>Opsi A (via Control Panel):</strong> Tekan `Windows + R`, ketik `control`, buka *Clock and Region &gt; Date and Time* → tab *Internet Time* → *Change settings*. Centang *Synchronize with an Internet time server*, lalu isi Server: `time.windows.com` atau `pool.ntp.org`, klik *Update now* → OK.</p>
+            <p>Kadang server default <code>time.windows.com</code> sedang sibuk atau tidak stabil. Kita bisa mengganti ke server publik seperti <strong>pool.ntp.org</strong>.</p>
+            <p><strong>Opsi A (via Control Panel):</strong> Tekan <code>Windows + R</code>, ketik <code>control</code>, buka <em>Clock and Region &gt; Date and Time</em> → tab <em>Internet Time</em> → <em>Change settings</em>. Centang <em>Synchronize with an Internet time server</em>, lalu isi Server: <code>time.windows.com</code> atau <code>pool.ntp.org</code>, klik <em>Update now</em> → OK.</p>
             <p><strong>Opsi B (Command Prompt - lebih kuat):</strong> Jalankan sebagai admin:</p>
             <pre><code>w32tm /config /manualpeerlist:"time.windows.com,0x8 pool.ntp.org,0x8" /syncfromflags:manual /update
 net stop w32time
 net start w32time
 w32tm /resync</code></pre>
-            <div class="tip"><i class="fa-solid fa-info-circle"></i> *Catatan: `pool.ntp.org` adalah kumpulan server NTP publik yang sangat andal dan sering dipakai jika server default bermasalah.*</div>
+            <div class="tip"><i class="fa-solid fa-info-circle"></i> <em>Catatan: <code>pool.ntp.org</code> adalah kumpulan server NTP publik yang sangat andal dan sering dipakai jika server default bermasalah.</em></div>
         </div>
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-building"></i> Langkah 6: Periksa Apakah PC Tergabung Domain Kantor</div>
-            <p>Jika laptop/PC adalah perangkat kantor atau sekolah yang terhubung ke **domain**, kebijakan waktu biasanya diatur oleh server pusat (Domain Controller). Kamu tidak bisa mengubahnya secara manual. Cek dengan masuk ke Settings → *System → About*, lihat bagian *Domain* atau *Workgroup*. Jika tertulis domain, sebaiknya hubungi tim IT sebelum mengubah pengaturan waktu.</p>
+            <p>Jika laptop/PC adalah perangkat kantor atau sekolah yang terhubung ke <strong>domain</strong>, kebijakan waktu biasanya diatur oleh server pusat (Domain Controller). Kamu tidak bisa mengubahnya secara manual. Cek dengan masuk ke Settings → <em>System → About</em>, lihat bagian <em>Domain</em> atau <em>Workgroup</em>. Jika tertulis domain, sebaiknya hubungi tim IT sebelum mengubah pengaturan waktu.</p>
         </div>
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-chart-simple"></i> Langkah 7: Verifikasi Status Sinkronisasi</div>
             <p>Setelah semua perubahan, pastikan semuanya berfungsi. Buka Command Prompt (admin) dan ketik:</p>
             <pre><code>w32tm /query /status</code></pre>
-            <p>Perhatikan baris **Source** (harusnya menunjuk NTP server seperti `time.windows.com,0x8`) dan **Last Successful Sync Time** (waktu terakhir sinkron). Jika masih belum berubah, coba jalankan ulang `w32tm /resync` atau restart PC.</p>
+            <p>Perhatikan baris <strong>Source</strong> (harusnya menunjuk NTP server seperti <code>time.windows.com,0x8</code>) dan <strong>Last Successful Sync Time</strong> (waktu terakhir sinkron). Jika masih belum berubah, coba jalankan ulang <code>w32tm /resync</code> atau restart PC.</p>
         </div>
         <div class="step-box">
             <div class="step-title"><i class="fa-solid fa-power-off"></i> Langkah 8: Restart Komputer &amp; Uji Coba</div>
-            <p>Beberapa perubahan baru akan efektif setelah reboot. Simpan pekerjaan, lalu restart PC. Setelah masuk kembali ke Windows, buka Settings &gt; Date &amp; time, lalu klik **Sync now** untuk memastikan jam tetap akurat. Dalam beberapa menit, Windows akan terus menyinkron secara periodik.</p>
+            <p>Beberapa perubahan baru akan efektif setelah reboot. Simpan pekerjaan, lalu restart PC. Setelah masuk kembali ke Windows, buka Settings &gt; Date &amp; time, lalu klik <strong>Sync now</strong> untuk memastikan jam tetap akurat. Dalam beberapa menit, Windows akan terus menyinkron secara periodik.</p>
         </div>
         <h2>🛠️ Jika Sinkronisasi Masih Gagal? Cek Daftar Ini</h2>
         <div class="tip"><i class="fa-solid fa-wifi"></i> <strong>Koneksi internet stabil?</strong> Pastikan tidak sedang pakai VPN/proxy yang memblokir NTP (port 123 UDP). Coba matikan sementara firewall atau antivirus pihak ketiga untuk uji coba.</div>
         <div class="tip"><i class="fa-solid fa-microchip"></i> <strong>CMOS Battery lemah?</strong> Jika jam selalu meleset setiap kali komputer dimatikan total (tanpa listrik), kemungkinan baterai CMOS di motherboard sudah habis. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Ganti baterai CMOS bisa jadi solusi permanen.</div>
         <div class="warning"><i class="fa-solid fa-user-lock"></i> Tombol Sync abu-abu atau hilang? Bisa karena kebijakan grup atau akun bukan administrator. Coba langkah via Command Prompt saja, atau minta bantuan admin perangkat.</div>
         <h2>✨ Kesimpulan &amp; Intisari</h2>
-        <p>Masalah waktu di Windows 10/11 sebenarnya mudah diatasi jika tahu jalurnya. Mulai dari pengecekan zona waktu, restart layanan Windows Time, hingga mengganti server NTP menjadi `pool.ntp.org`. Dengan jam yang akurat, pengalaman browsing, login aplikasi, dan keamanan sistem akan jauh lebih lancar. Jangan sampai masalah sepele ini mengganggu produktivitasmu.</p>
+        <p>Masalah waktu di Windows 10/11 sebenarnya mudah diatasi jika tahu jalurnya. Mulai dari pengecekan zona waktu, restart layanan Windows Time, hingga mengganti server NTP menjadi <code>pool.ntp.org</code>. Dengan jam yang akurat, pengalaman browsing, login aplikasi, dan keamanan sistem akan jauh lebih lancar. Jangan sampai masalah sepele ini mengganggu produktivitasmu.</p>
         <div class="note">
             <i class="fa-solid fa-key"></i> <strong>Takeaways Penting:</strong><br>
             ✔ Waktu sistem yang salah bisa memicu error sertifikat, gagal update, dan masalah login.<br>
             ✔ Layanan Windows Time perlu berjalan (Startup type: Automatic). Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.<br>
-            ✔ Gunakan perintah `w32tm /resync` untuk memaksa sinkron ulang.<br>
-            ✔ Server NTP alternatif (`pool.ntp.org`) sering lebih responsif.<br>
+            ✔ Gunakan perintah <code>w32tm /resync</code> untuk memaksa sinkron ulang.<br>
+            ✔ Server NTP alternatif (<code>pool.ntp.org</code>) sering lebih responsif.<br>
             ✔ Jika jam kacau setiap shutdown, kemungkinan baterai CMOS lemah.
         </div>
         <hr>

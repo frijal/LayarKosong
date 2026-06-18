@@ -49,8 +49,8 @@
   <!-- Twitter Card -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* CSS Reset & Variables */
-        *, *::before, *::after {
+        /<em> CSS Reset & Variables </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -60,7 +60,7 @@
             --text-main: #2c3e50;
             --card-bg: #ffffff;
             --border-color: #dcdde1;
-            /* Status Colors */
+            /<em> Status Colors </em>/
             --color-mahram: #27ae60;
             --color-mahram-light: #e8f8f5;
             --color-bukan-mahram: #c0392b;
@@ -69,7 +69,7 @@
             --color-sesama-light: #ebf5fb;
             --color-default: #7f8c8d;
         }
-        /* Dark Mode Theme */
+        /<em> Dark Mode Theme </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #121212;
@@ -94,7 +94,7 @@
         }
         .container {
             max-width: 1000px;
-            /* Gunakan width: 100% agar container selalu berusaha memenuhi lebar hingga mencapai batas max-width */
+            /<em> Gunakan width: 100% agar container selalu berusaha memenuhi lebar hingga mencapai batas max-width </em>/
             width: 100%;
             /* Atur margin untuk memposisikan container ke tengah. margin-top/bottom dihilangkan atau diatur sesuai kebutuhan.
                Margin auto di kiri dan kanan akan menengahkan container */
@@ -105,34 +105,34 @@
                Kita bisa gunakan media query untuk menerapkannya hanya di desktop jika mau. */
             border-radius: 0;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            /* Hapus border jika tidak diperlukan agar seamless */
+            /<em> Hapus border jika tidak diperlukan agar seamless </em>/
             border: none;
-            /* Atur min-height agar menutupi seluruh tinggi layar jika konten sedikit */
+            /<em> Atur min-height agar menutupi seluruh tinggi layar jika konten sedikit </em>/
             min-height: 100vh;
         }
-        /* Kembalikan border-radius untuk layar yang lebih lebar dari 1000px agar terlihat seperti "halaman kertas" di tengah */
+        /<em> Kembalikan border-radius untuk layar yang lebih lebar dari 1000px agar terlihat seperti "halaman kertas" di tengah </em>/
         @media (min-width: 1024px) {
             body {
-                padding: 20px; /* Tambahkan sedikit ruang di sekitar container pada layar lebar */
+                padding: 20px; /<em> Tambahkan sedikit ruang di sekitar container pada layar lebar </em>/
             }
             .container {
                 border-radius: 12px;
                 border: 1px solid var(--border-color);
-                min-height: auto; /* Hilangkan min-height karena ada padding body */
+                min-height: auto; /<em> Hilangkan min-height karena ada padding body </em>/
             }
         }
         h1 {
             text-align: center;
             margin-bottom: 10px;
             font-size: 2rem;
-            margin-top: 20px; /* Tambahan spasi atas jika di mobile */
+            margin-top: 20px; /<em> Tambahan spasi atas jika di mobile </em>/
         }
         p.subtitle {
             text-align: center;
             margin-bottom: 30px;
             color: var(--color-default);
         }
-        /* Dropdown Group Styling */
+        /<em> Dropdown Group Styling </em>/
         .input-group {
             display: flex;
             gap: 20px;
@@ -168,7 +168,7 @@
             outline: none;
             border-color: var(--color-sesama);
         }
-        /* Result Boxes Styling */
+        /<em> Result Boxes Styling </em>/
         #result-container {
             display: flex;
             flex-direction: column;
@@ -203,7 +203,7 @@
             font-size: 1.1rem;
             font-weight: 500;
         }
-        /* Box Status Themes */
+        /<em> Box Status Themes </em>/
         .theme-mahram {
             background-color: var(--color-mahram-light);
             border-color: var(--color-mahram);
@@ -222,7 +222,7 @@
         .result-box i {
             margin-right: 10px;
         }
-        /* Infographic & Content Section Styling */
+        /<em> Infographic & Content Section Styling </em>/
         .content-section {
             margin-top: 60px;
             padding-top: 40px;
@@ -276,7 +276,7 @@
             margin: 15px 0;
             font-size: 0.95rem;
         }
-        /* Table Styling */
+        /<em> Table Styling </em>/
         .table-responsive {
             overflow-x: auto;
             margin: 25px 0;
@@ -301,7 +301,7 @@
         .aurat-table tr:last-child td {
             border-bottom: none;
         }
-        /* Responsive */
+        /<em> Responsive </em>/
         @media (max-width: 600px) {
             .input-group {
                 flex-direction: column;
@@ -568,20 +568,20 @@
                 boxNikah.classList.add(themeClass);
                 boxAurat.classList.add(themeClass);
                 // Inject content with FontAwesome icons
-                textStatus.innerHTML = `<i class="fa-solid ${result.icon}"></i> ${result.status}`;
+                textStatus.innerHTML = <code><i class="fa-solid ${result.icon}"></i> ${result.status}</code>;
                 // Set Nikah text
                 if(result.status === "Sesama Gender") {
-                     textNikah.innerHTML = `<i class="fa-solid fa-ban"></i> ${result.nikah}`;
+                     textNikah.innerHTML = <code><i class="fa-solid fa-ban"></i> ${result.nikah}</code>;
                 } else if (result.status === "MAHRAM") {
-                     textNikah.innerHTML = `<i class="fa-solid fa-xmark"></i> ${result.nikah}`;
+                     textNikah.innerHTML = <code><i class="fa-solid fa-xmark"></i> ${result.nikah}</code>;
                 } else {
-                     textNikah.innerHTML = `<i class="fa-solid fa-ring"></i> ${result.nikah}`;
+                     textNikah.innerHTML = <code><i class="fa-solid fa-ring"></i> ${result.nikah}</code>;
                 }
                 // Set Aurat text
                 if (result.status === "BUKAN MAHRAM") {
-                    textAurat.innerHTML = `<i class="fa-solid fa-shield-halved"></i> ${result.aurat}`;
+                    textAurat.innerHTML = <code><i class="fa-solid fa-shield-halved"></i> ${result.aurat}</code>;
                 } else {
-                    textAurat.innerHTML = `<i class="fa-solid fa-handshake-angle"></i> ${result.aurat}`;
+                    textAurat.innerHTML = <code><i class="fa-solid fa-handshake-angle"></i> ${result.aurat}</code>;
                 }
                 // Show the container smoothly
                 resultContainer.classList.add('show');

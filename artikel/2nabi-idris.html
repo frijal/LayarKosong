@@ -53,12 +53,12 @@
       --ink: #17202a;
       --muted: #5b6b7c;
       --line: #e4e9ef;
-      --bandA: #0ea5e9;    /* sky */
-      --bandB: #6366f1;    /* indigo */
+      --bandA: #0ea5e9;    /<em> sky </em>/
+      --bandB: #6366f1;    /<em> indigo </em>/
       --brand: #0ea5e9;
-      --accent: #22c55e;  /* green */
-      --warn: #ef4444;    /* red */
-      --ok: #16a34a;      /* green */
+      --accent: #22c55e;  /<em> green </em>/
+      --warn: #ef4444;    /<em> red </em>/
+      --ok: #16a34a;      /<em> green </em>/
       --maxw: 820px;
       --lh: 1.78;
     }
@@ -75,7 +75,7 @@
     }
     a { color: var(--brand); text-decoration: none }
     a:hover { text-decoration: underline }
-    /* Subtle dotted backdrop for content area */
+    /<em> Subtle dotted backdrop for content area </em>/
     .dots {
       background-image: radial-gradient(#e7edf4 1px, transparent 1px);
       background-size: 16px 16px;
@@ -83,13 +83,13 @@
       border-radius: 24px;
       padding: clamp(12px, 2vw, 18px);
     }
-    /* Container */
+    /<em> Container </em>/
     main {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 30px clamp(16px, 5vw, 36px) 100px;
     }
-    /* Title band */
+    /<em> Title band </em>/
     .title {
       position: relative;
       border-radius: 22px;
@@ -116,7 +116,7 @@
       color: var(--muted);
       font-size: clamp(15px, 2.6vw, 18px);
     }
-    /* Chips row */
+    /<em> Chips row </em>/
     .chips {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 10px;
@@ -128,7 +128,7 @@
       font-size: 13px;
     }
     .chip svg { width: 16px; height: 16px }
-    /* Card blocks */
+    /<em> Card blocks </em>/
     .block {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -151,11 +151,11 @@
       border-radius: 8px;
       font-style: italic;
     }
-    /* Images */
+    /<em> Images </em>/
     img { max-width: 100%; height: auto; border-radius: 14px }
     figure { margin: 0 }
     figcaption { color: var(--muted); font-size: 13px; margin-top: 8px }
-    /* Gallery */
+    /<em> Gallery </em>/
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -176,7 +176,7 @@
       font-size: 13px;
     }
     .zoomable { cursor: zoom-in }
-    /* Lightbox */
+    /<em> Lightbox </em>/
     .lightbox {
       position: fixed; inset: 0; z-index: 50;
       display: none; align-items: center; justify-content: center;
@@ -208,7 +208,7 @@
       color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    /* Share strip */
+    /<em> Share strip </em>/
     .share-strip {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -221,7 +221,7 @@
     }
     .share-btn svg { width: 18px; height: 18px }
     .copy-ok { color: var(--ok) }
-    /* Accessibility & motion preferences */
+    /<em> Accessibility & motion preferences </em>/
     :focus-visible { outline: 2px solid rgba(14,165,233,0.45); outline-offset: 2px }
     @media (min-width: 1100px) {
       :root { --maxw: 900px }
@@ -337,7 +337,7 @@
   </div>
   <script>
     (function() {
-      const safe = (f) => { try { f(); } catch (e) { /* lanjut */ } };
+      const safe = (f) => { try { f(); } catch (e) { /<em> lanjut </em>/ } };
       // Canonical & OG/Twitter url/image meta auto + fallback artikel/*.jpg
       safe(() => {
         const newUrl = "https://dalam.web.id/artikel/2nabi-idris.html"; // Hardcode new URL
@@ -370,7 +370,7 @@
         const words = text.trim().split(/\s+/).length;
         const min = Math.max(3, Math.round(words / 200));
         const el = document.querySelector('#read-time span');
-        if (el) el.textContent = `Waktu baca: ~${min} menit`;
+        if (el) el.textContent = <code>Waktu baca: ~${min} menit</code>;
       });
       // Lightbox gallery with arrow keys (include hero image + gallery)
       safe(() => {
@@ -386,7 +386,7 @@
           idx = i;
           lbImg.src = items[idx].src;
           lb.classList.add('open');
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
           document.body.style.overflow = 'hidden';
         };
         const closeLb = () => {
@@ -397,7 +397,7 @@
         const step = (d) => {
           idx = (idx + d + items.length) % items.length;
           lbImg.src = items[idx].src;
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
         };
         document.querySelectorAll('.zoomable').forEach((fig, i) => {
           fig.addEventListener('click', () => openAt(i));

@@ -167,7 +167,7 @@ body.dark .note {
   background: #2e7d32;
   color: #fff;
 }
-/* Tabel ringkasan */
+/<em> Tabel ringkasan </em>/
 table {
   width: 100%;
   border-collapse: collapse;
@@ -331,26 +331,26 @@ function downloadFile(filename, content) {
   link.click();
 }
 // Skrip isi per distro
-const debianScript = `#!/bin/bash
+const debianScript = <code>#!/bin/bash
 sudo apt install -y netselect-apt
-sudo netselect-apt stable`;
-const archScript = `#!/bin/bash
+sudo netselect-apt stable</code>;
+const archScript = <code>#!/bin/bash
 sudo pacman -S reflector --noconfirm
-sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist`;
-const fedoraScript = `#!/bin/bash
+sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist</code>;
+const fedoraScript = <code>#!/bin/bash
 sudo dnf install -y dnf-plugins-core
-echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf`;
-const opensuseScript = `#!/bin/bash
+echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf</code>;
+const opensuseScript = <code>#!/bin/bash
 sudo zypper mr -da
-sudo zypper ar -f https://download.opensuse.org/distribution/leap/15.5/repo/oss/ repo-oss`;
-const slackwareScript = `#!/bin/bash
+sudo zypper ar -f https://download.opensuse.org/distribution/leap/15.5/repo/oss/ repo-oss</code>;
+const slackwareScript = <code>#!/bin/bash
 sudo nano /etc/slackpkg/mirrors
 # Pilih mirror terdekat, lalu jalankan:
 sudo slackpkg update gpg
-sudo slackpkg update`;
-const nixosScript = `#!/bin/bash
+sudo slackpkg update</code>;
+const nixosScript = <code>#!/bin/bash
 echo 'substituters = https://cache.nixos.org https://mirror.example.org' | sudo tee -a /etc/nix/nix.conf
-sudo systemctl restart nix-daemon`;
+sudo systemctl restart nix-daemon</code>;
   </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>

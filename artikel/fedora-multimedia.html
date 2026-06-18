@@ -64,7 +64,7 @@
             --border-color: #d1d5db;
             --meta-color: #6b7280;
         }
-        /* Preferensi Tema Sistem Tanpa JavaScript */
+        /<em> Preferensi Tema Sistem Tanpa JavaScript </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #111827;
@@ -87,7 +87,7 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /* Layout max-width 1000px, center di desktop */
+        /<em> Layout max-width 1000px, center di desktop </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -112,14 +112,14 @@
         a:hover {
             text-decoration: underline;
         }
-        /* Aturan Gambar: Mencegah CLS dengan menetapkan display, width 100%, dan height auto */
+        /<em> Aturan Gambar: Mencegah CLS dengan menetapkan display, width 100%, dan height auto </em>/
         img {
             max-width: 100%;
             height: auto;
             display: block;
             border-radius: 8px;
             margin: 1.5rem 0;
-            background-color: var(--border-color); /* Placeholder saat loading */
+            background-color: var(--border-color); /<em> Placeholder saat loading </em>/
         }
         .author-meta {
             display: flex;
@@ -148,7 +148,7 @@
             font-style: italic;
             color: var(--meta-color);
         }
-        /* Media Query untuk Desktop (Penyesuaian Font) */
+        /<em> Media Query untuk Desktop (Penyesuaian Font) </em>/
         @media (min-width: 600px) {
             body { font-size: 18px; }
             h1 { font-size: 2.25rem; }
@@ -184,7 +184,7 @@
 sudo dnf groupupdate sound-and-video</code></pre>
                 <h3>Alternatif: Instalasi Secara Individual</h3>
                 <p>Jika Anda tipikal pengguna Linux yang lebih suka meracik sistem seminimalis mungkin dan ingin menginstal paket secara individual tanpa <em>bloatware</em>, Anda dapat menggunakan deretan perintah berikut:</p>
-<pre><code>sudo dnf install gstreamer1-plugins-{bad-*,good-*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+<pre><code>sudo dnf install gstreamer1-plugins-{bad-<em>,good-</em>,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
 sudo dnf install lame* --exclude=lame-devel
 sudo dnf group upgrade --with-optional Multimedia</code></pre>
                 <blockquote>

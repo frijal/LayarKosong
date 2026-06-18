@@ -53,8 +53,8 @@
             --fg:#f7f2ff;
             --muted:#cbbef5;
             --soft:#e9ddff;
-            --brand:#8b5cf6; /* violet */
-            --brand2:#f59e0b; /* amber */
+            --brand:#8b5cf6; /<em> violet </em>/
+            --brand2:#f59e0b; /<em> amber </em>/
             --ok:#10b981;
             --bad:#ef4444;
             --card: rgba(255,255,255,.06);
@@ -99,7 +99,7 @@
             background: linear-gradient(90deg, rgba(139,92,246,.14), rgba(245,158,11,.14));
             color:#fff;
         }
-        /* layout */
+        /<em> layout </em>/
         .grid{
             display:grid; grid-template-columns: 1.4fr .8fr; gap:24px;
         }
@@ -119,7 +119,7 @@
         .card .head h2{ margin:0; font-size:20px; letter-spacing:-.2px }
         .card .body{ padding:18px }
         .card .body p { margin: 0 0 12px }
-        /* comparison table */
+        /<em> comparison table </em>/
         .table{ width:100%; border-collapse: collapse; border:1px solid var(--border); border-radius: 12px; overflow: hidden }
         .table thead th{ background: rgba(139,92,246,.18); padding:12px 10px; text-align:left }
         .table td{ padding:12px 10px; vertical-align:top; border-top:1px dashed rgba(255,255,255,.10) }
@@ -127,7 +127,7 @@
         .tag{ display:inline-block; padding:2px 8px; border-radius:8px; font-size:12px; border:1px solid var(--border) }
         .tag.bad{ background: rgba(239,68,68,.15) }
         .tag.ok{ background: rgba(16,185,129,.15) }
-        /* gallery + lightbox */
+        /<em> gallery + lightbox </em>/
         .gallery{ display:grid; gap:12px; grid-template-columns: repeat(3,1fr) }
         @media (max-width:780px){ .gallery{ grid-template-columns: repeat(2,1fr) } }
         @media (max-width:520px){ .gallery{ grid-template-columns: 1fr } }
@@ -146,23 +146,23 @@
         .lightbox figure{ margin:0; max-width:96vw; max-height:88vh; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:#000; box-shadow: var(--shadow) }
         .lightbox img{ display:block; max-width:100%; max-height:88vh; object-fit:contain }
         .lightbox .close{ position:absolute; top:10px; right:10px; padding:6px 10px; border-radius:10px; border:none; cursor:pointer; font-weight:800; background:linear-gradient(90deg, var(--brand), var(--brand2)); color:#190a2b }
-        /* share bar */
+        /<em> share bar </em>/
         .share{ display:flex; gap:10px; flex-wrap:wrap }
         .share a{ display:inline-flex; gap:8px; align-items:center; text-decoration:none; color:#fff; font-weight:800; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.16); transition: transform .15s ease }
         .share a:hover{ transform: translateY(-2px) }
         .fb{ background:#1877F2 } .tw{ background:#1DA1F2 } .x{ background:#0F1419 }
         .wa{ background:#25D366 } .tg{ background:#229ED9 } .ig{ background:#E1306C }
         .th{ background:#000 } .tt{ background:#010101 }
-        /* callouts */
+        /<em> callouts </em>/
         .callout{ padding:12px 14px; border-radius:12px; background: linear-gradient(90deg, rgba(245,158,11,.12), rgba(139,92,246,.12)); border:1px dashed var(--border) }
-        /* code + highlight.js */
+        /<em> code + highlight.js </em>/
         pre code{ border-radius: 12px; display:block }
         .codewrap{ position:relative }
         .copy-btn{
             position:absolute; top:10px; right:10px; padding:6px 10px; border-radius:10px; border:none; cursor:pointer;
             background: linear-gradient(90deg, var(--brand), var(--brand2)); color:#190a2b; font-weight:800; box-shadow: var(--shadow)
         }
-        /* Floating buttons removed */
+        /<em> Floating buttons removed </em>/
     </style>
     <link rel="stylesheet" href="/ext/github-dark-dimmed.min.css">
     <script defer="" src="/ext/highlight.js@11.9.0/lib/common.min.js"></script>

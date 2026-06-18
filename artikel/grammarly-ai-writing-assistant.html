@@ -176,10 +176,10 @@
           <h2>Komunikasi Itu Kunci, Tidak Boleh Salah!</h2>
           <p>
             Dalam bisnis apa pun, komunikasi adalah nomor satu. Cara kita
-            menulis email, proposal, atau bahkan *caption* di media sosial bisa
+            menulis email, proposal, atau bahkan <em>caption</em> di media sosial bisa
             menentukan citra merek kita. Nah, <strong>Grammarly</strong> hadir
             untuk memastikan setiap tulisan kita jelas, profesional, dan
-            tentunya bebas dari salah ketik (*typo*) yang memalukan.
+            tentunya bebas dari salah ketik (<em>typo</em>) yang memalukan.
           </p>
           <p>
             Grammarly bukan hanya memeriksa tata bahasa atau ejaan. Ia juga bisa
@@ -192,7 +192,7 @@
               ibarat guru privat. Sambil menulis, kita jadi belajar cara
               menyampaikan ide dengan lebih efektif. Kemampuan ini penting,
               karena tulisan yang bagus bisa langsung menaikkan citra sebuah
-              bisnis di dunia *online*.
+              bisnis di dunia <em>online</em>.
             </p>
           </div>
           <h2>Contoh Koreksi dari Grammarly</h2>
@@ -226,11 +226,11 @@
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
             // Mengisi galeri dengan gambar
-            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${70 + i}/800/600`);
+            const images = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${70 + i}/800/600</code>);
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = `Contoh antarmuka Grammarly ${index + 1}`;
+                img.alt = <code>Contoh antarmuka Grammarly ${index + 1}</code>;
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });

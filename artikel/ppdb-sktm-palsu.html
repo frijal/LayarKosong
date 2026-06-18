@@ -57,9 +57,9 @@
       --card:#103155;
       --text:#f5f7fb;
       --muted:#c8d2e6;
-      --brand:#06b6d4;   /* cyan */
-      --brand-2:#22c55e; /* green */
-      --accent:#fde047;  /* amber */
+      --brand:#06b6d4;   /<em> cyan </em>/
+      --brand-2:#22c55e; /<em> green </em>/
+      --accent:#fde047;  /<em> amber </em>/
       --shadow:0 22px 60px rgba(0,0,0,.38);
       --radius:16px;
       --gap:18px;
@@ -110,17 +110,17 @@
     h2{margin-top:1.2rem}
     ul,ol{margin:2rem 0 1rem 1.1rem}
     li{margin:25rem 0}
-    /* Info strip */
+    /<em> Info strip </em>/
     .info-strip{display:flex; gap:10px; flex-wrap:wrap; align-items:center; color:var(--muted); font-size:94rem; margin:6rem 0 0}
     .chip{display:inline-flex; align-items:center; gap:5rem; padding:4rem .6rem; border-radius:12px; border:1px solid #2a2f66; background:#121a38}
     .flag{font-size:1.1rem}
-    /* Gallery */
+    /<em> Gallery </em>/
     .gallery{display:grid; gap:10px; grid-template-columns: repeat(12, 1fr); margin-top:6rem}
     .gallery figure{margin:0; position:relative; overflow:hidden; border-radius:12px; background:#0b0e24; border:1px solid #1d2d4b; grid-column: span 12}
     .gallery img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease, filter .35s ease; filter:saturate(1.05) contrast(1.02)}
     .gallery figure:hover img{transform:scale(1.03)}
     .caption{position:absolute; left:8px; bottom:8px; right:8px; background:linear-gradient(180deg, rgba(10,12,28,.0), rgba(10,12,28,.62)); color:#fff; padding:6px 10px; border-radius:8px; font-size:9rem}
-    /* Lightbox */
+    /<em> Lightbox </em>/
     .lightbox{position:fixed; inset:0; background:rgba(5,7,20,.9); display:none; align-items:center; justify-content:center; z-index:1000}
     .lightbox.open{display:flex}
     .lightbox img{max-width:92vw; max-height:86vh; border-radius:14px; box-shadow:0 30px 100px rgba(0,0,0,.6)}
@@ -132,7 +132,7 @@
     .lightbox .close{top:18px; right:18px}
     .lightbox .prev{left:18px; top:50%; transform:translateY(-50%)}
     .lightbox .next{right:18px; top:50%; transform:translateY(-50%)}
-    /* Nav buttons */
+    /<em> Nav buttons </em>/
     .nav-home{position:fixed; z-index:1100}
     .nav-home.left{left:10px; top:30%}
     .nav-home.right{right:10px; bottom:30%}
@@ -144,10 +144,10 @@
     }
     .nav-home svg{width:18px;height:18px}
     footer{padding:2rem 0 4rem; color:var(--muted); text-align:center}
-    /* Video block */
+    /<em> Video block </em>/
     .video-card{overflow:hidden; border-radius:14px; border:1px solid #1d2d4b; background:#0e2139}
     .video-frame{width:100%; aspect-ratio:16/9; border:0; display:block}
-    /* Responsive */
+    /<em> Responsive </em>/
     @media (max-width: 980px){
       .grid{grid-template-columns: 1fr}
     }

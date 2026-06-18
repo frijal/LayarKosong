@@ -60,9 +60,9 @@
       --card:#ffffff;
       --ink:#0a1433;
       --muted:#53607a;
-      --accent:#4f7cff;     /* indigo */
-      --accent2:#12c2e9;    /* cyan */
-      --accent3:#ff9a9e;    /* soft coral */
+      --accent:#4f7cff;     /<em> indigo </em>/
+      --accent2:#12c2e9;    /<em> cyan </em>/
+      --accent3:#ff9a9e;    /<em> soft coral </em>/
       --border:#dde3f5;
       --maxw:920px;
       --shadow:0 10px 40px rgba(25,45,95,.12);
@@ -81,7 +81,7 @@
       line-height:1.75;
     }
     a{color:var(--accent);text-decoration:none}
-    /* Hero with soft glass card */
+    /<em> Hero with soft glass card </em>/
     header.hero{
       position:relative;min-height:46vh;display:grid;place-items:center;overflow:hidden;
       background:
@@ -100,7 +100,7 @@
     }
     .title h1{margin:0 0 .6rem;font-size:clamp(2rem,5vw,3rem)}
     .kicker{margin:5rem auto 0;color:var(--muted);max-width:60ch;font-size:1.03rem}
-    /* Info chips */
+    /<em> Info chips </em>/
     .chips{
       display:grid;grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
       gap:8rem;padding:1rem;background:rgba(255,255,255,.6);
@@ -113,7 +113,7 @@
       font-size:98rem;
     }
     .chip .i{font-size:1.2rem}
-    /* Article single column card */
+    /<em> Article single column card </em>/
     .article{
       width:min(100%, var(--maxw));margin:2rem auto;padding:1.3rem 1.3rem 1.7rem;
       background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);
@@ -129,7 +129,7 @@
     table{width:100%;border-collapse:collapse}
     th,td{padding:7rem .8rem;border-bottom:1px solid #edf1fb}
     th{text-align:left;background:#f6f9ff;color:#233455}
-    /* Gallery */
+    /<em> Gallery </em>/
     .gallery{width:min(100%, var(--maxw));margin:2rem auto;display:grid;grid-template-columns:1fr;gap:95rem}
     .thumb{position:relative;overflow:hidden;cursor:zoom-in;border:1px solid var(--border);border-radius:18px;background:#fafcff}
     .thumb img{
@@ -143,7 +143,7 @@
       background:linear-gradient(180deg, transparent, rgba(0,0,0,.22) 40%, rgba(0,0,0,.45));
       color:#f8fbff;font-size:95rem;text-shadow:0 1px 2px rgba(0,0,0,.35)
     }
-    /* Lightbox */
+    /<em> Lightbox </em>/
     .lightbox{position:fixed;inset:0;display:none;background:rgba(25,45,95,.25);backdrop-filter: blur(6px);z-index:9999}
     .lightbox.open{display:grid;place-items:center}
     .lightbox img{max-width:min(92vw,1400px);max-height:82vh;border-radius:16px;box-shadow:0 28px 98px rgba(25,45,95,.2)}
@@ -156,14 +156,14 @@
     .lb-prev{left:2vw}
     .lb-next{right:2vw}
     .lb-close{top:2vh;right:2vw;transform:none;border-radius:10px}
-    /* Share bar */
+    /<em> Share bar </em>/
     .share{width:min(100%, var(--maxw));margin:1rem auto 2rem;display:flex;flex-wrap:wrap;gap:6rem;align-items:center}
     .btn{
       display:inline-flex;align-items:center;gap:5rem;padding:58rem .9rem;border-radius:12px;
       border:1px solid var(--border);background:#ffffff;color:#0a1433;cursor:pointer;box-shadow:var(--shadow)
     }
     .btn .sicon{font-size:1.15rem}
-    /* Floating buttons */
+    /<em> Floating buttons </em>/
     .float-left{position:fixed;left:1rem;top:30%;z-index:999}
     .float-right{position:fixed;right:1rem;bottom:20%;z-index:999}
     .float-btn{
@@ -171,9 +171,9 @@
       background:linear-gradient(180deg, #4f7cff, #3b63dc);color:#ffffff;border:none;border-radius:14px;box-shadow:var(--shadow);cursor:pointer
     }
     .float-btn:hover{filter:brightness(1.05)}
-    /* Comments */
+    /<em> Comments </em>/
     .comments{width:min(100%, var(--maxw));margin:2rem auto;padding:1rem;background:#ffffff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
-    /* Footer */
+    /<em> Footer </em>/
     footer{text-align:center;padding:2rem 1rem 3rem;color:var(--muted)}
     @media (max-width:640px){
       .lb-prev,.lb-next{display:none}

@@ -50,7 +50,7 @@
     <meta name="news_keywords" content="Debian, Downgrade Debian, Debian Testing, Debian Stable, Linux, Server, APT, Sysadmin">
     <meta name="promphint" content="Bagaimana cara downgrade Debian Testing ke Stable? Proses ini tidak direkomendasikan karena rawan konflik dependensi, instalasi ulang Debian Stable jauh lebih disarankan.">
     <style>
-        /* Mobile-first variables & Tema Gelap/Terang via prefers-color-scheme */
+        /<em> Mobile-first variables & Tema Gelap/Terang via prefers-color-scheme </em>/
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
@@ -60,7 +60,7 @@
             --border-color: #dddddd;
             --table-head-bg: #f4f4f4;
             --code-bg: #1e1e1e;
-            --code-text: #a6e22e; /* Monokai-ish green for commands */
+            --code-text: #a6e22e; /<em> Monokai-ish green for commands </em>/
             --alert-bg: #fff1f0;
             --alert-text: #a80000;
             --alert-border: #ffccc7;
@@ -86,7 +86,7 @@
                 --alert-border: #801515;
             }
         }
-        /* Base styles */
+        /<em> Base styles </em>/
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -96,7 +96,7 @@
             margin: 0;
             padding: 0;
         }
-        /* Container centering & responsiveness */
+        /<em> Container centering & responsiveness </em>/
         .container {
             width: 100%;
             padding: var(--spacing-md);
@@ -113,14 +113,14 @@
                 padding: var(--spacing-lg);
             }
         }
-        /* Typography sizing using rem */
+        /<em> Typography sizing using rem </em>/
         h1 { font-size: 2rem; line-height: 1.2; margin-top: 0; margin-bottom: var(--spacing-md); }
         h2 { font-size: 1.5rem; line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem; }
         h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; }
         p, ul, li { font-size: 1.125rem; margin-bottom: var(--spacing-md); }
         a { color: var(--link-color); text-decoration: none; border-bottom: 0.0625rem dotted var(--link-color); transition: color 0.2s ease; }
         a:hover { color: var(--link-hover); border-bottom-style: solid; }
-        /* LCP Image */
+        /<em> LCP Image </em>/
         .featured-image {
             width: 100%;
             height: auto;
@@ -131,7 +131,7 @@
             margin: var(--spacing-lg) 0;
             background-color: var(--border-color);
         }
-        /* Syntax Highlighting */
+        /<em> Syntax Highlighting </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -146,7 +146,7 @@
         }
         code { font-family: inherit; }
         .comment { color: #75715e; }
-        /* Tables */
+        /<em> Tables </em>/
         table {
             width: 100%;
             border-collapse: collapse;
@@ -160,7 +160,7 @@
             vertical-align: top;
         }
         th { background-color: var(--table-head-bg); font-weight: 600; }
-        /* Warning Box */
+        /<em> Warning Box </em>/
         blockquote {
             background-color: var(--alert-bg);
             color: var(--alert-text);
@@ -171,7 +171,7 @@
             font-size: 1.125rem;
         }
         blockquote p { margin: 0; }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             margin-top: 4rem;
             padding-top: 1.5rem;
@@ -200,30 +200,30 @@
             <header>
                 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Cara Migrasi dari Debian Testing Kembali ke Stable</h1>
             </header>
-            <p>Halo sobat pengelola *server* yang mungkin saat ini sedang berkeringat dingin! 😅 Pernahkah kamu merasa tergoda untuk mencoba deretan perangkat lunak terbaru di Debian Testing, lalu menyesal karena sistem produksi malah jadi tidak stabil? Tenang, kamu tidak sendirian. Keinginan untuk kembali alias melakukan *downgrade* ke Debian Stable adalah hal yang lumrah.</p>
+            <p>Halo sobat pengelola <em>server</em> yang mungkin saat ini sedang berkeringat dingin! 😅 Pernahkah kamu merasa tergoda untuk mencoba deretan perangkat lunak terbaru di Debian Testing, lalu menyesal karena sistem produksi malah jadi tidak stabil? Tenang, kamu tidak sendirian. Keinginan untuk kembali alias melakukan <em>downgrade</em> ke Debian Stable adalah hal yang lumrah.</p>
             <p>Namun, bersiaplah menghadapi kenyataan pahit: mengembalikan sistem dari Testing ke Stable itu ibarat memasukkan kembali pasta gigi yang sudah dipencet ke dalam tubenya. Sangat sulit, berantakan, dan butuh kesabaran ekstra. Yuk, kita bedah tuntas apa saja yang sebenarnya terjadi dan bagaimana cara mengeksekusinya.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp" srcset="https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="featured-image" alt="Ilustrasi layar terminal linux saat melakukan proses migrasi repositori">
             <blockquote>
-                <p><i class="fa-solid fa-skull-crossbones"></i> **Peringatan Penting:** Migrasi dari Testing kembali ke Stable **jauh lebih sulit dan berisiko** dibandingkan pembaruan biasa. Secara arsitektur, Debian **tidak mendukung proses downgrade** secara resmi. Karena paket-paket di Testing versinya lebih tinggi, memaksa menurunkannya kerap kali menyebabkan konflik dependensi, paket korup, hingga risiko terburuk: *kernel panic* dan gagal *booting*.</p>
+                <p><i class="fa-solid fa-skull-crossbones"></i> <strong>Peringatan Penting:</strong> Migrasi dari Testing kembali ke Stable <strong>jauh lebih sulit dan berisiko</strong> dibandingkan pembaruan biasa. Secara arsitektur, Debian <strong>tidak mendukung proses downgrade</strong> secara resmi. Karena paket-paket di Testing versinya lebih tinggi, memaksa menurunkannya kerap kali menyebabkan konflik dependensi, paket korup, hingga risiko terburuk: <em>kernel panic</em> dan gagal <em>booting</em>.</p>
             </blockquote>
             <h2>Metode 1: Cara Terbaik &amp; Paling Aman (Rekomendasi Mutlak)</h2>
-            <p>Sejujurnya, jika ada yang bertanya bagaimana cara paling aman untuk kembali? Jawabannya adalah **jangan di-downgrade**. **Lakukan instalasi ulang Debian Stable** (Bookworm) dari nol. Mengapa? Karena ini adalah satu-satunya jalan membersihkan sistem dari sisa-sisa *library* versi baru yang keras kepala.</p>
+            <p>Sejujurnya, jika ada yang bertanya bagaimana cara paling aman untuk kembali? Jawabannya adalah <strong>jangan di-downgrade</strong>. <strong>Lakukan instalasi ulang Debian Stable</strong> (Bookworm) dari nol. Mengapa? Karena ini adalah satu-satunya jalan membersihkan sistem dari sisa-sisa <em>library</em> versi baru yang keras kepala.</p>
             <p>Berikut adalah rute singkat yang paling bebas stres:</p>
             <ul>
-                <li>Amankan dan *backup* semua direktori `/home`, `/etc`, serta *database* penting kamu ke penyimpanan eksternal.</li>
-                <li>Siapkan diska lepas USB yang berisi *installer* Debian Stable terbaru.</li>
-                <li>Hapus partisi akar `/` (jangan sentuh partisi `/home` jika kamu memisahkannya), lalu instal ulang Debian Stable.</li>
+                <li>Amankan dan <em>backup</em> semua direktori <code>/home</code>, <code>/etc</code>, serta <em>database</em> penting kamu ke penyimpanan eksternal.</li>
+                <li>Siapkan diska lepas USB yang berisi <em>installer</em> Debian Stable terbaru.</li>
+                <li>Hapus partisi akar <code>/</code> (jangan sentuh partisi <code>/home</code> jika kamu memisahkannya), lalu instal ulang Debian Stable.</li>
                 <li>Kembalikan data dan sesuaikan ulang konfigurasinya. Beres!</li>
             </ul>
             <h2>Metode 2: Migrasi Manual (Peringatan: Berisiko Sangat Tinggi)</h2>
-            <p>Oke, anggaplah kamu seorang *sysadmin* nekat yang tidak punya akses fisik ke *server* untuk instal ulang, atau kamu sekadar ingin menguji adrenalin. Jika kamu tetap *keukeuh* mencoba *downgrade* manual dari **Testing (Trixie)** ke **Stable (Bookworm)**, jalankan langkah-langkah di bawah ini dengan taruhan sistemmu mungkin tidak akan hidup lagi.</p>
+            <p>Oke, anggaplah kamu seorang <em>sysadmin</em> nekat yang tidak punya akses fisik ke <em>server</em> untuk instal ulang, atau kamu sekadar ingin menguji adrenalin. Jika kamu tetap <em>keukeuh</em> mencoba <em>downgrade</em> manual dari <strong>Testing (Trixie)</strong> ke <strong>Stable (Bookworm)</strong>, jalankan langkah-langkah di bawah ini dengan taruhan sistemmu mungkin tidak akan hidup lagi.</p>
             <h3>1. Backup Data Penting</h3>
-            <p>Saya ulangi, lakukan *backup*. Jangan berani melangkah ke tahap dua jika kamu belum menyalin berkas pentingmu. Perintah *downgrade* ini tidak kenal ampun.</p>
+            <p>Saya ulangi, lakukan <em>backup</em>. Jangan berani melangkah ke tahap dua jika kamu belum menyalin berkas pentingmu. Perintah <em>downgrade</em> ini tidak kenal ampun.</p>
             <h3>2. Ubah Repository Kembali ke Stable</h3>
             <p>Buka dan sunting berkas daftar sumber repositori APT milikmu:</p>
 <pre><code><span class="comment"># Buka editor teks nano</span>
 sudo nano /etc/apt/sources.list</code></pre>
-            <p>Ubah semua kemunculan kata `trixie` atau `testing` menjadi `bookworm`. Berkasmu kurang lebih harus terlihat seperti ini:</p>
+            <p>Ubah semua kemunculan kata <code>trixie</code> atau <code>testing</code> menjadi <code>bookworm</code>. Berkasmu kurang lebih harus terlihat seperti ini:</p>
 <pre><code>deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware</code></pre>
@@ -233,9 +233,9 @@ deb http://security.debian.org/debian-security bookworm-security main contrib no
             <h3>4. Eksekusi Downgrade (Fase Paling Menegangkan)</h3>
             <p>Sekarang, jalankan perintah pembaruan penuh. Siapkan mentalmu karena perintah ini akan mencoba menurunkan versi paket secara brutal.</p>
 <pre><code>sudo apt full-upgrade</code></pre>
-            <p>Hampir bisa dipastikan kamu akan melihat lautan teks merah berisi galat konflik. Jika *apt* menyerah, cobalah memperbaiki rantai paket yang rusak dengan perintah ini:</p>
+            <p>Hampir bisa dipastikan kamu akan melihat lautan teks merah berisi galat konflik. Jika <em>apt</em> menyerah, cobalah memperbaiki rantai paket yang rusak dengan perintah ini:</p>
 <pre><code>sudo apt --fix-broken install</code></pre>
-            <p>Sebagai alternatif rahasia, *tools* bernama `aptitude` biasanya jauh lebih pintar dan tangguh dalam menangani urusan *downgrade* ketimbang `apt` biasa. Coba gunakan metode ini jika APT standar gagal total:</p>
+            <p>Sebagai alternatif rahasia, <em>tools</em> bernama <code>aptitude</code> biasanya jauh lebih pintar dan tangguh dalam menangani urusan <em>downgrade</em> ketimbang <code>apt</code> biasa. Coba gunakan metode ini jika APT standar gagal total:</p>
 <pre><code><span class="comment"># Instal aptitude dari sisa-sisa sistemmu</span>
 sudo apt install aptitude
 sudo aptitude full-upgrade</code></pre>
@@ -244,11 +244,11 @@ sudo aptitude full-upgrade</code></pre>
 <pre><code>sudo apt autoremove --purge
 sudo apt autoclean</code></pre>
             <h3>6. Reboot dan Berdoa</h3>
-            <p>Momen penentuan. Lakukan *restart*:</p>
+            <p>Momen penentuan. Lakukan <em>restart</em>:</p>
 <pre><code>sudo reboot</code></pre>
-            <p>Jika antarmuka grafis atau *prompt login* berhasil muncul, segera cek versi sistem operasimu dengan mengeksekusi `cat /etc/debian_version`. Jika tertera angka versi rilis Stable (misal 12.x), selamat, kamu lolos dari maut! 🎉</p>
+            <p>Jika antarmuka grafis atau <em>prompt login</em> berhasil muncul, segera cek versi sistem operasimu dengan mengeksekusi <code>cat /etc/debian_version</code>. Jika tertera angka versi rilis Stable (misal 12.x), selamat, kamu lolos dari maut! 🎉</p>
             <h2>Masalah Klasik yang Sering Terjadi Pasca-Downgrade</h2>
-            <p>Berdasarkan pengalaman banyak peretas sistem, berikut adalah pola penderitaan yang umum terjadi jika kamu memilih jalan ninja *downgrade* manual:</p>
+            <p>Berdasarkan pengalaman banyak peretas sistem, berikut adalah pola penderitaan yang umum terjadi jika kamu memilih jalan ninja <em>downgrade</em> manual:</p>
             <table>
                 <thead>
                     <tr>
@@ -261,12 +261,12 @@ sudo apt autoclean</code></pre>
                     <tr>
                         <td>Banyak paket gagal turun versi</td>
                         <td>Versi di Stable dianggap kedaluwarsa oleh sistem perlindungan APT.</td>
-                        <td>Hapus paksa paket tersebut lalu pasang ulang manual via `apt install`.</td>
+                        <td>Hapus paksa paket tersebut lalu pasang ulang manual via <code>apt install</code>.</td>
                     </tr>
                     <tr>
-                        <td>Sistem lumpuh total (Gagal *boot*)</td>
-                        <td>Modul *kernel* inti atau *library* C (glibc) rusak selama proses penimpaan.</td>
-                        <td>Lakukan proses perbaikan darurat via mode *chroot* menggunakan Live USB.</td>
+                        <td>Sistem lumpuh total (Gagal <em>boot</em>)</td>
+                        <td>Modul <em>kernel</em> inti atau <em>library</em> C (glibc) rusak selama proses penimpaan.</td>
+                        <td>Lakukan proses perbaikan darurat via mode <em>chroot</em> menggunakan Live USB.</td>
                     </tr>
                     <tr>
                         <td>Konflik dependensi melingkar</td>
@@ -274,9 +274,9 @@ sudo apt autoclean</code></pre>
                         <td>Sangat sulit diperbaiki secara otomatis, butuh intervensi manual via dpkg.</td>
                     </tr>
                     <tr>
-                        <td>Lingkungan desktop *(GUI)* hancur</td>
+                        <td>Lingkungan desktop <em>(GUI)</em> hancur</td>
                         <td>Berkas konfigurasi dari versi baru tidak bisa dibaca oleh perangkat lunak versi lama.</td>
-                        <td>Masuk via sesi TTY (Ctrl+Alt+F3), hapus bersih desktop (GNOME/KDE), lalu *reinstall*.</td>
+                        <td>Masuk via sesi TTY (Ctrl+Alt+F3), hapus bersih desktop (GNOME/KDE), lalu <em>reinstall</em>.</td>
                     </tr>
                 </tbody>
             </table>
@@ -291,23 +291,23 @@ sudo apt autoclean</code></pre>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>**Instalasi Ulang Stable**</td>
+                        <td><strong>Instalasi Ulang Stable</strong></td>
                         <td>Sangat Rendah</td>
-                        <td>**Sangat Direkomendasikan!** Bersih dan dijamin tuntas.</td>
+                        <td><strong>Sangat Direkomendasikan!</strong> Bersih dan dijamin tuntas.</td>
                     </tr>
                     <tr>
-                        <td>**Downgrade Manual APT**</td>
-                        <td>**Sangat Tinggi**</td>
+                        <td><strong>Downgrade Manual APT</strong></td>
+                        <td><strong>Sangat Tinggi</strong></td>
                         <td>Tidak disarankan kecuali darurat. Potensi lumpuh 80%.</td>
                     </tr>
                     <tr>
-                        <td>**Gunakan Aptitude**</td>
+                        <td><strong>Gunakan Aptitude</strong></td>
                         <td>Tinggi</td>
                         <td>Boleh dicoba sebagai upaya terakhir jika pantang instal ulang.</td>
                     </tr>
                 </tbody>
             </table>
-            <p>Pada akhirnya, sebagai pengelola sistem yang bijak, jika server Testing kamu sebenarnya masih berjalan dengan baik meski ada sesekali *bug* kecil, **jauh lebih baik tetap bertahan di Testing** sampai siklus Trixie berubah menjadi Stable. Namun jika stabilitas adalah harga mati, jadikan instalasi ulang sebagai teman terbaikmu!</p>
+            <p>Pada akhirnya, sebagai pengelola sistem yang bijak, jika server Testing kamu sebenarnya masih berjalan dengan baik meski ada sesekali <em>bug</em> kecil, <strong>jauh lebih baik tetap bertahan di Testing</strong> sampai siklus Trixie berubah menjadi Stable. Namun jika stabilitas adalah harga mati, jadikan instalasi ulang sebagai teman terbaikmu!</p>
         </article>
         <div id="related-articles-grid"></div>
         <div id="response"></div>

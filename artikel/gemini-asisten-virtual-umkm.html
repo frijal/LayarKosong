@@ -178,7 +178,7 @@
         <article>
           <h2>Siapa Itu Gemini? Kenapa Jadi Populer?</h2>
           <p>
-            Di antara sekian banyak *tools* AI yang bermunculan,
+            Di antara sekian banyak <em>tools</em> AI yang bermunculan,
             <strong class="highlight-text">Gemini</strong> ini ibarat pisau
             Swiss Army: satu alat tapi fungsinya bermacam-macam. Gemini adalah
             asisten AI yang jago mengobrol, bisa membantu Anda berpikir, membuat
@@ -186,7 +186,7 @@
           </p>
           <p>
             Bagi Anda yang sedang merintis usaha atau bahkan masih pelajar tapi
-            punya proyek sampingan, Gemini bisa menjadi *game-changer*. Ia
+            punya proyek sampingan, Gemini bisa menjadi <em>game-changer</em>. Ia
             bisa menghemat waktu berjam-jam yang biasanya habis untuk riset atau
             menulis manual.
           </p>
@@ -203,9 +203,9 @@
             <li>
               <h3>Jagoan Marketing &amp; Konten</h3>
               <p>
-                Bingung membuat *tagline* yang menarik atau deskripsi produk
-                yang menjual? Berikan saja *brief*-nya ke Gemini. Ia bisa
-                membuatkan *caption* media sosial, ide *postingan* blog, bahkan
+                Bingung membuat <em>tagline</em> yang menarik atau deskripsi produk
+                yang menjual? Berikan saja <em>brief</em>-nya ke Gemini. Ia bisa
+                membuatkan <em>caption</em> media sosial, ide <em>postingan</em> blog, bahkan
                 skrip video pendek.
               </p>
             </li>
@@ -243,11 +243,11 @@
             const prevBtn = document.querySelector('.lightbox-prev');
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
-            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${30 + i}/800/600`);
+            const images = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${30 + i}/800/600</code>);
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = `Contoh hasil kreasi AI Gemini ${index + 1}`;
+                img.alt = <code>Contoh hasil kreasi AI Gemini ${index + 1}</code>;
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });

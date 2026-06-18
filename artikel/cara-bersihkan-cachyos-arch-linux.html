@@ -64,7 +64,7 @@
         pre { background: #1e1e1e; color: #fff; padding: 0; border-radius: 5px; overflow: hidden; }
         pre code { display: block; padding: 1em; overflow-x: auto; }
         footer { margin-top: 40px; border-top: 1px solid #ccc; padding: 20px; text-align: center; }
-        /* sedikit penyesuaian agar latar code gelap dan teks terlihat */
+        /<em> sedikit penyesuaian agar latar code gelap dan teks terlihat </em>/
         .hljs { background: #1e1e1e; }
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
@@ -113,7 +113,7 @@ echo "🧼 Membersihkan cache user..."
 find ~/.cache/ -mindepth 1 -delete
 # 5. Bersihkan Sisa Build AUR di /tmp
 echo "🏗 Membersihkan sisa build di /tmp..."
-sudo find /tmp -maxdepth 1 -type d \( -name "pamac-build-*" -o -name "yay-*" -o -name "paru-*" \) -exec rm -rf {} +
+sudo find /tmp -maxdepth 1 -type d \( -name "pamac-build-<em>" -o -name "yay-</em>" -o -name "paru-*" \) -exec rm -rf {} +
 # 6. Bersihkan Folder Build Custom (Opsional)
 if [ -d "$AUR_BUILD_DIR" ]; then
     echo "📂 Membersihkan folder $AUR_BUILD_DIR..."

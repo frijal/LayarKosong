@@ -151,7 +151,7 @@
       border-radius: 8px;
       font-style: italic;
     }
-    /* Gallery */
+    /<em> Gallery </em>/
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -174,7 +174,7 @@
       font-size: 13px;
     }
     .zoomable { cursor: zoom-in }
-    /* Lightbox */
+    /<em> Lightbox </em>/
     .lightbox {
       position: fixed; inset: 0; z-index: 50;
       display: none; align-items: center; justify-content: center;
@@ -206,7 +206,7 @@
       color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    /* Share strip */
+    /<em> Share strip </em>/
     .share-strip {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -219,7 +219,7 @@
     }
     .share-btn svg { width: 18px; height: 18px }
     .copy-ok { color: var(--ok) }
-    /* Floating controls */
+    /<em> Floating controls </em>/
     .float-btn {
       position: fixed; z-index: 40;
       display: inline-flex; align-items: center; gap: 8px;
@@ -230,18 +230,18 @@
     .btn-sitemap { left: 16px; top: 30% }
     .btn-home { right: 16px; bottom: 20% }
     .float-btn svg { width: 18px; height: 18px }
-    /* Comments */
+    /<em> Comments </em>/
     .comments {
       margin-top: 10px;
       background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px;
     }
-    /* Accessibility & motion pref */
+    /<em> Accessibility & motion pref </em>/
     :focus-visible { outline: 2px solid rgba(14,165,233,0.45); outline-offset: 2px }
     @media (min-width: 1200px) {
       :root { --maxw: 980px }
     }
     @media (prefers-color-scheme: dark) {
-      /* soft-dark variant */
+      /<em> soft-dark variant </em>/
       :root {
         --bg: #0d0f13; --paper: #141822; --ink: #e8ecf1; --muted: #b6c0cc; --line: #213048;
       }
@@ -372,7 +372,7 @@
   <!-- JS: SEO hydration, share, lightbox, info chips (browser/OS/IP/flag), accessibility, fallbacks -->
   <script>
     (function() {
-      const safe = (f) => { try { f(); } catch (e) { /* tetap lanjut */ } };
+      const safe = (f) => { try { f(); } catch (e) { /<em> tetap lanjut </em>/ } };
       // Canonical & OG/Twitter url/image meta auto dari lokasi saat ini + fallback artikel/*.jpg
       safe(() => {
         const url = new URL(window.location.href);
@@ -402,7 +402,7 @@
         const words = text.trim().split(/\s+/).length;
         const min = Math.max(3, Math.round(words / 200));
         const el = document.querySelector('#read-time span');
-        if (el) el.textContent = `Waktu baca: ~${min} menit`;
+        if (el) el.textContent = <code>Waktu baca: ~${min} menit</code>;
       });
       // Lightbox gallery with arrow keys
       safe(() => {
@@ -418,7 +418,7 @@
           idx = i;
           lbImg.src = items[idx].src;
           lb.classList.add('open');
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
           document.body.style.overflow = 'hidden';
         };
         const closeLb = () => {
@@ -429,7 +429,7 @@
         const step = (d) => {
           idx = (idx + d + items.length) % items.length;
           lbImg.src = items[idx].src;
-          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
         };
         document.querySelectorAll('.zoomable').forEach((fig, i) => {
           fig.addEventListener('click', () => openAt(i));

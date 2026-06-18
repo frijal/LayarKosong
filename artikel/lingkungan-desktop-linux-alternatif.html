@@ -61,13 +61,13 @@
     <meta name="promphint" content="Q: Lingkungan desktop Linux apa yang paling ringan dan cocok untuk laptop tua? A: XFCE dan LXQt adalah yang paling hemat sumber daya, dengan konsumsi RAM hanya sekitar 500 MB atau kurang, ideal untuk perangkat keras lama.">
     <!-- CSS tanpa Tailwind, prefer-color-scheme, optimasi Core Web Vitals -->
     <style>
-        /* Reset & Base */
+        /<em> Reset & Base </em>/
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /* Variabel tema terang (default) */
+        /<em> Variabel tema terang (default) </em>/
         :root {
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
@@ -79,7 +79,7 @@
             --code-bg: #f1f5f9;
             --footer-bg: #eef2ff;
         }
-        /* Tema gelap otomatis berdasarkan prefers-color-scheme */
+        /<em> Tema gelap otomatis berdasarkan prefers-color-scheme </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #0f172a;
@@ -103,7 +103,7 @@
             scroll-behavior: smooth;
             padding: 1rem;
         }
-        /* Container utama: 1 kolom, max-width 1000px di tengah */
+        /<em> Container utama: 1 kolom, max-width 1000px di tengah </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -123,7 +123,7 @@
                 border-radius: 20px;
             }
         }
-        /* Tipografi */
+        /<em> Tipografi </em>/
         h1 {
             font-size: 1.9rem;
             font-weight: 800;
@@ -159,7 +159,7 @@
             text-decoration: underline;
             color: var(--accent-hover);
         }
-        /* List styling */
+        /<em> List styling </em>/
         ul, ol {
             margin: 1rem 0 1.2rem 1.8rem;
             color: var(--text-secondary);
@@ -167,7 +167,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /* Tabel perbandingan ringan */
+        /<em> Tabel perbandingan ringan </em>/
         .compare-table {
             width: 100%;
             border-collapse: collapse;
@@ -187,7 +187,7 @@
             font-weight: 700;
             color: var(--text-primary);
         }
-        /* Gambar responsif, tanpa layout shift */
+        /<em> Gambar responsif, tanpa layout shift </em>/
         .featured-img {
             max-width: 100%;
             height: auto;
@@ -197,7 +197,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             background-color: var(--code-bg);
         }
-        /* Blockquote / kutipan santai */
+        /<em> Blockquote / kutipan santai </em>/
         .info-box {
             background: var(--code-bg);
             border-left: 5px solid var(--accent);
@@ -205,7 +205,7 @@
             border-radius: 20px;
             margin: 1.5rem 0;
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             margin-top: 2.5rem;
             padding-top: 1.5rem;
@@ -218,7 +218,7 @@
             border-radius: 20px;
             padding: 1rem;
         }
-        /* related & response placeholder sederhana (tanpa JS) */
+        /<em> related & response placeholder sederhana (tanpa JS) </em>/
         .placeholder-grid {
             background: var(--code-bg);
             border-radius: 20px;
@@ -232,13 +232,13 @@
         .inline-icon {
             margin-right: 6px;
         }
-        /* Core Web Vitals: gambar sudah punya dimensi intrinsik via width/height attribute */
+        /<em> Core Web Vitals: gambar sudah punya dimensi intrinsik via width/height attribute </em>/
         @media (max-width: 640px) {
             h1 { font-size: 1.65rem; }
             h2 { font-size: 1.4rem; }
             h3 { font-size: 1.2rem; }
         }
-        /* tanpa hero, tanpa ARIA, tanpa JS tema */
+        /<em> tanpa hero, tanpa ARIA, tanpa JS tema </em>/
         button, .no-js {
             all: unset;
         }

@@ -49,11 +49,11 @@
     <link rel="stylesheet" href="/ext/atom-one-dark.min.css">
     <title>Menguak Misteri Usia Distro Linux - Layar Kosong</title> 
     <style>
-        /* CSS Variables for Auto Dark/Light Mode */
+        /<em> CSS Variables for Auto Dark/Light Mode </em>/
         :root {
             --bg-color: #f8f9fa;
             --text-color: #2d3436;
-            --accent-color: #ff9800; /* Oranye/Kuning untuk menarik perhatian */
+            --accent-color: #ff9800; /<em> Oranye/Kuning untuk menarik perhatian </em>/
             --accent-hover: #e68900;
             --link-color: #0984e3;
             --header-bg: #ffffff;
@@ -80,7 +80,7 @@
                 --tip-text: #a5d6a7;
             }
         }
-        /* Reset & Base Styles */
+        /<em> Reset & Base Styles </em>/
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Nunito', sans-serif;
@@ -90,13 +90,13 @@
             font-size: 18px;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        /* Layout - Widescreen 1 Column */
+        /<em> Layout - Widescreen 1 Column </em>/
         .main-wrapper {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        /* Typography */
+        /<em> Typography </em>/
         h1, h2, h3 { color: var(--accent-color); font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
         h1 { font-size: 2.5rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 15px; margin-bottom: 30px; }
         h2 { font-size: 1.8rem; margin-top: 40px; }
@@ -105,22 +105,22 @@
         ul { margin-left: 20px; margin-bottom: 20px; }
         a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         a:hover { text-decoration: underline; color: var(--accent-hover); }
-        /* Code Blocks Style */
+        /<em> Code Blocks Style </em>/
         pre {
             border-radius: 12px;
             overflow: hidden;
             margin: 20px 0;
             box-shadow: var(--card-shadow);
-            background: #282c34; /* Fallback */
+            background: #282c34; /<em> Fallback </em>/
         }
         pre code.hljs {
             font-family: 'Fira Code', monospace;
             font-size: 0.9em;
             padding: 20px;
             line-height: 1.6;
-            overflow-x: auto; /* Untuk kode yang panjang */
+            overflow-x: auto; /<em> Untuk kode yang panjang </em>/
         }
-        /* Alert/Warning Boxes */
+        /<em> Alert/Warning Boxes </em>/
         .warning {
             background-color: var(--warning-bg);
             color: var(--warning-text);
@@ -139,7 +139,7 @@
             margin: 20px 0;
             font-weight: 600;
         }
-        /* Images */
+        /<em> Images </em>/
         .illustration-container {
             text-align: center;
             margin: 30px 0;
@@ -150,7 +150,7 @@
             border-radius: 12px;
             box-shadow: var(--card-shadow);
         }
-        /* Footer */
+        /<em> Footer </em>/
         footer {
             margin-top: 80px;
             padding-top: 40px;
@@ -161,7 +161,7 @@
         .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .social-icons a { font-size: 1.5rem; color: var(--text-color); }
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
-        /* Mobile Adjustments */
+        /<em> Mobile Adjustments </em>/
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             .main-wrapper { padding: 20px; }
@@ -186,13 +186,13 @@
     </div>
     <section>
         <p>
-            Halo, teman-teman pecinta Linux dari Balikpapan dan seluruh dunia! 👋 Pernah tidak kamu tiba-tiba merenung, "Sebenarnya sudah berapa lama ya saya setia sama Distro Linux ini?" Usia instalasi itu kadang tidak kerasa, tahu-tahu udah berhari-hari, berbulan-bulan, bahkan bertahun-tahun, seperti kenikmatan **Kopi Susu** yang enak, tahu-tahu udah habis gelasnya. ☕
+            Halo, teman-teman pecinta Linux dari Balikpapan dan seluruh dunia! 👋 Pernah tidak kamu tiba-tiba merenung, "Sebenarnya sudah berapa lama ya saya setia sama Distro Linux ini?" Usia instalasi itu kadang tidak kerasa, tahu-tahu udah berhari-hari, berbulan-bulan, bahkan bertahun-tahun, seperti kenikmatan <strong>Kopi Susu</strong> yang enak, tahu-tahu udah habis gelasnya. ☕
         </p>
         <p>
-            Mencari tahu usia *sejati* instalasi Linux (entah itu Arch, Ubuntu, Fedora, atau yang lain) bisa jadi tantangan. Untungnya, ada cara yang sangat **akurat** —yaitu melihat kapan *filesystem* kamu pertama kali dibuat! Ini adalah tanggal lahir partisi kamu.
+            Mencari tahu usia <em>sejati</em> instalasi Linux (entah itu Arch, Ubuntu, Fedora, atau yang lain) bisa jadi tantangan. Untungnya, ada cara yang sangat <strong>akurat</strong> —yaitu melihat kapan <em>filesystem</em> kamu pertama kali dibuat! Ini adalah tanggal lahir partisi kamu.
         </p>
         <p>
-            Berikut adalah *script* Bash/Python super keren yang bisa melakukan trik ini dengan elegan.
+            Berikut adalah <em>script</em> Bash/Python super keren yang bisa melakukan trik ini dengan elegan.
         </p>
     </section>
     <section>
@@ -202,7 +202,7 @@
             Script ini bekerja di <b>SEMUA Distro Linux</b>, namun <b>hanya bekerja</b> jika partisi <em>root</em> kamu menggunakan filesystem <b>ext2, ext3, atau ext4</b>. Jika kamu pakai Btrfs, XFS, atau ZFS, gunakan metode alternatif di bagian bawah.
         </div>
         <p>
-            *Copy-paste* semua kode ini ke terminal kamu (jalankan sebagai *user* biasa). Script akan otomatis meminta *password* `sudo` untuk menjalankan `tune2fs`.
+            <em>Copy-paste</em> semua kode ini ke terminal kamu (jalankan sebagai <em>user</em> biasa). Script akan otomatis meminta <em>password</em> <code>sudo</code> untuk menjalankan <code>tune2fs</code>.
         </p>
         <pre><code class="language-bash">#!/bin/bash
 # 1. Menemukan device partisi root (e.g., /dev/sda2)
@@ -234,13 +234,13 @@ except ValueError:
     <section>
         <h2><i class="fa-solid fa-brain"></i> Cara Script Ini Bekerja (Detail Buat Para Suhu)</h2>
         <p>
-            Di balik kesederhanaan *copy-paste*, ada beberapa *tool* terminal yang bekerja keras:
+            Di balik kesederhanaan <em>copy-paste</em>, ada beberapa <em>tool</em> terminal yang bekerja keras:
         </p>
         <ol>
-            <li>**`findmnt -n -o SOURCE /`**: Script ini fleksibel karena ia tidak berasumsi nama partisi. Ia mencari tahu di *device* mana (`SOURCE`) *root* (`/`) kamu terpasang.</li>
-            <li>**`sudo tune2fs -l "$ROOT_DEV"`**: Ini adalah kunci utamanya. `tune2fs -l` (list superblock) mampu membaca metadata historis dari *filesystem* keluarga ext, termasuk item yang sangat berguna: `Filesystem created:`.</li>
-            <li>**Pembersihan Output (`grep`, `cut`, `xargs`)**: Bagian Bash ini bertugas membersihkan output `tune2fs` menjadi string tanggal mentah yang siap disantap oleh Python.</li>
-            <li>**Python `datetime`**: Python digunakan untuk memproses string tanggal, membandingkannya dengan tanggal hari ini (`date.today()`), dan menghitung selisihnya dalam satuan hari. Hasilnya umumnya akurat! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</li>
+            <li><strong><code>findmnt -n -o SOURCE /</code></strong>: Script ini fleksibel karena ia tidak berasumsi nama partisi. Ia mencari tahu di <em>device</em> mana (<code>SOURCE</code>) <em>root</em> (<code>/</code>) kamu terpasang.</li>
+            <li><strong><code>sudo tune2fs -l "$ROOT_DEV"</code></strong>: Ini adalah kunci utamanya. <code>tune2fs -l</code> (list superblock) mampu membaca metadata historis dari <em>filesystem</em> keluarga ext, termasuk item yang sangat berguna: <code>Filesystem created:</code>.</li>
+            <li><strong>Pembersihan Output (<code>grep</code>, <code>cut</code>, <code>xargs</code>)</strong>: Bagian Bash ini bertugas membersihkan output <code>tune2fs</code> menjadi string tanggal mentah yang siap disantap oleh Python.</li>
+            <li><strong>Python <code>datetime</code></strong>: Python digunakan untuk memproses string tanggal, membandingkannya dengan tanggal hari ini (<code>date.today()</code>), dan menghitung selisihnya dalam satuan hari. Hasilnya umumnya akurat! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</li>
         </ol>
     </section>
     <section>
@@ -249,16 +249,16 @@ except ValueError:
             <i class="fa-solid fa-lightbulb"></i> <b>Tips:</b> Kalau kamu pakai <b>Btrfs</b>, <b>XFS</b>, atau <b>ZFS</b>, atau jika script di atas gagal, kamu masih bisa mendapatkan perkiraan usia instalasi kamu dengan mencari tanggal instalasi paket sistem dasar yang paling awal di log <em>package manager</em> kamu.
         </div>
         <h3>Untuk Arch/Manjaro (Pacman):</h3>
-        <p>Cari *timestamp* instalasi paket `filesystem` atau `linux` yang paling awal di log Pacman:</p>
+        <p>Cari <em>timestamp</em> instalasi paket <code>filesystem</code> atau <code>linux</code> yang paling awal di log Pacman:</p>
         <pre><code class="language-bash">grep -E '\[INSTALL\] filesystem|\[INSTALL\] linux' /var/log/pacman.log | head -n 1</code></pre>
         <h3>Untuk Debian/Ubuntu/Mint (APT):</h3>
-        <p>Cek log instalasi APT yang mencatat paket `base-files` atau `linux-image`:</p>
+        <p>Cek log instalasi APT yang mencatat paket <code>base-files</code> atau <code>linux-image</code>:</p>
         <pre><code class="language-bash">grep ' install ' /var/log/dpkg.log | head -n 1</code></pre>
         <p>Contoh outputnya akan menunjukkan tanggal dan waktu yang sangat dekat dengan momen instalasi Linux kamu:</p>
         <pre><code class="language-text">2024-03-16 14:30:22 install base-files:amd64 12.0</code></pre>
         <p>Tanggal di awal baris itulah yang bisa kamu jadikan patokan! Sekarang tinggal hitung deh usianya.</p>
         <p>
-            Selamat mencoba, Bosku! Semoga usia instalasi Linux kamu sudah cukup matang, sama seperti kenikmatan **Kopi Susu** yang disruput pelan-pelan. 🚀
+            Selamat mencoba, Bosku! Semoga usia instalasi Linux kamu sudah cukup matang, sama seperti kenikmatan <strong>Kopi Susu</strong> yang disruput pelan-pelan. 🚀
         </p>
     </section>
     <section>
@@ -266,7 +266,7 @@ except ValueError:
         <div id="related-articles-grid"></div><div id="response"></div>
     </section>
     <footer>
-        <p>Artikel ini ditulis sambil ditemani **Kopi Susu** yang mantap dari Balikpapan.</p>
+        <p>Artikel ini ditulis sambil ditemani <strong>Kopi Susu</strong> yang mantap dari Balikpapan.</p>
         <p>Made with <i class="fa-solid fa-heart" style="color: #ff3860;"></i> and code by <strong>Fakhrul Rijal</strong>.</p>
         <p><em>Go Back To Door &amp; HR Generalized</em></p>
         <div class="social-icons">

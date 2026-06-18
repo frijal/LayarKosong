@@ -50,35 +50,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <style>
-      /* Mengatur font utama dan warna dasar (Dark Mode) */
+      /<em> Mengatur font utama dan warna dasar (Dark Mode) </em>/
       body {
         font-family: 'Inter', sans-serif;
-        background-color: #111827; /* bg-gray-900 */
-        color: #d1d5db; /* text-gray-300 */
+        background-color: #111827; /<em> bg-gray-900 </em>/
+        color: #d1d5db; /<em> text-gray-300 </em>/
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      /* Kustomisasi style untuk link di dalam artikel */
+      /<em> Kustomisasi style untuk link di dalam artikel </em>/
       article a {
-        color: #60a5fa; /* text-blue-400 */
+        color: #60a5fa; /<em> text-blue-400 </em>/
         text-decoration: none;
-        border-bottom: 1px solid #3b82f6; /* border-blue-500 */
+        border-bottom: 1px solid #3b82f6; /<em> border-blue-500 </em>/
         transition: all 0.2s ease-in-out;
       }
       article a:hover {
-        color: #93c5fd; /* text-blue-300 */
+        color: #93c5fd; /<em> text-blue-300 </em>/
         background-color: rgba(59, 130, 246, 0.1);
       }
-      /* Style untuk pesan "copied" */
+      /<em> Style untuk pesan "copied" </em>/
       .copied-feedback {
         position: fixed;
         bottom: 2rem;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #10b981; /* bg-emerald-500 */
+        background-color: #10b981; /<em> bg-emerald-500 </em>/
         color: white;
         padding: 0.75rem 1.5rem;
-        border-radius: 9999px; /* rounded-full */
+        border-radius: 9999px; /<em> rounded-full </em>/
         font-weight: 600;
         opacity: 0;
         transition: opacity 0.3s ease-out, transform 0.3s ease-out;
@@ -123,40 +123,40 @@
             Jadi, Apa Sebenarnya GoogleCodeExporter Itu?
           </h2>
           <p>
-            Singkatnya, **GoogleCodeExporter** itu adalah alat internal alias
+            Singkatnya, <strong>GoogleCodeExporter</strong> itu adalah alat internal alias
             "jasa pindahan digital" yang dibuat oleh Google.
           </p>
           <p>
             Dulu banget, sebelum GitHub merajai dunia, Google punya layanan
-            hosting proyek open-source sendiri namanya **Google Code** (di
-            `code.google.com`). Mirip GitHub lah, ada hosting kode (Subversion,
-            Mercurial, Git), pelacak isu (*issues*), dan halaman Wiki.
+            hosting proyek open-source sendiri namanya <strong>Google Code</strong> (di
+            <code>code.google.com</code>). Mirip GitHub lah, ada hosting kode (Subversion,
+            Mercurial, Git), pelacak isu (<em>issues</em>), dan halaman Wiki.
           </p>
           <p>
             Nah, di tahun 2015, Google mutusin buat menutup layanan Google Code.
             Biar proyek-proyek yang ada di sana tidak hilang ditelan zaman,
-            Google bikin alat `GoogleCodeExporter` ini. Tujuannya spesifik:
+            Google bikin alat <code>GoogleCodeExporter</code> ini. Tujuannya spesifik:
             membantu developer memindahkan (migrasi) semua data proyek mereka
             dari Google Code ke platform lain, yang paling populer, tentu saja,
-            **GitHub**.
+            <strong>GitHub</strong>.
           </p>
           <h2 class="text-2xl sm:text-3xl font-bold text-cyan-400 mt-8 mb-4">
             Oke, Terus "Migrating wiki contents" Itu Apa?
           </h2>
           <p>
-            Itu adalah **pesan commit otomatis** yang dibuat oleh alat
+            Itu adalah <strong>pesan commit otomatis</strong> yang dibuat oleh alat
             GoogleCodeExporter tadi.
           </p>
           <p>
             Saat seorang developer menekan tombol "Ekspor ke GitHub" di proyek
             Google Code mereka, si alat GoogleCodeExporter ini mulai bekerja. Ia
-            mengambil data kode, data *issue*, dan data Wiki, lalu
+            mengambil data kode, data <em>issue</em>, dan data Wiki, lalu
             mengunggahnya ke repositori baru di GitHub.
           </p>
           <p>
             Setiap tindakan yang dilakukannya (seperti menambah file wiki)
             dicatat sebagai sebuah commit Git. Dan biar jelas, alat ini ngasih
-            pesan commit: `Migrating wiki contents from Google Code`.
+            pesan commit: <code>Migrating wiki contents from Google Code</code>.
           </p>
           <p>
             Jadi, kalau kamu lihat pesan commit itu, kamu sedang melihat "jejak
@@ -176,7 +176,7 @@
             fitur Wiki GitHub.**
           </p>
           <p>
-            Alasannya? Formatnya beda. Google Code pakai *markup syntax* sendiri,
+            Alasannya? Formatnya beda. Google Code pakai <em>markup syntax</em> sendiri,
             sedangkan GitHub pakai formatnya sendiri (kebanyakan Markdown).
             Migrasi langsung itu susah dan rawan berantakan.
           </p>
@@ -184,12 +184,12 @@
             Solusi pintas dari GoogleCodeExporter adalah:
           </p>
           <ol class="list-decimal list-inside space-y-2 mt-4">
-            <li>Mengambil semua file Wiki lama (misal: `HomePage.wiki`,
-              `Instalasi.wiki`).</li>
-            <li>Mengubah formatnya sebisa mungkin ke Markdown (`.md`).</li>
-            <li>Memasukkan semua file itu ke dalam **branch (cabang) baru** di
+            <li>Mengambil semua file Wiki lama (misal: <code>HomePage.wiki</code>,
+              <code>Instalasi.wiki</code>).</li>
+            <li>Mengubah formatnya sebisa mungkin ke Markdown (<code>.md</code>).</li>
+            <li>Memasukkan semua file itu ke dalam <strong>branch (cabang) baru</strong> di
               repositori GitHub kamu.</li>
-            <li>Branch baru itu (hampir selalu) diberi nama: `wiki`.</li>
+            <li>Branch baru itu (hampir selalu) diberi nama: <code>wiki</code>.</li>
           </ol>
           <p class="mt-4">
             Jadi, wiki-nya tidak hilang. Dia "terarsip" dengan aman sebagai
@@ -199,15 +199,15 @@
             Kesimpulannya
           </h2>
           <p>
-            Kalau kamu ketemu commit `GoogleCodeExporter` dengan pesan `Migrating
-            wiki contents from Google Code`, itu bukan error atau ulah iseng
+            Kalau kamu ketemu commit <code>GoogleCodeExporter</code> dengan pesan <code>Migrating
+            wiki contents from Google Code</code>, itu bukan error atau ulah iseng
             developer.
           </p>
           <p>
-            Itu adalah **artefak digital** yang sah, sebuah tanda kalau
+            Itu adalah <strong>artefak digital</strong> yang sah, sebuah tanda kalau
             repositori itu adalah "lulusan" Google Code yang berhasil pindah ke
             GitHub sekitar tahun 2015. Dan kalau kamu butuh dokumentasi lama dari
-            proyek itu, coba aja cek di branch yang namanya `wiki`. Siapa tahu
+            proyek itu, coba aja cek di branch yang namanya <code>wiki</code>. Siapa tahu
             kamu nemu harta karun!
           </p>
         </div>

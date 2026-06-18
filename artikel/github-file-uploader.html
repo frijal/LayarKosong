@@ -51,7 +51,7 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <!-- Canonical URL -->
 <style>
-    /* 1. Definisikan Variabel Tema Terang (Default) */
+    /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
     :root {
         --bg-color: #f9f9f9;
         --card-bg: #ffffff;
@@ -70,7 +70,7 @@
         --shadow-color: rgba(149,157,165,0.1);
         --focus-ring: rgba(3,102,214,0.3);
     }
-    /* 2. Otomatis Tema Gelap (Dark Mode) */
+    /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
     @media (prefers-color-scheme: dark) {
         :root {
             --bg-color: #0d1117;
@@ -91,7 +91,7 @@
             --focus-ring: rgba(88,166,255,0.3);
         }
     }
-    /* 3. Base Styles (Desktop & Tablet) */
+    /<em> 3. Base Styles (Desktop & Tablet) </em>/
     body { 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         max-width: 900px; 
@@ -183,25 +183,25 @@
         margin-top: 10px; 
         color: var(--status-color); 
     }
-    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
+    /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) </em>/
     @media (max-width: 600px) {
         body {
-            margin: 10px auto;  /* Jarak atas-bawah dipangkas biar gak buang-buang tempat */
-            padding: 12px;      /* Sisi kanan-kiri dipersempit biar pas di layar HP */
+            margin: 10px auto;  /<em> Jarak atas-bawah dipangkas biar gak buang-buang tempat </em>/
+            padding: 12px;      /<em> Sisi kanan-kiri dipersempit biar pas di layar HP </em>/
         }
         .card {
-            padding: 20px 15px; /* Padding dalam card dikurangi supaya konten gak kesempitan */
-            border-radius: 8px;  /* Sedikit lebih kotak biar kelihatan rapi di layar kecil */
+            padding: 20px 15px; /<em> Padding dalam card dikurangi supaya konten gak kesempitan </em>/
+            border-radius: 8px;  /<em> Sedikit lebih kotak biar kelihatan rapi di layar kecil </em>/
         }
         h2 {
-            font-size: 1.5rem;   /* Ukuran judul dikecilkan sedikit biar gak makan tempat */
+            font-size: 1.5rem;   /<em> Ukuran judul dikecilkan sedikit biar gak makan tempat </em>/
         }
         label {
-            font-size: 1rem;     /* Ukuran label disesuaikan dengan proporsi mata di layar HP */
+            font-size: 1rem;     /<em> Ukuran label disesuaikan dengan proporsi mata di layar HP </em>/
             margin-top: 10px;
         }
         input, button {
-            padding: 10px;       /* Input & tombol dibikin sedikit lebih ramping tapi tetap nyaman di-tap */
+            padding: 10px;       /<em> Input & tombol dibikin sedikit lebih ramping tapi tetap nyaman di-tap </em>/
             font-size: 15px;
         }
     }
@@ -319,7 +319,7 @@
         const fileName = file.name;
         // Bersihkan path dari slash di awal/akhir
         const cleanPath = path.replace(/^\/+|\/+$/g, '');
-        const fullPath = cleanPath ? `${cleanPath}/${fileName}` : fileName;
+        const fullPath = cleanPath ? <code>${cleanPath}/${fileName}</code> : fileName;
         uploadBtn.disabled = true;
         status.innerText = "⏳ Sedang memproses file...";
         result.style.display = "none";
@@ -328,21 +328,21 @@
             reader.readAsDataURL(file);
             reader.onload = async () => {
                 const base64Content = reader.result.split(',')[1];
-                const response = await fetch(`https://api.github.com/repos/${repo}/contents/${fullPath}`, {
+                const response = await fetch(<code>https://api.github.com/repos/${repo}/contents/${fullPath}</code>, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `token ${token}`,
+                        'Authorization': <code>token ${token}</code>,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        message: `Upload ${fileName} via Layar Kosong Uploader`,
+                        message: <code>Upload ${fileName} via Layar Kosong Uploader</code>,
                         content: base64Content
                     })
                 });
                 const data = await response.json();
                 if (response.ok) {
                     const customBaseUrl = "https://dalam.web.id";
-                    const finalUrl = `${customBaseUrl}/${fullPath}`;
+                    const finalUrl = <code>${customBaseUrl}/${fullPath}</code>;
                     document.getElementById('fileUrl').innerText = finalUrl;
                     result.style.display = "block";
                     status.innerText = "✨ Upload selesai!";

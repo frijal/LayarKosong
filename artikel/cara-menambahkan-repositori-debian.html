@@ -60,7 +60,7 @@
     <!-- Ikon FontAwesome (Ringan) -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /* CSS Native & Aksesibilitas (Sesuai Catatan: Menggunakan Class Selectors untuk Link) */
+        /<em> CSS Native & Aksesibilitas (Sesuai Catatan: Menggunakan Class Selectors untuk Link) </em>/
         :root {
             --bg-color: #ffffff;
             --text-color: #334155;
@@ -74,7 +74,7 @@
             --code-text: #f8fafc;
             --quote-border: #38bdf8;
         }
-        /* prefers-color-scheme untuk Tema Gelap */
+        /<em> prefers-color-scheme untuk Tema Gelap </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0f172a;
@@ -102,7 +102,7 @@
             line-height: 1.75;
             font-size: 16px;
         }
-        /* Mobile-first Layout: Max 1000px & Center */
+        /<em> Mobile-first Layout: Max 1000px & Center </em>/
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -122,7 +122,7 @@
         }
         ul, ol { padding-left: 1.5rem; }
         li { margin-bottom: 0.5rem; }
-        /* Tautan menggunakan selektor class untuk menghindari konflik pseudo-elemen */
+        /<em> Tautan menggunakan selektor class untuk menghindari konflik pseudo-elemen </em>/
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
@@ -133,7 +133,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /* E-E-A-T Author Meta */
+        /<em> E-E-A-T Author Meta </em>/
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -145,7 +145,7 @@
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 2rem;
         }
-        /* Anti-CLS Image Styling: Container dengan aspect-ratio tetap */
+        /<em> Anti-CLS Image Styling: Container dengan aspect-ratio tetap </em>/
         .img-wrapper {
             margin: 2rem 0;
             background-color: var(--card-bg);
@@ -184,7 +184,7 @@
             border-radius: 8px;
             margin-bottom: 2rem;
         }
-        /* Code Blocks */
+        /<em> Code Blocks </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -216,7 +216,7 @@
             font-size: 0.9rem;
             color: var(--meta-color);
         }
-        /* Desktop Responsif */
+        /<em> Desktop Responsif </em>/
         @media (min-width: 768px) {
             body { font-size: 17px; }
             h1 { font-size: 2.25rem; }
@@ -245,8 +245,8 @@
                 </ul>
             </div>
             <!-- Intro 5W+1H -->
-            <p><strong>Siapa</strong> yang tidak suka dengan stabilitas Debian Linux? Sayangnya, kestabilan ini sering kali berarti perangkat lunak yang tersedia di repositori bawaannya tertinggal beberapa versi. Jika Anda (seperti kebanyakan sysadmin atau *developer*) ingin menggunakan paket perangkat lunak versi terbaru yang tidak ada di repo resmi Debian, <strong>apa</strong> yang harus dilakukan? Jawabannya: Anda harus menambahkan repositori pihak ketiga.</p>
-            <p>Secara teknis, Debian Linux menggunakan <a href="https://www.howtogeek.com/791055/apt-vs.-apt-get-whats-the-difference-on-linux/" class="article-link" target="_blank" rel="noopener">manajer paket APT</a> yang bergantung pada daftar alamat repositori untuk mengunduh dan memasang paket perangkat lunak. Entah <strong>kapan</strong> Anda butuh *tools* pengembangan mutakhir atau <strong>di mana</strong> pun lingkungan kerja Anda (komputer desktop atau *server* berbasis terminal), tutorial ini akan menjawab <strong>bagaimana</strong> cara mengeksekusinya tanpa merusak sistem tercinta Anda.</p>
+            <p><strong>Siapa</strong> yang tidak suka dengan stabilitas Debian Linux? Sayangnya, kestabilan ini sering kali berarti perangkat lunak yang tersedia di repositori bawaannya tertinggal beberapa versi. Jika Anda (seperti kebanyakan sysadmin atau <em>developer</em>) ingin menggunakan paket perangkat lunak versi terbaru yang tidak ada di repo resmi Debian, <strong>apa</strong> yang harus dilakukan? Jawabannya: Anda harus menambahkan repositori pihak ketiga.</p>
+            <p>Secara teknis, Debian Linux menggunakan <a href="https://www.howtogeek.com/791055/apt-vs.-apt-get-whats-the-difference-on-linux/" class="article-link" target="_blank" rel="noopener">manajer paket APT</a> yang bergantung pada daftar alamat repositori untuk mengunduh dan memasang paket perangkat lunak. Entah <strong>kapan</strong> Anda butuh <em>tools</em> pengembangan mutakhir atau <strong>di mana</strong> pun lingkungan kerja Anda (komputer desktop atau <em>server</em> berbasis terminal), tutorial ini akan menjawab <strong>bagaimana</strong> cara mengeksekusinya tanpa merusak sistem tercinta Anda.</p>
             <p>Kami akan membahas beberapa metode di sini. Anda bisa memilih salah satu yang menurut Anda paling nyaman. Jika Anda masih bingung namun menggunakan desktop visual (GUI), kami merekomendasikan metode <em>Software &amp; Updates</em> di bawah ini.</p>
             <blockquote>
                 <strong><i class="fa-solid fa-circle-info" style="color: #0ea5e9;"></i> Catatan:</strong> Untuk demonstrasi, kami akan menampilkan semuanya pada Debian 12 dengan Lingkungan Desktop GNOME. Namun, prinsip dasar dari metode ini akan tetap bekerja dengan mulus pada versi yang lebih lama seperti Debian 10 dan 11.
@@ -264,11 +264,11 @@
             <figure class="img-wrapper">
                 <img src="https://dalam.web.id/img/static0.howtogeekimages.com/1eb0aeea1c15283.webp" alt="Memasukkan 'Software &amp; Updates' ke dalam bilah pencarian aplikasi GNOME" loading="lazy" decoding="async">
             </figure>
-            <p>Saat *window* alat diluncurkan, Anda akan melihat beberapa tab pengaturan. Klik pada tab <strong>"Other Software"</strong>.</p>
+            <p>Saat <em>window</em> alat diluncurkan, Anda akan melihat beberapa tab pengaturan. Klik pada tab <strong>"Other Software"</strong>.</p>
             <figure class="img-wrapper">
                 <img src="https://dalam.web.id/img/static0.howtogeekimages.com/490da6307710ae2e.webp" alt="Menekan tab Other Software dari kumpulan menu di atas" loading="lazy" decoding="async">
             </figure>
-            <p>Anda akan melihat daftar perangkat lunak pihak ketiga yang (mungkin) sudah terpasang. Di bagian kiri bawah *window*, tekan tombol <strong>"Add..."</strong>.</p>
+            <p>Anda akan melihat daftar perangkat lunak pihak ketiga yang (mungkin) sudah terpasang. Di bagian kiri bawah <em>window</em>, tekan tombol <strong>"Add..."</strong>.</p>
             <figure class="img-wrapper">
                 <img src="https://dalam.web.id/img/static0.howtogeekimages.com/132c32df64e0ef95.webp" alt="Mengklik tombol Add di bagian bawah tab Other Software" loading="lazy" decoding="async">
             </figure>
@@ -341,15 +341,15 @@
             <p>Proses seketika selesai, dan repositori berhasil dihapus dari daftar sistem Anda.</p>
             <!-- Kesimpulan -->
             <h2>Gembok Repositori Debian Kini Terbuka</h2>
-            <p>Nah, sekarang Anda sudah mengantongi jurus-jurus penting untuk menyematkan repositori pihak ketiga di ekosistem Debian Linux. Dengan pengetahuan utilitas dasar ini, keterbatasan perangkat lunak *outdated* di lingkungan *stable* bisa diatasi.</p>
-            <p>Mulai hari ini, Anda bebas menginstal aplikasi atau platform favorit Anda yang tadinya terkesan mustahil—entah itu klien <a href="https://www.howtogeek.com/753511/how-to-download-and-install-steam-on-linux/" class="article-link" target="_blank" rel="noopener">Steam</a> untuk sedikit relaksasi *gaming*, maupun *engine* pengembangan vital seperti <a href="https://www.howtogeek.com/devops/how-to-install-and-get-started-with-docker-desktop-on-linux/" class="article-link" target="_blank" rel="noopener">Docker Desktop</a>. Selamat bereksperimen dengan terminal!</p>
+            <p>Nah, sekarang Anda sudah mengantongi jurus-jurus penting untuk menyematkan repositori pihak ketiga di ekosistem Debian Linux. Dengan pengetahuan utilitas dasar ini, keterbatasan perangkat lunak <em>outdated</em> di lingkungan <em>stable</em> bisa diatasi.</p>
+            <p>Mulai hari ini, Anda bebas menginstal aplikasi atau platform favorit Anda yang tadinya terkesan mustahil—entah itu klien <a href="https://www.howtogeek.com/753511/how-to-download-and-install-steam-on-linux/" class="article-link" target="_blank" rel="noopener">Steam</a> untuk sedikit relaksasi <em>gaming</em>, maupun <em>engine</em> pengembangan vital seperti <a href="https://www.howtogeek.com/devops/how-to-install-and-get-started-with-docker-desktop-on-linux/" class="article-link" target="_blank" rel="noopener">Docker Desktop</a>. Selamat bereksperimen dengan terminal!</p>
         </article>
         <!-- Elemen Wajib Akhir Konten (Tanpa Styling Tambahan) -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>
     </main>
     <footer>
-        <p>🄯 2026 Layar Kosong. Dirangkum dari basis pengetahuan *open-source* .</p>
+        <p>🄯 2026 Layar Kosong. Dirangkum dari basis pengetahuan <em>open-source</em> .</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>

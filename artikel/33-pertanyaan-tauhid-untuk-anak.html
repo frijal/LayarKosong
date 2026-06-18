@@ -58,7 +58,7 @@
             --border-color: #e9ecef;
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
         }
-        /* Tema Gelap / Dark Mode (opsional, bisa diaktifkan dengan JS) */
+        /<em> Tema Gelap / Dark Mode (opsional, bisa diaktifkan dengan JS) </em>/
         /* @media (prefers-color-scheme: dark) {
             :root {
                 --background-color: #121212;
@@ -106,7 +106,7 @@
             font-size: 2.5rem;
             display: block;
             margin-bottom: 15px;
-            font-family: serif; /* Font yang lebih cocok untuk tulisan Arab */
+            font-family: serif; /<em> Font yang lebih cocok untuk tulisan Arab </em>/
         }
         .qa-item {
             border-bottom: 1px solid var(--border-color);
@@ -126,7 +126,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            list-style: none; /* Hilangkan panah default */
+            list-style: none; /<em> Hilangkan panah default </em>/
         }
         summary::after {
             content: '▼';
@@ -177,7 +177,7 @@
             font-weight: 600;
             color: var(--secondary-color);
         }
-        /* Lightbox CSS */
+        /<em> Lightbox CSS </em>/
         .lightbox {
             display: none;
             position: fixed;
@@ -217,7 +217,7 @@
             color: #bbb;
             text-decoration: none;
         }
-        /* Social Sharing */
+        /<em> Social Sharing </em>/
         .social-share {
             text-align: center;
             margin: 40px 0;
@@ -246,7 +246,7 @@
         .share-whatsapp { background-color: #25D366; }
         .share-telegram { background-color: #0088cc; }
         .share-copy { background-color: #6c757d; }
-        /* Jaga Data Pribadi Tetap Aman. Facebook */
+        /<em> Jaga Data Pribadi Tetap Aman. Facebook </em>/
         .comments-section {
             margin-top: 40px;
         }
@@ -257,7 +257,7 @@
             border-top: 1px solid var(--border-color);
             padding-top: 30px;
         }
-        /* Mobile-friendly / Tata Letak Responsif */
+        /<em> Mobile-friendly / Tata Letak Responsif </em>/
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8rem;
@@ -335,14 +335,14 @@
             qaData.forEach(item => {
                 const qaItemDiv = document.createElement('div');
                 qaItemDiv.className = 'qa-item';
-                qaItemDiv.innerHTML = `
+                qaItemDiv.innerHTML = <code>
                     <details>
                         <summary>🔹️${item.q}</summary>
                         <div class="answer">
                             <p>>> ${item.a}</p>
                         </div>
                     </details>
-                `;
+                </code>;
                 qaContainer.appendChild(qaItemDiv);
             });
             // Lightbox functionality

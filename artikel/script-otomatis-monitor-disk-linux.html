@@ -51,7 +51,7 @@
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1b;
-            --accent-color: #27ae60; /* Hijau untuk monitoring sehat */
+            --accent-color: #27ae60; /<em> Hijau untuk monitoring sehat </em>/
             --code-bg: #2d2d2d;
             --code-text: #f8f8f2;
             --border-color: #eee;
@@ -166,7 +166,7 @@
         </div>
     </header>
     <article>
-        <p>Masih kebayang kan horornya partisi root (`/`) tiba-tiba 100% penuh? Nah, daripada kita capek-capek ngetik <code>df -h</code> tiap jam (kayak nungguin balasan chat dari gebetan), mending kita serahkan tugas membosankan ini ke si robot Bash.</p>
+        <p>Masih kebayang kan horornya partisi root (<code>/</code>) tiba-tiba 100% penuh? Nah, daripada kita capek-capek ngetik <code>df -h</code> tiap jam (kayak nungguin balasan chat dari gebetan), mending kita serahkan tugas membosankan ini ke si robot Bash.</p>
         <p>Dalam dunia administrasi server, ada prinsip emas: <em>"Anything that can be automated, should be automated."</em> Kenapa? Karena manusia itu tempatnya khilaf, kita bisa aja lupa cek server pas lagi asyik liburan di Pantai Manggar. Tapi script? Dia tidak kenal libur, tidak kenal kopi, dan tidak bakal protes kalau disuruh kerja tengah malam.</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nTwkIbUAAVVdE.webp" alt="Automated Disk Monitoring Linux Script" class="featured-image">
         <h2>Siapa yang Butuh Ini? ("Who")</h2>
@@ -219,8 +219,8 @@ fi</code></pre>
             </li>
             <li>
                 <strong>Pasang di Cron Job:</strong> Ini langkah paling penting biar dia otomatis. Ketik <code>crontab -e</code> dan tambahkan baris ini di paling bawah: <br>
-                <code>0 * * * * /path/ke/folder/lo/disk-monitor.sh</code> <br>
-                *(Baris ini artinya: Script bakal jalan otomatis tiap jam).*
+                <code>0 <em> </em> <em> </em> /path/ke/folder/lo/disk-monitor.sh</code> <br>
+                <em>(Baris ini artinya: Script bakal jalan otomatis tiap jam).</em>
             </li>
         </ul>
         <div class="highlight-box">

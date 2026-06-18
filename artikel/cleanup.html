@@ -66,8 +66,8 @@
     --border: #1f3b57;
     --accent: #82aaff;
   }
-  /* === Inline Night Owl Theme === */
-  code[class*="language-"], pre[class*="language-"] {
+  /<em> === Inline Night Owl Theme === </em>/
+  code[class<em>="language-"], pre[class</em>="language-"] {
     color: #d6deeb;
     background: #011627;
     text-shadow: none;
@@ -182,7 +182,7 @@ import fs from "node:fs";
     process.exit(0);
   }
   console.log("\\n🗑️ Menghapus paket yang dipilih...");
-  execSync(`npm uninstall ${toRemove.join(" ")}`, { stdio: "inherit" });
+  execSync(<code>npm uninstall ${toRemove.join(" ")}</code>, { stdio: "inherit" });
   const { reinstall } = await inquirer.prompt([
     {
       type: "confirm",

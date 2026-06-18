@@ -155,7 +155,7 @@ article p, article li {
 .code-block code {
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.95rem;
-    color: #a6e22e; /* Green for code */
+    color: #a6e22e; /<em> Green for code </em>/
 }
 .copy-btn {
     position: absolute;
@@ -277,12 +277,12 @@ footer a {
     <div class="container">
         <header>
             <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Anak Branch Sering "Minta" Merge? Ini Cara Mengaturnya! 🤫</h1>
-            <p class="subtitle">Memahami bahwa "permintaan merge" dari GitHub hanyalah saran, dan bagaimana cara mengambil alih kontrol penuh atas branch `main` Anda.</p>
+            <p class="subtitle">Memahami bahwa "permintaan merge" dari GitHub hanyalah saran, dan bagaimana cara mengambil alih kontrol penuh atas branch <code>main</code> Anda.</p>
         </header>
         <main>
             <article>
                 <h2>Itu Bukan Permintaan, Cuma Saran Kok!</h2>
-                <p>Pertama-tama, penting untuk tahu kalau anak branch itu sebenarnya gak pernah minta merge otomatis. Notifikasi kuning yang muncul di GitHub setelah kamu nge-push branch baru itu cuma **saran** atau **jalan pintas** yang baik hati dari GitHub. Tujuannya biar kamu gampang bikin Pull Request.</p>
+                <p>Pertama-tama, penting untuk tahu kalau anak branch itu sebenarnya gak pernah minta merge otomatis. Notifikasi kuning yang muncul di GitHub setelah kamu nge-push branch baru itu cuma <strong>saran</strong> atau <strong>jalan pintas</strong> yang baik hati dari GitHub. Tujuannya biar kamu gampang bikin Pull Request.</p>
                 <p>Nah, kalau kamu mau alur kerjanya beda, ada dua cara utama untuk mengatur ini, dari yang paling gampang sampai yang paling ketat.</p>
                 <div class="zdummy">
                     <div class="method-header">
@@ -292,38 +292,38 @@ footer a {
                     <div class="method-body">
                         <p>Betul, sesederhana itu. Kamu tidak perlu mengubah setelan apa pun di repositori. Cukup ubah kebiasaanmu saja.</p>
                         <ol>
-                            <li><strong>Kerja Seperti Biasa:</strong> Lakukan semua perubahan, commit, dan push ke anak branch-mu (misal: `desain-baru`).</li>
+                            <li><strong>Kerja Seperti Biasa:</strong> Lakukan semua perubahan, commit, dan push ke anak branch-mu (misal: <code>desain-baru</code>).</li>
                             <li><strong>Push ke Branch Sendiri:</strong> Pastikan kamu hanya push ke branch tersebut.
                                 <div class="code-block">
                                     <pre><code>git push origin desain-baru</code></pre>
                                     <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                                 </div>
                             </li>
-                            <li><strong>Cuekin Tombolnya:</strong> Saat notifikasi "Compare &amp; pull request" muncul di GitHub, **jangan diklik**. Anggap saja tidak ada.</li>
+                            <li><strong>Cuekin Tombolnya:</strong> Saat notifikasi "Compare &amp; pull request" muncul di GitHub, <strong>jangan diklik</strong>. Anggap saja tidak ada.</li>
                         </ol>
-                        <p>Selama tidak ada yang membuat Pull Request, anak branch akan tetap terpisah. Perubahan hanya akan masuk ke `main` jika kamu sebagai pengelola `main` branch "memanggil"-nya secara manual dengan `git merge`.</p>
+                        <p>Selama tidak ada yang membuat Pull Request, anak branch akan tetap terpisah. Perubahan hanya akan masuk ke <code>main</code> jika kamu sebagai pengelola <code>main</code> branch "memanggil"-nya secara manual dengan <code>git merge</code>.</p>
                     </div>
                 </div>
                 <div class="zdummy">
                     <div class="method-header">
                         <i class="fa-solid fa-shield-halved"></i>
-                        <h2>Cara 2: Kunci `main` dengan Aturan (Paling Aman)</h2>
+                        <h2>Cara 2: Kunci <code>main</code> dengan Aturan (Paling Aman)</h2>
                     </div>
                     <div class="method-body">
-                        <p>Kalau kamu kerja bareng tim dan mau memastikan *semua orang* mengikuti aturan, ini adalah setelan yang wajib kamu aktifkan. Namanya <strong>Branch Protection Rules</strong>.</p>
+                        <p>Kalau kamu kerja bareng tim dan mau memastikan <em>semua orang</em> mengikuti aturan, ini adalah setelan yang wajib kamu aktifkan. Namanya <strong>Branch Protection Rules</strong>.</p>
                         <h4>Langkah-langkah Mengaktifkan:</h4>
                         <ol>
                             <li>Buka repositorimu, lalu masuk ke tab <strong>Settings</strong>.</li>
                             <li>Di menu kiri, pilih <strong>Branches</strong>.</li>
                             <li>Klik tombol <strong>Add rule</strong>.</li>
-                            <li>Di bagian "Branch name pattern", ketik `main`.</li>
+                            <li>Di bagian "Branch name pattern", ketik <code>main</code>.</li>
                             <li>Centang kotak yang paling penting: ✅ <strong>Require a pull request before merging</strong>.</li>
                         </ol>
                         <h4>Apa Efek dari Setelan Ini?</h4>
                         <p>Dengan mencentang satu kotak itu saja, kamu sudah mendapatkan keamanan luar biasa:</p>
                         <ul>
-                            <li><i class="fa-solid fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan `git push origin main`. Semua perubahan disarankan lewat Pull Request. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.</li>
-                            <li><i class="fa-solid fa-check-double"></i> <strong>Kontrol Penuh:</strong> Kamu bisa menambahkan aturan turunan, seperti "wajib ada 1 *approval* dari rekan setim" sebelum PR bisa di-merge.</li>
+                            <li><i class="fa-solid fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan <code>git push origin main</code>. Semua perubahan disarankan lewat Pull Request. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.</li>
+                            <li><i class="fa-solid fa-check-double"></i> <strong>Kontrol Penuh:</strong> Kamu bisa menambahkan aturan turunan, seperti "wajib ada 1 <em>approval</em> dari rekan setim" sebelum PR bisa di-merge.</li>
                         </ul>
                         <div class="tip">
                            <i class="fa-solid fa-lightbulb"></i>

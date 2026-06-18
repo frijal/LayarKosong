@@ -292,7 +292,7 @@
               <h3>Belanja Pakai Suara dan Gambar</h3>
               <p>
                 Di masa depan, pelanggan mungkin bisa belanja hanya dengan
-                berbicara ke *smartphone* ("Tolong carikan sepatu lari warna
+                berbicara ke <em>smartphone</em> ("Tolong carikan sepatu lari warna
                 biru") atau dengan memfoto produk yang mereka lihat di jalan. AI
                 akan membuat semua ini jadi mungkin.
               </p>
@@ -336,13 +336,13 @@
         const closeBtn = document.querySelector('.lightbox-close');
         const prevBtn = document.querySelector('.lightbox-prev');
         const nextBtn = document.querySelector('.lightbox-next');
-        const galleryImages = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${140 + i}/800/600`);
+        const galleryImages = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${140 + i}/800/600</code>);
         let currentIndex;
         // Mengisi galeri dengan gambar
         galleryImages.forEach((src, index) => {
           const img = document.createElement('img');
           img.src = src; // Langsung set src, loading="lazy" akan menanganinya
-          img.alt = `Ilustrasi tren AI masa depan ${index + 1}`;
+          img.alt = <code>Ilustrasi tren AI masa depan ${index + 1}</code>;
           img.loading = 'lazy';
           gallery.appendChild(img);
         });

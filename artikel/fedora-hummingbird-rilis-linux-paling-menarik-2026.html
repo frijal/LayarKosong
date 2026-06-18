@@ -50,7 +50,7 @@
     <meta name="news_keywords" content="Fedora Hummingbird, Linux 2026, Red Hat Summit, OS kontainer, AI agent, DevOps, SBOM, Syft Grype, keamanan Linux">
     <meta name="promphint" content="Apa yang membuat Fedora Hummingbird berbeda dari Linux biasa? | Fedora Hummingbird dikemas sebagai single container image dengan update atomik dan root read-only, dirancang khusus untuk AI agent dan DevOps.">
     <style>
-        /* CSS Variables untuk Tema Terang dan Gelap */
+        /<em> CSS Variables untuk Tema Terang dan Gelap </em>/
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
@@ -78,8 +78,8 @@
                 --quote-bg: #1e293b;
             }
         }
-        /* Reset & Base Typography (Unit full rem) */
-        *, *::before, *::after {
+        /<em> Reset & Base Typography (Unit full rem) </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -93,7 +93,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /* Layout Container (Mobile First) */
+        /<em> Layout Container (Mobile First) </em>/
         .container {
             width: 100%;
             max-width: 64rem;
@@ -103,7 +103,7 @@
             min-height: 100vh;
             box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1);
         }
-        /* Typography Styling */
+        /<em> Typography Styling </em>/
         h1, h2, h3 {
             color: var(--text-main);
             line-height: 1.3;
@@ -162,7 +162,7 @@
             color: var(--text-main);
             font-size: 1.125rem;
         }
-        /* LCP Image Optimization & Media */
+        /<em> LCP Image Optimization & Media </em>/
         figure {
             margin: 2.5rem 0;
             width: 100%;
@@ -175,7 +175,7 @@
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /* Mencegah Layout Shift (CLS) saat dimuat */
+            aspect-ratio: 16 / 9; /<em> Mencegah Layout Shift (CLS) saat dimuat </em>/
             object-fit: cover;
             background-color: var(--bg-muted);
         }
@@ -188,7 +188,7 @@
             border-top: 0.0625rem solid var(--border-color);
             background-color: var(--bg-body);
         }
-        /* Code Block */
+        /<em> Code Block </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -204,7 +204,7 @@
         code {
             font-family: inherit;
         }
-        /* Header & Footer */
+        /<em> Header & Footer </em>/
         header {
             margin-bottom: 3.5rem;
             text-align: center;
@@ -258,12 +258,12 @@ $ podman pull quay.io/fedora/hummingbird:latest
 -&gt; Environment ready in 3.2 seconds.
 </code></pre>
             <h2>🛡️ Keamanan Paranoid yang Tak Bikin Lambat</h2>
-            <p>Tim di balik Hummingbird punya satu misi yang sangat ambisius: menekan jumlah CVE (kerentanan keamanan yang terekspos) sedekat mungkin ke angka **NOL** di seluruh katalog citra mereka, dan mempertahankannya secara terus-menerus.</p>
+            <p>Tim di balik Hummingbird punya satu misi yang sangat ambisius: menekan jumlah CVE (kerentanan keamanan yang terekspos) sedekat mungkin ke angka <strong>NOL</strong> di seluruh katalog citra mereka, dan mempertahankannya secara terus-menerus.</p>
             <p>Untuk mencapai ini, mereka merilis katalog yang berisi <strong>49 image distroless</strong>. Katalog ini mencakup fondasi untuk bahasa pemrograman dan aplikasi krusial seperti Python, Go, Node.js, Rust, PostgreSQL, hingga nginx. Bagaimana cara mereka memantaunya? Pemindaian kerentanan diotomatisasi tanpa henti menggunakan alat mutakhir seperti <strong>Syft</strong> dan <strong>Grype</strong>. Saat ada perbaikan <em>patch</em> di tingkat hulu (<em>upstream</em>), <em>pipeline</em> akan otomatis membangun ulang citra tersebut dan merilis versi yang telah ditambal tanpa intervensi manual tim keamanan.</p>
             <p>Lebih di luar nalar lagi, setiap <em>image</em> dikirimkan lengkap beserta <strong>Software Bills of Materials (SBOMs)</strong>-nya. Bagi tim <em>DevOps</em> yang bekerja di industri dengan regulasi ketat (seperti perbankan atau kesehatan), SBOM adalah "kitab suci" yang memberitahu mereka secara absolut apa saja komponen yang sedang berjalan di dalam infrastruktur mereka.</p>
             <h2>🎯 Siapa yang Harus Mulai Migrasi?</h2>
             <p>Mari luruskan ekspektasi: Fedora Hummingbird tidak diciptakan untuk menggantikan Ubuntu atau Linux Mint di laptop harianmu untuk sekadar menonton YouTube. Ia punya target pasar yang sangat spesifik dan tajam.</p>
-            <p>Sistem operasi ini secara langsung menyasar para <em>developer</em> yang sedang mengembangkan aplikasi bertenaga AI, insinyur <em>DevOps</em> yang harus mengelola infrastruktur <em>container-native</em> berskala masif, serta tim *platform* yang mendambakan fondasi yang steril, super cepat, dan keras untuk jalur <em>pipeline</em> mereka. Jika deskripsi tadi terasa seperti keseharianmu, maka sistem ini wajib kamu coba sekarang juga.</p>
+            <p>Sistem operasi ini secara langsung menyasar para <em>developer</em> yang sedang mengembangkan aplikasi bertenaga AI, insinyur <em>DevOps</em> yang harus mengelola infrastruktur <em>container-native</em> berskala masif, serta tim <em>platform</em> yang mendambakan fondasi yang steril, super cepat, dan keras untuk jalur <em>pipeline</em> mereka. Jika deskripsi tadi terasa seperti keseharianmu, maka sistem ini wajib kamu coba sekarang juga.</p>
             <p>Garis bawahnya jelas. Tim Red Hat tidak sedang ikut-ikutan tren. Lewat rilis di 2026 ini, Fedora Hummingbird adalah respons arsitektural yang jenius terhadap pergeseran nyata tentang bagaimana perangkat lunak dirakit dan dideploy di era otonom. Cepat, aman, tanpa friksi, dan sepenuhnya gratis.</p>
         </article>
         <div id="related-articles-grid"></div><div id="response"></div>

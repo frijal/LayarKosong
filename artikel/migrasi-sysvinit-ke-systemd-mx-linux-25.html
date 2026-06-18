@@ -55,7 +55,7 @@
     <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJYBOspbAAE-u44?format=jpg&amp;name=large" fetchpriority="high">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
+        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
         :root {
             --bg-color: #f8fafc;
             --text-color: #334155;
@@ -100,7 +100,7 @@
             line-height: 1.75;
             font-size: 16px;
         }
-        /* Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop */
+        /<em> Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -145,7 +145,7 @@
         strong {
             color: var(--heading-color);
         }
-        /* Penggunaan kelas khusus a.article-link untuk menghindari konflik pseudo-element */
+        /<em> Penggunaan kelas khusus a.article-link untuk menghindari konflik pseudo-element </em>/
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
@@ -156,7 +156,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /* Blok Metadata E-E-A-T */
+        /<em> Blok Metadata E-E-A-T </em>/
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -173,7 +173,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        /* Blok Kontainer Gambar Mengurangi Layout Shift (CLS) */
+        /<em> Blok Kontainer Gambar Mengurangi Layout Shift (CLS) </em>/
         .img-container {
             margin: 2rem 0;
             background-color: var(--card-bg);
@@ -185,7 +185,7 @@
         .img-container img {
             width: 100%;
             height: auto;
-            max-width: 650px; /* Batasan agar gambar LCP tidak raksasa di atas fold */
+            max-width: 650px; /<em> Batasan agar gambar LCP tidak raksasa di atas fold </em>/
             display: block;
             border-radius: 4px;
             margin: 0 auto;
@@ -196,7 +196,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /* Styling Blok Kode Terminal */
+        /<em> Styling Blok Kode Terminal </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -222,7 +222,7 @@
             padding: 0;
             font-size: inherit;
         }
-        /* Kotak Peringatan/Catatan */
+        /<em> Kotak Peringatan/Catatan </em>/
         .alert-box {
             background-color: var(--warning-bg);
             border: 1px solid var(--warning-border);
@@ -242,7 +242,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /* Responsivitas Desktop */
+        /<em> Responsivitas Desktop </em>/
         @media (min-width: 768px) {
             .container {
                 padding: 2.5rem;
@@ -270,15 +270,15 @@
                     <span><i class="fa-solid fa-server"></i> Publikasi: Layar Kosong</span>
                 </div>
             </header>
-            <p>Sering kali, setelah selesai melakukan proses instalasi sistem, pengguna <strong>MX Linux 25</strong> kaget ketika iseng mengetikkan perintah <code>lsb_release -a</code> di terminal dan mendapati layar menampilkan *output* "Debian GNU/Linux 13 (trixie)". Tenang saja, <strong>apa</strong> yang Anda lihat itu sama sekali bukan *bug* atau kesalahan sistem. MX Linux 25 (dengan nama sandi *Infinity*) memang merupakan distribusi yang dibangun secara langsung di atas fondasi solid Debian 13 "Trixie".</p>
-            <p><strong>Siapa</strong> saja yang sudah lama berkecimpung di ekosistem ini pasti tahu bahwa salah satu keunikan MX Linux adalah kemampuannya mempertahankan <code>SysVinit</code> sebagai *init system* bawaan demi alasan kompatibilitas. Namun, <strong>mengapa</strong> banyak *sysadmin* yang akhirnya ingin bermigrasi? Jawabannya sederhana: <strong>di mana</strong> pun lingkungan *server* modern berada, dukungan terhadap manajemen layanan berbasis <code>systemd</code> kini sudah menjadi standar wajib de-facto.</p>
+            <p>Sering kali, setelah selesai melakukan proses instalasi sistem, pengguna <strong>MX Linux 25</strong> kaget ketika iseng mengetikkan perintah <code>lsb_release -a</code> di terminal dan mendapati layar menampilkan <em>output</em> "Debian GNU/Linux 13 (trixie)". Tenang saja, <strong>apa</strong> yang Anda lihat itu sama sekali bukan <em>bug</em> atau kesalahan sistem. MX Linux 25 (dengan nama sandi <em>Infinity</em>) memang merupakan distribusi yang dibangun secara langsung di atas fondasi solid Debian 13 "Trixie".</p>
+            <p><strong>Siapa</strong> saja yang sudah lama berkecimpung di ekosistem ini pasti tahu bahwa salah satu keunikan MX Linux adalah kemampuannya mempertahankan <code>SysVinit</code> sebagai <em>init system</em> bawaan demi alasan kompatibilitas. Namun, <strong>mengapa</strong> banyak <em>sysadmin</em> yang akhirnya ingin bermigrasi? Jawabannya sederhana: <strong>di mana</strong> pun lingkungan <em>server</em> modern berada, dukungan terhadap manajemen layanan berbasis <code>systemd</code> kini sudah menjadi standar wajib de-facto.</p>
             <div class="img-container">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/6a73bd016c404f46.webp" alt="Ilustrasi layar terminal Linux yang menampilkan output perintah lsb_release" fetchpriority="high" decoding="async">
                 <div class="img-caption">Output lsb_release pada MX Linux 25 akan menampilkan basis Debian Trixie. Ini sepenuhnya normal.</div>
             </div>
             <p><strong>Kapan</strong> waktu yang tepat untuk bermigrasi? Tentu saja sekarang, apalagi jika Anda membutuhkan kontrol manajemen daya dan layanan yang lebih canggih. <strong>Bagaimana</strong> cara mengeksekusinya tanpa menimbulkan kendala pada sistem operasi? Karena Anda menggunakan MX Linux 25 yang berbasis Debian Trixie, mari kita bedah perintah eksekusi berurutan yang 100% aman untuk melucuti SysVinit dan memeluk systemd sepenuhnya.</p>
             <h2>Langkah 1: Reboot ke Mode Systemd (Wajib)</h2>
-            <p>Ini adalah pantangan terbesar: jangan pernah mencoba menghapus paket inti SysVinit saat Anda masih masuk (*login*) menggunakannya. Anda harus mendelegasikan tugas *booting* ke systemd terlebih dahulu sebelum melakukan bersih-bersih.</p>
+            <p>Ini adalah pantangan terbesar: jangan pernah mencoba menghapus paket inti SysVinit saat Anda masih masuk (<em>login</em>) menggunakannya. Anda harus mendelegasikan tugas <em>booting</em> ke systemd terlebih dahulu sebelum melakukan bersih-bersih.</p>
             <ol>
                 <li>Lakukan <strong>Restart</strong> pada komputer Anda.</li>
                 <li>Saat layar menampilkan menu GRUB (tampilan awal pemilihan OS sebelum masuk desktop), gunakan panah bawah dan pilih opsi <strong>Advanced Options for MX Linux</strong>.</li>
@@ -288,25 +288,25 @@
                 <p><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b; margin-right: 0.5rem;"></i> <strong>Penting:</strong> Pastikan Anda telah berhasil masuk ke desktop secara normal setelah memilih opsi ini sebelum melanjutkan ke langkah kedua.</p>
             </div>
             <h2>Langkah 2: Instalasi Pengganti Core (systemd-sysv)</h2>
-            <p>Setelah berhasil masuk ke desktop melalui jalur systemd, buka aplikasi Terminal. Kita akan menginstal sebuah paket pemintas (*wrapper*) biner bernama <code>systemd-sysv</code>. Paket pintar ini akan bekerja otomatis menggantikan berkas utama <code>/sbin/init</code> milik SysVinit lama menjadi sebuah tautan (*symlink*) yang mengarah kuat ke systemd.</p>
+            <p>Setelah berhasil masuk ke desktop melalui jalur systemd, buka aplikasi Terminal. Kita akan menginstal sebuah paket pemintas (<em>wrapper</em>) biner bernama <code>systemd-sysv</code>. Paket pintar ini akan bekerja otomatis menggantikan berkas utama <code>/sbin/init</code> milik SysVinit lama menjadi sebuah tautan (<em>symlink</em>) yang mengarah kuat ke systemd.</p>
             <p>Jalankan perintah ganda berikut untuk memperbarui indeks repositori sekaligus melakukan instalasi:</p>
 <pre><code>sudo apt update &amp;&amp; sudo apt install systemd-sysv</code></pre>
             <p><strong>Proses di balik layar:</strong> Dengan mengeksekusi perintah ini, manajer paket APT secara cerdas akan menyadari konflik dengan sistem lama dan otomatis mengusir (mencopot) paket <code>sysvinit-core</code> dari mesin Anda.</p>
                      <h2>Langkah 3: Bersihkan Paket Sisa Diversitas MX 25</h2>
-            <p>Di MX Linux, para *developer* menanamkan beberapa alat penengah khusus yang disebut <code>init-diversity</code>. Fungsi alat ini adalah meredam konflik jika *user* berpindah-pindah antara SysVinit dan systemd. Karena sekarang kita sudah berkomitmen 100% pada systemd, alat peredam ini sudah usang dan harus dibersihkan agar tidak menjadi beban sistem.</p>
+            <p>Di MX Linux, para <em>developer</em> menanamkan beberapa alat penengah khusus yang disebut <code>init-diversity</code>. Fungsi alat ini adalah meredam konflik jika <em>user</em> berpindah-pindah antara SysVinit dan systemd. Karena sekarang kita sudah berkomitmen 100% pada systemd, alat peredam ini sudah usang dan harus dibersihkan agar tidak menjadi beban sistem.</p>
             <p>Eksekusi perintah di bawah ini untuk menyapu bersih sisa-sisanya:</p>
 <pre><code>sudo apt remove --allow-remove-essential init-diversity-tools elogind-init-diversity systemd-init-diversity</code></pre>
-            <p><strong>Proses di balik layar:</strong> Pembersihan ini juga akan menghapus modul pengatur sesi lama (<code>elogind</code>). Jangan khawatir, tugas manajemen daya, mode *suspend*, dan *login* sekarang sudah ditangani secara native dan jauh lebih tangguh oleh modul bawaan <code>systemd-logind</code>.</p>
+            <p><strong>Proses di balik layar:</strong> Pembersihan ini juga akan menghapus modul pengatur sesi lama (<code>elogind</code>). Jangan khawatir, tugas manajemen daya, mode <em>suspend</em>, dan <em>login</em> sekarang sudah ditangani secara native dan jauh lebih tangguh oleh modul bawaan <code>systemd-logind</code>.</p>
             <h2>Langkah 4: Bersihkan Paket yang Tidak Dipakai</h2>
-            <p>Untuk memastikan tidak ada file konfigurasi yatim piatu (*orphaned dependencies*) milik SysVinit yang tertinggal di dalam hardisk, gunakan senjata pamungkas pembersih dari APT:</p>
+            <p>Untuk memastikan tidak ada file konfigurasi yatim piatu (<em>orphaned dependencies</em>) milik SysVinit yang tertinggal di dalam hardisk, gunakan senjata pamungkas pembersih dari APT:</p>
 <pre><code>sudo apt autoremove --purge</code></pre>
             <h2>Langkah 5: Perbarui Menu Bootloader (GRUB)</h2>
-            <p>Langkah terakhir dan yang tak kalah krusial. Saat ini, GRUB Anda mungkin masih menganggap konfigurasi lama sebagai *default*. Kita harus mendaftarkan ulang konfigurasi *booting* agar ke depannya menu utama GRUB langsung mengarah ke systemd tanpa Anda harus repot-repot masuk ke sub-menu *Advanced Options* lagi.</p>
+            <p>Langkah terakhir dan yang tak kalah krusial. Saat ini, GRUB Anda mungkin masih menganggap konfigurasi lama sebagai <em>default</em>. Kita harus mendaftarkan ulang konfigurasi <em>booting</em> agar ke depannya menu utama GRUB langsung mengarah ke systemd tanpa Anda harus repot-repot masuk ke sub-menu <em>Advanced Options</em> lagi.</p>
             <p>Perbarui GRUB dengan perintah:</p>
 <pre><code>sudo update-grub</code></pre>
-            <p>Selamat! Setelah semua langkah di atas dieksekusi tanpa *error*, silakan <strong>Restart</strong> komputer Anda. Sistem MX Linux 25 Anda kini telah berevolusi dan berjalan sepenuhnya menggunakan systemd murni, tanpa ada jejak SysVinit yang mengganggu.</p>
+            <p>Selamat! Setelah semua langkah di atas dieksekusi tanpa <em>error</em>, silakan <strong>Restart</strong> komputer Anda. Sistem MX Linux 25 Anda kini telah berevolusi dan berjalan sepenuhnya menggunakan systemd murni, tanpa ada jejak SysVinit yang mengganggu.</p>
             <div class="alert-box" style="background-color: var(--card-bg); border-color: var(--link-color);">
-                <p><i class="fa-solid fa-circle-question" style="color: var(--link-color); margin-right: 0.5rem;"></i> <strong>Pertanyaan Interaktif:</strong> Apakah Anda sempat mengalami kendala, layar *kernel panic*, atau pesan *error* tertentu saat mencoba masuk ke mode *Advanced Options (systemd)* di Langkah 1 tadi? Sampaikan di kolom diskusi, mari kita *troubleshoot* bersama.</p>
+                <p><i class="fa-solid fa-circle-question" style="color: var(--link-color); margin-right: 0.5rem;"></i> <strong>Pertanyaan Interaktif:</strong> Apakah Anda sempat mengalami kendala, layar <em>kernel panic</em>, atau pesan <em>error</em> tertentu saat mencoba masuk ke mode <em>Advanced Options (systemd)</em> di Langkah 1 tadi? Sampaikan di kolom diskusi, mari kita <em>troubleshoot</em> bersama.</p>
             </div>
         </article>
         <div id="related-articles-grid"></div>

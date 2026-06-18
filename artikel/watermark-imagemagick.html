@@ -51,7 +51,7 @@
             --bg: #1e2a38;
             --fg: #e0e6ec;
             --muted: #a8b0bb;
-            --accent: #673ab7; /* Purple */
+            --accent: #673ab7; /<em> Purple </em>/
             --accent-2: #8e6ee1;
             --card: #2a3847;
             --border: #3a4857;
@@ -125,7 +125,7 @@ GRAVITY="southeast"
 echo "Skrip ini akan menambahkan watermark ke semua gambar di folder ini."
 read -p "Lanjutkan? (Y/n): " REPLY
 if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
-    for IMAGE in *.jpg *.jpeg *.png *.gif; do
+    for IMAGE in <em>.jpg </em>.jpeg <em>.png </em>.gif; do
         if [ -f "$IMAGE" ]; then
             echo "Memberi watermark pada: $IMAGE"
             composite -dissolve ${DISSOLVE}% -gravity ${GRAVITY} -quality 100 \( "$WM_FILE" -resize ${SCALE}% \) "$IMAGE" "$IMAGE"
@@ -140,7 +140,7 @@ exit 0</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                     <h2>Cara Menggunakan Skrip</h2>
                     <ol>
                         <li>Simpan kode di atas sebagai file, misalnya <code>watermark.sh</code>.</li>
-                        <li>Ubah bagian "KONFIGURASI" di dalam skrip sesuai kebutuhan Anda, terutama `WM_FILE`.</li>
+                        <li>Ubah bagian "KONFIGURASI" di dalam skrip sesuai kebutuhan Anda, terutama <code>WM_FILE</code>.</li>
                         <li>Letakkan skrip ini di dalam folder yang berisi gambar-gambar yang ingin Anda beri watermark.</li>
                         <li>Buka terminal di folder tersebut, lalu berikan izin eksekusi pada skrip:</li>
                     </ol>

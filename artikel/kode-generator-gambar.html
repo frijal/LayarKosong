@@ -149,26 +149,26 @@ function generateCode() {
   // Ukuran
   if (sizeMode === "100%") styles.push("width: 100%", "height: auto");
   else if (sizeMode === "custom") {
-    if (width) styles.push(`width: ${width}px`);
-    if (height) styles.push(`height: ${height}px`);
+    if (width) styles.push(<code>width: ${width}px</code>);
+    if (height) styles.push(<code>height: ${height}px</code>);
   }
   // Border & Shadow
-  if (radius > 0) styles.push(`border-radius: ${radius}px`);
-  if (hasShadow) styles.push(`box-shadow: 0 4px 15px rgba(0,0,0,0.2)`);
+  if (radius > 0) styles.push(<code>border-radius: ${radius}px</code>);
+  if (hasShadow) styles.push(<code>box-shadow: 0 4px 15px rgba(0,0,0,0.2)</code>);
   // Perataan
   if (align === "center") wrapperStyle = "text-align: center; display: block; margin: 15px auto;";
   else if (align === "left") wrapperStyle = "text-align: left; display: block; margin: 15px 0;";
   else if (align === "right") wrapperStyle = "text-align: right; display: block; margin: 15px 0;";
   // Build Tag
-  let styleString = styles.length > 0 ? ` style="${styles.join('; ')};"` : "";
-  let imgTag = `<img src="${url}" alt="${alt}"${styleString}>`;
+  let styleString = styles.length > 0 ? <code> style="${styles.join('; ')};"</code> : "";
+  let imgTag = <code><img src="${url}" alt="${alt}"${styleString}></code>;
   if (link) {
     const target = isNewTab ? ' target="_blank" rel="noopener"' : '';
-    imgTag = `<a href="${link}"${target} style="text-decoration: none;">${imgTag}</a>`;
+    imgTag = <code><a href="${link}"${target} style="text-decoration: none;">${imgTag}</a></code>;
   }
   let finalOutput = "";
   if (caption || wrapperStyle) {
-    finalOutput = `<div${wrapperStyle ? ` style="${wrapperStyle}"` : ""}>\n  ${imgTag}\n  ${caption ? `<br><small style="color:#666; font-style:italic;">${caption}</small>` : ""}\n</div>`;
+    finalOutput = <code><div${wrapperStyle ? </code> style="${wrapperStyle}"<code> : ""}>\n  ${imgTag}\n  ${caption ? </code><br><small style="color:#666; font-style:italic;">${caption}</small><code> : ""}\n</div></code>;
   } else {
     finalOutput = imgTag;
   }

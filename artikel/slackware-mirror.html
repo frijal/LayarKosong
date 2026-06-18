@@ -48,8 +48,8 @@
     <meta name="news_keywords" content="Slackware, slackpkg, bash script, automation, Linux tutorial, slackware-mirror.sh, package manager, sysadmin">
     <meta name="promphint" content="Apa kegunaan skrip slackware-mirror.sh? | Mengotomatiskan proses pencadangan dan penggantian server cermin repositori pada manajer paket slackpkg Slackware.">
     <style>
-        /* CSS Reset & Variabel Global */
-        *, *::before, *::after {
+        /<em> CSS Reset & Variabel Global </em>/
+        <em>, </em>::before, *::after {
             box-sizing: border-box;
         }
         :root {
@@ -166,7 +166,7 @@
             margin: 0;
             font-size: 1rem;
         }
-        /* Styling Code Block Murni */
+        /<em> Styling Code Block Murni </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -182,7 +182,7 @@
             font-family: inherit;
             font-size: inherit;
         }
-        /* Syntax Highlighting */
+        /<em> Syntax Highlighting </em>/
         .c-comment { color: var(--code-comment); font-style: italic; }
         .c-kw { color: var(--code-keyword); font-weight: bold; }
         .c-str { color: var(--code-string); }
@@ -236,7 +236,7 @@
             margin-left: 1rem;
             color: var(--border-color);
         }
-        /* Adaptasi Layar Desktop */
+        /<em> Adaptasi Layar Desktop </em>/
         @media (min-width: 48rem) {
             .container {
                 padding: 2rem;
@@ -269,7 +269,7 @@
             </div>
             <h2>Penjelasan</h2>
             <p>Secara arsitektural, Slackware memanfaatkan utilitas bawaan bernama <code>slackpkg</code> sebagai manajer paket tingkat lanjut untuk memasang, memperbarui, ataupun menghapus perangkat lunak. Seluruh daftar alamat server mirror di dunia disimpan di dalam satu berkas konfigurasi statis, tepatnya pada jalur file <code>/etc/slackpkg/mirrors</code>.</p>
-            <p>Secara teknis, skrip <code>slackware-mirror.sh</code> bekerja dengan urutan logika yang terstruktur. Pertama, sistem akan **membackup** atau mencadangkan berkas konfigurasi lama Anda demi menghindari risiko kerusakan data. Selanjutnya, skrip akan memilah dan **mengaktifkan mirror** baru pilihan Anda secara otomatis, menghapus baris komentar tidak perlu, lalu mengeksekusi sinkronisasi ulang database paket secara langsung tanpa intervensi manual yang rumit.</p>
+            <p>Secara teknis, skrip <code>slackware-mirror.sh</code> bekerja dengan urutan logika yang terstruktur. Pertama, sistem akan <strong>membackup</strong> atau mencadangkan berkas konfigurasi lama Anda demi menghindari risiko kerusakan data. Selanjutnya, skrip akan memilah dan <strong>mengaktifkan mirror</strong> baru pilihan Anda secara otomatis, menghapus baris komentar tidak perlu, lalu mengeksekusi sinkronisasi ulang database paket secara langsung tanpa intervensi manual yang rumit.</p>
             <div class="alert-box">
                 <p>⚠️ <strong>Pemberitahuan Keamanan:</strong> Mengingat berkas konfigurasi <code>slackpkg</code> berada di direktori sistem utama, Anda wajib menjalankan skrip ini menggunakan hak akses administratif <code>sudo</code> atau sebagai pengguna <code>root</code> agar proses modifikasi file tidak ditolak oleh sistem.</p>
             </div>

@@ -69,7 +69,7 @@
         padding: 24px 20px 8px;
         border-bottom: 1px solid var(--border);
         background: #121316;
-        text-align: center; /* Menengahkan header */
+        text-align: center; /<em> Menengahkan header </em>/
       }
       h1 {
         font-size: clamp(26px, 4vw, 38px);
@@ -308,13 +308,13 @@ rm -rf ~/.cache/pip/wheels</code></pre>
         if (galleryItems.length > 0) {
             const lb = document.createElement('div');
             lb.className = 'lightbox';
-            lb.innerHTML = `
+            lb.innerHTML = <code>
                 <img id="lightbox-img" alt="">
                 <button class="lb-btn lb-prev">←</button>
                 <button class="lb-btn lb-next">→</button>
                 <button class="lb-btn lb-close">✕</button>
                 <div id="lb-cap"></div>
-            `;
+            </code>;
             document.body.appendChild(lb);
             const lbImg = lb.querySelector('#lightbox-img');
             const lbCap = lb.querySelector('#lb-cap');

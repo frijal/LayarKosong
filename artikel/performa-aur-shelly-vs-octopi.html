@@ -91,7 +91,7 @@
             -webkit-font-smoothing: antialiased;
             padding: 1rem;
         }
-        /* Center desktop */
+        /<em> Center desktop </em>/
         .container {
             width: 100%;
             margin: 0 auto;
@@ -117,7 +117,7 @@
             text-decoration: none;
         }
         a:hover { text-decoration: underline; }
-        /* Optimasi LCP & CLS untuk Gambar */
+        /<em> Optimasi LCP & CLS untuk Gambar </em>/
         .img-fluid {
             width: 100%;
             height: auto;
@@ -128,7 +128,7 @@
             margin: 2rem 0;
             display: block;
         }
-        /* Tabel Responsif */
+        /<em> Tabel Responsif </em>/
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -152,7 +152,7 @@
         }
         tr:nth-child(even) { background-color: var(--table-bg-alt); }
         tr:last-child td { border-bottom: none; }
-        /* Syntax Highlighting Base */
+        /<em> Syntax Highlighting Base </em>/
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -166,7 +166,7 @@
         code {
             font-family: inherit;
         }
-        /* Footer EEAT Inline */
+        /<em> Footer EEAT Inline </em>/
         .eeat-footer {
             margin-top: 4rem;
             padding-top: 1.5rem;
@@ -188,8 +188,8 @@
         <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Perbandingan Performa AUR: Shelly vs Octopi</h1>
     </header>
     <article>
-        <p>Bagi para pengguna ekosistem Arch Linux, Arch User Repository (AUR) adalah nyawa kedua setelah repositori resmi. Mengompilasi paket dari *source code* secara lokal seringkali menuntut waktu dan sumber daya komputasi yang tidak sedikit. Di bulan Juni 2026 ini, komunitas disuguhkan persaingan sengit antara dua antarmuka manajer paket yang sangat populer: **Shelly** dan **Octopi**. Keduanya punya cara kerja yang sama sekali berbeda di balik kap mesinnya.</p>
-        <p>Tulisan ini akan membedah secara spesifik **khusus pada aspek performa AUR** dari kedua perangkat lunak tersebut. Kita akan melihat bagaimana arsitektur terbaru, adaptasi teknologi terkini, serta umpan balik langsung dari para pengguna garis keras, khususnya di forum komunitas CachyOS, menentukan siapa yang paling layak memonopoli pengelolaan paket di sistem operasi kesayanganmu.</p>
+        <p>Bagi para pengguna ekosistem Arch Linux, Arch User Repository (AUR) adalah nyawa kedua setelah repositori resmi. Mengompilasi paket dari <em>source code</em> secara lokal seringkali menuntut waktu dan sumber daya komputasi yang tidak sedikit. Di bulan Juni 2026 ini, komunitas disuguhkan persaingan sengit antara dua antarmuka manajer paket yang sangat populer: <strong>Shelly</strong> dan <strong>Octopi</strong>. Keduanya punya cara kerja yang sama sekali berbeda di balik kap mesinnya.</p>
+        <p>Tulisan ini akan membedah secara spesifik <strong>khusus pada aspek performa AUR</strong> dari kedua perangkat lunak tersebut. Kita akan melihat bagaimana arsitektur terbaru, adaptasi teknologi terkini, serta umpan balik langsung dari para pengguna garis keras, khususnya di forum komunitas CachyOS, menentukan siapa yang paling layak memonopoli pengelolaan paket di sistem operasi kesayanganmu.</p>
         <img src="https://dalam.web.id/img/pbs.twimg.com/9e7a3598e40bbba0.webp" alt="Ilustrasi perbandingan performa sistem package manager Linux" class="img-fluid" fetchpriority="high" decoding="async" srcset="https://pbs.twimg.com/media/HKKuxarbYAA5Kr7?format=jpg&amp;name=large 1200w, https://pbs.twimg.com/media/HKKuxarbYAA5Kr7?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKKuxarbYAA5Kr7?format=jpg&amp;name=large 400w" sizes="(max-width: 64rem) 100vw, 64rem">
         <h2>Ringkasan Eksekutif: Peta Kekuatan</h2>
         <div class="table-responsive">
@@ -204,46 +204,46 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>**Arsitektur Dasar**</td>
-                        <td>Native libalpm (bukan *wrapper*)</td>
-                        <td>Qt *wrapper* + *parsing output pacman*</td>
-                        <td>**Shelly**</td>
+                        <td><strong>Arsitektur Dasar</strong></td>
+                        <td>Native libalpm (bukan <em>wrapper</em>)</td>
+                        <td>Qt <em>wrapper</em> + <em>parsing output pacman</em></td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**Kecepatan Pencarian AUR**</td>
+                        <td><strong>Kecepatan Pencarian AUR</strong></td>
                         <td>Cepat &amp; responsif</td>
                         <td>Cukup cepat, tapi kadang terasa lambat</td>
-                        <td>**Shelly**</td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**Kecepatan Build &amp; Install**</td>
+                        <td><strong>Kecepatan Build &amp; Install</strong></td>
                         <td>Lebih cepat (optimasi MemoryPack di v2.3+)</td>
                         <td>Sedang, kadang lambat saat proses panjang</td>
-                        <td>**Shelly**</td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**Penggunaan Resource**</td>
+                        <td><strong>Penggunaan Resource</strong></td>
                         <td>Lebih efisien CPU &amp; RAM</td>
-                        <td>Lebih boros (Qt + proses *parsing*)</td>
-                        <td>**Shelly**</td>
+                        <td>Lebih boros (Qt + proses <em>parsing</em>)</td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**Stabilitas Build Besar**</td>
+                        <td><strong>Stabilitas Build Besar</strong></td>
                         <td>Lebih stabil dan konsisten</td>
-                        <td>Kadang *lock up* / *freeze* mendadak</td>
-                        <td>**Shelly**</td>
+                        <td>Kadang <em>lock up</em> / <em>freeze</em> mendadak</td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
-                        <td>**Penanganan Dependency**</td>
+                        <td><strong>Penanganan Dependency</strong></td>
                         <td>Baik (sempat ada catatan di awal rilis)</td>
                         <td>Sangat baik &amp; transparan</td>
                         <td>Octopi (sedikit unggul)</td>
                     </tr>
                     <tr>
-                        <td>**Pengalaman Keseluruhan**</td>
+                        <td><strong>Pengalaman Keseluruhan</strong></td>
                         <td>Terasa lebih modern &amp; ringan ditarik</td>
-                        <td>Fungsional tapi terasa "berat" di beberapa *case*</td>
-                        <td>**Shelly**</td>
+                        <td>Fungsional tapi terasa "berat" di beberapa <em>case</em></td>
+                        <td><strong>Shelly</strong></td>
                     </tr>
                 </tbody>
             </table>
@@ -251,22 +251,22 @@
         <h2>Membongkar Mesin: Penjelasan Detail Arsitektur</h2>
         <p>Mengapa ada perbedaan yang begitu mencolok? Jawabannya terletak pada fondasi kode yang membangun mereka.</p>
         <h3>1. Fondasi Arsitektur: Native vs Wrapper</h3>
-        <p>Di sudut merah, **Shelly** mengambil jalur berani dengan dibangun menggunakan pendekatan **native libalpm**. Artinya, ia "berbicara" langsung dengan pustaka inti *pacman* tanpa perantara. Tidak ada proses membaca *output* teks terminal secara manual. Di sudut biru, **Octopi** bertindak lebih sebagai **wrapper**. Ia mengeksekusi perintah *pacman* atau *AUR helper* di latar belakang, lalu membaca dan menerjemahkan teks *output* tersebut (*parsing*) ke dalam antarmuka Qt. Secara logis, pendekatan *wrapper* ini memakan siklus kerja prosesor yang lebih panjang.</p>
+        <p>Di sudut merah, <strong>Shelly</strong> mengambil jalur berani dengan dibangun menggunakan pendekatan <strong>native libalpm</strong>. Artinya, ia "berbicara" langsung dengan pustaka inti <em>pacman</em> tanpa perantara. Tidak ada proses membaca <em>output</em> teks terminal secara manual. Di sudut biru, <strong>Octopi</strong> bertindak lebih sebagai <strong>wrapper</strong>. Ia mengeksekusi perintah <em>pacman</em> atau <em>AUR helper</em> di latar belakang, lalu membaca dan menerjemahkan teks <em>output</em> tersebut (<em>parsing</em>) ke dalam antarmuka Qt. Secara logis, pendekatan <em>wrapper</em> ini memakan siklus kerja prosesor yang lebih panjang.</p>
         <h3>2. Responsivitas Pencarian dan Refresh AUR</h3>
-        <p>Ketika kamu mencari sebuah paket langka di AUR, waktu adalah segalanya. Shelly membuktikan diri **lebih cepat dan responsif**. Lompatan performa ini semakin terasa setelah pembaruan versi 2.3 yang cerdik, di mana mereka meninggalkan format pembacaan JSON yang lambat dan beralih ke **MemoryPack**. Sebaliknya, pengguna Octopi sering mengeluhkan antarmuka yang mendadak *lock up* (membeku sementara) saat melakukan *refresh mirror* yang sedang mengalami latensi tinggi.</p>
+        <p>Ketika kamu mencari sebuah paket langka di AUR, waktu adalah segalanya. Shelly membuktikan diri <strong>lebih cepat dan responsif</strong>. Lompatan performa ini semakin terasa setelah pembaruan versi 2.3 yang cerdik, di mana mereka meninggalkan format pembacaan JSON yang lambat dan beralih ke <strong>MemoryPack</strong>. Sebaliknya, pengguna Octopi sering mengeluhkan antarmuka yang mendadak <em>lock up</em> (membeku sementara) saat melakukan <em>refresh mirror</em> yang sedang mengalami latensi tinggi.</p>
         <h3>3. Kecepatan Eksekusi Build &amp; Install</h3>
-        <p>Proses menyusun (*build*) kode sumber dari AUR menguras tenaga komputer. Shelly secara konsisten menunjukkan performa terbaiknya di sini berkat komunikasi bebas hambatan dengan *libalpm*. Proses kompilasi paket-paket raksasa berlalu lebih lancar. Tidak heran jika tim distribusi CachyOS secara resmi memensiunkan Octopi dan menggantinya dengan Shelly sebagai alat bawaan sistem mereka demi memaksimalkan kecepatan rute kompilasi ini.</p>
+        <p>Proses menyusun (<em>build</em>) kode sumber dari AUR menguras tenaga komputer. Shelly secara konsisten menunjukkan performa terbaiknya di sini berkat komunikasi bebas hambatan dengan <em>libalpm</em>. Proses kompilasi paket-paket raksasa berlalu lebih lancar. Tidak heran jika tim distribusi CachyOS secara resmi memensiunkan Octopi dan menggantinya dengan Shelly sebagai alat bawaan sistem mereka demi memaksimalkan kecepatan rute kompilasi ini.</p>
         <h3>4. Konsumsi Sumber Daya Komputasi</h3>
-        <p>Arsitektur modern GTK 4 milik Shelly dirancang untuk efisiensi tinggi, memakan RAM dan CPU yang jauh lebih rendah selama mode siaga maupun saat bekerja keras. Sementara itu, kerangka kerja Qt milik Octopi, ditambah beban kerja menerjemahkan teks terminal terus-menerus, membuatnya **lebih boros sumber daya**.</p>
+        <p>Arsitektur modern GTK 4 milik Shelly dirancang untuk efisiensi tinggi, memakan RAM dan CPU yang jauh lebih rendah selama mode siaga maupun saat bekerja keras. Sementara itu, kerangka kerja Qt milik Octopi, ditambah beban kerja menerjemahkan teks terminal terus-menerus, membuatnya <strong>lebih boros sumber daya</strong>.</p>
         <h3>5. Transparansi Penanganan Dependency</h3>
-        <p>Satu-satunya benteng pertahanan yang masih dikuasai Octopi dengan brilian adalah **transparansi**. Bagi para *sysadmin* yang paranoid, Octopi membeberkan secara blak-blakan dependensi apa saja yang akan dipasang. Di awal pengembangannya, Shelly sempat mendapat kritik keras di forum karena mengategorikan dependensi kompilasi (*make dependencies*) sebagai paket eksplisit. Walaupun cacat logika ini sudah banyak ditambal pada pembaruan terkini, kedisiplinan Octopi dalam hal transparansi belum bisa diremehkan.</p>
+        <p>Satu-satunya benteng pertahanan yang masih dikuasai Octopi dengan brilian adalah <strong>transparansi</strong>. Bagi para <em>sysadmin</em> yang paranoid, Octopi membeberkan secara blak-blakan dependensi apa saja yang akan dipasang. Di awal pengembangannya, Shelly sempat mendapat kritik keras di forum karena mengategorikan dependensi kompilasi (<em>make dependencies</em>) sebagai paket eksplisit. Walaupun cacat logika ini sudah banyak ditambal pada pembaruan terkini, kedisiplinan Octopi dalam hal transparansi belum bisa diremehkan.</p>
         <h2>Kesimpulan: Mana yang Harus Dipilih?</h2>
         <ul>
-            <li>Jika prioritas utamamu adalah **kecepatan mentah, efisiensi memori, dan kelancaran proses AUR yang masif**, maka **Shelly** adalah jawaban mutlak berkat mesin *native libalpm* dan *MemoryPack*-nya.</li>
-            <li>Jika kamu kebetulan menggunakan **CachyOS**, tidak ada alasan untuk melirik yang lain karena Shelly sudah dikonfigurasi dan dioptimasi secara *default* oleh pengembangnya.</li>
-            <li>Namun, jika kamu memiliki *trust issue* dan ingin **melihat setiap detail baris perintah** secara telanjang layaknya membaca terminal, **Octopi** tetap menjadi teman lama yang setia.</li>
+            <li>Jika prioritas utamamu adalah <strong>kecepatan mentah, efisiensi memori, dan kelancaran proses AUR yang masif</strong>, maka <strong>Shelly</strong> adalah jawaban mutlak berkat mesin <em>native libalpm</em> dan <em>MemoryPack</em>-nya.</li>
+            <li>Jika kamu kebetulan menggunakan <strong>CachyOS</strong>, tidak ada alasan untuk melirik yang lain karena Shelly sudah dikonfigurasi dan dioptimasi secara <em>default</em> oleh pengembangnya.</li>
+            <li>Namun, jika kamu memiliki <em>trust issue</em> dan ingin <strong>melihat setiap detail baris perintah</strong> secara telanjang layaknya membaca terminal, <strong>Octopi</strong> tetap menjadi teman lama yang setia.</li>
         </ul>
-        <p>*Catatan tambahan:* Performa kompilasi di dunia nyata juga akan dipengaruhi oleh mesin penggerak *AUR helper* di balik layar (seperti *paru* atau *yay*). Keduanya menggunakan asisten yang sama, namun efisiensi cara mereka memberikan instruksi lah yang melahirkan perbedaan signifikan ini.</p>
+        <p><em>Catatan tambahan:</em> Performa kompilasi di dunia nyata juga akan dipengaruhi oleh mesin penggerak <em>AUR helper</em> di balik layar (seperti <em>paru</em> atau <em>yay</em>). Keduanya menggunakan asisten yang sama, namun efisiensi cara mereka memberikan instruksi lah yang melahirkan perbedaan signifikan ini.</p>
     </article>
     <div id="related-articles-grid"></div>
     <div id="response"></div>

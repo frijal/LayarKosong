@@ -47,10 +47,10 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /* Default Light Theme */
+            /<em> Default Light Theme </em>/
             --bg-color: #ffffff;
             --text-color: #333333;
-            --primary-color: #f6941f; /* Warna Khas Cloudflare */
+            --primary-color: #f6941f; /<em> Warna Khas Cloudflare </em>/
             --secondary-color: #1a73e8;
             --code-bg: #f4f4f4;
             --code-border: #ddd;
@@ -58,12 +58,12 @@
             --blockquote-bg: #fff0e6;
             --blockquote-border: #f6941f;
         }
-        /* Dark Theme Detection */
+        /<em> Dark Theme Detection </em>/
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
-                --primary-color: #ffb74d; /* Warna Khas Cloudflare yang lebih terang */
+                --primary-color: #ffb74d; /<em> Warna Khas Cloudflare yang lebih terang </em>/
                 --secondary-color: #82b1ff;
                 --code-bg: #1e1e1e;
                 --code-border: #333;
@@ -82,7 +82,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1000px; /* Widescreen 1 Kolom */
+            max-width: 1000px; /<em> Widescreen 1 Kolom </em>/
             margin: 0 auto;
             padding: 20px;
         }
@@ -160,22 +160,22 @@
 </head>
 <body>
     <div class="container">
-        <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>📜 Mengelola `robots.txt` di Cloudflare: Panduan Bot Crawler</h1>
-        <p>Hai! Pengaturan yang Anda lihat ini merupakan kontrol klasik namun fundamental dalam dunia web. File `robots.txt` adalah semacam "papan pengumuman" di pintu masuk situs Anda yang memberi tahu semua *bot* yang berkunjung, termasuk *search engine* dan *AI training bots*, area mana saja yang boleh mereka jelajahi (*crawl*). Cloudflare hadir untuk mempermudah Anda mengelola file penting ini, terutama untuk isu AI saat ini.</p>
+        <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>📜 Mengelola <code>robots.txt</code> di Cloudflare: Panduan Bot Crawler</h1>
+        <p>Hai! Pengaturan yang Anda lihat ini merupakan kontrol klasik namun fundamental dalam dunia web. File <code>robots.txt</code> adalah semacam "papan pengumuman" di pintu masuk situs Anda yang memberi tahu semua <em>bot</em> yang berkunjung, termasuk <em>search engine</em> dan <em>AI training bots</em>, area mana saja yang boleh mereka jelajahi (<em>crawl</em>). Cloudflare hadir untuk mempermudah Anda mengelola file penting ini, terutama untuk isu AI saat ini.</p>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp" alt="Ilustrasi file robots.txt di root domain">
-            <p style="font-size:0.9em;">**Gambar:** File `robots.txt` berada di direktori *root* situs Anda, sebagai panduan pertama bagi semua *crawler*.</p>
+            <p style="font-size:0.9em;"><strong>Gambar:</strong> File <code>robots.txt</code> berada di direktori <em>root</em> situs Anda, sebagai panduan pertama bagi semua <em>crawler</em>.</p>
         </div>
         <hr>
         <h2><i class="fa-solid fa-hammer"></i> Tiga Opsi Pengelolaan Robots.txt oleh Cloudflare</h2>
-        <p>Cloudflare memberikan tiga cara untuk memublikasikan atau menonaktifkan file `robots.txt` di situs Anda. Pilihan ini sebagian besar didasarkan pada seberapa besar Anda ingin Cloudflare turun tangan dalam mengatur kebijakan akses konten Anda.</p>
+        <p>Cloudflare memberikan tiga cara untuk memublikasikan atau menonaktifkan file <code>robots.txt</code> di situs Anda. Pilihan ini sebagian besar didasarkan pada seberapa besar Anda ingin Cloudflare turun tangan dalam mengatur kebijakan akses konten Anda.</p>
         <div class="option-detail">
             <h3><i class="fa-solid fa-signal"></i> 1. Content Signals Policy (Kebijakan Sinyal Konten)</h3>
-            <p>**Deskripsi Opsi:** *Cloudflare deploys a robots.txt file that displays a content access framework for any bots that visit your site. This file will only include the framework and will not disallow any crawlers.*</p>
-            <p>Ini adalah opsi yang paling ringan dan informatif. Cloudflare akan memastikan file `robots.txt` Anda ada dan menyertakan semacam "pernyataan hak" atau kerangka kerja akses konten yang terstandarisasi. </p>
+            <p><strong>Deskripsi Opsi:</strong> <em>Cloudflare deploys a robots.txt file that displays a content access framework for any bots that visit your site. This file will only include the framework and will not disallow any crawlers.</em></p>
+            <p>Ini adalah opsi yang paling ringan dan informatif. Cloudflare akan memastikan file <code>robots.txt</code> Anda ada dan menyertakan semacam "pernyataan hak" atau kerangka kerja akses konten yang terstandarisasi. </p>
             <ul>
-                <li>**Apa yang Terjadi?** Cloudflare menyuntikkan teks kebijakan, tetapi **TIDAK** menyertakan perintah `Disallow` untuk memblokir bot apa pun.</li>
-                <li>**Intinya:** Ini adalah pernyataan etika dan kebijakan penggunaan. Semua *crawler* diizinkan masuk, tetapi mereka diberi tahu tentang kebijakan konten Anda (yang sayangnya, tidak semua bot patuh).</li>
+                <li><strong>Apa yang Terjadi?</strong> Cloudflare menyuntikkan teks kebijakan, tetapi <strong>TIDAK</strong> menyertakan perintah <code>Disallow</code> untuk memblokir bot apa pun.</li>
+                <li><strong>Intinya:</strong> Ini adalah pernyataan etika dan kebijakan penggunaan. Semua <em>crawler</em> diizinkan masuk, tetapi mereka diberi tahu tentang kebijakan konten Anda (yang sayangnya, tidak semua bot patuh).</li>
                 <li><b>Contoh ilustrasi Teks yang Disuntikkan:</b>
 <pre># Cloudflare Content Access Framework
 User-agent: *
@@ -185,11 +185,11 @@ Allow: /</pre>
         </div>
         <div class="option-detail">
             <h3><i class="fa-solid fa-user-slash"></i> 2. Instruct AI bots to not scrape content (Menginstruksikan bot AI untuk tidak mengumpulkan konten)</h3>
-            <p>**Deskripsi Opsi:** *Creates or updates your robots.txt file to signal that your content should not be used for AI training.*</p>
+            <p><strong>Deskripsi Opsi:</strong> <em>Creates or updates your robots.txt file to signal that your content should not be used for AI training.</em></p>
             <p>Ini adalah pilihan yang paling spesifik untuk melindungi konten Anda dari AI, dan ini adalah langkah yang sangat direkomendasikan jika Anda tidak ingin konten Anda digunakan untuk pelatihan model AI. </p>
             <ul>
-                <li>**Apa yang Terjadi?** Cloudflare akan menambahkan baris `Disallow` yang secara spesifik menargetkan *User-Agent* yang diketahui digunakan oleh *AI training bots*.</li>
-                <li>**Intinya:** Ini adalah instruksi eksplisit untuk menolak akses bot AI. Bot dari perusahaan AI yang bertanggung jawab (yang menghormati `robots.txt`) akan mematuhi instruksi ini.</li>
+                <li><strong>Apa yang Terjadi?</strong> Cloudflare akan menambahkan baris <code>Disallow</code> yang secara spesifik menargetkan <em>User-Agent</em> yang diketahui digunakan oleh <em>AI training bots</em>.</li>
+                <li><strong>Intinya:</strong> Ini adalah instruksi eksplisit untuk menolak akses bot AI. Bot dari perusahaan AI yang bertanggung jawab (yang menghormati <code>robots.txt</code>) akan mematuhi instruksi ini.</li>
                 <li><b>Contoh ilustrasi Teks yang Disuntikkan:</b>
 <pre>User-agent: CCBot
 Disallow: /
@@ -200,17 +200,17 @@ Disallow: /</pre>
         </div>
         <div class="option-detail">
             <h3><i class="fa-solid fa-times-circle"></i> 3. Disable robots.txt configuration (Nonaktifkan konfigurasi robots.txt)</h3>
-            <p>**Deskripsi Opsi:** *Turn off Cloudflare’s robots.txt configuration to stop managing how bots and crawlers access your site.*</p>
+            <p><strong>Deskripsi Opsi:</strong> <em>Turn off Cloudflare’s robots.txt configuration to stop managing how bots and crawlers access your site.</em></p>
             <p>Opsi ini memberikan kendali 100% kembali kepada Anda, tanpa intervensi dari Cloudflare.</p>
             <ul>
-                <li>**Apa yang Terjadi?** Cloudflare berhenti membuat, mengedit, atau menyajikan file `robots.txt`. File yang disajikan ke *bot* adalah file yang ada di *server* asal (*origin server*) Anda.</li>
-                <li>**Intinya:** Cocok jika Anda memiliki file `robots.txt` kustom yang kompleks yang sudah Anda kelola sendiri di *hosting* Anda.</li>
-                <li>**Catatan:** Jika Anda memilih ini tetapi lupa mengunggah file `robots.txt` kustom di *server* Anda, maka semua *bot* akan diizinkan menjelajahi seluruh situs Anda.</li>
+                <li><strong>Apa yang Terjadi?</strong> Cloudflare berhenti membuat, mengedit, atau menyajikan file <code>robots.txt</code>. File yang disajikan ke <em>bot</em> adalah file yang ada di <em>server</em> asal (<em>origin server</em>) Anda.</li>
+                <li><strong>Intinya:</strong> Cocok jika Anda memiliki file <code>robots.txt</code> kustom yang kompleks yang sudah Anda kelola sendiri di <em>hosting</em> Anda.</li>
+                <li><strong>Catatan:</strong> Jika Anda memilih ini tetapi lupa mengunggah file <code>robots.txt</code> kustom di <em>server</em> Anda, maka semua <em>bot</em> akan diizinkan menjelajahi seluruh situs Anda.</li>
             </ul>
         </div>
         <hr>
         <h2><i class="fa-solid fa-shield-alt"></i> Kesimpulan dan Rekomendasi Perlindungan Penuh</h2>
-        <p>Pengaturan `robots.txt` ini bekerja sebagai **panduan etika**. Untuk mendapatkan perlindungan konten yang paling kuat dari *AI training bots*, Anda perlu menggabungkannya dengan pengaturan pemblokiran yang berada di lapisan HTTP (yang sudah kita bahas sebelumnya).</p>
+        <p>Pengaturan <code>robots.txt</code> ini bekerja sebagai <strong>panduan etika</strong>. Untuk mendapatkan perlindungan konten yang paling kuat dari <em>AI training bots</em>, Anda perlu menggabungkannya dengan pengaturan pemblokiran yang berada di lapisan HTTP (yang sudah kita bahas sebelumnya).</p>
         <table class="specs-table">
             <thead>
                 <tr>
@@ -221,20 +221,20 @@ Disallow: /</pre>
             </thead>
             <tbody>
                 <tr>
-                    <td>**1. Panduan Etika (robots.txt)**</td>
-                    <td>**Instruct AI bots to not scrape content**</td>
-                    <td>Menginstruksikan *bot* yang patuh untuk menjauh (Sinyal Penolakan).</td>
+                    <td><strong>1. Panduan Etika (robots.txt)</strong></td>
+                    <td><strong>Instruct AI bots to not scrape content</strong></td>
+                    <td>Menginstruksikan <em>bot</em> yang patuh untuk menjauh (Sinyal Penolakan).</td>
                 </tr>
                 <tr>
-                    <td>**2. Pemblokiran Aktif (HTTP)**</td>
-                    <td>**Block on all pages** (dari menu pengaturan bot AI yang lain)</td>
-                    <td>Secara aktif memblokir koneksi *request* dari *bot* tersebut.</td>
+                    <td><strong>2. Pemblokiran Aktif (HTTP)</strong></td>
+                    <td><strong>Block on all pages</strong> (dari menu pengaturan bot AI yang lain)</td>
+                    <td>Secara aktif memblokir koneksi <em>request</em> dari <em>bot</em> tersebut.</td>
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top: 25px;">Dengan menggabungkan kedua lapisan ini, Anda memastikan bahwa *bot* yang bertanggung jawab mendapat instruksi untuk menolak, dan *bot* yang mungkin kurang bertanggung jawab akan diblokir di lapisan jaringan Cloudflare. Perlindungan ganda yang cerdas! ✨</p>
+        <p style="margin-top: 25px;">Dengan menggabungkan kedua lapisan ini, Anda memastikan bahwa <em>bot</em> yang bertanggung jawab mendapat instruksi untuk menolak, dan <em>bot</em> yang mungkin kurang bertanggung jawab akan diblokir di lapisan jaringan Cloudflare. Perlindungan ganda yang cerdas! ✨</p>
         <h2 style="margin-top: 50px;"><i class="fa-solid fa-comments"></i> Kolom Diskusi</h2>
-        <p>Apakah Anda lebih suka mengelola `robots.txt` sendiri atau mengandalkan konfigurasi dari Cloudflare?</p>
+        <p>Apakah Anda lebih suka mengelola <code>robots.txt</code> sendiri atau mengandalkan konfigurasi dari Cloudflare?</p>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer class="footer">
             <p>🄯 2025 Jaga Data Pribadi Tetap Aman | Analisis Cloudflare Robots.txt | <a href="https://dalam.web.id/disclaimer.html">Kebijakan Privasi</a></p>

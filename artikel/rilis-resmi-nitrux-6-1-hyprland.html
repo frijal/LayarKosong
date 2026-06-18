@@ -59,7 +59,7 @@
     <!-- FontAwesome Icons (Asynchronous) -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
+        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
         :root {
             --bg-color: #f9fafb;
             --text-color: #374151;
@@ -102,7 +102,7 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /* Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop */
+        /<em> Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -137,7 +137,7 @@
         p {
             margin-bottom: 1.25rem;
         }
-        /* Menggunakan a. selector sesuai ledger */
+        /<em> Menggunakan a. selector sesuai ledger </em>/
         a.article-link, a.ref-link {
             color: var(--link-color);
             text-decoration: none;
@@ -149,7 +149,7 @@
             color: var(--link-hover);
             border-bottom-color: var(--link-hover);
         }
-        /* Penanda Kode / CLI */
+        /<em> Penanda Kode / CLI </em>/
         code.inline-code {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -158,7 +158,7 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 0.9em;
         }
-        /* Blok Metadata E-E-A-T */
+        /<em> Blok Metadata E-E-A-T </em>/
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -176,7 +176,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        /* Blok Kontainer Gambar Mengurangi Layout Shift (CLS) */
+        /<em> Blok Kontainer Gambar Mengurangi Layout Shift (CLS) </em>/
         .img-container {
             margin: 2rem 0;
             background-color: var(--card-bg);
@@ -188,7 +188,7 @@
         .img-container img {
             width: 100%;
             height: auto;
-            max-width: 650px; /* Pencegah gambar raksasa di atas fold */
+            max-width: 650px; /<em> Pencegah gambar raksasa di atas fold </em>/
             display: block;
             border-radius: 6px;
             margin: 0 auto;
@@ -199,7 +199,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /* List Styling */
+        /<em> List Styling </em>/
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -207,7 +207,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /* Blockquote Info */
+        /<em> Blockquote Info </em>/
         blockquote.info-box {
             background-color: var(--quote-bg);
             border-left: 4px solid var(--quote-border);
@@ -232,7 +232,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /* Responsivitas Layar Lebar */
+        /<em> Responsivitas Layar Lebar </em>/
         @media (min-width: 768px) {
             .container {
                 padding: 2.5rem;
@@ -261,7 +261,7 @@
                     <span><i class="fa-solid fa-tag"></i> Open Source / Distro Linux</span>
                 </div>
             </header>
-            <p><strong>Apa</strong> yang baru di ranah distribusi Linux independen bulan ini? Tim pengembang Nitrux secara resmi telah merilis <strong>Nitrux 6.1</strong>. Sebagai sistem operasi <em>immutable</em> yang konsisten berjalan tanpa <code>systemd</code> dan dibangun di atas fondasi Debian, Nitrux terus mengukuhkan posisinya dengan pendekatan deployment perangkat lunak berbasis AppImage. <strong>Kapan</strong> dan <strong>mengapa</strong> rilis ini penting? Karena pada pembaruan ini, Nitrux memantapkan penggunaan <strong>Hyprland</strong> sebagai *compositor* Wayland utamanya, sembari menyuntikkan berbagai peningkatan performa dari *kernel* racikan khusus.</p>
+            <p><strong>Apa</strong> yang baru di ranah distribusi Linux independen bulan ini? Tim pengembang Nitrux secara resmi telah merilis <strong>Nitrux 6.1</strong>. Sebagai sistem operasi <em>immutable</em> yang konsisten berjalan tanpa <code>systemd</code> dan dibangun di atas fondasi Debian, Nitrux terus mengukuhkan posisinya dengan pendekatan deployment perangkat lunak berbasis AppImage. <strong>Kapan</strong> dan <strong>mengapa</strong> rilis ini penting? Karena pada pembaruan ini, Nitrux memantapkan penggunaan <strong>Hyprland</strong> sebagai <em>compositor</em> Wayland utamanya, sembari menyuntikkan berbagai peningkatan performa dari <em>kernel</em> racikan khusus.</p>
             <p>Bagi mereka yang menginginkan OS Linux dengan stabilitas <em>immutable</em> namun dengan kustomisasi desktop yang modern, rilis 6.1 ini membawa sejumlah perombakan krusial—mulai dari dapur pacu hingga ekosistem aplikasinya. Mari kita bedah lebih dalam <strong>bagaimana</strong> fitur-fitur baru ini bekerja.</p>
             <!-- LCP Image, ukuran proporsional di tengah, tanpa memonopoli 'above the fold' -->
             <div class="img-container">
@@ -269,10 +269,10 @@
                 <div class="img-caption">Nitrux 6.1 mengoptimalkan pengalaman Wayland melalui compositor Hyprland dan ekosistem Maui.</div>
             </div>
             <h2><i class="fa-brands fa-linux" style="margin-right: 0.5rem;"></i> Dapur Pacu: Kernel 7.0.8 &amp; Optimasi CachyOS</h2>
-            <p>Jantung dari Nitrux 6.1 ditenagai oleh <strong>Linux kernel 7.0.8</strong>. Yang membuatnya menarik, kernel ini tidak dibiarkan standar, melainkan telah ditingkatkan dengan injeksi *patch* optimasi dari <strong>CachyOS</strong> untuk mendongkrak tingkat responsivitas dan latensi sistem. Kombinasi ini sangat relevan bagi pengguna yang membutuhkan manajemen proses yang agresif namun stabil.</p>
+            <p>Jantung dari Nitrux 6.1 ditenagai oleh <strong>Linux kernel 7.0.8</strong>. Yang membuatnya menarik, kernel ini tidak dibiarkan standar, melainkan telah ditingkatkan dengan injeksi <em>patch</em> optimasi dari <strong>CachyOS</strong> untuk mendongkrak tingkat responsivitas dan latensi sistem. Kombinasi ini sangat relevan bagi pengguna yang membutuhkan manajemen proses yang agresif namun stabil.</p>
             <p>Di sektor antarmuka dan grafis, rilis ini menyertakan:</p>
             <ul>
-                <li><strong>Hyprland 0.55.1</strong> sebagai lingkungan desktop *default*.</li>
+                <li><strong>Hyprland 0.55.1</strong> sebagai lingkungan desktop <em>default</em>.</li>
                 <li>Pembaruan framework inti dengan <strong>Qt 6.10.2</strong>, <strong>KDE Applications 26.04.1</strong>, dan <strong>KDE Frameworks 6.23</strong>.</li>
                 <li>Pembaruan installer sistem via <strong>Calamares 3.4.2</strong>.</li>
             </ul>
@@ -281,32 +281,32 @@
             </blockquote>
             <h2><i class="fa-solid fa-layer-group" style="margin-right: 0.5rem;"></i> Penyegaran Ekosistem Maui 4.0.3</h2>
             <p>Ekosistem aplikasi mandiri Nitrux, yakni <strong>Maui</strong>, juga mendapatkan penyegaran masif. MauiKit, MauiKit Frameworks, dan lini Maui Apps kini telah melompat ke versi <strong>4.0.3</strong>. Pembaruan ini tidak sekadar membawa polesan antarmuka, tetapi juga peningkatan stabilitas, integrasi <em>build-system</em> yang lebih bersih, serta opsi optimasi kompilator <em>x86-64-v3</em> untuk prosesor yang mendukungnya.</p>
-            <p>MauiKit sendiri kini hadir dengan penanganan *tab* dan *browser* yang lebih baik, perbaikan *behavior* pada *loader* QML, stabilitas MauiModel yang ditingkatkan, serta *resizing* *sidebar* yang lebih mulus.</p>
-            <p>Beberapa aplikasi bawaan (Maui Apps) yang mendapatkan *upgrade* signifikan antara lain:</p>
+            <p>MauiKit sendiri kini hadir dengan penanganan <em>tab</em> dan <em>browser</em> yang lebih baik, perbaikan <em>behavior</em> pada <em>loader</em> QML, stabilitas MauiModel yang ditingkatkan, serta <em>resizing</em> <em>sidebar</em> yang lebih mulus.</p>
+            <p>Beberapa aplikasi bawaan (Maui Apps) yang mendapatkan <em>upgrade</em> signifikan antara lain:</p>
             <ul>
-                <li><strong>Buho:</strong> Kini terintegrasi dengan editor Markdown *split-view* serta navigasi catatan yang lebih rapi.</li>
-                <li><strong>Clip:</strong> Menstandarisasi pemutaran media berbasis <code>libmpv</code>, manajemen <em>playlist</em> yang ditingkatkan, dan penambahan *thumbnail* video langsung di dalam *list view*.</li>
-                <li><strong>Fiery (Web Browser):</strong> Mengantongi ragam perbaikan keamanan, proteksi privasi tingkat lanjut, integrasi *password management*, *content blocking*, dan sistem manajemen sesi pengguna.</li>
+                <li><strong>Buho:</strong> Kini terintegrasi dengan editor Markdown <em>split-view</em> serta navigasi catatan yang lebih rapi.</li>
+                <li><strong>Clip:</strong> Menstandarisasi pemutaran media berbasis <code>libmpv</code>, manajemen <em>playlist</em> yang ditingkatkan, dan penambahan <em>thumbnail</em> video langsung di dalam <em>list view</em>.</li>
+                <li><strong>Fiery (Web Browser):</strong> Mengantongi ragam perbaikan keamanan, proteksi privasi tingkat lanjut, integrasi <em>password management</em>, <em>content blocking</em>, dan sistem manajemen sesi pengguna.</li>
             </ul>
             <p>Aplikasi lain seperti Index, Nota, Pix, Shelf, Station, dan VVave juga menerima ragam optimasi <em>workflow</em> dan perbaikan <em>bug</em> minor. Nitrux mengedepankan keamanan berbasis kriptografi dan manajemen konfigurasi yang terstruktur.</p>
             <h2><i class="fa-solid fa-gears" style="margin-right: 0.5rem;"></i> Modernisasi Konfigurasi Desktop</h2>
-            <p>Nitrux 6.1 melakukan perombakan metodologi pada tata letak kustomisasinya. Konfigurasi Hyprland kini dikelola langsung menggunakan skrip <strong>Lua</strong>, memberikan fleksibilitas logika yang lebih tinggi bagi *power-users*. Selain itu, <em>launcher</em> aplikasi Wofi kini telah digantikan oleh <strong>Vicinae</strong>—sebuah *launcher* baru yang secara visual terinspirasi oleh fleksibilitas aplikasi Raycast.</p>
+            <p>Nitrux 6.1 melakukan perombakan metodologi pada tata letak kustomisasinya. Konfigurasi Hyprland kini dikelola langsung menggunakan skrip <strong>Lua</strong>, memberikan fleksibilitas logika yang lebih tinggi bagi <em>power-users</em>. Selain itu, <em>launcher</em> aplikasi Wofi kini telah digantikan oleh <strong>Vicinae</strong>—sebuah <em>launcher</em> baru yang secara visual terinspirasi oleh fleksibilitas aplikasi Raycast.</p>
             <p>Pembaruan lingkungan desktop lainnya mencakup penyetelan latensi PipeWire terbaru, tata letak Waybar yang disegarkan, skrip konfigurasi MauiKit yang direvisi, serta manajemen Bluetooth berbasis WirePlumber yang lebih mulus.</p>
             <h2><i class="fa-solid fa-shield-halved" style="margin-right: 0.5rem;"></i> Fokus Keamanan: CVE &amp; Integrasi YubiKey</h2>
-            <p>Keamanan tetap menjadi prioritas absolut pada rilis kali ini. Nitrux 6.1 langsung menambal serangkaian kerentanan *zero-day* dan celah keamanan yang baru-baru ini diungkap ke publik, termasuk <code class="inline-code">CVE-2026-31431</code> (Copy Fail), <code class="inline-code">CVE-2026-43284</code> (Dirty Frag), <code class="inline-code">CVE-2026-43500</code> (Fragnesia), dan <code class="inline-code">CVE-2026-46333</code> (ssh-keysign-pwn).</p>
+            <p>Keamanan tetap menjadi prioritas absolut pada rilis kali ini. Nitrux 6.1 langsung menambal serangkaian kerentanan <em>zero-day</em> dan celah keamanan yang baru-baru ini diungkap ke publik, termasuk <code class="inline-code">CVE-2026-31431</code> (Copy Fail), <code class="inline-code">CVE-2026-43284</code> (Dirty Frag), <code class="inline-code">CVE-2026-43500</code> (Fragnesia), dan <code class="inline-code">CVE-2026-46333</code> (ssh-keysign-pwn).</p>
             <p>Sistem ini juga mengekspansi fitur autentikasi dan enkripsi disk, dengan menambahkan dukungan <strong>autentikasi dua faktor (2FA) berbasis YubiKey untuk partisi disk yang terenkripsi LUKS</strong>. Tidak ketinggalan, dukungan PAM (Pluggable Authentication Modules) untuk standar otentikasi Universal 2nd Factor (U2F) juga telah dimatangkan.</p>
             <h2><i class="fa-solid fa-toolbox" style="margin-right: 0.5rem;"></i> Utilitas Baru &amp; Opsi Ketersediaan ISO</h2>
-            <p>Untuk melengkapi sistemnya, pengembang Nitrux memasukkan beberapa *tool* krusial:</p>
+            <p>Untuk melengkapi sistemnya, pengembang Nitrux memasukkan beberapa <em>tool</em> krusial:</p>
             <ul>
-                <li><code class="inline-code">dmemcg-booster</code> — versi modifikasi dari *daemon* Valve yang diadaptasikan khusus untuk sistem OpenRC.</li>
-                <li><em>Loader</em> HID-BPF yang secara otomatis dipicu lewat *event* dari <code>udev</code>.</li>
+                <li><code class="inline-code">dmemcg-booster</code> — versi modifikasi dari <em>daemon</em> Valve yang diadaptasikan khusus untuk sistem OpenRC.</li>
+                <li><em>Loader</em> HID-BPF yang secara otomatis dipicu lewat <em>event</em> dari <code>udev</code>.</li>
                 <li><strong>Fatresize</strong> — utilitas cerdas untuk mengubah ukuran partisi FAT16/FAT32 dengan aman.</li>
                 <li><strong>RealtimeKit</strong> untuk manajemen latensi.</li>
                 <li>Paket font <strong>Meslo Nerd Font</strong> yang sudah dioptimasi untuk pengguna Powerlevel10k.</li>
             </ul>
-            <p><strong>Bagaimana cara mendapatkannya?</strong> Nitrux 6.1 didistribusikan melalui dua edisi ISO yang terpisah demi kompatibilitas *hardware* maksimal: <code class="inline-code">cachy-nvopen</code> untuk perangkat dengan kartu grafis NVIDIA, dan <code class="inline-code">cachy-mesa</code> untuk mereka yang menggunakan arsitektur GPU AMD atau Intel. Bagi pengguna Nitrux 6.0 saat ini, sistem dapat di-*upgrade* langsung menggunakan sistem OTA (*Over-The-Air*) milik Nitrux setelah pembaruan tersebut didorong ke server publik.</p>
+            <p><strong>Bagaimana cara mendapatkannya?</strong> Nitrux 6.1 didistribusikan melalui dua edisi ISO yang terpisah demi kompatibilitas <em>hardware</em> maksimal: <code class="inline-code">cachy-nvopen</code> untuk perangkat dengan kartu grafis NVIDIA, dan <code class="inline-code">cachy-mesa</code> untuk mereka yang menggunakan arsitektur GPU AMD atau Intel. Bagi pengguna Nitrux 6.0 saat ini, sistem dapat di-<em>upgrade</em> langsung menggunakan sistem OTA (<em>Over-The-Air</em>) milik Nitrux setelah pembaruan tersebut didorong ke server publik.</p>
             <hr>
-            <p><strong>Referensi Formal:</strong> Untuk membaca rincian *changelog* secara penuh atau mengunduh *image* instalasi, silakan merujuk pada pengumuman rilis resmi di situs web mereka: <a href="https://nxos.org/changelog/release-announcement-nitrux-6-1-0/" class="ref-link" target="_blank" rel="noopener noreferrer">Release Announcement Nitrux 6.1.0</a>.</p>
+            <p><strong>Referensi Formal:</strong> Untuk membaca rincian <em>changelog</em> secara penuh atau mengunduh <em>image</em> instalasi, silakan merujuk pada pengumuman rilis resmi di situs web mereka: <a href="https://nxos.org/changelog/release-announcement-nitrux-6-1-0/" class="ref-link" target="_blank" rel="noopener noreferrer">Release Announcement Nitrux 6.1.0</a>.</p>
             <p>Informasi rilis Kernel 7.0.8 terkait optimasi dapat dipelajari lebih lanjut melalui <a href="https://vmorecloud.com/linux-kernel-7-0-released/" class="ref-link" target="_blank" rel="noopener noreferrer">Linux Kernel 7.0 Released</a>.</p>
         </article>
         <!-- Struktur Wajib Akhir Konten Tanpa Tambahan Styling Berdasarkan Aturan Baku -->

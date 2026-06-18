@@ -403,7 +403,7 @@
             display: block;
             transition: opacity 0.3s;
             background: var(--skeleton-shine);
-            cursor: default; /* diubah dari zoom-in menjadi default */
+            cursor: default; /<em> diubah dari zoom-in menjadi default </em>/
         }
         .card-social img.no-image {
             aspect-ratio: 1.91 / 1;
@@ -736,9 +736,9 @@
         <h2>🧠 Kode di Balik Layar</h2>
                 <pre><code>// === ARSITEKTUR MULTI-FALLBACK ===
 const API_SOURCES = [
-    { name: 'Microlink', url: (u) =&gt; `https://api.microlink.io/?url=${u}`, parse: parseMicrolink },
-    { name: 'JSONLink', url: (u) =&gt; `https://jsonlink.io/api/extract?url=${u}`, parse: parseJSONLink },
-    { name: 'AllOrigins', url: (u) =&gt; `https://api.allorigins.win/raw?url=${u}`, parse: parseHTMLManual }
+    { name: 'Microlink', url: (u) =&gt; <code>https://api.microlink.io/?url=${u}</code>, parse: parseMicrolink },
+    { name: 'JSONLink', url: (u) =&gt; <code>https://jsonlink.io/api/extract?url=${u}</code>, parse: parseJSONLink },
+    { name: 'AllOrigins', url: (u) =&gt; <code>https://api.allorigins.win/raw?url=${u}</code>, parse: parseHTMLManual }
 ];
 async function fetchWithFallback(targetUrl) {
     for (const source of API_SOURCES) {
@@ -746,11 +746,11 @@ async function fetchWithFallback(targetUrl) {
             const resp = await fetchWithTimeout(source.url(targetUrl), 10000);
             const data = await source.parse(resp);
             if (data.title) return { ...data, _source: source.name };
-        } catch (e) { console.warn(`Fallback: ${source.name} gagal`); }
+        } catch (e) { console.warn(<code>Fallback: ${source.name} gagal</code>); }
     }
     throw new Error('Semua API gagal');
 }</code></pre>
-        <p>Skrip sederhana ini dibuat dengan kode yang mendukung *multiple API fallback*. Jika API utama (Microlink) gagal karena *rate limit* atau masalah CORS, skrip akan secara otomatis beralih ke JSONLink, lalu ke AllOrigins dengan teknik *parsing* manual pada *meta tag* dari HTML mentah. Untuk meningkatkan efisiensi dan stabilitas, skrip juga dilengkapi dengan fitur *caching* otomatis di *sessionStorage* selama 10 menit, *timeout handling*, *loading skeleton*, serta *debug panel* untuk inspeksi metadata secara *real-time*.</p>
+        <p>Skrip sederhana ini dibuat dengan kode yang mendukung <em>multiple API fallback</em>. Jika API utama (Microlink) gagal karena <em>rate limit</em> atau masalah CORS, skrip akan secara otomatis beralih ke JSONLink, lalu ke AllOrigins dengan teknik <em>parsing</em> manual pada <em>meta tag</em> dari HTML mentah. Untuk meningkatkan efisiensi dan stabilitas, skrip juga dilengkapi dengan fitur <em>caching</em> otomatis di <em>sessionStorage</em> selama 10 menit, <em>timeout handling</em>, <em>loading skeleton</em>, serta <em>debug panel</em> untuk inspeksi metadata secara <em>real-time</em>.</p>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <div class="meta-inline">
@@ -775,16 +775,16 @@ async function fetchWithFallback(targetUrl) {
             const inputClearBtn = document.getElementById('inputClearBtn');
             const toastContainer = document.getElementById('toastContainer');
             const CACHE_KEY_PREFIX = 'sm_preview_cache_';
-            const CACHE_DURATION_MS = 10 * 60 * 1000;
+            const CACHE_DURATION_MS = 10 <em> 60 </em> 1000;
             const FETCH_TIMEOUT_MS = 12000;
             const MAX_RETRIES_PER_SOURCE = 2;
             let currentMetadata = null;
             let fetchStartTime = 0;
             function showToast(message, type = 'info') {
                 const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
+                toast.className = <code>toast ${type}</code>;
                 const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-                toast.innerHTML = `${icons[type] || 'ℹ️'} ${message}`;
+                toast.innerHTML = <code>${icons[type] || 'ℹ️'} ${message}</code>;
                 toastContainer.appendChild(toast);
                 setTimeout(() => { if (toast.parentNode) toast.remove(); }, 3000);
             }
@@ -821,7 +821,7 @@ async function fetchWithFallback(targetUrl) {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
                 return fetch(url, { signal: controller.signal })
-                    .then(response => { clearTimeout(timeoutId); if (!response.ok) throw new Error(`HTTP ${response.status}`); return response; })
+                    .then(response => { clearTimeout(timeoutId); if (!response.ok) throw new Error(<code>HTTP ${response.status}</code>); return response; })
                     .catch(err => { clearTimeout(timeoutId); throw err; });
             }
             async function parseMicrolink(response) {
@@ -840,7 +840,7 @@ async function fetchWithFallback(targetUrl) {
                 const doc = parser.parseFromString(html, 'text/html');
                 const getMeta = (names) => {
                     for (const name of names) {
-                        const el = doc.querySelector(`meta[property="${name}"], meta[name="${name}"]`);
+                        const el = doc.querySelector(<code>meta[property="${name}"], meta[name="${name}"]</code>);
                         if (el?.content) return el.content;
                     }
                     return '';
@@ -851,9 +851,9 @@ async function fetchWithFallback(targetUrl) {
                 return { title, description, image, url: '', _raw: { parsedFromHTML: true, title, description, image } };
             }
             const API_SOURCES = [
-                { name: 'Microlink', urlFn: (u) => `https://api.microlink.io/?url=${encodeURIComponent(u)}`, parser: parseMicrolink },
-                { name: 'JSONLink', urlFn: (u) => `https://jsonlink.io/api/extract?url=${encodeURIComponent(u)}`, parser: parseJSONLink },
-                { name: 'AllOrigins', urlFn: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`, parser: parseHTMLManual },
+                { name: 'Microlink', urlFn: (u) => <code>https://api.microlink.io/?url=${encodeURIComponent(u)}</code>, parser: parseMicrolink },
+                { name: 'JSONLink', urlFn: (u) => <code>https://jsonlink.io/api/extract?url=${encodeURIComponent(u)}</code>, parser: parseJSONLink },
+                { name: 'AllOrigins', urlFn: (u) => <code>https://api.allorigins.win/raw?url=${encodeURIComponent(u)}</code>, parser: parseHTMLManual },
             ];
             async function fetchMetadataWithFallback(targetUrl) {
                 let lastError = null;
@@ -917,11 +917,11 @@ async function fetchWithFallback(targetUrl) {
                     renderAllPreviews(targetUrl, metadata);
                     const elapsed = Math.round(performance.now() - fetchStartTime);
                     updateStatsBar(elapsed, metadata._source || 'Unknown', false, metadata._attempt || 1);
-                    showToast(`Berhasil! Sumber: ${metadata._source || 'API'} ✅`, 'success');
+                    showToast(<code>Berhasil! Sumber: ${metadata._source || 'API'} ✅</code>, 'success');
                 } catch (error) {
                     const elapsed = Math.round(performance.now() - fetchStartTime);
                     updateStatsBar(elapsed, 'GAGAL', false, MAX_RETRIES_PER_SOURCE * API_SOURCES.length);
-                    showError(`Gagal mengambil data: ${error.message}. Semua API telah dicoba.`);
+                    showError(<code>Gagal mengambil data: ${error.message}. Semua API telah dicoba.</code>);
                     showToast('Gagal fetch metadata 😞', 'error');
                 } finally {
                     fetchBtn.classList.remove('loading');
@@ -930,7 +930,7 @@ async function fetchWithFallback(targetUrl) {
                 }
             }
             function showError(msg) {
-                errorMsg.innerHTML = `${msg} <span class="retry-link" id="retryLink">Coba lagi?</span>`;
+                errorMsg.innerHTML = <code>${msg} <span class="retry-link" id="retryLink">Coba lagi?</span></code>;
                 errorMsg.classList.add('visible');
                 document.getElementById('retryLink').addEventListener('click', () => {
                     errorMsg.classList.remove('visible');
@@ -948,7 +948,7 @@ async function fetchWithFallback(targetUrl) {
                 else if (source === 'GAGAL') sourceEl.classList.add('fallback');
                 else sourceEl.classList.add('fallback');
                 document.getElementById('statCache').textContent = fromCache ? '✅ Ya' : '❌ Tidak';
-                document.getElementById('statRetry').textContent = attempts > 1 ? `${attempts}x` : 'Tidak';
+                document.getElementById('statRetry').textContent = attempts > 1 ? <code>${attempts}x</code> : 'Tidak';
             }
             function renderAllPreviews(targetUrl, metadata) {
                 const title = metadata.title || 'Judul Tidak Ditemukan';
@@ -1005,7 +1005,7 @@ async function fetchWithFallback(targetUrl) {
                 const encodedLink = encodeURIComponent(url);
                 const encodedText = encodeURIComponent(text);
                 const popOpts = "toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=450";
-                return `
+                return <code>
                     <span>📤 Bagikan:</span>
                     <a href="https://x.com/intent/post?text=${encodedText}&url=${encodedLink}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="X (Twitter)"><i class="fa-brands fa-twitter"></i></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -1015,22 +1015,22 @@ async function fetchWithFallback(targetUrl) {
                     <a href="https://mastodon.social/share?text=${encodedText}%0A${encodedLink}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
                     <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodedLink}&title=${encodedText}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Tumblr"><i class="fa-brands fa-tumblr"></i></a>
                     <button class="copy-btn" onclick="navigator.clipboard.writeText('${url.replace(/'/g, "\\'")}').then(()=>{this.textContent='✅ Tersalin!';this.classList.add('copied');setTimeout(()=>{this.textContent='📋 Salin';this.classList.remove('copied');},2000);}).catch(()=>{this.textContent='❌ Gagal';setTimeout(()=>{this.textContent='📋 Salin';},1500);});" title="Salin URL">📋 Salin</button>
-                `;
+                </code>;
             }
             function populateDebugPanel(targetUrl, metadata) {
                 let html = '<span class="section">=== DEBUG INFO ===</span>\n';
-                html += `<span class="key">URL Target:</span> <span class="val">${escapeHTML(targetUrl)}</span>\n`;
-                html += `<span class="key">Sumber API:</span> <span class="val">${escapeHTML(metadata._source || 'Unknown')}</span>\n`;
-                html += `<span class="key">Dari Cache:</span> <span class="val">${metadata._fromCache ? 'Ya' : 'Tidak'}</span>\n`;
-                html += `<span class="key">Percobaan:</span> <span class="val">${metadata._attempt || '-'}</span>\n`;
+                html += <code><span class="key">URL Target:</span> <span class="val">${escapeHTML(targetUrl)}</span>\n</code>;
+                html += <code><span class="key">Sumber API:</span> <span class="val">${escapeHTML(metadata._source || 'Unknown')}</span>\n</code>;
+                html += <code><span class="key">Dari Cache:</span> <span class="val">${metadata._fromCache ? 'Ya' : 'Tidak'}</span>\n</code>;
+                html += <code><span class="key">Percobaan:</span> <span class="val">${metadata._attempt || '-'}</span>\n</code>;
                 html += '\n<span class="section">=== DATA TERDETEKSI ===</span>\n';
-                html += `<span class="key">Title:</span> <span class="val">${escapeHTML(metadata.title || '(kosong)')}</span>\n`;
-                html += `<span class="key">Description:</span> <span class="val">${escapeHTML(metadata.description || '(kosong)')}</span>\n`;
-                html += `<span class="key">Image:</span> <span class="val">${escapeHTML(metadata.image || '(tidak ada gambar)')}</span>\n`;
-                html += `<span class="key">URL:</span> <span class="val">${escapeHTML(metadata.url || targetUrl)}</span>\n`;
+                html += <code><span class="key">Title:</span> <span class="val">${escapeHTML(metadata.title || '(kosong)')}</span>\n</code>;
+                html += <code><span class="key">Description:</span> <span class="val">${escapeHTML(metadata.description || '(kosong)')}</span>\n</code>;
+                html += <code><span class="key">Image:</span> <span class="val">${escapeHTML(metadata.image || '(tidak ada gambar)')}</span>\n</code>;
+                html += <code><span class="key">URL:</span> <span class="val">${escapeHTML(metadata.url || targetUrl)}</span>\n</code>;
                 if (metadata._raw) {
                     html += '\n<span class="section">=== RAW RESPONSE ===</span>\n';
-                    html += `<span class="val">${escapeHTML(JSON.stringify(metadata._raw, null, 2))}</span>\n`;
+                    html += <code><span class="val">${escapeHTML(JSON.stringify(metadata._raw, null, 2))}</span>\n</code>;
                 }
                 debugPanel.innerHTML = html;
             }

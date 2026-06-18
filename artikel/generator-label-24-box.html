@@ -54,7 +54,7 @@
 <style>
         @page { size: A4; margin: 0; }
         body { font-family: 'Arial', sans-serif; margin: 0; background: #f0f0f0; color: #333; }
-        /* UI Menu */
+        /<em> UI Menu </em>/
         .no-print {
             background: white; padding: 20px; border-bottom: 2px solid #ccc;
             position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -70,7 +70,7 @@
         .btn-preview { background: #3498db; color: white; }
         .btn-print { background: #27ae60; color: white; }
         button:hover { opacity: 0.8; }
-        /* A4 Layout */
+        /<em> A4 Layout </em>/
         .page-wrapper {
             width: 210mm; height: 297mm; padding: 8.5mm 15mm;
             box-sizing: border-box; background: white; margin: 10mm auto;
@@ -85,7 +85,7 @@
             width: 60mm; height: 35mm; border-right: 0.5pt solid #000; border-bottom: 0.5pt solid #000;
             padding: 3mm; position: relative; box-sizing: border-box; overflow: hidden;
         }
-        /* Label Content */
+        /<em> Label Content </em>/
         .product-name {
             font-weight: 800; font-size: 9.5pt; text-transform: uppercase;
             line-height: 1.1; display: -webkit-box; -webkit-line-clamp: 2;
@@ -165,7 +165,7 @@
                         const col = row.split(',');
                         if (col.length >= 4) {
                             const formattedPrice = new Intl.NumberFormat('id-ID').format(col[2].trim().replace(/[Rp.\s,]/g, ''));
-                            labelGrid.insertAdjacentHTML('beforeend', `
+                            labelGrid.insertAdjacentHTML('beforeend', <code>
                                 <div class="label-box">
                                     <div class="product-name">${col[0].trim()}</div>
                                     <div class="serial-number">${col[1].trim()}</div>
@@ -177,7 +177,7 @@
                                         <img src="${finalLogo}" alt="Logo" onerror="this.parentElement.style.display='none'">
                                     </div>
                                 </div>
-                            `);
+                            </code>);
                         }
                     });
                     pageWrapper.appendChild(labelGrid);
@@ -187,6 +187,6 @@
             reader.readAsText(csvInput.files[0]);
         }
     </script>
-<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+<noscript>html_hasil_reverse</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

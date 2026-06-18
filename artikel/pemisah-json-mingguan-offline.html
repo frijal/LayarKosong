@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemisah JSON Artikel Mingguan (Offline) - Layar Kosong</title> 
 <style>
-        /* --- Variabel Warna (Dark/Light Mode Otomatis) --- */
+        /<em> --- Variabel Warna (Dark/Light Mode Otomatis) --- </em>/
         :root {
             --bg-color: #f8f9fa;
             --text-color: #212529;
@@ -86,7 +86,7 @@
                 --input-file-text: #adb5bd;
             }
         }
-        /* --- Global & Desain Fullscreen --- */
+        /<em> --- Global & Desain Fullscreen --- </em>/
         * {
             box-sizing: border-box;
             margin: 0;
@@ -104,9 +104,9 @@
             font-size: 17px;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* --- Desain Widescreen & Responsif --- */
+        /<em> --- Desain Widescreen & Responsif --- </em>/
         main {
-            max-width: 900px; /* Layout widescreen */
+            max-width: 900px; /<em> Layout widescreen </em>/
             margin: 2rem auto;
             padding: 1rem 2rem;
         }
@@ -124,7 +124,7 @@
             margin-bottom: 0.5rem;
             font-weight: bold;
         }
-        /* Styling untuk input file */
+        /<em> Styling untuk input file </em>/
         input[type="file"] {
             display: block;
             width: 100%;
@@ -217,11 +217,11 @@
             margin-bottom: 1rem;
         }
         .error-message {
-            color: #dc3545; /* Bootstrap danger color */
+            color: #dc3545; /<em> Bootstrap danger color </em>/
             background-color: rgba(220, 53, 69, 0.1);
             border: 1px solid rgba(220, 53, 69, 0.2);
         }
-        /* --- Footer --- */
+        /<em> --- Footer --- </em>/
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -234,7 +234,7 @@
             color: var(--accent-color);
             text-decoration: none;
         }
-        /* --- Mobile-Friendly (Responsif) --- */
+        /<em> --- Mobile-Friendly (Responsif) --- </em>/
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -320,7 +320,7 @@
             const year = date.getFullYear();
             const month = (date.getMonth() + 1).toString().padStart(2, '0');
             const day = date.getDate().toString().padStart(2, '0');
-            return `${year}-${month}-${day}`;
+            return <code>${year}-${month}-${day}</code>;
         }
         // Helper to get ISO week number (Standard algorithm)
         function getIsoWeek(date) {
@@ -342,7 +342,7 @@
             try {
                 jsonData = JSON.parse(jsonString);
             } catch (error) {
-                outputDiv.innerHTML = `<p class="error-message">Error parsing JSON: ${error.message}</p>`;
+                outputDiv.innerHTML = <code><p class="error-message">Error parsing JSON: ${error.message}</p></code>;
                 return;
             }
             const weeklyData = {};
@@ -398,7 +398,7 @@
             const sortedWeeks = Object.keys(weeklyData).sort();
             // 3. Generate download links for each week
             const outputList = document.createElement('ul');
-            outputDiv.innerHTML = `<h2>File JSON Mingguan (Total ${articleCount} artikel):</h2>`;
+            outputDiv.innerHTML = <code><h2>File JSON Mingguan (Total ${articleCount} artikel):</h2></code>;
             sortedWeeks.forEach((mondayKey) => {
                 const weekArticles = weeklyData[mondayKey];
                 // Sort articles within the week by date (ascending)
@@ -409,7 +409,7 @@
                 const currentYear = currentWeekDate.getFullYear(); // Get the year
                 // Pad week number with leading zero if needed
                 const paddedWeekNumber = currentWeekNumber.toString().padStart(2, '0');
-                const fileName = `${currentYear}-minggu-${paddedWeekNumber}.json`; // YYYY-minggu-WW.json
+                const fileName = <code>${currentYear}-minggu-${paddedWeekNumber}.json</code>; // YYYY-minggu-WW.json
                 // --- End Updated Logic ---
                 const jsonStringOutput = JSON.stringify(weekArticles, null, 2); // Pretty print
                 const blob = new Blob([jsonStringOutput], { type: 'application/json' });
@@ -419,7 +419,7 @@
                 link.href = url;
                 link.download = fileName;
                 // Update link text content to show the new filename format
-                link.textContent = `Unduh ${fileName} (Minggu ke-${currentWeekNumber} ${currentYear}, mulai ${mondayKey}, ${weekArticles.length} artikel)`;
+                link.textContent = <code>Unduh ${fileName} (Minggu ke-${currentWeekNumber} ${currentYear}, mulai ${mondayKey}, ${weekArticles.length} artikel)</code>;
                 listItem.appendChild(link);
                 outputList.appendChild(listItem);
             });

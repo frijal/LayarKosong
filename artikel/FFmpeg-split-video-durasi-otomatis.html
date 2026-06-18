@@ -53,7 +53,7 @@
             --bg: #ffffff;
             --text: #0f172a;
             --muted: #64748b;
-            --accent: #2563eb; /* Blue Automation */
+            --accent: #2563eb; /<em> Blue Automation </em>/
             --terminal: #1e293b;
             --code-text: #60a5fa;
             --card: #f8fafc;
@@ -77,7 +77,7 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.3rem; /* Teks extra besar */
+            font-size: 1.3rem; /<em> Teks extra besar </em>/
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
         }
@@ -111,7 +111,7 @@
             border: 1px solid var(--border);
             margin: 40px 0;
         }
-        /* Script/Terminal Styling */
+        /<em> Script/Terminal Styling </em>/
         .terminal-container {
             background: var(--terminal);
             border-radius: 20px;
@@ -149,7 +149,7 @@
             transition: 0.3s;
         }
         .copy-btn:hover { background: var(--accent); color: white; }
-        /* Logic Breakdown */
+        /<em> Logic Breakdown </em>/
         .logic-card {
             border-left: 6px solid var(--accent);
             padding-left: 30px;
@@ -199,8 +199,8 @@
         </div>
     </header>
     <section class="intro">
-        <p>Pernah punya video berdurasi jam-jam-an tapi cuma butuh dipecah jadi potongan 20 detik buat konten media sosial? Melakukannya manual satu per satu adalah siksaan. Di sinilah **FFmpeg** menunjukkan performa terbaiknya sebagai raja multimedia.</p>
-        <p>Dengan menggabungkan kekuatan FFmpeg dan sedikit logika **Bash Script**, kita bisa membuat mesin pemotong otomatis yang bekerja dalam hitungan detik tanpa mengurangi kualitas video aslinya (*no re-encoding*).</p>
+        <p>Pernah punya video berdurasi jam-jam-an tapi cuma butuh dipecah jadi potongan 20 detik buat konten media sosial? Melakukannya manual satu per satu adalah siksaan. Di sinilah <strong>FFmpeg</strong> menunjukkan performa terbaiknya sebagai raja multimedia.</p>
+        <p>Dengan menggabungkan kekuatan FFmpeg dan sedikit logika <strong>Bash Script</strong>, kita bisa membuat mesin pemotong otomatis yang bekerja dalam hitungan detik tanpa mengurangi kualitas video aslinya (<em>no re-encoding</em>).</p>
     </section>
     <div class="terminal-container">
         <div class="terminal-header">
@@ -232,8 +232,8 @@ echo "Otomasi selesai! Semua bagian telah terpotong."</code></pre>
         <p>Jangan biarkan baris kode di atas mengintimidasi kamu. Logikanya sangat sederhana jika kita bedah satu per satu:</p>
         <ul>
             <li><span class="tag">ffprobe</span> — Digunakan untuk mengintip metadata video dan mengambil angka durasi total secara presisi.</li>
-            <li><span class="tag">bc -l</span> — Karena Bash standar tidak pandai menghitung angka desimal (koma), kita gunakan `bc` agar kalkulasi waktu pemotongan tetap akurat.</li>
-            <li><span class="tag">-ss</span> &amp; <span class="tag">-t</span> — Inilah instrumen utamanya. `-ss` menentukan titik mulai, dan `-t` menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
+            <li><span class="tag">bc -l</span> — Karena Bash standar tidak pandai menghitung angka desimal (koma), kita gunakan <code>bc</code> agar kalkulasi waktu pemotongan tetap akurat.</li>
+            <li><span class="tag">-ss</span> &amp; <span class="tag">-t</span> — Inilah instrumen utamanya. <code>-ss</code> menentukan titik mulai, dan <code>-t</code> menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
             <li><span class="tag">-c copy</span> — Fitur paling krusial. Ini menyuruh FFmpeg untuk tidak melakukan proses rendering ulang. Video hanya "dikemas ulang" ke file baru, sehingga prosesnya instan.</li>
         </ul>
     </div>

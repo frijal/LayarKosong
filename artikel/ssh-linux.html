@@ -206,7 +206,7 @@
           <button class="terminal-btn" onclick="openTerminal()">💻 Coba Terminal Interaktif</button>
       <h2>Cara Kerja SSH</h2>
       <p>
-        SSH bekerja dengan konsep **enkripsi** dan **autentikasi**.
+        SSH bekerja dengan konsep <strong>enkripsi</strong> dan <strong>autentikasi</strong>.
         Saat kamu terhubung ke server menggunakan SSH, koneksi antara perangkat kamu dan server dilindungi oleh lapisan keamanan kriptografi.
         Semua data yang dikirim atau diterima tidak bisa dibaca oleh pihak lain.
       </p>
@@ -308,8 +308,8 @@
       if (e.key === 'Enter') {
         const cmd = input.value.trim();
         if (!cmd) return;
-        const response = commands[cmd] || (cmd.startsWith("echo ") ? cmd.slice(5) : `Perintah '${cmd}' tidak dikenal. Ketik 'help' untuk bantuan.`);
-        output.innerHTML += `<span class="prompt">user@server:~$</span> ${cmd}<br>${response}<br>`;
+        const response = commands[cmd] || (cmd.startsWith("echo ") ? cmd.slice(5) : <code>Perintah '${cmd}' tidak dikenal. Ketik 'help' untuk bantuan.</code>);
+        output.innerHTML += <code><span class="prompt">user@server:~$</span> ${cmd}<br>${response}<br></code>;
         input.value = "";
         if (cmd === 'clear') output.innerHTML = "";
         if (cmd === 'exit') closeTerminal();

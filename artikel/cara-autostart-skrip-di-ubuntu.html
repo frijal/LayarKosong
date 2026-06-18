@@ -114,7 +114,7 @@
       .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; color: var(--muted); }
       .meta span { display: inline-flex; align-items: center; gap: 6px; }
       .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; }
-      /* Deteksi style removed as elements were removed */
+      /<em> Deteksi style removed as elements were removed </em>/
       main { margin: 22px 0 40px; }
       article {
         background: var(--bg-elev);
@@ -136,7 +136,7 @@
       table { width: 100%; border-collapse: collapse; min-width: 680px; }
       th, td { border-bottom: 1px solid var(--border); padding: 12px 10px; text-align: left; }
       th { font-weight: 600; background: rgba(255, 255, 255, 0.03); }
-      /* Galeri + Lightbox */
+      /<em> Galeri + Lightbox </em>/
       .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 18px 0 8px; }
       .gallery figure { margin: 0; position: relative; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #0e1217; }
       .gallery img {
@@ -156,14 +156,14 @@
         display: grid; place-items: center; margin: 0 14px; cursor: pointer;
       }
       .lightbox .close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; }
-      /* Share icons */
+      /<em> Share icons </em>/
       .share { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 10px; }
       .share a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elev); }
       .share svg { width: 18px; height: 18px; }
-      /* Footer + Comments */
+      /<em> Footer + Comments </em>/
       footer { margin-bottom: 46px; }
       .comments { margin-top: 26px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-      /* Fullscreen & Widescreen helpers */
+      /<em> Fullscreen & Widescreen helpers </em>/
       .fullwidth {
         margin-left: calc((100vw - var(--maxw)) / -2 + 20px);
         margin-right: calc((100vw - var(--maxw)) / -2 + 20px);
@@ -171,7 +171,7 @@
       @media (max-width: 960px) {
         .fullwidth { margin-left: 0; margin-right: 0; }
       }
-      /* Form generator style */
+      /<em> Form generator style </em>/
       .generator {
         margin-top: 24px;
         background: var(--bg-elev);
@@ -374,7 +374,7 @@ X-GNOME-Autostart-enabled=true</code></pre>
           const exec = document.getElementById('gen-exec').value.trim();
           const terminal = document.getElementById('gen-terminal').value;
           const enabled = document.getElementById('gen-enabled').value;
-          const output = `[Desktop Entry]
+          const output = <code>[Desktop Entry]
 Type=Application
 Version=1.0
 Name=${name || 'Autostart App'}
@@ -382,7 +382,7 @@ Comment=${comment || 'Autostart via .desktop'}
 Exec=${exec || '/path/to/script.sh'}
 StartupNotify=false
 Terminal=${terminal}
-X-GNOME-Autostart-enabled=${enabled}`;
+X-GNOME-Autostart-enabled=${enabled}</code>;
           document.getElementById('gen-output').textContent = output;
         }
         // Expose function to global scope for onclick attribute in HTML

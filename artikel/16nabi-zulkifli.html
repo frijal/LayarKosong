@@ -221,7 +221,7 @@
       const words = text.trim().split(/\s+/).length;
       const min = Math.max(1, Math.round(words / 200)); // ~200 wpm
       const el = document.getElementById('readtime');
-      if (el) el.textContent = `Estimasi baca: ~${min} menit`;
+      if (el) el.textContent = <code>Estimasi baca: ~${min} menit</code>;
     })();
     // Scroll progress bar
     (function() {

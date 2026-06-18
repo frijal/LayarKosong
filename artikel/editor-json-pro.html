@@ -92,7 +92,7 @@
             border: 1px solid var(--border-color); background: var(--input-bg);
             color: var(--text-main); font-size: 1rem;
         }
-        /* Memberi highlight pada item yang terpilih */
+        /<em> Memberi highlight pada item yang terpilih </em>/
 .article-item:has(.item-checkbox:checked) {
     background: rgba(0, 176, 237, 0.05);
     border-left: 4px solid var(--lk-color);
@@ -127,7 +127,7 @@
         .article-meta { font-size: 0.85rem; opacity: 0.7; }
         .article-desc { font-size: 0.9rem; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; opacity: 0.8; }
         .action-group { display: flex; gap: 5px; flex-shrink: 0; }
-        /* Modal */
+        /<em> Modal </em>/
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--modal-overlay); z-index: 1000; justify-content: center;
@@ -144,7 +144,7 @@
             width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border-color);
             background: var(--input-bg); color: var(--text-main);
         }
-        /* Bulk Action Tray */
+        /<em> Bulk Action Tray </em>/
         #bulkActionTray {
             display: none; position: fixed; bottom: 30px; left: 50%;
             transform: translateX(-50%); background: #222; color: white;
@@ -152,7 +152,7 @@
             align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid #444;
         }
-        /* Checkbox Custom Styling */
+        /<em> Checkbox Custom Styling </em>/
         .check-container { display: flex; align-items: center; padding-right: 5px; }
         .check-container input { width: 18px; height: 18px; cursor: pointer; }
         .narrative { background: var(--card-bg); padding: 30px; border-radius: 12px; margin-top: 40px; border: 1px solid var(--border-color); }
@@ -263,7 +263,7 @@
         reader.onload = function(e) {
             try {
                 jsonData = JSON.parse(e.target.result);
-                document.getElementById('statusText').innerHTML = `<i class="fa-solid fa-file-circle-check"></i> ${file.name}`;
+                document.getElementById('statusText').innerHTML = <code><i class="fa-solid fa-file-circle-check"></i> ${file.name}</code>;
                 renderEditor();
             } catch (err) { alert("Format JSON salah! " + err); }
         };
@@ -279,7 +279,7 @@
             const catBlock = document.createElement('div');
             catBlock.className = 'category-block';
             catBlock.dataset.category = category.toLowerCase();
-            let headerHTML = `
+            let headerHTML = <code>
                 <div class="category-header">
                     <div style="display:flex; align-items:center; gap:12px;">
                         <input type="checkbox" style="width:18px; height:18px;" onclick="toggleCategorySelect('${category}', this)">
@@ -293,13 +293,13 @@
                     </div>
                 </div>
                 <ul class="article-list">
-            `;
+            </code>;
             let articlesHTML = '';
             articles.forEach((article, index) => {
                 const title = article[0] || "Tanpa Judul";
                 const imgDisplay = article[2]?.startsWith('http') ? article[2] : '';
-                const articleUrl = `https://dalam.web.id/artikel/${article[1]}`;
-                articlesHTML += `
+                const articleUrl = <code>https://dalam.web.id/artikel/${article[1]}</code>;
+                articlesHTML += <code>
                     <li class="article-item" data-search="${(title + ' ' + article[1]).toLowerCase()}">
                         <div class="check-container">
                             <input type="checkbox" class="item-checkbox" data-cat="${category}" data-idx="${index}" onchange="handleItemSelect()">
@@ -319,7 +319,7 @@
                             <button class="btn btn-danger" style="padding:5px 12px;" onclick="deleteArticle('${category}', ${index})"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
                     </li>
-                `;
+                </code>;
             });
             if (articles.length === 0) articlesHTML = '<li style="padding:20px; text-align:center; opacity:0.5;">Kategori kosong.</li>';
             catBlock.innerHTML = headerHTML + articlesHTML + '</ul>';
@@ -339,7 +339,7 @@
 // Memastikan hanya artikel yang "tampil" (hasil filter) yang akan tercentang
 function toggleCategorySelect(cat, master) {
     // Cari semua checkbox item di dalam blok kategori yang spesifik
-    const items = document.querySelectorAll(`.item-checkbox[data-cat="${cat}"]`);
+    const items = document.querySelectorAll(<code>.item-checkbox[data-cat="${cat}"]</code>);
     items.forEach(checkbox => {
         // Ambil elemen parent (li) untuk cek apakah dia sedang di-hide oleh filter
         const listItem = checkbox.closest('.article-item');
@@ -364,7 +364,7 @@ function toggleCategorySelect(cat, master) {
         }
     }
     function bulkDelete() {
-        if (!confirm(`Hapus ${selectedItems.length} artikel terpilih secara permanen?`)) return;
+        if (!confirm(<code>Hapus ${selectedItems.length} artikel terpilih secara permanen?</code>)) return;
         // Hapus dari belakang agar index tidak bergeser
         const sorted = [...selectedItems].sort((a, b) => b.idx - a.idx);
         sorted.forEach(item => {
@@ -414,7 +414,7 @@ function toggleCategorySelect(cat, master) {
     }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     function openAddArticleModal(cat) {
-        document.getElementById('modalTitle').innerText = `Tambah Artikel: ${cat}`;
+        document.getElementById('modalTitle').innerText = <code>Tambah Artikel: ${cat}</code>;
         document.getElementById('editCategoryKey').value = cat;
         document.getElementById('editArticleIndex').value = -1;
         document.getElementById('inpTitle').value = "";
@@ -482,7 +482,7 @@ function toggleCategorySelect(cat, master) {
         renderEditor();
     }
     function deleteCategory(cat) {
-        if (confirm(`Hapus kategori "${cat}"?`)) {
+        if (confirm(<code>Hapus kategori "${cat}"?</code>)) {
             delete jsonData[cat];
             renderEditor();
         }

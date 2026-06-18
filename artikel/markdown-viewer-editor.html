@@ -116,7 +116,7 @@
             overflow-y: auto;
             background-color: var(--bg-color);
         }
-        /* Markdown Body Styling (GitHub-like) */
+        /<em> Markdown Body Styling (GitHub-like) </em>/
         .markdown-body { line-height: 1.6; }
         .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
         .markdown-body code { background: rgba(175, 184, 193, 0.2); padding: 0.2em 0.4em; border-radius: 6px; font-size: 85%; }
@@ -178,7 +178,7 @@
         // Load content
         const savedContent = localStorage.getItem('layarkosong_content');
         if (savedContent) editor.value = savedContent;
-        else editor.value = "# Halo dari Balikpapan!\n\nMulai tulis artikel **Layar Kosong** lo di sini.";
+        else editor.value = "# Halo dari Balikpapan!\n\nMulai tulis artikel <strong>Layar Kosong</strong> lo di sini.";
         // Load theme
         const savedTheme = localStorage.getItem('layarkosong_theme');
         if (savedTheme === 'dark') {

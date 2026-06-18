@@ -60,7 +60,7 @@
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* Reset & Global */
+        /<em> Reset & Global </em>/
         * {
             margin: 0;
             padding: 0;
@@ -72,13 +72,13 @@
             transition: background-color 0.2s ease, color 0.2s ease;
             padding: 1rem;
         }
-        /* Container utama - 1 kolom, max-width 1000px di tengah */
+        /<em> Container utama - 1 kolom, max-width 1000px di tengah </em>/
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0.5rem;
         }
-        /* Tipografi */
+        /<em> Tipografi </em>/
         h1 {
             font-size: clamp(1.8rem, 5vw, 2.5rem);
             margin: 0.5rem 0 1rem;
@@ -112,7 +112,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             background-color: #f0f0f0;
         }
-        /* Grid gambar responsif */
+        /<em> Grid gambar responsif </em>/
         .image-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -125,7 +125,7 @@
             object-fit: cover;
             aspect-ratio: 16 / 9;
         }
-        /* Tabel perbandingan */
+        /<em> Tabel perbandingan </em>/
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
@@ -143,7 +143,7 @@
         .comparison-table th {
             font-weight: 700;
         }
-        /* FAQ styling */
+        /<em> FAQ styling </em>/
         .faq-item {
             margin-bottom: 1.2rem;
             padding: 0.5rem 0;
@@ -157,7 +157,7 @@
             align-items: center;
             gap: 8px;
         }
-        /* related articles grid & response */
+        /<em> related articles grid & response </em>/
         .related-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -184,11 +184,11 @@
             font-size: 0.85rem;
             border-top: 1px solid;
         }
-        /* Dark / Light mode via prefers-color-scheme */
+        /<em> Dark / Light mode via prefers-color-scheme </em>/
         :root {
             color-scheme: light dark;
         }
-        /* Light theme (default) */
+        /<em> Light theme (default) </em>/
         body {
             background-color: #fefefe;
             color: #1a1a2e;
@@ -206,7 +206,7 @@
         footer {
             border-top-color: #e0e0e0;
         }
-        /* Dark theme overrides */
+        /<em> Dark theme overrides </em>/
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #121212;
@@ -233,7 +233,7 @@
                 border-bottom-color: #333;
             }
         }
-        /* elemen tambahan */
+        /<em> elemen tambahan </em>/
         .highlight {
             background: linear-gradient(120deg, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0) 80%);
             padding: 0.2rem 0;
@@ -247,15 +247,15 @@
             text-decoration: underline;
             text-underline-offset: 3px;
         }
-        /* CLS optimization: set aspect ratio untuk gambar tanpa fixed size? kami sudah pakai display block + auto height */
-        /* Font Awesome inline compatibility */
+        /<em> CLS optimization: set aspect ratio untuk gambar tanpa fixed size? kami sudah pakai display block + auto height </em>/
+        /<em> Font Awesome inline compatibility </em>/
         i, .fas, .fa-regular {
             margin-right: 6px;
         }
-        /* no ARIA, no hero */
-        button, [role] { /* tidak pakai ARIA, jadi tidak ada role attribute */
+        /<em> no ARIA, no hero </em>/
+        button, [role] { /<em> tidak pakai ARIA, jadi tidak ada role attribute </em>/
         }
-        /* responsif extra */
+        /<em> responsif extra </em>/
         @media (max-width: 640px) {
             body {
                 padding: 0.6rem;

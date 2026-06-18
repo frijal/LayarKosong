@@ -51,7 +51,7 @@
 <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; }
         .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        /* Header Laporan Kalkulator Cetak */
+        /<em> Header Laporan Kalkulator Cetak </em>/
         .print-header { display: none; text-align: center; border-bottom: 2px solid #2e7d32; margin-bottom: 20px; padding-bottom: 15px; }
         .print-header h1 { margin: 0; color: #1b5e20; text-transform: uppercase; font-size: 20px; }
         .print-header p { margin: 5px 0; font-size: 14px; font-weight: bold; }
@@ -71,7 +71,7 @@
         .btn-print { width: 100%; padding: 15px; background: #2e7d32; color: white; border: none; border-radius: 6px;
                      cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 25px; transition: 0.3s; }
         .btn-print:hover { background: #1b5e20; }
-        /* Pengaturan Cetak (A4) */
+        /<em> Pengaturan Cetak (A4) </em>/
         @media print {
             body { background: white; padding: 0; }
             .container { box-shadow: none; max-width: 100%; border: none; }
@@ -159,11 +159,11 @@
         const daftarNama = input.split(',').map(n => n.trim()).filter(n => n !== "");
         const jumlahOrang = daftarNama.length;
         daftarNama.forEach((nama, index) => {
-            let row = `<tr>
+            let row = <code><tr>
                 <td>${index + 1}</td>
                 <td>${nama}</td>
                 <td>2.5 Kg atau Rp ${(harga * 2.5).toLocaleString('id-ID')}</td>
-            </tr>`;
+            </tr></code>;
             tbody.innerHTML += row;
         });
         const totalBeras = jumlahOrang * 2.5;

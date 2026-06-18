@@ -54,7 +54,7 @@
   <!-- Critical CSS (mobile-first, rem units, system font stack, prefers-color-scheme) -->
   <style>
     :root{
-      --max-w:62.5rem; /* 1000px */
+      --max-w:62.5rem; /<em> 1000px </em>/
       --bg:#ffffff;
       --text:#111111;
       --muted:#555555;
@@ -82,7 +82,7 @@
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      font-size:1rem; /* base for rem */
+      font-size:1rem; /<em> base for rem </em>/
     }
     .container{
       max-width:var(--max-w);
@@ -100,10 +100,10 @@
     }
     main[role="main"]{display:block;}
     article p{
-      font-size:1.0625rem; /* 1.0625rem ~ 17px */
+      font-size:1.0625rem; /<em> 1.0625rem ~ 17px </em>/
       margin:0.75rem 0;
     }
-    /* Image: full width, no cropping, first image LCP (no lazy) */
+    /<em> Image: full width, no cropping, first image LCP (no lazy) </em>/
     .hero{
       width:100%;
       margin:1rem 0;
@@ -140,7 +140,7 @@
       line-height:1.4;
       border:0.0625rem solid rgba(0,0,0,0.06);
     }
-    /* Simple syntax colors (light/dark friendly) */
+    /<em> Simple syntax colors (light/dark friendly) </em>/
     .syntax-comment{ color:#6a737d; }
     .syntax-key{ color:#d73a49; font-weight:600; }
     .syntax-str{ color:#032f62; }
@@ -151,7 +151,7 @@
       padding-top:1rem;
       margin-top:1.5rem;
     }
-    /* Footer inline (no extra styling required per instruction, but keep readable) */
+    /<em> Footer inline (no extra styling required per instruction, but keep readable) </em>/
     footer[role="contentinfo"]{
       margin-top:1.5rem;
       padding:1rem 0 2rem 0;
@@ -159,7 +159,7 @@
       color:var(--muted);
       border-top:0.0625rem solid rgba(0,0,0,0.06);
     }
-    /* Responsive tweaks */
+    /<em> Responsive tweaks </em>/
     @media (max-width:30rem){
       h1{ font-size:1.25rem; }
       article p{ font-size:1rem; }
@@ -174,18 +174,18 @@
     </header>
     <main role="main" itemscope="" itemtype="http://schema.org/BlogPosting">
       <article itemprop="articleBody">
-        <p>Ada kabar mengejutkan dari dunia open source. Canonical mengumumkan bahwa layanan hosting teks lama mereka, **Ubuntu Pastebin**, akan dihentikan. Pengumuman resmi menyebut ini bagian dari upaya modernisasi dan migrasi infrastruktur yang lebih luas.</p>
+        <p>Ada kabar mengejutkan dari dunia open source. Canonical mengumumkan bahwa layanan hosting teks lama mereka, <strong>Ubuntu Pastebin</strong>, akan dihentikan. Pengumuman resmi menyebut ini bagian dari upaya modernisasi dan migrasi infrastruktur yang lebih luas.</p>
   <figure class="hero" aria-hidden="false">
           <img src="https://dalam.web.id/img/i0.wp.com/ad1035e09c88e357.webp" alt="CSS yang disimpan di layanan Ubuntu Pastebin." decoding="async" fetchpriority="high">
           <figcaption class="img-caption">Tampilan CSS khas yang disimpan di layanan Ubuntu Pastebin.</figcaption>
         </figure>
         <p>Keputusan ini bukan tiba-tiba tanpa alasan. Tim teknis Canonical menjelaskan bahwa infrastruktur berumur belasan tahun perlu disederhanakan demi efisiensi, keamanan, dan fokus pada layanan inti. Dampaknya terasa bagi siapa saja yang masih mengandalkan paste untuk berbagi potongan kode atau konfigurasi singkat.</p>
         <blockquote>
-          <p>**UPDATE:** Menyusul kritik atas pemberitahuan yang terlalu singkat, Canonical menunda penutupan selama satu bulan; layanan kini dijadwalkan offline pada akhir Juni 2026.</p>
+          <p><strong>UPDATE:</strong> Menyusul kritik atas pemberitahuan yang terlalu singkat, Canonical menunda penutupan selama satu bulan; layanan kini dijadwalkan offline pada akhir Juni 2026.</p>
         </blockquote>
         <p>Platform ini berfungsi mirip dengan layanan seperti GitHub Gist, hanya saja tanpa riwayat revisi yang lengkap. Sejak akhir 2007, Ubuntu Pastebin menjadi alat praktis untuk komunitas—terutama untuk menautkan keluaran terminal panjang di saluran dukungan IRC agar percakapan tetap rapi.</p>
         <p>Alamat awalnya <code>paste.ubuntu.com</code>, kemudian berkembang ke <code>pastebin.ubuntu.com</code>. Keduanya masih saling menggantikan sampai sekarang. Fitur penyorotan sintaks juga ditambahkan seiring waktu, membuat paste lebih mudah dibaca oleh developer.</p>
-        <p>Namun penting diingat: layanan ini **tidak** dimaksudkan sebagai arsip permanen. Situsnya sendiri memperingatkan bahwa unggahan bersifat sementara dan bisa dihapus kapan saja. Jadi, jika Anda punya skrip atau konfigurasi penting di sana, sekarang adalah waktu untuk bertindak.</p>
+        <p>Namun penting diingat: layanan ini <strong>tidak</strong> dimaksudkan sebagai arsip permanen. Situsnya sendiri memperingatkan bahwa unggahan bersifat sementara dan bisa dihapus kapan saja. Jadi, jika Anda punya skrip atau konfigurasi penting di sana, sekarang adalah waktu untuk bertindak.</p>
         <h2>Siapa yang paling terdampak</h2>
         <p>Pengguna yang menautkan paste di dokumentasi, forum, atau jawaban tanya-jawab (mis. AskUbuntu, Reddit) akan melihat tautan lama menjadi rusak. Developer yang menyimpan snippet penting tanpa backup lokal juga berisiko kehilangan akses.</p>
         <h2>Apa yang harus dilakukan sekarang</h2>
@@ -193,7 +193,7 @@
         <h2>Kapan penutupan terjadi</h2>
         <p>Pengumuman awal menyebut penutupan pada 31 Mei, namun setelah masukan komunitas, Canonical menunda hingga akhir Juni 2026. Pastikan Anda memeriksa pengumuman resmi untuk tanggal final dan instruksi migrasi.</p>
         <h2>Di mana mencari alternatif</h2>
-        <p>Beberapa alternatif yang sering direkomendasikan: **GitHub Gist** untuk integrasi dengan repositori, **PrivateBin** untuk paste terenkripsi, dan <a href="https://paste.debian.net" rel="noopener">Debian Paste</a> sebagai opsi komunitas lain.</p>
+        <p>Beberapa alternatif yang sering direkomendasikan: <strong>GitHub Gist</strong> untuk integrasi dengan repositori, <strong>PrivateBin</strong> untuk paste terenkripsi, dan <a href="https://paste.debian.net" rel="noopener">Debian Paste</a> sebagai opsi komunitas lain.</p>
         <h2>Bagaimana cara memindahkan data</h2>
         <p>Langkah singkat yang bisa dilakukan:</p>
         <ol>
@@ -203,7 +203,7 @@
           <li>Perbarui tautan di dokumentasi publik agar tidak mengarah ke paste yang akan hilang.</li>
         </ol>
         <h2>Contoh penyorotan sintaks yang biasa dibagikan</h2>
-        <pre class="code" aria-hidden="false"><span class="syntax-comment">/* Contoh sintaks CSS sederhana di Ubuntu Pastebin */</span>
+        <pre class="code" aria-hidden="false"><span class="syntax-comment">/<em> Contoh sintaks CSS sederhana di Ubuntu Pastebin </em>/</span>
 <span class="syntax-key">body</span> {
     <span class="syntax-key">background-color</span>: <span class="syntax-str">#e95420</span>;
     <span class="syntax-key">color</span>: <span class="syntax-str">#ffffff</span>;
@@ -219,9 +219,9 @@
     <div id="response"></div>
     <footer role="contentinfo">
       <!-- Tampilkan author meta, tanggal, referensi secara inline (tanpa styling tambahan) -->
-      <span>👤 **Author:** Frijal (Praktisi Open Source &amp; Creator Layar Kosong)</span> ·
-      <span>📅 **Diterbitkan:** 1 Juni 2026</span> ·
-      <span>🔗 **Referensi:** <a href="https://pastebin.ubuntu.com" rel="noopener">pastebin.ubuntu.com</a>, <a href="https://paste.debian.net" rel="noopener">paste.debian.net</a></span>
+      <span>👤 <strong>Author:</strong> Frijal (Praktisi Open Source &amp; Creator Layar Kosong)</span> ·
+      <span>📅 <strong>Diterbitkan:</strong> 1 Juni 2026</span> ·
+      <span>🔗 <strong>Referensi:</strong> <a href="https://pastebin.ubuntu.com" rel="noopener">pastebin.ubuntu.com</a>, <a href="https://paste.debian.net" rel="noopener">paste.debian.net</a></span>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>

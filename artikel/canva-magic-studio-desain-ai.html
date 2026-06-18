@@ -119,7 +119,7 @@
       .highlight-box p {
         margin: 0;
       }
-      /* Galeri Foto */
+      /<em> Galeri Foto </em>/
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -140,7 +140,7 @@
         transform: scale(1.05);
         filter: brightness(1.2);
       }
-      /* Lightbox */
+      /<em> Lightbox </em>/
       .lightbox {
         display: none;
         position: fixed;
@@ -199,7 +199,7 @@
       .lightbox-next {
         right: 15px;
       }
-      /* Sharing & Info Box */
+      /<em> Sharing & Info Box </em>/
       .action-section {
         text-align: center;
         margin: 40px 0;
@@ -334,14 +334,14 @@
         // Menggunakan sumber gambar yang lebih umum dan stabil
         const galleryImages = Array.from(
           { length: 6 },
-          (_, i) => `https://picsum.photos/seed/canva${i}/800/600`
+          (_, i) => <code>https://picsum.photos/seed/canva${i}/800/600</code>
         );
         let currentIndex;
         // Inisialisasi gambar dengan lazy loading
         galleryImages.forEach((src, index) => {
           const img = document.createElement('img');
           img.setAttribute('data-src', src);
-          img.alt = `Contoh desain dibuat dengan Canva AI ${index + 1}`;
+          img.alt = <code>Contoh desain dibuat dengan Canva AI ${index + 1}</code>;
           img.loading = 'lazy';
           img.className = 'lazy-load';
           gallery.appendChild(img);
