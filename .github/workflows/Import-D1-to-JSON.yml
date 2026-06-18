@@ -1,22 +1,18 @@
 name: Import D1 to JSON via Bun
-# Membuat menu dropdown saat menjalankan workflow secara manual
+
 on:
   workflow_dispatch:
     inputs:
-      kategori:
-        description: 'Pilih Kategori Artikel yang Ingin Ditarik'
+      kode_mulai:
+        description: 'Kode Mulai (contoh: 1-1). Ketik SEMUA untuk ditarik keseluruhan.'
         required: true
-        type: choice
-        default: 'SEMUA-KATEGORI' # Opsi default yang langsung terpilih
-        options:
-          - gaya-hidup
-          - jejak-sejarah
-          - lainnya
-          - olah-media
-          - opini-sosial
-          - sistem-terbuka
-          - warta-tekno
-          - SEMUA-KATEGORI # Opsi tambahan buat narik semua data (jaga-jaga)
+        type: string
+        default: '1-1'
+      kode_selesai:
+        description: 'Kode Selesai (contoh: 1-20). KOSONGKAN jika hanya ingin menarik 1 artikel.'
+        required: false
+        type: string
+        default: '1-20'
 
 jobs:
   export-data:
@@ -39,29 +35,51 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: |
-          KATEGORI="${{ github.event.inputs.kategori }}"
+          MULAI="${{ github.event.inputs.kode_mulai }}"
+          SELESAI="${{ github.event.inputs.kode_selesai }}"
           
-          # Logika untuk merakit perintah SQL secara dinamis
-          if [ "$KATEGORI" == "SEMUA-KATEGORI" ]; then
+          # Logika Penentuan Mode Tarik Data
+          if [ "$MULAI" == "SEMUA" ]; then
             echo "🚀 Mengekspor seluruh artikel dari database..."
-            QUERY="SELECT id, title, content, category FROM articles_fts;"
+            QUERY="SELECT id, title, content, category, code FROM articles_fts;"
             FILE_OUT="artikel_semua.json"
+            NAMA_ZIP="semua-data"
+            
+          elif [ -z "$SELESAI" ]; then
+            # Jika kolom "Kode Selesai" dibiarkan KOSONG (-z)
+            echo "🚀 Mengekspor artikel tunggal dengan kode: $MULAI..."
+            QUERY="SELECT id, title, content, category, code FROM articles_fts WHERE code = '$MULAI';"
+            FILE_OUT="artikel_kode_${MULAI}.json"
+            NAMA_ZIP="single-${MULAI}"
+            
           else
-            echo "🚀 Mengekspor artikel khusus kategori: $KATEGORI..."
-            QUERY="SELECT id, title, content, category FROM articles_fts WHERE category = '$KATEGORI';"
-            FILE_OUT="artikel_${KATEGORI}.json"
+            # Jika kedua kolom diisi (Mode Range)
+            echo "🚀 Mengekspor artikel dari $MULAI sampai $SELESAI..."
+            
+            # 1. Ekstrak nomor Kategori dari Kode Mulai (angka sebelum '-')
+            CAT_NUM="${MULAI%-*}"
+            
+            # 2. Ekstrak nomor urut (angka sesudah '-')
+            START_NUM="${MULAI#*-}"
+            END_NUM="${SELESAI#*-}"
+            
+            # 3. Query SQL dengan filter kategori dan range integer
+            QUERY="SELECT id, title, content, category, code FROM articles_fts WHERE code LIKE '${CAT_NUM}-%' AND CAST(SUBSTR(code, LENGTH('${CAT_NUM}-') + 1) AS INTEGER) BETWEEN ${START_NUM} AND ${END_NUM};"
+            FILE_OUT="artikel_range_${MULAI}_to_${SELESAI}.json"
+            NAMA_ZIP="range-${MULAI}-to-${SELESAI}"
           fi
           
-          # Eksekusi Wrangler untuk tarik data
+          # Eksekusi nembak D1
           bunx wrangler d1 execute layarkosong-db --command="$QUERY" --remote --json > "$FILE_OUT"
           
-          # Daftarkan nama file hasil ekspor ke environment variabel GitHub
+          # Lempar nama file dan nama zip ke Environment GitHub
           echo "OUTPUT_FILE=$FILE_OUT" >> $GITHUB_ENV
+          echo "ZIP_NAME=$NAMA_ZIP" >> $GITHUB_ENV
 
       - name: Upload JSON sebagai Artifact
         uses: actions/upload-artifact@v7
         with:
-          # Nama artifact otomatis menyesuaikan kategori yang dipilih
-          name: json-${{ github.event.inputs.kategori }}
+          # Nama ZIP otomatis menyesuaikan dinamis dari logic di atas
+          name: json-${{ env.ZIP_NAME }}
           path: ${{ env.OUTPUT_FILE }}
           retention-days: 1
