@@ -48,29 +48,29 @@
     <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;family=Amiri:wght@400;700&amp;display=swap" rel="stylesheet">
     <style>
-        /<em> Variabel CSS untuk Tema </em>/
+        /* Variabel CSS untuk Tema */
         :root {
             --light-bg: #f4f7f6;
             --light-text: #1d1d1f;
-            --light-primary: #3b82f6; /<em> Biru </em>/
-            --light-secondary: #059669; /<em> Hijau </em>/
+            --light-primary: #3b82f6; /* Biru */
+            --light-secondary: #059669; /* Hijau */
             --light-border: #e5e7eb;
             --light-code-bg: #e0e0e0;
             --font-main: 'Poppins', sans-serif;
             --font-arabic: 'Amiri', serif;
         }
-        /<em> Tema Gelap (Dark Mode) </em>/
+        /* Tema Gelap (Dark Mode) */
         @media (prefers-color-scheme: dark) {
             :root {
-                --light-bg: #1f2937; /<em> Dark Gray </em>/
-                --light-text: #e5e7eb; /<em> Light Gray </em>/
-                --light-primary: #60a5fa; /<em> Biru Lebih Terang </em>/
-                --light-secondary: #34d399; /<em> Hijau Lebih Terang </em>/
+                --light-bg: #1f2937; /* Dark Gray */
+                --light-text: #e5e7eb; /* Light Gray */
+                --light-primary: #60a5fa; /* Biru Lebih Terang */
+                --light-secondary: #34d399; /* Hijau Lebih Terang */
                 --light-border: #374151;
                 --light-code-bg: #374151;
             }
         }
-        /<em> Reset dan Dasar </em>/
+        /* Reset dan Dasar */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -82,14 +82,14 @@
             color: var(--light-text);
             line-height: 1.7;
             transition: background-color 0.3s, color 0.3s;
-            min-height: 100vh; /<em> Fullscreen </em>/
+            min-height: 100vh; /* Fullscreen */
             display: flex;
             flex-direction: column;
         }
-        /<em> Layout Widescreen dan Responsif </em>/
+        /* Layout Widescreen dan Responsif */
         .container {
             width: 100%;
-            max-width: 1400px; /<em> Widescreen </em>/
+            max-width: 1400px; /* Widescreen */
             margin: 0 auto;
             padding: 20px;
             flex-grow: 1;
@@ -99,11 +99,11 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            max-width: 850px; /<em> Lebar Konten Utama </em>/
+            max-width: 850px; /* Lebar Konten Utama */
             margin: 20px auto;
             border: 1px solid var(--light-border);
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 2.2em;
             color: var(--light-primary);
@@ -130,7 +130,7 @@
             margin-bottom: 1em;
             text-align: justify;
         }
-        /<em> Daftar dan List </em>/
+        /* Daftar dan List */
         ul, ol {
             margin: 1em 0;
             padding-left: 25px;
@@ -138,7 +138,7 @@
         li {
             margin-bottom: 0.5em;
         }
-        /<em> Blok Kode/Ayat Arab </em>/
+        /* Blok Kode/Ayat Arab */
         .arabic-text {
             font-family: var(--font-arabic);
             font-size: 1.8em;
@@ -165,22 +165,22 @@
             margin-bottom: 15px;
             padding-left: 5px;
         }
-        /<em> Ikon (Font Awesome Dibuat dengan Unicode/Emoji Sederhana) </em>/
+        /* Ikon (Font Awesome Dibuat dengan Unicode/Emoji Sederhana) */
         .icon-title::before {
-            content: '🕌'; /<em> Ikon Masjid </em>/
+            content: '🕌'; /* Ikon Masjid */
             margin-right: 10px;
         }
         .icon-subtitle::before {
-            content: '✨'; /<em> Ikon Cahaya/Bintang </em>/
+            content: '✨'; /* Ikon Cahaya/Bintang */
             margin-right: 8px;
         }
-        /<em> Komentar (Disqus) </em>/
+        /* Komentar (Disqus) */
         #related-articles-grid {
             margin-top: 50px;
             padding-top: 30px;
             border-top: 1px dashed var(--light-border);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -189,7 +189,7 @@
             font-size: 0.9em;
             border-top: 1px solid var(--light-border);
         }
-        /<em> Responsif Mobile </em>/
+        /* Responsif Mobile */
         @media (max-width: 600px) {
             .article-content {
                 padding: 20px;
@@ -324,5 +324,5 @@
         <p>🄯 2025 Frijal's Page | Panduan Shalat Lail. All Rights Reversed.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

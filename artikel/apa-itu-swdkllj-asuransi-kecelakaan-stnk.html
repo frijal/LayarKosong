@@ -46,7 +46,7 @@
     <title>SWDKLLJ: Dana Wajib Asuransi Kecelakaan Motor/Mobil yang Kamu Bayar Tiap Tahun 💸 - Layar Kosong</title> 
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variabel untuk Tema Dark/Light Otomatis </em>/
+        /* CSS Variabel untuk Tema Dark/Light Otomatis */
         :root {
             --bg-color: #f4f7f9;
             --text-color: #333333;
@@ -59,7 +59,7 @@
             --highlight-bg-warning: #fff3cd;
             --border-color: #dddddd;
         }
-        /<em> Deteksi Tema Gelap (Dark Mode) </em>/
+        /* Deteksi Tema Gelap (Dark Mode) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
@@ -74,7 +74,7 @@
                 --border-color: #444444;
             }
         }
-        /<em> Styling Dasar: Fullscreen dan Mobile-Friendly </em>/
+        /* Styling Dasar: Fullscreen dan Mobile-Friendly */
         body {
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.7;
@@ -86,14 +86,14 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
-        /<em> Tata Letak Widescreen 1 Kolom </em>/
+        /* Tata Letak Widescreen 1 Kolom */
         .article-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Judul dan Konten </em>/
+        /* Judul dan Konten */
         .post-content h1 {
             color: var(--primary-red);
             margin-bottom: 30px;
@@ -110,12 +110,12 @@
             border-radius: 12px;
             margin: 35px 0;
             font-size: 1.1em;
-            color: var(--text-color); /<em> Pastikan teks tetap kontras </em>/
+            color: var(--text-color); /* Pastikan teks tetap kontras */
         }
         .highlight-box strong {
             color: var(--primary-red);
         }
-        /<em> List Styling </em>/
+        /* List Styling */
         .post-content ul {
             background: var(--card-bg) !important;
             padding: 20px 25px;
@@ -126,10 +126,10 @@
         .post-content ul li {
             margin-bottom: 10px;
         }
-        /<em> Grid Santunan </em>/
+        /* Grid Santunan */
         .santunan-grid {
             display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); /<em> Dikecilkan sedikit untuk mobile </em>/
+            grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); /* Dikecilkan sedikit untuk mobile */
             gap: 20px;
         }
         .santunan-card {
@@ -143,7 +143,7 @@
         .santunan-card:hover {
             transform: translateY(-5px);
         }
-        /<em> Box Peringatan </em>/
+        /* Box Peringatan */
         .warning-box {
             background: var(--highlight-bg-warning) !important;
             border:1px solid var(--primary-orange) !important;
@@ -165,7 +165,7 @@
             display: block;
             margin-top: 10px;
         }
-        /<em> Footer </em>/
+        /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
@@ -174,7 +174,7 @@
             color: var(--secondary-text-color);
             font-size: 0.9em;
         }
-        /<em> Mobile adjustment </em>/
+        /* Mobile adjustment */
         @media (max-width: 600px) {
             .post-content h1 {
                 font-size: 1.8em;
@@ -268,5 +268,5 @@
         <i class="fa-solid fa-heart fa-icon" style="margin-right:0;"></i></p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

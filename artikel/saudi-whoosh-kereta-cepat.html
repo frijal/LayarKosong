@@ -47,19 +47,19 @@
    <meta name="keywords" content="Kereta Cepat Whoosh, Saudi Land Bridge, proyek infrastruktur, perbandingan biaya, teknologi kereta, rel listrik, rel diesel, Indonesia, Arab Saudi">
   <link rel="stylesheet" href="/ext/fontawesome.css">
  <style>
-        /<em> --- 1. DEKLARASI TOKEN GLOBAL (Edu-Science & Fun Facts Theme) --- </em>/
+        /* --- 1. DEKLARASI TOKEN GLOBAL (Edu-Science & Fun Facts Theme) --- */
         :root {
-            /<em> Palet Biru Sains / Populer </em>/
+            /* Palet Biru Sains / Populer */
             --brand-primary: #1360e3;
             --brand-secondary: #1b57c5;
             --bg-main: #f9fafc;
             --bg-canvas: #ffffff;
-            /<em> Komponen Edukatif </em>/
+            /* Komponen Edukatif */
             --bg-fakta: #f3f7fe;
             --bg-info: #ebf4fa;
             --text-info: #14588a;
             --border-info: #0d81f7;
-            /<em> Blok Kode Profesional </em>/
+            /* Blok Kode Profesional */
             --bg-code: #18232b;
             --text-code: #ffeabb;
             --border-dashed: #daedfb;
@@ -70,8 +70,8 @@
             --radius-sm: 8px;
             --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
-        /<em> --- 2. ACCESSIBLE RESET SYSTEM --- </em>/
-        <em>, </em>::before, *::after {
+        /* --- 2. ACCESSIBLE RESET SYSTEM --- */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -82,7 +82,7 @@
             font-family: var(--font-main);
             line-height: 1.78;
             min-height: 100vh;
-            /<em> SOLUSI SCROLLBAR: Ganti 100vw dengan max-width 100% untuk mengamankan layout </em>/
+            /* SOLUSI SCROLLBAR: Ganti 100vw dengan max-width 100% untuk mengamankan layout */
             max-width: 100%; 
             overflow-x: hidden;
         }
@@ -91,19 +91,19 @@
             flex-direction: column;
             align-items: center;
         }
-        /<em> --- 3. KANVAS ARTIKEL UTAMA --- </em>/
+        /* --- 3. KANVAS ARTIKEL UTAMA --- */
         .container {
             max-width: 1080px;
-            width: 92vw; /<em> Memberikan rasio margin tepi yang konsisten di layar menengah </em>/
+            width: 92vw; /* Memberikan rasio margin tepi yang konsisten di layar menengah */
             margin: 2.5rem auto;
             background-color: var(--bg-canvas);
             border-radius: var(--radius-lg);
             padding: 2.5rem 3rem;
             box-shadow: var(--shadow-soft);
         }
-        /<em> --- 4. AREA TIPOGRAFI & TYPOGRAPHY EMOBILITY --- </em>/
+        /* --- 4. AREA TIPOGRAFI & TYPOGRAPHY EMOBILITY --- */
         h1 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem); /<em> Ukuran dinamis elastis sesuai layar gadget </em>/
+            font-size: clamp(1.8rem, 4vw, 2.5rem); /* Ukuran dinamis elastis sesuai layar gadget */
             color: var(--brand-primary);
             text-align: center;
             margin-bottom: 0.5em;
@@ -130,7 +130,7 @@
             margin-right: 0.5em;
             display: inline-block;
         }
-        /<em> --- 5. KOMPONEN KOTAK FAKTA & INFORMASI --- </em>/
+        /* --- 5. KOMPONEN KOTAK FAKTA & INFORMASI --- */
         .fakta-list {
             border-left: 4px solid var(--brand-secondary);
             background-color: var(--bg-fakta);
@@ -147,11 +147,11 @@
             font-size: 1.05rem;
             border-left: 4px solid var(--border-info);
         }
-        /<em> --- 6. BLOK SINTAKS KODE --- </em>/
+        /* --- 6. BLOK SINTAKS KODE --- */
         pre {
             background-color: var(--bg-code);
             color: var(--text-code);
-            font-family: var(--font-code); /<em> Memastikan rendering monospace berjalan sempurna </em>/
+            font-family: var(--font-code); /* Memastikan rendering monospace berjalan sempurna */
             padding: 1.25rem;
             border-radius: var(--radius-sm);
             font-size: 1rem;
@@ -164,7 +164,7 @@
             border: none;
             border-top: 2px dashed var(--border-dashed);
         }
-        /<em> --- 7. MESIN RESPONSIVITAS OTOMATIS (Anti-Himpit Engine) --- </em>/
+        /* --- 7. MESIN RESPONSIVITAS OTOMATIS (Anti-Himpit Engine) --- */
         @media (max-width: 820px) {
             .container {
                 padding: 1.75rem 1.5rem;
@@ -175,7 +175,7 @@
             }
         }
         @media (max-width: 480px) {
-            /<em> SOLUSI HP JADUL: Mengunci ruang baca minimal 16px agar mata tidak cepat lelah </em>/
+            /* SOLUSI HP JADUL: Mengunci ruang baca minimal 16px agar mata tidak cepat lelah */
             .container {
                 padding: 1.25rem 1rem; 
             }
@@ -354,6 +354,6 @@
     </div>
   <div id="related-articles-grid"></div><div id="response"></div>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

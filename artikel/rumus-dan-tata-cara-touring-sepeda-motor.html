@@ -46,16 +46,16 @@
     <title>Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️ - Layar Kosong</title> 
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variabel untuk Tema Dark/Light Otomatis </em>/
+        /* CSS Variabel untuk Tema Dark/Light Otomatis */
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
             --secondary-text-color: #666666;
-            --primary-color: #007bff; /<em> Warna biru untuk tema touring/safety </em>/
+            --primary-color: #007bff; /* Warna biru untuk tema touring/safety */
             --border-color: #eeeeee;
             --header-bg: #f8f9fa;
         }
-        /<em> Deteksi Tema Gelap (Dark Mode) </em>/
+        /* Deteksi Tema Gelap (Dark Mode) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
@@ -66,7 +66,7 @@
                 --header-bg: #2d2d2d;
             }
         }
-        /<em> Styling Dasar: Fullscreen dan Mobile-Friendly </em>/
+        /* Styling Dasar: Fullscreen dan Mobile-Friendly */
         body {
             font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.7;
@@ -78,14 +78,14 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
-        /<em> Tata Letak Widescreen 1 Kolom </em>/
+        /* Tata Letak Widescreen 1 Kolom */
         .article-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Judul dan Subjudul </em>/
+        /* Judul dan Subjudul */
         .post-header {
             text-align: center;
             margin-bottom: 40px;
@@ -97,7 +97,7 @@
             font-size: 2.5em;
             margin: 0 0 10px 0;
         }
-        /<em> Konten </em>/
+        /* Konten */
         .post-content p {
             text-align: justify;
             margin: 15px 0;
@@ -114,18 +114,18 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
-            /<em> Mengatasi float image asli </em>/
+            /* Mengatasi float image asli */
             float: none !important;
             margin: 0 auto;
             display: block;
         }
         .image-kode {
-             /<em> Mengembalikan float asli agar teks bisa membungkus gambar kode </em>/
+             /* Mengembalikan float asli agar teks bisa membungkus gambar kode */
             float: right;
             margin: 0 0 1em 1em;
-            width: 150px; /<em> Lebar tetap untuk gambar kode </em>/
+            width: 150px; /* Lebar tetap untuk gambar kode */
         }
-        /<em> Mengatur tata letak ul/li </em>/
+        /* Mengatur tata letak ul/li */
         .post-content ul {
             margin: 20px 0;
             padding-left: 20px;
@@ -133,13 +133,13 @@
         .post-content ul li {
             margin-bottom: 10px;
         }
-        /<em> Clearfix untuk gambar float </em>/
+        /* Clearfix untuk gambar float */
         .clearfix::after {
             content: "";
             clear: both;
             display: table;
         }
-        /<em> Footer </em>/
+        /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
@@ -148,7 +148,7 @@
             color: var(--secondary-text-color);
             font-size: 0.9em;
         }
-        /<em> Responsif untuk gambar float </em>/
+        /* Responsif untuk gambar float */
         @media (max-width: 600px) {
             .image-kode {
                 float: none;
@@ -160,7 +160,7 @@
                 font-size: 2em;
             }
             .post-content p {
-                padding: 0 5px; /<em> Sedikit padding di mobile </em>/
+                padding: 0 5px; /* Sedikit padding di mobile */
             }
         }
     </style>
@@ -305,6 +305,6 @@
         <i class="fa-solid fa-motorcycle fa-icon" style="margin-right:0;"></i></p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

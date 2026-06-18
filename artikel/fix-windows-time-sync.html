@@ -66,7 +66,7 @@
             transition: background 0.2s, color 0.2s;
             padding: 2rem 1rem;
         }
-        /<em> Light mode (default) </em>/
+        /* Light mode (default) */
         body {
             background-color: #f8fafc;
             color: #0f172a;
@@ -76,7 +76,7 @@
             margin: 0 auto;
             background: inherit;
         }
-        /<em> card / article styling </em>/
+        /* card / article styling */
         .article-card {
             background: #ffffff;
             border-radius: 28px;
@@ -85,7 +85,7 @@
             padding: 2rem 1.8rem;
             transition: background 0.2s, box-shadow 0.2s;
         }
-        /<em> Typography & spacing </em>/
+        /* Typography & spacing */
         h1 {
             font-size: 1.9rem;
             font-weight: 800;
@@ -133,7 +133,7 @@
             max-height: 380px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        /<em> Step styling </em>/
+        /* Step styling */
         .step-box {
             background: #f1f5f9;
             padding: 1.2rem 1.5rem;
@@ -210,7 +210,7 @@
             height: 1px;
             background: linear-gradient(90deg, #cbd5e0, transparent);
         }
-        /<em> related grid + response </em>/
+        /* related grid + response */
         #related-articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -249,7 +249,7 @@
             font-size: 0.85rem;
             color: #475569;
         }
-        /<em> Dark mode </em>/
+        /* Dark mode */
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #0f172a;
@@ -327,7 +327,7 @@
             background: none;
         }
         .no-hero {
-            /<em> no hero banner </em>/
+            /* no hero banner */
         }
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
@@ -427,6 +427,6 @@ w32tm /resync</code></pre>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

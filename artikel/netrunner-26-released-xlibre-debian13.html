@@ -60,13 +60,13 @@
     <!-- Font Awesome 6 (gratis) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Reset & base - tanpa ARIA, tanpa hero, tanpa Tailwind </em>/
+        /* Reset & base - tanpa ARIA, tanpa hero, tanpa Tailwind */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> CSS Variables untuk light/dark mode via prefers-color-scheme </em>/
+        /* CSS Variables untuk light/dark mode via prefers-color-scheme */
         :root {
             --bg-body: #f5f7fb;
             --bg-card: #ffffff;
@@ -100,14 +100,14 @@
             line-height: 1.55;
             scroll-behavior: smooth;
         }
-        /<em> Container utama: 1 kolom, max-width 1000px, tengah </em>/
+        /* Container utama: 1 kolom, max-width 1000px, tengah */
         .container-article {
             max-width: 1000px;
             margin: 0 auto;
             padding: 1.5rem 1rem;
             font-size: 1.2rem;
         }
-        /<em> Card artikel </em>/
+        /* Card artikel */
         .article-card {
             background: var(--bg-card);
             border-radius: 1.25rem;
@@ -115,7 +115,7 @@
             padding: 1.75rem;
             transition: background 0.2s;
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 2rem;
             font-weight: 800;
@@ -165,7 +165,7 @@
         li {
             margin: 0.4rem 0;
         }
-        /<em> Gambar responsif dengan dimensi untuk CLS </em>/
+        /* Gambar responsif dengan dimensi untuk CLS */
         img {
             max-width: 100%;
             height: auto;
@@ -188,7 +188,7 @@
             color: var(--meta-color);
             font-size: 0.85rem;
         }
-        /<em> 5W+1H Grid </em>/
+        /* 5W+1H Grid */
         .fivewh-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -207,7 +207,7 @@
             display: block;
             margin-bottom: 0.5rem;
         }
-        /<em> Pre code block </em>/
+        /* Pre code block */
         pre {
             background: var(--code-bg);
             padding: 1rem;
@@ -244,7 +244,7 @@
             color: white;
             text-decoration: none;
         }
-        /<em> Related & response placeholders </em>/
+        /* Related & response placeholders */
         .related-placeholder, .response-placeholder {
             background: var(--code-bg);
             border-radius: 1rem;
@@ -263,7 +263,7 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 640px) {
             .container-article {
                 padding: 0.75rem;
@@ -278,7 +278,7 @@
                 font-size: 1.35rem;
             }
         }
-        /<em> Optimasi CLS: gambar sudah punya aspect ratio </em>/
+        /* Optimasi CLS: gambar sudah punya aspect ratio */
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
@@ -354,6 +354,6 @@
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel berdasarkan rilis resmi Netrunner dan prinsip jurnalisme open source. Seluruh konten mengikuti kaidah E-E-A-T. Gambar milik 9to5linux.com dan Netrunner, digunakan untuk tujuan editorial. 📌 <strong>Referensi:</strong> <a href="https://www.netrunner.com/netrunner-26-twilight-released/" target="_blank" rel="noopener">Netrunner Official Announcement</a> | <a href="https://9to5linux.com/" target="_blank" rel="noopener">9to5Linux</a> <i class="fa-solid fa-moon"></i> Tema otomatis mengikuti preferensi sistem (terang/gelap) — tanpa JavaScript.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

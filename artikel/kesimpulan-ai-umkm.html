@@ -51,16 +51,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> Design Tokens </em>/
+    /* Design Tokens */
     :root {
       --bg: #ffffff;
       --text: #1a1a1a;
-      --accent: #6366f1; /<em> Indigo </em>/
+      --accent: #6366f1; /* Indigo */
       --card-bg: #f9fafb;
       --border: #e5e7eb;
       --max-width: 980px;
     }
-    /<em> Auto Dark Mode Detection </em>/
+    /* Auto Dark Mode Detection */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0f172a;
@@ -70,7 +70,7 @@
         --border: #334155;
       }
     }
-    /<em> Base Reset </em>/
+    /* Base Reset */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -81,7 +81,7 @@
       font-size: 1.15rem;
       transition: background 0.3s ease;
     }
-    /<em> Layout Widescreen 1 Kolom </em>/
+    /* Layout Widescreen 1 Kolom */
     .container {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -102,7 +102,7 @@
       font-size: 0.95rem;
       opacity: 0.7;
     }
-    /<em> Typography </em>/
+    /* Typography */
     h2 { font-size: 2rem; margin: 3.5rem 0 1.5rem; color: var(--accent); letter-spacing: -0.01em; }
     p { margin-bottom: 1.5rem; }
     strong { color: var(--accent); }
@@ -115,7 +115,7 @@
       font-size: 1.25rem;
       font-weight: 600;
     }
-    /<em> Gallery (LCP & CLS Optimization) </em>/
+    /* Gallery (LCP & CLS Optimization) */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -134,10 +134,10 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
-      content-visibility: auto; /<em> Optimasi INP/LCP </em>/
+      content-visibility: auto; /* Optimasi INP/LCP */
     }
     .gallery-item:hover img { transform: scale(1.05); }
-    /<em> Comment Section </em>/
+    /* Comment Section */
     #related-articles-grid {
       margin: 5rem 0;
       padding: 2rem;
@@ -154,7 +154,7 @@
       font-size: 0.9rem;
       opacity: 0.8;
     }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -217,5 +217,5 @@
   <span class="close-lb">×</span>
   <img src="" id="lbImg" alt="Preview Full">
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

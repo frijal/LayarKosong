@@ -62,7 +62,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> Reset & Base Styles </em>/
+    /* Reset & Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -74,14 +74,14 @@
       transition: background 0.2s ease, color 0.2s ease;
       padding: 1rem;
     }
-    /<em> Container utama: 1 kolom, max-width 1000px, tengah </em>/
+    /* Container utama: 1 kolom, max-width 1000px, tengah */
     .container {
       max-width: 1000px;
       margin: 0 auto;
       background: inherit;
       border-radius: 0;
     }
-    /<em> Tema terang (default) </em>/
+    /* Tema terang (default) */
     body {
       background: #f9fafb;
       color: #111827;
@@ -98,7 +98,7 @@
       color: #1d4ed8;
       text-decoration: underline;
     }
-    /<em> Heading styles </em>/
+    /* Heading styles */
     h1 {
       font-size: 2.2rem;
       margin-top: 0.5rem;
@@ -143,7 +143,7 @@
       margin: 1.5rem 0;
       display: block;
     }
-    /<em> stabilisasi CLS: beri dimensi dasar pada gambar </em>/
+    /* stabilisasi CLS: beri dimensi dasar pada gambar */
     img[src$=".webp"] {
       width: 100%;
       height: auto;
@@ -211,7 +211,7 @@
       height: 1px;
       background: rgba(0,0,0,0.1);
     }
-    /<em> dark mode via prefers-color-scheme </em>/
+    /* dark mode via prefers-color-scheme */
     @media (prefers-color-scheme: dark) {
       body {
         background: #0a0c10;
@@ -241,7 +241,7 @@
         color: #9ca3af;
       }
     }
-    /<em> mobile friendly </em>/
+    /* mobile friendly */
     @media (max-width: 680px) {
       body {
         padding: 0.8rem;
@@ -398,6 +398,6 @@
     <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel ditinjau berdasarkan rilis resmi Ubuntu 26.04 LTS. Konten mengikuti prinsip E-E-A-T dan prinsip 5W+1H. Lisensi terbuka untuk referensi. Optimasi Core Web Vitals: CLS stabil, LCP dioptimasi dengan gambar native aspect ratio.</p>
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

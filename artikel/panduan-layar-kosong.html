@@ -58,7 +58,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <!-- Schema.org JSON-LD -->
     <style>
-        /<em> Reset & Base </em>/
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -107,13 +107,13 @@
             font-size: 16px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /<em> Container </em>/
+        /* Container */
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3, h4, h5, h6 {
             margin-top: 2rem;
             margin-bottom: 1rem;
@@ -151,7 +151,7 @@
             font-style: italic;
             color: var(--text-secondary);
         }
-        /<em> Links </em>/
+        /* Links */
         a {
             color: var(--link-color);
             text-decoration: none;
@@ -161,7 +161,7 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        /<em> Code Blocks </em>/
+        /* Code Blocks */
         code {
             background-color: var(--bg-code);
             padding: 0.2rem 0.4rem;
@@ -184,7 +184,7 @@
             color: var(--text-primary);
             font-size: 0.9rem;
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul, ol {
             margin-bottom: 1.5rem;
             padding-left: 2rem;
@@ -197,7 +197,7 @@
             color: var(--accent-color);
             font-weight: bold;
         }
-        /<em> Checkboxes </em>/
+        /* Checkboxes */
         input[type="checkbox"] {
             width: 1.2rem;
             height: 1.2rem;
@@ -205,13 +205,13 @@
             vertical-align: middle;
             cursor: pointer;
         }
-        /<em> Horizontal Rule </em>/
+        /* Horizontal Rule */
         hr {
             border: none;
             border-top: 2px solid var(--border-color);
             margin: 3rem 0;
         }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         blockquote {
             border-left: 4px solid var(--warning-color);
             padding-left: 1.5rem;
@@ -222,7 +222,7 @@
             padding: 1rem 1.5rem;
             border-radius: 4px;
         }
-        /<em> Cards </em>/
+        /* Cards */
         .card {
             background-color: var(--bg-secondary);
             border-radius: 12px;
@@ -241,7 +241,7 @@
             margin-bottom: 1rem;
             display: block;
         }
-        /<em> Alert Boxes </em>/
+        /* Alert Boxes */
         .alert {
             padding: 1rem 1.5rem;
             border-radius: 8px;
@@ -268,7 +268,7 @@
             border-color: var(--danger-color);
             color: var(--text-primary);
         }
-        /<em> Buttons </em>/
+        /* Buttons */
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -299,7 +299,7 @@
             color: white;
             text-decoration: none;
         }
-        /<em> Details/Summary </em>/
+        /* Details/Summary */
         details {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -322,7 +322,7 @@
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 1rem;
         }
-        /<em> Badge </em>/
+        /* Badge */
         .badge {
             display: inline-block;
             padding: 0.25rem 0.6rem;
@@ -344,14 +344,14 @@
             background-color: var(--warning-color);
             color: #000;
         }
-        /<em> Comments Section </em>/
+        /* Comments Section */
         #related-articles-grid {
             margin-top: 4rem;
             padding-top: 2rem;
             border-top: 2px solid var(--border-color);
             min-height: 200px;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4rem;
             padding: 2rem 0;
@@ -377,7 +377,7 @@
         .footer-icon:hover {
             transform: scale(1.2);
         }
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -399,7 +399,7 @@
                 font-size: 0.85rem;
             }
         }
-        /<em> Scrollbar </em>/
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -413,7 +413,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--link-hover);
         }
-        /<em> Animation </em>/
+        /* Animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -427,7 +427,7 @@
         .container > * {
             animation: fadeIn 0.6s ease-out;
         }
-        /<em> Status Badges Layout </em>/
+        /* Status Badges Layout */
         .status-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -775,6 +775,6 @@ Value: usernamekamu.github.io</code></pre>
 </footer></div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

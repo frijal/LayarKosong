@@ -63,13 +63,13 @@
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <!-- CSS murni, tanpa framework, dengan preferensi tema terang/gelap -->
   <style>
-    /<em> Reset dasar dan variabel tema </em>/
+    /* Reset dasar dan variabel tema */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> Tema default (terang) </em>/
+    /* Tema default (terang) */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.6;
@@ -77,7 +77,7 @@
       color: #1e293b;
       transition: background-color 0.2s ease, color 0.2s ease;
     }
-    /<em> Tema gelap berdasarkan preferensi sistem </em>/
+    /* Tema gelap berdasarkan preferensi sistem */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -97,14 +97,14 @@
         background-color: #2d2d2d;
       }
     }
-    /<em> Tata letak utama </em>/
+    /* Tata letak utama */
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 20px 25px;
       background-color: inherit;
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.2rem;
       line-height: 1.3;
@@ -132,7 +132,7 @@
       margin-bottom: 1.2rem;
       font-size: 1.1rem;
     }
-    /<em> Metadata artikel (E-E-A-T) </em>/
+    /* Metadata artikel (E-E-A-T) */
     .article-meta {
       display: flex;
       flex-wrap: wrap;
@@ -147,7 +147,7 @@
       margin-right: 6px;
       color: #2563eb;
     }
-    /<em> Gambar responsif dengan background placeholder kurangi CLS </em>/
+    /* Gambar responsif dengan background placeholder kurangi CLS */
     figure {
       margin: 2rem 0;
     }
@@ -157,7 +157,7 @@
       display: block;
       border-radius: 12px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      background-color: #e2e8f0; /<em> placeholder saat loading </em>/
+      background-color: #e2e8f0; /* placeholder saat loading */
     }
     @media (prefers-color-scheme: dark) {
       img {
@@ -171,7 +171,7 @@
       margin-top: 8px;
       color: #64748b;
     }
-    /<em> Kontainer komentar sesuai instruksi </em>/
+    /* Kontainer komentar sesuai instruksi */
     #related-articles-grid, #response {
       margin: 2.5rem 0 1.5rem;
       padding: 1.5rem;
@@ -186,7 +186,7 @@
         color: #e2e8f0;
       }
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       max-width: 1000px;
       margin: 30px auto 20px;
@@ -205,7 +205,7 @@
     .footer-copy i {
       color: #dc2626;
     }
-    /<em> Link </em>/
+    /* Link */
     a {
       color: #1d4ed8;
       text-decoration: none;
@@ -213,19 +213,19 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> Tombol kecil (non-hero, hanya ikon) </em>/
+    /* Tombol kecil (non-hero, hanya ikon) */
     .emoji-large {
       font-size: 1.5rem;
       margin-right: 5px;
       vertical-align: middle;
     }
-    /<em> 1000px ke bawah </em>/
+    /* 1000px ke bawah */
     @media (max-width: 768px) {
       h1 { font-size: 1.8rem; }
       h2 { font-size: 1.5rem; }
       .container { padding: 15px; }
     }
-    /<em> Hindari elemen hero dan ARIA, sudah dipastikan tidak ada </em>/
+    /* Hindari elemen hero dan ARIA, sudah dipastikan tidak ada */
   </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
@@ -354,5 +354,5 @@
       <i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman – Artikel ini disusun berdasarkan putusan resmi MK dan liputan langsung. <br>
     </div>
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

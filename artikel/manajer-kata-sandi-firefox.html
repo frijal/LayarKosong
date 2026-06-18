@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /<em> Light Theme Variables </em>/
+            /* Light Theme Variables */
             --bg-color: #f9fafb;
             --text-main: #374151;
             --text-heading: #111827;
@@ -64,7 +64,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Dark Theme Variables </em>/
+                /* Dark Theme Variables */
                 --bg-color: #111827;
                 --text-main: #d1d5db;
                 --text-heading: #f9fafb;
@@ -76,8 +76,8 @@
                 --footer-text: #9ca3af;
             }
         }
-        /<em> Reset & Base Styles </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base Styles */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -90,14 +90,14 @@
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Layout Container </em>/
+        /* Layout Container */
         .container {
             max-width: 64rem;
             width: 100%;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3 {
             color: var(--text-heading);
             font-weight: 700;
@@ -130,7 +130,7 @@
             color: var(--accent-hover);
             text-decoration: underline;
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul, ol {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -138,7 +138,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> Image Styling (Anti-CLS) </em>/
+        /* Image Styling (Anti-CLS) */
         figure {
             margin: 2rem 0;
             width: 100%;
@@ -159,7 +159,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /<em> Highlight Boxes </em>/
+        /* Highlight Boxes */
         .card {
             background-color: var(--card-bg);
             border: 0.0625rem solid var(--border-color);
@@ -168,7 +168,7 @@
             margin: 1.5rem 0;
             box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1);
         }
-        /<em> Inline Code </em>/
+        /* Inline Code */
         code {
             background-color: var(--code-bg);
             padding: 0.125rem 0.375rem;
@@ -176,7 +176,7 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 0.875em;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -282,6 +282,6 @@
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

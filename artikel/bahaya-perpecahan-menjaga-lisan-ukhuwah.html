@@ -46,29 +46,29 @@
     <title>Bahaya Perpecahan: Menjaga Lisan dan Ukhuwah di Akhir Zaman - Dalam Web - Layar Kosong</title> 
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Definisi Variabel Warna untuk Mode Terang (Default) </em>/
+        /* Definisi Variabel Warna untuk Mode Terang (Default) */
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
-            --accent-color: #2e7d32; /<em> Hijau Islami </em>/
+            --accent-color: #2e7d32; /* Hijau Islami */
             --secondary-bg: #f4f4f4;
             --quote-bg: #e8f5e9;
             --quote-border: #2e7d32;
             --link-color: #1a73e8;
         }
-        /<em> Media Query untuk Mode Gelap Otomatis </em>/
+        /* Media Query untuk Mode Gelap Otomatis */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
-                --accent-color: #81c784; /<em> Hijau yang lebih terang untuk dark mode </em>/
+                --accent-color: #81c784; /* Hijau yang lebih terang untuk dark mode */
                 --secondary-bg: #1e1e1e;
                 --quote-bg: #1b3a1d;
                 --quote-border: #81c784;
                 --link-color: #64b5f6;
             }
         }
-        /<em> Reset Dasar </em>/
+        /* Reset Dasar */
         body, h1, h2, h3, p, ul, li, blockquote {
             margin: 0;
             padding: 0;
@@ -85,14 +85,14 @@
             display: flex;
             flex-direction: column;
         }
-        /<em> Kontainer Utama - Widescreen 1 Kolom </em>/
+        /* Kontainer Utama - Widescreen 1 Kolom */
         .main-container {
-            max-width: 900px; /<em> Lebar optimal untuk bacaan satu kolom </em>/
+            max-width: 900px; /* Lebar optimal untuk bacaan satu kolom */
             margin: 0 auto;
             padding: 30px 20px;
-            flex: 1; /<em> Agar footer terdorong ke bawah </em>/
+            flex: 1; /* Agar footer terdorong ke bawah */
         }
-        /<em> Tipografi dan Heading </em>/
+        /* Tipografi dan Heading */
         h1 {
             font-size: 2.5rem;
             color: var(--accent-color);
@@ -111,7 +111,7 @@
         p {
             margin-bottom: 20px;
         }
-        /<em> Styling untuk Gambar </em>/
+        /* Styling untuk Gambar */
         .content-image {
             width: 100%;
             height: auto;
@@ -120,7 +120,7 @@
             margin: 30px 0;
             display: block;
         }
-        /<em> Styling untuk Kutipan Dalil (Arab & Terjemahan) </em>/
+        /* Styling untuk Kutipan Dalil (Arab & Terjemahan) */
         .dalil-box {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--quote-border);
@@ -150,7 +150,7 @@
             font-style: italic;
             font-weight: 500;
         }
-        /<em> List Styling </em>/
+        /* List Styling */
         ul.poin-penting {
             list-style: none;
         }
@@ -160,7 +160,7 @@
             position: relative;
         }
         ul.poin-penting li::before {
-            content: '\f058'; /<em> Font Awesome Check Circle </em>/
+            content: '\f058'; /* Font Awesome Check Circle */
             font-family: 'Font Awesome 7 Free';
             font-weight: 900;
             position: absolute;
@@ -168,7 +168,7 @@
             top: 2px;
             color: var(--accent-color);
         }
-        /<em> Footer Styling </em>/
+        /* Footer Styling */
         footer {
             background-color: var(--secondary-bg);
             text-align: center;
@@ -177,7 +177,7 @@
             font-size: 0.9rem;
             border-top: 1px solid rgba(0,0,0,0.1);
         }
-        /<em> Responsif Mobile </em>/
+        /* Responsif Mobile */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.5rem; }
@@ -254,5 +254,5 @@
         <p>🄯 2024 Dalam Web. Mari sebarkan kebaikan dan jaga ukhuwah Islamiyah. <i class="fa-solid fa-heart" style="color: red;"></i></p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

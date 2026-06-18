@@ -52,7 +52,7 @@
     <meta name="promphint" content="Tanya: Apa yang menjadi andalan pencarian informasi anak sekolah era 90an? Jawab: Buku rangkuman materi RPUL dan RPAL menjadi mesin pencari fisik paling lengkap sebelum internet merajalela.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables - Tema Terang (Default) </em>/
+        /* CSS Variables - Tema Terang (Default) */
         :root {
             --bg-color: #fdfbf7;
             --text-color: #2c3e50;
@@ -63,7 +63,7 @@
             --card-bg: #ffffff;
             --accent-color: #e67e22;
         }
-        /<em> Tema Gelap Otomatis tanpa JavaScript </em>/
+        /* Tema Gelap Otomatis tanpa JavaScript */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #111111;
@@ -76,7 +76,7 @@
                 --accent-color: #f39c12;
             }
         }
-        /<em> Reset & Struktur Dasar Core Web Vitals (Mencegah CLS/INP) </em>/
+        /* Reset & Struktur Dasar Core Web Vitals (Mencegah CLS/INP) */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -89,10 +89,10 @@
             line-height: 1.8;
             padding: 1.5rem;
             margin: 0 auto;
-            max-width: 1000px; /<em> Desain widescreen 1 kolom di tengah untuk desktop </em>/
+            max-width: 1000px; /* Desain widescreen 1 kolom di tengah untuk desktop */
             font-size: 18px;
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1, h2, h3 {
             color: var(--heading-color);
             line-height: 1.4;
@@ -113,17 +113,17 @@
             opacity: 0.8;
             border-bottom-style: solid;
         }
-        /<em> Optimasi LCP & CLS pada Media Gambar </em>/
+        /* Optimasi LCP & CLS pada Media Gambar */
         img {
             max-width: 100%;
             height: auto;
             display: block;
             border-radius: 10px;
             margin: 2.5rem auto;
-            background-color: var(--border-color); /<em> Mencegah Layout Shift </em>/
+            background-color: var(--border-color); /* Mencegah Layout Shift */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-              /<em> Kotak Highlight Cerita </em>/
+              /* Kotak Highlight Cerita */
         .highlight-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -132,7 +132,7 @@
             margin: 2rem 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        /<em> List Gaya Kreatif </em>/
+        /* List Gaya Kreatif */
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -141,7 +141,7 @@
         li {
             margin-bottom: 0.8rem;
         }
-        /<em> Penulis Box (E-E-A-T Framework) </em>/
+        /* Penulis Box (E-E-A-T Framework) */
         .author-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -150,7 +150,7 @@
             margin: 4rem 0 2rem 0;
         }
         .author-box h3 { margin-top: 0; margin-bottom: 0.5rem; }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 5rem;
             padding-top: 2rem;
@@ -171,7 +171,7 @@
             border: none;
         }
         .social-media-links a:hover { color: var(--link-color); }
-        /<em> Responsif Tampilan Mobile </em>/
+        /* Responsif Tampilan Mobile */
         @media (max-width: 768px) {
             body { padding: 1rem; font-size: 16px; }
             h1 { font-size: 1.8rem; }
@@ -236,5 +236,5 @@
             <a href="https://tiktok.com/@gibah.dilarang"><i class="fa-brands fa-tiktok"></i></a>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

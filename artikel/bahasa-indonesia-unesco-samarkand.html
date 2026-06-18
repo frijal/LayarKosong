@@ -45,20 +45,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sejarah Respon Dunia Saat Bahasa Indonesia Resmi Menggema di Sidang UNESCO - Layar Kosong</title> 
 <style>
-        /<em> CSS3 - Pengaturan Dasar & Responsif </em>/
+        /* CSS3 - Pengaturan Dasar & Responsif */
         :root {
-            /<em> Tema Light Default </em>/
+            /* Tema Light Default */
             --bg-color: #ffffff;
             --text-color: #333333;
-            --primary-color: #d90f23; /<em> Merah Indonesia </em>/
+            --primary-color: #d90f23; /* Merah Indonesia */
             --secondary-color: #f0f0f0;
         }
-        /<em> Deteksi Tema Gelap (Dark Mode) </em>/
+        /* Deteksi Tema Gelap (Dark Mode) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
-                --primary-color: #ff3c4d; /<em> Merah yang lebih terang di dark mode </em>/
+                --primary-color: #ff3c4d; /* Merah yang lebih terang di dark mode */
                 --secondary-color: #1e1e1e;
             }
         }
@@ -70,11 +70,11 @@
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden; /<em> Pastikan fullscreen/widescreen tanpa scroll horizontal </em>/
+            overflow-x: hidden; /* Pastikan fullscreen/widescreen tanpa scroll horizontal */
         }
         .container {
             width: 95%;
-            max-width: 1200px; /<em> Desain Widescreen yang nyaman dibaca </em>/
+            max-width: 1200px; /* Desain Widescreen yang nyaman dibaca */
             margin: 0 auto;
             padding: 20px;
         }
@@ -116,7 +116,7 @@
             margin: 40px 0;
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /<em> Rasio 16:9 </em>/
+            padding-bottom: 56.25%; /* Rasio 16:9 */
             height: 0;
             overflow: hidden;
             border-radius: 8px;
@@ -129,7 +129,7 @@
             height: 100%;
             border: none;
         }
-        /<em> Mobile-Friendly Adjustments </em>/
+        /* Mobile-Friendly Adjustments */
         @media (max-width: 600px) {
             header h1 {
                 font-size: 1.8em;
@@ -224,5 +224,5 @@
         <p>🄯 2025 Artikel Sejarah Bahasa Indonesia.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

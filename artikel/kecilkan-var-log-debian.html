@@ -45,9 +45,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Ampuh Mengecilkan /var/log/ di Debian 13 - Layar Kosong</title> 
 <style>
-        /<em> 1. Reset dan Variabel Warna </em>/
+        /* 1. Reset dan Variabel Warna */
         :root {
-            /<em> Tema Terang (Default) </em>/
+            /* Tema Terang (Default) */
             --bg-color: #ffffff;
             --text-color: #333333;
             --heading-color: #111111;
@@ -62,7 +62,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap </em>/
+                /* Tema Gelap */
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
                 --heading-color: #ffffff;
@@ -82,7 +82,7 @@
             padding: 0;
         }
         html, body {
-            height: 100%; /<em> Untuk layout "fullscreen" </em>/
+            height: 100%; /* Untuk layout "fullscreen" */
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -92,17 +92,17 @@
             transition: background-color 0.3s ease, color 0.3s ease;
             font-size: 16px;
         }
-        /<em> 2. Tata Letak Utama (Widescreen & Responsif) </em>/
+        /* 2. Tata Letak Utama (Widescreen & Responsif) */
         .container {
-            max-width: 1200px; /<em> Desain Widescreen </em>/
-            margin: 0 auto; /<em> Tengah </em>/
+            max-width: 1200px; /* Desain Widescreen */
+            margin: 0 auto; /* Tengah */
             padding: 2.5rem 2rem;
         }
         article {
-            max-width: 800px; /<em> Lebar artikel optimal untuk dibaca </em>/
+            max-width: 800px; /* Lebar artikel optimal untuk dibaca */
             margin: 0 auto;
         }
-        /<em> Mobile Friendly </em>/
+        /* Mobile Friendly */
         @media (max-width: 768px) {
             body {
                 font-size: 15px;
@@ -118,7 +118,7 @@
                 font-size: 1.8rem !important;
             }
         }
-        /<em> 3. Tipografi </em>/
+        /* 3. Tipografi */
         h1, h2, h3 {
             color: var(--heading-color);
             margin-bottom: 1rem;
@@ -156,7 +156,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /<em> 4. Elemen Konten </em>/
+        /* 4. Elemen Konten */
         img {
             max-width: 100%;
             height: auto;
@@ -182,7 +182,7 @@
         code {
             font-family: inherit;
         }
-        /<em> Ikon inline </em>/
+        /* Ikon inline */
         .inline-icon {
             display: inline-block;
             vertical-align: -0.2em;
@@ -192,7 +192,7 @@
             fill: currentColor;
             color: var(--icon-color);
         }
-        /<em> Kotak Peringatan </em>/
+        /* Kotak Peringatan */
         .warning-box {
             background-color: var(--warning-bg);
             color: var(--warning-text);
@@ -217,7 +217,7 @@
             background-color: var(--border-color);
             margin: 3rem 0;
         }
-        /<em> 5. Tombol Share Media Sosial </em>/
+        /* 5. Tombol Share Media Sosial */
         .social-share {
             text-align: center;
             margin-top: 2rem;
@@ -248,7 +248,7 @@
             transform: scale(1.1);
             text-decoration: none;
         }
-        /<em> Warna hover spesifik </em>/
+        /* Warna hover spesifik */
         .share-buttons a.twitter:hover { background-color: #1DA1F2; }
         .share-buttons a.facebook:hover { background-color: #1877F2; }
         .share-buttons a.whatsapp:hover { background-color: #25D366; }
@@ -264,7 +264,7 @@
             fill: var(--icon-color);
             transition: fill 0.2s ease;
         }
-        /<em> 6. Footer </em>/
+        /* 6. Footer */
         footer {
             text-align: center;
             margin-top: 3rem;
@@ -393,6 +393,6 @@ SystemMaxUse=1G
 </footer>
     </article>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

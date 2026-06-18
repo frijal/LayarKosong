@@ -49,8 +49,8 @@
     <meta name="news_keywords" content="openSUSE, Zypper, Shell Script, Linux Mirror, Mirrorlist, Optimasi Linux, Sysadmin">
     <meta name="promphint" content="Bagaimana mempercepat download repo openSUSE? | Gunakan skrip opensuse-mirror.sh untuk mengalihkan repo lama ke infrastruktur mirrorlist otomatis.">
     <style>
-        /<em> Modern Reset & Variabel Tema </em>/
-        <em>, </em>::before, *::after {
+        /* Modern Reset & Variabel Tema */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         :root {
@@ -91,7 +91,7 @@
                 --syntax-comment: #475569;
             }
         }
-        /<em> Arsitektur Tipografi & Layout (Tanpa PX/PT) --> Kontainer Max 64rem Rata Tengah </em>/
+        /* Arsitektur Tipografi & Layout (Tanpa PX/PT) --> Kontainer Max 64rem Rata Tengah */
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-base);
@@ -168,7 +168,7 @@
         strong {
             color: var(--heading-color);
         }
-        /<em> Optimasi Gambar Penuh Kontainer & Anti Layout Shift (CLS) </em>/
+        /* Optimasi Gambar Penuh Kontainer & Anti Layout Shift (CLS) */
         .image-container {
             width: 100%;
             margin: 2rem 0;
@@ -182,7 +182,7 @@
             border-radius: 0.5rem;
             background-color: var(--border-color);
         }
-        /<em> Komponen Blok Kode & Syntax Highlighting Murni Bawaan </em>/
+        /* Komponen Blok Kode & Syntax Highlighting Murni Bawaan */
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             background-color: var(--code-inline-bg);
@@ -212,7 +212,7 @@
         .syn-kw { color: var(--syntax-keyword); font-weight: bold; }
         .syn-str { color: var(--syntax-string); }
         .syn-cmt { color: var(--syntax-comment); font-style: italic; }
-        /<em> Footer Rata Tengah Elegan </em>/
+        /* Footer Rata Tengah Elegan */
         footer {
             margin-top: 4rem;
             padding-top: 1.5rem;
@@ -291,6 +291,6 @@ OS_VERSION=$(grep VERSION_ID /etc/os-release | cut -d <span class="syn-str">'"'<
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

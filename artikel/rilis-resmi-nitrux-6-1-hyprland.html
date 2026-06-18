@@ -59,7 +59,7 @@
     <!-- FontAwesome Icons (Asynchronous) -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
+        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
         :root {
             --bg-color: #f9fafb;
             --text-color: #374151;
@@ -102,7 +102,7 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /<em> Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop </em>/
+        /* Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -137,7 +137,7 @@
         p {
             margin-bottom: 1.25rem;
         }
-        /<em> Menggunakan a. selector sesuai ledger </em>/
+        /* Menggunakan a. selector sesuai ledger */
         a.article-link, a.ref-link {
             color: var(--link-color);
             text-decoration: none;
@@ -149,7 +149,7 @@
             color: var(--link-hover);
             border-bottom-color: var(--link-hover);
         }
-        /<em> Penanda Kode / CLI </em>/
+        /* Penanda Kode / CLI */
         code.inline-code {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -158,7 +158,7 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 0.9em;
         }
-        /<em> Blok Metadata E-E-A-T </em>/
+        /* Blok Metadata E-E-A-T */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -176,7 +176,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        /<em> Blok Kontainer Gambar Mengurangi Layout Shift (CLS) </em>/
+        /* Blok Kontainer Gambar Mengurangi Layout Shift (CLS) */
         .img-container {
             margin: 2rem 0;
             background-color: var(--card-bg);
@@ -188,7 +188,7 @@
         .img-container img {
             width: 100%;
             height: auto;
-            max-width: 650px; /<em> Pencegah gambar raksasa di atas fold </em>/
+            max-width: 650px; /* Pencegah gambar raksasa di atas fold */
             display: block;
             border-radius: 6px;
             margin: 0 auto;
@@ -199,7 +199,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /<em> List Styling </em>/
+        /* List Styling */
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -207,7 +207,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> Blockquote Info </em>/
+        /* Blockquote Info */
         blockquote.info-box {
             background-color: var(--quote-bg);
             border-left: 4px solid var(--quote-border);
@@ -232,7 +232,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /<em> Responsivitas Layar Lebar </em>/
+        /* Responsivitas Layar Lebar */
         @media (min-width: 768px) {
             .container {
                 padding: 2.5rem;
@@ -317,6 +317,6 @@
         <p>🄯 2026 Layar Kosong. Disusun dengan HTML/CSS murni berfokus pada kecepatan <em>Core Web Vitals</em>.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

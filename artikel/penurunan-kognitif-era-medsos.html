@@ -47,14 +47,14 @@
     <meta name="keywords" content="penurunan kognitif, brain rot, medsos, reels, shorts, attention span pendek, sulit fokus, berpikir kritis, doomscrolling, kesehatan mental digital">
     <style>
         :root {
-            /<em> Tema Default Light </em>/
+            /* Tema Default Light */
             --bg-color: #f7f7f7;
             --text-color: #1a1a1a;
             --primary-color: #4a90e2;
             --secondary-bg: #ffffff;
             --border-color: #e0e0e0;
         }
-        /<em> Deteksi Tema Dark Mode </em>/
+        /* Deteksi Tema Dark Mode */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -64,7 +64,7 @@
                 --border-color: #333333;
             }
         }
-        /<em> Styling Dasar </em>/
+        /* Styling Dasar */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -74,15 +74,15 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            min-height: 100vh; /<em> Fullscreen </em>/
+            min-height: 100vh; /* Fullscreen */
         }
         .container {
             width: 100%;
-            max-width: 1000px; /<em> Widescreen 1 kolom </em>/
+            max-width: 1000px; /* Widescreen 1 kolom */
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Header dan Judul </em>/
+        /* Header dan Judul */
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -94,7 +94,7 @@
             color: var(--primary-color);
             margin-bottom: 5px;
         }
-        /<em> Konten Artikel </em>/
+        /* Konten Artikel */
         .article-content {
             background-color: var(--secondary-bg);
             padding: clamp(20px, 5vw, 40px);
@@ -141,7 +141,7 @@
             margin: 25px 0;
             border-radius: 8px;
         }
-        /<em> Mobile adjustment </em>/
+        /* Mobile adjustment */
         @media (max-width: 600px) {
             .container {
                 padding: 10px;
@@ -150,7 +150,7 @@
                 padding: 15px;
             }
         }
-        /<em> Font Icons (Menggunakan Unicode Emojis sebagai pengganti Icon Font/SVG) </em>/
+        /* Font Icons (Menggunakan Unicode Emojis sebagai pengganti Icon Font/SVG) */
         .icon-shrink { content: "📉"; }
         .icon-scroll { content: "📱"; }
         .icon-brain { content: "🧠"; }
@@ -226,5 +226,5 @@
    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -45,9 +45,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) - Layar Kosong</title> 
 <style>
-        /<em> 1. CSS Reset & Dasar </em>/
+        /* 1. CSS Reset & Dasar */
         :root {
-            /<em> Tema Terang (Light Mode) - Default </em>/
+            /* Tema Terang (Light Mode) - Default */
             --bg-color: #ffffff;
             --text-color: #222222;
             --header-color: #000000;
@@ -62,7 +62,7 @@
             --blockquote-color: #444;
         }
         @media (prefers-color-scheme: dark) {
-            /<em> Tema Gelap (Dark Mode) - Otomatis terdeteksi </em>/
+            /* Tema Gelap (Dark Mode) - Otomatis terdeteksi */
             :root {
                 --bg-color: #1a1a1a;
                 --text-color: #e0e0e0;
@@ -94,16 +94,16 @@
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> 2. Tata Letak (Widescreen & Responsif) </em>/
+        /* 2. Tata Letak (Widescreen & Responsif) */
         main {
-            max-width: 900px; /<em> Desain Widescreen </em>/
+            max-width: 900px; /* Desain Widescreen */
             margin: 0 auto;
             padding: 2rem 1.5rem 4rem 1.5rem;
         }
         article {
             width: 100%;
         }
-        /<em> 3. Tipografi & Elemen Konten </em>/
+        /* 3. Tipografi & Elemen Konten */
         .article-header {
             display: flex;
             align-items: center;
@@ -161,8 +161,8 @@
             font-size: 1.1rem;
             margin-bottom: 0.75rem;
         }
-        /<em> 4. Elemen Khusus Artikel </em>/
-        /<em> Blok untuk Kisah/Cerita </em>/
+        /* 4. Elemen Khusus Artikel */
+        /* Blok untuk Kisah/Cerita */
         .kisah-block {
             background-color: var(--kisah-bg);
             border-radius: 8px;
@@ -170,7 +170,7 @@
             margin-bottom: 2rem;
             border: 1px solid var(--pre-border);
         }
-        /<em> Blok untuk Dalil (Ayat/Hadits) </em>/
+        /* Blok untuk Dalil (Ayat/Hadits) */
         .dalil-block {
             background-color: var(--dalil-bg);
             border-left: 5px solid var(--dalil-border);
@@ -200,7 +200,7 @@
             margin-top: 0.75rem;
             text-align: right;
         }
-        /<em> Blok untuk Renungan </em>/
+        /* Blok untuk Renungan */
         blockquote.renungan {
             text-align: center;
             font-size: 1.25rem;
@@ -212,7 +212,7 @@
             border-right: 5px solid var(--pre-border);
             max-width: 80%;
         }
-        /<em> Blok untuk Sumber Rujukan </em>/
+        /* Blok untuk Sumber Rujukan */
         .sumber-rujukan {
             font-size: 0.9rem;
             color: var(--sumber-color);
@@ -231,7 +231,7 @@
         #komentar {
             margin-top: 4rem;
         }
-        /<em> 5. Mobile-Friendly </em>/
+        /* 5. Mobile-Friendly */
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
@@ -508,5 +508,5 @@
             </section>
     </article>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

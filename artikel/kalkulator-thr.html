@@ -50,7 +50,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fadhilramadan/Kalkulator-THR/styles.css">
 <script src="https://cdn.jsdelivr.net/gh/fadhilramadan/Kalkulator-THR/script.js"></script>
 <style>
-/<em> Gaya dasar tabel </em>/
+/* Gaya dasar tabel */
 .responsive-table {
     width: 100%;
     border-collapse: collapse;
@@ -66,11 +66,11 @@
 .responsive-table thead {
     background-color: #f4f4f4;
 }
-/<em> Membuat tabel bisa di-scroll secara horizontal di layar kecil </em>/
+/* Membuat tabel bisa di-scroll secara horizontal di layar kecil */
 .table-wrapper {
     overflow-x: auto;
 }
-/<em> Responsivitas untuk layar HP </em>/
+/* Responsivitas untuk layar HP */
 @media screen and (max-width: 600px) {
     .responsive-table th, .responsive-table td {
         padding: 8px;
@@ -257,6 +257,6 @@
         </div>
     </div>
 <script src="/ext/html2canvas.min.js"></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

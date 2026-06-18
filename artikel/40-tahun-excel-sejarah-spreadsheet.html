@@ -54,7 +54,7 @@
             --surface-color: #1e1e1e;
             --primary-text: #e0e0e0;
             --secondary-text: #a0a0a0;
-            --accent-color: #1DB954; /<em> A fresh, modern green </em>/
+            --accent-color: #1DB954; /* A fresh, modern green */
             --border-color: #333;
         }
         * {
@@ -71,7 +71,7 @@
         }
         .fullscreen-wrapper {
             width: 100%;
-            min-width: 1000px; /<em> Sesuai permintaan </em>/
+            min-width: 1000px; /* Sesuai permintaan */
             display: flex;
             justify-content: center;
         }
@@ -80,7 +80,7 @@
             width: 100%;
             padding: 4rem 2rem;
         }
-        /<em> Article Header </em>/
+        /* Article Header */
         .article-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -98,7 +98,7 @@
             font-size: 1.2rem;
             color: var(--secondary-text);
         }
-        /<em> Article Body </em>/
+        /* Article Body */
         article p { margin-bottom: 1.5rem; }
         article h2 {
             font-family: 'Merriweather', serif;
@@ -114,7 +114,7 @@
             font-style: italic;
             color: var(--secondary-text);
         }
-        /<em> Gallery & Image </em>/
+        /* Gallery & Image */
         .image-gallery {
             margin: 3rem 0;
         }
@@ -133,7 +133,7 @@
             color: var(--secondary-text);
             margin-top: 0.5rem;
         }
-        /<em> Lightbox </em>/
+        /* Lightbox */
         .lightbox {
             display: none; position: fixed; z-index: 1000;
             left: 0; top: 0; width: 100%; height: 100%;
@@ -147,7 +147,7 @@
             padding: 1rem;
         }
         .close { top: 2rem; right: 2rem; font-size: 2.5rem; }
-        /<em> Interactive Sections (Share, Info, Comments) </em>/
+        /* Interactive Sections (Share, Info, Comments) */
         .interactive-section {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
@@ -171,7 +171,7 @@
             transform: scale(1.2);
         }
         #user-info p { margin: 0.5rem 0; }
-        /<em> Fixed Buttons </em>/
+        /* Fixed Buttons */
         .fixed-btn {
             position: fixed; width: 50px; height: 50px;
             background-color: var(--accent-color);
@@ -187,8 +187,8 @@
         }
         #sitemap-btn { left: 30px; top: 30%; }
         #home-btn { right: 30px; bottom: 20%; }
-        /<em> Responsive Design </em>/
-        @media (max-width: 1000px) { /<em> Breakpoint for mobile </em>/
+        /* Responsive Design */
+        @media (max-width: 1000px) { /* Breakpoint for mobile */
             .fullscreen-wrapper { min-width: auto; }
             .container { padding: 2rem 1rem; }
             .article-header h1 { font-size: 2.5rem; }
@@ -253,5 +253,5 @@
             lightbox.addEventListener('click', (e) => (e.target === lightbox) && closeLightbox());
                    });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

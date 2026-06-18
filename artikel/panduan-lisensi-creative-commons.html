@@ -53,13 +53,13 @@
     <meta name="news_keywords" content="Creative Commons, Hak Cipta, Lisensi Konten, Kreator Digital, Atribusi Karya">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Base Reset untuk Layout Bebas CLS </em>/
-        <em>, </em>::before, *::after {
+        /* Base Reset untuk Layout Bebas CLS */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        /<em> Default Light Theme dengan System Fonts (Cepat load untuk LCP/INP) </em>/
+        /* Default Light Theme dengan System Fonts (Cepat load untuk LCP/INP) */
         :root {
             --bg-color: #f9f9fa;
             --text-color: #2c3e50;
@@ -69,7 +69,7 @@
             --card-border: #e1e4e8;
             --meta-color: #6a737d;
         }
-        /<em> Dark Theme Otomatis </em>/
+        /* Dark Theme Otomatis */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -88,7 +88,7 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /<em> Main Container 1 Kolom, Max Width 1000px, Posisi Tengah </em>/
+        /* Main Container 1 Kolom, Max Width 1000px, Posisi Tengah */
         main {
             max-width: 1000px;
             margin: 0 auto;
@@ -124,7 +124,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /<em> Styling Gambar dengan Aspect Ratio agar mencegah CLS </em>/
+        /* Styling Gambar dengan Aspect Ratio agar mencegah CLS */
         .featured-image {
             width: 100%;
             height: auto;
@@ -132,9 +132,9 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 25px;
-            background-color: var(--card-border); /<em> Placeholder warna jika lambat </em>/
+            background-color: var(--card-border); /* Placeholder warna jika lambat */
         }
-          /<em> Grid untuk Kartu Ikon </em>/
+          /* Grid untuk Kartu Ikon */
         .icon-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -179,7 +179,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /<em> Responsif untuk Mobile </em>/
+        /* Responsif untuk Mobile */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.4rem; }
@@ -316,6 +316,6 @@
             <p>🄯 2026 Layar Kosong. Tetap Kreatif, Tetap Berbagi.</p>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

@@ -50,7 +50,7 @@
     <meta name="news_keywords" content="Debian, Downgrade Debian, Debian Testing, Debian Stable, Linux, Server, APT, Sysadmin">
     <meta name="promphint" content="Bagaimana cara downgrade Debian Testing ke Stable? Proses ini tidak direkomendasikan karena rawan konflik dependensi, instalasi ulang Debian Stable jauh lebih disarankan.">
     <style>
-        /<em> Mobile-first variables & Tema Gelap/Terang via prefers-color-scheme </em>/
+        /* Mobile-first variables & Tema Gelap/Terang via prefers-color-scheme */
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
@@ -60,7 +60,7 @@
             --border-color: #dddddd;
             --table-head-bg: #f4f4f4;
             --code-bg: #1e1e1e;
-            --code-text: #a6e22e; /<em> Monokai-ish green for commands </em>/
+            --code-text: #a6e22e; /* Monokai-ish green for commands */
             --alert-bg: #fff1f0;
             --alert-text: #a80000;
             --alert-border: #ffccc7;
@@ -86,7 +86,7 @@
                 --alert-border: #801515;
             }
         }
-        /<em> Base styles </em>/
+        /* Base styles */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -96,7 +96,7 @@
             margin: 0;
             padding: 0;
         }
-        /<em> Container centering & responsiveness </em>/
+        /* Container centering & responsiveness */
         .container {
             width: 100%;
             padding: var(--spacing-md);
@@ -113,14 +113,14 @@
                 padding: var(--spacing-lg);
             }
         }
-        /<em> Typography sizing using rem </em>/
+        /* Typography sizing using rem */
         h1 { font-size: 2rem; line-height: 1.2; margin-top: 0; margin-bottom: var(--spacing-md); }
         h2 { font-size: 1.5rem; line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem; }
         h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; }
         p, ul, li { font-size: 1.125rem; margin-bottom: var(--spacing-md); }
         a { color: var(--link-color); text-decoration: none; border-bottom: 0.0625rem dotted var(--link-color); transition: color 0.2s ease; }
         a:hover { color: var(--link-hover); border-bottom-style: solid; }
-        /<em> LCP Image </em>/
+        /* LCP Image */
         .featured-image {
             width: 100%;
             height: auto;
@@ -131,7 +131,7 @@
             margin: var(--spacing-lg) 0;
             background-color: var(--border-color);
         }
-        /<em> Syntax Highlighting </em>/
+        /* Syntax Highlighting */
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -146,7 +146,7 @@
         }
         code { font-family: inherit; }
         .comment { color: #75715e; }
-        /<em> Tables </em>/
+        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -160,7 +160,7 @@
             vertical-align: top;
         }
         th { background-color: var(--table-head-bg); font-weight: 600; }
-        /<em> Warning Box </em>/
+        /* Warning Box */
         blockquote {
             background-color: var(--alert-bg);
             color: var(--alert-text);
@@ -171,7 +171,7 @@
             font-size: 1.125rem;
         }
         blockquote p { margin: 0; }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4rem;
             padding-top: 1.5rem;
@@ -321,6 +321,6 @@ sudo apt autoclean</code></pre>
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

@@ -47,13 +47,13 @@
 <meta name="keywords" content="bahaya marah, manajemen emosi, marah dalam islam, dampak kesehatan marah, hadits menahan marah, psikologi islam, kesehatan mental">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Variabel CSS untuk Auto Dark/Light Mode </em>/
+        /* Variabel CSS untuk Auto Dark/Light Mode */
         :root {
             --bg-body: #ffffff;
             --text-main: #2c3e50;
             --text-muted: #636e72;
             --heading-color: #1a252f;
-            --accent-color: #e74c3c; /<em> Merah Marah </em>/
+            --accent-color: #e74c3c; /* Merah Marah */
             --accent-secondary: #c0392b;
             --link-color: #2980b9;
             --quote-bg: #f8f9fa;
@@ -78,24 +78,24 @@
                 --highlight-bg: #3e3828;
             }
         }
-        /<em> Reset & Base </em>/
+        /* Reset & Base */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.8;
-            font-size: 19px; /<em> Ukuran font sedikit lebih besar untuk kenyamanan baca </em>/
+            font-size: 19px; /* Ukuran font sedikit lebih besar untuk kenyamanan baca */
             transition: background 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
         }
-        /<em> Container Layout (Widescreen 1 Column - Medium Style) </em>/
+        /* Container Layout (Widescreen 1 Column - Medium Style) */
         .article-container {
             max-width: 960px;
             margin: 0 auto;
             padding: 50px 20px;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3 {
             color: var(--heading-color);
             margin-top: 1.6em;
@@ -122,7 +122,7 @@
         }
         h3 i {
             color: var(--accent-color);
-            min-width: 30px; /<em> Menjaga alignment ikon </em>/
+            min-width: 30px; /* Menjaga alignment ikon */
             text-align: center;
         }
         p {
@@ -137,7 +137,7 @@
             border-radius: 4px;
             color: var(--heading-color);
         }
-        /<em> Images </em>/
+        /* Images */
         img {
             max-width: 100%;
             height: auto;
@@ -154,7 +154,7 @@
             margin-top: -15px;
             margin-bottom: 40px;
         }
-        /<em> Quotes </em>/
+        /* Quotes */
         blockquote {
             background: var(--quote-bg);
             border-left: 6px solid var(--quote-border);
@@ -165,7 +165,7 @@
             font-size: 1.05em;
             color: var(--text-main);
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul {
             list-style: none;
             margin-bottom: 30px;
@@ -183,10 +183,10 @@
             width: 25px;
             text-align: center;
         }
-        /<em> Video Embed </em>/
+        /* Video Embed */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /<em> 16:9 Aspect Ratio </em>/
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -201,7 +201,7 @@
             width: 100%;
             height: 100%;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 80px;
             padding-top: 30px;
@@ -320,5 +320,5 @@
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

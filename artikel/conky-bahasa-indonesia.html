@@ -64,7 +64,7 @@
             margin: 0; padding: 0;
             line-height: 1.8;
         }
-        /<em> Widescreen Wrapper </em>/
+        /* Widescreen Wrapper */
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -126,7 +126,7 @@
             color: var(--neon-blue);
         }
         h2 i { font-size: 1.5rem; opacity: 0.8; }
-        /<em> Code & Step Styling </em>/
+        /* Code & Step Styling */
         .zdummy {
             background: rgba(30, 41, 59, 0.5);
             padding: 30px;
@@ -285,6 +285,6 @@ ${color}Total: ${totaldown wlan0} ${alignr}IP: ${addr wlan0}
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

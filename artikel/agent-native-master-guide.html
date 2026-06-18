@@ -51,7 +51,7 @@
     <meta name="promphint" content="Bagaimana cara membuat website Agent-Native? Terapkan protokol DNS-AID, file llms.txt, dan sinyal konten yang valid untuk AI crawler.">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> System Font Stack & Native Variables </em>/
+        /* System Font Stack & Native Variables */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -76,8 +76,8 @@
                 --accent-bg: #1f2428;
             }
         }
-        /<em> Base Resets </em>/
-        <em>, </em>::before, *::after { box-sizing: border-box; }
+        /* Base Resets */
+        *, *::before, *::after { box-sizing: border-box; }
         body {
             margin: 0;
             padding: 1.5rem;
@@ -88,18 +88,18 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Container Layout: Center di Desktop (min-width: 64rem) </em>/
+        /* Container Layout: Center di Desktop (min-width: 64rem) */
         .site-wrapper { width: 100%; margin: 0 auto; }
         @media (min-width: 64rem) {
             body { padding: 3rem 2rem; }
             .site-wrapper { max-width: 64rem; }
         }
-        /<em> Headings </em>/
+        /* Headings */
         h1, h2, h3 { color: var(--heading-color); line-height: 1.3; margin-top: 2rem; margin-bottom: 0.75rem; }
         h1 { font-size: 2.5rem; margin-top: 0; border-bottom: 0.0625rem solid var(--border-color); padding-bottom: 1rem; }
         h2 { font-size: 1.75rem; border-left: 0.25rem solid var(--link-color); padding-left: 0.75rem; }
         h3 { font-size: 1.25rem; color: var(--link-color); }
-        /<em> Links Custom Selector Rules </em>/
+        /* Links Custom Selector Rules */
         a.content-link {
             color: var(--link-color);
             text-decoration: none;
@@ -107,16 +107,16 @@
             transition: opacity 0.2s;
         }
         a.content-link:hover { opacity: 0.7; border-bottom-style: solid; }
-        /<em> Media / Images (LCP Optimized, No Hero Above Fold issues) </em>/
+        /* Media / Images (LCP Optimized, No Hero Above Fold issues) */
         img.feature-image {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 0.5rem;
             margin: 2rem 0;
-            background-color: var(--border-color); /<em> CLS mitigation </em>/
+            background-color: var(--border-color); /* CLS mitigation */
         }
-        /<em> Syntax Highlighting Base Theme </em>/
+        /* Syntax Highlighting Base Theme */
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -135,7 +135,7 @@
             border-radius: 0.25rem;
             font-size: 0.875rem;
         }
-        /<em> Language Toggle Switch (Pure CSS) </em>/
+        /* Language Toggle Switch (Pure CSS) */
         .toggle-container {
             display: flex;
             justify-content: center;
@@ -156,14 +156,14 @@
             transition: all 0.2s ease;
         }
         .lang-toggle-btn:hover { background-color: var(--code-bg); }
-        /<em> CSS Toggle Logic </em>/
+        /* CSS Toggle Logic */
         .content-en, .lang-text-en { display: none; }
         .content-id, .lang-text-id { display: block; }
         #lang-toggle:checked ~ .site-wrapper .content-id { display: none; }
         #lang-toggle:checked ~ .site-wrapper .content-en { display: block; }
         #lang-toggle:checked ~ .site-wrapper .lang-text-id { display: none; }
         #lang-toggle:checked ~ .site-wrapper .lang-text-en { display: inline; }
-        /<em> Footer & Meta </em>/
+        /* Footer & Meta */
         .article-meta {
             color: var(--meta-color);
             font-size: 0.875rem;
@@ -293,6 +293,6 @@
         <span class="eeat-block"><i class="fa-brands fa-creative-commons"></i> Open Access</span>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

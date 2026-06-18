@@ -49,11 +49,11 @@
     <meta name="promphint" content="historical-analysis-casual-tone">
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Dark/Light Mode Otomatis </em>/
+        /* CSS Variables untuk Dark/Light Mode Otomatis */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
-            --accent-color: #d32f2f; /<em> Merah berani </em>/
+            --accent-color: #d32f2f; /* Merah berani */
             --link-color: #0056b3;
             --meta-color: #666;
             --border-color: #eee;
@@ -71,23 +71,23 @@
                 --code-bg: #1e1e1e;
             }
         }
-        /<em> Reset & Base Styles </em>/
+        /* Reset & Base Styles */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: var(--font-main);
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.8; /<em> Improve readability </em>/
-            font-size: 18px; /<em> Mobile friendly readable text </em>/
+            line-height: 1.8; /* Improve readability */
+            font-size: 18px; /* Mobile friendly readable text */
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /<em> Layout Widescreen 1 Kolom </em>/
+        /* Layout Widescreen 1 Kolom */
         .container {
-            max-width: 1020px; /<em> Optimal reading width </em>/
+            max-width: 1020px; /* Optimal reading width */
             margin: 0 auto;
             padding: 20px;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1 {
             font-size: 2.2rem;
             margin-bottom: 0.5em;
@@ -105,7 +105,7 @@
         }
         p {
             margin-bottom: 1.5em;
-            text-align: left; /<em> Better for readability than justify on web </em>/
+            text-align: left; /* Better for readability than justify on web */
         }
         a { color: var(--link-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
@@ -121,7 +121,7 @@
         }
         ul { margin-bottom: 1.5em; padding-left: 1.5em; }
         li { margin-bottom: 0.5em; }
-        /<em> Meta Info Section </em>/
+        /* Meta Info Section */
         .article-meta {
             font-size: 0.9rem;
             color: var(--meta-color);
@@ -132,8 +132,8 @@
             flex-wrap: wrap;
         }
         .article-meta i { margin-right: 5px; }
-        /<em> Custom Divs Placeholder Styling </em>/
-        /<em> Footer </em>/
+        /* Custom Divs Placeholder Styling */
+        /* Footer */
         footer {
             margin-top: 4em;
             padding-top: 2em;
@@ -142,7 +142,7 @@
             font-size: 0.9rem;
             color: var(--meta-color);
         }
-        /<em> Utility for 5W+1H Highlights </em>/
+        /* Utility for 5W+1H Highlights */
         .highlight {
             background-color: rgba(255, 255, 0, 0.1);
             padding: 2px 5px;
@@ -267,5 +267,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

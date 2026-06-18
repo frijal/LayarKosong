@@ -76,10 +76,10 @@
             line-height: 1.7;
             font-size: 1.1rem;
         }
-        /<em> Kontainer utama "widescreen" </em>/
+        /* Kontainer utama "widescreen" */
         main {
-            max-width: 960px; /<em> Lebar maksimal konten </em>/
-            margin: 0 auto;   /<em> Otomatis di tengah </em>/
+            max-width: 960px; /* Lebar maksimal konten */
+            margin: 0 auto;   /* Otomatis di tengah */
             padding: 1rem 2rem 3rem;
         }
         header {
@@ -96,12 +96,12 @@
         article {
             width: 100%;
         }
-        /<em> Styling untuk gambar di dalam artikel </em>/
+        /* Styling untuk gambar di dalam artikel */
         .article-image {
             width: 100%;
             height: auto;
             border-radius: 12px;
-            margin: 1.5rem 0 2rem 0; /<em> Memberi jarak atas-bawah </em>/
+            margin: 1.5rem 0 2rem 0; /* Memberi jarak atas-bawah */
             box-shadow: var(--img-shadow);
         }
         h2 {
@@ -116,7 +116,7 @@
         p {
             margin-bottom: 1.25rem;
         }
-        /<em> Untuk pantun dan kutipan biasa </em>/
+        /* Untuk pantun dan kutipan biasa */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--accent);
@@ -125,10 +125,10 @@
             font-style: italic;
             border-radius: 0 8px 8px 0;
         }
-        /<em> Blok khusus untuk kutipan Quran </em>/
+        /* Blok khusus untuk kutipan Quran */
         .quran-quote {
             background-color: var(--quran-bg);
-            border-right: 5px solid #c9a959; /<em> Warna emas </em>/
+            border-right: 5px solid #c9a959; /* Warna emas */
             border-left: none;
             text-align: right;
             font-family: "Times New Roman", Times, serif;
@@ -137,7 +137,7 @@
             font-style: normal;
         }
         .quran-quote .ayat {
-            font-size: 1.8rem; /<em> Teks Arab lebih besar </em>/
+            font-size: 1.8rem; /* Teks Arab lebih besar */
             font-weight: bold;
             line-height: 1.8;
             margin-bottom: 1rem;
@@ -177,11 +177,11 @@
             font-size: 0.9rem;
             color: #777;
         }
-        /<em> Bagian Komentar </em>/
+        /* Bagian Komentar */
         #kolom-komentar {
             margin-top: 4rem;
         }
-        /<em> Mobile-friendly </em>/
+        /* Mobile-friendly */
         @media (max-width: 768px) {
             main {
                 padding: 1rem 1.25rem 2rem;
@@ -240,5 +240,5 @@
         <p>🄯 2025 - Frijal's Pages. Dibuat dengan cinta dan kopi.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

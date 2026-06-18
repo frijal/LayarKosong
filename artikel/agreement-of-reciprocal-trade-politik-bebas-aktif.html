@@ -54,7 +54,7 @@
 <!-- FontAwesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-        /<em> CSS Variables untuk Tema Otomatis </em>/
+        /* CSS Variables untuk Tema Otomatis */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -72,7 +72,7 @@
                 --border-color: #334155;
             }
         }
-        /<em> Layout Base - Widescreen 1 Kolom </em>/
+        /* Layout Base - Widescreen 1 Kolom */
         body {
             margin: 0;
             padding: 0;
@@ -89,7 +89,7 @@
             width: 92%;
             padding: 40px 0;
         }
-        /<em> Core Web Vitals Optimization </em>/
+        /* Core Web Vitals Optimization */
         .main-img {
             width: 100%;
             height: auto;
@@ -98,12 +98,12 @@
             margin-bottom: 30px;
             fetchpriority: high;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; margin-bottom: 20px; font-weight: 800; }
         h2 { font-size: 2rem; margin-top: 50px; color: var(--accent-color); border-bottom: 2px solid var(--border-color); display: inline-block; padding-bottom: 5px; }
         h3 { font-size: 1.5rem; margin-top: 30px; }
         p { margin-bottom: 25px; font-size: 1.2rem; text-align: justify; }
-        /<em> Meta Info Box </em>/
+        /* Meta Info Box */
         .zdummy {
             background-color: var(--secondary-bg);
             padding: 20px;
@@ -112,7 +112,7 @@
             font-size: 1rem;
             border-left: 5px solid var(--accent-color);
         }
-        /<em> Highlight Box untuk 5W+1H </em>/
+        /* Highlight Box untuk 5W+1H */
         .analysis-box {
             background-color: var(--secondary-bg);
             padding: 30px;
@@ -140,7 +140,7 @@
             width: 100%;
             margin-top: 50px;
         }
-        /<em> Responsiveness </em>/
+        /* Responsiveness */
         @media (max-width: 768px) {
             article { width: 95%; }
             h1 { font-size: 1.8rem; }
@@ -217,5 +217,5 @@
     <p>🄯 2026 <strong>dalam.web.id</strong> - Didukung oleh semangat literasi dan kedaulatan informasi nasional.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

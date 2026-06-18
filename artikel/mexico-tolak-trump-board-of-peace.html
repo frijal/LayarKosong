@@ -52,13 +52,13 @@
 <meta name="news_keywords" content="Meksiko, Trump, Board of Peace, Palestina, Israel, Gaza, Sheinbaum, Kanada, USMCA, investasi, FDI">
   <meta name="promphint" content="berita internasional analisis mendalam Meksiko Trump Board of Peace Gaza Kanada investasi">
 <style>
-    /<em> RESET & VARIABEL TEMA </em>/
+    /* RESET & VARIABEL TEMA */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> variabel light mode (default) </em>/
+    /* variabel light mode (default) */
     :root {
       --bg: #f9f9f9;
       --text: #1e1e1e;
@@ -68,7 +68,7 @@
       --footer-bg: #eaeaea;
       --img-border: #ccc;
     }
-    /<em> dark mode preferensi pengguna </em>/
+    /* dark mode preferensi pengguna */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #121212;
@@ -85,14 +85,14 @@
       color: var(--text);
       font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
-      transition: background-color 0.2s ease, color 0.2s ease; /<em> halus, tanpa js </em>/
+      transition: background-color 0.2s ease, color 0.2s ease; /* halus, tanpa js */
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 20px 16px;
     }
-    /<em> tipografi </em>/
+    /* tipografi */
     h1 {
       font-size: 2.2rem;
       line-height: 1.2;
@@ -122,7 +122,7 @@
       color: var(--accent);
       margin-bottom: 1.5rem;
     }
-    /<em> gambar artikel </em>/
+    /* gambar artikel */
     .featured-image {
       width: 100%;
       border-radius: 12px;
@@ -136,7 +136,7 @@
       margin-bottom: 2rem;
       font-style: italic;
     }
-    /<em> metadata artikel </em>/
+    /* metadata artikel */
     .article-meta {
       display: flex;
       flex-wrap: wrap;
@@ -154,14 +154,14 @@
     .article-meta span {
       margin-right: 1.5rem;
     }
-    /<em> daftar, blockquote dll </em>/
+    /* daftar, blockquote dll */
     ul, ol {
       margin: 1rem 0 1.5rem 2rem;
     }
     li {
       margin-bottom: 0.5rem;
     }
-    /<em> div komentar dan related </em>/
+    /* div komentar dan related */
     #related-articles-grid, #response {
       background-color: var(--card-bg);
       border: 1px solid var(--border);
@@ -192,7 +192,7 @@
       opacity: 0.8;
       display: block;
     }
-    /<em> footer </em>/
+    /* footer */
     footer {
       background-color: var(--footer-bg);
       padding: 2rem 1.5rem;
@@ -206,7 +206,7 @@
       color: var(--accent);
       margin: 0 0.25rem;
     }
-    /<em> link </em>/
+    /* link */
     a {
       color: var(--accent);
       text-decoration: none;
@@ -215,12 +215,12 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> utility </em>/
+    /* utility */
     .emoji-icon {
       font-size: 1.2em;
       margin-right: 6px;
     }
-    /<em> sederhana, tanpa hero/aria </em>/
+    /* sederhana, tanpa hero/aria */
   </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
@@ -290,5 +290,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

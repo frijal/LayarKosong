@@ -58,9 +58,9 @@
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> Variabel CSS untuk tema </em>/
+        /* Variabel CSS untuk tema */
         :root {
-            /<em> Light Mode (Default) </em>/
+            /* Light Mode (Default) */
             --bg-color: #ffffff;
             --text-color: #333333;
             --header-bg: #1a365d;
@@ -76,7 +76,7 @@
             --footer-bg: #1a365d;
             --footer-text: #cbd5e0;
         }
-        /<em> Dark Mode </em>/
+        /* Dark Mode */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121826;
@@ -106,7 +106,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-        /<em> Container untuk konten utama </em>/
+        /* Container untuk konten utama */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -114,7 +114,7 @@ body {
             width: 100%;
             flex: 1;
         }
-        /<em> Header Styles </em>/
+        /* Header Styles */
         .header {
             background-color: var(--header-bg);
             color: var(--header-text);
@@ -169,7 +169,7 @@ body {
             opacity: 0.8;
             text-decoration: underline;
         }
-        /<em> Button Styles </em>/
+        /* Button Styles */
         .language-toggle {
             position: absolute;
             top: 20px;
@@ -207,7 +207,7 @@ body {
             background-color: var(--hover-color);
             transform: translateY(-2px);
         }
-        /<em> Content Sections </em>/
+        /* Content Sections */
         .content {
             padding-bottom: 40px;
         }
@@ -227,7 +227,7 @@ body {
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 8px;
         }
-        /<em> Skills Grid </em>/
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -247,7 +247,7 @@ body {
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        /<em> Experience Items </em>/
+        /* Experience Items */
         .experience-item, .education-item {
             margin-bottom: 25px;
             padding-bottom: 25px;
@@ -280,7 +280,7 @@ body {
         .description {
             margin-top: 10px;
         }
-        /<em> Languages </em>/
+        /* Languages */
         .languages-list {
             display: flex;
             flex-wrap: wrap;
@@ -294,7 +294,7 @@ body {
             border-radius: 20px;
             font-weight: 500;
         }
-        /<em> Footer </em>/
+        /* Footer */
         .footer {
             background-color: var(--footer-bg);
             color: var(--footer-text);
@@ -312,7 +312,7 @@ body {
             opacity: 0.8;
             text-decoration: underline;
         }
-        /<em> Hidden ATS Keywords </em>/
+        /* Hidden ATS Keywords */
         .ats-keywords {
             position: absolute;
             left: -9999px;
@@ -323,14 +323,14 @@ body {
             font-size: 1px;
             color: transparent;
         }
-        /<em> Language Toggle System </em>/
+        /* Language Toggle System */
         .lang-id {
             display: block;
         }
         .lang-en {
             display: none;
         }
-        /<em> Responsive Styles </em>/
+        /* Responsive Styles */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -385,33 +385,33 @@ body {
                 align-items: center;
             }
         }
-                /<em> Optimasi Core Web Vitals </em>/
+                /* Optimasi Core Web Vitals */
         img {
             max-width: 100%;
             height: auto;
             display: block;
         }
-        /<em> Mencegah Cumulative Layout Shift </em>/
+        /* Mencegah Cumulative Layout Shift */
         .profile-img {
             aspect-ratio: 1/1;
         }
-        /<em> Mencegah invisible text selama font loading </em>/
-        /<em> .fonts-loaded body { visibility: visible; } </em>/
+        /* Mencegah invisible text selama font loading */
+        /* .fonts-loaded body { visibility: visible; } */
         body.fonts-loaded {
         visibility: visible;
         }
         body {
         visibility: hidden;
         }
-        /<em> Smooth scrolling </em>/
+        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
-/<em> Print/PDF Styles </em>/
+/* Print/PDF Styles */
 @media print {
-    /<em> 1. Reset Dasar </em>/
+    /* 1. Reset Dasar */
     @page {
-    /<em>    margin: 10mm; </em>/
+    /*    margin: 10mm; */
         size: A4;
     }
     * {
@@ -428,7 +428,7 @@ body {
         line-height: 1.6;
         font-size: 11pt;
     }
-    /<em> 2. Header & Foto </em>/
+    /* 2. Header & Foto */
     .header {
         display: block !important;
         text-align: center;
@@ -446,7 +446,7 @@ body {
     }
     h1 { font-size: 20pt; margin-bottom: 5px; }
     .title { font-size: 11pt; font-weight: bold; margin-bottom: 8px; }
-    /<em> KONTAK BERJEJER KE SAMPING </em>/
+    /* KONTAK BERJEJER KE SAMPING */
     .contact-info {
         margin-top: 1px;
         font-size: 10.5pt;
@@ -456,7 +456,7 @@ body {
         color: #000 !important;
         text-decoration: none;
     }
-    /<em> 3. Section & Tabulasi </em>/
+    /* 3. Section & Tabulasi */
     .section {
         display: block !important;
         margin-top: 10px !important;
@@ -468,7 +468,7 @@ body {
         margin-bottom: 8px !important;
         padding-bottom: 2px !important;
     }
-    /<em> 5. Experience & Education </em>/
+    /* 5. Experience & Education */
     .experience-item, .education-item {
         margin-bottom: 12px !important;
         page-break-inside: avoid;
@@ -476,11 +476,11 @@ body {
     .job-title { font-weight: bold; }
     .company { font-weight: bold; font-style: italic; }
     .date-location { font-size: 9pt; display: block; margin-bottom: 2px; }
-    /<em> 6. Hilangkan Elemen UI & Ikon </em>/
+    /* 6. Hilangkan Elemen UI & Ikon */
     .download-btn, .language-toggle, .footer {
         display: none !important;
     }
-/<em> Skills grid jadi rapi 3 kolom </em>/
+/* Skills grid jadi rapi 3 kolom */
     .skills-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -816,5 +816,5 @@ font.load().then(function(loadedFont) {
 // SAFETY NET: Jika dalam 2 detik font belum beres, paksa tampilkan saja
 setTimeout(showBody, 2000);
     </script>
-<noscript>srcset_oleh_Fakhrul_Rijal</noscript><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<noscript>srcset_oleh_Fakhrul_Rijal</noscript><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

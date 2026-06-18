@@ -53,7 +53,7 @@
             --bg: #ffffff;
             --text: #0f172a;
             --muted: #64748b;
-            --accent: #2563eb; /<em> Blue Automation </em>/
+            --accent: #2563eb; /* Blue Automation */
             --terminal: #1e293b;
             --code-text: #60a5fa;
             --card: #f8fafc;
@@ -77,7 +77,7 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.3rem; /<em> Teks extra besar </em>/
+            font-size: 1.3rem; /* Teks extra besar */
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
         }
@@ -111,7 +111,7 @@
             border: 1px solid var(--border);
             margin: 40px 0;
         }
-        /<em> Script/Terminal Styling </em>/
+        /* Script/Terminal Styling */
         .terminal-container {
             background: var(--terminal);
             border-radius: 20px;
@@ -149,7 +149,7 @@
             transition: 0.3s;
         }
         .copy-btn:hover { background: var(--accent); color: white; }
-        /<em> Logic Breakdown </em>/
+        /* Logic Breakdown */
         .logic-card {
             border-left: 6px solid var(--accent);
             padding-left: 30px;
@@ -263,6 +263,6 @@ function copyCode(){
 }
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

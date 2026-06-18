@@ -53,8 +53,8 @@
 <meta name="keywords" content="Recursive HTTP Album Viewer, JSON album viewer, galeri HTTP, viewer interaktif, web album, responsive gallery">
   <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <style>
-        /<em> --- Global & Tipografi --- </em>/
-        <em>, </em>::before, *::after {
+        /* --- Global & Tipografi --- */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -72,7 +72,7 @@
             color: #2c3e50;
             margin-top: 0;
         }
-        /<em> --- Kontainer Utama --- </em>/
+        /* --- Kontainer Utama --- */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -80,9 +80,9 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            min-height: 0; /<em> Mencegah flexbox overflow </em>/
+            min-height: 0; /* Mencegah flexbox overflow */
         }
-        /<em> --- Kontrol & Pesan --- </em>/
+        /* --- Kontrol & Pesan --- */
         .controls {
             padding: 16px;
             background: #fff;
@@ -125,7 +125,7 @@
             font-size: 1.2rem;
             color: #777;
         }
-        /<em> --- Area Viewer (Dua Kolom) --- </em>/
+        /* --- Area Viewer (Dua Kolom) --- */
         .viewer-area {
             display: flex;
             flex-grow: 1;
@@ -133,9 +133,9 @@
             gap: 20px;
             min-height: 0;
         }
-        /<em> --- 1. Kolom Viewer Utama --- </em>/
+        /* --- 1. Kolom Viewer Utama --- */
         .main-display-wrapper {
-            flex: 3; /<em> Kolom kiri lebih besar </em>/
+            flex: 3; /* Kolom kiri lebih besar */
             display: flex;
             flex-direction: column;
             min-width: 0;
@@ -174,7 +174,7 @@
             word-break: break-all;
             line-height: 1.5;
             flex-grow: 1;
-            overflow-x: auto; /<em> Scroll jika URL terlalu panjang </em>/
+            overflow-x: auto; /* Scroll jika URL terlalu panjang */
         }
         figcaption:empty::before {
             content: "Pilih gambar dari galeri...";
@@ -212,9 +212,9 @@
             border-radius: 6px;
         }
         .action-btn:hover { background-color: #27ae60; }
-        /<em> --- 2. Kolom Galeri Album --- </em>/
+        /* --- 2. Kolom Galeri Album --- */
         .album-grid-wrapper {
-            flex: 1; /<em> Kolom kanan lebih kecil </em>/
+            flex: 1; /* Kolom kanan lebih kecil */
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -269,7 +269,7 @@
             background: #f9f9f9;
             color: #555;
         }
-        /<em> --- Responsif (Mobile) --- </em>/
+        /* --- Responsif (Mobile) --- */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -499,6 +499,6 @@
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

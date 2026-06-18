@@ -76,19 +76,19 @@
     .quote{background:linear-gradient(90deg, rgba(14,165,164,0.06), transparent);padding:12px;border-left:4px solid var(--accent);border-radius:6px;color:var(--text);}
     .comments, .related{margin-top:28px;padding-top:18px;border-top:1px dashed rgba(0,0,0,0.06);}
     footer{margin-top:36px;padding:18px 0;color:var(--muted);font-size:0.95rem;border-top:1px solid rgba(0,0,0,0.04);}
-    /<em> Mobile friendly </em>/
+    /* Mobile friendly */
     @media (max-width:600px){
       .container{padding:14px;}
       h1{font-size:1.25rem;}
     }
-    /<em> Reduce layout shifts: reserve space for image </em>/
+    /* Reduce layout shifts: reserve space for image */
     .img-wrap{width:100%;height:360px;overflow:hidden;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.01));}
     @media (max-width:600px){ .img-wrap{height:200px;} }
-    /<em> Small utilities </em>/
+    /* Small utilities */
     .tag{display:inline-block;background:rgba(0,0,0,0.04);padding:6px 10px;border-radius:999px;font-size:0.85rem;margin-right:8px;color:var(--muted);}
     .emoji{font-size:1.05rem;margin-right:6px;}
     .readmore{display:block;margin-top:12px;color:var(--accent);text-decoration:none;font-weight:600;}
-    /<em> Minimal JS-driven theme toggle fallback </em>/
+    /* Minimal JS-driven theme toggle fallback */
     .hidden{display:none;}
   </style>
   <!-- Minimal JS to ensure theme detection and reduce FOUC -->
@@ -220,5 +220,5 @@
       }catch(e){}
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -55,7 +55,7 @@
 <!-- Font Awesome -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-    /<em> Reset & base ,  mobile first, satu kolom </em>/
+    /* Reset & base ,  mobile first, satu kolom */
     * {
       margin: 0;
       padding: 0;
@@ -73,7 +73,7 @@
       transition: background-color 0.2s ease, color 0.2s ease;
       padding: 1rem;
     }
-    /<em> prefers-color-scheme dark </em>/
+    /* prefers-color-scheme dark */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121a24;
@@ -160,7 +160,7 @@
       margin-right: 0.6rem;
       color: #9e5f2b;
     }
-    /<em> div khusus komentar & related </em>/
+    /* div khusus komentar & related */
     #related-articles-grid, #response {
       min-height: 100px;
       background: rgba(158, 95, 43, 0.05);
@@ -316,5 +316,5 @@
 </footer>
 </div>
 <!-- tanpa javascript -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

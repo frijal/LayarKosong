@@ -61,13 +61,13 @@
     <!-- Font Awesome (ringan, CDN) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Reset & Base - tanpa ARIA, tanpa hero, fokus ke performa & CLS rendah </em>/
+        /* Reset & Base - tanpa ARIA, tanpa hero, fokus ke performa & CLS rendah */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> CSS Variables untuk light/dark mode via prefers-color-scheme </em>/
+        /* CSS Variables untuk light/dark mode via prefers-color-scheme */
         :root {
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
@@ -103,13 +103,13 @@
             line-height: 1.5;
             scroll-behavior: smooth;
         }
-        /<em> Container utama: 1 kolom, max-width 1000px, tengah </em>/
+        /* Container utama: 1 kolom, max-width 1000px, tengah */
         .container-article {
             max-width: 1000px;
             margin: 0 auto;
             padding: 1.5rem 1.25rem;
         }
-        /<em> Card / artikel utama </em>/
+        /* Card / artikel utama */
         .article-card {
             background: var(--bg-card);
             border-radius: 1.25rem;
@@ -117,7 +117,7 @@
             padding: 1.75rem;
             transition: background 0.2s ease;
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 1.9rem;
             font-weight: 800;
@@ -159,7 +159,7 @@
         li {
             margin: 0.5rem 0;
         }
-        /<em> gambar responsif, hindari CLS dengan width/height </em>/
+        /* gambar responsif, hindari CLS dengan width/height */
         img {
             max-width: 100%;
             height: auto;
@@ -168,20 +168,20 @@
             margin: 1rem auto;
             background-color: var(--code-bg);
         }
-        /<em> inline gambar dengan float ala screenshot asli </em>/
+        /* inline gambar dengan float ala screenshot asli */
         .img-float-right {
             float: right;
             margin: 0 0 1rem 1.5rem;
             max-width: 280px;
             width: 100%;
         }
-        /<em> clearfix </em>/
+        /* clearfix */
         .clearfix::after {
             content: "";
             clear: both;
             display: table;
         }
-        /<em> blockquote atau catatan </em>/
+        /* blockquote atau catatan */
         .note-box {
             background: var(--code-bg);
             border-left: 4px solid var(--accent);
@@ -189,7 +189,7 @@
             border-radius: 0.75rem;
             margin: 1.5rem 0;
         }
-        /<em> tombol download simpel </em>/
+        /* tombol download simpel */
         .btn-download {
             display: inline-flex;
             align-items: center;
@@ -209,7 +209,7 @@
             color: white;
             text-decoration: none;
         }
-        /<em> bagian download widget (tanpa hero) </em>/
+        /* bagian download widget (tanpa hero) */
         .download-section {
             background: linear-gradient(135deg, var(--bg-card) 0%, var(--code-bg) 100%);
             border-radius: 1.5rem;
@@ -236,7 +236,7 @@
         .download-text h3 {
             margin: 0 0 0.5rem 0;
         }
-        /<em> grid related dan response </em>/
+        /* grid related dan response */
         .related-placeholder, .response-placeholder {
             background: var(--code-bg);
             border-radius: 1rem;
@@ -246,7 +246,7 @@
             border: 1px dashed var(--border-light);
             font-size: 0.9rem;
         }
-        /<em> footer </em>/
+        /* footer */
         .footer-site {
             margin-top: 2.5rem;
             padding: 1.5rem 1rem;
@@ -255,7 +255,7 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
-        /<em> 5W+1H grid ringkas </em>/
+        /* 5W+1H grid ringkas */
         .fivewh-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -274,7 +274,7 @@
             display: block;
             margin-bottom: 0.5rem;
         }
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 640px) {
             .container-article {
                 padding: 1rem;
@@ -294,7 +294,7 @@
                 max-width: 100%;
             }
         }
-        /<em> optimasi CLS: beri dimensi eksplisit pada gambar penting </em>/
+        /* optimasi CLS: beri dimensi eksplisit pada gambar penting */
         .screenshot-img {
             width: 100%;
             height: auto;
@@ -303,7 +303,7 @@
         .logo-download {
             aspect-ratio: 300 / 85;
         }
-        /<em> tanpa ARIA, tanpa hero, tanpa javascript theme </em>/
+        /* tanpa ARIA, tanpa hero, tanpa javascript theme */
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
@@ -401,5 +401,5 @@
         <p>🄯 2026 Jaga Data Pribadi Tetap Aman — Artikel independen berdasarkan rilis resmi Ubuntu Studio. Mengikuti pedoman E-E-A-T: keahlian, kewenangan, dan kepercayaan. Semua konten bertujuan memberikan informasi akurat seputar dunia kreator open source. 🔗 Sumber resmi: <a href="https://ubuntustudio.org" target="_blank" rel="noopener">Ubuntu Studio Official</a> | Lisensi konten: CC BY-SA 4.0 <i class="fa-solid fa-moon"></i> Tema menyesuaikan preferensi sistem (terang/gelap) secara otomatis — tanpa JavaScript.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

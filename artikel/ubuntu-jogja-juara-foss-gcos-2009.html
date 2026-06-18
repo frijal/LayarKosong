@@ -46,18 +46,18 @@
     <title>Juara 1 Komunitas FOSS Terbaik: Kisah Ubuntu Jogja di GCOS 2009, Jakarta 🏆 - Layar Kosong</title> 
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variabel untuk Tema Dark/Light Otomatis </em>/
+        /* CSS Variabel untuk Tema Dark/Light Otomatis */
         :root {
             --bg-color: #f4f7f9;
             --text-color: #333333;
             --secondary-text-color: #6c757d;
-            --primary-blue: #007bff; /<em> Warna Khas Ubuntu/Teknologi </em>/
+            --primary-blue: #007bff; /* Warna Khas Ubuntu/Teknologi */
             --highlight-bg: #e9ecef;
             --card-bg: #ffffff;
             --border-color: #dddddd;
             --success-color: #28a745;
         }
-        /<em> Deteksi Tema Gelap (Dark Mode) </em>/
+        /* Deteksi Tema Gelap (Dark Mode) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
@@ -70,7 +70,7 @@
                 --success-color: #48c467;
             }
         }
-        /<em> Styling Dasar: Fullscreen dan Mobile-Friendly </em>/
+        /* Styling Dasar: Fullscreen dan Mobile-Friendly */
         body {
             font-family: 'Open Sans', sans-serif;
             line-height: 1.7;
@@ -82,14 +82,14 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
-        /<em> Tata Letak Widescreen 1 Kolom </em>/
+        /* Tata Letak Widescreen 1 Kolom */
         .article-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Judul dan Subjudul </em>/
+        /* Judul dan Subjudul */
         .post-header {
             text-align: center;
             margin-bottom: 40px;
@@ -107,7 +107,7 @@
             font-size: 1.2em;
             font-style: italic;
         }
-        /<em> Konten </em>/
+        /* Konten */
         .post-content p, .post-content div {
             text-align: justify;
             margin: 15px 0;
@@ -116,7 +116,7 @@
             color: var(--primary-blue);
             font-weight: 700;
         }
-        /<em> Box Informasi </em>/
+        /* Box Informasi */
         .info-box {
             background-color: var(--highlight-bg);
             border-left: 5px solid var(--primary-blue);
@@ -124,7 +124,7 @@
             margin: 30px 0;
             border-radius: 8px;
         }
-        /<em> Quote (Kutipan Email) </em>/
+        /* Quote (Kutipan Email) */
         blockquote {
             background: var(--card-bg);
             border-left: 4px solid var(--success-color);
@@ -136,12 +136,12 @@
         blockquote div {
             margin: 5px 0 !important;
         }
-        /<em> Gambar dan Caption </em>/
+        /* Gambar dan Caption */
         .figure-container {
             margin: 25px auto;
-            max-width: 350px; /<em> Batas lebar gambar penghargaan agar terlihat 'mengapung' di desktop </em>/
+            max-width: 350px; /* Batas lebar gambar penghargaan agar terlihat 'mengapung' di desktop */
             width: 100%;
-            float: center; /<em> Mengambil alih float:right dari aslinya </em>/
+            float: center; /* Mengambil alih float:right dari aslinya */
             margin-left: 20px;
             box-sizing: border-box;
         }
@@ -159,7 +159,7 @@
             padding-top: 5px;
             text-align: center;
         }
-        /<em> Link </em>/
+        /* Link */
         a {
             color: var(--primary-blue);
             text-decoration: none;
@@ -168,7 +168,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /<em> List Styling (Untuk Daftar Anggota) </em>/
+        /* List Styling (Untuk Daftar Anggota) */
         .team-list {
             list-style: none;
             padding: 0;
@@ -190,7 +190,7 @@
             clear: both;
             display: table;
         }
-        /<em> Footer </em>/
+        /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
@@ -199,7 +199,7 @@
             color: var(--secondary-text-color);
             font-size: 0.9em;
         }
-        /<em> Mobile adjustment </em>/
+        /* Mobile adjustment */
         @media (max-width: 600px) {
             .post-header h1 {
                 font-size: 2em;
@@ -286,5 +286,5 @@
         <p>Arsip Sejarah Komunitas FOSS Indonesia | diketik ulang untuk Nostalgia. | 🄯 2025 Jaga Data Pribadi Tetap Aman.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

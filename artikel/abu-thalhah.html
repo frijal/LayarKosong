@@ -65,7 +65,7 @@
       font:16px/1.72 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
     }
     a{color:var(--amber); text-decoration:none}
-    /<em> Header sticky </em>/
+    /* Header sticky */
     header.site{
       position:sticky; top:0; z-index:50;
       backdrop-filter:saturate(140%) blur(10px);
@@ -89,14 +89,14 @@
       padding:8px 12px; border:1px solid var(--line); border-radius:999px;
       background:#0b1430; color:var(--muted);
     }
-    /<em> Layout 1 kolom </em>/
+    /* Layout 1 kolom */
     .wrap{width:min(980px,92vw); margin:0 auto; padding:24px 0 80px;}
     main.card{
       margin-top:18px; border:1px solid var(--line); border-radius:20px; overflow:hidden;
       background:linear-gradient(180deg, #0c162f, #0a1326);
       box-shadow:var(--shadow);
     }
-    /<em> Hero </em>/
+    /* Hero */
     .hero{
       padding:32px 22px 18px;
       background:
@@ -105,7 +105,7 @@
     }
     .hero h2{margin:0 0 8px; font-size:clamp(1.6rem, 4.8vw, 2.5rem)}
     .hero p{margin:0; color:var(--muted); max-width:72ch}
-    /<em> Konten </em>/
+    /* Konten */
     article.content{padding:24px 22px;}
     article.content p{margin:0 0 16px;}
     article.content h3{margin:22px 0 8px; font-size:1.18rem; color:#edf3ff}
@@ -118,7 +118,7 @@
       margin:18px 0; padding:14px 16px; border-radius:14px; background:var(--card); border:1px solid var(--line);
       color:#e7edff; box-shadow:var(--shadow);
     }
-    /<em> Galeri </em>/
+    /* Galeri */
     .gallery{
       display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
       gap:14px; margin:20px 0;
@@ -129,7 +129,7 @@
       transition:transform .15s ease, box-shadow .15s ease;
     }
     .gallery img:hover{transform:translateY(-2px); box-shadow:0 18px 32px rgba(0,0,0,.4);}
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox{position:fixed; inset:0; background:rgba(8,14,28,.88); display:none; align-items:center; justify-content:center; z-index:1000;}
     .lightbox.active{display:flex;}
     .lightbox img{max-width:min(92vw,1200px); max-height:82vh; border-radius:18px; border:1px solid var(--line); box-shadow:var(--shadow)}
@@ -140,14 +140,14 @@
       background:#0f213f; color:var(--text); border:1px solid var(--line); padding:10px 14px; border-radius:10px;
     }
     .btn:hover{background:#132a52}
-    /<em> Share </em>/
+    /* Share */
     .share{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 4px;}
     .share a, .share button{border:none}
-    /<em> Footer </em>/
+    /* Footer */
     footer.site{margin-top:24px; padding:18px 22px; color:var(--muted);}
-    /<em> Tombol mengambang (Dihapus dari markup, hanya hapus style yang tidak perlu) </em>/
-    /<em> Related posts (Dihapus dari markup, hanya hapus style yang tidak perlu) </em>/
-    /<em> Responsif </em>/
+    /* Tombol mengambang (Dihapus dari markup, hanya hapus style yang tidak perlu) */
+    /* Related posts (Dihapus dari markup, hanya hapus style yang tidak perlu) */
+    /* Responsif */
     @media (max-width:640px){
       .pill{padding:6px 10px; font-size:9rem}
       .gallery img{height:160px}
@@ -251,5 +251,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

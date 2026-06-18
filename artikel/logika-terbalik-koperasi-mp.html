@@ -66,7 +66,7 @@
     <!-- Font Awesome 6 (gratis) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Reset & Global - tidak ada Tailwind </em>/
+        /* Reset & Global - tidak ada Tailwind */
         * {
             margin: 0;
             padding: 0;
@@ -78,13 +78,13 @@
             transition: background-color 0.2s ease, color 0.2s ease;
             padding: 1.5rem;
         }
-        /<em> Widescreen 1 kolom, max-width 1000px di tengah </em>/
+        /* Widescreen 1 kolom, max-width 1000px di tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             width: 100%;
         }
-        /<em> Tema terang (default) </em>/
+        /* Tema terang (default) */
         :root {
             --bg-body: #fefefe;
             --bg-card: #ffffff;
@@ -98,7 +98,7 @@
             --footer-bg: #f1f5f9;
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         }
-        /<em> Tema gelap (prefers-color-scheme) tanpa JS </em>/
+        /* Tema gelap (prefers-color-scheme) tanpa JS */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #0a0c10;
@@ -118,7 +118,7 @@
             background-color: var(--bg-body);
             color: var(--text-primary);
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 2rem;
             font-weight: 700;
@@ -152,7 +152,7 @@
             margin: 1rem 0 1.5rem 0;
             color: var(--text-primary);
         }
-        /<em> Kartu outline 5W+1H </em>/
+        /* Kartu outline 5W+1H */
         .outline-box {
             background: var(--bg-card);
             border: 1px solid var(--border-light);
@@ -178,7 +178,7 @@
             font-size: 1rem;
             color: var(--accent);
         }
-        /<em> Gambar responsif </em>/
+        /* Gambar responsif */
         .featured-img {
             margin: 1.2rem 0 1.5rem 0;
             border-radius: 24px;
@@ -192,7 +192,7 @@
             display: block;
             border-radius: 24px;
         }
-        /<em> Statistik / highlight </em>/
+        /* Statistik / highlight */
         .zdummy2 {
             background: var(--accent-soft);
             border-left: 5px solid var(--accent);
@@ -201,7 +201,7 @@
             margin: 1.2rem 0;
             font-weight: 500;
         }
-        /<em> related grid </em>/
+        /* related grid */
         .related-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -224,7 +224,7 @@
             font-weight: 600;
             color: var(--heading-color);
         }
-        /<em> response div </em>/
+        /* response div */
         .response-area {
             background: var(--bg-card);
             border-radius: 24px;
@@ -233,7 +233,7 @@
             border: 1px solid var(--border-light);
             text-align: center;
         }
-        /<em> footer </em>/
+        /* footer */
         .footer {
             margin-top: 3rem;
             padding: 2rem 0 1.5rem;
@@ -246,16 +246,16 @@
         .footer p {
             margin-bottom: 0.4rem;
         }
-        /<em> inline icons </em>/
+        /* inline icons */
         .icon-text {
             margin-right: 0.4rem;
         }
-        /<em> CLS safe: gambar punya width/height intrinsik </em>/
+        /* CLS safe: gambar punya width/height intrinsik */
         img {
             max-width: 100%;
             height: auto;
         }
-        /<em> responsif mobile </em>/
+        /* responsif mobile */
         @media (max-width: 680px) {
             body {
                 padding: 1rem;
@@ -270,7 +270,7 @@
                 grid-template-columns: 1fr;
             }
         }
-        /<em> No ARIA & no hero - semua aman </em>/
+        /* No ARIA & no hero - semua aman */
         a {
             color: var(--accent);
             text-decoration: underline;
@@ -348,5 +348,5 @@
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — <i class="fa-solid fa-chart-line"></i> Mengedepankan E-E-A-T: pengalaman, keahlian, otoritas, dan kepercayaan. Data dari berbagai riset lapangan &amp; evaluasi kebijakan. <i class="fa-solid fa-moon"></i> Tema mengikuti preferensi sistem (terang/gelap otomatis) | Tanpa JavaScript untuk tema | <a href="https://dalam.web.id">Beranda</a></p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

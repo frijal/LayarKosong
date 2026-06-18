@@ -67,7 +67,7 @@
     <!-- Open Graph Metadata -->
     <!-- Twitter Card Metadata -->
     <style>
-        /<em> ===== CSS Custom Properties untuk Light/Dark Theme (prefers-color-scheme) ===== </em>/
+        /* ===== CSS Custom Properties untuk Light/Dark Theme (prefers-color-scheme) ===== */
         :root {
             --bg-primary: #fafafa;
             --bg-secondary: #ffffff;
@@ -118,7 +118,7 @@
                 --footer-text: #999;
             }
         }
-        /<em> ===== Reset Dasar & Box Sizing ===== </em>/
+        /* ===== Reset Dasar & Box Sizing ===== */
         *,
         *::before,
         *::after {
@@ -126,7 +126,7 @@
             margin: 0;
             padding: 0;
         }
-        /<em> ===== Base Styling ===== </em>/
+        /* ===== Base Styling ===== */
         html {
             font-size: 16px;
             scroll-behavior: smooth;
@@ -142,7 +142,7 @@
             flex-direction: column;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-        /<em> ===== Kontainer Utama: 1 Kolom, max-width 1000px, di tengah ===== </em>/
+        /* ===== Kontainer Utama: 1 Kolom, max-width 1000px, di tengah ===== */
         .site-container {
             width: 100%;
             max-width: 1000px;
@@ -150,7 +150,7 @@
             padding: 0 20px;
             flex: 1;
         }
-        /<em> ===== Header Situs ===== </em>/
+        /* ===== Header Situs ===== */
         .site-header {
             padding: 20px 0 16px;
             border-bottom: 2px solid var(--border-color);
@@ -189,7 +189,7 @@
                 padding: 0 12px;
             }
         }
-        /<em> ===== Judul Artikel ===== </em>/
+        /* ===== Judul Artikel ===== */
         .post-title {
             font-size: 1.9rem;
             font-weight: 800;
@@ -203,7 +203,7 @@
                 font-size: 1.45rem;
             }
         }
-        /<em> ===== Meta Info Artikel ===== </em>/
+        /* ===== Meta Info Artikel ===== */
         .post-meta {
             display: flex;
             flex-wrap: wrap;
@@ -224,7 +224,7 @@
             align-items: center;
             gap: 4px;
         }
-        /<em> ===== Gambar Featured ===== </em>/
+        /* ===== Gambar Featured ===== */
         .post-featured-image {
             display: block;
             width: 100%;
@@ -236,7 +236,7 @@
             background-color: var(--bg-tertiary);
             box-shadow: var(--shadow-sm);
         }
-        /<em> ===== Konten Artikel ===== </em>/
+        /* ===== Konten Artikel ===== */
         .post-content {
             font-size: 1.05rem;
             color: var(--text-primary);
@@ -297,7 +297,7 @@
         .post-content em {
             font-style: italic;
         }
-        /<em> Inline code </em>/
+        /* Inline code */
         .post-content code {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -308,7 +308,7 @@
             white-space: nowrap;
             border: 1px solid var(--border-color);
         }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         .post-content blockquote {
             border-left: 4px solid var(--accent);
             margin: 18px 0;
@@ -318,7 +318,7 @@
             color: var(--text-secondary);
             font-style: italic;
         }
-        /<em> List </em>/
+        /* List */
         .post-content ul,
         .post-content ol {
             margin: 12px 0 18px 24px;
@@ -327,7 +327,7 @@
             margin-bottom: 6px;
             padding-left: 4px;
         }
-        /<em> Highlight Box (untuk 5W+1H) </em>/
+        /* Highlight Box (untuk 5W+1H) */
         .highlight-box {
             background: var(--highlight-box-bg);
             border: 1px solid var(--highlight-box-border);
@@ -371,7 +371,7 @@
                 padding: 14px 12px;
             }
         }
-        /<em> Badge </em>/
+        /* Badge */
         .badge {
             display: inline-block;
             background: var(--badge-bg);
@@ -382,13 +382,13 @@
             font-weight: 600;
             margin: 2px 2px;
         }
-        /<em> Separator </em>/
+        /* Separator */
         .post-content hr {
             border: none;
             border-top: 1px solid var(--border-color);
             margin: 28px 0;
         }
-        /<em> ===== E-E-A-T Author Box ===== </em>/
+        /* ===== E-E-A-T Author Box ===== */
         .author-box {
             display: flex;
             gap: 16px;
@@ -423,7 +423,7 @@
             color: var(--text-tertiary);
             text-align: left;
         }
-        /<em> ===== Sumber & Referensi ===== </em>/
+        /* ===== Sumber & Referensi ===== */
         .references-section {
             margin: 20px 0;
             padding: 16px 20px;
@@ -446,7 +446,7 @@
         .references-section a {
             word-break: break-all;
         }
-        /<em> ===== Related Articles Grid Placeholder ===== </em>/
+        /* ===== Related Articles Grid Placeholder ===== */
         #related-articles-grid {
             min-height: 60px;
             margin: 24px 0;
@@ -461,7 +461,7 @@
             align-items: center;
             justify-content: center;
         }
-        /<em> ===== Footer ===== </em>/
+        /* ===== Footer ===== */
         .site-footer {
             background: var(--footer-bg);
             color: var(--footer-text);
@@ -493,7 +493,7 @@
         .site-footer .footer-icons a:hover {
             color: var(--accent);
         }
-        /<em> ===== Utility ===== </em>/
+        /* ===== Utility ===== */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -505,7 +505,7 @@
             white-space: nowrap;
             border: 0;
         }
-        /<em> ===== Gambar responsif umum ===== </em>/
+        /* ===== Gambar responsif umum ===== */
         img {
             max-width: 100%;
             height: auto;
@@ -739,7 +739,7 @@
             <p style="font-size: 0.78rem; margin-top: 4px;">Konten dilisensikan di bawah <a href="https://creativecommons.org/licenses/by-sa/1.0/" target="_blank" rel="noopener">CC BY-SA 1.0</a>. Fedora dan logo Fedora adalah merek dagang dari Red Hat, Inc.</p>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

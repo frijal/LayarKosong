@@ -50,14 +50,14 @@
     <meta name="news_keywords" content="Git, HEAD, FETCH_HEAD, GitHub, Version Control System, Tutorial Git">
     <meta name="promphint" content="Apa perbedaan utama antara HEAD dan FETCH_HEAD dalam Git? HEAD adalah penunjuk posisi branch lokal saat ini, sedangkan FETCH_HEAD adalah penanda sementara yang mencatat pembaruan dari remote server setelah perintah git fetch.">
     <style>
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         :root {
-            /<em> Tema Terang </em>/
+            /* Tema Terang */
             --bg-color: #f8f9fa;
             --text-color: #212529;
-            --accent-color: #f14e32; /<em> Warna khas Git </em>/
+            --accent-color: #f14e32; /* Warna khas Git */
             --muted-color: #6c757d;
             --border-color: #dee2e6;
             --code-bg: #e9ecef;
@@ -67,7 +67,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap </em>/
+                /* Tema Gelap */
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
                 --accent-color: #ff6b52;
@@ -89,7 +89,7 @@
             font-size: 1rem;
         }
         .container {
-            max-width: 62.5rem; /<em> 1000px </em>/
+            max-width: 62.5rem; /* 1000px */
             margin: 0 auto;
             padding: 1.5rem 1.25rem;
         }
@@ -143,7 +143,7 @@
             height: auto;
             display: block;
             border-radius: 0.5rem;
-            background-color: var(--border-color); /<em> Mencegah layout shift visual saat load </em>/
+            background-color: var(--border-color); /* Mencegah layout shift visual saat load */
         }
         .highlight-box {
             background-color: var(--box-bg);
@@ -275,6 +275,6 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

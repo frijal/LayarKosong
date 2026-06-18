@@ -54,7 +54,7 @@
 <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-    /<em> 1. Global Variables & Dark Mode </em>/
+    /* 1. Global Variables & Dark Mode */
     :root {
         --bg-color: #ffffff;
         --text-color: #1a1a1a;
@@ -75,9 +75,9 @@
             --quote-bg: #2d1a1a;
         }
     }
-    /<em> 2. Layout & Typography </em>/
+    /* 2. Layout & Typography */
     * {
-        box-sizing: border-box; /<em> Mencegah masalah padding/width </em>/
+        box-sizing: border-box; /* Mencegah masalah padding/width */
     }
     body {
         font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -103,7 +103,7 @@
         text-align: center;
     }
     h1 {
-        font-size: clamp(1.8rem, 5vw, 2.8rem); /<em> Fluid typography </em>/
+        font-size: clamp(1.8rem, 5vw, 2.8rem); /* Fluid typography */
         color: var(--accent-color);
         margin-bottom: 10px;
         line-height: 1.2;
@@ -113,18 +113,18 @@
         opacity: 0.7;
         margin-bottom: 20px;
     }
-    /<em> 3. Core Web Vitals Optimization </em>/
+    /* 3. Core Web Vitals Optimization */
     .featured-image {
         width: 100%;
         height: auto;
-        aspect-ratio: 16 / 9; /<em> Sangat penting untuk mencegah CLS </em>/
+        aspect-ratio: 16 / 9; /* Sangat penting untuk mencegah CLS */
         object-fit: cover;
         border-radius: 12px;
         margin-bottom: 30px;
         display: block;
         background-color: var(--secondary-bg);
     }
-    /<em> 4. Content Elements </em>/
+    /* 4. Content Elements */
     .intro-box {
         background-color: var(--secondary-bg);
         padding: 25px;
@@ -148,7 +148,7 @@
         margin: 40px 0;
         position: relative;
     }
-    /<em> Menggunakan SVG atau Karakter Teks untuk kemudahan tanpa eksternal font </em>/
+    /* Menggunakan SVG atau Karakter Teks untuk kemudahan tanpa eksternal font */
     .quote-section::before {
         content: "“";
         font-size: 5rem;
@@ -159,7 +159,7 @@
         opacity: 0.2;
         font-family: serif;
     }
-    /<em> 5. 5W+1H Grid </em>/
+    /* 5. 5W+1H Grid */
     .grid-5w1h {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -174,14 +174,14 @@
         transition: transform var(--transition-speed) ease;
     }
     .card:hover {
-        transform: translateY(-5px); /<em> Sedikit interaksi </em>/
+        transform: translateY(-5px); /* Sedikit interaksi */
     }
     .card h3 {
         margin-top: 0;
         color: var(--accent-color);
         font-size: 1.25rem;
     }
-    /<em> 6. Footer & Components </em>/
+    /* 6. Footer & Components */
     footer {
         width: 100%;
         max-width: var(--container-width);
@@ -203,14 +203,14 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
-    /<em> 7. Mobile Friendly Adjustments </em>/
+    /* 7. Mobile Friendly Adjustments */
     @media (max-width: 600px) {
         article {
             padding: 15px;
-            font-size: 1.1rem; /<em> Sedikit lebih kecil di HP agar tidak penuh </em>/
+            font-size: 1.1rem; /* Sedikit lebih kecil di HP agar tidak penuh */
         }
         .grid-5w1h {
-            grid-template-columns: 1fr; /<em> Paksa satu kolom di layar sangat kecil </em>/
+            grid-template-columns: 1fr; /* Paksa satu kolom di layar sangat kecil */
         }
         .quote-section { padding: 30px 20px; }
     }
@@ -303,5 +303,5 @@
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </article>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -63,7 +63,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;display=swap" rel="stylesheet">
   <!-- CSS Tema Terang/Gelap otomatis (prefers-color-scheme) tanpa JavaScript -->
   <style>
-    /<em> Variabel Root untuk Light Mode (default) </em>/
+    /* Variabel Root untuk Light Mode (default) */
     :root {
       --bg-body: #faf7f2;
       --bg-card: #ffffff;
@@ -78,7 +78,7 @@
       --line-relaxed: 1.75;
       --container-width: 1000px;
     }
-    /<em> Dark mode otomatis berdasarkan preferensi sistem </em>/
+    /* Dark mode otomatis berdasarkan preferensi sistem */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-body: #121212;
@@ -91,7 +91,7 @@
         --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.5);
       }
     }
-    /<em> Reset & Base </em>/
+    /* Reset & Base */
     * {
       margin: 0;
       padding: 0;
@@ -111,7 +111,7 @@
       -moz-osx-font-smoothing: grayscale;
       padding: 0 1.25rem;
     }
-    /<em> Layout 1 kolom, widescreen </em>/
+    /* Layout 1 kolom, widescreen */
     .article-container {
       max-width: var(--container-width);
       margin: 2rem auto;
@@ -121,7 +121,7 @@
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-soft);
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1, h2, h3, h4 {
       font-family: var(--font-sans);
       font-weight: 700;
@@ -167,7 +167,7 @@
       padding-top: 0.6rem;
       padding-bottom: 0.6rem;
     }
-    /<em> Gambar responsif </em>/
+    /* Gambar responsif */
     .featured-image {
       margin: 2.2rem 0 1.8rem;
       border-radius: 20px;
@@ -192,7 +192,7 @@
       text-align: center;
       font-style: italic;
     }
-    /<em> Meta 5W+1H ditampilkan eksplisit </em>/
+    /* Meta 5W+1H ditampilkan eksplisit */
     .five-wh-grid {
       display: flex;
       flex-wrap: wrap;
@@ -221,7 +221,7 @@
       color: var(--text-main);
       margin-right: 0.2rem;
     }
-    /<em> Blockquote untuk penekanan </em>/
+    /* Blockquote untuk penekanan */
     blockquote {
       margin: 2.4rem 0;
       padding: 1.5rem 2rem;
@@ -232,14 +232,14 @@
       border-radius: 0 24px 24px 0;
       font-family: var(--font-serif);
     }
-    /<em> List styling </em>/
+    /* List styling */
     ul, ol {
       margin: 1.5rem 0 2rem 1.8rem;
     }
     li {
       margin-bottom: 0.7rem;
     }
-    /<em> Kolom komentar sesuai permintaan </em>/
+    /* Kolom komentar sesuai permintaan */
     #related-articles-grid {
       margin: 3.5rem 0 2rem;
       padding: 1.8rem;
@@ -258,7 +258,7 @@
       color: var(--accent-teal);
       font-size: 1.2rem;
     }
-    /<em> Related articles grid </em>/
+    /* Related articles grid */
     #response {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -287,7 +287,7 @@
       color: var(--accent-teal);
       margin-right: 0.6rem;
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 3.2rem;
       padding-top: 1.8rem;
@@ -308,14 +308,14 @@
     a:hover {
       border-bottom: 2px solid var(--accent-burgundy);
     }
-    /<em> Responsif mobile-first </em>/
+    /* Responsif mobile-first */
     @media (max-width: 600px) {
       html { font-size: 16px; }
       .article-container { padding: 1.6rem 1.2rem; margin: 1rem auto; }
       h1 { font-size: 2rem; }
       .five-wh-grid { flex-direction: column; gap: 0.7rem; }
     }
-    /<em> Core Web Vitals: minimal CLS, LCP via gambar prioritas </em>/
+    /* Core Web Vitals: minimal CLS, LCP via gambar prioritas */
     .featured-image img { content-visibility: auto; }
   </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
@@ -395,5 +395,5 @@
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

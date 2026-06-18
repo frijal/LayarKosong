@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="/ext/default.min.css">
     <style>
         :root {
-            /<em> Tema Default Light </em>/
+            /* Tema Default Light */
             --bg-color: #f0f4f8;
             --text-color: #1c2e4a;
             --primary-color: #007bff;
@@ -57,7 +57,7 @@
             --border-color: #cccccc;
             --code-bg: #e9ecef;
         }
-        /<em> Deteksi Tema Dark Mode </em>/
+        /* Deteksi Tema Dark Mode */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a2e;
@@ -67,16 +67,16 @@
                 --border-color: #444466;
                 --code-bg: #393952;
             }
-            /<em> Menyesuaikan tema Highlight.js untuk Dark Mode </em>/
+            /* Menyesuaikan tema Highlight.js untuk Dark Mode */
             .hljs { background: #1e1e2e !important; color: #f0f0f0 !important; }
         }
-        /<em> Menggunakan tema Highlight.js Dark </em>/
+        /* Menggunakan tema Highlight.js Dark */
         @media (prefers-color-scheme: dark) {
             link[rel="stylesheet"][href*="highlight.js"] {
                 content: url("/ext/highlight.js/11.11.1/styles/monokai-sublime.min.css") !important;
             }
         }
-        /<em> Styling Dasar </em>/
+        /* Styling Dasar */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -90,11 +90,11 @@
         }
         .container {
             width: 100%;
-            max-width: 1000px; /<em> Widescreen 1 kolom </em>/
+            max-width: 1000px; /* Widescreen 1 kolom */
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Header dan Judul </em>/
+        /* Header dan Judul */
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -106,7 +106,7 @@
             color: var(--primary-color);
             margin-bottom: 5px;
         }
-        /<em> Konten Artikel </em>/
+        /* Konten Artikel */
         .article-content {
             background-color: var(--secondary-bg);
             padding: clamp(20px, 5vw, 40px);
@@ -151,19 +151,19 @@
         }
         .note {
             background-color: var(--code-bg);
-            border-left: 5px solid #e74c3c; /<em> Merah untuk peringatan/penting </em>/
+            border-left: 5px solid #e74c3c; /* Merah untuk peringatan/penting */
             padding: 15px;
             margin: 25px 0;
             border-radius: 8px;
             color: var(--text-color);
         }
-        /<em> Styling Kode Block </em>/
+        /* Styling Kode Block */
         pre code {
             display: block;
             padding: 1em;
             overflow-x: auto;
             border-radius: 8px;
-            background: var(--code-bg) !important; /<em> Ganti jika HLJS tidak terdeteksi </em>/
+            background: var(--code-bg) !important; /* Ganti jika HLJS tidak terdeteksi */
         }
         table {
             width: 100%;
@@ -182,7 +182,7 @@
             background-color: var(--primary-color);
             color: var(--secondary-bg);
         }
-        /<em> Mobile adjustment untuk Table </em>/
+        /* Mobile adjustment untuk Table */
         @media (max-width: 600px) {
             .container {
                 padding: 10px;
@@ -337,5 +337,5 @@ if (page_is_writeable(page)) {
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

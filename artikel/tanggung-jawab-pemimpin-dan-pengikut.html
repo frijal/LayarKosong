@@ -61,7 +61,7 @@
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> RESET & GLOBAL </em>/
+        /* RESET & GLOBAL */
         * {
             margin: 0;
             padding: 0;
@@ -73,7 +73,7 @@
             transition: background 0.2s ease, color 0.2s ease;
             scroll-behavior: smooth;
         }
-        /<em> LIGHT MODE (default) </em>/
+        /* LIGHT MODE (default) */
         :root {
             --bg-body: #fefcf5;
             --bg-card: #ffffff;
@@ -86,7 +86,7 @@
             --quote-bg: #f9f3e7;
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
         }
-        /<em> DARK MODE via prefers-color-scheme </em>/
+        /* DARK MODE via prefers-color-scheme */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #0f1217;
@@ -110,7 +110,7 @@
             margin: 0 auto;
             padding: 1.8rem 1.5rem 2rem;
         }
-        /<em> MAIN ARTICLE CARD </em>/
+        /* MAIN ARTICLE CARD */
         .article-card {
             background: var(--bg-card);
             border-radius: 28px;
@@ -118,7 +118,7 @@
             padding: 2rem 1.8rem;
             transition: background 0.2s;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1 {
             font-size: 2.1rem;
             font-weight: 800;
@@ -217,7 +217,7 @@
             border-radius: 20px;
             text-align: center;
         }
-        /<em> images styling </em>/
+        /* images styling */
         .article-img {
             margin: 2rem 0;
             text-align: center;
@@ -237,7 +237,7 @@
             color: var(--text-secondary);
             text-align: center;
         }
-        /<em> related & response placeholders </em>/
+        /* related & response placeholders */
         .placeholder-section {
             margin: 2rem 0 1.5rem;
             padding: 1rem;
@@ -256,7 +256,7 @@
             padding-top: 1.8rem;
             color: var(--text-secondary);
         }
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 680px) {
             .container {
                 padding: 1rem;
@@ -293,7 +293,7 @@
             margin: 1.8rem 0;
             border-color: var(--border-light);
         }
-        /<em> no ARIA, no hero, everything clean </em>/
+        /* no ARIA, no hero, everything clean */
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
@@ -399,6 +399,6 @@
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

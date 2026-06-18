@@ -74,7 +74,7 @@
                 --faq-bg: #2d2d2d;
             }
         }
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -84,7 +84,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            font-size: 1rem; /<em> Pengganti 11pt </em>/
+            font-size: 1rem; /* Pengganti 11pt */
         }
         header, main, footer {
             display: block;
@@ -103,14 +103,14 @@
             margin-bottom: 25px;
         }
         h1 {
-            font-size: 1.75rem; /<em> Pengganti 20pt </em>/
+            font-size: 1.75rem; /* Pengganti 20pt */
             line-height: 1.3;
             margin-top: 0;
             margin-bottom: 15px;
             color: var(--text-color);
         }
         h2 {
-            font-size: 1.25rem; /<em> Pengganti 15pt </em>/
+            font-size: 1.25rem; /* Pengganti 15pt */
             border-left: 4px solid var(--accent-color);
             padding-left: 10px;
             margin-top: 35px;
@@ -118,7 +118,7 @@
             page-break-after: avoid;
         }
         h3 {
-            font-size: 1rem; /<em> Pengganti 12pt </em>/
+            font-size: 1rem; /* Pengganti 12pt */
             margin-top: 25px;
             margin-bottom: 10px;
             page-break-after: avoid;
@@ -129,7 +129,7 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 15px;
             margin-bottom: 25px;
-            font-size: 0.85rem; /<em> Pengganti 9.5pt </em>/
+            font-size: 0.85rem; /* Pengganti 9.5pt */
             color: var(--meta-text);
         }
         .meta-item {
@@ -186,23 +186,23 @@
             border-top: 1px dashed var(--border-color);
             margin-top: 40px;
             padding-top: 20px;
-            font-size: 0.9rem; /<em> Pengganti 10pt </em>/
+            font-size: 0.9rem; /* Pengganti 10pt */
             color: var(--meta-text);
         }
         .reference-list {
             padding-left: 20px;
             margin-bottom: 0;
         }
-        /<em> Responsive spacing additions </em>/
+        /* Responsive spacing additions */
         @media (max-width: 600px) {
             article {
                 padding: 15px;
             }
             h1 {
-                font-size: 1.4rem; /<em> Pengganti 16pt </em>/
+                font-size: 1.4rem; /* Pengganti 16pt */
             }
             h2 {
-                font-size: 1.15rem; /<em> Pengganti 13pt </em>/
+                font-size: 1.15rem; /* Pengganti 13pt */
             }
             .zdummy {
                 display: block;
@@ -307,5 +307,5 @@
             <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
         </article>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

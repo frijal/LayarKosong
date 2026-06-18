@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            --primary-color: #00b0ed; /<em> Khas Layar Kosong </em>/
+            --primary-color: #00b0ed; /* Khas Layar Kosong */
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
             --card-bg: #f8fafc;
@@ -75,7 +75,7 @@
             line-height: 1.7;
             transition: background-color 0.3s ease;
         }
-        /<em> Widescreen 1 Column Layout </em>/
+        /* Widescreen 1 Column Layout */
         .widescreen-wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -103,7 +103,7 @@
             font-size: 0.85rem;
             font-weight: 600;
         }
-        /<em> Media Optimization </em>/
+        /* Media Optimization */
         .hero-image {
             margin: 40px 0;
             width: 100%;
@@ -125,7 +125,7 @@
             font-style: italic;
             opacity: 0.7;
         }
-        /<em> Article Content & UI Elements </em>/
+        /* Article Content & UI Elements */
         .article-content h2 {
             margin: 40px 0 20px;
             font-size: 1.8rem;
@@ -189,7 +189,7 @@
             font-family: 'Consolas', monospace;
             font-size: 0.95rem;
         }
-        /<em> Footer & Comments </em>/
+        /* Footer & Comments */
         footer {
             margin-top: 80px;
             padding-top: 40px;
@@ -200,7 +200,7 @@
         #diskus, #related-articles-grid {
             margin-top: 50px;
         }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .article-title { font-size: 2rem; }
             .widescreen-wrapper { padding: 20px 15px; }
@@ -338,6 +338,6 @@
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

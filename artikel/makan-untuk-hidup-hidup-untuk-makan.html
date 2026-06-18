@@ -56,33 +56,33 @@
     <!-- Custom Meta Hints -->
     <meta name="promphint" content="Apa tujuan utama moderasi makan? | Untuk menjaga keseimbangan kesehatan fisik, mempertahankan fokus produktivitas, dan meningkatkan kualitas spiritualitas.">
     <style>
-        /<em> CSS Reset & Variabel Tema </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & Variabel Tema */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         :root {
-            /<em> Mode Terang (Default) </em>/
+            /* Mode Terang (Default) */
             --bg-body: #fafafa;
             --bg-card: #ffffff;
             --text-main: #374151;
             --text-heading: #111827;
             --text-muted: #6b7280;
-            --color-accent: #10b981; /<em> Emerald green - pas untuk tema kesehatan/spiritual </em>/
+            --color-accent: #10b981; /* Emerald green - pas untuk tema kesehatan/spiritual */
             --color-accent-hover: #059669;
             --color-border: #e5e7eb;
-            /<em> Elemen Kutipan </em>/
+            /* Elemen Kutipan */
             --quote-bg: #ecfdf5;
             --quote-border: #34d399;
             --quote-text: #065f46;
-            /<em> Callout / Catatan </em>/
+            /* Callout / Catatan */
             --note-bg: #f3f4f6;
             --note-text: #4b5563;
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Mode Gelap </em>/
+                /* Mode Gelap */
                 --bg-body: #0f172a;
                 --bg-card: #1e293b;
                 --text-main: #cbd5e1;
@@ -91,11 +91,11 @@
                 --color-accent: #10b981;
                 --color-accent-hover: #34d399;
                 --color-border: #334155;
-                /<em> Elemen Kutipan Mode Gelap </em>/
+                /* Elemen Kutipan Mode Gelap */
                 --quote-bg: #064e3b;
                 --quote-border: #10b981;
                 --quote-text: #a7f3d0;
-                /<em> Callout / Catatan Mode Gelap </em>/
+                /* Callout / Catatan Mode Gelap */
                 --note-bg: #1e293b;
                 --note-text: #cbd5e1;
             }
@@ -108,14 +108,14 @@
             font-size: 1.125rem;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Layout Mobile-First Berbasis Kontainer </em>/
+        /* Layout Mobile-First Berbasis Kontainer */
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: 2.5rem 1.5rem;
         }
-        /<em> Tipografi & Hierarki </em>/
+        /* Tipografi & Hierarki */
         h1, h2, h3 {
             color: var(--text-heading);
             font-weight: 700;
@@ -157,7 +157,7 @@
         li {
             margin-bottom: 0.75rem;
         }
-        /<em> Media / Gambar (Optimasi LCP & Anti-CLS) </em>/
+        /* Media / Gambar (Optimasi LCP & Anti-CLS) */
         .hero-media {
             margin: 2rem 0;
             width: 100%;
@@ -167,7 +167,7 @@
             width: 100%;
             max-width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /<em> Dimensi rasio eksplisit untuk mencegah layout shift </em>/
+            aspect-ratio: 16 / 9; /* Dimensi rasio eksplisit untuk mencegah layout shift */
             object-fit: cover;
             border-radius: 0.75rem;
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -180,7 +180,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /<em> Styling Kutipan / Blockquote </em>/
+        /* Styling Kutipan / Blockquote */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 0.375rem solid var(--quote-border);
@@ -191,7 +191,7 @@
             font-style: italic;
             font-size: 1.15rem;
         }
-        /<em> Catatan Kaki / Disclaimer </em>/
+        /* Catatan Kaki / Disclaimer */
         .disclaimer {
             background-color: var(--note-bg);
             color: var(--note-text);
@@ -201,7 +201,7 @@
             margin-top: 3rem;
             border: 0.0625rem solid var(--color-border);
         }
-        /<em> Panel Ringkasan Cepat </em>/
+        /* Panel Ringkasan Cepat */
         .summary-box {
             background-color: var(--bg-card);
             border: 0.125rem dashed var(--color-accent);
@@ -216,7 +216,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        /<em> Footer E-E-A-T Sesuai Aturan </em>/
+        /* Footer E-E-A-T Sesuai Aturan */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -319,5 +319,5 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

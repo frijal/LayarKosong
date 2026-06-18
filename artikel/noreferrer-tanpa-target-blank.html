@@ -89,7 +89,7 @@ h1, h2, h3 {
 width: 100%;
   }
 }
-/<em> Tombol </em>/
+/* Tombol */
 .btn-sitemap, .btn-home {
   position: fixed;
   z-index: 999;
@@ -104,7 +104,7 @@ width: 100%;
 }
 .btn-sitemap { left: 10px; top: 30%; }
 .btn-home { right: 10px; bottom: 20%; }
-/<em> Lightbox </em>/
+/* Lightbox */
 .lightbox {
   display: none;
   position: fixed;
@@ -129,7 +129,7 @@ width: 100%;
 }
 .lightbox .prev { left: 30px; }
 .lightbox .next { right: 30px; }
-/<em> Share icons </em>/
+/* Share icons */
 .share {
   margin: 20px 0;
 }
@@ -152,7 +152,7 @@ footer {
   border-radius: 6px;
   font-size: 14px;
 }
-/<em> Demo interaktif </em>/
+/* Demo interaktif */
 .demo-links a {
   display: block;
   margin: 10px 0;
@@ -239,6 +239,6 @@ lightbox.addEventListener('click', (e) => {
   </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-w<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+w<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

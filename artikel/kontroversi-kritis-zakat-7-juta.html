@@ -49,9 +49,9 @@
     <meta name="promphint" content="zakat baznas nishab profesi indonesia">
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-        /<em> --- 1. SINKRONISASI VARIABEL TEMA (LIGHT/DARK) --- </em>/
+        /* --- 1. SINKRONISASI VARIABEL TEMA (LIGHT/DARK) --- */
         :root {
-            --bg-color: #f8fafc;        /<em> Diubah sedikit dari #fff ke abu lembut agar tidak terlalu kontras di mata </em>/
+            --bg-color: #f8fafc;        /* Diubah sedikit dari #fff ke abu lembut agar tidak terlalu kontras di mata */
             --text-color: #222222;
             --heading-color: #111111;
             --link-color: #0056b3;
@@ -60,15 +60,15 @@
             --quote-bg: #f1f5f9;
             --card-bg: #ffffff;
             --footer-bg: #e2e8f0;
-            /<em> Efek Transisi Global </em>/
+            /* Efek Transisi Global */
             --transition-speed: 0.3s;
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #0f172a;    /<em> Slate gelap yang lebih modern dibanding hitam pekat #1a1a1a </em>/
+                --bg-color: #0f172a;    /* Slate gelap yang lebih modern dibanding hitam pekat #1a1a1a */
                 --text-color: #e2e8f0;
                 --heading-color: #ffffff;
-                --link-color: #38bdf8;  /<em> Biru langit cerah khusus mode malam </em>/
+                --link-color: #38bdf8;  /* Biru langit cerah khusus mode malam */
                 --link-hover: #7dd3fc;
                 --border-color: #334155;
                 --quote-bg: #1e293b;
@@ -76,7 +76,7 @@
                 --footer-bg: #0f172a;
             }
         }
-        /<em> --- 2. RESET & BASE LAYOUT --- </em>/
+        /* --- 2. RESET & BASE LAYOUT --- */
         * {
             margin: 0;
             padding: 0;
@@ -88,17 +88,17 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             line-height: 1.8;
             font-size: 18px;
-            /<em> SELESAI: content-visibility DIHAPUS dari body karena merusak scrollbar & Ctrl+F halaman </em>/
+            /* SELESAI: content-visibility DIHAPUS dari body karena merusak scrollbar & Ctrl+F halaman */
             transition: background-color var(--transition-speed), color var(--transition-speed);
         }
-        /<em> Wrapper baru untuk mengisolasi padding halaman tanpa merusak posisi footer </em>/
+        /* Wrapper baru untuk mengisolasi padding halaman tanpa merusak posisi footer */
         .page-wrapper {
             padding: 1.5rem 1rem;
         }
-        /<em> --- 3. KONTAINER UTAMA (1 KOLOM PREMIUM) --- </em>/
+        /* --- 3. KONTAINER UTAMA (1 KOLOM PREMIUM) --- */
         .container {
             width: 100%;
-            max-width: 1000px; /<em> Sesuai dengan spesifikasi variabel kamu </em>/
+            max-width: 1000px; /* Sesuai dengan spesifikasi variabel kamu */
             margin: 0 auto;
             background-color: var(--card-bg);
             border-radius: 24px;
@@ -109,7 +109,7 @@
         }
         @media (min-width: 1000px) {
             .page-wrapper {
-                padding: 3rem 0; /<em> Memberikan ruang bernapas di atas dan bawah pada layar besar </em>/
+                padding: 3rem 0; /* Memberikan ruang bernapas di atas dan bawah pada layar besar */
             }
             .container {
                 padding: 3rem 3.5rem;
@@ -118,17 +118,17 @@
         @media (max-width: 768px) {
             .container {
                 padding: 1.75rem 1.25rem;
-                border-radius: 16px; /<em> Mengecilkan sudut di HP agar rasio visualnya pas </em>/
+                border-radius: 16px; /* Mengecilkan sudut di HP agar rasio visualnya pas */
             }
         }
-        /<em> --- 4. TIPOGRAFI & ELEMEN KONTEN --- </em>/
+        /* --- 4. TIPOGRAFI & ELEMEN KONTEN --- */
         h1, h2, h3, h4 {
             color: var(--heading-color);
             margin-bottom: 0.5em;
             font-weight: 700;
         }
         h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /<em> Tipografi responsif cair tanpa media query tambahan </em>/
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Tipografi responsif cair tanpa media query tambahan */
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
             margin-bottom: 1rem;
@@ -159,7 +159,7 @@
             border-radius: 0 12px 12px 0;
             transition: background-color var(--transition-speed);
         }
-        /<em> GAMBAR (Anti CLS + Proteksi Distorsi) --- </em>/
+        /* GAMBAR (Anti CLS + Proteksi Distorsi) --- */
         img {
             max-width: 100%;
             height: auto;
@@ -171,20 +171,20 @@
             background-color: var(--border-color);
             border: 1px solid var(--border-color);
         }
-        /<em> --- 5. SISTEM PENYELAMATAN TABEL RESPONSIF --- </em>/
-        /<em> Bungkus elemen <table> kamu dengan <div class="table-container"> di HTML </em>/
+        /* --- 5. SISTEM PENYELAMATAN TABEL RESPONSIF --- */
+        /* Bungkus elemen <table> kamu dengan <div class="table-container"> di HTML */
         .table-container {
             width: 100%;
-            overflow-x: auto; /<em> Memunculkan scrollbar horizontal internal JIKA tabel kepentok lebar HP </em>/
+            overflow-x: auto; /* Memunculkan scrollbar horizontal internal JIKA tabel kepentok lebar HP */
             margin: 24px 0;
-            -webkit-overflow-scrolling: touch; /<em> Scroll super mulus di iOS Safari </em>/
+            -webkit-overflow-scrolling: touch; /* Scroll super mulus di iOS Safari */
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px; /<em> Memaksa tabel mempertahankan strukturnya di layar sekecil apa pun </em>/
+            min-width: 500px; /* Memaksa tabel mempertahankan strukturnya di layar sekecil apa pun */
         }
         th, td {
             border: none;
@@ -198,7 +198,7 @@
             color: var(--heading-color);
         }
         tr:last-child td {
-            border-bottom: none; /<em> Membersihkan garis sisa di baris paling bawah </em>/
+            border-bottom: none; /* Membersihkan garis sisa di baris paling bawah */
         }
         hr {
             border: 0;
@@ -206,11 +206,11 @@
             background-color: var(--border-color);
             margin: 40px 0;
         }
-        /<em> --- 6. BLOK SEKSI KHUSUS --- </em>/
+        /* --- 6. BLOK SEKSI KHUSUS --- */
         .zdummy {
             background-color: var(--quote-bg);
             padding: 1.5rem 2rem;
-            border-radius: 20px; /<em> Dikurangi dari 40px agar teks tidak terhimpit radikal di sudut kiri-kanan </em>/
+            border-radius: 20px; /* Dikurangi dari 40px agar teks tidak terhimpit radikal di sudut kiri-kanan */
             margin: 2rem 0;
             border: 1px solid var(--border-color);
             font-size: 1.1rem;
@@ -233,7 +233,7 @@
             margin-bottom: 0.5rem;
             display: inline-block;
         }
-        /<em> --- 7. FOOTER YANG DISELAMATKAN --- </em>/
+        /* --- 7. FOOTER YANG DISELAMATKAN --- */
         footer {
             margin-top: 4rem;
             padding: 3rem 1.5rem 2rem;
@@ -322,6 +322,6 @@
 </div>
 <!-- container end -->
 <!-- Tanpa JavaScript untuk tema (hanya CSS prefers-color-scheme) -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

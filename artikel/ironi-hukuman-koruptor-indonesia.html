@@ -49,23 +49,23 @@
   <meta name="news_keywords" content="korupsi, koruptor indonesia, hukum indonesia, residivis korupsi, pejabat publik, politik">
   <meta name="promphint" content="Kenapa koruptor di Indonesia tidak pernah jera? Karena sistem yang ada memberi mereka ruang untuk tetap hidup nyaman dan mempertahankan status elitnya pasca hukuman.">
   <style>
-    /<em> CSS Variables & Token-Based Design </em>/
+    /* CSS Variables & Token-Based Design */
     :root {
-      /<em> Typography System Fonts </em>/
+      /* Typography System Fonts */
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
       --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", monospace;
-      /<em> Layout & Spacing Tokens (rem only) </em>/
+      /* Layout & Spacing Tokens (rem only) */
       --container-max: 64rem;
       --space-xs: 0.5rem;
       --space-sm: 1rem;
       --space-md: 1.5rem;
       --space-lg: 2rem;
       --space-xl: 3rem;
-      /<em> Target Touch & Radius </em>/
+      /* Target Touch & Radius */
       --touch-target: 2.75rem;
       --radius-sm: 0.25rem;
       --radius-md: 0.5rem;
-      /<em> Light Mode Colors </em>/
+      /* Light Mode Colors */
       --bg-primary: #fdfdfc;
       --bg-secondary: #f0f0f0;
       --text-primary: #1a1a1a;
@@ -73,7 +73,7 @@
       --accent-color: #d9381e;
       --border-color: #e5e5e5;
     }
-    /<em> Auto Dark Mode (Native prefers-color-scheme) </em>/
+    /* Auto Dark Mode (Native prefers-color-scheme) */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-primary: #121212;
@@ -84,13 +84,13 @@
         --border-color: #333333;
       }
     }
-    /<em> CSS Reset Base </em>/
-    <em>, </em>::before, *::after {
+    /* CSS Reset Base */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    /<em> Arsitektur Mobile-First </em>/
+    /* Arsitektur Mobile-First */
     body {
       font-family: var(--font-sans);
       background-color: var(--bg-primary);
@@ -99,14 +99,14 @@
       font-size: 1rem;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Layout 1 Kolom Mutlak </em>/
+    /* Layout 1 Kolom Mutlak */
     .site-wrapper {
       width: 100%;
       max-width: var(--container-max);
       margin-inline: auto;
       padding-inline: var(--space-sm);
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1, h2, h3 {
       color: var(--text-primary);
       line-height: 1.3;
@@ -139,7 +139,7 @@
     a:hover {
       border-bottom-color: var(--accent-color);
     }
-    /<em> Blok Kode (Syntax Highlighting Tema Gelap Ringan) </em>/
+    /* Blok Kode (Syntax Highlighting Tema Gelap Ringan) */
     pre {
       background-color: #2d2d2d;
       color: #ccc;
@@ -163,7 +163,7 @@
       padding: 0;
       color: inherit;
     }
-    /<em> Blockquote </em>/
+    /* Blockquote */
     blockquote {
       border-left: 0.25rem solid var(--accent-color);
       padding-left: var(--space-sm);
@@ -174,7 +174,7 @@
       padding: var(--space-sm);
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
-    /<em> Gambar Responsif, Full Container, Tanpa Potong </em>/
+    /* Gambar Responsif, Full Container, Tanpa Potong */
     .img-fluid {
       width: 100%;
       height: auto;
@@ -183,12 +183,12 @@
       border-radius: var(--radius-md);
       background-color: var(--bg-secondary);
     }
-    /<em> Header Artikel </em>/
+    /* Header Artikel */
     .article-header {
       margin-bottom: var(--space-lg);
       padding-top: var(--space-lg);
     }
-    /<em> Interaksi Mobile (Tombol) </em>/
+    /* Interaksi Mobile (Tombol) */
     .btn {
       display: inline-block;
       padding: var(--space-xs) var(--space-sm);
@@ -202,7 +202,7 @@
       font-weight: bold;
       will-change: transform;
     }
-    /<em> Footer / E-E-A-T Inline Sejajar </em>/
+    /* Footer / E-E-A-T Inline Sejajar */
     .site-footer {
       border-top: 0.0625rem solid var(--border-color);
       padding-block: var(--space-lg);
@@ -217,7 +217,7 @@
       font-size: 0.875rem;
       color: var(--text-secondary);
     }
-    /<em> Desktop Adjustments (Media Query) </em>/
+    /* Desktop Adjustments (Media Query) */
     @media (min-width: 48rem) {
       .site-wrapper {
         padding-inline: var(--space-xl);
@@ -267,5 +267,5 @@
       </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -48,9 +48,9 @@
 <meta name="keywords" content="komunikasi keluarga, parenting, media sosial, 'aisyiyah, muhammadiyah, anak curhat, PHIWM">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Dasar & Reset </em>/
+        /* CSS Dasar & Reset */
         :root {
-            /<em> Light Theme Defaults </em>/
+            /* Light Theme Defaults */
             --bg-color: #ffffff;
             --text-color: #212529;
             --link-color: #0056b3;
@@ -58,7 +58,7 @@
             --border-color: #dee2e6;
             --shadow-color: rgba(0, 0, 0, 0.1);
         }
-        /<em> Dark Theme Detection </em>/
+        /* Dark Theme Detection */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -69,7 +69,7 @@
                 --shadow-color: rgba(255, 255, 255, 0.05);
             }
         }
-        /<em> Global Styles </em>/
+        /* Global Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -79,14 +79,14 @@
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> Container untuk Widescreen 1-Kolom </em>/
+        /* Container untuk Widescreen 1-Kolom */
         main {
-            max-width: 900px; /<em> Lebar maksimum untuk konten utama </em>/
+            max-width: 900px; /* Lebar maksimum untuk konten utama */
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Judul dan Sub-judul </em>/
+        /* Judul dan Sub-judul */
         h1 {
             font-size: 2.5em;
             margin-bottom: 0.5em;
@@ -107,7 +107,7 @@
   border-top: 1px solid var(--border);
   margin-top: 4rem;
   }
-        /<em> Metadata Artikel </em>/
+        /* Metadata Artikel */
         .metadata {
             color: var(--secondary-text);
             font-size: 0.9em;
@@ -122,12 +122,12 @@
         .metadata i {
             margin-right: 5px;
         }
-        /<em> Paragraf dan Teks </em>/
+        /* Paragraf dan Teks */
         p {
             margin-bottom: 1.5em;
             text-align: justify;
         }
-        /<em> Gambar Responsif </em>/
+        /* Gambar Responsif */
         .image-container {
             margin: 2em 0;
             text-align: center;
@@ -144,7 +144,7 @@
             color: var(--secondary-text);
             margin-top: 10px;
         }
-        /<em> Kutipan (Original Text) </em>/
+        /* Kutipan (Original Text) */
         .quote {
             background-color: var(--border-color);
             border-left: 5px solid var(--link-color);
@@ -161,7 +161,7 @@
             text-align: right;
             color: var(--secondary-text);
         }
-        /<em> Mobile Optimization </em>/
+        /* Mobile Optimization */
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
@@ -226,5 +226,5 @@
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

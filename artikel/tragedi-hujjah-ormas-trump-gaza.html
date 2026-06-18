@@ -49,7 +49,7 @@
 <meta name="promphint" content="Opini kritis long-form tentang geopolitik Indonesia-Palestina, peran Ormas Islam, dan analisis bisnis rekonstruksi Gaza ala Trump.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables & Dark Mode Detection </em>/
+        /* CSS Variables & Dark Mode Detection */
         :root {
             --bg-body: #ffffff;
             --text-main: #1a1a1a;
@@ -72,7 +72,7 @@
                 --code-bg: #2a2a2a;
             }
         }
-        /<em> Reset & Typography </em>/
+        /* Reset & Typography */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -82,13 +82,13 @@
             font-size: 18px;
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> Layout Single Column Widescreen </em>/
+        /* Layout Single Column Widescreen */
         .content-wrapper {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        /<em> Elements Styling </em>/
+        /* Elements Styling */
         h1, h2, h3, h4 {
             font-weight: 800;
             line-height: 1.3;
@@ -118,10 +118,10 @@
             margin-bottom: 2.5rem;
             font-style: italic;
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul, ol { margin-bottom: 1.5rem; padding-left: 2rem; }
         li { margin-bottom: 0.8rem; }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         blockquote {
             background-color: var(--card-bg);
             border-left: 5px solid var(--quote-border);
@@ -131,7 +131,7 @@
             font-size: 1.1rem;
             border-radius: 0 8px 8px 0;
         }
-        /<em> Custom Box (5W1H) </em>/
+        /* Custom Box (5W1H) */
         .analysis-box {
             border: 2px dashed var(--border-color);
             padding: 2rem;
@@ -139,7 +139,7 @@
             margin: 3rem 0;
             background-color: var(--card-bg);
         }
-        /<em> Ormas List Styling </em>/
+        /* Ormas List Styling */
         .ormas-grid {
             background-color: var(--card-bg);
             padding: 1.5rem;
@@ -147,7 +147,7 @@
             margin-bottom: 2rem;
             font-size: 0.95rem;
         }
-        /<em> Interactive Placeholders </em>/
+        /* Interactive Placeholders */
         #related-articles-grid, #response {
             margin-top: 3rem;
             padding: 2rem;
@@ -157,7 +157,7 @@
             background: var(--card-bg);
             color: var(--text-muted);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 5rem;
             padding-top: 2rem;
@@ -173,7 +173,7 @@
             opacity: 0.7;
         }
         .social-icons a:hover { opacity: 1; color: var(--link-color); }
-        /<em> Mobile Responsiveness </em>/
+        /* Mobile Responsiveness */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.6rem; }
@@ -301,5 +301,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

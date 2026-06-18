@@ -53,7 +53,7 @@
             --code-bg: #f1f5f9;
             --code-text: #0f172a;
             --border-color: #e2e8f0;
-            --accent: #059669; /<em> Slightly different success color </em>/
+            --accent: #059669; /* Slightly different success color */
             --warn-bg: #fff7ed;
             --warn-text: #9a3412;
             --cmd-bg: #1e293b;
@@ -134,17 +134,17 @@
             font-size: 0.95rem;
             margin-bottom: 25px;
             border: 1px solid var(--border-color);
-            white-space: pre-wrap; /<em> Wrap long lines </em>/
+            white-space: pre-wrap; /* Wrap long lines */
             word-wrap: break-word;
         }
-        /<em> Highlight success parts in the terminal output </em>/
+        /* Highlight success parts in the terminal output */
         .success-highlight {
-            color: #34d399; /<em> Green for success lines </em>/
+            color: #34d399; /* Green for success lines */
         }
         .warning-highlight {
-            color: #fcd34d; /<em> Yellow for warnings </em>/
+            color: #fcd34d; /* Yellow for warnings */
         }
-        /<em> Success Box </em>/
+        /* Success Box */
         .success-box {
             background-color: var(--success-bg);
             color: var(--success-text);
@@ -155,7 +155,7 @@
             font-weight: bold;
             font-size: 1.1rem;
         }
-        /<em> Image Styling </em>/
+        /* Image Styling */
         .content-image {
             width: 100%;
             height: auto;
@@ -163,7 +163,7 @@
             margin: 30px 0;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        /<em> Footer remains consistent </em>/
+        /* Footer remains consistent */
         footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -254,6 +254,6 @@ Skipping "/boot/EFI/BOOT/bootx64.efi", same boot loader version in place already
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

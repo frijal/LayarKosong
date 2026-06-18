@@ -47,25 +47,25 @@
     <meta name="keywords" content="debian, linux, meme, power user, debian stable, distro hopping, linux community, open source">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Variabel Warna </em>/
+        /* Variabel Warna */
         :root {
             --bg-color: #f4f7f6;
             --text-color: #333333;
             --heading-color: #2c3e50;
-            --link-color: #e74c3c; /<em> Merah untuk energi </em>/
+            --link-color: #e74c3c; /* Merah untuk energi */
             --quote-bg: #ecf0f1;
             --quote-border: #bdc3c7;
             --card-bg: #ffffff;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             --img-border: #eee;
         }
-        /<em> Tema Gelap (Dark Mode) terdeteksi otomatis </em>/
+        /* Tema Gelap (Dark Mode) terdeteksi otomatis */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
                 --text-color: #cccccc;
                 --heading-color: #ecf0f1;
-                --link-color: #3498db; /<em> Biru terang untuk energi di Dark Mode </em>/
+                --link-color: #3498db; /* Biru terang untuk energi di Dark Mode */
                 --quote-bg: #2d2d2d;
                 --quote-border: #444444;
                 --card-bg: #252525;
@@ -73,7 +73,7 @@
                 --img-border: #333;
             }
         }
-        /<em> Reset dan Pengaturan Dasar </em>/
+        /* Reset dan Pengaturan Dasar */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -90,10 +90,10 @@
             transition: background-color 0.3s, color 0.3s;
             min-height: 100vh;
         }
-        /<em> Layout Utama (Widescreen 1 Kolom) </em>/
+        /* Layout Utama (Widescreen 1 Kolom) */
         main {
-            max-width: 900px; /<em> Lebar maksimal konten </em>/
-            margin: 20px auto; /<em> Tengah dan beri jarak atas/bawah </em>/
+            max-width: 900px; /* Lebar maksimal konten */
+            margin: 20px auto; /* Tengah dan beri jarak atas/bawah */
             padding: 20px 30px;
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -103,7 +103,7 @@
         article {
             width: 100%;
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1, h2, h3 {
             color: var(--heading-color);
             margin-bottom: 1.2rem;
@@ -151,7 +151,7 @@
             color: var(--heading-color);
             font-weight: 600;
         }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         blockquote {
             margin: 1.5rem 0;
             padding: 1rem 1.5rem;
@@ -162,7 +162,7 @@
             font-size: 1.15rem;
             color: var(--text-color);
         }
-        /<em> Gambar </em>/
+        /* Gambar */
         figure {
             margin: 2rem 0;
             padding: 15px;
@@ -184,7 +184,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             text-align: center;
             margin: 2rem auto;
@@ -193,7 +193,7 @@
             max-width: 900px;
             padding: 0 20px;
         }
-        /<em> Responsif untuk Mobile </em>/
+        /* Responsif untuk Mobile */
         @media (max-width: 768px) {
             main {
                 margin: 0;
@@ -271,5 +271,5 @@
         <p>🄯 2025 Analisis Komunitas Linux. <i class="fa-brands fa-linux"></i></p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

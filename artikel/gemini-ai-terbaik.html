@@ -55,7 +55,7 @@
         --primary-text-color: #e0e0e0;
         --secondary-text-color: #b3b3b3;
         --accent-color: #f7b500;
-        /<em> Warna aksen yang berbeda untuk Gemini </em>/
+        /* Warna aksen yang berbeda untuk Gemini */
         --surface-color: #1e1e1e;
         --border-color: #2c2c2c;
         --link-color: #ffda6a;
@@ -74,7 +74,7 @@
       }
       .container {
         max-width: 900px;
-        /<em> Disesuaikan untuk 1 kolom </em>/
+        /* Disesuaikan untuk 1 kolom */
         margin: 0 auto;
         padding: 2rem 1rem;
       }
@@ -133,7 +133,7 @@
         transform: scale(1.03);
         box-shadow: 0 12px 35px rgba(247, 181, 0, 0.2);
       }
-      /<em> Lightbox CSS </em>/
+      /* Lightbox CSS */
       .lightbox {
         display: none;
         position: fixed;
@@ -197,7 +197,7 @@
         background: var(--border-color);
         margin: 2.5rem 0;
       }
-      /<em> User Info & Social Share </em>/
+      /* User Info & Social Share */
       .info-section,
       .social-share {
         background-color: var(--surface-color);
@@ -237,13 +237,13 @@
         transform: scale(1.2);
         color: var(--accent-color);
       }
-      /<em> Facebook Comments </em>/
+      /* Facebook Comments */
       .fb-comments {
         background: white;
         border-radius: 12px;
         padding: 1rem;
       }
-      /<em> Responsive Design </em>/
+      /* Responsive Design */
       @media screen and (max-width: 768px) {
         h1 {
           font-size: 2rem;
@@ -376,5 +376,5 @@
         }
       });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

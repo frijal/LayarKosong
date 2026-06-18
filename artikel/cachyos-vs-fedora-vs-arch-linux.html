@@ -55,8 +55,8 @@
     <link rel="preload" href="/ext/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/ext/fontawesome.css"></noscript>
     <style>
-        /<em> CSS Reset & System Fonts untuk mengoptimalkan Core Web Vitals (Zero CLS & Fast LCP) </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & System Fonts untuk mengoptimalkan Core Web Vitals (Zero CLS & Fast LCP) */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -72,7 +72,7 @@
             line-height: 1.65;
             font-size: 16px;
         }
-        /<em> Pure CSS Dark Mode tanpa JS </em>/
+        /* Pure CSS Dark Mode tanpa JS */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -88,7 +88,7 @@
             color: var(--text-color);
             padding: 0 20px;
         }
-        /<em> Tata Letak Widescreen 1 Kolom Tengah </em>/
+        /* Tata Letak Widescreen 1 Kolom Tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -136,7 +136,7 @@
             border-radius: 8px;
             overflow: hidden;
         }
-        /<em> Optimasi LCP & CLS: Dimensi gambar diatur fleksibel tapi rasio terjaga </em>/
+        /* Optimasi LCP & CLS: Dimensi gambar diatur fleksibel tapi rasio terjaga */
         .featured-image {
             width: 100%;
             height: auto;
@@ -159,7 +159,7 @@
             font-style: italic;
             border-radius: 0 8px 8px 0;
         }
-        /<em> Elemen Interaktif Kosong Sesuai Request </em>/
+        /* Elemen Interaktif Kosong Sesuai Request */
         #related-articles-grid {
             margin-top: 50px;
             padding-top: 20px;
@@ -176,7 +176,7 @@
             color: var(--meta-color);
             text-align: center;
         }
-        /<em> Responsivitas Layar Mobile </em>/
+        /* Responsivitas Layar Mobile */
         @media (max-width: 600px) {
             h1 { font-size: 1.75rem; }
             h2 { font-size: 1.4rem; }
@@ -247,5 +247,5 @@
             <p>🄯 2026 <a href="https://dalam.web.id" style="color: var(--accent-color); text-decoration: none;">Layar Kosong</a>. Copyleft, All Rights Reversed. Ditulis dengan pendekatan E-E-A-T.</p>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

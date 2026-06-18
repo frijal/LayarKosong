@@ -48,27 +48,27 @@
     <meta name="promphint" content="Artikel long-form reflektif tentang sejarah dan filosofi menara masjid serta kritikan terhadap prioritas pembangunan masjid modern">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Variabel Warna untuk Tema Terang (Default) </em>/
+        /* Variabel Warna untuk Tema Terang (Default) */
         :root {
             --bg-primary: #ffffff;
             --text-primary: #333333;
             --text-secondary: #555555;
-            --accent-color: #2c7a3f; /<em> Hijau tua yang tenang </em>/
+            --accent-color: #2c7a3f; /* Hijau tua yang tenang */
             --border-color: #e0e0e0;
             --link-color: #1a5f30;
         }
-        /<em> Variabel Warna untuk Tema Gelap (Preferensi Pengguna) </em>/
+        /* Variabel Warna untuk Tema Gelap (Preferensi Pengguna) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-primary: #1a1a1a;
                 --text-primary: #e0e0e0;
                 --text-secondary: #b0b0b0;
-                --accent-color: #4caf50; /<em> Hijau yang lebih cerah untuk dark mode </em>/
+                --accent-color: #4caf50; /* Hijau yang lebih cerah untuk dark mode */
                 --border-color: #333333;
                 --link-color: #81c784;
             }
         }
-        /<em> Reset Dasar & Tipografi untuk LCP/CLS yang baik </em>/
+        /* Reset Dasar & Tipografi untuk LCP/CLS yang baik */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -79,25 +79,25 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.7;
-            font-size: 18px; /<em> Ukuran font yang nyaman dibaca di mobile </em>/
+            font-size: 18px; /* Ukuran font yang nyaman dibaca di mobile */
         }
-        /<em> Layout Widescreen 1 Kolom </em>/
+        /* Layout Widescreen 1 Kolom */
         .container {
-            max-width: 1000px; /<em> Batas lebar agar nyaman dibaca di layar lebar </em>/
+            max-width: 1000px; /* Batas lebar agar nyaman dibaca di layar lebar */
             margin: 0 auto;
             padding: 20px;
         }
-        /<em> Styling Gambar Utama </em>/
+        /* Styling Gambar Utama */
         .featured-image {
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /<em> Menjaga rasio untuk mencegah CLS </em>/
+            aspect-ratio: 16 / 9; /* Menjaga rasio untuk mencegah CLS */
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 30px;
-            background-color: var(--border-color); /<em> Placeholder saat loading </em>/
+            background-color: var(--border-color); /* Placeholder saat loading */
         }
-        /<em> Tipografi Artikel </em>/
+        /* Tipografi Artikel */
         h1 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -126,7 +126,7 @@
         strong {
             color: var(--accent-color);
         }
-        /<em> Quote block untuk penekanan </em>/
+        /* Quote block untuk penekanan */
         blockquote {
             border-left: 5px solid var(--accent-color);
             padding-left: 20px;
@@ -135,7 +135,7 @@
             color: var(--text-secondary);
             font-size: 1.1em;
         }
-        /<em> Styling Footer dan Interaksi </em>/
+        /* Styling Footer dan Interaksi */
         footer {
             margin-top: 60px;
             padding-top: 30px;
@@ -159,10 +159,10 @@
         #related-articles-grid, #response {
             margin-top: 40px;
             padding: 20px;
-            background-color: rgba(128, 128, 128, 0.05); /<em> Sedikit latar belakang </em>/
+            background-color: rgba(128, 128, 128, 0.05); /* Sedikit latar belakang */
             border-radius: 8px;
         }
-        /<em> Responsif Mobile </em>/
+        /* Responsif Mobile */
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
@@ -267,5 +267,5 @@
         </div>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

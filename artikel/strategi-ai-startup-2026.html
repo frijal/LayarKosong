@@ -54,8 +54,8 @@
     <!-- Custom Meta Promphint -->
     <meta name="promphint" content="Kenapa startup butuh strategi AI sejati di 2026? | Karena 81% pendanaan VC global tersedot ke perusahaan AI-native. Tanpa AI yang terintegrasi di operasional, startup akan kalah bersaing dan sulit mendapat modal.">
     <style>
-        /<em> CSS Reset & Variabel </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & Variabel */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -63,7 +63,7 @@
         :root {
             --bg-color: #fafafa;
             --text-color: #1f2937;
-            --primary-color: #6366f1; /<em> Indigo-500 untuk nuansa AI/Tech </em>/
+            --primary-color: #6366f1; /* Indigo-500 untuk nuansa AI/Tech */
             --secondary-color: #6b7280;
             --border-color: #e5e7eb;
             --accent-bg: #e0e7ff;
@@ -72,12 +72,12 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #0f172a; /<em> Slate-900 </em>/
-                --text-color: #f1f5f9; /<em> Slate-100 </em>/
-                --primary-color: #818cf8; /<em> Indigo-400 </em>/
-                --secondary-color: #94a3b8; /<em> Slate-400 </em>/
-                --border-color: #334155; /<em> Slate-700 </em>/
-                --accent-bg: #1e1b4b; /<em> Indigo-950 </em>/
+                --bg-color: #0f172a; /* Slate-900 */
+                --text-color: #f1f5f9; /* Slate-100 */
+                --primary-color: #818cf8; /* Indigo-400 */
+                --secondary-color: #94a3b8; /* Slate-400 */
+                --border-color: #334155; /* Slate-700 */
+                --accent-bg: #1e1b4b; /* Indigo-950 */
             }
         }
         body {
@@ -153,7 +153,7 @@
             border-radius: 0.5rem;
             font-style: italic;
         }
-        /<em> Menggunakan a. class selector sesuai preferensi environment </em>/
+        /* Menggunakan a. class selector sesuai preferensi environment */
         a.social-link {
             color: var(--primary-color);
             text-decoration: none;
@@ -240,5 +240,5 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

@@ -48,12 +48,12 @@
     <meta name="promphint" content="Analisis komparatif hukum pembelaan diri di rumah antara Indonesia dan Amerika Serikat menggunakan pendekatan 5W+1H, membahas paradoks korban menjadi Pihak yang bertanggung jawab, serta tinjauan filosofis dan yuridis mengenai hak untuk mempertahankan diri.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-        /<em> --- 1. TOKENISASI VARIABEL GLOBAL (Executive Report Theme) --- </em>/
+        /* --- 1. TOKENISASI VARIABEL GLOBAL (Executive Report Theme) --- */
         :root {
-            --primary-color: #1a5fb4;     /<em> Corporate Deep Blue </em>/
-            --secondary-color: #e95420;   /<em> Alert/Accent Orange </em>/
-            --text-color: #2d3748;        /<em> Slate Gray gelap untuk kenyamanan mata </em>/
-            --text-muted: #64748b;       /<em> Token pengganti #666 </em>/
+            --primary-color: #1a5fb4;     /* Corporate Deep Blue */
+            --secondary-color: #e95420;   /* Alert/Accent Orange */
+            --text-color: #2d3748;        /* Slate Gray gelap untuk kenyamanan mata */
+            --text-muted: #64748b;       /* Token pengganti #666 */
             --bg-color: #ffffff;
             --card-bg: #f8f9fa;
             --border-color: #e2e8f0;
@@ -64,27 +64,27 @@
             --line-height: 1.8;
             --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
-        /<em> --- 2. OPTIMALISASI AUTOMATIC DARK THEME --- </em>/
+        /* --- 2. OPTIMALISASI AUTOMATIC DARK THEME --- */
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary-color: #62a0ea;
                 --secondary-color: #ff7800;
                 --text-color: #e2e8f0;
-                --text-muted: #94a3b8;    /<em> Token pengganti #aaa </em>/
-                --bg-color: #121212;       /<em> Disatukan ke dalam token root </em>/
+                --text-muted: #94a3b8;    /* Token pengganti #aaa */
+                --bg-color: #121212;       /* Disatukan ke dalam token root */
                 --card-bg: #1e1e1e;
                 --border-color: #2d2d2d;
                 --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             }
         }
-        /<em> --- 3. RESET & ACCESSIBLE BASE SYSTEM --- </em>/
+        /* --- 3. RESET & ACCESSIBLE BASE SYSTEM --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         html {
-            /<em> Menggunakan persentase agar fitur text-scaling pada browser pembaca tidak terkunci </em>/
+            /* Menggunakan persentase agar fitur text-scaling pada browser pembaca tidak terkunci */
             font-size: 112.5%; 
             scroll-behavior: smooth;
         }
@@ -96,14 +96,14 @@
             transition: var(--transition);
             -webkit-font-smoothing: antialiased;
         }
-        /<em> SOLUSI LAYOUT: Kontainer pembungkus utama agar body tidak terkunci mati </em>/
+        /* SOLUSI LAYOUT: Kontainer pembungkus utama agar body tidak terkunci mati */
         .main-wrapper {
             width: 100%;
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 1.25rem;
         }
-        /<em> --- 4. TATA ARSITEKTUR TIPOGRAFI --- </em>/
+        /* --- 4. TATA ARSITEKTUR TIPOGRAFI --- */
         h1, h2, h3, h4 {
             font-family: var(--font-heading);
             font-weight: 700;
@@ -113,7 +113,7 @@
             color: var(--primary-color);
         }
         h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /<em> Skala responsif tanpa media query tambahan </em>/
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Skala responsif tanpa media query tambahan */
             margin-top: 1.5rem;
             border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 0.5rem;
@@ -128,7 +128,7 @@
         h4 { font-size: 1.15rem; font-family: var(--font-main); }
         p {
             margin-bottom: 1.5rem;
-            text-align: left; /<em> Menghindari white-space bolong akibat pembacaan istilah teknis </em>/
+            text-align: left; /* Menghindari white-space bolong akibat pembacaan istilah teknis */
         }
         a {
             color: var(--primary-color);
@@ -140,7 +140,7 @@
             color: var(--secondary-color);
             border-bottom-color: var(--secondary-color);
         }
-        /<em> --- 5. STRUKTUR ARTIKEL & META --- </em>/
+        /* --- 5. STRUKTUR ARTIKEL & META --- */
         .article-header {
             margin: 2rem 0 2.5rem;
             padding-bottom: 1.5rem;
@@ -152,7 +152,7 @@
             gap: 1.5rem;
             margin-top: 1rem;
             font-size: 0.875rem;
-            color: var(--text-muted); /<em> Memanfaatkan token global </em>/
+            color: var(--text-muted); /* Memanfaatkan token global */
         }
         .meta-item {
             display: inline-flex;
@@ -165,7 +165,7 @@
         .content-section {
             margin-bottom: 3rem;
         }
-        /<em> --- 6. KOMPONEN LAYOUT SPESIAL --- </em>/
+        /* --- 6. KOMPONEN LAYOUT SPESIAL --- */
         .intro-box {
             background-color: var(--card-bg);
             border-left: 5px solid var(--secondary-color);
@@ -195,13 +195,13 @@
             color: var(--primary-color);
         }
         .highlight {
-            background-color: rgba(233, 84, 32, 0.04); /<em> Diturunkan ke 4% agar teks di dalamnya tetap kontras tinggi </em>/
+            background-color: rgba(233, 84, 32, 0.04); /* Diturunkan ke 4% agar teks di dalamnya tetap kontras tinggi */
             padding: 1.5rem;
             border-radius: 8px;
             margin: 2rem 0;
             border: 1px solid var(--secondary-color);
         }
-        /<em> SOLUSI GAMBAR: Mengamankan relasi takarir agar anti-bentrok </em>/
+        /* SOLUSI GAMBAR: Mengamankan relasi takarir agar anti-bentrok */
         .figure-container {
             margin: 2.5rem 0;
             background-color: var(--card-bg);
@@ -225,7 +225,7 @@
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
         }
-        /<em> SOLUSI TABEL: Membungkus dengan wrapper div berkutub bulat </em>/
+        /* SOLUSI TABEL: Membungkus dengan wrapper div berkutub bulat */
         .table-responsive-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -236,7 +236,7 @@
         }
         .comparison-table {
             width: 100%;
-            border-collapse: separate; /<em> Mengubah collapse menjadi separate agar radius bekerja </em>/
+            border-collapse: separate; /* Mengubah collapse menjadi separate agar radius bekerja */
             border-spacing: 0;
         }
         .comparison-table th, .comparison-table td {
@@ -249,7 +249,7 @@
             color: #ffffff;
             font-weight: 600;
         }
-        /<em> Membuang border bawah pada baris terakhir tabel agar tidak double dengan border wrapper </em>/
+        /* Membuang border bawah pada baris terakhir tabel agar tidak double dengan border wrapper */
         .comparison-table tr:last-child td {
             border-bottom: none;
         }
@@ -264,7 +264,7 @@
         .comparison-table tr:hover {
             background-color: rgba(233, 84, 32, 0.05);
         }
-        /<em> --- 7. GRID 5W+1H ANALISIS --- </em>/
+        /* --- 7. GRID 5W+1H ANALISIS --- */
         .analysis-section {
             background-color: var(--card-bg);
             padding: 2rem;
@@ -300,7 +300,7 @@
         .point-list li {
             margin-bottom: 0.75rem;
         }
-        /<em> --- 8. FOOTER ENGINE --- </em>/
+        /* --- 8. FOOTER ENGINE --- */
         footer {
             margin-top: 5rem;
             padding: 2.5rem 0;
@@ -320,7 +320,7 @@
         .text-accent { color: var(--accent-color); font-weight: bold; }
         .text-primary { color: var(--primary-color); }
         .text-center { text-align: center; }
-        /<em> --- 9. MOBILE RESPONSIVE ENGINE --- </em>/
+        /* --- 9. MOBILE RESPONSIVE ENGINE --- */
         @media (max-width: 768px) {
             .analysis-grid {
                 grid-template-columns: 1fr;
@@ -333,7 +333,7 @@
                 gap: 0.75rem;
             }
         }
-        /<em> --- 10. CLEAN PRINT ENGINE --- </em>/
+        /* --- 10. CLEAN PRINT ENGINE --- */
         @media print {
             body {
                 font-size: 11pt;
@@ -665,6 +665,6 @@
         </p> <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

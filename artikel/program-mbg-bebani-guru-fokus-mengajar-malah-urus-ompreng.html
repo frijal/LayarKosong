@@ -58,7 +58,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <!-- CSS Kritis Native -->
     <style>
-        /<em> Variabel CSS & Dukungan Mode Gelap (Mobile-First) </em>/
+        /* Variabel CSS & Dukungan Mode Gelap (Mobile-First) */
         :root {
             --bg-color: #f9fafb;
             --text-color: #374151;
@@ -84,7 +84,7 @@
                 --accent-bg: #1f2937;
             }
         }
-        /<em> Reset & Base Typography </em>/
+        /* Reset & Base Typography */
         * {
             margin: 0;
             padding: 0;
@@ -98,14 +98,14 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Layout & Container - Center di Desktop </em>/
+        /* Layout & Container - Center di Desktop */
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: var(--spacing-md);
         }
-        /<em> Elemen Tipografi berbasis rem </em>/
+        /* Elemen Tipografi berbasis rem */
         h1, h2, h3 {
             color: var(--heading-color);
             line-height: 1.3;
@@ -143,7 +143,7 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        /<em> Optimasi Core Web Vitals (LCP & CLS) </em>/
+        /* Optimasi Core Web Vitals (LCP & CLS) */
         .lcp-image {
             width: 100%;
             height: auto;
@@ -152,9 +152,9 @@
             border-radius: var(--border-radius);
             margin-top: var(--spacing-sm);
             margin-bottom: var(--spacing-md);
-            background-color: var(--border-color); /<em> Mencegah CLS </em>/
+            background-color: var(--border-color); /* Mencegah CLS */
         }
-        /<em> Syntax Highlighting CSS murni (Bila dibutuhkan) </em>/
+        /* Syntax Highlighting CSS murni (Bila dibutuhkan) */
         pre {
             background-color: var(--accent-bg);
             color: var(--heading-color);
@@ -168,7 +168,7 @@
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
-        /<em> Footer Styling </em>/
+        /* Footer Styling */
         footer {
             margin-top: var(--spacing-lg);
             padding-top: var(--spacing-md);
@@ -236,5 +236,5 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

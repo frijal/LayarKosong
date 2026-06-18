@@ -50,7 +50,7 @@
     <meta name="promphint" content="Apa itu perintah SL di Linux? | Program hiburan berupa animasi kereta api ASCII yang muncul untuk mengejek atau menghibur pengguna yang salah mengetik perintah 'ls'.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables for Theming </em>/
+        /* CSS Variables for Theming */
         :root {
             --bg-color: #f8fafc;
             --text-main: #334155;
@@ -64,7 +64,7 @@
             --quote-bg: #f1f5f9;
             --quote-border: #0ea5e9;
         }
-        /<em> Dark Mode Support </em>/
+        /* Dark Mode Support */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0f172a;
@@ -80,8 +80,8 @@
                 --quote-border: #38bdf8;
             }
         }
-        /<em> Reset & Base Typography </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base Typography */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -90,18 +90,18 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 1.125rem; /<em> 18px </em>/
+            font-size: 1.125rem; /* 18px */
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Mobile-First Layout Container </em>/
+        /* Mobile-First Layout Container */
         .container {
-            max-width: 64rem; /<em> 1024px </em>/
+            max-width: 64rem; /* 1024px */
             width: 100%;
             margin: 0 auto;
             padding: 2.5rem 1.5rem;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3 {
             color: var(--heading-color);
             font-weight: 700;
@@ -136,7 +136,7 @@
             color: var(--accent-hover);
             border-bottom-style: solid;
         }
-        /<em> Image Handling (Prevent CLS) </em>/
+        /* Image Handling (Prevent CLS) */
         figure {
             margin: 2.5rem 0;
             width: 100%;
@@ -160,7 +160,7 @@
             border-top: 0.0625rem solid var(--border-color);
             background-color: var(--bg-color);
         }
-        /<em> Blockquotes </em>/
+        /* Blockquotes */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 0.375rem solid var(--quote-border);
@@ -170,7 +170,7 @@
             font-style: italic;
             color: var(--heading-color);
         }
-        /<em> Code Blocks & Inline Code </em>/
+        /* Code Blocks & Inline Code */
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -194,7 +194,7 @@
             font-size: 0.9em;
             border: 0.0625rem solid var(--border-color);
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -202,7 +202,7 @@
         li {
             margin-bottom: 0.75rem;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -301,6 +301,6 @@ You can install it by typing: sudo apt-get install sl</code></pre>
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

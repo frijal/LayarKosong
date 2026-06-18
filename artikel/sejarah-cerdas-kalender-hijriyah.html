@@ -60,7 +60,7 @@
     <meta name="promphint" content="Apa alasan penetapan awal kalender Hijriyah? | Ditetapkan berdasarkan peristiwa hijrah Nabi sebagai simbol pergerakan, berawal dari krisis administrasi surat tanpa tanggal.">
     <!-- Canonical -->
     <style>
-        /<em> CSS Variables untuk Tema Terang dan Gelap </em>/
+        /* CSS Variables untuk Tema Terang dan Gelap */
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
@@ -83,8 +83,8 @@
                 --quote-bg: #0f172a;
             }
         }
-        /<em> Reset & Base Typography (Unit menggunakan rem) </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base Typography (Unit menggunakan rem) */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -98,7 +98,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /<em> Layout & Container (Mobile First) </em>/
+        /* Layout & Container (Mobile First) */
         .container {
             width: 100%;
             max-width: 64rem;
@@ -108,7 +108,7 @@
             min-height: 100vh;
             box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1);
         }
-        /<em> Typography Styling </em>/
+        /* Typography Styling */
         h1, h2, h3 {
             color: var(--text-main);
             line-height: 1.3;
@@ -146,7 +146,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul, ol {
             color: var(--text-muted);
             margin-bottom: 1.5rem;
@@ -157,7 +157,7 @@
             margin-bottom: 0.75rem;
             padding-left: 0.5rem;
         }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         blockquote {
             border-left: 0.375rem solid var(--accent-color);
             background-color: var(--quote-bg);
@@ -167,7 +167,7 @@
             font-style: italic;
             color: var(--text-main);
         }
-        /<em> Media / Image Styling & LCP Optimization </em>/
+        /* Media / Image Styling & LCP Optimization */
         figure {
             margin: 2.5rem 0;
             width: 100%;
@@ -180,7 +180,7 @@
             width: 100%;
             height: auto;
             aspect-ratio: 16 / 9;
-            object-fit: contain; /<em> Memastikan rasio asli tidak terpotong </em>/
+            object-fit: contain; /* Memastikan rasio asli tidak terpotong */
             background-color: var(--bg-muted);
         }
         figcaption {
@@ -191,7 +191,7 @@
             font-style: italic;
             border-top: 0.0625rem solid var(--border-color);
         }
-        /<em> Header & Footer </em>/
+        /* Header & Footer */
         header {
             margin-bottom: 3rem;
             text-align: center;
@@ -264,5 +264,5 @@
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

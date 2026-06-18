@@ -74,7 +74,7 @@
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    /<em> Container: single column, centered but full-bleed header/gallery </em>/
+    /* Container: single column, centered but full-bleed header/gallery */
     .wrap {
       width: min(100%, 1200px);
       margin-inline: auto;
@@ -105,7 +105,7 @@
       color: var(--muted);
       max-width: 52ch;
     }
-    /<em> Meta bar: info icons </em>/
+    /* Meta bar: info icons */
     .meta {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -127,7 +127,7 @@
       font-size: .95rem;
     }
     .chip .icon { font-size: 1.25rem; }
-    /<em> Article card </em>/
+    /* Article card */
     .article {
       width: min(100%, var(--maxw));
       margin: 2rem auto;
@@ -149,7 +149,7 @@
       margin: 1.2rem 0;
       border-top: 1px dashed #22304a;
     }
-    /<em> Gallery </em>/
+    /* Gallery */
     .gallery {
       width: min(100%, var(--maxw));
       margin: 2rem auto;
@@ -183,7 +183,7 @@
       color: #e5e7eb;
       font-size: .95rem;
     }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox {
       position: fixed; inset: 0; display: none;
       background: rgba(0,0,0,.8);
@@ -222,7 +222,7 @@
       transform: none;
       border-radius: 10px;
     }
-    /<em> Share row </em>/
+    /* Share row */
     .share {
       width: min(100%, var(--maxw));
       margin: 1rem auto 2rem;
@@ -239,7 +239,7 @@
       cursor: pointer;
     }
     .btn .sicon { font-size: 1.15rem; }
-    /<em> Floating buttons: Sitemap and Home </em>/
+    /* Floating buttons: Sitemap and Home */
     .float-left {
       position: fixed; left: 1.2rem; top: 30%;
       z-index: 999;
@@ -257,7 +257,7 @@
       cursor: pointer;
     }
     .float-btn:hover { filter: brightness(1.05); }
-    /<em> Facebook comments box </em>/
+    /* Facebook comments box */
     .comments {
       width: min(100%, var(--maxw));
       margin: 2rem auto;
@@ -266,13 +266,13 @@
       border: 1px solid var(--border);
       border-radius: 14px;
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       text-align: center;
       padding: 2rem 1rem 3rem;
       color: var(--muted);
     }
-    /<em> Responsive tweaks </em>/
+    /* Responsive tweaks */
     @media (max-width: 640px) {
       .lb-prev, .lb-next { display: none; }
       .hero { min-height: 42vh; }
@@ -408,5 +408,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

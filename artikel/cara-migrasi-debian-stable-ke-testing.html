@@ -50,7 +50,7 @@
     <meta name="news_keywords" content="Debian, Linux, Migrasi Debian, Debian Testing, Trixie, Bookworm, Server Linux, apt full-upgrade">
     <meta name="promphint" content="Bagaimana cara migrasi dari Debian Stable ke Testing? Kamu bisa mengubah repository di sources.list ke trixie dan melakukan apt full-upgrade, namun instalasi ulang lebih disarankan.">
     <style>
-        /<em> Mobile-first variables </em>/
+        /* Mobile-first variables */
         :root {
             --bg-color: #fdfdfd;
             --text-color: #2b2b2b;
@@ -70,7 +70,7 @@
             --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --radius: 0.375rem;
         }
-        /<em> Dark mode support </em>/
+        /* Dark mode support */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0f172a;
@@ -86,7 +86,7 @@
                 --alert-border: #6b4c00;
             }
         }
-        /<em> Base styles </em>/
+        /* Base styles */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -96,7 +96,7 @@
             margin: 0;
             padding: 0;
         }
-        /<em> Desktop Breakpoint & Centering </em>/
+        /* Desktop Breakpoint & Centering */
         .wrapper {
             width: 100%;
             padding: var(--spacing-md);
@@ -113,14 +113,14 @@
                 padding: var(--spacing-lg);
             }
         }
-        /<em> Typography sizing using rem </em>/
+        /* Typography sizing using rem */
         h1 { font-size: 2rem; line-height: 1.3; margin-top: 0; margin-bottom: var(--spacing-md); }
         h2 { font-size: 1.5rem; line-height: 1.4; margin-top: 2.5rem; margin-bottom: 1rem; }
         h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; }
         p, ul, li { font-size: 1.125rem; margin-bottom: var(--spacing-md); }
         a { color: var(--link-color); text-decoration: none; transition: color 0.2s ease; }
         a:hover { color: var(--link-hover); text-decoration: underline; }
-        /<em> Images (LCP optimized layout, avoided huge hero above fold) </em>/
+        /* Images (LCP optimized layout, avoided huge hero above fold) */
         .article-image {
             width: 100%;
             height: auto;
@@ -131,7 +131,7 @@
             margin: var(--spacing-lg) 0;
             background-color: var(--border-color);
         }
-        /<em> Code Block (Syntax Highlighting placeholder Theme) </em>/
+        /* Code Block (Syntax Highlighting placeholder Theme) */
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -146,7 +146,7 @@
         code {
             font-family: inherit;
         }
-        /<em> Table Styles </em>/
+        /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -162,7 +162,7 @@
             background-color: var(--table-head-bg);
             font-weight: 600;
         }
-        /<em> Warning Box </em>/
+        /* Warning Box */
         blockquote {
             background-color: var(--alert-bg);
             color: var(--alert-text);
@@ -173,7 +173,7 @@
             font-size: 1.05rem;
         }
         blockquote p { margin: 0; }
-        /<em> Footer styling for E-E-A-T inline metadata </em>/
+        /* Footer styling for E-E-A-T inline metadata */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -309,6 +309,6 @@ sudo apt autoclean</code></pre>
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

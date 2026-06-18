@@ -58,13 +58,13 @@
 <!-- Font Awesome 6 (gratis) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-    /<em> Reset & base </em>/
+    /* Reset & base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> Variabel warna untuk tema terang/gelap berdasarkan preferensi sistem </em>/
+    /* Variabel warna untuk tema terang/gelap berdasarkan preferensi sistem */
     :root {
       --bg: #ffffff;
       --text: #1e1e2f;
@@ -101,7 +101,7 @@
       margin: 0 auto;
       background: var(--bg);
     }
-    /<em> Tipografi santai </em>/
+    /* Tipografi santai */
     h1 {
       font-size: 2rem;
       margin: 1rem 0 0.5rem;
@@ -137,7 +137,7 @@
     li {
       margin-bottom: 0.4rem;
     }
-    /<em> Gaya kode & kutipan </em>/
+    /* Gaya kode & kutipan */
     code {
       background: var(--code-bg);
       padding: 0.2rem 0.4rem;
@@ -155,7 +155,7 @@
       margin-bottom: 1.5rem;
       font-size: 0.9rem;
     }
-    /<em> Tabel responsif </em>/
+    /* Tabel responsif */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -179,7 +179,7 @@
     tr:last-child td {
       border-bottom: none;
     }
-    /<em> Gambar responsif </em>/
+    /* Gambar responsif */
     img {
       max-width: 100%;
       height: auto;
@@ -188,7 +188,7 @@
       border-radius: 12px;
       box-shadow: var(--shadow);
     }
-    /<em> Kartu highlight </em>/
+    /* Kartu highlight */
     .highlight {
       background: var(--card-bg);
       border-left: 6px solid #f39c12;
@@ -201,7 +201,7 @@
       margin-right: 0.5rem;
       color: #f39c12;
     }
-    /<em> Komentar & related articles placeholder </em>/
+    /* Komentar & related articles placeholder */
     #related-articles-grid, #response {
       background: var(--card-bg);
       border: 2px dashed var(--border);
@@ -212,7 +212,7 @@
       font-style: italic;
       color: var(--accent-light);
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 3rem;
       padding: 1.5rem 0;
@@ -220,12 +220,12 @@
       text-align: center;
       font-size: 0.9rem;
     }
-    /<em> Emoji inline </em>/
+    /* Emoji inline */
     .emoji-icon {
       font-size: 1.2rem;
       margin-right: 0.2rem;
     }
-    /<em> Responsif ekstra </em>/
+    /* Responsif ekstra */
     @media (max-width: 600px) {
       h1 { font-size: 1.7rem; }
       h2 { font-size: 1.4rem; }
@@ -356,6 +356,6 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

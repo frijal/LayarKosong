@@ -56,7 +56,7 @@
     <!-- FontAwesome untuk Ikon -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Variabel CSS untuk Dukungan Terang & Gelap </em>/
+        /* Variabel CSS untuk Dukungan Terang & Gelap */
         :root {
             --bg-color: #f8fafc;
             --text-main: #334155;
@@ -97,8 +97,8 @@
                 --alert-border: #d97706;
             }
         }
-        /<em> Reset Tipografi & Spasi </em>/
-        <em>, </em>::before, *::after {
+        /* Reset Tipografi & Spasi */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -111,14 +111,14 @@
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Tata Letak Kontainer Responsif </em>/
+        /* Tata Letak Kontainer Responsif */
         .container {
             max-width: 64rem;
             width: 100%;
             margin: 0 auto;
             padding: 2.5rem 1.5rem;
         }
-        /<em> Hierarki Judul </em>/
+        /* Hierarki Judul */
         h1, h2, h3 {
             color: var(--text-heading);
             font-weight: 700;
@@ -154,7 +154,7 @@
             color: var(--accent-hover);
             border-bottom-style: solid;
         }
-        /<em> Daftar Terurut & Tidak Terurut </em>/
+        /* Daftar Terurut & Tidak Terurut */
         ul, ol {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -162,7 +162,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> Blok Kutipan </em>/
+        /* Blok Kutipan */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 0.375rem solid var(--quote-border);
@@ -172,7 +172,7 @@
             border-radius: 0 0.5rem 0.5rem 0;
             color: var(--text-heading);
         }
-        /<em> Blok Peringatan Kustom </em>/
+        /* Blok Peringatan Kustom */
         .alert {
             background-color: var(--alert-bg);
             color: var(--alert-text);
@@ -184,7 +184,7 @@
             align-items: flex-start;
             gap: 1rem;
         }
-        /<em> Optimasi Gambar: Prioritas LCP & Anti-CLS </em>/
+        /* Optimasi Gambar: Prioritas LCP & Anti-CLS */
         .hero-wrapper {
             margin: 2rem 0;
             border-radius: 0.75rem;
@@ -207,7 +207,7 @@
             font-style: italic;
             border-top: 0.0625rem solid var(--border-color);
         }
-        /<em> Penyorotan Sintaks & Blok Kode Murni CSS </em>/
+        /* Penyorotan Sintaks & Blok Kode Murni CSS */
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -231,12 +231,12 @@
             border: 0.0625rem solid var(--border-color);
             white-space: nowrap;
         }
-        /<em> Ikon </em>/
+        /* Ikon */
         .icon {
             color: var(--accent-color);
             margin-right: 0.5rem;
         }
-        /<em> Footer & Struktur E-E-A-T Inline </em>/
+        /* Footer & Struktur E-E-A-T Inline */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -330,6 +330,6 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</code></pre>
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

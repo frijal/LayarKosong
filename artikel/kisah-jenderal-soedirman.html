@@ -46,34 +46,34 @@
     <title>Kisah Sang Panglima Gerilya, Jenderal Soedirman - Layar Kosong</title> 
 <meta name="keywords" content="Jenderal Soedirman, panglima besar, gerilya, perang kemerdekaan, agresi militer II, TKR, PETA, sejarah indonesia, pahlawan nasional, ambarawa">
     <style>
-        /<em> CSS3 untuk Reset Dasar dan Tema </em>/
+        /* CSS3 untuk Reset Dasar dan Tema */
         :root {
-            /<em> Tema Light (Default) </em>/
+            /* Tema Light (Default) */
             --bg-color: #f9f9f9;
             --text-color: #333333;
             --header-color: #111111;
             --meta-color: #666666;
             --card-bg: #ffffff;
-            --accent-color: #8B4513; /<em> Warna coklat tua, nuansa perjuangan </em>/
+            --accent-color: #8B4513; /* Warna coklat tua, nuansa perjuangan */
             --accent-light: #f5f0e9;
             --shadow-color: rgba(0, 0, 0, 0.08);
             --border-color: #eeeeee;
         }
         @media (prefers-color-scheme: dark) {
-            /<em> Tema Dark (Otomatis Deteksi) </em>/
+            /* Tema Dark (Otomatis Deteksi) */
             :root {
                 --bg-color: #121212;
                 --text-color: #eeeeee;
                 --header-color: #ffffff;
                 --meta-color: #999999;
                 --card-bg: #1e1e1e;
-                --accent-color: #D2B48C; /<em> Coklat muda (Tan) di mode gelap </em>/
+                --accent-color: #D2B48C; /* Coklat muda (Tan) di mode gelap */
                 --accent-light: #2c2a28;
                 --shadow-color: rgba(255, 255, 255, 0.05);
                 --border-color: #333333;
             }
         }
-        /<em> Fullscreen & Mobile-Friendly Base </em>/
+        /* Fullscreen & Mobile-Friendly Base */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -88,17 +88,17 @@
             line-height: 1.7;
             overflow-y: auto;
         }
-        /<em> Widescreen & Responsive Layout </em>/
+        /* Widescreen & Responsive Layout */
         body {
             display: flex;
             justify-content: center;
         }
         main.container {
             width: 100%;
-            max-width: 1200px; /<em> Desain Widescreen </em>/
+            max-width: 1200px; /* Desain Widescreen */
             padding: 2.5rem;
         }
-        /<em> Styling Artikel </em>/
+        /* Styling Artikel */
         article header {
             text-align: center;
             margin-bottom: 2.5rem;
@@ -137,7 +137,7 @@
         .content li {
             margin-bottom: 0.75rem;
         }
-        /<em> Styling Gambar </em>/
+        /* Styling Gambar */
         figure {
             margin: 2rem 0;
             text-align: center;
@@ -155,7 +155,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /<em> Styling Quote (Blockquote) </em>/
+        /* Styling Quote (Blockquote) */
         blockquote {
             background-color: var(--accent-light);
             border-left: 5px solid var(--accent-color);
@@ -169,7 +169,7 @@
         blockquote p {
             margin-bottom: 0;
         }
-        /<em> Footer Artikel (Sumber) </em>/
+        /* Footer Artikel (Sumber) */
         article footer {
             margin-top: 3rem;
             border-top: 1px solid var(--border-color);
@@ -185,7 +185,7 @@
             color: var(--meta-color);
             list-style-type: disc;
         }
-        /<em> Kolom Komentar </em>/
+        /* Kolom Komentar */
         #zdummy {
             margin-top: 3rem;
         }
@@ -201,7 +201,7 @@
             border-radius: 8px;
             min-height: 150px;
         }
-        /<em> Mobile-Friendly Adjusment </em>/
+        /* Mobile-Friendly Adjusment */
         @media (max-width: 768px) {
             main.container {
                 padding: 1rem;
@@ -313,5 +313,5 @@
              <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -71,7 +71,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all';this.onload=null;">
     <noscript><link rel="stylesheet" href="/ext/fontawesome.css"></noscript>
     <style>
-        /<em> ============ CSS Custom Properties for Light/Dark Theme ============ </em>/
+        /* ============ CSS Custom Properties for Light/Dark Theme ============ */
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
@@ -115,7 +115,7 @@
             --comparison-good: #0d904f;
             --comparison-bad: #c44536;
         }
-        /<em> Dark Theme via prefers-color-scheme </em>/
+        /* Dark Theme via prefers-color-scheme */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-primary: #1a1a24;
@@ -161,7 +161,7 @@
                 --comparison-bad: #d45b4a;
             }
         }
-        /<em> ============ Global Reset & Base Styles ============ </em>/
+        /* ============ Global Reset & Base Styles ============ */
         *,
         *::before,
         *::after {
@@ -191,7 +191,7 @@
             background-color: var(--selection-bg);
             color: var(--selection-text);
         }
-        /<em> ============ Layout Container ============ </em>/
+        /* ============ Layout Container ============ */
         .container {
             width: 100%;
             max-width: 1000px;
@@ -199,7 +199,7 @@
             padding: 0 20px;
             flex: 1;
         }
-        /<em> ============ Header / Article Header ============ </em>/
+        /* ============ Header / Article Header ============ */
         .article-header {
             padding: 32px 0 20px;
             text-align: center;
@@ -244,7 +244,7 @@
             color: var(--border-color);
             font-weight: 300;
         }
-        /<em> ============ Featured Image ============ </em>/
+        /* ============ Featured Image ============ */
         .featured-image-wrapper {
             margin: 20px auto 28px;
             text-align: center;
@@ -263,7 +263,7 @@
             aspect-ratio: 1200 / 630;
             object-fit: cover;
         }
-        /<em> ============ Article Content ============ </em>/
+        /* ============ Article Content ============ */
         .article-content {
             font-size: 1.05rem;
             color: var(--text-secondary);
@@ -371,7 +371,7 @@
             font-weight: 400;
             color: var(--text-secondary);
         }
-        /<em> ============ 5W+1H Highlight Box ============ </em>/
+        /* ============ 5W+1H Highlight Box ============ */
         .wh-highlight-box {
             background-color: var(--highlight-box-bg);
             border: 2px solid var(--highlight-box-border);
@@ -400,7 +400,7 @@
             color: var(--accent);
             font-weight: 700;
         }
-        /<em> ============ Table Styles ============ </em>/
+        /* ============ Table Styles ============ */
         .article-content table {
             width: 100%;
             border-collapse: collapse;
@@ -430,7 +430,7 @@
         .article-content tbody tr:last-child td {
             border-bottom: none;
         }
-        /<em> ============ Inline Image ============ </em>/
+        /* ============ Inline Image ============ */
         .article-content .inline-image {
             margin: 22px auto;
             text-align: center;
@@ -457,7 +457,7 @@
             margin-bottom: 16px;
             font-style: italic;
         }
-        /<em> ============ Card Highlight ============ </em>/
+        /* ============ Card Highlight ============ */
         .card-highlight {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -476,7 +476,7 @@
             margin-bottom: 6px;
             font-size: 1rem;
         }
-        /<em> ============ Info Cards (Pro/Contra, Tips) ============ </em>/
+        /* ============ Info Cards (Pro/Contra, Tips) ============ */
         .info-card {
             padding: 16px 20px;
             border-radius: 10px;
@@ -506,7 +506,7 @@
                 color: #ffcc80;
             }
         }
-        /<em> ============ Related Articles Grid & Response ============ </em>/
+        /* ============ Related Articles Grid & Response ============ */
         #related-articles-grid {
             margin: 36px 0 20px;
             padding: 20px;
@@ -522,7 +522,7 @@
             justify-content: center;
             gap: 8px;
         }
-        /<em> ============ Footer ============ </em>/
+        /* ============ Footer ============ */
         .site-footer {
             background-color: var(--footer-bg);
             color: var(--footer-text);
@@ -563,13 +563,13 @@
             align-items: center;
             gap: 4px;
         }
-        /<em> ============ Divider ============ </em>/
+        /* ============ Divider ============ */
         .section-divider {
             border: none;
             border-top: 1px solid var(--divider-color);
             margin: 28px 0;
         }
-        /<em> ============ Badge / Tag ============ </em>/
+        /* ============ Badge / Tag ============ */
         .tag-list {
             display: flex;
             flex-wrap: wrap;
@@ -592,7 +592,7 @@
             color: var(--accent);
             border-color: var(--accent);
         }
-        /<em> ============ Highlight number ============ </em>/
+        /* ============ Highlight number ============ */
         .num-highlight {
             display: inline-block;
             background-color: var(--accent);
@@ -606,7 +606,7 @@
             font-size: 0.85rem;
             margin-right: 6px;
         }
-        /<em> ============ Responsive Adjustments ============ </em>/
+        /* ============ Responsive Adjustments ============ */
         @media (max-width: 768px) {
             .container {
                 padding: 0 16px;
@@ -845,6 +845,6 @@
                        <p style="margin-top:10px;font-size:0.78rem;color:#8888a0;">Optimasi Core Web Vitals: LCP, CLS, INP. Tema terang/gelap via <code>prefers-color-scheme</code> CSS murni tanpa JavaScript.</p>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

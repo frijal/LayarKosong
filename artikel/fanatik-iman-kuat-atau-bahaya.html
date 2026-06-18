@@ -58,13 +58,13 @@
     <!-- Twitter Card -->
     <!-- Article Tags (variasi) -->
     <style>
-        /<em> Reset & base - No Tailwind, pure CSS </em>/
+        /* Reset & base - No Tailwind, pure CSS */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> Light mode (default) </em>/
+        /* Light mode (default) */
         :root {
             --bg-body: #f7f9fc;
             --bg-card: #ffffff;
@@ -77,7 +77,7 @@
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        /<em> Dark mode via prefers-color-scheme (tanpa JS) </em>/
+        /* Dark mode via prefers-color-scheme (tanpa JS) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #0f172a;
@@ -157,7 +157,7 @@
             box-shadow: var(--shadow-sm);
             background: var(--code-bg);
         }
-        /<em> CLS diatasi dengan aspect ratio </em>/
+        /* CLS diatasi dengan aspect ratio */
         img[src*="thumbnail"] {
             width: 100%;
             aspect-ratio: 1200 / 630;
@@ -357,5 +357,5 @@
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel berdasarkan Al-Qur'an, hadis, dan kajian psikologi. Mengikuti prinsip E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness). 📌 Rujukan: Tafsir Ibnu Katsir, Shahih Bukhari, serta jurnal psikologi sosial.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -53,7 +53,7 @@
     <link rel="preload" as="image" href="https://scontent-sin2-1.xx.fbcdn.net/v/t39.30808-6/703796687_948301414873313_1345326115564465751_n.jpg?_nc_cat=100&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_eui2=AeGN33kE_zswbWSsSuPH0CAlO72WkNrqo847vZaQ2uqjzjknGJH5GZTIQEUAAMfkJlY&amp;_nc_ohc=1wZMpbcJA_sQ7kNvwGOGYJc&amp;_nc_oc=Adqwpc8VXoznSj8eUJqzjWlV9-ZYz7FALpdlsdZLMC3jJOt98Lpoh-LxKyg24_lE_uvAFEq-bcKPBH7xuzUjp8Eh&amp;_nc_zt=23&amp;_nc_ht=scontent-sin2-1.xx&amp;_nc_gid=faBo9vbThoSIWU9XJj-xvQ&amp;_nc_ss=7b2a8&amp;oh=00_Af4HBcE4d3ZBQ_j--yg3RrvgES2CIF3Erm2jSdDdS-NP8g&amp;oe=6A1C8341" fetchpriority="high">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native & Aksesibilitas (System Font Stack & WCAG AA Contrast) </em>/
+        /* CSS Native & Aksesibilitas (System Font Stack & WCAG AA Contrast) */
         :root {
             --bg-color: #ffffff;
             --text-color: #334155;
@@ -92,7 +92,7 @@
             line-height: 1.8;
             font-size: 16px;
         }
-        /<em> Desain Mobile-first (Max Width 1000px, Center di Desktop) </em>/
+        /* Desain Mobile-first (Max Width 1000px, Center di Desktop) */
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -132,7 +132,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> Class khusus untuk tautan artikel guna menghindari bentrokan pseudo-element </em>/
+        /* Class khusus untuk tautan artikel guna menghindari bentrokan pseudo-element */
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
@@ -142,7 +142,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /<em> Metadata Penulis (E-E-A-T) </em>/
+        /* Metadata Penulis (E-E-A-T) */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -159,7 +159,7 @@
             align-items: center;
             gap: 0.25rem;
         }
-        /<em> Kontainer Gambar Anti-CLS </em>/
+        /* Kontainer Gambar Anti-CLS */
         .image-container {
             margin: 1.5rem 0;
             background-color: var(--card-bg);
@@ -203,7 +203,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /<em> Responsivitas Layar Besar </em>/
+        /* Responsivitas Layar Besar */
         @media (min-width: 768px) {
             .wrapper {
                 padding: 2.5rem;
@@ -299,5 +299,5 @@
         <p>🄯 2026 Layar Kosong. Diterbitkan ulang untuk kepentingan edukasi publik dan literasi ekonomi bangsa.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

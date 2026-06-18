@@ -77,13 +77,13 @@
 <!-- Structured Data JSON-LD -->
 <!-- FAQ Structured Data -->
 <style>
-        /<em> CSS Reset Minimal </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset Minimal */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        /<em> CSS Variables - Light Theme (Default) </em>/
+        /* CSS Variables - Light Theme (Default) */
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
@@ -106,7 +106,7 @@
             --line-height: 1.7;
             --transition: all 0.2s ease;
         }
-        /<em> CSS Variables - Dark Theme </em>/
+        /* CSS Variables - Dark Theme */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-primary: #0d1117;
@@ -124,7 +124,7 @@
                 --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
             }
         }
-        /<em> Base Styles </em>/
+        /* Base Styles */
         html {
             scroll-behavior: smooth;
             font-size: 1.2rem;
@@ -138,21 +138,21 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /<em> Main Container - Mobile First </em>/
+        /* Main Container - Mobile First */
         .container {
             width: 100%;
             max-width: 100%;
             margin: 0 auto;
             padding: 1rem;
         }
-        /<em> Desktop - Max Width 1000px Centered </em>/
+        /* Desktop - Max Width 1000px Centered */
         @media (min-width: 1024px) {
             .container {
                 max-width: 1000px;
                 padding: 2rem;
             }
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3, h4, h5, h6 {
             font-weight: 700;
             line-height: 1.3;
@@ -182,7 +182,7 @@
             margin-bottom: 1.25rem;
             color: var(--text-secondary);
         }
-        /<em> Article Header </em>/
+        /* Article Header */
         .article-header {
             text-align: center;
             padding: 2rem 0;
@@ -203,7 +203,7 @@
             align-items: center;
             gap: 0.4rem;
         }
-        /<em> Featured Image </em>/
+        /* Featured Image */
         .featured-image {
             width: 100%;
             height: auto;
@@ -213,11 +213,11 @@
             aspect-ratio: 16/9;
             object-fit: cover;
         }
-        /<em> Content Sections </em>/
+        /* Content Sections */
         .content-section {
             margin-bottom: 2.5rem;
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul, ol {
             margin: 1.25rem 0;
             padding-left: 1.5rem;
@@ -229,12 +229,12 @@
         ul li::marker {
             color: var(--accent-primary);
         }
-        /<em> Strong and Emphasis </em>/
+        /* Strong and Emphasis */
         strong {
             color: var(--text-primary);
             font-weight: 600;
         }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         blockquote {
             background: var(--accent-light);
             border-left: 4px solid var(--accent-primary);
@@ -246,7 +246,7 @@
         blockquote p:last-child {
             margin-bottom: 0;
         }
-        /<em> Code Blocks </em>/
+        /* Code Blocks */
         pre {
             background: var(--bg-tertiary);
             border-radius: var(--radius-md);
@@ -270,7 +270,7 @@
             padding: 0;
             color: inherit;
         }
-        /<em> Links </em>/
+        /* Links */
         a {
             color: var(--accent-primary);
             text-decoration: none;
@@ -280,7 +280,7 @@
             color: var(--accent-secondary);
             text-decoration: underline;
         }
-        /<em> Feature Cards </em>/
+        /* Feature Cards */
         .feature-grid {
             display: grid;
             gap: 1.5rem;
@@ -313,7 +313,7 @@
             font-size: 1.5rem;
             color: var(--accent-primary);
         }
-        /<em> FAQ Section </em>/
+        /* FAQ Section */
         .faq-item {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -339,7 +339,7 @@
             padding-left: 2.5rem;
             color: var(--text-secondary);
         }
-        /<em> Highlight Box </em>/
+        /* Highlight Box */
         .highlight-box {
             background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-secondary) 100%);
             border: 1px solid var(--accent-primary);
@@ -371,7 +371,7 @@
 .comparison-table tr:nth-child(even) {
     background: var(--bg-secondary);
 }
-/<em> Responsif: scroll horizontal di layar kecil </em>/
+/* Responsif: scroll horizontal di layar kecil */
 @media (max-width: 768px) {
     .comparison-table {
         display: block;
@@ -379,7 +379,7 @@
         white-space: nowrap;
     }
 }
-        /<em> Tags </em>/
+        /* Tags */
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -398,7 +398,7 @@
             background: var(--accent-primary);
             color: white;
         }
-        /<em> Response Section (Comments) </em>/
+        /* Response Section (Comments) */
         #related-articles-grid {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -423,7 +423,7 @@
             margin-bottom: 1rem;
             opacity: 0.5;
         }
-        /<em> Related Articles Grid </em>/
+        /* Related Articles Grid */
         #response {
             margin: 3rem 0;
         }
@@ -464,7 +464,7 @@
             margin-bottom: 0;
             color: var(--text-muted);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
@@ -491,7 +491,7 @@
             color: var(--text-muted);
             font-size: 0.875rem;
         }
-        /<em> Scroll to Top Button </em>/
+        /* Scroll to Top Button */
         .scroll-top {
             position: fixed;
             bottom: 2rem;
@@ -521,7 +521,7 @@
             background: var(--accent-secondary);
             transform: translateY(-3px);
         }
-        /<em> Print Styles </em>/
+        /* Print Styles */
         @media print {
             .scroll-top,
             #related-articles-grid,
@@ -541,22 +541,22 @@
                 widows: 3;
             }
         }
-        /<em> Reduced Motion </em>/
+        /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
-            <em>, </em>::before, *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
         }
-        /<em> Focus Styles untuk Accessibility </em>/
+        /* Focus Styles untuk Accessibility */
         a:focus-visible,
         button:focus-visible {
             outline: 2px solid var(--accent-primary);
             outline-offset: 2px;
         }
-        /<em> Loading Animation untuk Images </em>/
+        /* Loading Animation untuk Images */
         img {
             background: var(--bg-tertiary);
         }
@@ -862,5 +862,5 @@
             });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

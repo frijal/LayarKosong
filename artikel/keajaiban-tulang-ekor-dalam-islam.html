@@ -64,7 +64,7 @@
   <noscript><link rel="stylesheet" href="/ext/fontawesome.css"></noscript>
   <!-- CSS kritis inline untuk menghindari FOUC dan perbaikan CLS -->
   <style>
-    /<em> Reset dan variabel tema </em>/
+    /* Reset dan variabel tema */
     * {
       margin: 0;
       padding: 0;
@@ -72,7 +72,7 @@
     }
     :root {
       color-scheme: light dark;
-      /<em> Tema terang (default) </em>/
+      /* Tema terang (default) */
       --bg-body: #f8fafc;
       --bg-card: #ffffff;
       --text-primary: #0f172a;
@@ -82,7 +82,7 @@
       --accent-light: #e0f2fe;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
-    /<em> Tema gelap otomatis </em>/
+    /* Tema gelap otomatis */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-body: #0b1120;
@@ -112,7 +112,7 @@
       box-shadow: var(--shadow);
       border: 1px solid var(--border-soft);
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.2rem;
       font-weight: 800;
@@ -138,7 +138,7 @@
       color: var(--text-secondary);
       margin-bottom: 1.2rem;
     }
-    /<em> Gambar </em>/
+    /* Gambar */
     figure {
       margin: 2rem 0;
     }
@@ -157,7 +157,7 @@
       color: var(--text-secondary);
       font-style: italic;
     }
-    /<em> Elemen pendukung </em>/
+    /* Elemen pendukung */
     .fa, .fas, .fa-regular {
       margin-right: 0.3rem;
       color: var(--accent);
@@ -213,7 +213,7 @@
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
     }
-    /<em> Kolom komentar (related-articles-grid & related) </em>/
+    /* Kolom komentar (related-articles-grid & related) */
     #related-articles-grid, #response {
       background-color: var(--bg-body);
       border-radius: 1.5rem;
@@ -224,7 +224,7 @@
       color: var(--text-secondary);
       font-size: 1rem;
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 3rem;
       padding-top: 1.5rem;
@@ -236,7 +236,7 @@
     footer i {
       color: var(--accent);
     }
-    /<em> Tombol dan link </em>/
+    /* Tombol dan link */
     a {
       color: var(--accent);
       text-decoration: none;
@@ -245,7 +245,7 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> Utility </em>/
+    /* Utility */
     .zdummy {
       background-color: var(--accent-light);
       padding: 1rem 1.5rem;
@@ -253,7 +253,7 @@
       font-size: 0.95rem;
       margin: 1.5rem 0;
     }
-    /<em> Responsif </em>/
+    /* Responsif */
     @media (max-width: 640px) {
       body {
         padding: 0.8rem;
@@ -271,7 +271,7 @@
         padding: 1rem 1.5rem;
       }
     }
-    /<em> Hindari ARIA dan hero, hanya fokus ke konten </em>/
+    /* Hindari ARIA dan hero, hanya fokus ke konten */
   </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
@@ -410,5 +410,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

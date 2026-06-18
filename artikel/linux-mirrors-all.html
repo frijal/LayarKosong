@@ -94,19 +94,19 @@ background:#fff;color:var(--accent);border:none;padding:8px 12px;border-radius:8
   main{
 max-width:1100px;margin:18px auto;padding:20px;background:var(--card);border-radius:12px;box-shadow:0 8px 30px rgba(15,20,30,0.06);
   }
-  /<em> Tabs </em>/
+  /* Tabs */
   .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
   .tab-btn{
 padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);
 background:transparent;cursor:pointer;font-weight:600;color:var(--muted);
   }
   .tab-btn.active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 6px 18px rgba(11,122,117,0.12)}
-  /<em> Content </em>/
+  /* Content */
   .panel{display:none}
   .panel.active{display:block}
   h2{color:var(--accent);margin-top:0}
   p, li{color:var(--muted)}
-  /<em> Code blocks </em>/
+  /* Code blocks */
   pre{
 position:relative;border-radius:8px;overflow:auto;margin:14px 0;background:#2d2d2d;
   }
@@ -125,7 +125,7 @@ margin:10px 0;
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   @media (max-width:900px){ .grid{grid-template-columns:1fr} header{flex-direction:column;align-items:flex-start} }
   footer{margin-top:18px;text-align:center;color:var(--muted);font-size:0.9rem}
-  /<em> Dark mode </em>/
+  /* Dark mode */
   body.dark{
 --bg:#071018;--card:#071218;--text:#e6f3f2;--muted:#a8c1bf;--accent:#66b2b0;--btn:#196f65;
 background:var(--bg);color:var(--text);
@@ -505,6 +505,6 @@ btn.addEventListener('keydown', (e)=>{
 });
   });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

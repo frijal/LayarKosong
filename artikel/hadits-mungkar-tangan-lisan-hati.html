@@ -55,7 +55,7 @@
 <!-- Twitter Card -->
 <!-- CSS inline untuk performa dan prefers-color-scheme -->
   <style>
-    /<em> Reset dan dasar </em>/
+    /* Reset dan dasar */
     * {
       margin: 0;
       padding: 0;
@@ -73,7 +73,7 @@
       transition: background-color 0.2s ease, color 0.2s ease;
       padding: 1.5rem 1rem;
     }
-    /<em> Kontainer utama 1 kolom, widescreen </em>/
+    /* Kontainer utama 1 kolom, widescreen */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -82,22 +82,22 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.03);
       padding: 2rem 1.8rem;
     }
-    /<em> Elemen gambar </em>/
+    /* Elemen gambar */
     .featured-image {
       width: 100%;
       max-height: auto;
       object-fit: cover;
       border-radius: 24px;
       margin: 1.8rem 0 1.2rem;
-      background-color: #e0e0e0; /<em> sementara jika gambar gagal </em>/
-      aspect-ratio: 16 / 9; /<em> menjaga CLS </em>/
+      background-color: #e0e0e0; /* sementara jika gambar gagal */
+      aspect-ratio: 16 / 9; /* menjaga CLS */
     }
     img {
       display: block;
       max-width: 100%;
       height: auto;
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.2rem;
       line-height: 1.2;
@@ -149,7 +149,7 @@
       font-size: 0.95rem;
       color: #4f4f4f;
     }
-    /<em> daftar dan ikon </em>/
+    /* daftar dan ikon */
     ul, ol {
       margin: 1rem 0 1.5rem 2rem;
     }
@@ -164,7 +164,7 @@
       margin-right: 8px;
       color: #b24d2c;
     }
-    /<em> Komentar & related grid (hanya placeholder) </em>/
+    /* Komentar & related grid (hanya placeholder) */
     #related-articles-grid {
       background: #eef1f5;
       padding: 2rem;
@@ -195,7 +195,7 @@
       font-size: 0.95rem;
       color: #3f3f3f;
     }
-    /<em> Tema gelap otomatis prefers-color-scheme </em>/
+    /* Tema gelap otomatis prefers-color-scheme */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -240,7 +240,7 @@
         color: #e09e7c;
       }
     }
-    /<em> mobile fix </em>/
+    /* mobile fix */
     @media (max-width: 600px) {
       .container {
         padding: 1.5rem 1.2rem;
@@ -256,7 +256,7 @@
         padding: 1rem;
       }
     }
-    /<em> utility </em>/
+    /* utility */
     .emoji-besar {
       font-size: 2rem;
       vertical-align: middle;
@@ -343,6 +343,6 @@
 </footer>
 </div>
 <!-- tidak ada javascript, hanya CSS murni -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

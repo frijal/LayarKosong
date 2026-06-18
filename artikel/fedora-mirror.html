@@ -51,14 +51,14 @@
     <meta name="news_keywords" content="fedora linux, dnf fastestmirror, skrip bash fedora, update fedora cepat, mirror fedora tercepat, optimasi dnf">
     <meta name="promphint" content="Bagaimana cara mempercepat update Fedora? | Aktifkan plugin fastestmirror pada konfigurasi DNF menggunakan skrip bash agar otomatis mencari server tercepat.">
     <style>
-        /<em> CSS Reset & Tokens </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & Tokens */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         :root {
-            /<em> Light Theme </em>/
+            /* Light Theme */
             --bg-color: #f8fafc;
             --text-main: #334155;
             --text-heading: #0f172a;
@@ -66,21 +66,21 @@
             --accent: #2563eb;
             --accent-hover: #1d4ed8;
             --border-color: #e2e8f0;
-            /<em> Code Block Light </em>/
+            /* Code Block Light */
             --code-bg: #1e293b;
             --code-text: #f8fafc;
             --code-comment: #94a3b8;
             --code-keyword: #c084fc;
             --code-string: #34d399;
             --code-cmd: #60a5fa;
-            /<em> Callout Light </em>/
+            /* Callout Light */
             --callout-bg: #fef2f2;
             --callout-border: #f87171;
             --callout-text: #991b1b;
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Dark Theme </em>/
+                /* Dark Theme */
                 --bg-color: #0f172a;
                 --text-main: #cbd5e1;
                 --text-heading: #f8fafc;
@@ -88,14 +88,14 @@
                 --accent: #3b82f6;
                 --accent-hover: #60a5fa;
                 --border-color: #334155;
-                /<em> Code Block Dark </em>/
+                /* Code Block Dark */
                 --code-bg: #020617;
                 --code-text: #e2e8f0;
                 --code-comment: #64748b;
                 --code-keyword: #d8b4fe;
                 --code-string: #6ee7b7;
                 --code-cmd: #93c5fd;
-                /<em> Callout Dark </em>/
+                /* Callout Dark */
                 --callout-bg: #450a0a;
                 --callout-border: #ef4444;
                 --callout-text: #fca5a5;
@@ -109,14 +109,14 @@
             font-size: 1rem;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Mobile-First Container Layout </em>/
+        /* Mobile-First Container Layout */
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: 2rem 1.25rem;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3 {
             color: var(--text-heading);
             font-weight: 700;
@@ -153,7 +153,7 @@
         strong {
             color: var(--text-heading);
         }
-        /<em> Image Optimization & CLS Prevention </em>/
+        /* Image Optimization & CLS Prevention */
         .lcp-image-wrapper {
             margin: 2rem 0;
             width: 100%;
@@ -161,13 +161,13 @@
         .lcp-image-wrapper img {
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /<em> Mencegah layout shift </em>/
+            aspect-ratio: 16 / 9; /* Mencegah layout shift */
             object-fit: cover;
             border-radius: 0.75rem;
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
             display: block;
         }
-        /<em> Callout / Warning Box </em>/
+        /* Callout / Warning Box */
         .callout {
             background-color: var(--callout-bg);
             border-left: 0.4rem solid var(--callout-border);
@@ -180,7 +180,7 @@
         .callout p {
             margin-bottom: 0;
         }
-        /<em> Syntax Highlighting CSS </em>/
+        /* Syntax Highlighting CSS */
         pre {
             background-color: var(--code-bg);
             padding: 1.5rem;
@@ -201,13 +201,13 @@
             border-radius: 0.25rem;
             font-size: 0.9rem;
         }
-        /<em> Pure CSS Tokens </em>/
+        /* Pure CSS Tokens */
         .token.comment { color: var(--code-comment); font-style: italic; }
         .token.keyword { color: var(--code-keyword); font-weight: bold; }
         .token.string { color: var(--code-string); }
         .token.command { color: var(--code-cmd); }
         .token.operator { color: var(--text-muted); }
-        /<em> Footer / E-E-A-T Area </em>/
+        /* Footer / E-E-A-T Area */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -284,6 +284,6 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

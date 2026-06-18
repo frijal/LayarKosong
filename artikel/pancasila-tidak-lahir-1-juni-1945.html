@@ -48,7 +48,7 @@
     <meta name="article:tag" content="Sejarah, Politik, Pancasila, UUD 1945">
     <meta name="promphint" content="Kapan sebenarnya Pancasila lahir secara sah sebagai dasar negara? Pancasila lahir secara sah, yuridis, dan final pada tanggal 18 Agustus 1945 melalui pengesahan Pembukaan UUD 1945 oleh PPKI.">
     <style>
-        /<em> Native CSS Variables & Theme Setup </em>/
+        /* Native CSS Variables & Theme Setup */
         :root {
             --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
             --max-width: 65rem;
@@ -68,8 +68,8 @@
                 --border-color: #333333;
             }
         }
-        /<em> Base Reset & Accessibility </em>/
-        <em>, </em>::before, *::after {
+        /* Base Reset & Accessibility */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -81,7 +81,7 @@
             padding: 0;
             font-size: 1.1rem;
         }
-        /<em> Semantic Layout </em>/
+        /* Semantic Layout */
         main {
             max-width: var(--max-width);
             margin: 0 auto;
@@ -90,7 +90,7 @@
         article {
             width: 100%;
         }
-        /<em> Typography with rem sizes </em>/
+        /* Typography with rem sizes */
         h1 {
             font-size: 2.2rem;
             line-height: 1.2;
@@ -132,7 +132,7 @@
             font-style: italic;
             background-color: rgba(0,0,0,0.02);
         }
-        /<em> Images Optimizations for Core Web Vitals </em>/
+        /* Images Optimizations for Core Web Vitals */
         .article-image-container {
             width: 100%;
             margin: 1.5rem 0;
@@ -143,7 +143,7 @@
             display: block;
             border-radius: 4px;
         }
-        /<em> Unstyled Section for Author Meta / End Content </em>/
+        /* Unstyled Section for Author Meta / End Content */
         .unstyled-meta-block {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -241,5 +241,5 @@
         <p>🄯 2026 Layar Kosong. All rights reserved.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -118,10 +118,10 @@
         strong {
             color: var(--secondary-color);
         }
-        /<em> Galeri Foto: 3 Kolom </em>/
+        /* Galeri Foto: 3 Kolom */
         .photo-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /<em> 3 foto per baris </em>/
+            grid-template-columns: repeat(3, 1fr); /* 3 foto per baris */
             gap: 1rem;
             margin-top: 2rem;
         }
@@ -148,12 +148,12 @@
         .photo-gallery a:hover img {
             filter: brightness(1.1);
         }
-        /<em> Lightbox styling </em>/
+        /* Lightbox styling */
         .basicLightbox__placeholder img {
             max-width: 90vw;
             max-height: 90vh;
         }
-        /<em> Social Share </em>/
+        /* Social Share */
         .social-share {
             margin-top: 3rem;
             padding-top: 2rem;
@@ -197,7 +197,7 @@
         .instagram { background: #d6249f; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
         .threads { background-color: #000000; }
         .tiktok { background-color: #000000; }
-        /<em> Footer Info Section </em>/
+        /* Footer Info Section */
         .user-info-footer {
             margin-top: 3rem;
             padding: 2rem;
@@ -229,10 +229,10 @@
             width: 28px;
             border-radius: 4px;
         }
-                /<em> Responsive Design </em>/
+                /* Responsive Design */
         @media (max-width: 1024px) {
             .photo-gallery {
-                grid-template-columns: repeat(2, 1fr); /<em> 2 kolom untuk tablet </em>/
+                grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
             }
         }
         @media (max-width: 768px) {
@@ -246,7 +246,7 @@
                 font-size: 2.2rem;
             }
             .photo-gallery {
-                grid-template-columns: 1fr; /<em> 1 kolom untuk mobile </em>/
+                grid-template-columns: 1fr; /* 1 kolom untuk mobile */
             }
             #btn-home-left, #btn-home-right {
                 padding: 8px 12px;
@@ -325,5 +325,5 @@
             });
                                          });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

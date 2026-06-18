@@ -46,9 +46,9 @@
     <title>7 Cara Dihormati di Kantor Tanpa Nunggu Jabatan - Layar Kosong</title> 
 <meta name="keywords" content="rasa hormat, wibawa, karier, tempat kerja, pengembangan diri, integritas, kepemimpinan, soft skill, dihormati tanpa jabatan">
     <style>
-        /<em> CSS3 untuk Reset Dasar dan Tema </em>/
+        /* CSS3 untuk Reset Dasar dan Tema */
         :root {
-            /<em> Tema Light (Default) </em>/
+            /* Tema Light (Default) */
             --bg-color: #fcfcfc;
             --text-color: #333333;
             --header-color: #111111;
@@ -60,7 +60,7 @@
             --border-color: #eeeeee;
         }
         @media (prefers-color-scheme: dark) {
-            /<em> Tema Dark (Otomatis Deteksi) </em>/
+            /* Tema Dark (Otomatis Deteksi) */
             :root {
                 --bg-color: #121212;
                 --text-color: #eeeeee;
@@ -73,7 +73,7 @@
                 --border-color: #333333;
             }
         }
-        /<em> Fullscreen & Mobile-Friendly Base </em>/
+        /* Fullscreen & Mobile-Friendly Base */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -88,17 +88,17 @@
             line-height: 1.7;
             overflow-y: auto;
         }
-        /<em> Widescreen & Responsive Layout </em>/
+        /* Widescreen & Responsive Layout */
         body {
             display: flex;
             justify-content: center;
         }
         main.container {
             width: 100%;
-            max-width: 1200px; /<em> Desain Widescreen </em>/
+            max-width: 1200px; /* Desain Widescreen */
             padding: 2.5rem;
         }
-        /<em> Styling Artikel </em>/
+        /* Styling Artikel */
         article header {
             text-align: center;
             margin-bottom: 2.5rem;
@@ -126,7 +126,7 @@
             padding-bottom: 0.5rem;
             color: var(--header-color);
         }
-        /<em> Styling untuk daftar 7 trik </em>/
+        /* Styling untuk daftar 7 trik */
         .trik-list {
             list-style: none;
             padding-left: 0;
@@ -154,7 +154,7 @@
         .trik-list p:last-child {
             margin-bottom: 0;
         }
-        /<em> Styling Gambar </em>/
+        /* Styling Gambar */
         figure {
             margin: 2.5rem 0;
             text-align: center;
@@ -172,7 +172,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /<em> Styling Quote (dari HBR) </em>/
+        /* Styling Quote (dari HBR) */
         blockquote {
             background-color: var(--accent-light);
             border-left: 5px solid var(--accent-color);
@@ -193,7 +193,7 @@
             text-align: right;
             margin-top: 0.5rem;
         }
-        /<em> CTA di akhir </em>/
+        /* CTA di akhir */
         .cta-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -202,7 +202,7 @@
             text-align: center;
             margin-top: 2rem;
         }
-        /<em> Kolom Komentar </em>/
+        /* Kolom Komentar */
         #zdummy {
             margin-top: 3rem;
         }
@@ -217,7 +217,7 @@
             min-height: 150px;
             border: 1px solid var(--border-color);
         }
-        /<em> Mobile-Friendly Adjusment </em>/
+        /* Mobile-Friendly Adjusment */
         @media (max-width: 768px) {
             main.container {
                 padding: 1rem;
@@ -317,5 +317,5 @@
             </section>
     </article>
         </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

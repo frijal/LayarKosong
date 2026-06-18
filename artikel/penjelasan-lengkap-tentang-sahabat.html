@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Sahabat: Arti, Ciri, dan Cara Menjaga Persahabatan - Panduan Ringkas - Layar Kosong</title> 
 <style>
-        /<em> --- 1. DESIGN TOKENS (Modern SaaS & App Tech Theme) --- </em>/
+        /* --- 1. DESIGN TOKENS (Modern SaaS & App Tech Theme) --- */
         :root {
             --bg-base: #f6f8fb;
             --bg-canvas: #ffffff;
@@ -54,7 +54,7 @@
             --text-main: #111827;
             --text-muted: #6b7280;
             --text-body: #374151;
-            /<em> Formula Kaca Transparan Efektif </em>/
+            /* Formula Kaca Transparan Efektif */
             --glass-surface: rgba(255, 255, 255, 0.65);
             --glass-border: rgba(15, 23, 42, 0.06);
             --max-width: 1000px;
@@ -64,8 +64,8 @@
             --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
             --shadow-md: 0 6px 24px rgba(15, 23, 42, 0.06);
         }
-        /<em> --- 2. ROBUST RESET SYSTEM --- </em>/
-        <em>, </em>::before, *::after {
+        /* --- 2. ROBUST RESET SYSTEM --- */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -73,7 +73,7 @@
         html, body {
             min-height: 100vh;
             max-width: 100%;
-            overflow-x: hidden; /<em> Mencegah kebocoran horizontal akibat 100vw </em>/
+            overflow-x: hidden; /* Mencegah kebocoran horizontal akibat 100vw */
         }
         body {
             font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -84,7 +84,7 @@
             align-items: center;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> --- 3. STRUKTUR UTAMA LAYOUT --- </em>/
+        /* --- 3. STRUKTUR UTAMA LAYOUT --- */
         .container {
             max-width: var(--max-width);
             width: 100%;
@@ -112,7 +112,7 @@
             color: var(--text-muted);
             font-size: 0.875rem;
         }
-        /<em> Panel Utama </em>/
+        /* Panel Utama */
         .main {
             background-color: var(--bg-canvas);
             border-radius: var(--radius-lg);
@@ -121,7 +121,7 @@
             border: 1px solid var(--glass-border);
             width: 100%;
         }
-        /<em> --- 4. KOMPONEN TIPOGRAFI & BADGE --- </em>/
+        /* --- 4. KOMPONEN TIPOGRAFI & BADGE --- */
         h1 {
             font-size: 1.75rem;
             font-weight: 800;
@@ -150,14 +150,14 @@
             color: var(--text-body);
             margin-bottom: 1.25rem;
         }
-        /<em> --- 5. GRID KARTU KACA (Glassmorphism Re-Engineered) --- </em>/
+        /* --- 5. GRID KARTU KACA (Glassmorphism Re-Engineered) --- */
         .cards {
             display: grid;
-            /<em> Menggunakan CSS Grid untuk kestabilan baris kartu terakhir </em>/
+            /* Menggunakan CSS Grid untuk kestabilan baris kartu terakhir */
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 16px;
             margin-top: 2rem;
-            /<em> Memberikan background gradasi tipis agar efek blur pada kartu terlihat nyata </em>/
+            /* Memberikan background gradasi tipis agar efek blur pada kartu terlihat nyata */
             background: linear-gradient(135deg, #f8fafc, #f1f5f9);
             padding: 1rem;
             border-radius: var(--radius-lg);
@@ -176,7 +176,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
         }
-        /<em> --- 6. TOMBOL INTERAKTIF & BLOK DATA --- </em>/
+        /* --- 6. TOMBOL INTERAKTIF & BLOK DATA --- */
         .btn {
             display: inline-flex;
             gap: 8px;
@@ -217,7 +217,7 @@
             align-items: center;
             width: 100%;
         }
-        /<em> --- 7. ADAPTASI MOBILE SCREEN --- </em>/
+        /* --- 7. ADAPTASI MOBILE SCREEN --- */
         @media (max-width: 920px) {
             .container {
                 margin: 0;
@@ -230,7 +230,7 @@
                 font-size: 1.375rem;
             }
             .cards {
-                grid-template-columns: 1fr; /<em> Menumpuk vertikal dengan rapi di perangkat mobile </em>/
+                grid-template-columns: 1fr; /* Menumpuk vertikal dengan rapi di perangkat mobile */
             }
         }
     </style>
@@ -349,6 +349,6 @@
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

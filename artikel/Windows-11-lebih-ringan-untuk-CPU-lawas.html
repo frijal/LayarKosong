@@ -51,7 +51,7 @@
   <meta name="promphint" content="Bagaimana cara mempercepat Windows 11 di komputer lama? | Anda bisa mematikan efek visual, mengurangi program startup, mengaktifkan Storage Sense, memperbarui driver, dan memakai Windows Defender bawaan.">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> Variabel Warna (Mode Terang & Gelap) </em>/
+    /* Variabel Warna (Mode Terang & Gelap) */
     :root {
       --bg-color: #f8fafc;
       --text-main: #334155;
@@ -76,8 +76,8 @@
         --quote-border: #60a5fa;
       }
     }
-    /<em> Reset Dasar & Tipografi </em>/
-    <em>, </em>::before, *::after {
+    /* Reset Dasar & Tipografi */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -90,7 +90,7 @@
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Tata Letak Mobile-First </em>/
+    /* Tata Letak Mobile-First */
     .container {
       max-width: 64rem;
       width: 100%;
@@ -101,7 +101,7 @@
       margin-bottom: 2.5rem;
       text-align: center;
     }
-    /<em> Heading </em>/
+    /* Heading */
     h1, h2, h3 {
       color: var(--text-heading);
       font-weight: 700;
@@ -127,18 +127,18 @@
     p {
       margin-bottom: 1.5rem;
     }
-    /<em> Penanganan Gambar (Anti-CLS & LCP Priority) </em>/
+    /* Penanganan Gambar (Anti-CLS & LCP Priority) */
     .hero-container {
       margin: 2rem 0;
       border-radius: 0.75rem;
       overflow: hidden;
-      background-color: var(--border-color); /<em> Fallback </em>/
+      background-color: var(--border-color); /* Fallback */
       box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
     }
     .hero-img {
       width: 100%;
       height: auto;
-      aspect-ratio: 16 / 9; /<em> Dimensi eksplisit untuk cegah CLS </em>/
+      aspect-ratio: 16 / 9; /* Dimensi eksplisit untuk cegah CLS */
       object-fit: cover;
       display: block;
     }
@@ -150,7 +150,7 @@
       margin-top: 0.75rem;
       font-style: italic;
     }
-    /<em> Tautan & Kutipan </em>/
+    /* Tautan & Kutipan */
     a {
       color: var(--accent-color);
       text-decoration: none;
@@ -170,7 +170,7 @@
       font-style: italic;
       color: var(--text-heading);
     }
-    /<em> Daftar / List </em>/
+    /* Daftar / List */
     .feature-list {
       list-style-type: none;
       padding: 0;
@@ -201,7 +201,7 @@
       font-size: 1.125rem;
       margin-bottom: 0.25rem;
     }
-    /<em> Gaya Footer Inline </em>/
+    /* Gaya Footer Inline */
     footer {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -300,6 +300,6 @@
       </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

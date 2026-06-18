@@ -60,14 +60,14 @@
   <link rel="preload" as="image" href="https://majalahsedane.org/wp-content/uploads/2026/04/2-1.jpg" type="image/webp">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> === RESET & VARIABEL TEMA (prefers-color-scheme) === </em>/
+    /* === RESET & VARIABEL TEMA (prefers-color-scheme) === */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     :root {
-      /<em> Tema Terang </em>/
+      /* Tema Terang */
       --bg: #fcfcfc;
       --text: #1e1e26;
       --text-soft: #3c3c4a;
@@ -107,7 +107,7 @@
       word-break: break-word;
       transition: background 0.2s, color 0.2s;
     }
-    /<em> Kontainer utama: 1 kolom, max 1000px di tengah </em>/
+    /* Kontainer utama: 1 kolom, max 1000px di tengah */
     .container {
       max-width: 1000px;
       margin: 24px auto;
@@ -117,7 +117,7 @@
       padding: 28px 32px;
       border: 1px solid var(--border);
     }
-    /<em> Header tanpa HERO </em>/
+    /* Header tanpa HERO */
     .site-header {
       display: flex;
       align-items: center;
@@ -138,7 +138,7 @@
     .site-header .title span {
       color: var(--accent);
     }
-    /<em> Metadata artikel </em>/
+    /* Metadata artikel */
     .meta-info {
       display: flex;
       flex-wrap: wrap;
@@ -152,7 +152,7 @@
       margin-right: 6px;
       color: var(--accent);
     }
-    /<em> Gambar utama dengan aspect ratio stabil (CLS nol) </em>/
+    /* Gambar utama dengan aspect ratio stabil (CLS nol) */
     .featured-image {
       margin: 28px 0 32px;
       border-radius: 18px;
@@ -168,7 +168,7 @@
       height: 100%;
       object-fit: cover;
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.3rem;
       font-weight: 700;
@@ -201,7 +201,7 @@
     a:hover {
       border-bottom: 2px solid var(--accent);
     }
-    /<em> Blok kutipan / referensi </em>/
+    /* Blok kutipan / referensi */
     blockquote {
       margin: 24px 0;
       padding: 18px 22px;
@@ -211,14 +211,14 @@
       font-style: italic;
       color: var(--text-soft);
     }
-    /<em> List </em>/
+    /* List */
     ul, ol {
       margin: 16px 0 20px 24px;
     }
     li {
       margin-bottom: 8px;
     }
-    /<em> Daftar pustaka </em>/
+    /* Daftar pustaka */
     .bibliography {
       font-size: 0.9rem;
       background: var(--code-bg);
@@ -226,7 +226,7 @@
       border-radius: 16px;
       margin: 36px 0 20px;
     }
-    /<em> Grid terkait & response </em>/
+    /* Grid terkait & response */
     #related-articles-grid {
       margin: 40px 0 20px;
       padding: 12px 0;
@@ -236,7 +236,7 @@
     #response {
       margin: 20px 0 30px;
     }
-    /<em> Footer </em>/
+    /* Footer */
     .footer {
       margin-top: 36px;
       padding: 24px 0 8px;
@@ -250,7 +250,7 @@
     .footer a {
       border-bottom: none;
     }
-    /<em> Responsif mobile </em>/
+    /* Responsif mobile */
     @media (max-width: 600px) {
       body { padding: 0 8px; font-size: 16px; }
       .container { padding: 18px 16px; margin-top: 12px; border-radius: 18px; }
@@ -333,5 +333,5 @@
         <p style="margin-top:16px; font-size:0.8rem;"><i class="fa-solid fa-adjust"></i> Tema otomatis mengikuti preferensi sistem (terang/gelap). Tanpa JavaScript.</p>
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div><!-- akhir container -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

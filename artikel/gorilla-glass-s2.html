@@ -46,35 +46,35 @@
 	<title>Demo Nekat! Kekuatan Gorilla Glass Samsung Galaxy S2 🚬 - Layar Kosong</title> 
 <meta name="keywords" content="Gorilla Glass, Samsung Galaxy S2, Demo, Uji Kekuatan, Layar HP, Extreme Test, Teknologi Layar">
 	<style>
-		/<em> Default: Light Theme </em>/
+		/* Default: Light Theme */
 		:root {
 			--bg-main: #ffffff;
 			--bg-card: #f8f9fa;
 			--text-main: #333333;
 			--text-muted: #6c757d;
-			--accent-primary: #007bff; /<em> Blue </em>/
-			--accent-secondary: #28a745; /<em> Green </em>/
+			--accent-primary: #007bff; /* Blue */
+			--accent-secondary: #28a745; /* Green */
 			--header-bg: linear-gradient(90deg, #007bff, #28a745);
 			--shadow-color: rgba(0, 0, 0, 0.1);
 			--shadow-light: rgba(0, 0, 0, 0.05);
 			--link-color: var(--accent-primary);
 		}
-		/<em> Dark Mode Override </em>/
+		/* Dark Mode Override */
 		@media (prefers-color-scheme: dark) {
 			:root {
-				--bg-main: #1e1e2d; /<em> Deep Dark </em>/
-				--bg-card: #282a3c; /<em> Lighter Dark </em>/
+				--bg-main: #1e1e2d; /* Deep Dark */
+				--bg-card: #282a3c; /* Lighter Dark */
 				--text-main: #f0f0f5;
 				--text-muted: #a0a0b5;
-				--accent-primary: #30bbed; /<em> Cyan </em>/
-				--accent-secondary: #5c3a9d; /<em> Purple </em>/
+				--accent-primary: #30bbed; /* Cyan */
+				--accent-secondary: #5c3a9d; /* Purple */
 				--header-bg: linear-gradient(90deg, #5c3a9d, #30bbed);
 				--shadow-color: rgba(0, 0, 0, 0.5);
 				--shadow-light: rgba(0, 0, 0, 0.3);
 				--link-color: var(--accent-primary);
 			}
 		}
-		/<em> Base Styles </em>/
+		/* Base Styles */
 		body {
 			margin:0;
 			font-family: 'Segoe UI', Arial, sans-serif;
@@ -83,7 +83,7 @@
 			min-height: 100vh;
 			width: 100%;
 		}
-		/<em> Header Styles </em>/
+		/* Header Styles */
 		header {
 			background: var(--header-bg);
 			color:#fff;
@@ -92,7 +92,7 @@
 			box-shadow: 0 5px 15px var(--shadow-color);
 		}
 		h1 {
-			font-size: clamp(1.8em, 4vw, 2.5em); /<em> Responsive H1 </em>/
+			font-size: clamp(1.8em, 4vw, 2.5em); /* Responsive H1 */
 			margin: 0;
 			margin-bottom: 5px;
 			color: #ffffff;
@@ -102,9 +102,9 @@
 			opacity: 0.9;
 			margin: 0;
 		}
-		/<em> Main Content Area </em>/
+		/* Main Content Area */
 		main {
-			max-width:1100px; /<em> Widescreen </em>/
+			max-width:1100px; /* Widescreen */
 			margin: 40px auto;
 			padding: 0 25px;
 		}
@@ -115,7 +115,7 @@
 		strong {
 			color: var(--accent-primary);
 		}
-		/<em> Video Wrapper </em>/
+		/* Video Wrapper */
 		.video-wrapper {
 			position:relative;
 			padding-bottom:56.25%;
@@ -134,7 +134,7 @@
 			height:100%;
 			border: none;
 		}
-		/<em> Gallery </em>/
+		/* Gallery */
 		.gallery {
 			display:grid;
 			grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
@@ -148,13 +148,13 @@
 			transition: transform 0.2s, box-shadow 0.2s;
 			box-shadow: 0 3px 8px var(--shadow-light);
 			display: block;
-			border: 1px solid var(--bg-card); /<em> subtle border </em>/
+			border: 1px solid var(--bg-card); /* subtle border */
 		}
 		.gallery img:hover {
 			transform: translateY(-5px);
 			box-shadow: 0 8px 20px var(--shadow-color);
 		}
-		/<em> Footer </em>/
+		/* Footer */
 		footer {
 			background: var(--bg-card);
 			padding:30px 25px;
@@ -174,7 +174,7 @@
 			color: var(--accent-secondary);
 			text-decoration: underline;
 		}
-		/<em> Mobile adjustment </em>/
+		/* Mobile adjustment */
 		@media (max-width: 768px) {
 			main {
 				margin: 20px auto;
@@ -231,5 +231,5 @@
  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js" defer=""></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

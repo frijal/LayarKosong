@@ -46,11 +46,11 @@
     <title>Workflow dapat Ping Sitemap dan Feeds via GitHub Actions Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. - Layar Kosong</title> 
 <style>
         :root {
-            --bg-color: #f9fafb; /<em> bg-gray-50 </em>/
-            --text-color: #111827; /<em> bg-gray-900 </em>/
+            --bg-color: #f9fafb; /* bg-gray-50 */
+            --text-color: #111827; /* bg-gray-900 */
             --card-bg: #ffffff;
-            --primary-color: #2563eb; /<em> blue-600 </em>/
-            --border-color: #e5e7eb; /<em> gray-200 </em>/
+            --primary-color: #2563eb; /* blue-600 */
+            --border-color: #e5e7eb; /* gray-200 */
             --max-width: 960px;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,7 +71,7 @@
             margin-right: auto;
             padding: 0 20px;
         }
-        /<em> Header </em>/
+        /* Header */
         header.main-header {
             background-color: var(--card-bg);
             border-bottom: 1px solid var(--border-color);
@@ -85,10 +85,10 @@
             color: var(--primary-color);
             line-height: 1.2;
         }
-        header.main-header p { color: #6b7280; /<em> gray-500 </em>/ }
-        /<em> Konten Utama </em>/
+        header.main-header p { color: #6b7280; /* gray-500 */ }
+        /* Konten Utama */
         main.content {
-            flex-grow: 1; /<em> Mendorong footer ke bawah </em>/
+            flex-grow: 1; /* Mendorong footer ke bawah */
             padding: 3rem 0;
         }
         article h2 {
@@ -112,13 +112,13 @@
         }
         article code {
             background-color: #e5e7eb;
-            color: #be123c; /<em> rose-700 </em>/
+            color: #be123c; /* rose-700 */
             padding: 3px 6px;
             border-radius: 4px;
             font-family: "Consolas", "Menlo", monospace;
             font-size: 0.9em;
         }
-        /<em> Gambar </em>/
+        /* Gambar */
         .main-image {
             width: 100%;
             max-width: 800px;
@@ -128,10 +128,10 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border: 1px solid var(--border-color);
         }
-        /<em> Code Block </em>/
+        /* Code Block */
         .code-block-wrapper {
-            background-color: #1f2937; /<em> gray-800 </em>/
-            color: #d1d5db; /<em> gray-300 </em>/
+            background-color: #1f2937; /* gray-800 */
+            color: #d1d5db; /* gray-300 */
             border-radius: 8px;
             margin: 2rem 0;
             overflow: hidden;
@@ -141,11 +141,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.75rem 1.5rem;
-            background-color: #374151; /<em> gray-700 </em>/
+            background-color: #374151; /* gray-700 */
             font-size: 0.9rem;
         }
         .copy-code-btn {
-            background-color: #4b5563; /<em> gray-600 </em>/
+            background-color: #4b5563; /* gray-600 */
             color: white;
             border: none;
             padding: 6px 12px;
@@ -164,10 +164,10 @@
             padding: 0;
             font-size: 0.9rem;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer.main-footer {
-            background-color: #e5e7eb; /<em> gray-200 </em>/
-            color: #4b5563; /<em> gray-600 </em>/
+            background-color: #e5e7eb; /* gray-200 */
+            color: #4b5563; /* gray-600 */
             padding: 3rem 0;
             text-align: center;
         }
@@ -285,6 +285,6 @@ jobs:
                 🄯 <span id="current-year"></span> Hak Cipta Terserah Kamu.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

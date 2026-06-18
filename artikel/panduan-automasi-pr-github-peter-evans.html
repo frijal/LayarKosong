@@ -95,7 +95,7 @@
         h2 { font-size: 1.8rem; border-left: 6px solid var(--link-color); padding-left: 15px; }
         p, ul { margin-bottom: 1.5rem; }
         .main-image { width: 100%; border-radius: 15px; margin: 30px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        /<em> Comparison Grid </em>/
+        /* Comparison Grid */
         .comparison-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -121,7 +121,7 @@
         code.hljs { padding: 20px !important; font-size: 0.85em; }
         .tag-pro { color: #10b981; font-size: 0.8rem; background: rgba(16, 185, 129, 0.1); padding: 2px 8px; border-radius: 20px; }
         .tag-con { color: #ef4444; font-size: 0.8rem; background: rgba(239, 68, 68, 0.1); padding: 2px 8px; border-radius: 20px; }
-        /<em> Error Box </em>/
+        /* Error Box */
         .error-simulation {
             background-color: var(--alert-bg);
             border: 1px solid var(--alert-border);
@@ -234,5 +234,5 @@ uses: peter-evans/create-pull-request@v6</code></pre>
 <script>hljs.highlightAll();</script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

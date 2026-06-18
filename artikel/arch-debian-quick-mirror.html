@@ -51,14 +51,14 @@
     <meta name="news_keywords" content="skrip quick-mirror, optimasi mirror debian, mirror arch linux tercepat, bash script linux, update debian cepat">
     <meta name="promphint" content="Bagaimana cara optimasi mirror Debian dan Arch? | Gunakan skrip bash quick-mirror.sh untuk otomatis memilih server repositori tercepat secara dinamis.">
     <style>
-        /<em> Modern Reset & Variabel Tema </em>/
-        <em>, </em>::before, *::after {
+        /* Modern Reset & Variabel Tema */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         :root {
-            /<em> Mode Terang </em>/
+            /* Mode Terang */
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
             --text-main: #334155;
@@ -67,11 +67,11 @@
             --color-accent: #0284c7;
             --color-accent-hover: #0369a1;
             --color-border: #e2e8f0;
-            /<em> Peringatan / Callout </em>/
+            /* Peringatan / Callout */
             --callout-bg: #fff7ed;
             --callout-border: #f97316;
             --callout-text: #9a3412;
-            /<em> Code Block Terang </em>/
+            /* Code Block Terang */
             --code-bg: #1e293b;
             --code-text: #f8fafc;
             --token-comment: #94a3b8;
@@ -83,7 +83,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Mode Gelap </em>/
+                /* Mode Gelap */
                 --bg-body: #0f172a;
                 --bg-card: #1e293b;
                 --text-main: #cbd5e1;
@@ -92,11 +92,11 @@
                 --color-accent: #38bdf8;
                 --color-accent-hover: #7dd3fc;
                 --color-border: #334155;
-                /<em> Peringatan / Callout Gelap </em>/
+                /* Peringatan / Callout Gelap */
                 --callout-bg: #431407;
                 --callout-border: #ea580c;
                 --callout-text: #fdba74;
-                /<em> Code Block Gelap (Mirip) </em>/
+                /* Code Block Gelap (Mirip) */
                 --code-bg: #020617;
             }
         }
@@ -108,14 +108,14 @@
             font-size: 1.05rem;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Layout Mobile-First </em>/
+        /* Layout Mobile-First */
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: 2.5rem 1.25rem;
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1, h2, h3 {
             color: var(--text-heading);
             font-weight: 700;
@@ -148,7 +148,7 @@
             color: var(--color-accent-hover);
             border-bottom-style: solid;
         }
-        /<em> Gambar Cepat Dimuat & Cegah CLS </em>/
+        /* Gambar Cepat Dimuat & Cegah CLS */
         .media-lcp {
             width: 100%;
             margin: 2.5rem 0;
@@ -158,13 +158,13 @@
             width: 100%;
             max-width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /<em> Dimensi eksplisit anti-CLS </em>/
+            aspect-ratio: 16 / 9; /* Dimensi eksplisit anti-CLS */
             object-fit: cover;
             border-radius: 0.6rem;
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
             background-color: var(--color-border);
         }
-        /<em> Callout Area </em>/
+        /* Callout Area */
         .callout {
             background-color: var(--callout-bg);
             border-left: 0.4rem solid var(--callout-border);
@@ -177,7 +177,7 @@
         .callout p {
             margin: 0;
         }
-        /<em> Syntax Highlighting Native CSS </em>/
+        /* Syntax Highlighting Native CSS */
         pre {
             background-color: var(--code-bg);
             padding: 1.5rem;
@@ -198,14 +198,14 @@
             border-radius: 0.25rem;
             font-size: 0.85rem;
         }
-        /<em> Token Warna Sintaks </em>/
+        /* Token Warna Sintaks */
         .token.comment { color: var(--token-comment); font-style: italic; }
         .token.keyword { color: var(--token-keyword); font-weight: bold; }
         .token.string { color: var(--token-string); }
         .token.variable { color: var(--token-variable); }
         .token.command { color: var(--token-command); }
         .token.operator { color: var(--token-operator); }
-        /<em> Footer Semantik </em>/
+        /* Footer Semantik */
         footer {
             margin-top: 4.5rem;
             padding-top: 2rem;
@@ -292,6 +292,6 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

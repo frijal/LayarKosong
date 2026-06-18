@@ -49,11 +49,11 @@
 <meta name="promphint" content="article-social-advocacy">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables for Auto Dark/Light Mode & Performance </em>/
+        /* CSS Variables for Auto Dark/Light Mode & Performance */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a202c;
-            --link-color: #c53030; /<em> Red for urgency </em>/
+            --link-color: #c53030; /* Red for urgency */
             --heading-color: #000000;
             --quote-bg: #fff5f5;
             --quote-border: #e53e3e;
@@ -72,7 +72,7 @@
                 --meta-color: #a0aec0;
             }
         }
-        /<em> Base Reset & Layout </em>/
+        /* Base Reset & Layout */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             background-color: var(--bg-color);
@@ -84,11 +84,11 @@
             overflow-wrap: break-word;
         }
         .container {
-            max-width: 1000px; /<em> Optimal reading width for long-form </em>/
+            max-width: 1000px; /* Optimal reading width for long-form */
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3, h4 {
             color: var(--heading-color);
             font-weight: 800;
@@ -101,17 +101,17 @@
         h3 { font-size: 1.3rem; }
         p { margin-bottom: 1.5rem; }
         strong { color: var(--heading-color); }
-        /<em> Links & Interactive </em>/
+        /* Links & Interactive */
         a { color: var(--link-color); text-decoration: none; font-weight: 600; border-bottom: 1px dotted transparent; transition: all 0.2s; }
         a:hover { border-bottom-color: var(--link-color); }
-        /<em> Images (LCP Optimized) </em>/
+        /* Images (LCP Optimized) */
         img {
             max-width: 100%;
             height: auto;
             border-radius: 6px;
             margin: 2rem 0;
             display: block;
-            background-color: var(--quote-bg); /<em> Placeholder color </em>/
+            background-color: var(--quote-bg); /* Placeholder color */
         }
         figcaption {
             font-size: 0.85rem;
@@ -121,7 +121,7 @@
             margin-bottom: 2rem;
             font-style: italic;
         }
-        /<em> Quotes & Highlights </em>/
+        /* Quotes & Highlights */
         blockquote {
             background: var(--quote-bg);
             border-left: 6px solid var(--quote-border);
@@ -140,7 +140,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        /<em> Meta Info </em>/
+        /* Meta Info */
         .meta-header {
             display: flex;
             flex-wrap: wrap;
@@ -151,7 +151,7 @@
             border-bottom: 1px solid var(--meta-color);
             padding-bottom: 1rem;
         }
-        /<em> Footer & Placeholders </em>/
+        /* Footer & Placeholders */
         footer { margin-top: 4rem; text-align: center; font-size: 0.9rem; color: var(--meta-color); padding-bottom: 2rem; }
         #related-articles-grid, #response {
             margin-top: 3rem;
@@ -166,7 +166,7 @@
         }
         #related-articles-grid::after { content: "Area Komentar (Memuat...)"; }
         #response::after { content: "Baca Juga Artikel Lainnya (Memuat...)"; }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .container { padding: 1rem; }
@@ -279,5 +279,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

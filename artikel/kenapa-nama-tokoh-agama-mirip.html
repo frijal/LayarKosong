@@ -112,7 +112,7 @@
         color: gray;
         margin-bottom: 30px;
     }
-    /<em> Table Styles </em>/
+    /* Table Styles */
     .table-responsive {
         overflow-x: auto;
         margin: 30px 0;
@@ -157,7 +157,7 @@
     .nice-table tbody tr:hover {
         background: var(--table-hover);
     }
-    /<em> Blocks </em>/
+    /* Blocks */
     .quote-box {
         background: var(--card-bg);
         padding: 20px;
@@ -171,7 +171,7 @@
         text-align: center;
         display: block;
         margin: 30px 0;
-        direction: rtl; /<em> Penting untuk teks Arab </em>/
+        direction: rtl; /* Penting untuk teks Arab */
     }
     footer {
         margin-top: 10px;
@@ -179,21 +179,21 @@
         background: var(--card-bg);
         text-align: center;
     }
- /<em> Responsive adjustments </em>/
+ /* Responsive adjustments */
     @media (max-width: 768px) {
-        /<em> Reset box-sizing untuk menghindari padding menambah lebar elemen </em>/
+        /* Reset box-sizing untuk menghindari padding menambah lebar elemen */
         * { box-sizing: border-box; }
         .table-responsive {
-            border: 0; /<em> Hilangkan scrollbar luar karena kita pakai model kartu </em>/
+            border: 0; /* Hilangkan scrollbar luar karena kita pakai model kartu */
             overflow: visible;
         }
         .nice-table {
             min-width: 0;
-            display: block; /<em> Pastikan tabel jadi elemen blok </em>/
+            display: block; /* Pastikan tabel jadi elemen blok */
             border: 0;
         }
         .nice-table thead {
-            display: none; /<em> Sembunyikan header asli </em>/
+            display: none; /* Sembunyikan header asli */
         }
         .nice-table tbody,
         .nice-table tr,
@@ -207,40 +207,40 @@
             border-radius: 12px;
             overflow: hidden;
             background: var(--bg-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /<em> Tambah bayangan halus </em>/
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Tambah bayangan halus */
         }
         .nice-table td {
             padding: 12px 15px;
             border: 0;
             border-bottom: 1px solid var(--table-border);
-            /<em> Gunakan Flexbox dengan wrap agar tidak terpotong </em>/
+            /* Gunakan Flexbox dengan wrap agar tidak terpotong */
             display: flex;
             flex-wrap: wrap;
             justify-content:衔 space-between;
-            align-items: flex-start; /<em> Aliran teks dari atas jika wrap </em>/
+            align-items: flex-start; /* Aliran teks dari atas jika wrap */
             text-align: right;
         }
         .nice-table td:last-child {
             border-bottom: 0;
         }
-        /<em> Label di sebelah kiri </em>/
+        /* Label di sebelah kiri */
         .nice-table td::before {
             content: attr(data-label);
             font-weight: 700;
             color: var(--link-color);
             font-size: 0.75em;
             text-transform: uppercase;
-            flex: 1; /<em> Ambil ruang kiri </em>/
+            flex: 1; /* Ambil ruang kiri */
             text-align: left;
             margin-right: 10px;
-            min-width: 100px; /<em> Jaga jarak minimal label </em>/
+            min-width: 100px; /* Jaga jarak minimal label */
         }
-        /<em> Isi data di sebelah kanan </em>/
-        /<em> Kita bungkus konten asli td agar bisa kita kontrol </em>/
+        /* Isi data di sebelah kanan */
+        /* Kita bungkus konten asli td agar bisa kita kontrol */
         .nice-table td {
-            word-break: break-word; /<em> Cegah teks panjang menjebol layout </em>/
+            word-break: break-word; /* Cegah teks panjang menjebol layout */
         }
-        /<em> Spesifik untuk kolom nomor di mobile agar tidak aneh </em>/
+        /* Spesifik untuk kolom nomor di mobile agar tidak aneh */
         .nice-table td[data-label="#"] {
             background: var(--table-zebra);
             font-weight: bold;
@@ -468,5 +468,5 @@
     <p>🄯 2026  - Eksplorasi Makna dalam Tulisan.</p>
  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -62,10 +62,10 @@
   <meta name="publisher" content="dalam.web.id">
   <!-- CSS internal: light/dark theme, responsif, font, layout -->
   <style>
-    /<em> Reset dan variabel tema </em>/
+    /* Reset dan variabel tema */
     :root {
       color-scheme: light dark;
-      /<em> Light mode (default) </em>/
+      /* Light mode (default) */
       --bg-color: #f9fafc;
       --text-color: #1e293b;
       --heading-color: #0f172a;
@@ -87,7 +87,7 @@
         --footer-bg: #0f172a;
       }
     }
-    /<em> Base styling </em>/
+    /* Base styling */
     * {
       margin: 0;
       padding: 0;
@@ -98,10 +98,10 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
-      transition: background-color 0.2s, color 0.2s; /<em> halus saat ganti tema </em>/
+      transition: background-color 0.2s, color 0.2s; /* halus saat ganti tema */
       padding: 1rem;
     }
-    /<em> Layout utama: 1 kolom, max-width 1000px, di tengah </em>/
+    /* Layout utama: 1 kolom, max-width 1000px, di tengah */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -110,7 +110,7 @@
       padding: 2rem 1.5rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2rem;
       color: var(--heading-color);
@@ -139,14 +139,14 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> Gambar responsif </em>/
+    /* Gambar responsif */
     img {
       max-width: 100%;
       height: auto;
       border-radius: 16px;
       margin: 1.5rem 0;
       display: block;
-      background-color: #e2e8f0; /<em> placeholder </em>/
+      background-color: #e2e8f0; /* placeholder */
     }
     figcaption {
       font-size: 0.9rem;
@@ -155,14 +155,14 @@
       margin-bottom: 1.5rem;
       text-align: center;
     }
-    /<em> List </em>/
+    /* List */
     ul, ol {
       margin: 1rem 0 1.5rem 1.8rem;
     }
     li {
       margin-bottom: 0.5rem;
     }
-    /<em> Blockquote / kutipan </em>/
+    /* Blockquote / kutipan */
     blockquote {
       background-color: var(--blockquote-bg);
       border-left: 5px solid var(--link-color);
@@ -171,7 +171,7 @@
       margin: 1.5rem 0;
       font-style: italic;
     }
-    /<em> Ikon dan emoji </em>/
+    /* Ikon dan emoji */
     .icon-list {
       list-style: none;
       margin-left: 0;
@@ -187,7 +187,7 @@
       min-width: 2rem;
       text-align: center;
     }
-    /<em> grid tempat related articles & related-articles-grid </em>/
+    /* grid tempat related articles & related-articles-grid */
     #response {
       background-color: var(--blockquote-bg);
       border-radius: 20px;
@@ -205,7 +205,7 @@
       text-align: center;
       border: 1px dashed var(--border-color);
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 3rem;
       padding-top: 1.5rem;
@@ -214,7 +214,7 @@
       text-align: center;
       color: #64748b;
     }
-    /<em> Utility </em>/
+    /* Utility */
     .text-muted {
       color: #64748b;
     }
@@ -227,7 +227,7 @@
       font-size: 0.85rem;
       margin-right: 0.5rem;
     }
-    /<em> Responsif ekstra untuk mobile </em>/
+    /* Responsif ekstra untuk mobile */
     @media (max-width: 600px) {
       .container {
         padding: 1.5rem 1rem;
@@ -327,5 +327,5 @@
         <i class="fa-regular fa-copyright"></i> 2026 Jaga Data Pribadi Tetap Aman – berdasarkan prinsip E‑E‑A‑T dan pengalaman empiris masyarakat.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

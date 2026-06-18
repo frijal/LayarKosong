@@ -46,57 +46,57 @@
     <title>Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js) - Layar Kosong</title> 
 <link rel="stylesheet" href="/ext/fontawesome.css">
  <style>
-        /<em> --- 1. Definisikan Variabel Tema Terang (Default) --- </em>/
+        /* --- 1. Definisikan Variabel Tema Terang (Default) --- */
         :root {
             --body-bg: #f4f7f6;
             --text-main: #333333;
             --container-bg: #ffffff;
             --border-color: #eeeeee;
-            /<em> Komponen Header & Footer </em>/
+            /* Komponen Header & Footer */
             --header-bg: #2c3e50;
             --header-text: #ffffff;
             --subtitle-text: #ecf0f1;
-            /<em> Tipografi & Aksen </em>/
+            /* Tipografi & Aksen */
             --heading-color: #2c3e50;
-            --accent-color: #3498db; /<em> Blue </em>/
+            --accent-color: #3498db; /* Blue */
             --link-hover: #2980b9;
-            /<em> Blok Khusus & Kotak Info </em>/
+            /* Blok Khusus & Kotak Info */
             --pre-bg: #2d2d2d;
             --pre-text: #f1f1f1;
             --terminal-bg: #e0e0e0;
             --terminal-text: #333333;
             --infobox-bg: #eaf5ff;
-            /<em> Sosial Media Share </em>/
+            /* Sosial Media Share */
             --share-title: #555555;
             --share-icon: #444444;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        /<em> --- 2. Otomatis Tema Gelap (Dark Mode) --- </em>/
+        /* --- 2. Otomatis Tema Gelap (Dark Mode) --- */
         @media (prefers-color-scheme: dark) {
             :root {
-                --body-bg: #0f172a;       /<em> Slate 900 (Adem banget di mata) </em>/
-                --text-main: #cbd5e1;     /<em> Teks abu terang lembut </em>/
-                --container-bg: #1e293b;  /<em> Slate 800 untuk kontainer utama </em>/
-                --border-color: #334155;  /<em> Border gelap proporsional </em>/
-                /<em> Header & Footer malam (dibikin sedikit lebih gelap dari bodi) </em>/
+                --body-bg: #0f172a;       /* Slate 900 (Adem banget di mata) */
+                --text-main: #cbd5e1;     /* Teks abu terang lembut */
+                --container-bg: #1e293b;  /* Slate 800 untuk kontainer utama */
+                --border-color: #334155;  /* Border gelap proporsional */
+                /* Header & Footer malam (dibikin sedikit lebih gelap dari bodi) */
                 --header-bg: #0b0f19;
                 --header-text: #f8fafc;
                 --subtitle-text: #94a3b8;
-                /<em> Judul diselamatkan agar menyala cerah </em>/
+                /* Judul diselamatkan agar menyala cerah */
                 --heading-color: #f8fafc;
-                --accent-color: #60a5fa;  /<em> Biru pastel agar kontras di latar gelap </em>/
+                --accent-color: #60a5fa;  /* Biru pastel agar kontras di latar gelap */
                 --link-hover: #93c5fd;
-                /<em> Blok khusus di malam hari </em>/
-                --pre-bg: #0b0f19;        /<em> Kode pre lebih pekat </em>/
-                --terminal-bg: #334155;   /<em> Terminal tidak lagi jadi flashbang </em>/
+                /* Blok khusus di malam hari */
+                --pre-bg: #0b0f19;        /* Kode pre lebih pekat */
+                --terminal-bg: #334155;   /* Terminal tidak lagi jadi flashbang */
                 --terminal-text: #f1f5f9;
-                --infobox-bg: #1e293b;    /<em> Menyamakan kontainer atau bisa pakai navy gelap (#172554) </em>/
+                --infobox-bg: #1e293b;    /* Menyamakan kontainer atau bisa pakai navy gelap (#172554) */
                 --share-title: #94a3b8;
-                --share-icon: #94a3b8;    /<em> Ikon sosmed default jadi abu terang </em>/
+                --share-icon: #94a3b8;    /* Ikon sosmed default jadi abu terang */
                 --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             }
         }
-        /<em> --- 3. Desain Utama & Tipografi (Base Styles) --- </em>/
+        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
         *,
         *::before,
         *::after {
@@ -113,7 +113,7 @@
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> --- Kontainer Widescreen --- </em>/
+        /* --- Kontainer Widescreen --- */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -122,7 +122,7 @@
             width: 100%;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
-        /<em> --- Header Artikel --- </em>/
+        /* --- Header Artikel --- */
         .article-header {
             background-color: var(--header-bg);
             color: var(--header-text);
@@ -131,7 +131,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .article-header h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /<em> Menggunakan fluid typography </em>/
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Menggunakan fluid typography */
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1rem;
@@ -142,7 +142,7 @@
             color: var(--subtitle-text);
             transition: color 0.3s;
         }
-        /<em> --- Konten Artikel --- </em>/
+        /* --- Konten Artikel --- */
         .article-content {
             padding: 2.5rem;
         }
@@ -157,7 +157,7 @@
             margin-bottom: 1.5rem;
         }
         .article-content h2 {
-            font-size: clamp(1.4rem, 4vw, 1.8rem); /<em> Fleksibel di mobile </em>/
+            font-size: clamp(1.4rem, 4vw, 1.8rem); /* Fleksibel di mobile */
             font-weight: 600;
             margin-top: 2.5rem;
             margin-bottom: 1.5rem;
@@ -201,7 +201,7 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        /<em> --- Blok Kode --- </em>/
+        /* --- Blok Kode --- */
         .article-content pre {
             background-color: var(--pre-bg);
             color: var(--pre-text);
@@ -216,20 +216,20 @@
         .article-content pre code {
             font-family: inherit;
         }
-        /<em> Blok untuk terminal </em>/
+        /* Blok untuk terminal */
         .terminal-code {
             background: var(--terminal-bg);
             color: var(--terminal-text);
-            padding: 0.2rem 0.6rem; /<em> Disesuaikan agar rapi kalau dipakai sebagai inline-code </em>/
+            padding: 0.2rem 0.6rem; /* Disesuaikan agar rapi kalau dipakai sebagai inline-code */
             border-radius: 4px;
             font-family: 'Courier New', Courier, monospace;
-            display: inline-block; /<em> Lebih aman menahan layout teks panjang </em>/
+            display: inline-block; /* Lebih aman menahan layout teks panjang */
             max-width: 100%;
             overflow-x: auto;
             vertical-align: middle;
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> --- Info Box untuk "Cara Pakai" --- </em>/
+        /* --- Info Box untuk "Cara Pakai" --- */
         .info-box {
             background: var(--infobox-bg);
             border-left: 5px solid var(--accent-color);
@@ -252,7 +252,7 @@
             margin-bottom: 0.75rem;
             line-height: 1.6;
         }
-        /<em> --- Bagian Share Media Sosial --- </em>/
+        /* --- Bagian Share Media Sosial --- */
         .share-section {
             text-align: center;
             padding: 2rem;
@@ -283,11 +283,11 @@
         .share-buttons .fa-facebook:hover { color: #1877F2; }
         .share-buttons .fa-telegram:hover { color: #0088cc; }
         .share-buttons .fa-linkedin:hover { color: #0077b5; }
-        /<em> --- Footer --- </em>/
+        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: var(--header-bg); /<em> Disinkronkan dengan warna header malam </em>/
+            background-color: var(--header-bg); /* Disinkronkan dengan warna header malam */
             color: var(--subtitle-text);
             transition: background-color 0.3s, color 0.3s;
         }
@@ -295,7 +295,7 @@
             margin: 0;
             font-size: 0.9rem;
         }
-        /<em> --- CSS Responsif (Mobile-Friendly) --- </em>/
+        /* --- CSS Responsif (Mobile-Friendly) --- */
         @media (max-width: 900px) {
             .container {
                 margin: 0;
@@ -307,14 +307,14 @@
                 padding: 2.5rem 1.25rem;
             }
             .article-content {
-                padding: 1.5rem 1rem; /<em> Ruang baca di HP dimaksimalkan </em>/
+                padding: 1.5rem 1rem; /* Ruang baca di HP dimaksimalkan */
             }
             .article-content p,
             .info-box li {
                 font-size: 1rem;
             }
             .info-box {
-                padding: 1.25rem 1rem 1.25rem 1.5rem; /<em> Sisi kiri dikasih kelonggaran </em>/
+                padding: 1.25rem 1rem 1.25rem 1.5rem; /* Sisi kiri dikasih kelonggaran */
             }
             .article-content pre {
                 padding: 1rem;
@@ -324,7 +324,7 @@
                 padding: 1.5rem 1rem;
             }
             .share-buttons a {
-                margin: 0 8px; /<em> Jarak ikon sosmed dirapatkan sedikit di HP biar gak patah baris </em>/
+                margin: 0 8px; /* Jarak ikon sosmed dirapatkan sedikit di HP biar gak patah baris */
                 font-size: 1.8rem;
             }
         }
@@ -485,7 +485,7 @@ try {
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

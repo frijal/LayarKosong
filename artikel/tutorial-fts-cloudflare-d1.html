@@ -52,7 +52,7 @@
     <meta name="news_keywords" content="Tutorial Cloudflare D1, Full-Text Search, FTS5 SQLite, TypeScript, Web Statis, Layar Kosong">
     <meta name="promphint" content="Q: Bagaimana cara membuat pencarian untuk web statis? A: Gunakan Cloudflare D1 dengan tabel virtual FTS5, lalu buat script TypeScript untuk mengekstrak dan sinkronisasi artikel HTML ke dalam database tersebut.">
     <style>
-        /<em> CSS Kritis - Native & Responsive (Mobile-First) </em>/
+        /* CSS Kritis - Native & Responsive (Mobile-First) */
         :root {
             --bg-color: #fafafa;
             --text-color: #1e293b;
@@ -60,8 +60,8 @@
             --border-color: #cbd5e1;
             --code-bg: #f8fafc;
             --table-header-bg: #e2e8f0;
-            --max-width: 62.5rem; /<em> 1000px </em>/
-            /<em> Syntax Highlighting Colors - Light Mode </em>/
+            --max-width: 62.5rem; /* 1000px */
+            /* Syntax Highlighting Colors - Light Mode */
             --syn-kw: #9333ea;
             --syn-str: #16a34a;
             --syn-cmt: #64748b;
@@ -77,7 +77,7 @@
                 --border-color: #334155;
                 --code-bg: #1e293b;
                 --table-header-bg: #1e293b;
-                /<em> Syntax Highlighting Colors - Dark Mode </em>/
+                /* Syntax Highlighting Colors - Dark Mode */
                 --syn-kw: #c084fc;
                 --syn-str: #4ade80;
                 --syn-cmt: #94a3b8;
@@ -86,7 +86,7 @@
                 --syn-typ: #2dd4bf;
             }
         }
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -162,7 +162,7 @@
             background-color: transparent;
             border-radius: 0;
         }
-        /<em> Token Syntax Highlighting kustom </em>/
+        /* Token Syntax Highlighting kustom */
         .t-kw { color: var(--syn-kw); font-weight: 600; }
         .t-str { color: var(--syn-str); }
         .t-cmt { color: var(--syn-cmt); font-style: italic; }
@@ -345,6 +345,6 @@ bun add -d typescript @types/node</code></pre>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

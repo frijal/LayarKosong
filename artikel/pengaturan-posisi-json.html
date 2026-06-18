@@ -59,23 +59,23 @@ h1 {
 #categories {
   display: flex;
   gap: 20px;
-  align-items: flex-start; /<em> Biar kolom gak narik kebawah barengan </em>/
+  align-items: flex-start; /* Biar kolom gak narik kebawah barengan */
 }
 .column {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-width: 0; /<em> Mencegah overflow pada flex child </em>/
+  min-width: 0; /* Mencegah overflow pada flex child */
 }
-/<em> Container Kategori menggunakan Details </em>/
+/* Container Kategori menggunakan Details */
 .category {
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /<em> Menjaga border-radius </em>/
+  overflow: hidden; /* Menjaga border-radius */
 }
-/<em> Header yang bisa diklik </em>/
+/* Header yang bisa diklik */
 summary {
   margin: 0;
   font-size: 1.1em;
@@ -83,14 +83,14 @@ summary {
   background: #eee;
   padding: 10px;
   cursor: pointer;
-  list-style: none; /<em> Hapus panah default </em>/
+  list-style: none; /* Hapus panah default */
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
 }
 summary::-webkit-details-marker {
-  display: none; /<em> Hapus panah default Safari </em>/
+  display: none; /* Hapus panah default Safari */
 }
 summary::after {
   content: '▼';
@@ -100,18 +100,18 @@ summary::after {
 details[open] summary::after {
   transform: rotate(180deg);
 }
-/<em> List Item dengan Scroll Internal </em>/
+/* List Item dengan Scroll Internal */
 .item-list {
   display: flex;
   flex-direction: column;
   gap: 6px;
   min-height: 50px;
-  max-height: 400px; /<em> Batas tinggi scroll </em>/
-  overflow-y: auto;  /<em> Aktifkan scroll vertikal </em>/
+  max-height: 400px; /* Batas tinggi scroll */
+  overflow-y: auto;  /* Aktifkan scroll vertikal */
   padding: 10px;
   background: #fff;
 }
-/<em> Styling Scrollbar biar lebih cantik </em>/
+/* Styling Scrollbar biar lebih cantik */
 .item-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -138,11 +138,11 @@ details[open] summary::after {
   height: 40px;
   object-fit: cover;
   border-radius: 4px;
-  flex-shrink: 0; /<em> Gambar gak gepeng </em>/
+  flex-shrink: 0; /* Gambar gak gepeng */
 }
 .item span {
   font-size: 13px;
-  word-break: break-word; /<em> Mencegah teks kepotong </em>/
+  word-break: break-word; /* Mencegah teks kepotong */
 }
 #downloadBtn {
   display: block;
@@ -158,7 +158,7 @@ details[open] summary::after {
 #downloadBtn:hover {
   background: #1976d2;
 }
-/<em> Context Menu </em>/
+/* Context Menu */
 #contextMenu {
   font-family: sans-serif;
   font-size: 14px;
@@ -199,5 +199,5 @@ mark {
     <script type="module" src="/ext/dashboard.js" defer=""></script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

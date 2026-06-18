@@ -59,7 +59,7 @@
 <!-- Twitter Card -->
 <!-- CSS internal: responsif, prefers-color-scheme, tanpa Tailwind -->
   <style>
-    /<em> Reset dan variabel dasar </em>/
+    /* Reset dan variabel dasar */
     * {
       margin: 0;
       padding: 0;
@@ -74,7 +74,7 @@
       color: #222;
       transition: background-color 0.2s ease, color 0.2s ease;
     }
-    /<em> Container utama: max-width 1000px, tengah, latar putih </em>/
+    /* Container utama: max-width 1000px, tengah, latar putih */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -83,7 +83,7 @@
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
     }
-    /<em> Dark mode otomatis </em>/
+    /* Dark mode otomatis */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -110,7 +110,7 @@
         color: #aaa;
       }
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.2rem;
       margin-bottom: 0.75rem;
@@ -136,7 +136,7 @@
     p {
       margin-bottom: 1.3rem;
     }
-    /<em> Meta info (author, tanggal) </em>/
+    /* Meta info (author, tanggal) */
     .meta-info {
       display: flex;
       flex-wrap: wrap;
@@ -147,7 +147,7 @@
       border-bottom: 1px dashed #ccc;
       padding-bottom: 1rem;
     }
-    /<em> Gambar </em>/
+    /* Gambar */
     figure {
       margin: 2rem 0;
       text-align: center;
@@ -159,9 +159,9 @@
       display: block;
       margin: 0 auto;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      background-color: #f0f0f0; /<em> placeholder saat loading </em>/
+      background-color: #f0f0f0; /* placeholder saat loading */
     }
-    /<em> Grid untuk kumpulan gambar </em>/
+    /* Grid untuk kumpulan gambar */
     .image-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -174,7 +174,7 @@
       object-fit: cover;
       border-radius: 14px;
     }
-    /<em> Tabel </em>/
+    /* Tabel */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -201,14 +201,14 @@
         background-color: #333;
       }
     }
-    /<em> List </em>/
+    /* List */
     ul, ol {
       margin: 1rem 0 1.8rem 2rem;
     }
     li {
       margin-bottom: 0.4rem;
     }
-    /<em> Komentar dan related grid (sesuai permintaan) </em>/
+    /* Komentar dan related grid (sesuai permintaan) */
     #related-articles-grid, #response {
       background-color: #f4f6f9;
       padding: 1.8rem;
@@ -238,7 +238,7 @@
     #response a:hover {
       text-decoration: underline;
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -253,7 +253,7 @@
         color: #aaa;
       }
     }
-    /<em> Responsif untuk mobile </em>/
+    /* Responsif untuk mobile */
     @media (max-width: 600px) {
       body {
         padding: 0.5rem;
@@ -276,12 +276,12 @@
         gap: 0.5rem;
       }
     }
-    /<em> Ikon FontAwesome inline </em>/
+    /* Ikon FontAwesome inline */
     .fa, .fas, .fa-regular {
       margin-right: 0.3rem;
       color: #f97316;
     }
-    /<em> sentuhan kecil E-E-A-T </em>/
+    /* sentuhan kecil E-E-A-T */
     .zdummy {
       background-color: #f9f4e8;
       padding: 1rem;
@@ -443,5 +443,5 @@
 <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a>
     </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

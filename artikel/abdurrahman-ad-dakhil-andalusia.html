@@ -49,14 +49,14 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            --primary-color: #5d0f10; /<em> Merah Marun Khas Umayyah </em>/
-            --secondary-color: #ffc300; /<em> Emas </em>/
+            --primary-color: #5d0f10; /* Merah Marun Khas Umayyah */
+            --secondary-color: #ffc300; /* Emas */
             --bg-color: #f8f8f8;
             --text-color: #333;
             --font-serif: 'Georgia', serif;
             --font-sans: 'Arial', sans-serif;
         }
-        /<em> Base & Wide Fullscreen Design </em>/
+        /* Base & Wide Fullscreen Design */
         body {
             font-family: var(--font-serif);
             line-height: 1.7;
@@ -67,13 +67,13 @@
             overflow-x: hidden;
         }
         .container {
-            max-width: 1100px; /<em> Lebar Konten Utama (1 Kolom) </em>/
+            max-width: 1100px; /* Lebar Konten Utama (1 Kolom) */
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         header {
             text-align: center;
             padding: 60px 20px;
@@ -111,7 +111,7 @@
             color: #555;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
         }
-        /<em> Ikon Info Bar </em>/
+        /* Ikon Info Bar */
         .info-bar {
             background-color: #f2f2f2;
             padding: 15px;
@@ -128,7 +128,7 @@
         .info-bar span { display: flex; align-items: center; }
         .info-bar i { margin-right: 8px; color: var(--primary-color); font-size: 1.2em; }
         .flag-icon { margin-left: 5px; font-size: 1.5em; }
-        /<em> Galeri Foto (Desain 1 Kolom Sederhana) </em>/
+        /* Galeri Foto (Desain 1 Kolom Sederhana) */
         .gallery {
             display: flex;
             flex-direction: column;
@@ -152,7 +152,7 @@
             height: auto;
             display: block;
             cursor: pointer;
-            background-color: #eee; /<em> Placeholder saat lazy loading </em>/
+            background-color: #eee; /* Placeholder saat lazy loading */
         }
         .gallery-item p {
             text-align: center;
@@ -160,7 +160,7 @@
             color: #666;
             margin-top: 10px;
         }
-        /<em> Fixed Navigation Buttons </em>/
+        /* Fixed Navigation Buttons */
         .fixed-btn {
             position: fixed;
             padding: 12px 18px;
@@ -181,13 +181,13 @@
         }
         #sitemap-btn {
             left: 20px;
-            top: 30%; /<em> Kiri, Top=30% </em>/
+            top: 30%; /* Kiri, Top=30% */
         }
         #home-btn {
             right: 20px;
-            bottom: 20%; /<em> Kanan, Bottom=20% </em>/
+            bottom: 20%; /* Kanan, Bottom=20% */
         }
-        /<em> Social Share Icons </em>/
+        /* Social Share Icons */
         .social-share {
             text-align: center;
             padding: 20px 0;
@@ -207,7 +207,7 @@
             color: var(--secondary-color);
             transform: translateY(-5px);
         }
-        /<em> Responsiveness (Mobile-Friendly) </em>/
+        /* Responsiveness (Mobile-Friendly) */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
@@ -230,11 +230,11 @@
             }
             #sitemap-btn {
                 left: 10px;
-                top: 15%; /<em> Geser sedikit di mobile </em>/
+                top: 15%; /* Geser sedikit di mobile */
             }
             #home-btn {
                 right: 10px;
-                bottom: 10%; /<em> Geser sedikit di mobile </em>/
+                bottom: 10%; /* Geser sedikit di mobile */
             }
         }
     </style>
@@ -404,5 +404,5 @@
             alert(<code>Lightbox diaktifkan! (Tampilkan gambar index ${index}). Anda bisa menekan tombol panah kiri/kanan untuk navigasi.</code>);
         }
                  </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

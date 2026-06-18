@@ -47,7 +47,7 @@
 <title>UANG alias DUIT - Refleksi tentang Kuasa, Godaan, dan Tanggung Jawab 💰 - Layar Kosong</title> 
 <meta name="date" content="2025-09-27">
 <style>
-        /<em> --- 1. Definisikan Variabel Tema Terang (Sunset Tech Vibe) --- </em>/
+        /* --- 1. Definisikan Variabel Tema Terang (Sunset Tech Vibe) --- */
         :root {
             --bg: #f8fafc;
             --card: #ffffff;
@@ -55,34 +55,34 @@
             --muted: #64748b;
             --accent: #f59e0b;
             --accent-hover: #d97706;
-            /<em> Komponen Khusus </em>/
+            /* Komponen Khusus */
             --header-gradient: linear-gradient(90deg, rgba(245, 158, 11, 0.08), rgba(14, 165, 164, 0.04));
             --section-title-color: #333333;
             --quote-bg: #fffaf1;
             --border-dashed: #eef2f7;
-            /<em> Sistem Bayangan </em>/
+            /* Sistem Bayangan */
             --shadow-card: 0 10px 30px rgba(9, 12, 20, 0.06);
             --shadow-aside: 0 6px 18px rgba(12, 20, 30, 0.04);
         }
-        /<em> --- 2. Otomatis Tema Gelap (Amber Obsidian Premium) --- </em>/
+        /* --- 2. Otomatis Tema Gelap (Amber Obsidian Premium) --- */
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg: #0b0f17;           /<em> Hitam arang dengan sub-tone biru malam </em>/
-                --card: #161e2e;         /<em> Slate gelap untuk kontainer utama </em>/
-                --text-main: #f1f5f9;    /<em> Putih abu lembut agar mata tidak lelah </em>/
-                --muted: #94a3b8;        /<em> Slate abu untuk teks sekunder </em>/
-                --accent: #fbbf24;       /<em> Amber pastel cerah agar kontras di latar gelap </em>/
+                --bg: #0b0f17;           /* Hitam arang dengan sub-tone biru malam */
+                --card: #161e2e;         /* Slate gelap untuk kontainer utama */
+                --text-main: #f1f5f9;    /* Putih abu lembut agar mata tidak lelah */
+                --muted: #94a3b8;        /* Slate abu untuk teks sekunder */
+                --accent: #fbbf24;       /* Amber pastel cerah agar kontras di latar gelap */
                 --accent-hover: #f59e0b;
-                /<em> Penyesuaian Komponen Malam Hari </em>/
+                /* Penyesuaian Komponen Malam Hari */
                 --header-gradient: linear-gradient(90deg, rgba(251, 191, 36, 0.1), rgba(14, 165, 164, 0.04));
                 --section-title-color: #e2e8f0;
-                --quote-bg: #241a08;     /<em> Cokelat amber gelap pekat yang sangat teduh </em>/
+                --quote-bg: #241a08;     /* Cokelat amber gelap pekat yang sangat teduh */
                 --border-dashed: #2d3748;
                 --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
                 --shadow-aside: 0 6px 18px rgba(0, 0, 0, 0.3);
             }
         }
-        /<em> --- 3. Desain Utama & Tata Letak --- </em>/
+        /* --- 3. Desain Utama & Tata Letak --- */
         * { 
             box-sizing: border-box; 
         }
@@ -92,14 +92,14 @@
             font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
             background: var(--bg); 
             color: var(--text-main);
-            transition: background 0.3s, color 0.3s; /<em> Efek transisi halus saat ganti tema </em>/
+            transition: background 0.3s, color 0.3s; /* Efek transisi halus saat ganti tema */
         }
         .wrap { 
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
         }
-        /<em> --- Header dengan Efek Blur Transparan --- </em>/
+        /* --- Header dengan Efek Blur Transparan --- */
         header { 
             padding: 22px 24px; 
             background: var(--header-gradient); 
@@ -136,7 +136,7 @@
             font-size: clamp(13px, 1.8vw, 15px); 
             transition: color 0.3s;
         }
-        /<em> --- Sistem Grid Dua Kolom --- </em>/
+        /* --- Sistem Grid Dua Kolom --- */
         main { 
             flex: 1; 
             padding: 28px 0; 
@@ -147,7 +147,7 @@
             gap: 28px; 
             align-items: start; 
         }
-        /<em> --- Kartu Artikel Konten --- </em>/
+        /* --- Kartu Artikel Konten --- */
         article.card { 
             background: var(--card); 
             padding: 28px; 
@@ -182,7 +182,7 @@
             color: var(--section-title-color); 
             transition: color 0.3s;
         }
-        /<em> --- Penyelamatan Blok Kutipan --- </em>/
+        /* --- Penyelamatan Blok Kutipan --- */
         .quote { 
             font-style: italic; 
             padding: 12px 16px; 
@@ -205,7 +205,7 @@
             height: auto; 
             display: block; 
         }
-        /<em> --- Sidebar Konten --- </em>/
+        /* --- Sidebar Konten --- */
         aside.card { 
             background: var(--card); 
             padding: 18px; 
@@ -229,7 +229,7 @@
             color: var(--muted); 
             transition: color 0.3s;
         }
-        /<em> --- Bagian Kaki Web --- </em>/
+        /* --- Bagian Kaki Web --- */
         footer { 
             padding: 18px 0; 
             background: transparent; 
@@ -244,7 +244,7 @@
             color: var(--muted);
             transition: color 0.3s;
         }
-        /<em> --- 4. Sistem Navigasi Tombol Floating Desktop --- </em>/
+        /* --- 4. Sistem Navigasi Tombol Floating Desktop --- */
         #btn-sitemap-left, #btn-home-right {
             position: fixed; 
             display: flex; 
@@ -267,7 +267,7 @@
             transform: scale(1.05); 
         }
         #btn-sitemap-left { 
-            left: 20px; /<em> Ditambah sedikit jarak agar lebih bernapas dari tepi layar </em>/
+            left: 20px; /* Ditambah sedikit jarak agar lebih bernapas dari tepi layar */
             top: 30%; 
             transform: translateY(-50%); 
         }
@@ -280,7 +280,7 @@
             flex-shrink: 0; 
             margin-right: 6px; 
         }
-        /<em> --- 5. Otomatis Deteksi Mobile-Responsive (Layar < 880px) --- </em>/
+        /* --- 5. Otomatis Deteksi Mobile-Responsive (Layar < 880px) --- */
         @media (max-width: 880px) { 
             .grid { 
                 grid-template-columns: 1fr; 
@@ -290,7 +290,7 @@
                 order: 2; 
             } 
             main {
-                padding: 16px 0 80px 0; /<em> Ditambah padding bawah agar konten tidak tertutup dock mobile </em>/
+                padding: 16px 0 80px 0; /* Ditambah padding bawah agar konten tidak tertutup dock mobile */
             }
             /* Penyelamatan Tombol Floating di Mobile:
                Dipindahkan ke bawah layar, berjajar rapi membentuk Bottom Dock Navbar
@@ -300,9 +300,9 @@
                 top: auto !important;
                 bottom: 16px !important;
                 transform: none !important;
-                width: calc(50% - 20px); /<em> Membagi layar rata dua sisi kiri-kanan </em>/
+                width: calc(50% - 20px); /* Membagi layar rata dua sisi kiri-kanan */
                 box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-                padding: 14px 10px; /<em> Dipertebal agar ramah ketukan jari </em>/
+                padding: 14px 10px; /* Dipertebal agar ramah ketukan jari */
             }
             #btn-sitemap-left {
                 left: 12px !important;
@@ -455,6 +455,6 @@ Pesan: Jadikan uang sebagai pelayan, bukan penguasa.
  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

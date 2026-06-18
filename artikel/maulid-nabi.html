@@ -147,7 +147,7 @@ linear-gradient(90deg, rgba(34,211,238,.12), rgba(167,139,250,.12));
   padding: 8px 12px;
   border-radius: 10px;
 }
-/<em> Comparison table </em>/
+/* Comparison table */
 .table{
   width: 100%;
   border-collapse: collapse;
@@ -171,7 +171,7 @@ linear-gradient(90deg, rgba(34,211,238,.12), rgba(167,139,250,.12));
 }
 .tag.red{ background: rgba(251,113,133,.12); color:#fecdd3; border-color: rgba(251,113,133,.35) }
 .tag.green{ background: rgba(16,185,129,.12); color:#bbf7d0; border-color: rgba(16,185,129,.35) }
-/<em> Gallery with lazy-load and lightbox </em>/
+/* Gallery with lazy-load and lightbox */
 .gallery{
   display: grid; gap: 12px;
   grid-template-columns: repeat(3, 1fr);
@@ -198,7 +198,7 @@ linear-gradient(90deg, rgba(34,211,238,.12), rgba(167,139,250,.12));
   background: linear-gradient(180deg, transparent, rgba(0,0,0,.55));
   color: #dbeafe; padding: 10px 12px; font-size: 13px;
 }
-/<em> Lightbox Modal </em>/
+/* Lightbox Modal */
 .lightbox{
   position: fixed; inset: 0; display:none; place-items: center;
   background: rgba(3,6,23,.65);
@@ -227,7 +227,7 @@ linear-gradient(90deg, rgba(34,211,238,.12), rgba(167,139,250,.12));
   background: linear-gradient(180deg, transparent, rgba(0,0,0,.6));
   color:#e2e8f0; font-size: 13px;
 }
-/<em> Share bar </em>/
+/* Share bar */
 .share{
   display:flex; gap:10px; flex-wrap:wrap; align-items:center;
 }
@@ -246,7 +246,7 @@ linear-gradient(90deg, rgba(34,211,238,.12), rgba(167,139,250,.12));
 .ig{ background:#E1306C }
 .th{ background:#000000 }
 .tt{ background:#010101 }
-/<em> Prism / code blocks area </em>/
+/* Prism / code blocks area */
 pre[class*="language-"]{
   border-radius: 12px !important;
   border: 1px solid rgba(255,255,255,.12) !important;
@@ -260,7 +260,7 @@ pre[class*="language-"]{
   font-weight: 800; cursor: pointer;
   box-shadow: var(--shadow);
 }
-/<em> Footer info </em>/
+/* Footer info */
 footer{
   margin-top: 28px;
   padding: 16px 0 40px;
@@ -490,6 +490,6 @@ document.body.style.overflow='';
   document.addEventListener('keydown', (e)=> { if(e.key==='Escape') closeLB(); });
 })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

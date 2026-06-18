@@ -51,14 +51,14 @@
         :root {
             --color-text: #2c3e50;
             --color-background: #ffffff;
-            --color-primary: #8e44ad; /<em> Ungu </em>/
-            --color-secondary: #f39c12; /<em> Kuning </em>/
+            --color-primary: #8e44ad; /* Ungu */
+            --color-secondary: #f39c12; /* Kuning */
             --color-blockquote-bg: #fdf6e3;
             --color-blockquote-border: #f39c12;
             --color-highlight-jawa: #8e44ad;
             --max-width: 900px;
         }
-        /<em> Dark Mode Detection and Styling </em>/
+        /* Dark Mode Detection and Styling */
         @media (prefers-color-scheme: dark) {
             :root {
                 --color-text: #ecf0f1;
@@ -80,13 +80,13 @@
             transition: background-color 0.3s, color 0.3s;
             min-height: 100vh;
         }
-        /<em> Tata Letak Widescreen 1 Kolom </em>/
+        /* Tata Letak Widescreen 1 Kolom */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 20px;
         }
-        /<em> Tipografi & Konten </em>/
+        /* Tipografi & Konten */
         h1, h2, h3 {
             font-family: Arial, sans-serif;
             color: var(--color-primary);
@@ -104,7 +104,7 @@
             margin-bottom: 1.5em;
             text-align: justify;
         }
-        /<em> Elemen Khusus </em>/
+        /* Elemen Khusus */
         .jawa-frasa {
             font-size: 1.8em;
             font-weight: bold;
@@ -140,7 +140,7 @@
             border-radius: 8px;
             background-color: var(--color-blockquote-bg);
         }
-        /<em> Responsive adjustments </em>/
+        /* Responsive adjustments */
         @media (max-width: 600px) {
             .container {
                 padding: 10px;
@@ -214,5 +214,5 @@
 </footer>
     </article>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

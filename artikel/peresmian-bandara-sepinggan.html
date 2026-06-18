@@ -49,12 +49,12 @@
     <meta name="promphint" content="nostalgia-gallery-casual-storytelling">
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Dark/Light Mode & Konsistensi </em>/
+        /* CSS Variables untuk Dark/Light Mode & Konsistensi */
         :root {
             --bg-color: #ffffff;
             --text-color: #222222;
             --link-color: #0066cc;
-            --accent-color: #e67e22; /<em> Jeruk nostalgia </em>/
+            --accent-color: #e67e22; /* Jeruk nostalgia */
             --meta-color: #666;
             --border-color: #eeeeee;
             --card-bg: #f9f9f9;
@@ -71,7 +71,7 @@
                 --card-bg: #252525;
             }
         }
-        /<em> Basic Reset & Typography </em>/
+        /* Basic Reset & Typography */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: var(--font-main);
@@ -81,13 +81,13 @@
             font-size: 18px;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        /<em> Layout Single Column Widescreen Friendly </em>/
+        /* Layout Single Column Widescreen Friendly */
         .container {
-            max-width: 1060px; /<em> Optimal reading width </em>/
+            max-width: 1060px; /* Optimal reading width */
             margin: 0 auto;
             padding: 20px;
         }
-        /<em> Headers </em>/
+        /* Headers */
         h1 {
             font-size: 2rem;
             margin-bottom: 0.5em;
@@ -106,7 +106,7 @@
         p { margin-bottom: 1.5em; }
         a { color: var(--link-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        /<em> Meta Info </em>/
+        /* Meta Info */
         .article-meta {
             font-size: 0.9rem;
             color: var(--meta-color);
@@ -115,7 +115,7 @@
             gap: 15px;
             flex-wrap: wrap;
         }
-        /<em> Gallery Grid - Optimized for CLS </em>/
+        /* Gallery Grid - Optimized for CLS */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -134,7 +134,7 @@
         }
         .gallery-item a {
             display: block;
-            aspect-ratio: 4/3; /<em> Mencegah CLS saat loading </em>/
+            aspect-ratio: 4/3; /* Mencegah CLS saat loading */
             overflow: hidden;
         }
         .gallery-item img {
@@ -143,7 +143,7 @@
             object-fit: cover;
             transition: opacity 0.3s;
         }
-        /<em> Caption dalam foto </em>/
+        /* Caption dalam foto */
         .photo-caption {
             padding: 10px;
             font-size: 0.85rem;
@@ -151,7 +151,7 @@
             text-align: center;
             border-top: 1px solid var(--border-color);
         }
-        /<em> Quote Box </em>/
+        /* Quote Box */
         .highlight-box {
             background-color: rgba(230, 126, 34, 0.1);
             border-left: 4px solid var(--accent-color);
@@ -160,7 +160,7 @@
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
-        /<em> Injection Points </em>/
+        /* Injection Points */
         #related-articles-grid, #response {
             margin-top: 3em;
             padding: 20px;
@@ -171,7 +171,7 @@
         }
         #related-articles-grid::before { content: "👇 Kolom Komentar"; }
         #response::before { content: "📚 Artikel Terkait"; }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4em;
             padding-top: 2em;
@@ -268,5 +268,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

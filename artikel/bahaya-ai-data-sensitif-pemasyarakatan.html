@@ -53,13 +53,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Tanpa JavaScript untuk Tema Terang/Gelap </em>/
+        /* CSS Tanpa JavaScript untuk Tema Terang/Gelap */
         :root {
             --bg-color: #ffffff;
             --text-color: #2c3e50;
-            --primary-color: #27ae60; /<em> Hijau Aman </em>/
+            --primary-color: #27ae60; /* Hijau Aman */
             --secondary-color: #f9f9f9;
-            --accent-color: #c0392b; /<em> Merah Peringatan </em>/
+            --accent-color: #c0392b; /* Merah Peringatan */
             --border-color: #e0e0e0;
         }
         @media (prefers-color-scheme: dark) {
@@ -72,7 +72,7 @@
                 --border-color: #333333;
             }
         }
-        /<em> Layout Widescreen 1 Kolom </em>/
+        /* Layout Widescreen 1 Kolom */
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -89,7 +89,7 @@
             width: 90%;
             padding: 40px 0;
         }
-        /<em> Optimasi LCP: Gambar Utama </em>/
+        /* Optimasi LCP: Gambar Utama */
         .main-image {
             width: 100%;
             height: auto;
@@ -113,7 +113,7 @@
         .list-style { list-style: none; padding: 0; }
         .list-style li { margin-bottom: 15px; padding-left: 30px; position: relative; }
         .list-style li::before {
-            content: "\f058"; /<em> FontAwesome check-circle </em>/
+            content: "\f058"; /* FontAwesome check-circle */
             font-family: "Font Awesome 7 Free";
             font-weight: 900;
             position: absolute;
@@ -137,7 +137,7 @@
             border-top: 1px solid var(--border-color);
             margin-top: 50px;
         }
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             article { width: 95%; }
@@ -248,5 +248,5 @@
  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

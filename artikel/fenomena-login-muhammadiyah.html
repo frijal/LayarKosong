@@ -59,13 +59,13 @@
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> RESET & GLOBAL - tanpa Tailwind, hanya CSS murni </em>/
+        /* RESET & GLOBAL - tanpa Tailwind, hanya CSS murni */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> Tema terang (default) </em>/
+        /* Tema terang (default) */
         :root {
             --bg-body: #f9fafb;
             --bg-card: #ffffff;
@@ -80,7 +80,7 @@
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        /<em> Tema gelap otomatis (prefers-color-scheme) </em>/
+        /* Tema gelap otomatis (prefers-color-scheme) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #0a0c10;
@@ -104,7 +104,7 @@
             line-height: 1.6;
             scroll-behavior: smooth;
         }
-        /<em> Container utama: 1 kolom, max-width 1000px, di tengah </em>/
+        /* Container utama: 1 kolom, max-width 1000px, di tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -113,13 +113,13 @@
             box-shadow: var(--shadow-md);
             border-radius: 0;
         }
-        /<em> responsive padding untuk mobile </em>/
+        /* responsive padding untuk mobile */
         @media (max-width: 640px) {
             .container {
                 padding: 1.25rem 1rem;
             }
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 1.9rem;
             line-height: 1.3;
@@ -157,7 +157,7 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        /<em> gambar responsif, hindari CLS dengan width/height atribut + CSS </em>/
+        /* gambar responsif, hindari CLS dengan width/height atribut + CSS */
         img {
             max-width: 100%;
             height: auto;
@@ -167,7 +167,7 @@
             box-shadow: var(--shadow-sm);
             background-color: var(--bg-card);
         }
-        /<em> list styling </em>/
+        /* list styling */
         ul, ol {
             margin: 1rem 0 1.2rem 1.8rem;
             color: var(--text-secondary);
@@ -175,7 +175,7 @@
         li {
             margin-bottom: 0.4rem;
         }
-        /<em> blockquote / highlight </em>/
+        /* blockquote / highlight */
         .highlight {
             background: var(--accent-soft);
             border-left: 5px solid var(--accent);
@@ -185,7 +185,7 @@
             font-style: normal;
             color: var(--text-primary);
         }
-        /<em> faq styling </em>/
+        /* faq styling */
         .faq-item {
             margin-bottom: 1.2rem;
             border-bottom: 1px solid var(--border-light);
@@ -199,7 +199,7 @@
             gap: 0.6rem;
             color: var(--heading-color);
         }
-        /<em> footer </em>/
+        /* footer */
         footer {
             margin-top: 2.5rem;
             padding-top: 1.5rem;
@@ -208,18 +208,18 @@
             font-size: 0.85rem;
             color: var(--text-muted);
         }
-        /<em> inline emoji spacing </em>/
+        /* inline emoji spacing */
         .emoji {
             font-style: normal;
         }
-        /<em> related & response div placeholder (kosong, sesuai permintaan) </em>/
+        /* related & response div placeholder (kosong, sesuai permintaan) */
         #related-articles-grid, #response {
             margin-top: 2rem;
             margin-bottom: 1rem;
             min-height: 2px;
         }
-        /<em> optimasi CLS: gambar sudah punya atribut width height </em>/
-        /<em> Card effect untuk konten </em>/
+        /* optimasi CLS: gambar sudah punya atribut width height */
+        /* Card effect untuk konten */
         .note {
             background: var(--accent-soft);
             border-radius: 20px;
@@ -343,5 +343,5 @@
         <p>🄯 2026 Jaga Data Pribadi Tetap Aman | Artikel ini diterbitkan untuk tujuan edukasi dan wawasan Islam berkemajuan. Mengedepankan prinsip E-E-A-T &amp; SEO Long Form. <i class="fa-solid fa-moon"></i> Tema menyesuaikan preferensi sistemmu. <i class="fa-solid fa-globe"></i> Sumber rujukan: literatur resmi Muhammadiyah, wawancara dengan pegiat muda, serta observasi tren media sosial.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

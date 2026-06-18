@@ -53,7 +53,7 @@
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Dark/Light Mode </em>/
+        /* CSS Variables untuk Dark/Light Mode */
         :root {
             --bg-body: #ffffff;
             --text-main: #2d3436;
@@ -70,7 +70,7 @@
                 --border: #333333;
             }
         }
-        /<em> Reset & Base </em>/
+        /* Reset & Base */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -79,7 +79,7 @@
             color: var(--text-main);
             transition: 0.3s;
         }
-        /<em> Widescreen 1 Column Layout </em>/
+        /* Widescreen 1 Column Layout */
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -99,7 +99,7 @@
             color: #888;
             margin-bottom: 20px;
         }
-        /<em> Core Web Vitals: Image Optimization </em>/
+        /* Core Web Vitals: Image Optimization */
         .main-img {
             width: 100%;
             height: auto;
@@ -122,14 +122,14 @@
         h2, h3 { margin: 45px 0 25px; color: var(--accent); }
         ul, ol { margin-bottom: 25px; padding-left: 20px; }
         li { margin-bottom: 15px; }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 60px;
             padding: 40px 0;
             border-top: 1px solid var(--border);
             text-align: center;
         }
-        /<em> Grid for Related </em>/
+        /* Grid for Related */
         #related-articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -142,7 +142,7 @@
             border-radius: 8px;
             margin-bottom: 40px;
         }
-        /<em> Mobile Friendly </em>/
+        /* Mobile Friendly */
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             article { font-size: 1.05rem; }
@@ -201,5 +201,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

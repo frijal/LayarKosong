@@ -66,7 +66,7 @@
             --border-color: #e0e0e0;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             --transition: all 0.3s ease;
-            /<em> Font sizes </em>/
+            /* Font sizes */
             --font-small: 0.875rem;
             --font-normal: 1rem;
             --font-medium: 1.125rem;
@@ -103,7 +103,7 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        /<em> Header </em>/
+        /* Header */
         .site-header {
             padding: 1.5rem 0;
             border-bottom: 1px solid var(--border-color);
@@ -136,14 +136,14 @@
         .theme-toggle:hover {
             background-color: var(--border-color);
         }
-        /<em> Article Container </em>/
+        /* Article Container */
         .article-container {
             display: flex;
             flex-direction: column;
             gap: 2.5rem;
             margin-bottom: 3rem;
         }
-        /<em> Article Header </em>/
+        /* Article Header */
         .article-header {
             text-align: center;
             padding-bottom: 1.5rem;
@@ -183,7 +183,7 @@
             color: white;
             font-weight: bold;
         }
-        /<em> Article Content </em>/
+        /* Article Content */
         .article-content {
             font-size: var(--font-medium);
         }
@@ -257,7 +257,7 @@
         .dark-mode .image-caption {
             color: #aaa;
         }
-        /<em> 5W+1H Section </em>/
+        /* 5W+1H Section */
         .fivew-section {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -284,7 +284,7 @@
             margin-bottom: 0.75rem;
             color: var(--secondary-color);
         }
-        /<em> Comment Section </em>/
+        /* Comment Section */
         #related-articles-grid {
             background-color: var(--card-bg);
             border-radius: 8px;
@@ -297,7 +297,7 @@
             margin-bottom: 1.5rem;
             color: var(--primary-color);
         }
-        /<em> Related Articles </em>/
+        /* Related Articles */
         #response {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -331,7 +331,7 @@
             margin-bottom: 0.75rem;
             color: var(--primary-color);
         }
-        /<em> Footer </em>/
+        /* Footer */
         .site-footer {
             border-top: 1px solid var(--border-color);
             padding: 2.5rem 0;
@@ -358,7 +358,7 @@
         .footer-links a:hover {
             text-decoration: underline;
         }
-        /<em> Responsive Design </em>/
+        /* Responsive Design */
         @media (max-width: 768px) {
             :root {
                 --font-xxlarge: 1.875rem;
@@ -407,7 +407,7 @@
                 padding: 1.5rem;
             }
         }
-        /<em> Utility Classes </em>/
+        /* Utility Classes */
         .emoji {
             font-size: 1.2em;
             margin-right: 0.3rem;
@@ -431,7 +431,7 @@
             color: var(--accent-color);
             font-weight: 600;
         }
-        /<em> Print Styles </em>/
+        /* Print Styles */
         @media print {
             .theme-toggle, #related-articles-grid, #response, .site-footer {
                 display: none;
@@ -730,5 +730,5 @@
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

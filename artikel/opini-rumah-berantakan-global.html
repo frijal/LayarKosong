@@ -69,7 +69,7 @@
       line-height: 1.6;
       color: #111;
       background-color: #f9f9f9;
-      transition: background-color 0.2s, color 0.2s; /<em> halus saat ganti tema </em>/
+      transition: background-color 0.2s, color 0.2s; /* halus saat ganti tema */
       padding: 1rem;
     }
     .container {
@@ -80,7 +80,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.05);
       padding: 2rem;
     }
-    /<em> Tema gelap otomatis </em>/
+    /* Tema gelap otomatis */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -97,7 +97,7 @@
         color: #aaa;
       }
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.3rem;
       line-height: 1.2;
@@ -149,7 +149,7 @@
       border-radius: 20px;
       overflow: hidden;
       aspect-ratio: 16 / 9;
-      background-color: #e0e0e0; /<em> fallback </em>/
+      background-color: #e0e0e0; /* fallback */
     }
     .featured-image img {
       width: 100%;
@@ -169,7 +169,7 @@
       margin-right: 0.3rem;
       color: #f59e0b;
     }
-    /<em> Div khusus related-articles-grid dan related </em>/
+    /* Div khusus related-articles-grid dan related */
     #related-articles-grid, #response {
       margin: 3rem 0 1.8rem;
       padding: 1.8rem 1.5rem;
@@ -192,7 +192,7 @@
       margin: 0 0.3rem;
       color: #f59e0b;
     }
-    /<em> Responsif untuk mobile </em>/
+    /* Responsif untuk mobile */
     @media (max-width: 600px) {
       .container {
         padding: 1.2rem;
@@ -294,5 +294,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a>
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

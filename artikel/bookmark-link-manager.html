@@ -83,7 +83,7 @@ input[type="text"], input[type="search"], select {
 font-size: 13px; margin-top: 15px; padding: 10px; border-radius: 8px;
 background: rgba(0, 176, 237, 0.1); color: var(--accent); display: none;
 }
-/<em> Grid & Card </em>/
+/* Grid & Card */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
 .card {
   background: var(--card); border-radius: 14px; overflow: hidden;
@@ -91,7 +91,7 @@ background: rgba(0, 176, 237, 0.1); color: var(--accent); display: none;
   display: flex; flex-direction: column; position: relative;
 }
 .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-/<em> Checkbox Style </em>/
+/* Checkbox Style */
 .card-checkbox {
   position: absolute; top: 12px; left: 12px; z-index: 10;
   width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent);
@@ -256,6 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
   <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

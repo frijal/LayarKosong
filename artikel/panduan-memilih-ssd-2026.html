@@ -52,8 +52,8 @@
     <!-- SEO Meta Lainnya -->
     <meta name="news_keywords" content="Panduan SSD, SATA vs NVMe, SSD Gen4, SSD Gen5, Rakit PC Hemat, Storage 2026">
     <style>
-        /<em> CSS Reset & Variabel </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & Variabel */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -61,11 +61,11 @@
         :root {
             --bg-color: #f4f4f5;
             --text-color: #27272a;
-            --primary-color: #0284c7; /<em> Ocean Blue </em>/
-            --sata-color: #dc2626; /<em> Red dari infografis </em>/
-            --nvme-color: #0284c7; /<em> Blue dari infografis </em>/
-            --gen4-color: #ea580c; /<em> Orange dari infografis </em>/
-            --gen5-color: #16a34a; /<em> Green dari infografis </em>/
+            --primary-color: #0284c7; /* Ocean Blue */
+            --sata-color: #dc2626; /* Red dari infografis */
+            --nvme-color: #0284c7; /* Blue dari infografis */
+            --gen4-color: #ea580c; /* Orange dari infografis */
+            --gen5-color: #16a34a; /* Green dari infografis */
             --secondary-color: #52525b;
             --border-color: #d4d4d8;
             --accent-bg: #ffffff;
@@ -160,7 +160,7 @@
         .callout strong {
             color: var(--primary-color);
         }
-        /<em> Mengikuti environment selector dari config </em>/
+        /* Mengikuti environment selector dari config */
         a.custom-link {
             color: var(--primary-color);
             text-decoration: none;
@@ -253,5 +253,5 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

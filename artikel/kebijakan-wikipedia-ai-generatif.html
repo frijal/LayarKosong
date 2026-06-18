@@ -58,11 +58,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Tema Terang/Gelap Tanpa JS </em>/
+        /* CSS Variables untuk Tema Terang/Gelap Tanpa JS */
         :root {
             --bg-body: #ffffff;
             --text-main: #1a1a1a;
-            --accent-color: #3366cc; /<em> Wikipedia Blue </em>/
+            --accent-color: #3366cc; /* Wikipedia Blue */
             --muted-bg: #f8f9fa;
             --border-color: #dddddd;
             --container-width: 1000px;
@@ -76,7 +76,7 @@
                 --border-color: #333333;
             }
         }
-        /<em> Base Reset & Typography </em>/
+        /* Base Reset & Typography */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.8;
@@ -93,13 +93,13 @@
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Long Form Article Styling </em>/
+        /* Long Form Article Styling */
         article { padding: 20px 0; }
         h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 25px; color: var(--accent-color); }
         h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
         h3 { font-size: 1.4rem; margin-top: 30px; }
         p { margin-bottom: 20px; font-size: 1.1rem; }
-        /<em> Image Optimization - Zero CLS </em>/
+        /* Image Optimization - Zero CLS */
         .img-wrapper {
             background-color: var(--muted-bg);
             border-radius: 8px;
@@ -111,7 +111,7 @@
             width: 100%;
             height: auto;
             display: block;
-            /<em> Membantu aspect ratio sebelum gambar dimuat </em>/
+            /* Membantu aspect ratio sebelum gambar dimuat */
             aspect-ratio: 16 / 9;
             object-fit: cover;
         }
@@ -121,7 +121,7 @@
             gap: 15px;
             margin: 20px 0;
         }
-        /<em> 5W+1H Section Styling </em>/
+        /* 5W+1H Section Styling */
         .info-box {
             background-color: var(--muted-bg);
             padding: 25px;
@@ -129,7 +129,7 @@
             border-left: 6px solid var(--accent-color);
             margin: 30px 0;
         }
-        /<em> List Styling </em>/
+        /* List Styling */
         ul { margin-bottom: 20px; padding-left: 20px; }
         li { margin-bottom: 10px; }
         footer {
@@ -139,7 +139,7 @@
             text-align: center;
             font-size: 0.9rem;
         }
-        /<em> Responsive adjustments </em>/
+        /* Responsive adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
@@ -267,5 +267,5 @@
         <p>🄯 2026  | Mengedukasi Dunia Digital Indonesia. Halaman ini dioptimasi untuk kecepatan akses dan keterbacaan tinggi.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

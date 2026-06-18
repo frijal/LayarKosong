@@ -59,13 +59,13 @@
     <!-- Article Tags (variasi) -->
     <!-- CSS Core: No Tailwind, responsive, light/dark via prefers-color-scheme -->
     <style>
-        /<em> Reset & Base </em>/
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> CSS Variables untuk Light/Dark mode (tanpa JS) </em>/
+        /* CSS Variables untuk Light/Dark mode (tanpa JS) */
         :root {
             --bg-body: #f9fafb;
             --bg-card: #ffffff;
@@ -99,7 +99,7 @@
             padding: 1.5rem 1rem;
             transition: background 0.2s ease, color 0.2s ease;
         }
-        /<em> Container utama 1 kolom, max-width 1000px </em>/
+        /* Container utama 1 kolom, max-width 1000px */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -117,7 +117,7 @@
                 padding: 2.5rem 2rem;
             }
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 1.9rem;
             font-weight: 800;
@@ -153,7 +153,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /<em> List styling </em>/
+        /* List styling */
         ul, ol {
             margin: 0.8rem 0 1.2rem 1.8rem;
             color: var(--text-secondary);
@@ -161,7 +161,7 @@
         li {
             margin-bottom: 0.4rem;
         }
-        /<em> Gambar responsif, CLS diatasi dengan rasio </em>/
+        /* Gambar responsif, CLS diatasi dengan rasio */
         img {
             max-width: 100%;
             height: auto;
@@ -171,7 +171,7 @@
             box-shadow: var(--shadow-sm);
             background: var(--code-bg);
         }
-        /<em> Emoji & ikon inline </em>/
+        /* Emoji & ikon inline */
         .emoji-big {
             font-size: 1.3rem;
             margin-right: 0.3rem;
@@ -180,7 +180,7 @@
             margin-right: 0.5rem;
             color: var(--accent);
         }
-        /<em> Kutipan </em>/
+        /* Kutipan */
         blockquote {
             border-left: 5px solid var(--accent);
             background: var(--code-bg);
@@ -190,7 +190,7 @@
             font-style: italic;
             color: var(--text-secondary);
         }
-        /<em> Grid untuk related articles </em>/
+        /* Grid untuk related articles */
         .related-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -214,7 +214,7 @@
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-        /<em> Response area </em>/
+        /* Response area */
         .response-area {
             background: var(--code-bg);
             border-radius: 20px;
@@ -223,7 +223,7 @@
             text-align: center;
             border: 1px dashed var(--border-light);
         }
-        /<em> Footer </em>/
+        /* Footer */
         .footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -232,7 +232,7 @@
             border-top: 1px solid var(--border-light);
             color: var(--text-secondary);
         }
-        /<em> Tabel responsif </em>/
+        /* Tabel responsif */
         .table-wrap {
             overflow-x: auto;
             margin: 1.5rem 0;
@@ -252,7 +252,7 @@
             background: var(--accent);
             color: white;
         }
-        /<em> Badge & small </em>/
+        /* Badge & small */
         .badge {
             background: var(--accent);
             color: white;
@@ -262,14 +262,14 @@
             font-weight: 600;
             display: inline-block;
         }
-        /<em> CLS optimal: gambar punya width height bawaan </em>/
+        /* CLS optimal: gambar punya width height bawaan */
         img[src*="thumbnail"] {
             width: 100%;
             height: auto;
             aspect-ratio: 1200 / 630;
             object-fit: cover;
         }
-        /<em> Smooth scroll & performa </em>/
+        /* Smooth scroll & performa */
         html {
             scroll-behavior: smooth;
         }
@@ -400,5 +400,5 @@
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Menyajikan artikel Islami berdasarkan Al-Qur'an dan Sunnah dengan pendekatan santai &amp; terpercaya (E-E-A-T). 📍 Rujukan: Al-Qur'an, Sirah Nabawiyah, dan konsensus ulama.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

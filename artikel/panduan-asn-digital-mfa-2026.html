@@ -50,7 +50,7 @@
     <meta name="promphint" content="Blog teknologi dan opini seputar dunia digital Indonesia">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Optimasi LCP & CLS: Gunakan System Font & Variabel CSS </em>/
+        /* Optimasi LCP & CLS: Gunakan System Font & Variabel CSS */
         :root {
             --primary: #00b0ed;
             --bg: #ffffff;
@@ -59,7 +59,7 @@
             --border: #e1e8ed;
             --accent-text: #555555;
         }
-        /<em> Auto Dark Mode Detection </em>/
+        /* Auto Dark Mode Detection */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg: #121212;
@@ -78,7 +78,7 @@
             font-size: 18px;
             overflow-x: hidden;
         }
-        /<em> Widescreen 1 Kolom Layout </em>/
+        /* Widescreen 1 Kolom Layout */
         .wrapper {
             max-width: 1100px;
             margin: 0 auto;
@@ -99,7 +99,7 @@
             color: var(--accent-text);
             margin-bottom: 30px;
         }
-        /<em> Main Image & Content </em>/
+        /* Main Image & Content */
         .featured-image {
             width: 100%;
             height: auto;
@@ -139,7 +139,7 @@
             color: var(--primary);
             font-weight: bold;
         }
-        /<em> Footer & Extra Widgets </em>/
+        /* Footer & Extra Widgets */
         footer {
             margin-top: 60px;
             padding: 40px 0;
@@ -154,7 +154,7 @@
             background: var(--card-bg);
             border-radius: 10px;
         }
-        /<em> Responsive Mobile View </em>/
+        /* Responsive Mobile View */
         @media (max-width: 768px) {
             header h1 { font-size: 1.8rem; }
             body { font-size: 16px; }
@@ -226,5 +226,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

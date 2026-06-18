@@ -65,7 +65,7 @@
            CSS CUSTOM PROPERTIES — TEMA TERANG & GELAP
            ============================================================ */
         :root {
-            /<em> Warna Light Mode </em>/
+            /* Warna Light Mode */
             --bg: #fdfdfd;
             --bg-secondary: #f5f5f5;
             --bg-tertiary: #eeeeee;
@@ -228,7 +228,7 @@
             flex: 1;
             padding-bottom: 2rem;
         }
-        /<em> Article Meta Atas </em>/
+        /* Article Meta Atas */
         .article-meta-top {
             display: flex;
             flex-wrap: wrap;
@@ -383,7 +383,7 @@
             border-collapse: collapse;
             font-size: 0.85rem;
             min-width: 36rem;
-            /<em> Memastikan tabel punya lebar minimum agar scroll bekerja </em>/
+            /* Memastikan tabel punya lebar minimum agar scroll bekerja */
         }
         @media (min-width: 48rem) {
             table {
@@ -431,14 +431,14 @@
             color: var(--text);
             white-space: nowrap;
         }
-        /<em> Kolom "Pemenang" </em>/
+        /* Kolom "Pemenang" */
         .winner-cell {
             font-weight: 700;
             color: var(--accent) !important;
             text-align: center;
             white-space: nowrap;
         }
-        /<em> Badge kecil untuk indikator </em>/
+        /* Badge kecil untuk indikator */
         .badge {
             display: inline-block;
             font-size: 0.7rem;
@@ -553,7 +553,7 @@
            ============================================================ */
         #related-articles-grid,
         #response {
-            /<em> Sengaja kosong — placeholder tanpa styling </em>/
+            /* Sengaja kosong — placeholder tanpa styling */
         }
         /* ============================================================
            FOOTER — E-E-A-T INLINE CENTERED
@@ -1027,6 +1027,6 @@
             </p>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

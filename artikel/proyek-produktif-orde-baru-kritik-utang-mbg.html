@@ -54,7 +54,7 @@
 <!-- Twitter Card -->
 <!-- CSS inline tanpa JS, dark mode otomatis, optimasi Core Web Vitals -->
   <style>
-    /<em> reset & base </em>/
+    /* reset & base */
     * {
       margin: 0;
       padding: 0;
@@ -72,7 +72,7 @@
       padding: 1.5rem 1rem;
       transition: background-color 0.2s, color 0.2s;
     }
-    /<em> container 1 kolom lebar </em>/
+    /* container 1 kolom lebar */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -81,7 +81,7 @@
       box-shadow: 0 12px 28px rgba(0,0,0,0.03);
       padding: 2.2rem 2rem;
     }
-    /<em> gambar dengan aspek rasio tetap (cegah CLS) </em>/
+    /* gambar dengan aspek rasio tetap (cegah CLS) */
     .featured-image {
       display: block;
       width: 100%;
@@ -92,7 +92,7 @@
       margin: 1.8rem 0 2.2rem;
       background-color: #cbd5e0;
     }
-    /<em> tipografi longform </em>/
+    /* tipografi longform */
     h1 {
       font-size: 2.5rem;
       line-height: 1.2;
@@ -140,7 +140,7 @@
       margin-right: 0.5rem;
       color: #b5643b;
     }
-    /<em> grid related articles (placeholder) </em>/
+    /* grid related articles (placeholder) */
     #related-articles-grids {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -154,7 +154,7 @@
       text-align: center;
       border: 1px solid #c9b6a3;
     }
-    /<em> kolom komentar </em>/
+    /* kolom komentar */
     #response {
       background: #eef2ed;
       border: 3px dashed #7e9a8c;
@@ -173,7 +173,7 @@
       font-size: 0.95rem;
       color: #4f5259;
     }
-    /<em> DARK MODE otomatis </em>/
+    /* DARK MODE otomatis */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #1b2024;
@@ -215,7 +215,7 @@
         color: #eaa370;
       }
     }
-    /<em> responsif mobile </em>/
+    /* responsif mobile */
     @media (max-width: 600px) {
       .container {
         padding: 1.5rem 1.2rem;
@@ -313,5 +313,5 @@
 </footer>
 </div>
 <!-- tanpa javascript, murni HTML+CSS -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

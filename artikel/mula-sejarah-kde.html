@@ -52,9 +52,9 @@
     <meta name="promphint" content="Apa itu KDE dan kapan diciptakan? KDE adalah antarmuka grafis open-source untuk sistem operasi mirip Unix yang pertama kali diumumkan pada tahun 1996 oleh Matthias Ettrich.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Native dengan System Font dan Tema Otomatis </em>/
+        /* CSS Native dengan System Font dan Tema Otomatis */
         :root {
-            /<em> Tema Terang (Light Mode) </em>/
+            /* Tema Terang (Light Mode) */
             --bg-color: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
@@ -64,7 +64,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap (Dark Mode) - WCAG AA Contrast </em>/
+                /* Tema Gelap (Dark Mode) - WCAG AA Contrast */
                 --bg-color: #0f172a;
                 --text-main: #f8fafc;
                 --text-muted: #94a3b8;
@@ -82,7 +82,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            font-size: 1rem; /<em> Menggunakan rem </em>/
+            font-size: 1rem; /* Menggunakan rem */
             line-height: 1.7;
             max-width: 1000px;
             margin: 0 auto;
@@ -122,10 +122,10 @@
         a:hover {
             border-bottom-style: solid;
         }
-        /<em> Optimas Core Web Vitals untuk Gambar </em>/
+        /* Optimas Core Web Vitals untuk Gambar */
         img {
             width: 100%;
-            height: auto; /<em> Tidak memotong tinggi, rasio natural </em>/
+            height: auto; /* Tidak memotong tinggi, rasio natural */
             display: block;
             border-radius: 0.5rem;
             background-color: var(--surface);
@@ -139,7 +139,7 @@
             margin-bottom: 1.5rem;
             display: block;
         }
-        /<em> Syntax Highlighting Base (jika ada kode) </em>/
+        /* Syntax Highlighting Base (jika ada kode) */
         pre {
             background-color: var(--surface);
             padding: 1rem;
@@ -152,7 +152,7 @@
         code {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        /<em> Footer E-E-A-T Inline Center </em>/
+        /* Footer E-E-A-T Inline Center */
         footer {
             margin-top: 4rem;
             padding: 2rem 0;
@@ -220,5 +220,5 @@
         <span><i class="fa-solid fa-calendar-day"></i> Terakhir diperbarui: 3 Juni 2026</span> |
         <span><i class="fa-solid fa-globe"></i> Referensi: Dokumentasi Resmi KDE &amp; Timeline Otomatis KDE.</span>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

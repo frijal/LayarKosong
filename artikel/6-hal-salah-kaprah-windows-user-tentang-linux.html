@@ -48,7 +48,7 @@
 <meta name="notes" content="Artikel edukasi teknologi yang membandingkan UX Linux vs Windows dengan gaya santai dan informatif.">
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-/<em> CSS Variables untuk Dark/Light Mode Otomatis </em>/
+/* CSS Variables untuk Dark/Light Mode Otomatis */
 :root {
   --bg-color: #ffffff;
   --text-color: #2d3436;
@@ -67,7 +67,7 @@
     --quote-bg: #263238;
   }
 }
-/<em> Base Styles - Widescreen 1 Kolom </em>/
+/* Base Styles - Widescreen 1 Kolom */
 body {
   font-family: 'Inter', -apple-system, system-ui, sans-serif;
   line-height: 1.8;
@@ -77,18 +77,18 @@ body {
   transition: 0.3s ease;
 }
 .container {
-  max-width: 1000px; /<em> Fokus 1 kolom widescreen </em>/
+  max-width: 1000px; /* Fokus 1 kolom widescreen */
   margin: 0 auto;
   padding: 20px;
 }
-/<em> Core Web Vitals Optimization (CLS & LCP) </em>/
+/* Core Web Vitals Optimization (CLS & LCP) */
 img {
   max-width: 100%;
   height: auto;
   border-radius: 12px;
   display: block;
   margin: 30px auto;
-  aspect-ratio: 16 / 9; /<em> Reservasi space </em>/
+  aspect-ratio: 16 / 9; /* Reservasi space */
   background: #eee;
   content-visibility: auto;
 }
@@ -104,7 +104,7 @@ h2 { font-size: 1.8rem; margin-top: 45px; display: flex; align-items: center; ga
   opacity: 0.8;
   margin-bottom: 20px;
 }
-/<em> Typography </em>/
+/* Typography */
 p { margin-bottom: 20px; font-size: 1.1rem; }
 .zdummy1 {
   background-color: var(--quote-bg);
@@ -131,7 +131,7 @@ footer {
   font-size: 1.4rem;
   text-decoration: none;
 }
-/<em> Mobile Responsive </em>/
+/* Mobile Responsive */
 @media (max-width: 600px) {
   h1 { font-size: 1.8rem; }
   .container { padding: 15px; }
@@ -187,5 +187,5 @@ Memang di pasar desktop cuma sekitar 4%, tapi secara ekosistem perangkat di Bumi
 <p class="disclaimer" style="margin-top: 20px;">Diterbitkan dari Balikpapan. Semua informasi disajikan secara faktual untuk komunitas open-source.</p><p><strong>Layar Kosong</strong> - Catatan Santai</p>
  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

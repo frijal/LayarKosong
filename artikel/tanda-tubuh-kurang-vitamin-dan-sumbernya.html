@@ -54,13 +54,13 @@
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <style>
-        /<em> CSS Reset Dasar </em>/
-        <em>, </em>::before, *::after { box-sizing: border-box; }
-        /<em> Variabel Warna untuk Tema Terang/Gelap (prefers-color-scheme) </em>/
+        /* CSS Reset Dasar */
+        *, *::before, *::after { box-sizing: border-box; }
+        /* Variabel Warna untuk Tema Terang/Gelap (prefers-color-scheme) */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
-            --accent-color: #0070f3; /<em> Biru bersih </em>/
+            --accent-color: #0070f3; /* Biru bersih */
             --secondary-bg: #f7f7fa;
             --border-color: #eaeaea;
             --muted-text: #666666;
@@ -70,7 +70,7 @@
             :root {
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
-                --accent-color: #3291ff; /<em> Biru terang </em>/
+                --accent-color: #3291ff; /* Biru terang */
                 --secondary-bg: #1e1e1e;
                 --border-color: #333333;
                 --muted-text: #aaaaaa;
@@ -86,7 +86,7 @@
             color: var(--text-color);
             font-size: 16px;
         }
-        /<em> Layout Widescreen 1 Kolom, Tengah </em>/
+        /* Layout Widescreen 1 Kolom, Tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -111,18 +111,18 @@
         h2 { font-size: 1.8rem; margin-top: 45px; color: var(--text-color); font-weight: 700; }
         h3 { font-size: 1.4rem; margin-top: 30px; font-weight: 600; border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 5px;}
         p { margin-bottom: 1.5rem; }
-        /<em> Optimasi LCP & CLS untuk Gambar Utama </em>/
+        /* Optimasi LCP & CLS untuk Gambar Utama */
         .main-image {
             width: 100%;
             height: auto;
-            aspect-ratio: 16/9; /<em> Menjaga ruang gambar sebelum dimuat </em>/
+            aspect-ratio: 16/9; /* Menjaga ruang gambar sebelum dimuat */
             border-radius: 12px;
             object-fit: cover;
             margin-bottom: 30px;
             background-color: var(--secondary-bg);
             display: block;
         }
-        /<em> Styling Daftar Gejala (Outline Asli) </em>/
+        /* Styling Daftar Gejala (Outline Asli) */
         .checklist-item {
             background: var(--secondary-bg);
             padding: 25px;
@@ -146,7 +146,7 @@
             color: var(--accent-color);
             font-weight: 700;
         }
-        /<em> Styling Sumber Makanan (Tambahan) </em>/
+        /* Styling Sumber Makanan (Tambahan) */
         .zdummy1 {
             margin-top: 15px;
             background-color: var(--food-list-bg);
@@ -181,7 +181,7 @@
             text-align: center;
             color: var(--muted-text);
         }
-        /<em> Responsif Mobile View </em>/
+        /* Responsif Mobile View */
         @media (max-width: 600px) {
             h1 { font-size: 1.9rem; }
             h2 { font-size: 1.5rem; }
@@ -299,5 +299,5 @@
         <p style="font-size: 0.85rem; color: var(--muted-text);">Informasi ini hanya untuk edukasi dan tidak menggantikan saran medis profesional. Selalu konsultasikan kondisi kesehatan Anda kepada dokter.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

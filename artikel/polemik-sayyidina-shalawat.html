@@ -58,9 +58,9 @@
             --color-hadith-arabic: #00796b;
             --font-serif: 'Times New Roman', Times, serif;
             --font-sans: Arial, sans-serif;
-            --max-width: 900px; /<em> Lebar kolom konten </em>/
+            --max-width: 900px; /* Lebar kolom konten */
         }
-        /<em> Dark Mode Detection and Styling </em>/
+        /* Dark Mode Detection and Styling */
         @media (prefers-color-scheme: dark) {
             :root {
                 --color-text: #ecf0f1;
@@ -80,15 +80,15 @@
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
-            min-height: 100vh; /<em> Fullscreen look </em>/
+            min-height: 100vh; /* Fullscreen look */
         }
-        /<em> Tata Letak Widescreen 1 Kolom </em>/
+        /* Tata Letak Widescreen 1 Kolom */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 20px;
         }
-        /<em> Tipografi & Konten </em>/
+        /* Tipografi & Konten */
         h1, h2, h3 {
             font-family: var(--font-serif);
             color: var(--color-primary);
@@ -103,7 +103,7 @@
             font-size: 1.1em;
             margin-bottom: 1.5em;
         }
-        /<em> Elemen Khusus </em>/
+        /* Elemen Khusus */
         .arabic {
             font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif;
             font-size: 1.6em;
@@ -138,7 +138,7 @@
             background-color: var(--color-blockquote-border);
             color: var(--color-background);
         }
-        /<em> Responsive adjustments </em>/
+        /* Responsive adjustments */
         @media (max-width: 600px) {
             .container {
                 padding: 10px;
@@ -268,5 +268,5 @@
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

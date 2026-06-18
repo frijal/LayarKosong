@@ -49,11 +49,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&amp;family=Nunito:wght@400;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/atom-one-dark.min.css">
     <style>
-        /<em> 🎨 CSS Variables for Auto Dark/Light Mode </em>/
+        /* 🎨 CSS Variables for Auto Dark/Light Mode */
         :root {
             --bg-color: #f8f9fa;
             --text-color: #2d3436;
-            --accent-color: #cc241d; /<em> Merah Khas Rust/Terminal </em>/
+            --accent-color: #cc241d; /* Merah Khas Rust/Terminal */
             --accent-soft: #fbf1c7;
             --link-color: #0984e3;
             --header-bg: #ffffff;
@@ -66,9 +66,9 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #1e1e2e; /<em> Catppuccin Mocha </em>/
+                --bg-color: #1e1e2e; /* Catppuccin Mocha */
                 --text-color: #cdd6f4;
-                --accent-color: #f38ba8; /<em> Pink Catppuccin </em>/
+                --accent-color: #f38ba8; /* Pink Catppuccin */
                 --accent-soft: #45475a;
                 --link-color: #89dceb;
                 --header-bg: #181825;
@@ -80,7 +80,7 @@
                 --code-bg: #313244;
             }
         }
-        /<em> 💻 Base Styles & Layout (Widescreen 1-Column) </em>/
+        /* 💻 Base Styles & Layout (Widescreen 1-Column) */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Nunito', sans-serif;
@@ -89,7 +89,7 @@
             line-height: 1.8;
             font-size: 18px;
             transition: background 0.3s ease, color 0.3s ease;
-            padding: 20px 0; /<em> Memberi padding atas bawah </em>/
+            padding: 20px 0; /* Memberi padding atas bawah */
         }
         .main-wrapper {
             max-width: 1000px;
@@ -97,7 +97,7 @@
             padding: 0 20px;
             min-height: 100vh;
         }
-        /<em> 🖊 Typography </em>/
+        /* 🖊 Typography */
         h1, h2, h3 { font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
         h1 { font-size: 3rem; color: var(--accent-color); text-align: center; margin-top: 40px; }
         h2 { font-size: 2rem; color: var(--accent-color); border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 50px; }
@@ -106,7 +106,7 @@
         ul, ol { margin-left: 25px; margin-bottom: 20px; }
         a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         a:hover { text-decoration: underline; color: var(--accent-color); }
-        /<em> 💾 Code Blocks </em>/
+        /* 💾 Code Blocks */
         code:not(pre code) {
             background-color: var(--code-bg);
             color: var(--text-color);
@@ -121,7 +121,7 @@
             overflow: hidden;
             margin: 20px 0;
             box-shadow: var(--card-shadow);
-            background: #282c34; /<em> Keep consistent dark background for code </em>/
+            background: #282c34; /* Keep consistent dark background for code */
         }
         pre code.hljs {
             font-family: 'Fira Code', monospace;
@@ -130,7 +130,7 @@
             line-height: 1.6;
             overflow-x: auto;
         }
-        /<em> 🚨 Notes & Alerts </em>/
+        /* 🚨 Notes & Alerts */
         .note-box {
             padding: 15px 20px;
             border-radius: 10px;
@@ -140,7 +140,7 @@
             color: var(--note-text);
             border-left: 5px solid var(--note-text);
         }
-        /<em> 📊 Table (Benchmarks) </em>/
+        /* 📊 Table (Benchmarks) */
         .benchmark-table {
             width: 100%;
             border-collapse: collapse;
@@ -170,7 +170,7 @@
             font-style: italic;
             color: var(--text-color);
         }
-        /<em> 🖼 Images & Center Content </em>/
+        /* 🖼 Images & Center Content */
         .center-content {
             text-align: center;
             margin: 30px 0;
@@ -189,7 +189,7 @@
             padding: 0 15px;
             text-transform: uppercase;
         }
-        /<em> 🦶 Footer </em>/
+        /* 🦶 Footer */
         footer {
             margin-top: 80px;
             padding-top: 40px;
@@ -200,7 +200,7 @@
         .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .social-icons a { font-size: 1.5rem; color: var(--text-color); }
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
-        /<em> 📱 Mobile Adjustments </em>/
+        /* 📱 Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 1.6rem; }
@@ -450,5 +450,5 @@
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

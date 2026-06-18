@@ -47,22 +47,22 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /<em> Light Theme Defaults </em>/
+            /* Light Theme Defaults */
             --bg-color: #f4f4f9;
             --text-color: #1e1e2f;
-            --primary-color: #d32f2f; /<em> Merah Marun - Warna yang berwibawa </em>/
+            --primary-color: #d32f2f; /* Merah Marun - Warna yang berwibawa */
             --secondary-color: #333;
             --link-hover-color: #b71c1c;
             --header-bg: #ffffff;
             --border-color: #e0eeef;
             --blockquote-bg: #ffebee;
         }
-        /<em> Dark Theme Detection </em>/
+        /* Dark Theme Detection */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1e1e2f;
                 --text-color: #e0e0e0;
-                --primary-color: #e57373; /<em> Merah Marun yang lebih terang di Dark Mode </em>/
+                --primary-color: #e57373; /* Merah Marun yang lebih terang di Dark Mode */
                 --secondary-color: #ccc;
                 --link-hover-color: #ef9a9a;
                 --header-bg: #2a2a3a;
@@ -70,7 +70,7 @@
                 --blockquote-bg: #38384a;
             }
         }
-        /<em> Styling Umum </em>/
+        /* Styling Umum */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -80,13 +80,13 @@
             line-height: 1.8;
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> Tata Letak Widescreen 1 Kolom Responsif </em>/
+        /* Tata Letak Widescreen 1 Kolom Responsif */
         .container {
-            max-width: 900px; /<em> Sedikit lebih kecil agar lebih fokus pada teks formal </em>/
+            max-width: 900px; /* Sedikit lebih kecil agar lebih fokus pada teks formal */
             margin: 0 auto;
             padding: 15px;
         }
-        /<em> Header </em>/
+        /* Header */
         header {
             background-color: var(--header-bg);
             border-bottom: 2px solid var(--primary-color);
@@ -98,7 +98,7 @@
             font-size: 2.2em;
             color: var(--primary-color);
         }
-        /<em> Konten Artikel </em>/
+        /* Konten Artikel */
         article {
             background-color: var(--header-bg);
             padding: 30px;
@@ -117,7 +117,7 @@
             margin-bottom: 1.5em;
             text-align: justify;
         }
-        /<em> Gaya Khusus untuk Narasi Asli </em>/
+        /* Gaya Khusus untuk Narasi Asli */
         .original-quote {
             background-color: var(--blockquote-bg);
             border-left: 6px solid var(--primary-color);
@@ -150,8 +150,8 @@
         .img-gallery img {
             max-width: 100%;
             height: auto;
-            flex: 1 1 45%; /<em> Untuk tampilan dua kolom di desktop </em>/
-            min-width: 250px; /<em> Minimal lebar agar mobile friendly </em>/
+            flex: 1 1 45%; /* Untuk tampilan dua kolom di desktop */
+            min-width: 250px; /* Minimal lebar agar mobile friendly */
             border: 1px solid var(--border-color);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
@@ -159,7 +159,7 @@
         .img-gallery img:hover {
             transform: translateY(-5px);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -168,7 +168,7 @@
             color: var(--text-color);
             font-size: 0.9em;
         }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
             article {
                 padding: 15px;
@@ -177,7 +177,7 @@
                 font-size: 1.6em;
             }
             .img-gallery img {
-                flex: 1 1 100%; /<em> Satu kolom di mobile </em>/
+                flex: 1 1 100%; /* Satu kolom di mobile */
             }
         }
     </style>
@@ -227,5 +227,5 @@
         </div>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

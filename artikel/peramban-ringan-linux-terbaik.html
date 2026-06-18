@@ -47,15 +47,15 @@
 <meta name="keywords" content="Linux web browser, peramban ringan Linux, Falkon, Chromium, Firefox, Chrome, Everyday Linux User, Linux untuk pemula">
   <link rel="apple-touch-icon" href=" https://dalam.web.id/favicon.png">
   <style>:root{
-  --bg-1:#eafffb;  /<em> cyan foam </em>/
-  --bg-2:#f6f1ff;  /<em> violet milk </em>/
+  --bg-1:#eafffb;  /* cyan foam */
+  --bg-2:#f6f1ff;  /* violet milk */
   --ink:#0f172a;
   --muted:#475569;
   --card:#ffffff;
   --line:#e2e8f0;
-  --accent:#00b8d9;/<em> cyan pop </em>/
-  --accent-2:#8b5cf6;  /<em> violet pop </em>/
-  --accent-3:#ffb02e;  /<em> mango pop </em>/
+  --accent:#00b8d9;/* cyan pop */
+  --accent-2:#8b5cf6;  /* violet pop */
+  --accent-3:#ffb02e;  /* mango pop */
   --max:1320px;
   --r:16px;
   --shadow:0 10px 30px rgba(2,8,23,.08);
@@ -68,18 +68,18 @@ body{
   color:var(--ink);
   background:radial-gradient(1100px 720px at 12% 6%, #dcfbff 0%, transparent 60%),radial-gradient(1200px 820px at 88% 0%, #eee8ff 0%, transparent 60%),linear-gradient(180deg, var(--bg-1), var(--bg-2));
   overflow-x:hidden;}
-/<em> Floating nav buttons (Dihapus) </em>/
+/* Floating nav buttons (Dihapus) */
 header{
   position:relative;
   padding: clamp(22px,5vw,44px) clamp(14px,3.2vw,22px) 10px;
   display:grid; gap:14px; justify-items:center; text-align:center;}
-/<em> Mengganti .title dengan h1 </em>/
+/* Mengganti .title dengan h1 */
 h1{
   font-weight:900; letter-spacing:2px; line-height:1.06;
   font-size: clamp(28px, 4.8vw, 56px);
   background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
   -webkit-background-clip:text; background-clip:text; color: transparent;
-  margin:0; /<em> Menghapus margin default h1 </em>/
+  margin:0; /* Menghapus margin default h1 */
 }
 .subtitle{ color:var(--muted); max-width:80ch; font-size: clamp(14px,1.7vw,16px)}
 .chips{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center }
@@ -121,7 +121,7 @@ main{ max-width:var(--max); margin-inline:auto; padding: 0 clamp(10px,3vw,20px) 
 .section{ margin-top: clamp(18px,4vw,26px); display:grid; gap: var(--gap); grid-template-columns: repeat(12,1fr) }
 .col-12{ grid-column: span 12 }
 footer{ max-width:var(--max); margin: 28px auto; padding: 0 clamp(10px,3vw,20px) 30px; color:#334155 }
-/<em> Lightbox </em>/
+/* Lightbox */
 .lightbox{ position:fixed; inset:0; background:#0009; display:none; place-items:center; z-index:80; backdrop-filter: blur(3px) }
 .lightbox.open{ display:grid }
 .frame{ position:relative; width:min(96vw, 1200px); height:min(86vh, 820px); background:#000; border-radius:16px; overflow:hidden; border:1px solid #ffffff22 }
@@ -138,7 +138,7 @@ footer{ max-width:var(--max); margin: 28px auto; padding: 0 clamp(10px,3vw,20px)
 .btn-next{ right:10px; top:50%; transform:translateY(-50%) }
 .count{ position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
   background:#fff; border:1px solid var(--line); border-radius:999px; padding:2rem .6rem; font-size:12px }
-/<em> Responsive </em>/
+/* Responsive */
 @media (max-width:1000px){
   .hero{ grid-template-columns: 1fr }
   .grid{ grid-template-columns: repeat(6,1fr) }
@@ -228,5 +228,5 @@ footer{ max-width:var(--max); margin: 28px auto; padding: 0 clamp(10px,3vw,20px)
         </div>
     </div>
     <script>document.querySelector('.fb-comments').setAttribute('data-href',location.href)</script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

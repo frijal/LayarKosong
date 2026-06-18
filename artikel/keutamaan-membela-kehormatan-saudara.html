@@ -70,7 +70,7 @@
     }
     a { color: var(--accent-2); text-decoration: none }
     a:hover { text-decoration: underline }
-    /<em> Single wide column </em>/
+    /* Single wide column */
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
@@ -94,7 +94,7 @@
       margin: 4px 0 0;
       font-size: clamp(14px, 2.2vw, 16px);
     }
-    /<em> Hero image full-bleed with soft shadow </em>/
+    /* Hero image full-bleed with soft shadow */
     .hero {
       margin: 24px 0;
       border-radius: var(--radius);
@@ -110,7 +110,7 @@
       aspect-ratio: 16 / 9;
       filter: saturate(1.05) contrast(1.05);
     }
-    /<em> Article body </em>/
+    /* Article body */
     article {
       background: linear-gradient(180deg, var(--bg-soft), rgba(17,22,28,0.6));
       border: 1px solid rgba(255,255,255,0.06);
@@ -133,7 +133,7 @@
       color: var(--text);
       border-radius: 10px;
     }
-    /<em> Gallery + Lightbox </em>/
+    /* Gallery + Lightbox */
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -198,7 +198,7 @@
     }
     .btn:hover { background: rgba(255,255,255,0.18) }
     .btn:active { transform: translateY(1px) }
-    /<em> Share icons row </em>/
+    /* Share icons row */
     .share {
       display: flex;
       gap: 12px;
@@ -207,7 +207,7 @@
       margin: 18px 0 6px;
     }
     .share .btn svg { width: 18px; height: 18px }
-    /<em> Info chips </em>/
+    /* Info chips */
     .info {
       display: grid;
       grid-template-columns: 1fr;
@@ -226,7 +226,7 @@
     }
     .chip .label { color: var(--muted); min-width: 120px }
     .chip .value { font-weight: 600 }
-    /<em> Floating controls </em>/
+    /* Floating controls */
     .float-sitemap, .float-home {
       position: fixed;
       z-index: 9998;
@@ -239,13 +239,13 @@
       right: 16px;
       bottom: 20%;
     }
-    /<em> Footer + comments </em>/
+    /* Footer + comments */
     footer {
       margin: 20px 0 80px;
       color: var(--muted);
       font-size: 14px;
     }
-    /<em> Small screens </em>/
+    /* Small screens */
     @media (max-width: 560px) {
       .chip .label { min-width: 90px }
       .lightbox .nav { bottom: 16px }
@@ -367,5 +367,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

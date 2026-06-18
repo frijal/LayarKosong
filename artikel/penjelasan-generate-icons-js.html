@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedah Skrip generate-icons.js: Bikin Ikon PWA &amp; Manifest Otomatis. - Layar Kosong</title> 
 <style>
-        /<em> --- Variabel Warna (Dark/Light Mode Otomatis) --- </em>/
+        /* --- Variabel Warna (Dark/Light Mode Otomatis) --- */
         :root {
             --bg-color: #f8f9fa;
             --text-color: #212529;
@@ -60,7 +60,7 @@
             --inline-code-border: #ddd;
             --pre-bg: #2d2d2d;
             --pre-text: #ccc;
-            --button-bg: #007bff; /<em> Warna tombol </em>/
+            --button-bg: #007bff; /* Warna tombol */
             --button-text: #ffffff;
             --button-hover-bg: #0056b3;
         }
@@ -79,12 +79,12 @@
                 --inline-code-border: #444;
                 --pre-bg: #1e1e1e;
                 --pre-text: #d4d4d4;
-                --button-bg: #00aaff; /<em> Warna tombol dark mode </em>/
+                --button-bg: #00aaff; /* Warna tombol dark mode */
                 --button-text: #121212;
                 --button-hover-bg: #0088cc;
             }
         }
-        /<em> --- Global & Desain Fullscreen --- </em>/
+        /* --- Global & Desain Fullscreen --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -102,9 +102,9 @@
             font-size: 17px;
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> --- Desain Widescreen & Responsif --- </em>/
+        /* --- Desain Widescreen & Responsif --- */
         main {
-            max-width: 900px; /<em> Layout widescreen untuk artikel </em>/
+            max-width: 900px; /* Layout widescreen untuk artikel */
             margin: 2rem auto;
             padding: 1rem 2rem;
         }
@@ -120,7 +120,7 @@
             border-bottom: none;
             padding-bottom: 0;
         }
-        /<em> --- Tipografi & Elemen --- </em>/
+        /* --- Tipografi & Elemen --- */
         h1 {
             font-size: 2.4rem;
             color: var(--header-color);
@@ -167,8 +167,8 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> --- Kode --- </em>/
-        code { /<em> Kode inline & di dalam pre </em>/
+        /* --- Kode --- */
+        code { /* Kode inline & di dalam pre */
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             background-color: var(--inline-code-bg);
             border: 1px solid var(--inline-code-border);
@@ -177,23 +177,23 @@
             font-size: 0.9em;
             color: var(--text-color);
         }
-        pre { /<em> Blok Kode </em>/
+        pre { /* Blok Kode */
             background-color: var(--pre-bg);
             color: var(--pre-text);
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
             margin-bottom: 1.5rem;
-            font-size: 0.9em; /<em> Ukuran font di pre sedikit lebih kecil </em>/
+            font-size: 0.9em; /* Ukuran font di pre sedikit lebih kecil */
         }
-        pre code { /<em> Reset style code di dalam pre </em>/
+        pre code { /* Reset style code di dalam pre */
             background: none !important;
             padding: 0 !important;
             border: none !important;
             color: inherit;
-            font-size: inherit; /<em> Ikuti ukuran font pre </em>/
+            font-size: inherit; /* Ikuti ukuran font pre */
         }
-        /<em> --- Blockquote --- </em>/
+        /* --- Blockquote --- */
          blockquote {
             border-left: 5px solid var(--accent-color);
             background-color: var(--card-bg);
@@ -206,7 +206,7 @@
         blockquote p:last-child {
             margin-bottom: 0;
         }
-        /<em> --- Gambar --- </em>/
+        /* --- Gambar --- */
         img {
             max-width: 100%;
             height: auto;
@@ -215,7 +215,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        /<em> --- Ikon Sharing Media Sosial --- </em>/
+        /* --- Ikon Sharing Media Sosial --- */
         .social-share {
             text-align: center;
             padding: 2rem 0;
@@ -241,7 +241,7 @@
             height: 32px;
             fill: var(--text-color);
         }
-        /<em> --- Footer --- </em>/
+        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -254,7 +254,7 @@
             color: var(--accent-color);
             text-decoration: none;
         }
-        /<em> --- Mobile-Friendly (Responsif) --- </em>/
+        /* --- Mobile-Friendly (Responsif) --- */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -269,7 +269,7 @@
              pre {
                 font-size: 0.85em;
              }
-             code { /<em> Kecilkan sedikit kode inline di mobile </em>/
+             code { /* Kecilkan sedikit kode inline di mobile */
                  font-size: 0.85em;
              }
         }
@@ -375,6 +375,6 @@
         <p>🄯 2025  | Dibuat dengan cinta dan secangkir kopi.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

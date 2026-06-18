@@ -53,7 +53,7 @@
             --accent-color: #a00000;
             --secondary-bg: #f5f5f5;
         }
-        /<em> Dark Mode Detection </em>/
+        /* Dark Mode Detection */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -71,7 +71,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1000px; /<em> Widescreen 1 Kolom </em>/
+            max-width: 1000px; /* Widescreen 1 Kolom */
             margin: 0 auto;
             padding: 20px;
             line-height: 1.7;
@@ -124,7 +124,7 @@
             color: var(--accent-color);
             margin-right: 10px;
         }
-        /<em> Mobile Adjustments (Mobile-Friendly) </em>/
+        /* Mobile Adjustments (Mobile-Friendly) */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.5rem; }
@@ -205,5 +205,5 @@
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

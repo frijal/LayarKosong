@@ -45,9 +45,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Memilih Golput - Alasan Teknis, Psikologis, dan Ideologis - Layar Kosong</title> 
 <style>
-        /<em> --- 1. DESIGN TOKENS & UTILITIES (Modern Tech Blog Theme) --- </em>/
+        /* --- 1. DESIGN TOKENS & UTILITIES (Modern Tech Blog Theme) --- */
         :root {
-            /<em> Mode Terang (Light Mode) </em>/
+            /* Mode Terang (Light Mode) */
             --bg: #f7fafc;
             --card: #ffffff;
             --card-border: rgba(15, 23, 42, 0.05);
@@ -65,10 +65,10 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Mode Gelap Premium (Dark Mode Typography Safe) </em>/
+                /* Mode Gelap Premium (Dark Mode Typography Safe) */
                 --bg: #0b1329;          
                 --card: #1e293b; 
-                /<em> Solusi Elevasi: Gunakan border tipis sebagai pengganti shadow di mode gelap </em>/
+                /* Solusi Elevasi: Gunakan border tipis sebagai pengganti shadow di mode gelap */
                 --card-border: rgba(255, 255, 255, 0.08);      
                 --text-main: #f1f5f9;    
                 --muted: #94a3b8;        
@@ -81,8 +81,8 @@
                 --shadow-aside: transparent;
             }
         }
-        /<em> --- 2. UNIVERSAL ACCESSIBLE RESET --- </em>/
-        <em>, </em>::before, *::after { 
+        /* --- 2. UNIVERSAL ACCESSIBLE RESET --- */
+        *, *::before, *::after { 
             box-sizing: border-box; 
         }
         html, body { 
@@ -91,7 +91,7 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif; 
             background-color: var(--bg); 
             color: var(--text-main);
-            /<em> Transisi diperhalus saat user mengubah setelan tema OS mereka </em>/
+            /* Transisi diperhalus saat user mengubah setelan tema OS mereka */
             transition: background-color 0.4s ease, color 0.4s ease; 
         }
         .wrap { 
@@ -99,11 +99,11 @@
             display: flex; 
             flex-direction: column; 
         }
-        /<em> --- 3. GLOBAL HEADER WITH APPLE GLASS FIX --- </em>/
+        /* --- 3. GLOBAL HEADER WITH APPLE GLASS FIX --- */
         header { 
             padding: 1.25rem 0; 
             background-color: var(--header-bg); 
-            /<em> Perbaikan kompatibilitas Safari </em>/
+            /* Perbaikan kompatibilitas Safari */
             -webkit-backdrop-filter: blur(8px); 
             backdrop-filter: blur(8px); 
             border-bottom: 1px solid var(--card-border);
@@ -142,7 +142,7 @@
             color: var(--muted); 
             font-size: 0.875rem;
         }
-        /<em> --- 4. ENGINE TATA LETAK UTAMA --- </em>/
+        /* --- 4. ENGINE TATA LETAK UTAMA --- */
         main { 
             flex: 1; 
             padding: 2rem 0; 
@@ -153,7 +153,7 @@
             gap: 2rem; 
             align-items: start; 
         }
-        /<em> --- 5. KOMPONEN ARTIKEL & KARTU SIDEBAR --- </em>/
+        /* --- 5. KOMPONEN ARTIKEL & KARTU SIDEBAR --- */
         article.card, aside.card { 
             background-color: var(--card); 
             border: 1px solid var(--card-border); 
@@ -186,7 +186,7 @@
         article p { 
             line-height: 1.8;
             color: var(--text-main);
-            opacity: 0.95; /<em> Menjaga kenyamanan membaca teks panjang </em>/
+            opacity: 0.95; /* Menjaga kenyamanan membaca teks panjang */
             margin-bottom: 1.25rem; 
         }
         .section-title { 
@@ -197,7 +197,7 @@
             margin-bottom: 1rem; 
             color: var(--accent);
         }
-        /<em> --- 6. KOMPONEN KONTEN KHUSUS --- </em>/
+        /* --- 6. KOMPONEN KONTEN KHUSUS --- */
         .illustration { 
             width: 100%; 
             border-radius: var(--radius-md); 
@@ -206,7 +206,7 @@
             background-color: rgba(0,0,0,0.02);
         }
         .illustration img { 
-            max-width: 100%; /<em> Pengaman: mencegah gambar kecil pecah/melar terpaksa </em>/
+            max-width: 100%; /* Pengaman: mencegah gambar kecil pecah/melar terpaksa */
             height: auto; 
             display: block; 
             margin: 0 auto;
@@ -235,7 +235,7 @@
             font-size: 0.825rem; 
             color: var(--muted); 
         }
-        /<em> --- 7. KAKI HALAMAN (FOOTER) --- </em>/
+        /* --- 7. KAKI HALAMAN (FOOTER) --- */
         footer { 
             padding: 1.5rem 0; 
             border-top: 1px solid var(--card-border);
@@ -249,13 +249,13 @@
             color: var(--muted);
             font-size: 0.825rem;
         }
-        /<em> --- 8. ADAPTASI LAYAR RESPONSIVE (Mobile Engine) --- </em>/
+        /* --- 8. ADAPTASI LAYAR RESPONSIVE (Mobile Engine) --- */
         @media (max-width: 880px) {
             .grid { 
                 grid-template-columns: 1fr; 
                 gap: 1.5rem;
             }
-            /<em> Menggeser sidebar ke bawah artikel dengan urutan semantik yang benar </em>/
+            /* Menggeser sidebar ke bawah artikel dengan urutan semantik yang benar */
             aside.card { 
                 order: 2; 
             }
@@ -349,6 +349,6 @@
         const canonical = document.getElementById('canonical-link');
         if (canonical) canonical.setAttribute('href', currentUrl);
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

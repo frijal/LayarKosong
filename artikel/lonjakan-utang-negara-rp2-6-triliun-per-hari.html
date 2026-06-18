@@ -58,7 +58,7 @@
     <!-- FontAwesome Icons (Asynchronous) -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
+        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
         :root {
             --bg-color: #fafafa;
             --text-color: #27272a;
@@ -99,7 +99,7 @@
             line-height: 1.8;
             font-size: 17px;
         }
-        /<em> Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop </em>/
+        /* Desain Mobile-first, Maksimal 1000px, Sentralisasi Desktop */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -147,7 +147,7 @@
             color: var(--heading-color);
             font-weight: 600;
         }
-        /<em> Penggunaan kelas a. selector khusus menghindari pseudo-element global </em>/
+        /* Penggunaan kelas a. selector khusus menghindari pseudo-element global */
         a.article-link, a.ref-link {
             color: var(--link-color);
             text-decoration: none;
@@ -159,7 +159,7 @@
             color: var(--link-hover);
             border-bottom-style: solid;
         }
-        /<em> Blok Metadata E-E-A-T </em>/
+        /* Blok Metadata E-E-A-T */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -176,7 +176,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        /<em> Blok Kontainer Gambar Anti-CLS </em>/
+        /* Blok Kontainer Gambar Anti-CLS */
         .img-container {
             margin: 2.5rem 0;
             background-color: var(--card-bg);
@@ -188,7 +188,7 @@
         .img-container img {
             width: 100%;
             height: auto;
-            max-width: 650px; /<em> Mencegah gambar raksasa </em>/
+            max-width: 650px; /* Mencegah gambar raksasa */
             display: block;
             border-radius: 6px;
             margin: 0 auto;
@@ -199,7 +199,7 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-        /<em> Callout / Blockquote </em>/
+        /* Callout / Blockquote */
         blockquote.highlight {
             background-color: var(--quote-bg);
             border-left: 4px solid var(--quote-border);
@@ -218,7 +218,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /<em> Responsivitas Desktop </em>/
+        /* Responsivitas Desktop */
         @media (min-width: 768px) {
             .container {
                 padding: 2.5rem;
@@ -298,5 +298,5 @@
         <p>Tulisan opini ini disusun berdasarkan sintesis data publik dan keluhan masyarakat akar rumput per kuartal pertama tahun 2026. Untuk data perbandingan makroekonomi. Halaman ini menggunakan Native HTML/CSS murni berfokus pada kecepatan <em>Core Web Vitals</em>.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -53,8 +53,8 @@
 <meta name="keywords" content="Recursive Image Album Viewer, album gambar, viewer interaktif, galeri foto, web album, responsive gallery">
   <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <style>
-        /<em> --- Global & Tipografi --- </em>/
-        <em>, </em>::before, *::after {
+        /* --- Global & Tipografi --- */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -72,7 +72,7 @@
             color: #2c3e50;
             margin-top: 0;
         }
-        /<em> --- Kontainer Utama --- </em>/
+        /* --- Kontainer Utama --- */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -80,9 +80,9 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            min-height: 0; /<em> Mencegah flexbox overflow </em>/
+            min-height: 0; /* Mencegah flexbox overflow */
         }
-        /<em> --- Kontrol & Pesan --- </em>/
+        /* --- Kontrol & Pesan --- */
         .controls {
             padding: 16px;
             background: #fff;
@@ -110,7 +110,7 @@
             font-size: 1.2rem;
             color: #777;
         }
-        /<em> --- Area Viewer (Dua Kolom) --- </em>/
+        /* --- Area Viewer (Dua Kolom) --- */
         .viewer-area {
             display: flex;
             flex-grow: 1;
@@ -118,9 +118,9 @@
             gap: 20px;
             min-height: 0;
         }
-        /<em> --- 1. Kolom Viewer Utama --- </em>/
+        /* --- 1. Kolom Viewer Utama --- */
         .main-display-wrapper {
-            flex: 3; /<em> Kolom kiri lebih besar </em>/
+            flex: 3; /* Kolom kiri lebih besar */
             display: flex;
             flex-direction: column;
             min-width: 0;
@@ -132,23 +132,23 @@
             background: #fff;
             display: flex;
             flex-direction: column;
-            flex-grow: 1; /<em> Tumbuh mengisi wrapper </em>/
+            flex-grow: 1; /* Tumbuh mengisi wrapper */
             min-height: 0;
         }
         #imageDisplay {
             display: block;
             width: 100%;
             height: auto;
-            flex-grow: 1; /<em> Gambar mengambil sisa ruang </em>/
+            flex-grow: 1; /* Gambar mengambil sisa ruang */
             object-fit: contain;
             background-color: #f0f0f0;
-            min-height: 0; /<em> Mencegah overflow </em>/
+            min-height: 0; /* Mencegah overflow */
         }
         .caption-wrapper {
             display: flex;
             align-items: stretch;
             border-top: 1px solid #ddd;
-            flex-shrink: 0; /<em> Jangan biarkan caption menyusut </em>/
+            flex-shrink: 0; /* Jangan biarkan caption menyusut */
         }
         figcaption {
             padding: 16px;
@@ -159,7 +159,7 @@
             word-break: break-all;
             line-height: 1.5;
             flex-grow: 1;
-            overflow-x: auto; /<em> Scroll jika path terlalu panjang </em>/
+            overflow-x: auto; /* Scroll jika path terlalu panjang */
         }
         figcaption:empty::before {
             content: "Pilih gambar dari galeri...";
@@ -188,16 +188,16 @@
         }
         .action-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
         .note { font-size: 0.9rem; color: #7f8c8d; margin-top: 10px; }
-        /<em> --- 2. Kolom Galeri Album --- </em>/
+        /* --- 2. Kolom Galeri Album --- */
         .album-grid-wrapper {
-            flex: 1; /<em> Kolom kanan lebih kecil </em>/
+            flex: 1; /* Kolom kanan lebih kecil */
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 16px;
             display: flex;
             flex-direction: column;
-            overflow-y: auto; /<em> INI KUNCI: Galeri bisa di-scroll </em>/
+            overflow-y: auto; /* INI KUNCI: Galeri bisa di-scroll */
             min-width: 0;
         }
         .album-grid-wrapper h2 {
@@ -244,34 +244,34 @@
             text-overflow: ellipsis;
             background: #f9f9f9;
             color: #555;
-            /<em> Tampilkan nama file saja di thumbnail </em>/
+            /* Tampilkan nama file saja di thumbnail */
         }
-        /<em> --- Responsif (Mobile) --- </em>/
+        /* --- Responsif (Mobile) --- */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
-                height: auto; /<em> Biarkan konten menentukan tinggi </em>/
+                height: auto; /* Biarkan konten menentukan tinggi */
             }
             .viewer-area {
                 flex-direction: column;
                 height: auto;
             }
             .album-grid-wrapper {
-                /<em> Buat galeri jadi horizontal scroll </em>/
+                /* Buat galeri jadi horizontal scroll */
                 flex-direction: row;
                 overflow-x: auto;
                 overflow-y: hidden;
-                flex: none; /<em> Jangan tumbuh </em>/
-                height: 150px; /<em> Tinggi tetap untuk galeri </em>/
+                flex: none; /* Jangan tumbuh */
+                height: 150px; /* Tinggi tetap untuk galeri */
             }
             .album-grid {
-                /<em> Paksa grid jadi 1 baris </em>/
+                /* Paksa grid jadi 1 baris */
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
                 grid-auto-flow: column;
                 grid-auto-columns: minmax(100px, 1fr);
             }
             .album-grid-wrapper h2 {
-                display: none; /<em> Sembunyikan judul galeri di HP </em>/
+                display: none; /* Sembunyikan judul galeri di HP */
             }
         }
     </style>
@@ -460,5 +460,5 @@
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

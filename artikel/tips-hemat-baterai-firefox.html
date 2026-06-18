@@ -46,17 +46,17 @@
     <title>Tips Jitu Menghemat Baterai Laptop Saat Pakai Firefox ⚡ - Layar Kosong</title> 
 <meta name="keywords" content="Firefox, Tips Hemat Baterai, Konsumsi Daya, Laptop, Mozilla, Optimasi Performa, CSS3, Dark Mode">
     <style>
-        /<em> CSS3 untuk Tata Letak Responsif, Widescreen, dan Deteksi Tema </em>/
+        /* CSS3 untuk Tata Letak Responsif, Widescreen, dan Deteksi Tema */
         :root {
-            /<em> Default Light Mode </em>/
+            /* Default Light Mode */
             --bg-color: #f7f7f7;
             --text-color: #333;
-            --primary-color: #ff6a00; /<em> Warna khas Firefox </em>/
+            --primary-color: #ff6a00; /* Warna khas Firefox */
             --secondary-color: #4a4a4a;
             --card-bg: #ffffff;
             --border-color: #ddd;
         }
-        /<em> Deteksi Dark Mode </em>/
+        /* Deteksi Dark Mode */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -75,10 +75,10 @@
             padding: 0;
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
-            min-height: 100vh; /<em> Fullscreen </em>/
+            min-height: 100vh; /* Fullscreen */
         }
         .container {
-            max-width: 990px; /<em> Desain Widescreen </em>/
+            max-width: 990px; /* Desain Widescreen */
             margin: 0 auto;
             padding: 20px;
         }
@@ -129,7 +129,7 @@
             background-color: var(--bg-color);
             border-radius: 4px;
         }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -141,7 +141,7 @@
                 padding: 20px;
             }
         }
-        /<em> Styling Komentar </em>/
+        /* Styling Komentar */
         #related-articles-grid {
             margin-top: 40px;
             padding-top: 20px;
@@ -224,5 +224,5 @@
             <p>Dengan menerapkan tips-tips di atas, kamu akan merasakan perbedaan signifikan pada daya tahan baterai laptopmu saat menggunakan Firefox. Selamat <em>browsing</em> dengan lebih hemat daya!</p>
             <div id="related-articles-grid"></div><div id="response"></div>
     </article></div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

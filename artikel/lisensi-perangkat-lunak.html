@@ -47,7 +47,7 @@
 <meta name="keywords" content="Lisensi Perangkat Lunak, Lisensi Open Source, Lisensi Permisif, Lisensi Copyleft, GPL, MIT, Apache, Hak Cipta, Frijal">
      <style>
         :root {
-            /<em> Tema Default (Light) </em>/
+            /* Tema Default (Light) */
             --bg-color: #ffffff;
             --text-color: #1e293b;
             --link-color: #2563eb;
@@ -58,7 +58,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap (Dark) </em>/
+                /* Tema Gelap (Dark) */
                 --bg-color: #1f2937;
                 --text-color: #f3f4f6;
                 --link-color: #60a5fa;
@@ -78,7 +78,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1000px; /<em> Lebar maksimal konten </em>/
+            max-width: 1000px; /* Lebar maksimal konten */
             margin: 0 auto;
             padding: 20px;
         }
@@ -108,7 +108,7 @@
         }
         blockquote {
             background-color: var(--quote-bg);
-            border-left: 5px solid #10b981; /<em> Hijau untuk penekanan </em>/
+            border-left: 5px solid #10b981; /* Hijau untuk penekanan */
             padding: 15px 20px;
             margin: 20px 0;
             font-style: italic;
@@ -126,7 +126,7 @@
             margin: 25px 0;
             font-size: 0.9em;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            overflow-x: auto; /<em> Untuk responsif </em>/
+            overflow-x: auto; /* Untuk responsif */
             display: block;
         }
         th, td {
@@ -139,7 +139,7 @@
             font-weight: bold;
             color: var(--text-color);
         }
-        /<em> Gaya khusus untuk tabel perbedaan utama </em>/
+        /* Gaya khusus untuk tabel perbedaan utama */
         .comparison-table th {
             background-color: var(--link-color);
             color: white;
@@ -279,5 +279,5 @@
          <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

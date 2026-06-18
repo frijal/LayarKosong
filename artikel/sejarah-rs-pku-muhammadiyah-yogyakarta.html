@@ -52,7 +52,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Merriweather:wght@400;700&amp;display=swap" rel="stylesheet">
     <meta name="prompt-hint" content="Artikel ini membahas sejarah lengkap RS PKU Muhammadiyah Yogyakarta, peran pendiri, dan perkembangannya hingga saat ini.">
     <style>
-        /<em> Variabel CSS untuk Dark/Light Mode </em>/
+        /* Variabel CSS untuk Dark/Light Mode */
         :root {
             --background-light: #f4f7f6;
             --text-light: #333;
@@ -64,12 +64,12 @@
         [data-theme="dark"] {
             --background-light: #1a1a1a;
             --text-light: #e0e0e0;
-            --primary-light: #90caf9; /<em> Biru lebih terang untuk dark mode </em>/
-            --secondary-light: #66bb6a; /<em> Hijau lebih terang untuk dark mode </em>/
+            --primary-light: #90caf9; /* Biru lebih terang untuk dark mode */
+            --secondary-light: #66bb6a; /* Hijau lebih terang untuk dark mode */
             --card-bg-light: #2a2a2a;
             --border-light: #444;
         }
-        /<em> Basic Reset & Body Styling </em>/
+        /* Basic Reset & Body Styling */
         body {
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
@@ -78,16 +78,16 @@
             background-color: var(--background-light);
             color: var(--text-light);
             transition: background-color 0.3s ease, color 0.3s ease;
-            box-sizing: border-box; /<em> Pastikan padding dan border termasuk dalam lebar/tinggi elemen </em>/
+            box-sizing: border-box; /* Pastikan padding dan border termasuk dalam lebar/tinggi elemen */
         }
-        /<em> Container utama untuk layout 1 kolom lebar </em>/
+        /* Container utama untuk layout 1 kolom lebar */
         .container {
-            max-width: 1000px; /<em> Lebar maksimal konten </em>/
+            max-width: 1000px; /* Lebar maksimal konten */
             margin: 20px auto;
-            padding: 0 20px; /<em> Padding di sisi untuk mobile-friendly </em>/
+            padding: 0 20px; /* Padding di sisi untuk mobile-friendly */
             box-sizing: border-box;
         }
-        /<em> Header (sederhana saja, tanpa hero) </em>/
+        /* Header (sederhana saja, tanpa hero) */
         header {
             text-align: center;
             padding: 20px 0;
@@ -98,14 +98,14 @@
             font-family: 'Merriweather', serif;
             color: var(--primary-light);
             margin-bottom: 5px;
-            font-size: 2.5em; /<em> LCP </em>/
+            font-size: 2.5em; /* LCP */
             line-height: 1.2;
         }
         header p {
             font-size: 1.1em;
             color: var(--text-light);
         }
-        /<em> Artikel Konten </em>/
+        /* Artikel Konten */
         article {
             background-color: var(--card-bg-light);
             padding: 30px;
@@ -139,10 +139,10 @@
             margin: 20px auto;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /<em> Optimasi LCP: pastikan gambar yang paling besar dimuat dengan prioritas tinggi jika ini yang paling atas </em>/
-            /<em> loading="eager" bisa dipakai di tag img jika gambar ini adalah LCP element </em>/
+            /* Optimasi LCP: pastikan gambar yang paling besar dimuat dengan prioritas tinggi jika ini yang paling atas */
+            /* loading="eager" bisa dipakai di tag img jika gambar ini adalah LCP element */
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -163,14 +163,14 @@
         footer .social-icons a:hover {
             color: var(--primary-light);
         }
-        /<em> Responsif Mobile View </em>/
+        /* Responsif Mobile View */
         @media (max-width: 768px) {
             .container {
                 margin: 10px auto;
                 padding: 0 15px;
             }
             header h1 {
-                font-size: 2em; /<em> LCP </em>/
+                font-size: 2em; /* LCP */
             }
             article {
                 padding: 20px;
@@ -284,5 +284,5 @@
             }
         });
      </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

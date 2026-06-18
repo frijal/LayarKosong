@@ -54,7 +54,7 @@
 <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-        /<em> CSS Prefers-Color-Scheme (Tema Terang/Gelap Otomatis) </em>/
+        /* CSS Prefers-Color-Scheme (Tema Terang/Gelap Otomatis) */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -73,7 +73,7 @@
                 --quote-bg: #252525;
             }
         }
-        /<em> Base Styles - Widescreen 1 Kolom </em>/
+        /* Base Styles - Widescreen 1 Kolom */
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             font-size: 1.2rem;
@@ -89,7 +89,7 @@
             margin: 0 auto;
             padding: 20px 40px;
         }
-        /<em> Core Web Vitals Optimization </em>/
+        /* Core Web Vitals Optimization */
         img {
             max-width: 100%;
             height: auto;
@@ -98,7 +98,7 @@
             margin: 20px 0;
             aspect-ratio: 16 / 9;
             object-fit: cover;
-            background: #ccc; /<em> Placeholder while loading </em>/
+            background: #ccc; /* Placeholder while loading */
         }
         h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--accent-color); }
         h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
@@ -126,13 +126,13 @@
             border-top: 1px solid var(--border-color);
             font-size: 0.9rem;
         }
-        /<em> Responsive Mobile View </em>/
+        /* Responsive Mobile View */
         @media (max-width: 600px) {
             .container { padding: 15px; }
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
         }
-        /<em> Comment & Related Articles Section </em>/
+        /* Comment & Related Articles Section */
         #related-articles-grid, #response {
             margin-top: 40px;
             padding: 20px;
@@ -197,6 +197,6 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -67,7 +67,7 @@
       --shadow: 0 22px 60px rgba(0,0,0,.45), 0 1px 0 rgba(255,255,255,.04) inset;
       --accent:#3584e4; --accent2:#f57900;
       --radius:18px;
-      /<em> Lebar konten diubah agar lebih nyaman dibaca dalam 1 kolom </em>/
+      /* Lebar konten diubah agar lebih nyaman dibaca dalam 1 kolom */
       --w: min(900px, 94vw);
     }
     *{box-sizing:border-box}
@@ -102,7 +102,7 @@
       color:#08131e; padding:10px 14px; border-radius:999px; box-shadow: var(--shadow)
     }
     main{padding:26px 0 64px}
-    /<em> Kelas .grid tidak lagi diperlukan untuk layout utama </em>/
+    /* Kelas .grid tidak lagi diperlukan untuk layout utama */
     .card{background: var(--card); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding:22px}
     h1,h2,h3{margin:0 0 12px}
     h1{font:900 clamp(24px, 3.2vw, 38px)/1.2 Poppins, Inter, Arial}
@@ -209,7 +209,7 @@
     });
     document.getElementById('lightbox')?.addEventListener('click', function(){ this.style.display='none' });
       </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

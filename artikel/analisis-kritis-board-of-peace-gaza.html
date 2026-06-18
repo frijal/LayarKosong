@@ -55,7 +55,7 @@
             --bg-secondary: #f8f9fa;
             --text-primary: #212529;
             --text-secondary: #6c757d;
-            --accent-color: #d9534f; /<em> Red for critical tone </em>/
+            --accent-color: #d9534f; /* Red for critical tone */
             --link-color: #0056b3;
             --border-color: #dee2e6;
             --box-highlight-bg: #fff3cd;
@@ -63,7 +63,7 @@
             --box-info-bg: #e2e3e5;
             --box-info-border: #d6d8db;
         }
-        /<em> Auto-detect Dark Mode </em>/
+        /* Auto-detect Dark Mode */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-primary: #121212;
@@ -79,7 +79,7 @@
                 --box-info-border: #454649;
             }
         }
-        /<em> Core Web Vitals Optimization: System Font Stack & Basic Reset </em>/
+        /* Core Web Vitals Optimization: System Font Stack & Basic Reset */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             background-color: var(--bg-primary);
@@ -89,18 +89,18 @@
             padding: 0;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         a { color: var(--link-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        /<em> Main Layout - Single Column Widescreen </em>/
+        /* Main Layout - Single Column Widescreen */
         .container {
-            max-width: 1000px; /<em> Optimal reading width for long form </em>/
+            max-width: 1000px; /* Optimal reading width for long form */
             margin: 0 auto;
             padding: 20px;
         }
-        /<em> Header & Title Styles </em>/
+        /* Header & Title Styles */
         .article-header {
             text-align: center;
             margin-bottom: 40px;
@@ -127,7 +127,7 @@
             align-items: center;
         }
         .meta-item i { margin-right: 8px; }
-        /<em> Featured Image - Lazy Load Optimized </em>/
+        /* Featured Image - Lazy Load Optimized */
         .featured-image-container {
             margin-bottom: 40px;
         }
@@ -136,18 +136,18 @@
             height: auto;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            aspect-ratio: 16 / 9; /<em> Prevents CLS shift </em>/
+            aspect-ratio: 16 / 9; /* Prevents CLS shift */
             object-fit: cover;
-            background-color: var(--bg-secondary); /<em> Placeholder color </em>/
+            background-color: var(--bg-secondary); /* Placeholder color */
         }
-        /<em> Content Typography </em>/
+        /* Content Typography */
         .article-content { font-size: 1.125rem; }
         .article-content h2 { font-size: 1.8rem; margin-top: 2.5em; margin-bottom: 1em; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
         .article-content h3 { font-size: 1.4rem; margin-top: 2em; margin-bottom: 0.8em; color: var(--accent-color); }
         .article-content p { margin-bottom: 1.5em; }
         .article-content ul { margin-bottom: 1.5em; padding-left: 1.5em; }
         .article-content li { margin-bottom: 0.5em; }
-        /<em> Blockquote Style </em>/
+        /* Blockquote Style */
         blockquote {
             border-left: 5px solid var(--accent-color);
             margin: 2em 0;
@@ -157,7 +157,7 @@
             font-size: 1.2rem;
             border-radius: 0 8px 8px 0;
         }
-        /<em> Special Boxes (Highlight, Info, Analysis) </em>/
+        /* Special Boxes (Highlight, Info, Analysis) */
         .highlight-box, .info-box, .analysis-card {
             padding: 20px;
             border-radius: 8px;
@@ -178,7 +178,7 @@
             align-items: flex-start;
         }
         .info-icon { font-size: 2rem; color: var(--text-secondary); flex-shrink: 0; }
-        /<em> 5W+1H Grid Layout </em>/
+        /* 5W+1H Grid Layout */
         .analysis-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -188,11 +188,11 @@
         .analysis-card {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            height: 100%; /<em> Ensure equal height </em>/
+            height: 100%; /* Ensure equal height */
         }
         .analysis-card h3 { margin-top: 0; display: flex; align-items: center; color: var(--accent-color); }
         .analysis-card h3 i { margin-right: 10px; }
-        /<em> Author Bio Section </em>/
+        /* Author Bio Section */
         .zdummy {
             display: flex;
             align-items: center;
@@ -211,7 +211,7 @@
         }
         .author-info h3 { margin-top: 0; margin-bottom: 10px; }
         .author-info p { margin-bottom: 0; font-size: 0.95rem; }
-        /<em> Footer & Placeholders </em>/
+        /* Footer & Placeholders */
         .content-footer-placeholders { margin-top: 50px; }
         #related-articles-grid, #response {
             margin-bottom: 30px;
@@ -220,7 +220,7 @@
             border-radius: 8px;
             text-align: center;
             color: var(--text-secondary);
-            border: 2px dashed var(--border-color); /<em> Placeholder styling </em>/
+            border: 2px dashed var(--border-color); /* Placeholder styling */
         }
         .site-footer {
             text-align: center;
@@ -230,7 +230,7 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        /<em> Mobile Responsiveness adjustments </em>/
+        /* Mobile Responsiveness adjustments */
         @media (max-width: 768px) {
             .article-title { font-size: 1.8rem; }
             .article-meta { flex-direction: column; gap: 5px; align-items: center; }
@@ -480,5 +480,5 @@
         <p>🄯 2025 Jaga Data Pribadi Tetap Aman. Analisis Kritis untuk Publik. <i class="fa-solid fa-heart" style="color: var(--accent-color);"></i> untuk Palestina.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

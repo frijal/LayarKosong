@@ -124,7 +124,7 @@
     .meta .box{background:#0c1430;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px}
     .meta .k{color:var(--muted);font-size:12px;margin-bottom:6px}
     .meta .v{font-weight:600}
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox{
       position:fixed;inset:0;background:rgba(5,8,20,.85);display:none;place-items:center;z-index:9998;padding:16px;
       backdrop-filter:saturate(120%) blur(6px);
@@ -134,19 +134,19 @@
     .lightbox .close{
       position:absolute;top:16px;right:16px;background:#101a3a;border:1px solid rgba(255,255,255,.1);color:#eaf0ff;border-radius:999px;padding:10px 14px;cursor:pointer
     }
-    /<em> Code highlighting area </em>/
+    /* Code highlighting area */
     pre, code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
     pre{border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#0b132b;box-shadow:var(--shadow)}
     .code-toolbar{position:relative}
     .copy-btn{
       position:absolute;top:10px;right:10px;z-index:2;background:linear-gradient(120deg,#2ee59d,#00c2ff);color:#08111f;border:none;border-radius:10px;padding:6px 10px;cursor:pointer;font-weight:700
     }
-    /<em> Footer info </em>/
+    /* Footer info */
     footer.info{margin:30px auto;max-width:var(--maxw);padding:18px;border-top:1px dashed rgba(255,255,255,.15);color:var(--muted)}
     .device, .ip{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
     .icons{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     .pill{background:#0c1430;border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:999px}
-    /<em> Floating Home Buttons (Left/Right) </em>/
+    /* Floating Home Buttons (Left/Right) */
     #btn-home-left, #btn-home-right {
       position: fixed;
       display: inline-flex;
@@ -265,5 +265,5 @@
     // Page URL display
     document.getElementById('page-url').textContent = window.location.href;
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

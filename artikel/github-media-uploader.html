@@ -48,7 +48,7 @@
     <meta name="keywords" content="github uploader, upload ke github, tools github, layar kosong, frijal, upload file github online, web tools github">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-    /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
+    /* 1. Definisikan Variabel Tema Terang (Default) */
     :root {
         --bg-color: #f9f9f9;
         --card-bg: #ffffff;
@@ -61,7 +61,7 @@
         --btn-bg: #2ea44f;
         --btn-hover: #2c974b;
         --btn-disabled: #94d3a2;
-        /<em> Variabel Baru Khusus Fitur Preview & Textarea </em>/
+        /* Variabel Baru Khusus Fitur Preview & Textarea */
         --preview-item-bg: #fdfdfd;
         --preview-media-bg: #f1f1f1;
         --textarea-bg: #ffffff;
@@ -73,7 +73,7 @@
         --shadow-color: rgba(149,157,165,0.1);
         --focus-ring: rgba(3,102,214,0.3);
     }
-    /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
     @media (prefers-color-scheme: dark) {
         :root {
             --bg-color: #0d1117;
@@ -87,7 +87,7 @@
             --btn-bg: #238636;
             --btn-hover: #2ea043;
             --btn-disabled: #1b4721;
-            /<em> Variabel Baru Mode Gelap </em>/
+            /* Variabel Baru Mode Gelap */
             --preview-item-bg: #1c2128;
             --preview-media-bg: #0d1117;
             --textarea-bg: #0d1117;
@@ -100,7 +100,7 @@
             --focus-ring: rgba(88,166,255,0.3);
         }
     }
-    /<em> 3. Base Styles (Desktop & Tablet) </em>/
+    /* 3. Base Styles (Desktop & Tablet) */
     body { 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         max-width: 900px; 
@@ -167,7 +167,7 @@
         cursor: not-allowed; 
         color: rgba(255,255,255,0.6);
     }
-    /<em> === Bagian Baru yang Sudah Dimodifikasi untuk Dark Mode === </em>/
+    /* === Bagian Baru yang Sudah Dimodifikasi untuk Dark Mode === */
     .preview-grid { 
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
@@ -229,7 +229,7 @@
         margin-top: 10px; 
         color: var(--status-color); 
     }
-    /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) </em>/
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
     @media (max-width: 600px) {
         body {
             margin: 10px auto; 
@@ -250,13 +250,13 @@
             padding: 10px; 
             font-size: 15px;
         }
-        /<em> Optimasi tambahan untuk Grid Preview di HP kecil </em>/
+        /* Optimasi tambahan untuk Grid Preview di HP kecil */
         .preview-grid {
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /<em> Mengecilkan limit kolom biar muat 2 kolom di layar HP </em>/
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Mengecilkan limit kolom biar muat 2 kolom di layar HP */
             gap: 10px;
         }
         .preview-item img, .preview-item video {
-            max-height: 100px; /<em> Di HP jangan terlalu tinggi biar tidak menimbun layar </em>/
+            max-height: 100px; /* Di HP jangan terlalu tinggi biar tidak menimbun layar */
         }
     }
 </style>
@@ -436,6 +436,6 @@
         });
     }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

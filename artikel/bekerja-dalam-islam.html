@@ -48,7 +48,7 @@
     <meta name="news_keywords" content="Bekerja dalam Islam, Hadits Bekerja, Rezeki Halal, Etos Kerja Islam, Jihad Mencari Nafkah">
     <meta name="promphint" content="Bagaimana hukum bekerja dalam Islam? | Bekerja mencari rezeki yang halal hukumnya adalah wajib setelah menunaikan ibadah fardhu.">
     <style>
-        /<em> CSS Variabel & Tema Terang/Gelap Dinamis </em>/
+        /* CSS Variabel & Tema Terang/Gelap Dinamis */
         :root {
             --bg-main: #f8fafc;
             --bg-card: #ffffff;
@@ -79,8 +79,8 @@
                 --code-text: #38bdf8;
             }
         }
-        /<em> Reset Dasar & Aksesibilitas </em>/
-        <em>, </em>::before, *::after {
+        /* Reset Dasar & Aksesibilitas */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -93,14 +93,14 @@
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Tata Letak Kontainer Responsif (Mobile-First) </em>/
+        /* Tata Letak Kontainer Responsif (Mobile-First) */
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: 2rem 1.25rem;
         }
-        /<em> Desain Tipografi Menggunakan REM </em>/
+        /* Desain Tipografi Menggunakan REM */
         header {
             margin-bottom: 2.5rem;
             text-align: center;
@@ -144,7 +144,7 @@
             color: var(--text-primary);
             font-weight: 600;
         }
-        /<em> Optimasi Media & Pencegahan CLS </em>/
+        /* Optimasi Media & Pencegahan CLS */
         .media-wrapper {
             width: 100%;
             margin: 2.5rem 0;
@@ -155,7 +155,7 @@
         .media-wrapper img {
             width: 100%;
             height: auto;
-            aspect-ratio: 4 / 3; /<em> Mempertahankan rasio asli 300px lebar / 225px tinggi perkiraan, disesuaikan kontainer </em>/
+            aspect-ratio: 4 / 3; /* Mempertahankan rasio asli 300px lebar / 225px tinggi perkiraan, disesuaikan kontainer */
             object-fit: cover;
             display: block;
         }
@@ -168,7 +168,7 @@
             background-color: var(--bg-card);
             border-top: 0.0625rem solid var(--border);
         }
-        /<em> Desain Blok Kutipan Hadits </em>/
+        /* Desain Blok Kutipan Hadits */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 0.375rem solid var(--quote-border);
@@ -191,19 +191,19 @@
             text-transform: uppercase;
             letter-spacing: 0.05rem;
         }
-        /<em> Penyelarasan List </em>/
+        /* Penyelarasan List */
         ul {
             list-style-type: none;
             margin-bottom: 2rem;
         }
-        /<em> Garis Pembatas Horisontal </em>/
+        /* Garis Pembatas Horisontal */
         hr {
             border: 0;
             height: 0.0625rem;
             background-color: var(--border);
             margin: 3rem 0;
         }
-        /<em> Footer Fleksibel Setara </em>/
+        /* Footer Fleksibel Setara */
         footer {
             margin-top: 5rem;
             padding: 2rem 0;
@@ -314,5 +314,5 @@
         </div>
     </div>
 <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

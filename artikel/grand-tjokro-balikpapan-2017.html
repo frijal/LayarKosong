@@ -230,7 +230,7 @@
       padding: 0 clamp(10px,3vw,20px) 30px;
       color:#bfe1ff;
     }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox{
       position:fixed; inset:0; background:#000c; display:none; place-items:center; z-index:80;
       backdrop-filter: blur(3px);
@@ -261,7 +261,7 @@
       position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
       background:#08111f; color:#cfe7ff; border:1px solid #244a7a; padding:2rem .6rem; border-radius:999px; font-size:12px;
     }
-    /<em> Floating nav buttons </em>/
+    /* Floating nav buttons */
     .jump{
       position:fixed; z-index:60; display:flex; align-items:center; gap:6rem;
       text-decoration:none; color:#04241c; background:linear-gradient(135deg,var(--accent),#0fd1ae);
@@ -271,7 +271,7 @@
     .jump svg{width:18px;height:18px}
     .jump-left{ left:12px; top:30% }
     .jump-right{ right:12px; bottom:30% }
-    /<em> Responsive </em>/
+    /* Responsive */
     @media (max-width: 1000px){
       .hero{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: repeat(6, 1fr); }
@@ -610,5 +610,5 @@
   <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
 <!-- <script defer src="/ext/lightbox.js"></script> -->
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

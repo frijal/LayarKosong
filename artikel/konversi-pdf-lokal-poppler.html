@@ -52,33 +52,33 @@
     <link rel="stylesheet" href="/ext/vs.min.css" id="hljs-light-theme">
     <link rel="stylesheet" href="/ext/vs-dark.min.css" id="hljs-dark-theme" disabled="">
     <style>
-        /<em> CSS Dasar & Tema Otomatis (Light/Dark) </em>/
+        /* CSS Dasar & Tema Otomatis (Light/Dark) */
         :root {
             --font-main: 'Inter', sans-serif;
             --font-code: 'Fira Code', 'Consolas', 'Monaco', monospace;
-            --color-text: #1f2937; /<em> Darker text </em>/
+            --color-text: #1f2937; /* Darker text */
             --color-bg: #ffffff;
-            --color-primary: #3b82f6; /<em> Biru Neon Baru </em>/
-            --color-secondary: #10b981; /<em> Hijau Segar </em>/
+            --color-primary: #3b82f6; /* Biru Neon Baru */
+            --color-secondary: #10b981; /* Hijau Segar */
             --color-border: #e5e7eb;
             --color-card-bg: #f9fafb;
             --color-code-bg: #f3f4f6;
             --color-footer-bg: #f9fafb;
         }
-        /<em> Deteksi Tema Gelap (Dark Mode) Otomatis </em>/
+        /* Deteksi Tema Gelap (Dark Mode) Otomatis */
         @media (prefers-color-scheme: dark) {
             :root {
                 --color-text: #e0e0e0;
-                --color-bg: #111827; /<em> Darker background </em>/
+                --color-bg: #111827; /* Darker background */
                 --color-primary: #60a5fa;
                 --color-secondary: #34d399;
                 --color-border: #374151;
                 --color-card-bg: #1f2937;
-                --color-code-bg: #2d3748; /<em> Lebih gelap dari background </em>/
+                --color-code-bg: #2d3748; /* Lebih gelap dari background */
                 --color-footer-bg: #1f2937;
             }
         }
-        /<em> Tema Highlight.js switcher </em>/
+        /* Tema Highlight.js switcher */
         @media (prefers-color-scheme: dark) {
             #hljs-light-theme {
                 display: none;
@@ -87,7 +87,7 @@
                 display: block;
             }
         }
-        /<em> Desain Widescreen 1 Kolom, Fullscreen </em>/
+        /* Desain Widescreen 1 Kolom, Fullscreen */
         body {
             font-family: var(--font-main);
             background-color: var(--color-bg);
@@ -98,7 +98,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            font-weight: 400; /<em> Normal weight </em>/
+            font-weight: 400; /* Normal weight */
         }
         .container {
             max-width: 1200px;
@@ -109,42 +109,42 @@
         }
         h1, h2, h3 {
             color: var(--color-primary);
-            font-weight: 800; /<em> Extra bold for headings </em>/
+            font-weight: 800; /* Extra bold for headings */
         }
         hr {
             border-top: 1px solid var(--color-border);
             margin: 30px 0;
         }
-        /<em> Gaya Code Block UPGRADE </em>/
+        /* Gaya Code Block UPGRADE */
         pre {
             background-color: var(--color-code-bg);
-            padding: 20px; /<em> Lebih besar </em>/
+            padding: 20px; /* Lebih besar */
             border-radius: 12px;
             overflow-x: auto;
             border: 1px solid var(--color-border);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /<em> Tambahan Shadow </em>/
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Tambahan Shadow */
             font-family: var(--font-code);
             font-size: 1em;
             line-height: 1.4;
         }
-        /<em> Style untuk inline code </em>/
+        /* Style untuk inline code */
         code {
             font-family: var(--font-code);
             background-color: var(--color-code-bg);
             padding: 2px 5px;
             border-radius: 4px;
-            color: var(--color-primary); /<em> Menarik perhatian </em>/
+            color: var(--color-primary); /* Menarik perhatian */
             font-weight: 600;
         }
-        /<em> Style untuk code block (diambil alih oleh highlight.js) </em>/
+        /* Style untuk code block (diambil alih oleh highlight.js) */
         pre code {
-            all: unset; /<em> Reset style inline code di dalam pre </em>/
+            all: unset; /* Reset style inline code di dalam pre */
             padding: 0;
             background: none;
             color: inherit;
             font-weight: inherit;
         }
-        /<em> Gaya Gambar </em>/
+        /* Gaya Gambar */
         .article-image {
             max-width: 100%;
             height: auto;
@@ -152,7 +152,7 @@
             margin: 20px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        /<em> Footer Gaya Keren </em>/
+        /* Footer Gaya Keren */
         footer {
             background-color: var(--color-footer-bg);
             padding: 20px;
@@ -255,5 +255,5 @@
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

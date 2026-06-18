@@ -50,12 +50,12 @@
         :root {
             --color-bg: #121212;
             --color-text: #e0e0e0;
-            --color-primary: #ff5722; /<em> Deep Orange/Merah Khas Error Fix </em>/
+            --color-primary: #ff5722; /* Deep Orange/Merah Khas Error Fix */
             --color-secondary: #222222;
             --color-card-bg: #1e1e1e;
             --padding-base: 20px;
         }
-        /<em> RESET & BASE </em>/
+        /* RESET & BASE */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -68,19 +68,19 @@
             line-height: 1.7;
             padding: 0;
         }
-        /<em> HEADER & FOOTER </em>/
+        /* HEADER & FOOTER */
         header, footer {
             text-align: center;
             padding: var(--padding-base);
             background-color: var(--color-secondary);
         }
-        /<em> ONE-COLUMN LAYOUT </em>/
+        /* ONE-COLUMN LAYOUT */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: var(--padding-base);
         }
-        /<em> TYPOGRAPHY & TEXT STYLES </em>/
+        /* TYPOGRAPHY & TEXT STYLES */
         h1 {
             color: var(--color-primary);
             margin-bottom: 10px;
@@ -104,8 +104,8 @@
     color: #f8f8f2;
     padding: 15px;
     border-radius: 5px;
-    overflow-x: auto; /<em> Muncul scrollbar horizontal kalau kepanjangan </em>/
-    white-space: pre; /<em> Tetap pertahankan format baris asli </em>/
+    overflow-x: auto; /* Muncul scrollbar horizontal kalau kepanjangan */
+    white-space: pre; /* Tetap pertahankan format baris asli */
 }
         code {
             background-color: #333;
@@ -124,7 +124,7 @@
         li {
             margin-bottom: 5px;
         }
-        /<em> USER INFO CARD </em>/
+        /* USER INFO CARD */
         #user-info {
             background-color: var(--color-card-bg);
             padding: var(--padding-base);
@@ -135,7 +135,7 @@
         #user-info p {
             margin-bottom: 5px;
         }
-        /<em> SHARING ICONS </em>/
+        /* SHARING ICONS */
         .social-share {
             text-align: center;
             margin: 30px 0;
@@ -152,7 +152,7 @@
         .social-share a:hover {
             color: var(--color-primary);
         }
-        /<em> GALLERY & LAZY LOAD </em>/
+        /* GALLERY & LAZY LOAD */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -172,7 +172,7 @@
             transform: scale(1.03);
             box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
         }
-        /<em> LIGHTBOX </em>/
+        /* LIGHTBOX */
         .lightbox {
             display: none;
             position: fixed;
@@ -233,14 +233,14 @@
         .prev:hover, .next:hover {
             background-color: var(--color-primary);
         }
-        /<em> KOMENTAR FACEBOOK </em>/
+        /* KOMENTAR FACEBOOK */
         #fb-comments-container {
             margin-top: 40px;
             background-color: var(--color-card-bg);
             padding: var(--padding-base);
             border-radius: 8px;
         }
-        /<em> MEDIA QUERIES (Mobile-Friendly) </em>/
+        /* MEDIA QUERIES (Mobile-Friendly) */
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             h2 { font-size: 1.6em; }
@@ -344,7 +344,7 @@ sudo pacman -Sc</code></pre>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <div id="kategori-aktif"></div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 </div>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

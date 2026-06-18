@@ -51,14 +51,14 @@
     <meta name="promphint" content="Bagaimana cara mengatasi llvmpipe di Debian 13 Intel? | Hapus paket xserver-xorg-video-intel dan biarkan sistem menggunakan kernel modesetting dengan Mesa Iris.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Tema Terang dan Gelap </em>/
+        /* CSS Variables untuk Tema Terang dan Gelap */
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
             --bg-muted: #f1f5f9;
             --text-main: #0f172a;
             --text-muted: #475569;
-            --accent-color: #d94154; /<em> Debian Crimson </em>/
+            --accent-color: #d94154; /* Debian Crimson */
             --link-color: #0ea5e9;
             --border-color: #cbd5e1;
             --code-bg: #1e293b;
@@ -79,14 +79,14 @@
                 --link-color: #38bdf8;
                 --border-color: #334155;
                 --code-bg: #0b0f19;
-                --quote-bg: #4c1d95; /<em> Deep Purple hint </em>/
+                --quote-bg: #4c1d95; /* Deep Purple hint */
                 --quote-border: #d94154;
                 --terminal-header: #1e293b;
                 --terminal-prompt: #22c55e;
             }
         }
-        /<em> Reset & Base Typography (Unit full rem) </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base Typography (Unit full rem) */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -100,7 +100,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /<em> Layout Container (Mobile First) </em>/
+        /* Layout Container (Mobile First) */
         .container {
             width: 100%;
             max-width: 64rem;
@@ -110,7 +110,7 @@
             min-height: 100vh;
             box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1);
         }
-        /<em> Typography Styling </em>/
+        /* Typography Styling */
         h1, h2, h3 {
             color: var(--text-main);
             line-height: 1.3;
@@ -170,7 +170,7 @@
             color: var(--text-main);
             font-size: 1.125rem;
         }
-        /<em> LCP Image Optimization & Media </em>/
+        /* LCP Image Optimization & Media */
         figure {
             margin: 2.5rem 0;
             width: 100%;
@@ -183,7 +183,7 @@
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /<em> Mencegah Layout Shift (CLS) saat dimuat </em>/
+            aspect-ratio: 16 / 9; /* Mencegah Layout Shift (CLS) saat dimuat */
             object-fit: cover;
             background-color: var(--bg-muted);
         }
@@ -196,7 +196,7 @@
             border-top: 0.0625rem solid var(--border-color);
             background-color: var(--bg-body);
         }
-        /<em> Terminal/Code Block Styling </em>/
+        /* Terminal/Code Block Styling */
         .terminal-container {
             border-radius: 0.5rem;
             overflow: hidden;
@@ -242,7 +242,7 @@
             color: #94a3b8;
             font-style: italic;
         }
-        /<em> Inline code </em>/
+        /* Inline code */
         p code, li code {
             background-color: var(--bg-muted);
             color: var(--accent-color);
@@ -250,7 +250,7 @@
             border-radius: 0.25rem;
             font-size: 0.875em;
         }
-        /<em> Header & Footer </em>/
+        /* Header & Footer */
         header {
             margin-bottom: 3.5rem;
             text-align: center;
@@ -338,6 +338,6 @@
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

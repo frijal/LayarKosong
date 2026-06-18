@@ -53,7 +53,7 @@
   <meta name="promphint" content="Apa yang baru di CachyOS Maret 2026? Rilis ini membawa pratinjau desktop animasi di installer, integrasi Winboat, perbaikan besar pada edisi Handheld, dan dukungan mirror baru di Rusia, Swedia, dan Kanada.">
 <!-- CSS kustom: responsif, light/dark mode via prefers-color-scheme, tanpa tailwind -->
   <style>
-    /<em> Reset dan base </em>/
+    /* Reset dan base */
     * {
       margin: 0;
       padding: 0;
@@ -76,7 +76,7 @@
       border-radius: 28px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.05);
     }
-    /<em> Dark mode berdasarkan preferensi sistem </em>/
+    /* Dark mode berdasarkan preferensi sistem */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -110,7 +110,7 @@
         background: #3700b3;
       }
     }
-    /<em> Tipografi & layout </em>/
+    /* Tipografi & layout */
     h1, h2, h3 {
       margin-top: 2rem;
       margin-bottom: 1rem;
@@ -147,9 +147,9 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       aspect-ratio: 16 / 9;
       object-fit: cover;
-      background-color: #f0f0f0; /<em> fallback sambil loading </em>/
+      background-color: #f0f0f0; /* fallback sambil loading */
     }
-    /<em> Dark mode untuk elemen kode </em>/
+    /* Dark mode untuk elemen kode */
     pre {
       background-color: #f2f2f2;
       padding: 1.2rem;
@@ -178,7 +178,7 @@
         background-color: #3a3a3a;
       }
     }
-    /<em> Utility </em>/
+    /* Utility */
     .meta {
       color: #666;
       font-size: 0.95rem;
@@ -250,7 +250,7 @@
         background: #5600e0;
       }
     }
-    /<em> Responsif mobile </em>/
+    /* Responsif mobile */
     @media (max-width: 600px) {
       body {
         padding: 12px;
@@ -379,5 +379,5 @@
 <script src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 <!-- Tidak ada JavaScript untuk tema, murni CSS -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

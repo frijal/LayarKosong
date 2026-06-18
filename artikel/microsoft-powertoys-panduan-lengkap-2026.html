@@ -111,7 +111,7 @@
             margin: 0 auto;
             padding: 0 15px;
         }
-        /<em> Header Styles </em>/
+        /* Header Styles */
         header {
             padding: 40px 0 20px;
             border-bottom: 1px solid var(--border-color);
@@ -169,7 +169,7 @@
             margin: 0 auto 30px;
             font-weight: 400;
         }
-        /<em> Navigation </em>/
+        /* Navigation */
         .nav-links {
             display: flex;
             justify-content: center;
@@ -190,7 +190,7 @@
             background-color: var(--bg-secondary);
             border-color: var(--primary-color);
         }
-        /<em> Main Content </em>/
+        /* Main Content */
         .content-section {
             margin-bottom: 60px;
         }
@@ -224,7 +224,7 @@
             border-left: 4px solid var(--primary-color);
             margin: 30px 0;
         }
-        /<em> 5W+1H Sections </em>/
+        /* 5W+1H Sections */
         .wwhh-section {
             background-color: var(--card-bg);
             border-radius: var(--radius);
@@ -242,7 +242,7 @@
         .wwhh-section h3 i {
             color: var(--primary-color);
         }
-        /<em> Utilities Grid </em>/
+        /* Utilities Grid */
         .utilities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -270,7 +270,7 @@
         .utility-card h4 i {
             color: var(--secondary-color);
         }
-        /<em> Installation Methods </em>/
+        /* Installation Methods */
         .installation-methods {
             display: flex;
             flex-direction: column;
@@ -295,7 +295,7 @@
         .zdummy details[open] summary {
             margin-bottom: 15px;
         }
-        /<em> Table Styles </em>/
+        /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -318,7 +318,7 @@
         tr:hover {
             background-color: var(--bg-secondary);
         }
-        /<em> Code Blocks </em>/
+        /* Code Blocks */
         code {
             background-color: var(--bg-secondary);
             padding: 2px 6px;
@@ -334,7 +334,7 @@
             margin: 20px 0;
             border-left: 4px solid var(--primary-color);
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul, ol {
             margin-left: 20px;
             margin-bottom: 20px;
@@ -342,7 +342,7 @@
         li {
             margin-bottom: 8px;
         }
-        /<em> Highlight Box </em>/
+        /* Highlight Box */
         .highlight {
             background-color: rgba(0, 120, 212, 0.1);
             border-left: 4px solid var(--primary-color);
@@ -354,7 +354,7 @@
             color: var(--primary-color);
             margin-right: 10px;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 60px;
             padding-top: 40px;
@@ -363,7 +363,7 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        /<em> Comment and Related Articles Sections </em>/
+        /* Comment and Related Articles Sections */
         #related-articles-grids, #responsed {
             background-color: var(--card-bg);
             border-radius: var(--radius);
@@ -376,7 +376,7 @@
             margin-top: 0;
             color: var(--primary-color);
         }
-        /<em> Responsive Design </em>/
+        /* Responsive Design */
         @media (max-width: 768px) {
             body {
                 padding: 0 15px;
@@ -427,7 +427,7 @@
                 padding: 15px;
             }
         }
-        /<em> Print Styles </em>/
+        /* Print Styles */
         @media print {
             .theme-toggle, .nav-links {
                 display: none;
@@ -887,6 +887,6 @@
             }).observe({ type: 'layout-shift', buffered: true });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

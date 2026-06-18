@@ -60,7 +60,7 @@
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> ===== CSS Variables & Theme ===== </em>/
+    /* ===== CSS Variables & Theme ===== */
     * {
       margin: 0;
       padding: 0;
@@ -106,7 +106,7 @@
       padding: 20px 16px;
       transition: background-color 0.2s, color 0.2s;
     }
-    /<em> Container utama — 1 kolom, max-width 1000px </em>/
+    /* Container utama — 1 kolom, max-width 1000px */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -117,7 +117,7 @@
       border: 1px solid var(--border);
       font-size: 1.2rem;
     }
-    /<em> Gambar thumbnail </em>/
+    /* Gambar thumbnail */
     .featured-image {
       margin: 8px 0 24px 0;
       border-radius: 20px;
@@ -131,7 +131,7 @@
       aspect-ratio: 1200 / 630;
       object-fit: cover;
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.4rem;
       font-weight: 700;
@@ -162,7 +162,7 @@
     li {
       margin-bottom: 0.4rem;
     }
-    /<em> Kode & Pre </em>/
+    /* Kode & Pre */
     pre {
       background-color: var(--pre-bg);
       padding: 18px 20px;
@@ -185,7 +185,7 @@
       padding: 0;
       border-radius: 0;
     }
-    /<em> Tabel responsif </em>/
+    /* Tabel responsif */
     .table-wrapper {
       overflow-x: auto;
       margin: 1.8rem 0;
@@ -208,7 +208,7 @@
       padding: 12px 16px;
       border-bottom: 1px solid var(--border);
     }
-    /<em> Note / highlight </em>/
+    /* Note / highlight */
     .note, .ok, .warn {
       padding: 18px 22px;
       border-radius: 18px;
@@ -216,7 +216,7 @@
       background-color: var(--note-bg);
       border-left: 8px solid var(--note-border);
     }
-    /<em> Emoji dan icon </em>/
+    /* Emoji dan icon */
     i[class^="fa-"] {
       margin-right: 6px;
       color: var(--accent);
@@ -224,7 +224,7 @@
     .fa-ul {
       margin-left: 2.2rem;
     }
-    /<em> Daftar isi / outline tambahan </em>/
+    /* Daftar isi / outline tambahan */
     .outline-box {
       background-color: var(--pre-bg);
       padding: 20px 24px;
@@ -235,7 +235,7 @@
     .outline-box h3 i {
       margin-right: 10px;
     }
-    /<em> Related articles grid </em>/
+    /* Related articles grid */
     #related-articles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -253,7 +253,7 @@
       font-size: 1.6rem;
       margin-bottom: 10px;
     }
-    /<em> Response / komentar </em>/
+    /* Response / komentar */
     #response {
       background-color: var(--pre-bg);
       border-radius: 20px;
@@ -261,7 +261,7 @@
       margin: 20px 0 30px;
       border: 1px solid var(--border);
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 40px;
       padding-top: 28px;
@@ -270,7 +270,7 @@
       font-size: 0.9rem;
       color: var(--text-light);
     }
-    /<em> Link </em>/
+    /* Link */
     a {
       color: var(--accent);
       text-decoration: none;
@@ -279,7 +279,7 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> Mobile fine-tuning </em>/
+    /* Mobile fine-tuning */
     @media (max-width: 640px) {
       .container {
         padding: 22px 16px;
@@ -294,7 +294,7 @@
         padding: 14px 12px;
       }
     }
-    /<em> tidak ada hero / aria dihindari </em>/
+    /* tidak ada hero / aria dihindari */
     hr {
       border: 0.5px solid var(--border);
       margin: 20px 0;
@@ -545,6 +545,6 @@ echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
     <p><i class="fa-regular fa-copy"></i> Halaman ini menggabungkan seluruh penjelasan yang telah dibahas. Uji setiap perintah di lingkungan Anda dan sesuaikan opsi berdasarkan hasil pengujian dan pemantauan sumber daya.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div> <!-- end container -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

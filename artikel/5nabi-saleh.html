@@ -51,14 +51,14 @@
   <!-- CSS: Single-column, wide fullscreen, mobile-friendly; gaya baru (scroll parchment + desert tones) -->
   <style>
     :root {
-      --bg: #faf7f2;       /<em> sand </em>/
-      --paper: #fffdf7;    /<em> parchment </em>/
-      --ink: #2b2a27;      /<em> charcoal </em>/
-      --muted: #6f645a;    /<em> dune </em>/
-      --line: #e6dfd3;     /<em> light sand </em>/
-      --brand: #c67c3f;    /<em> terracotta </em>/
-      --accent: #1f7a8c;   /<em> teal </em>/
-      --ok: #2e7d32;       /<em> green </em>/
+      --bg: #faf7f2;       /* sand */
+      --paper: #fffdf7;    /* parchment */
+      --ink: #2b2a27;      /* charcoal */
+      --muted: #6f645a;    /* dune */
+      --line: #e6dfd3;     /* light sand */
+      --brand: #c67c3f;    /* terracotta */
+      --accent: #1f7a8c;   /* teal */
+      --ok: #2e7d32;       /* green */
       --maxw: 820px;
       --lh: 1.82;
     }
@@ -76,13 +76,13 @@
     a { color: var(--accent); text-decoration: none }
     a:hover { text-decoration: underline }
     img { max-width: 100%; height: auto; border-radius: 14px }
-    /<em> Container </em>/
+    /* Container */
     main {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 32px clamp(16px, 5vw, 36px) 100px;
     }
-    /<em> Title block – parchment scroll effect </em>/
+    /* Title block – parchment scroll effect */
     .title {
       position: relative;
       border: 1px solid var(--line);
@@ -115,7 +115,7 @@
       color: var(--muted);
       font-size: clamp(15px, 2.6vw, 18px);
     }
-    /<em> Chips row </em>/
+    /* Chips row */
     .chips {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 10px;
@@ -127,7 +127,7 @@
       font-size: 13px;
     }
     .chip svg { width: 16px; height: 16px }
-    /<em> Blocks </em>/
+    /* Blocks */
     .block {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -150,7 +150,7 @@
       border-radius: 8px;
       font-style: italic;
     }
-    /<em> Gallery </em>/
+    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -172,7 +172,7 @@
       font-size: 13px;
     }
     .zoomable { cursor: zoom-in }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox {
       position: fixed; inset: 0; z-index: 50;
       display: none; align-items: center; justify-content: center;
@@ -204,7 +204,7 @@
       color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    /<em> Share strip </em>/
+    /* Share strip */
     .share-strip {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -217,7 +217,7 @@
     }
     .share-btn svg { width: 18px; height: 18px }
     .copy-ok { color: var(--ok) }
-    /<em> Floating controls </em>/
+    /* Floating controls */
     .float-btn {
       position: fixed; z-index: 40;
       display: inline-flex; align-items: center; gap: 8px;
@@ -228,12 +228,12 @@
     .btn-sitemap { left: 16px; top: 30% }
     .btn-home { right: 16px; bottom: 20% }
     .float-btn svg { width: 18px; height: 18px }
-    /<em> Comments </em>/
+    /* Comments */
     .comments {
       margin-top: 10px;
       background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px;
     }
-    /<em> Accessibility & motion prefs </em>/
+    /* Accessibility & motion prefs */
     :focus-visible { outline: 2px solid rgba(31,122,140,0.45); outline-offset: 2px }
     @media (min-width: 1100px) {
       :root { --maxw: 900px }
@@ -429,5 +429,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

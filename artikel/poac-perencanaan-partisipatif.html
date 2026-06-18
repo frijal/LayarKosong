@@ -104,11 +104,11 @@
     .card .hd{ padding:16px 18px; border-bottom:var(--border); font-weight:900; background: linear-gradient(90deg, rgba(109,40,217,.18), rgba(6,182,212,.14), rgba(245,158,11,.12)) }
     .card .bd{ padding:20px 22px 24px }
     .muted{ color:var(--muted) }
-    /<em> Two columns </em>/
+    /* Two columns */
     .cols{ display:grid; gap:16px; grid-template-columns: 1fr 1fr }
     @media (max-width:860px){ .cols{ grid-template-columns: 1fr } }
     .note{ display:flex; gap:12px; align-items:flex-start; padding:12px; background:#0f1631; border:var(--border); border-radius:14px; margin-top:12px }
-    /<em> Gallery </em>/
+    /* Gallery */
     .gallery{ display:grid; gap:12px; grid-template-columns: repeat(3, 1fr) }
     @media (max-width: 900px){ .gallery{ grid-template-columns: repeat(2, 1fr) } }
     @media (max-width: 560px){ .gallery{ grid-template-columns: 1fr } }
@@ -116,7 +116,7 @@
     .shot img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .25s ease; filter:saturate(1.06) }
     .shot:hover img{ transform: scale(1.035) }
     .shot .cap{ position:absolute; inset:auto 0 0 0; padding:10px 12px; font-size:12px; color:#fff; background: linear-gradient(180deg, transparent, rgba(0,0,0,.6)) }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox{ position:fixed; inset:0; background: rgba(8,10,20,.88); display:none; align-items:center; justify-content:center; padding:16px; z-index:9998 }
     .lightbox.open{ display:flex }
     .lightbox img{ max-width:96vw; max-height:92vh; border-radius:14px; border:var(--border); background:#000 }
@@ -124,19 +124,19 @@
     .lightbox button{ padding:8px 12px; border-radius:10px; border:var(--border); background:#0f1631; color:#fff; cursor:pointer; font-weight:800 }
     .lightbox button:hover{ box-shadow: var(--ring) }
     pre{ background:#0e142b; border:var(--border); border-radius:12px; overflow:auto }
-    /<em> Share </em>/
+    /* Share */
     .share{ display:flex; flex-wrap:wrap; gap:10px }
     .btn-share{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0f1631; border:var(--border); font-weight:800; color:#e2e8f0; text-decoration:none }
     .btn-share:hover{ box-shadow: var(--ring) }
     .ico{ width:20px; height:20px; display:inline-block }
-    /<em> Env </em>/
+    /* Env */
     .env{ display:grid; gap:10px; grid-template-columns: 1fr 1fr }
     @media (max-width:720px){ .env{ grid-template-columns:1fr } }
     .env .row{ display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; border:var(--border); background:#0f1631 }
     footer{ width:min(94vw,var(--maxw)); margin: 28px auto 70px }
     .ipbox{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:12px; border-radius:14px; border:var(--border); background: linear-gradient(90deg, rgba(34,197,94,.10), rgba(109,40,217,.12)) }
     .flag{ width:32px; height:24px; border-radius:4px; object-fit:cover; border: var(--border) }
-    /<em> Floating Home Buttons (completed) </em>/
+    /* Floating Home Buttons (completed) */
     #btn-home-left, #btn-home-right {
       position: fixed;
       display: inline-flex;
@@ -326,5 +326,5 @@ Ritme kontrol:
       window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lb.classList.remove('open'); });
     })();
         </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

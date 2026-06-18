@@ -54,14 +54,14 @@
             --bg-soft:#111827;
             --text:#e5e7eb;
             --muted:#9ca3af;
-            --accent:#3ea6ff; /<em> Ganti aksen biru </em>/
+            --accent:#3ea6ff; /* Ganti aksen biru */
             --accent-2:#14b8a6;
             --card:#111827;
             --border:#1f2937;
             --shadow:0 8px 24px rgba(0,0,0,.35);
             --max:900px;
             --radius: 12px;
-            /<em> Warna Syntax Highlighting </em>/
+            /* Warna Syntax Highlighting */
             --code-keyword: #c792ea;
             --code-string: #c3e88d;
             --code-comment: #546e7a;
@@ -105,7 +105,7 @@
         .btn:hover{transform:translateY(-1px); border-color:#334155}
         .btn svg{width:18px; height:18px}
         main{
-            max-width:var(--max); width:100%; margin:30px auto; /<em> Tambah margin atas </em>/
+            max-width:var(--max); width:100%; margin:30px auto; /* Tambah margin atas */
             padding:0 20px 60px;
         }
         .article{
@@ -114,51 +114,51 @@
             box-shadow:var(--shadow); overflow:hidden;
             margin-bottom: 24px;
         }
-        .cover{ /<em> Tambahkan styling untuk cover image </em>/
+        .cover{ /* Tambahkan styling untuk cover image */
             width:100%; aspect-ratio:16/9; background:#0b1224;
             border-bottom:1px solid var(--border); display:grid; place-items:center;
-            overflow: hidden; /<em> Pastikan gambar tidak keluar </em>/
+            overflow: hidden; /* Pastikan gambar tidak keluar */
         }
         .cover img{
             width:100%; height:100%; object-fit:cover;
-            border-radius: var(--radius) var(--radius) 0 0; /<em> Bulatkan sudut atas </em>/
+            border-radius: var(--radius) var(--radius) 0 0; /* Bulatkan sudut atas */
         }
-        .content{padding:2rem} /<em> Padding lebih besar </em>/
+        .content{padding:2rem} /* Padding lebih besar */
         .title{
             font-size: clamp(1.8rem, 5vw, 2.5rem);
-            margin:0 0 1rem; /<em> Ubah margin </em>/
+            margin:0 0 1rem; /* Ubah margin */
             line-height:1.3;
-            color: var(--accent); /<em> Warna judul </em>/
+            color: var(--accent); /* Warna judul */
         }
         .meta{
             display:flex; flex-wrap:wrap; gap:16px; color:var(--muted);
-            font-size:0.9rem; margin-bottom:2rem; /<em> Tambah margin bawah </em>/
-            border-bottom: 1px solid var(--border); /<em> Garis bawah </em>/
+            font-size:0.9rem; margin-bottom:2rem; /* Tambah margin bawah */
+            border-bottom: 1px solid var(--border); /* Garis bawah */
             padding-bottom: 1rem;
         }
         .code{
             background:#0b1224; border:1px solid var(--border);
             border-radius:var(--radius); padding:1rem; overflow:auto;
-            box-shadow:var(--shadow); margin: 1.5rem 0; /<em> Beri margin </em>/
+            box-shadow:var(--shadow); margin: 1.5rem 0; /* Beri margin */
         }
         pre{margin:0; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:14px; line-height: 1.6;}
-        /<em> Syntax Highlighting </em>/
+        /* Syntax Highlighting */
         pre .hl-key{ color: var(--code-keyword); }
         pre .hl-str{ color: var(--code-string); }
         pre .hl-com{ color: var(--code-comment); font-style: italic;}
         pre .hl-cmd{ color: var(--code-command); }
         pre .hl-param{ color: var(--code-param); }
         pre .hl-pipe{ color: var(--muted); }
-        pre[class<em>="language-"] { background: var(--code-bg); padding: 1.2em; } /</em> Paksa background */
-        .section{margin:2.5rem 0} /<em> Jarak antar section </em>/
+        pre[class*="language-"] { background: var(--code-bg); padding: 1.2em; } /* Paksa background */
+        .section{margin:2.5rem 0} /* Jarak antar section */
         h2{
             font-size:1.8rem; margin:0 0 1rem; color: var(--accent);
             padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);
             display: flex; align-items: center; gap: 0.8rem;
         }
-        h2 i { font-size: 1.5rem; } /<em> Ukuran ikon di h2 </em>/
+        h2 i { font-size: 1.5rem; } /* Ukuran ikon di h2 */
         h3{
-            font-size:1.4rem; margin:1.5rem 0 0.8rem; color: var(--accent-2); /<em> Warna h3 beda </em>/
+            font-size:1.4rem; margin:1.5rem 0 0.8rem; color: var(--accent-2); /* Warna h3 beda */
             display: flex; align-items: center; gap: 0.6rem;
         }
         h3 i { font-size: 1.1rem; }
@@ -167,10 +167,10 @@
         .aside{ display:flex; flex-direction:column; gap:16px; }
         .card{
             background:linear-gradient(180deg, #0f172a 0%, #0c152c 100%);
-            border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; /<em> Padding lebih besar </em>/
+            border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; /* Padding lebih besar */
             box-shadow:var(--shadow);
         }
-        .share-section { margin-top: 3rem; text-align: center; } /<em> Atur margin & text align </em>/
+        .share-section { margin-top: 3rem; text-align: center; } /* Atur margin & text align */
         .share-section h3 { margin: 0 0 1.5rem 0; font-size: 1.3rem; color: var(--text); border: none; }
         footer{ margin-top:auto; border-top:1px solid var(--border); background:rgba(17,24,39,.7); }
         .foot{
@@ -178,13 +178,13 @@
             flex-wrap:wrap; gap:12px; color:var(--muted); font-size:14px; justify-content: center;
         }
         .tip{
-            display:flex; gap:10px; align-items:flex-start; background:rgba(62, 166, 255, 0.1); /<em> Background tip lebih terang </em>/
+            display:flex; gap:10px; align-items:flex-start; background:rgba(62, 166, 255, 0.1); /* Background tip lebih terang */
             border-left:4px solid var(--accent); border-radius:0 var(--radius) var(--radius) 0;
             padding:1rem 1.2rem; margin:1.5rem 0;
         }
         .tip svg { flex-shrink: 0; margin-top: 0.2rem; color: var(--accent); }
         .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background:var(--bg-soft); border:1px solid var(--border); border-radius:6px; padding:2px 6px; font-size: 0.9em;}
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 600px) {
              body { padding: 16px; }
              main { padding: 1rem 1rem 3rem; }
@@ -193,7 +193,7 @@
              h2 { font-size: 1.5rem; }
              h3 { font-size: 1.2rem; }
              pre { font-size: 13px; }
-             .btn span { display: none; } /<em> Sembunyikan teks tombol di mobile </em>/
+             .btn span { display: none; } /* Sembunyikan teks tombol di mobile */
              .btn { padding: 10px; }
         }
     </style>
@@ -325,6 +325,6 @@ npm install
         }
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

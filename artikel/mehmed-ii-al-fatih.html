@@ -73,7 +73,7 @@
       font:16px/1.75 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
     }
     a{color:var(--accent-2);text-decoration:none}
-    /<em> Single column layout (berbeda dari sebelumnya: header sticky + card konten) </em>/
+    /* Single column layout (berbeda dari sebelumnya: header sticky + card konten) */
     .wrap{
       max-width:var(--max);
       margin:0 auto;
@@ -122,7 +122,7 @@
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-    /<em> Banner image </em>/
+    /* Banner image */
     .banner{
       position:relative;
       aspect-ratio:16/7;
@@ -137,7 +137,7 @@
       position:absolute;inset:0;
       background:linear-gradient(180deg, rgba(10,12,14,0.25), rgba(10,12,14,0.65) 70%, rgba(10,12,14,0.95));
     }
-    /<em> Content </em>/
+    /* Content */
     .content{
       padding: clamp(18px, 3.6vw, 28px);
     }
@@ -157,7 +157,7 @@
       background:rgba(123,224,195,0.06);
       border-radius:12px;
     }
-    /<em> Gallery + Lightbox </em>/
+    /* Gallery + Lightbox */
     .gallery{
       display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0 8px;
     }
@@ -193,10 +193,10 @@
     }
     .btn:hover{background:rgba(255,255,255,0.18)}
     .btn:active{transform:translateY(1px)}
-    /<em> Share row </em>/
+    /* Share row */
     .share{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:18px 0 6px}
     .share .btn svg{width:18px;height:18px}
-    /<em> Info chips (dengan ikon) </em>/
+    /* Info chips (dengan ikon) */
     .info{
       display:grid;grid-template-columns:1fr;gap:10px;margin:16px 0 8px;
     }
@@ -377,5 +377,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

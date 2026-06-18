@@ -52,38 +52,38 @@
 <!-- Artikel Published Date -->
     <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
    <style>
-    /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
+    /* 1. Definisikan Variabel Tema Terang (Default) */
     :root {
         --bg-color: #fdfdfd;
         --text-color: #333333;
         --title-color: #0066cc;
-        /<em> Tombol aksi menggunakan warna bawaanmu </em>/
+        /* Tombol aksi menggunakan warna bawaanmu */
         --btn-copy: #0066cc;
         --btn-download: #28a745;
-        /<em> Blok pre bawaanmu sudah gelap, kita pertahankan </em>/
+        /* Blok pre bawaanmu sudah gelap, kita pertahankan */
         --pre-bg: #2d2d2d;
         --pre-text: #f8f8f2;
     }
-    /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
     @media (prefers-color-scheme: dark) {
         :root {
             --bg-color: #0d1117;
             --text-color: #c9d1d9;
-            /<em> Biru dan hijau disesuaikan agar lebih ramah & kontras di latar gelap </em>/
+            /* Biru dan hijau disesuaikan agar lebih ramah & kontras di latar gelap */
             --title-color: #58a6ff; 
             --btn-copy: #1f6feb;
             --btn-download: #238636;
-            /<em> Sedikit penyesuaian latar pre agar menyatu dengan dark mode GitHub-style </em>/
+            /* Sedikit penyesuaian latar pre agar menyatu dengan dark mode GitHub-style */
             --pre-bg: #161b22; 
         }
     }
-    /<em> 3. Base Styles (Desktop & Tablet) </em>/
+    /* 3. Base Styles (Desktop & Tablet) */
     body {
         font-family: "Segoe UI", sans-serif;
         line-height: 1.6;
         margin: 20px;
-        max-width: 850px; /<em> Ditambahkan max-width agar teks tidak molor terlalu panjang di monitor lebar </em>/
-        margin: 40px auto; /<em> Dibikin centering di tengah layar desktop </em>/
+        max-width: 850px; /* Ditambahkan max-width agar teks tidak molor terlalu panjang di monitor lebar */
+        margin: 40px auto; /* Dibikin centering di tengah layar desktop */
         background-color: var(--bg-color);
         color: var(--text-color);
         transition: background-color 0.3s, color 0.3s;
@@ -102,7 +102,7 @@
         border: 1px solid transparent;
         transition: background-color 0.3s;
     }
-    /<em> Tambahan border tipis di tema gelap agar blok kode terlihat punya batasan </em>/
+    /* Tambahan border tipis di tema gelap agar blok kode terlihat punya batasan */
     @media (prefers-color-scheme: dark) {
         pre { border: 1px solid #30363d; }
     }
@@ -125,23 +125,23 @@
         background: var(--btn-download);
     }
     .copy-btn:hover, .download-btn:hover {
-        filter: brightness(1.1); /<em> Efek hover universal (sedikit lebih terang) </em>/
+        filter: brightness(1.1); /* Efek hover universal (sedikit lebih terang) */
     }
-    /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) </em>/
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
     @media (max-width: 600px) {
         body {
-            margin: 15px; /<em> Mengurangi margin luar agar space layar HP maksimal </em>/
+            margin: 15px; /* Mengurangi margin luar agar space layar HP maksimal */
             padding: 0;
         }
         h1 { font-size: 1.8rem; }
         h2 { font-size: 1.4rem; }
-        /<em> Trik khusus Mobile agar tombol tidak menutupi baris pertama kode </em>/
+        /* Trik khusus Mobile agar tombol tidak menutupi baris pertama kode */
         pre {
-            padding-top: 2.8em; /<em> Memberikan ruang vertikal di atas isi kode </em>/
+            padding-top: 2.8em; /* Memberikan ruang vertikal di atas isi kode */
         }
         .copy-btn, .download-btn {
-            top: 6px; /<em> Geser sedikit ke atas agar lebih presisi di layar kecil </em>/
-            padding: 5px 10px; /<em> Sedikit memperlebar target ketukan jari jempol </em>/
+            top: 6px; /* Geser sedikit ke atas agar lebih presisi di layar kecil */
+            padding: 5px 10px; /* Sedikit memperlebar target ketukan jari jempol */
         }
     }
 </style>
@@ -210,7 +210,7 @@ echo "Semua gambar sudah diresize dan disimpan di $DEST_DIR"
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

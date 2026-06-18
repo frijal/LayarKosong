@@ -48,18 +48,18 @@
     <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
     <style>
         :root {
-            --primary-color: #007bff; /<em> Biru modern </em>/
+            --primary-color: #007bff; /* Biru modern */
             --primary-hover-color: #0056b3;
             --text-color: #343a40;
             --background-color: #f8f9fa;
             --container-bg-color: #ffffff;
             --border-color: #dee2e6;
-            --code-bg-color: #282c34; /<em> Warna gelap untuk kode </em>/
+            --code-bg-color: #282c34; /* Warna gelap untuk kode */
             --code-text-color: #abb2bf;
             --warning-bg-color: #fff3cd;
             --warning-border-color: #ffeeba;
         }
-        /<em> Reset dasar dan gaya body </em>/
+        /* Reset dasar dan gaya body */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -75,7 +75,7 @@
             color: var(--text-color);
             font-size: 17px;
         }
-        /<em> Layout utama halaman </em>/
+        /* Layout utama halaman */
         .container {
             max-width: 900px;
             width: 92%;
@@ -85,7 +85,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
             border-radius: 15px;
         }
-        /<em> Header artikel </em>/
+        /* Header artikel */
         .article-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -107,7 +107,7 @@
             font-size: 0.9em;
             color: #adb5bd;
         }
-        /<em> Konten utama </em>/
+        /* Konten utama */
         main {
             font-size: 1.05em;
         }
@@ -122,7 +122,7 @@
             padding-bottom: 0.5rem;
             display: inline-block;
         }
-        /<em> Gaya untuk code block </em>/
+        /* Gaya untuk code block */
         pre {
             background-color: var(--code-bg-color);
             color: var(--code-text-color);
@@ -144,14 +144,14 @@
             font-size: 0.9em;
             font-family: 'Fira Code', 'Courier New', Courier, monospace;
         }
-        /<em> Gaya untuk daftar </em>/
+        /* Gaya untuk daftar */
         ol {
             padding-left: 25px;
         }
         li {
             margin-bottom: 12px;
         }
-        /<em> Ikon media sosial </em>/
+        /* Ikon media sosial */
         .social-share {
             text-align: center;
             margin-top: 3.5rem;
@@ -187,7 +187,7 @@
             width: 24px;
             height: 24px;
         }
-        /<em> Jaga Data Pribadi Tetap Aman. Facebook </em>/
+        /* Jaga Data Pribadi Tetap Aman. Facebook */
         #fb-comments {
             margin-top: 3.5rem;
             padding-top: 2.5rem;
@@ -198,7 +198,7 @@
             font-size: 1.4em;
             color: #495057;
         }
-        /<em> Desain Responsif </em>/
+        /* Desain Responsif */
         @media (max-width: 768px) {
             body { font-size: 16px; }
             .container {
@@ -272,6 +272,6 @@ sudo cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.bak</pre>
         // tapi kita bisa menambahkannya di sini nanti.
         console.log("Halaman audit APT berhasil dimuat!");
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -48,15 +48,15 @@
     <link rel="apple-touch-icon" href=" https://dalam.web.id/favicon.png">
     <style>
       :root{
-        --bg-1:#e9fff9;      /<em> mint foam </em>/
-        --bg-2:#fff4ec;      /<em> peach foam </em>/
+        --bg-1:#e9fff9;      /* mint foam */
+        --bg-2:#fff4ec;      /* peach foam */
         --ink:#0f172a;
         --muted:#475569;
         --card:#ffffff;
         --line:#e2e8f0;
-        --accent:#0ec6a5;    /<em> teal pop </em>/
-        --accent-2:#ff9f7a;  /<em> peach pop </em>/
-        --accent-3:#7aa8ff;  /<em> sky pop </em>/
+        --accent:#0ec6a5;    /* teal pop */
+        --accent-2:#ff9f7a;  /* peach pop */
+        --accent-3:#7aa8ff;  /* sky pop */
         --max:1320px;
         --r:16px;
         --shadow:0 10px 30px rgba(2,8,23,.08);
@@ -74,8 +74,8 @@
           linear-gradient(180deg, var(--bg-1), var(--bg-2));
         overflow-x:hidden;
       }
-      /<em> Floating nav buttons (Dihapus) </em>/
-      /<em> Menghapus CSS untuk .jump, .jump-left, .jump-right </em>/
+      /* Floating nav buttons (Dihapus) */
+      /* Menghapus CSS untuk .jump, .jump-left, .jump-right */
       header{
         position:relative;
         padding: clamp(22px,5vw,44px) clamp(14px,3.2vw,22px) 10px;
@@ -89,7 +89,7 @@
       }
       .subtitle{ color:var(--muted); max-width:80ch; font-size: clamp(14px,1.7vw,16px)}
       .chips{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center }
-      /<em> Menghapus chip ua-chip dan geo-chip </em>/
+      /* Menghapus chip ua-chip dan geo-chip */
       .chip{
         display:inline-flex; align-items:center; gap:5rem;
         background:#fff; border:1px solid var(--line); padding:46rem .7rem; border-radius:999px; box-shadow: var(--shadow);
@@ -135,12 +135,12 @@
       .thumb .tag{
         position:absolute; bottom:8px; left:8px; background:#111827; color:#fff; font-size:11px; padding:24rem .5rem; border-radius:999px; opacity:9
       }
-      /<em> Menghapus CSS untuk info deteksi perangkat </em>/
+      /* Menghapus CSS untuk info deteksi perangkat */
       .info{
-        display:none; /<em> Sembunyikan untuk memastikan tidak ada sisa </em>/
+        display:none; /* Sembunyikan untuk memastikan tidak ada sisa */
       }
       footer{ max-width:var(--max); margin: 28px auto; padding: 0 clamp(10px,3vw,20px) 30px; color:#334155 }
-      /<em> Lightbox </em>/
+      /* Lightbox */
       .lightbox{ position:fixed; inset:0; background:#0009; display:none; place-items:center; z-index:80; backdrop-filter: blur(3px) }
       .lightbox.open{ display:grid }
       .frame{ position:relative; width:min(96vw, 1200px); height:min(86vh, 820px); background:#000; border-radius:16px; overflow:hidden; border:1px solid #ffffff22 }
@@ -158,7 +158,7 @@
       .btn-next{ right:10px; top:50%; transform:translateY(-50%) }
       .count{ position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
         background:#fff; border:1px solid var(--line); border-radius:999px; padding:2rem .6rem; font-size:12px }
-      /<em> Responsive </em>/
+      /* Responsive */
       @media (max-width:1000px){
         .hero{ grid-template-columns: 1fr }
         .grid{ grid-template-columns: repeat(6,1fr) }
@@ -167,7 +167,7 @@
       }
       @media (max-width:640px){
         .gallery{ grid-template-columns: repeat(2,1fr) }
-        /<em> Menghapus penyesuaian untuk tombol .jump </em>/
+        /* Menghapus penyesuaian untuk tombol .jump */
       }
     </style>
 <meta name="ai:summary" content="“Jika kau tak sanggup menahan lelah karena belajar, maka kau harus sanggup menderita karena kebodohan.” - Imam Syafi’i. Mari rawat semangat belajar, kapanpun dan dimanapun.">
@@ -262,5 +262,5 @@
         document.head.appendChild(document.querySelector('meta[property="og:url"]')||Object.assign(document.createElement("meta"),{property:"og:url",content:'https://dalam.web.id/artikel/pesan-imam-syafii-belajar.html'}))
       });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

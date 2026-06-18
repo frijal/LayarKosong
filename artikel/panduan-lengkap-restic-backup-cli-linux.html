@@ -50,7 +50,7 @@
     <meta name="news_keywords" content="Restic, Backup Linux, Restic CLI, Server Debian, Sysadmin, Tutorial Linux, Cron Backup">
     <meta name="promphint" content="Apa kelebihan utama menggunakan Restic untuk backup di Linux? Restic unggul karena memiliki fitur deduplikasi untuk menghemat ruang, enkripsi end-to-end, dan kemampuan membuat snapshot data secara berkala.">
     <style>
-        /<em> Mobile-first variables & Tema Terang/Gelap </em>/
+        /* Mobile-first variables & Tema Terang/Gelap */
         :root {
             --bg-color: #fafafa;
             --text-color: #2b2b2b;
@@ -59,7 +59,7 @@
             --link-hover: #004c99;
             --border-color: #dcdcdc;
             --table-head-bg: #eeeeee;
-            --code-bg: #282c34; /<em> One Dark Theme </em>/
+            --code-bg: #282c34; /* One Dark Theme */
             --code-text: #abb2bf;
             --code-keyword: #c678dd;
             --code-string: #98c379;
@@ -87,7 +87,7 @@
                 --alert-border: #003a8c;
             }
         }
-        /<em> Base styles </em>/
+        /* Base styles */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -97,7 +97,7 @@
             margin: 0;
             padding: 0;
         }
-        /<em> Container centering & Responsiveness </em>/
+        /* Container centering & Responsiveness */
         .wrapper {
             width: 100%;
             padding: var(--spacing-md);
@@ -114,14 +114,14 @@
                 padding: var(--spacing-lg);
             }
         }
-        /<em> Typography sizing menggunakan rem </em>/
+        /* Typography sizing menggunakan rem */
         h1 { font-size: 2.125rem; line-height: 1.3; margin-top: 0; margin-bottom: var(--spacing-md); }
         h2 { font-size: 1.625rem; line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--link-color); }
         h3 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 0.75rem; }
         p, ul, li { font-size: 1.125rem; margin-bottom: var(--spacing-md); }
         a { color: var(--link-color); text-decoration: none; border-bottom: 0.0625rem dashed var(--link-color); transition: all 0.2s ease; }
         a:hover { color: var(--link-hover); border-bottom-style: solid; }
-        /<em> Mencegah Layout Shift pada Gambar LCP </em>/
+        /* Mencegah Layout Shift pada Gambar LCP */
         .hero-img {
             width: 100%;
             height: auto;
@@ -130,7 +130,7 @@
             margin: var(--spacing-lg) 0;
             background-color: var(--border-color);
         }
-        /<em> Syntax Highlighting CSS murni </em>/
+        /* Syntax Highlighting CSS murni */
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -147,7 +147,7 @@
         .comment { color: var(--code-comment); font-style: italic; }
         .keyword { color: var(--code-keyword); }
         .string { color: var(--code-string); }
-        /<em> Tabel Data </em>/
+        /* Tabel Data */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -161,7 +161,7 @@
             vertical-align: top;
         }
         th { background-color: var(--table-head-bg); font-weight: 600; }
-        /<em> Blockquote / Catatan </em>/
+        /* Blockquote / Catatan */
         blockquote {
             background-color: var(--alert-bg);
             color: var(--alert-text);
@@ -172,7 +172,7 @@
             font-size: 1.05rem;
         }
         blockquote p { margin: 0; }
-        /<em> E-E-A-T Footer Inline Center </em>/
+        /* E-E-A-T Footer Inline Center */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -408,6 +408,6 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

@@ -54,18 +54,18 @@
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
         :root {
-            /<em> Tema Terang </em>/
+            /* Tema Terang */
             --bg-color: #fafafa;
             --text-color: #212529;
             --text-muted: #6c757d;
-            --accent-color: #f6821f; /<em> Warna khas Cloudflare/Networking </em>/
+            --accent-color: #f6821f; /* Warna khas Cloudflare/Networking */
             --border-color: #dee2e6;
             --surface-color: #ffffff;
             --link-color: #0d6efd;
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap </em>/
+                /* Tema Gelap */
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
                 --text-muted: #9e9e9e;
@@ -75,7 +75,7 @@
                 --link-color: #6ea8fe;
             }
         }
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -89,7 +89,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .container {
-            max-width: 62.5rem; /<em> 1000px </em>/
+            max-width: 62.5rem; /* 1000px */
             margin: 0 auto;
             padding: 1.25rem;
         }
@@ -131,7 +131,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /<em> Full container width, responsive height </em>/
+        /* Full container width, responsive height */
         .content-img {
             width: 100%;
             height: auto;
@@ -141,7 +141,7 @@
             background-color: var(--surface-color);
             box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
         }
-        /<em> E-E-A-T Box </em>/
+        /* E-E-A-T Box */
         .author-box {
             background-color: var(--surface-color);
             border: 0.0625rem solid var(--border-color);
@@ -162,7 +162,7 @@
             font-size: 0.875rem;
             color: var(--text-muted);
         }
-        /<em> Skala Desktop </em>/
+        /* Skala Desktop */
         @media (min-width: 48rem) {
             h1 { font-size: 2.5rem; }
             .container { padding: 2rem; }
@@ -229,5 +229,5 @@
             <p>🄯 2026 Layar Kosong. Disajikan murni dengan HTML/CSS untuk pengalaman membaca secepat kilat.</p>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -52,7 +52,7 @@
     <link rel="preload" as="image" href="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiw8lhQVQVhjp2T3EiM4b8dTmaSQ-WjuOhheurH0BadAXcf0ni07R_FdKZ0pou9FS6uW1ranOMJErSB1sxHVBSptG7FCG50Epr_pObqrK38c0zIR8CRO93cCWyZS7AI6qHdt4QlHU3kBuZf/s1600/wpid-2011-11-21-14.15.35.webp" fetchpriority="high">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native & Aksesibilitas </em>/
+        /* CSS Native & Aksesibilitas */
         :root {
             --bg-color: #fafafa;
             --text-color: #27272a;
@@ -61,7 +61,7 @@
             --meta-color: #71717a;
             --highlight-bg: #f4f4f5;
         }
-        /<em> prefers-color-scheme untuk Tema Gelap </em>/
+        /* prefers-color-scheme untuk Tema Gelap */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #18181b;
@@ -84,7 +84,7 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /<em> Mobile-first: Wrapper dibatasi 1000px & di tengah </em>/
+        /* Mobile-first: Wrapper dibatasi 1000px & di tengah */
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -109,7 +109,7 @@
             font-weight: 500;
         }
         a:hover { text-decoration: underline; }
-        /<em> Mencegah CLS: Aspek rasio gambar & bg-color fallback </em>/
+        /* Mencegah CLS: Aspek rasio gambar & bg-color fallback */
         .media-container {
             margin: 2rem 0;
             text-align: center;
@@ -120,10 +120,10 @@
             display: inline-block;
             border-radius: 8px;
             background-color: var(--border-color);
-            aspect-ratio: 4/3; /<em> Asumsi rasio standar kamera HP/Blogger </em>/
+            aspect-ratio: 4/3; /* Asumsi rasio standar kamera HP/Blogger */
             object-fit: cover;
         }
-        /<em> Gambar utama dibatasi agar tidak "raksasa" di atas fold </em>/
+        /* Gambar utama dibatasi agar tidak "raksasa" di atas fold */
         .lcp-image img {
             max-height: 450px;
             width: 100%;
@@ -134,7 +134,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /<em> E-E-A-T Author Meta </em>/
+        /* E-E-A-T Author Meta */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -178,7 +178,7 @@
             font-size: 0.9rem;
             color: var(--meta-color);
         }
-        /<em> Desktop Responsif </em>/
+        /* Desktop Responsif */
         @media (min-width: 768px) {
             body { font-size: 17px; }
             h1 { font-size: 2.4rem; }
@@ -260,5 +260,5 @@
         <p>🄯 2026 Layar Kosong.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

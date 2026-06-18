@@ -84,7 +84,7 @@
         --shadow: 0 2px 12px rgba(0,0,0,0.4);
       }
     }
-    <em>, </em>::before, *::after {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -104,7 +104,7 @@
       max-width: 1000px;
       margin: 0 auto;
     }
-    /<em> ARTICLE HEADER </em>/
+    /* ARTICLE HEADER */
     header {
       margin-bottom: 2rem;
     }
@@ -139,7 +139,7 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    /<em> ARTICLE BODY </em>/
+    /* ARTICLE BODY */
     article {
       background: var(--surface);
       border-radius: var(--radius);
@@ -179,7 +179,7 @@
       margin-bottom: 0.5rem;
       color: var(--text);
     }
-    /<em> FEATURED IMAGE </em>/
+    /* FEATURED IMAGE */
     .featured-img {
       margin: 1.8rem 0;
       border-radius: var(--radius);
@@ -199,7 +199,7 @@
       text-align: center;
       font-style: italic;
     }
-    /<em> CALLOUT BOXES </em>/
+    /* CALLOUT BOXES */
     .callout {
       border-radius: var(--radius);
       padding: 1.2rem 1.4rem;
@@ -235,7 +235,7 @@
     .callout.info strong { color: #2980b9; }
     .callout.warning strong { color: var(--accent-2); }
     .callout.success strong { color: #27ae60; }
-    /<em> CHANGE CARDS </em>/
+    /* CHANGE CARDS */
     .change-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -270,7 +270,7 @@
       color: var(--text-muted);
       margin: 0;
     }
-    /<em> TIMELINE </em>/
+    /* TIMELINE */
     .timeline {
       position: relative;
       padding-left: 2rem;
@@ -319,7 +319,7 @@
       font-size: 0.88rem;
       color: var(--text-muted);
     }
-    /<em> TIPS BOX </em>/
+    /* TIPS BOX */
     .tips-list {
       list-style: none;
       padding: 0;
@@ -342,14 +342,14 @@
       flex-shrink: 0;
       margin-top: 0.15rem;
     }
-    /<em> DIVIDER </em>/
+    /* DIVIDER */
     .divider {
       border: none;
       height: 1px;
       background: var(--border);
       margin: 2.5rem 0;
     }
-    /<em> FOOTER </em>/
+    /* FOOTER */
     footer {
       max-width: 1000px;
       margin: 2.5rem auto 0;
@@ -611,5 +611,5 @@
         <p><i class="fa-solid fa-copyright"></i> Copyleft 2026 Layar Kosong — bebas disalin tanpa menyebut sumber.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

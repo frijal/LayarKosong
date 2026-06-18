@@ -47,10 +47,10 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /<em> Variabel default Light Theme </em>/
+            /* Variabel default Light Theme */
             --bg-color: #f8f9fa;
             --text-color: #212529;
-            --primary-color: #007bff; /<em> Biru khas terminal/kode </em>/
+            --primary-color: #007bff; /* Biru khas terminal/kode */
             --card-bg: #ffffff;
             --border-color: #dee2e6;
             --code-bg: #e9ecef;
@@ -58,12 +58,12 @@
             --quote-bg: #e2f2ff;
             --quote-border: #007bff;
         }
-        /<em> Deteksi Dark Mode </em>/
+        /* Deteksi Dark Mode */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
                 --text-color: #e0e0e0;
-                --primary-color: #6da2f8; /<em> Biru lebih terang </em>/
+                --primary-color: #6da2f8; /* Biru lebih terang */
                 --card-bg: #2b2b2b;
                 --border-color: #444444;
                 --code-bg: #3c3c3c;
@@ -170,7 +170,7 @@
         table tr:nth-child(even) {
             background-color: var(--code-bg);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -179,7 +179,7 @@
             font-size: 0.9em;
             color: #6c757d;
         }
-        /<em> Media Queries untuk Mobile-Friendly </em>/
+        /* Media Queries untuk Mobile-Friendly */
         @media (max-width: 768px) {
             .content-wrapper {
                 padding: 20px;
@@ -312,6 +312,6 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
         <p>🄯 2025 Diskusi Reddit r/debian. Tetap semangat mengoprek Linux\! <i class="fa-brands fa-linux"></i></p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

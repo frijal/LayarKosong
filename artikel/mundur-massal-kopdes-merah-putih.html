@@ -55,15 +55,15 @@
     <meta name="promphint" content="banyak pendaftar mundur dari Kopdes Merah Putih? | Persyaratan tidak manusiawi: ikatan dinas, denda 100 juta, lokasi acak, risiko TIPIKOR, dan 13 alasan lainnya.">
     <!-- Critical CSS + Dark Mode Support -->
     <style>
-        /<em> Reset & base – minimal layout shift </em>/
+        /* Reset & base – minimal layout shift */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> System font stack, rem-based </em>/
+        /* System font stack, rem-based */
         html {
-            font-size: 100%; /<em> 1rem = 16px base, scaling with browser </em>/
+            font-size: 100%; /* 1rem = 16px base, scaling with browser */
             scroll-behavior: smooth;
         }
         body {
@@ -74,13 +74,13 @@
             padding: 1rem;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-        /<em> Container dengan max-width 64rem (1024px) dan mobile-first </em>/
+        /* Container dengan max-width 64rem (1024px) dan mobile-first */
         .container {
             max-width: 64rem;
             width: 100%;
             margin: 0 auto;
         }
-        /<em> Typography pure rem </em>/
+        /* Typography pure rem */
         h1 {
             font-size: 2rem;
             line-height: 1.2;
@@ -112,7 +112,7 @@
         a:hover {
             color: #8b1a1a;
         }
-        /<em> List styling natural </em>/
+        /* List styling natural */
         ul, ol {
             margin: 1rem 0 1.5rem 1.5rem;
         }
@@ -123,7 +123,7 @@
             font-weight: 700;
             color: #b91c1c;
         }
-        /<em> Gambar full container width tanpa crop asli, dengan CLS prevention </em>/
+        /* Gambar full container width tanpa crop asli, dengan CLS prevention */
         .figure-wrapper {
             margin: 2rem 0;
             width: 100%;
@@ -135,7 +135,7 @@
             display: block;
             width: 100%;
             height: auto;
-            /<em> Tidak memotong gambar, aspect ratio alami dari gambar dipertahankan </em>/
+            /* Tidak memotong gambar, aspect ratio alami dari gambar dipertahankan */
             background: #f1f3f5;
         }
         /* Untuk container gambar yang perlu rasio tetap supaya CLS minimal,
@@ -156,11 +156,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;  /<em> Menjaga rasio asli, tidak terpotong </em>/
+            object-fit: contain;  /* Menjaga rasio asli, tidak terpotong */
             object-position: center;
             background: #f8f9fa;
         }
-        /<em> blockquote / kutipan </em>/
+        /* blockquote / kutipan */
         .tip-box {
             background: #f8f0e6;
             border-left: 0.25rem solid #c52828;
@@ -168,7 +168,7 @@
             margin: 1.5rem 0;
             border-radius: 0.5rem;
         }
-        /<em> Footer inline E-E-A-T </em>/
+        /* Footer inline E-E-A-T */
         footer {
             margin-top: 3rem;
             padding: 1.5rem 0 2rem;
@@ -188,11 +188,11 @@
             font-style: normal;
             color: #4b5563;
         }
-        /<em> Grid & response div (tanpa styling inline, biarkan kosong) </em>/
+        /* Grid & response div (tanpa styling inline, biarkan kosong) */
         #related-articles-grid, #response {
             margin: 2rem 0;
         }
-        /<em> Dark mode (prefers-color-scheme) </em>/
+        /* Dark mode (prefers-color-scheme) */
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #0f1117;
@@ -222,7 +222,7 @@
                 color: #94a3b8;
             }
         }
-        /<em> Responsive touch </em>/
+        /* Responsive touch */
         @media (max-width: 48rem) {
             body {
                 padding: 0.75rem;
@@ -234,7 +234,7 @@
                 font-size: 1.35rem;
             }
         }
-        /<em> code highlight jika ada </em>/
+        /* code highlight jika ada */
         pre {
             background: #f1f3f5;
             padding: 1rem;
@@ -250,7 +250,7 @@
                 color: #cbd5e6;
             }
         }
-        /<em> tombol dummy tidak diperlukan, tapi aksesibilitas </em>/
+        /* tombol dummy tidak diperlukan, tapi aksesibilitas */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -327,5 +327,5 @@
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

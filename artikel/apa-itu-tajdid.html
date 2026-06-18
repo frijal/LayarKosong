@@ -61,14 +61,14 @@
     <meta name="promphint" content="Apa yang dimaksud dengan gerakan tajdid? | Gerakan memurnikan ajaran Islam secara spiritual sekaligus mengembangkan peradaban lewat ijtihad dan modernisasi.">
     <!-- CSS Kritis & Desain (Native, Mobile-First, No Framework) -->
     <style>
-        /<em> CSS Reset & Variables </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & Variables */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         :root {
-            /<em> Tema Terang (Default) </em>/
+            /* Tema Terang (Default) */
             --bg-color: #fdfdfd;
             --text-color: #2d3748;
             --heading-color: #1a202c;
@@ -80,7 +80,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap </em>/
+                /* Tema Gelap */
                 --bg-color: #1a202c;
                 --text-color: #e2e8f0;
                 --heading-color: #f7fafc;
@@ -96,17 +96,17 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
-            font-size: 1.125rem; /<em> Base size </em>/
+            font-size: 1.125rem; /* Base size */
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Container (Mobile-First) </em>/
+        /* Container (Mobile-First) */
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: 2rem 1.25rem;
         }
-        /<em> Headings </em>/
+        /* Headings */
         h1, h2, h3 {
             color: var(--heading-color);
             font-weight: 700;
@@ -128,7 +128,7 @@
             margin-top: 2rem;
             margin-bottom: 0.75rem;
         }
-        /<em> Teks & Paragraf </em>/
+        /* Teks & Paragraf */
         p {
             margin-bottom: 1.25rem;
         }
@@ -144,7 +144,7 @@
             color: var(--heading-color);
             font-weight: 700;
         }
-        /<em> List </em>/
+        /* List */
         ul, ol {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -152,7 +152,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         blockquote {
             background-color: var(--card-bg);
             border-left: 0.35rem solid var(--accent-color);
@@ -162,7 +162,7 @@
             box-shadow: var(--shadow);
             font-style: italic;
         }
-        /<em> Gambar & Optimasi LCP/CLS </em>/
+        /* Gambar & Optimasi LCP/CLS */
         .img-container {
             width: 100%;
             margin: 2rem 0;
@@ -171,12 +171,12 @@
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /<em> Mencegah CLS </em>/
+            aspect-ratio: 16 / 9; /* Mencegah CLS */
             object-fit: cover;
             border-radius: 0.5rem;
-            background-color: var(--code-bg); /<em> Placeholder skeleton </em>/
+            background-color: var(--code-bg); /* Placeholder skeleton */
         }
-        /<em> Footer (E-E-A-T Inline Centered) </em>/
+        /* Footer (E-E-A-T Inline Centered) */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -267,5 +267,5 @@
             </div>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

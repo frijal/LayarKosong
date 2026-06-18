@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /<em> Tema Default (Light) </em>/
+            /* Tema Default (Light) */
             --bg-color: #f8f9fa;
             --text-color: #212529;
             --link-color: #007bff;
@@ -60,7 +60,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Dark </em>/
+                /* Tema Dark */
                 --bg-color: #212529;
                 --text-color: #f8f9fa;
                 --link-color: #92b4f9;
@@ -81,7 +81,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .container {
-            max-width: 1100px; /<em> Desain Widescreen 1 kolom </em>/
+            max-width: 1100px; /* Desain Widescreen 1 kolom */
             margin: 0 auto;
             padding: 20px;
         }
@@ -134,7 +134,7 @@
         ul {
             padding-left: 20px;
         }
-        /<em> Footer Style </em>/
+        /* Footer Style */
         footer {
             text-align: center;
             padding: 20px;
@@ -143,7 +143,7 @@
             color: var(--blockquote-border);
             font-size: 0.9em;
         }
-        /<em> Mobile Adjustments (Responsif) </em>/
+        /* Mobile Adjustments (Responsif) */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -188,6 +188,6 @@
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

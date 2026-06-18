@@ -46,13 +46,13 @@
 <title>Osborne 1 - Laptop Pertama Dunia - Layar Kosong</title> 
 <!-- SEO Metadata -->
 <style>
-    /<em> THEME VARIABLES </em>/
+    /* THEME VARIABLES */
     :root {
       --font: "Segoe UI", Roboto, sans-serif;
       --radius: 14px;
       --transition: 0.3s ease;
     }
-    /<em> DARK THEME </em>/
+    /* DARK THEME */
     body.theme-dark {
       --bg: rgba(15, 15, 18, 0.95);
       --text: #e0e0e0;
@@ -60,7 +60,7 @@
       --glass: rgba(255, 255, 255, 0.05);
       --heading: #ffffff;
     }
-    /<em> LIGHT THEME </em>/
+    /* LIGHT THEME */
     body.theme-light {
       --bg: #fdfdfd;
       --text: #333;
@@ -148,7 +148,7 @@
     .share a:hover {
       color: var(--heading);
     }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -196,7 +196,7 @@
       border-radius: 50%;
       cursor: pointer;
     }
-    /<em> Theme Toggle Button </em>/
+    /* Theme Toggle Button */
     .theme-toggle {
       position: fixed;
       top: 15%;
@@ -298,5 +298,5 @@
       }
     });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

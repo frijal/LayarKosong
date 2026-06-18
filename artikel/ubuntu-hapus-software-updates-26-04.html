@@ -56,7 +56,7 @@
 <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> RESET & BASE </em>/
+    /* RESET & BASE */
     * {
       margin: 0;
       padding: 0;
@@ -71,7 +71,7 @@
       padding: 1.5rem;
       transition: background-color 0.2s, color 0.2s;
     }
-    /<em> Tema gelap otomatis </em>/
+    /* Tema gelap otomatis */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -93,7 +93,7 @@
       margin: 0 auto;
       background-color: inherit;
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.4rem;
       line-height: 1.2;
@@ -126,7 +126,7 @@
         color: #bbb;
       }
     }
-    /<em> Gambar </em>/
+    /* Gambar */
     figure {
       margin: 2rem 0;
     }
@@ -144,7 +144,7 @@
       color: #555;
       margin-top: 0.5rem;
     }
-    /<em> Kode </em>/
+    /* Kode */
     pre {
       background: #f0f0f0;
       padding: 1rem;
@@ -162,7 +162,7 @@
     code {
       font-family: monospace;
     }
-    /<em> Grid artikel terkait </em>/
+    /* Grid artikel terkait */
     #response {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -190,7 +190,7 @@
         border-color: #333;
       }
     }
-    /<em> Kolom komentar placeholder </em>/
+    /* Kolom komentar placeholder */
     #related-articles-grid {
       border: 1px solid #ccc;
       border-radius: 20px;
@@ -205,7 +205,7 @@
         border-color: #444;
       }
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       border-top: 1px solid #ccc;
       padding-top: 2rem;
@@ -214,7 +214,7 @@
       font-size: 0.9rem;
       color: #777;
     }
-    /<em> Ikon emoji & FA inline </em>/
+    /* Ikon emoji & FA inline */
     .emoji-decor {
       margin-right: 0.3rem;
       font-size: 1.2em;
@@ -371,6 +371,6 @@ sudo apt install software-properties-gtk</code></pre>
 </footer>
     </article>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

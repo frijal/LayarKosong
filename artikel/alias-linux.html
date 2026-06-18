@@ -50,7 +50,7 @@
     <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #10b981; /<em> Emerald Green - Identitas Terminal </em>/
+            --primary: #10b981; /* Emerald Green - Identitas Terminal */
             --bg: #ffffff;
             --text: #0f172a;
             --card: #f1f5f9;
@@ -76,7 +76,7 @@
             line-height: 1.8;
             transition: background 0.3s;
         }
-        /<em> Layout Widescreen </em>/
+        /* Layout Widescreen */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -115,7 +115,7 @@
             align-items: center;
             gap: 15px;
         }
-        /<em> Narasi Section </em>/
+        /* Narasi Section */
         .zdummy {
             font-size: 1.1rem;
             margin: 30px 0;
@@ -129,7 +129,7 @@
             margin: 30px 0;
             border-radius: 0 12px 12px 0;
         }
-        /<em> Code Block Styling </em>/
+        /* Code Block Styling */
         pre {
             background: var(--terminal-bg) !important;
             border-radius: 12px !important;
@@ -150,7 +150,7 @@
             cursor: pointer;
             font-size: 0.75rem;
         }
-        /<em> Gallery </em>/
+        /* Gallery */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -179,7 +179,7 @@
             margin: 60px 0;
             border: 1px dashed var(--border);
         }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             .intro-box { padding: 25px; }
@@ -267,6 +267,6 @@ alias ...='cd ../..'</code><button class="copy-btn">SALIN</button></pre>
         });
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

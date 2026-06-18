@@ -60,7 +60,7 @@
   <script src="/ext/html2pdf.bundle.min.js" data-cfasync="false"></script>
   <script src="/ext/qrcode.min.js" data-cfasync="false"></script>
   <style>
-    /<em> Styling untuk halaman generator (UI) </em>/
+    /* Styling untuk halaman generator (UI) */
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f6f9;
@@ -76,7 +76,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       width: 100%;
-      max-width: 900px; /<em> Diperlebar sedikit karena formnya banyak </em>/
+      max-width: 900px; /* Diperlebar sedikit karena formnya banyak */
       margin-bottom: 20px;
       box-sizing: border-box;
     }
@@ -96,7 +96,7 @@
       padding-bottom: 5px;
       border-bottom: 1px dashed #ccc;
     }
-    /<em> Grid layout 2 Kolom </em>/
+    /* Grid layout 2 Kolom */
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -145,7 +145,7 @@
     .btn-pdf:hover { background-color: #bd2130; }
     .btn-img { background-color: #28a745; }
     .btn-img:hover { background-color: #218838; }
-    /<em> KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI </em>/
+    /* KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI */
     .paper-wrapper {
       background: white;
       width: 210mm;
@@ -158,7 +158,7 @@
     #surat-template {
       font-family: "Times New Roman", Times, serif;
       color: black;
-      font-size: 14px; /<em> Dikecilkan jadi 14px agar muat 1 halaman full </em>/
+      font-size: 14px; /* Dikecilkan jadi 14px agar muat 1 halaman full */
       line-height: 1.4;
       background: white;
     }
@@ -192,7 +192,7 @@
       margin-top: 15px;
       margin-bottom: 5px;
     }
-    /<em> Tanda Tangan 2 Kolom </em>/
+    /* Tanda Tangan 2 Kolom */
     .ttd-row {
       display: flex;
       justify-content: space-between;
@@ -505,6 +505,6 @@
       });
     }
   </script>
-<noscript>html_hasil_reverse</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

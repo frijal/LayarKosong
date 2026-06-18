@@ -54,7 +54,7 @@
     <!-- Open Graph -->
     <!-- Twitter Card -->
     <style>
-        /<em> ========== CUSTOM PROPERTIES: LIGHT & DARK MODE ========== </em>/
+        /* ========== CUSTOM PROPERTIES: LIGHT & DARK MODE ========== */
         :root {
             --bg: #ffffff;
             --bg-secondary: #f5f5f5;
@@ -93,7 +93,7 @@
                 --pre-border: #3a3a3e;
             }
         }
-        /<em> ========== RESET & BASE MOBILE-FIRST ========== </em>/
+        /* ========== RESET & BASE MOBILE-FIRST ========== */
         *,
         *::before,
         *::after {
@@ -118,7 +118,7 @@
             display: flex;
             flex-direction: column;
         }
-        /<em> ========== CONTAINER: MAX 64REM, CENTERED ========== </em>/
+        /* ========== CONTAINER: MAX 64REM, CENTERED ========== */
         .container {
             width: 100%;
             max-width: 64rem;
@@ -139,7 +139,7 @@
                 padding-right: 2rem;
             }
         }
-        /<em> ========== HEADER ========== </em>/
+        /* ========== HEADER ========== */
         .site-header {
             background: var(--bg-secondary);
             border-bottom: 2px solid var(--accent);
@@ -184,7 +184,7 @@
         .breadcrumb span {
             color: var(--text-secondary);
         }
-        /<em> ========== MAIN CONTENT ========== </em>/
+        /* ========== MAIN CONTENT ========== */
         .main-content {
             flex: 1;
             padding-bottom: 2rem;
@@ -224,7 +224,7 @@
         .article-tags .tag:hover {
             opacity: 0.8;
         }
-        /<em> ========== TYPOGRAPHY ========== </em>/
+        /* ========== TYPOGRAPHY ========== */
         h1 {
             font-size: 1.6rem;
             line-height: 1.3;
@@ -295,7 +295,7 @@
             color: var(--accent-hover);
             text-decoration-thickness: 2px;
         }
-        /<em> ========== GAMBAR FULL CONTAINER ========== </em>/
+        /* ========== GAMBAR FULL CONTAINER ========== */
         .article-image-wrapper {
             margin: 1.5rem 0;
             width: 100%;
@@ -315,7 +315,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /<em> ========== CODE & PRE ========== </em>/
+        /* ========== CODE & PRE ========== */
         code {
             font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 0.9em;
@@ -349,7 +349,7 @@
             padding: 0;
             font-size: inherit;
         }
-        /<em> ========== BLOCKQUOTE ========== </em>/
+        /* ========== BLOCKQUOTE ========== */
         blockquote {
             border-left: 3px solid var(--accent);
             margin: 1.25rem 0;
@@ -359,7 +359,7 @@
             color: var(--text-secondary);
             font-style: italic;
         }
-        /<em> ========== LIST ========== </em>/
+        /* ========== LIST ========== */
         ul, ol {
             margin: 0.75rem 0 1rem 1.5rem;
             color: var(--text-secondary);
@@ -370,12 +370,12 @@
         li::marker {
             color: var(--accent);
         }
-        /<em> ========== PLACEHOLDER WAJIB ========== </em>/
+        /* ========== PLACEHOLDER WAJIB ========== */
         #related-articles-grid,
         #response {
-            /<em> sengaja kosong </em>/
+            /* sengaja kosong */
         }
-        /<em> ========== FOOTER ========== </em>/
+        /* ========== FOOTER ========== */
         .site-footer {
             background: var(--bg-secondary);
             border-top: 2px solid var(--accent);
@@ -413,7 +413,7 @@
         .site-footer a:hover {
             color: var(--accent-hover);
         }
-        /<em> ========== PRINT ========== </em>/
+        /* ========== PRINT ========== */
         @media print {
             body {
                 background: #fff;
@@ -581,6 +581,6 @@
             </p>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

@@ -54,7 +54,7 @@
 <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-        /<em> CSS Variables untuk Tema Terang & Gelap (Otomatis) </em>/
+        /* CSS Variables untuk Tema Terang & Gelap (Otomatis) */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -75,7 +75,7 @@
                 --quote-bg: #1a2635;
             }
         }
-        /<em> Base Layout - Widescreen 1 Kolom </em>/
+        /* Base Layout - Widescreen 1 Kolom */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.8;
@@ -86,11 +86,11 @@
             transition: background 0.3s ease;
         }
         .container {
-            max-width: 1000px; /<em> Widescreen 1 column </em>/
+            max-width: 1000px; /* Widescreen 1 column */
             margin: 0 auto;
             padding: 20px 40px;
         }
-        /<em> Core Web Vitals: LCP Optimization </em>/
+        /* Core Web Vitals: LCP Optimization */
         article {
             content-visibility: auto;
         }
@@ -104,7 +104,7 @@
             border-radius: 12px;
             margin: 20px 0;
             display: block;
-            fetchpriority: high; /<em> LCP Optimization </em>/
+            fetchpriority: high; /* LCP Optimization */
         }
         .quote-box {
             background: var(--quote-bg);
@@ -130,7 +130,7 @@
             font-size: 0.85rem;
             font-weight: bold;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 10px;
             padding: 10px 10px;
@@ -139,7 +139,7 @@
             text-align: center;
         }
         footer a { color: var(--accent-color); text-decoration: none; }
-        /<em> Responsive Mobile View </em>/
+        /* Responsive Mobile View */
         @media (max-width: 768px) {
             .container" { padding: 15px; }\n            h1 { font-size: 2rem; }\n"            p { font-size: 1.1rem; }
             .featured-image { border-radius: 0; margin-left: -15px; width: calc(100% + 30px); }
@@ -217,5 +217,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

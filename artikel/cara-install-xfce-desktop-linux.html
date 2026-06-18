@@ -59,7 +59,7 @@
     <!-- FontAwesome Icons (Asynchronous) -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
+        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
         :root {
             --bg-color: #fafafa;
             --text-color: #334155;
@@ -101,7 +101,7 @@
             font-size: 16px;
             padding: 0;
         }
-        /<em> Tata Letak Mobile-first, Maksimal 1000px, Sentralisasi Desktop </em>/
+        /* Tata Letak Mobile-first, Maksimal 1000px, Sentralisasi Desktop */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -144,7 +144,7 @@
         strong {
             color: var(--heading-color);
         }
-        /<em> Aturan Selektor Kustom Tautan Berdasarkan Panduan </em>/
+        /* Aturan Selektor Kustom Tautan Berdasarkan Panduan */
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
@@ -154,7 +154,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /<em> Blok Metadata E-E-A-T </em>/
+        /* Blok Metadata E-E-A-T */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -172,7 +172,7 @@
             align-items: center;
             gap: 0.35rem;
         }
-        /<em> Blok Kontainer Gambar Mengurangi Layout Shift (CLS) </em>/
+        /* Blok Kontainer Gambar Mengurangi Layout Shift (CLS) */
         .img-container {
             margin: 1.5rem 0;
             background-color: var(--card-bg);
@@ -195,7 +195,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /<em> Struktur Tampilan Blok Kode Terminal </em>/
+        /* Struktur Tampilan Blok Kode Terminal */
         .terminal-block {
             background-color: var(--code-bg);
             border-left: 4px solid var(--accent-border);
@@ -248,7 +248,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /<em> Responsivitas Desktop </em>/
+        /* Responsivitas Desktop */
         @media (min-width: 768px) {
             .container {
                 padding: 2.5rem;
@@ -389,6 +389,6 @@ services.xserver.desktopManager.xfce.enable = true;</code></pre>
         <p>🄯 2026 Layar Kosong. Dibuat dengan dedikasi murni untuk dokumentasi open-source yang scannable dan akurat.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -47,9 +47,9 @@
     <meta name="keywords" content="npm, node.js, list global packages, cek paket npm, npm list, yarn global, pnpm list, tutorial, cli, developer">
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
  <style>
-        /<em> --- 1. DESIGN TOKENS (Modern Fluid Ecosystem) --- </em>/
+        /* --- 1. DESIGN TOKENS (Modern Fluid Ecosystem) --- */
         :root {
-            /<em> Mode Terang (Light Mode - WCAG AA Compliant) </em>/
+            /* Mode Terang (Light Mode - WCAG AA Compliant) */
             --bg: #ffffff;
             --text: #1a1a1a;
             --muted: #5c5c5c;
@@ -59,7 +59,7 @@
             --border: #e5e7eb;
             --code-bg: #0b1020;
             --code-text: #e5f0ff;
-            /<em> Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Center) </em>/
+            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Center) */
             --max-width: 62.5rem; 
             --radius-lg: 1rem;     
             --radius-md: 0.75rem;  
@@ -67,7 +67,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Mode Gelap (Dark Mode) </em>/
+                /* Mode Gelap (Dark Mode) */
                 --bg: #0b0f1a;
                 --text: #e8ecf8;
                 --muted: #a8b0c2;
@@ -79,8 +79,8 @@
                 --code-text: #dbe8ff;
             }
         }
-        /<em> --- 2. ACCESSIBLE RESET --- </em>/
-        <em>, </em>::before, *::after { 
+        /* --- 2. ACCESSIBLE RESET --- */
+        *, *::before, *::after { 
             box-sizing: border-box; 
         }
         html, body { 
@@ -95,7 +95,7 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /<em> --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier) --- </em>/
+        /* --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier) --- */
         .page { 
             min-height: 100vh; 
             display: grid; 
@@ -110,7 +110,7 @@
             border-bottom: 0.0625rem solid var(--border);
             z-index: 50;
         }
-        /<em> Semua Kontainer Mengikuti Struktur Tunggal </em>/
+        /* Semua Kontainer Mengikuti Struktur Tunggal */
         .nav, .hero, main, .footer-inner {
             width: 100%;
             max-width: var(--max-width); 
@@ -143,7 +143,7 @@
             gap: 0.5rem; 
             flex-wrap: wrap; 
         }
-        /<em> --- 4. HERO SECTION (1 Kolom Vertikal) --- </em>/
+        /* --- 4. HERO SECTION (1 Kolom Vertikal) --- */
         .hero {
             display: flex;
             flex-direction: column;
@@ -185,7 +185,7 @@
             height: auto;
             border-radius: var(--radius-md); 
         }
-        /<em> --- 5. MAIN CONTENT SECTION (1 Kolom Linier) --- </em>/
+        /* --- 5. MAIN CONTENT SECTION (1 Kolom Linier) --- */
         main {
             display: flex;
             flex-direction: column;
@@ -199,7 +199,7 @@
             font-size: 1.125rem; 
             color: var(--muted); 
         }
-        /<em> --- 6. KOMPONEN KARTU & KODE ELEMEN --- </em>/
+        /* --- 6. KOMPONEN KARTU & KODE ELEMEN --- */
         .card {
             border: 0.0625rem solid var(--border); 
             border-radius: var(--radius-lg);
@@ -223,7 +223,7 @@
         .card > pre:first-child { margin-top: 0; }
         .card > pre:last-child { margin-bottom: 0; }
         .card > strong + pre { margin-top: 0.75rem; }
-        /<em> --- 7. TOMBOL & INTERAKSI --- </em>/
+        /* --- 7. TOMBOL & INTERAKSI --- */
         .icon-btn {
             display: inline-flex; 
             align-items: center; 
@@ -289,7 +289,7 @@
             width: 1.125rem; 
             height: 1.125rem; 
         }
-        /<em> --- 8. GRID INTERNAL & UTILITAS (Linear Stacked) --- </em>/
+        /* --- 8. GRID INTERNAL & UTILITAS (Linear Stacked) --- */
         .grid-2 { 
             display: flex; 
             flex-direction: column; 
@@ -512,7 +512,7 @@
       });
     });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

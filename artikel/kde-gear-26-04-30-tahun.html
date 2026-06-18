@@ -64,7 +64,7 @@
   <!-- Preload hero image untuk LCP -->
   <link rel="preload" as="image" href="https://kde.org/announcements/gear/26.04.0/hero.jpg" type="image/webp">
   <style>
-    /<em> ===== Prefers-color-scheme : Terang & Gelap ===== </em>/
+    /* ===== Prefers-color-scheme : Terang & Gelap ===== */
     :root {
       --bg-body: #f9fafc;
       --bg-card: #ffffff;
@@ -72,13 +72,13 @@
       --text-secondary: #2e3b4e;
       --text-muted: #5c6f87;
       --border-light: #dbe2ea;
-      --accent: #1d789b;        /<em> biru KDE vibe </em>/
+      --accent: #1d789b;        /* biru KDE vibe */
       --accent-soft: #e1f0f8;
       --link-color: #1a5f7a;
       --footer-bg: #edf2f7;
       --shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
       --code-bg: #eef3f9;
-      --kde-orange: #f47734;     /<em> aksen tambahan </em>/
+      --kde-orange: #f47734;     /* aksen tambahan */
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -96,7 +96,7 @@
         --code-bg: #232c38;
       }
     }
-    /<em> ===== Reset & Base ===== </em>/
+    /* ===== Reset & Base ===== */
     * {
       margin: 0;
       padding: 0;
@@ -119,7 +119,7 @@
       box-shadow: var(--shadow);
       border: 1px solid var(--border-light);
     }
-    /<em> Gambar & video responsif, cegah CLS </em>/
+    /* Gambar & video responsif, cegah CLS */
     img, video {
       max-width: 100%;
       height: auto;
@@ -129,7 +129,7 @@
       border: 1px solid var(--border-light);
       background-color: var(--accent-soft);
     }
-    /<em> video wrapper untuk aspek rasio </em>/
+    /* video wrapper untuk aspek rasio */
     .video-wrapper {
       position: relative;
       width: 100%;
@@ -138,7 +138,7 @@
       margin: 1.8rem 0;
       border: 1px solid var(--border-light);
     }
-    /<em> Typography </em>/
+    /* Typography */
     h1 {
       font-size: 2.4rem;
       font-weight: 700;
@@ -188,7 +188,7 @@
       border-left: 6px solid var(--accent);
       font-style: italic;
     }
-    /<em> figcaption </em>/
+    /* figcaption */
     figcaption {
       text-align: center;
       font-size: 0.9rem;
@@ -196,13 +196,13 @@
       margin-top: -0.5rem;
       margin-bottom: 1rem;
     }
-    /<em> link </em>/
+    /* link */
     a {
       color: var(--link-color);
       text-decoration: underline 1px dotted;
       text-underline-offset: 5px;
     }
-    /<em> FAQ style </em>/
+    /* FAQ style */
     .faq-grid {
       margin: 2rem 0 1rem;
     }
@@ -217,7 +217,7 @@
       display: flex;
       gap: 12px;
     }
-    /<em> footer </em>/
+    /* footer */
     footer {
       margin-top: 2.5rem;
       padding: 2rem 1.8rem 1.5rem;
@@ -237,7 +237,7 @@
       background: var(--accent-soft);
       border: 1px dashed var(--border-light);
     }
-    /<em> mobile adjustment </em>/
+    /* mobile adjustment */
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       .container { padding: 1.2rem; }
@@ -387,5 +387,5 @@
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
 <!-- tanpa JavaScript -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

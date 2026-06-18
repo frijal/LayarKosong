@@ -58,7 +58,7 @@
     <meta name="promphint" content="Apa definisi pekerjaan halal? | Pekerjaan yang proses, sumber, dan hasilnya sesuai syariah tanpa unsur haram.">
     <!-- CSS Kritis -->
     <style>
-        /<em> CSS Reset & Variabel Tema </em>/
+        /* CSS Reset & Variabel Tema */
         :root {
             --bg-body: #f8f9fa;
             --bg-container: #ffffff;
@@ -71,7 +71,7 @@
             --code-bg: #f1f3f5;
             --code-color: #d63384;
         }
-        /<em> Mode Gelap (Dark Mode) </em>/
+        /* Mode Gelap (Dark Mode) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #121212;
@@ -86,7 +86,7 @@
                 --code-color: #ff8bac;
             }
         }
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -99,7 +99,7 @@
             font-size: 1rem;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Mobile-First Layout Container </em>/
+        /* Mobile-First Layout Container */
         .wrapper {
             max-width: 64rem;
             width: 100%;
@@ -114,7 +114,7 @@
                 box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.5);
             }
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1, h2, h3 {
             color: var(--primary-color);
             margin-bottom: 1rem;
@@ -132,7 +132,7 @@
             transition: color 0.2s ease-in-out;
         }
         a:hover { text-decoration: underline; }
-        /<em> Media & Gambar (Optimasi LCP/CLS) </em>/
+        /* Media & Gambar (Optimasi LCP/CLS) */
         .hero-img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -141,9 +141,9 @@
             margin-top: 1.5rem;
             margin-bottom: 2rem;
             display: block;
-            background-color: var(--border-color); /<em> Placeholder cegah CLS </em>/
+            background-color: var(--border-color); /* Placeholder cegah CLS */
         }
-        /<em> Blockquote & Callouts </em>/
+        /* Blockquote & Callouts */
         blockquote {
             background-color: var(--accent-bg);
             border-left: 0.35rem solid var(--quote-border);
@@ -160,7 +160,7 @@
             font-style: normal;
         }
         blockquote p:last-child { margin-bottom: 0; }
-        /<em> Kode Inline / Elemen Dekoratif </em>/
+        /* Kode Inline / Elemen Dekoratif */
         code {
             font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
             background-color: var(--code-bg);
@@ -169,14 +169,14 @@
             border-radius: 0.25rem;
             font-size: 0.9em;
         }
-        /<em> Divider </em>/
+        /* Divider */
         hr {
             border: 0;
             height: 0.125rem;
             background-color: var(--border-color);
             margin: 2.5rem 0;
         }
-        /<em> Footer (E-E-A-T Setup) </em>/
+        /* Footer (E-E-A-T Setup) */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -284,5 +284,5 @@
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

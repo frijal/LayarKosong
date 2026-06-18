@@ -99,7 +99,7 @@
             padding: 20px;
             overflow-x: hidden;
         }
-        /<em> Header </em>/
+        /* Header */
         .article-header {
             margin-bottom: 40px;
             padding-bottom: 20px;
@@ -125,7 +125,7 @@
             align-items: center;
             gap: 5px;
         }
-        /<em> Konten Utama </em>/
+        /* Konten Utama */
         .article-content {
             font-size: 1.1rem;
             margin-bottom: 50px;
@@ -157,7 +157,7 @@
         .content-section li {
             margin-bottom: 10px;
         }
-        /<em> Gambar </em>/
+        /* Gambar */
         .article-image {
             width: 100%;
             max-height: 500px;
@@ -175,7 +175,7 @@
             margin-bottom: 25px;
             font-size: 0.9rem;
         }
-        /<em> Blockquote </em>/
+        /* Blockquote */
         .important-quote {
             border-left: 4px solid var(--accent-color);
             padding: 20px 25px;
@@ -193,7 +193,7 @@
             font-weight: bold;
             color: var(--accent-color);
         }
-        /<em> Kotak Info </em>/
+        /* Kotak Info */
         .info-box {
             background-color: var(--card-bg);
             border-radius: 8px;
@@ -208,7 +208,7 @@
             margin-bottom: 15px;
             color: #e74c3c;
         }
-        /<em> Footer </em>/
+        /* Footer */
         .article-footer {
             margin-top: 50px;
             padding-top: 30px;
@@ -228,7 +228,7 @@
             color: var(--accent-color);
             text-decoration: none;
         }
-        /<em> Tema Toggle </em>/
+        /* Tema Toggle */
         .theme-toggle {
             position: fixed;
             top: 80px;
@@ -247,7 +247,7 @@
             z-index: 100;
             box-shadow: 0 3px 10px var(--shadow);
         }
-        /<em> Responsif </em>/
+        /* Responsif */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -290,7 +290,7 @@
                 right: 10px;
             }
         }
-        /<em> Animasi </em>/
+        /* Animasi */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -298,7 +298,7 @@
         .content-section, .article-image, .important-quote, .info-box {
             animation: fadeIn 0.8s ease-out;
         }
-        /<em> Efek Hover </em>/
+        /* Efek Hover */
         .content-section a {
             color: var(--accent-color);
             text-decoration: underline;
@@ -598,5 +598,5 @@
         });
         observer.observe({ type: 'layout-shift', buffered: true });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

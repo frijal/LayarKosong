@@ -58,23 +58,23 @@
     <meta name="promphint" content="Apa cara unik Satlantas Grobogan mengedukasi warga? | Menggunakan papan tulisan bernada jenaka yang menarik perhatian tanpa terkesan menggurui.">
     <!-- Critical CSS: Native, Mobile-First, System Fonts, WCAG AA -->
     <style>
-        /<em> CSS Reset </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        /<em> Color Palette & Variables </em>/
+        /* Color Palette & Variables */
         :root {
             --bg-color: #fafafa;
             --text-color: #2d3748;
             --heading-color: #1a202c;
-            --accent-color: #d97706; /<em> Warna kontras standar WCAG AA </em>/
+            --accent-color: #d97706; /* Warna kontras standar WCAG AA */
             --border-color: #e2e8f0;
             --link-hover: #b45309;
             --footer-text: #718096;
         }
-        /<em> Dark Mode Support </em>/
+        /* Dark Mode Support */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a202c;
@@ -86,7 +86,7 @@
                 --footer-text: #a0aec0;
             }
         }
-        /<em> Base Typography & Body </em>/
+        /* Base Typography & Body */
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
@@ -95,14 +95,14 @@
             font-size: 1rem;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Container (Mobile First, max 64rem) </em>/
+        /* Container (Mobile First, max 64rem) */
         .container {
             width: 100%;
             max-width: 64rem;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /<em> Headings </em>/
+        /* Headings */
         h1, h2, h3 {
             color: var(--heading-color);
             line-height: 1.3;
@@ -125,7 +125,7 @@
             font-weight: 600;
             margin-top: 2rem;
         }
-        /<em> Paragraphs & Links </em>/
+        /* Paragraphs & Links */
         p {
             margin-bottom: 1.25rem;
             font-size: 1.125rem;
@@ -140,7 +140,7 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        /<em> Lists </em>/
+        /* Lists */
         ul {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -149,7 +149,7 @@
             font-size: 1.125rem;
             margin-bottom: 0.5rem;
         }
-        /<em> Media / Images </em>/
+        /* Media / Images */
         .hero-container {
             width: 100%;
             margin: 2rem 0;
@@ -160,11 +160,11 @@
             height: auto;
             border-radius: 0.5rem;
             object-fit: cover;
-            /<em> Cegah CLS </em>/
+            /* Cegah CLS */
             aspect-ratio: 16 / 9;
             background-color: var(--border-color);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -224,5 +224,5 @@
             </div>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

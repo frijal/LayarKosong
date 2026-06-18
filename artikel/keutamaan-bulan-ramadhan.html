@@ -67,7 +67,7 @@
             }
         }
         html {
-            scroll-behavior: smooth; /<em> Agar scroll footnote halus </em>/
+            scroll-behavior: smooth; /* Agar scroll footnote halus */
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -97,13 +97,13 @@
             color: var(--accent-color);
         }
           .side-image {
-            float: left;            /<em> Ini kuncinya: Memaksa gambar ke kiri </em>/
-            width: 200px;           /<em> Atur lebar gambar sesuai selera </em>/
-            height: auto;           /<em> Tinggi menyesuaikan agar tidak gepeng </em>/
-            margin-right: 16px;     /<em> Jarak napas antara gambar dan teks di kanannya </em>/
-          /<em>  margin-bottom: 10px;    /</em> Jarak bawah sedikit */
-            border-radius: 8px;     /<em> Biar ujungnya tumpul (estetik) </em>/
-            object-fit: cover;      /<em> Agar gambar tetap proporsional </em>/
+            float: left;            /* Ini kuncinya: Memaksa gambar ke kiri */
+            width: 200px;           /* Atur lebar gambar sesuai selera */
+            height: auto;           /* Tinggi menyesuaikan agar tidak gepeng */
+            margin-right: 16px;     /* Jarak napas antara gambar dan teks di kanannya */
+          /*  margin-bottom: 10px;    /* Jarak bawah sedikit */
+            border-radius: 8px;     /* Biar ujungnya tumpul (estetik) */
+            object-fit: cover;      /* Agar gambar tetap proporsional */
         }
         article {
             background-color: var(--secondary-bg);
@@ -132,7 +132,7 @@
             border-top: 1px solid #ddd;
             padding-top: 20px;
         }
-        /<em> Style untuk link footnote agar terlihat rapi </em>/
+        /* Style untuk link footnote agar terlihat rapi */
         a.fn-link {
             text-decoration: none;
             color: var(--link-color);
@@ -143,7 +143,7 @@
         a.fn-link:hover {
             text-decoration: underline;
         }
-        /<em> Target footnote saat diklik agar ada highlight </em>/
+        /* Target footnote saat diklik agar ada highlight */
         .footnote span:target {
             background-color: rgba(41, 128, 185, 0.2);
             padding: 2px 5px;
@@ -155,21 +155,21 @@
             border-top: 2px solid var(--secondary-bg);
             font-size: 0.9rem;
         }
-        /<em> Responsive Mobile View </em>/
+        /* Responsive Mobile View */
         @media (max-width: 768px) {
             .container { padding: 15px; }
             h1 { font-size: 1.8rem; }
             article { padding: 20px; }
             .section-title { font-size: 1.4rem; }
             .side-image {
-                float: none;        /<em> Matikan fungsi float </em>/
-                display: block;     /<em> Jadikan blok sendiri </em>/
-                width: 100%;        /<em> Lebar penuh </em>/
+                float: none;        /* Matikan fungsi float */
+                display: block;     /* Jadikan blok sendiri */
+                width: 100%;        /* Lebar penuh */
                 margin-right: 0;
                 margin-bottom: 20px;
             }
         }
-        /<em> SEO long-form specific spacing </em>/
+        /* SEO long-form specific spacing */
         p { margin-bottom: 25px; }
         #related-articles-grid {
             display: grid;
@@ -248,5 +248,5 @@
 </footer>
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

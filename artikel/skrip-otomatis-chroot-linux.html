@@ -58,7 +58,7 @@
             --code-bg: #222;
             --max-width: 900px;
         }
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -70,7 +70,7 @@
             line-height: 1.8;
             font-size: 17px;
         }
-        /<em> Tata Letak Utama (1 Kolom) </em>/
+        /* Tata Letak Utama (1 Kolom) */
         .container {
             max-width: var(--max-width);
             width: 100%;
@@ -107,7 +107,7 @@
         article p {
             margin-bottom: 20px;
         }
-        /<em> Styling Blok Kode </em>/
+        /* Styling Blok Kode */
         pre {
             background-color: var(--code-bg);
             border: 1px solid var(--border-color);
@@ -142,8 +142,8 @@
             background-color: #28a745;
             color: white;
         }
-        /<em> Dihapus: Tombol Navigasi Tetap </em>/
-        /<em> Sharing & Jaga Data Pribadi Tetap Aman. </em>/
+        /* Dihapus: Tombol Navigasi Tetap */
+        /* Sharing & Jaga Data Pribadi Tetap Aman. */
         .interaction-section {
             margin-top: 50px;
             padding-top: 30px;
@@ -163,7 +163,7 @@
         .social-share a:hover {
             color: var(--primary-color);
         }
-        /<em> Footer Info </em>/
+        /* Footer Info */
         footer {
             margin-top: 50px;
             padding: 20px;
@@ -173,7 +173,7 @@
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
         }
-        /<em> Mobile-friendly </em>/
+        /* Mobile-friendly */
         @media (max-width: 1000px) {
             .container {
                 padding: 20px 15px;
@@ -282,6 +282,6 @@ echo "Cleanup selesai!"</code></pre>
             });
                    });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

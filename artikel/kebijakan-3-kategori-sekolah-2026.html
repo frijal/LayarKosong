@@ -55,7 +55,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Tema Terang/Gelap </em>/
+        /* CSS Variables untuk Tema Terang/Gelap */
         :root {
             --primary-color: #2563eb;
             --secondary-color: #7c3aed;
@@ -74,7 +74,7 @@
             --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
-        /<em> Dark Mode Variables </em>/
+        /* Dark Mode Variables */
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary-color: #60a5fa;
@@ -88,7 +88,7 @@
                 --border-color: #4b5563;
             }
         }
-        /<em> Reset & Base Styles </em>/
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -108,7 +108,7 @@
             padding: 0 20px;
             transition: var(--transition);
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             font-weight: 700;
@@ -148,7 +148,7 @@
             text-decoration: underline;
             opacity: 0.8;
         }
-        /<em> Layout Components </em>/
+        /* Layout Components */
         .container {
             width: 100%;
             max-width: var(--max-width);
@@ -192,7 +192,7 @@
             max-height: 500px;
             object-fit: cover;
         }
-        /<em> Card Styles </em>/
+        /* Card Styles */
         .card {
             background-color: var(--bg-secondary);
             border-radius: var(--radius);
@@ -214,7 +214,7 @@
         .card-warning {
             border-left: 4px solid #f59e0b;
         }
-        /<em> Category Grid </em>/
+        /* Category Grid */
         .category-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -245,7 +245,7 @@
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
-        /<em> Table Styles </em>/
+        /* Table Styles */
         .responsive-table {
             overflow-x: auto;
             margin: 2rem 0;
@@ -268,7 +268,7 @@
         tr:hover {
             background-color: var(--bg-secondary);
         }
-        /<em> Comment Section </em>/
+        /* Comment Section */
         .comments-section {
             margin: 3rem 0;
         }
@@ -303,7 +303,7 @@
             line-height: 1.6;
             color: var(--text-primary);
         }
-        /<em> FAQ Styles </em>/
+        /* FAQ Styles */
         .zdummy {
             margin: 3rem 0;
         }
@@ -336,7 +336,7 @@
             padding: 1.25rem;
             max-height: 1000px;
         }
-        /<em> Related Articles </em>/
+        /* Related Articles */
         .related-articles {
             margin: 3rem 0;
         }
@@ -356,7 +356,7 @@
             transform: translateY(-3px);
             box-shadow: var(--card-shadow-hover);
         }
-        /<em> Footer </em>/
+        /* Footer */
         .footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -372,7 +372,7 @@
             gap: 1.5rem;
             margin: 1.5rem 0;
         }
-        /<em> Utility Classes </em>/
+        /* Utility Classes */
         .text-center {
             text-align: center;
         }
@@ -387,7 +387,7 @@
         .mb-4 { margin-bottom: 2rem; }
         .mb-5 { margin-bottom: 2.5rem; }
         .py-3 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-        /<em> Responsive Design </em>/
+        /* Responsive Design */
         @media (max-width: 768px) {
             html {
                 font-size: 15px;
@@ -452,9 +452,9 @@
         justify-content: center;
         color: #757575;
         font-size: 1.2rem;
-        flex-shrink: 0; /<em> Supaya avatar gak gepeng di mobile </em>/
+        flex-shrink: 0; /* Supaya avatar gak gepeng di mobile */
     }
-    /<em> Warna-warni avatar biar gak bosen </em>/
+    /* Warna-warni avatar biar gak bosen */
     .comment:nth-child(odd) .comment-avatar { background-color: #d1ecf1; color: #0c5460; }
     .comment:nth-child(even) .comment-avatar { background-color: #f8d7da; color: #721c24; }
     .comment:nth-child(3n) .comment-avatar { background-color: #fff3cd; color: #856404; }
@@ -463,7 +463,7 @@
         background-color: var(--quote-bg);
         padding: 15px;
         border-radius: 12px;
-        border-top-left-radius: 0; /<em> Efek bubble chat </em>/
+        border-top-left-radius: 0; /* Efek bubble chat */
     }
     .comment-author {
         font-family: 'Poppins', sans-serif;
@@ -480,7 +480,7 @@
         font-size: 0.95rem;
         color: var(--text-color);
         margin-top: 5px;
-        white-space: pre-wrap; /<em> Agar enter/baris baru terbaca </em>/
+        white-space: pre-wrap; /* Agar enter/baris baru terbaca */
     }
     #load-more-btn {
         display: block;
@@ -516,7 +516,7 @@
                 font-size: 1.5rem;
             }
         }
-        /<em> Print Styles </em>/
+        /* Print Styles */
         @media print {
             body {
                 color: #000;
@@ -1101,5 +1101,5 @@
         });
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

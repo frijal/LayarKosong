@@ -59,13 +59,13 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> RESET & GLOBAL - tanpa Tailwind, pure CSS </em>/
+        /* RESET & GLOBAL - tanpa Tailwind, pure CSS */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /<em> Tema terang (default) </em>/
+        /* Tema terang (default) */
         :root {
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
@@ -81,7 +81,7 @@
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --code-bg: #f1f5f9;
         }
-        /<em> Tema gelap otomatis </em>/
+        /* Tema gelap otomatis */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #0a0c10;
@@ -106,7 +106,7 @@
             line-height: 1.65;
             scroll-behavior: smooth;
         }
-        /<em> Container: 1 kolom, max-width 1000px, di tengah </em>/
+        /* Container: 1 kolom, max-width 1000px, di tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -121,7 +121,7 @@
                 padding: 1.25rem 1rem;
             }
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 1.9rem;
             line-height: 1.3;
@@ -310,5 +310,5 @@
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman | Analisis pernyataan Parrot Security tentang verifikasi usia. Seluruh konten mengikuti prinsip SEO Long Form dan Core Web Vitals (LCP, CLS, INP) tanpa JavaScript untuk tema. <i class="fa-solid fa-adjust"></i> Tema otomatis terang/gelap sesuai preferensi sistem. Dibaca nyaman di perangkat apa pun.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

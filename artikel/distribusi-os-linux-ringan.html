@@ -47,35 +47,35 @@
 <meta name="keywords" content="linux ringan, distro linux, linux untuk pc kentang, puppy linux, tiny core, antix, linux lite, archbang, bodhi linux">
     <meta name="date" content="2025-09-28">
    <style>
-        /<em> --- 1. DESIGN TOKENS (Fresh Mint & Teal Fluid Ecosystem) --- </em>/
+        /* --- 1. DESIGN TOKENS (Fresh Mint & Teal Fluid Ecosystem) --- */
         :root {
-            /<em> Mode Terang (Light Mode - WCAG AA Compliant) </em>/
+            /* Mode Terang (Light Mode - WCAG AA Compliant) */
             --bg: #f4f4f9;
             --bg-canvas: #ffffff;
             --text: #333333;
             --muted: #5c5c5c;
-            --accent: #00796b; /<em> Disesuaikan ke Teal Tua agar lolos kontras teks terang </em>/
-            --accent-mint: #26a69a; /<em> Mint Green </em>/
+            --accent: #00796b; /* Disesuaikan ke Teal Tua agar lolos kontras teks terang */
+            --accent-mint: #26a69a; /* Mint Green */
             --border: #e5e7eb;
-            /<em> Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) </em>/
+            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) */
             --max-width: 62.5rem; 
-            --radius-lg: 0.75rem;  /<em> 12px </em>/
-            --radius-md: 0.5rem;   /<em> 8px </em>/
+            --radius-lg: 0.75rem;  /* 12px */
+            --radius-md: 0.5rem;   /* 8px */
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Mode Gelap (Dark Mode - Minty Dark) </em>/
+                /* Mode Gelap (Dark Mode - Minty Dark) */
                 --bg: #0b0f17;
                 --bg-canvas: #111827;
                 --text: #e5e7eb;
                 --muted: #9ca3af;
-                --accent: #4db6ac; /<em> Mint lebih terang agar kontras di latar gelap </em>/
+                --accent: #4db6ac; /* Mint lebih terang agar kontras di latar gelap */
                 --accent-mint: #80cbc4;
                 --border: #1f2937;
             }
         }
-        /<em> --- 2. ACCESSIBLE RESET & FONTS SYSTEM --- </em>/
-        <em>, </em>::before, *::after { 
+        /* --- 2. ACCESSIBLE RESET & FONTS SYSTEM --- */
+        *, *::before, *::after { 
             box-sizing: border-box; 
             margin: 0;
             padding: 0;
@@ -91,14 +91,14 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /<em> --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier Center) --- </em>/
+        /* --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier Center) --- */
         .container {
             width: 100%;
             max-width: var(--max-width); 
             margin: 0 auto; 
-            padding: 1.25rem 1rem; /<em> Ruang aman sisi layar HP </em>/
+            padding: 1.25rem 1rem; /* Ruang aman sisi layar HP */
         }
-        @media (min-width: 48rem) { /<em> Desktop & Tablet Up </em>/
+        @media (min-width: 48rem) { /* Desktop & Tablet Up */
             .container {
                 padding: 2rem;
                 margin: 1.25rem auto;
@@ -107,7 +107,7 @@
                 border-radius: var(--radius-md);
             }
         }
-        /<em> --- 4. SEMANTIC TYPOGRAPHY & ANTI-JUSTIFY --- </em>/
+        /* --- 4. SEMANTIC TYPOGRAPHY & ANTI-JUSTIFY --- */
         header { 
             text-align: center; 
             color: var(--accent); 
@@ -122,7 +122,7 @@
         }
         h1 { font-size: clamp(1.625rem, 5vw, 2.5rem); }
         h2 { font-size: clamp(1.375rem, 4vw, 1.875rem); margin-top: 1.5rem; }
-        /<em> Aksesibilitas: Teks wajib rata kiri untuk kenyamanan pembbaca disleksia </em>/
+        /* Aksesibilitas: Teks wajib rata kiri untuk kenyamanan pembbaca disleksia */
         article, section {
             margin-bottom: 1.25rem;
             text-align: left; 
@@ -131,11 +131,11 @@
             color: var(--text);
             margin-bottom: 0.875rem;
         }
-        /<em> --- 5. COMPONENT: RESPONSIBLE 1-COLUMN GALLERY --- </em>/
+        /* --- 5. COMPONENT: RESPONSIBLE 1-COLUMN GALLERY --- */
         .gallery { 
             margin: 2rem 0; 
             display: grid;
-            /<em> Responsif fluid tanpa merusak aturan 1 kolom utama </em>/
+            /* Responsif fluid tanpa merusak aturan 1 kolom utama */
             grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
             gap: 1rem;
         }
@@ -151,7 +151,7 @@
         .gallery img:hover { 
             transform: scale(1.03); 
         }
-        /<em> --- 6. COMPONENT: INTERACTIVE LIGHTBOX OVERLAY --- </em>/
+        /* --- 6. COMPONENT: INTERACTIVE LIGHTBOX OVERLAY --- */
         .lightbox { 
             display: none; 
             position: fixed; 
@@ -246,6 +246,6 @@
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

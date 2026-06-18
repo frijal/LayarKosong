@@ -51,7 +51,7 @@
   <meta name="promphint" content="Apa fungsi utama RSS Auto-Discovery? | Membantu bot pencari dan feed reader otomatis menemukan tautan langganan RSS/Atom tanpa perlu mencari URL secara manual.">
   <style>
     :root {
-      /<em> Skema Warna Terang (Light Mode) - Standar WCAG AA </em>/
+      /* Skema Warna Terang (Light Mode) - Standar WCAG AA */
       --bg-color: #f8f9fa;
       --surface-color: #ffffff;
       --text-main: #212529;
@@ -60,18 +60,18 @@
       --accent-hover: #0b5ed7;
       --border-color: #dee2e6;
       --code-bg: #f1f3f5;
-      /<em> Syntax Highlighting Light </em>/
+      /* Syntax Highlighting Light */
       --syntax-tag: #d63384;
       --syntax-attr: #052c65;
       --syntax-string: #198754;
       --syntax-punct: #495057;
-      /<em> Tipografi System Stack </em>/
+      /* Tipografi System Stack */
       --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-code: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        /<em> Skema Warna Gelap (Dark Mode) - Standar WCAG AA </em>/
+        /* Skema Warna Gelap (Dark Mode) - Standar WCAG AA */
         --bg-color: #121212;
         --surface-color: #1e1e1e;
         --text-main: #e9ecef;
@@ -80,21 +80,21 @@
         --accent-hover: #9ec5fe;
         --border-color: #343a40;
         --code-bg: #2b2b2b;
-        /<em> Syntax Highlighting Dark </em>/
+        /* Syntax Highlighting Dark */
         --syntax-tag: #ff79c6;
         --syntax-attr: #8be9fd;
         --syntax-string: #f1fa8c;
         --syntax-punct: #f8f8f2;
       }
     }
-    /<em> Reset & Base Styles </em>/
-    <em>, </em>::before, *::after {
+    /* Reset & Base Styles */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     html {
-      font-size: 100%; /<em> Default 16px </em>/
+      font-size: 100%; /* Default 16px */
       scroll-behavior: smooth;
     }
     body {
@@ -104,7 +104,7 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Pendekatan Mobile-First Container </em>/
+    /* Pendekatan Mobile-First Container */
     .container {
       width: 100%;
       max-width: 64rem;
@@ -114,7 +114,7 @@
       min-height: 100vh;
       box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.05);
     }
-    /<em> Tipografi Hierarki </em>/
+    /* Tipografi Hierarki */
     header {
       margin-bottom: 2.5rem;
       text-align: center;
@@ -169,18 +169,18 @@
       color: var(--accent-hover);
       text-decoration: underline;
     }
-    /<em> Gambar Super Optimal </em>/
+    /* Gambar Super Optimal */
     .hero-image {
       width: 100%;
       height: auto;
-      aspect-ratio: 16 / 9; /<em> Mencegah Layout Shift (CLS) </em>/
+      aspect-ratio: 16 / 9; /* Mencegah Layout Shift (CLS) */
       object-fit: cover;
       border-radius: 0.5rem;
       margin-bottom: 2rem;
       background-color: var(--border-color);
       display: block;
     }
-    /<em> Code Blocks Murni Tanpa JS </em>/
+    /* Code Blocks Murni Tanpa JS */
     pre {
       background-color: var(--code-bg);
       padding: 1.25rem;
@@ -206,7 +206,7 @@
       font-size: 0.9em;
       color: var(--syntax-tag);
     }
-    /<em> Highlight Warna Syntax </em>/
+    /* Highlight Warna Syntax */
     .syn-tag { color: var(--syntax-tag); }
     .syn-attr { color: var(--syntax-attr); }
     .syn-str { color: var(--syntax-string); }
@@ -223,7 +223,7 @@
       padding: 1rem 1.25rem;
       border-radius: 0 0.5rem 0.5rem 0;
     }
-    /<em> Footer & Struktur Bawah </em>/
+    /* Footer & Struktur Bawah */
     .bottom-section {
       margin-top: 3rem;
     }
@@ -247,7 +247,7 @@
       align-items: center;
       gap: 0.35rem;
     }
-    /<em> Dekorasi Spasi Pembatas Footer </em>/
+    /* Dekorasi Spasi Pembatas Footer */
     .footer-inline span:not(:last-child)::after {
       content: "•";
       margin-left: 1rem;
@@ -317,6 +317,6 @@
       </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

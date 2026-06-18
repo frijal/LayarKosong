@@ -54,13 +54,13 @@
 <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-    /<em> Reset & Variabel CSS untuk light/dark mode (prefers-color-scheme) </em>/
+    /* Reset & Variabel CSS untuk light/dark mode (prefers-color-scheme) */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> Tema default (light) </em>/
+    /* Tema default (light) */
     :root {
       --bg-color: #f9f9f9;
       --text-color: #222;
@@ -75,7 +75,7 @@
       --blockquote-bg: #f0f0f0;
       --shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
-    /<em> Tema gelap berdasarkan preferensi sistem </em>/
+    /* Tema gelap berdasarkan preferensi sistem */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #1a1a1a;
@@ -100,7 +100,7 @@
       padding: 20px;
       transition: background-color 0.2s, color 0.2s;
     }
-    /<em> Layout satu kolom, lebar maksimum untuk kenyamanan baca </em>/
+    /* Layout satu kolom, lebar maksimum untuk kenyamanan baca */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -110,7 +110,7 @@
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1, h2, h3 {
       color: var(--heading-color);
       margin-top: 1.8em;
@@ -138,7 +138,7 @@
       margin-bottom: 1.3em;
       font-size: 1.1rem;
     }
-    /<em> Elemen pendukung </em>/
+    /* Elemen pendukung */
     img {
       max-width: 100%;
       height: auto;
@@ -149,7 +149,7 @@
       background: var(--card-bg);
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    /<em> grid gambar kecil jika diperlukan (tetap responsif) </em>/
+    /* grid gambar kecil jika diperlukan (tetap responsif) */
     .image-grid {
       display: flex;
       flex-wrap: wrap;
@@ -162,7 +162,7 @@
       object-fit: cover;
       max-height: 300px;
     }
-    /<em> Ikon & emoji inline </em>/
+    /* Ikon & emoji inline */
     i, .emoji {
       margin-right: 6px;
       color: var(--accent);
@@ -177,7 +177,7 @@
       font-size: 1.15rem;
       color: var(--subheading-color);
     }
-    /<em> Div khusus komentar & related </em>/
+    /* Div khusus komentar & related */
     #related-articles-grid, #response {
       background-color: var(--accent-light);
       border: 1px dashed var(--accent);
@@ -210,7 +210,7 @@
     footer a:hover {
       text-decoration: underline;
     }
-    /<em> meta: sembunyikan elemen pembantu </em>/
+    /* meta: sembunyikan elemen pembantu */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -219,7 +219,7 @@
       margin: -1px;
       overflow: hidden;
     }
-    /<em> daftar dan kutipan </em>/
+    /* daftar dan kutipan */
     ul, ol {
       margin: 1.2em 0 1.2em 2em;
     }
@@ -232,7 +232,7 @@
       background: linear-gradient(to right, transparent, var(--accent), transparent);
       margin: 40px 0;
     }
-    /<em> mobile friendly </em>/
+    /* mobile friendly */
     @media (max-width: 600px) {
       body {
         padding: 10px;
@@ -254,15 +254,15 @@
         flex: 1 1 100%;
       }
     }
-    /<em> sentuhan font awesome pada heading </em>/
+    /* sentuhan font awesome pada heading */
     h2 i, h3 i {
       font-size: 0.9em;
     }
-    /<em> tautan </em>/
+    /* tautan */
     a {
       color: var(--accent);
     }
-    /<em> daftar dengan emoji </em>/
+    /* daftar dengan emoji */
     .fa-ul {
       margin-left: 2em;
     }
@@ -367,6 +367,6 @@
 </footer>
   </div>
   <!-- Tidak ada JavaScript sama sekali, murni HTML+CSS -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

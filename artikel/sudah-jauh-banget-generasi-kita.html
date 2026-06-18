@@ -47,7 +47,7 @@
 <meta name="keywords" content="pendidikan islam, adab, degradasi moral, parenting, tarbiyah, generasi muda, sekolah negeri">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables for Auto Dark/Light Mode </em>/
+        /* CSS Variables for Auto Dark/Light Mode */
         :root {
             --bg-color: #ffffff;
             --text-color: #2d3748;
@@ -70,7 +70,7 @@
                 --quote-border: #63b3ed;
             }
         }
-        /<em> Base Styles </em>/
+        /* Base Styles */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -81,13 +81,13 @@
             transition: background-color 0.3s, color 0.3s;
             font-size: 18px;
         }
-        /<em> Layout Wrapper - 1 Column Widescreen </em>/
+        /* Layout Wrapper - 1 Column Widescreen */
         .container {
-            max-width: 940px; /<em> Comfortable reading width </em>/
+            max-width: 940px; /* Comfortable reading width */
             margin: 0 auto;
             padding: 40px 20px;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3 {
             color: var(--heading-color);
             font-weight: 700;
@@ -101,7 +101,7 @@
         a { color: var(--accent-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
         p { margin-bottom: 1.5em; }
-        /<em> Image Styling </em>/
+        /* Image Styling */
         .main-image {
             width: 100%;
             height: auto;
@@ -110,7 +110,7 @@
             margin-bottom: 30px;
             display: block;
         }
-        /<em> Components </em>/
+        /* Components */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--quote-border);
@@ -148,14 +148,14 @@
             margin-bottom: 10px;
         }
         ul.custom-list li::before {
-            content: '\f00c'; /<em> FontAwesome check </em>/
+            content: '\f00c'; /* FontAwesome check */
             font-family: 'Font Awesome 7 Free';
             font-weight: 900;
             position: absolute;
             left: 0;
             color: var(--accent-color);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -165,7 +165,7 @@
             color: var(--text-color);
             opacity: 0.8;
         }
-        /<em> Responsiveness </em>/
+        /* Responsiveness */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .container { padding: 20px 15px; }
@@ -275,5 +275,5 @@
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

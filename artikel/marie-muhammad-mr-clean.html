@@ -46,14 +46,14 @@
   <title>Teladan Mar'ie Muhammad: Kisah Kesederhanaan Sang Mr. Clean - Layar Kosong</title> 
   <meta name="keywords" content="Mar'ie Muhammad, Mr. Clean, Menteri Keuangan, Kesederhanaan, Integritas, Mobil Tua, Sejarah Indonesia, Pejabat Jujur, Anti Korupsi">
 <style>
-        /<em> --- 1. DEFINISI VARIABEL TEMA TERANG (Premium Organic) --- </em>/
+        /* --- 1. DEFINISI VARIABEL TEMA TERANG (Premium Organic) --- */
         :root {
             --theme: #095e43;
-            --theme-light: #f0fdf4;     /<em> Diubah ke mint pastel super lembut agar teks #222 lebih kontras </em>/
+            --theme-light: #f0fdf4;     /* Diubah ke mint pastel super lembut agar teks #222 lebih kontras */
             --theme-dark: #062e21;
             --bg-body: var(--theme-light);
             --bg-card: #ffffff;
-            --text-main: #1e293b;       /<em> Abu-abu gelap pekat yang lebih ramah mata dibanding #222 </em>/
+            --text-main: #1e293b;       /* Abu-abu gelap pekat yang lebih ramah mata dibanding #222 */
             --text-muted: #64748b;
             --font: 'Segoe UI', 'Arial', sans-serif;
             --shadow-card: 0 10px 32px rgba(9, 94, 67, 0.08);
@@ -61,22 +61,22 @@
             --shadow-quote: 0 4px 18px rgba(9, 94, 67, 0.25);
             --transition-speed: 0.3s;
         }
-        /<em> --- 2. OTOMATIS TEMA GELAP (Deep Forest Obsidian) --- </em>/
+        /* --- 2. OTOMATIS TEMA GELAP (Deep Forest Obsidian) --- */
         @media (prefers-color-scheme: dark) {
             :root {
-                --theme: #10b981;       /<em> Hijau emerald yang lebih cerah agar menyala di latar gelap </em>/
-                --theme-light: #062e21; /<em> Hijau hutan pekat sebagai aksen sekunder </em>/
+                --theme: #10b981;       /* Hijau emerald yang lebih cerah agar menyala di latar gelap */
+                --theme-light: #062e21; /* Hijau hutan pekat sebagai aksen sekunder */
                 --theme-dark: #022c22;
-                --bg-body: #040d0a;     /<em> Latar belakang hitam obsidian dengan tint hijau malam </em>/
-                --bg-card: #0b1a15;     /<em> Warna kartu utama gelap yang teduh </em>/
-                --text-main: #e2e8f0;   /<em> Putih pualam lembut untuk kenyamanan membaca </em>/
+                --bg-body: #040d0a;     /* Latar belakang hitam obsidian dengan tint hijau malam */
+                --bg-card: #0b1a15;     /* Warna kartu utama gelap yang teduh */
+                --text-main: #e2e8f0;   /* Putih pualam lembut untuk kenyamanan membaca */
                 --text-muted: #94a3b8;
                 --shadow-card: 0 10px 32px rgba(0, 0, 0, 0.4);
                 --shadow-img: 0 4px 16px rgba(0, 0, 0, 0.3);
                 --shadow-quote: 0 4px 18px rgba(0, 0, 0, 0.2);
             }
         }
-        /<em> --- 3. RESET & FONDASI DASAR LAYOUT --- </em>/
+        /* --- 3. RESET & FONDASI DASAR LAYOUT --- */
         * {
             margin: 0;
             padding: 0;
@@ -87,14 +87,14 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             min-height: 100vh;
-            line-height: 1.75; /<em> Dinaikkan tipis demi keterbacaan artikel panjang </em>/
+            line-height: 1.75; /* Dinaikkan tipis demi keterbacaan artikel panjang */
             transition: background-color var(--transition-speed), color var(--transition-speed);
         }
-        /<em> --- 4. KOMPONEN HEADER --- </em>/
+        /* --- 4. KOMPONEN HEADER --- */
         header {
-            background: linear-gradient(135deg, var(--theme-dark), #095e43); /<em> Ditambahkan gradien agar lebih premium </em>/
+            background: linear-gradient(135deg, var(--theme-dark), #095e43); /* Ditambahkan gradien agar lebih premium */
             color: #ffffff;
-            padding: 3rem 1rem 4rem 1rem; /<em> Ruang bawah diperdalam untuk menampung tumpukan kartu </em>/
+            padding: 3rem 1rem 4rem 1rem; /* Ruang bawah diperdalam untuk menampung tumpukan kartu */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -102,7 +102,7 @@
             text-align: center;
         }
         header img.author-icon {
-            width: 64px; /<em> Diperbesar sedikit agar lebih proporsional </em>/
+            width: 64px; /* Diperbesar sedikit agar lebih proporsional */
             height: 64px;
             object-fit: cover;
             border-radius: 50%;
@@ -111,7 +111,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         header h1 {
-            /<em> SOLUSI TYPO: Berubah otomatis dari layar besar ke kecil tanpa lompatan patah </em>/
+            /* SOLUSI TYPO: Berubah otomatis dari layar besar ke kecil tanpa lompatan patah */
             font-size: clamp(1.5rem, 5vw, 2.5rem); 
             font-weight: 800;
             margin: 0.2rem 0 0.5rem 0;
@@ -122,16 +122,16 @@
             font-size: clamp(1rem, 2.5vw, 1.15rem);
             opacity: 0.9;
         }
-        /<em> --- 5. KARTU KONTEN UTAMA (KUNCI STABILITAS ELEMEN) --- </em>/
+        /* --- 5. KARTU KONTEN UTAMA (KUNCI STABILITAS ELEMEN) --- */
         main {
             max-width: 900px;
-            width: calc(100% - 2rem); /<em> Menjamin ada jarak aman di kiri-kanan layar HP </em>/
+            width: calc(100% - 2rem); /* Menjamin ada jarak aman di kiri-kanan layar HP */
             margin: 0 auto;
             padding: 2.5rem 2rem;
             background-color: var(--bg-card);
             border-radius: 1.5rem;
             box-shadow: var(--shadow-card);
-            /<em> SOLUSI: Mengunci stabilitas lapisan tumpukan di atas header </em>/
+            /* SOLUSI: Mengunci stabilitas lapisan tumpukan di atas header */
             position: relative;
             z-index: 5;
             margin-top: -2.5rem; 
@@ -140,7 +140,7 @@
             gap: 1.5rem;
             transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
         }
-        /<em> --- 6. MANAJEMEN MEDIA & GAMBAR --- </em>/
+        /* --- 6. MANAJEMEN MEDIA & GAMBAR --- */
         .main-image {
             width: 100%;
             object-fit: cover;
@@ -156,7 +156,7 @@
             margin-top: 1rem;
             box-shadow: var(--shadow-img);
         }
-        /<em> --- 7. ARTIKEL & TIPOGRAFI ISI --- </em>/
+        /* --- 7. ARTIKEL & TIPOGRAFI ISI --- */
         article h2 {
             color: var(--theme);
             font-size: clamp(1.25rem, 3.5vw, 1.65rem);
@@ -173,9 +173,9 @@
         }
         article p {
             margin-bottom: 1.3rem;
-            text-align: justify; /<em> Membuat artikel esai terlihat rapi berstandar majalah </em>/
+            text-align: justify; /* Membuat artikel esai terlihat rapi berstandar majalah */
         }
-        /<em> --- 8. BLOK KUTIPAN (QUOTE BOX MODERN) --- </em>/
+        /* --- 8. BLOK KUTIPAN (QUOTE BOX MODERN) --- */
         .quote {
             background: linear-gradient(to right, var(--theme-dark), var(--theme));
             color: #ffffff;
@@ -187,7 +187,7 @@
             box-shadow: var(--shadow-quote);
             font-size: 1.06rem;
         }
-        /<em> --- 9. AREA BERBAGI (SHARE BOX ACCESSIBLE) --- </em>/
+        /* --- 9. AREA BERBAGI (SHARE BOX ACCESSIBLE) --- */
         .share-box {
             margin-top: 3rem;
             text-align: center;
@@ -209,12 +209,12 @@
         .share-icons a {
             color: var(--theme);
             font-size: 2rem;
-            /<em> SOLUSI: Mengubah ke inline-block agar efek scale berjalan mulus tanpa menggetarkan teks teks di luar </em>/
+            /* SOLUSI: Mengubah ke inline-block agar efek scale berjalan mulus tanpa menggetarkan teks teks di luar */
             display: inline-block; 
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color var(--transition-speed);
         }
         .share-icons a:hover {
-            transform: scale(1.2) translateY(-2px); /<em> Ditambahkan sedikit efek melayang ke atas </em>/
+            transform: scale(1.2) translateY(-2px); /* Ditambahkan sedikit efek melayang ke atas */
             color: var(--theme-dark);
         }
         .share-icons a:focus-visible {
@@ -222,22 +222,22 @@
             outline-offset: 4px;
             border-radius: 4px;
         }
-        /<em> --- 10. OPTIMASI RESPONSIVITAS LAYAR KECIL --- </em>/
+        /* --- 10. OPTIMASI RESPONSIVITAS LAYAR KECIL --- */
         @media screen and (max-width: 750px) {
             main {
-                padding: 1.75rem 1.25rem; /<em> Padding dikurangi secara rasional </em>/
+                padding: 1.75rem 1.25rem; /* Padding dikurangi secara rasional */
                 gap: 1.2rem;
             }
             .main-image { max-height: 220px; }
             .side-image { max-height: 160px; }
             article p {
-                text-align: left; /<em> Mematikan justify di layar HP untuk menghindari bolong antar-kata </em>/
+                text-align: left; /* Mematikan justify di layar HP untuk menghindari bolong antar-kata */
             }
         }
         @media screen and (max-width: 500px) {
             main {
                 border-radius: 1rem;
-                width: calc(100% - 1.5rem); /<em> Lebih merapat ke pinggir di HP kecil demi efisiensi ruang </em>/
+                width: calc(100% - 1.5rem); /* Lebih merapat ke pinggir di HP kecil demi efisiensi ruang */
             }
             .main-image, .side-image {
                 border-radius: 0.8rem;
@@ -298,6 +298,6 @@
       <i class="fa fa-user-circle"></i> Artikel oleh <b>Layar Kosong</b>
     </div>
   </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

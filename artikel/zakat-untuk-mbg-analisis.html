@@ -53,7 +53,7 @@
 <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-        /<em> CSS Prefers-Color-Scheme (Light/Dark Mode) </em>/
+        /* CSS Prefers-Color-Scheme (Light/Dark Mode) */
         :root {
             --bg-body: #ffffff;
             --text-main: #2c3e50;
@@ -72,7 +72,7 @@
                 --card-bg: #1e1e1e;
             }
         }
-        /<em> Base Layout - Widescreen 1 Column </em>/
+        /* Base Layout - Widescreen 1 Column */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 1.3rem;
@@ -89,12 +89,12 @@
             width: 95%;
             padding: 40px 20px;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--accent); }
         h2 { font-size: 1.8rem; margin-top: 50px; border-bottom: 2px solid var(--accent); display: inline-block; }
         h3 { font-size: 1.4rem; margin-top: 30px; color: var(--accent); }
         p { margin-bottom: 25px; font-size: 1.15rem; text-align: justify; }
-        /<em> Images & Media </em>/
+        /* Images & Media */
         .featured-image {
             width: 100%;
             height: auto;
@@ -102,14 +102,14 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             margin-bottom: 30px;
         }
-        /<em> Responsive Mobile </em>/
+        /* Responsive Mobile */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
             .main-wrapper { padding: 20px 15px; }
             p { font-size: 1.05rem; }
         }
-        /<em> Special Components </em>/
+        /* Special Components */
         .asnaf-box {
             background: var(--card-bg);
             padding: 25px;
@@ -147,7 +147,7 @@
         }
         a { color: var(--accent); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        /<em> Optimized for CLS </em>/
+        /* Optimized for CLS */
         img { content-visibility: auto; }
     </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
@@ -248,5 +248,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

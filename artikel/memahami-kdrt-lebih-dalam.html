@@ -49,14 +49,14 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root{
-            --bg:#111827; /<em> Dark Blue Gray </em>/
-            --bg-soft:#1f2937; /<em> Slightly Lighter Dark Blue Gray </em>/
-            --text:#d1d5db; /<em> Light Gray </em>/
-            --muted:#6b7280; /<em> Medium Gray </em>/
-            --accent:#60a5fa; /<em> Light Blue </em>/
-            --accent-2:#f87171; /<em> Red for emphasis </em>/
+            --bg:#111827; /* Dark Blue Gray */
+            --bg-soft:#1f2937; /* Slightly Lighter Dark Blue Gray */
+            --text:#d1d5db; /* Light Gray */
+            --muted:#6b7280; /* Medium Gray */
+            --accent:#60a5fa; /* Light Blue */
+            --accent-2:#f87171; /* Red for emphasis */
             --card:#1f2937;
-            --border:#374151; /<em> Darker Gray Border </em>/
+            --border:#374151; /* Darker Gray Border */
             --shadow:0 8px 24px rgba(0,0,0,.5);
             --max:900px;
             --radius: 12px;
@@ -68,8 +68,8 @@
             background:linear-gradient(180deg, var(--bg) 0%, #0c152c 100%);
             color:var(--text);
             font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif;
-            font-size: 17px; /<em> Base font size slightly larger </em>/
-            line-height:1.8; /<em> Increased line height </em>/
+            font-size: 17px; /* Base font size slightly larger */
+            line-height:1.8; /* Increased line height */
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
         }
@@ -79,7 +79,7 @@
         header{
             position:sticky; top:0; z-index:10;
             backdrop-filter:saturate(160%) blur(6px);
-            background-color:rgba(17,24,39,.85); /<em> Slightly more opaque </em>/
+            background-color:rgba(17,24,39,.85); /* Slightly more opaque */
             border-bottom:1px solid var(--border);
         }
         .nav{
@@ -96,7 +96,7 @@
             transition:transform .08s ease, border-color .2s ease, background .2s ease;
             user-select:none;
         }
-        .btn:hover{transform:translateY(-1px); border-color:#4b5563} /<em> Slightly lighter border on hover </em>/
+        .btn:hover{transform:translateY(-1px); border-color:#4b5563} /* Slightly lighter border on hover */
         .btn svg{width:18px; height:18px}
         main{
             max-width:var(--max); width:100%; margin:30px auto;
@@ -109,34 +109,34 @@
             margin-bottom: 24px;
         }
         .cover{
-            width:100%; aspect-ratio:16/9; background:#0c152c; /<em> Darker placeholder </em>/
+            width:100%; aspect-ratio:16/9; background:#0c152c; /* Darker placeholder */
             border-bottom:1px solid var(--border); display:grid; place-items:center;
             overflow: hidden;
         }
         .cover img{ width:100%; height:100%; object-fit:cover; border-radius: var(--radius) var(--radius) 0 0; }
         .content{padding:2rem}
         .title{
-            font-size: clamp(1.9rem, 5vw, 2.6rem); /<em> Larger title </em>/
+            font-size: clamp(1.9rem, 5vw, 2.6rem); /* Larger title */
             margin:0 0 1rem; line-height:1.3; color: var(--accent);
         }
         .meta{
             display:flex; flex-wrap:wrap; gap:16px; color:var(--muted);
-            font-size:0.95rem; margin-bottom:2rem; /<em> Larger meta font </em>/
+            font-size:0.95rem; margin-bottom:2rem; /* Larger meta font */
             border-bottom: 1px solid var(--border); padding-bottom: 1rem;
         }
         .section{margin:2.5rem 0}
         h2{
-            font-size:1.9rem; margin:0 0 1rem; color: var(--accent); /<em> Larger H2 </em>/
+            font-size:1.9rem; margin:0 0 1rem; color: var(--accent); /* Larger H2 */
             padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);
             display: flex; align-items: center; gap: 0.8rem; scroll-margin-top: 80px;
         }
         h2 i { font-size: 1.6rem; }
         h3{
-            font-size:1.5rem; margin:1.8rem 0 0.8rem; color: var(--accent-2); /<em> Larger H3, Red Accent </em>/
+            font-size:1.5rem; margin:1.8rem 0 0.8rem; color: var(--accent-2); /* Larger H3, Red Accent */
             display: flex; align-items: center; gap: 0.6rem; scroll-margin-top: 80px;
         }
         h3 i { font-size: 1.2rem; }
-        p, li { margin-bottom: 1rem; font-size: 1.05rem; } /<em> Slightly larger p/li </em>/
+        p, li { margin-bottom: 1rem; font-size: 1.05rem; } /* Slightly larger p/li */
         ul, ol { margin:10px 0 0; padding-left:20px }
         li{margin:10px 0}
         strong { color: var(--accent-2); font-weight: 600; }
@@ -147,7 +147,7 @@
             box-shadow:var(--shadow);
         }
         .share-section { margin-top: 3rem; text-align: center; }
-        .share-section h3 { margin: 0 0 1.5rem 0; font-size: 1.4rem; color: var(--text); border: none; } /<em> Larger share title </em>/
+        .share-section h3 { margin: 0 0 1.5rem 0; font-size: 1.4rem; color: var(--text); border: none; } /* Larger share title */
         .share-buttons{ display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; }
         .share-buttons a{
             display:inline-flex; align-items:center; justify-content:center;
@@ -167,15 +167,15 @@
             flex-wrap:wrap; gap:12px; color:var(--muted); font-size:14px; justify-content: center;
         }
         .tip{
-            display:flex; gap:10px; align-items:flex-start; background:rgba(96, 165, 250, 0.1); /<em> Tip BG Lighter Blue </em>/
+            display:flex; gap:10px; align-items:flex-start; background:rgba(96, 165, 250, 0.1); /* Tip BG Lighter Blue */
             border-left:4px solid var(--accent); border-radius:0 var(--radius) var(--radius) 0;
-            padding:1rem 1.2rem; margin:1.5rem 0; font-size: 1rem; /<em> Slightly smaller tip text </em>/
+            padding:1rem 1.2rem; margin:1.5rem 0; font-size: 1rem; /* Slightly smaller tip text */
         }
         .tip svg { flex-shrink: 0; margin-top: 0.2rem; color: var(--accent); }
         .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background:var(--bg-soft); border:1px solid var(--border); border-radius:6px; padding:2px 6px; font-size: 0.9em;}
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 600px) {
-             body { padding: 16px; font-size: 16px; } /<em> Adjust base font for mobile </em>/
+             body { padding: 16px; font-size: 16px; } /* Adjust base font for mobile */
              main { padding: 1rem 1rem 3rem; }
              .content { padding: 1.5rem; }
              h1.title { font-size: 1.9rem; }
@@ -282,5 +282,5 @@
         }
     });
    </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

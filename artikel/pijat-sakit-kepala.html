@@ -60,7 +60,7 @@
     <!-- Ikon FontAwesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native & Aksesibilitas </em>/
+        /* CSS Native & Aksesibilitas */
         :root {
             --bg-color: #f8fafc;
             --text-color: #334155;
@@ -71,7 +71,7 @@
             --card-bg: #ffffff;
             --accent-bg: #e0f2fe;
         }
-        /<em> prefers-color-scheme untuk Tema Gelap </em>/
+        /* prefers-color-scheme untuk Tema Gelap */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0f172a;
@@ -96,7 +96,7 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /<em> Mobile-first Layout: Max 1000px & Center </em>/
+        /* Mobile-first Layout: Max 1000px & Center */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -116,14 +116,14 @@
         }
         ul, ol { padding-left: 1.5rem; }
         li { margin-bottom: 0.5rem; }
-        /<em> Ledger rule: Class-based anchor styling </em>/
+        /* Ledger rule: Class-based anchor styling */
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
             font-weight: 500;
         }
         a.article-link:hover { text-decoration: underline; }
-        /<em> E-E-A-T Author Meta </em>/
+        /* E-E-A-T Author Meta */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -135,7 +135,7 @@
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 2rem;
         }
-        /<em> Anti-CLS Layout untuk list langkah pijatan </em>/
+        /* Anti-CLS Layout untuk list langkah pijatan */
         .step-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -154,7 +154,7 @@
             background-color: var(--border-color);
             border-radius: 8px;
             overflow: hidden;
-            /<em> Aspek rasio 1:1 statis untuk gambar kotak (/s400) mencegah layout shift </em>/
+            /* Aspek rasio 1:1 statis untuk gambar kotak (/s400) mencegah layout shift */
             aspect-ratio: 1 / 1;
         }
         .step-img-wrapper img {
@@ -199,7 +199,7 @@
             font-size: 0.9rem;
             color: var(--meta-color);
         }
-        /<em> Desktop Responsif </em>/
+        /* Desktop Responsif */
         @media (min-width: 768px) {
             body { font-size: 17px; }
             h1 { font-size: 2.4rem; }
@@ -296,5 +296,5 @@
         <p>🄯 2026 Layar Kosong. Konten ini bertujuan sebagai panduan relaksasi ringan, bukan pengganti saran medis profesional.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

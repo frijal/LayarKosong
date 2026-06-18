@@ -51,13 +51,13 @@
         --color-bg: #121212;
         --color-text: #e0e0e0;
         --color-primary: #00bcd4;
-        /<em> Cyan - warna khas Arch/Linux </em>/
+        /* Cyan - warna khas Arch/Linux */
         --color-secondary: #333333;
         --color-card-bg: #1e1e1e;
         --padding-base: 20px;
         --max-width: 1000px;
       }
-      /<em> RESET & BASE </em>/
+      /* RESET & BASE */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -70,20 +70,20 @@
         line-height: 1.6;
         padding: 0;
       }
-      /<em> HEADER & FOOTER </em>/
+      /* HEADER & FOOTER */
       header,
       footer {
         text-align: center;
         padding: var(--padding-base);
         background-color: var(--color-secondary);
       }
-      /<em> ONE-COLUMN LAYOUT </em>/
+      /* ONE-COLUMN LAYOUT */
       .container {
         max-width: var(--max-width);
         margin: 0 auto;
         padding: var(--padding-base);
       }
-      /<em> TYPOGRAPHY </em>/
+      /* TYPOGRAPHY */
       h1 {
         color: var(--color-primary);
         margin-bottom: 10px;
@@ -100,15 +100,15 @@
         color: var(--color-primary);
         font-weight: bold;
       }
-      /<em> Teks bold </em>/
+      /* Teks bold */
       strong {
           color: var(--color-primary);
       }
-      /<em> VIDEO RESPONSIVE </em>/
+      /* VIDEO RESPONSIVE */
       .video-container {
         position: relative;
         padding-bottom: 56.25%;
-        /<em> 16:9 Aspect Ratio </em>/
+        /* 16:9 Aspect Ratio */
         height: 0;
         overflow: hidden;
         max-width: 100%;
@@ -124,8 +124,8 @@
         height: 100%;
         border: 0;
       }
-      /<em> Dihapus: CSS untuk User Info Card </em>/
-      /<em> SHARING ICONS </em>/
+      /* Dihapus: CSS untuk User Info Card */
+      /* SHARING ICONS */
       .social-share {
         text-align: center;
         margin: 30px 0;
@@ -142,7 +142,7 @@
       .social-share a:hover {
         color: var(--color-primary);
       }
-      /<em> GALLERY & LAZY LOAD </em>/
+      /* GALLERY & LAZY LOAD */
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -160,10 +160,10 @@
       .gallery img:hover {
         transform: scale(1.03);
       }
-      /<em> LIGHTBOX </em>/
+      /* LIGHTBOX */
       .lightbox {
         display: none;
-        /<em> Default hidden </em>/
+        /* Default hidden */
         position: fixed;
         z-index: 1000;
         left: 0;
@@ -173,7 +173,7 @@
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.9);
         place-items: center;
-        /<em> Center content </em>/
+        /* Center content */
       }
       .lightbox-content {
         margin: auto;
@@ -222,14 +222,14 @@
         left: 0;
         border-radius: 0 3px 3px 0;
       }
-      /<em> KOMENTAR FACEBOOK </em>/
+      /* KOMENTAR FACEBOOK */
       #fb-comments-container {
         margin-top: 40px;
         background-color: var(--color-card-bg);
         padding: var(--padding-base);
         border-radius: 8px;
       }
-      /<em> MEDIA QUERIES (Mobile-Friendly) </em>/
+      /* MEDIA QUERIES (Mobile-Friendly) */
       @media (max-width: 600px) {
         h1 {
           font-size: 2em;
@@ -378,7 +378,7 @@
             if (nextBtn) nextBtn.style.display = 'none';
         }
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

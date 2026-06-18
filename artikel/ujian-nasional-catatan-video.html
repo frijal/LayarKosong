@@ -49,21 +49,21 @@
     <style>
       :root {
         --bg-1: #f5f1ff;
-        /<em> violet milk </em>/
+        /* violet milk */
         --bg-2: #fafff3;
-        /<em> lime milk </em>/
+        /* lime milk */
         --ink: #0f172a;
         --muted: #475569;
         --card: #ffffff;
         --line: #e2e8f0;
         --accent: #7a5cff;
-        /<em> violet pop </em>/
+        /* violet pop */
         --accent-2: #ffb763;
-        /<em> tangerine </em>/
+        /* tangerine */
         --accent-3: #52e0a5;
-        /<em> mint </em>/
+        /* mint */
         --max: 900px;
-        /<em> Disesuaikan untuk 1 kolom </em>/
+        /* Disesuaikan untuk 1 kolom */
         --r: 16px;
         --shadow: 0 10px 30px rgba(2, 8, 23, .08);
         --gap: clamp(14px, 2.5vw, 22px);
@@ -82,7 +82,7 @@
         background: radial-gradient(1100px 720px at 12% 6%, #ece6ff 0%, transparent 60%), radial-gradient(1200px 820px at 88% 0%, #edffe2 0%, transparent 60%), linear-gradient(180deg, var(--bg-1), var(--bg-2));
         overflow-x: hidden;
       }
-      /<em> Floating nav buttons (Dihapus) </em>/
+      /* Floating nav buttons (Dihapus) */
       header {
         position: relative;
         padding: clamp(22px, 5vw, 44px) clamp(14px, 3.2vw, 22px) 10px;
@@ -128,7 +128,7 @@
         margin-inline: auto;
         padding: 0 clamp(10px, 3vw, 20px) 40px
       }
-      /<em> HERO (dibuat 1 kolom vertikal) </em>/
+      /* HERO (dibuat 1 kolom vertikal) */
       .hero {
         position: relative;
         border-radius: var(--r);
@@ -195,7 +195,7 @@
         width: 18px;
         height: 18px
       }
-      /<em> Grid utama dihapus, diganti aliran normal </em>/
+      /* Grid utama dihapus, diganti aliran normal */
       .grid {
         display: block;
         margin-top: clamp(18px, 4vw, 26px);
@@ -206,7 +206,7 @@
         border-radius: var(--r);
         box-shadow: var(--shadow);
         overflow: hidden;
-        margin-bottom: 22px; /<em> Tambahkan margin </em>/
+        margin-bottom: 22px; /* Tambahkan margin */
       }
       .prose {
         padding: clamp(14px, 2.4vw, 22px);
@@ -222,7 +222,7 @@
         color: #1f2937;
         line-height: 1.8
       }
-      /<em> Gallery (tetap 2 kolom di dalam card) </em>/
+      /* Gallery (tetap 2 kolom di dalam card) */
       .gallery {
         padding: clamp(10px, 2vw, 18px);
         display: grid;
@@ -263,14 +263,14 @@
         display: block;
         margin-top: clamp(18px, 4vw, 26px);
       }
-      /<em> Dihapus: CSS untuk .info, .flag </em>/
+      /* Dihapus: CSS untuk .info, .flag */
       footer {
         max-width: var(--max);
         margin: 28px auto;
         padding: 0 clamp(10px, 3vw, 20px) 30px;
         color: #334155
       }
-      /<em> Lightbox - CSS dipertahankan </em>/
+      /* Lightbox - CSS dipertahankan */
       .lightbox {
         position: fixed;
         inset: 0;
@@ -347,7 +347,7 @@
         padding: .2rem .6rem;
         font-size: 12px
       }
-      /<em> Responsive </em>/
+      /* Responsive */
       @media (max-width:1000px) {
         .hero {
           grid-template-columns: 1fr
@@ -422,5 +422,5 @@
             <div class="count" id="lb-count">1 / 1</div>
         </div>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

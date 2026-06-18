@@ -54,7 +54,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Dark/Light Mode via prefers-color-scheme </em>/
+        /* CSS Variables untuk Dark/Light Mode via prefers-color-scheme */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -63,28 +63,28 @@
             --link-color: #2563eb;
             --border-color: #e5e7eb;
         }
-        /<em> Dark Mode Override via prefers-color-scheme </em>/
+        /* Dark Mode Override via prefers-color-scheme */
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #0f172a;       /<em> Latar belakang gelap (Slate 900) </em>/
-                --text-color: #e2e8f0;     /<em> Teks terang kontras tinggi (Slate 200) </em>/
-                --accent-color: #38bdf8;   /<em> Warna aksen h1 & h2 yang menyala di mode gelap (Sky 400) </em>/
-                --secondary-bg: #1e293b;   /<em> Latar belakang kartu & footer (Slate 800) </em>/
-                --link-color: #60a5fa;     /<em> Warna tautan yang ramah di mata (Blue 400) </em>/
-                --border-color: #334155;   /<em> Warna pembatas halus (Slate 700) </em>/
+                --bg-color: #0f172a;       /* Latar belakang gelap (Slate 900) */
+                --text-color: #e2e8f0;     /* Teks terang kontras tinggi (Slate 200) */
+                --accent-color: #38bdf8;   /* Warna aksen h1 & h2 yang menyala di mode gelap (Sky 400) */
+                --secondary-bg: #1e293b;   /* Latar belakang kartu & footer (Slate 800) */
+                --link-color: #60a5fa;     /* Warna tautan yang ramah di mata (Blue 400) */
+                --border-color: #334155;   /* Warna pembatas halus (Slate 700) */
             }
-            /<em> Penyesuaian elemen spesifik untuk visibilitas optimal di mode gelap </em>/
+            /* Penyesuaian elemen spesifik untuk visibilitas optimal di mode gelap */
             .meta-info {
-                color: #94a3b8; /<em> Mencerahkan teks meta-info agar terbaca </em>/
+                color: #94a3b8; /* Mencerahkan teks meta-info agar terbaca */
             }
             .featured-image, article img {
-                filter: brightness(0.85) contrast(1.1); /<em> Mengurangi silau gambar pada layar gelap </em>/
+                filter: brightness(0.85) contrast(1.1); /* Mengurangi silau gambar pada layar gelap */
             }
             .highlight-card {
-                border-left-color: var(--accent-color); /<em> Menyelaraskan border kartu dengan aksen baru </em>/
+                border-left-color: var(--accent-color); /* Menyelaraskan border kartu dengan aksen baru */
             }
             footer p {
-                color: #94a3b8; /<em> Memastikan teks disclaimer bawah tetap ramah dibaca </em>/
+                color: #94a3b8; /* Memastikan teks disclaimer bawah tetap ramah dibaca */
             }
         }
         body {
@@ -96,7 +96,7 @@
             line-height: 1.8;
             font-size: 1.15rem;
         }
-        /<em> Desain Widescreen 1 Kolom </em>/
+        /* Desain Widescreen 1 Kolom */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -148,7 +148,7 @@
             margin: 40px 0;
             border-radius: 0 12px 12px 0;
         }
-        /<em> List Styling </em>/
+        /* List Styling */
         .benefits-list {
             list-style: none;
             padding-left: 0;
@@ -163,7 +163,7 @@
             margin-top: 5px;
             color: var(--accent-color);
         }
-        /<em> Mobile Responsive </em>/
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             body { font-size: 1.1rem; }
@@ -238,6 +238,6 @@
 </footer>
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

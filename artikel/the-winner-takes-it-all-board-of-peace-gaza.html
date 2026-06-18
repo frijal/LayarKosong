@@ -48,34 +48,34 @@
     <meta name="promptHint" content="analisis, board of peace, gaza, palestina, israel, perdamaian berbayar, politik internasional, ekonomi konflik">
     <link rel="stylesheet" href="/ext/fontawesome.css">
    <style>
-        /<em> --- 1. SETTING VARIABEL DASAR (Clean Tech Theme) --- </em>/
+        /* --- 1. SETTING VARIABEL DASAR (Clean Tech Theme) --- */
         :root {
-            --primary-color: #2563eb;    /<em> Royal Blue khas SaaS </em>/
-            --secondary-color: #1e40af;  /<em> Deep Blue </em>/
-            --text-color: #1f2937;       /<em> Charcoal Grey (sangat terbaca) </em>/
-            --bg-color: #f8fafc;         /<em> Latar belakang bersih keabuan </em>/
-            --card-bg: #ffffff;          /<em> Kartu kontainer putih bersih </em>/
+            --primary-color: #2563eb;    /* Royal Blue khas SaaS */
+            --secondary-color: #1e40af;  /* Deep Blue */
+            --text-color: #1f2937;       /* Charcoal Grey (sangat terbaca) */
+            --bg-color: #f8fafc;         /* Latar belakang bersih keabuan */
+            --card-bg: #ffffff;          /* Kartu kontainer putih bersih */
             --border-color: #e5e7eb;
-            --accent-color: #dc2626;     /<em> Merah peringatan/notifikasi </em>/
+            --accent-color: #dc2626;     /* Merah peringatan/notifikasi */
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             --container-width: 1000px;
         }
-        /<em> --- 2. DARK MODE OPTIMIZATION (Developer Matrix) --- </em>/
+        /* --- 2. DARK MODE OPTIMIZATION (Developer Matrix) --- */
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary-color: #3b82f6;
                 --secondary-color: #60a5fa;
                 --text-color: #f3f4f6;
-                --bg-color: #0f172a;     /<em> Slate Dark pekat </em>/
-                --card-bg: #1e293b;      /<em> Kartu abu-abu baja </em>/
+                --bg-color: #0f172a;     /* Slate Dark pekat */
+                --card-bg: #1e293b;      /* Kartu abu-abu baja */
                 --border-color: #334155;
                 --accent-color: #f87171;
                 --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
             }
         }
-        /<em> --- 3. RESET & SEMANTIC BASE --- </em>/
+        /* --- 3. RESET & SEMANTIC BASE --- */
         * {
             margin: 0;
             padding: 0;
@@ -89,13 +89,13 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color var(--transition), color var(--transition);
         }
-        /<em> SOLUSI BODY: Membungkus konten ke wadah khusus, membebaskan body tetap fleksibel </em>/
+        /* SOLUSI BODY: Membungkus konten ke wadah khusus, membebaskan body tetap fleksibel */
         .page-wrapper {
             max-width: var(--container-width);
             margin: 0 auto;
             padding: 2rem 1.25rem;
         }
-        /<em> --- 4. ARSITEKTUR TIPOGRAFI --- </em>/
+        /* --- 4. ARSITEKTUR TIPOGRAFI --- */
         h1, h2, h3, h4 {
             color: var(--primary-color);
             font-weight: 700;
@@ -119,9 +119,9 @@
         h3 { font-size: 1.25rem; }
         p {
             margin-bottom: 1.25rem;
-            text-align: left; /<em> SOLUSI: Dimatikan ke kiri agar teks teknis/kode tidak renggang rusak </em>/
+            text-align: left; /* SOLUSI: Dimatikan ke kiri agar teks teknis/kode tidak renggang rusak */
         }
-        /<em> --- 5. KOMPONEN LAYOUT & DOKUMENTASI --- </em>/
+        /* --- 5. KOMPONEN LAYOUT & DOKUMENTASI --- */
         .article-header {
             margin-bottom: 2.5rem;
             text-align: center;
@@ -153,7 +153,7 @@
             gap: 8px;
             font-size: 0.875rem;
         }
-        /<em> Manajemen Media Kompak </em>/
+        /* Manajemen Media Kompak */
         .featured-image-container {
             margin: 2rem 0;
             border-radius: 10px;
@@ -167,7 +167,7 @@
             object-fit: cover;
             display: block;
         }
-        /<em> SOLUSI CAPTION: Menggunakan relasi kontainer penampung agar margin aman </em>/
+        /* SOLUSI CAPTION: Menggunakan relasi kontainer penampung agar margin aman */
         .image-caption {
             text-align: center;
             font-style: italic;
@@ -177,7 +177,7 @@
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
         }
-        /<em> --- 6. BLOK KONTEN & KOTAK INSIGHT --- </em>/
+        /* --- 6. BLOK KONTEN & KOTAK INSIGHT --- */
         .content-block {
             margin-bottom: 2rem;
             padding: 1.75rem;
@@ -234,7 +234,7 @@
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
-        /<em> --- 7. DAFTAR LIST --- </em>/
+        /* --- 7. DAFTAR LIST --- */
         ul, ol {
             margin-left: 2rem;
             margin-bottom: 1.5rem;
@@ -242,7 +242,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> --- 8. ELEMEN UTENSIL & LINKS --- </em>/
+        /* --- 8. ELEMEN UTENSIL & LINKS --- */
         a {
             color: var(--primary-color);
             text-decoration: none;
@@ -253,7 +253,7 @@
             color: var(--secondary-color);
             text-decoration: underline;
         }
-        /<em> --- 9. AREA KAKI HALAMAN --- </em>/
+        /* --- 9. AREA KAKI HALAMAN --- */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -269,16 +269,16 @@
             gap: 24px;
             margin: 1.5rem 0;
         }
-        /<em> --- 10. RE-STANDARISASI UTILITAS (Semantic Sizing) --- </em>/
+        /* --- 10. RE-STANDARISASI UTILITAS (Semantic Sizing) --- */
         .emoji { display: inline-block; margin-right: 6px; }
         .text-accent { color: var(--accent-color); font-weight: 600; }
         .text-primary { color: var(--primary-color); font-weight: 600; }
         .text-center { text-align: center; }
-        /<em> Mengubah em menjadi rem yang stabil, penamaan disesuaikan dengan skala riil </em>/
+        /* Mengubah em menjadi rem yang stabil, penamaan disesuaikan dengan skala riil */
         .mt-large { margin-top: 2.5rem; }
         .mb-large { margin-bottom: 2.5rem; }
         .my-large { margin-top: 2.5rem; margin-bottom: 2.5rem; }
-        /<em> --- 11. RESPONSIVE ENGINE (BREAKPOINT CONTROL) --- </em>/
+        /* --- 11. RESPONSIVE ENGINE (BREAKPOINT CONTROL) --- */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.4rem; }
@@ -467,6 +467,6 @@
         <p class="mt-2">Artikel ini ditulis dengan mengikuti prinsip <strong>E-E-A-T</strong> (Experience, Expertise, Authoritativeness, Trustworthiness) untuk memastikan kualitas dan akurasi konten. <i class="fa-solid fa-info-circle"></i> Artikel panjang ini (&gt;2.000 kata) dioptimalkan untuk <strong>Core Web Vitals</strong> (LCP, CLS, INP) dengan desain responsif.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

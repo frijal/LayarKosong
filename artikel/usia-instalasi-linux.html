@@ -49,11 +49,11 @@
     <link rel="stylesheet" href="/ext/atom-one-dark.min.css">
     <title>Menguak Misteri Usia Distro Linux - Layar Kosong</title> 
     <style>
-        /<em> CSS Variables for Auto Dark/Light Mode </em>/
+        /* CSS Variables for Auto Dark/Light Mode */
         :root {
             --bg-color: #f8f9fa;
             --text-color: #2d3436;
-            --accent-color: #ff9800; /<em> Oranye/Kuning untuk menarik perhatian </em>/
+            --accent-color: #ff9800; /* Oranye/Kuning untuk menarik perhatian */
             --accent-hover: #e68900;
             --link-color: #0984e3;
             --header-bg: #ffffff;
@@ -80,7 +80,7 @@
                 --tip-text: #a5d6a7;
             }
         }
-        /<em> Reset & Base Styles </em>/
+        /* Reset & Base Styles */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Nunito', sans-serif;
@@ -90,13 +90,13 @@
             font-size: 18px;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        /<em> Layout - Widescreen 1 Column </em>/
+        /* Layout - Widescreen 1 Column */
         .main-wrapper {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1, h2, h3 { color: var(--accent-color); font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
         h1 { font-size: 2.5rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 15px; margin-bottom: 30px; }
         h2 { font-size: 1.8rem; margin-top: 40px; }
@@ -105,22 +105,22 @@
         ul { margin-left: 20px; margin-bottom: 20px; }
         a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         a:hover { text-decoration: underline; color: var(--accent-hover); }
-        /<em> Code Blocks Style </em>/
+        /* Code Blocks Style */
         pre {
             border-radius: 12px;
             overflow: hidden;
             margin: 20px 0;
             box-shadow: var(--card-shadow);
-            background: #282c34; /<em> Fallback </em>/
+            background: #282c34; /* Fallback */
         }
         pre code.hljs {
             font-family: 'Fira Code', monospace;
             font-size: 0.9em;
             padding: 20px;
             line-height: 1.6;
-            overflow-x: auto; /<em> Untuk kode yang panjang </em>/
+            overflow-x: auto; /* Untuk kode yang panjang */
         }
-        /<em> Alert/Warning Boxes </em>/
+        /* Alert/Warning Boxes */
         .warning {
             background-color: var(--warning-bg);
             color: var(--warning-text);
@@ -139,7 +139,7 @@
             margin: 20px 0;
             font-weight: 600;
         }
-        /<em> Images </em>/
+        /* Images */
         .illustration-container {
             text-align: center;
             margin: 30px 0;
@@ -150,7 +150,7 @@
             border-radius: 12px;
             box-shadow: var(--card-shadow);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 80px;
             padding-top: 40px;
@@ -161,7 +161,7 @@
         .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .social-icons a { font-size: 1.5rem; color: var(--text-color); }
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             .main-wrapper { padding: 20px; }
@@ -289,5 +289,5 @@ except ValueError:
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

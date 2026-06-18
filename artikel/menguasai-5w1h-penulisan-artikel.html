@@ -49,7 +49,7 @@
     <link rel="preconnect" href="https://pbs.twimg.com">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Mode Terang & Gelap Otomatis </em>/
+        /* CSS Variables untuk Mode Terang & Gelap Otomatis */
         :root {
             --lk-color: #00b0ed;
             --bg-body: #f8f9fa;
@@ -66,7 +66,7 @@
                 --border-color: #333333;
             }
         }
-        /<em> Reset & Base Style </em>/
+        /* Reset & Base Style */
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -78,11 +78,11 @@
             transition: background 0.3s;
         }
         .container {
-            max-width: 1200px; /<em> Lebar Widescreen </em>/
+            max-width: 1200px; /* Lebar Widescreen */
             margin: 0 auto;
             padding: 20px;
         }
-        /<em> Widescreen 1 Kolom Style </em>/
+        /* Widescreen 1 Kolom Style */
         .content-wrapper {
             background: var(--card-bg);
             border-radius: 12px;
@@ -90,7 +90,7 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
-            overflow: hidden; /<em> CLS Optimization </em>/
+            overflow: hidden; /* CLS Optimization */
         }
         h1 { color: var(--lk-color); font-size: 2.6rem; margin-bottom: 10px; }
         h2 { color: var(--lk-color); font-size: 2.4rem; margin-top: 30px; margin-bottom: 15px; }
@@ -99,14 +99,14 @@
         .meta-info { font-size: 0.9rem; opacity: 0.7; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
         .featured-image {
             width: 100%;
-            max-height: 450px; /<em> Sedikit lebih tinggi </em>/
+            max-height: 450px; /* Sedikit lebih tinggi */
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 25px;
-            /<em> LCP Optimization: Pastikan gambar ini preload jika memungkinkan </em>/
-            /<em> <link rel="preload" href="https://pbs.twimg.com/media/G-Y4o8pa8AAX4cQ.jpg" as="image"> </em>/
+            /* LCP Optimization: Pastikan gambar ini preload jika memungkinkan */
+            /* <link rel="preload" href="https://pbs.twimg.com/media/G-Y4o8pa8AAX4cQ.jpg" as="image"> */
         }
-        /<em> Info Box untuk Contoh </em>/
+        /* Info Box untuk Contoh */
         .info-box {
             background: rgba(0, 176, 237, 0.1);
             padding: 20px;
@@ -116,7 +116,7 @@
         }
         .info-box strong { color: var(--lk-color); }
         .info-box i { margin-right: 8px; }
-        /<em> Comment Section Placeholders </em>/
+        /* Comment Section Placeholders */
         #related-articles-grid, #response {
             margin-top: 50px;
             padding: 25px;
@@ -125,7 +125,7 @@
             border: 1px solid var(--border-color);
         }
         #related-articles-grid h3, #response h3 { color: var(--lk-color); }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 1px;
             padding: 1px 20px;
@@ -135,7 +135,7 @@
             font-size: 0.9rem;
         }
         footer a { color: var(--lk-color); text-decoration: underline; }
-        /<em> Responsive Mobile </em>/
+        /* Responsive Mobile */
         @media (max-width: 768px) {
             .container { padding: 10px; }
             .content-wrapper { padding: 15px; }
@@ -217,5 +217,5 @@
     <p style="font-size:0.8rem; opacity:0.7;">Dibuat dengan ❤️ di Balikpapan untuk Indonesia. Menginspirasi tulisan berbobot!</p>
  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

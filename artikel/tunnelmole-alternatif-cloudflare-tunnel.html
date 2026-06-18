@@ -53,11 +53,11 @@
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
         :root {
-            /<em> Tema Terang </em>/
+            /* Tema Terang */
             --bg-color: #fafaf9;
             --text-color: #292524;
             --text-muted: #78716c;
-            --accent-color: #8b5cf6; /<em> Ungu cerah ala tech startup modern </em>/
+            --accent-color: #8b5cf6; /* Ungu cerah ala tech startup modern */
             --border-color: #e7e5e4;
             --surface-color: #ffffff;
             --link-color: #7c3aed;
@@ -66,7 +66,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap </em>/
+                /* Tema Gelap */
                 --bg-color: #1c1917;
                 --text-color: #fafaf9;
                 --text-muted: #a8a29e;
@@ -78,7 +78,7 @@
                 --code-text: #f5f5f4;
             }
         }
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         body {
@@ -92,7 +92,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .container {
-            max-width: 62.5rem; /<em> 1000px </em>/
+            max-width: 62.5rem; /* 1000px */
             margin: 0 auto;
             padding: 1.25rem;
         }
@@ -155,7 +155,7 @@
             font-size: 0.875rem;
             margin-bottom: 1.5rem;
         }
-        /<em> Konfigurasi LCP Image (Lebar penuh, tinggi menyesuaikan rasio asli) </em>/
+        /* Konfigurasi LCP Image (Lebar penuh, tinggi menyesuaikan rasio asli) */
         .content-img {
             width: 100%;
             height: auto;
@@ -165,7 +165,7 @@
             background-color: var(--surface-color);
             box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
         }
-        /<em> Kotak Kredibilitas / Author Box </em>/
+        /* Kotak Kredibilitas / Author Box */
         .author-box {
             background-color: var(--surface-color);
             border: 0.0625rem solid var(--border-color);
@@ -241,6 +241,6 @@
             <p>🄯 2026 Layar Kosong. Didukung penuh oleh arsitektur <em>web</em> HTML/CSS murni untuk performa instan tanpa kompromi.</p>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

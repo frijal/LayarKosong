@@ -48,8 +48,8 @@
     <meta name="news_keywords" content="Slackware, slackpkg, bash script, automation, Linux tutorial, slackware-mirror.sh, package manager, sysadmin">
     <meta name="promphint" content="Apa kegunaan skrip slackware-mirror.sh? | Mengotomatiskan proses pencadangan dan penggantian server cermin repositori pada manajer paket slackpkg Slackware.">
     <style>
-        /<em> CSS Reset & Variabel Global </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & Variabel Global */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         :root {
@@ -166,7 +166,7 @@
             margin: 0;
             font-size: 1rem;
         }
-        /<em> Styling Code Block Murni </em>/
+        /* Styling Code Block Murni */
         pre {
             background-color: var(--code-bg);
             color: var(--code-text);
@@ -182,7 +182,7 @@
             font-family: inherit;
             font-size: inherit;
         }
-        /<em> Syntax Highlighting </em>/
+        /* Syntax Highlighting */
         .c-comment { color: var(--code-comment); font-style: italic; }
         .c-kw { color: var(--code-keyword); font-weight: bold; }
         .c-str { color: var(--code-string); }
@@ -236,7 +236,7 @@
             margin-left: 1rem;
             color: var(--border-color);
         }
-        /<em> Adaptasi Layar Desktop </em>/
+        /* Adaptasi Layar Desktop */
         @media (min-width: 48rem) {
             .container {
                 padding: 2rem;
@@ -308,6 +308,6 @@ grep -v <span class="c-str">'^#'</span> <span class="c-var">"$MIRROR_FILE"</span
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

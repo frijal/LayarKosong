@@ -61,14 +61,14 @@
   <!-- Font Awesome (tanpa JS, hanya CSS) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> Minimalis, mobile-first, max-width 1000px, prefers-color-scheme </em>/
+    /* Minimalis, mobile-first, max-width 1000px, prefers-color-scheme */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     :root {
-      /<em> Light theme default </em>/
+      /* Light theme default */
       --bg: #fefefe;
       --text: #1e1e2a;
       --card-bg: #ffffff;
@@ -109,7 +109,7 @@
       width: 100%;
       margin: 0 auto;
     }
-    /<em> No hero, langsung konten </em>/
+    /* No hero, langsung konten */
     article {
       background: var(--card-bg);
       border-radius: 24px;
@@ -118,7 +118,7 @@
       border: 1px solid var(--border-light);
       margin: 1rem 0 2rem;
     }
-    /<em> Gambar responsif, hindari CLS </em>/
+    /* Gambar responsif, hindari CLS */
     img {
       max-width: 100%;
       height: auto;
@@ -126,7 +126,7 @@
       border-radius: 18px;
       margin: 1.5rem 0;
       border: 1px solid var(--border-light);
-      aspect-ratio: attr(width) / attr(height); /<em> fallback </em>/
+      aspect-ratio: attr(width) / attr(height); /* fallback */
     }
     .featured-image {
       width: 100%;
@@ -161,7 +161,7 @@
     p {
       margin-bottom: 1.3rem;
     }
-    /<em> Blok khusus cerita utama — tidak diringkas </em>/
+    /* Blok khusus cerita utama — tidak diringkas */
     .story-block {
       background: var(--accent-soft);
       padding: 1.8rem 1.8rem;
@@ -173,7 +173,7 @@
     .story-block p:last-child {
       margin-bottom: 0;
     }
-    /<em> 5W 1H grid sederhana </em>/
+    /* 5W 1H grid sederhana */
     .wh-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -198,7 +198,7 @@
       font-weight: 700;
       margin-bottom: 0.6rem;
     }
-    /<em> Kutipan / penekanan </em>/
+    /* Kutipan / penekanan */
     .highlight {
       background: var(--bg);
       border-radius: 18px;
@@ -207,7 +207,7 @@
       font-style: normal;
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     }
-    /<em> Related grid placeholder </em>/
+    /* Related grid placeholder */
     #related-articles-grid {
       margin: 2.5rem 0 1.5rem;
       padding: 1.5rem;
@@ -250,11 +250,11 @@
       font-size: 1.8rem;
       margin-right: 8px;
     }
-    /<em> Cegah CLS: tentukan ukuran default </em>/
+    /* Cegah CLS: tentukan ukuran default */
     .fa, .fas, .fa-regular {
       display: inline-block;
     }
-    /<em> Mobile adjustment </em>/
+    /* Mobile adjustment */
     @media (max-width: 600px) {
       article {
         padding: 1.2rem;
@@ -369,5 +369,5 @@
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
 <!-- Tidak ada JavaScript untuk theme, pure CSS. Semua aman. -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

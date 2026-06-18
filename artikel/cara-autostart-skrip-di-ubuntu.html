@@ -114,7 +114,7 @@
       .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; color: var(--muted); }
       .meta span { display: inline-flex; align-items: center; gap: 6px; }
       .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; }
-      /<em> Deteksi style removed as elements were removed </em>/
+      /* Deteksi style removed as elements were removed */
       main { margin: 22px 0 40px; }
       article {
         background: var(--bg-elev);
@@ -136,7 +136,7 @@
       table { width: 100%; border-collapse: collapse; min-width: 680px; }
       th, td { border-bottom: 1px solid var(--border); padding: 12px 10px; text-align: left; }
       th { font-weight: 600; background: rgba(255, 255, 255, 0.03); }
-      /<em> Galeri + Lightbox </em>/
+      /* Galeri + Lightbox */
       .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 18px 0 8px; }
       .gallery figure { margin: 0; position: relative; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #0e1217; }
       .gallery img {
@@ -156,14 +156,14 @@
         display: grid; place-items: center; margin: 0 14px; cursor: pointer;
       }
       .lightbox .close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; }
-      /<em> Share icons </em>/
+      /* Share icons */
       .share { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 10px; }
       .share a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elev); }
       .share svg { width: 18px; height: 18px; }
-      /<em> Footer + Comments </em>/
+      /* Footer + Comments */
       footer { margin-bottom: 46px; }
       .comments { margin-top: 26px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-      /<em> Fullscreen & Widescreen helpers </em>/
+      /* Fullscreen & Widescreen helpers */
       .fullwidth {
         margin-left: calc((100vw - var(--maxw)) / -2 + 20px);
         margin-right: calc((100vw - var(--maxw)) / -2 + 20px);
@@ -171,7 +171,7 @@
       @media (max-width: 960px) {
         .fullwidth { margin-left: 0; margin-right: 0; }
       }
-      /<em> Form generator style </em>/
+      /* Form generator style */
       .generator {
         margin-top: 24px;
         background: var(--bg-elev);
@@ -433,6 +433,6 @@ X-GNOME-Autostart-enabled=${enabled}</code>;
         }
       });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

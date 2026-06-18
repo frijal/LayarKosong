@@ -46,7 +46,7 @@
     <title>Mengubah Format Gambar Massal dengan ImageMagick - Layar Kosong</title> 
 <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
    <style>
-    /<em> 1. Definisikan Variabel Tema Terang (Default) </em>/
+    /* 1. Definisikan Variabel Tema Terang (Default) */
     :root {
         --bg-gradient-start: #f0f9ff;
         --bg-gradient-end: #e0f2fe;
@@ -66,31 +66,31 @@
         --share-btn-text: #0369a1;
         --share-btn-hover: #bae6fd;
     }
-    /<em> 2. Otomatis Tema Gelap (Dark Mode) </em>/
+    /* 2. Otomatis Tema Gelap (Dark Mode) */
     @media (prefers-color-scheme: dark) {
         :root {
-            /<em> Gradasi gelap yang elegan ala malam hari </em>/
+            /* Gradasi gelap yang elegan ala malam hari */
             --bg-gradient-start: #0f172a;
             --bg-gradient-end: #1e293b;
             --text-color: #e2e8f0;
             --header-bg: #0369a1;
             --header-text: #ffffff;
             --main-bg: #1e293b;
-            --title-color: #38bdf8; /<em> Biru muda cerah agar kontras di latar gelap </em>/
+            --title-color: #38bdf8; /* Biru muda cerah agar kontras di latar gelap */
             --shadow-color: rgba(0, 0, 0, 0.4);
-            --pre-bg: #020617; /<em> Lebih gelap dari main background </em>/
+            --pre-bg: #020617; /* Lebih gelap dari main background */
             --pre-text: #f8fafc;
             --copy-btn-bg: #059669;
             --copy-btn-hover: #10b981;
             --footer-text: #94a3b8;
             --share-border: #334155;
-            /<em> Menyesuaikan warna tombol share pastel versi gelap </em>/
+            /* Menyesuaikan warna tombol share pastel versi gelap */
             --share-btn-bg: #0c4a6e;
             --share-btn-text: #e0f2fe;
             --share-btn-hover: #0369a1;
         }
     }
-    /<em> 3. Base Styles (Desktop & Tablet) </em>/
+    /* 3. Base Styles (Desktop & Tablet) */
     body {
         font-family: 'Segoe UI', sans-serif;
         margin: 0;
@@ -98,7 +98,7 @@
         line-height: 1.7;
         background: linear-gradient(120deg, var(--bg-gradient-start), var(--bg-gradient-end));
         color: var(--text-color);
-        min-height: 100vh; /<em> Memastikan gradasi memenuhi layar penuh </em>/
+        min-height: 100vh; /* Memastikan gradasi memenuhi layar penuh */
         transition: background 0.3s, color 0.3s;
     }
     header {
@@ -110,7 +110,7 @@
     }
     main {
         max-width: 900px;
-        margin: 30px auto; /<em> Memberi jarak manis dari header di desktop </em>/
+        margin: 30px auto; /* Memberi jarak manis dari header di desktop */
         padding: 20px;
         background: var(--main-bg);
         border-radius: 12px;
@@ -154,7 +154,7 @@
         padding-bottom: 20px;
         transition: color 0.3s;
     }
-    /<em> Bagian Tombol Share </em>/
+    /* Bagian Tombol Share */
     .share-buttons {
         margin-top: 20px;
         padding: 15px 10px 0 10px;
@@ -177,20 +177,20 @@
         background: var(--share-btn-hover); 
         transform: translateY(-1px);
     }
-    /<em> 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) </em>/
+    /* 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 600px) */
     @media (max-width: 600px) {
         header {
-            padding: 15px 10px; /<em> Sedikit lebih ramping di HP </em>/
+            padding: 15px 10px; /* Sedikit lebih ramping di HP */
         }
         header h1 {
-            font-size: 1.6rem; /<em> Biar judul gak kebesaran </em>/
+            font-size: 1.6rem; /* Biar judul gak kebesaran */
         }
         main {
-            margin: 15px 10px; /<em> Memberi ruang bernapas di kanan-kiri layar HP </em>/
-            padding: 15px;      /<em> Padding dalam dikecilkan sedikit </em>/
-            border-radius: 8px; /<em> Sudut lengkungan disesuaikan proporsinya </em>/
+            margin: 15px 10px; /* Memberi ruang bernapas di kanan-kiri layar HP */
+            padding: 15px;      /* Padding dalam dikecilkan sedikit */
+            border-radius: 8px; /* Sudut lengkungan disesuaikan proporsinya */
         }
-        /<em> Merapikan deretan tombol share agar ramah jempol di HP </em>/
+        /* Merapikan deretan tombol share agar ramah jempol di HP */
         .share-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -199,9 +199,9 @@
         }
         .share-buttons a {
             margin: 0;
-            flex: 1 1 40%; /<em> Tombol otomatis membagi ruang jadi 2 kolom seimbang </em>/
+            flex: 1 1 40%; /* Tombol otomatis membagi ruang jadi 2 kolom seimbang */
             text-align: center;
-            padding: 10px; /<em> Area sentuh diperluas sedikit </em>/
+            padding: 10px; /* Area sentuh diperluas sedikit */
         }
     }
 </style>
@@ -244,7 +244,7 @@
             alert("Perintah disalin!");
         }
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

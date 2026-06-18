@@ -58,13 +58,13 @@
   <!-- Twitter Card -->
   <!-- CSS Tema Terang/Gelap (prefers-color-scheme) tanpa JS -->
   <style>
-    /<em> Base & reset </em>/
+    /* Base & reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> Variabel tema terang (default) </em>/
+    /* Variabel tema terang (default) */
     :root {
       --bg-body: #f5f5f5;
       --bg-content: #ffffff;
@@ -75,7 +75,7 @@
       --blockquote-bg: #f0f0f0;
       --footer-bg: #eaeaea;
     }
-    /<em> Tema gelap berdasarkan preferensi sistem </em>/
+    /* Tema gelap berdasarkan preferensi sistem */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-body: #121212;
@@ -96,7 +96,7 @@
       line-height: 1.6;
       padding: 20px;
       margin: 0;
-      transition: background-color 0.2s, color 0.2s; /<em> halus tapi tanpa js </em>/
+      transition: background-color 0.2s, color 0.2s; /* halus tapi tanpa js */
     }
     .container {
       max-width: 1000px;
@@ -107,7 +107,7 @@
       overflow: hidden;
       padding: 2rem 1.5rem;
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2rem;
       line-height: 1.3;
@@ -135,10 +135,10 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> blockquote </em>/
+    /* blockquote */
     blockquote {
       background-color: var(--blockquote-bg);
-      border-left: 6px solid #b3002d; /<em> merah hati </em>/
+      border-left: 6px solid #b3002d; /* merah hati */
       padding: 1rem 1.5rem;
       margin: 1.5rem 0;
       border-radius: 0 20px 20px 0;
@@ -149,7 +149,7 @@
     blockquote i {
       color: var(--text-muted);
     }
-    /<em> metadata artikel </em>/
+    /* metadata artikel */
     .article-meta {
       display: flex;
       flex-wrap: wrap;
@@ -173,7 +173,7 @@
     .tag i {
       margin-right: 4px;
     }
-    /<em> Div kosong untuk grid dan komentar </em>/
+    /* Div kosong untuk grid dan komentar */
     #related-articles-grid, #response {
       min-height: 60px;
       border: 2px dashed var(--border-light);
@@ -185,7 +185,7 @@
       background-color: var(--blockquote-bg);
       font-style: italic;
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -210,7 +210,7 @@
     footer a:hover {
       color: var(--link-color);
     }
-    /<em> Responsive touch </em>/
+    /* Responsive touch */
     @media (max-width: 600px) {
       .container {
         padding: 1.5rem 1rem;
@@ -222,14 +222,14 @@
         font-size: 1.4rem;
       }
     }
-    /<em> emoji dan fa inline </em>/
+    /* emoji dan fa inline */
     .emoji-icon {
       margin-right: 6px;
     }
     .fa-regular, .fas, .fa-regular {
       margin-right: 6px;
     }
-    /<em> outline </em>/
+    /* outline */
     .highlight {
       background: rgba(255, 215, 0, 0.15);
       padding: 0.2rem 0.3rem;
@@ -290,5 +290,5 @@
       <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman - Artikel ini dapat disalin secara bebas.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

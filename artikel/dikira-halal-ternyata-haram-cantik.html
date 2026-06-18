@@ -74,10 +74,10 @@
             line-height: 1.7;
             font-size: 1.1rem;
         }
-        /<em> Kontainer utama "widescreen" </em>/
+        /* Kontainer utama "widescreen" */
         main {
-            max-width: 960px; /<em> Lebar maksimal konten </em>/
-            margin: 0 auto;   /<em> Otomatis di tengah </em>/
+            max-width: 960px; /* Lebar maksimal konten */
+            margin: 0 auto;   /* Otomatis di tengah */
             padding: 1rem 2rem 3rem;
         }
         header {
@@ -94,14 +94,14 @@
         article {
             width: 100%;
         }
-        /<em> Kontainer untuk video responsif </em>/
+        /* Kontainer untuk video responsif */
         .video-container {
             position: relative;
-            padding-bottom: 177.77%; /<em> Rasio 9:16 untuk Shorts </em>/
+            padding-bottom: 177.77%; /* Rasio 9:16 untuk Shorts */
             height: 0;
             overflow: hidden;
-            max-width: 400px; /<em> Lebar maks agar tidak terlalu besar di desktop </em>/
-            margin: 2rem auto; /<em> Tengahkan video </em>/
+            max-width: 400px; /* Lebar maks agar tidak terlalu besar di desktop */
+            margin: 2rem auto; /* Tengahkan video */
             border-radius: 12px;
             box-shadow: var(--img-shadow);
         }
@@ -150,21 +150,21 @@
             font-size: 0.9rem;
             color: #777;
         }
-        /<em> Bagian Komentar </em>/
+        /* Bagian Komentar */
         #kolom-komentar {
             margin-top: 4rem;
         }
-        /<em> Mobile-friendly </em>/
+        /* Mobile-friendly */
         @media (max-width: 768px) {
             main {
                 padding: 1rem 1.25rem 2rem;
             }
             header h1 {
-                font-size: 1.8rem; /<em> Judul lebih kecil </em>/
+                font-size: 1.8rem; /* Judul lebih kecil */
             }
             h2 { font-size: 1.6rem; }
             .video-container {
-                max-width: 100%; /<em> Lebar penuh di mobile </em>/
+                max-width: 100%; /* Lebar penuh di mobile */
             }
             body {
                 font-size: 1rem;
@@ -208,5 +208,5 @@
         <p>🄯 2025 - Frijal's Pages. Dibuat dengan cinta dan kopi.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

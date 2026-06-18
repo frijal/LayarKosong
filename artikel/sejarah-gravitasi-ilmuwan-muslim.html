@@ -50,7 +50,7 @@
     <meta name="news_keywords" content="sejarah gravitasi, ilmuwan muslim, al biruni, ibn khordadbeh, sejarah sains islam, isaac newton">
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-        /<em> CSS Prefers-Color-Scheme (Zero JS) </em>/
+        /* CSS Prefers-Color-Scheme (Zero JS) */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -67,7 +67,7 @@
                 --code-bg: #1e1e1e;
             }
         }
-        /<em> Layout Widescreen 1 Kolom </em>/
+        /* Layout Widescreen 1 Kolom */
         body {
             margin: 0;
             padding: 0;
@@ -81,11 +81,11 @@
         }
         main {
             width: 100%;
-            max-width: 1000px; /<em> Desktop Centered </em>/
+            max-width: 1000px; /* Desktop Centered */
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Typography & Content </em>/
+        /* Typography & Content */
         h1 { font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; color: var(--accent-color); }
         h2 { font-size: 1.6rem; margin-top: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 5px; }
         h3 { font-size: 1.3rem; margin-top: 1.5rem; }
@@ -94,11 +94,11 @@
             color: gray;
             margin-bottom: 20px;
         }
-        /<em> Image Optimization (CWV: LCP/CLS) </em>/
+        /* Image Optimization (CWV: LCP/CLS) */
         .main-img {
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9; /<em> Sesuai metadata gambar umum </em>/
+            aspect-ratio: 16 / 9; /* Sesuai metadata gambar umum */
             object-fit: cover;
             border-radius: 12px;
             margin: 20px 0;
@@ -128,14 +128,14 @@
             font-size: 0.85rem;
             color: gray;
         }
-        /<em> Sections for Comments & Related </em>/
+        /* Sections for Comments & Related */
         #related-articles-grid, #response {
             margin-top: 40px;
             padding: 20px;
             background: var(--code-bg);
             border-radius: 8px;
         }
-        /<em> Mobile View Adjustments </em>/
+        /* Mobile View Adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             main { padding: 15px; }
@@ -195,5 +195,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

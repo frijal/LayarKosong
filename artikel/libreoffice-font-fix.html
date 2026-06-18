@@ -47,14 +47,14 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
-            /<em> Light Theme Defaults </em>/
+            /* Light Theme Defaults */
             --bg-color: #ffffff;
             --text-color: #333333;
             --primary-color: #0056b3;
             --secondary-bg: #f5f5f5;
             --border-color: #dddddd;
         }
-        /<em> Dark Theme Detection </em>/
+        /* Dark Theme Detection */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -72,13 +72,13 @@
             padding: 0;
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
-            min-height: 100vh; /<em> Fullscreen </em>/
+            min-height: 100vh; /* Fullscreen */
             display: flex;
             flex-direction: column;
         }
         .container {
             width: 100%;
-            max-width: 900px; /<em> Widescreen 1 kolom, tapi tetap ada batas agar mudah dibaca </em>/
+            max-width: 900px; /* Widescreen 1 kolom, tapi tetap ada batas agar mudah dibaca */
             margin: 0 auto;
             padding: 20px;
             flex-grow: 1;
@@ -100,7 +100,7 @@
             margin: 20px 0;
             border-radius: 4px;
         }
-        /<em> Styling Gambar dan Caption </em>/
+        /* Styling Gambar dan Caption */
         .image-container {
             margin: 25px 0;
             text-align: center;
@@ -121,7 +121,7 @@
             margin-top: 10px;
             font-style: italic;
         }
-        /<em> Table Styling </em>/
+        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -137,7 +137,7 @@
             background-color: var(--primary-color);
             color: var(--bg-color);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -146,7 +146,7 @@
             font-size: 0.9em;
             color: #888;
         }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
@@ -157,7 +157,7 @@
             table, thead, tbody, th, td, tr {
                 display: block;
             }
-            /<em> Menyembunyikan header tabel di mobile (Opsional, untuk tata letak yang lebih ringkas) </em>/
+            /* Menyembunyikan header tabel di mobile (Opsional, untuk tata letak yang lebih ringkas) */
             thead tr {
                 position: absolute;
                 top: -9999px;
@@ -167,11 +167,11 @@
                 border: none;
                 border-bottom: 1px solid var(--border-color);
                 position: relative;
-                padding-left: 50%; /<em> Membuat ruang untuk label </em>/
+                padding-left: 50%; /* Membuat ruang untuk label */
                 text-align: right;
             }
             td::before {
-                /<em> Membuat label dari header tabel </em>/
+                /* Membuat label dari header tabel */
                 content: attr(data-label);
                 position: absolute;
                 left: 6px;
@@ -273,5 +273,5 @@
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

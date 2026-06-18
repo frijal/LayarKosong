@@ -56,7 +56,7 @@
   <!-- Twitter Card -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> === CSS Variables untuk Light/Dark Mode (prefers-color-scheme) === </em>/
+    /* === CSS Variables untuk Light/Dark Mode (prefers-color-scheme) === */
     :root {
       --bg: #faf9f6;
       --text: #1e1e1e;
@@ -81,7 +81,7 @@
         --table-alt: #2f3742;
       }
     }
-    /<em> === Reset & Base (Mobile First, tanpa ARIA, tanpa HERO) === </em>/
+    /* === Reset & Base (Mobile First, tanpa ARIA, tanpa HERO) === */
     * {
       margin: 0;
       padding: 0;
@@ -98,7 +98,7 @@
       flex-direction: column;
       align-items: center;
     }
-    /<em> Container utama: 1 kolom, max-width 1000px, di tengah </em>/
+    /* Container utama: 1 kolom, max-width 1000px, di tengah */
     .article-container {
       max-width: 1000px;
       width: 100%;
@@ -109,7 +109,7 @@
       padding: 1.8rem 1.5rem;
       border: 1px solid var(--border-light);
     }
-    /<em> Gambar utama thumbnail </em>/
+    /* Gambar utama thumbnail */
     .featured-image {
       width: 100%;
       height: auto;
@@ -118,9 +118,9 @@
       border: 1px solid var(--border-light);
       aspect-ratio: 1200 / 630;
       object-fit: cover;
-      background-color: #2c3e50; /<em> fallback </em>/
+      background-color: #2c3e50; /* fallback */
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.2rem;
       font-weight: 700;
@@ -144,19 +144,19 @@
     p {
       margin-bottom: 1.3rem;
     }
-    /<em> Emoji & ikon inline sudah natural </em>/
+    /* Emoji & ikon inline sudah natural */
     i, .fa-solid, .fa-regular {
       margin-right: 6px;
       color: var(--accent);
     }
-    /<em> List </em>/
+    /* List */
     ul, ol {
       margin: 1rem 0 1.5rem 1.8rem;
     }
     li {
       margin-bottom: 0.4rem;
     }
-    /<em> Tabel (risk assessment) </em>/
+    /* Tabel (risk assessment) */
     .risk-table {
       width: 100%;
       border-collapse: collapse;
@@ -183,7 +183,7 @@
     .risk-table tr:nth-child(even) td {
       background-color: var(--table-alt);
     }
-    /<em> Code / perintah kecil </em>/
+    /* Code / perintah kecil */
     code {
       background-color: var(--code-bg);
       padding: 0.2rem 0.5rem;
@@ -192,7 +192,7 @@
       font-size: 0.9rem;
       border: 1px solid var(--border-light);
     }
-    /<em> Blockquote </em>/
+    /* Blockquote */
     blockquote {
       margin: 1.8rem 0;
       padding: 1rem 1.8rem;
@@ -201,7 +201,7 @@
       border-radius: 0 20px 20px 0;
       font-style: italic;
     }
-    /<em> Kartu kecil (opsional) </em>/
+    /* Kartu kecil (opsional) */
     .tip-card {
       background-color: var(--code-bg);
       border-radius: 20px;
@@ -209,7 +209,7 @@
       margin: 2rem 0;
       border: 1px dashed var(--border-light);
     }
-    /<em> Footer </em>/
+    /* Footer */
     .site-footer {
       margin-top: 3rem;
       text-align: center;
@@ -219,14 +219,14 @@
       border-top: 1px solid var(--border-light);
       padding-top: 2rem;
     }
-    /<em> Responsif mobile adjustment </em>/
+    /* Responsif mobile adjustment */
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       .article-container { padding: 1.2rem; }
       h1 { font-size: 1.9rem; }
       h2 { font-size: 1.5rem; }
     }
-    /<em> Placeholder grid (tidak ada JS) </em>/
+    /* Placeholder grid (tidak ada JS) */
     #related-articles-grid, #response {
       margin: 2.5rem 0 1rem;
       padding: 1.5rem;
@@ -234,7 +234,7 @@
       border-radius: 20px;
       border: 1px solid var(--border-light);
     }
-    /<em> simple smooth </em>/
+    /* simple smooth */
     a {
       color: var(--accent);
       text-decoration: none;
@@ -358,6 +358,6 @@
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div> <!-- akhir article-container -->
 <!-- Tidak ada JavaScript, semua mengandalkan CSS prefers-color-scheme -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

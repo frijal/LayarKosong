@@ -47,25 +47,25 @@
 <meta name="keywords" content="cek baterai linux, kondisi baterai linux, upower, acpi, linux command line, terminal linux, baterai laptop">
     <meta name="date" content="2025-09-28">
   <style>
-    /<em> --- 1. DESIGN TOKENS (Sunset Orange Fluid Ecosystem) --- </em>/
+    /* --- 1. DESIGN TOKENS (Sunset Orange Fluid Ecosystem) --- */
     :root {
-        /<em> Mode Terang (WCAG AA Compliant) </em>/
+        /* Mode Terang (WCAG AA Compliant) */
         --bg: #f4f4f9;
         --bg-canvas: #ffffff;
         --text: #333333;
         --muted: #666666;
-        --accent: #e67e22; /<em> Orange utama </em>/
-        --accent-sec: #f39c12; /<em> Aksen kuning cerah </em>/
+        --accent: #e67e22; /* Orange utama */
+        --accent-sec: #f39c12; /* Aksen kuning cerah */
         --border: #e0e0e0;
         --code-bg: #2d2d2d;
         --code-text: #f1f1f1;
-        /<em> Manifesto: Batas maksimal 1000px </em>/
+        /* Manifesto: Batas maksimal 1000px */
         --max-width: 62.5rem; 
-        --radius: 0.75rem; /<em> 12px </em>/
+        --radius: 0.75rem; /* 12px */
     }
     @media (prefers-color-scheme: dark) {
         :root {
-            /<em> Mode Gelap (Dark Mode) </em>/
+            /* Mode Gelap (Dark Mode) */
             --bg: #0b0c0f;
             --bg-canvas: #161618;
             --text: #e0e0e0;
@@ -75,8 +75,8 @@
             --border: #2a2a2a;
         }
     }
-    /<em> --- 2. ACCESSIBLE RESET --- </em>/
-    <em>, </em>::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* --- 2. ACCESSIBLE RESET --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { 
         font-family: system-ui, -apple-system, sans-serif; 
         background-color: var(--bg); 
@@ -84,7 +84,7 @@
         line-height: 1.7;
         transition: background-color 0.3s ease;
     }
-    /<em> --- 3. LAYOUT ENGINE (1 Kolom Mutlak) --- </em>/
+    /* --- 3. LAYOUT ENGINE (1 Kolom Mutlak) --- */
     .container {
         width: 100%;
         max-width: var(--max-width);
@@ -100,18 +100,18 @@
             box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.05);
         }
     }
-    /<em> --- 4. TYPOGRAPHY --- </em>/
+    /* --- 4. TYPOGRAPHY --- */
     header { text-align: center; color: var(--accent); padding-bottom: 0.625rem; border-bottom: 0.125rem solid var(--accent-sec); }
     h1, h2 { color: var(--accent); margin-top: 1.5rem; }
-    /<em> --- 5. GALLERY (Responsive 1-Column Flow) --- </em>/
+    /* --- 5. GALLERY (Responsive 1-Column Flow) --- */
     .gallery { margin: 2rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; }
     .gallery img { width: 100%; height: auto; border-radius: var(--radius); cursor: pointer; transition: transform 0.3s ease; }
     .gallery img:hover { transform: scale(1.02); }
-    /<em> --- 6. LIGHTBOX --- </em>/
+    /* --- 6. LIGHTBOX --- */
     .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 1rem; }
     .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: var(--radius); }
     .lightbox-close { position: absolute; top: 1rem; right: 2rem; color: #fff; font-size: 2.5rem; cursor: pointer; border: none; background: none; }
-    /<em> --- 7. CODE BLOCKS --- </em>/
+    /* --- 7. CODE BLOCKS --- */
     pre { background: var(--code-bg); color: var(--code-text); padding: 2rem 1rem 1rem 1rem; border-radius: var(--radius); overflow-x: auto; position: relative; margin: 1rem 0; }
     code { font-family: ui-monospace, monospace; font-size: 0.9rem; }
     .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--accent); color: #fff; border: none; padding: 0.3rem 0.6rem; border-radius: 0.3rem; cursor: pointer; font-size: 0.8rem; }
@@ -191,7 +191,7 @@ cat /sys/class/power_supply/BAT0/status</code><button class="copy-btn" onclick="
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

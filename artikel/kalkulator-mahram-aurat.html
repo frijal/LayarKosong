@@ -49,8 +49,8 @@
   <!-- Twitter Card -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Reset & Variables </em>/
-        <em>, </em>::before, *::after {
+        /* CSS Reset & Variables */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -60,7 +60,7 @@
             --text-main: #2c3e50;
             --card-bg: #ffffff;
             --border-color: #dcdde1;
-            /<em> Status Colors </em>/
+            /* Status Colors */
             --color-mahram: #27ae60;
             --color-mahram-light: #e8f8f5;
             --color-bukan-mahram: #c0392b;
@@ -69,7 +69,7 @@
             --color-sesama-light: #ebf5fb;
             --color-default: #7f8c8d;
         }
-        /<em> Dark Mode Theme </em>/
+        /* Dark Mode Theme */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #121212;
@@ -94,7 +94,7 @@
         }
         .container {
             max-width: 1000px;
-            /<em> Gunakan width: 100% agar container selalu berusaha memenuhi lebar hingga mencapai batas max-width </em>/
+            /* Gunakan width: 100% agar container selalu berusaha memenuhi lebar hingga mencapai batas max-width */
             width: 100%;
             /* Atur margin untuk memposisikan container ke tengah. margin-top/bottom dihilangkan atau diatur sesuai kebutuhan.
                Margin auto di kiri dan kanan akan menengahkan container */
@@ -105,34 +105,34 @@
                Kita bisa gunakan media query untuk menerapkannya hanya di desktop jika mau. */
             border-radius: 0;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            /<em> Hapus border jika tidak diperlukan agar seamless </em>/
+            /* Hapus border jika tidak diperlukan agar seamless */
             border: none;
-            /<em> Atur min-height agar menutupi seluruh tinggi layar jika konten sedikit </em>/
+            /* Atur min-height agar menutupi seluruh tinggi layar jika konten sedikit */
             min-height: 100vh;
         }
-        /<em> Kembalikan border-radius untuk layar yang lebih lebar dari 1000px agar terlihat seperti "halaman kertas" di tengah </em>/
+        /* Kembalikan border-radius untuk layar yang lebih lebar dari 1000px agar terlihat seperti "halaman kertas" di tengah */
         @media (min-width: 1024px) {
             body {
-                padding: 20px; /<em> Tambahkan sedikit ruang di sekitar container pada layar lebar </em>/
+                padding: 20px; /* Tambahkan sedikit ruang di sekitar container pada layar lebar */
             }
             .container {
                 border-radius: 12px;
                 border: 1px solid var(--border-color);
-                min-height: auto; /<em> Hilangkan min-height karena ada padding body </em>/
+                min-height: auto; /* Hilangkan min-height karena ada padding body */
             }
         }
         h1 {
             text-align: center;
             margin-bottom: 10px;
             font-size: 2rem;
-            margin-top: 20px; /<em> Tambahan spasi atas jika di mobile </em>/
+            margin-top: 20px; /* Tambahan spasi atas jika di mobile */
         }
         p.subtitle {
             text-align: center;
             margin-bottom: 30px;
             color: var(--color-default);
         }
-        /<em> Dropdown Group Styling </em>/
+        /* Dropdown Group Styling */
         .input-group {
             display: flex;
             gap: 20px;
@@ -168,7 +168,7 @@
             outline: none;
             border-color: var(--color-sesama);
         }
-        /<em> Result Boxes Styling </em>/
+        /* Result Boxes Styling */
         #result-container {
             display: flex;
             flex-direction: column;
@@ -203,7 +203,7 @@
             font-size: 1.1rem;
             font-weight: 500;
         }
-        /<em> Box Status Themes </em>/
+        /* Box Status Themes */
         .theme-mahram {
             background-color: var(--color-mahram-light);
             border-color: var(--color-mahram);
@@ -222,7 +222,7 @@
         .result-box i {
             margin-right: 10px;
         }
-        /<em> Infographic & Content Section Styling </em>/
+        /* Infographic & Content Section Styling */
         .content-section {
             margin-top: 60px;
             padding-top: 40px;
@@ -276,7 +276,7 @@
             margin: 15px 0;
             font-size: 0.95rem;
         }
-        /<em> Table Styling </em>/
+        /* Table Styling */
         .table-responsive {
             overflow-x: auto;
             margin: 25px 0;
@@ -301,7 +301,7 @@
         .aurat-table tr:last-child td {
             border-bottom: none;
         }
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 600px) {
             .input-group {
                 flex-direction: column;
@@ -591,5 +591,5 @@
         genderSelect.addEventListener('change', calculateStatus);
         familySelect.addEventListener('change', calculateStatus);
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

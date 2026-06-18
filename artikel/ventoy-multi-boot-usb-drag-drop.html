@@ -49,11 +49,11 @@
    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&amp;family=Nunito:wght@400;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/atom-one-dark.min.css">
     <style>
-        /<em> 🎨 CSS Variables for Auto Dark/Light Mode </em>/
+        /* 🎨 CSS Variables for Auto Dark/Light Mode */
         :root {
             --bg-color: #f8f9fa;
             --text-color: #2d3436;
-            --accent-color: #00b894; /<em> Hijau Khas Ventoy/Success </em>/
+            --accent-color: #00b894; /* Hijau Khas Ventoy/Success */
             --accent-soft: #e8f5e9;
             --link-color: #0984e3;
             --header-bg: #ffffff;
@@ -67,9 +67,9 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #1e1e2e; /<em> Catppuccin Mocha </em>/
+                --bg-color: #1e1e2e; /* Catppuccin Mocha */
                 --text-color: #cdd6f4;
-                --accent-color: #a6e3a1; /<em> Hijau Mint Catppuccin </em>/
+                --accent-color: #a6e3a1; /* Hijau Mint Catppuccin */
                 --accent-soft: #313244;
                 --link-color: #89dceb;
                 --header-bg: #181825;
@@ -82,7 +82,7 @@
                 --code-bg: #313244;
             }
         }
-        /<em> 💻 Base Styles & Layout (Widescreen 1-Column) </em>/
+        /* 💻 Base Styles & Layout (Widescreen 1-Column) */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Nunito', sans-serif;
@@ -99,7 +99,7 @@
             padding: 0 20px;
             min-height: 100vh;
         }
-        /<em> 🖊 Typography </em>/
+        /* 🖊 Typography */
         h1, h2, h3 { font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
         h1 { font-size: 3rem; color: var(--accent-color); text-align: center; margin-top: 40px; }
         h2 { font-size: 2rem; color: var(--accent-color); border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 50px; }
@@ -108,7 +108,7 @@
         ul, ol { margin-left: 25px; margin-bottom: 20px; }
         a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         a:hover { text-decoration: underline; color: var(--accent-color); }
-        /<em> Badges Styling </em>/
+        /* Badges Styling */
         .badges-container {
             text-align: center;
             margin: 20px 0 40px 0;
@@ -116,7 +116,7 @@
         .badges-container img {
             margin: 5px;
         }
-        /<em> 📊 Table (Dokumen & Donasi) </em>/
+        /* 📊 Table (Dokumen & Donasi) */
         .doc-table, .donation-table {
             width: 100%;
             border-collapse: collapse;
@@ -134,7 +134,7 @@
             font-weight: 700;
         }
         .doc-table tr:nth-child(even), .donation-table tr:nth-child(even) { background-color: var(--accent-soft); }
-        /<em> Image & Center Content </em>/
+        /* Image & Center Content */
         .center-content {
             text-align: center;
             margin: 30px 0;
@@ -145,11 +145,11 @@
             border-radius: 8px;
             box-shadow: var(--card-shadow);
         }
-        /<em> 🖼 Screenshot Ventoy </em>/
+        /* 🖼 Screenshot Ventoy */
         .ventoy-screenshot {
             margin: 40px 0;
         }
-        /<em> Lists for Tested OS </em>/
+        /* Lists for Tested OS */
         .os-list-group {
             display: flex;
             flex-wrap: wrap;
@@ -158,14 +158,14 @@
             padding: 0;
         }
         .os-list-group > div {
-            flex: 1 1 45%; /<em> Minimal 45% lebar, 2 kolom </em>/
+            flex: 1 1 45%; /* Minimal 45% lebar, 2 kolom */
             min-width: 300px;
         }
         .os-list-group ul {
             list-style-type: '👉';
             margin: 0;
             padding-left: 20px;
-            columns: 2; /<em> Mencoba 2 kolom untuk list di desktop </em>/
+            columns: 2; /* Mencoba 2 kolom untuk list di desktop */
             column-gap: 30px;
         }
         .os-list-group li {
@@ -174,7 +174,7 @@
             break-inside: avoid;
             font-size: 0.9em;
         }
-        /<em> 🛑 Note Box (for narrative explanation) </em>/
+        /* 🛑 Note Box (for narrative explanation) */
         .note-box {
             padding: 20px;
             border-radius: 10px;
@@ -184,7 +184,7 @@
             color: var(--note-text);
             border-left: 5px solid var(--note-text);
         }
-        /<em> 🦶 Footer </em>/
+        /* 🦶 Footer */
         footer {
             margin-top: 80px;
             padding-top: 40px;
@@ -195,7 +195,7 @@
         .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .social-icons a { font-size: 1.5rem; color: var(--text-color); }
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
-        /<em> 📱 Mobile Adjustments </em>/
+        /* 📱 Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 1.6rem; }
@@ -386,6 +386,6 @@
 </div>
 <script src="/ext/highlight.js" defer=""></script>
 <script>hljs.highlightAll();</script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

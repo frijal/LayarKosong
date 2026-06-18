@@ -53,7 +53,7 @@
     <!-- CSS Kritis (Tanpa Framework, Responsif, Dark Mode) -->
     <style>
         :root {
-            /<em> Light Theme Colors </em>/
+            /* Light Theme Colors */
             --bg-color: #f8fafc;
             --text-primary: #1e293b;
             --text-secondary: #475569;
@@ -66,7 +66,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Dark Theme Colors </em>/
+                /* Dark Theme Colors */
                 --bg-color: #0f172a;
                 --text-primary: #f1f5f9;
                 --text-secondary: #94a3b8;
@@ -91,7 +91,7 @@
             font-size: 1rem;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Container - Mobile First & Max Width 64rem </em>/
+        /* Container - Mobile First & Max Width 64rem */
         .container {
             width: 100%;
             max-width: 64rem;
@@ -136,7 +136,7 @@
             color: var(--text-secondary);
             font-size: 1.125rem;
         }
-        /<em> Hero Image Optimization (Mencegah CLS) </em>/
+        /* Hero Image Optimization (Mencegah CLS) */
         .hero-image-wrapper {
             width: 100%;
             margin-bottom: 2.5rem;
@@ -148,9 +148,9 @@
             aspect-ratio: 16 / 9;
             object-fit: cover;
             border-radius: 0.75rem;
-            background-color: var(--border-color); /<em> Skeleton placeholder </em>/
+            background-color: var(--border-color); /* Skeleton placeholder */
         }
-        /<em> Blockquote Styling </em>/
+        /* Blockquote Styling */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 0.375rem solid var(--quote-border);
@@ -164,7 +164,7 @@
             color: var(--text-primary);
             font-size: 1.125rem;
         }
-        /<em> Footer / E-E-A-T Styling </em>/
+        /* Footer / E-E-A-T Styling */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -241,5 +241,5 @@
             </div>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

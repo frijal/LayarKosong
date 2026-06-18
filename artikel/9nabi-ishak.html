@@ -170,7 +170,7 @@
       border-radius: var(--radius-sm);
       color: var(--muted);
     }
-    /<em> Gallery </em>/
+    /* Gallery */
     .gallery {
       margin: 26px 0;
       display: grid;
@@ -196,7 +196,7 @@
       padding: 10px 12px; font-size: 14px; color: var(--muted);
       border-top: 1px solid var(--border);
     }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox {
       position: fixed; inset: 0; background: rgba(0,0,0,0.85);
       display: none; align-items: center; justify-content: center; z-index: 9999;
@@ -230,7 +230,7 @@
     .lb-cap {
       margin-top: 10px; color: var(--muted); font-size: 14px; text-align: center;
     }
-    /<em> Share bar </em>/
+    /* Share bar */
     .share {
       margin: 20px 0 6px;
       display: flex; flex-wrap: wrap; gap: 10px;
@@ -242,7 +242,7 @@
     }
     .btn:hover { background: #121821; }
     .btn svg { width: 18px; height: 18px; }
-    /<em> Info chips </em>/
+    /* Info chips */
     .info {
       margin: 22px 0;
       display: grid; grid-template-columns: 1fr; gap: 10px;
@@ -264,12 +264,12 @@
       color: var(--muted);
     }
     .fb-comments { margin-top: 12px; }
-    /<em> Accessibility helpers </em>/
+    /* Accessibility helpers */
     .sr-only {
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
       overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
-    /<em> Wide fullscreen feel </em>/
+    /* Wide fullscreen feel */
     .page::before {
       content: ""; position: fixed; inset: 0; pointer-events: none;
       background-image: radial-gradient(1200px 600px at 10% 10%, rgba(107,208,255,0.08), transparent),
@@ -404,5 +404,5 @@
       });
     })();
       </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

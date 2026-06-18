@@ -65,7 +65,7 @@
             --code-bg: #161b22;
             --quote-bg: rgba(48, 165, 252, 0.1);
         }
-        <em>,</em>::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth}
         body{
             font-family:'Inter', sans-serif;
@@ -129,7 +129,7 @@
         .copy-btn{position:absolute;top:5px;right:10px;background-color:#484f58;color:#c9d1d9;border:1px solid #6e7681;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:0.8rem;transition:background-color .2s}
         .copy-btn:hover{background-color:#6e7681}
         .copy-btn.copied{background-color:#238636;color:white}
-        /<em> === POSISI TOMBOL NAVIGASI === </em>/
+        /* === POSISI TOMBOL NAVIGASI === */
         .floating-btn{
             position:fixed;
             width:48px;
@@ -153,9 +153,9 @@
             bottom: 25%;
         }
         #sitemap-btn {
-            bottom: calc(25% + 60px); /<em> 48px tinggi + 12px spasi </em>/
+            bottom: calc(25% + 60px); /* 48px tinggi + 12px spasi */
         }
-        /<em> ============================ </em>/
+        /* ============================ */
         .gallery{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));gap:15px}
         .gallery img{width:100%;height:auto;border-radius:8px;cursor:pointer;transition:opacity .3s; border: 1px solid var(--border-color);}
         .gallery img:hover{opacity:0.8}
@@ -266,6 +266,6 @@ Disallow: /</code></pre>
         document.querySelectorAll('.copy-btn').forEach(button=>{button.addEventListener('click',()=>{const code=button.nextElementSibling.textContent;navigator.clipboard.writeText(code).then(()=>{const originalText=button.textContent;button.textContent='Disalin!';button.classList.add('copied');setTimeout(()=>{button.textContent=originalText;button.classList.remove('copied')},2000)}).catch(err=>console.error('Gagal menyalin teks: ',err))})});
                });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

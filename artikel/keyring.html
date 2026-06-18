@@ -55,7 +55,7 @@
     }
     .container {
       max-width: 900px;
-      /<em> Disesuaikan untuk 1 kolom </em>/
+      /* Disesuaikan untuk 1 kolom */
       margin: auto;
       padding: 1em;
     }
@@ -66,7 +66,7 @@
     }
     h1 {
       text-align: center;
-      margin: 0 0 1em 0; /<em> Margin disesuaikan </em>/
+      margin: 0 0 1em 0; /* Margin disesuaikan */
     }
     h2 {
         margin-top: 2em;
@@ -77,7 +77,7 @@
       border-radius: 6px;
       transition: transform 0.3s;
       cursor: pointer;
-      display: block; /<em> Agar margin auto bekerja </em>/
+      display: block; /* Agar margin auto bekerja */
       margin: 1em auto;
     }
     img:hover {
@@ -104,8 +104,8 @@
       border-radius: 6px;
       overflow: auto;
     }
-    /<em> Dihapus: CSS Tombol Home </em>/
-    /<em> Dihapus: CSS Info Section </em>/
+    /* Dihapus: CSS Tombol Home */
+    /* Dihapus: CSS Info Section */
     @media(max-width:768px) {
       .share-buttons {
         flex-wrap: wrap;
@@ -163,6 +163,6 @@ sudo reboot</code></pre>
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

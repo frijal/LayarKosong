@@ -118,8 +118,8 @@
     --shadow-md: 0 4px 24px rgba(0,0,0,0.4);
    }
   }
-  /<em> ===== RESET & BASE ===== </em>/
-  <em>, </em>::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html {
    font-size: 17px;
    scroll-behavior: smooth;
@@ -143,13 +143,13 @@
    transition: opacity var(--transition);
   }
   a:hover { opacity: 0.75; }
-  /<em> ===== LAYOUT ===== </em>/
+  /* ===== LAYOUT ===== */
   .wrap {
    max-width: var(--max-w);
    margin: 0 auto;
    padding: 0 20px;
   }
-  /<em> ===== SITE HEADER ===== </em>/
+  /* ===== SITE HEADER ===== */
   .site-header {
    background: var(--bg-card);
    border-bottom: 2px solid var(--accent);
@@ -185,7 +185,7 @@
   .site-nav a {
    color: var(--text-muted);
   }
-  /<em> ===== BREADCRUMB ===== </em>/
+  /* ===== BREADCRUMB ===== */
   .breadcrumb {
    padding: 12px 0 8px;
    font-family: var(--font-ui);
@@ -194,7 +194,7 @@
   }
   .breadcrumb a { color: var(--text-light); }
   .breadcrumb span { margin: 0 6px; }
-  /<em> ===== ARTICLE HEADER ===== </em>/
+  /* ===== ARTICLE HEADER ===== */
   .article-header {
    padding: 28px 0 20px;
    border-bottom: 1px solid var(--border);
@@ -230,7 +230,7 @@
    line-height: 1.7;
    margin-bottom: 18px;
   }
-  /<em> ===== FEATURED IMAGE ===== </em>/
+  /* ===== FEATURED IMAGE ===== */
   .featured-image {
    margin-bottom: 36px;
    border-radius: var(--radius);
@@ -250,7 +250,7 @@
    padding: 8px 14px;
    text-align: center;
   }
-  /<em> ===== ARTICLE BODY ===== </em>/
+  /* ===== ARTICLE BODY ===== */
   .article-body {
    margin-bottom: 48px;
   }
@@ -287,7 +287,7 @@
    font-weight: 600;
    color: var(--text);
   }
-  /<em> ===== CALLOUT BOXES ===== </em>/
+  /* ===== CALLOUT BOXES ===== */
   .callout {
    border-radius: var(--radius);
    padding: 18px 20px;
@@ -315,7 +315,7 @@
   .callout.yellow .callout-title { color: var(--yellow); }
   .callout.accent { background: var(--accent-bg); border-left: 4px solid var(--accent); color: var(--text); }
   .callout.accent .callout-title { color: var(--accent); }
-  /<em> ===== COMPARISON TABLE ===== </em>/
+  /* ===== COMPARISON TABLE ===== */
   .compare-grid {
    display: grid;
    grid-template-columns: 1fr 1fr;
@@ -369,7 +369,7 @@
   }
   .compare-card.pro li::before { background: var(--green); }
   .compare-card.con li::before { background: var(--red); }
-  /<em> ===== FACT CHECK BOX ===== </em>/
+  /* ===== FACT CHECK BOX ===== */
   .zdummy1 {
    background: var(--bg-card);
    border: 2px solid var(--border);
@@ -394,7 +394,7 @@
    color: var(--text);
    margin-bottom: 10px !important;
   }
-  /<em> ===== SOLUTION LIST ===== </em>/
+  /* ===== SOLUTION LIST ===== */
   .solution-list {
    list-style: none;
    margin: 16px 0 !important;
@@ -426,7 +426,7 @@
    flex-shrink: 0;
    font-size: 0.9rem;
   }
-  /<em> ===== PULLQUOTE ===== </em>/
+  /* ===== PULLQUOTE ===== */
   .pullquote {
    margin: 32px 0;
    padding: 20px 24px;
@@ -448,7 +448,7 @@
    color: var(--text-light);
    margin-top: 10px;
   }
-  /<em> ===== KEY POINTS ===== </em>/
+  /* ===== KEY POINTS ===== */
   .key-points {
    background: var(--bg-alt);
    border-radius: var(--radius);
@@ -486,7 +486,7 @@
    margin-top: 3px;
    font-size: 0.85em;
   }
-  /<em> ===== RELATED ARTICLES ===== </em>/
+  /* ===== RELATED ARTICLES ===== */
   .section-title {
    font-family: var(--font-ui);
    font-size: 1rem;
@@ -506,7 +506,7 @@
    gap: 16px;
    margin-bottom: 40px;
   }
-  /<em> ===== COMMENT SECTION ===== </em>/
+  /* ===== COMMENT SECTION ===== */
   #response {
    background: var(--bg-card);
    border: 1px solid var(--border);
@@ -515,7 +515,7 @@
    margin-bottom: 40px;
    box-shadow: var(--shadow);
   }
-  /<em> ===== FOOTER ===== </em>/
+  /* ===== FOOTER ===== */
   .site-footer {
    background: var(--bg-card);
    border-top: 2px solid var(--border);
@@ -599,7 +599,7 @@
    font-size: 0.78rem;
    color: var(--text-light);
   }
-  /<em> ===== RESPONSIVE ===== </em>/
+  /* ===== RESPONSIVE ===== */
   @media (max-width: 700px) {
    html { font-size: 16px; }
    .site-nav { display: none; }
@@ -958,5 +958,5 @@
    </div>
   </div>
  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

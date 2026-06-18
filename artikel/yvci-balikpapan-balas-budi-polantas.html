@@ -46,27 +46,27 @@
     <title>YVCI Balikpapan 'Balas Budi' Petugas Polantas: Aksi Solidaritas di Jalanan 🏍️ - Layar Kosong</title> 
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variabel untuk Tema Dark/Light Otomatis </em>/
+        /* CSS Variabel untuk Tema Dark/Light Otomatis */
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
             --secondary-text-color: #666666;
             --link-color: #007bff;
-            --primary-color: #e67e22; /<em> Warna Oranye dari Judul Asli </em>/
+            --primary-color: #e67e22; /* Warna Oranye dari Judul Asli */
             --border-color: #eeeeee;
         }
-        /<em> Deteksi Tema Gelap (Dark Mode) </em>/
+        /* Deteksi Tema Gelap (Dark Mode) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
                 --text-color: #f1f1f1;
                 --secondary-text-color: #aaaaaa;
                 --link-color: #89b4f8;
-                --primary-color: #f39c12; /<em> Oranye yang lebih cerah untuk Dark Mode </em>/
+                --primary-color: #f39c12; /* Oranye yang lebih cerah untuk Dark Mode */
                 --border-color: #444444;
             }
         }
-        /<em> Styling Dasar: Mobile-Friendly dan Fullscreen </em>/
+        /* Styling Dasar: Mobile-Friendly dan Fullscreen */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -75,17 +75,17 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
-            min-height: 100vh; /<em> Fullscreen Vertikal </em>/
+            min-height: 100vh; /* Fullscreen Vertikal */
             box-sizing: border-box;
         }
-        /<em> Tata Letak Widescreen 1 Kolom </em>/
+        /* Tata Letak Widescreen 1 Kolom */
         .article-container {
-            max-width: 900px; /<em> Batasan Lebar Maksimum untuk Widescreen 1 Kolom </em>/
+            max-width: 900px; /* Batasan Lebar Maksimum untuk Widescreen 1 Kolom */
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
         }
-        /<em> Judul dan Konten </em>/
+        /* Judul dan Konten */
         .post-content h1 {
             color: var(--primary-color);
             text-align: center;
@@ -108,7 +108,7 @@
         .post-content strong {
             color: var(--primary-color);
         }
-        /<em> Gambar/Figure Styling </em>/
+        /* Gambar/Figure Styling */
         .post-content figure {
             text-align: center;
             margin: 35px 0;
@@ -138,7 +138,7 @@
             font-style: italic;
             font-size: 0.9em;
         }
-        /<em> Komentar & Footer </em>/
+        /* Komentar & Footer */
         #related-articles-grid {
             margin-top: 50px;
             padding-top: 30px;
@@ -156,7 +156,7 @@
             color: var(--primary-color);
             margin-right: 5px;
         }
-        /<em> Responsif untuk Layar Sangat Kecil </em>/
+        /* Responsif untuk Layar Sangat Kecil */
         @media (max-width: 600px) {
             .article-container {
                 padding: 10px;
@@ -234,5 +234,5 @@
         <i class="fa-solid fa-heart fa-icon" style="margin-right:0;"></i></p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

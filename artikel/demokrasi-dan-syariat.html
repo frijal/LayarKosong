@@ -52,7 +52,7 @@
     <link rel="preload" as="image" href="https://scontent-sin11-1.xx.fbcdn.net/v/t39.30808-6/706357329_122160256652961751_8284025697753203572_n.jpg?_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_eui2=AeEXScOWvjtGxdItKzZbr_XKhrEFuIa61y2GsQW4hrrXLZRM6bUycqmzuLoEQV96pzg&amp;_nc_ohc=kBZsvkwd2HkQ7kNvwGj8Oze&amp;_nc_oc=AdovW-c8Tb0hS1PzJEnmRxAjLh3fpAz5MfDJtQEIxwpIr2rpjz4gk2PV-9i8Lnc_HmnVEI_5kqo_7mS0uDDkoZ1z&amp;_nc_zt=23&amp;_nc_ht=scontent-sin11-1.xx&amp;_nc_gid=FV2vCQ4puzD-0crY8OILcA&amp;_nc_ss=7b2a8&amp;oh=00_Af4XYcawCP8zGphq1LWPA0kO0kIMYzXFzY3AJX0NRm5iUQ&amp;oe=6A1C68DD" fetchpriority="high">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native & Aksesibilitas dengan System Font Stack </em>/
+        /* CSS Native & Aksesibilitas dengan System Font Stack */
         :root {
             --bg-color: #ffffff;
             --text-color: #334155;
@@ -66,7 +66,7 @@
             --warning-bg: #fffbeb;
             --warning-border: #f59e0b;
         }
-        /<em> prefers-color-scheme untuk Tema Gelap </em>/
+        /* prefers-color-scheme untuk Tema Gelap */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0f172a;
@@ -94,7 +94,7 @@
             line-height: 1.8;
             font-size: 16px;
         }
-        /<em> Mobile-first Layout: Max 1000px & Center </em>/
+        /* Mobile-first Layout: Max 1000px & Center */
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -115,7 +115,7 @@
         }
         ul, ol { padding-left: 1.5rem; }
         li { margin-bottom: 0.5rem; }
-        /<em> Styling tautan dengan spesifik class </em>/
+        /* Styling tautan dengan spesifik class */
         a.article-link {
             color: var(--link-color);
             text-decoration: none;
@@ -126,7 +126,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /<em> E-E-A-T Author Meta </em>/
+        /* E-E-A-T Author Meta */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -138,7 +138,7 @@
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 2rem;
         }
-        /<em> Anti-CLS Image Styling </em>/
+        /* Anti-CLS Image Styling */
         .img-wrapper {
             margin: 2rem 0;
             background-color: var(--card-bg);
@@ -151,7 +151,7 @@
             width: 100%;
             height: auto;
             max-height: 450px;
-            object-fit: cover; /<em> Mencegah distorsi </em>/
+            object-fit: cover; /* Mencegah distorsi */
             border-radius: 4px;
             display: block;
             margin: 0 auto;
@@ -202,7 +202,7 @@
             font-size: 0.9rem;
             color: var(--meta-color);
         }
-        /<em> Desktop Responsif </em>/
+        /* Desktop Responsif */
         @media (min-width: 768px) {
             body { font-size: 17px; }
             h1 { font-size: 2.25rem; }
@@ -269,5 +269,5 @@
         <p>🄯 2026 Layar Kosong.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

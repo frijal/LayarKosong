@@ -97,7 +97,7 @@
       -webkit-text-size-adjust:100%;
       line-height:1.6;
     }
-    /<em> Single column centered layout </em>/
+    /* Single column centered layout */
     .page{
       max-width:var(--maxw);
       margin:0 auto;
@@ -134,7 +134,7 @@
       color:var(--muted);
       font-size:1rem;
     }
-    /<em> Images with reserved aspect ratio to avoid CLS </em>/
+    /* Images with reserved aspect ratio to avoid CLS */
     .img-wrap{
       position:relative;
       width:100%;
@@ -143,7 +143,7 @@
       background:var(--card);
       margin-bottom:12px;
     }
-    .img-wrap::before{ content:""; display:block; padding-top:56.25%; } /<em> 16 9 </em>/
+    .img-wrap::before{ content:""; display:block; padding-top:56.25%; } /* 16 9 */
     .img-wrap img{ position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:block; }
     main article{ margin-bottom:20px; padding:14px; border-radius:var(--radius); background:transparent; }
     h2{ margin:0 0 10px 0; font-size:1.15rem; display:flex; gap:8px; align-items:center; }
@@ -153,7 +153,7 @@
     table{ width:100%; border-collapse:collapse; margin:10px 0; font-size:0.95rem; }
     table th, table td{ text-align:left; padding:8px; border-bottom:1px solid rgba(0,0,0,0.06); }
     @media (prefers-color-scheme: dark){ table th, table td{ border-bottom:1px solid rgba(255,255,255,0.04); } }
-    /<em> Response and related placeholders </em>/
+    /* Response and related placeholders */
     #related-articles-grid, #response{
       margin-top:18px;
       padding:12px;
@@ -329,5 +329,5 @@ sudo snapper -c root undochange 100..101</code></pre>
       }catch(e){}
     });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

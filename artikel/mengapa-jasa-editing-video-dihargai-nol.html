@@ -60,7 +60,7 @@
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Reset & Global </em>/
+        /* Reset & Global */
         * {
             margin: 0;
             padding: 0;
@@ -72,13 +72,13 @@
             transition: background-color 0.2s ease, color 0.2s ease;
             padding: 1rem;
         }
-        /<em> Container utama - 1 kolom, max-width 1000px di tengah </em>/
+        /* Container utama - 1 kolom, max-width 1000px di tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0.5rem;
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: clamp(1.8rem, 5vw, 2.5rem);
             margin: 0.5rem 0 1rem;
@@ -112,7 +112,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             background-color: #f0f0f0;
         }
-        /<em> Grid gambar responsif </em>/
+        /* Grid gambar responsif */
         .image-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -125,7 +125,7 @@
             object-fit: cover;
             aspect-ratio: 16 / 9;
         }
-        /<em> Tabel perbandingan </em>/
+        /* Tabel perbandingan */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
@@ -143,7 +143,7 @@
         .comparison-table th {
             font-weight: 700;
         }
-        /<em> FAQ styling </em>/
+        /* FAQ styling */
         .faq-item {
             margin-bottom: 1.2rem;
             padding: 0.5rem 0;
@@ -157,7 +157,7 @@
             align-items: center;
             gap: 8px;
         }
-        /<em> related articles grid & response </em>/
+        /* related articles grid & response */
         .related-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -184,11 +184,11 @@
             font-size: 0.85rem;
             border-top: 1px solid;
         }
-        /<em> Dark / Light mode via prefers-color-scheme </em>/
+        /* Dark / Light mode via prefers-color-scheme */
         :root {
             color-scheme: light dark;
         }
-        /<em> Light theme (default) </em>/
+        /* Light theme (default) */
         body {
             background-color: #fefefe;
             color: #1a1a2e;
@@ -206,7 +206,7 @@
         footer {
             border-top-color: #e0e0e0;
         }
-        /<em> Dark theme overrides </em>/
+        /* Dark theme overrides */
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #121212;
@@ -233,7 +233,7 @@
                 border-bottom-color: #333;
             }
         }
-        /<em> elemen tambahan </em>/
+        /* elemen tambahan */
         .highlight {
             background: linear-gradient(120deg, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0) 80%);
             padding: 0.2rem 0;
@@ -247,15 +247,15 @@
             text-decoration: underline;
             text-underline-offset: 3px;
         }
-        /<em> CLS optimization: set aspect ratio untuk gambar tanpa fixed size? kami sudah pakai display block + auto height </em>/
-        /<em> Font Awesome inline compatibility </em>/
+        /* CLS optimization: set aspect ratio untuk gambar tanpa fixed size? kami sudah pakai display block + auto height */
+        /* Font Awesome inline compatibility */
         i, .fas, .fa-regular {
             margin-right: 6px;
         }
-        /<em> no ARIA, no hero </em>/
-        button, [role] { /<em> tidak pakai ARIA, jadi tidak ada role attribute </em>/
+        /* no ARIA, no hero */
+        button, [role] { /* tidak pakai ARIA, jadi tidak ada role attribute */
         }
-        /<em> responsif extra </em>/
+        /* responsif extra */
         @media (max-width: 640px) {
             body {
                 padding: 0.6rem;
@@ -394,5 +394,5 @@
         <p>🄯 2026 Jaga Data Pribadi Tetap Aman — Menghargai Kreativitas, Membangun Ekosistem Adil. <i class="fa-solid fa-heart" style="color:#e25555;"></i> Konten dilisensikan untuk umum. Tim Riset Industri Kreatif | Sumber: Analisis Kasus Karo, Wawancara, dan Regulasi Terkait</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

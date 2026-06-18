@@ -47,7 +47,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
 <meta name="keywords" content="JSON generator, thumbnail viewer, recursive gallery, web album, alat web, Frijal">
     <style>
-        <em>, </em>::before, *::after { box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f4f7f6; color: #333; margin: 0; padding: 24px;
@@ -75,7 +75,7 @@
         .controls .note { width: 100%; font-size: 0.9rem; margin: 10px 0 0 0; color: #777; }
         .welcome-message { text-align: center; padding: 40px; font-size: 1.2rem; color: #777; }
         .viewer-area { display: flex; flex-grow: 1; margin-top: 20px; gap: 20px; min-height: 0; }
-        /<em> --- Kolom Kiri (Info) --- </em>/
+        /* --- Kolom Kiri (Info) --- */
         .main-display-wrapper { flex: 3; display: flex; flex-direction: column; min-width: 0; }
         .info-area {
             border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;
@@ -106,7 +106,7 @@
         .action-btn { padding: 10px 20px; font-size: 1rem; font-weight: 600; border: none; border-radius: 6px; }
         .action-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; color: white; }
         .note { font-size: 0.9rem; color: #7f8c8d; margin-top: 10px; }
-        /<em> --- Kolom Kanan (Galeri) --- </em>/
+        /* --- Kolom Kanan (Galeri) --- */
         .album-grid-wrapper {
             flex: 1; background: #fff; border: 1px solid #ddd; border-radius: 8px;
             padding: 16px; display: flex; flex-direction: column; overflow-y: auto; min-width: 0;
@@ -330,6 +330,6 @@
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

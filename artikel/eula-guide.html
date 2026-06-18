@@ -67,7 +67,7 @@ h2{margin:30px 0 15px;font-size:1.8rem;color:#004e89;border-left:4px solid #ff6b
 .share-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border-radius:25px;color:#fff;font-weight:600;text-decoration:none}
 .facebook{background:#1877f2}.twitter{background:#1da1f2}.whatsapp{background:#25d366}.telegram{background:#0088cc}
 .instagram{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.threads{background:#000}.tiktok{background:#000}
-/<em> Lightbox </em>/
+/* Lightbox */
 .lightbox{display:none;position:fixed;z-index:1000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);align-items:center;justify-content:center}
 .lightbox img{max-width:90%;max-height:90%;border-radius:8px}
   </style>
@@ -152,5 +152,5 @@ function closeLightbox(){document.getElementById("lightbox").style.display="none
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

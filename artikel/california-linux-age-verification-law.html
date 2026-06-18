@@ -56,14 +56,14 @@
     <!-- Font Awesome 6 (CSS only, no JS) -->
     <link rel="stylesheet" href="/ext/fontawesome.css" media="all">
     <style>
-        /<em> Reset & Base </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         :root {
-            /<em> Light theme (default) </em>/
+            /* Light theme (default) */
             --bg: #fdfdfd;
             --text: #1e1e1e;
             --text-secondary: #333;
@@ -114,7 +114,7 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        /<em> Header </em>/
+        /* Header */
         .site-header {
             background: var(--header-bg);
             border-bottom: 1px solid var(--border);
@@ -127,7 +127,7 @@
             align-items: center;
             justify-content: space-between;
         }
-           /<em> Main content </em>/
+           /* Main content */
         main {
             flex: 1;
             width: 100%;
@@ -180,7 +180,7 @@
             background-color: var(--border);
             object-fit: cover;
         }
-        /<em> 5W+1H boxes </em>/
+        /* 5W+1H boxes */
         .wh-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -206,7 +206,7 @@
             color: var(--text-secondary);
             text-align: left;
         }
-        /<em> Quote highlight </em>/
+        /* Quote highlight */
         blockquote {
             background: var(--highlight);
             border-left: 5px solid var(--accent);
@@ -215,7 +215,7 @@
             border-radius: 0 6px 6px 0;
             font-style: italic;
         }
-         /<em> Footer </em>/
+         /* Footer */
         .site-footer {
             background: var(--footer-bg);
             border-top: 1px solid var(--border);
@@ -232,7 +232,7 @@
         .site-footer a:hover {
             text-decoration: underline;
         }
-        /<em> Responsive adjustments </em>/
+        /* Responsive adjustments */
         @media (max-width: 600px) {
             .site-header .container {
                 flex-direction: column;
@@ -323,5 +323,5 @@
             <p style="font-size:0.8rem;">Dibangun dengan semangat open source. Tanpa JavaScript, tanpa trackers. Tema mengikuti sistem.</p>
         </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -109,13 +109,13 @@
         h2{margin-top:1.2rem}
         ul,ol{margin:2rem 0 1rem 1.1rem}
         li{margin:25rem 0}
-        /<em> Gallery </em>/
+        /* Gallery */
         .gallery{display:grid; gap:10px; grid-template-columns: repeat(12, 1fr); margin-top:6rem}
         .gallery figure{margin:0; position:relative; overflow:hidden; border-radius:12px; background:#0b0e24; border:1px solid #1d2d4b; grid-column: span 12}
         .gallery img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease, filter .35s ease; filter:saturate(1.05) contrast(1.02)}
         .gallery figure:hover img{transform:scale(1.03)}
         .caption{position:absolute; left:8px; bottom:8px; right:8px; background:linear-gradient(180deg, rgba(10,12,28,.0), rgba(10,12,28,.62)); color:#fff; padding:6px 10px; border-radius:8px; font-size:9rem}
-        /<em> Lightbox </em>/
+        /* Lightbox */
         .lightbox{position:fixed; inset:0; background:rgba(5,7,20,.9); display:none; align-items:center; justify-content:center; z-index:1000}
         .lightbox.open{display:flex}
         .lightbox img{max-width:92vw; max-height:86vh; border-radius:14px; box-shadow:0 30px 100px rgba(0,0,0,.6)}
@@ -127,15 +127,15 @@
         .lightbox .close{top:18px; right:18px}
         .lightbox .prev{left:18px; top:50%; transform:translateY(-50%)}
         .lightbox .next{right:18px; top:50%; transform:translateY(-50%)}
-        /<em> Floating buttons removed </em>/
+        /* Floating buttons removed */
         footer{padding:2rem 0 4rem; color:var(--muted); text-align:center}
-        /<em> Responsive </em>/
+        /* Responsive */
         @media (max-width: 980px){
             .grid{grid-template-columns: 1fr}
         }
         @media (max-width:680px){
             header.hero{padding:4rem 0 2rem; min-height:64vh}
-            /<em> Floating buttons removed </em>/
+            /* Floating buttons removed */
         }
     </style>
 <meta name="ai:summary" content="Refleksi santai jelang Muharram: apa yang diajarkan ulama tentang amalan awal tahun hijriyah, mana yang keliru, dan bagaimana menyambutnya dengan tenang. Dilengkapi galeri, bagikan, dan komentar.">
@@ -280,5 +280,5 @@
         })();
     });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

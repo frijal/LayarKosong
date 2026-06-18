@@ -62,7 +62,7 @@
   <script src="/ext/html2pdf.bundle.min.js" data-cfasync="false"></script>
   <script src="/ext/qrcode.min.js" data-cfasync="false"></script>
   <style>
-    /<em> Styling untuk halaman generator (UI) </em>/
+    /* Styling untuk halaman generator (UI) */
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f6f9;
@@ -93,7 +93,7 @@
       text-decoration: none;
       color: inherit;
     }
-    /<em> Grid layout untuk form agar tidak terlalu panjang ke bawah </em>/
+    /* Grid layout untuk form agar tidak terlalu panjang ke bawah */
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -123,7 +123,7 @@
       text-transform: capitalize;
     }
     .form-group input[type="date"] {
-      text-transform: none; /<em> Tanggal tidak perlu kapitalisasi </em>/
+      text-transform: none; /* Tanggal tidak perlu kapitalisasi */
     }
     .form-group input:focus {
       border-color: #80bdff;
@@ -148,7 +148,7 @@
     .btn-pdf:hover { background-color: #bd2130; }
     .btn-img { background-color: #28a745; }
     .btn-img:hover { background-color: #218838; }
-    /<em> KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI </em>/
+    /* KUNCI UTAMA FIX 1 HALAMAN A4 PRESISI */
     .paper-wrapper {
       background: white;
       width: 210mm;
@@ -161,7 +161,7 @@
     #surat-template {
       font-family: "Times New Roman", Times, serif;
       color: black;
-      font-size: 16px; /<em> Disesuaikan agar muat 1 halaman </em>/
+      font-size: 16px; /* Disesuaikan agar muat 1 halaman */
       line-height: 1.5;
       background: white;
     }
@@ -182,7 +182,7 @@
     }
     .identitas {
       margin-bottom: 15px;
-      margin-left: 20px; /<em> Indentasi list profil </em>/
+      margin-left: 20px; /* Indentasi list profil */
     }
     .row-identitas {
       display: flex;
@@ -196,7 +196,7 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    /<em> Bagian Tanda Tangan & QR Code </em>/
+    /* Bagian Tanda Tangan & QR Code */
     .blok-tanda-tangan {
       margin-top: 40px;
       display: flex;
@@ -245,7 +245,7 @@
       padding-bottom: 2px;
       min-height: 20px;
     }
-    /<em> Responsive Preview di Browser </em>/
+    /* Responsive Preview di Browser */
     @media (max-width: 850px) {
       .form-grid { grid-template-columns: 1fr; }
       .paper-wrapper {
@@ -451,6 +451,6 @@
       });
     }
   </script>
-<noscript>html_hasil_reverse</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

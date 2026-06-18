@@ -92,7 +92,7 @@
       line-height:1.6;
       font-size:16px;
     }
-    /<em> Layout </em>/
+    /* Layout */
     .wrap{
       max-width:var(--maxw);
       margin:24px auto;
@@ -150,7 +150,7 @@
       aspect-ratio:16/9;
       object-fit:cover;
     }
-    /<em> Article content </em>/
+    /* Article content */
     .content h2{
       margin-top:20px;
       margin-bottom:8px;
@@ -170,7 +170,7 @@
       margin:12px 0;
       border-radius:6px;
     }
-    /<em> Calculator card </em>/
+    /* Calculator card */
     .calc{
       display:block;
       margin:18px 0;
@@ -218,7 +218,7 @@
       background:rgba(0,0,0,0.03);
       color:var(--text);
     }
-    /<em> Related and comments columns </em>/
+    /* Related and comments columns */
     #related-articles-grid, #response{
       margin-top:18px;
       padding:12px;
@@ -233,14 +233,14 @@
       font-size:14px;
       text-align:center;
     }
-    /<em> Responsive tweaks </em>/
+    /* Responsive tweaks */
     @media (max-width:720px){
       .row{ grid-template-columns:1fr; }
       .wrap{ margin:12px; padding:12px; }
     }
-    /<em> Prevent layout shift for fonts and icons </em>/
+    /* Prevent layout shift for fonts and icons */
     .fa, .fas, .fa-regular { font-family: "Font Awesome 7 Free"; font-weight:900; }
-    /<em> Small helper </em>/
+    /* Small helper */
     .small{ font-size:0.95rem; color:var(--muted); }
     cite{ display:inline-block; color:var(--muted); font-style:normal; font-size:0.95rem; margin-left:6px; }
   </style>
@@ -462,5 +462,5 @@
     <cite id="ref15">Pasal 31 ayat 3 PP 35 2021</cite>
     <cite id="ref16">Pasal 34 ayat 1 PP 35 2021</cite>
   </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

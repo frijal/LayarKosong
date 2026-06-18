@@ -104,7 +104,7 @@
     --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
     --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
   }
-  <em>, </em>::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
   body {
     min-height: 100dvh;
@@ -120,7 +120,7 @@
   button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
   input, textarea, select { font: inherit; color: inherit; }
   img { display: block; max-width: 100%; }
-  /<em> Header </em>/
+  /* Header */
   header {
     width: 100%;
     padding: var(--space-4) var(--space-6);
@@ -153,7 +153,7 @@
     transition: color var(--transition), background var(--transition), border-color var(--transition);
   }
   .theme-toggle:hover { color: var(--color-text); background: var(--color-surface-offset); }
-  /<em> Main </em>/
+  /* Main */
   main {
     width: 100%;
     max-width: 860px;
@@ -195,7 +195,7 @@
     max-width: 48ch;
     line-height: 1.6;
   }
-  /<em> Card </em>/
+  /* Card */
   .card {
     background: var(--color-surface);
     border: 1px solid oklch(from var(--color-text) l c h / 0.08);
@@ -206,7 +206,7 @@
     flex-direction: column;
     gap: var(--space-6);
   }
-  /<em> Form </em>/
+  /* Form */
   .form-group { display: flex; flex-direction: column; gap: var(--space-2); }
   label {
     font-size: var(--text-sm);
@@ -237,7 +237,7 @@
     margin-top: calc(var(--space-1) * -1);
   }
   .char-count.warn { color: var(--color-error); }
-  /<em> Options Row </em>/
+  /* Options Row */
   .options-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -274,7 +274,7 @@
     width: 100%;
   }
   select:focus { outline: none; border-color: var(--color-primary); }
-  /<em> Buttons </em>/
+  /* Buttons */
   .btn-primary {
     background: var(--color-primary);
     color: #fff;
@@ -310,7 +310,7 @@
     gap: var(--space-3);
     flex-wrap: wrap;
   }
-  /<em> QR Output </em>/
+  /* QR Output */
   .qr-output {
     background: var(--color-surface-2);
     border: 1px solid oklch(from var(--color-text) l c h / 0.06);
@@ -353,9 +353,9 @@
   }
   .qr-info .qr-label { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
   .qr-info .qr-meta { font-size: var(--text-xs); color: var(--color-text-muted); }
-  /<em> Divider </em>/
+  /* Divider */
   .divider { height: 1px; background: var(--color-divider); }
-  /<em> Footer </em>/
+  /* Footer */
   footer {
     padding: var(--space-6);
     text-align: center;
@@ -364,7 +364,7 @@
     border-top: 1px solid oklch(from var(--color-text) l c h / 0.06);
     width: 100%;
   }
-  /<em> Toast </em>/
+  /* Toast */
   .toast {
     position: fixed;
     bottom: var(--space-6);
@@ -383,7 +383,7 @@
     z-index: 999;
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-  /<em> Animations </em>/
+  /* Animations */
   @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   .qr-appear { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
   @media (max-width: 600px) {
@@ -393,7 +393,7 @@
     .options-row .option-group:last-child { grid-column: 1 / -1; }
   }
   @media (prefers-reduced-motion: reduce) {
-    <em>, </em>::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
@@ -642,5 +642,5 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && e.ctrlKey) generateQR();
 });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -46,7 +46,7 @@
     <title>Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel) - Layar Kosong</title> 
 <meta name="keywords" content="alternatif software, open source, gratis, tabel software, perbandingan software, GIMP, Inkscape, LibreOffice, Blender, free software">
     <style>
-        /<em> Menggunakan font dari Google Fonts biar lebih cakep </em>/
+        /* Menggunakan font dari Google Fonts biar lebih cakep */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         :root {
             --bg-color: #121212;
@@ -56,7 +56,7 @@
             --accent-color: #03dac6;
             --border-color: #333333;
         }
-        /<em> Reset dasar & pengaturan global </em>/
+        /* Reset dasar & pengaturan global */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -72,13 +72,13 @@
             line-height: 1.7;
             font-size: 16px;
         }
-        /<em> Kontainer utama </em>/
+        /* Kontainer utama */
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
-        /<em> Header </em>/
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 3rem;
@@ -116,9 +116,9 @@
         strong {
             color: #ffffff;
         }
-        /<em> Styling untuk Tabel Software </em>/
+        /* Styling untuk Tabel Software */
         .table-container {
-            overflow-x: auto; /<em> Penting untuk responsif di mobile </em>/
+            overflow-x: auto; /* Penting untuk responsif di mobile */
             -webkit-overflow-scrolling: touch;
         }
         .software-table {
@@ -145,12 +145,12 @@
         .software-table tbody tr:hover {
             background-color: #2c2c2c;
         }
-        /<em> CSS BARU: Mengatur pemotongan kata pada URL yang panjang </em>/
+        /* CSS BARU: Mengatur pemotongan kata pada URL yang panjang */
         .software-table td:nth-child(3) a {
             word-break: break-all;
         }
-        /<em> Styling untuk bagian lainnya tetap sama </em>/
-        /<em> Galeri Foto </em>/
+        /* Styling untuk bagian lainnya tetap sama */
+        /* Galeri Foto */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -169,7 +169,7 @@
             transform: scale(1.05);
             filter: brightness(1.2);
         }
-        /<em> Lightbox </em>/
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -210,7 +210,7 @@
         .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); }
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
-        /<em> Ikon Berbagi </em>/
+        /* Ikon Berbagi */
         .share-buttons {
             display: flex;
             justify-content: center;
@@ -226,7 +226,7 @@
             transform: scale(1.2);
             color: #ffffff;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             text-align: center;
             margin-top: 3rem;
@@ -234,7 +234,7 @@
             border-top: 1px solid var(--border-color);
             color: var(--secondary-text-color);
         }
-        /<em> Media Queries untuk Responsif </em>/
+        /* Media Queries untuk Responsif */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.5rem; }
@@ -601,5 +601,5 @@
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js" defer=""></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

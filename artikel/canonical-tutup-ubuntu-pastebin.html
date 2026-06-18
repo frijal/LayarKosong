@@ -54,7 +54,7 @@
   <!-- Critical CSS (mobile-first, rem units, system font stack, prefers-color-scheme) -->
   <style>
     :root{
-      --max-w:62.5rem; /<em> 1000px </em>/
+      --max-w:62.5rem; /* 1000px */
       --bg:#ffffff;
       --text:#111111;
       --muted:#555555;
@@ -82,7 +82,7 @@
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      font-size:1rem; /<em> base for rem </em>/
+      font-size:1rem; /* base for rem */
     }
     .container{
       max-width:var(--max-w);
@@ -100,10 +100,10 @@
     }
     main[role="main"]{display:block;}
     article p{
-      font-size:1.0625rem; /<em> 1.0625rem ~ 17px </em>/
+      font-size:1.0625rem; /* 1.0625rem ~ 17px */
       margin:0.75rem 0;
     }
-    /<em> Image: full width, no cropping, first image LCP (no lazy) </em>/
+    /* Image: full width, no cropping, first image LCP (no lazy) */
     .hero{
       width:100%;
       margin:1rem 0;
@@ -140,7 +140,7 @@
       line-height:1.4;
       border:0.0625rem solid rgba(0,0,0,0.06);
     }
-    /<em> Simple syntax colors (light/dark friendly) </em>/
+    /* Simple syntax colors (light/dark friendly) */
     .syntax-comment{ color:#6a737d; }
     .syntax-key{ color:#d73a49; font-weight:600; }
     .syntax-str{ color:#032f62; }
@@ -151,7 +151,7 @@
       padding-top:1rem;
       margin-top:1.5rem;
     }
-    /<em> Footer inline (no extra styling required per instruction, but keep readable) </em>/
+    /* Footer inline (no extra styling required per instruction, but keep readable) */
     footer[role="contentinfo"]{
       margin-top:1.5rem;
       padding:1rem 0 2rem 0;
@@ -159,7 +159,7 @@
       color:var(--muted);
       border-top:0.0625rem solid rgba(0,0,0,0.06);
     }
-    /<em> Responsive tweaks </em>/
+    /* Responsive tweaks */
     @media (max-width:30rem){
       h1{ font-size:1.25rem; }
       article p{ font-size:1rem; }
@@ -224,6 +224,6 @@
       <span>🔗 <strong>Referensi:</strong> <a href="https://pastebin.ubuntu.com" rel="noopener">pastebin.ubuntu.com</a>, <a href="https://paste.debian.net" rel="noopener">paste.debian.net</a></span>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

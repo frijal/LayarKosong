@@ -64,7 +64,7 @@
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> RESET & GLOBAL - tanpa tailwind, tanpa hero, tanpa ARIA </em>/
+        /* RESET & GLOBAL - tanpa tailwind, tanpa hero, tanpa ARIA */
         * {
             margin: 0;
             padding: 0;
@@ -75,7 +75,7 @@
             line-height: 1.6;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-        /<em> Tema terang (default) </em>/
+        /* Tema terang (default) */
         :root {
             --bg-body: #ffffff;
             --text-primary: #1f2937;
@@ -89,7 +89,7 @@
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --blockquote-border: #e5e7eb;
         }
-        /<em> Tema gelap (prefers-color-scheme) - tanpa JavaScript </em>/
+        /* Tema gelap (prefers-color-scheme) - tanpa JavaScript */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #121212;
@@ -109,13 +109,13 @@
             background-color: var(--bg-body);
             color: var(--text-primary);
         }
-        /<em> Layout 1 kolom, max-width 1000px, tengah </em>/
+        /* Layout 1 kolom, max-width 1000px, tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 1.5rem 1.25rem;
         }
-        /<em> Tipografi </em>/
+        /* Tipografi */
         h1 {
             font-size: 1.9rem;
             line-height: 1.2;
@@ -153,7 +153,7 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        /<em> Daftar herbal </em>/
+        /* Daftar herbal */
         .herbal-list {
             list-style: none;
             margin: 1.5rem 0;
@@ -183,7 +183,7 @@
             margin-right: 0.4rem;
             color: var(--link-color);
         }
-        /<em> Highlight box untuk 5W+1H </em>/
+        /* Highlight box untuk 5W+1H */
         .highlight-box {
             background-color: var(--card-bg);
             border-left: 4px solid var(--link-color);
@@ -197,7 +197,7 @@
             margin-right: 0.5rem;
             vertical-align: middle;
         }
-        /<em> Gambar responsif, CLS aman </em>/
+        /* Gambar responsif, CLS aman */
         .article-img {
             margin: 1.8rem 0;
             text-align: center;
@@ -216,7 +216,7 @@
             height: auto;
             border-radius: 0.75rem;
         }
-        /<em> Grid artikel terkait </em>/
+        /* Grid artikel terkait */
         .related-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -243,7 +243,7 @@
             font-size: 0.9rem;
             margin-bottom: 0.8rem;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 3rem;
             padding: 1.8rem 0 1.5rem;
@@ -284,7 +284,7 @@
                 padding: 1rem;
             }
         }
-        /<em> core web vitals friendly </em>/
+        /* core web vitals friendly */
         .no-shift {
             content-visibility: auto;
         }
@@ -396,5 +396,5 @@
         <p style="font-size: 0.75rem;">Mengacu pada E-E-A-T: pengalaman, keahlian, otoritas, kepercayaan. Semua herbal telah digunakan secara turun-temurun dan didukung studi ilmiah. Konsultasikan dengan tenaga medis jika hipertensi parah.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

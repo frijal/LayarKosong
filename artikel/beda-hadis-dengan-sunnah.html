@@ -57,13 +57,13 @@
 <!-- Article meta (wajib untuk artikel) -->
 <!-- CSS inline untuk performa, tanpa JavaScript tema, responsif, dark/light mode -->
   <style>
-    /<em> Reset & variabel tema </em>/
+    /* Reset & variabel tema */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> Tema default (light) dengan preferensi gelap nanti </em>/
+    /* Tema default (light) dengan preferensi gelap nanti */
     :root {
       color-scheme: light dark;
       --bg-body: #f9fafc;
@@ -76,7 +76,7 @@
       --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
       --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     }
-    /<em> Mode gelap otomatis (prefers-color-scheme) </em>/
+    /* Mode gelap otomatis (prefers-color-scheme) */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-body: #0f172a;
@@ -100,7 +100,7 @@
       font-size: 1.0625rem;
       transition: background-color 0.2s, color 0.2s;
     }
-    /<em> Layout satu kolom, sederhana </em>/
+    /* Layout satu kolom, sederhana */
     article {
       background-color: var(--bg-card);
       border-radius: 1.5rem;
@@ -109,7 +109,7 @@
       margin: 1rem 0 2rem;
       border: 1px solid var(--border-light);
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.4rem;
       line-height: 1.2;
@@ -135,12 +135,12 @@
       margin-bottom: 1.2rem;
       text-align: justify;
     }
-    /<em> emoji dan ikon </em>/
+    /* emoji dan ikon */
     .emoji-lg {
       font-size: 1.4em;
       margin-right: 0.3rem;
     }
-    /<em> tautan </em>/
+    /* tautan */
     a {
       color: var(--accent);
       text-decoration: underline;
@@ -150,7 +150,7 @@
     a:hover {
       opacity: 0.8;
     }
-    /<em> tabel perbedaan </em>/
+    /* tabel perbedaan */
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
@@ -175,7 +175,7 @@
     .comparison-table tr:nth-child(even) {
       background-color: var(--bg-card);
     }
-    /<em> blockquote / catatan </em>/
+    /* blockquote / catatan */
     blockquote {
       border-left: 6px solid var(--accent);
       background-color: var(--bg-body);
@@ -185,7 +185,7 @@
       font-style: italic;
       color: var(--text-muted);
     }
-    /<em> gambar hero (bukan hero section, hanya gambar biasa) </em>/
+    /* gambar hero (bukan hero section, hanya gambar biasa) */
     .featured-image {
       width: 100%;
       max-height: 400px;
@@ -195,14 +195,14 @@
       box-shadow: var(--shadow);
       border: 2px solid var(--border-light);
     }
-    /<em> grid untuk related articles (masih kosong) </em>/
+    /* grid untuk related articles (masih kosong) */
     #related-articles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1.5rem;
       margin: 2rem 0;
     }
-    /<em> placeholder styling </em>/
+    /* placeholder styling */
     .related-placeholder {
       background-color: var(--bg-body);
       border: 2px dashed var(--border-light);
@@ -211,7 +211,7 @@
       text-align: center;
       color: var(--text-muted);
     }
-    /<em> div response (komentar) </em>/
+    /* div response (komentar) */
     #response {
       background-color: var(--bg-body);
       border-radius: 1.5rem;
@@ -222,7 +222,7 @@
       color: var(--text-muted);
       font-size: 1.1rem;
     }
-    /<em> footer </em>/
+    /* footer */
     footer {
       margin-top: 3rem;
       padding: 1.8rem 0.5rem;
@@ -231,7 +231,7 @@
       font-size: 0.95rem;
       color: var(--text-muted);
     }
-    /<em> mobile fine-tuning </em>/
+    /* mobile fine-tuning */
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       article { padding: 1.5rem 1rem; }
@@ -239,7 +239,7 @@
       h2 { font-size: 1.6rem; }
       h3 { font-size: 1.4rem; }
     }
-    /<em> faq style </em>/
+    /* faq style */
     .faq-item {
       background-color: var(--bg-body);
       margin: 1.2rem 0;
@@ -342,5 +342,5 @@
   </p>
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

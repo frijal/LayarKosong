@@ -49,42 +49,42 @@
 <meta name="date" content="2025-09-27">
 <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
 <style>
-        /<em> --- 1. DESIGN TOKENS (Fluid Red Maroon Ecosystem) --- </em>/
+        /* --- 1. DESIGN TOKENS (Fluid Red Maroon Ecosystem) --- */
         :root {
-            /<em> Mode Terang (Light Mode - WCAG AA Compliant) </em>/
+            /* Mode Terang (Light Mode - WCAG AA Compliant) */
             --bg: #f6f8fa;
             --card: #ffffff;
             --text: #222222;
             --muted: #555555;
-            --accent: #d9534f; /<em> Maroon </em>/
-            --success: #2e8b57; /<em> Forest Green </em>/
+            --accent: #d9534f; /* Maroon */
+            --success: #2e8b57; /* Forest Green */
             --border: #e5e7eb;
-            /<em> Komponen Edukatif Light </em>/
+            /* Komponen Edukatif Light */
             --bg-note: #fff4f4;
             --bg-tip: #f3fff4;
             --bg-code: #2d2d2d;
             --text-code: #f8f8f2;
-            /<em> Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) </em>/
+            /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) */
             --max-width: 62.5rem; 
-            --radius-lg: 0.75rem;  /<em> 12px </em>/
-            --radius-md: 0.5rem;   /<em> 8px </em>/
-            --radius-sm: 0.375rem; /<em> 6px </em>/
+            --radius-lg: 0.75rem;  /* 12px */
+            --radius-md: 0.5rem;   /* 8px */
+            --radius-sm: 0.375rem; /* 6px */
         }
-        /<em> Saat class .dark diaktifkan via JS, kita cukup menimpa token variabelnya saja </em>/
+        /* Saat class .dark diaktifkan via JS, kita cukup menimpa token variabelnya saja */
         body.dark {
             --bg: #0b0c0f;
             --card: #0f1114;
             --text: #e6e6e6;
             --muted: #a0a0a0;
-            --accent: #ff6b6b; /<em> Merah terang agar kontras di latar gelap </em>/
+            --accent: #ff6b6b; /* Merah terang agar kontras di latar gelap */
             --success: #4cd137;
             --border: #1f242c;
-            /<em> Komponen Edukatif Dark </em>/
+            /* Komponen Edukatif Dark */
             --bg-note: #3b1d1d;
             --bg-tip: #08321a;
         }
-        /<em> --- 2. ACCESSIBLE RESET & FONTS SYSTEM --- </em>/
-        <em>, </em>::before, *::after { 
+        /* --- 2. ACCESSIBLE RESET & FONTS SYSTEM --- */
+        *, *::before, *::after { 
             box-sizing: border-box; 
             margin: 0;
             padding: 0;
@@ -100,7 +100,7 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-        /<em> --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier Center) --- </em>/
+        /* --- 3. LAYOUT ENGINE (Murni 1 Kolom Linier Center) --- */
         header {
             background-color: var(--accent);
             color: #ffffff;
@@ -120,9 +120,9 @@
             width: 100%;
             max-width: var(--max-width); 
             margin: 0 auto; 
-            padding: 1.375rem 1rem; /<em> Ruang aman tepi HP </em>/
+            padding: 1.375rem 1rem; /* Ruang aman tepi HP */
         }
-        @media (min-width: 48rem) { /<em> Desktop & Tablet Up </em>/
+        @media (min-width: 48rem) { /* Desktop & Tablet Up */
             main {
                 padding: 2rem 1.5rem;
                 margin: 1.25rem auto;
@@ -131,7 +131,7 @@
                 box-shadow: 0 10px 30px rgba(20, 20, 40, 0.06);
             }
         }
-        /<em> --- 4. SEMANTIC TYPOGRAPHY --- </em>/
+        /* --- 4. SEMANTIC TYPOGRAPHY --- */
         h2 {
             color: var(--accent);
             margin-bottom: 0.75rem;
@@ -144,14 +144,14 @@
         ul {
             padding-left: 1.25rem;
         }
-        /<em> --- 5. COMPONENT: HIGH-CONTRAST SYNTAX BLOCKS --- </em>/
+        /* --- 5. COMPONENT: HIGH-CONTRAST SYNTAX BLOCKS --- */
         pre {
             position: relative;
             background-color: var(--bg-code);
             border-radius: var(--radius-md);
             overflow-x: auto;
             margin: 0.875rem 0;
-            padding-top: 2.25rem; /<em> Ruang aman agar tidak ditabrak copy button </em>/
+            padding-top: 2.25rem; /* Ruang aman agar tidak ditabrak copy button */
         }
         pre code {
             display: block;
@@ -177,7 +177,7 @@
         .copy-btn:hover {
             opacity: 0.9;
         }
-        /<em> --- 6. COMPONENT: ACCESSIBLE NOTIFICATION BOXES --- </em>/
+        /* --- 6. COMPONENT: ACCESSIBLE NOTIFICATION BOXES --- */
         .note, .tip {
             padding: 0.75rem 1rem;
             border-radius: var(--radius-sm);
@@ -191,10 +191,10 @@
             background-color: var(--bg-tip);
             border-left: 0.25rem solid var(--success);
         }
-        /<em> --- 7. FLOATING THEME TOGGLE (Thumb-Friendly Position) --- </em>/
+        /* --- 7. FLOATING THEME TOGGLE (Thumb-Friendly Position) --- */
         .toggle {
             position: fixed;
-            bottom: 1.5rem; /<em> Diturunkan ke bawah agar mudah dijangkau jempol </em>/
+            bottom: 1.5rem; /* Diturunkan ke bawah agar mudah dijangkau jempol */
             right: 1.25rem;
             background-color: var(--accent);
             color: #ffffff;
@@ -211,7 +211,7 @@
         .toggle:active {
             transform: scale(0.95);
         }
-        /<em> --- 8. FOOTER --- </em>/
+        /* --- 8. FOOTER --- */
         footer {
             margin-top: 1.125rem;
             text-align: center;
@@ -482,7 +482,7 @@ var t = document.body.classList.contains("dark");
 themeBtn.textContent = t ? "☀️" : "🌙";
   });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

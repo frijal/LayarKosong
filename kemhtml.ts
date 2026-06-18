@@ -1,26 +1,16 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join } from "path";
 
-// Arahkan ke folder artikel di lokal
 const artikelDir = join(process.cwd(), "artikel");
 
 function reverseMarkdownToHTML(html: string): string {
     let out = html;
 
-    // 1. REVERSE: BOLD (**) -> <strong>
+    // Logic reverse seperti sebelumnya
     out = out.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-
-    // 2. REVERSE: ITALIC (*) -> <em>
-    // Menggunakan negative lookahead agar tidak tertangkap oleh regex Bold
     out = out.replace(/\*(?!\*)(.*?)\*/g, "<em>$1</em>");
-
-    // 3. REVERSE: STRIKETHROUGH (~~) -> <del>
     out = out.replace(/~~(.*?)~~/g, "<del>$1</del>");
-
-    // 4. REVERSE: INLINE CODE (`) -> <code>
     out = out.replace(/`([^`]+)`/g, "<code>$1</code>");
-
-    // 5. REVERSE: LINKS [text](url) -> <a href="url">text</a>
     out = out.replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2">$1</a>');
 
     return out;
@@ -34,15 +24,31 @@ function processFolder(dir: string) {
         if (statSync(fullPath).isDirectory()) {
             processFolder(fullPath);
         } else if (file.endsWith(".html")) {
-            const content = readFileSync(fullPath, "utf-8");
-            const reverted = reverseMarkdownToHTML(content);
+            let content = readFileSync(fullPath, "utf-8");
+
+            // 1. Amankan area yang TIDAK BOLEH disentuh (HEAD, STYLE, SCRIPT)
+            // Kita pisahkan isi tag body-nya saja
+            const bodyMatch = content.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
             
-            writeFileSync(fullPath, reverted, "utf-8");
-            console.log(`✅ Diproses: ${file}`);
+            if (bodyMatch) {
+                const fullBodyTag = bodyMatch[0]; // <body...>...</body>
+                const bodyContent = bodyMatch[1]; // Isi di dalam body
+
+                // 2. Jalankan reverse hanya pada isi body
+                const reversedBodyContent = reverseMarkdownToHTML(bodyContent);
+                
+                // 3. Gabungkan kembali dengan struktur aslinya
+                const finalContent = content.replace(fullBodyTag, fullBodyTag.replace(bodyContent, reversedBodyContent));
+                
+                writeFileSync(fullPath, finalContent, "utf-8");
+                console.log(`✅ Diproses (Body saja): ${file}`);
+            } else {
+                console.log(`⚠️ Body tidak ditemukan di: ${file} - Dilewati.`);
+            }
         }
     }
 }
 
-console.log(`📂 Memulai operasi Reverse Markdown ke HTML di: ${artikelDir}`);
+console.log(`📂 Memulai operasi Reverse Markdown ke HTML (Area Body) di: ${artikelDir}`);
 processFolder(artikelDir);
-console.log(`🏁 Selesai! Semua file di folder artikel sudah dikembalikan ke HTML.`);
+console.log(`🏁 Selesai! Bagian Head/Style/Script aman sentosa.`);

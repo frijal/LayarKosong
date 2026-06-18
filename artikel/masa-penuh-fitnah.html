@@ -46,13 +46,13 @@
     <title>Masa penuh fitnah: duduk lebih baik dari berdiri, berjalan, dan berlari - Layar Kosong</title> 
     <meta name="keywords" content="fitnah, hadits, refleksi, menahan diri, sabar, informasi, hoax, edukasi, islam, akhir zaman">
     <style>
-        /<em> CSS3 untuk Reset, Layout, dan Tema </em>/
+        /* CSS3 untuk Reset, Layout, dan Tema */
         :root {
-            /<em> Light Mode </em>/
+            /* Light Mode */
             --bg-color: #f4f4f4;
             --text-color: #333333;
             --heading-color: #000000;
-            --accent-color: #0056b3; /<em> Biru yang tenang </em>/
+            --accent-color: #0056b3; /* Biru yang tenang */
             --bg-soft: #ffffff;
             --text-muted: #555555;
             --border-color: #dddddd;
@@ -61,7 +61,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Dark Mode </em>/
+                /* Dark Mode */
                 --bg-color: #121212;
                 --text-color: #eeeeee;
                 --heading-color: #ffffff;
@@ -89,13 +89,13 @@
             min-height: 100vh;
             font-size: 16px;
         }
-        /<em> Widescreen & Container </em>/
+        /* Widescreen & Container */
         .wrap {
             max-width: 960px;
             margin: 2rem auto;
             padding: 0;
         }
-        /<em> Header Artikel </em>/
+        /* Header Artikel */
         .article-header {
             padding: 2rem;
             background-color: var(--bg-soft);
@@ -135,7 +135,7 @@
             width: 1em;
             height: 1em;
         }
-        /<em> Konten Artikel </em>/
+        /* Konten Artikel */
         .article-content {
             padding: 2rem;
             background-color: var(--bg-soft);
@@ -165,15 +165,15 @@
             margin-top: 0;
             margin-bottom: 1.5rem;
         }
-        /<em> Styling untuk Class Bawaan User </em>/
+        /* Styling untuk Class Bawaan User */
         .card {
-            background-color: var(--bg-color); /<em> Sedikit beda dari bg-soft </em>/
+            background-color: var(--bg-color); /* Sedikit beda dari bg-soft */
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 1.5rem 2rem;
             margin-bottom: 2rem;
         }
-        /<em> Kartu Kutipan Spesial </em>/
+        /* Kartu Kutipan Spesial */
         .quote {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--accent-color);
@@ -191,7 +191,7 @@
             color: var(--heading-color);
             margin-top: 1rem;
         }
-        /<em> Bilah Siluet </em>/
+        /* Bilah Siluet */
         .silhouette-bar {
             display: flex;
             justify-content: space-around;
@@ -220,7 +220,7 @@
             color: var(--text-muted);
             margin-top: 0.25rem;
         }
-        /<em> Grid 2 Kolom </em>/
+        /* Grid 2 Kolom */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -229,7 +229,7 @@
             border: none;
             background: none;
         }
-        /<em> Styling List </em>/
+        /* Styling List */
         .list {
             list-style: none;
             padding-left: 0;
@@ -259,7 +259,7 @@
             color: var(--text-color);
             line-height: 1.6;
         }
-        /<em> Share Section </em>/
+        /* Share Section */
         .share-section {
             text-align: center;
             margin: 3rem 0 2rem 0;
@@ -310,10 +310,10 @@
             margin-top: 1rem;
             display: none;
         }
-        /<em> Mobile Friendly </em>/
+        /* Mobile Friendly */
         @media (max-width: 768px) {
             body {
-                -webkit-text-size-adjust: 100%; /<em> Mencegah zoom di iPhone </em>/
+                -webkit-text-size-adjust: 100%; /* Mencegah zoom di iPhone */
             }
             .wrap {
                 margin: 0 auto;
@@ -334,10 +334,10 @@
             }
             .grid-2 {
                 grid-template-columns: 1fr;
-                gap: 0; /<em> Card di dalamnya sudah punya margin-bottom </em>/
+                gap: 0; /* Card di dalamnya sudah punya margin-bottom */
             }
             .grid-2 .card {
-                /<em> Hapus style grid-item agar jadi card normal </em>/
+                /* Hapus style grid-item agar jadi card normal */
                 background-color: var(--bg-color);
                 border: 1px solid var(--border-color);
                 padding: 1.5rem 2rem;
@@ -496,5 +496,5 @@
             </div>
     </article>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

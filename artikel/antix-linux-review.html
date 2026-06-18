@@ -50,13 +50,13 @@
         :root {
             --bg-color: #ffffff;
             --text-color: #222222;
-            --accent-color: #0056b3; /<em> Biru Linux ish </em>/
+            --accent-color: #0056b3; /* Biru Linux ish */
             --secondary-text: #555555;
             --border-color: #e0e0e0;
             --card-bg: #f4f6f8;
             --code-bg: #eeeeee;
         }
-        /<em> Deteksi Otomatis Dark Mode User </em>/
+        /* Deteksi Otomatis Dark Mode User */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -78,10 +78,10 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
-            font-size: 18px; /<em> Ukuran font nyaman baca </em>/
+            font-size: 18px; /* Ukuran font nyaman baca */
             transition: background-color 0.3s, color 0.3s;
         }
-        /<em> Layout Widescreen 1 Kolom tapi tetap readable (max-width) </em>/
+        /* Layout Widescreen 1 Kolom tapi tetap readable (max-width) */
         .content-wrapper {
             max-width: 850px;
             margin: 0 auto;
@@ -111,7 +111,7 @@
             margin-bottom: 1.5rem;
             text-align: left;
         }
-        /<em> Styling Gambar Utama </em>/
+        /* Styling Gambar Utama */
         .main-image {
             width: 100%;
             height: auto;
@@ -120,7 +120,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: block;
         }
-        /<em> Styling Narasi Tambahan (Callout) </em>/
+        /* Styling Narasi Tambahan (Callout) */
         .narrative-box {
             background-color: var(--card-bg);
             border-left: 5px solid var(--accent-color);
@@ -143,16 +143,16 @@
             position: relative;
         }
         ul li::before {
-            content: "\f058"; /<em> FontAwesome Check Circle </em>/
+            content: "\f058"; /* FontAwesome Check Circle */
             font-family: "Font Awesome 7 Free";
             font-weight: 900;
             position: absolute;
             left: 0;
             color: var(--accent-color);
         }
-        /<em> List Edisi (Flavors) </em>/
+        /* List Edisi (Flavors) */
         .flavor-list li::before {
-            content: "\f1cd"; /<em> Life Ring Icon </em>/
+            content: "\f1cd"; /* Life Ring Icon */
         }
         code {
             background-color: var(--code-bg);
@@ -161,7 +161,7 @@
             font-family: monospace;
             font-size: 0.9em;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 80px;
             padding: 40px 0;
@@ -177,7 +177,7 @@
         a:hover {
             text-decoration: underline;
         }
-        /<em> Mobile Responsiveness </em>/
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             body { font-size: 16px; }
@@ -296,6 +296,6 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

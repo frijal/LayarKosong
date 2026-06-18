@@ -53,7 +53,7 @@
     <link rel="preload" as="image" href="https://pbs.twimg.com/media/HJahrxxasAAaQfH?format=jpg&amp;name=large" fetchpriority="high">
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
-        /<em> CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme </em>/
+        /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
         :root {
             --bg-color: #f8fafc;
             --text-color: #334155;
@@ -96,7 +96,7 @@
             line-height: 1.75;
             font-size: 16px;
         }
-        /<em> Desain Mobile-first, Maksimal 1000px di Tengah </em>/
+        /* Desain Mobile-first, Maksimal 1000px di Tengah */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -138,7 +138,7 @@
             text-decoration: underline;
             color: var(--link-hover);
         }
-        /<em> Blok Metadata E-E-A-T </em>/
+        /* Blok Metadata E-E-A-T */
         .author-meta {
             display: flex;
             flex-wrap: wrap;
@@ -155,7 +155,7 @@
             align-items: center;
             gap: 0.4rem;
         }
-        /<em> Blok Kontainer Gambar Anti-CLS </em>/
+        /* Blok Kontainer Gambar Anti-CLS */
         .img-container {
             margin: 1.5rem 0;
             background-color: var(--card-bg);
@@ -173,7 +173,7 @@
             margin: 0 auto;
         }
         .img-container.hero img {
-            max-width: 600px; /<em> Ukuran proporsional, mencegah hero image raksasa </em>/
+            max-width: 600px; /* Ukuran proporsional, mencegah hero image raksasa */
         }
         .img-caption {
             font-size: 0.85rem;
@@ -181,7 +181,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /<em> Tabel Responsif </em>/
+        /* Tabel Responsif */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -227,7 +227,7 @@
         li {
             margin-bottom: 0.5rem;
         }
-        /<em> UI Kuis Interaktif </em>/
+        /* UI Kuis Interaktif */
         .quiz-container {
             margin: 2.5rem 0;
         }
@@ -321,7 +321,7 @@
             font-size: 0.85rem;
             color: var(--meta-color);
         }
-        /<em> Responsivitas Layar Lebar </em>/
+        /* Responsivitas Layar Lebar */
         @media (min-width: 768px) {
             .container {
                 padding: 2rem;
@@ -525,6 +525,6 @@ function calculateShellResult() {
     resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

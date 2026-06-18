@@ -54,13 +54,13 @@
 <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-    /<em> RESET & BASE </em>/
+    /* RESET & BASE */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> VARIABEL CSS untuk tema terang/gelap otomatis (prefers-color-scheme) </em>/
+    /* VARIABEL CSS untuk tema terang/gelap otomatis (prefers-color-scheme) */
     :root {
       color-scheme: light dark;
       --bg: #ffffff;
@@ -93,13 +93,13 @@
       padding: 0 1rem;
       transition: background-color 0.2s, color 0.2s;
     }
-    /<em> layout 1 kolom, widescreen friendly </em>/
+    /* layout 1 kolom, widescreen friendly */
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 1.5rem 0.5rem;
     }
-    /<em> TIPOGRAFI </em>/
+    /* TIPOGRAFI */
     h1 {
       font-size: 2.4rem;
       line-height: 1.2;
@@ -134,7 +134,7 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> gambar artikel </em>/
+    /* gambar artikel */
     .featured-img {
       width: 100%;
       max-height: auto;
@@ -144,7 +144,7 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       border: 1px solid var(--border);
     }
-    /<em> kutipan / komentar </em>/
+    /* kutipan / komentar */
     .zdummy {
       background-color: var(--card-bg);
       border-left: 5px solid var(--accent);
@@ -158,7 +158,7 @@
       color: var(--accent);
       margin-right: 8px;
     }
-    /<em> grid komentar (related articles & related-articles-grid) </em>/
+    /* grid komentar (related articles & related-articles-grid) */
     #related-articles-grid, #response {
       background-color: var(--soft-bg);
       border-radius: 32px;
@@ -167,7 +167,7 @@
       border: 1px solid var(--border);
       font-size: 1rem;
     }
-    /<em> simulasi komentar di dalam #related-articles-grid </em>/
+    /* simulasi komentar di dalam #related-articles-grid */
     .mock-comment {
       display: flex;
       gap: 1rem;
@@ -201,7 +201,7 @@
       font-size: 0.85rem;
       opacity: 0.7;
     }
-    /<em> footer </em>/
+    /* footer */
     footer {
       background-color: var(--footer-bg);
       padding: 2rem 1.5rem;
@@ -214,7 +214,7 @@
       margin: 0.4rem 0;
       text-align: center;
     }
-    /<em> list, emoji </em>/
+    /* list, emoji */
     ul, ol {
       margin: 1.2rem 0 1.8rem 2rem;
     }
@@ -230,7 +230,7 @@
       border-top: 3px dotted var(--border);
       margin: 2.5rem 0;
     }
-    /<em> responsif mobile </em>/
+    /* responsif mobile */
     @media (max-width: 600px) {
       body {
         padding: 0 0.75rem;
@@ -252,7 +252,7 @@
         padding: 1.2rem;
       }
     }
-    /<em> sentuhan ekstra </em>/
+    /* sentuhan ekstra */
     .highlight {
       background-color: rgba(255, 215, 0, 0.2);
       padding: 0.2rem 0.3rem;
@@ -341,5 +341,5 @@
    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

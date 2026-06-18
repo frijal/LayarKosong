@@ -51,9 +51,9 @@
   <meta name="promphint" content="Apa kelebihan utama desktop GNOME? | GNOME menawarkan antarmuka minimalis, workspace dinamis, dan ekosistem ekstensi yang kaya.">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> CSS Kritis & Variabel Tema </em>/
+    /* CSS Kritis & Variabel Tema */
     :root {
-      /<em> Mode Terang (Default) </em>/
+      /* Mode Terang (Default) */
       --bg-color: #f8fafc;
       --surface-color: #ffffff;
       --text-main: #334155;
@@ -66,7 +66,7 @@
       --code-text: #d4d4d4;
       --quote-border: #3b82f6;
     }
-    /<em> Mode Gelap via Media Query </em>/
+    /* Mode Gelap via Media Query */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #0f172a;
@@ -82,8 +82,8 @@
         --quote-border: #60a5fa;
       }
     }
-    /<em> Reset & Base Typography </em>/
-    <em>, </em>::before, *::after {
+    /* Reset & Base Typography */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -96,7 +96,7 @@
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Layout Mobile-First </em>/
+    /* Layout Mobile-First */
     .container {
       max-width: 64rem;
       width: 100%;
@@ -141,7 +141,7 @@
       color: var(--accent-hover);
       border-bottom-style: solid;
     }
-    /<em> Optimasi Gambar (Anti-CLS) </em>/
+    /* Optimasi Gambar (Anti-CLS) */
     .img-wrapper {
       margin: 2.5rem 0;
       border-radius: 0.75rem;
@@ -174,7 +174,7 @@
       font-style: italic;
       border-top: 0.0625rem solid var(--border-color);
     }
-    /<em> List & Quote </em>/
+    /* List & Quote */
     ul {
       margin-bottom: 1.5rem;
       padding-left: 1.5rem;
@@ -192,7 +192,7 @@
       border-radius: 0 0.5rem 0.5rem 0;
       box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.05);
     }
-    /<em> Blok Kode </em>/
+    /* Blok Kode */
     pre {
       background-color: var(--code-bg);
       color: var(--code-text);
@@ -216,12 +216,12 @@
       font-size: 0.9em;
       border: 0.0625rem solid var(--border-color);
     }
-    /<em> Ikon </em>/
+    /* Ikon */
     .icon {
       color: var(--accent-color);
       margin-right: 0.5rem;
     }
-    /<em> Footer E-E-A-T Inline </em>/
+    /* Footer E-E-A-T Inline */
     footer {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -300,6 +300,6 @@ sudo dnf install gnome-tweaks
       </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

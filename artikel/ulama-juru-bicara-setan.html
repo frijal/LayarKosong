@@ -95,7 +95,7 @@
         /* =========================================
            3. BASE RESET & TYPOGRAPHY
            ========================================= */
-        <em>, </em>::before, *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -107,7 +107,7 @@
             line-height: 1.7;
             font-size: 1.05rem;
             -webkit-font-smoothing: antialiased;
-            /<em> Layouting Mobile First, Max-Width 1000px </em>/
+            /* Layouting Mobile First, Max-Width 1000px */
             max-width: 1000px;
             margin: 0 auto;
             padding: 1rem;
@@ -119,7 +119,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
         }
-        /<em> Typography Artikel </em>/
+        /* Typography Artikel */
         article h1 {
             font-size: 1.8rem;
             line-height: 1.3;
@@ -144,7 +144,7 @@
             margin-bottom: 1.25rem;
             color: var(--text-secondary);
         }
-        /<em> Blockquote Callout </em>/
+        /* Blockquote Callout */
         blockquote {
             background: var(--quote-bg);
             border-left: 5px solid var(--primary-color);
@@ -154,7 +154,7 @@
             font-style: italic;
             color: var(--text-secondary);
         }
-        /<em> E-E-A-T: Author Meta </em>/
+        /* E-E-A-T: Author Meta */
         .author-meta {
             display: flex;
             align-items: center;
@@ -182,7 +182,7 @@
             color: var(--text-primary);
             font-size: 1rem;
         }
-        /<em> Optimasi Gambar (LCP & Layout Shift) </em>/
+        /* Optimasi Gambar (LCP & Layout Shift) */
         .featured-image {
             width: 100%;
             height: auto;
@@ -190,9 +190,9 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 2rem;
-            background-color: var(--border-color); /<em> Fallback saat loading </em>/
+            background-color: var(--border-color); /* Fallback saat loading */
         }
-        /<em> References Section </em>/
+        /* References Section */
         .references {
             margin-top: 3rem;
             padding: 1.5rem;
@@ -211,7 +211,7 @@
         .references li {
             margin-bottom: 0.5rem;
         }
-        /<em> Footer </em>/
+        /* Footer */
         .site-footer {
             text-align: center;
             padding: 2rem 0;
@@ -220,7 +220,7 @@
             border-top: 1px solid var(--border-color);
             margin-top: 2rem;
         }
-        /<em> Responsive Breakpoints </em>/
+        /* Responsive Breakpoints */
         @media (min-width: 640px) {
             body { padding: 2rem; }
             main { padding: 2.5rem; }
@@ -306,5 +306,5 @@
     <footer class="site-footer">
         <p>🄯 2026 Mimbar Pemikiran • Ahmad Khozinudin, S.H.</p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

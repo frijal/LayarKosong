@@ -55,13 +55,13 @@
 <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-    /<em> Reset & Variabel Tema </em>/
+    /* Reset & Variabel Tema */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> Tema default (light) </em>/
+    /* Tema default (light) */
     :root {
       --bg-color: #f8f9fa;
       --text-color: #212529;
@@ -72,7 +72,7 @@
       --blockquote-bg: #e9ecef;
       --footer-bg: #e9ecef;
     }
-    /<em> Tema gelap (otomatis mengikuti preferensi sistem) </em>/
+    /* Tema gelap (otomatis mengikuti preferensi sistem) */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #121212;
@@ -93,7 +93,7 @@
       transition: background-color 0.2s, color 0.2s;
       padding: 1rem;
     }
-    /<em> Kontainer utama: 1 kolom, min-width di desktop 1000px </em>/
+    /* Kontainer utama: 1 kolom, min-width di desktop 1000px */
     .container {
       max-width: 1000px;
       min-width: 320px;
@@ -104,13 +104,13 @@
       padding: 2rem 2.5rem;
       border: 1px solid var(--border-color);
     }
-    /<em> Responsif untuk layar kecil </em>/
+    /* Responsif untuk layar kecil */
     @media (max-width: 768px) {
       .container {
         padding: 1.5rem 1rem;
       }
     }
-    /<em> Tipografi </em>/
+    /* Tipografi */
     h1 {
       font-size: 2.4rem;
       color: var(--heading-color);
@@ -135,7 +135,7 @@
       margin-bottom: 1.3rem;
       font-size: 1.1rem;
     }
-    /<em> Link </em>/
+    /* Link */
     a {
       color: var(--link-color);
       text-decoration: none;
@@ -144,7 +144,7 @@
     a:hover {
       text-decoration: underline;
     }
-    /<em> Gambar responsif </em>/
+    /* Gambar responsif */
     img {
       max-width: 100%;
       height: auto;
@@ -154,7 +154,7 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       border: 1px solid var(--border-color);
     }
-    /<em> Tabel responsif </em>/
+    /* Tabel responsif */
     .table-responsive {
       overflow-x: auto;
       margin: 2rem 0;
@@ -174,7 +174,7 @@
       background-color: var(--blockquote-bg);
       font-weight: 600;
     }
-    /<em> Blockquote </em>/
+    /* Blockquote */
     blockquote {
       background-color: var(--blockquote-bg);
       border-left: 5px solid #d32f2f;
@@ -183,7 +183,7 @@
       font-style: italic;
       border-radius: 0 16px 16px 0;
     }
-    /<em> Elemen khusus </em>/
+    /* Elemen khusus */
     .fa-emoji {
       margin-right: 8px;
       color: #d32f2f;
@@ -196,7 +196,7 @@
       padding: 0.2rem 0.4rem;
       border-radius: 8px;
     }
-    /<em> Div related-articles-grid & related articles — placeholder </em>/
+    /* Div related-articles-grid & related articles — placeholder */
     #related-articles-grid, #response {
       background-color: var(--blockquote-bg);
       border-radius: 20px;
@@ -212,7 +212,7 @@
       gap: 1.5rem;
       text-align: left;
     }
-    /<em> Placeholder untuk konten grid </em>/
+    /* Placeholder untuk konten grid */
     .grid-item {
       background-color: var(--card-bg);
       padding: 1rem;
@@ -224,7 +224,7 @@
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
-    /<em> Footer </em>/
+    /* Footer */
     footer {
       margin-top: 3rem;
       padding: 2rem 0 1rem 0;
@@ -241,7 +241,7 @@
       flex-wrap: wrap;
       margin-bottom: 1rem;
     }
-    /<em> kecil-kecil penyesuaian </em>/
+    /* kecil-kecil penyesuaian */
     .emoji-big {
       font-size: 2rem;
       vertical-align: middle;
@@ -254,7 +254,7 @@
       font-weight: 400;
       border: 1px solid var(--border-color);
     }
-    /<em> Tidak menggunakan ARIA atau hero, sesuai instruksi </em>/
+    /* Tidak menggunakan ARIA atau hero, sesuai instruksi */
   </style>
 <link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
@@ -359,5 +359,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

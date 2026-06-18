@@ -177,7 +177,7 @@ font-size: 0.9rem;
 color: #7f8c8d;
 line-height: 1.5;
 }
-/<em> Lightbox Styles </em>/
+/* Lightbox Styles */
 .lightbox {
 position: fixed;
 top: 0;
@@ -231,7 +231,7 @@ transition: background 0.3s ease;
 .lightbox-close:hover {
 background: rgba(255,255,255,0.3);
 }
-/<em> Home Buttons </em>/
+/* Home Buttons */
 #btn-home-left, #btn-home-right {
 position: fixed;
 display: flex;
@@ -268,7 +268,7 @@ width: 20px;
 height: 20px;
 fill: currentColor;
 }
-/<em> Social Share Buttons </em>/
+/* Social Share Buttons */
 .social-share {
 text-align: center;
 margin: 40px 0;
@@ -309,7 +309,7 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 .share-btn.whatsapp { background: #25d366; }
 .share-btn.telegram { background: #0088cc; }
 .share-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-/<em> System Info </em>/
+/* System Info */
 .system-info {
 background: rgba(255, 255, 255, 0.1);
 border-radius: 15px;
@@ -335,7 +335,7 @@ padding: 10px;
 background: rgba(255, 255, 255, 0.1);
 border-radius: 10px;
 }
-/<em> Loading Animation </em>/
+/* Loading Animation */
 .loading {
 width: 50px;
 height: 50px;
@@ -349,7 +349,7 @@ margin: 20px auto;
 0% { transform: rotate(0deg); }
 100% { transform: rotate(360deg); }
 }
-/<em> Responsive Design </em>/
+/* Responsive Design */
 @media (max-width: 768px) {
 .hero-title {
 font-size: 2rem;
@@ -391,7 +391,7 @@ padding: 40px 15px;
 grid-template-columns: 1fr;
 }
 }
-/<em> Additional animations </em>/
+/* Additional animations */
 .fade-in {
 opacity: 0;
 transform: translateY(30px);
@@ -558,5 +558,5 @@ if(loading) loading.style.display = 'none';
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

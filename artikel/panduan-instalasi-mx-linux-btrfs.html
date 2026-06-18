@@ -54,7 +54,7 @@
     <script src="/ext/highlight.js"></script>
     <script>hljs.highlightAll();</script>
 <style>
-        /<em> Core Web Vitals Optimization: Minified-style CSS </em>/
+        /* Core Web Vitals Optimization: Minified-style CSS */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -86,7 +86,7 @@
         }
         article {
             width: 100%;
-            max-width: 1000px; /<em> Widescreen 1 kolom </em>/
+            max-width: 1000px; /* Widescreen 1 kolom */
             padding: 20px;
             box-sizing: border-box;
         }
@@ -96,7 +96,7 @@
             border-radius: 8px;
             display: block;
             margin: 25px auto;
-            content-visibility: auto; /<em> Optimasi LCP/CLS </em>/
+            content-visibility: auto; /* Optimasi LCP/CLS */
             background-color: var(--secondary-bg);
         }
         h1 { font-size: 2.2rem; line-height: 1.3; margin-bottom: 1.2rem; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
@@ -113,7 +113,7 @@
         pre { margin: 20px 0; border-radius: 8px; overflow: hidden; }
         code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9rem; }
         .highlight { color: var(--accent-color); font-weight: bold; }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             article { padding: 15px; }
@@ -367,5 +367,5 @@ sudo systemctl start snapper-timeline.timer</code></pre>
 <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a>
     </footer>
 </article>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

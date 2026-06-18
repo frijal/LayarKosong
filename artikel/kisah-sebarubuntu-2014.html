@@ -51,13 +51,13 @@
     <meta name="promphint" content="Apa itu gerakan #SebarUbuntu? | Gerakan inisiatif Komunitas Ubuntu Jogja pada Februari 2014 untuk membagikan stiker ke sesama pengguna Linux di jalanan sebagai pengganti acara rilis formal.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Mode Terang & Gelap </em>/
+        /* CSS Variables untuk Mode Terang & Gelap */
         :root {
             --bg-color: #f8fafc;
             --text-main: #334155;
             --text-heading: #0f172a;
             --text-muted: #64748b;
-            --accent-color: #e95420; /<em> Ubuntu Orange </em>/
+            --accent-color: #e95420; /* Ubuntu Orange */
             --accent-hover: #c94418;
             --border-color: #cbd5e1;
             --surface-bg: #ffffff;
@@ -78,8 +78,8 @@
                 --quote-bg: #1e293b;
             }
         }
-        /<em> Reset & Base Typography </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base Typography */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -92,14 +92,14 @@
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Container (Maks 64rem, fleksibel, tengah) </em>/
+        /* Container (Maks 64rem, fleksibel, tengah) */
         .container {
             max-width: 64rem;
             width: 100%;
             margin: 0 auto;
             padding: 2.5rem 1.5rem;
         }
-        /<em> Header & Tipografi </em>/
+        /* Header & Tipografi */
         header {
             margin-bottom: 2rem;
             text-align: center;
@@ -134,7 +134,7 @@
             margin-bottom: 2rem;
             line-height: 1.6;
         }
-        /<em> Tautan </em>/
+        /* Tautan */
         a {
             color: var(--accent-color);
             text-decoration: none;
@@ -145,7 +145,7 @@
             color: var(--accent-hover);
             border-bottom-style: solid;
         }
-        /<em> Optimasi Gambar (Cegah CLS) </em>/
+        /* Optimasi Gambar (Cegah CLS) */
         figure {
             margin: 2.5rem 0;
             width: 100%;
@@ -158,7 +158,7 @@
         img {
             width: 100%;
             height: auto;
-            /<em> Estimasi aspect ratio standar foto lanskap </em>/
+            /* Estimasi aspect ratio standar foto lanskap */
             aspect-ratio: 16 / 9;
             object-fit: cover;
             display: block;
@@ -171,7 +171,7 @@
             font-style: italic;
             border-top: 0.0625rem solid var(--border-color);
         }
-        /<em> Kutipan / Blockquote </em>/
+        /* Kutipan / Blockquote */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 0.375rem solid var(--quote-border);
@@ -185,7 +185,7 @@
         blockquote p:last-child {
             margin-bottom: 0;
         }
-        /<em> Grid Galeri </em>/
+        /* Grid Galeri */
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -200,12 +200,12 @@
                 margin: 0;
             }
         }
-        /<em> Ikon </em>/
+        /* Ikon */
         .icon {
             color: var(--accent-color);
             margin-right: 0.5rem;
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -276,5 +276,5 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

@@ -61,7 +61,7 @@
             --code-bg: #1e1e1e;
             --max-width: 1050px;
         }
-        /<em> Auto Dark Mode </em>/
+        /* Auto Dark Mode */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg: #0f1115;
@@ -99,7 +99,7 @@
         h1 a:hover { opacity: 0.8; }
         article section {
             margin-bottom: 3rem;
-            content-visibility: auto; /<em> INP/LCP Optimization </em>/
+            content-visibility: auto; /* INP/LCP Optimization */
             contain-intrinsic-size: 1px 200px;
         }
         h2 {
@@ -121,7 +121,7 @@
         }
         ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
         li { margin-bottom: 0.5rem; }
-        /<em> Code Block Styling </em>/
+        /* Code Block Styling */
         pre {
             position: relative;
             background: var(--code-bg) !important;
@@ -170,7 +170,7 @@
             opacity: 0.7;
             font-size: 0.9rem;
         }
-        /<em> Mobile Friendly </em>/
+        /* Mobile Friendly */
         @media (max-width: 640px) {
             h1 { font-size: 1.8rem; }
             body { font-size: 1rem; }
@@ -287,6 +287,6 @@ Get-ChildItem -Path $src -Recurse -File -Include <em>.jpg,</em>.png | ForEach-Ob
             });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

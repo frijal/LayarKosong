@@ -50,11 +50,11 @@
   <meta name="news_keywords" content="Linux, Debian 13, Lenovo, Brightness, ACPI, Kernel, Troubleshooting">
   <meta name="promphint" content="Bagaimana cara memperbaiki tombol brightness yang tidak berfungsi di Linux Lenovo? Anda bisa menghapus blacklist modul ideapad_laptop, mengatur parameter acpi di GRUB, atau menggunakan tool brightnessctl.">
   <style>
-    /<em> CSS Variables & Token-Based Design </em>/
+    /* CSS Variables & Token-Based Design */
     :root {
       --container: 64rem;
       --space-page: 1.25rem;
-      /<em> Light Mode Colors </em>/
+      /* Light Mode Colors */
       --bg-color: #f8fafc;
       --surface-color: #ffffff;
       --text-color: #1e293b;
@@ -66,13 +66,13 @@
       --code-inline-bg: #e2e8f0;
       --code-inline-text: #0f172a;
       --border-color: #cbd5e1;
-      /<em> Spacing & Sizes </em>/
+      /* Spacing & Sizes */
       --radius: 0.75rem;
       --btn-min-size: 2.75rem;
       --font-sys: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     }
-    /<em> Auto Dark Mode </em>/
+    /* Auto Dark Mode */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #0f172a;
@@ -88,7 +88,7 @@
         --border-color: #334155;
       }
     }
-    /<em> CSS Reset </em>/
+    /* CSS Reset */
     *,
     *::before,
     *::after {
@@ -103,7 +103,7 @@
       font-size: 1rem;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Mobile-First Layout Architecture </em>/
+    /* Mobile-First Layout Architecture */
     .site-header,
     main,
     .site-footer {
@@ -129,7 +129,7 @@
       display: flex;
       flex-direction: column;
     }
-    /<em> Typography & Content Flow </em>/
+    /* Typography & Content Flow */
     h2, h3 {
       color: var(--text-color);
       line-height: 1.3;
@@ -194,11 +194,11 @@
       padding-block: 1rem;
       border-radius: 0 var(--radius) var(--radius) 0;
     }
-    /<em> Code Blocks </em>/
+    /* Code Blocks */
     pre {
       background-color: var(--code-bg);
       color: var(--code-text);
-      /<em> Extra padding-top to ensure copy buttons (if added later) don't cover code </em>/
+      /* Extra padding-top to ensure copy buttons (if added later) don't cover code */
       padding: 3.5rem 1.25rem 1.25rem 1.25rem;
       border-radius: var(--radius);
       overflow-x: auto;
@@ -232,7 +232,7 @@
       padding: 0;
       color: inherit;
     }
-    /<em> Footer </em>/
+    /* Footer */
     .site-footer {
       padding-block: 2.5rem;
       border-top: 0.0625rem solid var(--border-color);
@@ -313,6 +313,6 @@ sudo apt install brightnessctl</code></pre>
       <span>Sumber: Eksperimen Komunitas Linux &amp; Dokumentasi Kernel ACPI</span>
     </div>
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

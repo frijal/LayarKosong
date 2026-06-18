@@ -48,51 +48,51 @@
 <meta name="title" content="Video Splitter One-Liner Generator">
 <meta name="keywords" content="video splitter, ffmpeg, one-liner generator, split video, tool developer, video processing">
 <style>
-        /<em> --- 1. Definisikan Variabel Tema Terang (Default Generator Vibe) --- </em>/
+        /* --- 1. Definisikan Variabel Tema Terang (Default Generator Vibe) --- */
         :root {
             --body-bg: #eef2f7;
             --container-bg: #ffffff;
             --text-main: #333333;
             --text-muted: #666666;
-            /<em> Warna Input </em>/
+            /* Warna Input */
             --input-bg: #ffffff;
             --input-border: #dddddd;
             --input-text: #333333;
-            /<em> Warna Aksen (Tombol Utama & Sukses) </em>/
+            /* Warna Aksen (Tombol Utama & Sukses) */
             --primary-color: #007bff;
             --primary-hover: #0056b3;
             --success-color: #28a745;
             --success-hover: #218838;
-            /<em> Output Code Box (Disemprot sedikit abu agar tidak terlalu jomplang di mode terang) </em>/
+            /* Output Code Box (Disemprot sedikit abu agar tidak terlalu jomplang di mode terang) */
             --pre-bg: #1e1e1e;
             --pre-text: #75beff;
             --pre-border: #007bff;
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        /<em> --- 2. Otomatis Tema Gelap (Dark Mode Tech Premium) --- </em>/
+        /* --- 2. Otomatis Tema Gelap (Dark Mode Tech Premium) --- */
         @media (prefers-color-scheme: dark) {
             :root {
-                --body-bg: #0f172a;       /<em> Slate 900 (Gelap super adem) </em>/
-                --container-bg: #1e293b;  /<em> Slate 800 untuk kotak utama </em>/
-                --text-main: #f1f5f9;     /<em> Putih abu lembut </em>/
-                --text-muted: #94a3b8;    /<em> Abu-abu teks keterangan </em>/
-                /<em> Input diselamatkan agar tidak buta warna </em>/
-                --input-bg: #334155;      /<em> Slate 700 </em>/
-                --input-border: #475569;  /<em> Slate 600 </em>/
+                --body-bg: #0f172a;       /* Slate 900 (Gelap super adem) */
+                --container-bg: #1e293b;  /* Slate 800 untuk kotak utama */
+                --text-main: #f1f5f9;     /* Putih abu lembut */
+                --text-muted: #94a3b8;    /* Abu-abu teks keterangan */
+                /* Input diselamatkan agar tidak buta warna */
+                --input-bg: #334155;      /* Slate 700 */
+                --input-border: #475569;  /* Slate 600 */
                 --input-text: #f8fafc;
-                /<em> Biru dan hijau versi pastel agar tidak menusuk mata di malam hari </em>/
+                /* Biru dan hijau versi pastel agar tidak menusuk mata di malam hari */
                 --primary-color: #38bdf8; 
                 --primary-hover: #0ea5e9;
                 --success-color: #4ade80;
                 --success-hover: #22c55e;
-                /<em> Menyelaraskan kotak kode dengan tema malam </em>/
-                --pre-bg: #0b0f19;        /<em> Lebih pekat dari kontainer agar kontras </em>/
+                /* Menyelaraskan kotak kode dengan tema malam */
+                --pre-bg: #0b0f19;        /* Lebih pekat dari kontainer agar kontras */
                 --pre-text: #38bdf8;
                 --pre-border: #38bdf8;
                 --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             }
         }
-        /<em> --- 3. Desain Utama & Tipografi (Base Styles) --- </em>/
+        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             padding: 20px; 
@@ -125,9 +125,9 @@
             justify-content: space-between; 
             align-items: center; 
             margin-top: 20px; 
-            gap: 15px; /<em> Mengunci jarak aman antar elemen internal </em>/
+            gap: 15px; /* Mengunci jarak aman antar elemen internal */
         }
-        /<em> --- Elemen Form & Input --- </em>/
+        /* --- Elemen Form & Input --- */
         input { 
             width: 100%; 
             padding: 10px; 
@@ -142,10 +142,10 @@
         }
         input:focus {
             outline: none;
-            border-color: var(--primary-color); /<em> Efek glow tipis saat input diklik </em>/
+            border-color: var(--primary-color); /* Efek glow tipis saat input diklik */
             box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
         }
-        /<em> --- Blok Output Hasil Kode --- </em>/
+        /* --- Blok Output Hasil Kode --- */
         pre { 
             background: var(--pre-bg); 
             color: var(--pre-text); 
@@ -159,7 +159,7 @@
             min-height: 40px; 
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
-        /<em> --- Sistem Tombol Interaktif --- </em>/
+        /* --- Sistem Tombol Interaktif --- */
         button { 
             background: var(--primary-color); 
             color: white; 
@@ -175,14 +175,14 @@
             background: var(--primary-hover); 
         }
         button:active {
-            transform: scale(0.98); /<em> Efek membal saat tombol ditekan </em>/
+            transform: scale(0.98); /* Efek membal saat tombol ditekan */
         }
         .btn-gen { 
             width: 100%; 
             margin-top: 10px; 
         }
         .btn-copy { 
-            padding: 6px 14px; /<em> Sedikit diperlebar agar ramah jempol </em>/
+            padding: 6px 14px; /* Sedikit diperlebar agar ramah jempol */
             font-size: 12px; 
             background: var(--success-color); 
         }
@@ -195,23 +195,23 @@
             margin-top: 5px; 
             transition: color 0.3s;
         }
-        /<em> --- 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- </em>/
+        /* --- 4. Otomatis Deteksi Mobile-Responsive (Layar HP < 768px) --- */
         @media (max-width: 768px) {
             body {
-                padding: 12px; /<em> Menghemat ruang luar di layar handphone </em>/
+                padding: 12px; /* Menghemat ruang luar di layar handphone */
             }
             .container { 
                 padding: 20px 15px; 
                 border-radius: 8px; 
             }
-            /<em> Amankan flex-header agar tombol tidak menabrak teks judul </em>/
+            /* Amankan flex-header agar tombol tidak menabrak teks judul */
             .flex-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 8px;
             }
             .btn-copy {
-                width: 100%; /<em> Tombol copy berubah jadi full-width di HP agar gampang diklik </em>/
+                width: 100%; /* Tombol copy berubah jadi full-width di HP agar gampang diklik */
                 text-align: center;
             }
         }
@@ -259,8 +259,8 @@ function copyToClipboard() {
     });
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-<noscript>html_hasil_reverse</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

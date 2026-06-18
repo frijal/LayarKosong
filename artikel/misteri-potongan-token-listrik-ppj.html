@@ -51,8 +51,8 @@
     <meta name="news_keywords" content="token listrik berkurang, pajak penerangan jalan, pbjt tenaga listrik, potongan pln, ppj listrik">
     <meta name="promphint" content="Kenapa token listrik berkurang? | Karena dipotong PPJ/PBJT oleh Pemda, bukan PLN.">
     <style>
-        /<em> Reset & Base Variables </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base Variables */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
         :root {
@@ -87,7 +87,7 @@
             margin: 0;
             padding: 0;
         }
-        /<em> Layout Container </em>/
+        /* Layout Container */
         .container {
             max-width: 64rem;
             width: 100%;
@@ -127,7 +127,7 @@
             border-left: 0.3rem solid var(--accent-color);
             font-style: italic;
         }
-        /<em> Media Handling (CLS Optimization) </em>/
+        /* Media Handling (CLS Optimization) */
         .image-wrapper {
             width: 100%;
             margin: 2rem 0;
@@ -141,7 +141,7 @@
             aspect-ratio: 16 / 9;
             object-fit: cover;
         }
-        /<em> Syntax Highlighting </em>/
+        /* Syntax Highlighting */
         pre {
             background-color: var(--code-bg);
             padding: 1rem;
@@ -159,7 +159,7 @@
             color: var(--text-color);
             white-space: pre;
         }
-        /<em> Kalkulator UI Styling </em>/
+        /* Kalkulator UI Styling */
         .calc-wrapper {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -219,7 +219,7 @@
             color: var(--accent-color);
             padding-top: 0.75rem;
         }
-        /<em> Footer & EEAT Styles </em>/
+        /* Footer & EEAT Styles */
         .footer-meta {
             display: flex;
             flex-wrap: wrap;
@@ -463,6 +463,6 @@ Total Bayar Konsumen      = Rp 100.000 + Rp 2.000
         kalkulasiToken();
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

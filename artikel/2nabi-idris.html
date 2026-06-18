@@ -53,12 +53,12 @@
       --ink: #17202a;
       --muted: #5b6b7c;
       --line: #e4e9ef;
-      --bandA: #0ea5e9;    /<em> sky </em>/
-      --bandB: #6366f1;    /<em> indigo </em>/
+      --bandA: #0ea5e9;    /* sky */
+      --bandB: #6366f1;    /* indigo */
       --brand: #0ea5e9;
-      --accent: #22c55e;  /<em> green </em>/
-      --warn: #ef4444;    /<em> red </em>/
-      --ok: #16a34a;      /<em> green </em>/
+      --accent: #22c55e;  /* green */
+      --warn: #ef4444;    /* red */
+      --ok: #16a34a;      /* green */
       --maxw: 820px;
       --lh: 1.78;
     }
@@ -75,7 +75,7 @@
     }
     a { color: var(--brand); text-decoration: none }
     a:hover { text-decoration: underline }
-    /<em> Subtle dotted backdrop for content area </em>/
+    /* Subtle dotted backdrop for content area */
     .dots {
       background-image: radial-gradient(#e7edf4 1px, transparent 1px);
       background-size: 16px 16px;
@@ -83,13 +83,13 @@
       border-radius: 24px;
       padding: clamp(12px, 2vw, 18px);
     }
-    /<em> Container </em>/
+    /* Container */
     main {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 30px clamp(16px, 5vw, 36px) 100px;
     }
-    /<em> Title band </em>/
+    /* Title band */
     .title {
       position: relative;
       border-radius: 22px;
@@ -116,7 +116,7 @@
       color: var(--muted);
       font-size: clamp(15px, 2.6vw, 18px);
     }
-    /<em> Chips row </em>/
+    /* Chips row */
     .chips {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 10px;
@@ -128,7 +128,7 @@
       font-size: 13px;
     }
     .chip svg { width: 16px; height: 16px }
-    /<em> Card blocks </em>/
+    /* Card blocks */
     .block {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -151,11 +151,11 @@
       border-radius: 8px;
       font-style: italic;
     }
-    /<em> Images </em>/
+    /* Images */
     img { max-width: 100%; height: auto; border-radius: 14px }
     figure { margin: 0 }
     figcaption { color: var(--muted); font-size: 13px; margin-top: 8px }
-    /<em> Gallery </em>/
+    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -176,7 +176,7 @@
       font-size: 13px;
     }
     .zoomable { cursor: zoom-in }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox {
       position: fixed; inset: 0; z-index: 50;
       display: none; align-items: center; justify-content: center;
@@ -208,7 +208,7 @@
       color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    /<em> Share strip </em>/
+    /* Share strip */
     .share-strip {
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px;
@@ -221,7 +221,7 @@
     }
     .share-btn svg { width: 18px; height: 18px }
     .copy-ok { color: var(--ok) }
-    /<em> Accessibility & motion preferences </em>/
+    /* Accessibility & motion preferences */
     :focus-visible { outline: 2px solid rgba(14,165,233,0.45); outline-offset: 2px }
     @media (min-width: 1100px) {
       :root { --maxw: 900px }
@@ -415,5 +415,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

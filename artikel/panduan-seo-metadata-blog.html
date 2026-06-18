@@ -110,7 +110,7 @@
             display: flex;
             flex-direction: column;
         }
-        /<em> HEADER </em>/
+        /* HEADER */
         .site-header {
             padding: 2rem 0 1.5rem;
             border-bottom: 2px solid var(--accent);
@@ -139,7 +139,7 @@
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
-        /<em> MAIN CONTENT </em>/
+        /* MAIN CONTENT */
         .hero-image {
             width: 100%;
             max-height: 400px;
@@ -204,7 +204,7 @@
             border-color: #1e6ea6;
             color: #e0f2fe;
         }
-        /<em> GRID RELATED ARTICLES </em>/
+        /* GRID RELATED ARTICLES */
         #related-articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -222,7 +222,7 @@
             transform: translateY(-5px);
             box-shadow: var(--card-shadow);
         }
-        /<em> FOOTER </em>/
+        /* FOOTER */
         .site-footer {
             margin-top: auto;
             padding-top: 2rem;
@@ -231,7 +231,7 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        /<em> THEME TOGGLE </em>/
+        /* THEME TOGGLE */
         .theme-toggle {
             position: fixed;
             top: 70px;
@@ -250,7 +250,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             z-index: 100;
         }
-        /<em> RESPONSIVE </em>/
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -428,6 +428,6 @@
         fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
         document.head.appendChild(fontLink);
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

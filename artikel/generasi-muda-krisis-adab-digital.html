@@ -53,7 +53,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Tema Terang/Gelap Otomatis </em>/
+        /* CSS Variables untuk Tema Terang/Gelap Otomatis */
         :root {
             --bg-color: #ffffff;
             --text-color: #222222;
@@ -72,9 +72,9 @@
                 --border-color: #333333;
             }
         }
-        /<em> Tata Letak Widescreen 1 Kolom </em>/
+        /* Tata Letak Widescreen 1 Kolom */
         body {
-            font-family: 'Georgia', serif; /<em> Font klasik untuk artikel panjang agar enak dibaca </em>/
+            font-family: 'Georgia', serif; /* Font klasik untuk artikel panjang agar enak dibaca */
             line-height: 1.8;
             margin: 0;
             padding: 0;
@@ -103,7 +103,7 @@
             color: #777;
             margin-bottom: 20px;
         }
-        /<em> Optimasi Core Web Vitals (LCP/CLS) </em>/
+        /* Optimasi Core Web Vitals (LCP/CLS) */
         .img-frame {
             aspect-ratio: 16 / 9;
             background: #ccc;
@@ -149,7 +149,7 @@
             margin-right: 10px;
             color: var(--accent-color);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 80px;
             padding: 40px 0;
@@ -158,7 +158,7 @@
             font-family: sans-serif;
             font-size: 0.9rem;
         }
-        /<em> Responsive Mobile View </em>/
+        /* Responsive Mobile View */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
@@ -215,5 +215,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

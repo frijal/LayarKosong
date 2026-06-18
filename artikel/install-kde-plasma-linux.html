@@ -62,7 +62,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&amp;display=swap" rel="stylesheet">
   <style>
-    /<em> ===== CSS Variables & Prefers-Color-Scheme ===== </em>/
+    /* ===== CSS Variables & Prefers-Color-Scheme ===== */
     :root {
       --bg: #fefefe;
       --text: #1e1e2a;
@@ -100,13 +100,13 @@
       padding: 0 16px;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Widescreen 1 kolom, max-width 1000px, centered </em>/
+    /* Widescreen 1 kolom, max-width 1000px, centered */
     .article-container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 24px 0 40px;
     }
-    /<em> gambar thumbnail — width/height ditetapkan untuk mencegah CLS </em>/
+    /* gambar thumbnail — width/height ditetapkan untuk mencegah CLS */
     .featured-image {
       margin: 24px 0 20px;
       border-radius: 20px;
@@ -146,7 +146,7 @@
     p {
       margin-bottom: 1.2rem;
     }
-    /<em> kode / perintah </em>/
+    /* kode / perintah */
     pre {
       background: var(--code-bg);
       padding: 16px 18px;
@@ -219,13 +219,13 @@
       text-align: center;
       font-size: 0.9rem;
     }
-    /<em> Responsive fine-tuning </em>/
+    /* Responsive fine-tuning */
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
       .article-container { padding: 12px 0 32px; }
     }
-    /<em> Grid kosong (sesuai permintaan) </em>/
+    /* Grid kosong (sesuai permintaan) */
     #related-articles-grid, #response {
       margin: 30px 0 10px;
       padding: 16px;
@@ -236,7 +236,7 @@
       text-align: center;
       font-style: italic;
     }
-    /<em> optimasi paint & layout </em>/
+    /* optimasi paint & layout */
     img, iframe { max-width: 100%; height: auto; }
     .fa, .fab, .fa-solid { font-size: 1.1em; }
   </style>
@@ -406,6 +406,6 @@ reboot</pre>
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div><!-- end article-container -->
 <!-- Tidak ada JavaScript – semua murni HTML/CSS. Core Web Vitals terjaga: LCP via gambar eager + dimensi, CLS dicegah, INP = 0 JS. -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

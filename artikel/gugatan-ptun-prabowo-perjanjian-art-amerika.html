@@ -56,7 +56,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet">
     <style>
         :root {
-            /<em> Tema Terang </em>/
+            /* Tema Terang */
             --bg-color: #f8fafc;
             --text-color: #1e293b;
             --text-muted: #64748b;
@@ -70,7 +70,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root {
-                /<em> Tema Gelap </em>/
+                /* Tema Gelap */
                 --bg-color: #0f172a;
                 --text-color: #cbd5e1;
                 --text-muted: #94a3b8;
@@ -96,7 +96,7 @@
             font-size: 1.2rem;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Layout Utama 1 Kolom Max 1000px </em>/
+        /* Layout Utama 1 Kolom Max 1000px */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -124,15 +124,15 @@
             align-items: center;
             gap: 10px;
         }
-        /<em> LCP Optimization untuk Gambar </em>/
+        /* LCP Optimization untuk Gambar */
         .main-image {
             width: 100%;
             height: auto;
-            aspect-ratio: 16/9; /<em> Mencegah Layout Shift (CLS) </em>/
+            aspect-ratio: 16/9; /* Mencegah Layout Shift (CLS) */
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 30px;
-            background-color: var(--border-color); /<em> Placeholder color </em>/
+            background-color: var(--border-color); /* Placeholder color */
         }
         p {
             margin-bottom: 20px;
@@ -162,7 +162,7 @@
             margin: 30px 0;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        /<em> Styling Interaksi / Kolom Komentar </em>/
+        /* Styling Interaksi / Kolom Komentar */
         #related-articles-grid, #response {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -263,5 +263,5 @@
             <p style="margin-top: 10px;">Menggunakan prinsip desain responsif yang sesuai preferensi perangkat Anda (Light/Dark Mode).</p>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

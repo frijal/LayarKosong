@@ -46,29 +46,29 @@
     <title>Pilihan Terbaik Memasang Firefox di Debian - ESR vs Flatpak - Layar Kosong</title> 
 <meta name="keywords" content="Firefox, Debian, ESR, Flatpak, APT, Repositori, Linux, Browser, Stabilitas, Keamanan, LibreWolf, Waterfox">
     <style>
-        /<em> Variabel Tema </em>/
+        /* Variabel Tema */
         :root {
             --bg-color: #ffffff;
             --text-color: #1e1e1e;
             --card-bg: #f5f5f5;
             --card-border: #e0e0e0;
-            --accent-color: #FF7139; /<em> Oranye Firefox </em>/
+            --accent-color: #FF7139; /* Oranye Firefox */
             --subtle-text: #606060;
-            --highlight-color: #ffe6d9; /<em> Latar belakang terang untuk highlight </em>/
+            --highlight-color: #ffe6d9; /* Latar belakang terang untuk highlight */
         }
-        /<em> Dark Theme Detection </em>/
+        /* Dark Theme Detection */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1e1e1e;
                 --text-color: #f0f0f0;
                 --card-bg: #2d2d2d;
                 --card-border: #444444;
-                --accent-color: #ff9800; /<em> Oranye lebih terang untuk Dark Mode </em>/
+                --accent-color: #ff9800; /* Oranye lebih terang untuk Dark Mode */
                 --subtle-text: #b0b0b0;
-                --highlight-color: #4a3427; /<em> Latar belakang gelap untuk highlight </em>/
+                --highlight-color: #4a3427; /* Latar belakang gelap untuk highlight */
             }
         }
-        /<em> Base Styles </em>/
+        /* Base Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -81,11 +81,11 @@
             box-sizing: border-box;
         }
         .container {
-            max-width: 1000px; /<em> Lebar Maksimum 1200px </em>/
+            max-width: 1000px; /* Lebar Maksimum 1200px */
             margin: 0 auto;
             padding: 30px 20px;
         }
-        /<em> Header & Title </em>/
+        /* Header & Title */
         header {
             text-align: center;
             padding: 20px 0;
@@ -97,7 +97,7 @@
             font-size: 2.8em;
             margin-bottom: 5px;
         }
-        /<em> Card & Content Styling (1 Kolom) </em>/
+        /* Card & Content Styling (1 Kolom) */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -145,7 +145,7 @@
             padding: 0;
             background-color: transparent;
         }
-        /<em> Responsiveness (Mobile-friendly) </em>/
+        /* Responsiveness (Mobile-friendly) */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -225,6 +225,6 @@
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

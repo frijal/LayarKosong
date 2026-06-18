@@ -74,7 +74,7 @@
       padding: 1rem;
       transition: background-color 0.2s, color 0.2s;
     }
-    /<em> container utama desktop 1 kolom max-width 1000px </em>/
+    /* container utama desktop 1 kolom max-width 1000px */
     .artikel-wrapper {
       max-width: 1000px;
       margin: 0 auto;
@@ -112,7 +112,7 @@
       margin-bottom: 1.25rem;
       font-size: 1.05rem;
     }
-    /<em> blockquote gaya ayat </em>/
+    /* blockquote gaya ayat */
     .ayat-box {
       background: #fff2e2;
       padding: 1.2rem;
@@ -144,7 +144,7 @@
       border-radius: 20px;
       margin-top: 0.8rem;
     }
-    /<em> gambar </em>/
+    /* gambar */
     .img-illustration {
       margin: 2rem 0;
       text-align: center;
@@ -189,7 +189,7 @@
       margin: 2rem 0 1rem;
       padding: 0.2rem;
     }
-    /<em> dark mode via prefers-color-scheme tanpa JS </em>/
+    /* dark mode via prefers-color-scheme tanpa JS */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -226,7 +226,7 @@
         border-top-color: #3a2e22;
       }
     }
-    /<em> responsive mobile </em>/
+    /* responsive mobile */
     @media (max-width: 640px) {
       article {
         padding: 1.3rem;
@@ -244,7 +244,7 @@
         padding: 0.6rem;
       }
     }
-    /<em> no ARIA, no hero, clean </em>/
+    /* no ARIA, no hero, clean */
     a {
       text-decoration: none;
       color: #e67e22;
@@ -311,5 +311,5 @@
   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
 <!-- Tidak ada JavaScript untuk theme, sesuai aturan; CLS dioptimalkan dengan dimensi gambar dan tanpa widget kompleks -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

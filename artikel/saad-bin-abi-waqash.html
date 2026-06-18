@@ -60,7 +60,7 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;background:linear-gradient(180deg,#071028 0%, #07203a 40%, #07111b 100%);font-family:Inter, "Segoe UI", Roboto, system-ui, -apple-system; color:var(--text); -webkit-font-smoothing:antialiased;}
-    /<em> Wide fullscreen layout centering </em>/
+    /* Wide fullscreen layout centering */
     .wrap{max-width:var(--wide);margin:28px auto;padding:28px;display:block;}
     header{background:linear-gradient(90deg, rgba(255,184,107,0.06), rgba(255,184,107,0.03));padding:36px;border-radius:22px;color:var(--text);box-shadow:0 8px 40px rgba(0,0,0,0.6);display:flex;gap:20px;align-items:center}
     header .title{flex:1}
@@ -73,32 +73,32 @@
     p{color:var(--text);line-height:1.7}
     blockquote{background:var(--glass);padding:14px 18px;border-left:4px solid rgba(255,184,107,0.18);border-radius:10px;color:var(--muted);margin:18px 0;font-style:italic}
     ul{margin:12px 0 18px 20px;color:var(--muted)}
-    /<em> Gallery </em>/
+    /* Gallery */
     .gallery{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:18px 0}
     .gallery figure{flex:1 1 30%;max-width:320px;background:rgba(255,255,255,0.02);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:transform .18s,box-shadow .18s}
     .gallery figure:focus, .gallery figure:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(2,6,23,0.7)}
     .gallery img{display:block;width:100%;height:200px;object-fit:cover;background:#222}
     .gallery figcaption{padding:10px;text-align:center;color:var(--muted);font-size:0.98rem}
-    /<em> Share icons </em>/
+    /* Share icons */
     .share{display:flex;gap:10px;justify-content:center;margin:18px 0}
     .share a{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.02);color:var(--text);text-decoration:none;border:1px solid rgba(255,255,255,0.03)}
     .share a:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    /<em> Browser info </em>/
+    /* Browser info */
     #browser-info{margin-top:18px;padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));display:flex;gap:12px;align-items:center;justify-content:center;color:var(--muted);font-size:0.95rem}
     #browser-info img{margin-left:8px;vertical-align:middle}
-    /<em> Floating buttons </em>/
+    /* Floating buttons */
     .float-btn{position:fixed;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#07203a;background:var(--accent);box-shadow:0 8px 30px rgba(2,6,23,0.6);z-index:9999}
     .float-sitemap{left:20px;top:30%;transform:translateY(-30%);background:#06b6d4;color:#04111a}
     .float-home{right:20px;bottom:20%;background:var(--accent);color:#05121b}
     .float-btn:hover{transform:scale(1.06)}
-    /<em> Lightbox </em>/
+    /* Lightbox */
     #lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.86);z-index:10001}
     #lightbox img{max-width:92vw;max-height:86vh;border-radius:14px;box-shadow:0 16px 80px rgba(0,0,0,0.9)}
     .lb-arrow{position:fixed;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);color:var(--text);z-index:10002;cursor:pointer}
     .lb-arrow.left{left:4vw}
     .lb-arrow.right{right:4vw}
     .lb-close{position:fixed;top:4vh;right:4vw;font-size:28px;color:var(--text);cursor:pointer;z-index:10005}
-    /<em> Responsive </em>/
+    /* Responsive */
     @media (max-width:900px){
       .gallery figure{flex-basis:48%}
       header{padding:18px}
@@ -228,5 +228,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

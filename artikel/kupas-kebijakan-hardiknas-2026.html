@@ -59,14 +59,14 @@
   <!-- Font Awesome 6 (Free CDN) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> ===== RESET & BASE ===== </em>/
-    <em>, </em>::before, *::after {
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     :root {
-      /<em> Tema Terang (Default) </em>/
+      /* Tema Terang (Default) */
       --bg-primary: #ffffff;
       --bg-secondary: #f8f9fa;
       --bg-card: #ffffff;
@@ -84,7 +84,7 @@
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        /<em> Tema Gelap </em>/
+        /* Tema Gelap */
         --bg-primary: #1a1a2e;
         --bg-secondary: #16213e;
         --bg-card: #0f3460;
@@ -108,7 +108,7 @@
       padding: 1rem;
       transition: background-color 0.3s, color 0.3s;
     }
-    /<em> ===== TATA LETAK UTAMA ===== </em>/
+    /* ===== TATA LETAK UTAMA ===== */
     .main-container {
       max-width: 1000px;
       margin: 0 auto;
@@ -118,7 +118,7 @@
       overflow: hidden;
       transition: background-color 0.3s;
     }
-    /<em> ===== HEADER ARTIKEL ===== </em>/
+    /* ===== HEADER ARTIKEL ===== */
     .article-header {
       padding: 2rem 2rem 1rem;
       text-align: center;
@@ -141,7 +141,7 @@
       margin-bottom: 1rem;
       color: var(--text-primary);
     }
-    /<em> ===== GAMBAR UTAMA ===== </em>/
+    /* ===== GAMBAR UTAMA ===== */
     .featured-image {
       width: 100%;
       max-width: 100%;
@@ -152,7 +152,7 @@
       border-radius: 0;
       background-color: var(--bg-secondary);
     }
-    /<em> ===== KONTEN ARTIKEL ===== </em>/
+    /* ===== KONTEN ARTIKEL ===== */
     .article-content {
       padding: 0 2rem 2rem;
     }
@@ -206,7 +206,7 @@
       color: var(--accent-hover);
       border-bottom-style: solid;
     }
-    /<em> Tabel Responsif </em>/
+    /* Tabel Responsif */
     .table-responsive {
       overflow-x: auto;
       margin: 2rem 0;
@@ -232,7 +232,7 @@
     tr:nth-child(even) td {
       background-color: var(--table-stripe);
     }
-    /<em> Highlight Box </em>/
+    /* Highlight Box */
     .highlight-box {
       background-color: var(--highlight-bg);
       padding: 1.5rem;
@@ -240,7 +240,7 @@
       margin: 2rem 0;
       border: 1px solid var(--border-color);
     }
-    /<em> ===== BAGIAN BAWAH ARTIKEL ===== </em>/
+    /* ===== BAGIAN BAWAH ARTIKEL ===== */
     #related-articles-grid, #response {
       padding: 1.5rem 2rem;
       margin: 0 2rem 1.5rem;
@@ -260,7 +260,7 @@
       display: block;
       font-weight: 500;
     }
-    /<em> ===== FOOTER ===== </em>/
+    /* ===== FOOTER ===== */
     .site-footer {
       background-color: var(--bg-secondary);
       padding: 2rem;
@@ -281,7 +281,7 @@
     .site-footer nav a:hover {
       color: var(--accent-color);
     }
-    /<em> ===== RESPONSIF UNTUK MOBILE ===== </em>/
+    /* ===== RESPONSIF UNTUK MOBILE ===== */
     @media (max-width: 768px) {
       body {
         padding: 0.5rem;
@@ -414,5 +414,5 @@
       </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

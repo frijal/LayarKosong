@@ -58,7 +58,7 @@
             --border-color: #e9ecef;
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
         }
-        /<em> Tema Gelap / Dark Mode (opsional, bisa diaktifkan dengan JS) </em>/
+        /* Tema Gelap / Dark Mode (opsional, bisa diaktifkan dengan JS) */
         /* @media (prefers-color-scheme: dark) {
             :root {
                 --background-color: #121212;
@@ -106,7 +106,7 @@
             font-size: 2.5rem;
             display: block;
             margin-bottom: 15px;
-            font-family: serif; /<em> Font yang lebih cocok untuk tulisan Arab </em>/
+            font-family: serif; /* Font yang lebih cocok untuk tulisan Arab */
         }
         .qa-item {
             border-bottom: 1px solid var(--border-color);
@@ -126,7 +126,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            list-style: none; /<em> Hilangkan panah default </em>/
+            list-style: none; /* Hilangkan panah default */
         }
         summary::after {
             content: '▼';
@@ -177,7 +177,7 @@
             font-weight: 600;
             color: var(--secondary-color);
         }
-        /<em> Lightbox CSS </em>/
+        /* Lightbox CSS */
         .lightbox {
             display: none;
             position: fixed;
@@ -217,7 +217,7 @@
             color: #bbb;
             text-decoration: none;
         }
-        /<em> Social Sharing </em>/
+        /* Social Sharing */
         .social-share {
             text-align: center;
             margin: 40px 0;
@@ -246,7 +246,7 @@
         .share-whatsapp { background-color: #25D366; }
         .share-telegram { background-color: #0088cc; }
         .share-copy { background-color: #6c757d; }
-        /<em> Jaga Data Pribadi Tetap Aman. Facebook </em>/
+        /* Jaga Data Pribadi Tetap Aman. Facebook */
         .comments-section {
             margin-top: 40px;
         }
@@ -257,7 +257,7 @@
             border-top: 1px solid var(--border-color);
             padding-top: 30px;
         }
-        /<em> Mobile-friendly / Tata Letak Responsif </em>/
+        /* Mobile-friendly / Tata Letak Responsif */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8rem;
@@ -364,5 +364,5 @@
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

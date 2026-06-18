@@ -52,7 +52,7 @@
     <meta name="promphint" content="Tanya Apa alasan Muhammadiyah sering ditolak pada masa lalu Jawab Karena Muhammadiyah sering membawa pembaruan yang terlalu cepat dan tidak biasa bagi tradisi masyarakat saat itu seperti penggunaan ilmu falak dan pendidikan modern">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Base Themes </em>/
+        /* Base Themes */
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
@@ -77,7 +77,7 @@
                 --code-bg: #1e1e1e;
             }
         }
-        /<em> Layout & Typography (CLS/INP Optimization) </em>/
+        /* Layout & Typography (CLS/INP Optimization) */
         html {
             scroll-behavior: smooth;
         }
@@ -89,7 +89,7 @@
             margin: 0;
             padding: 0 20px;
             font-size: 18px;
-            font-display: swap; /<em> Mencegah FOIT </em>/
+            font-display: swap; /* Mencegah FOIT */
         }
         main {
             max-width: 1000px;
@@ -109,7 +109,7 @@
         p { margin-bottom: 1.2em; }
         a { color: var(--link-color); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
         a:hover { color: var(--link-hover); text-decoration: underline; }
-        /<em> Media Optimization (LCP/CLS) </em>/
+        /* Media Optimization (LCP/CLS) */
         img {
             width: 100%;
             max-width: 1000px;
@@ -119,9 +119,9 @@
             border-radius: 12px;
             aspect-ratio: 16/9;
             object-fit: cover;
-            background-color: var(--border-color); /<em> Placeholder saat loading </em>/
+            background-color: var(--border-color); /* Placeholder saat loading */
         }
-        /<em> Elements </em>/
+        /* Elements */
         blockquote {
             background-color: var(--quote-bg);
             border-left: 5px solid var(--quote-border);
@@ -141,7 +141,7 @@
         .author-bio a {
             font-weight: bold;
         }
-        /<em> Sections </em>/
+        /* Sections */
         .comments-section, .related-section {
             margin-top: 60px;
             padding-top: 30px;
@@ -246,6 +246,6 @@
     <p><strong><i class="fa-solid fa-pen-nib"></i> diketik dari meja redaksi yang santai di Balikpapan.</strong></p>
         <p style="margin-top:30px; font-size: 0.8em; opacity: 0.6;">🄯 2026 Fakhrul Rijal.</p>
 <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

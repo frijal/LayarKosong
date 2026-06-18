@@ -55,15 +55,15 @@
   <!-- Styles (tema ceria: lime + purple, wide, mobile-first) -->
   <style>
     :root{
-      --bg-1:#fbfff2;      /<em> lime milk </em>/
-      --bg-2:#f3f0ff;      /<em> lilac haze </em>/
+      --bg-1:#fbfff2;      /* lime milk */
+      --bg-2:#f3f0ff;      /* lilac haze */
       --ink:#0f172a;
       --muted:#475569;
       --card:#ffffff;
       --line:#e2e8f0;
-      --accent:#7dce13;    /<em> lime </em>/
-      --accent-2:#9b5de5;  /<em> purple candy </em>/
-      --accent-3:#00bbf9;  /<em> sky pop </em>/
+      --accent:#7dce13;    /* lime */
+      --accent-2:#9b5de5;  /* purple candy */
+      --accent-3:#00bbf9;  /* sky pop */
       --max:1320px;
       --r:16px;
       --shadow:0 10px 30px rgba(2,8,23,.08);
@@ -81,7 +81,7 @@
         linear-gradient(180deg, var(--bg-1), var(--bg-2));
       overflow-x:hidden;
     }
-    /<em> Floating nav buttons </em>/
+    /* Floating nav buttons */
     .jump{
       position:fixed; z-index:60; display:inline-flex; align-items:center; gap:6rem;
       text-decoration:none; color:#0b1220;
@@ -164,7 +164,7 @@
       box-shadow:0 2px 8px #0001
     }
     footer{ max-width:var(--max); margin: 28px auto; padding: 0 clamp(10px,3vw,20px) 30px; color:#334155 }
-    /<em> Lightbox </em>/
+    /* Lightbox */
     .lightbox{ position:fixed; inset:0; background:#0009; display:none; place-items:center; z-index:80; backdrop-filter: blur(3px) }
     .lightbox.open{ display:grid }
     .frame{ position:relative; width:min(96vw, 1200px); height:min(86vh, 820px); background:#000; border-radius:16px; overflow:hidden; border:1px solid #ffffff22 }
@@ -182,7 +182,7 @@
     .btn-next{ right:10px; top:50%; transform:translateY(-50%) }
     .count{ position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
       background:#fff; border:1px solid var(--line); border-radius:999px; padding:2rem .6rem; font-size:12px }
-    /<em> Responsive </em>/
+    /* Responsive */
     @media (max-width:1000px){
       .hero{ grid-template-columns: 1fr }
       .grid{ grid-template-columns: repeat(6,1fr) }
@@ -350,5 +350,5 @@
       document.head.appendChild(document.querySelector('meta[property="og:url"]')||Object.assign(document.createElement("meta"),{property:"og:url",content:location.href}))
     });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

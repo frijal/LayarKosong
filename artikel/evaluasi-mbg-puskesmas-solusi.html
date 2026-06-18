@@ -48,7 +48,7 @@
     <meta name="promphint" content="Artikel opini kebijakan publik tentang efisiensi anggaran kesehatan dan peran puskesmas dalam penanganan gizi buruk di Indonesia.">
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> CSS Variables untuk Dark/Light Mode Otomatis </em>/
+        /* CSS Variables untuk Dark/Light Mode Otomatis */
         :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -67,7 +67,7 @@
                 --border-color: #333333;
             }
         }
-        /<em> Reset & Base Styles </em>/
+        /* Reset & Base Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.8;
@@ -77,7 +77,7 @@
             color: var(--text-color);
             transition: background 0.3s, color 0.3s;
         }
-        /<em> Widescreen 1 Column Layout </em>/
+        /* Widescreen 1 Column Layout */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -105,7 +105,7 @@
             aspect-ratio: 16/9;
             object-fit: cover;
         }
-        /<em> Typography </em>/
+        /* Typography */
         article p {
             margin-bottom: 25px;
             font-size: 1.15rem;
@@ -124,13 +124,13 @@
             font-style: italic;
             font-size: 1.2rem;
         }
-        /<em> Responsive Mobile View </em>/
+        /* Responsive Mobile View */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             article p { font-size: 1.1rem; }
             .container { padding: 15px; }
         }
-        /<em> Placeholder for Comments & Grid </em>/
+        /* Placeholder for Comments & Grid */
         #related-articles-grid, #response {
             margin-top: 50px;
             padding: 20px;
@@ -213,5 +213,5 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

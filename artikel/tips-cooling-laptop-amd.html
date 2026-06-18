@@ -48,10 +48,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #121212; /<em> Dark background </em>/
-            --bg-card: #1e1e1e; /<em> Slightly lighter card/element background </em>/
+            --bg-primary: #121212; /* Dark background */
+            --bg-card: #1e1e1e; /* Slightly lighter card/element background */
             --text-main: #e0e0e0;
-            --text-accent: #80bfff; /<em> Blue accent </em>/
+            --text-accent: #80bfff; /* Blue accent */
             --shadow-color: rgba(0, 0, 0, 0.4);
             --border-color: #333;
         }
@@ -87,18 +87,18 @@
             margin:1.5em 0;
             cursor:pointer;
             transition:transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px var(--shadow-color); /<em> Added box shadow </em>/
+            box-shadow: 0 4px 10px var(--shadow-color); /* Added box shadow */
             display: block;
         }
         .cooling-image:hover{
             transform:scale(1.02);
-            box-shadow: 0 6px 15px var(--text-accent); /<em> Shadow with accent color on hover </em>/
+            box-shadow: 0 6px 15px var(--text-accent); /* Shadow with accent color on hover */
         }
         ol{padding-left:1.5em;}
         ol li { margin-bottom: 0.8em; }
         a{color:var(--text-accent); text-decoration:none; transition: color 0.3s;}
         a:hover{color:#b3d9ff; text-decoration:underline;}
-        /<em> Lightbox Styles </em>/
+        /* Lightbox Styles */
         #lightbox{
             display:none;
             position:fixed;
@@ -220,5 +220,5 @@
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

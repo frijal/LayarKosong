@@ -53,7 +53,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Reset dan variabel CSS </em>/
+        /* Reset dan variabel CSS */
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
@@ -69,7 +69,7 @@
             --max-width: 1000px;
             --content-width: 1000px;
         }
-        /<em> Tema gelap </em>/
+        /* Tema gelap */
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary-color: #3498db;
@@ -84,7 +84,7 @@
                 --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             }
         }
-        /<em> Reset dasar </em>/
+        /* Reset dasar */
         * {
             margin: 0;
             padding: 0;
@@ -99,7 +99,7 @@
             font-size: 18px;
             overflow-x: hidden;
         }
-        /<em> Container utama </em>/
+        /* Container utama */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
@@ -120,7 +120,7 @@
         .logo i {
             color: var(--accent-color);
         }
-        /<em> Navigasi </em>/
+        /* Navigasi */
         .nav-links {
             display: flex;
             gap: 1.5rem;
@@ -134,13 +134,13 @@
         .nav-links a:hover {
             color: var(--accent-color);
         }
-        /<em> Konten utama </em>/
+        /* Konten utama */
         .main-content {
             max-width: var(--content-width);
             margin: 2rem auto;
             padding: 0 1rem;
         }
-        /<em> Artikel </em>/
+        /* Artikel */
         .article-header {
             margin-bottom: 3rem;
             padding-bottom: 2rem;
@@ -206,19 +206,19 @@
             font-size: 1rem;
             color: var(--primary-color);
         }
-        /<em> Bagian komentar </em>/
+        /* Bagian komentar */
         .comments-section {
             margin: 4rem 0;
             padding-top: 2rem;
             border-top: 2px solid var(--border-color);
         }
-        /<em> Grid artikel terkait </em>/
+        /* Grid artikel terkait */
         .related-articles {
             margin: 4rem 0;
             padding-top: 2rem;
             border-top: 2px solid var(--border-color);
         }
-        /<em> Footer </em>/
+        /* Footer */
         .site-footer {
             color: white;
             padding: 3rem 0 1.5rem;
@@ -257,7 +257,7 @@
             font-size: 0.9rem;
             opacity: 0.8;
         }
-        /<em> Responsif untuk mobile </em>/
+        /* Responsif untuk mobile */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -282,7 +282,7 @@
                 padding: 0 0.5rem;
             }
         }
-        /<em> Animasi dan efek </em>/
+        /* Animasi dan efek */
         .fade-in {
             animation: fadeIn 1s ease-out;
         }
@@ -290,12 +290,12 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /<em> Styling untuk emoji dan ikon </em>/
+        /* Styling untuk emoji dan ikon */
         .emoji {
             font-size: 1.2em;
             margin: 0 2px;
         }
-        /<em> Untuk bagian diskusi </em>/
+        /* Untuk bagian diskusi */
         #related-articles-grid, #response {
             background-color: var(--card-bg);
             border-radius: 8px;
@@ -486,5 +486,5 @@
             });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -61,13 +61,13 @@
 <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> RESET & VARIABEL </em>/
+    /* RESET & VARIABEL */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    /<em> Tema default (light) </em>/
+    /* Tema default (light) */
     :root {
       --bg: #f9fafc;
       --text: #1e1e2f;
@@ -81,7 +81,7 @@
       --shadow: rgba(0,0,0,0.05) 0 4px 12px;
       --img-bg: #f1f5f9;
     }
-    /<em> Tema gelap berdasarkan prefers-color-scheme </em>/
+    /* Tema gelap berdasarkan prefers-color-scheme */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #121212;
@@ -105,7 +105,7 @@
       transition: background-color 0.2s ease, color 0.2s ease;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Layout utama: 1 kolom, max-width 1000px, centered </em>/
+    /* Layout utama: 1 kolom, max-width 1000px, centered */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -118,7 +118,7 @@
       box-shadow: var(--shadow);
       border: 1px solid var(--border);
     }
-    /<em> Heading </em>/
+    /* Heading */
     h1 {
       font-size: 2.2rem;
       font-weight: 800;
@@ -145,12 +145,12 @@
       margin: 1.8rem 0 1rem;
       color: var(--heading);
     }
-    /<em> Emoji + fontawesome di heading sudah di HTML </em>/
+    /* Emoji + fontawesome di heading sudah di HTML */
     p {
       margin-bottom: 1.2rem;
       font-size: 1.1rem;
     }
-    /<em> Gambar responsif, cegah CLS dengan aspect ratio </em>/
+    /* Gambar responsif, cegah CLS dengan aspect ratio */
     figure {
       margin: 2rem 0;
       background-color: var(--img-bg);
@@ -167,9 +167,9 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      background-color: var(--img-bg); /<em> placeholder </em>/
+      background-color: var(--img-bg); /* placeholder */
     }
-    /<em> Blockquote untuk kutipan / poin penting </em>/
+    /* Blockquote untuk kutipan / poin penting */
     blockquote {
       background: var(--blockquote);
       border-left: 6px solid var(--accent);
@@ -193,7 +193,7 @@
       width: 1.4rem;
       text-align: center;
     }
-    /<em> FAQ / highlight </em>/
+    /* FAQ / highlight */
     .faq-item {
       background: var(--blockquote);
       border-radius: 16px;
@@ -211,7 +211,7 @@
       color: var(--accent-light);
       margin-right: 0.5rem;
     }
-    /<em> related-articles-grid & related </em>/
+    /* related-articles-grid & related */
     #related-articles-grid, #response {
       background: var(--card-bg);
       border-radius: 24px;
@@ -223,7 +223,7 @@
       color: var(--heading);
       box-shadow: var(--shadow);
     }
-    /<em> footer </em>/
+    /* footer */
     footer {
       margin-top: 3rem;
       padding: 1.5rem 0;
@@ -241,7 +241,7 @@
     footer a:hover {
       text-decoration: underline;
     }
-    /<em> tombol / elemen kecil </em>/
+    /* tombol / elemen kecil */
     .badge {
       display: inline-block;
       background: var(--accent-light);
@@ -252,7 +252,7 @@
       font-weight: 600;
       margin-right: 0.5rem;
     }
-    /<em> Responsive touch </em>/
+    /* Responsive touch */
     @media (max-width: 600px) {
       .container {
         padding: 0.8rem;
@@ -271,7 +271,7 @@
         margin-left: 1.2rem;
       }
     }
-    /<em> Gaya untuk E-E-A-T (trust) </em>/
+    /* Gaya untuk E-E-A-T (trust) */
     .zdummy {
       background: var(--accent-light);
       color: white;
@@ -438,6 +438,6 @@
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

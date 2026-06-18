@@ -56,9 +56,9 @@
     <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/ext/fontawesome.css"></noscript>
     <style>
-        /<em> ============ CSS RESET & CUSTOM PROPERTIES ============ </em>/
+        /* ============ CSS RESET & CUSTOM PROPERTIES ============ */
         :root {
-            /<em> Light theme (default) </em>/
+            /* Light theme (default) */
             --bg: #fefefe;
             --bg-secondary: #f5f3ef;
             --bg-card: #ffffff;
@@ -99,7 +99,7 @@
                 --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
             }
         }
-        /<em> ============ BASE STYLES ============ </em>/
+        /* ============ BASE STYLES ============ */
         *,
         *::before,
         *::after {
@@ -123,7 +123,7 @@
             flex-direction: column;
             transition: background-color var(--transition), color var(--transition);
         }
-        /<em> ============ CONTAINER ============ </em>/
+        /* ============ CONTAINER ============ */
         .site-container {
             width: 100%;
             max-width: 1000px;
@@ -141,7 +141,7 @@
                 padding: 0 2rem;
             }
         }
-        /<em> ============ HEADER / BREADCRUMB ============ </em>/
+        /* ============ HEADER / BREADCRUMB ============ */
         .site-header {
             padding: 1rem 0;
             border-bottom: 1px solid var(--border);
@@ -168,7 +168,7 @@
             opacity: 0.6;
             user-select: none;
         }
-        /<em> ============ MAIN CONTENT ============ </em>/
+        /* ============ MAIN CONTENT ============ */
         .article-main {
             background-color: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -187,7 +187,7 @@
                 padding: 2.5rem 3rem;
             }
         }
-        /<em> ============ ARTICLE META ============ </em>/
+        /* ============ ARTICLE META ============ */
         .article-meta {
             display: flex;
             flex-wrap: wrap;
@@ -249,7 +249,7 @@
             letter-spacing: 0.01em;
             white-space: nowrap;
         }
-        /<em> ============ HEADINGS ============ </em>/
+        /* ============ HEADINGS ============ */
         .article-title {
             font-family: var(--font-heading);
             font-size: 1.6rem;
@@ -299,7 +299,7 @@
                 font-size: 1.2rem;
             }
         }
-        /<em> ============ PARAGRAPH & INLINE ============ </em>/
+        /* ============ PARAGRAPH & INLINE ============ */
         .article-main p {
             margin-bottom: 1.1rem;
             color: var(--text-secondary);
@@ -324,7 +324,7 @@
             border: 1px solid var(--border);
             word-break: break-word;
         }
-        /<em> ============ BLOCKQUOTE ============ </em>/
+        /* ============ BLOCKQUOTE ============ */
         .article-main blockquote {
             background-color: var(--bg-secondary);
             border-left: 4px solid var(--accent);
@@ -356,7 +356,7 @@
         .article-main blockquote p:last-child {
             margin-bottom: 0;
         }
-        /<em> ============ WARNING BOX ============ </em>/
+        /* ============ WARNING BOX ============ */
         .warning-box {
             background-color: var(--warning-bg);
             border: 1px solid var(--warning-border);
@@ -381,7 +381,7 @@
         .warning-box p:last-child {
             margin-bottom: 0;
         }
-        /<em> ============ IMAGES ============ </em>/
+        /* ============ IMAGES ============ */
         .article-main img {
             max-width: 100%;
             height: auto;
@@ -390,7 +390,7 @@
             margin: 1.5rem auto;
             background-color: var(--bg-secondary);
             border: 1px solid var(--border);
-            /<em> Mencegah CLS dengan aspect-ratio fallback </em>/
+            /* Mencegah CLS dengan aspect-ratio fallback */
             aspect-ratio: auto;
         }
         .article-main figure {
@@ -403,7 +403,7 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
-        /<em> ============ LIST ============ </em>/
+        /* ============ LIST ============ */
         .article-main ul,
         .article-main ol {
             margin: 1rem 0 1.25rem 1.5rem;
@@ -416,14 +416,14 @@
         .article-main li::marker {
             color: var(--accent);
         }
-        /<em> ============ DIVIDERS ============ </em>/
+        /* ============ DIVIDERS ============ */
         .section-divider {
             border: none;
             border-top: 1px dashed var(--border);
             margin: 2rem 0 1.5rem;
             opacity: 0.7;
         }
-        /<em> ============ AUTHOR BIO (E-E-A-T) ============ </em>/
+        /* ============ AUTHOR BIO (E-E-A-T) ============ */
         .author-bio {
             display: flex;
             gap: 1rem;
@@ -469,12 +469,12 @@
             font-weight: 600;
             margin-top: 0.25rem;
         }
-        /<em> ============ RELATED & RESPONSE PLACEHOLDERS ============ </em>/
+        /* ============ RELATED & RESPONSE PLACEHOLDERS ============ */
         #related-articles-grid,
         #response {
-            /<em> Tanpa styling - sesuai permintaan </em>/
+            /* Tanpa styling - sesuai permintaan */
         }
-        /<em> ============ FOOTER ============ </em>/
+        /* ============ FOOTER ============ */
         .site-footer {
             text-align: center;
             padding: 1.5rem 1rem;
@@ -493,7 +493,7 @@
         .site-footer a:hover {
             text-decoration: underline;
         }
-        /<em> ============ UTILITY ============ </em>/
+        /* ============ UTILITY ============ */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -508,14 +508,14 @@
         .text-center {
             text-align: center;
         }
-        /<em> ============ FOCUS & ACCESSIBILITY ============ </em>/
+        /* ============ FOCUS & ACCESSIBILITY ============ */
         a:focus-visible,
         button:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
             border-radius: 2px;
         }
-        /<em> ============ PRINT STYLES ============ </em>/
+        /* ============ PRINT STYLES ============ */
         @media print {
             body {
                 background: #fff;
@@ -708,6 +708,6 @@
             <em>Semoga bermanfaat dan menjadi amal jariyah bagi kita semua. 🤲</em>
         </p>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

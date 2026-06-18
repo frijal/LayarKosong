@@ -50,7 +50,7 @@
     <meta name="promphint" content="Kapan sosialisasi Open Source di Kutai Kartanegara diadakan? | Sosialisasi dan migrasi OSS tersebut diadakan pada tanggal 4 hingga 8 Oktober 2010.">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Variabel Warna (Dukungan Terang/Gelap) </em>/
+        /* Variabel Warna (Dukungan Terang/Gelap) */
         :root {
             --bg-color: #f9fafb;
             --text-color: #374151;
@@ -73,8 +73,8 @@
                 --meta-text: #9ca3af;
             }
         }
-        /<em> Reset & Base Typography </em>/
-        <em>, </em>::before, *::after {
+        /* Reset & Base Typography */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -83,13 +83,13 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            font-size: 1.125rem; /<em> 18px </em>/
+            font-size: 1.125rem; /* 18px */
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        /<em> Layout Pendekatan Mobile-First </em>/
+        /* Layout Pendekatan Mobile-First */
         .container {
-            max-width: 64rem; /<em> Mentok di 1024px </em>/
+            max-width: 64rem; /* Mentok di 1024px */
             width: 100%;
             margin: 0 auto;
             padding: 2.5rem 1.5rem;
@@ -131,7 +131,7 @@
             color: var(--accent-hover);
             border-bottom-style: solid;
         }
-        /<em> Optimasi Gambar: Mencegah Layout Shift (CLS) </em>/
+        /* Optimasi Gambar: Mencegah Layout Shift (CLS) */
         figure {
             margin: 2.5rem 0;
             width: 100%;
@@ -144,7 +144,7 @@
             width: 100%;
             height: auto;
             display: block;
-            /<em> Browser modern akan menggunakan atribut width & height HTML untuk menghitung aspect-ratio otomatis </em>/
+            /* Browser modern akan menggunakan atribut width & height HTML untuk menghitung aspect-ratio otomatis */
         }
         figcaption {
             text-align: center;
@@ -154,7 +154,7 @@
             font-style: italic;
             border-top: 0.0625rem solid var(--border-color);
         }
-        /<em> Blok Kode (Sesuai Aturan) </em>/
+        /* Blok Kode (Sesuai Aturan) */
         pre {
             background-color: var(--card-bg);
             color: var(--text-color);
@@ -168,12 +168,12 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 0.95rem;
         }
-        /<em> Ikon Spacing </em>/
+        /* Ikon Spacing */
         .icon {
             margin-right: 0.5rem;
             color: var(--accent-color);
         }
-        /<em> Footer </em>/
+        /* Footer */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -240,5 +240,5 @@
             </div>
         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

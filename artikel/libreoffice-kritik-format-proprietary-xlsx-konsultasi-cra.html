@@ -60,7 +60,7 @@
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
-    /<em> Reset & base </em>/
+    /* Reset & base */
     * {
       margin: 0;
       padding: 0;
@@ -78,7 +78,7 @@
       color: #1e1e2f;
       transition: background-color 0.2s ease, color 0.2s ease;
     }
-    /<em> container utama </em>/
+    /* container utama */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -87,7 +87,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.03);
       padding: 2rem 2rem 1rem 2rem;
     }
-    /<em> dark mode </em>/
+    /* dark mode */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #12121a;
@@ -117,7 +117,7 @@
         background-color: #262636;
       }
     }
-    /<em> typografi santai </em>/
+    /* typografi santai */
     h1 {
       font-size: 2.1rem;
       font-weight: 700;
@@ -157,7 +157,7 @@
     a:hover {
       text-decoration: none;
     }
-    /<em> gambar </em>/
+    /* gambar */
     figure {
       margin: 2rem 0;
       text-align: center;
@@ -182,14 +182,14 @@
         color: #a8a8c2;
       }
     }
-    /<em> list </em>/
+    /* list */
     ul, ol {
       margin: 0 0 1.5rem 2rem;
     }
     li {
       margin-bottom: 0.4rem;
     }
-    /<em> tabel </em>/
+    /* tabel */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -213,7 +213,7 @@
         background-color: #2f2f44;
       }
     }
-    /<em> blockquote / kutipan </em>/
+    /* blockquote / kutipan */
     blockquote {
       margin: 1.8rem 0;
       padding: 1rem 2rem;
@@ -227,7 +227,7 @@
         background-color: #25253a;
       }
     }
-    /<em> FAQ </em>/
+    /* FAQ */
     .faq-item {
       margin-bottom: 1.5rem;
       border-bottom: 1px solid #eaeaf2;
@@ -244,7 +244,7 @@
       margin-left: 2rem;
       margin-top: 0.4rem;
     }
-    /<em> komentar placeholder </em>/
+    /* komentar placeholder */
     #related-articles-grid, #response {
       background: #f1f3fa;
       border-radius: 30px;
@@ -262,7 +262,7 @@
         color: #cfcfe6;
       }
     }
-    /<em> footer </em>/
+    /* footer */
     footer {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -277,7 +277,7 @@
         color: #a5a5c0;
       }
     }
-    /<em> 5W1H highlight </em>/
+    /* 5W1H highlight */
     .five-wh {
       background: #fff6e5;
       border-radius: 40px;
@@ -300,7 +300,7 @@
         background: #2f2f45;
       }
     }
-    /<em> utility emoji </em>/
+    /* utility emoji */
     .emoji-lg {
       font-size: 1.6rem;
       vertical-align: middle;
@@ -430,5 +430,5 @@
 </footer>
 </div>
 <!-- tanpa javascript sama sekali, hanya mengandalkan prefers-color-scheme -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

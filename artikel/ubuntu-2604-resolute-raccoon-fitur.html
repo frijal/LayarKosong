@@ -47,13 +47,13 @@
     <meta name="keywords" content="Ubuntu 26.04, Resolute Raccoon, LTS, GNOME 50, Wayland, Linux, Jadwal Rilis, x86-64-v3, Canonical, Sistem Operasi">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /<em> Variabel CSS untuk Auto Dark/Light Mode </em>/
+        /* Variabel CSS untuk Auto Dark/Light Mode */
         :root {
             --bg-body: #ffffff;
             --text-main: #2c3e50;
             --text-muted: #636e72;
             --heading-color: #1a252f;
-            --accent-color: #e95420; /<em> Warna khas Ubuntu </em>/
+            --accent-color: #e95420; /* Warna khas Ubuntu */
             --link-color: #2980b9;
             --card-bg-light: #f5f6fa;
             --card-bg-blue: #e8f0fe;
@@ -72,7 +72,7 @@
                 --text-main: #ecf0f1;
                 --text-muted: #b2bec3;
                 --heading-color: #ffffff;
-                --accent-color: #ff9900; /<em> Orange/Gold untuk Dark Mode </em>/
+                --accent-color: #ff9900; /* Orange/Gold untuk Dark Mode */
                 --link-color: #74b9ff;
                 --card-bg-light: #1e1e1e;
                 --card-bg-blue: #1a2a47;
@@ -86,7 +86,7 @@
                 --table-bg-even: #252525;
             }
         }
-        /<em> Base Styles </em>/
+        /* Base Styles */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -97,13 +97,13 @@
             transition: background 0.3s ease, color 0.3s ease;
             min-height: 100vh;
         }
-        /<em> Container Layout (Widescreen 1 Column) </em>/
+        /* Container Layout (Widescreen 1 Column) */
         .article-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 50px 20px;
         }
-        /<em> Typography </em>/
+        /* Typography */
         h1 {
             font-size: 2.5rem;
             text-align: center;
@@ -130,7 +130,7 @@
         }
         a { color: var(--link-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        /<em> Callout Cards </em>/
+        /* Callout Cards */
         .kg-callout-card {
             padding: 20px;
             margin: 30px 0;
@@ -144,7 +144,7 @@
             font-size: 1.5em;
             line-height: 1;
         }
-        /<em> Specific Callout Styles </em>/
+        /* Specific Callout Styles */
         .kg-callout-card-blue {
             background-color: var(--card-bg-blue);
             border-left: 5px solid var(--card-border-blue);
@@ -157,7 +157,7 @@
             background-color: var(--card-bg-red);
             border-left: 5px solid var(--card-border-red);
         }
-        /<em> Tables </em>/
+        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -166,10 +166,10 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border-radius: 8px;
             overflow: hidden;
-            display: block; /<em> Memungkinkan overflow-x untuk responsif </em>/
+            display: block; /* Memungkinkan overflow-x untuk responsif */
         }
         .table-responsive {
-            overflow-x: auto; /<em> Memastikan tabel dapat di-scroll di mobile </em>/
+            overflow-x: auto; /* Memastikan tabel dapat di-scroll di mobile */
             margin-bottom: 25px;
         }
         table thead tr {
@@ -189,7 +189,7 @@
         table tbody tr:nth-of-type(even) {
             background-color: var(--table-bg-even);
         }
-        /<em> Image/Figure Styles </em>/
+        /* Image/Figure Styles */
         .kg-card {
             margin: 25px 0;
         }
@@ -208,7 +208,7 @@
             color: var(--text-muted);
             margin-top: 10px;
         }
-        /<em> Bookmark Card </em>/
+        /* Bookmark Card */
         .kg-bookmark-container {
             display: flex;
             text-decoration: none;
@@ -270,7 +270,7 @@
             height: 100%;
             object-fit: cover;
         }
-        /<em> Button Card </em>/
+        /* Button Card */
         .kg-button-card {
             text-align: center;
             margin: 40px 0;
@@ -299,7 +299,7 @@
             font-size: 0.9em;
             color: var(--text-muted);
         }
-        /<em> Mobile Adjustments </em>/
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .kg-bookmark-container { flex-direction: column; }
@@ -436,5 +436,5 @@
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

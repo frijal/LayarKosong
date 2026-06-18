@@ -54,18 +54,18 @@
   <!-- Custom Meta -->
   <meta name="promphint" content="Apa saja barang yang harganya naik jika rupiah melemah? Mulai dari mi instan, elektronik, BBM, hingga bahan baku industri akan naik karena ketergantungan bahan impor.">
   <style>
-    /<em> Token-Based Variables </em>/
+    /* Token-Based Variables */
     :root {
-      /<em> Palette & Theming (Light by default) </em>/
+      /* Palette & Theming (Light by default) */
       --bg-color: #fdfdfd;
       --text-main: #212529;
       --text-muted: #495057;
       --border-color: #e9ecef;
       --accent: #2b5cff;
       --accent-hover: #1e45c4;
-      /<em> Typography </em>/
+      /* Typography */
       --font-sys: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      /<em> Spacing & Sizes </em>/
+      /* Spacing & Sizes */
       --max-w-container: 64rem;
       --space-xs: 0.5rem;
       --space-sm: 1rem;
@@ -74,7 +74,7 @@
       --space-xl: 4rem;
       --radius: 0.5rem;
     }
-    /<em> Auto Dark Mode Preference </em>/
+    /* Auto Dark Mode Preference */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #121212;
@@ -85,8 +85,8 @@
         --accent-hover: #748ffc;
       }
     }
-    /<em> Reset & Accessibility CSS </em>/
-    <em>, </em>::before, *::after {
+    /* Reset & Accessibility CSS */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -98,14 +98,14 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    /<em> Mobile-first Layout </em>/
+    /* Mobile-first Layout */
     .container {
       width: 100%;
       max-width: var(--max-w-container);
       margin: 0 auto;
       padding: var(--space-sm) var(--space-md);
     }
-    /<em> Typography Utilities </em>/
+    /* Typography Utilities */
     h1, h2, h3 {
       color: var(--text-main);
       line-height: 1.25;
@@ -131,7 +131,7 @@
       font-size: 1rem;
       margin-bottom: var(--space-md);
     }
-    /<em> Lists </em>/
+    /* Lists */
     ol, ul {
       margin-bottom: var(--space-md);
       padding-left: var(--space-md);
@@ -140,7 +140,7 @@
     li {
       margin-bottom: var(--space-xs);
     }
-    /<em> Gambar Baku (Core Web Vitals) </em>/
+    /* Gambar Baku (Core Web Vitals) */
     img {
       width: 100%;
       height: auto;
@@ -149,7 +149,7 @@
       margin-bottom: var(--space-lg);
       background-color: var(--border-color);
     }
-    /<em> Akhir Konten & Footer </em>/
+    /* Akhir Konten & Footer */
     #related-articles-grid, #response {
       margin-top: var(--space-lg);
     }
@@ -175,7 +175,7 @@
     .footer-meta a:hover {
       text-decoration: underline;
     }
-    /<em> Desktop Adjustments </em>/
+    /* Desktop Adjustments */
     @media (min-width: 48rem) {
       h1 {
         font-size: 2.5rem;
@@ -290,5 +290,5 @@
       </div>
     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
