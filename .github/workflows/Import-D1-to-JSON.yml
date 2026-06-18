@@ -7,7 +7,7 @@ on:
         description: 'Pilih Kategori Artikel yang Ingin Ditarik'
         required: true
         type: choice
-       # default: 'opini-sosial' # Opsi default yang langsung terpilih
+        default: 'SEMUA-KATEGORI' # Opsi default yang langsung terpilih
         options:
           - gaya-hidup
           - jejak-sejarah
