@@ -332,7 +332,7 @@ sudo systemctl start snapper-timeline.timer</code></pre>
     <ol>
         <li>Gunakan aplikasi ringan bawaan XFCE (Thunar untuk file manager, Mousepad untuk teks, Firefox ESR untuk internetan).</li>
         <li>Kustomisasi panel XFCE dan matikan <em>compositing effects</em> (efek bayangan/transparansi) agar RAM lebih lega.</li>
-        <li>Matikan <em>startup services</em> yang nggak kepakai lewat <strong>MX Tools → Services</strong>.</li>
+        <li>Matikan <em>startup services</em> yang tidak kepakai lewat <strong>MX Tools → Services</strong>.</li>
         <li>Rutin gunakan <strong>MX Cleanup</strong> untuk membersihkan <em>cache</em> dan file <em>temporary</em>.</li>
     </ol>
     <h2>12: Nikmati Sistem Stabil Bebas Stres!</h2>
@@ -346,14 +346,14 @@ sudo systemctl start snapper-timeline.timer</code></pre>
     <p>Kamu sekarang punya <strong>sistem yang future-proof</strong> yang menggabungkan <strong>kecepatan, keandalan, dan fitur pemulihan tingkat dewa</strong>.</p>
     <blockquote>
         <strong>💡 Pro Tips:</strong><br>
-        Gunakan perintah <code>snapper list</code> untuk melihat daftar snapshot. Simpan snapshot yang benar-benar stabil dan hapus yang nggak penting biar disk nggak penuh. Kalau mau lebih aman, gabungkan juga dengan <strong>Timeshift</strong>. Kamu juga bisa mempertimbangkan untuk menggunakan <strong>SysVinit</strong> bawaan MX Linux jika butuh efisiensi <em>resource</em> ekstrem.
+        Gunakan perintah <code>snapper list</code> untuk melihat daftar snapshot. Simpan snapshot yang benar-benar stabil dan hapus yang tidak penting biar disk tidak penuh. Kalau mau lebih aman, gabungkan juga dengan <strong>Timeshift</strong>. Kamu juga bisa mempertimbangkan untuk menggunakan <strong>SysVinit</strong> bawaan MX Linux jika butuh efisiensi <em>resource</em> ekstrem.
     </blockquote>
     <p>Setup ini menjamin PC tua kamu akan terasa <strong>modern, stabil, dan punya ketahanan tinggi</strong> — sangat cocok buat <em>daily driver</em>, <em>coding</em> ringan, maupun menikmati hiburan multimedia tanpa nge-lag.</p>
 <h2>Analisis 5W+1H: Mengapa Setup Ini Jadi "Cheat Code" Buat PC Lawas?</h2>
     <ul>
         <li><strong>Siapa (Who):</strong> Panduan ini dirancang buat kamu, dari pemula sampai <em>power user</em>, yang mau nyelamatin PC/Laptop lawasnya.</li>
         <li><strong>Apa (What):</strong> Kita bakal melakukan instalasi MX Linux versi 25.1 XFCE, dikawinkan dengan arsitektur penyimpanan Btrfs dan alat manajemen snapshot bernama Snapper.</li>
-        <li><strong>Kapan (When):</strong> Sangat pas dieksekusi saat PC kamu mulai lambat, sering <em>crash</em>, atau saat kamu butuh sistem yang nggak gampang rusak sehabis update OS.</li>
+        <li><strong>Kapan (When):</strong> Sangat pas dieksekusi saat PC kamu mulai lambat, sering <em>crash</em>, atau saat kamu butuh sistem yang tidak gampang rusak sehabis update OS.</li>
         <li><strong>Di Mana (Where):</strong> Konfigurasi ini dilakukan langsung dari <em>Live USB</em> MX Linux masuk ke dalam hardisk atau SSD PC jadul kamu.</li>
         <li><strong>Mengapa (Why):</strong> Btrfs dan Snapper punya kemampuan ibarat "Mesin Waktu". Kalau sistem kamu rusak karena salah install atau gagal update, kamu bisa <em>rollback</em> ke kondisi normal hanya lewat GRUB saat <em>booting</em>. Bikin sistem jadi <em>future-proof</em>!</li>
         <li><strong>Bagaimana (How):</strong> Caranya sangat terstruktur, mulai dari bikin <em>bootable</em> sampai menyetel subvolume.</li>

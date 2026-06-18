@@ -148,7 +148,7 @@
             Bayangkan kamu lagi nyetir mobil di jalan protokol Balikpapan, eh tiba-tiba remnya blong karena sistem pelumasnya beku. Begitulah kondisi Linux saat disk-nya menyentuh angka 100%. Sistem operasi Linux membutuhkan ruang kosong untuk menulis log, membuat file temporary, dan mengelola <i>process ID</i>. Kalau ruang ini hilang, sistem akan "tercekik".
         </p>
         <p>
-            Banyak pemula yang langsung mengambil langkah drastis: <strong>rm -rf</strong> sembarangan. ❌ Jangan lakukan itu! Menghapus file tanpa diagnosa ibarat mengobati sakit perut dengan operasi jantung—nggak nyambung dan berisiko fatal.
+            Banyak pemula yang langsung mengambil langkah drastis: <strong>rm -rf</strong> sembarangan. ❌ Jangan lakukan itu! Menghapus file tanpa diagnosa ibarat mengobati sakit perut dengan operasi jantung—tidak nyambung dan berisiko fatal.
         </p>
     </section>
     <hr>
@@ -192,7 +192,7 @@
     </section>
     <section id="best-practices">
         <h2>🧠 Best Practices di Server Produksi</h2>
-        <p>Biar nggak kejadian lagi (atau minimal lebih siap), terapkan prinsip ini:</p>
+        <p>Biar tidak kejadian lagi (atau minimal lebih siap), terapkan prinsip ini:</p>
         <ol>
             <li><strong>Analyze Before Deleting:</strong> Selalu cek apakah file tersebut sedang dipakai sistem (<code>lsof | grep filename</code>).</li>
             <li><strong>Logrotate:</strong> Pastikan layanan <code>logrotate</code> berjalan dengan benar untuk membatasi ukuran log.</li>

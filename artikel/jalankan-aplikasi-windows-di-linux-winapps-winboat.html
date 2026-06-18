@@ -184,7 +184,7 @@
     </section>
     <section id="technology">
         <h2><i class="fa-solid fa-cogs"></i> Bagaimana Teknologinya Bekerja?</h2>
-        <p>Ini bagian yang menarik! Bayangkan kamu punya dua sistem yang bekerja sama di balik layar. Pertama, ada **Windows asli** yang berjalan sebagai "tamu" di lingkungan virtual (bisa pakai QEMU/KVM lewat libvirt atau di dalam kontainer Docker/Podman). Windows ini berjalan tanpa antarmuka (<em>headless</em>), jadi kamu nggak bakal lihat desktop Windows-nya.</p>
+        <p>Ini bagian yang menarik! Bayangkan kamu punya dua sistem yang bekerja sama di balik layar. Pertama, ada **Windows asli** yang berjalan sebagai "tamu" di lingkungan virtual (bisa pakai QEMU/KVM lewat libvirt atau di dalam kontainer Docker/Podman). Windows ini berjalan tanpa antarmuka (<em>headless</em>), jadi kamu tidak bakal lihat desktop Windows-nya.</p>
         <p>Di dalam Windows tamu itu, ada agen kecil yang bertugas memberi tahu Linux: *"Eh, pengguna mau buka Word nih!"*. Kemudian, Linux menggunakan aplikasi bernama **xfreerdp** dengan fitur **RemoteApp**. Fitur inilah yang salah satu yang ajaib, karena ia bisa memotong gambar jendela aplikasi saja dan membuang latar belakang desktop Windows-nya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Hasilnya? Microsoft Word muncul di desktop Linux kamu dengan bayangan jendela dan fungsi minimalkan/maksimalkan yang menyatu dengan tema desktop Linux-mu.</p>
         <div class="teacher-advice">
             <p><strong>Pesan Aku:</strong> Jangan samakan ini dengan VirtualBox biasa ya! Di VirtualBox, kamu perlu melihat seluruh desktop Windows. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Di sini, kamu cuma lihat aplikasinya saja. Ini lebih rapi dan efisien untuk alur kerja harian. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
@@ -243,7 +243,7 @@
     </section>
     <section id="installation">
         <h2><i class="fa-solid fa-terminal"></i> Langkah Praktis Instalasi</h2>
-        <p>Jika kamu memilih **WinBoat**, prosesnya cukup mudah: download AppImage-nya, berikan izin eksekusi, lalu jalankan. WinBoat akan bertanya di mana kamu ingin menyimpan file VM-nya. Ini bagus banget biar partisi sistem Linux-mu (root) nggak penuh sesak.</p>
+        <p>Jika kamu memilih **WinBoat**, prosesnya cukup mudah: download AppImage-nya, berikan izin eksekusi, lalu jalankan. WinBoat akan bertanya di mana kamu ingin menyimpan file VM-nya. Ini bagus banget biar partisi sistem Linux-mu (root) tidak penuh sesak.</p>
         <p>Jika kamu memilih **WinApps** (jalur libvirt/KVM), langkahnya sedikit lebih "keren":</p>
         <ol>
             <li>Install paket yang dibutuhkan: <code>virt-manager</code>, <code>libvirt</code>, dan <code>xfreerdp</code>.</li>
@@ -270,7 +270,7 @@
         <h2><i class="fa-solid fa-flag-checkered"></i> Kesimpulan: Apakah Ini Untukmu?</h2>
         <p>WinApps dan WinBoat adalah solusi jembatan yang sangat elegan. Jika pekerjaanmu mengharuskan kamu memakai aplikasi Windows yang tidak mau diajak kompromi di Wine, maka inilah jalan terbaiknya. Kamu mendapatkan kompatibilitas penuh tanpa harus merusak pengalaman desktop Linux-mu.</p>
         <p>Saran Aku: Mulailah dengan **WinBoat** kalau kamu mau coba-coba tanpa mau ribet dengan konfigurasi server virtualisasi. Tapi kalau kamu adalah orang yang suka kontrol penuh atas sistem, **WinApps** dengan libvirt/KVM adalah standar emas yang harus kamu coba.</p>
-        <p>Selamat mencoba, sobat! Dunia open source sekarang sudah nggak seseram dulu, kan? Dengan alat yang tepat, kamu bisa punya yang direkomendasikan dari kedua dunia! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
+        <p>Selamat mencoba, sobat! Dunia open source sekarang sudah tidak seseram dulu, kan? Dengan alat yang tepat, kamu bisa punya yang direkomendasikan dari kedua dunia! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
     </section>
     <!-- Slot Komentar & Artikel Terkait -->
     <div id="related-articles-grid">

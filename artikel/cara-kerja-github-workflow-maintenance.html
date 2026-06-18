@@ -324,12 +324,12 @@ jobs:
             Sebelum mulai kerja, bot butuh komputer (virtual machine). Di sini dia meminjam komputer Linux (<span class="inline-code">ubuntu-latest</span>).
         </p>
         <p>
-            Hal penting di sini adalah bagian <strong>Permissions</strong>. Kita ngasih izin <span class="inline-code">write</span> ke bot supaya dia boleh ngubah kode kita dan bikin Pull Request. Tanpa izin ini, dia cuma bisa nonton doang, nggak bisa kerja.
+            Hal penting di sini adalah bagian <strong>Permissions</strong>. Kita ngasih izin <span class="inline-code">write</span> ke bot supaya dia boleh ngubah kode kita dan bikin Pull Request. Tanpa izin ini, dia cuma bisa nonton doang, tidak bisa kerja.
         </p>
         <h2>3. Update "Oli &amp; Sparepart" (Dependencies)</h2>
         <h3><i class="fa-solid fa-boxes-packing"></i> Install &amp; Caching</h3>
         <p>
-            Pertama, dia install Node.js versi 20. Biar nggak lemot, dia pakai fitur <strong>Cache</strong>. Jadi kalau file <span class="inline-code">package-lock.json</span> nggak berubah, dia nggak perlu download ulang ribuan file dari internet. Hemat kuota GitHub!
+            Pertama, dia install Node.js versi 20. Biar tidak lemot, dia pakai fitur <strong>Cache</strong>. Jadi kalau file <span class="inline-code">package-lock.json</span> tidak berubah, dia tidak perlu download ulang ribuan file dari internet. Hemat kuota GitHub!
         </p>
         <h3><i class="fa-solid fa-arrow-up-right-dots"></i> The Smart Upgrade</h3>
         <p>
@@ -356,7 +356,7 @@ ncu -u --target minor</code></pre>
         <ol>
             <li>Ambil semua font (.woff, .ttf).</li>
             <li>Ambil file CSS.</li>
-            <li>Pakai perintah <span class="inline-code">sed</span> (stream editor) buat ngedit jalur font di dalam CSS supaya nggak nyasar. Keren kan? Semuanya otomatis!</li>
+            <li>Pakai perintah <span class="inline-code">sed</span> (stream editor) buat ngedit jalur font di dalam CSS supaya tidak nyasar. Keren kan? Semuanya otomatis!</li>
         </ol>
         <h2>5. Satpam Digital (Verifikasi Hash)</h2>
         <h3><i class="fa-solid fa-fingerprint"></i> Cek Keaslian Font</h3>
@@ -371,7 +371,7 @@ ncu -u --target minor</code></pre>
             Sebelum lapor ke bos, bot harus yakin kerjanya bener.
         </p>
         <ul>
-            <li><span class="inline-code">npm audit</span>: Ngecek ada celah keamanan nggak di library yang baru diupdate.</li>
+            <li><span class="inline-code">npm audit</span>: Ngecek ada celah keamanan tidak di library yang baru diupdate.</li>
             <li><span class="inline-code">npm run lint</span>: Ngecek kerapian kode.</li>
             <li><span class="inline-code">npm run test</span>: Jalanin tes aplikasi.</li>
         </ul>
@@ -395,7 +395,7 @@ ncu -u --target minor</code></pre>
             Workflow ini bukan sekadar script update biasa. Ini adalah sistem pemeliharaan mandiri yang <strong>Aman</strong> (cek hash &amp; audit), <strong>Efisien</strong> (caching &amp; local assets), dan <strong>Cerdas</strong> (minor update only).
         </p>
         <p>
-            Implementasi script kayak gini di repo kamu bakal bikin hidup lebih tenang. Nggak ada lagi cerita website error karena lupa update library 2 tahun! <i class="fa-solid fa-face-laugh-wink"></i>
+            Implementasi script kayak gini di repo kamu bakal bikin hidup lebih tenang. Tidak ada lagi cerita website error karena lupa update library 2 tahun! <i class="fa-solid fa-face-laugh-wink"></i>
         </p>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>

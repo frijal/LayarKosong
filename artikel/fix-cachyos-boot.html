@@ -212,7 +212,7 @@ Error: /loader/loader.conf does not exist
 error: command failed to execute correctly</pre>
             <p>Dan ketika kamu mencoba memperbaiki dengan cara manual mounting partisi boot (seperti perintah <code>mount /dev/nvme0n1p1 /boot</code>), sistem malah membalas dengan:</p>
             <pre>mount: /boot: unknown filesystem type 'vfat'.</pre>
-            <p>Tenang, tarik napas dulu. Komputer kamu nggak rusak parah kok. Hardware kamu aman. Masalah ini sebenarnya cukup klasik di dunia Linux yang <em>bleeding edge</em> seperti Arch atau CachyOS. Yuk, kita bedah kenapa ini terjadi dan bagaimana cara membereskannya.</p>
+            <p>Tenang, tarik napas dulu. Komputer kamu tidak rusak parah kok. Hardware kamu aman. Masalah ini sebenarnya cukup klasik di dunia Linux yang <em>bleeding edge</em> seperti Arch atau CachyOS. Yuk, kita bedah kenapa ini terjadi dan bagaimana cara membereskannya.</p>
             <div class="alert">
                 <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Dini:</strong> <br>
                 Jika kamu mengalami error "unknown filesystem type vfat" saat mencoba mount, <strong>JANGAN RESTART</strong> komputer kamu jika belum punya Flashdisk Installer (Live USB). Kalau restart sekarang tanpa perbaikan, kemungkinan besar sistem cenderung tidak bisa booting. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
@@ -224,11 +224,11 @@ error: command failed to execute correctly</pre>
                 <li>Kernel yang sedang berjalan (di RAM) adalah "Manajer Gedung Lama".</li>
                 <li>Saat kamu update, pacman menghapus file-file modul milik Manajer Lama di harddisk dan menggantinya dengan file milik "Manajer Baru".</li>
             </ul>
-            <p>Masalahnya, Manajer Lama (yang masih aktif di RAM) tiba-tiba butuh alat (driver) buat baca partisi EFI (format VFAT). Dia nyari ke gudang (harddisk), eh alatnya udah diganti sama alat model baru yang dia nggak kenali. Akibatnya? Dia bingung dan bilang <em>"unknown filesystem type"</em>.</p>
-            <p>Karena dia nggak bisa baca partisi EFI, dia nggak bisa memperbarui konfigurasi bootloader (systemd-boot). Inilah kenapa muncul error <code>Couldn't find EFI system partition</code>.</p>
+            <p>Masalahnya, Manajer Lama (yang masih aktif di RAM) tiba-tiba butuh alat (driver) buat baca partisi EFI (format VFAT). Dia nyari ke gudang (harddisk), eh alatnya udah diganti sama alat model baru yang dia tidak kenali. Akibatnya? Dia bingung dan bilang <em>"unknown filesystem type"</em>.</p>
+            <p>Karena dia tidak bisa baca partisi EFI, dia tidak bisa memperbarui konfigurasi bootloader (systemd-boot). Inilah kenapa muncul error <code>Couldn't find EFI system partition</code>.</p>
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWGE_9DU3NC-XZVvNWns0tHZ1mQwb4Cepk4lTRp_D32QqH_Z8CetEtUwuQTVhxV_oZCo6XinIMtFHc42q5FI5CgK5XYytMEUlRfTfHdZudce1fRFgt2CzcoQGhkjKMOVQJsZH6ZQy1-kZd2gbJ8Et33REREdgYXw0peSJgc6UNQvc3MfyTPpCMiBy2ZRs/s1600/ErrorBootloader.webp" alt="Ilustrasi Integritas Sistem" class="content-image" title="Menjaga Integritas Sistem File">
             <h2><i class="fa-solid fa-truck-medical"></i> Solusi: Operasi Lewat Jalur Belakang (Chroot)</h2>
-            <p>Karena sistem yang sekarang sedang berjalan sudah "hilang ingatan" cara baca partisi boot, kita nggak bisa benerin dari dalam sesi yang sekarang. Kita butuh bantuan dari luar, yaitu menggunakan <strong>Live USB Installer</strong>.</p>
+            <p>Karena sistem yang sekarang sedang berjalan sudah "hilang ingatan" cara baca partisi boot, kita tidak bisa benerin dari dalam sesi yang sekarang. Kita butuh bantuan dari luar, yaitu menggunakan <strong>Live USB Installer</strong>.</p>
             <p>Siapkan flashdisk yang berisi installer CachyOS (atau Arch Linux juga boleh). Colok, restart, dan boot ke flashdisk tersebut. Setelah masuk ke tampilan terminal Live USB, ikuti langkah berikut dengan santai tapi teliti.</p>
             <h3>Langkah 1: Cek Partisi Kamu</h3>
             <p>Di terminal Live USB, ketik perintah ini buat melihat daftar partisi harddisk kamu:</p>

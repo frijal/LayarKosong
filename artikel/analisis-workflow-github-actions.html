@@ -75,7 +75,7 @@
                 Ngoprek Workflow <span class="text-indigo-600">GitHub Actions</span>
             </h2>
             <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
-                Bedah Tuntas Proses Deploy Cerdas ke Branch 'site' Biar Nggak Boros Waktu!
+                Bedah Tuntas Proses Deploy Cerdas ke Branch 'site' Biar Tidak Boros Waktu!
             </p>
         </div>
         <section class="mb-12">
@@ -97,7 +97,7 @@
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                         <span class="text-2xl">⚡</span>
                         <h4 class="font-bold mt-2">Smart Check</h4>
-                        <p class="text-sm text-gray-500 mt-1">Kalau nggak ada perubahan konten, dia diem aja. Hemat kuota runner!</p>
+                        <p class="text-sm text-gray-500 mt-1">Kalau tidak ada perubahan konten, dia diem aja. Hemat kuota runner!</p>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="md:col-span-11 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Izin (Permissions)</h3>
-                        <p class="text-gray-600 mb-6 text-lg">Bagian ini krusial. Kita ngasih "surat izin" biar dia boleh <strong>nulis (write)</strong> ke repo. Kalau nggak, proses push bakal ditolak mentah-mentah.</p>
+                        <p class="text-gray-600 mb-6 text-lg">Bagian ini krusial. Kita ngasih "surat izin" biar dia boleh <strong>nulis (write)</strong> ke repo. Kalau tidak, proses push bakal ditolak mentah-mentah.</p>
                         <pre class="bg-slate-900 text-indigo-300 p-6 rounded-xl overflow-x-auto text-sm">permissions:
   contents: write</pre>
                     </div>
@@ -158,7 +158,7 @@
                             </div>
                             <div class="border-l-4 border-emerald-100 pl-6">
                                 <h4 class="font-bold text-emerald-700 uppercase tracking-tighter text-sm mb-2">Deteksi Perubahan</h4>
-                                <p class="text-gray-600 mb-4">Bandingin folder baru sama yang udah live. Kalau isinya sama, ya nggak usah repot-repot deploy!</p>
+                                <p class="text-gray-600 mb-4">Bandingin folder baru sama yang udah live. Kalau isinya sama, ya tidak usah repot-repot deploy!</p>
                                 <pre class="bg-slate-900 text-emerald-300 p-4 rounded-lg text-xs">if git diff --no-index --quiet deploy_dir/ site/; then
   echo "changed=false" &gt;&gt; $GITHUB_OUTPUT
 fi</pre>

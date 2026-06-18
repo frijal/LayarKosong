@@ -150,19 +150,19 @@
         <p style="font-style: italic; opacity: 0.8;">Oleh: <strong>Fakhrul Rijal</strong> | Dipublikasikan pada 27 Januari 2026</p>
     </header>
     <article>
-        <p>Halo sobat tech! Selamat datang kembali di blog <strong>Layar Kosong</strong>. Pernah nggak sih kamu lagi asyik nge-deploy aplikasi, eh tiba-tiba koneksi SSH putus, database gagal *start*, atau log server isinya cuma `No space left on device`? Beuh, itu rasanya kayak lagi naik motor terus ban bocor di tengah jalan tol—ngeselin banget!</p>
+        <p>Halo sobat tech! Selamat datang kembali di blog <strong>Layar Kosong</strong>. Pernah tidak sih kamu lagi asyik nge-deploy aplikasi, eh tiba-tiba koneksi SSH putus, database gagal *start*, atau log server isinya cuma `No space left on device`? Beuh, itu rasanya kayak lagi naik motor terus ban bocor di tengah jalan tol—ngeselin banget!</p>
         <p>Disk yang penuh pada partisi root (`/`) bukan cuma bikin risih, tapi bisa bikin server produksi kamu berhenti total. Seringkali masalah ini muncul tiba-tiba tanpa permisi. Tapi, sebelum kamu mencak-mencak dan asal ketik perintah hapus sana-sini, mari kita tarik napas dalam-dalam. Mengetahui *di mana* ruang disk itu habis jauh lebih penting daripada sekadar tahu kalau disk kamu penuh.</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp" alt="Linux Server Disk Full Diagnosis" loading="eager" width="900" height="506">
         <h2>Mengapa Partisi Root Penuh Sangat Berbahaya? ("Why")</h2>
-        <p>Bayangin sistem operasi Linux itu kayak sebuah rumah. Partisi root adalah fondasinya. Kalau fondasinya penuh sesak sama sampah, penghuni rumah (proses sistem seperti SSH, Cron, Web Server) nggak bisa gerak. Beberapa dampak buruknya:</p>
+        <p>Bayangin sistem operasi Linux itu kayak sebuah rumah. Partisi root adalah fondasinya. Kalau fondasinya penuh sesak sama sampah, penghuni rumah (proses sistem seperti SSH, Cron, Web Server) tidak bisa gerak. Beberapa dampak buruknya:</p>
         <ul>
-            <li><strong>SSH Gagal Login:</strong> Karena sistem nggak bisa nulis *session file* baru.</li>
+            <li><strong>SSH Gagal Login:</strong> Karena sistem tidak bisa nulis *session file* baru.</li>
             <li><strong>Service Mogok:</strong> Aplikasi kayak Nginx atau Apache butuh ruang buat nulis log dan *temporary files*.</li>
             <li><strong>Database Corrupt:</strong> Kalau database (MySQL/PostgreSQL) lagi nulis data terus disk penuh, datanya bisa rusak.</li>
             <li><strong>Kernel Panic:</strong> Dalam kondisi ekstrem, sistem bisa *crash* total.</li>
         </ul>
         <h2>Strategi Diagnosa 5 Langkah: Diagnosa Dulu, Eksekusi Kemudian! ("How")</h2>
-        <p>Jangan asal `rm -rf`. Ikuti prosedur standar industri ini biar kamu nggak salah hapus file penting milik sistem.</p>
+        <p>Jangan asal `rm -rf`. Ikuti prosedur standar industri ini biar kamu tidak salah hapus file penting milik sistem.</p>
         <h3>1. Cek Penggunaan Filesystem</h3>
         <p>Langkah pertama adalah memastikan partisi mana yang sebenarnya "berteriak". Gunakan perintah andalan kita:</p>
         <pre>$ sudo df -Th</pre>
@@ -192,7 +192,7 @@
         <h2>Praktik Terbaik Menjaga Kesehatan Server ("When" &amp; "Where")</h2>
         <p>Kapan perlu bertindak? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ya sekarang! Jangan tunggu merah dulu. Dimana saja kamu harus pasang proteksi?</p>
         <ul>
-            <li><strong>Logrotate:</strong> Pastikan semua service menggunakan `logrotate` biar log nggak bengkak.</li>
+            <li><strong>Logrotate:</strong> Pastikan semua service menggunakan `logrotate` biar log tidak bengkak.</li>
             <li><strong>Monitoring:</strong> Pasang alert (pake Prometheus, Zabbix, atau script sederhana) yang bakal kasih notifikasi Telegram/Email kalau disk sudah mencapai 80%.</li>
             <li><strong>Mount Point Terpisah:</strong> Untuk data besar (seperti database atau file user), selalu gunakan partisi atau disk tambahan (misal di-mount ke <code>/data</code>), jangan dicampur dengan root.</li>
         </ul>

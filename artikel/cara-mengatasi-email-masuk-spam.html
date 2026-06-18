@@ -181,7 +181,7 @@
                  </header>
         <article>
             <p>Bayangkan skenario klasik ini: Kamu baru saja menyelesaikan sebuah fitur *email notification* di server aplikasi lokal. Saat ditest di lingkungan development, semuanya berjalan lancar, email terkirim dengan mulus. Langkah berikutnya jelas, kamu langsung melakukan proses deploy ke server production agar bisa dinikmati oleh pengguna nyata.</p>
-            <p>Namun tidak lama setelah rilis, user mulai mengirimkan complain: *\"Email kamu masuk spam.\"* Sontak kamu bingung, lalu buru-buru memeriksa konfigurasi server. Saat menelusuri mesin pencari, kamu berulang kali melihat istilah SPF, DKIM, dan DMARC—sementara kamu sendiri saat itu nggak tahu apa itu semua sebenarnya.</p>
+            <p>Namun tidak lama setelah rilis, user mulai mengirimkan complain: *\"Email kamu masuk spam.\"* Sontak kamu bingung, lalu buru-buru memeriksa konfigurasi server. Saat menelusuri mesin pencari, kamu berulang kali melihat istilah SPF, DKIM, dan DMARC—sementara kamu sendiri saat itu tidak tahu apa itu semua sebenarnya.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/48bd36226a61c19e.webp" alt="Panduan Setup SPF DKIM DMARC untuk Email Server" class="article-image" decoding="async" fetchpriority="high">
             <p>Satu hal yang perlu ditanamkan kuat-kuat: email yang masuk ke *inbox* utama pengguna itu bukan masalah keberuntungan atau *luck*. Itu adalah hasil dari sebuah sistem verifikasi yang bener dan dikonfigurasi secara presisi. Supaya aplikasi kamu tidak lagi dicap sebagai pengirim gelap, berikut adalah 7 langkah taktis bikin email transaksi yang reliably masuk ke *inbox* utama penerima: 🚀</p>
             <h2>1. Setup SPF Record Dulu</h2>

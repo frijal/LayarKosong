@@ -149,7 +149,7 @@
         <p style="font-size: 1.2rem; opacity: 0.8;">Jangan biarkan OOM Killer membunuh proses aplikasi kamu  secara paksa!</p>
     </header>
     <article class="content">
-        <p>Halo lagi, sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang cerah, kali ini kita bakal bahas sesuatu yang nggak kalah krusial dari urusan disk penuh, yaitu: <strong>RAM (Random Access Memory)</strong>. Kalau Disk penuh itu kayak gudang yang gak muat barang, RAM penuh itu kayak otak yang lagi <em>blank</em> gara-gara kebanyakan mikir. Ujung-ujungnya? Server kamu  "ngehang" atau proses penting tiba-tiba mati sendiri.</p>
+        <p>Halo lagi, sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang cerah, kali ini kita bakal bahas sesuatu yang tidak kalah krusial dari urusan disk penuh, yaitu: <strong>RAM (Random Access Memory)</strong>. Kalau Disk penuh itu kayak gudang yang gak muat barang, RAM penuh itu kayak otak yang lagi <em>blank</em> gara-gara kebanyakan mikir. Ujung-ujungnya? Server kamu  "ngehang" atau proses penting tiba-tiba mati sendiri.</p>
         <p>Pernah dengar istilah <strong>OOM (Out Of Memory) Killer</strong>? Itu adalah mekanisme di kernel Linux yang bakal "nembak mati" proses salah satu yang rakus saat RAM sudah kritis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Masalahnya, kadang yang ditembak itu justru proses penting kayak database atau web server. Ngeri kan?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nV6dNasAAb7Fc.webp" alt="Linux RAM Monitoring Dashboard" class="featured-image">
         <h2>Apa Masalah Utama RAM di Linux? ("What")</h2>
@@ -157,7 +157,7 @@
         <div class="info-panel">
             <h3><i class="fa-solid fa-info-circle"></i> Kenapa Harus Monitor RAM?</h3>
             <ul>
-                <li><strong>Mendeteksi Memory Leak:</strong> Aplikasi yang punya bug seringkali nggak ngelepas RAM setelah dipake, bikin penggunaan RAM naik terus pelan-pelan.</li>
+                <li><strong>Mendeteksi Memory Leak:</strong> Aplikasi yang punya bug seringkali tidak ngelepas RAM setelah dipake, bikin penggunaan RAM naik terus pelan-pelan.</li>
                 <li><strong>Optimasi Performa:</strong> Kalau RAM sering mepet, sistem bakal mulai pake <em>Swap</em> (disk) yang kecepatannya jauh lebih lemot dari RAM asli.</li>
                 <li><strong>Stabilitas Layanan:</strong> Mencegah aplikasi mendadak <em>restart</em> atau <em>error 500</em> gara-gara gak dapet jatah memori.</li>
             </ul>
@@ -165,7 +165,7 @@
         <h2>Siapa yang Perlu Memasang Script Ini? ("Who")</h2>
         <p>Semua orang yang punya server produksi! Baik itu buat blog pribadi, server aplikasi kantor, atau <em>node</em> kripto. Terutama kalau kamu  pake VPS dengan RAM terbatas (misal 1GB atau 2GB), monitor ini adalah "asuransi" biar kamu  gak perlu bolak-balik <em>reboot</em> server secara manual.</p>
         <h2>Dimana dan Kapan perlu Bertindak? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ("Where" &amp; "When")</h2>
-        <p>Idealnya, monitor ini dipasang di setiap unit server kamu . Waktunya? Sebaiknya dari hari pertama server itu <em>online</em>. Jangan tunggu sampai ada laporan "Web nggak bisa diakses" baru kamu  sibuk nyari penyebabnya. Dengan script otomatis, kamu  bakal dapet peringatan <strong>sebelum</strong> musibah terjadi.</p>
+        <p>Idealnya, monitor ini dipasang di setiap unit server kamu . Waktunya? Sebaiknya dari hari pertama server itu <em>online</em>. Jangan tunggu sampai ada laporan "Web tidak bisa diakses" baru kamu  sibuk nyari penyebabnya. Dengan script otomatis, kamu  bakal dapet peringatan <strong>sebelum</strong> musibah terjadi.</p>
         <h2>Bagaimana Caranya? Script RAM-Radar.sh ("How")</h2>
         <p>Mari kita buat script Bash yang cerdas. Script ini tidak cuma liat RAM yang "used", tapi liat yang "available" (yang benar-benar bisa dipake sistem). Copy script di bawah ini:</p>
         <div class="script-box">
@@ -209,7 +209,7 @@ fi</code></pre>
             </li>
         </ol>
         <h2>Kesimpulan: Jaga RAM-mu, Jaga Kewarasanmu!</h2>
-        <p>Mengelola server itu soal proaktif, bukan reaktif. Dengan script monitor RAM dan Disk yang sudah kita bahas, server kamu  sekarang punya "indera" buat ngelaporin kondisinya sendiri. Lo nggak perlu lagi jadi pemadam kebakaran yang sibuk nyari masalah pas api sudah besar.</p>
+        <p>Mengelola server itu soal proaktif, bukan reaktif. Dengan script monitor RAM dan Disk yang sudah kita bahas, server kamu  sekarang punya "indera" buat ngelaporin kondisinya sendiri. Lo tidak perlu lagi jadi pemadam kebakaran yang sibuk nyari masalah pas api sudah besar.</p>
         <p>Ingat, server yang sehat adalah awal dari hati yang tenang. Kalau ada script lain yang kamu  butuhin (misal monitor CPU atau status suhu server), jangan ragu buat colek gue di Telegram atau Twitter ya!</p>
   <div id="related-articles-grid"></div>
         <div id="response"></div>

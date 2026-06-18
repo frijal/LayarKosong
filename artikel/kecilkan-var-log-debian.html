@@ -290,10 +290,10 @@
                     <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.83 2.05c-.15-.02-.3-.05-.46-.05H11c-1.1 0-2 .9-2 2v2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-4V4c0-1.1-.9-2-2-2h-.94c-.11-.02-.22-.04-.33-.05zM10 4.05h3.17c.25.03.49.11.72.24l-3.89 3.89V4.05zM19 18H5V8h14v10z"></path></svg>
                     Kenapa Folder /var/log/ Bengkak?
                 </h2>
-                <p>Halo, bro! Pernah nggak sih kamu lagi asik-asik pakai Debian 13, tiba-tiba dapat notifikasi "disk space low"? Pas dicek, eh, ternyata folder <code>/var/log/</code> kamu ukurannya udah nggak wajar, bisa bergiga-giga. Santai, jangan panik. Ini masalah umum dan gampang banget atasinya.</p>
+                <p>Halo, bro! Pernah tidak sih kamu lagi asik-asik pakai Debian 13, tiba-tiba dapat notifikasi "disk space low"? Pas dicek, eh, ternyata folder <code>/var/log/</code> kamu ukurannya udah tidak wajar, bisa bergiga-giga. Santai, jangan panik. Ini masalah umum dan gampang banget atasinya.</p>
                 <p>Di sistem modern kayak Debian 13, ada dua biang kerok utama yang bikin folder log ini bengkak:</p>
                 <ol>
-                    <li><strong>Log Systemd (Journal):</strong> Ini adalah sistem logging utama. Semua log dari kernel, service, dan aplikasi masuk ke sini. Kalau nggak diatur, dia bakal nyimpen log terus-terusan.</li>
+                    <li><strong>Log Systemd (Journal):</strong> Ini adalah sistem logging utama. Semua log dari kernel, service, dan aplikasi masuk ke sini. Kalau tidak diatur, dia bakal nyimpen log terus-terusan.</li>
                     <li><strong>Log Tradisional (Logrotate):</strong> Ini adalah log-log 'jadul' dari aplikasi spesifik kayak Nginx, APT, Dpkg, dll. Biasanya file ini diakhiri dengan <code>.log</code>, <code>.log.1</code>, <code>.log.2.gz</code>, dan seterusnya.</li>
                 </ol>
                 <p>Yuk, kita bereskan satu per satu!</p>
@@ -336,12 +336,12 @@
                     <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"></path></svg>
                     B. Konfigurasi Permanen (Sangat Direkomendasikan!)
                 </h3>
-                <p>Ini adalah langkah paling penting biar masalah nggak terulang. Kita akan "memarahi" <code>systemd-journald</code> agar nggak boros tempat lagi.</p>
+                <p>Ini adalah langkah paling penting biar masalah tidak terulang. Kita akan "memarahi" <code>systemd-journald</code> agar tidak boros tempat lagi.</p>
                 <p><strong>1. Buka file konfigurasinya:</strong></p>
                 <pre><code>sudo nano /etc/systemd/journald.conf</code></pre>
                  <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq_pA9pItouLo3qjENwGNZsBbi9GCzEJZlKp521S_7Giwzi__H8jQgz7W7Hg6UN3rjFLcEVUjxGF28uipfw-wzOIF6T6oMxLA7etj670669DZ1TNlryiKUXCk-7pnrWoO1DJywHYFufT56WE0alwYUkwPhlu8dZhyTFAdcZWkBpceD4ve3eE8NbEvIpbc/s1600/varlog4.webp" alt="Terminal Linux menampilkan perintah truncate">
                 <p><strong>2. Cari dan ubah baris ini:</strong><br>
-                Kamu akan lihat banyak teks, cari baris yang ada tulisan <code>#SystemMaxUse=</code>. Tanda <code>#</code> di depannya berarti baris itu nggak aktif (dikomentari).</p>
+                Kamu akan lihat banyak teks, cari baris yang ada tulisan <code>#SystemMaxUse=</code>. Tanda <code>#</code> di depannya berarti baris itu tidak aktif (dikomentari).</p>
                 <p>Hapus tanda <code>#</code> di depannya dan atur batas ukurannya. Ukuran <code>1G</code> (1 Gigabyte) atau <code>500M</code> (500 Megabyte) udah lebih dari cukup untuk penggunaan normal.</p>
                 <pre><code>[Journal]
 #... (teks-teks lain biarkan saja)
@@ -352,7 +352,7 @@ SystemMaxUse=1G
                 <p><strong>4. Terapkan Perubahan:</strong><br>
                 Restart layanan journal-nya biar dia baca konfigurasi baru kita.</p>
                 <pre><code>sudo systemctl restart systemd-journald</code></pre>
-                <p>Selesai! Mulai sekarang, Debian kamu akan otomatis menjaga ukuran log journal agar nggak lebih dari 1G.</p>
+                <p>Selesai! Mulai sekarang, Debian kamu akan otomatis menjaga ukuran log journal agar tidak lebih dari 1G.</p>
             </section>
             <hr>
             <section>
@@ -360,7 +360,7 @@ SystemMaxUse=1G
                     <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"></path></svg>
                     Langkah 3: Menjalankan Logrotate (Log Tradisional)
                 </h2>
-                <p>Gimana dengan log lain kayak <code>apt</code>, <code>nala</code>, atau <code>dpkg.log</code>? Walaupun ukurannya kecil, nggak ada salahnya kita bersihkan juga. Untuk ini, kita pakai alat bernama <code>logrotate</code>.</p>
+                <p>Gimana dengan log lain kayak <code>apt</code>, <code>nala</code>, atau <code>dpkg.log</code>? Walaupun ukurannya kecil, tidak ada salahnya kita bersihkan juga. Untuk ini, kita pakai alat bernama <code>logrotate</code>.</p>
                 <p>Biasanya <code>logrotate</code> ini jalan otomatis tiap hari. Tapi kita bisa paksa dia jalan sekarang juga untuk "merotasi" log (mengarsipkan yang lama, mengompresnya, dan membuat file log baru yang kosong).</p>
                 <pre><code>sudo logrotate -f /etc/logrotate.conf</code></pre>
                 <p>Perintah ini akan membaca semua aturan di <code>/etc/logrotate.conf</code> dan folder <code>/etc/logrotate.d/</code>, lalu menjalankannya. Ini akan bantu mengompres file-file <code>.log.1</code> menjadi <code>.log.2.gz</code> dan menghapus yang sudah terlalu lama.</p>
@@ -370,7 +370,7 @@ SystemMaxUse=1G
                     <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"></path></svg>
                     Langkah 4: Menghapus File Log "Nakal" (Manual)
                 </h2>
-                <p>Ini adalah langkah terakhir jika kedua cara di atas belum cukup (tapi biasanya sih sudah). Kadang, ada aplikasi yang log-nya nggak diurus sama <code>journald</code> atau <code>logrotate</code>.</p>
+                <p>Ini adalah langkah terakhir jika kedua cara di atas belum cukup (tapi biasanya sih sudah). Kadang, ada aplikasi yang log-nya tidak diurus sama <code>journald</code> atau <code>logrotate</code>.</p>
                 <p>Jika kamu menemukan file log super besar (misalnya <code>/var/log/aplikasi-aneh.log</code>) dari hasil cek di Langkah 1, begini cara aman mengosongkannya:</p>
                 <div class="warning-box">
                     <strong>

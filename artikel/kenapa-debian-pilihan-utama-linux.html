@@ -180,25 +180,25 @@
     </header>
     <article>
         <p>Halo sobat tech! <i class="fa-solid fa-mug-hot"></i> Kalau kita bicara soal Linux, umumnya cenderung tidak ada habisnya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Diskusi soal "distro mana yang direkomendasikan" itu ibarat debat kusir yang tidak bakal selesai. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Tapi, setelah bertahun-tahun melalang buana di dunia *distro-hopping*, aku sampai pada satu kesimpulan yang mantap: **Debian adalah pelabuhan terakhir aku.**</p>
-        <p>Kenapa? Mari kita bedah pelan-pelan dengan prinsip 5W+1H (Apa, Siapa, Di mana, Kapan, Mengapa, dan Bagaimana) supaya kita nggak sekadar ikut-ikutan tren *hype* teknologi saja.</p>
+        <p>Kenapa? Mari kita bedah pelan-pelan dengan prinsip 5W+1H (Apa, Siapa, Di mana, Kapan, Mengapa, dan Bagaimana) supaya kita tidak sekadar ikut-ikutan tren *hype* teknologi saja.</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAOkHZ8bsAAF8ZS.webp" alt="Ilustrasi Terminal Linux Debian" class="featured-img" width="100%" height="618">
         <h2>Apa yang Sebenarnya Kita Cari dari Sebuah Distro? (What)</h2>
-        <p>Inti dari sebuah sistem operasi adalah menjadi jembatan antara ide dan realisasi. Kita butuh sesuatu yang nggak menghalangi produktivitas. Saat ini, banyak orang terdi luar nalar-di luar nalar dengan Arch Linux karena prinsip *rolling release*-nya yang selalu memberikan kernel paling gres. Sebagai perbandingan, saat artikel ini ditulis, versi kernel terbaru di Arch Linux ada di angka **6.18.7**, sementara di Debian 'testing', versinya berada di **6.18.5**.</p>
-        <p>Selisih tipis? Iya. Berpengaruh signifikan ke performa? Ternyata nggak juga. <i class="fa-solid fa-gauge-high"></i> Debian Testing memang tidak mengikuti siklus pembaruan *rolling release* murni seperti Arch, tapi proses stabilisasi paket dari versi 'sid' (unstable) ke 'testing' membuatnya secara praktis sama mutakhirnya dengan Fedora atau Arch untuk penggunaan sehari-hari.</p>
+        <p>Inti dari sebuah sistem operasi adalah menjadi jembatan antara ide dan realisasi. Kita butuh sesuatu yang tidak menghalangi produktivitas. Saat ini, banyak orang terdi luar nalar-di luar nalar dengan Arch Linux karena prinsip *rolling release*-nya yang selalu memberikan kernel paling gres. Sebagai perbandingan, saat artikel ini ditulis, versi kernel terbaru di Arch Linux ada di angka **6.18.7**, sementara di Debian 'testing', versinya berada di **6.18.5**.</p>
+        <p>Selisih tipis? Iya. Berpengaruh signifikan ke performa? Ternyata tidak juga. <i class="fa-solid fa-gauge-high"></i> Debian Testing memang tidak mengikuti siklus pembaruan *rolling release* murni seperti Arch, tapi proses stabilisasi paket dari versi 'sid' (unstable) ke 'testing' membuatnya secara praktis sama mutakhirnya dengan Fedora atau Arch untuk penggunaan sehari-hari.</p>
         <div class="quote-box">
             "Debian bukan soal siapa yang paling cepat mengirimkan update, tapi soal siapa yang paling cerdas dalam menstabilkan inovasi."
         </div>
         <h2>Siapa yang Membutuhkan Ketangguhan Ini? (Who)</h2>
-        <p>Apakah Debian cuma buat "orang tua" yang takut sistemnya rusak? Tentu nggak! Debian cocok buat siapa saja:
+        <p>Apakah Debian cuma buat "orang tua" yang takut sistemnya rusak? Tentu tidak! Debian cocok buat siapa saja:
             </p><ul>
                 <li>**Developer:** Yang butuh lingkungan kerja konsisten selama berbulan-bulan.</li>
                 <li>**Pengguna Desktop:** Yang ingin aplikasi terbaru tapi ogah dipusingkan dengan manual *adjustment* yang berlebihan.</li>
-                <li>**SysAdmin:** Yang mengelola *home server* dan nggak mau dibangunkan jam 2 pagi karena sistem *crash* setelah update.</li>
+                <li>**SysAdmin:** Yang mengelola *home server* dan tidak mau dibangunkan jam 2 pagi karena sistem *crash* setelah update.</li>
             </ul>
         <p></p>
         <h2>Mengapa Debian Testing Begitu Spesial? (Why)</h2>
         <p>Banyak orang salah kaprah menganggap versi 'testing' itu tidak stabil. Padahal, meskipun secara teknis bukan versi stabil final dan masih dalam tahap perbaikan bug, Debian Testing jauh lebih stabil daripada kebanyakan distribusi Linux lain yang ada saat ini. <i class="fa-solid fa-shield-virus"></i></p>
-        <p>Aku sudah melakukan pengujian ekstrim secara personal. Aku mengadu **Arch Linux, openSUSE Tumbleweed, Fedora, dan Gentoo** melawan **Debian Testing**. Pengujiannya nggak main-main: software yang sama, jumlah proses background dan foreground yang sama, hingga kecepatan transfer paket melalui koneksi nirkabel dan kabel yang sama.</p>
+        <p>Aku sudah melakukan pengujian ekstrim secara personal. Aku mengadu **Arch Linux, openSUSE Tumbleweed, Fedora, dan Gentoo** melawan **Debian Testing**. Pengujiannya tidak main-main: software yang sama, jumlah proses background dan foreground yang sama, hingga kecepatan transfer paket melalui koneksi nirkabel dan kabel yang sama.</p>
         <p>Hasilnya? Debian membuktikan dirinya sebagai distribusi Linux salah satu yang stabil di antara semuanya saat ini. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Arsitektur standar Debian membuatnya sangat gesit dan mutakhir, praktis setara dengan Arch Linux, namun tanpa risiko ketidakstabilan dan sistem yang "pecah" (breakage) yang sering kita temui di proyek-proyek Linux lainnya.</p>
         <h2>Bagaimana Aku Melakukan Pengujian Ini? (How)</h2>
         <p>Dalam mencari performa terbaik, aku melakukan beberapa penyesuaian teknis. Aku menonaktifkan beberapa layanan utama di **systemd** yang tidak aku perlukan. Selain itu, aku juga mengonfigurasi dan mengaktifkan beberapa layanan tambahan di luar standar yang biasanya dimuat saat startup. <i class="fa-solid fa-gears"></i></p>
@@ -212,11 +212,11 @@
         <h2>Kapan dan Di mana Kita perlu Memakai Debian? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. (When &amp; Where)</h2>
         <p>Pengalaman pribadi aku, yang aku kumpulkan sejak era Slackware 14.2, membawa aku pada sebuah strategi penempatan sistem yang ideal:</p>
         <ol>
-            <li>**Desktop &amp; Workstation:** Aku menggunakan **Debian Testing**. Aku dapat paket baru, kernel modern, tapi tetap punya "rem" keamanan yang menjaga sistem nggak hancur tiba-tiba.</li>
-            <li>**Server Rumah (Home Server):** Aku menggunakan **Debian Stable**. Keandalannya nggak perlu diragukan. Sekali pasang, lupakan, dia akan jalan terus selamanya.</li>
+            <li>**Desktop &amp; Workstation:** Aku menggunakan **Debian Testing**. Aku dapat paket baru, kernel modern, tapi tetap punya "rem" keamanan yang menjaga sistem tidak hancur tiba-tiba.</li>
+            <li>**Server Rumah (Home Server):** Aku menggunakan **Debian Stable**. Keandalannya tidak perlu diragukan. Sekali pasang, lupakan, dia akan jalan terus selamanya.</li>
         </ol>
         <h2>Kesimpulan: Sebuah Perspektif Personal</h2>
-        <p>Tentu saja, pengalaman aku ini nggak sempurna dan nggak mutlak. Pandangan lain yang berbeda mungkin sama validnya. Dunia Linux itu luas, dan setiap orang punya kebutuhan yang berbeda. Namun, bagi aku yang menghargai waktu dan stabilitas tanpa mau ketinggalan zaman, Debian adalah juaranya. <i class="fa-solid fa-trophy"></i></p>
+        <p>Tentu saja, pengalaman aku ini tidak sempurna dan tidak mutlak. Pandangan lain yang berbeda mungkin sama validnya. Dunia Linux itu luas, dan setiap orang punya kebutuhan yang berbeda. Namun, bagi aku yang menghargai waktu dan stabilitas tanpa mau ketinggalan zaman, Debian adalah juaranya. <i class="fa-solid fa-trophy"></i></p>
         <p>Debian berhasil membuktikan bahwa kita bisa mendapatkan kecanggihan tanpa perlu mengorbankan ketenangan pikiran. Jadi, kalau kamu capek dengan distro yang sering *ngadat* setelah update besar, mungkin sudah saatnya kamu mencoba Debian.</p>
     </article>
     <!-- Terkait & Komentar -->

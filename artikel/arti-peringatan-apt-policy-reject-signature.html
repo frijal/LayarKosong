@@ -274,18 +274,18 @@
                     <figcaption>Ilustrasi: Membedah pesan peringatan di dalam terminal Linux agar sistem operasi tetap optimal dan aman.</figcaption>
                 </figure>
                 <h2><i class="fa-solid fa-terminal icon"></i> Awal Mula Cerita: Pesan Misterius di Balik Terminal</h2>
-                <p>Pernah nggak sih, pas lagi asyik-asyiknya merawat sistem operasi dan menjalankan perintah sakti <code>sudo apt update</code>, tiba-tiba terminal memberikan respons yang bikin kening berkerut? Di tengah laju persentase unduhan paket yang biasanya mulus, mendadak nyempil sebuah pesan panjang yang mirip-mirip seperti blok kode di bawah ini:</p>
+                <p>Pernah tidak sih, pas lagi asyik-asyiknya merawat sistem operasi dan menjalankan perintah sakti <code>sudo apt update</code>, tiba-tiba terminal memberikan respons yang bikin kening berkerut? Di tengah laju persentase unduhan paket yang biasanya mulus, mendadak nyempil sebuah pesan panjang yang mirip-mirip seperti blok kode di bawah ini:</p>
 <pre><code>/usr/lib/python3/dist-packages/apt/cache.py:565: Warning:
 W:http://download.opensuse.org/.../InRelease: Policy will reject signature within a year
 res = self._cache.update(fetch_progress, slist, pulse_interval)</code></pre>
                 <p>Kalau kamu pertama kali melihat pesan itu, wajar banget kalau reaksi pertamamu adalah panik. Isi kepalamu mungkin langsung dihujani pertanyaan: <em>"Waduh, sistemku rusak?", "Jangan-jangan kena hack nih?",</em> atau <em>"Loh, aku kan pakai Debian, kok ada tulisan OpenSuse nyasar di sini?".</em></p>
-                <p>Tenang, tarik napas dalam-dalam. Pesan ini sebenarnya nggak seseram kelihatannya kok. Mari kita bedah bersama-sama secara perlahan!</p>
+                <p>Tenang, tarik napas dalam-dalam. Pesan ini sebenarnya tidak seseram kelihatannya kok. Mari kita bedah bersama-sama secara perlahan!</p>
                 <h2><i class="fa-solid fa-shield-halved icon"></i> Memahami Maknanya Secara Sederhana</h2>
                 <p>Kunci pertama yang harus kamu pahami adalah huruf <code>W:</code> di awal kalimat. Itu adalah singkatan dari <strong>Warning (Peringatan)</strong>, bukan sebuah kesalahan fatal (<em>Error</em>). Artinya, sistem Linux kamu saat ini masih sehat walafiat, ia hanya sedang menunaikan tugasnya untuk memberitahumu tentang potensi kendala di masa depan.</p>
                 <div class="alert">
                     <i class="fa-solid fa-lightbulb" style="font-size: 1.5rem;"></i>
                     <div>
-                        Anggap saja sistem manajemen paket kamu (APT) itu seperti satpam kompleks yang sangat teliti. Dia bilang, <em>"Bos, KTP tamu dari repositori pihak ketiga ini masih aman kok untuk sekarang. Cuma mau ngasih tau aja, masa berlakunya tinggal kurang dari setahun. Biar bos nggak kaget kalau tiba-tiba besok-besok KTP-nya ditolak."</em>
+                        Anggap saja sistem manajemen paket kamu (APT) itu seperti satpam kompleks yang sangat teliti. Dia bilang, <em>"Bos, KTP tamu dari repositori pihak ketiga ini masih aman kok untuk sekarang. Cuma mau ngasih tau aja, masa berlakunya tinggal kurang dari setahun. Biar bos tidak kaget kalau tiba-tiba besok-besok KTP-nya ditolak."</em>
                     </div>
                 </div>
                 <p>Secara teknis, setiap sumber perangkat lunak (repositori) dibekali "segel keamanan" berupa sertifikat digital atau GPG <em>key</em> untuk membuktikan bahwa isinya autentik dan belum dimanipulasi oleh peretas. Sertifikat ini memiliki masa berlaku. Nah, pesan peringatan tadi muncul karena sertifikat dari salah satu repositori yang pernah kamu tambahkan akan segera kedaluwarsa dalam kurun waktu kurang dari 365 hari. Saat ini semuanya masih aman, namun jika si pemilik repositori lupa memperbaruinya nanti, sistem Debian atau Ubuntu kamu akan berhenti memercayai sumber tersebut.</p>

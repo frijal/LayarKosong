@@ -160,8 +160,8 @@
         </table>
         <h2 id="deb-get">1. deb-get <i class="fa-solid fa-box"></i></h2>
         <img src="/img/linux-cdn.softpedia.com/screenshots/deb-get_1.webp" alt="Screenshot deb-get di terminal" loading="lazy">
-        <p><strong>deb-get</strong> ini kayak bawa rasa <code>apt</code> ke paket-paket third-party yang nggak ada di repo resmi. Khusus buat distro berbasis Debian/Ubuntu (termasuk Linux Mint, Pop!_OS, dll). Dia bisa ambil paket dari GitHub releases, PPA, bahkan download langsung. Dikembangin sama Martin Wimpress – iya, yang bikin Ubuntu MATE itu!</p>
-        <p>Repo-nya udah curated rapi, banyak app populer kayak VS Code, Zoom, dll yang versi terbaru sering telat masuk repo resmi. Instalasinya mirip apt, dan kalau kamu pake GitHub token, nggak bakal kena rate limit. Keren banget buat yang setia sama .deb.</p>
+        <p><strong>deb-get</strong> ini kayak bawa rasa <code>apt</code> ke paket-paket third-party yang tidak ada di repo resmi. Khusus buat distro berbasis Debian/Ubuntu (termasuk Linux Mint, Pop!_OS, dll). Dia bisa ambil paket dari GitHub releases, PPA, bahkan download langsung. Dikembangin sama Martin Wimpress – iya, yang bikin Ubuntu MATE itu!</p>
+        <p>Repo-nya udah curated rapi, banyak app populer kayak VS Code, Zoom, dll yang versi terbaru sering telat masuk repo resmi. Instalasinya mirip apt, dan kalau kamu pake GitHub token, tidak bakal kena rate limit. Keren banget buat yang setia sama .deb.</p>
         <pre><code>sudo apt install curl lsb-release wget
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get</code></pre>
         <h2 id="autonomix">2. Autonomix <i class="fa-solid fa-desktop"></i></h2>
@@ -169,22 +169,22 @@ curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | su
         <p><strong>Autonomix</strong> adalah satu-satunya di list ini yang punya <strong>GUI</strong>! Pake GTK4 + libadwaita, tampilannya modern banget. Mirip Obtainium di Android. Support macam-macam format: .deb, .rpm, AppImage, Flatpak, Snap. Update tinggal klik doang. Cocok buat yang kadang males ketik command panjang. <i class="fa-solid fa-heart"></i></p>
         <h2 id="eget">3. Eget <i class="fa-solid fa-download"></i></h2>
         <img src="/img/itsfoss.com/content/images/2025/12/eget.webp" alt="Screenshot Eget di terminal" loading="lazy">
-        <p><strong>Eget</strong> ini favorit aku banget karena super simpel. Cukup kasih URL repo GitHub, dia otomatis cari binary yang cocok sama OS dan arsitektur lo, download, ekstrak, taruh di tempat yang bener. Cross-platform (Linux, macOS, BSD). Nggak ada config ribet. Aku sering pake buat install tool-tool kecil kayak lazygit atau ripgrep versi terbaru.</p>
+        <p><strong>Eget</strong> ini favorit aku banget karena super simpel. Cukup kasih URL repo GitHub, dia otomatis cari binary yang cocok sama OS dan arsitektur lo, download, ekstrak, taruh di tempat yang bener. Cross-platform (Linux, macOS, BSD). Tidak ada config ribet. Aku sering pake buat install tool-tool kecil kayak lazygit atau ripgrep versi terbaru.</p>
         <h2 id="install-release">4. Install Release <i class="fa-solid fa-code"></i></h2>
         <img src="/img/user-images.githubusercontent.com/1578458/87901619-ee629a80-ca2d-11ea-8609-8a8eb39801d2.webp" alt="Demo bin manager (mirip konsep)" loading="lazy">
         <p><strong>Install Release</strong> (command-nya <code>ir</code>) pake Python, support GitHub dan GitLab. Bisa sync state antar mesin lewat repo Git – jadi setup tool kamu sama persis di laptop dan desktop. Deteksi arsitektur otomatis, ada hold package juga.</p>
         <pre><code>pip install -U install-release</code></pre>
         <h2 id="bin">5. bin <i class="fa-solid fa-cubes"></i></h2>
         <img src="/img/user-images.githubusercontent.com/1578458/87901619-ee629a80-ca2d-11ea-8609-8a8eb39801d2.webp" alt="Screenshot bin manager" loading="lazy">
-        <p><strong>bin</strong> ini powerful karena support banyak sumber: GitHub, GitLab, Codeberg, bahkan Docker image atau Hashicorp releases. Install ke folder user (nggak butuh root), ada rollback versi juga. Cocok buat yang suka eksplor tool dari berbagai forge.</p>
+        <p><strong>bin</strong> ini powerful karena support banyak sumber: GitHub, GitLab, Codeberg, bahkan Docker image atau Hashicorp releases. Install ke folder user (tidak butuh root), ada rollback versi juga. Cocok buat yang suka eksplor tool dari berbagai forge.</p>
         <h2 id="stew">6. stew <i class="fa-solid fa-file-code"></i></h2>
         <img src="/img/itsfoss.com/content/images/2025/12/eget.webp" alt="Contoh terminal tool serupa" loading="lazy">
         <p><strong>stew</strong> bawa konsep deklaratif lewat <code>Stewfile</code>. Kamu definisikan semua binary yang mau diinstall (bisa pin versi), terus jalankan sekali – reproducible di semua mesin lo. Ada mode headless dan interactive UI juga.</p>
         <h2 id="afx">7. AFX <i class="fa-solid fa-plug"></i></h2>
         <img src="/img/itsfoss.com/content/images/2025/12/deb-get.webp" alt="Contoh terminal tool manager" loading="lazy">
         <p><strong>AFX</strong> spesial karena bisa manage CLI binary sekaligus shell plugin (bash/zsh/fish). Pake YAML config, support environment variable, alias, bahkan dependency antar paket. Buat yang suka customize shell sampe detail.</p>
-        <p>Gimana bro? Dari ketujuh ini, aku pribadi lagi sering pake <strong>eget</strong> buat cepet-cepetan sama <strong>deb-get</strong> buat paket besar. Kalau kamu pake Fedora atau Arch, mungkin <strong>bin</strong> atau <strong>stew</strong> lebih cocok. Yang penting, sekarang kita nggak perlu lagi takut ketinggalan update tool favorit cuma karena males buka GitHub! <i class="fa-solid fa-fire"></i></p>
-        <p>Kalo kamu udah coba salah satu, ceritain dong di komentar pengalaman kamu. Bug nggak? Favorit yang mana? Atau ada tool lain yang missed? Share yuk!</p>
+        <p>Gimana bro? Dari ketujuh ini, aku pribadi lagi sering pake <strong>eget</strong> buat cepet-cepetan sama <strong>deb-get</strong> buat paket besar. Kalau kamu pake Fedora atau Arch, mungkin <strong>bin</strong> atau <strong>stew</strong> lebih cocok. Yang penting, sekarang kita tidak perlu lagi takut ketinggalan update tool favorit cuma karena males buka GitHub! <i class="fa-solid fa-fire"></i></p>
+        <p>Kalo kamu udah coba salah satu, ceritain dong di komentar pengalaman kamu. Bug tidak? Favorit yang mana? Atau ada tool lain yang missed? Share yuk!</p>
     </main>
     <div id="related-articles-grid"></div>
     <div id="response"></div>

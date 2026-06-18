@@ -155,16 +155,16 @@
             <ul>
                 <li>Gunakan format <code>.webp</code> atau <code>.avif</code> yang jauh lebih ringan dibanding JPEG/PNG.</li>
                 <li>Pasang atribut <code>fetchpriority="high"</code> pada gambar utama (LCP element) biar browser tahu itu prioritas!</li>
-                <li>Gunakan <code>loading="lazy"</code> buat gambar yang ada di bawah (biar nggak ganggu loading awal).</li>
+                <li>Gunakan <code>loading="lazy"</code> buat gambar yang ada di bawah (biar tidak ganggu loading awal).</li>
             </ul>
         </div>
         <h2>2. CLS (Cumulative Layout Shift) 📐</h2>
-        <p>Pernah nggak lagi mau nge-klik tombol, tiba-tiba kontennya "lompat" ke bawah dan kamu malah nge-klik iklan? Nah, itu namanya CLS jelek. [Revisi: gunakan diksi yang lebih netral, bersyarat, dan sesuai konteks teknis.] Pengunjung benci sangat sama ini.</p>
+        <p>Pernah tidak lagi mau nge-klik tombol, tiba-tiba kontennya "lompat" ke bawah dan kamu malah nge-klik iklan? Nah, itu namanya CLS jelek. [Revisi: gunakan diksi yang lebih netral, bersyarat, dan sesuai konteks teknis.] Pengunjung benci sangat sama ini.</p>
         <div class="pro-tip">
-            <i class="fa-solid fa-info-circle"></i> <strong>Pro Tip:</strong> Selalu kasih atribut <code>width</code> dan <code>height</code> pada setiap gambar atau video. Dengan begitu, browser udah "booking" tempat buat gambar itu sebelum gambarnya selesai di-download. Jadi nggak ada lagi drama konten lompat-lompat!
+            <i class="fa-solid fa-info-circle"></i> <strong>Pro Tip:</strong> Selalu kasih atribut <code>width</code> dan <code>height</code> pada setiap gambar atau video. Dengan begitu, browser udah "booking" tempat buat gambar itu sebelum gambarnya selesai di-download. Jadi tidak ada lagi drama konten lompat-lompat!
         </div>
         <h2>3. INP (Interaction to Next Paint) ⚡</h2>
-        <p>Ini adalah metrik baru pengganti FID. INP ngukur seberapa responsif blog kamu pas di-klik. Kalau kamu pakai banyak JavaScript (kayak widget Turnstile kemarin), pastikan script-nya nggak nge-<em>freeze</em> browser.</p>
+        <p>Ini adalah metrik baru pengganti FID. INP ngukur seberapa responsif blog kamu pas di-klik. Kalau kamu pakai banyak JavaScript (kayak widget Turnstile kemarin), pastikan script-nya tidak nge-<em>freeze</em> browser.</p>
         <div class="metric-grid">
             <div class="metric-card">
                 <h3>Minify CSS/JS</h3>
@@ -176,7 +176,7 @@
             </div>
         </div>
         <h2>Kesimpulan: Blog Statis adalah Pemenangnya! 🏆</h2>
-        <p>Kenapa aku setia sama blog statis? Karena secara fundamental, blog statis udah punya modal buat dapet skor Core Web Vitals yang sempurna. Nggak ada database query yang lemot, nggak ada server-side processing yang berat. Tinggal kita poles dikit di sisi frontend, blog kita bakal melesat kayak jet!</p>
+        <p>Kenapa aku setia sama blog statis? Karena secara fundamental, blog statis udah punya modal buat dapet skor Core Web Vitals yang sempurna. Tidak ada database query yang lemot, tidak ada server-side processing yang berat. Tinggal kita poles dikit di sisi frontend, blog kita bakal melesat kayak jet!</p>
         <p>Ingat, optimasi itu proses, bukan tujuan akhir. Cek secara berkala pakai <em>Lighthouse</em> atau <em>PageSpeed Insights</em>. Kalau ada yang merah, jangan panik. Perbaiki pelan-pelan satu per satu. Selamat ngulik, sobat Layar Kosong!</p>
     </article>
     <div id="related-articles-grid">

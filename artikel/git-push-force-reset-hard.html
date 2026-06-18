@@ -259,12 +259,12 @@
     <h3>Memperbaiki Commit yang Rusak <i class="fa-solid fa-bug"></i></h3>
     <p>Misal kamu nge-commit API key. Daripada disalahgunakan pihak tak bertanggung jawab, mending force push setelah amend commit. Tapi ingat, kalo branch itu udah dipake orang lain, mending pake cara lain.</p>
     <h3>Membersihkan Repositori Lokal <i class="fa-solid fa-broom"></i></h3>
-    <p>Lagi eksperimen branch kotor, pengen balik ke kondisi bersih. Hard reset lokal aman banget, asal nggak ada perubahan penting yang belum di-commit. Tapi inget, yang lokal ya, jangan ngeremote.</p>
+    <p>Lagi eksperimen branch kotor, pengen balik ke kondisi bersih. Hard reset lokal aman banget, asal tidak ada perubahan penting yang belum di-commit. Tapi inget, yang lokal ya, jangan ngeremote.</p>
     <img src="https://dalam.web.id/img/user-images.githubusercontent.com/1256329/80170009-f9d03200-85b4-11ea-94d3-3041887565ac.webp" alt="Contoh force push di console" loading="lazy">
     <img src="https://dalam.web.id/img/cdn.prod.website-files.com/61c02e339c11997e6926e3d9/61c2e47b4d436d4d1a382d76_5e2a1539b3437be8c9018c2f_cover-git-push-force2.webp" alt="Meme git push force" loading="lazy">
     <h2>5. Risiko dan Konsekuensi yang Harus Anda Ketahui <i class="fa-solid fa-skull-crossbones"></i></h2>
     <h3>Penjelasan Kehilangan Data</h3>
-    <p>Data bisa ilang permanen kalau commit yang ditimpa nggak ada di lokal siapapun. Kecuali kamu punya backup atau reflog. Bahkan GitHub kadang nyimpen commit selama beberapa hari, tapi jangan harap.</p>
+    <p>Data bisa ilang permanen kalau commit yang ditimpa tidak ada di lokal siapapun. Kecuali kamu punya backup atau reflog. Bahkan GitHub kadang nyimpen commit selama beberapa hari, tapi jangan harap.</p>
     <h3>Bahaya Kolaborasi Tim</h3>
     <p>Ini yang paling serem. Bayangin tim kamu udah kerja seminggu, tiba-tiba ada yang force push ke main. Pull request jadi merah, branch developer pada patah hati, dan yang paling parah: kepercayaan ilang. Udah kayak sinetron.</p>
     <img src="https://dalam.web.id/img/git-scm.com/book/ms/v2/images/reset-hard.webp" alt="Visualisasi git reset hard" loading="lazy">
@@ -283,12 +283,12 @@
     <p>Ini pahlawan kita! Dia akan ngecek apakah remote branch udah berubah sejak terakhir kita fetch. Kalau ada perubahan baru, push ditolak. Aman banget buat kolaborasi.</p>
     <h3>Revert Sebagai Pengganti Reset <i class="fa-solid fa-undo"></i></h3>
     <pre><code>git revert HEAD~1</code></pre>
-    <p><code>git revert</code> bikin commit baru yang isinya kebalikan dari commit tertentu. Nggak ada history yang ditulis ulang, jadi aman buat branch publik. Revert adalah teman sejati.</p>
+    <p><code>git revert</code> bikin commit baru yang isinya kebalikan dari commit tertentu. Tidak ada history yang ditulis ulang, jadi aman buat branch publik. Revert adalah teman sejati.</p>
     <h2>8. Praktik Terbaik untuk Tim</h2>
     <h3>Protokol Komunikasi <i class="fa-solid fa-comments"></i></h3>
     <p>Sebelum force push ke branch bareng, wajib ngomong dulu di chat grup: "Gue mau force push ke branch fitur A, ada yang lagi kerja di situ?" Simpel, tapi nyegah bencana.</p>
     <h3>Aturan Perlindungan Branch <i class="fa-solid fa-lock"></i></h3>
-    <p>Di GitHub/GitLab, kamu bisa atur branch <code>main</code> atau <code>develop</code> supaya nggak bisa di-force push, bahkan oleh admin sekalipun. Wajib pake pull request dan review. Ini pagar utama.</p>
+    <p>Di GitHub/GitLab, kamu bisa atur branch <code>main</code> atau <code>develop</code> supaya tidak bisa di-force push, bahkan oleh admin sekalipun. Wajib pake pull request dan review. Ini pagar utama.</p>
     <img src="https://dalam.web.id/img/www.bitfarm-archiv.com/pics/Versioning.webp" alt="Konsep versioning" loading="lazy">
     <h2>9. Panduan Penggunaan Aman Langkah Demi Langkah</h2>
     <ol>

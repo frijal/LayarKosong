@@ -242,7 +242,7 @@
     <!-- Gambar unggulan -->
     <!-- Pendahuluan dengan 5W+1H -->
     <div class="highlight">
-      <p><i class="fa-solid fa-lightbulb"></i> <strong>5W+1H sekilas:</strong> Mau domain sendiri untuk email komunitas tapi nggak mau ribet kelola server? Cloudflare Email Routing solusinya. <strong>Apa?</strong> Layanan gratis Cloudflare yang jadi penerima email (via MX) lalu langsung forward ke inbox tujuan. <strong>Siapa?</strong> Cocok untuk komunitas, organisasi kecil, atau pribadi. <strong>Di mana?</strong> Di dashboard Cloudflare. <strong>Kapan?</strong> Kapan saja domain udah pake Cloudflare. <strong>Mengapa?</strong> Gratis, tidak simpan email, gampang diatur. <strong>Bagaimana?</strong> Ikuti langkah-langkah di bawah!</p>
+      <p><i class="fa-solid fa-lightbulb"></i> <strong>5W+1H sekilas:</strong> Mau domain sendiri untuk email komunitas tapi tidak mau ribet kelola server? Cloudflare Email Routing solusinya. <strong>Apa?</strong> Layanan gratis Cloudflare yang jadi penerima email (via MX) lalu langsung forward ke inbox tujuan. <strong>Siapa?</strong> Cocok untuk komunitas, organisasi kecil, atau pribadi. <strong>Di mana?</strong> Di dashboard Cloudflare. <strong>Kapan?</strong> Kapan saja domain udah pake Cloudflare. <strong>Mengapa?</strong> Gratis, tidak simpan email, gampang diatur. <strong>Bagaimana?</strong> Ikuti langkah-langkah di bawah!</p>
     </div>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp" alt="Ilustrasi email routing Cloudflare untuk komunitas" width="100%" height="auto" loading="lazy">    <h2>🧭 1. Konsep Dasar: Cloudflare Hanya Jadi Penerus</h2>
     <p>Cloudflare <strong>bukan mail server</strong>. Dia cuma:</p>
@@ -280,7 +280,7 @@ MX  20  mx2.cloudflare.net</pre>
       <li>Selesai. Email apapun ke <code>admin@domainkamu.com</code> langsung masuk ke Gmail tujuan.</li>
     </ul>
     <p>Kamu bisa bikin banyak rule, bahkan satu alamat bisa forward ke beberapa tujuan (pisah koma).</p>
-    <h3><i class="fa-solid fa-shield-alt"></i> 2.4 Konfigurasi SPF (wajib biar nggak masuk spam)</h3>
+    <h3><i class="fa-solid fa-shield-alt"></i> 2.4 Konfigurasi SPF (wajib biar tidak masuk spam)</h3>
     <p>Tambahkan TXT record di Cloudflare DNS:</p>
     <pre>Nama: @ (atau domainkamu.com)
 TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
@@ -291,7 +291,7 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
     <p>Tambahkan TXT record dengan host <code>_dmarc</code>:</p>
     <pre>v=DMARC1; p=quarantine; rua=mailto:admin@domainkamu.com</pre>
     <p>Setelah stabil bisa naikkan ke <code>p=reject</code>.</p>
-    <h2>📬 3. Kirim Email dari Alamat Domain (karena Cloudflare nggak bisa kirim)</h2>
+    <h2>📬 3. Kirim Email dari Alamat Domain (karena Cloudflare tidak bisa kirim)</h2>
     <p>Kamu perlu SMTP terpisah. Berikut opsi paling umum:</p>
     <h3><i class="fa-brands fa-google"></i> Opsi A: Kirim via Gmail SMTP (gratis, mudah)</h3>
     <ul>

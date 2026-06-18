@@ -167,32 +167,32 @@
                 Halo sobat tech! Pernah merasa OS Debian kamu sudah stabil tapi rasanya masih ada yang "mengganjal"? Nah, baru-baru ini ada temuan menarik soal kustomisasi kernel Debian. Intinya, kita bisa melakukan penyesuaian (adjustment) mendalam pada "otak" sistem operasi kita tanpa harus pusing melihat jutaan baris kode C yang bikin mata juling.
             </p>
             <p>
-                Ini bukan cuma soal Debian, tapi berlaku buat hampir semua kernel Linux secara umum. Dengan menggunakan alat bernama <strong>menuconfig</strong>, kita bisa memilih fitur mana yang mau diaktifkan atau dimatikan. Bayangkan kayak lagi modif motor; kamu nggak perlu bikin mesin dari nol, cukup ganti knalpot, atur karburator, atau copot part yang nggak penting biar motornya makin enteng dan lari kencang! 🏎️
+                Ini bukan cuma soal Debian, tapi berlaku buat hampir semua kernel Linux secara umum. Dengan menggunakan alat bernama <strong>menuconfig</strong>, kita bisa memilih fitur mana yang mau diaktifkan atau dimatikan. Bayangkan kayak lagi modif motor; kamu tidak perlu bikin mesin dari nol, cukup ganti knalpot, atur karburator, atau copot part yang tidak penting biar motornya makin enteng dan lari kencang! 🏎️
             </p>
         </section>
         <section class="section-content">
             <h2><i class="fa-solid fa-question fa-icon"></i> Kenapa perlu Repot-repot Tuning Kernel? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. (Why)</h2>
             <p>
                 Pertanyaannya: <em>"Kenapa repot? Kan Debian sudah stabil banget?"</em> Jawabannya sederhana: <strong>Responsivitas</strong>.
-                Kernel bawaan distro biasanya dibuat "general" supaya bisa jalan di semua komputer, dari laptop jadul sampai server super canggih. Akibatnya, banyak modul yang nggak kamu butuhkan tetap jalan di latar belakang.
+                Kernel bawaan distro biasanya dibuat "general" supaya bisa jalan di semua komputer, dari laptop jadul sampai server super canggih. Akibatnya, banyak modul yang tidak kamu butuhkan tetap jalan di latar belakang.
             </p>
             <blockquote>
                 "Semakin sedikit waktu yang dibutuhkan CPU untuk berpikir, semakin baik."
             </blockquote>
             <p>
-                Dengan membuang "lemak" yang nggak perlu, CPU kamu bisa fokus ke tugas yang benar-benar penting. Hasilnya? System berasa lebih <em>snappy</em>, animasi window lebih smooth, dan buat para gamer, <strong>frame pacing</strong> jadi lebih stabil. Bahkan ada laporan kalau tuning ini bisa memperbaiki masalah <em>screen tearing</em> saat nonton video atau main game. Ajaib kan? ✨
+                Dengan membuang "lemak" yang tidak perlu, CPU kamu bisa fokus ke tugas yang benar-benar penting. Hasilnya? System berasa lebih <em>snappy</em>, animasi window lebih smooth, dan buat para gamer, <strong>frame pacing</strong> jadi lebih stabil. Bahkan ada laporan kalau tuning ini bisa memperbaiki masalah <em>screen tearing</em> saat nonton video atau main game. Ajaib kan? ✨
             </p>
         </section>
         <section class="section-content">
             <h2><i class="fa-solid fa-person-digging fa-icon"></i> Siapa yang Cocok Melakukan Ini? (Who)</h2>
             <p>
-                Kustomisasi ini cocok banget buat kamu yang peduli sama setiap tetes performa PC. Tapi ingat, ini bukan buat semua orang. Penulis aslinya sendiri mengaku masih "noob", jadi kamu nggak perlu jadi profesor ilmu komputer buat mencoba. Yang penting adalah <strong>kemauan buat riset</strong>. Kalau kamu merasa PC kamu agak <em>laggy</em> atau pengen belajar lebih dalam soal jeroan Linux, <em>this is for you</em>. Tapi kalau kamu cuma butuh komputer buat ngetik tugas dan nggak mau pusing kalau tiba-tiba sistem nggak mau booting, mending pakai kernel standar saja ya.
+                Kustomisasi ini cocok banget buat kamu yang peduli sama setiap tetes performa PC. Tapi ingat, ini bukan buat semua orang. Penulis aslinya sendiri mengaku masih "noob", jadi kamu tidak perlu jadi profesor ilmu komputer buat mencoba. Yang penting adalah <strong>kemauan buat riset</strong>. Kalau kamu merasa PC kamu agak <em>laggy</em> atau pengen belajar lebih dalam soal jeroan Linux, <em>this is for you</em>. Tapi kalau kamu cuma butuh komputer buat ngetik tugas dan tidak mau pusing kalau tiba-tiba sistem tidak mau booting, mending pakai kernel standar saja ya.
             </p>
         </section>
         <section class="section-content">
             <h2><i class="fa-solid fa-map-location-dot fa-icon"></i> Di Mana Kita Bisa Melakukannya? (Where)</h2>
             <p>
-                Semua proses ini dilakukan langsung di dalam sistem Debian kamu. Kamu bisa mendownload <em>source code</em> kernel dari repositori resmi Debian. Kenapa pilih Debian kernel daripada vanilla Linux? Karena Debian punya patch stabilitas sendiri yang sudah teruji. Jadi, meskipun kita modif, fondasinya tetap kokoh. Kamu nggak bakal ketemu kejutan aneh yang biasa muncul di kernel "mentah".
+                Semua proses ini dilakukan langsung di dalam sistem Debian kamu. Kamu bisa mendownload <em>source code</em> kernel dari repositori resmi Debian. Kenapa pilih Debian kernel daripada vanilla Linux? Karena Debian punya patch stabilitas sendiri yang sudah teruji. Jadi, meskipun kita modif, fondasinya tetap kokoh. Kamu tidak bakal ketemu kejutan aneh yang biasa muncul di kernel "mentah".
             </p>
         </section>
         <section class="section-content">
@@ -209,7 +209,7 @@
             <ul>
                 <li><strong>CPU Threads:</strong> Kalau CPU kamu punya 6 cores dan 12 threads, atur angkanya ke 12 secara spesifik.</li>
                 <li><strong>GPU Config:</strong> Kalau punya satu GPU terintegrasi dan satu dedicated, atur agar kernel hanya memuat driver yang benar-benar dipakai.</li>
-                <li><strong>Debugging:</strong> Matikan fitur <em>debugging</em> yang nggak perlu. Ini seringkali membebani CPU tanpa kita sadari.</li>
+                <li><strong>Debugging:</strong> Matikan fitur <em>debugging</em> yang tidak perlu. Ini seringkali membebani CPU tanpa kita sadari.</li>
                 <li><strong>Processor Type:</strong> Pilih tipe prosesor yang spesifik (misal: Core2 atau yang lebih baru) daripada memilih "Generic".</li>
             </ul>
             <p>

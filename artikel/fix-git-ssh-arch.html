@@ -139,11 +139,11 @@
   <p>Kalau kamu baru aja nemu error ini waktu jalankan <code>git fetch</code> atau <code>git pull</code> di Arch Linux:</p>
   <pre><code>error: cannot run ssh: No such file or directory
 fatal: unable to fork</code></pre>
-  <p>Tenang, ini bukan error besar kok 😎 Biasanya Git cuma nggak bisa nemuin program <code>ssh</code> yang dibutuhkan untuk konek ke remote repository.</p>
+  <p>Tenang, ini bukan error besar kok 😎 Biasanya Git cuma tidak bisa nemuin program <code>ssh</code> yang dibutuhkan untuk konek ke remote repository.</p>
   <h2>🔍 Penyebab Umum</h2>
   <ul>
     <li><b>OpenSSH belum terinstal</b> — Git pakai SSH buat koneksi ke GitHub, GitLab, dsb.</li>
-    <li><b>PATH nggak berisi lokasi ssh</b> — kadang udah terinstal tapi belum dikenal sistem.</li>
+    <li><b>PATH tidak berisi lokasi ssh</b> — kadang udah terinstal tapi belum dikenal sistem.</li>
   </ul>
     <h2>💡 Script Otomatis: fix-git-ssh.sh</h2>
   <p>Biar makin gampang, kamu bisa pakai script ini untuk otomatis mendeteksi dan memperbaiki error:</p>

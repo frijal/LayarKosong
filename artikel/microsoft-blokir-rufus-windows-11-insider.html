@@ -161,7 +161,7 @@
             <p>Ada kabar yang cukup membuat dahi berkerut ini, terutama buat kalian yang hobi gonta-ganti build Windows atau para teknisi IT yang sehari-harinya "berteman" sama flashdisk bootable. Infrastruktur download milik Microsoft kabarnya kembali memperketat penjagaan. Kali ini, mereka secara terang-terangan memblokir akses otomatis (scripted access) untuk mengambil file ISO Windows 11 Insider Preview.
             </p>        <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBTCbAvbcAArk5L.webp" alt="Rufus Interface blocking Windows 11 Insider Download" width="100%" height="auto" loading="eager">
             <p>
-                Imbasnya? Aplikasi legendaris kesayangan kita, <strong>Rufus</strong>, sekarang nggak berdaya alias gagal total pas mau narik build preview tertentu. Kamu mungkin bakal ketemu sama kode error misterius <strong>715-123130</strong>. Kejadian ini bikin banyak orang harus balik lagi ke cara lama yang ribet: download manual lewat browser atau pakai Media Creation Tool yang kadang suka lemot itu.
+                Imbasnya? Aplikasi legendaris kesayangan kita, <strong>Rufus</strong>, sekarang tidak berdaya alias gagal total pas mau narik build preview tertentu. Kamu mungkin bakal ketemu sama kode error misterius <strong>715-123130</strong>. Kejadian ini bikin banyak orang harus balik lagi ke cara lama yang ribet: download manual lewat browser atau pakai Media Creation Tool yang kadang suka lemot itu.
             </p>
         </section>
         <section class="content-section">
@@ -187,16 +187,16 @@
             </p>
             <h3>5. Why (Kenapa Microsoft tega ngelakuin ini?)</h3>
             <p>
-                Nah, ini yang jadi pertanyaan besar. Microsoft sendiri nggak pernah bilang secara terang-terangan kalau mereka benci Rufus. Alasan resminya biasanya adalah "keamanan" dan "mencegah penyalahgunaan" (anti-abuse). Karena build Insider itu barang mentah (pre-release), Microsoft pengen kontrol penuh siapa yang download dan lewat mana. Mereka mungkin pengen mastiin setiap orang yang download itu dapet informasi hukum/lisensi yang muncul di browser, yang mana kalau lewat Rufus, tahap itu sering terlewati.
+                Nah, ini yang jadi pertanyaan besar. Microsoft sendiri tidak pernah bilang secara terang-terangan kalau mereka benci Rufus. Alasan resminya biasanya adalah "keamanan" dan "mencegah penyalahgunaan" (anti-abuse). Karena build Insider itu barang mentah (pre-release), Microsoft pengen kontrol penuh siapa yang download dan lewat mana. Mereka mungkin pengen mastiin setiap orang yang download itu dapet informasi hukum/lisensi yang muncul di browser, yang mana kalau lewat Rufus, tahap itu sering terlewati.
             </p>
             <h3>6. How (Bagaimana cara kerja blokirnya?)</h3>
             <p>
                 Secara teknis, server Microsoft pakai teknik <em>fingerprinting</em>. Mereka ngecek:
             </p>
             <ul>
-                <li><strong>Cookies &amp; Session Tokens:</strong> Browser beneran punya ini, script simpel seringkali nggak punya.</li>
+                <li><strong>Cookies &amp; Session Tokens:</strong> Browser beneran punya ini, script simpel seringkali tidak punya.</li>
                 <li><strong>User-Agent:</strong> Mereka liat siapa yang minta data. Kalau polanya mencurigakan, langsung <em>reject</em>.</li>
-                <li><strong>Referrer Validation:</strong> Server ngecek, "Eh, kamu datengnya dari halaman resmi Microsoft nggak?". Kalau datengnya tiba-tiba (lewat API), ya diblokir.</li>
+                <li><strong>Referrer Validation:</strong> Server ngecek, "Eh, kamu datengnya dari halaman resmi Microsoft tidak?". Kalau datengnya tiba-tiba (lewat API), ya diblokir.</li>
                 <li><strong>IP Heuristics:</strong> Kalau satu IP minta berkali-kali pake script, sistem anti-bot Microsoft bakal teriak dan ngeluarin kode 715-123130.</li>
             </ul>
         </section>
@@ -206,10 +206,10 @@
         <section class="content-section">
             <h2>Dampak Nyatanya: Siapa yang Paling Rugi? 💸</h2>
             <p>
-                Mungkin buat kita yang cuma install ulang PC setahun sekali, ini nggak masalah. Tapi buat profesional, ini mimpi buruk:
+                Mungkin buat kita yang cuma install ulang PC setahun sekali, ini tidak masalah. Tapi buat profesional, ini mimpi buruk:
             </p>
             <ul>
-                <li><strong>Admin IT &amp; Pipeline CI/CD:</strong> Banyak kantor yang otomatisasi pengujian hardware mereka pakai ISO Insider. Kalau download-nya nggak bisa di-script, mereka harus manual klik satu-satu. Boros waktu banget!</li>
+                <li><strong>Admin IT &amp; Pipeline CI/CD:</strong> Banyak kantor yang otomatisasi pengujian hardware mereka pakai ISO Insider. Kalau download-nya tidak bisa di-script, mereka harus manual klik satu-satu. Boros waktu banget!</li>
                 <li><strong>Teknisi Lapangan:</strong> Rufus itu alat tempur wajib. Kehilangan fitur download terintegrasi artinya mereka harus nambah langkah ekstra di tiap servis komputer pelanggan.</li>
                 <li><strong>Ekosistem Tooling:</strong> Ini membuktikan kalau platform besar kayak Microsoft punya kontrol asimetris. Mereka bisa "mematikan" fitur aplikasi pihak ketiga cuma dengan ganti satu baris kode di server mereka.</li>
             </ul>
@@ -221,18 +221,18 @@
             </p>
             <ol>
                 <li><strong>Download Manual (Metode Paling Ampuh):</strong> Buka halaman resmi "Download Windows 11 Disk Image (ISO)" di browser kamu. Login pakai akun Microsoft, pilih build-nya, dan ambil link-nya secara interaktif. Setelah file ISO-nya dapet, baru deh buka Rufus dan pilih file ISO itu secara manual (Select ISO). Rufus-nya sendiri masih sakti kok buat bikin USB bootable, cuma fitur "Download"-nya aja yang lagi mogok.</li>
-                <li><strong>Pakai Media Creation Tool (MCT):</strong> Ini alat resmi dari Microsoft. Meski nggak sefleksibel Rufus, alat ini biasanya kebal dari blokir karena emang punya Microsoft sendiri.</li>
+                <li><strong>Pakai Media Creation Tool (MCT):</strong> Ini alat resmi dari Microsoft. Meski tidak sefleksibel Rufus, alat ini biasanya kebal dari blokir karena emang punya Microsoft sendiri.</li>
                 <li><strong>Gunakan Local Cache:</strong> Buat organisasi besar, jangan download berkali-kali. Download sekali, simpan di server internal (NAS atau File Server), terus distribusikan ke teknisi.</li>
-                <li><strong>Pantau Update Rufus:</strong> Pete Batard biasanya nggak tinggal diam. Dia dan komunitas <em>open source</em> seringkali nemu cara buat "nambal" script Fido supaya bisa lewat lagi dari radar Microsoft. Cek terus halaman GitHub Rufus secara berkala.</li>
+                <li><strong>Pantau Update Rufus:</strong> Pete Batard biasanya tidak tinggal diam. Dia dan komunitas <em>open source</em> seringkali nemu cara buat "nambal" script Fido supaya bisa lewat lagi dari radar Microsoft. Cek terus halaman GitHub Rufus secara berkala.</li>
             </ol>
         </section>
         <section class="content-section">
             <h2>Kesimpulan: Masa Depan Kebebasan Tooling di Ekosistem Windows 🏁</h2>
             <p>
-                Kejadian pemblokiran Rufus ini ngasih kita pelajaran berharga: jangan terlalu bergantung sama satu alur otomatisasi yang nggak resmi. Microsoft punya hak penuh atas infrastruktur mereka, dan mereka nggak punya kewajiban buat dukung aplikasi pihak ketiga kayak Rufus.
+                Kejadian pemblokiran Rufus ini ngasih kita pelajaran berharga: jangan terlalu bergantung sama satu alur otomatisasi yang tidak resmi. Microsoft punya hak penuh atas infrastruktur mereka, dan mereka tidak punya kewajiban buat dukung aplikasi pihak ketiga kayak Rufus.
             </p>
             <p>
-                Strategi terbaik sekarang adalah <strong>resiliensi</strong>. Pastikan kamu punya cara cadangan buat dapetin ISO. Buat para teknisi, mulai dokumentasikan langkah manual buat tim kalian supaya nggak bingung pas Rufus nggak bisa download. Kita lihat saja nanti, apakah Microsoft bakal makin ketat atau mereka bakal dengerin keluhan komunitas dan kasih sedikit kelonggaran buat para power user.
+                Strategi terbaik sekarang adalah <strong>resiliensi</strong>. Pastikan kamu punya cara cadangan buat dapetin ISO. Buat para teknisi, mulai dokumentasikan langkah manual buat tim kalian supaya tidak bingung pas Rufus tidak bisa download. Kita lihat saja nanti, apakah Microsoft bakal makin ketat atau mereka bakal dengerin keluhan komunitas dan kasih sedikit kelonggaran buat para power user.
             </p>
             <p>
                 Tetap semangat ngoprek, dan jangan lupa buat selalu backup data sebelum install ulang pakai build Insider! Sampai jumpa di waktu berikutnya! ✌️

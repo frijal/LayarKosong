@@ -230,7 +230,7 @@
                     <span>Git, Node.js, Best Practice</span> •
                     <span>Update Terakhir: 25 Okt 2025</span>
                 </div>
-                <p>Mantap, Fakhrul 👍. Biar folder seperti <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> nggak ikut ke‑commit lagi ke Git repo kamu, penting banget pakai file <code class="kbd">.gitignore</code> yang bener. File ini ngasih tau Git file atau folder mana aja yang harus diabaikan.</p>
+                <p>Mantap, Fakhrul 👍. Biar folder seperti <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> tidak ikut ke‑commit lagi ke Git repo kamu, penting banget pakai file <code class="kbd">.gitignore</code> yang bener. File ini ngasih tau Git file atau folder mana aja yang harus diabaikan.</p>
                 <p>Berikut contoh <code class="kbd">.gitignore</code> standar yang sudah siap pakai dan cukup lengkap untuk project Node.js:</p>
                 <div class="section">
                     <h2><i class="fa-solid fa-file-code"></i>Contoh <code class="kbd">.gitignore</code> untuk Node.js</h2>
@@ -314,14 +314,14 @@ Thumbs.db
                         <li><strong>Opsional (Lockfiles):</strong> <code class="kbd">package-lock.json</code>, <code class="kbd">yarn.lock</code>, <code class="kbd">pnpm-lock.yaml</code> → Mengabaikan file lock (<code class="kbd">#</code> di depannya berarti diabaikan oleh `.gitignore` ini) berarti setiap kali orang lain atau CI/CD install dependencies, mereka bisa dapat versi paket yang sedikit berbeda (tapi masih sesuai range di `package.json`). Kalau kamu ingin dependency selalu *fresh* dengan versi patch/minor terbaru, bisa diabaikan. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. **Tapi**, kalau kamu butuh *reproducible build* (hasil build yang pasti sama persis di mana pun), **sebaiknya file lock ini tetap di‑commit** (hapus tanda <code class="kbd">#</code> di depannya). Ini praktik yang paling umum dan disarankan.</li>
                         <li><strong>Tambahan Penting:</strong> <code class="kbd">.env</code> dan variasinya (<code class="kbd">.env.local</code>, dll.) → **Jangan pernah** commit file environment yang berisi *credential* (API key, password database, dll.) ke repo publik. Bahaya banget!</li>
                         <li><strong>Build Output:</strong> Folder seperti <code class="kbd">dist/</code>, <code class="kbd">build/</code>, <code class="kbd">.next/</code> (untuk Next.js) berisi hasil kompilasi kode kamu. Ini biasanya tidak perlu di-commit karena bisa digenerate ulang dari source code. Kecuali, memang tujuan kamu mem-publish hasil build-nya (misal ke GitHub Pages).</li>
-                        <li><strong>Lain-lain:</strong> Contoh di atas juga mengabaikan file log, data runtime, hasil test coverage, file sistem operasi (<code class="kbd">.DS_Store</code>, <code class="kbd">Thumbs.db</code>), dan folder konfigurasi editor (<code class="kbd">.vscode/</code>, <code class="kbd">.idea/</code>) yang umumnya nggak relevan untuk di-commit bareng source code.</li>
+                        <li><strong>Lain-lain:</strong> Contoh di atas juga mengabaikan file log, data runtime, hasil test coverage, file sistem operasi (<code class="kbd">.DS_Store</code>, <code class="kbd">Thumbs.db</code>), dan folder konfigurasi editor (<code class="kbd">.vscode/</code>, <code class="kbd">.idea/</code>) yang umumnya tidak relevan untuk di-commit bareng source code.</li>
                     </ul>
                 </div>
                  <div class="tip">
                      <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                          <circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16h.01"></path>
                      </svg>
-                     <div>Dengan <code class="kbd">.gitignore</code> yang rapi seperti ini, kasus folder <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> muncul lagi di commit-an Git kamu nggak akan terulang. Repo jadi lebih ringan dan fokus ke source code asli! ✨</div>
+                     <div>Dengan <code class="kbd">.gitignore</code> yang rapi seperti ini, kasus folder <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> muncul lagi di commit-an Git kamu tidak akan terulang. Repo jadi lebih ringan dan fokus ke source code asli! ✨</div>
                  </div>
                <div id="related-articles-grid"></div><div id="response"></div>
             </div>

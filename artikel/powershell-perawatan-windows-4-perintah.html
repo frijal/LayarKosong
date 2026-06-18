@@ -293,7 +293,7 @@
     </div>
     <p>Bosan mengecek update aplikasi satu per satu? Pakai <strong>winget</strong>. Jalankan perintah ini di PowerShell (Admin):</p>
     <div class="code-block"><pre>winget upgrade --all --include-unknown</pre></div>
-    <p><code>--all</code> artinya semua aplikasi yang punya pembaruan, <code>--include-unknown</code> buat aplikasi yang versinya nggak terdeteksi (seperti browser, dev tools). Hasilnya, semua aplikasi akan diperbarui. Pastikan koneksi internet stabil. Praktis banget, kan? <i class="fa-solid fa-smile-wink"></i></p>
+    <p><code>--all</code> artinya semua aplikasi yang punya pembaruan, <code>--include-unknown</code> buat aplikasi yang versinya tidak terdeteksi (seperti browser, dev tools). Hasilnya, semua aplikasi akan diperbarui. Pastikan koneksi internet stabil. Praktis banget, kan? <i class="fa-solid fa-smile-wink"></i></p>
     <!-- COMMAND 2: TEMP CLEANUP -->
     <h3><i class="fa-solid fa-trash-alt"></i> B. Bersihkan File Sampah yang Membusuk</h3>
     <div class="feature-img">
@@ -302,7 +302,7 @@
     </div>
     <p>File temporary dari aplikasi, browser, dan instalasi bisa bikin storage cepat penuh. Perintah ini akan menghapus isi folder %TEMP% dengan aman:</p>
     <div class="code-block"><pre>Get-ChildItem $env:TEMP -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue</pre></div>
-    <p>Flag <code>-ErrorAction SilentlyContinue</code> memastikan file yang sedang dipakai oleh aplikasi dilewati, jadi nggak error. Setelah perintah selesai, ruang disk langsung lega. Lakukan setiap bulan.</p>
+    <p>Flag <code>-ErrorAction SilentlyContinue</code> memastikan file yang sedang dipakai oleh aplikasi dilewati, jadi tidak error. Setelah perintah selesai, ruang disk langsung lega. Lakukan setiap bulan.</p>
     <!-- COMMAND 3: DISM + SFC REPAIR -->
     <h3><i class="fa-solid fa-tools"></i> C. Perbaiki File Sistem yang Rusak (DISM + SFC)</h3>
     <div class="gallery-mini">
@@ -323,15 +323,15 @@
     </div>
     <p>Pernah bingung kenapa drive C: tiba-tiba penuh? Jalankan perintah ini untuk menampilkan file &gt;500MB di folder user:</p>
     <div class="code-block"><pre>Get-ChildItem -Path C:\Users -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Length -gt 500MB } | Sort-Object Length -Descending | Select-Object FullName, @{Name="Size(GB)";Expression={[math]::Round($_.Length/1GB,2)}}</pre></div>
-    <p>Hasilnya daftar file dengan ukuran dalam GB, diurut dari terbesar. Kamu bisa hapus file yang nggak perlu (pastikan bukan file sistem). Jika mau cek seluruh drive C:, ganti <code>-Path C:\Users</code> menjadi <code>-Path C:\</code>.</p>
+    <p>Hasilnya daftar file dengan ukuran dalam GB, diurut dari terbesar. Kamu bisa hapus file yang tidak perlu (pastikan bukan file sistem). Jika mau cek seluruh drive C:, ganti <code>-Path C:\Users</code> menjadi <code>-Path C:\</code>.</p>
     <!-- EXTRA OUTLINE: RUTINITAS 10 MENIT -->
     <h2>📌 Rutinitas 10 Menit yang Saya Lakukan Setiap Bulan</h2>
-    <p>Keempat perintah di atas adalah <strong>monthly maintenance pass</strong> saya. Urutannya: <i class="fa-solid fa-arrow-right"></i> Update aplikasi dengan winget → bersihkan temp → jalankan DISM+SFC → cari file besar. Total nggak sampai 15 menit (kecuali DISM agak lama), tapi efeknya: PC lebih responsif, crash berkurang, dan storage terkontrol. Ini adalah prinsip nyata dari <strong>E-E-A-T</strong>: berdasarkan pengalaman langsung dan rekomendasi praktisi IT.</p>
+    <p>Keempat perintah di atas adalah <strong>monthly maintenance pass</strong> saya. Urutannya: <i class="fa-solid fa-arrow-right"></i> Update aplikasi dengan winget → bersihkan temp → jalankan DISM+SFC → cari file besar. Total tidak sampai 15 menit (kecuali DISM agak lama), tapi efeknya: PC lebih responsif, crash berkurang, dan storage terkontrol. Ini adalah prinsip nyata dari <strong>E-E-A-T</strong>: berdasarkan pengalaman langsung dan rekomendasi praktisi IT.</p>
     <div class="feature-img">
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/5697f41d684ad15c.webp" alt="PowerShell DISM command again" loading="lazy">
         <div class="caption">Jalankan rutin, PC selalu dalam kondisi prima.</div>
     </div>
-    <p>Gimana? Gampang banget kan? Dengan 4 perintah ini, kamu nggak perlu instal software cleaner tambahan. Winget, DISM, SFC, dan cmdlet bawaan sudah cukup handal. Bonus: kalau winget belum ada di Windows 10, install “App Installer” dari Microsoft Store.</p>
+    <p>Gimana? Gampang banget kan? Dengan 4 perintah ini, kamu tidak perlu instal software cleaner tambahan. Winget, DISM, SFC, dan cmdlet bawaan sudah cukup handal. Bonus: kalau winget belum ada di Windows 10, install “App Installer” dari Microsoft Store.</p>
     <!-- RELATED ARTICLES GRID -->
         <div class="grid-related">
             <div class="zdummy3">

@@ -291,8 +291,8 @@
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw4RdahPQaBd_WuWLKqam9l9sjBn6yQOo2_7bqq1v22D91zlLVMhU6-RWAYB561a-YgDWg_Gd9FdK3LI6PX5k31Q296ZMHS6-REwjVaFsjsy-pYo1tbpXBL-jwT4ZozmRditys52dPF4L7PBe1gDSpbS4WMbpLtrfQUMbi442HDWJNGUZVeSwjNTewkTE/s1600/upgradeclean.webp" alt="Ilustrasi workflow otomatis">
             <section id="tujuan-workflow">
                 <h2>🎯 Buat Apa Sih Workflow Ini?</h2>
-                <p>Mantap! Workflow GitHub Actions ini beneran keren dan dirancang buat **jaga dependensi Node.js** di proyek kamu biar **tetap update** (versi terbaru) dan **bersih** (buang yang nggak kepakai).</p>
-                <p>Nggak cuma itu, setelah dia beres-beres, dia bakal **ngajuin perubahan itu sebagai Pull Request (PR)**. Jadi, kamu atau tim bisa cek dulu (review) sebelum perubahannya digabung ke kode utama. Lebih aman, kan?</p>
+                <p>Mantap! Workflow GitHub Actions ini beneran keren dan dirancang buat **jaga dependensi Node.js** di proyek kamu biar **tetap update** (versi terbaru) dan **bersih** (buang yang tidak kepakai).</p>
+                <p>Tidak cuma itu, setelah dia beres-beres, dia bakal **ngajuin perubahan itu sebagai Pull Request (PR)**. Jadi, kamu atau tim bisa cek dulu (review) sebelum perubahannya digabung ke kode utama. Lebih aman, kan?</p>
                 <p>Enaknya lagi, workflow ini bisa kamu **jalankan manual** kapan aja kamu mau, atau **dijadwalin otomatis** jalan sebulan sekali. Jadi, urusan *maintenance* dependensi bisa lebih enteng!</p>
             </section>
             <hr>
@@ -321,7 +321,7 @@
                         <p>Cuma ada satu pekerjaan utama di sini, yang jalan di lingkungan Linux (<code>ubuntu-latest</code>). Langkah-langkahnya:</p>
                         <ol type="a">
                             <li>**Ambil Kode (<code>Checkout code</code>):** Ngunduh kode proyekmu ke 'meja kerja' si Actions.</li>
-                            <li>**Siapin Alat Node.js (<code>Setup Node.js</code>):** Masang Node.js versi 20 dan aktifin *cache* npm biar instalasi dependensi bisa lebih cepet kalau nggak banyak berubah.</li>
+                            <li>**Siapin Alat Node.js (<code>Setup Node.js</code>):** Masang Node.js versi 20 dan aktifin *cache* npm biar instalasi dependensi bisa lebih cepet kalau tidak banyak berubah.</li>
                             <li>**Pasang Peralatan Tambahan (<code>Install dependencies (untuk tools)</code>):** Jalankan <code>npm install</code>. Ini buat masang *tools* yang dibutuhin workflow ini (kayak <code>npm-check-updates</code> dan <code>depcheck</code>) yang mungkin kamu daftarin di <code>devDependencies</code> di <code>package.json</code>.</li>
                             <li>**Biar Bisa Dijalankan (<code>Make script executable</code>):** Ngasih izin biar skrip <code>data/cleanup.js</code> bisa dieksekusi.</li>
                             <li>**Langkah 1: Upgrade! (<code>1. Upgrade dependencies</code>):**
@@ -334,23 +334,23 @@
                                 <ul>
                                    <li>Jalankan skrip <code>data/cleanup.js</code>. Nah, skrip ini kerjaannya bersih-bersih. Kemungkinan besar dia:
                                         <ol>
-                                            <li>Nyari paket/dependensi yang udah nggak kepakai lagi (mungkin pakai <code>depcheck</code>).</li>
+                                            <li>Nyari paket/dependensi yang udah tidak kepakai lagi (mungkin pakai <code>depcheck</code>).</li>
                                             <li>Nghapus paket 'sampah' itu dari <code>package.json</code> atau <code>node_modules</code>.</li>
                                             <li>Jalanin <code>npm install</code> lagi biar <code>node_modules</code> dan <code>package-lock.json</code> cocok sama <code>package.json</code> yang udah di-update dan dibersihin.</li>
                                         </ol>
                                     </li>
                                 </ul>
                             </li>
-                             <li>**Ngecek Ada Hasil Nggak? (<code>Check for changes</code>):**
+                             <li>**Ngecek Ada Hasil Tidak? (<code>Check for changes</code>):**
                                 <ul>
-                                   <li>Langkah cerdas nih! Dia ngecek pakai <code>git status</code>, "File <code>package.json</code> atau <code>package-lock.json</code> ada yang berubah nggak ya setelah di-upgrade dan dibersihin?".</li>
-                                   <li>Hasilnya disimpan, apakah <code>true</code> (ada perubahan) atau <code>false</code> (nggak ada).</li>
+                                   <li>Langkah cerdas nih! Dia ngecek pakai <code>git status</code>, "File <code>package.json</code> atau <code>package-lock.json</code> ada yang berubah tidak ya setelah di-upgrade dan dibersihin?".</li>
+                                   <li>Hasilnya disimpan, apakah <code>true</code> (ada perubahan) atau <code>false</code> (tidak ada).</li>
                                 </ul>
                             </li>
                              <li>**Tes Dulu Kalau Ada Perubahan (<code>Run tests</code>):**
                                 <ul>
                                    <li>Ini cuma jalan kalau langkah sebelumnya bilang <code>true</code>.</li>
-                                   <li>Dia coba jalanin perintah <code>npm run build</code> dan <code>npm test</code> (kalau ada di <code>package.json</code> kamu). **Penting banget buat mastiin update dependensi nggak bikin error.**</li>
+                                   <li>Dia coba jalanin perintah <code>npm run build</code> dan <code>npm test</code> (kalau ada di <code>package.json</code> kamu). **Penting banget buat mastiin update dependensi tidak bikin error.**</li>
                                 </ul>
                             </li>
                              <li>**Bikin Laporan (PR) Kalau Ada Perubahan (<code>Create Pull Request</code>):**
@@ -359,7 +359,7 @@
                                    <li>Pakai action jagoan <code>peter-evans/create-pull-request</code> buat bikin PR otomatis.</li>
                                    <li>PR-nya dibikin rapi:
                                         <ul>
-                                            <li>Di *branch* baru biar nggak ganggu (<code class="inline">chore/auto-maintenance-xxxx</code>).</li>
+                                            <li>Di *branch* baru biar tidak ganggu (<code class="inline">chore/auto-maintenance-xxxx</code>).</li>
                                             <li>Judul, pesan commit, dan deskripsinya jelas nerangin isinya (upgrade &amp; cleanup).</li>
                                             <li>Dikasih label (<code class="inline">dependencies</code>, <code>chore</code>, dll).</li>
                                             <li>Langsung minta review ke kamu (<code class="inline">reviewers: frijal</code>).</li>
@@ -378,9 +378,9 @@
                  <ul>
                     <li>✅ **Serba Otomatis:** Bisa jalan sendiri tiap bulan, hemat waktu kamu.</li>
                     <li>🔒 **Upgrade Aman:** Cuma ambil versi minor &amp; patch, risiko error kecil.</li>
-                    <li>🧹 **Proyek Jadi Rapi:** Ada langkah bersih-bersih paket nggak kepakai.</li>
+                    <li>🧹 **Proyek Jadi Rapi:** Ada langkah bersih-bersih paket tidak kepakai.</li>
                     <li>🧠 **Cerdas:** Cuma bikin PR kalau beneran ada yang di-update atau dibersihin.</li>
-                    <li>🧪 **Ada Tes:** Nggak asal bikin PR, dites dulu biar nggak ngerusak.</li>
+                    <li>🧪 **Ada Tes:** Tidak asal bikin PR, dites dulu biar tidak ngerusak.</li>
                     <li>📄 **PR Jelas:** Laporan perubahannya (PR) informatif dan gampang dimengerti.</li>
                     <li>🔑 **Izin Lengkap:** Udah punya izin yang pas buat bikin PR (ini penting!).</li>
                     <li>🌿 **Manajemen Branch Oke:** Bikin branch baru tiap jalan biar rapi.</li>

@@ -226,7 +226,7 @@
         </div>
         <div id=iposbrowser></div><h1>Panduan Perintah du di Linux: Cara Cek Pemakaian Ruang Disk 📂</h1>
         <article>
-            <p class="lead">Pernah merasa hardisk tiba-tiba penuh padahal merasa nggak download apa-apa? Di Linux, kita punya teman setia bernama <code>du</code> (Disk Usage) untuk melacak siapa "pelaku" utamanya.</p>
+            <p class="lead">Pernah merasa hardisk tiba-tiba penuh padahal merasa tidak download apa-apa? Di Linux, kita punya teman setia bernama <code>du</code> (Disk Usage) untuk melacak siapa "pelaku" utamanya.</p>
             <p>Halo sobat tech! Kalau kamu sering berkutat di terminal, pasti pernah ngalamin momen panik pas dapet notifikasi <em>"Disk Space Low"</em>. Berbeda dengan Windows atau Mac yang tinggal klik kanan "Properties", di terminal Linux kita harus sedikit lebih elegan pakai perintah <code>du</code>. Tool ini fungsinya sederhana: menghitung berapa besar ruang yang dimakan oleh file atau folder kamu sampai ke akar-akarnya.</p>
             <h2><i class="fa-solid fa-gears"></i> Opsi Paling Populer yang Wajib Kamu Tahu</h2>
             <p>Jujur aja, kalau cuma ngetik <code>du</code> doang, terminal bakal muntah angka-angka aneh yang susah dibaca (itu hitungannya per block, lho). Biar lebih manusiawi, kita perlu bantuan beberapa opsi sakti ini:</p>
@@ -250,10 +250,10 @@
                 <figcaption>Tux selalu siap nemenin kamu ngoprek di Balikpapan!</figcaption>
             </figure>
             <h2><i class="fa-solid fa-triangle-exclamation"></i> Masalah Klasik: Jebakan Hard Link</h2>
-            <p>Tahu nggak? Ternyata <code>du</code> itu bisa "ketipu". Kalau di sistem file kamu banyak terdapat <strong>hard link</strong> (satu file yang punya banyak nama/lokasi tapi sebenernya cuma satu data di disk), <code>du</code> standar kemungkinan besar bakal ngitung file itu berkali-kali.</p>
-            <p>Hasilnya? Laporan penggunaan disk jadi bengkak dan nggak akurat. Ini sering terjadi kalau kamu pakai tool backup kayak <em>Rsnapshot</em> atau sistem snapshot lainnya.</p>
+            <p>Tahu tidak? Ternyata <code>du</code> itu bisa "ketipu". Kalau di sistem file kamu banyak terdapat <strong>hard link</strong> (satu file yang punya banyak nama/lokasi tapi sebenernya cuma satu data di disk), <code>du</code> standar kemungkinan besar bakal ngitung file itu berkali-kali.</p>
+            <p>Hasilnya? Laporan penggunaan disk jadi bengkak dan tidak akurat. Ini sering terjadi kalau kamu pakai tool backup kayak <em>Rsnapshot</em> atau sistem snapshot lainnya.</p>
             <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Solusi Akurat dengan Skrip Perl</h2>
-            <p>Biar nggak ketipu sama hard link, kita bisa pakai skrip cerdas yang melacak nomor <em>inode</em>. Skrip ini bakal mastiin kalau satu file fisik cuma dihitung satu kali aja, seberapa banyak pun nama pangdi luar nalarnnya di terminal.</p>
+            <p>Biar tidak ketipu sama hard link, kita bisa pakai skrip cerdas yang melacak nomor <em>inode</em>. Skrip ini bakal mastiin kalau satu file fisik cuma dihitung satu kali aja, seberapa banyak pun nama pangdi luar nalarnnya di terminal.</p>
             <pre><code class="language-perl">#!/usr/bin/perl -w
 # Skrip Cek Disk Akurat
 use strict;

@@ -269,7 +269,7 @@
         <p>Pakai analogi sederhana: Memasukkan gambar selebar 1920px ke dalam layar <em>smartphone</em> (yang mentok di ukuran fisik 1080px) itu ibarat menuangkan air galon ke dalam botol minum 600ml. Airnya masuk, tapi sisanya meluber tak berguna. Selain itu, sistem kompresi PDF tidak secanggih format gambar modern, sehingga gambar besar akan diekstrak menjadi data statis yang sangat berat.</p>
         <h2><i class="fa-solid fa-screwdriver-wrench"></i> Bagaimana Menemukan <em>Sweet Spot</em>-nya? (How)</h2>
         <p>Jangan panik! Untuk hasil yang tajam tapi ramah <em>storage</em>, ukuran emasnya adalah <strong>lebar 1080px</strong> (Rekomendasi Utama) atau <strong>lebar 720px - 800px</strong> (Mode Hemat). Ukuran ini membuat teks kecil tetap terbaca saat di-<em>zoom</em>, tapi <em>file</em> PDF tetap ringan meluncur.</p>
-        <p>Nah, biar kamu nggak pusing mengedit kode di terminal secara manual, aku sudah buatkan <strong>Generator Script Otomatis</strong> di bawah ini. Tinggal pilih apakah kamu mau mengunci berdasarkan ukuran "Lebar" atau "Tinggi", ketik angkanya, lalu <em>copy-paste</em> <em>script</em> yang muncul ke sistem Linux/macOS kamu!</p>
+        <p>Nah, biar kamu tidak pusing mengedit kode di terminal secara manual, aku sudah buatkan <strong>Generator Script Otomatis</strong> di bawah ini. Tinggal pilih apakah kamu mau mengunci berdasarkan ukuran "Lebar" atau "Tinggi", ketik angkanya, lalu <em>copy-paste</em> <em>script</em> yang muncul ke sistem Linux/macOS kamu!</p>
         <div class="generator-box">
             <h3><i class="fa-solid fa-code"></i> Generator Script Konversi PNG ke PDF</h3>
             <p style="font-size: 0.9rem; margin-bottom: 20px;">Silakan atur parameter resolusinya. <em>Script</em> di bawah ini akan merajut semua file PNG di folder aktif menjadi satu PDF ramping.</p>
@@ -356,7 +356,7 @@ done
 # Matikan kembali fitur bash-nya biar rapi
 shopt -u nullglob nocaseglob
 if [ \${#TEMP_PDFS[@]} -eq 0 ]; then
-echo "🤷 Nggak nemu file PNG/JPG/WEBP satupun di folder ini."
+echo "🤷 Tidak nemu file PNG/JPG/WEBP satupun di folder ini."
 exit 1
 fi
 # 3. Proses Penggabungan (Merging)
