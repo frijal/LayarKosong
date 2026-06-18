@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Konversi Video ke WebM: Optimasi Performa Web di Linux 2026 - Layar Kosong</title>
+    <meta name="news_keywords" content="konversi video, webm, ffmpeg, bun runtime, cachyos, linux, optimasi web, thinkpad l570">
+    <meta name="promphint" content="Bagaimana cara konversi video ke WebM dengan efisien di Linux? Gunakan skrip Bun dan FFmpeg dengan pengaturan VP9 yang dioptimalkan untuk CPU dual-core.">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #2563eb;
+            --code-bg: #f4f4f4;
+            --border: #e5e7eb;
+            --secondary: #64748b;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --text: #f8fafc;
+                --accent: #38bdf8;
+                --code-bg: #1e293b;
+                --border: #334155;
+                --secondary: #94a3b8;
+            }
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        header {
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+        h1 { font-size: 2.6rem; line-height: 1.2; margin-bottom: 15px; letter-spacing: -0.02em; }
+        h2 { font-size: 1.8rem; margin-top: 40px; border-left: 5px solid var(--accent); padding-left: 20px; color: var(--accent); }
+        h3 { font-size: 1.4rem; margin-top: 25px; }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            margin: 30px 0;
+            content-visibility: auto;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-family: 'Hack', 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        code { font-family: 'Hack', monospace; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        article p { margin-bottom: 20px; }
+        .highlight-box {
+            background-color: var(--code-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid var(--accent);
+        }
+        footer {
+            margin-top: 60px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--secondary);
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 20px 15px; }
+        }
+    </style>
+<link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/konversi-video-webm">
+    <meta property="og:url" content="https://dalam.web.id/artikel/konversi-video-webm">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/konversi-video-webm">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Panduan Konversi Video ke WebM: Optimasi Performa Web di Linux 2026">
+    <meta name="twitter:title" content="Panduan Konversi Video ke WebM: Optimasi Performa Web di Linux 2026">
+    <meta name="description" content="cara konversi video ke WebM menggunakan Bun dan FFmpeg di Linux untuk optimasi Core Web Vitals. untuk ThinkPad L570 dan CachyOS.">
+    <meta property="og:description" content="Maksimalkan performa website dengan WebM. Tutorial lengkap menggunakan Bun Runtime dan FFmpeg di CachyOS.">
+    <meta name="twitter:description" content="Cara cerdas konversi video masal ke WebM tanpa bikin laptop panas. Solusi efisien untuk web developer.">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/b14a07f05d161d7f.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/b14a07f05d161d7f.webp">
+    <meta property="og:image:alt" content="Panduan Konversi Video ke WebM: Optimasi Performa Web di Linux 2026">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="618">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Web Development">
+    <meta property="article:tag" content="Bun Runtime">
+    <meta property="article:tag" content="FFmpeg">
+    <meta property="article:published_time" content="2026-04-03T17:20:49.107Z">
+    <meta property="article:modified_time" content="2026-04-03T17:20:49.107Z">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div id=iposbrowser></div><h1><i class="fa-solid fa-terminal"></i> Konversi Video ke WebM di CachyOS</h1>
+        </header>
+     <p>Halo semuanya! Mari kita buatkan skrip yang tangguh untuk laptop ThinkPad L570 kamu. Karena CPU <strong>Intel Core i5-7200U</strong> punya keterbatasan core, kita akan menggunakan <strong>VP9</strong> (codec standar WebM) dengan pengaturan yang dioptimalkan agar kualitasnya tetap tajam tapi ukurannya mungil, tanpa membuat laptopmu kepanasan berlebih.</p>
+        <img src="https://dalam.web.id/img/pbs.twimg.com/b14a07f05d161d7f.webp" alt="Optimasi Video WebM untuk Web" width="1000" height="562">
+        <article>
+            <p>Kita akan menggunakan <code>Bun.spawn</code> untuk memanggil <code>ffmpeg</code> secara sekuensial (satu per satu) agar RAM 16GB kamu tetap lega untuk tugas lain selama proses berjalan.</p>
+            <h2><i class="fa-solid fa-list-ol"></i> Langkah-Langkah Eksekusi</h2>
+            <h3>1. Persiapan: Install FFmpeg dan Bun</h3>
+            <p>Pastikan <code>ffmpeg</code> dan <code>bun</code>sudah terpasang di sistem CachyOS kamu. Gunakan pacman untuk instalasi cepat:</p>
+            <pre><code>sudo pacman -S ffmpeg bun</code></pre>
+            <h3>2. Skrip Bun (convert-to-webm.ts)</h3>
+            <p>Simpan skrip ini di folder yang sama dengan folder <code>bakxoje</code> milikmu.</p>
+            <pre><code>
+import { Glob } from "bun";
+import { existsSync, mkdirSync } from "node:fs";
+import path from "node:path";
+const sourceDir = "bakxoje/pidio";
+const outputDir = "bakxoje/pidio/webm_output";
+const videoExtensions = ["mp4", "mkv", "avi", "mov", "flv", "wmv"];
+// Buat folder output agar hasil konversi rapi
+if (!existsSync(outputDir)) {
+  mkdirSync(outputDir, { recursive: true });
+}
+const glob = new Glob(`*.{${videoExtensions.join(",")}}`);
+console.log("🎬 Memulai proses konversi ke WebM (VP9)...");
+let processed = 0;
+for (const file of glob.scanSync(sourceDir)) {
+  const inputPath = path.join(sourceDir, file);
+  const fileName = path.parse(file).name;
+  const outputPath = path.join(outputDir, `${fileName}.webm`);
+  console.log(`\n⏳ Mengonversi [${processed + 1}/64]: ${file}`);
+  const proc = Bun.spawn([
+    "ffmpeg",
+    "-i", inputPath,
+    "-c:v", "libvpx-vp9",
+    "-crf", "30",
+    "-b:v", "0",
+    "-deadline", "good",
+    "-cpu-used", "2", // Menggunakan resource CPU secara efisien untuk i5-7200U
+    "-c:a", "libopus", // Codec audio terbaik untuk WebM
+    "-y",
+    outputPath
+  ], {
+    stdout: "inherit",
+    stderr: "inherit",
+  });
+  await proc.exited;
+  processed++;
+}
+console.log(`\n✨ Selesai! ${processed} video telah dikonversi ke WebM di: ${outputDir}`);
+            </code></pre>
+            <h3>3. Cara Menjalankan</h3>
+            <p>Buka terminal favoritmu dan jalankan perintah berikut:</p>
+            <pre><code>bun run convert-to-webm.ts</code></pre>
+            <h2><i class="fa-solid fa-lightbulb"></i> Kenapa Settingan Ini "Optimal" buat Kamu?</h2>
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Codec libvpx-vp9 + libopus:</strong> Ini adalah standar emas untuk WebM. Kualitasnya jauh melampaui MP4 H.264 pada ukuran file yang sama.</li>
+                    <li><strong>CRF 30:</strong> Ini adalah <em>sweet spot</em>. Kamu tidak akan melihat perbedaan visual yang berarti dibanding file aslinya, tapi ukuran filenya akan menyusut drastis.</li>
+                    <li><strong>Sequential Processing:</strong> Skrip ini memproses satu per satu. Mengingat laptop kamu hanya punya 2 Core fisik (4 Thread), menjalankan konversi paralel justru akan membuat sistem <em>stuttering</em> (patah-patah) dan suhu melonjak.</li>
+                    <li><strong>Aman untuk Web:</strong> Audio menggunakan Opus, codec audio paling efisien saat ini. Sangat cocok untuk performa web maksimal.</li>
+                </ul>
+            </div>
+            <h2><i class="fa-solid fa-tasks"></i> Analisis 5W + 1H</h2>
+            <ul>
+                <li><strong>What:</strong> Otomatisasi konversi file video masal ke format WebM/VP9.</li>
+                <li><strong>Who:</strong> Ditujukan untuk pengguna Linux (khususnya CachyOS) yang mengutamakan efisiensi daya dan performa.</li>
+                <li><strong>Where:</strong> Eksekusi lokal di lingkungan terminal menggunakan Bun Runtime.</li>
+                <li><strong>When:</strong> Digunakan saat ingin mengoptimasi aset video untuk website "Layar Kosong" atau penghematan penyimpanan.</li>
+                <li><strong>Why:</strong> Karena WebM menawarkan rasio kompresi jauh lebih baik dibanding MP4 konvensional untuk kebutuhan web modern.</li>
+                <li><strong>How:</strong> Menggunakan skrip TypeScript sekuensial untuk menjaga stabilitas suhu CPU dual-core.</li>
+            </ul>
+            <h3><i class="fa-solid fa-user-shield"></i> Tips Pro untuk CachyOS:</h3>
+            <p>Karena konversi 64 video akan memakan waktu dan membebani CPU, kamu bisa menjalankan skrip ini dengan <code>nice</code> agar laptop tetap responsif untuk aktivitas lain seperti browsing atau koding:</p>
+            <pre>nice -n 19 bun run convert-to-webm.ts</pre>
+            <p>Perintah <code>nice -n 19</code> akan memberi prioritas paling rendah pada proses konversi, sehingga sistem akan memprioritaskan aplikasi lain dibanding ffmpeg.</p>
+            <div id="related-articles-grid"></div>
+            <div id="response"></div>
+        </article>
+        <footer>
+            <p>🄯 2026 <a href="https://dalam.web.id" style="color: inherit; text-decoration: none;"><strong>Layar Kosong</strong></a>. All rights reserved. <i class="fa-brands fa-linux"></i> Optimized for CachyOS &amp; Bun Runtime</p>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
