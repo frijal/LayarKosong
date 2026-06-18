@@ -200,6 +200,7 @@ const htmlTemplate = `
 
             const lines = rawCSV.split(/\\r?\\n/);
             let barisBerhasil = 0;
+            let barisDilewati = [];
 
             // Regex untuk memecah kolom CSV dengan batasan tanda kutip ganda secara aman
             const csvRegex = /"([^"]*(?:""[^"]*)*)"|([^",\\n]+)/g;
@@ -209,25 +210,46 @@ const htmlTemplate = `
                 if (index === 0 && (line.toLowerCase().includes("kutipan") || line.toLowerCase().includes("judul"))) return;
                 if (!line.trim()) return;
 
-                let matches = [];
-                let match;
-                csvRegex.lastIndex = 0; // Reset state regex
-                
-                while ((match = csvRegex.exec(line)) !== null) {
-                    matches.push(match[1] ? match[1].replace(/""/g, '"') : match[2]);
-                }
+                try {
+                    // PERBAIKAN #1: normalisasi kutip yang ter-escape gaya JSON (backslash+kutip)
+                    // jadi gaya CSV standar (kutip ganda), supaya kutipan di tengah kalimat
+                    // tidak memecah field jadi berantakan.
+                    const lineAman = line.replace(/\\\\"/g, '""');
 
-                // Berdasarkan format kamu: Kolom ke-3 (index 2) = Cari, Kolom ke-5 (index 4) = Ganti
-                if (matches.length >= 5) {
-                    const cari = matches[2].trim();
-                    const ganti = matches[4].trim();
-                    tambahBaris(cari, ganti);
-                    barisBerhasil++;
+                    let matches = [];
+                    let match;
+                    csvRegex.lastIndex = 0; // Reset state regex
+
+                    while ((match = csvRegex.exec(lineAman)) !== null) {
+                        // PERBAIKAN #2: cek "match[1] !== undefined", bukan truthy check biasa --
+                        // field kosong ("") yang sah jangan dianggap "tidak ada" lalu jatuh ke
+                        // match[2] yang undefined (ini sumber crash .trim() sebelumnya).
+                        matches.push(match[1] !== undefined ? match[1].replace(/""/g, '"') : match[2]);
+                    }
+
+                    // Berdasarkan format kamu: Kolom ke-3 (index 2) = Cari, Kolom ke-5 (index 4) = Ganti
+                    if (matches.length >= 5) {
+                        const cari = (matches[2] || "").trim();
+                        const ganti = (matches[4] || "").trim();
+                        tambahBaris(cari, ganti);
+                        barisBerhasil++;
+                    } else {
+                        barisDilewati.push(index + 1);
+                    }
+                } catch (err) {
+                    // PERBAIKAN #3: satu baris bermasalah tidak lagi menjatuhkan seluruh
+                    // proses impor -- dicatat sebagai dilewati, baris lain tetap lanjut.
+                    console.error("Gagal mengurai baris ke-" + (index + 1) + ":", err);
+                    barisDilewati.push(index + 1);
                 }
             });
 
             if(barisBerhasil > 0) {
-                alert("Sukses mengurai! " + barisBerhasil + " aturan baru ditambahkan ke tabel.");
+                let pesan = "Sukses mengurai! " + barisBerhasil + " aturan baru ditambahkan ke tabel.";
+                if (barisDilewati.length > 0) {
+                    pesan += "\\n\\n⚠️ " + barisDilewati.length + " baris dilewati (cek formatnya): baris ke-" + barisDilewati.join(", ") + ".";
+                }
+                alert(pesan);
                 document.getElementById('csv-input').value = ""; // Bersihkan kolom text area
             } else {
                 alert("Gagal membaca struktur data CSV. Pastikan format kolom sesuai.");
