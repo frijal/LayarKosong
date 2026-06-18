@@ -429,6 +429,17 @@ color: var(--warna-teks-sekunder);
 }
 
 /* ========================================
+ * 1️⃣1️⃣ HIDE HEADER SEARCH BOX
+ * Menyembunyikan kotak pencarian bawaan header
+ * khusus di halaman Live Explorer ini saja.
+ * ======================================== */
+#header-placeholder input[type="search"],
+#header-placeholder form,
+#header-placeholder .search-container {
+display: none !important;
+}
+
+/* ========================================
  * ✨ SMOOTH TRANSITIONS UNTUK SEMUA
  * ======================================== */
 * {
