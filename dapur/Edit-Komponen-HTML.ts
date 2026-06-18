@@ -106,6 +106,7 @@ function replaceContent(html: string): string {
     .replaceAll("Artikel mendalam ", "")
     .replaceAll("Panduan lengkap ", "")
     .replaceAll("Panduan mendalam ", "")
+    .replaceAll("Panduan santai ", "")
     .replaceAll("Penjelasan lengkap ", "")
     .replaceAll("Penjelasan mendalam ", "")
     .replaceAll("Simak ulasan mendalam ", "")
