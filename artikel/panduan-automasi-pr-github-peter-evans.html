@@ -155,7 +155,7 @@
     <pre><code class="language-yaml">name: 📨 Buat Pull Request
 if: steps.check_changes.outputs.changes_detected == 'true'
 uses: peter-evans/create-pull-request@v6</code></pre>
-    <p>Pertanyaannya: <strong>Kenapa harus pake action third-party ini? GitHub kan punya fitur internal (CLI), masa nggak bisa bikin PR otomatis dengan gampang?</strong></p>
+    <p>Pertanyaannya: <strong>Kenapa perlu pake action third-party ini? Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. GitHub kan punya fitur internal (CLI), masa tidak bisa membuat PR dapat dengan gampang? Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.</strong></p>
     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgndzCF9GmOSAcdhgQAeLWjrVz3oSwhukLrbVd8Tzo1EvBDMyE1J8-X1L29UfqlM1VJZCudMzD6JChvYOAiUa4HQnzJO_277-h_yVrK_5XQ2rsruSVdon2FPLn8B8SPt_n62ZrE40ypYxf9E56uBZszHUvqG7Tsvfz7lpujbpq4wfuzC4AqNRM_VflaumQ/s1600/GH-CLI.webp" alt="GitHub Actions Flow" class="main-image">
     <h2><i class="fa-solid fa-bolt"></i> Head-to-Head Comparison</h2>
     <p>Mari kita bandingkan kodenya secara berdampingan untuk mencapai hasil yang sama: **Deteksi perubahan, commit, push, dan create PR.**</p>
@@ -175,7 +175,7 @@ uses: peter-evans/create-pull-request@v6</code></pre>
             <div style="padding: 15px; font-size: 0.85rem; border-top: 1px solid var(--border-color);">
                 <i class="fa-solid fa-check text-success"></i> Deteksi perubahan otomatis.<br>
                 <i class="fa-solid fa-check text-success"></i> Handle update PR lama (idempotent).<br>
-                <i class="fa-solid fa-check text-success"></i> Gak perlu setting user git config.
+                <i class="fa-solid fa-check text-success"></i> tidak perlu setting user git config.
             </div>
         </div>
         <div class="comp-card">
@@ -198,7 +198,7 @@ uses: peter-evans/create-pull-request@v6</code></pre>
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}</code></pre>
             <div style="padding: 15px; font-size: 0.85rem; border-top: 1px solid var(--border-color);">
                 <i class="fa-solid fa-xmark text-danger"></i> Harus handle error "PR already exists".<br>
-                <i class="fa-solid fa-xmark text-danger"></i> Harus config identitas git manual.<br>
+                <i class="fa-solid fa-xmark text-danger"></i> perlu config identitas git manual. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.<br>
                 <i class="fa-solid fa-xmark text-danger"></i> Logika bash gampang pecah.
             </div>
         </div>

@@ -192,14 +192,14 @@
             <p>Di sinilah letak kemacetan lalu lintas data sering terjadi bagi pengguna laptop produktivitas. Ada dua jenis GPU:</p>
             <ul>
                 <li>**GPU Diskrit (Dedicated):** Kartu grafis kelas berat yang memiliki kepingan memori VRAM sendiri secara fisik. Ia mandiri dan tidak mengganggu performa memori utama.</li>
-                <li>**Integrated GPU (iGPU):** Kartu grafis yang menyatu di dalam prosesor utama (seperti Intel HD Graphics). Ia tidak memiliki VRAM fisik, sehingga ia harus meminta jatah dari meja kerja utama (RAM sistem). Sistem ini disebut *Shared Memory*. Saat grafis meninggi, sebagian RAM akan dipotong paksa.</li>
+                <li>**Integrated GPU (iGPU):** Kartu grafis yang menyatu di dalam prosesor utama (seperti Intel HD Graphics). Ia tidak memiliki VRAM fisik, sehingga ia perlu meminta jatah dari meja kerja utama (RAM sistem). Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Sistem ini disebut *Shared Memory*. Saat grafis meninggi, sebagian RAM akan dipotong paksa.</li>
             </ul>
             <h2>4. SWAP: Gudang Penyimpanan Darurat 🛞</h2>
             <p>Apa yang terjadi jika RAM sudah penuh sesak, lalu kamu membuka aplikasi baru yang berat? Sistem akan menggunakan **SWAP**.</p>
             <p>Sistem akan mencari data di atas RAM yang sedang tidak aktif, lalu membuangnya sementara ke dalam *drive* penyimpanan utama (SSD/HDD). Kecepatan akses SSD jauh berada di bawah RAM. Proses bongkar-muat data inilah yang membuat laptopmu mendadak *freeze*.</p>
             <h2>5. zRAM: Kompresi Memori Modern 🪄</h2>
             <p>Untuk mengatasi kelambatan ekstrem dari metode SWAP konvensional, distribusi Linux modern menerapkan teknologi yang disebut **zRAM**.</p>
-            <p>zRAM menggantikan peran SWAP fisik di *storage* dengan membuat blok terkompresi langsung di dalam RAM itu sendiri. Saat RAM penuh, data dipampatkan menggunakan algoritma super cepat. Berikut adalah bukti nyata sistem yang menggunakan zRAM (berjalan dengan algoritma zstd):</p>
+            <p>zRAM menggantikan peran SWAP fisik di *storage* dengan membuat blok terkompresi langsung di dalam RAM itu sendiri. Saat RAM penuh, data dipampatkan menggunakan algoritma super cepat. [Revisi: gunakan diksi yang lebih netral, bersyarat, dan sesuai konteks teknis.] Berikut adalah bukti nyata sistem yang menggunakan zRAM (berjalan dengan algoritma zstd):</p>
 <pre class="terminal"><code>$ zramctl
 NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>

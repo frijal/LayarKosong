@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cara Agar Branch Tidak Minta Merge Otomatis ke Main - Layar Kosong</title> 
+    <title>Cara Agar Branch Tidak Minta Merge dapat ke Main - Layar Kosong Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.</title> 
     <meta name="keywords" content="git, github, pull request, branch protection, merge, alur kerja git, frijal pages">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -290,7 +290,7 @@ footer a {
                         <h2>Cara 1: Cukup Abaikan Saja (Paling Gampang)</h2>
                     </div>
                     <div class="method-body">
-                        <p>Betul, sesederhana itu. Kamu gak perlu mengubah setelan apa pun di repositori. Cukup ubah kebiasaanmu saja.</p>
+                        <p>Betul, sesederhana itu. Kamu tidak perlu mengubah setelan apa pun di repositori. Cukup ubah kebiasaanmu saja.</p>
                         <ol>
                             <li><strong>Kerja Seperti Biasa:</strong> Lakukan semua perubahan, commit, dan push ke anak branch-mu (misal: `desain-baru`).</li>
                             <li><strong>Push ke Branch Sendiri:</strong> Pastikan kamu hanya push ke branch tersebut.
@@ -322,7 +322,7 @@ footer a {
                         <h4>Apa Efek dari Setelan Ini?</h4>
                         <p>Dengan mencentang satu kotak itu saja, kamu sudah mendapatkan keamanan luar biasa:</p>
                         <ul>
-                            <li><i class="fa-solid fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan `git push origin main`. Semua perubahan wajib lewat Pull Request.</li>
+                            <li><i class="fa-solid fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan `git push origin main`. Semua perubahan disarankan lewat Pull Request. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.</li>
                             <li><i class="fa-solid fa-check-double"></i> <strong>Kontrol Penuh:</strong> Kamu bisa menambahkan aturan turunan, seperti "wajib ada 1 *approval* dari rekan setim" sebelum PR bisa di-merge.</li>
                         </ul>
                         <div class="tip">

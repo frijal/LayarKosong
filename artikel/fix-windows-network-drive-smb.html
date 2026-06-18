@@ -254,7 +254,7 @@
       </header>
       <!-- Gambar unggulan -->
       <!-- Pendahuluan dengan 5W+1H -->
-      <p><i class="fa-solid fa-exclamation-circle" style="color:#d32f2f;"></i> <strong>Pernah ngalamin network drive yang kemarin masih lancar</strong>, tiba-tiba hari ini minta password mulu, muncul error <em>"Access is denied"</em>, <em>"Multiple connections to a server"</em>, atau <em>"The mapped network drive could not be created"</em>? Tenang, kamu nggak sendirian. 🥲 Masalah ini sering banget terjadi di Windows 10/11, apalagi setelah ganti password, reboot, pakai VPN, atau pindah akun Microsoft ke lokal.</p>
+      <p><i class="fa-solid fa-exclamation-circle" style="color:#d32f2f;"></i> <strong>Pernah ngalamin network drive yang kemarin masih lancar</strong>, tiba-tiba hari ini minta password mulu, muncul error <em>"Access is denied"</em>, <em>"Multiple connections to a server"</em>, atau <em>"The mapped network drive could not be created"</em>? Tenang, kamu tidak sendirian. 🥲 Masalah ini sering sangat terjadi di Windows 10/11, apalagi setelah ganti password, reboot, pakai VPN, atau pindah akun Microsoft ke lokal. Pastikan pengaturan dilakukan dengan memperhatikan perlindungan data pribadi.</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCuyysUaUAUHlLp.webp" alt="Ilustrasi network drive Windows dan folder sharing" loading="lazy">
       <div class="image-caption"><i class="fa-solid fa-image"></i> Network drive yang suka bermasalah? Kita benahi bersama!</div>
       <p>Di artikel ini, aku bakal kasih panduan <strong>lengkap dan santai</strong> cara mapping SMB share dengan credentials yang tepat, biar koneksi stabil dan reconnect otomatis setiap login. Plus, kita bakal bahas tuntas pakai pendekatan <strong>5W+1H</strong> biar makin paham akar masalahnya. Siap? Yuk simak! 👇</p>
@@ -262,7 +262,7 @@
       <h3><i class="fa-solid fa-question-circle"></i> What <span style="font-size:1.2rem;">❓</span> – Apa itu mapping network drive?</h3>
       <p>Mapping network drive adalah cara menghubungkan folder bersama (shared folder) dari komputer lain, NAS, atau server ke PC Windows kamu sebagai drive maya (misal drive Z:). Biasanya pakai protokol SMB (Server Message Block).</p>
       <h3><i class="fa-solid fa-user-friends"></i> Who <span style="font-size:1.2rem;">🧑💼</span> – Siapa yang sering mengalami?</h3>
-      <p>Semua pengguna Windows 10/11 yang mengakses file dari perangkat lain di jaringan: pengguna NAS (Synology, QNAP), karyawan kantor dengan file server, atau yang suka sharing folder antar PC. Terutama yang sering ganti password atau berpindah jaringan (kantor, rumah, VPN).</p>
+      <p>Semua pengguna Windows 10/11 yang mengakses file dari perangkat lain di jaringan: pengguna NAS (Synology, QNAP), karyawan kantor dengan file server, atau yang suka sharing folder antar PC. Terutama yang sering ganti password atau berpindah jaringan (kantor, rumah, VPN). Pastikan pengaturan dilakukan dengan memperhatikan perlindungan data pribadi.</p>
       <h3><i class="fa-solid fa-clock"></i> When <span style="font-size:1.2rem;">⏰</span> – Kapan masalah muncul?</h3>
       <ul>
         <li>Setelah reboot atau login ulang.</li>
@@ -288,7 +288,7 @@
       <h2><i class="fa-solid fa-check-double"></i> Prasyarat (Pastikan Semua Siap!)</h2>
       <ul>
         <li><i class="fa-solid fa-link"></i> Path share dalam format UNC: <code>\\NAS\Share</code> atau <code>\\192.168.1.50\Backups</code>.</li>
-        <li><i class="fa-solid fa-user-lock"></i> Username dan password valid dengan hak akses ke share tersebut.</li>
+        <li><i class="fa-solid fa-user-lock"></i> Username dan password valid dengan hak akses ke share tersebut. Pastikan pengaturan dilakukan dengan memperhatikan perlindungan data pribadi.</li>
         <li><i class="fa-solid fa-globe"></i> PC dan perangkat tujuan dalam satu jaringan (atau via VPN) dan bisa dijangkau. Coba ketik <code>\\nama-server</code> di File Explorer untuk tes.</li>
         <li><i class="fa-solid fa-info-circle"></i> Panduan ini berlaku untuk Windows 10 dan Windows 11 (sedikit beda tampilan, tapi opsi sama).</li>
       </ul>

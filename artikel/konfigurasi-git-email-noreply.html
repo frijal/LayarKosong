@@ -205,10 +205,10 @@
             <div class="meta-info"><span>Artikel oleh Frijal</span> | <span>Diperbarui: 2 Oktober 2025</span></div>
         </header>
         <article>
-            <p>Pernahkah kamu merasa sudah di puncak dunia setelah seharian <em>ngoding</em>, lalu dengan penuh percaya diri mengetik <code>git push</code>, dan... jreng! Bukannya pesan sukses, malah muncul barisan error merah yang bikin hati menciut. Salah satunya yang cukup sering muncul adalah ini:</p>
+            <p>Pernahkah kamu merasa sudah di puncak dunia setelah seharian <em>ngoding</em>, lalu dengan penuh percaya diri mengetik <code>git push</code>, dan... jreng! Bukannya pesan sukses, malah muncul barisan error merah yang membuat hati menciut. Salah satunya yang cukup sering muncul adalah ini:</p>
             <pre><code class="language-bash">remote: error: GH007: Your push would publish a private email address!
 [remote rejected] main -&gt; main (push declined due to email privacy restrictions)</code></pre>
-            <p>Tenang, jangan panik! Ini bukan berarti kode kamu rusak. Justru sebaliknya, ini adalah fitur keamanan GitHub yang sedang bekerja untuk melindungimu. Mari kita bedah masalah ini dan selesaikan dengan cara yang profesional.</p>
+            <p>Tenang, jangan panik! Ini bukan berarti kode kamu rusak. [Revisi: gunakan diksi yang lebih netral, bersyarat, dan sesuai konteks teknis.] Justru sebaliknya, ini adalah fitur keamanan GitHub yang sedang bekerja untuk melindungimu. Mari kita bedah masalah ini dan selesaikan dengan cara yang profesional.</p>
             <h2>Tanya: "Sebenarnya, Kenapa Error Ini Muncul?"</h2>
             <p>Jawaban singkatnya: <strong>konfigurasi Git di komputermu tidak sinkron dengan pengaturan privasi di akun GitHub-mu.</strong></p>
             <blockquote>"Saat kamu melakukan <code>commit</code>, Git 'menstempel' commit tersebut dengan nama dan alamat email-mu. Di sisi lain, GitHub punya fitur untuk menyembunyikan alamat email pribadimu agar tidak terekspos di riwayat commit publik. Error ini muncul saat GitHub melihat stempel email pribadimu dan menolaknya demi menjaga privasimu."</blockquote>
