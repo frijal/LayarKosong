@@ -93,7 +93,7 @@
                         <pre><code id="code2">sudo mount /dev/sda1 /mnt</code><button class="copy-btn" onclick="copyCode('code2')">Copy</button></pre>
                     </li>
                     <li><strong>Bind direktori sistem yang penting:</strong><br>
-                        <pre><code id="code3">for i in /dev /proc /sys; do sudo mount --bind $i /mnt$i; done</code><button class="copy-btn" onclick="copyCode('code3')">Copy</button></pre>
+                        <pre><code id="code3">for i in /dev /proc /sys; do sudo mount --bind $i /mnt$i; Periksa kembali target perintah dan siapkan cadangan data sebelum menjalankannya. done</code><button class="copy-btn" onclick="copyCode('code3')">Copy</button></pre>
                     </li>
                     <li><strong>Masuk ke lingkungan <code>chroot</code>:</strong><br>
                         <pre><code id="code4">sudo chroot /mnt</code><button class="copy-btn" onclick="copyCode('code4')">Copy</button></pre>

@@ -240,7 +240,7 @@ except ValueError:
             <li>**`findmnt -n -o SOURCE /`**: Script ini fleksibel karena ia tidak berasumsi nama partisi. Ia mencari tahu di *device* mana (`SOURCE`) *root* (`/`) kamu terpasang.</li>
             <li>**`sudo tune2fs -l "$ROOT_DEV"`**: Ini adalah kunci utamanya. `tune2fs -l` (list superblock) mampu membaca metadata historis dari *filesystem* keluarga ext, termasuk item yang sangat berguna: `Filesystem created:`.</li>
             <li>**Pembersihan Output (`grep`, `cut`, `xargs`)**: Bagian Bash ini bertugas membersihkan output `tune2fs` menjadi string tanggal mentah yang siap disantap oleh Python.</li>
-            <li>**Python `datetime`**: Python digunakan untuk memproses string tanggal, membandingkannya dengan tanggal hari ini (`date.today()`), dan menghitung selisihnya dalam satuan hari. Hasilnya pasti akurat!</li>
+            <li>**Python `datetime`**: Python digunakan untuk memproses string tanggal, membandingkannya dengan tanggal hari ini (`date.today()`), dan menghitung selisihnya dalam satuan hari. Hasilnya umumnya akurat! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</li>
         </ol>
     </section>
     <section>

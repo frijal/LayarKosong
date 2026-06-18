@@ -258,7 +258,7 @@ symlinks -d .</code></pre>
         <blockquote>
           "Tanda titik (.) pada ujung perintah di atas sangat penting karena mengindikasikan bahwa proses pemindaian dan penghapusan dilakukan dari direktori Anda yang aktif saat ini, dan akan terus menyusuri sub-folder di bawahnya."
         </blockquote>
-        <p>Namun, perhatikan sebuah <strong>peringatan krusial</strong>: menggunakan antarmuka baris perintah selalu menuntut kehati-hatian ekstra. Pastikan Anda telah memeriksa posisi direktori aktif Anda (bisa menggunakan perintah <code>pwd</code>) sebelum benar-benar mengeksekusi perintah di atas. </p>
+        <p>Namun, perhatikan sebuah <strong>peringatan krusial</strong>: menggunakan antarmuka baris perintah umumnya menuntut kehati-hatian ekstra. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Pastikan Anda telah memeriksa posisi direktori aktif Anda (bisa menggunakan perintah <code>pwd</code>) sebelum benar-benar mengeksekusi perintah di atas. </p>
         <p>Sangat tidak disarankan untuk menjalankan <code>symlinks -d .</code> secara acak di dalam direktori akar (<em>root directory</em> <code>/</code>). Jika Anda melakukannya secara sembrono, perintah tersebut berisiko menghapus paksa seluruh <em>shortcut</em> sistem yang mungkin masih krusial untuk kestabilan kernel dan <em>systemd</em> Anda. Jadikan ini sebagai rutinitas perawatan lokal, bukan alat perombak sistem operasi Anda.</p>
       </article>
     </main>

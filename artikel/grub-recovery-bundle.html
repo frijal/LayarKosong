@@ -106,7 +106,7 @@ echo "GRUB berhasil diperbaiki. Silakan reboot."
                 <ol>
                     <li><strong>Cari partisi root Linux Anda:</strong> <code>sudo fdisk -l</code></li>
                     <li><strong>Mount partisi tersebut (ganti <code>sda1</code> sesuai kebutuhan):</strong><br><code>sudo mount /dev/sda1 /mnt</code></li>
-                    <li><strong>Bind direktori penting:</strong><br><code>for i in /dev /proc /sys; do sudo mount --bind $i /mnt$i; done</code></li>
+                    <li><strong>Bind direktori penting:</strong><br><code>for i in /dev /proc /sys; do sudo mount --bind $i /mnt$i; Periksa kembali target perintah dan siapkan cadangan data sebelum menjalankannya. done</code></li>
                     <li><strong>Masuk ke lingkungan chroot:</strong> <code>sudo chroot /mnt</code></li>
                     <li><strong>Instal ulang GRUB (ganti <code>sda</code> jika perlu):</strong><br><code>grub-install /dev/sda</code><br><code>update-grub</code></li>
                     <li><strong>Keluar, unmount, dan reboot:</strong><br><code>exit</code><br><code>sudo umount /mnt/{dev,proc,sys}</code><br><code>sudo umount /mnt</code><br><code>sudo reboot</code></li>

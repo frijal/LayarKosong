@@ -223,10 +223,10 @@
                 <div id=iposbrowser></div><h1>Cara Otomatis Memilih Mirror Linux Tercepat di Semua Distro</h1>
             </header>
             <p>
-                Pernahkah Anda merasa kesal saat melakukan pembaruan sistem atau mengunduh aplikasi di Linux, tetapi kecepatannya lambat seperti siput? Masalah ini sering kali bukan disebabkan oleh penyedia layanan internet Anda, melainkan karena server repositori (<em>mirror</em>) default yang dikonfigurasi secara otomatis berlokasi sangat jauh dari posisi geografis Anda sekarang.
+                Pernahkah Anda merasa kesal saat melakukan pembaruan sistem atau mengunduh aplikasi di Linux, tetapi kecepatannya lambat seperti lambat? Masalah ini sering kali bukan disebabkan oleh penyedia layanan internet Anda, melainkan karena server repositori (<em>mirror</em>) default yang dikonfigurasi secara otomatis berlokasi sangat jauh dari posisi geografis Anda sekarang.
             </p>
             <p>
-                Setiap distro Linux mengandalkan jaringan server global yang menduplikasikan paket aplikasi mereka agar beban server utama tidak kelebihan muatan. Siapa pun Anda, baik pengguna kasual desktop maupun administrator server, mengoptimalkan jalur unduhan ini sangat penting demi efisiensi waktu kerja Anda. Cara terbaik untuk menyelesaikan kendala ini adalah dengan mendeteksi dan beralih ke server lokal atau server regional terdekat yang memiliki latensi terendah dan bandwidth terbesar secara otomatis.
+                Setiap distro Linux mengandalkan jaringan server global yang menduplikasikan paket aplikasi mereka agar beban server utama tidak kelebihan muatan. Siapa pun Anda, baik pengguna kasual desktop maupun administrator server, mengoptimalkan jalur unduhan ini sangat penting demi efisiensi waktu kerja Anda. Cara direkomendasikan untuk menyelesaikan kendala ini adalah dengan mendeteksi dan beralih ke server lokal atau server regional terdekat yang memiliki latensi terendah dan bandwidth terbesar secara otomatis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
             </p>
             <div class="callout">
                 <p><strong>📌 Catatan:</strong> Pastikan Anda menjalankan perintah-perintah di bawah ini menggunakan akses kekuasaan penuh (<code>sudo</code>) agar sistem dapat memodifikasi file konfigurasi utama tanpa kendala perizinan.</p>
@@ -257,7 +257,7 @@
 <span class="token keyword">sudo</span> pacman -Syyu</code></pre>
             <h2>3. Fedora (DNF)</h2>
             <p>
-                Manajer paket milik Fedora, yaitu DNF, sebenarnya sudah dibekali dengan fitur pintar bawaan bernama <code>fastestmirror</code>. Fitur ini secara dinamis menghitung infrastruktur tercepat saat proses unduhan dimulai. Jika Anda merasa performanya kurang optimal, Anda bisa memaksa sistem untuk membersihkan seluruh data usang dan membangun kembali indeks cache yang segar.
+                Manajer paket milik Fedora, yaitu DNF, sebenarnya sudah dibekali dengan fitur pintar bawaan bernama <code>fastestmirror</code>. Fitur ini secara dinamis menghitung infrastruktur tercepat saat proses unduhan dimulai. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Jika Anda merasa performanya kurang optimal, Anda bisa memaksa sistem untuk membersihkan seluruh data usang dan membangun kembali indeks cache yang segar.
             </p>
 <pre><code><span class="token comment"># Bersihkan seluruh sisa cache yang menumpuk di sistem</span>
 <span class="token keyword">sudo</span> dnf clean all

@@ -160,10 +160,10 @@
         <p>Wah, nostalgia ya! 😄 Memang benar, <code>fdupes</code> itu ibarat "pendekar tua" yang masih paling sakti untuk urusan bersihin file duplikat. Walaupun banyak <em>tool</em> baru yang bermunculan, dia tetap jadi standar emas karena cara kerjanya yang sangat intuitif dan akurat.</p>
         <img src="https://dalam.web.id/img/pbs.twimg.com/f0e95899d07e56c5.webp" width="1000" height="562" fetchpriority="high" alt="Ilustrasi layar terminal membersihkan file dengan FDupes">
         <p>Dunia <em>open-source</em> itu unik. Kadang, kita terlalu terobsesi dengan <em>framework</em> terbaru, <em>container</em> tercanggih, atau <em>library</em> yang baru rilis kemarin sore. Tapi, ada kalanya kita sadar bahwa solusi terbaik justru datang dari "orang tua" yang sudah eksis sejak era 90-an.</p>
-        <p>Kalau kamu sudah ingat <code>fdupes</code>, itu kabar baik! Kamu nggak perlu lagi ribet menyusun skrip manual yang rawan salah hapus.</p>
+        <p>Kalau kamu sudah ingat <code>fdupes</code>, itu kabar baik! Kamu tidak perlu lagi rumit menyusun skrip manual yang rawan salah hapus.</p>
         <h2><i class="fa-solid fa-question-circle"></i> Prinsip 5W+1H: Apa, Mengapa, dan Bagaimana FDupes?</h2>
         <h3><i class="fa-solid fa-cube"></i> Apa itu fdupes? (What)</h3>
-        <p><strong>FDupes</strong> adalah program baris perintah (CLI) super ringan untuk menemukan dan menghapus file duplikat di dalam direktori. Alih-alih hanya mencocokkan nama file, <code>fdupes</code> membandingkan isi file menggunakan <em>checksum signature</em> (MD5 dan perbandingan byte-by-byte). Karena itu, keakuratannya sangat tinggi. Kalau "sidik jarinya" sama, ya itu pasti file yang sama. Titik.</p>
+        <p><strong>FDupes</strong> adalah program baris perintah (CLI) super ringan untuk menemukan dan menghapus file duplikat di dalam direktori. Alih-alih hanya mencocokkan nama file, <code>fdupes</code> membandingkan isi file menggunakan <em>checksum signature</em> (MD5 dan perbandingan byte-by-byte). Karena itu, keakuratannya sangat tinggi. Kalau "sidik jarinya" sama, ya itu umumnya file yang sama. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Titik.</p>
         <h3><i class="fa-solid fa-users"></i> Siapa yang butuh fdupes? (Who)</h3>
         <p>Semua orang yang sering berurusan dengan banyak aset data! Mulai dari fotografer, <em>developer</em>, pengelola server, atau sekadar pengguna biasa yang folder <code>Downloads/</code> atau <code>WhatsApp/</code>-nya sudah penuh sesak dengan file kembar. Pokoknya siapa pun yang ingin menghemat ruang penyimpanan SSD dan menjaga integritas data.</p>
         <h3><i class="fa-solid fa-clock"></i> Kapan sebaiknya pakai fdupes? (When)</h3>
@@ -179,7 +179,7 @@
         <ul>
             <li><code>-r</code> <em>(Recursive)</em>: "Masuk ke lubang kelinci". Memastikan semua sub-folder di dapur/ ikut diperiksa hingga ke akar terdalam.</li>
             <li><code>-d</code> <em>(Delete)</em>: Fitur interaktif. Menampilkan daftar file duplikat untuk diproses (dihapus atau disimpan).</li>
-            <li><code>-N</code> <em>(No Prompt)</em>: <strong>Hati-hati!</strong> Ini akan secara otomatis menyimpan file pertama yang ditemukan (sang "Master") dan menghapus semua duplikat sisanya tanpa bertanya. Sangat disarankan kamu mencoba tanpa flag ini dulu kalau masih ragu.</li>
+            <li><code>-N</code> <em>(No Prompt)</em>: <strong>Hati-hati!</strong> Ini akan secara otomatis menyimpan file pertama yang ditemukan (sang "Master") dan menghapus semua duplikat sisanya tanpa bertanya. Periksa kembali target perintah dan siapkan cadangan data sebelum menjalankannya. Sangat disarankan kamu mencoba tanpa flag ini dulu kalau masih ragu.</li>
         </ul>
         <h2><i class="fa-solid fa-coffee"></i> Kalau Mau Lebih "Santai" dan Aman</h2>
         <p>Jika kamu ingin meninjau dulu sebelum menghapus (biar jantung lebih tenang), ikuti dua langkah ini:</p>
@@ -188,7 +188,7 @@
         <p>Perintah ini hanya akan mencetak daftar kelompok file yang duplikat di layar. Kamu bisa lihat <em>pattern</em>-nya, mengecek mana file aslinya.</p>
         <p><strong>2. Gunakan mode interaktif murni:</strong></p>
         <pre><code class="language-bash">fdupes -r -d .</code></pre>
-        <p>Di sini, <code>fdupes</code> akan mengajakmu ngobrol santai: <em>"Set 1: file A, file B. Which files to keep?"</em> Kamu tinggal ketik angka file yang ingin diselamatkan. Ini cara paling aman biar nggak ada dokumen penting yang terhapus secara tak sengaja.</p>
+        <p>Di sini, <code>fdupes</code> akan mengajakmu ngobrol santai: <em>"Set 1: file A, file B. Which files to keep?"</em> Kamu tinggal ketik angka file yang ingin diselamatkan. Ini cara salah satu yang aman biar tidak ada dokumen penting yang terhapus secara tak sengaja. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         <h2><i class="fa-solid fa-folder-open"></i> Ilustrasi dari Dapur Aku Sendiri</h2>
         <p>Baru saja, folder <code>dapur/</code> di proyek Aku mendadak penuh dengan "file kembar". Ini sangat lumrah terjadi kalau kita melakukan sinkronisasi file dari WhatsApp secara berulang-ulang.</p>
         <pre><code class="language-bash">fdupes -r -d -N .

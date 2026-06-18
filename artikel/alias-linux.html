@@ -212,7 +212,7 @@
         <pre><code class="language-bash">alias</code><button class="copy-btn">SALIN</button></pre>
         <h2 id="permanen"><i class="fa-solid fa-floppy-disk"></i> Cara Bikin Permanen</h2>
         <div class="zdummy">
-            Kalau kamu cuma ngetik <code>alias nama='perintah'</code> di terminal, pas kamu tutup terminalnya, alias itu bakal hilang ditelan bumi. Biar dia awet selamanya, kita harus titipkan di file konfigurasi shell kamu.
+            Kalau kamu cuma ngetik <code>alias nama='perintah'</code> di terminal, pas kamu tutup terminalnya, alias itu bakal hilang ditelan bumi. Biar dia awet selamanya, kita perlu titipkan di file konfigurasi shell kamu. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
         </div>
         <div class="highlight-box">
             <strong>Catatan Penting:</strong>
@@ -227,12 +227,12 @@ alias ..='cd ..'
 alias ...='cd ../..'</code><button class="copy-btn">SALIN</button></pre>
         <h2 id="hapus"><i class="fa-solid fa-eraser"></i> Bosan? Hapus Aja!</h2>
         <div class="zdummy">
-            Kadang kita salah bikin alias atau nama aliasnya tabrakan sama perintah asli. Tenang, cara hapusnya gampang banget. Kalau cuma mau hapus di sesi sekarang, pakai <code>unalias</code>. Tapi kalau mau hapus selamanya, kamu harus buka lagi file <code>.bashrc</code> tadi dan hapus barisnya secara manual.
+            Kadang kita salah bikin alias atau nama aliasnya tabrakan sama perintah asli. Tenang, cara hapusnya cukup mudah. Kalau cuma mau hapus di sesi sekarang, pakai <code>unalias</code>. Tapi kalau mau hapus selamanya, kamu harus buka lagi file <code>.bashrc</code> tadi dan hapus barisnya secara manual.
         </div>
         <pre><code class="language-bash">unalias up</code><button class="copy-btn">SALIN</button></pre>
         <h2 id="original"><i class="fa-solid fa-shield-halved"></i> Pakai Perintah Asli</h2>
         <div class="zdummy">
-            Gimana kalau kita udah bikin alias <code>ls</code> tapi tiba-tiba butuh <code>ls</code> yang versi murni tanpa modifikasi? Kamu nggak perlu hapus aliasnya. Cukup tambahkan karakter <code>\</code> (backslash) di depan perintahnya.
+            Gimana kalau kita udah bikin alias <code>ls</code> tapi tiba-tiba butuh <code>ls</code> yang versi murni tanpa modifikasi? Kamu tidak perlu hapus aliasnya. Cukup tambahkan karakter <code>\</code> (backslash) di depan perintahnya.
         </div>
         <pre><code class="language-bash">\ls</code><button class="copy-btn">SALIN</button></pre>
         <div class="highlight-box" style="background: rgba(246, 193, 119, 0.1); border-color: #f6c177;">

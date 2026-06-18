@@ -167,7 +167,7 @@
     </header>
     <article>
         <p>Masih kebayang kan horornya partisi root (`/`) tiba-tiba 100% penuh? Nah, daripada kita capek-capek ngetik <code>df -h</code> tiap jam (kayak nungguin balasan chat dari gebetan), mending kita serahkan tugas membosankan ini ke si robot Bash.</p>
-        <p>Dalam dunia administrasi server, ada prinsip emas: <em>"Anything that can be automated, should be automated."</em> Kenapa? Karena manusia itu tempatnya khilaf, kita bisa aja lupa cek server pas lagi asyik liburan di Pantai Manggar. Tapi script? Dia nggak kenal libur, nggak kenal kopi, dan nggak bakal protes kalau disuruh kerja tengah malam.</p>
+        <p>Dalam dunia administrasi server, ada prinsip emas: <em>"Anything that can be automated, should be automated."</em> Kenapa? Karena manusia itu tempatnya khilaf, kita bisa aja lupa cek server pas lagi asyik liburan di Pantai Manggar. Tapi script? Dia tidak kenal libur, tidak kenal kopi, dan tidak bakal protes kalau disuruh kerja tengah malam.</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nTwkIbUAAVVdE.webp" alt="Automated Disk Monitoring Linux Script" class="featured-image">
         <h2>Siapa yang Butuh Ini? ("Who")</h2>
         <p>Kalau kamu punya VPS murah, server kantor yang kritikal, atau bahkan cuma Raspberry Pi buat belajar di rumah, script ini wajib ada. Gak peduli kamu sysadmin pro atau baru belajar Linux kemarin sore, punya sistem peringatan dini (early warning system) bakal menyelamatkan kamu dari omelan bos atau <em>downtime</em> yang nggak perlu.</p>
@@ -226,7 +226,7 @@ fi</code></pre>
         <div class="highlight-box">
             <strong>Tips Tambahan:</strong> Kalau kamu pake Docker, kamu bisa tambahkan perintah <code>docker system prune -f</code> di dalam blok <code>if</code> jika disk sudah 90% supaya sistem otomatis bersih-bersih sampah container lama. Smart, kan?
         </div>
-        <h2>Dimana dan Kapan Harus Waspada? ("Where" &amp; "When")</h2>
+        <h2>Dimana dan Kapan perlu Waspada? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ("Where" &amp; "When")</h2>
         <p>Gunakan script ini di semua server Linux yang bersifat <em>public facing</em> atau <em>production</em>. Kapan? Secepatnya! Jangan nunggu besok. Masalah disk penuh itu kayak tagihan listrik, kalau dicuekin makin lama makin numpuk dan akhirnya bikin gelap total.</p>
         <h2>Kesimpulan: Jadilah Sysadmin yang Malas (Tapi Cerdas)</h2>
         <p>Sysadmin yang hebat bukan yang rajin ngetik perintah tiap menit, tapi yang rajin bikin sistem otomatis biar dia bisa "malas-malasan" sambil ngopi sementara servernya tetap sehat walafiat. Dengan script monitoring disk ini, kamu selangkah lebih dekat jadi penguasa server yang pro.</p>

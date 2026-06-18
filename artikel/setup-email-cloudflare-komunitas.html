@@ -242,7 +242,7 @@
     <!-- Gambar unggulan -->
     <!-- Pendahuluan dengan 5W+1H -->
     <div class="highlight">
-      <p><i class="fa-solid fa-lightbulb"></i> <strong>5W+1H sekilas:</strong> Mau domain sendiri untuk email komunitas tapi nggak mau ribet kelola server? Cloudflare Email Routing solusinya. <strong>Apa?</strong> Layanan gratis Cloudflare yang jadi penerima email (via MX) lalu langsung forward ke inbox tujuan. <strong>Siapa?</strong> Cocok untuk komunitas, organisasi kecil, atau pribadi. <strong>Di mana?</strong> Di dashboard Cloudflare. <strong>Kapan?</strong> Kapan saja domain udah pake Cloudflare. <strong>Mengapa?</strong> Gratis, nggak simpan email, gampang diatur. <strong>Bagaimana?</strong> Ikuti langkah-langkah di bawah!</p>
+      <p><i class="fa-solid fa-lightbulb"></i> <strong>5W+1H sekilas:</strong> Mau domain sendiri untuk email komunitas tapi nggak mau ribet kelola server? Cloudflare Email Routing solusinya. <strong>Apa?</strong> Layanan gratis Cloudflare yang jadi penerima email (via MX) lalu langsung forward ke inbox tujuan. <strong>Siapa?</strong> Cocok untuk komunitas, organisasi kecil, atau pribadi. <strong>Di mana?</strong> Di dashboard Cloudflare. <strong>Kapan?</strong> Kapan saja domain udah pake Cloudflare. <strong>Mengapa?</strong> Gratis, tidak simpan email, gampang diatur. <strong>Bagaimana?</strong> Ikuti langkah-langkah di bawah!</p>
     </div>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp" alt="Ilustrasi email routing Cloudflare untuk komunitas" width="100%" height="auto" loading="lazy">    <h2>🧭 1. Konsep Dasar: Cloudflare Hanya Jadi Penerus</h2>
     <p>Cloudflare <strong>bukan mail server</strong>. Dia cuma:</p>
@@ -305,7 +305,7 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
     <h3><i class="fa-solid fa-server"></i> Opsi C: Custom SMTP (Mailgun, Resend, SendGrid)</h3>
     <p>Lebih profesional, cocok untuk komunitas yang sering kirim massal. Nanti tambahin DKIM dari provider masing-masing. Contoh SPF ditambah <code>include:mailgun.org</code>.</p>
     <h2>🖥️ 4. Setup Thunderbird (opsional, sebagai email client)</h2>
-    <p>Thunderbird bisa dipakai untuk baca email dari Gmail/Proton via IMAP, dan kirim via SMTP yang sudah dipilih. Gak perlu setting incoming dari Cloudflare.</p>
+    <p>Thunderbird bisa dipakai untuk baca email dari Gmail/Proton via IMAP, dan kirim via SMTP yang sudah dipilih. tidak perlu setting incoming dari Cloudflare.</p>
     <h2>👥 5. Khusus untuk Komunitas: Banyak Alamat, Banyak Pengurus</h2>
     <h3>5.1 Role-based address (best practice)</h3>
     <ul>
@@ -345,7 +345,7 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
     </table>
     <!-- Pesan penting keamanan -->
     <div class="highlight">
-      <i class="fa-solid fa-exclamation-triangle"></i> <strong>Penting:</strong> Cloudflare tidak menyediakan layanan kirim email. Untuk membalas email dari alamat domain, kamu harus konfigurasi SMTP di Gmail/Proton/mailgun. Jangan lupa gabungkan SPF-nya!
+      <i class="fa-solid fa-exclamation-triangle"></i> <strong>Penting:</strong> Cloudflare tidak menyediakan layanan kirim email. Untuk membalas email dari alamat domain, kamu perlu konfigurasi SMTP di Gmail/Proton/mailgun. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Jangan lupa gabungkan SPF-nya!
     </div>
     <!-- Komentar dan related articles (placeholder) -->
     <div id="response"></div>

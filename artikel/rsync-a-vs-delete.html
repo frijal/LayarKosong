@@ -209,7 +209,7 @@
             <li>File yang mengalami perubahan di sumber ➔ Diperbarui di destinasi.</li>
             <li>File yang sudah dihapus di sumber ➔ <strong>Ikut dihapus di destinasi secara permanen.</strong></li>
         </ul>
-        <p><strong>Contoh kasus:</strong> Bayangkan kamu sedang menyinkronkan folder kerja ke hard drive eksternal setiap akhir pekan. Kamu ingin apa yang ada di eksternal itu selalu sama persis dengan yang ada di laptop. Kalau kamu rajin menghapus file sampah atau draf lama di laptop, kamu pasti ingin file sampah tersebut juga lenyap di hard drive eksternal agar kapasitas penyimpanan tidak penuh sia-sia.</p>
+        <p><strong>Contoh kasus:</strong> Bayangkan kamu sedang menyinkronkan folder kerja ke hard drive eksternal setiap akhir pekan. Kamu ingin apa yang ada di eksternal itu umumnya sama persis dengan yang ada di laptop. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Kalau kamu rajin menghapus file sampah atau draf lama di laptop, kamu pasti ingin file sampah tersebut juga lenyap di hard drive eksternal agar kapasitas penyimpanan tidak penuh sia-sia.</p>
 <pre><code><span class="comment"># Perintah untuk mirroring data secara presisi</span>
 <span class="cmd">rsync</span> <span class="arg">-a --delete</span> /folder/sumber/ /folder/tujuan/</code></pre>
         <h3>📥 Skenario 2: Pakai <code>rsync -a</code> (Tanpa <code>--delete</code>)</h3>

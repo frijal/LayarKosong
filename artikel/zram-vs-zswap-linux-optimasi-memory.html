@@ -217,14 +217,14 @@
             <i class="fa-solid fa-question-circle"></i> <strong>📌 5W+1H: Memahami ZRAM dan ZSWAP</strong><br>
             <strong>Apa?</strong> ZRAM adalah modul kernel Linux yang membuat blok device terkompresi di dalam RAM sebagai swap space. ZSWAP adalah cache kompresi yang berada di depan swap disk fisik.<br>
             <strong>Siapa?</strong> Pengguna Linux yang ingin meningkatkan responsivitas sistem saat kehabisan RAM, terutama pengguna dengan RAM terbatas atau laptop dengan SSD.<br>
-            <strong>Mengapa?</strong> Karena swap tradisional ke disk sangat lambat dan memperpendek umur SSD. Kompresi di RAM jauh lebih cepat dan hemat daya tulis.<br>
+            <strong>Mengapa?</strong> Karena swap tradisional ke disk sangat lambat dan memperpendek umur SSD. Kompresi di RAM lebih cepat dan hemat daya tulis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.<br>
             <strong>Kapan?</strong> Saat sistem mulai melakukan swapping, ZRAM/ZSWAP akan mengompres halaman memori secara real-time, menghindari I/O disk yang lambat.<br>
             <strong>Di mana?</strong> Keduanya ada di kernel Linux modern (distro seperti Fedora, Pop!_OS, Ubuntu sudah mengaktifkan ZRAM secara default).<br>
             <strong>Bagaimana?</strong> ZRAM mengalokasikan sebagian RAM sebagai swap terkompresi; ZSWAP menangkap halaman yang akan di-swap, kompres, lalu simpan di cache RAM, dan hanya menulis ke disk jika cache penuh.
         </div>
         <h2><i class="fa-solid fa-microchip"></i> Apa Itu ZRAM?</h2>
         <p><strong>ZRAM</strong> adalah modul kernel yang membuat blok device terkompresi langsung di dalam RAM. Alih-alih menggunakan partisi swap di disk, ZRAM bertindak sebagai swap space itu sendiri. Ketika kernel perlu memindahkan halaman memori dari RAM aktif, ZRAM akan mengompresnya menggunakan algoritma cepat (seperti zstd atau lz4) dan menyimpannya di area RAM yang sudah disediakan.</p>
-        <p>Karena teks dan data aplikasi bisa dikompres sangat baik, Anda bisa menyimpan dua hingga tiga kali lipat data di ZRAM dibandingkan tanpa kompresi. Keunggulan utamanya: <strong>kecepatan</strong>. Membaca/menulis ke RAM tetap jauh lebih cepat daripada ke SSD tercepat sekalipun. Selain itu, karena tidak ada penulisan ke disk fisik, ZRAM juga memperpanjang umur SSD dengan mengurangi siklus tulis.</p>
+        <p>Karena teks dan data aplikasi bisa dikompres sangat baik, Anda bisa menyimpan dua hingga tiga kali lipat data di ZRAM dibandingkan tanpa kompresi. Keunggulan utamanya: <strong>kecepatan</strong>. Membaca/menulis ke RAM tetap lebih cepat daripada ke SSD tercepat sekalipun. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Selain itu, karena tidak ada penulisan ke disk fisik, ZRAM juga memperpanjang umur SSD dengan mengurangi siklus tulis.</p>
         <h2><i class="fa-solid fa-cache"></i> Apa Itu ZSWAP?</h2>
           <figcaption>ZSWAP bekerja sebagai cache kompresi di depan swap disk tradisional.</figcaption>
         <p><strong>ZSWAP</strong> berbeda secara arsitektur. Ia bukan swap device sendiri, melainkan lapisan cache kompresi yang diletakkan di depan swap disk fisik (partisi atau file swap). Saat kernel akan menulis halaman memori ke disk, ZSWAP menyadap proses itu, mengompres halaman, dan menyimpannya dalam pool dinamis di RAM. Jika berhasil dan masih ada ruang, penulisan ke disk dibatalkan sama sekali—sehingga I/O lambat terhindari.</p>
@@ -272,7 +272,7 @@
         </ul>
         <h2><i class="fa-solid fa-rocket"></i> Kesimpulan: Sesuaikan dengan Kebutuhan Anda</h2>
         <p>Baik ZRAM maupun ZSWAP sama-sama meningkatkan pengalaman Linux saat tekanan memori tinggi. Keduanya memanfaatkan kompresi untuk mempercepat swapping dan mengurangi keausan SSD. Pilihan bergantung pada prioritas Anda: jika kecepatan dan perlindungan SSD adalah utama, serta hibernasi tidak diperlukan, ZRAM adalah jawabannya. Jika Anda butuh hibernasi atau harus memiliki cadangan swap berkapasitas besar, ZSWAP memberikan kompromi terbaik.</p>
-        <p>Mulailah dengan melihat konfigurasi default distro Anda—banyak yang sudah menerapkan ZRAM. Namun Anda selalu bisa menyesuaikan dengan kebutuhan spesifik. Eksperimen dan rasakan perbedaannya, karena Linux memberi kebebasan penuh atas sistem Anda.</p>
+        <p>Mulailah dengan melihat konfigurasi default distro Anda—banyak yang sudah menerapkan ZRAM. Namun Anda umumnya bisa menyesuaikan dengan kebutuhan spesifik. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Eksperimen dan rasakan perbedaannya, karena Linux memberi kebebasan penuh atas sistem Anda.</p>
         <!-- Required divs -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>

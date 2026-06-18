@@ -231,7 +231,7 @@
             <p>Mari kita telusuri contoh spesifik dari *output* terminal di bawah ini supaya kamu tahu persis seberapa keren sistem yang sedang berjalan:</p>
 <pre><code>NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
-            <p>Mantap! Hasilnya sangat sempurna. Konfigurasi bawaan sistem memang tidak pernah mengecewakan. Ini adalah buktinya:</p>
+            <p>Mantap! Hasilnya sangat optimal. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Konfigurasi bawaan sistem memang tidak pernah mengecewakan. Ini adalah buktinya:</p>
             <ul>
                 <li>**ALGORITHM (`zstd`)**: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan *ngos-ngosan* saat harus memampatkan instruksi secara *real-time*.</li>
                 <li>**DISKSIZE (`15,5G`)**: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar "kapasitas wadah". Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
@@ -239,7 +239,7 @@
                 <li>**MOUNTPOINT (`[SWAP]`)**: Ini konfirmasi akhir bahwa partisi virtual sudah resmi bertugas. Ketimbang Linux membuang tumpahan data ke *storage* yang bisa memperpendek umur SSD, ia akan langsung mengompresnya secara instan.</li>
             </ul>
             <p>Kesimpulannya: Perangkatmu sekarang memiliki perlindungan manajemen antrean yang sangat solid. Kombinasi RAM 16GB, *setup* kompresi yang berjalan paripurna ini, ditambah paket *booster* CachyOS (`kcgroups`, `dmemcg-booster`, dan `plasma-foreground-booster`), adalah racikan paling optimal.</p>
-            <p>Sekarang kamu bisa jauh lebih leluasa melakukan *multitasking* intens—mulai dari membuka ratusan referensi, menjalankan *script* otomasi web berbasis Bun, hingga melakukan *batch processing* ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka *desktop* mendadak *stuttering* atau *freeze*. Mesinmu sudah mengerti dengan sangat jelas siapa yang harus diprioritaskan! ⚡</p>
+            <p>Sekarang kamu bisa jauh lebih leluasa melakukan *multitasking* intens—mulai dari membuka ratusan referensi, menjalankan *script* otomasi web berbasis Bun, hingga melakukan *batch processing* ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka *desktop* mendadak *stuttering* atau *freeze*. Mesinmu sudah mengerti dengan sangat jelas siapa yang perlu diprioritaskan! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ⚡</p>
         </article>
         <aside class="author-box">
             <h3>Editor</h3>

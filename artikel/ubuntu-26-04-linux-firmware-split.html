@@ -169,7 +169,7 @@
     <section id="apa-itu-firmware">
         <h2><i class="fa-solid fa-microchip"></i> Apa Itu Masalah Linux Firmware Selama Ini? (What)</h2>
         <p>Selama bertahun-tahun, Ubuntu (dan banyak distro Linux lainnya) menggunakan satu paket tunggal bernama <code>linux-firmware</code>. Paket ini ibarat sebuah "tas raksasa" yang berisi semua instruksi perangkat lunak (driver/firmware) untuk hampir semua hardware di dunia—mulai dari kartu Wi-Fi Intel, grafis AMD, sampai perangkat khusus server yang sangat jarang dipakai pengguna biasa.</p>
-        <p>Masalahnya? Paket ini terus membengkak! Saat ini, ukurannya sudah tembus **500MB sampai 800MB** saat di-download, dan memakan ruang disk hingga **1GB** setelah diinstal. Bayangkan, setiap kali ada update kecil untuk kartu jaringan Mellanox (yang biasanya cuma dipakai di pusat data/server besar), kamu yang pakai laptop biasa harus tetap men-download keseluruhan 600MB+ paket tersebut. Inefisiensi inilah yang ingin diberantas oleh Ubuntu 26.04.</p>
+        <p>Masalahnya? Paket ini terus membengkak! Saat ini, ukurannya sudah tembus **500MB sampai 800MB** saat di-download, dan memakan ruang disk hingga **1GB** setelah diinstal. Bayangkan, setiap kali ada update kecil untuk kartu jaringan Mellanox (yang biasanya cuma dipakai di pusat data/server besar), kamu yang pakai laptop biasa perlu tetap men-download keseluruhan 600MB+ paket tersebut. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Inefisiensi inilah yang ingin diberantas oleh Ubuntu 26.04.</p>
     </section>
     <section id="siapa-dibalik-perubahan">
         <h2><i class="fa-solid fa-users-cog"></i> Siapa yang Mencetuskan Ide Hebat Ini? (Who)</h2>
@@ -179,7 +179,7 @@
     <section id="dimana-perubahan-terjadi">
         <h2><i class="fa-solid fa-archive"></i> Dimana Perubahan Ini Diterapkan? (Where)</h2>
         <p>Perubahan ini terjadi di dalam repositori resmi (arsip) Ubuntu versi **Resolute Raccoon**. Tim pengembang memperkenalkan apa yang disebut sebagai *meta-packaging*. Jadi, alih-alih satu file <code>.deb</code> raksasa, sekarang ada 17 sub-paket vendor yang berbeda. </p>
-        <p>Hal menarik lainnya adalah penanganan di repositori **-security**. Sebelumnya, update keamanan firmware seringkali membebani server tunggal karena repo security tidak selalu diduplikasi (mirror) ke banyak server seperti repo utama. Dengan paket yang kecil, beban server Canonical pun jadi jauh lebih ringan. Ini adalah kemenangan untuk infrastruktur Ubuntu di seluruh dunia!</p>
+        <p>Hal menarik lainnya adalah penanganan di repositori **-security**. Sebelumnya, update keamanan firmware seringkali membebani server tunggal karena repo security tidak umumnya diduplikasi (mirror) ke banyak server seperti repo utama. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Dengan paket yang kecil, beban server Canonical pun jadi lebih ringan. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah kemenangan untuk infrastruktur Ubuntu di seluruh dunia!</p>
     </section>
     <div class="zdummy1">
         <h3><i class="fa-solid fa-list-ul"></i> Daftar 17 Sub-Paket Baru di Ubuntu 26.04</h3>
@@ -216,11 +216,11 @@
     </section>
     <section id="eeat-section">
         <h2><i class="fa-solid fa-award"></i> Analisis Ahli: Dampak Terhadap Ekosistem Linux</h2>
-        <p>Kita harus melihat sisi otoritas dan kepercayaan. Ubuntu sebagai sistem operasi Linux paling populer untuk desktop, seringkali menjadi trendsetter. Langkah Canonical ini kemungkinan besar akan diikuti oleh distro turunan seperti **Linux Mint, Pop!_OS, dan Zorin OS**.</p>
-        <p>Ini bukan sekadar soal ukuran file, tapi soal **Keamanan**. Dengan paket yang terpisah, tim security bisa merilis tambalan darurat untuk satu vendor spesifik dengan jauh lebih cepat tanpa harus melakukan pengujian ulang (re-testing) pada keseluruhan blob firmware vendor lain yang tidak terdampak. Ini adalah standar baru dalam manajemen paket Linux modern.</p>
+        <p>Kita harus melihat sisi otoritas dan kepercayaan. Ubuntu sebagai sistem operasi Linux salah satu yang populer untuk desktop, seringkali menjadi trendsetter. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Langkah Canonical ini kemungkinan besar akan diikuti oleh distro turunan seperti **Linux Mint, Pop!_OS, dan Zorin OS**.</p>
+        <p>Ini bukan sekadar soal ukuran file, tapi soal **Keamanan**. Dengan paket yang terpisah, tim security bisa merilis tambalan darurat untuk satu vendor spesifik dengan lebih cepat tanpa perlu melakukan pengujian ulang (re-testing) pada keseluruhan blob firmware vendor lain yang tidak terdampak. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah standar baru dalam manajemen paket Linux modern.</p>
     </section>
     <section id="penutup">
-        <p>Kesimpulannya, Ubuntu 26.04 LTS "Resolute Raccoon" bukan cuma soal wallpaper baru atau kernel terbaru, tapi soal optimasi cerdas di balik layar. Dengan pemisahan paket ini, Ubuntu membuktikan diri tetap relevan untuk semua orang, baik yang punya internet super cepat maupun yang harus berhemat kuota di pelosok negeri. 🌏✨</p>
+        <p>Kesimpulannya, Ubuntu 26.04 LTS "Resolute Raccoon" bukan cuma soal wallpaper baru atau kernel terbaru, tapi soal optimasi cerdas di balik layar. Dengan pemisahan paket ini, Ubuntu membuktikan diri tetap relevan untuk semua orang, baik yang punya internet cepat maupun yang perlu berhemat kuota di pelosok negeri. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. 🌏✨</p>
     </section>
         <p>Gimana menurut kamu? Apakah kamu setuju dengan langkah Ubuntu memecah paket ini, atau malah menurutmu ini bikin ribet?</p>
     <div id="related-articles-grid">

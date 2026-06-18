@@ -205,7 +205,7 @@
         </header>
         <article>
             <p>Halo pengguna CachyOS! 👋</p>
-            <p>Pasti kamu nyasar ke halaman ini karena lagi panik, kan? Kamu baru saja update sistem, tapi tiba-tiba terminal memuntahkan error merah yang bikin deg-degan seperti ini:</p>
+            <p>umumnya kamu nyasar ke halaman ini karena lagi panik, kan? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Kamu baru saja update sistem, tapi tiba-tiba terminal memuntahkan error merah yang bikin deg-degan seperti ini:</p>
             <pre>Updating systemd-boot entries
 Couldn't find EFI system partition.
 Error: /loader/loader.conf does not exist
@@ -215,7 +215,7 @@ error: command failed to execute correctly</pre>
             <p>Tenang, tarik napas dulu. Komputer kamu nggak rusak parah kok. Hardware kamu aman. Masalah ini sebenarnya cukup klasik di dunia Linux yang <em>bleeding edge</em> seperti Arch atau CachyOS. Yuk, kita bedah kenapa ini terjadi dan bagaimana cara membereskannya.</p>
             <div class="alert">
                 <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Dini:</strong> <br>
-                Jika kamu mengalami error "unknown filesystem type vfat" saat mencoba mount, <strong>JANGAN RESTART</strong> komputer kamu jika belum punya Flashdisk Installer (Live USB). Kalau restart sekarang tanpa perbaikan, kemungkinan besar sistem tidak akan bisa booting.
+                Jika kamu mengalami error "unknown filesystem type vfat" saat mencoba mount, <strong>JANGAN RESTART</strong> komputer kamu jika belum punya Flashdisk Installer (Live USB). Kalau restart sekarang tanpa perbaikan, kemungkinan besar sistem cenderung tidak bisa booting. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
             </div>
             <h2><i class="fa-solid fa-microchip"></i> Kenapa Sih CachyOS Begini?</h2>
             <p>Jadi begini ceritanya. Error ini terjadi karena fenomena yang disebut <strong>Kernel Mismatch</strong>. Ini sering terjadi kalau kamu melakukan update besar (seperti <code>pacman -Syu</code>) yang di dalamnya ada update Kernel Linux, tapi kamu belum merestart komputer.</p>

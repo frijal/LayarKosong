@@ -168,12 +168,12 @@
         <h2><i class="fa-solid fa-location-dot"></i> Di Mana (Where) Error Ini Bersarang?</h2>
         <p>Sumber masalahnya ada di dalam sistem operasi kamu, lebih spesifiknya nongkrong di direktori cache bawaan, yaitu di jalur <code>/var/cache/pacman/pkg/</code>.</p>
         <h2><i class="fa-solid fa-clock"></i> Kapan (When) Masalah Ini Muncul?</h2>
-        <p>Error "Error reading fd 7" ini biasanya baru muncul ke permukaan ketika kamu mengeksekusi perintah untuk membersihkan cache paket (seperti <code>pacman -Sc</code>). Kamu nggak akan sadar ada file nyangkut sampai kamu mencoba bersih-bersih sampah sistem.</p>
+        <p>Error "Error reading fd 7" ini biasanya baru muncul ke permukaan ketika kamu mengeksekusi perintah untuk membersihkan cache paket (seperti <code>pacman -Sc</code>). Kamu cenderung tidak sadar ada file nyangkut sampai kamu mencoba bersih-bersih sampah sistem.</p>
         <h2><i class="fa-solid fa-magnifying-glass"></i> Kenapa (Why) Hal Ini Bisa Terjadi?</h2>
         <p>Ada penjelasan teknis yang lumayan menarik di balik ini:</p>
         <ul>
             <li><b>Bug Sandboxing:</b> Mulai dari pacman versi 7.0+, developer mulai menerapkan sistem <i>sandboxing</i> baru. Saat mengunduh paket, pacman membuat direktori-direktori sementara (temporary directories) untuk menampung unduhan tersebut.</li>
-            <li><b>Gagal Hapus (Failed Deletion):</b> Nah, kalau koneksi internet kamu mendadak putus pas lagi update, atau kamu iseng mencet <code>Ctrl+C</code> buat ngebatalin update di tengah jalan, pacman seringkali gagal membersihkan folder sementara ini secara otomatis. Sisa-sisa folder kosong atau setengah matang inilah yang tertinggal dan bikin error.</li>
+            <li><b>Gagal Hapus (Failed Deletion):</b> Nah, kalau koneksi internet kamu mendadak putus pas lagi update, atau kamu iseng mencet <code>Ctrl+C</code> buat ngebatalin update di tengah jalan, pacman seringkali gagal membersihkan folder sementara ini secara otomatis. Sisa-sisa folder kosong atau setengah matang inilah yang tertinggal dan membuat error.</li>
         </ul>
         <h2><i class="fa-solid fa-wrench"></i> Bagaimana (How) Cara Ampuh Memperbaikinya?</h2>
         <p>Karena folder-folder yang error ini sejatinya hanyalah direktori kosong sementara atau sisa-sisa dari proses unduhan yang terputus, kamu bisa menyingkirkannya secara manual dengan sangat aman tanpa ngerusak sistem utama kamu. 🚀</p>

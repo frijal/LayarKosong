@@ -230,7 +230,7 @@ Audit: Some sources can be modernized. Run 'apt modernize-sources' to do so.
       Signature Packet v3 is not considered secure since 2026-02-01T00:00:00Z
                 </pre>
                 <p>Ini adalah detail teknis di balik peringatan awal. Ternyata masalahnya lebih dari sekadar tanggal kedaluwarsa. Tanda tangan digital (GPG signature) yang digunakan oleh repositori <code>home:/mx-packaging</code> dari OpenSuse masih menggunakan standar enkripsi versi 3 (v3).</p>
-                <p>Standar keamanan modern di dunia Linux telah memutuskan bahwa tanda tangan v3 ini sudah usang dan akan secara resmi dianggap tidak aman (dan ditolak) oleh sistem Debian/Ubuntu mulai tanggal **1 Februari 2026**. Ini adalah langkah proaktif untuk melindungi pengguna dari potensi serangan di masa depan.</p>
+                <p>Standar keamanan modern di dunia Linux telah memutuskan bahwa tanda tangan v3 ini sudah usang dan akan secara resmi dianggap tidak aman (dan ditolak) oleh sistem Debian/Ubuntu mulai tanggal **1 Februari 2026**. Ini adalah langkah proaktif untuk melindungi pengguna dari potensi serangan di masa depan. Pastikan seluruh langkah dilakukan hanya pada perangkat sendiri atau lingkungan yang memiliki izin resmi.</p>
                 <ul>
                     <li><strong>Siapa yang Bertanggung Jawab?</strong> Ini 100% tanggung jawab pengelola repositori tersebut. Mereka perlu membuat ulang tanda tangan digital mereka menggunakan teknologi yang lebih baru (seperti v4).</li>
                     <li><strong>Apa Dampaknya Bagi Kita?</strong> Untuk saat ini, tidak ada. Tapi jika masalah ini tidak diperbaiki oleh mereka sebelum Februari 2026, kita tidak akan bisa lagi mengambil update software dari sumber tersebut.</li>

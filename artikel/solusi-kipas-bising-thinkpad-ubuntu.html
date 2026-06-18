@@ -274,7 +274,7 @@
                 "Untuk memverifikasi keberhasilannya, buka terminal di Ubuntu dan jalankan kembali perintah <code>cat /sys/power/mem_sleep</code>. Jika konfigurasi berhasil, <em>output</em>-nya sekarang akan menampilkan <code>s2idle [deep]</code>. Ini memberi sinyal ke kernel untuk melakukan <em>true suspend</em>."
             </blockquote>
             <h3>2. Menyelesaikan Konflik Manajemen Daya (TLP vs PPD)</h3>
-            <p>Setelah urusan tidur terselesaikan, kita harus mendamaikan sistem manajemen daya. Kamu harus memilih satu "jenderal" saja. Karena kamu menggunakan ThinkPad, mempertahankan <strong>TLP</strong> adalah opsi yang jauh lebih direkomendasikan untuk optimalisasi baterai dan suhu.</p>
+            <p>Setelah urusan tidur terselesaikan, kita harus mendamaikan sistem manajemen daya. Kamu perlu memilih satu "jenderal" saja. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Karena kamu menggunakan ThinkPad, mempertahankan <strong>TLP</strong> adalah opsi yang jauh lebih direkomendasikan untuk optimalisasi baterai dan suhu.</p>
             <p>Untuk mempertahankan TLP dan mematikan daemon bawaan Ubuntu secara permanen, jalankan rangkaian perintah ini di terminal:</p>
 <pre><code>sudo systemctl mask power-profiles-daemon
 sudo systemctl enable tlp

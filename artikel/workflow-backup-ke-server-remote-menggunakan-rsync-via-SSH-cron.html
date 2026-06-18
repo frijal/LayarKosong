@@ -223,7 +223,7 @@
                 <p>Mengelola data entah dari kamar kos yang sempit atau sambil ngopi santai di pinggir pantai Balikpapan rasanya sama saja tegannya kalau kita tidak punya sistem <em>backup</em> yang mumpuni. Di dunia Linux dan Unix, ada satu alat legendaris yang sudah menemani jatuh bangunnya banyak administrator sistem. Ya, namanya adalah <strong>rsync</strong>.</p>
                 <h2>Sejarah Singkat Rilisnya Rsync</h2>
                 <p>Bila kita mundur sejenak, rsync pertama kali diperkenalkan pada tahun 1996 oleh Andrew Tridgell dan Paul Mackerras. Saat itu, kebutuhan untuk memindahkan file berukuran besar antar komputer seringkali terkendala oleh koneksi internet yang lambat dan rentan putus. Mereka menciptakan alat ini sebagai solusi cerdas untuk mentransfer file dengan cepat dan sangat efisien.</p>
-                <p>Rahasia di balik kecepatan rsync terletak pada algoritma <em>delta-transfer</em> yang mereka kembangkan. Alih-alih mengirimkan satu file utuh setiap kali ada pembaruan, utilitas ini hanya membaca dan mengirimkan letak perbedaan (<em>delta</em>) dari file tersebut. Berkat inovasi brilian di tahun 90-an ini, rsync masih menjadi primadona dan perangkat wajib yang terpasang di hampir setiap distribusi Linux hingga detik ini.</p>
+                <p>Rahasia di balik kecepatan rsync terletak pada algoritma <em>delta-transfer</em> yang mereka kembangkan. Alih-alih mengirimkan satu file utuh setiap kali ada pembaruan, utilitas ini hanya membaca dan mengirimkan letak perbedaan (<em>delta</em>) dari file tersebut. Berkat inovasi brilian di tahun 90-an ini, rsync masih menjadi primadona dan perangkat disarankan yang terpasang di hampir setiap distribusi Linux hingga detik ini. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
                 <h2>Apa Saja Manfaat Utama Rsync?</h2>
                 <p>Kalau kamu bertanya-tanya kenapa repot-repot pakai CLI (<em>Command Line Interface</em>) ketimbang sekadar *drag-and-drop*, berikut adalah keunggulan utama yang akan kamu dapatkan:</p>
                 <ul>
@@ -273,7 +273,7 @@ LOGFILE=<span class="sh-string">"/var/log/rsync-backup-local.log"</span>
 <pre><code>0 2 * * * /home/user/backup-rsync-local.sh</code></pre>
                 <p>Sistem otomatis akan mengeksekusi skrip ini pada <strong>pukul 02:00 dini hari</strong> setiap harinya. Kamu bisa tidur nyenyak!</p>
                 <h2>Workflow Backup Otomatis ke Server Remote (SSH + Cron)</h2>
-                <p>Kalau <em>hard disk</em> lokal rusak, tamatlah riwayat datamu. Solusi terbaik adalah mencadangkan data ke server terpisah yang berlokasi jauh secara otomatis. Pendekatannya serupa, kita hanya perlu menambahkan otentikasi kunci agar tak perlu repot memasukkan *password* setiap saat.</p>
+                <p>Kalau <em>hard disk</em> lokal rusak, tamatlah riwayat datamu. Solusi direkomendasikan adalah mencadangkan data ke server terpisah yang berlokasi jauh secara otomatis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Pendekatannya serupa, kita hanya perlu menambahkan otentikasi kunci agar tak perlu repot memasukkan *password* setiap saat.</p>
                 <h3>1. Setup SSH Key Tanpa Password (Opsional tapi Wajib Coba)</h3>
                 <p>Pertama, buatlah gembok dan kunci digital (SSH <em>key pair</em>) dari komputermu:</p>
 <pre><code><span class="sh-keyword">ssh-keygen</span> -t ed25519 -C <span class="sh-string">"user@client"</span></code></pre>

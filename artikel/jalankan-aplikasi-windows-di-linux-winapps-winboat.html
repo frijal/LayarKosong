@@ -185,9 +185,9 @@
     <section id="technology">
         <h2><i class="fa-solid fa-cogs"></i> Bagaimana Teknologinya Bekerja?</h2>
         <p>Ini bagian yang menarik! Bayangkan kamu punya dua sistem yang bekerja sama di balik layar. Pertama, ada **Windows asli** yang berjalan sebagai "tamu" di lingkungan virtual (bisa pakai QEMU/KVM lewat libvirt atau di dalam kontainer Docker/Podman). Windows ini berjalan tanpa antarmuka (<em>headless</em>), jadi kamu nggak bakal lihat desktop Windows-nya.</p>
-        <p>Di dalam Windows tamu itu, ada agen kecil yang bertugas memberi tahu Linux: *"Eh, pengguna mau buka Word nih!"*. Kemudian, Linux menggunakan aplikasi bernama **xfreerdp** dengan fitur **RemoteApp**. Fitur inilah yang paling ajaib, karena ia bisa memotong gambar jendela aplikasi saja dan membuang latar belakang desktop Windows-nya. Hasilnya? Microsoft Word muncul di desktop Linux kamu dengan bayangan jendela dan fungsi minimalkan/maksimalkan yang menyatu dengan tema desktop Linux-mu.</p>
+        <p>Di dalam Windows tamu itu, ada agen kecil yang bertugas memberi tahu Linux: *"Eh, pengguna mau buka Word nih!"*. Kemudian, Linux menggunakan aplikasi bernama **xfreerdp** dengan fitur **RemoteApp**. Fitur inilah yang salah satu yang ajaib, karena ia bisa memotong gambar jendela aplikasi saja dan membuang latar belakang desktop Windows-nya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Hasilnya? Microsoft Word muncul di desktop Linux kamu dengan bayangan jendela dan fungsi minimalkan/maksimalkan yang menyatu dengan tema desktop Linux-mu.</p>
         <div class="teacher-advice">
-            <p><strong>Pesan Aku:</strong> Jangan samakan ini dengan VirtualBox biasa ya! Di VirtualBox, kamu harus melihat seluruh desktop Windows. Di sini, kamu cuma lihat aplikasinya saja. Ini jauh lebih rapi dan efisien untuk alur kerja harian.</p>
+            <p><strong>Pesan Aku:</strong> Jangan samakan ini dengan VirtualBox biasa ya! Di VirtualBox, kamu perlu melihat seluruh desktop Windows. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Di sini, kamu cuma lihat aplikasinya saja. Ini lebih rapi dan efisien untuk alur kerja harian. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         </div>
     </section>
     <section id="comparison">
@@ -256,7 +256,7 @@
     <section id="performance">
         <h2><i class="fa-solid fa-tachometer-alt"></i> Performa &amp; Pengalaman Pengguna</h2>
         <p>Bicara soal kecepatan, tentu ada *overhead*. Membuka aplikasi lewat WinApps/WinBoat akan sedikit lebih lambat dibanding aplikasi native Linux atau Wine. Kenapa? Karena sistem harus memastikan VM Windows-nya bangun dari tidur dan koneksi RDP-nya terjalin.</p>
-        <p>Tapi begitu aplikasinya sudah terbuka, pengalamannya sangat mulus! Kamu bisa *copy-paste* teks antar Linux dan Windows, bahkan file-file di folder `/home` Linux kamu akan muncul sebagai drive jaringan di Windows. Jadi, kamu bisa edit dokumen Excel langsung dari folder dokumen Linux-mu tanpa harus pindah-pindahkan file.</p>
+        <p>Tapi begitu aplikasinya sudah terbuka, pengalamannya sangat mulus! Kamu bisa *copy-paste* teks antar Linux dan Windows, bahkan file-file di folder `/home` Linux kamu akan muncul sebagai drive jaringan di Windows. Jadi, kamu bisa edit dokumen Excel langsung dari folder dokumen Linux-mu tanpa perlu pindah-pindahkan file. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         <div class="teacher-advice">
             <p><strong>Tips dari Aku:</strong> Jika kamu pakai monitor ganda (multi-monitor), pastikan versi `xfreerdp` kamu sudah versi terbaru. Kadang RemoteApp agak "bingung" kalau disuruh loncat antar monitor, tapi ini terus diperbaiki oleh komunitas.</p>
         </div>
@@ -270,7 +270,7 @@
         <h2><i class="fa-solid fa-flag-checkered"></i> Kesimpulan: Apakah Ini Untukmu?</h2>
         <p>WinApps dan WinBoat adalah solusi jembatan yang sangat elegan. Jika pekerjaanmu mengharuskan kamu memakai aplikasi Windows yang tidak mau diajak kompromi di Wine, maka inilah jalan terbaiknya. Kamu mendapatkan kompatibilitas penuh tanpa harus merusak pengalaman desktop Linux-mu.</p>
         <p>Saran Aku: Mulailah dengan **WinBoat** kalau kamu mau coba-coba tanpa mau ribet dengan konfigurasi server virtualisasi. Tapi kalau kamu adalah orang yang suka kontrol penuh atas sistem, **WinApps** dengan libvirt/KVM adalah standar emas yang harus kamu coba.</p>
-        <p>Selamat mencoba, sobat! Dunia open source sekarang sudah nggak seseram dulu, kan? Dengan alat yang tepat, kamu bisa punya yang terbaik dari kedua dunia!</p>
+        <p>Selamat mencoba, sobat! Dunia open source sekarang sudah nggak seseram dulu, kan? Dengan alat yang tepat, kamu bisa punya yang direkomendasikan dari kedua dunia! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
     </section>
     <!-- Slot Komentar & Artikel Terkait -->
     <div id="related-articles-grid">

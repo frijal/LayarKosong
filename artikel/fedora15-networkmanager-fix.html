@@ -234,7 +234,7 @@
           <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcZze1B8effjBgy9jbK3ucLENi40tQeX0NRovwwuTQ78TTDM5L1ai2IonB-N-Ms7W2t1ZCURYFCYa_u7kR1Ymotd6hhDPvK5R8dtwqBfqOYEaLrfqGq1GxERW-dSSn61DbmAhfORxhnGJp/s1600/instalasiselesai.webp" alt="Tampilan antarmuka Fedora 15 setelah proses instalasi paket perbaikan NetworkManager selesai" fetchpriority="high">
           <figcaption>Kondisi NetworkManager yang kembali normal setelah paket perbaikan berhasil diinstal di Fedora 15.</figcaption>
         </figure>
-        <p>Pengguna Linux pastinya sudah akrab dengan yang namanya pembaruan sistem yang kadang membawa kejutan yang tidak menyenangkan. Salah satu momen yang paling membekas bagi pengguna Fedora 15 terjadi pada pembaruan tertanggal 26 Mei 2011. Pembaruan paket NetworkManager tersebut ternyata membawa <em>bug</em> krusial yang membuat koneksi seluler, modem USB, dan fungsi <em>tethering</em> ponsel mati total.</p>
+        <p>Pengguna Linux pastinya sudah akrab dengan yang namanya pembaruan sistem yang kadang membawa kejutan yang tidak menyenangkan. Salah satu momen yang salah satu yang membekas bagi pengguna Fedora 15 terjadi pada pembaruan tertanggal 26 Mei 2011. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Pembaruan paket NetworkManager tersebut ternyata membawa <em>bug</em> krusial yang membuat koneksi seluler, modem USB, dan fungsi <em>tethering</em> ponsel mati total.</p>
         <p>Akar masalahnya berada pada paket <code>gnome-0.8.999.3.git20110526.fc15</code>. Namun, komunitas <em>open source</em> merespons dengan cepat. Beberapa hari kemudian, muncul <em>build</em> perbaikan pada versi <code>NetworkManager-gnome-0.8.9997-1.git20110531.fc15</code>. Tantangannya adalah, bagaimana cara mengunduh dan memperbarui sistem ketika sistem itu sendiri tidak bisa terhubung ke internet seluler? Tenang, mari kita bedah prosesnya dari awal hingga beres.</p>
         <div class="alert">
           ⚠️ <strong>Peringatan Singkat:</strong> Sebelum kita melangkah ke proses penghapusan profil konfigurasi lama di direktori <code>/etc/NetworkManager/system-connections</code>, pastikan kamu sudah melakukan pencadangan (<em>backup</em>) direktorinya. Ini sangat penting sebagai langkah mitigasi jika terjadi kesalahan.
@@ -269,7 +269,7 @@ sudo yum localinstall *.rpm</code></pre>
           <figcaption>Proses instalasi paket RPM secara lokal melalui terminal (yum localinstall).</figcaption>
         </figure>
         <h3>3. Bersihkan Profil Koneksi Lama</h3>
-        <p>Pembaruan paket sering kali bentrok dengan sisa konfigurasi lama. Oleh karena itu, kita wajib membersihkan profil koneksi yang mengendap. Pastikan langkah pencadangan tidak terlewatkan agar kita bisa mengembalikannya jika skenario terburuk terjadi.</p>
+        <p>Pembaruan paket sering kali bentrok dengan sisa konfigurasi lama. Oleh karena itu, kita disarankan membersihkan profil koneksi yang mengendap. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Pastikan langkah pencadangan tidak terlewatkan agar kita bisa mengembalikannya jika skenario terburuk terjadi.</p>
 <pre><code># Cadangkan profil koneksi terlebih dahulu
 sudo cp -a /etc/NetworkManager/system-connections{,.backup}
 # Masuk ke direktori dan hapus profil lama (sistem akan membuatnya ulang saat modem dicolokkan)

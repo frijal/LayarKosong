@@ -150,7 +150,7 @@
     </header>
     <article class="content">
         <p>Halo lagi, sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang cerah, kali ini kita bakal bahas sesuatu yang nggak kalah krusial dari urusan disk penuh, yaitu: <strong>RAM (Random Access Memory)</strong>. Kalau Disk penuh itu kayak gudang yang gak muat barang, RAM penuh itu kayak otak yang lagi <em>blank</em> gara-gara kebanyakan mikir. Ujung-ujungnya? Server kamu  "ngehang" atau proses penting tiba-tiba mati sendiri.</p>
-        <p>Pernah dengar istilah <strong>OOM (Out Of Memory) Killer</strong>? Itu adalah mekanisme di kernel Linux yang bakal "nembak mati" proses paling rakus saat RAM sudah kritis. Masalahnya, kadang yang ditembak itu justru proses penting kayak database atau web server. Ngeri kan?</p>
+        <p>Pernah dengar istilah <strong>OOM (Out Of Memory) Killer</strong>? Itu adalah mekanisme di kernel Linux yang bakal "nembak mati" proses salah satu yang rakus saat RAM sudah kritis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Masalahnya, kadang yang ditembak itu justru proses penting kayak database atau web server. Ngeri kan?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nV6dNasAAb7Fc.webp" alt="Linux RAM Monitoring Dashboard" class="featured-image">
         <h2>Apa Masalah Utama RAM di Linux? ("What")</h2>
         <p>Banyak pengguna pemula panik saat liat hasil <code>free -h</code> karena RAM-nya kelihatan hampir habis. Padahal, Linux itu pinter; dia pake sisa RAM buat <em>cache</em> dan <em>buffer</em> biar sistem lebih kencang. Yang jadi masalah itu kalau <strong>Available Memory</strong>-nya sudah menyentuh angka di bawah 10%. Di titik itulah server kamu  mulai berada di zona bahaya.</p>
@@ -164,10 +164,10 @@
         </div>
         <h2>Siapa yang Perlu Memasang Script Ini? ("Who")</h2>
         <p>Semua orang yang punya server produksi! Baik itu buat blog pribadi, server aplikasi kantor, atau <em>node</em> kripto. Terutama kalau kamu  pake VPS dengan RAM terbatas (misal 1GB atau 2GB), monitor ini adalah "asuransi" biar kamu  gak perlu bolak-balik <em>reboot</em> server secara manual.</p>
-        <h2>Dimana dan Kapan Harus Bertindak? ("Where" &amp; "When")</h2>
+        <h2>Dimana dan Kapan perlu Bertindak? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ("Where" &amp; "When")</h2>
         <p>Idealnya, monitor ini dipasang di setiap unit server kamu . Waktunya? Sebaiknya dari hari pertama server itu <em>online</em>. Jangan tunggu sampai ada laporan "Web nggak bisa diakses" baru kamu  sibuk nyari penyebabnya. Dengan script otomatis, kamu  bakal dapet peringatan <strong>sebelum</strong> musibah terjadi.</p>
         <h2>Bagaimana Caranya? Script RAM-Radar.sh ("How")</h2>
-        <p>Mari kita buat script Bash yang cerdas. Script ini nggak cuma liat RAM yang "used", tapi liat yang "available" (yang benar-benar bisa dipake sistem). Copy script di bawah ini:</p>
+        <p>Mari kita buat script Bash yang cerdas. Script ini tidak cuma liat RAM yang "used", tapi liat yang "available" (yang benar-benar bisa dipake sistem). Copy script di bawah ini:</p>
         <div class="script-box">
 <pre><code>#!/bin/bash
 # --- KONFIGURASI ---
