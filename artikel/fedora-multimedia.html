@@ -178,7 +178,7 @@
 <pre><code>sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm</code></pre>
                 <p>Setelah menekan <code>Enter</code> dan memasukkan <em>password root</em>, tunggu beberapa saat hingga proses <em>download</em> repositori selesai.</p>
                 <h2>Langkah 2: Instal Codec Multimedia 📦</h2>
-                <p>Setelah repositori RPM Fusion dipastikan aktif, Anda dapat menginstal grup paket multimedia dan <em>sound-and-video</em> untuk mendapatkan semua codec esensial secara serentak. Pendekatan "sapu jagat" ini adalah yang paling disarankan agar tidak ada ekstensi file yang terlewat.</p>
+                <p>Setelah repositori RPM Fusion dipastikan aktif, Anda dapat menginstal grup paket multimedia dan <em>sound-and-video</em> untuk mendapatkan semua codec esensial secara serentak. Pendekatan komprehensif ini sangat disarankan agar seluruh ekstensi berkas dapat terakomodasi.</p>
 <pre><code>sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate sound-and-video</code></pre>
                 <h3>Alternatif: Instalasi Secara Individual</h3>

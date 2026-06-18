@@ -27,7 +27,7 @@ echo "✅ Semua file selesai diproses!"</code></pre><div class=code-actions><but
 ffmpeg -i musik.mp3 -filter_complex "[0:a]showspectrum=s=1280x720:mode=separate:color=intensity:scale=log[v]" -map "[v]" -map 0:a -c:v libx264 -c:a aac -shortest output.mp4
 # Waveform titik
 ffmpeg -i musik.mp3 -filter_complex "[0:a]showwaves=s=1920x1080:mode=point:rate=30:colors=cyan[v]" -map "[v]" -map 0:a -c:v libx264 -c:a aac -shortest output.mp4
-# Menambahkan background gambar di belakang visualizer
+# Menyampaikan gambar latar pada komponen visualizer
 ffmpeg -loop 1 -t 180 -i bg.jpg -i musik.mp3 \
 -filter_complex "[1:a]showspectrum=s=1920x1080:mode=combined:color=rainbow:scale=log[v];[0][v]overlay=shortest=1:format=auto[out]" \
 -map "[out]" -map 1:a -c:v libx264 -c:a aac -shortest output_with_bg.mp4</code></pre></div></article><aside><div class=card><div id=related-articles-grid></div><div id=response></div></div></aside></main><footer>🄯 2025 Fakhrul Rijal. Dibuat dengan ☕ dan semangat terminal Linux. <a href=/about target=_blank>☕</a><a href=/data-deletion target=_blank>🛡️</a><a href=/data-deletion-form target=_blank>📝</a><a href=/disclaimer target=_blank>⚠️</a><a href=/lisensi target=_blank>📚</a><a href=/privacy target=_blank>🔰</a><a href=/security-policy target=_blank>⚔️</a></footer><script>const fsToggle = document.getElementById('fsToggle');
