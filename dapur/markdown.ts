@@ -1,78 +1,50 @@
 /**
- * MARKDOWN ENHANCER v8.5 (Layar Kosong Optimized)
- * Update: Tokenization Engine + TreeWalker Radar (Zero Config)
+ * MARKDOWN ENHANCER v9.0 (Layar Kosong Optimized - Marked.js Edition)
+ * Melindungi URL, mendukung Nested Formatting, & Radar TreeWalker Zero Config
  */
 
 declare global {
   interface Window {
     hljs: any;
+    marked: any;
   }
 }
 
-function parseMarkdown(text: string): string {
-  const tokens: string[] = [];
-  let res = text;
-
-  // 🛡️ TAHAP 1: EKSTRAKSI & PROTEKSI
-  const protect = (str: string) => {
-    tokens.push(str);
-    return `__MD_TOKEN_${tokens.length - 1}__`;
-  };
-
-  res = res.replace(/`([^`]+)`/g, (match, p1) => {
-    const safeCode = p1.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    return protect(`<code class="inline-code">${safeCode}</code>`);
+// ⚙️ Konfigurasi awal Marked.js agar terintegrasi dengan standar blogmu
+if (window.marked) {
+  window.marked.setOptions({
+    gfm: true,         // Aktifkan GitHub Flavored Markdown (standar industri)
+  breaks: true,      // Mengubah single newline menjadi <br>
+  pedantic: false,
+  smartLists: true,  // Mengoptimalkan susunan list/bullet
+  smartypants: true  // Mengubah kutip biasa jadi curly quotes yang lebih estetik
   });
+}
 
-  res = res.replace(/!\[([^\]]*)\]\((.*?)\)/g, (match, alt, url) => protect(`<img src="${url}" alt="${alt}" class="md-img">`));
-  res = res.replace(/\[([^\]]+)\]\((.*?)\)/g, (match, txt, url) => protect(`<a href="${url}" target="_blank">${txt}</a>`));
-  res = res.replace(/<[^>]+>/g, protect);
-
-  // 🪄 TAHAP 2: PARSING MARKDOWN
-  res = res.replace(/&gt;/g, ">").replace(/&lt;/g, "<");
-  res = res.replace(/--/g, "&mdash;");
-
-  // HEADING
-  res = res
-  .replace(/(?:^|>|\s)###### (.*?)(?=\n|<|$)/g, "<h6>$1</h6>")
-  .replace(/(?:^|>|\s)##### (.*?)(?=\n|<|$)/g, "<h5>$1</h5>")
-  .replace(/(?:^|>|\s)#### (.*?)(?=\n|<|$)/g, "<h4>$1</h4>")
-  .replace(/(?:^|>|\s)### (.*?)(?=\n|<|$)/g, "<h3>$1</h3>")
-  .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
-  .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>");
-
-  // ✨ PERBAIKAN BOLD, ITALIC, & STRIKETHROUGH
-  // Menggunakan (?=\S)(.*?\S) agar bebas menyarangkan simbol di dalamnya (Nested Support)
-  res = res.replace(/(^|>|[\s(])\*\*(?=\S)(.*?\S)\*\*([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
-  res = res.replace(/(^|>|[\s(])__(?=\S)(.*?\S)__([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
-  res = res.replace(/(^|>|[\s(])\*(?=\S)(.*?\S)\*([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
-  res = res.replace(/(^|>|[\s(])_(?=\S)(.*?\S)_([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
-  res = res.replace(/(^|>|[\s(])~~(?=\S)(.*?\S)~~([\s.,!?;:<()'"\/]|$)/g, "$1<del>$2</del>$3");
-
-  // BLOCKQUOTE
-  res = res.replace(/^[ \t]*>[ \t]?(.*?)[ \t]*$/gm, "<blockquote>$1</blockquote>");
-
-  // LIST
-  const hasRealListMarker = /^[ \t]*[-*+][ \t]+/m.test(text);
-  if (hasRealListMarker) {
-    res = res.replace(/^[ \t]*[-*+][ \t]+(.*?)[ \t]*$/gm, "<li>$1</li>");
-    res = res.replace(/(<li>[\s\S]*?<\/li>)/g, (match) => `<ul>${match}</ul>`);
-    res = res.replace(/<\/ul>\s*<ul>/g, "\n");
+function parseMarkdown(text: string, isBlockElement: boolean): string {
+  if (!window.marked) {
+    console.warn("⚠️ Library marked.min.js belum termuat.");
+    return text; // Fallback: kembalikan teks asli kalau library gagal diload
   }
 
-  // 🔄 TAHAP 3: RESTORASI
-  for (let i = tokens.length - 1; i >= 0; i--) {
-    res = res.replace(`__MD_TOKEN_${i}__`, tokens[i]);
-  }
+  // Support Em-dash bawaan Layar Kosong
+  let processedText = text.replace(/--/g, "&mdash;");
 
-  return res;
+  // 🛣️ Jalur Pintas:
+  // Kalau elemennya udah berupa blok spesifik kayak <p> atau <li>, pakai parseInline
+  // biar marked.js nggak iseng mbungkus ulang pakai tag <p> baru.
+  if (isBlockElement) {
+    return window.marked.parse(processedText);
+  } else {
+    return window.marked.parseInline(processedText);
+  }
 }
 
 function enhanceMarkdown(): void {
-  // 1. Brankas target elemen yang butuh di-parse
+  // 1. Tempat penampungan elemen yang terdeteksi
   const targets = new Set<HTMLElement>();
 
-  // 📡 2. RADAR: Menyapu SEMUA teks di layar tanpa peduli apa nama class/tag-nya
+  // 📡 2. RADAR: Menyapu teks murni di layar tanpa peduli class/tag HTML-nya
   const walker = document.createTreeWalker(
     document.body,
     NodeFilter.SHOW_TEXT,
@@ -83,11 +55,11 @@ function enhanceMarkdown(): void {
   while ((node = walker.nextNode())) {
     const text = node.nodeValue || "";
 
-    // Cek jika teks ini mengandung indikator Markdown (Asterisk, Hash, List, Quote, dll)
+    // Cek apakah teks ini mengandung indikator Markdown (termasuk bintang, hashtag, quote)
     if (/[\*\#_\[\]`~\-]/.test(text) || /^[ \t]*>/m.test(text)) {
       const parent = node.parentElement;
 
-      // Filter Ketat: Pastikan parent bukan tag haram, bukan body langsung, dan belum pernah di-render
+      // Filter Ketat: Pastikan bukan area haram dan belum pernah di-render
       if (
         parent &&
         parent.tagName !== 'BODY' &&
@@ -102,18 +74,23 @@ function enhanceMarkdown(): void {
 
   // 🛠️ 3. EKSEKUSI PARSING
   targets.forEach((target) => {
-    // Pengamanan ekstra: Kalau elemen ini sudah hilang dari DOM (karena re-render parent), lewati
+    // Pengamanan ganda kalau elemen sudah hilang/terubah dari DOM
     if (!document.body.contains(target) || target.classList.contains("rendered")) return;
 
     const originalHTML = target.innerHTML;
     const rawContent = originalHTML.trim();
 
-    const newHTML = parseMarkdown(rawContent);
+    // Deteksi apakah elemen ini adalah Block Element asli atau teks biasa
+    const blockTags = ['DIV', 'BLOCKQUOTE', 'SECTION', 'ARTICLE', 'MAIN', 'TD', 'TH'];
+    const hasBlockStructure = /^[ \t]*([#>-]|\d+\.)/m.test(rawContent);
+    const isBlock = blockTags.includes(target.tagName) || hasBlockStructure;
 
-    // Jika ada perubahan, aplikasikan dan tandai biar efisien
+    // Serahkan mandat ke Marked.js!
+    const newHTML = parseMarkdown(rawContent, isBlock);
+
     if (newHTML !== originalHTML) {
       target.innerHTML = newHTML;
-      target.classList.add("rendered");
+      target.classList.add("rendered"); // Tandai biar radar nggak bolak-balik ngecek
     }
   });
 }
@@ -124,14 +101,14 @@ function checkAndLoadHighlight(): void {
 
   document.querySelectorAll("pre code").forEach((block) => {
     const el = block as HTMLElement;
-    // Cegah error re-highlighting dari highlight.js
+    // Cegah highlight.js merender ulang blok yang sama
     if (!el.classList.contains('hljs') && !el.dataset.highlighted) {
       window.hljs.highlightElement(el);
     }
   });
 }
 
-// ⏱️ Debounce untuk membatasi spam eksekusi MutationObserver
+// ⏱️ Debounce MutationObserver agar browser tetap mulus
 let observerTimeout: ReturnType<typeof setTimeout>;
 
 function start(): void {
@@ -145,13 +122,12 @@ function start(): void {
         enhanceMarkdown();
         checkAndLoadHighlight();
       });
-    }, 50); // Jeda 50ms (sangat ringan di CPU)
+    }, 50);
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
-// 🚀 Boot sequence
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start);
 } else {
