@@ -75,6 +75,9 @@ https://:version.:project.pages.dev/*
 /logo.png
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+/*.xsl
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
 
 # =========================================================
 # 5. HALAMAN HTML (Ultra Long-term dengan SWR)
