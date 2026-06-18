@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Hubungkan langsung ke ID input yang baru
     const searchInput = document.getElementById('live-search-box') as HTMLInputElement;
+    const clearBtn = document.getElementById('clear-search-btn') as HTMLButtonElement; // ✨ TAMBAHAN BARU
 
     // --- 🟢 STATE MANAGEMENT ---
     let currentPage = 1;
@@ -205,6 +206,7 @@ if (searchInput) {
     searchInput.addEventListener('input', (e) => {
         currentQuery = (e.target as HTMLInputElement).value;
         currentPage = 1; // Reset halaman ke 1
+        if (clearBtn) clearBtn.style.display = currentQuery ? 'flex' : 'none';
 
         // Update URL bar tanpa me-reload halaman
         const newUrl = currentQuery ? `?q=${encodeURIComponent(currentQuery)}` : window.location.pathname;
@@ -231,6 +233,30 @@ if (searchInput) {
             searchInput.blur(); // Perintah untuk menghilangkan fokus (menurunkan keyboard)
         }
     });
+    // 💡 3. UX TAMBAHAN: Logika Tombol Clear "X"
+    if (clearBtn) {
+        // Cek saat pertama kali load, kalau URL bawa query, munculkan tombolnya
+        if (currentQuery) clearBtn.style.display = 'flex';
+
+clearBtn.addEventListener('click', () => {
+    // 1. Kosongkan input
+    searchInput.value = '';
+    currentQuery = '';
+
+    // 2. Sembunyikan tombol X
+    clearBtn.style.display = 'none';
+
+    // 3. Kembalikan fokus ke kotak input
+    searchInput.focus();
+
+    // 4. Bersihkan URL dari parameter ?q=
+    window.history.replaceState({}, '', window.location.pathname);
+
+    // 5. Batalkan query yang mungkin sedang jalan dan tampilkan layar kosong
+    clearTimeout(debounceTimer);
+    showStandbyScreen();
+});
+    }
 }
 
 // 3. Navigasi Pagination

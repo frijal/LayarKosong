@@ -116,7 +116,8 @@ body {
 
 #live-search-box {
 width: 100%;
-padding: 16px 20px 16px 50px;
+/* Perhatikan padding kanan diubah jadi 50px agar teks tidak nabrak tombol X */
+padding: 16px 50px 16px 50px;
 border-radius: 12px;
 border: 2px solid var(--warna-garis);
 background-color: var(--warna-permukaan);
@@ -132,6 +133,40 @@ box-sizing: border-box;
 #live-search-box:focus {
 border-color: var(--warna-aksen);
 box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+}
+
+/* Mematikan ikon X bawaan Chrome/Safari agar tidak dobel */
+#live-search-box::-webkit-search-cancel-button {
+-webkit-appearance: none;
+appearance: none;
+}
+
+/* ❌ Tombol Clear "X" */
+.clear-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--warna-teks-sekunder);
+    cursor: pointer;
+    padding: 6px;
+    display: none; /* Awalnya disembunyikan */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+    color: var(--warna-teks-utama);
+    background-color: var(--warna-garis);
+}
+
+.clear-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
