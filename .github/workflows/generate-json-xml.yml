@@ -90,9 +90,9 @@ jobs:
         if: env.DO_SCHEMA == 'true'
         run: bun run dapur/inject-schema.ts
 
-      - name: '8. Convert HTML to Markdown'
-        if: env.DO_CONVERT_MARKDOWN == 'true'
-        run: bun run dapur/html-to-markdown.ts
+   #   - name: '8. Convert HTML to Markdown'
+   #     if: env.DO_CONVERT_MARKDOWN == 'true'
+   #     run: bun run dapur/html-to-markdown.ts
         
       - name: '9. Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
