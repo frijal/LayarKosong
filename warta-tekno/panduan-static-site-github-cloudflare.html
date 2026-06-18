@@ -527,18 +527,18 @@ jobs:
           mkdir deploy_dir
           # rsync tetap bersih karena wrangler.toml masih di /tmp/
           rsync -a --delete \
-            --include='gaya-hidup/***' \
-            --include='jejak-sejarah/***' \
-            --include='lainnya/***' \
-            --include='olah-media/***' \
-            --include='opini-sosial/***' \
-            --include='sistem-terbuka/***' \
-            --include='warta-tekno/***' \
-            --include='functions/***' \
-            --include='search/***' \
-            --include='ext/***' \
-            --include='.well-known/***' \
-            --include='img/***' \
+            --include='gaya-hidup/* **' \
+            --include='jejak-sejarah/* **' \
+            --include='lainnya/* **' \
+            --include='olah-media/* **' \
+            --include='opini-sosial/* **' \
+            --include='sistem-terbuka/* **' \
+            --include='warta-tekno/* **' \
+            --include='functions/* **' \
+            --include='search/* **' \
+            --include='ext/* **' \
+            --include='.well-known/* **' \
+            --include='img/* **' \
             --include='artikel.json' \
             --include='redirectmap.json' \
             --include='llms.md' \

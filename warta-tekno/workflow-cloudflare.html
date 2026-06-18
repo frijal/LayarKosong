@@ -39,9 +39,9 @@ jobs:
  - name: Sync allowed files to deploy directory
  run: |
  rsync -a --delete \
- --include='artikel/***' \
- --include='ext/***' \
- --include='img/***' \
+ --include='artikel/* **' \
+ --include='ext/* **' \
+ --include='img/* **' \
  --include='artikel.json' \
  --include='_redirects' \
  --include='_headers' \
