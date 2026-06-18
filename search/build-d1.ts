@@ -89,18 +89,26 @@ let sqlCommands: string[] = ["DELETE FROM articles_fts;"];
 let totalProcessed = 0;
 let totalSkipped = 0;
 
-// Menggunakan index i untuk penomoran kategori (1 s.d 7)
-for (let i = 0; i < ARTICLE_DIRS.length; i++) {
-    const cat = ARTICLE_DIRS[i];
-    const catNumber = i + 1; // Kategori 1 sampai 7
-    
+// Mapping kategori fix
+const CATEGORY_MAP: Record<string, number> = {
+    "gaya-hidup": 1,
+    "jejak-sejarah": 2,
+    "lainnya": 3,
+    "olah-media": 4,
+    "opini-sosial": 5,
+    "sistem-terbuka": 6,
+    "warta-tekno": 7
+};
+
+for (const cat of Object.keys(CATEGORY_MAP)) {
+    const catNumber = CATEGORY_MAP[cat];
     const fullCatPath = join(ROOT_DIR, cat);
     if (!existsSync(fullCatPath)) continue;
 
     const files = readdirSync(fullCatPath).filter(f => f.endsWith(".html"));
     
-    // Counter nomor urut di-reset setiap kali masuk ke kategori (folder) baru
-    let seqNumber = 1; 
+    // 1. Kumpulkan semua data artikel dalam kategori ini
+    let categoryArticles: any[] = [];
 
     for (const file of files) {
         if (shouldSkipFile(file)) {
@@ -110,19 +118,29 @@ for (let i = 0; i < ARTICLE_DIRS.length; i++) {
 
         try {
             const data = extractArticleData(join(fullCatPath, file), file, cat);
-            
-            // Format kode: "nomor kategori - nomor urut" (misal: "1-1", "1-2", "5-1")
-            const code = `${catNumber}-${seqNumber}`; 
-            
-            sqlCommands.push(generateInsertSQL({ ...data, file, category: cat, code }));
-            
-            totalProcessed++;
-            seqNumber++; // Urutan naik hanya jika artikel sukses diproses
+            // Simpan data beserta file name-nya
+            categoryArticles.push({ ...data, file });
         } catch (e: any) {
             console.error(`❌ Gagal olah file: ${file} (${e.message})`);
         }
     }
+
+    // 2. Sort berdasarkan tanggal (Oldest to Newest)
+    categoryArticles.sort((a, b) => {
+        return new Date(a.dateISO).getTime() - new Date(b.dateISO).getTime();
+    });
+
+    // 3. Assign nomor urut dan masukkan ke SQL commands
+    categoryArticles.forEach((article, index) => {
+        const seqNumber = index + 1;
+        const code = `${catNumber}-${seqNumber}`;
+        
+        sqlCommands.push(generateInsertSQL({ ...article, category: cat, code }));
+        totalProcessed++;
+    });
 }
+
+// ... (sisanya tetap sama: writeFileSync, execSync, etc)
 
 writeFileSync(SQL_FILE, sqlCommands.join("\n"));
 
