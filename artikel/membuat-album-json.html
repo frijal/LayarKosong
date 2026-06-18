@@ -384,7 +384,7 @@
                 </div>
                 <hr>
                 <h2><i class="fa-brands fa-python"></i>Opsi 1: Script Python (<code>.py</code>)</h2>
-                <p>Ini adalah cara yang paling simpel jika Anda punya Python. Buat file baru di dalam folder album Anda, beri nama <code>buat_json.py</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
+                <p>Metode ini merupakan alternatif yang efisien apabila perangkat Anda telah terintegrasi dengan runtime Python. di dalam folder album Anda, beri nama <code>buat_json.py</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
 <pre><code class="language-python">import os
 import json
 # --- Konfigurasi ---
@@ -418,7 +418,7 @@ image_paths.sort()
 # 6. Tulis semua path ke dalam file JSON
 try:
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        # indent=2 membuat file JSON rapi dan mudah dibaca
+        # Parameter penjarakan tersebut dikonfigurasikan agar output berkas JSON menyajikan struktur data secara sistematis dan terstruktur.
         json.dump(image_paths, f, indent=2, ensure_ascii=False)
     print(f"\n✅ Sukses! {len(image_paths)} gambar telah disimpan ke '{OUTPUT_FILE}'")
 except IOError as e:
