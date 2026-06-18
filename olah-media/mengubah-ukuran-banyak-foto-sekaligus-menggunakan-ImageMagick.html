@@ -4,7 +4,7 @@ mkdir -p ../resized
 magick mogrify -path ../resized -resize 800x -strip -quality 85 *.jpg</code></pre><p class=small-desc>Hasilnya bakal masuk ke folder `../resized`, file asli kamu tetap aman di tempatnya.</section><section><h2><i class="fa-solid fa-rotate"></i> Metode 2 — Loop Manual (Fleksibel)</h2><p>Kalau kamu ingin lebih teliti, misalnya sambil ganti format ke PNG, pakai cara loop ini:<pre><button class=copy-btn>Copy</button><code class=language-bash>mkdir -p ../resized
 for f in *.jpg; do
  magick "$f" -resize 800x -strip -quality 85 "../resized/${f%.*}.jpg"
-done</code></pre></section><section><h2><i class="fa-solid fa-folder-tree"></i> Metode 3 — Rekursif (Masuk ke Subfolder)</h2><p>Punya banyak folder di dalam folder? Tenang, skrip ini bakal nge-resize sambil mempertahankan struktur foldernya.<pre><button class=copy-btn>Copy</button><code class=language-bash>#!/bin/bash
+done</code></pre></section><section><h2><i class="fa-solid fa-folder-tree"></i> Metode 3 — Rekursif (Masuk ke Subfolder)</h2><p>Apabila struktur direktori memiliki beberapa subfolder di dalamnya, konfigurasi skrip ini dirancang untuk memproses penyesuaian ukuran gambar tanpa mengubah susunan folder asal.<pre><button class=copy-btn>Copy</button><code class=language-bash>#!/bin/bash
 OUTDIR="resized"
 mkdir -p "$OUTDIR"
 find . -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0 |
