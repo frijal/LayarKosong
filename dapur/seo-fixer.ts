@@ -234,10 +234,10 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
     // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
     const metaTags = [
         `<meta property="og:locale" content="id_ID">`,
+        `<meta property="og:site_name" content="Layar Kosong">`,
         `<link rel="canonical" href="${canonicalUrl}">`,
         `<meta property="og:url" content="${canonicalUrl}">`,
-        `<meta property="twitter:url" content="${canonicalUrl}">`,
-        `<meta property="og:site_name" content="Layar Kosong">`,
+        `<meta property="twitter:url" content="${canonicalUrl}">`,        
         `<script defer src="/ext/data-provider.js"></script>`,
         `<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">`,
         `<link rel="sitemap" type="application/xml" href="/sitemap.xml">`,
