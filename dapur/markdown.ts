@@ -13,29 +13,22 @@ function parseMarkdown(text: string): string {
   const tokens: string[] = [];
   let res = text;
 
-  // 🛡️ TAHAP 1: EKSTRAKSI & PROTEKSI (Masukkan ke "Brankas" Token)
+  // 🛡️ TAHAP 1: EKSTRAKSI & PROTEKSI
   const protect = (str: string) => {
     tokens.push(str);
     return `__MD_TOKEN_${tokens.length - 1}__`;
   };
 
-  // 1.1 Amankan Inline Code biar karakter -- atau _ di dalamnya tidak rusak
   res = res.replace(/`([^`]+)`/g, (match, p1) => {
-    // Escape HTML entities di dalam kode biar aman dari XSS
     const safeCode = p1.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     return protect(`<code class="inline-code">${safeCode}</code>`);
   });
 
-  // 1.2 Amankan Link & Image Markdown
   res = res.replace(/!\[([^\]]*)\]\((.*?)\)/g, (match, alt, url) => protect(`<img src="${url}" alt="${alt}" class="md-img">`));
   res = res.replace(/\[([^\]]+)\]\((.*?)\)/g, (match, txt, url) => protect(`<a href="${url}" target="_blank">${txt}</a>`));
-
-  // 1.3 Amankan SEMUA Tag HTML asli biar atributnya (href, class, id) nggak dirusak Regex!
   res = res.replace(/<[^>]+>/g, protect);
 
-  // 🪄 TAHAP 2: PARSING MARKDOWN (Sekarang sudah aman dari konflik)
-
-  // Unescape dasar & Em-dash
+  // 🪄 TAHAP 2: PARSING MARKDOWN
   res = res.replace(/&gt;/g, ">").replace(/&lt;/g, "<");
   res = res.replace(/--/g, "&mdash;");
 
@@ -48,30 +41,26 @@ function parseMarkdown(text: string): string {
   .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
   .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>");
 
-  // BOLD, ITALIC, & STRIKETHROUGH
-  res = res.replace(/(^|>|[\s(])\*\*([^\s*][^*]*[^\s*])\*\*([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
-  res = res.replace(/(^|>|[\s(])__([^\s_][^_]*[^\s_])__([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
-  res = res.replace(/(^|>|[\s(])\*([^\s*][^*]*[^\s*])\*([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
-  res = res.replace(/(^|>|[\s(])_([^\s_][^_]*[^\s_])_([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
-  res = res.replace(/(^|>|[\s(])~~([^\s~][^~]*[^\s~])~~([\s.,!?;:<()'"\/]|$)/g, "$1<del>$2</del>$3");
+  // ✨ PERBAIKAN BOLD, ITALIC, & STRIKETHROUGH
+  // Menggunakan (?=\S)(.*?\S) agar bebas menyarangkan simbol di dalamnya (Nested Support)
+  res = res.replace(/(^|>|[\s(])\*\*(?=\S)(.*?\S)\*\*([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
+  res = res.replace(/(^|>|[\s(])__(?=\S)(.*?\S)__([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
+  res = res.replace(/(^|>|[\s(])\*(?=\S)(.*?\S)\*([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
+  res = res.replace(/(^|>|[\s(])_(?=\S)(.*?\S)_([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
+  res = res.replace(/(^|>|[\s(])~~(?=\S)(.*?\S)~~([\s.,!?;:<()'"\/]|$)/g, "$1<del>$2</del>$3");
 
   // BLOCKQUOTE
   res = res.replace(/^[ \t]*>[ \t]?(.*?)[ \t]*$/gm, "<blockquote>$1</blockquote>");
 
-  // LIST (Dengan perbaikan deteksi newline agar <ul> membungkus rapi)
-  const hasRealListMarker = /^[ \t]*[-*+][ \t]+/m.test(text); // Tetap ngecek dari teks asli agar tag HTML tak terdeteksi sebagai list
+  // LIST
+  const hasRealListMarker = /^[ \t]*[-*+][ \t]+/m.test(text);
   if (hasRealListMarker) {
     res = res.replace(/^[ \t]*[-*+][ \t]+(.*?)[ \t]*$/gm, "<li>$1</li>");
-
-    // Perbaikan Wrapper List: Menoleransi whitespace (spasi/enter) di antara tag <li>
     res = res.replace(/(<li>[\s\S]*?<\/li>)/g, (match) => `<ul>${match}</ul>`);
-
-    // Gabungkan <ul> yang berdampingan agar menjadi satu list utuh
     res = res.replace(/<\/ul>\s*<ul>/g, "\n");
   }
 
-  // 🔄 TAHAP 3: RESTORASI (Keluarkan dari "Brankas")
-  // Dilakukan dari urutan terbalik untuk menghindari bentrok index ganda
+  // 🔄 TAHAP 3: RESTORASI
   for (let i = tokens.length - 1; i >= 0; i--) {
     res = res.replace(`__MD_TOKEN_${i}__`, tokens[i]);
   }
