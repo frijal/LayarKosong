@@ -322,7 +322,7 @@ sudo slackpkg update
 sudo nano /etc/nix/nix.conf
 # Tambahkan substituters cache terdekat. Contoh:
 substituters = https://cache.nixos.org https://mirror.sjtu.edu.cn/nix-channels/store
-trusted-public-keys = cache.nixos.org-1:... mirror.sjtu.edu.cn-1:...
+trusted-public-keys = cache.nixos.org-1:.. mirror.sjtu.edu.cn-1:..
 # Jangan lupa untuk update channels
 sudo nix-channel --update
 nix-env -u

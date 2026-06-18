@@ -37,7 +37,7 @@
         .bubbles span{
             position:absolute; border-radius:50%;
             background:linear-gradient(135deg,var(--brand),var(--brand-2));
-            opacity:.14; filter:blur(1px); animation:float 18s infinite ease-in-out;
+            opacity:14; filter:blur(1px); animation:float 18s infinite ease-in-out;
             box-shadow:0 6px 30px rgba(34,211,238,.25);
         }
         .bubbles span:nth-child(1){width:280px;height:280px;left:6%;top:14%;animation-duration:22s}
@@ -46,13 +46,13 @@
         .bubbles span:nth-child(4){width:150px;height:150px;left:-60px;bottom:12%;animation-duration:19s}
         @keyframes float{0%,100%{transform:translateY(0) translateX(0)} 50%{transform:translateY(-20px) translateX(10px)}}
         .hero-content{z-index:2; display:grid; gap:1rem}
-        .eyebrow{display:inline-flex; align-items:center; gap:.6rem; padding:.35rem .7rem; border-radius:999px; background:rgba(253,224,71,.18); font-weight:700}
-        h1{margin:.3rem 0 0; font-size:clamp(2rem, 2.4rem + 1vw, 3.6rem); line-height:1.12; font-weight:800; text-wrap:balance}
+        .eyebrow{display:inline-flex; align-items:center; gap:6rem; padding:35rem .7rem; border-radius:999px; background:rgba(253,224,71,.18); font-weight:700}
+        h1{margin:3rem 0 0; font-size:clamp(2rem, 2.4rem + 1vw, 3.6rem); line-height:1.12; font-weight:800; text-wrap:balance}
         .sub{color:var(--muted); font-size:clamp(1rem, .95rem + .35vw, 1.15rem); max-width:75ch}
-        .meta-row{display:flex; gap:.6rem; flex-wrap:wrap; color:var(--muted); font-size:.95rem; align-items:center}
-        .meta-chip{display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .7rem; border:1px dashed #335a86; border-radius:10px; background:linear-gradient(180deg,#143054,#0f2545)}
-        .share-row{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.9rem}
-        .btn{display:inline-flex; align-items:center; gap:.55rem; padding:.7rem .9rem; border-radius:12px; border:0; cursor:pointer; background:linear-gradient(180deg,#194e63,#133a59); color:#fff; box-shadow:var(--shadow); transition:.2s transform,.2s filter}
+        .meta-row{display:flex; gap:6rem; flex-wrap:wrap; color:var(--muted); font-size:95rem; align-items:center}
+        .meta-chip{display:inline-flex; align-items:center; gap:5rem; padding:45rem .7rem; border:1px dashed #335a86; border-radius:10px; background:linear-gradient(180deg,#143054,#0f2545)}
+        .share-row{display:flex; gap:6rem; flex-wrap:wrap; margin-top:9rem}
+        .btn{display:inline-flex; align-items:center; gap:55rem; padding:7rem .9rem; border-radius:12px; border:0; cursor:pointer; background:linear-gradient(180deg,#194e63,#133a59); color:#fff; box-shadow:var(--shadow); transition:2s transform,.2s filter}
         .btn:hover{transform:translateY(-2px); filter:brightness(1.08)}
         .btn svg{width:18px;height:18px}
         main{position:relative; z-index:3; margin-top:-2rem; border-top-left-radius:24px; border-top-right-radius:24px; background:linear-gradient(180deg,#0a1220,#0a1220ee 55%,#0a1220)}
@@ -63,19 +63,19 @@
         .lead{font-size:1.08rem; color:#e9ebff; text-wrap:pretty}
         .callout{margin:1rem 0; padding:1rem; border-radius:12px; background:linear-gradient(180deg,#17385f,#152e50); border:1px solid #28527a}
         /* Gallery */
-        .gallery{display:grid; gap:10px; grid-template-columns: repeat(12, 1fr); margin-top:.6rem}
+        .gallery{display:grid; gap:10px; grid-template-columns: repeat(12, 1fr); margin-top:6rem}
         .gallery figure{margin:0; position:relative; overflow:hidden; border-radius:12px; background:#0b0e24; border:1px solid #1d2d4b; grid-column: span 12}
         .gallery img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease, filter .35s ease; filter:saturate(1.05) contrast(1.02)}
         .gallery figure:hover img{transform:scale(1.03)}
-        .caption{position:absolute; left:8px; bottom:8px; right:8px; background:linear-gradient(180deg, rgba(10,12,28,.0), rgba(10,12,28,.62)); color:#fff; padding:6px 10px; border-radius:8px; font-size:.9rem}
+        .caption{position:absolute; left:8px; bottom:8px; right:8px; background:linear-gradient(180deg, rgba(10,12,28,.0), rgba(10,12,28,.62)); color:#fff; padding:6px 10px; border-radius:8px; font-size:9rem}
         /* Lightbox */
         .lightbox{position:fixed; inset:0; background:rgba(5,7,20,.9); display:none; align-items:center; justify-content:center; z-index:1000}
         .lightbox.open{display:flex}
         .lightbox img{max-width:92vw; max-height:86vh; border-radius:14px; box-shadow:0 30px 100px rgba(0,0,0,.6)}
         .lightbox .close, .lightbox .prev, .lightbox .next{
             position:absolute; background:rgba(255,255,255,.1); backdrop-filter:blur(6px);
-            border:1px solid rgba(255,255,255,.2); color:#fff; padding:.6rem .8rem; border-radius:10px;
-            cursor:pointer; display:flex; align-items:center; gap:.4rem;
+            border:1px solid rgba(255,255,255,.2); color:#fff; padding:6rem .8rem; border-radius:10px;
+            cursor:pointer; display:flex; align-items:center; gap:4rem;
         }
         .lightbox .close{top:18px; right:18px}
         .lightbox .prev{left:18px; top:50%; transform:translateY(-50%)}
