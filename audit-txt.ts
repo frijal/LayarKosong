@@ -144,8 +144,7 @@ const htmlTemplate = `
         <div class="csv-box">
             <h4 style="margin-top: 0; color: #f38ba8;">💡 Impor Massal via Raw Data CSV</h4>
             <p style="font-size: 12px; color: #a6adc8; margin-top: -5px;">Punya data mentah CSV lagi? Tempel teks CSV utuh di bawah (termasuk baris header), sistem akan otomatis mendeteksi kolom Kutipan dan Saran Pengganti.</p>
-            <textarea id="csv-input" placeholder='Paste data CSV kamu di sini...\\nContoh:\\n"No","Judul Artikel","Kutipan Bermasalah","Jenis Pelanggaran AdSense","Saran Kalimat Pengganti"\\n"1","Judul A","Kata Jelek","Pelanggaran","Kata Baik"'></textarea>
-            <div style="margin-top: 10px;">
+<textarea id="csv-input" placeholder='Paste data CSV kamu di sini...&#10;Contoh:&#10;"No","Judul Artikel","Kutipan Bermasalah","Jenis Pelanggaran AdSense","Saran Kalimat Pengganti"&#10;"1","Judul A","Kata Jelek","Pelanggaran","Kata Baik"'></textarea>            <div style="margin-top: 10px;">
                 <button class="btn btn-secondary" onclick="imporDataCSV()">⚡ Impor Masuk ke Tabel</button>
             </div>
         </div>
