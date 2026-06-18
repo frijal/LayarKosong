@@ -1,4 +1,46 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="canonical" href="https://dalam.web.id/artikel/apt-tutorial">
+    <meta property="og:url" content="https://dalam.web.id/artikel/apt-tutorial">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/apt-tutorial">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:title" content="Tutorial APT (Advanced Package Tool) di Debian/Ubuntu">
+    <meta name="twitter:title" content="Tutorial APT (Advanced Package Tool) di Debian/Ubuntu">
+    <meta name="description" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
+    <meta property="og:description" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
+    <meta name="twitter:description" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
+    <meta property="og:image" content="https://dalam.web.id/img/apt-tutorial.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/apt-tutorial.webp">
+    <meta property="og:image:alt" content="Tutorial APT (Advanced Package Tool) di Debian/Ubuntu">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2025-07-16T03:00:00.000Z">
+    <meta property="article:modified_time" content="2026-03-13T23:36:04.492Z">
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial APT (Advanced Package Tool) di Debian/Ubuntu - Layar Kosong</title> 
@@ -15,18 +57,15 @@
             --accent: #005f73; /* Deep Teal */
             --accent-hover: #00796b; /* Teal */
             --border: #e5e7eb;
-            
             /* Blok Kode (Dark Slate Syntax) */
             --code-bg: #2d2d2d;
             --code-text: #f8f8f2;
-            
             /* Pembatas Lebar Sesuai Aturan Manifesto (1000px, 1 Kolom Mutlak) */
             --max-width: 62.5rem; 
             --radius-lg: 0.75rem;  /* 12px */
             --radius-md: 0.5rem;   /* 8px */
             --radius-sm: 0.25rem;  /* 4px */
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 /* Mode Gelap (Dark Mode - Oceanic Tech) */
@@ -37,23 +76,19 @@
                 --accent: #0ea5e9; /* Light Blue/Teal untuk kontras gelap */
                 --accent-hover: #38bdf8;
                 --border: #1f2937;
-                
                 --code-bg: #030712;
                 --code-text: #f3f4f6;
             }
         }
-
         /* --- 2. ACCESSIBLE RESET & FONTS SYSTEM --- */
         *, *::before, *::after { 
             box-sizing: border-box; 
             margin: 0;
             padding: 0;
         }
-        
         html, body { 
             min-height: 100vh; 
         }
-        
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
@@ -62,7 +97,6 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         /* --- 3. CONTAINER ENGINE (Murni 1 Kolom Linier Center) --- */
         .container {
             width: 100%;
@@ -70,7 +104,6 @@
             margin: 0 auto; 
             padding: 1.25rem 1rem; /* Jarak aman tepi layar HP */
         }
-
         @media (min-width: 48rem) { /* Desktop & Tablet Up */
             .container {
                 padding: 1.25rem 1.25rem;
@@ -80,7 +113,6 @@
                 border-radius: var(--radius-md);
             }
         }
-
         /* --- 4. SEMANTIC TYPOGRAPHY & HEADINGS --- */
         header { 
             text-align: center; 
@@ -89,21 +121,17 @@
             border-bottom: 0.125rem solid var(--accent-hover); 
             margin-bottom: 1.25rem;
         }
-        
         h1, h2 { 
             color: var(--accent); 
             line-height: 1.3;
             margin-bottom: 0.5rem;
         }
-        
         h1 { font-size: clamp(1.625rem, 5vw, 2.5rem); }
         h2 { font-size: clamp(1.375rem, 4vw, 1.875rem); margin-top: 1.5rem; }
-
         article, section {
             margin-bottom: 1.25rem;
             text-align: left; /* Menjaga aksesibilitas agar tidak justify */
         }
-
         /* --- 5. COMPONENT: RESPONSIBLE GALLERY --- */
         .gallery { 
             margin: 2rem 0; 
@@ -111,7 +139,6 @@
             grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
             gap: 1rem;
         }
-        
         .gallery img { 
             width: 100%; 
             height: auto; 
@@ -121,11 +148,9 @@
             will-change: transform;
             transition: transform 0.3s ease; 
         }
-        
         .gallery img:hover { 
             transform: scale(1.03); 
         }
-        
         /* --- 6. COMPONENT: INTERACTIVE LIGHTBOX --- */
         .lightbox { 
             display: none; 
@@ -140,14 +165,12 @@
             align-items: center; 
             padding: 1rem;
         }
-        
         .lightbox-content { 
             max-width: 90vw; 
             max-height: 85vh; 
             border-radius: var(--radius-lg); 
             object-fit: contain;
         }
-        
         .lightbox-close { 
             position: absolute; 
             top: 1rem; 
@@ -160,7 +183,6 @@
             border: none;
             line-height: 1;
         }
-        
         /* --- 7. COMPONENT: HIGH-CONTRAST SYNTAX BLOCKS --- */
         pre { 
             background-color: var(--code-bg); 
@@ -172,12 +194,10 @@
             margin: 1rem 0;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
         code { 
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; 
             font-size: 0.9rem;
         }
-        
         .copy-btn { 
             position: absolute; 
             top: 0.5rem; 
@@ -192,61 +212,18 @@
             font-weight: 600;
             transition: background-color 0.2s ease;
         }
-
         .copy-btn:hover {
             background-color: var(--accent-hover);
         }
     </style>
 <meta name="ai:summary" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
 <meta name="ai:prompt_hint" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
-<link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
-    <meta property="og:locale" content="id_ID">
-    <link rel="canonical" href="https://dalam.web.id/artikel/apt-tutorial">
-    <meta property="og:url" content="https://dalam.web.id/artikel/apt-tutorial">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/apt-tutorial">
-    <meta property="og:site_name" content="Layar Kosong">
-    <script defer="" src="/ext/data-provider.js"></script>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
-    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:widgets:new-embed-design" content="on">
-    <meta property="og:title" content="Tutorial APT (Advanced Package Tool) di Debian/Ubuntu">
-    <meta name="twitter:title" content="Tutorial APT (Advanced Package Tool) di Debian/Ubuntu">
-    <meta name="description" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
-    <meta property="og:description" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
-    <meta name="twitter:description" content="Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.">
-    <meta property="twitter:domain" content="https://dalam.web.id">
-    <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="fb:pages" content="917962134736490">
-    
-    <meta name="twitter:image" content="https://dalam.web.id/img/apt-tutorial.webp">
-    <meta property="og:image" content="https://dalam.web.id/img/apt-tutorial.webp">
-    <meta property="og:image:alt" content="Tutorial APT (Advanced Package Tool) di Debian/Ubuntu">
-    <meta property="og:image:width" content="1000">
-    <meta property="og:image:height" content="618">
-    <meta property="og:image:type" content="image/webp">
-    <meta name="theme-color" content="#00b0ed">
-    <meta property="article:published_time" content="2025-07-16T03:00:00.000+00:00">
-    <meta property="article:modified_time" content="2026-03-13T23:36:04.492Z">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main class="container">
         <header>
-            <div id=iposbrowser></div><h1>Tutorial APT (Advanced Package Tool)</h1>
+            <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Tutorial APT (Advanced Package Tool)</h1>
         </header>
         <article>
             <p>APT adalah manajer paket bawaan untuk sistem operasi Debian dan turunannya (seperti Ubuntu). Dengan APT, Anda bisa dengan mudah mencari, menginstal, menghapus, dan mengelola aplikasi langsung dari terminal.</p>
@@ -324,4 +301,5 @@ sudo apt clean</code><button class="copy-btn" onclick="copyCode('code3')">Copy</
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+</body></html>

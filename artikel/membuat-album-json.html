@@ -1,4 +1,46 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="canonical" href="https://dalam.web.id/artikel/membuat-album-json">
+    <meta property="og:url" content="https://dalam.web.id/artikel/membuat-album-json">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/membuat-album-json">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
+    <meta name="twitter:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
+    <meta name="description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+    <meta property="og:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+    <meta name="twitter:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta property="og:image:alt" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2025-10-25T13:28:45.344Z">
+    <meta property="article:modified_time" content="2026-03-13T23:36:03.790Z">
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js) - Layar Kosong</title> 
@@ -10,31 +52,25 @@
             --text-main: #333333;
             --container-bg: #ffffff;
             --border-color: #eeeeee;
-            
             /* Komponen Header & Footer */
             --header-bg: #2c3e50;
             --header-text: #ffffff;
             --subtitle-text: #ecf0f1;
-            
             /* Tipografi & Aksen */
             --heading-color: #2c3e50;
             --accent-color: #3498db; /* Blue */
             --link-hover: #2980b9;
-            
             /* Blok Khusus & Kotak Info */
             --pre-bg: #2d2d2d;
             --pre-text: #f1f1f1;
             --terminal-bg: #e0e0e0;
             --terminal-text: #333333;
             --infobox-bg: #eaf5ff;
-            
             /* Sosial Media Share */
             --share-title: #555555;
             --share-icon: #444444;
-            
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-
         /* --- 2. Otomatis Tema Gelap (Dark Mode) --- */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -42,30 +78,24 @@
                 --text-main: #cbd5e1;     /* Teks abu terang lembut */
                 --container-bg: #1e293b;  /* Slate 800 untuk kontainer utama */
                 --border-color: #334155;  /* Border gelap proporsional */
-                
                 /* Header & Footer malam (dibikin sedikit lebih gelap dari bodi) */
                 --header-bg: #0b0f19;
                 --header-text: #f8fafc;
                 --subtitle-text: #94a3b8;
-                
                 /* Judul diselamatkan agar menyala cerah */
                 --heading-color: #f8fafc;
                 --accent-color: #60a5fa;  /* Biru pastel agar kontras di latar gelap */
                 --link-hover: #93c5fd;
-                
                 /* Blok khusus di malam hari */
                 --pre-bg: #0b0f19;        /* Kode pre lebih pekat */
                 --terminal-bg: #334155;   /* Terminal tidak lagi jadi flashbang */
                 --terminal-text: #f1f5f9;
                 --infobox-bg: #1e293b;    /* Menyamakan kontainer atau bisa pakai navy gelap (#172554) */
-                
                 --share-title: #94a3b8;
                 --share-icon: #94a3b8;    /* Ikon sosmed default jadi abu terang */
-                
                 --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             }
         }
-
         /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
         *,
         *::before,
@@ -83,7 +113,6 @@
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
         }
-        
         /* --- Kontainer Widescreen --- */
         .container {
             max-width: 900px;
@@ -93,7 +122,6 @@
             width: 100%;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
-        
         /* --- Header Artikel --- */
         .article-header {
             background-color: var(--header-bg);
@@ -114,7 +142,6 @@
             color: var(--subtitle-text);
             transition: color 0.3s;
         }
-        
         /* --- Konten Artikel --- */
         .article-content {
             padding: 2.5rem;
@@ -174,7 +201,6 @@
             color: var(--link-hover);
             text-decoration: underline;
         }
-        
         /* --- Blok Kode --- */
         .article-content pre {
             background-color: var(--pre-bg);
@@ -190,7 +216,6 @@
         .article-content pre code {
             font-family: inherit;
         }
-        
         /* Blok untuk terminal */
         .terminal-code {
             background: var(--terminal-bg);
@@ -204,7 +229,6 @@
             vertical-align: middle;
             transition: background-color 0.3s, color 0.3s;
         }
-        
         /* --- Info Box untuk "Cara Pakai" --- */
         .info-box {
             background: var(--infobox-bg);
@@ -228,7 +252,6 @@
             margin-bottom: 0.75rem;
             line-height: 1.6;
         }
-        
         /* --- Bagian Share Media Sosial --- */
         .share-section {
             text-align: center;
@@ -260,7 +283,6 @@
         .share-buttons .fa-facebook:hover { color: #1877F2; }
         .share-buttons .fa-telegram:hover { color: #0088cc; }
         .share-buttons .fa-linkedin:hover { color: #0077b5; }
-        
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -273,7 +295,6 @@
             margin: 0;
             font-size: 0.9rem;
         }
-        
         /* --- CSS Responsif (Mobile-Friendly) --- */
         @media (max-width: 900px) {
             .container {
@@ -310,54 +331,12 @@
 </style>
 <meta name="ai:summary" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
 <meta name="ai:prompt_hint" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
-<link href=/ext/marquee-url.css rel=preload as=style onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
-    <meta property="og:locale" content="id_ID">
-    <link rel="canonical" href="https://dalam.web.id/artikel/membuat-album-json">
-    <meta property="og:url" content="https://dalam.web.id/artikel/membuat-album-json">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/membuat-album-json">
-    <meta property="og:site_name" content="Layar Kosong">
-    <script defer="" src="/ext/data-provider.js"></script>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
-    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:widgets:new-embed-design" content="on">
-    <meta property="og:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
-    <meta name="twitter:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
-    <meta name="description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
-    <meta property="og:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
-    <meta name="twitter:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
-    <meta property="twitter:domain" content="https://dalam.web.id">
-    <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="fb:pages" content="917962134736490">
-    
-    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="og:image:alt" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
-    <meta property="og:image:width" content="1000">
-    <meta property="og:image:height" content="618">
-    <meta property="og:image:type" content="image/webp">
-    <meta name="theme-color" content="#00b0ed">
-    <meta property="article:published_time" content="2025-10-25T13:28:45.344+00:00">
-    <meta property="article:modified_time" content="2026-03-13T23:36:03.790Z">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
         <header class="article-header">
-            <div id=iposbrowser></div><h1>Buat File `album.json` Otomatis untuk Galeri Online-mu</h1>
+            <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Buat File `album.json` Otomatis untuk Galeri Online-mu</h1>
             <p class="subtitle">Gunakan script Python atau Node.js untuk memindai folder album rekursif dengan cepat.</p>
         </header>
         <main>
@@ -508,4 +487,5 @@ try {
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+</body></html>
