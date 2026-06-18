@@ -151,19 +151,6 @@ const htmlTemplate = `
         // 15 DATA UTUH DARI USER DIJADIKAN DATA BAWAAN
         const dataAwal = [
             { cari: "ngehajar kesehatan tubuh", ganti: "berdampak negatif pada kesehatan tubuh" },
-            { cari: "buat jualan obat pelangsing", ganti: "untuk menawarkan produk pengontrol berat badan" },
-            { cari: "Penghancur Kolesterol", ganti: "Pengurang Kadar Kolesterol" },
-            { cari: "menyebabkan perilaku kriminal", ganti: "menyebabkan tindakan melanggar hukum" },
-            { cari: "SDA dikeruk, lingkungan hancur", ganti: "SDA dieksploitasi, ekosistem terdampak" },
-            { cari: "menghamburkan uang negara", ganti: "menyebabkan inefisiensi anggaran negara" },
-            { cari: "abusive partner", ganti: "pasangan yang melakukan tekanan psikologis" },
-            { cari: "celah mafia lokal ini", ganti: "celah jaringan tidak resmi ini" },
-            { cari: "pemimpin zalim fasik", ganti: "oknum pemimpin yang melanggar aturan" },
-            { cari: "fans garis keras", ganti: "penggemar yang sangat loyal" },
-            { cari: "membuat \\"sup bakteri\\".", ganti: "menciptakan \\"campuran mikroorganisme berbahaya\\"." },
-            { cari: "Ia tidak akan menjerit saat rusak.", ganti: "Ia tidak akan memberikan gejala rasa sakit saat fungsinya menurun." },
-            { cari: "mati mesin.", ganti: "berhenti beraktivitas." },
-            { cari: "di-bully habis-habisan.", ganti: "diintimidasi secara massal." },
             { cari: "sasaran empuk karena bodoh,", ganti: "target utama karena kurang informasi," }
         ];
 
