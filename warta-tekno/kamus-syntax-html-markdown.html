@@ -54,7 +54,7 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png"}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown"},"headline":"Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser","description":"Kamus lengkap penerjemah kode HTML ke syntax Markdown berdasarkan kelompok fungsinya beserta simulasi tampilan hasil render pada UI halaman web.","articleSection":"Warta Tekno","keywords":"kamus, lengkap, perbandingan, syntax, html, markdown, beserta, hasil, render, browser, warta tekno, layar kosong","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/94ec53f9218afd0c.webp","width":1000,"height":618},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about","sameAs":["https://dalam.web.id/about"]},"datePublished":"2026-05-24T14:29:33.000Z","dateModified":"2026-05-24T14:29:33.000Z","license":"https://creativecommons.org/licenses/by/4.0/"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno"},{"@type":"ListItem","position":3,"name":"Kamus Lengkap Perbandingan Syntax HTML vs Markdown Beserta Hasil Render UI Browser","item":"https://dalam.web.id/warta-tekno/kamus-syntax-html-markdown"}]},{"@type":"ItemList","@id":"https://dalam.web.id/#footer-nav","name":"Navigasi Legal","itemListElement":[{"@type":"ListItem","position":1,"name":"Privacy & Legal Info","item":"https://dalam.web.id/privacy"},{"@type":"ListItem","position":2,"name":"Disclaimer","item":"https://dalam.web.id/disclaimer"},{"@type":"ListItem","position":3,"name":"About","item":"https://dalam.web.id/about"},{"@type":"ListItem","position":4,"name":"Security Policy","item":"https://dalam.web.id/security-policy"},{"@type":"ListItem","position":5,"name":"Lisensi","item":"https://dalam.web.id/lisensi"}]}]}</script>
 <style>
-*, *::before, *::after {
+<em>, </em>::before, *::after {
 box-sizing: border-box;
 margin: 0;
 padding: 0;
@@ -292,25 +292,25 @@ padding: 10px 12px;
 <tr>
 <td><strong>Tebal (Bold)</strong></td>
 <td><code>&lt;strong&gt;Teks&lt;/strong&gt;</code> atau <code>&lt;b&gt;Teks&lt;/b&gt;</code></td>
-<td><code>**Teks**</code> atau <code>__Teks__</code></td>
+<td><code><strong>Teks</strong></code> atau <code>__Teks__</code></td>
 <td class="ui-render-output"><strong>Teks</strong></td>
 </tr>
 <tr>
 <td><strong>Miring (Italic)</strong></td>
 <td><code>&lt;em&gt;Teks&lt;/em&gt;</code> atau <code>&lt;i&gt;Teks&lt;/i&gt;</code></td>
-<td><code>*Teks*</code> atau <code>_Teks_</code></td>
+<td><code><em>Teks</em></code> atau <code>_Teks_</code></td>
 <td class="ui-render-output"><em>Teks</em></td>
 </tr>
 <tr>
 <td><strong>Coret (Strikethrough)</strong></td>
 <td><code>&lt;del&gt;Teks&lt;/del&gt;</code> atau <code>&lt;s&gt;Teks&lt;/s&gt;</code></td>
-<td><code>~~Teks~~</code></td>
+<td><code><del>Teks</del></code></td>
 <td class="ui-render-output"><del>Teks</del></td>
 </tr>
 <tr>
 <td><strong>Tebal + Miring</strong></td>
 <td><code>&lt;strong&gt;&lt;em&gt;Teks&lt;/em&gt;&lt;/strong&gt;</code></td>
-<td><code>***Teks***</code></td>
+<td><code><strong><em>Teks</em></strong></code></td>
 <td class="ui-render-output"><strong><em>Teks</em></strong></td>
 </tr>
 <tr>
@@ -390,13 +390,13 @@ padding: 10px 12px;
 <tr>
 <td><strong>Tautan (Link)</strong></td>
 <td><code>&lt;a href="https://dalam.web.id"&gt;Layar Kosong&lt;/a&gt;</code></td>
-<td><code>[Layar Kosong](https://dalam.web.id)</code></td>
+<td><code><a href="https://dalam.web.id">Layar Kosong</a></code></td>
 <td class="ui-render-output"><a href="https://dalam.web.id" target="_blank">Layar Kosong</a></td>
 </tr>
 <tr>
 <td><strong>Gambar (Image)</strong></td>
 <td><code>&lt;img src="gambar.png" alt="Deskripsi"&gt;</code></td>
-<td><code>![Deskripsi](gambar.png)</code></td>
+<td><code>!<a href="gambar.png">Deskripsi</a></code></td>
 <td class="ui-render-output"><span style="color:var(--text-muted); font-size:0.9rem;"><i class="fa-regular fa-image"></i> [Simulasi Berkas Gambar]</span></td>
 </tr>
 </tbody>
@@ -468,16 +468,16 @@ padding: 10px 12px;
 <tr>
 <td><strong>Kode Baris (Inline Code)</strong></td>
 <td><code>&lt;code&gt;Bun.serve()&lt;/code&gt;</code></td>
-<td><code>`Bun.serve()`</code></td>
+<td><code><code>Bun.serve()</code></code></td>
 <td class="ui-render-output"><code>Bun.serve()</code></td>
 </tr>
 <tr>
 <td><strong>Blok Kode (Code Block)</strong></td>
 <td><code>&lt;pre&gt;&lt;code&gt;console.log("Halo");&lt;/code&gt;&lt;/pre&gt;</code></td>
-<td><code>```
-```text?code_stdout&amp;code_event_index=2
+<td><code>`<code><code>
+</code></code><code>text?code_stdout&amp;code_event_index=2
 Sukses memperbarui berkas 'kamus-html-markdown.html'!
-```<br>console.log("Halo");<br>```</code></td>
+</code><code><code><br>console.log("Halo");<br></code></code>`</code></td>
 <td class="ui-render-output">
 <pre><code>console.log("Halo");</code></pre>
 </td>
@@ -506,7 +506,7 @@ Sukses memperbarui berkas 'kamus-html-markdown.html'!
 </main>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+<noscript>html_hasil_reverse</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 
 <noscript>schema_oleh_Fakhrul_Rijal_2026-06-18</noscript>

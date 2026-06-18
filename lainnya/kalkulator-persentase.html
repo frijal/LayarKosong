@@ -41,20 +41,20 @@
  if (isNaN(a) || isNaN(b) || a === 0) return;
  const p = ((b - a) / a) * 100;
  const formatted = Number(p.toFixed(2)) + "%";
- const indicator = p >= 0 ? `<span class="text-up">↑ ${formatted}</span>` : `<span class="text-down">↓ ${formatted}</span>`;
- showResult(`Hasil: ${indicator}`, formatted);
- debouncedSave(`${a.toLocaleString('id-ID')} → ${b.toLocaleString('id-ID')} = ${indicator}`);
+ const indicator = p >= 0 ? <code><span class="text-up">↑ ${formatted}</span></code> : <code><span class="text-down">↓ ${formatted}</span></code>;
+ showResult(<code>Hasil: ${indicator}</code>, formatted);
+ debouncedSave(<code>${a.toLocaleString('id-ID')} → ${b.toLocaleString('id-ID')} = ${indicator}</code>);
  }
  function hitungNilai() {
  const a = getRawValue('awal2');
  const p = parseFloat(document.getElementById('persen2').value);
  const aksi = document.getElementById('aksi').value;
  if (isNaN(a) || isNaN(p)) return;
- const akhir = aksi === 'tambah' ? a * (1 + (p/100)) : a * (1 - (p/100));
+ const akhir = aksi === 'tambah' ? a <em> (1 + (p/100)) : a </em> (1 - (p/100));
  const formatted = Math.round(akhir).toLocaleString('id-ID');
- showResult(`Hasil: ${formatted}`, formatted);
+ showResult(<code>Hasil: ${formatted}</code>, formatted);
  const simbol = aksi === 'tambah' ? '+' : '-';
- debouncedSave(`${a.toLocaleString('id-ID')} ${simbol} ${p}% = <b>${formatted}</b>`);
+ debouncedSave(<code>${a.toLocaleString('id-ID')} ${simbol} ${p}% = <b>${formatted}</b></code>);
  }
  function showResult(text, rawValue) {
  currentResultValue = rawValue;
@@ -84,10 +84,10 @@
  function renderHistory() {
  const list = document.getElementById('historyList');
  const history = JSON.parse(localStorage.getItem('calc_history') || "[]");
- list.innerHTML = history.map(item => `<div class="history-item">${item}</div>`).join('');
+ list.innerHTML = history.map(item => <code><div class="history-item">${item}</div></code>).join('');
  }
  function clearHistory() {
  localStorage.removeItem('calc_history');
  renderHistory();
  }
- window.onload = renderHistory;</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/marked.min.js></script><script defer src=/ext/highlight.js></script><script defer src=/ext/markdown.js></script><script defer src=/ext/marquee-url.js></script><script defer src=/ext/lightbox.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/response.js></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-18</noscript></html><noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+ window.onload = renderHistory;</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/marquee-url.js></script><script defer src=/ext/lightbox.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/response.js></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-18</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>

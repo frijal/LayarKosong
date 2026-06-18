@@ -282,7 +282,7 @@
           const jumlah = parseFloat(row.querySelector(".jumlah").value.replace(/\./g, "").replace(",", ".")) || 0;
           const diskonInput = row.querySelector(".diskon");
           const diskon = diskonInput ? (parseFloat(diskonInput.value.replace(/\./g, "").replace(",", ".")) || 0) : 0;
-          const subtotal = harga * jumlah * (1 - diskon / 100);
+          const subtotal = harga <em> jumlah </em> (1 - diskon / 100);
           row.querySelector(".subtotal").value = formatRupiah(subtotal);
           total += subtotal;
         });
@@ -293,8 +293,8 @@
         const tbody = document.getElementById("daftar-item");
         const nomor = tbody.children.length + 1;
         const tr = document.createElement("tr");
-        tr.innerHTML = `
- <td>${nomor}</td><td><input type="text" value="${data.nama || ''}" placeholder="Nama Barang" required></td><td><input type="text" inputmode="decimal" class="jumlah" value="${data.jumlah || ''}" placeholder="Berat, Kilogram" required></td><td><input type="text" inputmode="decimal" class="harga" value="${data.harga || ''}" placeholder="Harga" required></td><td class="kolom-diskon"><input type="text" class="diskon" value="${data.diskon || ''}" placeholder="Diskon (%)"></td><td>Rp <output class="subtotal">${data.subtotal || '0'}</output></td><td><button onclick="hapusBaris(this)">❌</button></td>`;
+        tr.innerHTML = <code>
+ <td>${nomor}</td><td><input type="text" value="${data.nama || ''}" placeholder="Nama Barang" required></td><td><input type="text" inputmode="decimal" class="jumlah" value="${data.jumlah || ''}" placeholder="Berat, Kilogram" required></td><td><input type="text" inputmode="decimal" class="harga" value="${data.harga || ''}" placeholder="Harga" required></td><td class="kolom-diskon"><input type="text" class="diskon" value="${data.diskon || ''}" placeholder="Diskon (%)"></td><td>Rp <output class="subtotal">${data.subtotal || '0'}</output></td><td><button onclick="hapusBaris(this)">❌</button></td></code>;
         tbody.appendChild(tr);
         tambahEventListener();
         toggleKolomDiskon();
@@ -380,20 +380,20 @@
           const qty = tr.querySelector(".jumlah").value;
           const hargaSatuan = tr.querySelector(".harga").value; // Mengambil harga per unit
           const sub = tr.querySelector(".subtotal").value;
-          itemsHtml += `
+          itemsHtml += <code>
  <tr style="border-bottom: 1px solid #eee;"><td style="padding: 8px 0 0 0; vertical-align: top;"><div style="font-weight: bold; font-size: 13px;">${nBarang}</div><div style="font-size: 11px; color: #555; margin-bottom: 8px;">${qty} x ${hargaSatuan}</div></td><td style="width: 5%; text-align: center; vertical-align: middle;">:</td><td style="text-align: right; width: 40%; vertical-align: middle; font-weight: bold;">
  ${sub}
- </td></tr>`;
+ </td></tr></code>;
         });
-        const content = `
+        const content = <code>
  <div class="nota-header"><h3>LAUNDRY BERKAH</h3><p style="font-size:11px; margin: 5px 0;">Balikpapan</p></div><div class="nota-info">
  Tggl : ${tgl} - ${jam}<br>
  Nama : ${nama}
  </div><table class="nota-table"><thead><tr style="border-bottom: 2px solid #000;"></tr></thead><tbody>
  ${itemsHtml}
  </tbody></table><div class="nota-footer"><div class="total-row"><span>TOTAL:</span><span>Rp ${total}</span></div>
- ${catatan ? `<div class="catatan-struk">Ket: ${catatan}</div>` : ''}
- <p style="text-align:center; margin-top:15px; font-size:11px;">*** TERIMA KASIH ***</p></div>`;
+ ${catatan ? </code><div class="catatan-struk">Ket: ${catatan}</div><code> : ''}
+ <p style="text-align:center; margin-top:15px; font-size:11px;"><strong><em> TERIMA KASIH </strong></em></p></div></code>;
         const p = document.getElementById("nota-summary");
         p.innerHTML = content;
         html2canvas(p, {
@@ -408,7 +408,7 @@
           }
         }).then(canvas => {
           const link = document.createElement("a");
-          link.download = `${fileDate}-${nama.replace(/\s+/g, "_")}.webp`;
+          link.download = <code>${fileDate}-${nama.replace(/\s+/g, "_")}.webp</code>;
           link.href = canvas.toDataURL("image/webp", 0.9);
           link.click();
           // Opsional: bersihkan innerHTML setelah export
@@ -451,7 +451,7 @@
       }
       window.addEventListener("load", muatDariLocalStorage);
     </script>
-<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+<noscript>html_hasil_reverse</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 
 <noscript>schema_oleh_Fakhrul_Rijal_2026-06-18</noscript>
