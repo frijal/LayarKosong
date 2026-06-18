@@ -111,7 +111,7 @@ const htmlTemplate = `
 <body>
     <div class="container">
         <h2>AdSense Safety Audit - Bun Dashboard</h2>
-        <p>Target Direktori File HTML: <strong>\${resolve(TARGET_DIR)}</strong></p>
+        <p>Target Direktori File HTML: <strong>${resolve(TARGET_DIR)}</strong></p>
         
         <h3>Atur Pasangan Kata (Pekerjaan Saat Ini)</h3>
         
