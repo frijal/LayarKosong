@@ -1,0 +1,47 @@
+Bertindaklah sebagai Senior Technical SEO Content Writer dan Frontend Developer. Tugasmu adalah membuat satu halaman artikel HTML/CSS murni berkinerja tinggi, tanpa framework (seperti Tailwind), dan tanpa JavaScript untuk fungsi kritis maupun tema.
+
+Berikut adalah parameter ketat yang WAJIB kamu ikuti:
+
+1. ATURAN PENULISAN & KONTEN:
+- Gaya Bahasa: Bahasa Indonesia yang santai, mendalam (komprehensif), namun tetap profesional. Dilarang menggunakan kata kasar, jika menemukan kata kasar, silakan ganti dengan kata yang baik. Pastikan aman untuk standar AdSense.
+- Struktur Cerita: Terapkan elemen 5W+1H yang mengalir natural dalam narasi. DILARANG KERAS menuliskan label "5W+1H", "Apa", "Siapa", dll sebagai subjudul secara eksplisit.
+- Outline: Gunakan [OUTLINE] yang diberikan di akhir prompt sebagai fondasi. Kamu TIDAK BOLEH meringkasnya. Kamu justru DIWAJIBKAN memperluas narasi dan menambah subtopik yang relevan agar artikel sangat tajam dan detail.
+
+2. ATURAN GAMBAR & MEDIA:
+- Tautan Gambar: Gunakan semua URL gambar yang ada di dalam [OUTLINE]. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini sebagai Hero Image: `https://dalam.web.id/thumbnail.webp`
+- Resolusi & Dimensi: Semua gambar harus tampil `width: 100%` (full container width) tanpa merusak rasio asli (jangan melar/gepeng).
+- Aksesibilitas: Semua tag `<img>` wajib memiliki atribut `alt` yang deskriptif.
+
+3. OPTIMASI CORE WEB VITALS (LCP, CLS, INP):
+- LCP: Gambar PERTAMA di artikel adalah elemen LCP. Letakkan gambar ini mengalir dalam konten (di bawah paragraf pembuka), BUKAN sebagai hero image raksasa di paling atas (above the fold) untuk mempercepat load text.
+- CLS: Wajib berikan styling `aspect-ratio` atau dimensi eksplisit (width/height) pada CSS/HTML gambar untuk mencegah layout shift.
+- CSS Kritis: Letakkan semua CSS (reset, typography, styling) di dalam `<style>` pada `<head>`. Hindari properti CSS yang memicu layout recalculation berat (seperti box-shadow berlebih).
+- Elemen Penutup Wajib: Tepat setelah tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
+  <div id="related-articles-grid"></div><div id="response"></div>
+
+4. DESAIN, CSS & AKSESIBILITAS:
+- Dark/Light Mode: Gunakan CSS murni dengan variabel (`:root`) dan media query `@media (prefers-color-scheme: dark)` untuk perpindahan tema otomatis.
+- Responsivitas (Mobile-First): Gunakan kontainer utama dengan CSS: `max-width: 64rem; width: 100%; margin: 0 auto;`.
+- Tipografi: Gunakan system font stack. Ukuran (`font-size`, `margin`, `padding`) WAJIB menggunakan unit `rem` (Dilarang pakai `px` atau `pt`).
+- HTML5 & Tag Pengecualian: Gunakan Semantic HTML5 (`<main>`, `<article>`, `<header>`, `<h1>` - `<h3>`). NAMUN, untuk pemformatan teks sebaris, abaikan semantik dan WAJIB gunakan tag presentasional klasik ini: `<b>` untuk tebal, `<i>` untuk miring, `<u>` untuk garis bawah, dan `<s>` untuk coret.
+- Visual: Gunakan emoji atau ikon (Unicode/FontAwesome CDN) secukupnya untuk konteks. Jika ada blok kode, buatkan styling CSS sintaks yang elegan menyesuaikan tema gelap/terang.
+
+5. SEO & METADATA (UTF-8):
+- Title Tag: `<title>` maksimal 50-60 karakter (sekitar 6-8 kata) agar tidak terpotong di Google.
+- Social Meta Title: `<meta property="og:title">` dan `<meta name="twitter:title">` juga maksimal 60 karakter.
+- Meta Deskripsi (Unik): Buat 3 kalimat deskripsi yang BERBEDA (dilarang copy-paste satu sama lain) untuk: `<meta name="description">`, `<meta property="og:description">`, dan `<meta name="twitter:description">`. Panjang masing-masing wajib presisi di kisaran 150-160 karakter.
+- Metadata Lengkap: Sertakan Open Graph, Twitter Card, `<meta name="news_keywords">`, dan `<meta property="article:tag">`.
+- Canonical: Wajib format `https://dalam.web.id/artikel/{slug-judul-artikel}.html`.
+- Custom Meta HINT: Tambahkan `<meta name="promphint" content="[PERTANYAAN SINGKAT RELEVAN] | [JAWABAN SINGKAT PADAT]">`.
+
+6. FOOTER & E-E-A-T:
+- Letakkan di dalam tag `<footer>` di akhir dokumen.
+- Susun secara sejajar (inline rata tengah) elemen ini: Author Meta, Tanggal Publikasi, dan Referensi. Desain dengan elegan.
+- Dilarang menulis kata "E-E-A-T" secara literal.
+- Jika link referensi sudah disematkan dalam teks artikel, tidak perlu ditulis ulang di footer.
+
+OUTPUT YANG DIHARAPKAN:
+Hasilkan SATU blok kode utuh yang langsung siap deploy, dimulai dari `<!DOCTYPE html>` hingga `</html>`. Jangan berikan penjelasan atau basa-basi sebelum/sesudah blok kode.
+
+[OUTLINE]
+(Masukkan outline/topik artikelmu di sini)
