@@ -404,14 +404,14 @@ w32tm /resync</code></pre>
         </div>
         <h2>🛠️ Jika Sinkronisasi Masih Gagal? Cek Daftar Ini</h2>
         <div class="tip"><i class="fa-solid fa-wifi"></i> <strong>Koneksi internet stabil?</strong> Pastikan tidak sedang pakai VPN/proxy yang memblokir NTP (port 123 UDP). Coba matikan sementara firewall atau antivirus pihak ketiga untuk uji coba.</div>
-        <div class="tip"><i class="fa-solid fa-microchip"></i> <strong>CMOS Battery lemah?</strong> Jika jam selalu meleset setiap kali komputer dimatikan total (tanpa listrik), kemungkinan baterai CMOS di motherboard sudah habis. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Ganti baterai CMOS bisa jadi solusi permanen.</div>
+        <div class="tip"><i class="fa-solid fa-microchip"></i> <strong>CMOS Battery lemah?</strong> Jika jam selalu meleset setiap kali komputer dimatikan total (tanpa listrik), kemungkinan baterai CMOS di motherboard sudah habis.  Ganti baterai CMOS bisa jadi solusi permanen.</div>
         <div class="warning"><i class="fa-solid fa-user-lock"></i> Tombol Sync abu-abu atau hilang? Bisa karena kebijakan grup atau akun bukan administrator. Coba langkah via Command Prompt saja, atau minta bantuan admin perangkat.</div>
         <h2>✨ Kesimpulan &amp; Intisari</h2>
         <p>Masalah waktu di Windows 10/11 sebenarnya mudah diatasi jika tahu jalurnya. Mulai dari pengecekan zona waktu, restart layanan Windows Time, hingga mengganti server NTP menjadi <code>pool.ntp.org</code>. Dengan jam yang akurat, pengalaman browsing, login aplikasi, dan keamanan sistem akan jauh lebih lancar. Jangan sampai masalah sepele ini mengganggu produktivitasmu.</p>
         <div class="note">
             <i class="fa-solid fa-key"></i> <strong>Takeaways Penting:</strong><br>
             ✔ Waktu sistem yang salah bisa memicu error sertifikat, gagal update, dan masalah login.<br>
-            ✔ Layanan Windows Time perlu berjalan (Startup type: Automatic). Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.<br>
+            ✔ Layanan Windows Time perlu berjalan (Startup type: Automatic). <br>
             ✔ Gunakan perintah `w32tm /resync` untuk memaksa sinkron ulang.<br>
             ✔ Server NTP alternatif (`pool.ntp.org`) sering lebih responsif.<br>
             ✔ Jika jam kacau setiap shutdown, kemungkinan baterai CMOS lemah.
