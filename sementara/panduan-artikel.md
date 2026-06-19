@@ -3,7 +3,7 @@ Bertindaklah sebagai Senior Technical SEO Content Writer dan Frontend Developer.
 Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 
 1. ATURAN PENULISAN & KONTEN:
-- Gaya Bahasa: Bahasa Indonesia yang santai, mendalam (komprehensif), namun tetap profesional. Dilarang menggunakan kata kasar, jika menemukan kata kasar, silakan ganti dengan kata yang baik. Pastikan aman untuk standar AdSense.
+- Gaya Bahasa: Bahasa Indonesia yang santai, mendalam (komprehensif), namun tetap profesional. Dilarang menggunakan kata kasar. Pastikan aman untuk standar AdSense.
 - Struktur Cerita: Terapkan elemen 5W+1H yang mengalir natural dalam narasi. DILARANG KERAS menuliskan label "5W+1H", "Apa", "Siapa", dll sebagai subjudul secara eksplisit.
 - Outline: Gunakan [OUTLINE] yang diberikan di akhir prompt sebagai fondasi. Kamu TIDAK BOLEH meringkasnya. Kamu justru DIWAJIBKAN memperluas narasi dan menambah subtopik yang relevan agar artikel sangat tajam dan detail.
 
@@ -17,12 +17,17 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 - CLS: Wajib berikan styling `aspect-ratio` atau dimensi eksplisit (width/height) pada CSS/HTML gambar untuk mencegah layout shift.
 - CSS Kritis: Letakkan semua CSS (reset, typography, styling) di dalam `<style>` pada `<head>`. Hindari properti CSS yang memicu layout recalculation berat (seperti box-shadow berlebih).
 - Elemen Penutup Wajib: Tepat setelah tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
-  <div id="related-articles-grid"></div><div id="response"></div>
+  <div id="related-articles-grid"></div>
+  <div id="response"></div>
 
 4. DESAIN, CSS & AKSESIBILITAS:
 - Dark/Light Mode: Gunakan CSS murni dengan variabel (`:root`) dan media query `@media (prefers-color-scheme: dark)` untuk perpindahan tema otomatis.
 - Responsivitas (Mobile-First): Gunakan kontainer utama dengan CSS: `max-width: 64rem; width: 100%; margin: 0 auto;`.
-- Tipografi: Gunakan system font stack. Ukuran (`font-size`, `margin`, `padding`) WAJIB menggunakan unit `rem` (Dilarang pakai `px` atau `pt`).
+- Tipografi & Skala REM: Gunakan system font stack. Ukuran (`font-size`, `margin`, `padding`) WAJIB menggunakan unit `rem` (Dilarang pakai `px` atau `pt`). Wajib terapkan panduan ukuran rem untuk tampilan laptop/desktop berikut:
+  * Judul Utama (h1): 2rem hingga 2.5rem (setara 32px – 40px) agar menonjol dan mudah dipindai (skimming).
+  * Sub-judul (h2 / h3): 1.3rem hingga 1.7rem (setara 21px – 28px).
+  * Teks Isi Utama (Body Text): 1rem hingga 1.25rem (setara 16px – 20px). Sangat direkomendasikan menggunakan nilai 1.125rem (18px) agar nyaman dibaca berlama-lama.
+  * Teks Sekunder / Footer: 0.85rem hingga 0.9rem (setara 13px – 14px) untuk informasi pelengkap yang tidak terlalu krusial.
 - HTML5 & Tag Pengecualian: Gunakan Semantic HTML5 (`<main>`, `<article>`, `<header>`, `<h1>` - `<h3>`). NAMUN, untuk pemformatan teks sebaris, abaikan semantik dan WAJIB gunakan tag presentasional klasik ini: `<b>` untuk tebal, `<i>` untuk miring, `<u>` untuk garis bawah, dan `<s>` untuk coret.
 - Visual: Gunakan emoji atau ikon (Unicode/FontAwesome CDN) secukupnya untuk konteks. Jika ada blok kode, buatkan styling CSS sintaks yang elegan menyesuaikan tema gelap/terang.
 
