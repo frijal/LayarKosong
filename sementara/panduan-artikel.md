@@ -5,7 +5,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 1. ATURAN PENULISAN & KONTEN:
 - Gaya Bahasa: Bahasa Indonesia yang santai, mendalam (komprehensif), namun tetap profesional. Dilarang menggunakan kata kasar. Pastikan aman untuk standar AdSense.
 - Struktur Cerita: Terapkan elemen 5W+1H yang mengalir natural dalam narasi. DILARANG KERAS menuliskan label "5W+1H", "Apa", "Siapa", dll sebagai subjudul secara eksplisit.
-- Outline: Gunakan [OUTLINE] yang diberikan di akhir prompt sebagai fondasi. Kamu TIDAK BOLEH meringkasnya. Kamu justru DIWAJIBKAN memperluas narasi dan menambah subtopik yang relevan agar artikel sangat tajam dan detail.
+- Outline: Gunakan [OUTLINE] yang diberikan di akhir prompt sebagai fondasi. Kamu BOLEH meringkasnya, Namun justru DIWAJIBKAN memperluas narasi dan menambah subtopik yang relevan agar artikel sangat tajam dan detail.
 
 2. ATURAN GAMBAR & MEDIA:
 - Tautan Gambar: Gunakan semua URL gambar yang ada di dalam [OUTLINE]. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini sebagai Hero Image: `https://dalam.web.id/thumbnail.webp`
@@ -28,7 +28,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
   * Sub-judul (h2 / h3): 1.3rem hingga 1.7rem (setara 21px – 28px).
   * Teks Isi Utama (Body Text): 1rem hingga 1.25rem (setara 16px – 20px). Sangat direkomendasikan menggunakan nilai 1.125rem (18px) agar nyaman dibaca berlama-lama.
   * Teks Sekunder / Footer: 0.85rem hingga 0.9rem (setara 13px – 14px) untuk informasi pelengkap yang tidak terlalu krusial.
-- HTML5 & Tag Pengecualian: Gunakan Semantic HTML5 (`<main>`, `<article>`, `<header>`, `<h1>` - `<h3>`). NAMUN, untuk pemformatan teks sebaris, abaikan semantik dan WAJIB gunakan tag presentasional klasik ini: `<b>` untuk tebal, `<i>` untuk miring, `<u>` untuk garis bawah, dan `<s>` untuk coret.
+- HTML5 & Tag Pengecualian: Gunakan Semantic HTML5 (`<main>`, `<article>`, `<header>`, `<h1>` - `<h3>`). NAMUN, untuk pemformatan teks sebaris, abaikan semantik dan jika diperlukan WAJIB gunakan tag presentasional klasik ini: `<b>` untuk tebal, `<i>` untuk miring, `<u>` untuk garis bawah, dan `<s>` untuk coret.
 - Visual: Gunakan emoji atau ikon (Unicode/FontAwesome CDN) secukupnya untuk konteks. Jika ada blok kode, buatkan styling CSS sintaks yang elegan menyesuaikan tema gelap/terang.
 
 5. SEO & METADATA (UTF-8):
