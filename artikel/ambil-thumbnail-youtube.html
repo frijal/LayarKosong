@@ -125,7 +125,7 @@
       color: var(--muted); text-decoration: none; border-bottom: 1px dotted var(--border);
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <header>
@@ -170,7 +170,7 @@
             <p style="margin-top: 0.5rem; font-size: 0.85rem;">
                 Tools ini tidak berafiliasi secara resmi dengan YouTube.
             </p>
-   <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
   <script>
     // Parse berbagai format URL YouTube -> videoId
@@ -215,20 +215,20 @@
     // Bangun URL thumbnail dengan urutan prioritas
     function buildThumbCandidates(videoId) {
       // Urutan: maxresdefault -> sddefault -> hqdefault -> mqdefault -> default
-      const base = <code>https://img.youtube.com/vi/${videoId}</code>;
+      const base = `https://img.youtube.com/vi/${videoId}`;
       return [
-        { label: 'Max Res', url: <code>${base}/maxresdefault.jpg</code> },
-        { label: 'SD',      url: <code>${base}/sddefault.jpg</code> },
-        { label: 'HQ',      url: <code>${base}/hqdefault.jpg</code> },
-        { label: 'MQ',      url: <code>${base}/mqdefault.jpg</code> },
-        { label: 'Default', url: <code>${base}/default.jpg</code> }
+        { label: 'Max Res', url: `${base}/maxresdefault.jpg` },
+        { label: 'SD',      url: `${base}/sddefault.jpg` },
+        { label: 'HQ',      url: `${base}/hqdefault.jpg` },
+        { label: 'MQ',      url: `${base}/mqdefault.jpg` },
+        { label: 'Default', url: `${base}/default.jpg` }
       ];
     }
     // Render satu kartu thumbnail + aksi
     function renderThumbCard(container, label, url, videoId) {
       const card = document.createElement('article');
       card.className = 'thumb';
-      card.innerHTML = <code>
+      card.innerHTML = `
         <header>${label}</header>
         <div class="imgbox">
           <img src="${url}" alt="Thumbnail ${label} untuk video ${videoId}" loading="lazy" decoding="async" />
@@ -241,9 +241,9 @@
           <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer">
             <button type="button" class="secondary">Buka video</button>
           </a>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-      </code>;
+      `;
       container.appendChild(card);
     }
     function setStatus(msg, type) {
@@ -283,7 +283,7 @@
       const candidates = buildThumbCandidates(id);
       // Render semua kandidat; gambar yang tidak ada akan gagal load (tetap aman)
       candidates.forEach(({ label, url }) => renderThumbCard(wrap, label, url, id));
-      setStatus(<code>Ditemukan video ID: ${id}. Coba beberapa resolusi thumbnail.</code>, 'ok');
+      setStatus(`Ditemukan video ID: ${id}. Coba beberapa resolusi thumbnail.`, 'ok');
       // Delegasi untuk tombol copy di setiap kartu
       wrap.addEventListener('click', (evt) => {
         const btn = evt.target.closest('button[data-action="copy"]');
@@ -305,8 +305,7 @@
       setStatus('Siapkan URL lalu klik “Ambil thumbnail”.');
     });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

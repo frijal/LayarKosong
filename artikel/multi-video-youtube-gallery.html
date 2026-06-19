@@ -76,7 +76,7 @@ textarea{font-family:monospace;height:160px;margin-top:15px;background:#222;colo
 </style>
 <meta name="ai:summary" content="Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile.">
 <meta name="ai:prompt_hint" content="Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <main><div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Multi Video YouTube dengan Thumbnail Gallery</h1>
@@ -133,22 +133,22 @@ validateBtn.addEventListener('click', ()=>{
   if(videoList.length>0){
     currentIndex = 0;
     updatePreview();
-    msg.textContent = <code>✅ ${videoList.length} video valid. Klik thumbnail atau video untuk fullscreen & navigasi.</code>;
+    msg.textContent = `✅ ${videoList.length} video valid. Klik thumbnail atau video untuk fullscreen & navigasi.`;
     // Generate embed code
     const ratio = document.getElementById('ratio').value;
     let embedHtml = '';
     gallery.innerHTML = '';
     videoList.forEach((id,index)=>{
-      const embedUrl = <code>https://www.youtube.com/embed/${id}</code>;
-      embedHtml += <code><div class="video-container" style="position:relative;width:100%;height:0;padding-bottom:${ratio}%;">
+      const embedUrl = `https://www.youtube.com/embed/${id}`;
+      embedHtml += `<div class="video-container" style="position:relative;width:100%;height:0;padding-bottom:${ratio}%;">
   <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-</div>\n</code>;
+</div>\n`;
       // Tambah thumbnail gallery
       const thumbDiv = document.createElement('div');
       thumbDiv.classList.add('thumbnail');
       const img = document.createElement('img');
       img.loading='lazy';
-      img.src = <code>https://img.youtube.com/vi/${id}/hqdefault.jpg</code>;
+      img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
       thumbDiv.appendChild(img);
       thumbDiv.onclick = ()=>{
         currentIndex = index;
@@ -169,7 +169,7 @@ validateBtn.addEventListener('click', ()=>{
 function updatePreview(){
   const id = videoList[currentIndex];
   const ratio = document.getElementById('ratio').value;
-  const embedUrl = <code>https://www.youtube.com/embed/${id}</code>;
+  const embedUrl = `https://www.youtube.com/embed/${id}`;
   preview.src = embedUrl;
   previewContainer.style.paddingBottom = ratio + '%';
   preview.onclick = ()=>{
@@ -186,12 +186,12 @@ lbClose.addEventListener('click', ()=>{
 lbPrev.addEventListener('click', ()=>{
   if(videoList.length===0) return;
   currentIndex = (currentIndex-1+videoList.length)%videoList.length;
-  lbFrame.src = <code>https://www.youtube.com/embed/${videoList[currentIndex]}</code>;
+  lbFrame.src = `https://www.youtube.com/embed/${videoList[currentIndex]}`;
 });
 lbNext.addEventListener('click', ()=>{
   if(videoList.length===0) return;
   currentIndex = (currentIndex+1)%videoList.length;
-  lbFrame.src = <code>https://www.youtube.com/embed/${videoList[currentIndex]}</code>;
+  lbFrame.src = `https://www.youtube.com/embed/${videoList[currentIndex]}`;
 });
 // Swipe support untuk mobile
 let touchStartX = 0;
@@ -208,7 +208,5 @@ function handleGesture(){
   if(touchEndX > touchStartX + 40) lbPrev.click();
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

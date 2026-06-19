@@ -112,7 +112,7 @@
         }
         a { color: var(--accent); text-decoration: none; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -145,7 +145,7 @@
         </p>
         <h2>Standar E-E-A-T dalam Penggunaan Gambar</h2>
         <p>
-            Sesuai prinsip <strong>E-E-A-T</strong> (Experience, Expertise, Authoritativeness, Trustworthiness), kami menyarankan Anda menggunakan alat ini dengan bijak. <strong>Pengalaman</strong> menunjukkan bahwa menghargai hak cipta kreator adalah kunci keberlanjutan digital. Gunakan thumbnail yang Anda unduh sebagai referensi atau di bawah payung hukum <em>Fair Use</em>. Sebagai pakar di bidangnya, kami memastikan <strong>Keamanan</strong> data Anda; tidak ada link yang disimpan di server kami, semua proses terjadi secara langsung di browser Anda (client-side).
+            Sesuai prinsip <strong>E-E-A-T</strong> (Experience, Expertise, Authoritativeness, Trustworthiness), kami menyarankan Anda menggunakan alat ini dengan bijak. <strong>Pengalaman</strong> menunjukkan bahwa menghargai hak cipta kreator adalah kunci keberlanjutan digital. Gunakan thumbnail yang Anda unduh sebagai referensi atau di bawah payung hukum *Fair Use*. Sebagai pakar di bidangnya, kami memastikan <strong>Keamanan</strong> data Anda; tidak ada link yang disimpan di server kami, semua proses terjadi secara langsung di browser Anda (client-side).
         </p>
         <p>
             Selain itu, untuk optimasi <strong>Core Web Vitals</strong>, halaman ini telah diringkas sedemikian rupa agar memiliki skor LCP (Largest Contentful Paint) yang rendah dan meminimalisir pergeseran tata letak (CLS). Dengan desain yang bersih, navigasi menjadi lebih cepat dan responsif (INP).
@@ -156,7 +156,7 @@
     <footer>
         <p>🄯 2026 <a href="https://dalam.web.id">Layar Kosong</a> - Dibuat dengan ☕ oleh Fakhrul Rijal di Balikpapan.</p>
         <p style="margin-top:0.5rem">Tidak berafiliasi dengan YouTube atau Google.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
 <script>
@@ -176,7 +176,7 @@
     function buildCard(title, imgUrl, isShorts) {
         const card = document.createElement('div');
         // Tambahkan class is-shorts jika terdeteksi shorts agar CSS-nya jalan
-        card.className = <code>thumb-card ${isShorts ? 'is-shorts' : ''}</code>;
+        card.className = `thumb-card ${isShorts ? 'is-shorts' : ''}`;
         const img = document.createElement('img');
         img.src = imgUrl;
         img.alt = title;
@@ -228,10 +228,10 @@
         results.innerHTML = '';
         // Daftar kualitas thumbnail
         const assets = [
-            { t: 'Kualitas Tertinggi (HD)', u: <code>https://img.youtube.com/vi/${id}/maxresdefault.jpg</code> },
-            { t: 'Kualitas Standar (SD)', u: <code>https://img.youtube.com/vi/${id}/sddefault.jpg</code> },
-            { t: 'Ukuran Sedang (HQ)', u: <code>https://img.youtube.com/vi/${id}/hqdefault.jpg</code> },
-            { t: 'Ukuran Kecil (MQ)', u: <code>https://img.youtube.com/vi/${id}/mqdefault.jpg</code> }
+            { t: 'Kualitas Tertinggi (HD)', u: `https://img.youtube.com/vi/${id}/maxresdefault.jpg` },
+            { t: 'Kualitas Standar (SD)', u: `https://img.youtube.com/vi/${id}/sddefault.jpg` },
+            { t: 'Ukuran Sedang (HQ)', u: `https://img.youtube.com/vi/${id}/hqdefault.jpg` },
+            { t: 'Ukuran Kecil (MQ)', u: `https://img.youtube.com/vi/${id}/mqdefault.jpg` }
         ];
         assets.forEach(asset => {
             results.appendChild(buildCard(asset.t, asset.u, isShorts));
@@ -250,7 +250,5 @@
     });
 })();
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
