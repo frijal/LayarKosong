@@ -250,7 +250,7 @@
             </ul>
             <h2>Persiapan yang Melelahkan dan Solusinya</h2>
             <p>Meskipun kegunaannya sangat krusial, satu hal yang kerap membuat pengguna malas menggunakan <code>chroot</code> untuk pemulihan sistem adalah proses persiapannya yang cukup merepotkan. Agar lingkungan isolasi dapat berjalan sempurna selayaknya sistem nyata (misalnya agar program tahu informasi perangkat keras dan proses CPU), kita wajib mengaitkan (<em>mount bind</em>) beberapa direktori virtual penting seperti <code>/dev</code>, <code>/proc</code>, dan <code>/sys</code> secara manual.</p>
-            <p>Bila diketik satu per satu, proses ini tidak hanya memakan waktu tetapi juga rawan terjadi salah ketik (*typo*). Belum lagi, setelah selesai melakukan perbaikan, kita juga wajib melepas kaitan (<em>unmount</em>) direktori tersebut satu demi satu agar tidak terjadi korupsi data saat sistem di-<em>restart</em>.</p>
+            <p>Bila diketik satu per satu, proses ini tidak hanya memakan waktu tetapi juga rawan terjadi salah ketik (<em>typo</em>). Belum lagi, setelah selesai melakukan perbaikan, kita juga wajib melepas kaitan (<em>unmount</em>) direktori tersebut satu demi satu agar tidak terjadi korupsi data saat sistem di-<em>restart</em>.</p>
             <h2>Skrip Bash Otomatis: Setup &amp; Cleanup</h2>
             <p>Untuk menyederhanakan siklus pekerjaan tersebut, mari kita manfaatkan kekuatan otomatisasi. Di bawah ini adalah sebuah draf skrip Bash sederhana yang akan mengambil alih pekerjaan kotor merangkai <em>mount</em> dan <em>unmount</em> setiap kali kamu perlu memasuki lingkungan chroot. Skrip ini sangat efisien dan layak untuk kamu simpan di dalam <em>flashdisk</em> utilitasmu.</p>
 <pre><code>#!/bin/bash

@@ -213,7 +213,7 @@
         <p>Bagi pegiat sistem operasi berbasis Arch Linux, manajemen perangkat lunak seringkali diidentikkan dengan antarmuka baris perintah yang kaku. Selama bertahun-tahun, utilitas visual seperti Octopi menjadi sandaran utama, meski tak jarang terasa ketinggalan zaman. Memasuki era yang lebih modern, lahir sebuah solusi ambisius bernama <strong>Shelly-ALPM</strong>. Dirancang ulang dari nol, aplikasi ini menantang dominasi <em>wrapper</em> konvensional dengan menawarkan antarmuka ramah pengguna berbasis GTK4 tanpa mengorbankan ketangguhan *native library*.</p>
         <img src="https://dalam.web.id/img/raw.githubusercontent.com/11f58f757c63dce5.webp" alt="Banner arsitektur Shelly ALPM Package Manager Arch Linux" class="img-fluid" fetchpriority="high" decoding="async" srcset="https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 1200w, https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 800w, https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 400w" sizes="(max-width: 64rem) 100vw, 64rem">
         <h2>Tentang Shelly</h2>
-        <p>Shelly adalah interpretasi ulang (*reimagination*) modern dari manajer paket Arch Linux. Tujuan utamanya adalah menjadi alternatif yang jauh lebih intuitif dan <em>user-friendly</em> dibandingkan <code>pacman</code> murni maupun <code>octopi</code>. Kesalahan fatal yang sering dilakukan <em>tool</em> sejenis adalah membangun program hanya sebagai <em>wrapper</em> atau perantara antarmuka untuk <code>pacman</code>. Shelly <strong>BUKAN</strong> sekadar <em>front-end</em> biasa; ia berinteraksi langsung secara <em>native</em> dengan sistem untuk menghadirkan pengalaman visual yang mulus dan terintegrasi penuh.</p>
+        <p>Shelly adalah interpretasi ulang (<em>reimagination</em>) modern dari manajer paket Arch Linux. Tujuan utamanya adalah menjadi alternatif yang jauh lebih intuitif dan <em>user-friendly</em> dibandingkan <code>pacman</code> murni maupun <code>octopi</code>. Kesalahan fatal yang sering dilakukan <em>tool</em> sejenis adalah membangun program hanya sebagai <em>wrapper</em> atau perantara antarmuka untuk <code>pacman</code>. Shelly <strong>BUKAN</strong> sekadar <em>front-end</em> biasa; ia berinteraksi langsung secara <em>native</em> dengan sistem untuk menghadirkan pengalaman visual yang mulus dan terintegrasi penuh.</p>
         <details>
             <summary><i class="fa-solid fa-image"></i> Tangkapan Layar (Screenshots)</summary>
             <p>Pencarian paket Standar, AUR, dan Flatpak terintegrasi di satu tempat.</p>
@@ -241,17 +241,17 @@ paru -Rns shelly</code></pre>
             <li><strong>Modern-CLI</strong>: Menyediakan antarmuka baris perintah bertenaga bagi <em>power user</em> dan otomatisasi sistem, namun tetap mengutamakan kemudahan pemakaian.</li>
             <li><strong>Native Arch Integration</strong>: Melakukan injeksi instruksi langsung menuju <code>libalpm</code> sehingga akurasi dan kecepatan manajemen paket tak bisa dikompromi.</li>
             <li><strong>Native Wayland Support</strong>: Antarmuka dibangun penuh menggunakan pustaka <strong>GTK4</strong> yang sangat responsif di ekosistem grafis modern.</li>
-            <li><strong>Manajemen Paket</strong>: Pencarian, penyaringan (*filtering*), instalasi, pembaruan, hingga penghapusan aplikasi.</li>
-            <li><strong>Manajemen Repositori</strong>: Sinkronisasi instan dengan repositori resmi untuk memastikan daftar (*mirror*) selalu mutakhir.</li>
+            <li><strong>Manajemen Paket</strong>: Pencarian, penyaringan (<em>filtering</em>), instalasi, pembaruan, hingga penghapusan aplikasi.</li>
+            <li><strong>Manajemen Repositori</strong>: Sinkronisasi instan dengan repositori resmi untuk memastikan daftar (<em>mirror</em>) selalu mutakhir.</li>
             <li><strong>AUR Support</strong>: Integrasi Arch User Repository tanpa kerumitan untuk katalog <em>software</em> yang nyaris tak terbatas.</li>
             <li><strong>Flatpak Support</strong>: Mengelola aplikasi format Flatpak berdampingan secara harmonis dengan paket <em>native</em> Arch.</li>
         </ul>
         <h2>Peta Jalan Pengembangan (Roadmap)</h2>
         <p>Pengembang masih terus menggeber berbagai fitur kunci di masa mendatang:</p>
         <ul>
-            <li><strong>Modifikasi Repositori</strong>: Memungkinkan penyesuaian daftar repositori yang didukung secara langsung (*Dalam Pengerjaan*).</li>
-            <li><strong>AppImage Support</strong>: Perluasan dukungan integrasi AppImage layaknya utilitas <a href="https://github.com/mijorus/gearlever" class="content-link">AppLever</a> (*Dalam Pengerjaan*).</li>
-            <li><strong>Package Import</strong>: Fasilitas mengimpor rekam jejak paket terdahulu untuk memulihkan sistem ke status <em>backup</em> semula (*Belum Dimulai*).</li>
+            <li><strong>Modifikasi Repositori</strong>: Memungkinkan penyesuaian daftar repositori yang didukung secara langsung (<em>Dalam Pengerjaan</em>).</li>
+            <li><strong>AppImage Support</strong>: Perluasan dukungan integrasi AppImage layaknya utilitas <a href="https://github.com/mijorus/gearlever" class="content-link">AppLever</a> (<em>Dalam Pengerjaan</em>).</li>
+            <li><strong>Package Import</strong>: Fasilitas mengimpor rekam jejak paket terdahulu untuk memulihkan sistem ke status <em>backup</em> semula (<em>Belum Dimulai</em>).</li>
             <li><strong>Dukungan Multi-Bahasa</strong>: Lapisan translasi antarmuka di luar bahasa Inggris.</li>
             <li><strong>Pembaruan Luring (Offline)</strong>: Mekanisme fungsional layaknya skrip <code>pacman-offline</code>.</li>
             <li><strong>Kustomisasi Tata Letak</strong>: Opsi penyesuaian tata letak visual untuk setiap profil pengguna yang berbeda.</li>

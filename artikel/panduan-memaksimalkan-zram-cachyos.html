@@ -198,13 +198,13 @@
         </header>
         <article>
             <p>Pernah bertanya-tanya bagaimana cara menggunakan fitur kompresi memori virtual yang sering dibicarakan para pengguna Linux? Kabar baiknya: karena kamu menggunakan <strong>CachyOS</strong> (yang berbasis Arch Linux dan sangat berorientasi pada performa ekstrem), kemungkinan besar <strong>zRAM</strong> sudah aktif secara otomatis dari sananya! 🐧</p>
-            <p>Tim pengembang CachyOS mengonfigurasi ini di luar kotak (*out of the box*) karena mereka tahu persis betapa krusialnya fitur ini untuk manajemen memori modern, terutama ketika kita dihadapkan pada keterbatasan sumber daya sistem inti. Namun, sebagai seorang *power user*, tentu kurang afdal rasanya kalau kita tidak mengecek dan memahami cara kerjanya secara fundamental.</p>
+            <p>Tim pengembang CachyOS mengonfigurasi ini di luar kotak (<em>out of the box</em>) karena mereka tahu persis betapa krusialnya fitur ini untuk manajemen memori modern, terutama ketika kita dihadapkan pada keterbatasan sumber daya sistem inti. Namun, sebagai seorang *power user*, tentu kurang afdal rasanya kalau kita tidak mengecek dan memahami cara kerjanya secara fundamental.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/14d2fc4a546d8456.webp" alt="Ilustrasi Terminal Linux dan Performa CachyOS" class="hero-image" fetchpriority="high" decoding="async">
             <p>Berikut adalah panduan santai untuk mengecek, membaca, dan (jika perlu) mengoptimalkan <strong>zRAM</strong> di sistem komputermu agar sesi <em>multitasking</em> harian tetap mulus.</p>
             <h2>1. Cara Mengecek Apakah zRAM Sudah Aktif 💻</h2>
             <p>Buka terminal kesayanganmu dan ketik perintah sakti ini:</p>
 <pre><code>zramctl</code></pre>
-            <p>Jika <strong>zRAM</strong> sudah aktif, kamu akan melihat <em>output</em> berupa tabel status. Jika tidak muncul apa-apa, berarti belum aktif (walau di ekosistem CachyOS kejadian seperti ini sangat jarang terjadi). Kamu juga bisa memverifikasinya lewat perintah pengecekan memori virtual (*swap*) standar:</p>
+            <p>Jika <strong>zRAM</strong> sudah aktif, kamu akan melihat <em>output</em> berupa tabel status. Jika tidak muncul apa-apa, berarti belum aktif (walau di ekosistem CachyOS kejadian seperti ini sangat jarang terjadi). Kamu juga bisa memverifikasinya lewat perintah pengecekan memori virtual (<em>swap</em>) standar:</p>
 <pre><code>swapon --show</code></pre>
             <p>Kalau di kolom <code>NAME</code> muncul <code>/dev/zram0</code>, selamat! Sistemmu sudah menggunakan fitur kompresi memori yang efisien.</p>
             <h2>2. Cara Membaca Output <code>zramctl</code> 📊</h2>

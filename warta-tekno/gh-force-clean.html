@@ -12,7 +12,7 @@ while [[ $# -gt 0 ]]; do
  --auto) AUTO=true; shift ;;
  --base) BASE_BRANCH="${2:-main}"; shift 2 ;;
  -h|--help) usage ;;
- *) echo "Argumen tidak dikenal: $1"; usage ;;
+ </em>) echo "Argumen tidak dikenal: $1"; usage ;;
  esac
 done
 echo -e "${CYAN}🔍 Mengecek branch utama: ${BASE_BRANCH}${RESET}"

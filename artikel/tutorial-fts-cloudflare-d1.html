@@ -225,7 +225,7 @@
         <p>Hal pertama yang wajib kita lakukan adalah membuat ruang penyimpanan D1 baru melalui terminal. Cukup jalankan perintah sakti ini:</p>
 <pre><code>wrangler d1 create layarkosong-db</code></pre>
         <p>Cloudflare akan merespons dengan memberikan detail konfigurasi. Jangan lupa masukkan detail tersebut ke dalam file <code>wrangler.toml</code> kamu.</p>
-        <p>Setelah <em>database</em> terbuat, kita butuh tabel pencarian. Untungnya, SQLite memiliki modul bawaan yang luar biasa ngebut bernama <strong>FTS5</strong> (*Full-Text Search*). Buatlah sebuah file SQL bernama <code>schema.sql</code> dan masukkan struktur berikut:</p>
+        <p>Setelah <em>database</em> terbuat, kita butuh tabel pencarian. Untungnya, SQLite memiliki modul bawaan yang luar biasa ngebut bernama <strong>FTS5</strong> (<em>Full-Text Search</em>). Buatlah sebuah file SQL bernama <code>schema.sql</code> dan masukkan struktur berikut:</p>
 <pre><code><span class="t-cmt">-- Membuat tabel virtual berbasis FTS5 untuk pencarian cepat</span>
 <span class="t-kw">CREATE VIRTUAL TABLE</span> articles_fts <span class="t-kw">USING</span> <span class="t-fn">fts5</span>(
     title,
@@ -248,7 +248,7 @@ bun add -d typescript @types/node</code></pre>
         <h2>Langkah 3: Menulis Script Pipeline (<code>build-d1.ts</code>)</h2>
         <p>Buat file baru bernama <code>build-d1.ts</code>. Kita akan merakit skrip ini menjadi 3 bagian utama: Modul Sanitasi, Ekstraktor HTML, dan Orkestrator Eksekusi. Seluruh baris kode di bawah disadur langsung dari sumber repositori resmi <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/search/build-d1.ts" target="_blank" rel="noopener noreferrer">rawgithub proyek</a> Layar Kosong.</p>
         <h3>3.1. Modul Sanitasi Teks (<code>superCleanText</code>)</h3>
-        <p>Database pencarian itu pemilih, ia butuh teks yang benar-benar bersih. Jika ada simbol <em>markdown</em> nyasar, emoji berlebih, atau tanda petik tunggal yang luput dari *escape*, kueri SQL kamu bisa meledak (*error*) atau hasil pencariannya jadi kacau balau.</p>
+        <p>Database pencarian itu pemilih, ia butuh teks yang benar-benar bersih. Jika ada simbol <em>markdown</em> nyasar, emoji berlebih, atau tanda petik tunggal yang luput dari *escape*, kueri SQL kamu bisa meledak (<em>error</em>) atau hasil pencariannya jadi kacau balau.</p>
 <pre><code><span class="t-kw">export function</span> <span class="t-fn">superCleanText</span>(text: <span class="t-typ">string</span>): <span class="t-typ">string</span> {
     <span class="t-kw">if</span> (!text) <span class="t-kw">return</span> <span class="t-str">""</span>;
     <span class="t-kw">return</span> text
@@ -274,7 +274,7 @@ bun add -d typescript @types/node</code></pre>
         .<span class="t-fn">trim</span>();
 }</code></pre>
         <h3>3.2. Ekstraktor Konten HTML Menggunakan Cheerio</h3>
-        <p>Lanjut ke fungsi untuk membaca file HTML, menyedot <em>metadata</em> (seperti judul dan gambar <em>OpenGraph*), lalu mengambil teks murni artikel dengan secara sadis membuang komponen *noise</em> seperti navigasi, *header*, dan *footer*.</p>
+        <p>Lanjut ke fungsi untuk membaca file HTML, menyedot <em>metadata</em> (seperti judul dan gambar <em>OpenGraph</em>), lalu mengambil teks murni artikel dengan secara sadis membuang komponen *noise</em> seperti navigasi, *header*, dan *footer*.</p>
 <pre><code><span class="t-kw">import</span> { readFileSync } <span class="t-kw">from</span> <span class="t-str">"fs"</span>;
 <span class="t-kw">import</span> * <span class="t-kw">as</span> cheerio <span class="t-kw">from</span> <span class="t-str">"cheerio"</span>;
 <span class="t-kw">export function</span> <span class="t-fn">extractArticleData</span>(filePath: <span class="t-typ">string</span>, filename: <span class="t-typ">string</span>, category: <span class="t-typ">string</span>) {
@@ -337,7 +337,7 @@ bun add -d typescript @types/node</code></pre>
         <p>Di sisi <em>frontend</em> web, kamu cukup membuat sebuah fungsi Cloudflare Worker (sebagai <em>API endpoint</em> ringan) yang menerima <em>query string</em> dari kolom pencarian pembaca (misal: <code>?q=teknologi</code>), lalu menjalankan kueri SQLite FTS secepat kilat ini:</p>
 <pre><code><span class="t-kw">SELECT</span> id, title, category, image <span class="t-kw">FROM</span> articles_fts <span class="t-kw">WHERE</span> articles_fts <span class="t-kw">MATCH</span> <span class="t-str">'teknologi'</span> <span class="t-kw">ORDER BY</span> rank;</code></pre>
         <p>Fitur <code>ORDER BY rank</code> adalah fungsi ajaib dari FTS5 yang otomatis mengurutkan artikel berdasarkan tingkat relevansi tertinggi terhadap kata kunci yang diketik. Canggih, kan?</p>
-        <p>Sebagai pengingat, waspadai saat menempatkan skrip ini jika ukuran <em>database</em> artikelmu sudah menyentuh ribuan baris, karena proses eksekusi CLI sekaligus (*tanpa batching*) bisa sedikit membebani memori lokal. Tapi untuk skala blog personal, skrip ini sudah sangat tangguh dan bisa diandalkan.</p>
+        <p>Sebagai pengingat, waspadai saat menempatkan skrip ini jika ukuran <em>database</em> artikelmu sudah menyentuh ribuan baris, karena proses eksekusi CLI sekaligus (<em>tanpa batching</em>) bisa sedikit membebani memori lokal. Tapi untuk skala blog personal, skrip ini sudah sangat tangguh dan bisa diandalkan.</p>
         <div class="no-style">
             <hr>
             <p>Artikel oleh Frijal, pengembang <em>web</em> yang berdomisili di Balikpapan. Tulisan ini diulas berdasarkan pengalaman langsung meracik otomatisasi <em>serverless</em> untuk mempercepat performa blog Layar Kosong. Ingin <em>sharing</em> atau ngobrol soal optimasi *web statis*? Sapa saya di Twitter x.com/responaja, atau intip dan oprek langsung keseluruhan kode sumber proyek ini di repositori GitHub github.com/frijal.</p>

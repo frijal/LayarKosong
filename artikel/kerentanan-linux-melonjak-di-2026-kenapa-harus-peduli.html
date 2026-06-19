@@ -258,7 +258,7 @@
                 </div>
                 <p>Di lingkungan produksi dunia nyata saat ini, <em>cluster</em> Kubernetes yang salah konfigurasi (<em>misconfigured</em>) dan <em>base image</em> kontainer yang sudah kedaluwarsa sedang jadi santapan empuk yang dieksploitasi secara aktif setiap detiknya.</p>
                 <h2>AI Mempercepat Segalanya (Ke Arah yang Salah)</h2>
-                <p>Poin yang satu ini anehnya jarang dapat <em>spotlight</em> yang layak. Alat-alat berbasis AI (Kecerdasan Buatan) kini sedang membantu peretas untuk menemukan dan mempersenjatai (*weaponize*) kerentanan Linux jauh lebih instan dari sebelumnya.</p>
+                <p>Poin yang satu ini anehnya jarang dapat <em>spotlight</em> yang layak. Alat-alat berbasis AI (Kecerdasan Buatan) kini sedang membantu peretas untuk menemukan dan mempersenjatai (<em>weaponize</em>) kerentanan Linux jauh lebih instan dari sebelumnya.</p>
                 <p>Jeda waktu antara sebuah celah keamanan (CVE) diumumkan ke publik hingga munculnya <em>exploit</em> liar yang siap pakai (<em>in the wild</em>), kini telah menyusut drastis. Dulu butuh berminggu-minggu, sekarang? Cuma hitungan hari, atau bahkan jam. Eksposur tinggi dikawinkan dengan kecepatan eksploitasi di luar nalar-di luar nalaran adalah resep sempurna untuk bencana.</p>
                 <h2>Langkah Mitigasi: Apa yang Wajib Dilakukan Sekarang?</h2>
                 <p>Kabar baiknya: mayoritas insiden pembobolan Linux sebetulnya masih sangat bisa dicegah kalau Anda disiplin menerapkan hal-hal fundamental. Bukan sulap, bukan sihir, tapi butuh konsistensi.</p>
@@ -267,9 +267,9 @@
                     <li><strong>Aktifkan Fitur Keamanan Bawaan:</strong> SELinux atau AppArmor itu sudah <em>nongkrong</em> manis di sistem Anda, tapi seringnya malah dimatikan karena alasan "bikin ribet *deploy*". Nyalakan dan konfigurasi dengan benar.</li>
                     <li><strong>Scanning Sebelum Tayang:</strong> Jangan pernah melepas <em>container image</em> ke <em>production</em> tanpa di-<em>scan</em> kerentanannya terlebih dahulu.</li>
                     <li><strong>Gembok Akses SSH:</strong> Evaluasi ulang layanan apa saja yang telanjang menghadap publik. Kunci rapat-rapat akses SSH Anda; wajib gunakan autentikasi berbasis <em>Key</em> (<em>Key-based authentication</em>) dan matikan login *password*.</li>
-                    <li><strong>Gunakan Radar Real-Time:</strong> Terapkan sistem deteksi intrusi berbasis <em>host</em> (*Host Intrusion Detection System/HIDS*) seperti <strong>Wazuh</strong> atau <strong>Falco</strong> supaya Anda tidak buta saat ada manuver aneh di server.</li>
+                    <li><strong>Gunakan Radar Real-Time:</strong> Terapkan sistem deteksi intrusi berbasis <em>host</em> (<em>Host Intrusion Detection System/HIDS</em>) seperti <strong>Wazuh</strong> atau <strong>Falco</strong> supaya Anda tidak buta saat ada manuver aneh di server.</li>
                 </ul>
-                <p>Intinya sederhana: Linux tidak rusak. Tapi mentalitas <em>"set it and forget it"</em> (*install*, jalankan, lalu tinggal tidur) dalam mengelola keamanan Linux, sudah jelas kedaluwarsa. Memperlakukan keamanan sebagai rutinitas yang berkelanjutan—bukan sekadar proyek <em>setup</em> sekali jadi—adalah garis tipis yang memisahkan antara tim IT yang bisa tidur nyenyak, dan mereka yang namanya terpampang di berita kebocoran data esok pagi.</p>
+                <p>Intinya sederhana: Linux tidak rusak. Tapi mentalitas <em>"set it and forget it"</em> (<em>install*, jalankan, lalu tinggal tidur) dalam mengelola keamanan Linux, sudah jelas kedaluwarsa. Memperlakukan keamanan sebagai rutinitas yang berkelanjutan—bukan sekadar proyek <em>setup</em> sekali jadi—adalah garis tipis yang memisahkan antara tim IT yang bisa tidur nyenyak, dan mereka yang namanya terpampang di berita kebocoran data esok pagi.</p>
             </article>
             <div id="related-articles-grid"></div><div id="response"></div>
         </main>

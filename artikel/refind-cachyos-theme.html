@@ -252,10 +252,10 @@ function find_refind_conf {
                     REFOUND_CONF_PATH="$found_path"
                     return 0
                     ;;
-                [Nn]*)
+                [Nn]</em>)
                     return 2
                     ;;
-                *)
+                </em>)
                     echo -e "${RED}Please answer yes or no.${RESET}"
                     ;;
             esac
@@ -291,7 +291,7 @@ function install_theme {
                 echo -e "${YELLOW}Removing...${RESET}"
                 rm -rf "$INSTALL_DIR"
                 ;;
-            *)
+            </em>)
                 echo -e "${RED}Aborting to avoid overwriting files.${RESET}"
                 exit 1
                 ;;
@@ -310,7 +310,7 @@ function install_theme {
         2) size_big="256"; size_small="160" ;;
         3) size_big="384"; size_small="240" ;;
         4) size_big="512"; size_small="320" ;;
-        *) echo -e "${RED}${bold}Invalid choice. Exiting.${RESET}"; exit 1 ;;
+        </em>) echo -e "${RED}${bold}Invalid choice. Exiting.${RESET}"; exit 1 ;;
     esac
     echo -e "\nSelected size: ${GREEN}Big $size_big px, Small $size_small px${RESET}\n"
     # Resolution
@@ -330,7 +330,7 @@ function install_theme {
         4) res="3840x2160" ;;
         5) res="3440x1440" ;;
         6) res="5120x2160" ;;
-        *) echo -e "${RED}${bold}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
+        </em>) echo -e "${RED}${bold}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
     esac
     res_width="${res%x*}"
     res_height="${res#*x}"
@@ -374,7 +374,7 @@ function uninstall_theme {
     local backup_file
     backup_file=$(ls -t "${REFOUND_CONF_PATH}".bak.cachy-theme.* 2&gt;/dev/null | head -n 1 || true)
     if [[ ! -f "$backup_file" ]]; then
-        echo -e "${RED}${bold}No backup found (${REFOUND_CONF_PATH}.bak.cachy-theme.*). Cannot proceed.${RESET}"
+        echo -e "${RED}${bold}No backup found (${REFOUND_CONF_PATH}.bak.cachy-theme.</em>). Cannot proceed.${RESET}"
         exit 1
     fi
     echo -e "${YELLOW}Restoring backup: ${bold}$backup_file${normal}${RESET}"
@@ -407,7 +407,7 @@ function reconfigure_theme {
         2) size_big="256"; size_small="160" ;;
         3) size_big="384"; size_small="240" ;;
         4) size_big="512"; size_small="320" ;;
-        *) echo -e "${RED}Invalid choice. Exiting.${RESET}"; exit 1 ;;
+        </em>) echo -e "${RED}Invalid choice. Exiting.${RESET}"; exit 1 ;;
     esac
     echo -e "\n${CYAN}Select new monitor resolution for background:${RESET}"
     echo -e "${bold}1) 1280x720 pixel${normal}"
@@ -425,7 +425,7 @@ function reconfigure_theme {
         4) res="3840x2160" ;;
         5) res="3440x1440" ;;
         6) res="5120x2160" ;;
-        *) echo -e "${RED}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
+        </em>) echo -e "${RED}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
     esac
     res_width="${res%x*}"
     res_height="${res#*x}"
@@ -470,7 +470,7 @@ case "$menu_choice" in
     2) uninstall_theme ;;
     3) reconfigure_theme ;;
     0) echo -e "${YELLOW}Cancelled by user.${RESET}" &amp;&amp; exit 0 ;;
-    *) echo -e "${RED}Invalid option. Exiting.${RESET}" &amp;&amp; exit 1 ;;
+    </em>) echo -e "${RED}Invalid option. Exiting.${RESET}" &amp;&amp; exit 1 ;;
 esac</code></pre>
         </details>
     </section>

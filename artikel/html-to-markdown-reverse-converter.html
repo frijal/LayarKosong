@@ -92,7 +92,7 @@ function doReverse() {
         .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')
         // 3. Link -> [text](url)
         // Kita hanya ambil link standar. Jika ada class di <a>, biarkan tetap HTML.
-        .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
+        .replace(/<a href="([^"]</em>)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
             // Jika tag <a> punya class atau id, biarkan jadi HTML murni
             return match.includes('class=') || match.includes('id=') ? match : `[${text}](${url})`;
         })

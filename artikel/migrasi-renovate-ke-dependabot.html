@@ -206,7 +206,7 @@
             </div>
         </header>
         <main role="main">
-            <p>Memutuskan untuk ganti gigi dari Renovate ke Dependabot adalah langkah yang cukup masuk akal, apalagi kalau kamu ingin ekosistem yang lebih menyatu dengan infrastruktur <em>native</em> GitHub. File konfigurasimu sebelumnya memang sudah cukup matang, lengkap dengan aturan pengelompokan (*grouping*) hingga skema *automerge*. Namun, menerjemahkannya ke format Dependabot butuh sedikit penyesuaian karena kedua sistem ini punya filosofi kerja yang berbeda.</p>
+            <p>Memutuskan untuk ganti gigi dari Renovate ke Dependabot adalah langkah yang cukup masuk akal, apalagi kalau kamu ingin ekosistem yang lebih menyatu dengan infrastruktur <em>native</em> GitHub. File konfigurasimu sebelumnya memang sudah cukup matang, lengkap dengan aturan pengelompokan (<em>grouping</em>) hingga skema *automerge*. Namun, menerjemahkannya ke format Dependabot butuh sedikit penyesuaian karena kedua sistem ini punya filosofi kerja yang berbeda.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/bd28d41dc6848985.webp" alt="Ilustrasi pemindahan konfigurasi dari JSON Renovate ke YAML Dependabot" class="content-img" fetchpriority="high" decoding="async">
             <div class="alert-box">
                 <i class="fa-solid fa-exclamation-triangle"></i> **Realita Pahit Migrasi:**
@@ -285,7 +285,7 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}</code></pre>
             <h3>Penyesuaian Ekstra di Repository Settings</h3>
-            <p>Agar alur kerja GitHub Actions di atas berjalan mulus, pastikan kamu mengaktifkan opsi <strong>"Allow auto-merge"</strong> di pengaturan repositorimu (*Settings* -&gt; <em>General</em> -&gt; <em>Pull Requests*). Dengan kombinasi <code>dependabot.yml</code> dan *workflow</em> rahasia ini, kamu berhasil meniru sekitar 80% kekuatan file konfigurasi Renovate lamamu ke dalam ekosistem Dependabot yang jauh lebih ringan.</p>
+            <p>Agar alur kerja GitHub Actions di atas berjalan mulus, pastikan kamu mengaktifkan opsi <strong>"Allow auto-merge"</strong> di pengaturan repositorimu (<em>Settings* -&gt; <em>General</em> -&gt; <em>Pull Requests</em>). Dengan kombinasi <code>dependabot.yml</code> dan *workflow</em> rahasia ini, kamu berhasil meniru sekitar 80% kekuatan file konfigurasi Renovate lamamu ke dalam ekosistem Dependabot yang jauh lebih ringan.</p>
             <!-- Kredibilitas Konten -->
             <div class="author-box" aria-label="Informasi Keandalan Artikel">
                 <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Fakhrul Rijal</strong></p>
