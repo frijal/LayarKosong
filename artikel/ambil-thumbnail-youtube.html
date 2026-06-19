@@ -125,11 +125,11 @@
       color: var(--muted); text-decoration: none; border-bottom: 1px dotted var(--border);
     }
   </style>
-<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+<link rel="stylesheet" href="/ext/marquee-url.css">
 </head>
 <body>
   <header>
-    <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Ambil Thumbnail</h1>
+    <div id="iposbrowser"></div><h1>Ambil Thumbnail</h1>
             <p>Tools santai buat nyomot cover video YouTube resolusi tinggi ✨ Masukkan URL video YouTube (termasuk bentuk youtu.be, watch, embed, atau shorts). Skrip akan mengambil thumbnail resolusi tertinggi yang tersedia.</p>
   </header>
   <main class="card" role="main" aria-label="Form ambil thumbnail">
@@ -170,7 +170,7 @@
             <p style="margin-top: 0.5rem; font-size: 0.85rem;">
                 Tools ini tidak berafiliasi secara resmi dengan YouTube.
             </p>
-   <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
+   <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
 </footer>
   <script>
     // Parse berbagai format URL YouTube -> videoId
@@ -241,7 +241,7 @@
           <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer">
             <button type="button" class="secondary">Buka video</button>
           </a>
-         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
+         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
 </footer>
       `;
       container.appendChild(card);

@@ -206,11 +206,11 @@
             color: var(--text-color);
         }
     </style>
-<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
+<link rel="stylesheet" href="/ext/marquee-url.css">
 </head>
 <body>
     <main role="main">
-        <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Tutorial: Membangun Sistem Full-Text Search (FTS) di Cloudflare D1 🔍</h1>
+        <div id="iposbrowser"></div><h1>Tutorial: Membangun Sistem Full-Text Search (FTS) di Cloudflare D1 🔍</h1>
         <p>Punya blog statis berbasis HTML murni tapi ingin punya fitur pencarian pintar layaknya <em>web</em> dinamis besar? Menggunakan skrip pencarian pihak ketiga terkadang penuh iklan, dan menyewa <em>server backend</em> sendiri jelas bisa menguras dompet. Solusi modern paling elegan saat ini adalah memanfaatkan <strong>Cloudflare D1</strong>, yaitu <em>database</em> SQLite <em>serverless</em> yang berjalan secepat kilat langsung di jaringan <em>edge</em> Cloudflare.</p>
  <img src="https://dalam.web.id/img/pbs.twimg.com/43107e9facf6acc.webp" alt="Ilustrasi sistem pencarian Cloudflare D1 untuk blog statis" decoding="async" fetchpriority="high">
         <p>Dalam tutorial kali ini, kita akan membangun sebuah skrip otomatisasi berbasis <strong>TypeScript</strong> dan <strong>Bun</strong> untuk memindai artikel HTML lokal kamu, membersihkan kontennya dari "sampah" kode yang tidak perlu, lalu mengunggahnya ke tabel pencarian khusus (<strong>FTS5</strong>) di Cloudflare D1. Yuk, siapkan kopimu dan mari kita mulai ngoding santai. ☕</p>
