@@ -44,6 +44,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 - Susun secara sejajar (inline rata tengah) elemen ini: Author Meta, Tanggal Publikasi, dan Referensi. Desain dengan elegan.
 - Dilarang menulis kata "E-E-A-T" secara literal.
 - Jika link referensi sudah disematkan dalam teks artikel, tidak perlu ditulis ulang di footer.
+- Jika tidak ada link referensi apapun, jangan membuat halusinasi link referensi lainnya.
 
 OUTPUT YANG DIHARAPKAN:
 Hasilkan SATU blok kode utuh yang langsung siap deploy, dimulai dari `<!DOCTYPE html>` hingga `</html>`. Jangan berikan penjelasan atau basa-basi sebelum/sesudah blok kode.
