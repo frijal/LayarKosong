@@ -106,7 +106,7 @@ function parseMarkdownInline(text: string): string {
   // FIX #2 — Escape dulu sebelum regex markdown berjalan.
   // Karakter seperti < > & di konten asli tidak akan bocor jadi tag HTML.
   let out = escapeHtml(text);
-  out = out.replace(/\*\*(.*?)\*\*/g,                              "<b>$1</b>");
+  out = out.replace(/\*\*(.*?)\*\*/g,                              "<strong>$1</strong>");
   out = out.replace(/(?<!\S)\*(?!\s|\*)(.*?)(?<!\s|\*)\*(?!\S)/g, "<em>$1</em>");
   out = out.replace(/~~(.*?)~~/g,                                  "<del>$1</del>");
   out = out.replace(/`([^`]+)`/g,                                  "<code>$1</code>");
