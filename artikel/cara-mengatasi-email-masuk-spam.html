@@ -190,7 +190,7 @@
             <p>Contoh penambahan SPF pada DNS TXT Record:</p>
             <pre><code><span class="token-keyword">v=spf1</span> ip4:192.0.2.0/24 include:_spf.google.com <span class="token-string">~all</span></code></pre>
             <h2>2. Tambah DKIM Signature</h2>
-            <p>Setelah memperjelas daftar IP, amankan isi pesan kamu menggunakan DKIM (DomainKeys Identified Mail). DKIM = tanda tangan digital yang disisipkan secara dapat di setiap header email yang keluar. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Ini menjadi bukti konkret bagi server penerima bahwa email ini <em>genuinely</em> datang dari lo, bukan hasil manipulasi dari pelaku <em>spoofer</em> atau phising.</p>
+            <p>Setelah memperjelas daftar IP, amankan isi pesan kamu menggunakan DKIM (DomainKeys Identified Mail). DKIM = tanda tangan digital yang disisipkan secara dapat di setiap header email yang keluar.  Ini menjadi bukti konkret bagi server penerima bahwa email ini <em>genuinely</em> datang dari lo, bukan hasil manipulasi dari pelaku <em>spoofer</em> atau phising.</p>
             <p>Kamu wajib melakukan setup ini di panel DNS domain kamu. Biasanya, provider pengiriman email transaksional modern sudah menyediakan instruksi spesifik berupa pasangan key publik dan privat yang tinggal kamu salin.</p>
             <h2>3. Terapkan DMARC Policy</h2>
             <p>Jika SPF dan DKIM sudah aktif, saatnya mengikat keduanya menggunakan DMARC (Domain-based Message Authentication, Reporting, and Conformance). Kebijakan DMARC ini bertugas ngasih tahu mail server penerima instruksi tegas: <em>\"Kalau validasi SPF atau DKIM gagal saat menerima email yang mengaku dari domainku, enaknya diapain email ini?\"</em></p>
