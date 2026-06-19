@@ -404,7 +404,7 @@
             .page-wrapper { box-shadow: none; margin: 0 }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <!-- ===== STICKY CONTROLS ===== -->
@@ -533,7 +533,7 @@
     <!-- ===== OUTPUT LABEL ===== -->
     <div id="main-output"></div>
     <script>
-        /<em> ---- Toggle panduan ---- </em>/
+        /* ---- Toggle panduan ---- */
         function toggleGuide(show) {
             const guide = document.querySelector('.guide-section');
             const btnShow = document.getElementById('btnShowGuide');
@@ -545,7 +545,7 @@
                 btnShow.style.display = 'inline-block';
             }
         }
-        /<em> ---- Gambar batang barcode dekoratif di diagram panduan ---- </em>/
+        /* ---- Gambar batang barcode dekoratif di diagram panduan ---- */
         (function() {
             const container = document.getElementById('diagramBars');
             if (!container) return;
@@ -556,7 +556,7 @@
                 container.appendChild(bar);
             });
         })();
-        /<em> ---- Logo handler ---- </em>/
+        /* ---- Logo handler ---- */
         let currentLogoData = "/thumbnail.webp";
         document.getElementById('logoFile').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -569,7 +569,7 @@
                 reader.readAsDataURL(file);
             }
         });
-        /<em> ---- Generate label ---- </em>/
+        /* ---- Generate label ---- */
         function generateLabels() {
             const csvInput = document.getElementById('csvFile');
             const manualUrl = document.getElementById('logoUrl').value;
@@ -595,8 +595,8 @@
                         if (col.length >= 4) {
                             const sku = col[1].trim();
                             const formattedPrice = new Intl.NumberFormat('id-ID').format(col[2].trim().replace(/[Rp.\s,]/g, ''));
-                            const barcodeId = <code>barcode-${i}-${index}</code>;
-                            labelGrid.insertAdjacentHTML('beforeend', <code>
+                            const barcodeId = `barcode-${i}-${index}`;
+                            labelGrid.insertAdjacentHTML('beforeend', `
                                 <div class="label-box">
                                     <div class="product-name">${col[0].trim()}</div>
                                     <div class="price-section">
@@ -612,9 +612,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </code>);
+                            `);
                             setTimeout(() => {
-                                JsBarcode(<code>#${barcodeId}</code>, sku, {
+                                JsBarcode(`#${barcodeId}`, sku, {
                                     format: "CODE128",
                                     width: 1.1,
                                     height: 30,
@@ -632,9 +632,9 @@
             reader.readAsText(csvInput.files[0]);
         }
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-<noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<noscript>schema_oleh_Fakhrul_Rijal_2026-06-18</noscript>
+<noscript>schema_oleh_Fakhrul_Rijal_2026-06-19</noscript>
 </body></html>

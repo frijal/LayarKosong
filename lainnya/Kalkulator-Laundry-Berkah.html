@@ -242,7 +242,7 @@
     </style>
     <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:summary">
     <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:prompt_hint">
-<link rel="stylesheet" href="/ext/marquee-url.css"></head><body>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript></head><body>
     <div class="container" id="nota-belanja">
       <div id="iposbrowser"></div><h1><a style="text-decoration: none; color: inherit;" href="/">Kalkulator</a> 🧾 Laundry Berkah</h1>
       <div class="konsumen-box"><label for="namaKonsumen">Nama Konsumen:</label><input placeholder="siapa nama konsumen?" id="namaKonsumen" required=""></div><label><input id="toggleDiskon" onchange="toggleKolomDiskon()" type="checkbox"> Gunakan Diskon</label>
@@ -282,7 +282,7 @@
           const jumlah = parseFloat(row.querySelector(".jumlah").value.replace(/\./g, "").replace(",", ".")) || 0;
           const diskonInput = row.querySelector(".diskon");
           const diskon = diskonInput ? (parseFloat(diskonInput.value.replace(/\./g, "").replace(",", ".")) || 0) : 0;
-          const subtotal = harga <em> jumlah </em> (1 - diskon / 100);
+          const subtotal = harga * jumlah * (1 - diskon / 100);
           row.querySelector(".subtotal").value = formatRupiah(subtotal);
           total += subtotal;
         });
@@ -293,8 +293,8 @@
         const tbody = document.getElementById("daftar-item");
         const nomor = tbody.children.length + 1;
         const tr = document.createElement("tr");
-        tr.innerHTML = <code>
- <td>${nomor}</td><td><input type="text" value="${data.nama || ''}" placeholder="Nama Barang" required></td><td><input type="text" inputmode="decimal" class="jumlah" value="${data.jumlah || ''}" placeholder="Berat, Kilogram" required></td><td><input type="text" inputmode="decimal" class="harga" value="${data.harga || ''}" placeholder="Harga" required></td><td class="kolom-diskon"><input type="text" class="diskon" value="${data.diskon || ''}" placeholder="Diskon (%)"></td><td>Rp <output class="subtotal">${data.subtotal || '0'}</output></td><td><button onclick="hapusBaris(this)">❌</button></td></code>;
+        tr.innerHTML = `
+ <td>${nomor}</td><td><input type="text" value="${data.nama || ''}" placeholder="Nama Barang" required></td><td><input type="text" inputmode="decimal" class="jumlah" value="${data.jumlah || ''}" placeholder="Berat, Kilogram" required></td><td><input type="text" inputmode="decimal" class="harga" value="${data.harga || ''}" placeholder="Harga" required></td><td class="kolom-diskon"><input type="text" class="diskon" value="${data.diskon || ''}" placeholder="Diskon (%)"></td><td>Rp <output class="subtotal">${data.subtotal || '0'}</output></td><td><button onclick="hapusBaris(this)">❌</button></td>`;
         tbody.appendChild(tr);
         tambahEventListener();
         toggleKolomDiskon();
@@ -380,20 +380,20 @@
           const qty = tr.querySelector(".jumlah").value;
           const hargaSatuan = tr.querySelector(".harga").value; // Mengambil harga per unit
           const sub = tr.querySelector(".subtotal").value;
-          itemsHtml += <code>
+          itemsHtml += `
  <tr style="border-bottom: 1px solid #eee;"><td style="padding: 8px 0 0 0; vertical-align: top;"><div style="font-weight: bold; font-size: 13px;">${nBarang}</div><div style="font-size: 11px; color: #555; margin-bottom: 8px;">${qty} x ${hargaSatuan}</div></td><td style="width: 5%; text-align: center; vertical-align: middle;">:</td><td style="text-align: right; width: 40%; vertical-align: middle; font-weight: bold;">
  ${sub}
- </td></tr></code>;
+ </td></tr>`;
         });
-        const content = <code>
+        const content = `
  <div class="nota-header"><h3>LAUNDRY BERKAH</h3><p style="font-size:11px; margin: 5px 0;">Balikpapan</p></div><div class="nota-info">
  Tggl : ${tgl} - ${jam}<br>
  Nama : ${nama}
  </div><table class="nota-table"><thead><tr style="border-bottom: 2px solid #000;"></tr></thead><tbody>
  ${itemsHtml}
  </tbody></table><div class="nota-footer"><div class="total-row"><span>TOTAL:</span><span>Rp ${total}</span></div>
- ${catatan ? </code><div class="catatan-struk">Ket: ${catatan}</div><code> : ''}
- <p style="text-align:center; margin-top:15px; font-size:11px;"><strong><em> TERIMA KASIH </strong></em></p></div></code>;
+ ${catatan ? `<div class="catatan-struk">Ket: ${catatan}</div>` : ''}
+ <p style="text-align:center; margin-top:15px; font-size:11px;">*** TERIMA KASIH ***</p></div>`;
         const p = document.getElementById("nota-summary");
         p.innerHTML = content;
         html2canvas(p, {
@@ -408,7 +408,7 @@
           }
         }).then(canvas => {
           const link = document.createElement("a");
-          link.download = <code>${fileDate}-${nama.replace(/\s+/g, "_")}.webp</code>;
+          link.download = `${fileDate}-${nama.replace(/\s+/g, "_")}.webp`;
           link.href = canvas.toDataURL("image/webp", 0.9);
           link.click();
           // Opsional: bersihkan innerHTML setelah export
@@ -451,8 +451,8 @@
       }
       window.addEventListener("load", muatDariLocalStorage);
     </script>
-<noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 
-<noscript>schema_oleh_Fakhrul_Rijal_2026-06-18</noscript>
+<noscript>schema_oleh_Fakhrul_Rijal_2026-06-19</noscript>
 </body></html>

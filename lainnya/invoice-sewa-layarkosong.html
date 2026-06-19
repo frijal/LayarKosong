@@ -287,7 +287,7 @@
           @page { size: A4; margin: 10mm; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"></head>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript></head>
 <body>
     <header class="toolbar no-print" id="toolbar">
         <div class="toolbar-left">
@@ -295,7 +295,7 @@
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
             </svg>
-            <h1 class="toolbar-title"><a href="/" style="text-decoration: none; color: inherit;">Invoices Penyewaan bisa di Ubah Sesukanya.</a></h1>
+            <div id="iposbrowser"></div><h1 class="toolbar-title"><a href="/" style="text-decoration: none; color: inherit;">Invoices Penyewaan bisa di Ubah Sesukanya.</a></h1>
         </div>
         <div class="toolbar-center">
             <div class="template-selector" id="templateSelector">
@@ -541,7 +541,7 @@ No KTP: 6471...
     (() => {
       'use strict';
       const $ = (sel) => document.querySelector(sel);
-      const $ = (sel) => document.querySelectorAll(sel);
+      const $$ = (sel) => document.querySelectorAll(sel);
       const invoiceCanvas = $('#invoiceCanvas');
       const itemsBody = $('#itemsBody');
       const logoContainer = $('#logoContainer');
@@ -572,7 +572,7 @@ No KTP: 6471...
       const btnAddItem = $('#btnAddItem');
       const btnPrintPDF = $('#btnPrintPDF');
       const btnNewInvoice = $('#btnNewInvoice');
-      const templateBtns = $('.template-btn');
+      const templateBtns = $$('.template-btn');
       const STORAGE_KEY = 'invoiceSewa_data_v14';
       let saveTimeout = null;
       let currentGrandTotal = 0;
@@ -595,15 +595,15 @@ No KTP: 6471...
           const d = new Date(parts[0], parts[1]-1, parts[2]);
           if (isNaN(d)) return dateStr;
           const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-          return <code>${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}</code>;
+          return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
       }
       function updateDateDisplays() {
           let maxDuration = 0;
-          $('.item-qty').forEach(input => {
+          $$('.item-qty').forEach(input => {
               const val = parseInt(input.value) || 0;
               if (val > maxDuration) maxDuration = val;
           });
-          const dates = $('input[type="date"]');
+          const dates = $$('input[type="date"]');
           dates.forEach(input => {
               const wrapper = input.closest('.date-wrapper');
               if (wrapper) {
@@ -616,7 +616,7 @@ No KTP: 6471...
                           const d = new Date(parts[0], parts[1]-1, parts[2]);
                           // Tambahkan (maxDuration - 1) ke tanggal awal (karena tanggal 1 terhitung hari pertama)
                           d.setDate(d.getDate() + (maxDuration - 1));
-                          const endDateStr = <code>${d.getDate()} ${['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'][d.getMonth()]} ${d.getFullYear()}</code>;
+                          const endDateStr = `${d.getDate()} ${['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'][d.getMonth()]} ${d.getFullYear()}`;
                           endDisplay.textContent = " - " + endDateStr;
                           endDisplay.style.display = "inline";
                       } else if (endDisplay) {
@@ -634,7 +634,7 @@ No KTP: 6471...
         setDefaultDates();
       }
       function setDefaultDates() {
-        const dates = $('input[type="date"]');
+        const dates = $$('input[type="date"]');
         dates.forEach(d => {
             if (!d.value) d.value = new Date().toISOString().split('T')[0];
         });
@@ -664,11 +664,11 @@ No KTP: 6471...
             scheduleSave();
         });
         // Date Change Synchronization
-        $('input[type="date"]').forEach(input => {
+        $$('input[type="date"]').forEach(input => {
             input.addEventListener('change', (e) => {
                 const field = e.target.dataset.field;
                 if(field) {
-                    $(<code>[data-field="${field}"]</code>).forEach(el => {
+                    $$(`[data-field="${field}"]`).forEach(el => {
                         if(el !== e.target && el.tagName === 'INPUT') {
                             el.value = e.target.value;
                         }
@@ -700,7 +700,7 @@ No KTP: 6471...
           // Sinkronisasi Data (Title, Invoice No) jika diganti salah satu
           const field = e.target.dataset.field;
           if(field && e.target.type !== 'date') {
-              const allMatching = $(<code>[data-field="${field}"]</code>);
+              const allMatching = $$(`[data-field="${field}"]`);
               if(allMatching.length > 1) {
                   const newVal = (e.target.tagName === 'INPUT') ? e.target.value : e.target.textContent;
                   allMatching.forEach(el => {
@@ -734,7 +734,7 @@ No KTP: 6471...
         function dragEnd(e) { initialX = xOffset; initialY = yOffset; isDragging = false; logoArea.style.cursor = 'grab'; if (logoArea.classList.contains('has-logo')) scheduleSave(); }
         function drag(e) { if (isDragging) { e.preventDefault(); logoContainer.classList.add('is-dragging'); const currentX = e.clientX - initialX, currentY = e.clientY - initialY; xOffset = currentX; yOffset = currentY; setLogoPosition(currentX, currentY); } else { logoContainer.classList.remove('is-dragging'); } }
       }
-      function setLogoPosition(x, y) { logoContainer.style.transform = <code>translate3d(${x}px, ${y}px, 0)</code>; }
+      function setLogoPosition(x, y) { logoContainer.style.transform = `translate3d(${x}px, ${y}px, 0)`; }
       function updateVisibility() {
         toggleDiscount.checked ? discountRow.classList.remove('hidden') : discountRow.classList.add('hidden');
         toggleTax.checked ? taxRow.classList.remove('hidden') : taxRow.classList.add('hidden');
@@ -749,7 +749,7 @@ No KTP: 6471...
       function addItemRow(data = {}) {
         const tr = document.createElement('tr');
         tr.classList.add('item-row');
-        tr.innerHTML = <code>
+        tr.innerHTML = `
           <td><input type="text" class="item-input item-desc" placeholder="Ketik nama barang sewaan..." value="${escapeHTML(data.desc || '')}" /></td>
           <td><input type="number" class="item-input item-jumlah align-right" placeholder="1" min="1" value="${data.jumlah || '1'}" title="Jumlah unit barang yang disewa" /></td>
           <td><input type="text" class="item-input item-price format-ribuan align-right" placeholder="0" value="${data.price || ''}" title="Harga sewa per hari" /></td>
@@ -761,7 +761,7 @@ No KTP: 6471...
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
           </td>
-        </code>;
+        `;
         tr.querySelector('.btn-remove').addEventListener('click', () => {
           tr.style.opacity = '0'; tr.style.transform = 'translateX(-10px)'; tr.style.transition = 'all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)';
           setTimeout(() => { tr.remove(); recalculate(); scheduleSave(); }, 250);
@@ -775,7 +775,7 @@ No KTP: 6471...
       }
       function recalculate() {
         let subtotal = 0;
-        $('.item-row').forEach(row => {
+        $$('.item-row').forEach(row => {
           const jumlah = parseInt(row.querySelector('.item-jumlah').value) || 0;
           const price = parseRibuan(row.querySelector('.item-price').value);
           const duration = parseInt(row.querySelector('.item-qty').value) || 0;
@@ -786,7 +786,7 @@ No KTP: 6471...
                   totalRow = price * jumlah;
               } else {
                   const discountedPrice = price * (1 - (discRate / 100));
-                  totalRow = (price + (discountedPrice <em> (duration - 1))) </em> jumlah;
+                  totalRow = (price + (discountedPrice * (duration - 1))) * jumlah;
               }
           }
           row.querySelector('.item-total').textContent = formatCurrency(totalRow);
@@ -852,7 +852,7 @@ No KTP: 6471...
         if (!confirm("Buat faktur sewa baru? Data pelanggan & barang saat ini akan dihapus.")) return;
         localStorage.removeItem(STORAGE_KEY);
         clearLogo();
-        $('[data-field]').forEach(el => {
+        $$('[data-field]').forEach(el => {
           if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
               if(el.type !== 'date') el.value = '';
           } else {
@@ -880,9 +880,9 @@ No KTP: 6471...
       function scheduleSave() { clearTimeout(saveTimeout); saveTimeout = setTimeout(saveData, 400); }
       function saveData() {
         const data = {};
-        $('[data-field]').forEach(el => { if (el.tagName === 'INPUT' || el.tagName === 'SELECT') { data[el.dataset.field] = el.value; } else { data[el.dataset.field] = el.textContent; } });
+        $$('[data-field]').forEach(el => { if (el.tagName === 'INPUT' || el.tagName === 'SELECT') { data[el.dataset.field] = el.value; } else { data[el.dataset.field] = el.textContent; } });
         data.items = [];
-        $('.item-row').forEach(row => {
+        $$('.item-row').forEach(row => {
             data.items.push({
                 desc: row.querySelector('.item-desc').value,
                 jumlah: row.querySelector('.item-jumlah').value,
@@ -905,7 +905,7 @@ No KTP: 6471...
       function loadData() {
         let data; try { data = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) { data = null; }
         if (!data) { addItemRow(); return; }
-        $('[data-field]').forEach(el => {
+        $$('[data-field]').forEach(el => {
           const val = data[el.dataset.field];
           if (val !== undefined) { if (el.tagName === 'INPUT' || el.tagName === 'SELECT') { el.value = val; } else { el.textContent = val; } }
         });
@@ -925,8 +925,8 @@ No KTP: 6471...
       init();
     })();
     </script>
-<noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 
-<noscript>schema_oleh_Fakhrul_Rijal_2026-06-18</noscript>
+<noscript>schema_oleh_Fakhrul_Rijal_2026-06-19</noscript>
 </body></html>
