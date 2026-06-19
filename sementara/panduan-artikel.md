@@ -22,7 +22,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 
 4. DESAIN, CSS & AKSESIBILITAS:
 - Dark/Light Mode: Gunakan CSS murni dengan variabel (`:root`) dan media query `@media (prefers-color-scheme: dark)` untuk perpindahan tema otomatis.
-- Responsivitas (Mobile-First): Gunakan kontainer utama dengan CSS: `max-width: 64rem; width: 100%; margin: 0 auto;`.
+- Responsivitas: Gunakan kontainer utama dengan CSS modern: `width: min(100%, 64rem); margin: 0 auto;`. Ini memastikan lebar otomatis 100% di layar selain desktop, dan otomatis terkunci (fix) di 64rem saat dibuka di layar desktop tanpa memicu horizontal scroll.
 - Tipografi & Skala REM: Gunakan system font stack. Ukuran (`font-size`, `margin`, `padding`) WAJIB menggunakan unit `rem` (Dilarang pakai `px` atau `pt`). Wajib terapkan panduan ukuran rem untuk tampilan laptop/desktop berikut:
   * Judul Utama (h1): 2rem hingga 2.5rem (setara 32px – 40px) agar menonjol dan mudah dipindai (skimming).
   * Sub-judul (h2 / h3): 1.3rem hingga 1.7rem (setara 21px – 28px).
