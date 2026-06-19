@@ -187,7 +187,7 @@
             gap: 1rem;
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="site-wrapper">
@@ -214,9 +214,9 @@
                 <tbody>
                     <tr>
                         <td><strong>Tipe</strong></td>
-                        <td>GUI (<em>Graphical</em>)</td>
-                        <td>GUI (<em>Graphical</em>)</td>
-                        <td><strong>TUI</strong> (<em>Terminal</em>)</td>
+                        <td>GUI (*Graphical*)</td>
+                        <td>GUI (*Graphical*)</td>
+                        <td><strong>TUI</strong> (*Terminal*)</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -224,11 +224,11 @@
                         <td>GTK 4 + Native libalpm</td>
                         <td>Qt</td>
                         <td>Go (sangat ringan)</td>
-                        <td>Shelly (<em>native</em>)</td>
+                        <td>Shelly (*native*)</td>
                     </tr>
                     <tr>
                         <td><strong>Fokus Utama</strong></td>
-                        <td>CachyOS (<em>default</em> sejak April 2026)</td>
+                        <td>CachyOS (*default* sejak April 2026)</td>
                         <td>Arch Linux &amp; banyak distro</td>
                         <td><em>Power user</em> yang suka terminal</td>
                         <td>Tergantung gaya user</td>
@@ -242,7 +242,7 @@
                     </tr>
                     <tr>
                         <td><strong>Dukungan AppImage</strong></td>
-                        <td><strong>Sangat baik</strong> (<em>Drag &amp; Drop</em>)</td>
+                        <td><strong>Sangat baik</strong> (*Drag &amp; Drop*)</td>
                         <td>Terbatas</td>
                         <td>Tidak ada</td>
                         <td><strong>Shelly</strong></td>
@@ -258,13 +258,13 @@
                         <td><strong>UI/UX</strong></td>
                         <td>Modern, bersih, intuitif</td>
                         <td>Klasik, fungsional, agak <em>outdated</em></td>
-                        <td>Terminal interaktif (mirip <em>fzf</em>)</td>
+                        <td>Terminal interaktif (mirip *fzf*)</td>
                         <td>Shelly (modern)</td>
                     </tr>
                     <tr>
                         <td><strong>Performa</strong></td>
                         <td>Sangat baik (MemoryPack di v2.3+)</td>
-                        <td>Sedang (kadang terasa lambat/<em>lock up</em>)</td>
+                        <td>Sedang (kadang terasa lambat/*lock up*)</td>
                         <td><strong>Sangat cepat &amp; ringan</strong></td>
                         <td>pacseek</td>
                     </tr>
@@ -303,21 +303,21 @@
         <h3>1. Shelly: Si GUI Modern yang Menggebrak</h3>
         <p>Shelly bukan sekadar <em>wrapper</em> (pembungkus) perintah CLI ke dalam bentuk visual. Ia dibangun dari bawah menggunakan pendekatan <strong>native libalpm</strong>. Dengan balutan GTK 4, antarmukanya terlihat sangat kekinian, bersih, dan memanjakan mata. Salah satu terobosan terbesarnya adalah dukungan eksklusif terhadap <strong>AppImage</strong> via mekanisme <em>drag-and-drop</em> yang luar biasa praktis. Karena kecepatan inovasinya inilah, distribusi berkinerja tinggi seperti CachyOS resmi menjadikannya aplikasi bawaan menggantikan pendahulunya sejak April 2026. Sangat direkomendasikan bagi mereka yang menginginkan sinkronisasi format <em>Flatpak</em> dan <em>AppImage</em> dalam satu atap yang apik.</p>
         <h3>2. Octopi: Veteran Tangguh dengan Transparansi Penuh</h3>
-        <p>Hadir sejak 2013, Octopi adalah legenda hidup di ekosistem Arch. Berbasis <em>framework</em> Qt, tampilannya memang terasa lebih kaku dan "tradisional" jika disandingkan dengan Shelly. Namun, Octopi punya satu perangkat andalan yang membuatnya sulit ditinggalkan <em>sysadmin</em> veteran: <strong>transparansi absolut</strong>. Ia menayangkan <em>output</em> terminal murni langsung ke layar pengguna, sehingga kamu tahu persis apa yang sedang dieksekusi di balik layar tanpa ada proses yang disembunyikan. Sayangnya, performanya belakangan kerap dilaporkan mengalami <em>lock up</em> ringan saat memuat pangkalan data besar dari <em>mirror</em>.</p>
+        <p>Hadir sejak 2013, Octopi adalah legenda hidup di ekosistem Arch. Berbasis <em>framework</em> Qt, tampilannya memang terasa lebih kaku dan "tradisional" jika disandingkan dengan Shelly. Namun, Octopi punya satu perangkat andalan yang membuatnya sulit ditinggalkan <em>sysadmin</em> veteran: <strong>transparansi absolut</strong>. Ia menayangkan <em>output</em> terminal murni langsung ke layar pengguna, sehingga kamu tahu persis apa yang sedang dieksekusi di balik layar tanpa ada proses yang disembunyikan. Sayangnya, performanya belakangan kerap dilaporkan mengalami <em>lock up</em> ringan saat memuat pangkalan data besar dari *mirror*.</p>
         <h3>3. pacseek: Ninja Terminal yang Super Cepat</h3>
-        <p>Berbeda dari dua kompetitornya, pacseek sama sekali tidak memiliki jendela antarmuka grafis. Ia adalah aplikasi murni terminal (TUI) yang ditulis dalam bahasa pemrograman <strong>Go</strong>. Dampaknya? Performa pencarian dan eksekusi paket berjalan secepat kilat tanpa membebani RAM sedikit pun. Jika alur kerjamu lebih banyak dihabiskan tanpa menyentuh <em>mouse</em> dan kamu memuja kecepatan <em>fzf</em>, pacseek akan membuatmu merasa seperti seorang peretas profesional. Tentu saja, komprominya adalah ketidakmampuannya membaca format modern lintas distro seperti <em>AppImage</em> maupun <em>Flatpak</em> secara bawaan.</p>
+        <p>Berbeda dari dua kompetitornya, pacseek sama sekali tidak memiliki jendela antarmuka grafis. Ia adalah aplikasi murni terminal (TUI) yang ditulis dalam bahasa pemrograman <strong>Go</strong>. Dampaknya? Performa pencarian dan eksekusi paket berjalan secepat kilat tanpa membebani RAM sedikit pun. Jika alur kerjamu lebih banyak dihabiskan tanpa menyentuh <em>mouse</em> dan kamu memuja kecepatan <em>fzf*, pacseek akan membuatmu merasa seperti seorang peretas profesional. Tentu saja, komprominya adalah ketidakmampuannya membaca format modern lintas distro seperti *AppImage</em> maupun <em>Flatpak</em> secara bawaan.</p>
         <h2>Rekomendasi Berdasarkan Kebutuhanmu</h2>
-        <p>Memilih satu dari ketiganya sangat bergantung pada lingkungan <em>desktop</em> dan seberapa dalam keintimanmu dengan <em>command line</em>.</p>
+        <p>Memilih satu dari ketiganya sangat bergantung pada lingkungan <em>desktop</em> dan seberapa dalam keintimanmu dengan *command line*.</p>
         <ul>
             <li>Ingin GUI modern sekaligus dukungan mumpuni untuk <strong>AppImage</strong>? Pilih <strong>Shelly</strong>.</li>
             <li>Suka dengan GUI, tapi memiliki obsesi untuk melihat detail <strong>transparansi terminal</strong>? Pilih <strong>Octopi</strong>.</li>
             <li>Kamu adalah <em>power user</em> yang benci menggunakan <em>mouse</em> dan butuh respons instan? Pilih <strong>pacseek</strong>.</li>
             <li>Menjalankan <strong>CachyOS</strong> saat ini? Tetaplah bersama <strong>Shelly</strong> karena sistem ini sudah meraciknya sebagai aplikasi asali yang terintegrasi penuh.</li>
-            <li>Baru melakukan migrasi ke Arch Linux dan butuh kemudahan layaknya <em>App Store</em>? <strong>Shelly</strong> adalah pintu masuk yang paling ramah.</li>
+            <li>Baru melakukan migrasi ke Arch Linux dan butuh kemudahan layaknya *App Store*? <strong>Shelly</strong> adalah pintu masuk yang paling ramah.</li>
             <li>Mencari utilitas dengan jejak memori paling kecil (super ringan)? <strong>pacseek</strong> tidak akan mengkhianatimu.</li>
         </ul>
         <h2>Kesimpulan Akhir</h2>
-        <p>Tahun 2026 membawa kejelasan pembagian peran di ekosistem Arch. <strong>Shelly</strong> terbukti menjadi visi masa depan yang lebih ramah pengguna, modern, dan sangat inovatif. Di sisi lain, <strong>Octopi</strong> menolak untuk mati karena keunggulannya mempertahankan pengalaman klasik yang sangat <em>verbose</em>. Namun jika kecepatan mentah dan kesederhanaan adalah segalanya bagimu, <strong>pacseek</strong> tetap menjadi jawara tak tertandingi di alam terminal.</p>
+        <p>Tahun 2026 membawa kejelasan pembagian peran di ekosistem Arch. <strong>Shelly</strong> terbukti menjadi visi masa depan yang lebih ramah pengguna, modern, dan sangat inovatif. Di sisi lain, <strong>Octopi</strong> menolak untuk mati karena keunggulannya mempertahankan pengalaman klasik yang sangat *verbose*. Namun jika kecepatan mentah dan kesederhanaan adalah segalanya bagimu, <strong>pacseek</strong> tetap menjadi jawara tak tertandingi di alam terminal.</p>
         <p>Saran teknis bagi kamu yang sedang bersiap mengatur <em>environment</em> baru: Bagi pengguna <a href="https://cachyos.org" class="content-link">CachyOS</a>, cukup nikmati fitur bawaan dari Shelly. Jika kamu pengguna murni terminal, <em>install</em> TUI favorit ini menggunakan baris perintah <code>paru -S pacseek</code>. Dan jika kamu masih kerasan memakai Octopi, tak perlu dipaksakan untuk pindah, karena pada akhirnya stabilitas <em>workflow</em> pribadi adalah yang utama.</p>
         <!-- Elemen Wajib Akhir Konten (Tanpa Styling Tambahan) -->
         <div id="related-articles-grid"></div>
@@ -332,8 +332,8 @@
         <span><i class="fa-solid fa-location-dot"></i> Balikpapan, ID</span>
         <span>•</span>
         <span><i class="fa-brands fa-creative-commons"></i> Open Access</span>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

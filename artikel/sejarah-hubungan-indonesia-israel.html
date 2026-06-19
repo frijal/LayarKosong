@@ -647,7 +647,7 @@
             color: var(--text-color);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
@@ -949,12 +949,12 @@
                 <a href="#"><i class="fa-solid fa-rss"></i> Berlangganan Artikel</a>
             </div>
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-                <p><small><strong>Disclaimer:</strong> Artikel ini disusun berdasarkan sumber-sumber terpercaya dan analisis ahli. Pandangan yang disampaikan adalah analisis objektif berdasarkan fakta historis dan data yang tersedia. Untuk keperluan akademis, disarankan untuk merujuk ke sumber primer.</small></p>
+                <p><small>**Disclaimer:** Artikel ini disusun berdasarkan sumber-sumber terpercaya dan analisis ahli. Pandangan yang disampaikan adalah analisis objektif berdasarkan fakta historis dan data yang tersedia. Untuk keperluan akademis, disarankan untuk merujuk ke sumber primer.</small></p>
                 <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-secondary);">
                     <i class="fa-solid fa-book"></i> <strong>Sumber Referensi Utama:</strong> Arsip Kementerian Luar Negeri RI, Dokumen PBB, Publikasi LIPI, Jurnal Hubungan Internasional UI, Laporan Amnesty International.
                 </p>
             </div>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <script>
@@ -1076,7 +1076,7 @@
         // Print functionality
         const printButton = document.createElement('button');
         printButton.innerHTML = '<i class="fa-solid fa-print"></i> Cetak Artikel';
-        printButton.style.cssText = <code>
+        printButton.style.cssText = `
             position: fixed;
             bottom: 20px;
             left: 20px;
@@ -1093,7 +1093,7 @@
             align-items: center;
             gap: 8px;
             transition: var(--transition);
-        </code>;
+        `;
         printButton.addEventListener('mouseenter', () => {
             printButton.style.transform = 'translateY(-3px)';
             printButton.style.boxShadow = 'var(--shadow-hover)';
@@ -1109,7 +1109,7 @@
         // Scroll to top button
         const scrollToTopButton = document.createElement('button');
         scrollToTopButton.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
-        scrollToTopButton.style.cssText = <code>
+        scrollToTopButton.style.cssText = `
             position: fixed;
             bottom: 120px;
             left: 20px;
@@ -1126,7 +1126,7 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-        </code>;
+        `;
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -1151,7 +1151,5 @@
             document.documentElement.classList.remove('keyboard-navigation');
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

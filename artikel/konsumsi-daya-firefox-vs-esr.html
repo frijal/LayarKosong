@@ -176,7 +176,7 @@
     </style>
 <meta name="ai:summary" content="Kupas tuntas perbandingan konsumsi daya baterai antara Mozilla Firefox biasa (Release Channel) dan Firefox ESR (Extended Support Release). Pahami mengapa versi reguler lebih unggul dalam efisiensi daya.">
 <meta name="ai:prompt_hint" content="Kupas tuntas perbandingan konsumsi daya baterai antara Mozilla Firefox biasa (Release Channel) dan Firefox ESR (Extended Support Release). Pahami mengapa versi reguler lebih unggul dalam efisiensi daya.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -197,8 +197,8 @@
             <p>Firefox versi biasa cenderung memiliki konsumsi daya yang lebih baik karena:</p>
             <ul>
                 <li><strong>Optimasi <em>Engine</em> Terbaru:</strong> Tim Mozilla selalu bekerja keras untuk membuat <em>engine rendering</em> (<strong>Quantum/Gecko</strong>) mereka lebih efisien dalam penggunaan CPU dan GPU. Optimasi ini langsung masuk ke versi biasa setiap 4 minggu. Ini termasuk perbaikan pada cara Firefox menangani <em>tab</em> yang tidak aktif.</li>
-                <li><strong>Contohnya:</strong> Peningkatan dalam pengelolaan proses latar belakang (<em>background tab throttling</em>) dan pemanfaatan <em>hardware acceleration</em> yang lebih baik, semuanya dirancang untuk mengurangi beban CPU/GPU, yang secara langsung <strong>menghemat daya baterai</strong>.</li>
-                <li><strong>Fitur <em>UI Throttling</em> Cepat:</strong> Fitur seperti ini (yang sudah ada di versi baru) secara otomatis akan mengurangi <em>refresh rate</em> dan aktivitas UI Firefox saat jendelanya dikecilkan (<em>minimized</em>) atau tidak aktif, yang berdampak besar pada penghematan daya laptop.</li>
+                <li><strong>Contohnya:</strong> Peningkatan dalam pengelolaan proses latar belakang (*background tab throttling*) dan pemanfaatan <em>hardware acceleration</em> yang lebih baik, semuanya dirancang untuk mengurangi beban CPU/GPU, yang secara langsung <strong>menghemat daya baterai</strong>.</li>
+                <li><strong>Fitur <em>UI Throttling</em> Cepat:</strong> Fitur seperti ini (yang sudah ada di versi baru) secara otomatis akan mengurangi <em>refresh rate</em> dan aktivitas UI Firefox saat jendelanya dikecilkan (*minimized*) atau tidak aktif, yang berdampak besar pada penghematan daya laptop.</li>
                 <li><strong>Perbaikan <em>Bug</em> Konsumsi Daya:</strong> Jika ada <em>bug</em> spesifik yang menyebabkan lonjakan penggunaan CPU (misalnya saat memutar video atau di situs web tertentu), perbaikannya akan rilis cepat di versi biasa.</li>
             </ul>
             <h3>2. Kondisi di Firefox ESR</h3>
@@ -235,5 +235,5 @@
             <div id="related-articles-grid"></div><div id="response"></div>
     </article>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

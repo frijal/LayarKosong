@@ -211,7 +211,7 @@
             article p, ol li { font-size: 1rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -222,27 +222,26 @@
         <article>
             <p><strong>KDE Linux</strong>, distro Linux yang bakal rilis dari KDE, baru aja dapet update pengembangan besar lainnya yang fokus ke performa, pengujian, dan keamanan. Langkah ini diambil oleh komunitas pengembang di seluruh dunia untuk memastikan sistem operasi masa depan ini siap bersaing di pasar desktop modern secara stabil.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/20fc273d6e49ce95.webp" alt="Antarmuka KDE Linux terbaru yang fokus pada efisiensi performa dan keamanan Wayland" class="main-image" decoding="async" fetchpriority="high">
-            <p>Salah satu perubahan terbesar adalah KDE Linux mulai ninggalin pembuatan paket berbasis Arch dan sekarang nge-<em>build</em> software KDE langsung pake tool milik mereka sendiri, yaitu <code>kde-builder</code>. Ini bikin proses <em>build</em> jadi lebih cepet, improvisasi <em>caching</em>, dan ngebuat proyek ini gak terlalu bergantung sama satu distro tertentu aja.</p>
-            <p>Dari sisi keamanan, para developer KDE sempet ngelakuin audit kecil setelah ada isu keamanan kernel Linux baru-baru ini. Hasilnya, mereka ngehapus banyak komponen yang gak kepake atau berpotensi berisiko, balik lagi ke <em>vanilla Linux kernel</em>, nge-<em>drop</em> dukungan Fuse2 yang udah gak dirawat, dan ngebuang beberapa paket serta modul kernel yang gak perlu.</p>
+            <p>Salah satu perubahan terbesar adalah KDE Linux mulai ninggalin pembuatan paket berbasis Arch dan sekarang nge-*build* software KDE langsung pake tool milik mereka sendiri, yaitu <code>kde-builder</code>. Ini bikin proses <em>build</em> jadi lebih cepet, improvisasi *caching*, dan ngebuat proyek ini gak terlalu bergantung sama satu distro tertentu aja.</p>
+            <p>Dari sisi keamanan, para developer KDE sempet ngelakuin audit kecil setelah ada isu keamanan kernel Linux baru-baru ini. Hasilnya, mereka ngehapus banyak komponen yang gak kepake atau berpotensi berisiko, balik lagi ke <em>vanilla Linux kernel*, nge-*drop</em> dukungan Fuse2 yang udah gak dirawat, dan ngebuang beberapa paket serta modul kernel yang gak perlu.</p>
             <p>Mungkin perubahan yang paling mencolok adalah KDE Linux sekarang bener-bener lepas dari ketergantungan pada AUR (Arch User Repository) setelah nemuin kalau salah satu komponen berbasis AUR-nya ternyata gak bener-bener dipake. Developer bilang langkah ini bakal ninggatin reliabilitas dan ngurunqin pusing di bagian infrastruktur.</p>
             <p>Proyek ini juga makin solid dalam hal pengujian otomatis lewat integrasi OpenQA, yang ngebantu nemuin <em>build</em> yang rusak sebelum sempet nyampe ke tangan user. Setiap lini kode diuji secara ketat sebelum diluncurkan.</p>
-            <p>KDE Linux emang masih dalam tahap pengembangan aktif, tapi setiap <em>update</em>-nya bikin distro ini keliatan makin serius sebagai distro desktop yang fokus pada keamanan dan dibangun di sekeliling ekosistem KDE. Pertanyaannya sekarang, tertarik buat nyoba KDE Linux pas rilis nanti?</p>
+            <p>KDE Linux emang masih dalam tahap pengembangan aktif, tapi setiap *update*-nya bikin distro ini keliatan makin serius sebagai distro desktop yang fokus pada keamanan dan dibangun di sekeliling ekosistem KDE. Pertanyaannya sekarang, tertarik buat nyoba KDE Linux pas rilis nanti?</p>
             </article>
     </main>
     <div id="related-articles-grid"></div>
     <div id="response"></div>
     <footer role="contentinfo">
         <div class="footer-inline">
-            <span>✍️ <strong>Frijal</strong> (Layar Kosong)</span>
+            <span>✍️ **Frijal** (Layar Kosong)</span>
             <span>•</span>
             <span>📅 Diperbarui: 2 Juni 2026</span>
             <span>•</span>
             <span>🔍 Referensi: Repositori Resmi KDE &amp; Komunitas Linux Indonesia</span>            <span>•</span>
             <span>🌐 Open Source</span>
         </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

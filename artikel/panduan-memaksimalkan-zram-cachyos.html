@@ -188,7 +188,7 @@
             color: var(--muted-text);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container" role="main">
@@ -198,13 +198,13 @@
         </header>
         <article>
             <p>Pernah bertanya-tanya bagaimana cara menggunakan fitur kompresi memori virtual yang sering dibicarakan para pengguna Linux? Kabar baiknya: karena kamu menggunakan <strong>CachyOS</strong> (yang berbasis Arch Linux dan sangat berorientasi pada performa ekstrem), kemungkinan besar <strong>zRAM</strong> sudah aktif secara otomatis dari sananya! 🐧</p>
-            <p>Tim pengembang CachyOS mengonfigurasi ini di luar kotak (<em>out of the box</em>) karena mereka tahu persis betapa krusialnya fitur ini untuk manajemen memori modern, terutama ketika kita dihadapkan pada keterbatasan sumber daya sistem inti. Namun, sebagai seorang <em>power user</em>, tentu kurang afdal rasanya kalau kita tidak mengecek dan memahami cara kerjanya secara fundamental.</p>
+            <p>Tim pengembang CachyOS mengonfigurasi ini di luar kotak (*out of the box*) karena mereka tahu persis betapa krusialnya fitur ini untuk manajemen memori modern, terutama ketika kita dihadapkan pada keterbatasan sumber daya sistem inti. Namun, sebagai seorang *power user*, tentu kurang afdal rasanya kalau kita tidak mengecek dan memahami cara kerjanya secara fundamental.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/14d2fc4a546d8456.webp" alt="Ilustrasi Terminal Linux dan Performa CachyOS" class="hero-image" fetchpriority="high" decoding="async">
             <p>Berikut adalah panduan santai untuk mengecek, membaca, dan (jika perlu) mengoptimalkan <strong>zRAM</strong> di sistem komputermu agar sesi <em>multitasking</em> harian tetap mulus.</p>
             <h2>1. Cara Mengecek Apakah zRAM Sudah Aktif 💻</h2>
             <p>Buka terminal kesayanganmu dan ketik perintah sakti ini:</p>
 <pre><code>zramctl</code></pre>
-            <p>Jika <strong>zRAM</strong> sudah aktif, kamu akan melihat <em>output</em> berupa tabel status. Jika tidak muncul apa-apa, berarti belum aktif (walau di ekosistem CachyOS kejadian seperti ini sangat jarang terjadi). Kamu juga bisa memverifikasinya lewat perintah pengecekan memori virtual (<em>swap</em>) standar:</p>
+            <p>Jika <strong>zRAM</strong> sudah aktif, kamu akan melihat <em>output</em> berupa tabel status. Jika tidak muncul apa-apa, berarti belum aktif (walau di ekosistem CachyOS kejadian seperti ini sangat jarang terjadi). Kamu juga bisa memverifikasinya lewat perintah pengecekan memori virtual (*swap*) standar:</p>
 <pre><code>swapon --show</code></pre>
             <p>Kalau di kolom <code>NAME</code> muncul <code>/dev/zram0</code>, selamat! Sistemmu sudah menggunakan fitur kompresi memori yang efisien.</p>
             <h2>2. Cara Membaca Output <code>zramctl</code> 📊</h2>
@@ -234,13 +234,13 @@
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
             <p>Mantap! Hasilnya sangat optimal. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Konfigurasi bawaan sistem memang tidak pernah mengecewakan. Ini adalah buktinya:</p>
             <ul>
-                <li><strong>ALGORITHM (<code>zstd</code>)</strong>: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan <em>ngos-ngosan</em> saat harus memampatkan instruksi secara <em>real-time</em>.</li>
+                <li><strong>ALGORITHM (<code>zstd</code>)</strong>: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan <em>ngos-ngosan</em> saat harus memampatkan instruksi secara *real-time*.</li>
                 <li><strong>DISKSIZE (<code>15,5G</code>)</strong>: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar "kapasitas wadah". Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
                 <li><strong>DATA (<code>4K</code>) &amp; COMPR (<code>64B</code>)</strong>: Nah, ini bagian yang paling fantastis! Saat sistem sedang santai (baru ada beban 4 Kilobytes), algoritma berhasil memampatkannya hingga sekecil 64 Bytes saja. Bayangkan betapa ekstrem penghematan memorinya saat nanti sistem sedang padat-padatnya!</li>
                 <li><strong>MOUNTPOINT (<code>[SWAP]</code>)</strong>: Ini konfirmasi akhir bahwa partisi virtual sudah resmi bertugas. Ketimbang Linux membuang tumpahan data ke <em>storage</em> yang bisa memperpendek umur SSD, ia akan langsung mengompresnya secara instan.</li>
             </ul>
             <p>Kesimpulannya: Perangkatmu sekarang memiliki perlindungan manajemen antrean yang sangat solid. Kombinasi RAM 16GB, <em>setup</em> kompresi yang berjalan paripurna ini, ditambah paket <em>booster</em> CachyOS (<code>kcgroups</code>, <code>dmemcg-booster</code>, dan <code>plasma-foreground-booster</code>), adalah racikan paling optimal.</p>
-            <p>Sekarang kamu bisa jauh lebih leluasa melakukan <em>multitasking</em> intens—mulai dari membuka ratusan referensi, menjalankan <em>script</em> otomasi web berbasis Bun, hingga melakukan <em>batch processing</em> ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka <em>desktop</em> mendadak <em>stuttering</em> atau <em>freeze</em>. Mesinmu sudah mengerti dengan sangat jelas siapa yang perlu diprioritaskan! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ⚡</p>
+            <p>Sekarang kamu bisa jauh lebih leluasa melakukan <em>multitasking</em> intens—mulai dari membuka ratusan referensi, menjalankan <em>script</em> otomasi web berbasis Bun, hingga melakukan <em>batch processing</em> ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka <em>desktop</em> mendadak <em>stuttering</em> atau *freeze*. Mesinmu sudah mengerti dengan sangat jelas siapa yang perlu diprioritaskan! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ⚡</p>
         </article>
         <aside class="author-box">
             <h3>Editor</h3>
@@ -251,8 +251,8 @@
         <div id="response"></div>
         <footer>
             <p>🄯 2026 Hak Cipta Dilindungi. Direkayasa untuk Performa Web yang Optimal.</p>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

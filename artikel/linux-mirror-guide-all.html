@@ -230,7 +230,7 @@
             color: var(--accent-color);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -245,7 +245,7 @@
             </div>
             <p>Dalam ekosistem Linux, <em>Mirror</em> atau repositori <em>mirror</em> adalah server bayangan yang menyimpan salinan otentik dari paket-paket distribusi perangkat lunak. Karena disebar di berbagai negara, memilih mirror yang secara geografis paling dekat dengan posisimu adalah kunci utama untuk memangkas waktu tunggu secara drastis (<em>latency</em> rendah) saat menggunakan perintah <code>apt</code>, <code>pacman</code>, <code>dnf</code>, <code>zypper</code>, atau <code>nix</code>.</p>
             <div class="alert-box">
-                <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Penting:</strong> Pastikan kamu selalu menambahkan <code>sudo</code> untuk perintah yang memerlukan akses <em>root</em>. Selain itu, selalu sempatkan untuk melakukan <em>backup</em> (cadangan) pada file konfigurasi repositori sebelum melakukan perubahan apa pun.
+                <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Penting:</strong> Pastikan kamu selalu menambahkan <code>sudo</code> untuk perintah yang memerlukan akses *root*. Selain itu, selalu sempatkan untuk melakukan *backup* (cadangan) pada file konfigurasi repositori sebelum melakukan perubahan apa pun.
             </div>
             <h2><i class="fa-brands fa-ubuntu icon"></i> 1. Debian &amp; Ubuntu (APT) — Otomatisasi dengan netselect-apt</h2>
             <p>Bagi pengguna keluarga Debian dan Ubuntu, alat andalan yang bisa kamu gunakan adalah <code>netselect-apt</code>. Perkakas pintar ini akan melakukan pengujian waktu respons (<em>ping</em>) ke berbagai server cermin, lalu secara otomatis membangun file <code>sources.list</code> baru yang berisi tautan ke server tercepat untukmu.</p>
@@ -331,7 +331,7 @@ nix-env -u
             <ul>
                 <li><strong>Lokasi Geografis:</strong> Utamakan server cermin yang berada satu benua, atau lebih baik satu negara dengan lokasimu untuk <em>latency</em> yang minim.</li>
                 <li><strong>Gunakan Alat Penguji:</strong> Jangan ragu memakai <code>curl</code>, <code>ping</code>, atau aplikasi pengukur khusus untuk memvalidasi kecepatan sesungguhnya.</li>
-                <li><strong>Cek Frekuensi Pembaruan:</strong> Server cepat tapi jarang tersinkronisasi dengan pusat sama saja bohong. Pilihlah mirror yang rajin melakukan <em>sync</em>.</li>
+                <li><strong>Cek Frekuensi Pembaruan:</strong> Server cepat tapi jarang tersinkronisasi dengan pusat sama saja bohong. Pilihlah mirror yang rajin melakukan *sync*.</li>
             </ul>
             <h2><i class="fa-solid fa-terminal icon"></i> Bonus: Skrip Otomatisasi Singkat (Debian/Arch)</h2>
             <p>Jika kamu tipe orang yang suka efisiensi, simpan skrip bash (<code>quick-mirror.sh</code>) di bawah ini. Skrip ini mendeteksi argumen yang diberikan dan langsung mengeksekusi optimalisasi otomatis.</p>
@@ -363,8 +363,8 @@ fi
             <span>Terbit: 14 Juni 2026</span> <span>•</span>
             <span>Referensi: Panduan Resmi Dokumentasi Distribusi Linux</span>
         </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

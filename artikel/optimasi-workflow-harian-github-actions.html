@@ -243,7 +243,7 @@ footer a { color: var(--header-color); text-decoration: none; }
 </style>
 <meta name="ai:summary" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.">
 <meta name="ai:prompt_hint" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -257,7 +257,7 @@ footer a { color: var(--header-color); text-decoration: none; }
                 <p>Awalnya, saya punya workflow harian yang dibagi menjadi beberapa job: satu untuk membersihkan gambar, satu lagi untuk membuat laporan. Secara logika ini benar, tapi secara teknis sangat tidak efisien. Kenapa?</p>
                 <div class="problem-box">
                     <ul>
-                        <li><i class="fa-solid fa-undo"></i> <strong>Boros <code>checkout</code></strong>: Setiap job harus melakukan <code>checkout</code> repositori dari awal. Ini membuang waktu.</li>
+                        <li><i class="fa-solid fa-undo"></i> <strong>Boros `checkout`</strong>: Setiap job harus melakukan <code>checkout</code> repositori dari awal. Ini membuang waktu.</li>
                         <li><i class="fa-solid fa-random"></i> <strong>Riwayat Commit Berantakan</strong>: Setiap job membuat commit-nya sendiri-sendiri, menghasilkan riwayat Git yang "berisik".</li>
                         <li><i class="fa-solid fa-hourglass-half"></i> <strong>Potensi Masalah Timing</strong>: Data yang digunakan oleh job kedua mungkin sudah usang karena tidak melihat perubahan yang dibuat oleh job pertama.</li>
                     </ul>
@@ -301,7 +301,7 @@ footer a { color: var(--header-color); text-decoration: none; }
                     <pre><code>name: 🔆 Perawatan &amp; Laporan Konten Harian
 on:
   schedule:
-    - cron: '0 21 <em> </em> *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
 jobs:
   maintenance_and_reporting:
@@ -352,7 +352,7 @@ jobs:
         </main>
         <footer>
             <p>🄯 2025 - </p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <script>document.addEventListener('DOMContentLoaded', () => {
@@ -379,6 +379,6 @@ jobs:
     });
    });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

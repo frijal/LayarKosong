@@ -203,7 +203,7 @@
             .container { padding: 2rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -218,21 +218,21 @@
             <!-- LCP Image (Tidak memotong tinggi gambar, resolusi responsif) -->
             <img src="https://dalam.web.id/img/pinggy.io/4106bd3365c509e6.webp" alt="Tangkapan layar antarmuka pengguna grafis (GUI) dari LocalXpose yang modern dan bersih" class="content-img" fetchpriority="high" decoding="async">
             <h2>Skenario Penggunaan yang Ideal</h2>
-            <p>Berbeda dengan <em>tunnel</em> lain yang menuntut penggunanya mahir menghafal perintah baris <em>console</em>, LocalXpose hadir sebagai pahlawan bagi non-pengembang, analis QA (<em>Quality Assurance</em>), desainer UI/UX, atau anggota tim yang tidak terlalu teknikal. Alat ini sangat bagus digunakan ketika kamu ingin membagikan akses ke aplikasi web eksperimental atau mentransfer file internal kantor kepada rekan kerja, tanpa perlu melewati serangkaian konfigurasi jaringan yang memusingkan.</p>
+            <p>Berbeda dengan <em>tunnel</em> lain yang menuntut penggunanya mahir menghafal perintah baris *console*, LocalXpose hadir sebagai pahlawan bagi non-pengembang, analis QA (*Quality Assurance*), desainer UI/UX, atau anggota tim yang tidak terlalu teknikal. Alat ini sangat bagus digunakan ketika kamu ingin membagikan akses ke aplikasi web eksperimental atau mentransfer file internal kantor kepada rekan kerja, tanpa perlu melewati serangkaian konfigurasi jaringan yang memusingkan.</p>
             <h2>Bedah Fitur: Kelebihan LocalXpose</h2>
             <p>Selain daya pikat visualnya, LocalXpose menyembunyikan sejumlah persenjataan canggih di balik kap mesinnya:</p>
             <ul>
-                <li><strong>GUI Bawaan Interaktif:</strong> Ini adalah nilai jual utamanya. Kamu bisa mematikan atau menyalakan <em>tunnel</em>, melihat grafik lalu lintas, dan mengonfigurasi jalur protokol hanya lewat klik <em>mouse</em>. Pendekatan yang sangat melegakan.</li>
+                <li><strong>GUI Bawaan Interaktif:</strong> Ini adalah nilai jual utamanya. Kamu bisa mematikan atau menyalakan *tunnel*, melihat grafik lalu lintas, dan mengonfigurasi jalur protokol hanya lewat klik *mouse*. Pendekatan yang sangat melegakan.</li>
                 <li><strong>Server File Siap Pakai:</strong> Coba bayangkan kamu ingin membagikan dokumen desain berukuran besar yang ada di <em>folder</em> lokalmu. LocalXpose menyertakan <em>file server</em> bawaan sehingga kamu bisa menjadikan sembarang folder di komputermu sebagai repositori file yang bisa diunduh via URL publik dalam hitungan detik.</li>
                 <li><strong>Super Fleksibel:</strong> Jika Cloudflare Tunnel "alergi" terhadap beberapa protokol, LocalXpose dengan senang hati menyediakan jalur <em>tunneling</em> tidak hanya untuk HTTP/HTTPS, tetapi juga untuk TCP dan UDP secara bersamaan.</li>
-                <li><strong>Dukungan Domain Wildcard:</strong> Sangat krusial jika kamu sedang mengembangkan aplikasi berbasis multitenan (<em>multi-tenant</em>) SaaS yang mengharuskan manajemen <em>subdomain</em> dinamis.</li>
-                <li><strong>Kolaborasi Tim:</strong> Mendukung akses <em>multi-user</em>, memungkinkan tim kolaborator merawat <em>tunnel</em> yang sama tanpa harus berbagi <em>password</em> utama.</li>
+                <li><strong>Dukungan Domain Wildcard:</strong> Sangat krusial jika kamu sedang mengembangkan aplikasi berbasis multitenan (*multi-tenant*) SaaS yang mengharuskan manajemen <em>subdomain</em> dinamis.</li>
+                <li><strong>Kolaborasi Tim:</strong> Mendukung akses <em>multi-user*, memungkinkan tim kolaborator merawat *tunnel</em> yang sama tanpa harus berbagi <em>password</em> utama.</li>
             </ul>
             <h2>Sisi Gelap: Kekurangan LocalXpose</h2>
             <p>Tentu, pendekatan yang manis ini menuntut beberapa kompromi teknis yang perlu kamu jadikan bahan pertimbangan:</p>
             <ul>
                 <li><strong>Wajib Mengunduh Klien:</strong> Tidak seperti Pinggy atau localhost.run yang bisa dieksekusi instan tanpa aplikasi tambahan, untuk menikmati kemewahan antarmuka grafis LocalXpose, kamu mutlak harus mengunduh dan menginstal aplikasi klien mereka.</li>
-                <li><strong>Dokumentasi yang Minimalis:</strong> Mengingat proyek ini bersaing dengan monster industri seperti ngrok, repositori basis pengetahuan (<em>knowledge base</em>) atau dokumentasi resmi dari LocalXpose dirasa masih kurang komprehensif saat kamu mengalami hambatan <em>error</em> spesifik.</li>
+                <li><strong>Dokumentasi yang Minimalis:</strong> Mengingat proyek ini bersaing dengan monster industri seperti ngrok, repositori basis pengetahuan (*knowledge base*) atau dokumentasi resmi dari LocalXpose dirasa masih kurang komprehensif saat kamu mengalami hambatan <em>error</em> spesifik.</li>
             </ul>
             <h2>Proses Instalasi Singkat</h2>
             <p>Meskipun menonjolkan fitur GUI, LocalXpose juga tetap mempertahankan fungsionalitas bagi kamu yang mencintai CLI. Untuk memulainya, alurnya cukup lurus ke depan:</p>
@@ -242,7 +242,7 @@
             </ol>
             <pre><code>./localxpose http 3000</code></pre>
             <h2>Skema Harga yang Ditawarkan</h2>
-            <p><a href="https://localxpose.io/" target="_blank" rel="noopener noreferrer">LocalXpose</a> menyediakan <strong>paket gratis</strong> yang bisa digunakan untuk memverifikasi apakah ekosistem mereka cocok dengan irama kerjamu, meski dengan batasan fitur tertentu. Apabila timmu berniat menyeriusi penggunaan alat ini untuk mendapat benefit kolaborasi penuh, <em>custom domain</em>, dan <em>wildcard</em>, paket langganan komersialnya dibanderol mulai dari <strong>$6 per bulan</strong>. Angka ini terhitung sangat kompetitif jika dibandingkan dengan para pemain lama di industri yang sama.</p>
+            <p><a href="https://localxpose.io/" target="_blank" rel="noopener noreferrer">LocalXpose</a> menyediakan <strong>paket gratis</strong> yang bisa digunakan untuk memverifikasi apakah ekosistem mereka cocok dengan irama kerjamu, meski dengan batasan fitur tertentu. Apabila timmu berniat menyeriusi penggunaan alat ini untuk mendapat benefit kolaborasi penuh, *custom domain*, dan *wildcard*, paket langganan komersialnya dibanderol mulai dari <strong>$6 per bulan</strong>. Angka ini terhitung sangat kompetitif jika dibandingkan dengan para pemain lama di industri yang sama.</p>
             <!-- Kotak Kredibilitas E-E-A-T -->
             <div class="author-box" aria-label="Informasi Penulis dan Kredibilitas Artikel">
                 <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Fakhrul Rijal</strong></p>
@@ -256,8 +256,8 @@
         <div id="response"></div>
         <footer>
             <p>🄯 2026 Layar Kosong. Didukung oleh arsitektur web murni berlandaskan performa dan inklusivitas desain.</p>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

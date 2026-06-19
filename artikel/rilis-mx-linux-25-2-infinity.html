@@ -213,7 +213,7 @@
             color: var(--accent-color);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -247,7 +247,7 @@
         </ul>
         <p>Selain perubahan teknis di atas, ada juga puluhan pembaruan <em>mx-tool</em>, penyegaran pada paket <em>mx-ease-themes</em>, dan bahkan penambahan beberapa <em>wallpaper</em> baru untuk mencuci mata.</p>
         <h2><i class="fa-solid fa-cloud-arrow-down"></i> Di Mana Bisa Mengunduh File ISO-nya? (Where)</h2>
-        <p>Bagi kamu yang ingin langsung melakukan instalasi baru (<em>fresh install</em>), silakan sedot file ISO resminya dari tautan langsung di bawah ini. Pastikan kamu memverifikasi <em>checksum</em> setelah mengunduhnya, ya!</p>
+        <p>Bagi kamu yang ingin langsung melakukan instalasi baru (*fresh install*), silakan sedot file ISO resminya dari tautan langsung di bawah ini. Pastikan kamu memverifikasi <em>checksum</em> setelah mengunduhnya, ya!</p>
         <h3>Edisi Xfce (Ringan &amp; Cepat)</h3>
         <ul>
             <li><a href="https://sourceforge.net/projects/mx-linux/files/Final/Xfce/MX-25.2_Xfce_x64.iso/download" target="_blank" rel="noopener">MX-25.2_Xfce_x64.iso</a> | <a href="https://sourceforge.net/projects/mx-linux/files/Final/Xfce/MX-25.2_Xfce_x64.iso.sha256/download" target="_blank" rel="noopener">checksum sha256</a> | <a href="https://sourceforge.net/projects/mx-linux/files/Final/Xfce/MX-25.2_Xfce_x64.iso.sig/download" target="_blank" rel="noopener">Tanda tangan</a></li>
@@ -289,8 +289,8 @@
             <a href="https://www.linkedin.com/in/frijal" title="LinkedIn Frijal" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
             <a href="https://www.youtube.com/@frijal" title="YouTube Bendera Putih" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
                    </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

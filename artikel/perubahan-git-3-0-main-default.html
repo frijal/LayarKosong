@@ -155,7 +155,7 @@
     </style>
 <meta name="ai:summary" content="Mulai Git 3.0, branch main akan menjadi nama branch default yang baru, menggantikan master. Peningkatan keamanan SHA-256 dan optimasi kinerja juga hadir. Pelajari semua perubahannya di sini!">
 <meta name="ai:prompt_hint" content="Mulai Git 3.0, branch main akan menjadi nama branch default yang baru, menggantikan master. Peningkatan keamanan SHA-256 dan optimasi kinerja juga hadir. Pelajari semua perubahannya di sini!">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -164,19 +164,19 @@
         <p>Ada kabar <strong>super penting</strong> nih dari dunia Git yang wajib banget kamu tahu. Versi terbaru Git, yaitu <strong>Git 3.0</strong>, bakal membawa perubahan fundamental yang sudah lama dinanti-nanti. Intinya: Kita bakal <strong>selamat tinggal pada branch default 'master'</strong> dan menyambut <strong>'main'</strong> sebagai gantinya! 🎊</p>
         <p>Mulai Git 3.0 ke depan, kamu tidak perlu repot-repot lagi <em>ngeset</em> branch default buat repository baru. Secara otomatis, sistem Git akan langsung menggunakan <strong>'main'</strong>! Ini adalah langkah kecil yang punya makna besar, lho. Perubahan ini juga sejalan dengan upaya komunitas <em>developer</em> global untuk menggunakan terminologi yang lebih inklusif dan netral. Keren kan? 😎</p>
         <p>Starting with Git 3.0, developers will no longer have to configure the default branch for new repositories.</p>
-        <p>Pengumuman resminya sudah nongol di Git 2.52 yang dirilis minggu ini. Perhatikan baik-baik <em>patch notes</em>-nya, ada baris kecil tapi bermakna yang bilang begini:</p>
+        <p>Pengumuman resminya sudah nongol di Git 2.52 yang dirilis minggu ini. Perhatikan baik-baik *patch notes*-nya, ada baris kecil tapi bermakna yang bilang begini:</p>
         <blockquote>
             <p>Declare that “git init” that is not otherwise configured uses ‘main’ as the initial branch, not ‘master’, starting Git 3.0.</p>
         </blockquote>
         <p>Secara bahasa santai: <strong>"Mulai Git 3.0, perintah 'git init' yang belum dikonfigurasi akan pakai 'main' sebagai branch awal, bukan 'master'."</strong> Sudah jelas banget kan? Ini menunjukkan bahwa perubahan ini sudah dikunci dan tinggal menunggu tanggal rilis resminya.</p>
         <p>Perubahan ini memang bukan barang baru. Proyek Git, yang berada di bawah naungan Software Freedom Conservancy, sudah mengumumkan niat mereka untuk mengganti nama branch default sejak 23 Juni 2020. Platform <em>hosting</em> repo raksasa seperti GitHub juga bergerak cepat, mereka sudah <b>mengubah branch default menjadi <code class="language-plaintext highlighter-rouge">main</code></b> untuk <em>repository</em> baru sejak 1 Oktober 2020. Jadi, bisa dibilang ini adalah langkah konsolidasi dari Git untuk mengikuti tren yang sudah diadopsi oleh ekosistemnya. 👍</p>
-        <p>Sayangnya, Git 3.0 belum punya tanggal rilis pasti saat ini. Tapi, kabar burung (atau lebih tepatnya, <em>current estimates</em>) memprediksi bahwa kita mungkin baru bisa menikmati versi <em>major</em> ini menjelang <strong>akhir tahun 2026</strong>. Masih lama ya? Tapi setidaknya kita tahu apa yang perlu dinantikan! Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. <strong>Bersabar <em>is a virtue</em>, teman-teman!</strong> 🙏</p>
+        <p>Sayangnya, Git 3.0 belum punya tanggal rilis pasti saat ini. Tapi, kabar burung (atau lebih tepatnya, <em>current estimates*) memprediksi bahwa kita mungkin baru bisa menikmati versi *major</em> ini menjelang <strong>akhir tahun 2026</strong>. Masih lama ya? Tapi setidaknya kita tahu apa yang perlu dinantikan! Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. <strong>Bersabar *is a virtue*, teman-teman!</strong> 🙏</p>
         <h2><i class="fa-solid fa-shield-alt"></i> Bukan Cuma Nama! Fitur Keren Lain di Git 3.0</h2>
         <p>Perubahan ke <em>branch</em> <code class="language-plaintext highlighter-rouge">main</code> hanyalah salah satu <em>highlight</em> saja. Git 3.0 juga membawa perubahan <em>breaking changes</em> penting lainnya (cek <a href="https://git-scm.com/docs/BreakingChanges.html">di sini</a> untuk detailnya) yang bakal bikin kerjaan kita makin aman dan <em>ngebut</em>. Beberapa di antaranya adalah:</p>
         <ul>
             <li><strong>Keamanan Lebih Kuat:</strong> Fungsi <em>hash</em> default akan diganti dari <strong>SHA-1</strong> ke <strong>SHA-256</strong>. Ini adalah <em>upgrade</em> keamanan yang signifikan. SHA-1 sudah dianggap rentan, jadi pindah ke SHA-256 adalah langkah <em>pro</em> banget! 🛡️</li>
             <li><strong>Performa dan Kompatibilitas:</strong> Ada perubahan format penyimpanan default untuk <em>support</em> yang lebih baik di sistem operasi seperti <strong>macOS dan Windows</strong>, sekaligus meningkatkan performa secara keseluruhan. Siapa sih yang gak mau Git-nya makin cepat? 🚀</li>
-            <li><strong>Integrasi Rust:</strong><strong>Rust</strong> akan diintegrasikan secara lebih formal ke dalam proses <em>build</em> Git. Ini bisa berarti peningkatan keamanan dan performa karena Rust terkenal dengan <em>memory safety</em>-nya.</li>
+            <li><strong>Integrasi Rust:</strong><strong>Rust</strong> akan diintegrasikan secara lebih formal ke dalam proses <em>build</em> Git. Ini bisa berarti peningkatan keamanan dan performa karena Rust terkenal dengan *memory safety*-nya.</li>
         </ul>
         <p>Singkatnya, Git 3.0 bukan sekadar <em>ganti nama</em>. Ini adalah pembaruan besar yang berfokus pada <b>keamanan, kinerja, dan inklusivitas</b>. Mari kita nantikan bersama kedatangannya sambil terus <em>ngoding</em> dengan <em>branch</em> <code class="language-plaintext highlighter-rouge">main</code> di proyek-proyek baru kita! Selamat <em>ngoding</em>! 💻</p>
         <h2><i class="fa-solid fa-comments"></i> Kolom Komentar</h2>
@@ -184,10 +184,10 @@
          </div>
     <footer>
         <p>🄯 2025 Jaga Data Pribadi Tetap Aman. Dibuat dengan semangat <i class="fa-solid fa-code"></i> dan <i class="fa-solid fa-coffee"></i>.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

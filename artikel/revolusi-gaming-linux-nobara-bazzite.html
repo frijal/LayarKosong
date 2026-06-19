@@ -159,7 +159,7 @@
             p { font-size: 1.05rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <article>
@@ -239,7 +239,7 @@
     <section id="challenges">
         <h2><i class="fa-solid fa-exclamation-triangle"></i> Kendala Utama: Anti-Cheat (The Elephant in the Room)</h2>
         <p>Meskipun Linux hebat di performa, ada satu tembok besar: <strong>Anti-Cheat level kernel.</strong> Game seperti <em>Valorant</em> atau <em>Call of Duty</em> menggunakan sistem keamanan yang masuk sangat dalam ke Windows. Karena Linux punya struktur keamanan yang berbeda, game-game ini seringkali menolak untuk berjalan.</p>
-        <p>Tapi jangan khawatir! Banyak game besar lainnya seperti <em>Apex Legends</em>, <em>Counter-Strike 2</em>, dan <em>Dota 2</em> sudah 100% mendukung Linux. Saran aku? Cek dulu status game favoritmu di situs <strong>ProtonDB</strong> sebelum memutuskan pindah sepenuhnya.</p>
+        <p>Tapi jangan khawatir! Banyak game besar lainnya seperti <em>Apex Legends*, *Counter-Strike 2*, dan *Dota 2</em> sudah 100% mendukung Linux. Saran aku? Cek dulu status game favoritmu di situs <strong>ProtonDB</strong> sebelum memutuskan pindah sepenuhnya.</p>
     </section>
     <section id="conclusion">
         <h2><i class="fa-solid fa-flag-checkered"></i> Kesimpulan: Siapa yang Harus Pindah?</h2>
@@ -256,8 +256,8 @@
     <div style="max-width: 1000px; margin: auto;">
         <p>🄯 2026 <strong>Jaga Data Pribadi Tetap Aman</strong> - Ditulis dengan semangat Open Source untuk Indonesia yang lebih cerdas teknologi.</p>
     </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+ <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -180,7 +180,7 @@
             margin: 0 0.5rem;
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container" role="main">
@@ -205,7 +205,7 @@
                 <tbody>
                     <tr>
                         <td><strong>Arsitektur Dasar</strong></td>
-                        <td>Native libalpm (bukan <em>wrapper</em>)</td>
+                        <td>Native libalpm (bukan *wrapper*)</td>
                         <td>Qt <em>wrapper</em> + <em>parsing output pacman</em></td>
                         <td><strong>Shelly</strong></td>
                     </tr>
@@ -224,7 +224,7 @@
                     <tr>
                         <td><strong>Penggunaan Resource</strong></td>
                         <td>Lebih efisien CPU &amp; RAM</td>
-                        <td>Lebih boros (Qt + proses <em>parsing</em>)</td>
+                        <td>Lebih boros (Qt + proses *parsing*)</td>
                         <td><strong>Shelly</strong></td>
                     </tr>
                     <tr>
@@ -251,22 +251,22 @@
         <h2>Membongkar Mesin: Penjelasan Detail Arsitektur</h2>
         <p>Mengapa ada perbedaan yang begitu mencolok? Jawabannya terletak pada fondasi kode yang membangun mereka.</p>
         <h3>1. Fondasi Arsitektur: Native vs Wrapper</h3>
-        <p>Di sudut merah, <strong>Shelly</strong> mengambil jalur berani dengan dibangun menggunakan pendekatan <strong>native libalpm</strong>. Artinya, ia "berbicara" langsung dengan pustaka inti <em>pacman</em> tanpa perantara. Tidak ada proses membaca <em>output</em> teks terminal secara manual. Di sudut biru, <strong>Octopi</strong> bertindak lebih sebagai <strong>wrapper</strong>. Ia mengeksekusi perintah <em>pacman</em> atau <em>AUR helper</em> di latar belakang, lalu membaca dan menerjemahkan teks <em>output</em> tersebut (<em>parsing</em>) ke dalam antarmuka Qt. Secara logis, pendekatan <em>wrapper</em> ini memakan siklus kerja prosesor yang lebih panjang.</p>
+        <p>Di sudut merah, <strong>Shelly</strong> mengambil jalur berani dengan dibangun menggunakan pendekatan <strong>native libalpm</strong>. Artinya, ia "berbicara" langsung dengan pustaka inti <em>pacman</em> tanpa perantara. Tidak ada proses membaca <em>output</em> teks terminal secara manual. Di sudut biru, <strong>Octopi</strong> bertindak lebih sebagai <strong>wrapper</strong>. Ia mengeksekusi perintah <em>pacman</em> atau <em>AUR helper</em> di latar belakang, lalu membaca dan menerjemahkan teks <em>output</em> tersebut (*parsing*) ke dalam antarmuka Qt. Secara logis, pendekatan <em>wrapper</em> ini memakan siklus kerja prosesor yang lebih panjang.</p>
         <h3>2. Responsivitas Pencarian dan Refresh AUR</h3>
         <p>Ketika kamu mencari sebuah paket langka di AUR, waktu adalah segalanya. Shelly membuktikan diri <strong>lebih cepat dan responsif</strong>. Lompatan performa ini semakin terasa setelah pembaruan versi 2.3 yang cerdik, di mana mereka meninggalkan format pembacaan JSON yang lambat dan beralih ke <strong>MemoryPack</strong>. Sebaliknya, pengguna Octopi sering mengeluhkan antarmuka yang mendadak <em>lock up</em> (membeku sementara) saat melakukan <em>refresh mirror</em> yang sedang mengalami latensi tinggi.</p>
         <h3>3. Kecepatan Eksekusi Build &amp; Install</h3>
-        <p>Proses menyusun (<em>build</em>) kode sumber dari AUR menguras tenaga komputer. Shelly secara konsisten menunjukkan performa terbaiknya di sini berkat komunikasi bebas hambatan dengan <em>libalpm</em>. Proses kompilasi paket-paket raksasa berlalu lebih lancar. Tidak heran jika tim distribusi CachyOS secara resmi memensiunkan Octopi dan menggantinya dengan Shelly sebagai alat bawaan sistem mereka demi memaksimalkan kecepatan rute kompilasi ini.</p>
+        <p>Proses menyusun (*build*) kode sumber dari AUR menguras tenaga komputer. Shelly secara konsisten menunjukkan performa terbaiknya di sini berkat komunikasi bebas hambatan dengan *libalpm*. Proses kompilasi paket-paket raksasa berlalu lebih lancar. Tidak heran jika tim distribusi CachyOS secara resmi memensiunkan Octopi dan menggantinya dengan Shelly sebagai alat bawaan sistem mereka demi memaksimalkan kecepatan rute kompilasi ini.</p>
         <h3>4. Konsumsi Sumber Daya Komputasi</h3>
         <p>Arsitektur modern GTK 4 milik Shelly dirancang untuk efisiensi tinggi, memakan RAM dan CPU yang jauh lebih rendah selama mode siaga maupun saat bekerja keras. Sementara itu, kerangka kerja Qt milik Octopi, ditambah beban kerja menerjemahkan teks terminal terus-menerus, membuatnya <strong>lebih boros sumber daya</strong>.</p>
         <h3>5. Transparansi Penanganan Dependency</h3>
-        <p>Satu-satunya benteng pertahanan yang masih dikuasai Octopi dengan brilian adalah <strong>transparansi</strong>. Bagi para <em>sysadmin</em> yang paranoid, Octopi membeberkan secara blak-blakan dependensi apa saja yang akan dipasang. Di awal pengembangannya, Shelly sempat mendapat kritik keras di forum karena mengategorikan dependensi kompilasi (<em>make dependencies</em>) sebagai paket eksplisit. Walaupun cacat logika ini sudah banyak ditambal pada pembaruan terkini, kedisiplinan Octopi dalam hal transparansi belum bisa diremehkan.</p>
+        <p>Satu-satunya benteng pertahanan yang masih dikuasai Octopi dengan brilian adalah <strong>transparansi</strong>. Bagi para <em>sysadmin</em> yang paranoid, Octopi membeberkan secara blak-blakan dependensi apa saja yang akan dipasang. Di awal pengembangannya, Shelly sempat mendapat kritik keras di forum karena mengategorikan dependensi kompilasi (*make dependencies*) sebagai paket eksplisit. Walaupun cacat logika ini sudah banyak ditambal pada pembaruan terkini, kedisiplinan Octopi dalam hal transparansi belum bisa diremehkan.</p>
         <h2>Kesimpulan: Mana yang Harus Dipilih?</h2>
         <ul>
-            <li>Jika prioritas utamamu adalah <strong>kecepatan mentah, efisiensi memori, dan kelancaran proses AUR yang masif</strong>, maka <strong>Shelly</strong> adalah jawaban mutlak berkat mesin <em>native libalpm</em> dan <em>MemoryPack</em>-nya.</li>
+            <li>Jika prioritas utamamu adalah <strong>kecepatan mentah, efisiensi memori, dan kelancaran proses AUR yang masif</strong>, maka <strong>Shelly</strong> adalah jawaban mutlak berkat mesin <em>native libalpm</em> dan *MemoryPack*-nya.</li>
             <li>Jika kamu kebetulan menggunakan <strong>CachyOS</strong>, tidak ada alasan untuk melirik yang lain karena Shelly sudah dikonfigurasi dan dioptimasi secara <em>default</em> oleh pengembangnya.</li>
             <li>Namun, jika kamu memiliki <em>trust issue</em> dan ingin <strong>melihat setiap detail baris perintah</strong> secara telanjang layaknya membaca terminal, <strong>Octopi</strong> tetap menjadi teman lama yang setia.</li>
         </ul>
-        <p><em>Catatan tambahan:</em> Performa kompilasi di dunia nyata juga akan dipengaruhi oleh mesin penggerak <em>AUR helper</em> di balik layar (seperti <em>paru</em> atau <em>yay</em>). Keduanya menggunakan asisten yang sama, namun efisiensi cara mereka memberikan instruksi lah yang melahirkan perbedaan signifikan ini.</p>
+        <p><em>Catatan tambahan:</em> Performa kompilasi di dunia nyata juga akan dipengaruhi oleh mesin penggerak <em>AUR helper</em> di balik layar (seperti <em>paru</em> atau *yay*). Keduanya menggunakan asisten yang sama, namun efisiensi cara mereka memberikan instruksi lah yang melahirkan perbedaan signifikan ini.</p>
     </article>
     <div id="related-articles-grid"></div>
     <div id="response"></div>
@@ -276,7 +276,7 @@
         <span class="eeat-item"><i class="fa-regular fa-calendar"></i> 7 Juni 2026</span>
         <span class="eeat-item">•</span>
         <span class="eeat-item"><i class="fa-solid fa-location-dot"></i> Balikpapan, Indonesia</span>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

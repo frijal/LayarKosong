@@ -92,7 +92,7 @@
     </style>
 <meta name="ai:summary" content="Panduan mudah mengubah banyak gambar menjadi satu file PDF menggunakan ImageMagick. Cocok untuk komik, hasil scan dokumen, atau koleksi gambar Anda.">
 <meta name="ai:prompt_hint" content="Panduan mudah mengubah banyak gambar menjadi satu file PDF menggunakan ImageMagick. Cocok untuk komik, hasil scan dokumen, atau koleksi gambar Anda.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="wrap">
@@ -118,14 +118,14 @@ sudo pacman -S imagemagick</code><button class="copy-btn" data-target="code1">Sa
                     <h2>Langkah 2: Gabungkan Gambar ke PDF</h2>
                     <p>Buka terminal di dalam folder yang berisi gambar-gambar Anda, lalu jalankan perintah <code>convert</code>.</p>
                     <pre class="language-bash"><code id="code2">convert *.jpg nama_file_output.pdf</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-                    <p class="muted">Perintah di atas akan mengambil semua file dengan ekstensi <code>.jpg</code> di folder saat ini dan menggabungkannya secara berurutan menjadi satu file PDF. Anda bisa mengganti <code><em>.jpg</code> dengan ekstensi lain seperti <code></em>.png</code> atau menggunakan pola yang lebih spesifik seperti <code>halaman-*.jpg</code>.</p>
+                    <p class="muted">Perintah di atas akan mengambil semua file dengan ekstensi <code>.jpg</code> di folder saat ini dan menggabungkannya secara berurutan menjadi satu file PDF. Anda bisa mengganti <code>*.jpg</code> dengan ekstensi lain seperti <code>*.png</code> atau menggunakan pola yang lebih spesifik seperti <code>halaman-*.jpg</code>.</p>
                     <div id="related-articles-grid"></div><div id="response"></div>
     </article>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2025 Pelan Kiri · Bekerja cerdas dengan otomatisasi.</small>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a3847; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
@@ -147,6 +147,6 @@ sudo pacman -S imagemagick</code><button class="copy-btn" data-target="code1">Sa
         });
     })();
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -206,7 +206,7 @@
             opacity: 0.8;
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main class="container">
@@ -214,7 +214,7 @@
             <header>
                 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>🧠 Mengatasi Peringatan “Local is Newer” di Arch Linux / CachyOS</h1>
             </header>
-            <p>Halo, sesama penjelajah ekosistem Linux! Pernahkah kamu sedang asyik memperbarui sistem menggunakan terminal kesayanganmu, lalu tiba-tiba Pacman menyuguhkan sebuah pesan berwarna kuning yang membuat kening berkerut seperti <code>warning: local is newer than repo</code>? Jangan keburu panik dan mengira sistemmu rusak. Ini adalah kejadian yang sangat lumrah, khususnya bagi para pengguna distro <em>rolling release</em>.</p>
+            <p>Halo, sesama penjelajah ekosistem Linux! Pernahkah kamu sedang asyik memperbarui sistem menggunakan terminal kesayanganmu, lalu tiba-tiba Pacman menyuguhkan sebuah pesan berwarna kuning yang membuat kening berkerut seperti <code>warning: local is newer than repo</code>? Jangan keburu panik dan mengira sistemmu rusak. Ini adalah kejadian yang sangat lumrah, khususnya bagi para pengguna distro *rolling release*.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/7e914c6fa517fe9c.webp" alt="Ilustrasi terminal Linux yang menampilkan log update sistem operasi dan manajemen paket Pacman" fetchpriority="high">
             <p>Fenomena ini pada dasarnya adalah bentuk komunikasi dari manajer paket kita. Pacman memberitahumu bahwa ada ketidakselarasan versi antara perangkatmu dengan server. Mari kita bedah bersama apa sebenarnya yang sedang terjadi di balik layar dan bagaimana cara elegan merespons peringatan ini agar sistemmu tetap sehat dan optimal.</p>
             <h2>🔍 Apa Maksud Sebenarnya dari Pesan Ini?</h2>
@@ -225,12 +225,12 @@
             <ul>
                 <li><strong>Mencicipi Repositori Testing:</strong> Kamu mungkin pernah secara sengaja atau tidak sengaja mengaktifkan repositori <em>testing</em> atau <em>unstable</em>, lalu mengembalikannya ke repositori stabil. Akibatnya, paket masa depan sudah telanjur terpasang.</li>
                 <li><strong>Menggunakan AUR (Arch User Repository):</strong> Kadang-kadang paket yang dikompilasi dari AUR memiliki penomoran versi yang lebih agresif mendahului repo resmi.</li>
-                <li><strong>Keterlambatan Sinkronisasi Mirror:</strong> Repositori khusus seperti CachyOS kadang membutuhkan sedikit waktu ekstra untuk menyelaraskan (<em>sync</em>) paket terbaru yang baru saja di-<em>push</em> oleh tim Arch Linux pusat.</li>
+                <li><strong>Keterlambatan Sinkronisasi Mirror:</strong> Repositori khusus seperti CachyOS kadang membutuhkan sedikit waktu ekstra untuk menyelaraskan (*sync*) paket terbaru yang baru saja di-*push* oleh tim Arch Linux pusat.</li>
             </ul>
             <h2>🧭 Cara Aman dan Tepat Menanganinya</h2>
-            <p>Kabar baiknya, peringatan ini hanyalah sebuah notifikasi, bukan kerusakan (<em>error</em>). Berikut adalah beberapa pendekatan yang bisa kamu pilih sesuai dengan kebutuhan dan kenyamananmu.</p>
+            <p>Kabar baiknya, peringatan ini hanyalah sebuah notifikasi, bukan kerusakan (*error*). Berikut adalah beberapa pendekatan yang bisa kamu pilih sesuai dengan kebutuhan dan kenyamananmu.</p>
             <h3>🥇 1. Biarkan Saja (Paling Disarankan)</h3>
-            <p>Jika semboyanmu adalah <em>"If it ain't broke, don't fix it"</em>, maka ini adalah jalan ninja terbaik. Selama sistem Arch Linux atau CachyOS-mu berjalan dengan lancar tanpa ada aplikasi yang tiba-tiba tertutup paksa (<em>crash</em>) karena konflik dependensi, kamu bisa mengabaikan peringatan itu sepenuhnya. Pesan ini murni informasi perbandingan versi semata.</p>
+            <p>Jika semboyanmu adalah <em>"If it ain't broke, don't fix it"</em>, maka ini adalah jalan ninja terbaik. Selama sistem Arch Linux atau CachyOS-mu berjalan dengan lancar tanpa ada aplikasi yang tiba-tiba tertutup paksa (*crash*) karena konflik dependensi, kamu bisa mengabaikan peringatan itu sepenuhnya. Pesan ini murni informasi perbandingan versi semata.</p>
             <h3>🧩 2. Sinkronkan Ulang Versi dengan Repo (Downgrade Spesifik)</h3>
             <p>Apabila kamu adalah tipe perfeksionis yang ingin terminalnya bersih dari teks berwarna kuning dan memastikan kesesuaian mutlak dengan repositori resmi, kamu bisa memaksa instalasi ulang paket ke versi repo:</p>
 <pre><code>sudo pacman -Syyu
@@ -249,10 +249,10 @@ done</code></pre>
             <p>Atau solusi yang lebih permanen, modifikasi berkas konfigurasi Paru di <code>~/.config/paru/paru.conf</code> dan pastikan baris berikut aktif:</p>
 <pre><code>BottomUp
 Devel</code></pre>
-            <h3>🩺 5. Reset Bersih (<em>Full System Downgrade</em>)</h3>
+            <h3>🩺 5. Reset Bersih (*Full System Downgrade*)</h3>
             <p>Jika kamu baru saja menonaktifkan repositori <em>testing</em> dan ingin mengembalikan <strong>seluruh</strong> sistemmu ke kondisi stabil repositori utama secara massal, Arch menyediakan bendera khusus yang sangat kuat:</p>
 <pre><code>sudo pacman -Syyuu</code></pre>
-            <p>Perhatikan baik-baik adanya dua huruf <strong>u</strong> (<em>uu</em>) di akhir perintah. Ini adalah instruksi eksplisit kepada Pacman yang berarti: <em>"Tolong perbarui sistem, dan izinkan proses penurunan versi (<em>downgrade</em>) jika memang paket di repo resmi lebih lawas."</em></p>
+            <p>Perhatikan baik-baik adanya dua huruf <strong>u</strong> (<em>uu</em>) di akhir perintah. Ini adalah instruksi eksplisit kepada Pacman yang berarti: <em>"Tolong perbarui sistem, dan izinkan proses penurunan versi (*downgrade*) jika memang paket di repo resmi lebih lawas."</em></p>
             <h2>✅ Rangkuman Cepat Solusi</h2>
             <p>Untuk memudahkanmu mengambil keputusan saat bertemu situasi serupa di masa depan, simpan tabel referensi cepat ini:</p>
             <table>
@@ -286,8 +286,8 @@ Devel</code></pre>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <span>Penulis: Tim Jaga Data Pribadi Tetap Aman | Diterbitkan: 14 Juni 2026 | Referensi: Arch Linux Wiki Official &amp; Dokumentasi Pacman</span>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

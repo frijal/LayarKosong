@@ -63,7 +63,7 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 152,
 textarea { width: 100%; height: 120px; padding: 15px; border: 2px solid #3498db; border-radius: 8px; background: #1e272e; color: #0be881; font-family: 'Consolas', monospace; resize: none; font-size: 13px; }
 .preview-box { margin-top: 20px; border: 2px dashed #bbb; padding: 20px; text-align: center; min-height: 100px; background: #fafafa; }
 </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -149,26 +149,26 @@ function generateCode() {
   // Ukuran
   if (sizeMode === "100%") styles.push("width: 100%", "height: auto");
   else if (sizeMode === "custom") {
-    if (width) styles.push(<code>width: ${width}px</code>);
-    if (height) styles.push(<code>height: ${height}px</code>);
+    if (width) styles.push(`width: ${width}px`);
+    if (height) styles.push(`height: ${height}px`);
   }
   // Border & Shadow
-  if (radius > 0) styles.push(<code>border-radius: ${radius}px</code>);
-  if (hasShadow) styles.push(<code>box-shadow: 0 4px 15px rgba(0,0,0,0.2)</code>);
+  if (radius > 0) styles.push(`border-radius: ${radius}px`);
+  if (hasShadow) styles.push(`box-shadow: 0 4px 15px rgba(0,0,0,0.2)`);
   // Perataan
   if (align === "center") wrapperStyle = "text-align: center; display: block; margin: 15px auto;";
   else if (align === "left") wrapperStyle = "text-align: left; display: block; margin: 15px 0;";
   else if (align === "right") wrapperStyle = "text-align: right; display: block; margin: 15px 0;";
   // Build Tag
-  let styleString = styles.length > 0 ? <code> style="${styles.join('; ')};"</code> : "";
-  let imgTag = <code><img src="${url}" alt="${alt}"${styleString}></code>;
+  let styleString = styles.length > 0 ? ` style="${styles.join('; ')};"` : "";
+  let imgTag = `<img src="${url}" alt="${alt}"${styleString}>`;
   if (link) {
     const target = isNewTab ? ' target="_blank" rel="noopener"' : '';
-    imgTag = <code><a href="${link}"${target} style="text-decoration: none;">${imgTag}</a></code>;
+    imgTag = `<a href="${link}"${target} style="text-decoration: none;">${imgTag}</a>`;
   }
   let finalOutput = "";
   if (caption || wrapperStyle) {
-    finalOutput = <code><div${wrapperStyle ? </code> style="${wrapperStyle}"<code> : ""}>\n  ${imgTag}\n  ${caption ? </code><br><small style="color:#666; font-style:italic;">${caption}</small><code> : ""}\n</div></code>;
+    finalOutput = `<div${wrapperStyle ? ` style="${wrapperStyle}"` : ""}>\n  ${imgTag}\n  ${caption ? `<br><small style="color:#666; font-style:italic;">${caption}</small>` : ""}\n</div>`;
   } else {
     finalOutput = imgTag;
   }
@@ -176,7 +176,5 @@ function generateCode() {
   document.getElementById('previewArea').innerHTML = finalOutput;
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

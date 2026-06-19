@@ -168,7 +168,7 @@
             .container { padding: 2rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -179,21 +179,21 @@
             </div>
         </header>
         <main role="main">
-            <p>Bagi kamu para pengembang web, insinyur DevOps, atau bahkan antusias IT rumahan, mengekspos aplikasi lokal (<em>localhost</em>) agar bisa diakses dari mana saja melalui internet adalah rutinitas yang tidak bisa dihindari. Skenario seperti menguji <em>webhook</em> dari layanan pihak ketiga, memamerkan hasil kerja (<em>demo</em>) ke klien yang berada di luar kota, hingga melakukan <em>debugging</em> aplikasi secara <em>remote</em> sangat membutuhkan jembatan yang andal. Di sinilah layanan <em>tunneling</em> masuk sebagai pahlawan, menghubungkan komputer lokalmu ke dunia luar tanpa perlu mengotak-atik konfigurasi <em>router</em> atau menyewa IP publik.</p>
+            <p>Bagi kamu para pengembang web, insinyur DevOps, atau bahkan antusias IT rumahan, mengekspos aplikasi lokal (*localhost*) agar bisa diakses dari mana saja melalui internet adalah rutinitas yang tidak bisa dihindari. Skenario seperti menguji <em>webhook</em> dari layanan pihak ketiga, memamerkan hasil kerja (*demo*) ke klien yang berada di luar kota, hingga melakukan <em>debugging</em> aplikasi secara <em>remote</em> sangat membutuhkan jembatan yang andal. Di sinilah layanan <em>tunneling</em> masuk sebagai pahlawan, menghubungkan komputer lokalmu ke dunia luar tanpa perlu mengotak-atik konfigurasi <em>router</em> atau menyewa IP publik.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/28ef3429a0e8ff42.webp" alt="Ilustrasi daftar alternatif terbaik untuk Cloudflare Tunnel di tahun 2026" class="content-img" fetchpriority="high" decoding="async">
             <h2>Kembali Cloudflare Tunnel</h2>
-            <p>Sejak beberapa tahun terakhir, Cloudflare Tunnel (yang sebelumnya akrab disapa Argo Tunnel) telah menjadi primadona. Layanan ini menyediakan cara yang sangat mulus untuk menghubungkan aplikasi dan layanan lokalmu langsung ke infrastruktur raksasa Cloudflare. Rahasianya? Ia membuat koneksi keluar (<em>outbound connection</em>) yang aman dari servermu ke jaringan mereka. Dengan begitu, kamu tidak perlu membuka <em>port</em> sama sekali, dan secara otomatis aplikasimu terlindungi oleh tameng keamanan kelas kakap milik Cloudflare.</p>
-            <p>Namun, sehebat-hebatnya sebuah <em>tool</em>, pasti ada saatnya kita merasa butuh opsi lain yang lebih <em>fit</em> dengan spesifikasi proyek kita. Meskipun Cloudflare Tunnel adalah alat yang luar biasa tangguh, di tahun 2026 ini ada banyak alternatif kompetitor yang menawarkan kemampuan serupa dengan fitur dan keuntungan yang sangat unik.</p>
+            <p>Sejak beberapa tahun terakhir, Cloudflare Tunnel (yang sebelumnya akrab disapa Argo Tunnel) telah menjadi primadona. Layanan ini menyediakan cara yang sangat mulus untuk menghubungkan aplikasi dan layanan lokalmu langsung ke infrastruktur raksasa Cloudflare. Rahasianya? Ia membuat koneksi keluar (*outbound connection*) yang aman dari servermu ke jaringan mereka. Dengan begitu, kamu tidak perlu membuka <em>port</em> sama sekali, dan secara otomatis aplikasimu terlindungi oleh tameng keamanan kelas kakap milik Cloudflare.</p>
+            <p>Namun, sehebat-hebatnya sebuah <em>tool*, pasti ada saatnya kita merasa butuh opsi lain yang lebih *fit</em> dengan spesifikasi proyek kita. Meskipun Cloudflare Tunnel adalah alat yang luar biasa tangguh, di tahun 2026 ini ada banyak alternatif kompetitor yang menawarkan kemampuan serupa dengan fitur dan keuntungan yang sangat unik.</p>
             <h3>Kelebihan Cloudflare Tunnel</h3>
             <ul>
-                <li>Memastikan waktu respons yang sangat cepat dengan merutekan lalu lintas melalui jaringan tepi (<em>edge network</em>) global Cloudflare.</li>
-                <li>Memberikan perlindungan DDoS (<em>Distributed Denial of Service</em>) dan kemampuan <em>firewall</em> tingkat <em>enterprise</em>.</li>
+                <li>Memastikan waktu respons yang sangat cepat dengan merutekan lalu lintas melalui jaringan tepi (*edge network*) global Cloudflare.</li>
+                <li>Memberikan perlindungan DDoS (*Distributed Denial of Service*) dan kemampuan <em>firewall</em> tingkat *enterprise*.</li>
                 <li>Menawarkan sertifikat SSL gratis untuk mengamankan setiap koneksi secara otomatis.</li>
                 <li>Pengaturan relatif cepat dengan konfigurasi minimal.</li>
             </ul>
             <h3>Kekurangan Cloudflare Tunnel</h3>
             <ul>
-                <li>Bisa berubah menjadi sangat mahal untuk skenario dengan intensitas penggunaan data (<em>bandwidth</em>) yang sangat tinggi.</li>
+                <li>Bisa berubah menjadi sangat mahal untuk skenario dengan intensitas penggunaan data (*bandwidth*) yang sangat tinggi.</li>
                 <li>Membutuhkan akun aktif dan terikat erat dengan ekosistem konfigurasi Cloudflare.</li>
                 <li>Mengunci aplikasimu ke dalam satu ekosistem vendor dapat membatasi fleksibilitas arsitektur sistemmu di masa depan.</li>
                 <li>Tidak mendukung protokol <em>tunnel</em> UDP, yang merupakan mimpi buruk bagi pengembang game atau aplikasi <em>real-time</em> tertentu.</li>
@@ -202,7 +202,7 @@
             <p>Secara dasar, Cloudflare Tunnel sudah di- <em>bundling</em> di dalam paket Free Cloudflare, yang menawarkan fungsionalitas dasar yang cukup mumpuni. Akan tetapi, jika kamu membutuhkan fitur lanjutan dan batas penggunaan yang lebih longgar, kamu perlu melirik paket Pro, Business, dan Enterprise. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Harganya dibanderol mulai dari $20 per bulan, sangat bergantung pada rentetan fitur tambahan dan level prioritas dukungan teknis yang kamu butuhkan.</p>
             <h2>Mengapa Kita Mencari Alternatif?</h2>
             <p>Setiap proyek memiliki DNA-nya masing-masing. Ada kalanya kamu hanya butuh <em>tunnel</em> kilat yang hanya hidup selama 10 menit tanpa perlu membuat akun. Di waktu lain, kamu mungkin membangun jaringan <em>mesh</em> rahasia antar server di berbagai benua. Menyadari keterbatasan Cloudflare (terutama absennya UDP dan keharusan masuk ke ekosistem mereka), para <em>developer</em> terus berinovasi menciptakan solusi tandingan.</p>
-            <p>Dalam artikel pembuka ini, kita akan melihat sekilas <strong>10 alternatif Cloudflare Tunnel terbaik di tahun 2026</strong> yang akan kita bahas tuntas satu per satu di artikel selanjutnya. Mereka hadir menutupi celah kelemahan Cloudflare, mulai dari harga yang lebih ramah kantong <em>startup</em>, dukungan <em>open-source</em> penuh, hingga fitur-fitur instan berbasis terminal.</p>
+            <p>Dalam artikel pembuka ini, kita akan melihat sekilas <strong>10 alternatif Cloudflare Tunnel terbaik di tahun 2026</strong> yang akan kita bahas tuntas satu per satu di artikel selanjutnya. Mereka hadir menutupi celah kelemahan Cloudflare, mulai dari harga yang lebih ramah kantong <em>startup*, dukungan *open-source</em> penuh, hingga fitur-fitur instan berbasis terminal.</p>
             <h3>Daftar 10 Alternatif Cloudflare Tunnel Terbaik</h3>
             <ol>
                 <li><strong>Frp</strong> - Opsi <em>self-hosted</em> <a href="https://dalam.web.id/warta-tekno/frp-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">canggih untuk korporat dengan beban lalu lintas tinggi</a>.</li>
@@ -212,11 +212,11 @@
                 <li><strong>Rathole</strong> - <em>Reverse proxy</em> <a href="https://dalam.web.id/warta-tekno/rathole-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">buas yang ditulis dengan bahasa pemrograman Rust</a>.</li>
                 <li><strong>Tailscale</strong> - Master <em>Virtual Private Network</em> (VPN) <em>peer-to-peer</em> <a href="https://dalam.web.id/warta-tekno/tailscale-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">berbasis WireGuard</a>.</li>
                 <li><strong>Tunnelmole</strong> - <a href="https://dalam.web.id/warta-tekno/tunnelmole-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">Pendatang baru berfokus pada kesederhanaan HTTPS otomatis</a>.</li>
-                <li><strong>Zrok</strong> - Jagoan arsitektur <em>zero-trust</em> <a href="https://dalam.web.id/warta-tekno/zrok-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">dengan semangat</a> <em>open-source</em>.</li>
+                <li><strong>Zrok</strong> - Jagoan arsitektur <em>zero-trust</em> <a href="https://dalam.web.id/warta-tekno/zrok-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">dengan semangat</a> *open-source*.</li>
                 <li><strong>localhost.run</strong> - <a href="https://dalam.web.id/warta-tekno/localhost-run-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">Keajaiban tanpa instalasi klien, cukup pakai perintah SSH</a>.</li>
                 <li><strong>ngrok</strong> - <a href="https://dalam.web.id/warta-tekno/ngrok-alternatif-cloudflare-tunnel" target="_blank" rel="noopener noreferrer">Sang veteran industri dengan fitur</a> <em>dashboard</em> dan API terlengkap.</li>
             </ol>
-            <p>Memilih solusi <em>tunneling</em> yang tepat pada akhirnya akan sangat bergantung pada prioritas utamamu: apakah kamu mengejar kesederhanaan, keamanan <em>zero-trust</em>, manajemen <em>domain</em> khusus, atau murni performa mentah. Pada sepuluh artikel berikutnya, kita akan menguliti masing-masing produk ini secara spesifik agar kamu tidak salah menjatuhkan pilihan!</p>
+            <p>Memilih solusi <em>tunneling</em> yang tepat pada akhirnya akan sangat bergantung pada prioritas utamamu: apakah kamu mengejar kesederhanaan, keamanan <em>zero-trust*, manajemen *domain</em> khusus, atau murni performa mentah. Pada sepuluh artikel berikutnya, kita akan menguliti masing-masing produk ini secara spesifik agar kamu tidak salah menjatuhkan pilihan!</p>
             <div class="author-box" aria-label="Informasi Penulis dan Kredibilitas Konten">
                 <p><i class="fa-solid fa-pen-nib"></i> Diulas oleh: <strong>Fakhrul Rijal</strong></p>
                 <p><i class="fa-regular fa-clock"></i> Terakhir Diperbarui: <strong>30 Mei 2026</strong></p>
@@ -227,7 +227,7 @@
         <div id="response"></div>
         <footer>
             <p>🄯 2026 Layar Kosong. Disajikan murni dengan HTML/CSS untuk pengalaman membaca secepat kilat.</p>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

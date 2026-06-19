@@ -142,7 +142,7 @@
     </style>
 <meta name="ai:summary" content="Klarifikasi kegunaan fitur Schema Validation Cloudflare untuk Static Site (Situs Statis) murni. Pelajari kapan fitur ini tidak relevan dan kapan ia berguna (saat menggunakan Serverless Functions).">
 <meta name="ai:prompt_hint" content="Klarifikasi kegunaan fitur Schema Validation Cloudflare untuk Static Site (Situs Statis) murni. Pelajari kapan fitur ini tidak relevan dan kapan ia berguna (saat menggunakan Serverless Functions).">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -174,12 +174,12 @@
                 <tr>
                     <td><strong>Data Input</strong></td>
                     <td>Menerima data kompleks (JSON/XML).</td>
-                    <td>Hanya menerima URL/Header sederhana (Tidak ada <em>payload</em>).</td>
+                    <td>Hanya menerima URL/Header sederhana (Tidak ada *payload*).</td>
                 </tr>
                 <tr>
                     <td><strong>Ancaman</strong></td>
                     <td>Serangan Injeksi, <em>Payload</em> Aneh.</td>
-                    <td>Serangan DDoS/Lalu Lintas (<em>Bandwidth</em>).</td>
+                    <td>Serangan DDoS/Lalu Lintas (*Bandwidth*).</td>
                 </tr>
                 <tr>
                     <td><strong>Relevansi Schema Validation</strong></td>
@@ -201,7 +201,7 @@
         </ul>
 <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQC7Nszo1bkHxdtRkpiTZgOunG6CqyDbSi9U2EJtV1Q_KkKEpsy3AGIgJfpga9IdIst9V8Dicc2SMtJ0Pwj-JaaV_Rn-bxQoxN6Y30QFBId5diryFWWXfzalvAH7_7Kv_Hd-gnrvj6WdGkvkvxRfJMunExkTI3L4b1-JxKbQMg8vejVj6IvnK77rdUZWc/s1600/scemastatis.webp" alt="Ilustrasi data API yang dicek oleh Cloudflare">
-            <p style="font-size:0.9em;"><strong>Gambar:</strong> Cloudflare menjalankan pemeriksaan Schema sebelum permintaan mencapai <em>origin server</em>.</p>
+            <p style="font-size:0.9em;"><strong>Gambar:</strong> Cloudflare menjalankan pemeriksaan Schema sebelum permintaan mencapai *origin server*.</p>
         </div>
         <hr>
         <h2><i class="fa-solid fa-lightbulb"></i> Kesimpulan Akhir</h2>
@@ -213,12 +213,11 @@
         <footer class="footer">
             <p>🄯 2025 Jaga Data Pribadi Tetap Aman | Analisis Static Site Security | <a href="#">Kebijakan Privasi</a></p>
             <p style="font-size: 0.8em;">Konten ini dibuat oleh AI (Gemini) untuk membantu menjelaskan fitur teknis web.</p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+    <script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

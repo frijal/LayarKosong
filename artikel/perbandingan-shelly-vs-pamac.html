@@ -174,7 +174,7 @@
             margin: 0 0.5rem;
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="site-container">
@@ -220,18 +220,18 @@
                         <td><strong>Teknologi UI</strong></td>
                         <td>GTK 4, desain modern &amp; clean</td>
                         <td>GTK 4</td>
-                        <td>Shelly (<em>subyektif</em>)</td>
+                        <td>Shelly (*subyektif*)</td>
                     </tr>
                     <tr>
                         <td><strong>Dukungan Paket</strong></td>
-                        <td>Official repo, <strong>AUR</strong>, <strong>Flatpak/Flathub</strong>, <strong>AppImage</strong> (<em>drag-and-drop</em>), Local packages</td>
+                        <td>Official repo, <strong>AUR</strong>, <strong>Flatpak/Flathub</strong>, <strong>AppImage</strong> (*drag-and-drop*), Local packages</td>
                         <td>Official repo, <strong>AUR</strong>, <strong>Flatpak</strong>, <strong>Snap</strong>, Appstream</td>
                         <td>Shelly (AppImage lebih native)</td>
                     </tr>
                     <tr>
                         <td><strong>Fitur Unggulan</strong></td>
-                        <td>AppImage <em>drag-and-drop</em>, Downgrade package (khusus CachyOS), Parsing berita Arch ke Markdown, Flag <code>--now</code>, Sorting ukuran paket, Performa tinggi (MemoryPack)</td>
-                        <td>Kategori aplikasi, Appstream (<em>screenshot</em> &amp; metadata), History, Offline upgrade, Tray icon, Pencarian lintas sumber sangat baik</td>
+                        <td>AppImage *drag-and-drop*, Downgrade package (khusus CachyOS), Parsing berita Arch ke Markdown, Flag <code>--now</code>, Sorting ukuran paket, Performa tinggi (MemoryPack)</td>
+                        <td>Kategori aplikasi, Appstream (*screenshot* &amp; metadata), History, Offline upgrade, Tray icon, Pencarian lintas sumber sangat baik</td>
                         <td>Shelly (fitur inovatif) / Pamac (kematangan)</td>
                     </tr>
                     <tr>
@@ -257,7 +257,7 @@
         </div>
         <h2>Penjelasan Lebih Dalam</h2>
         <h3>1. Dukungan Format Aplikasi Universal</h3>
-        <p>Di ekosistem Linux modern, kita tidak lagi hanya bergantung pada <em>official repository</em>. <strong>Shelly</strong> tampil luar biasa perkasa di urusan penanganan <strong>AppImage</strong>. Lewat update versi 2.3.2.2, mereka menanamkan fitur <em>drag-and-drop</em> yang sangat praktis; kamu tinggal tarik file ke aplikasi, dan instalasi beres. Di sisi lain, <strong>Pamac</strong> bermain di ranah yang lebih aman dengan menyajikan integrasi <strong>Snap</strong> dan Appstream. Appstream ini sangat memanjakan mata karena kita bisa melihat <em>screenshot</em> aplikasi, ulasan, serta kategori layaknya toko aplikasi pada umumnya.</p>
+        <p>Di ekosistem Linux modern, kita tidak lagi hanya bergantung pada <em>official repository*. <strong>Shelly</strong> tampil luar biasa perkasa di urusan penanganan <strong>AppImage</strong>. Lewat update versi 2.3.2.2, mereka menanamkan fitur *drag-and-drop</em> yang sangat praktis; kamu tinggal tarik file ke aplikasi, dan instalasi beres. Di sisi lain, <strong>Pamac</strong> bermain di ranah yang lebih aman dengan menyajikan integrasi <strong>Snap</strong> dan Appstream. Appstream ini sangat memanjakan mata karena kita bisa melihat <em>screenshot</em> aplikasi, ulasan, serta kategori layaknya toko aplikasi pada umumnya.</p>
         <h3>2. Pengalaman Pengguna (UI/UX)</h3>
         <p>Jika kamu memperhatikan tren di komunitas belakangan ini, banyak pengguna CachyOS yang mulai meninggalkan Octopi untuk beralih ke Shelly. Alasannya sederhana: tampilannya <strong>lebih modern dan clean</strong>. Tidak ada banyak tombol yang membingungkan. Pamac menggunakan antarmuka berbasis GTK 4 yang juga apik, namun bagi sebagian orang yang menganut filosofi minimalisme Arch, Shelly terasa lebih <em>fresh</em> dan ringkas.</p>
         <h3>3. Performa &amp; Stabilitas Mesin Bawah Kap</h3>
@@ -265,9 +265,9 @@
         <h3>4. Integrasi Tingkat Distro</h3>
         <p>Keputusan akhir biasanya kembali ke di mana rumah kamu berada:</p>
         <ul>
-            <li>Pakai <strong>CachyOS</strong>? → Jelas, <strong>Shelly</strong> adalah pilihan mutlak karena sudah menjadi <em>default</em>. Kamu juga akan mendapat keuntungan fitur <em>downgrade package</em> khusus CachyOS.</li>
+            <li>Pakai <strong>CachyOS</strong>? → Jelas, <strong>Shelly</strong> adalah pilihan mutlak karena sudah menjadi <em>default*. Kamu juga akan mendapat keuntungan fitur *downgrade package</em> khusus CachyOS.</li>
             <li>Pakai <strong>Manjaro</strong>? → <strong>Pamac</strong> tetap menjadi rajanya. Integrasinya dengan struktur repositori Manjaro nyaris tanpa celah.</li>
-            <li>Pakai <strong>Arch murni</strong> atau distro mandiri lainnya? → Shelly terasa lebih "netral" untuk di-<em>install</em> karena tidak terlalu mengikat sistem seperti halnya Pamac dengan ekosistem Manjaronya.</li>
+            <li>Pakai <strong>Arch murni</strong> atau distro mandiri lainnya? → Shelly terasa lebih "netral" untuk di-*install* karena tidak terlalu mengikat sistem seperti halnya Pamac dengan ekosistem Manjaronya.</li>
         </ul>
         <h2>Kesimpulan &amp; Saran Praktis</h2>
         <p>Tidak ada satu <em>tool</em> yang merajai semua skenario. Jika kamu membutuhkan dukungan manajemen paket <strong>Snap</strong> dan senang menjelajah aplikasi berdasarkan kategori bergambar, bertahanlah dengan Pamac. Namun, jika kamu lebih menyukai UI yang bersih, butuh kelincahan mengelola <strong>AppImage</strong>, dan ingin merasakan <em>software</em> yang sedang aktif dikembangkan dengan fitur-fitur kekinian, Shelly adalah angin segar yang wajib dicoba.</p>
@@ -283,8 +283,8 @@
         <span class="eeat-item"><i class="fa-regular fa-calendar-days"></i> 7 Juni 2026</span>
         <span class="eeat-item">•</span>
         <span class="eeat-item"><i class="fa-solid fa-location-dot"></i> Balikpapan, ID</span>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

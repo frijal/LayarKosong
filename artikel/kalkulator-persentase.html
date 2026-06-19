@@ -76,7 +76,7 @@
         .text-up { color: var(--success); font-weight: bold; }
         .text-down { color: var(--danger); font-weight: bold; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container"><div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Kalkulator Persentase</h1>
@@ -169,20 +169,20 @@
         if (isNaN(a) || isNaN(b) || a === 0) return;
         const p = ((b - a) / a) * 100;
         const formatted = Number(p.toFixed(2)) + "%";
-        const indicator = p >= 0 ? <code><span class="text-up">↑ ${formatted}</span></code> : <code><span class="text-down">↓ ${formatted}</span></code>;
-        showResult(<code>Hasil: ${indicator}</code>, formatted);
-        debouncedSave(<code>${a.toLocaleString('id-ID')} → ${b.toLocaleString('id-ID')} = ${indicator}</code>);
+        const indicator = p >= 0 ? `<span class="text-up">↑ ${formatted}</span>` : `<span class="text-down">↓ ${formatted}</span>`;
+        showResult(`Hasil: ${indicator}`, formatted);
+        debouncedSave(`${a.toLocaleString('id-ID')} → ${b.toLocaleString('id-ID')} = ${indicator}`);
     }
     function hitungNilai() {
         const a = getRawValue('awal2');
         const p = parseFloat(document.getElementById('persen2').value);
         const aksi = document.getElementById('aksi').value;
         if (isNaN(a) || isNaN(p)) return;
-        const akhir = aksi === 'tambah' ? a <em> (1 + (p/100)) : a </em> (1 - (p/100));
+        const akhir = aksi === 'tambah' ? a * (1 + (p/100)) : a * (1 - (p/100));
         const formatted = Math.round(akhir).toLocaleString('id-ID');
-        showResult(<code>Hasil: ${formatted}</code>, formatted);
+        showResult(`Hasil: ${formatted}`, formatted);
         const simbol = aksi === 'tambah' ? '+' : '-';
-        debouncedSave(<code>${a.toLocaleString('id-ID')} ${simbol} ${p}% = <b>${formatted}</b></code>);
+        debouncedSave(`${a.toLocaleString('id-ID')} ${simbol} ${p}% = <b>${formatted}</b>`);
     }
     function showResult(text, rawValue) {
         currentResultValue = rawValue;
@@ -212,7 +212,7 @@
     function renderHistory() {
         const list = document.getElementById('historyList');
         const history = JSON.parse(localStorage.getItem('calc_history') || "[]");
-        list.innerHTML = history.map(item => <code><div class="history-item">${item}</div></code>).join('');
+        list.innerHTML = history.map(item => `<div class="history-item">${item}</div>`).join('');
     }
     function clearHistory() {
         localStorage.removeItem('calc_history');
@@ -220,8 +220,6 @@
     }
     window.onload = renderHistory;
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

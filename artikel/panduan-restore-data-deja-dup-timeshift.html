@@ -199,7 +199,7 @@
         .footer-meta a:hover { text-decoration: underline; }
     </style>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main" class="wrapper">
@@ -207,11 +207,11 @@
             <header>
                 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Panduan Restore Data Pakai Deja Dup dan Timeshift di Debian</h1>
             </header>
-            <p>Buat kamu yang pasti paham rasanya deg-degan habis <em>install</em> ulang <em>server</em> atau laptop Debian kesayangan. <strong>Install ulang</strong> itu memang bikin sistem jadi segar, tapi urusan mengembalikan <em>(restore)</em> data kadang bikin pusing. Apalagi kalau disuruh melototin layar hitam terminal sambil mengetik kode yang panjang-panjang. <em>Hadeh</em>, bikin lelah mata!</p>
+            <p>Buat kamu yang pasti paham rasanya deg-degan habis <em>install</em> ulang <em>server</em> atau laptop Debian kesayangan. <strong>Install ulang</strong> itu memang bikin sistem jadi segar, tapi urusan mengembalikan <em>(restore)</em> data kadang bikin pusing. Apalagi kalau disuruh melototin layar hitam terminal sambil mengetik kode yang panjang-panjang. *Hadeh*, bikin lelah mata!</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/c067cc592fe887fa.webp" srcset="https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="lcp-image" alt="Ilustrasi pemulihan data menggunakan antarmuka grafis Linux">
             <p>Tenang saja, kawan. Kita tidak perlu umumnya menjadi pelaku ancaman siber yang kaku. Pastikan seluruh langkah dilakukan hanya pada perangkat sendiri atau lingkungan yang memiliki izin resmi. Berikut adalah panduan menggunakan dua aplikasi <em>Graphical User Interface</em> (GUI) yang sangat memanjakan mata untuk mengembalikan data kamu: <strong>Deja Dup</strong> dan <strong>Timeshift</strong>. Keduanya punya fungsi yang sedikit berbeda, mari kita bedah satu per satu!</p>
             <h2>1. Restore Menggunakan Deja Dup (GUI) — <em>Paling Direkomendasikan</em></h2>
-            <p>Jika tujuan utamamu murni ingin menyelamatkan dokumen pribadi, tugas kuliah, koleksi foto <em>meme</em>, dan <em>file</em> unduhan, maka <strong>Deja Dup</strong> adalah sang juru selamat. Aplikasi ini sering kali sudah terpasang bawaan di banyak distro berbasis Debian atau Ubuntu. Antarmukanya sangat sederhana sehingga ramah bagi pemula.</p>
+            <p>Jika tujuan utamamu murni ingin menyelamatkan dokumen pribadi, tugas kuliah, koleksi foto <em>meme*, dan *file</em> unduhan, maka <strong>Deja Dup</strong> adalah sang juru selamat. Aplikasi ini sering kali sudah terpasang bawaan di banyak distro berbasis Debian atau Ubuntu. Antarmukanya sangat sederhana sehingga ramah bagi pemula.</p>
             <h3>Langkah-langkah Eksekusi Deja Dup</h3>
             <p><strong>Langkah 1: Install Deja Dup</strong><br>
             Buka <em>Terminal</em> kesayanganmu sebentar saja dan jalankan:</p>
@@ -220,9 +220,9 @@
             <p><strong>Langkah 2: Buka Aplikasinya</strong><br>
             Cari ikon aplikasi bernama <strong>"Backups"</strong> di menu deretan aplikasi kamu, atau cukup panggil lewat terminal dengan mengetik <code>deja-dup</code>.</p>
             <p><strong>Langkah 3: Tentukan Lokasi Harta Karunmu</strong><br>
-            Di jendela aplikasi, klik <em>tab<strong></em>Restore</strong>. Setelah itu, tekan tombol tebal bertuliskan <em>"Restore from a previous backup"</em>. Arahkan ke <em>flashdisk</em> atau HDD eksternal tempat kamu menyimpan data lamamu, lalu klik <strong>Forward</strong>.</p>
+            Di jendela aplikasi, klik <em>tab<strong>*Restore</strong>. Setelah itu, tekan tombol tebal bertuliskan *"Restore from a previous backup"*. Arahkan ke *flashdisk</em> atau HDD eksternal tempat kamu menyimpan data lamamu, lalu klik <strong>Forward</strong>.</p>
             <p><strong>Langkah 4: Pilih Data yang Ingin Dikembalikan</strong><br>
-            Aplikasi canggih ini akan membaca arsipmu dan menampilkan struktur folder layaknya <em>file manager</em> biasa. Centang folder-folder krusial seperti <code>Documents</code>, <code>Pictures</code>, <code>Downloads</code>, atau <code>.config</code> (jika kamu juga menyimpan pengaturan <em>dotfiles</em>). Setelah yakin, klik <strong>Forward</strong> lagi.</p>
+            Aplikasi canggih ini akan membaca arsipmu dan menampilkan struktur folder layaknya <em>file manager</em> biasa. Centang folder-folder krusial seperti <code>Documents</code>, <code>Pictures</code>, <code>Downloads</code>, atau <code>.config</code> (jika kamu juga menyimpan pengaturan *dotfiles*). Setelah yakin, klik <strong>Forward</strong> lagi.</p>
             <p><strong>Langkah 5: Tentukan Lokasi Pendaratan</strong><br>
             Sistem akan bertanya di mana data ini mau diletakkan. Sangat disarankan untuk memilih opsi <em>"Restore files to original locations"</em> agar sistem secara otomatis meletakkannya kembali ke <code>/home</code> milikmu. Klik <strong>Restore</strong>.</p>
             <p><strong>Langkah 6: Tunggu Sambil Ngopi</strong><br>
@@ -238,7 +238,7 @@
                 <tbody>
                     <tr>
                         <td>Antarmuka grafis yang sangat intuitif.</td>
-                        <td>Kurang memfasilitasi konfigurasi rumit ala <em>sysadmin</em>.</td>
+                        <td>Kurang memfasilitasi konfigurasi rumit ala *sysadmin*.</td>
                     </tr>
                     <tr>
                         <td>Mendukung fitur enkripsi berlapis.</td>
@@ -246,7 +246,7 @@
                     </tr>
                     <tr>
                         <td>Bisa dijadwalkan jalan otomatis di latar belakang.</td>
-                        <td>Hanya fokus pada level <em>User</em>, bukan sistem operasi inti.</td>
+                        <td>Hanya fokus pada level *User*, bukan sistem operasi inti.</td>
                     </tr>
                 </tbody>
             </table>
@@ -266,7 +266,7 @@
             Timeshift akan menyuguhkan dua menu makanan:</p>
             <ul>
                 <li><em>Restore system files only</em> (Cuma <em>file</em> sistem root).</li>
-                <li><em>Restore system + home files</em> (Sistem di-<em>rollback</em> + data pribadi juga ikut diubah).</li>
+                <li><em>Restore system + home files</em> (Sistem di-*rollback* + data pribadi juga ikut diubah).</li>
             </ul>
             <p>Pilih sesuai seleramu, lalu klik <strong>Next</strong>.</p>
             <p><strong>Langkah 5: Konfirmasi Maut</strong><br>
@@ -287,7 +287,7 @@
                     <tr>
                         <td>Cuma mau menyelamatkan <em>file</em> kerjaan, foto, dan lagu.</td>
                         <td><strong>Deja Dup</strong></td>
-                        <td>Sangat aman, tidak akan membuat OS <em>crash</em>.</td>
+                        <td>Sangat aman, tidak akan membuat OS *crash*.</td>
                     </tr>
                     <tr>
                         <td>Ingin data pribadi + pengaturan <em>desktop environment</em> balik.</td>
@@ -327,8 +327,8 @@
                 <span>•</span>
                 <span><i class="fa-solid fa-book"></i> Referensi: <a href="https://wiki.gnome.org/Apps/DejaDup" target="_blank" rel="noopener noreferrer">GNOME Deja Dup Docs</a></span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

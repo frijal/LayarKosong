@@ -540,7 +540,7 @@
             }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -920,7 +920,7 @@
             <p class="mt-2" style="font-size: 0.85rem; max-width: auto; margin: 1rem auto;">
                 <i class="fa-solid fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> Artikel ini merupakan analisis independen berdasarkan informasi publik yang tersedia. Pandangan yang disampaikan adalah pendapat penulis dan tidak mewakili kebijakan resmi institusi manapun. Pembaca disarankan untuk merujuk pada sumber resmi untuk informasi kebijakan yang definitif.
             </p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <script>
@@ -1038,7 +1038,7 @@
             const comment = commentsData[i];
             const dates = ["5 Februari 2026", "6 Februari 2026"];
             const randomDate = dates[Math.floor(Math.random() * dates.length)];
-            const commentHTML = <code>
+            const commentHTML = `
                 <div class="comment" style="display: flex; gap: 15px; margin-bottom: 20px;">
                     <div class="comment-avatar" style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                         <i class="fa-solid fa-user"></i>
@@ -1051,7 +1051,7 @@
                         <div class="comment-text" style="margin-top: 5px;">${comment.text}</div>
                     </div>
                 </div>
-            </code>;
+            `;
             container.insertAdjacentHTML('beforeend', commentHTML);
         }
         currentIndex = limit;
@@ -1090,7 +1090,7 @@
             const wordCount = articleText.split(/\s+/).length;
             const readTime = Math.ceil(wordCount / 200);
             const readTimeSpan = document.querySelector('.fa-clock')?.parentElement.querySelector('span');
-            if (readTimeSpan) readTimeSpan.textContent = <code>Waktu baca: ${readTime} menit</code>;
+            if (readTimeSpan) readTimeSpan.textContent = `Waktu baca: ${readTime} menit`;
         }, 500);
     });
     // Optimasi Core Web Vitals
@@ -1101,7 +1101,5 @@
         });
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

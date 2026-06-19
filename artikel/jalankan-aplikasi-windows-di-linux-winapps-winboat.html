@@ -154,7 +154,7 @@
             p { font-size: 1.05rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <article>
@@ -168,7 +168,7 @@
     <section id="introduction">
         <p>Halo sobat Linux! 👋 Pernah tiba-tiba "dipaksa" balik ke Windows cuma gara-gara harus buka satu file Excel yang makronya ribet, atau mau pakai Adobe Photoshop versi terbaru? Aku tahu banget rasanya, itu yang namanya <strong>"Aplikasi Biang Kerok"</strong> yang bikin kita susah pindah sepenuhnya ke dunia open source.</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBQexpiaIAEZGss.webp" alt="Integrasi WinApps dan WinBoat di Linux Desktop" width="100%">
-        <p>Selama ini kita mungkin pakai Wine atau Proton, tapi jujur saja, tidak semua aplikasi jalan lancar di sana. Kadang font-nya berantakan, kadang tiba-tiba <em>crash</em>. Nah, hari ini Aku akan mengajak kamu berkenalan dengan cara ketiga yang jauh lebih canggih: menggunakan <strong>RemoteApp VM</strong>. Kita akan membedah dua proyek hebat, <strong>WinApps</strong> dan <strong>WinBoat</strong>, yang memungkinkan aplikasi Windows kamu muncul di menu Linux kamu seolah-olah mereka adalah aplikasi asli. Gak ada lagi jendela desktop Windows yang ganggu, yang ada cuma aplikasi yang kamu butuhkan!</p>
+        <p>Selama ini kita mungkin pakai Wine atau Proton, tapi jujur saja, tidak semua aplikasi jalan lancar di sana. Kadang font-nya berantakan, kadang tiba-tiba *crash*. Nah, hari ini Aku akan mengajak kamu berkenalan dengan cara ketiga yang jauh lebih canggih: menggunakan <strong>RemoteApp VM</strong>. Kita akan membedah dua proyek hebat, <strong>WinApps</strong> dan <strong>WinBoat</strong>, yang memungkinkan aplikasi Windows kamu muncul di menu Linux kamu seolah-olah mereka adalah aplikasi asli. Gak ada lagi jendela desktop Windows yang ganggu, yang ada cuma aplikasi yang kamu butuhkan!</p>
     </section>
     <section id="5w1h">
         <h2><i class="fa-solid fa-info-circle"></i> Memahami Konsep Dasar (5W + 1H)</h2>
@@ -185,7 +185,7 @@
     <section id="technology">
         <h2><i class="fa-solid fa-cogs"></i> Bagaimana Teknologinya Bekerja?</h2>
         <p>Ini bagian yang menarik! Bayangkan kamu punya dua sistem yang bekerja sama di balik layar. Pertama, ada <strong>Windows asli</strong> yang berjalan sebagai "tamu" di lingkungan virtual (bisa pakai QEMU/KVM lewat libvirt atau di dalam kontainer Docker/Podman). Windows ini berjalan tanpa antarmuka (<em>headless</em>), jadi kamu tidak bakal lihat desktop Windows-nya.</p>
-        <p>Di dalam Windows tamu itu, ada agen kecil yang bertugas memberi tahu Linux: <em>"Eh, pengguna mau buka Word nih!"</em>. Kemudian, Linux menggunakan aplikasi bernama <strong>xfreerdp</strong> dengan fitur <strong>RemoteApp</strong>. Fitur inilah yang salah satu yang ajaib, karena ia bisa memotong gambar jendela aplikasi saja dan membuang latar belakang desktop Windows-nya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Hasilnya? Microsoft Word muncul di desktop Linux kamu dengan bayangan jendela dan fungsi minimalkan/maksimalkan yang menyatu dengan tema desktop Linux-mu.</p>
+        <p>Di dalam Windows tamu itu, ada agen kecil yang bertugas memberi tahu Linux: *"Eh, pengguna mau buka Word nih!"*. Kemudian, Linux menggunakan aplikasi bernama <strong>xfreerdp</strong> dengan fitur <strong>RemoteApp</strong>. Fitur inilah yang salah satu yang ajaib, karena ia bisa memotong gambar jendela aplikasi saja dan membuang latar belakang desktop Windows-nya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Hasilnya? Microsoft Word muncul di desktop Linux kamu dengan bayangan jendela dan fungsi minimalkan/maksimalkan yang menyatu dengan tema desktop Linux-mu.</p>
         <div class="teacher-advice">
             <p><strong>Pesan Aku:</strong> Jangan samakan ini dengan VirtualBox biasa ya! Di VirtualBox, kamu perlu melihat seluruh desktop Windows. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Di sini, kamu cuma lihat aplikasinya saja. Ini lebih rapi dan efisien untuk alur kerja harian. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         </div>
@@ -255,7 +255,7 @@
     </section>
     <section id="performance">
         <h2><i class="fa-solid fa-tachometer-alt"></i> Performa &amp; Pengalaman Pengguna</h2>
-        <p>Bicara soal kecepatan, tentu ada <em>overhead</em>. Membuka aplikasi lewat WinApps/WinBoat akan sedikit lebih lambat dibanding aplikasi native Linux atau Wine. Kenapa? Karena sistem harus memastikan VM Windows-nya bangun dari tidur dan koneksi RDP-nya terjalin.</p>
+        <p>Bicara soal kecepatan, tentu ada *overhead*. Membuka aplikasi lewat WinApps/WinBoat akan sedikit lebih lambat dibanding aplikasi native Linux atau Wine. Kenapa? Karena sistem harus memastikan VM Windows-nya bangun dari tidur dan koneksi RDP-nya terjalin.</p>
         <p>Tapi begitu aplikasinya sudah terbuka, pengalamannya sangat mulus! Kamu bisa <em>copy-paste</em> teks antar Linux dan Windows, bahkan file-file di folder <code>/home</code> Linux kamu akan muncul sebagai drive jaringan di Windows. Jadi, kamu bisa edit dokumen Excel langsung dari folder dokumen Linux-mu tanpa perlu pindah-pindahkan file. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         <div class="teacher-advice">
             <p><strong>Tips dari Aku:</strong> Jika kamu pakai monitor ganda (multi-monitor), pastikan versi <code>xfreerdp</code> kamu sudah versi terbaru. Kadang RemoteApp agak "bingung" kalau disuruh loncat antar monitor, tapi ini terus diperbaiki oleh komunitas.</p>
@@ -283,9 +283,9 @@
                <p style="display: inline-block; margin-right: 20px;">🄯 2026 <strong>Jaga Data Pribadi Tetap Aman</strong></p>
      <p style="display: inline-block; font-size: 0.8rem; color: #bdc3c7;">Informasi ini disusun untuk tujuan edukasi. Semua merek dagang adalah milik pemiliknya masing-masing.</p>
     </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+ <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

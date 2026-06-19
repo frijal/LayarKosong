@@ -164,7 +164,7 @@
             #bulkActionTray { width: 90%; flex-direction: column; border-radius: 15px; bottom: 10px; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -209,7 +209,7 @@
     <footer>
         <hr>
         <p>🄯 2026 Layar Kosong. Dibuat dengan ❤️ di Balikpapan.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
 <div class="modal" id="articleModal">
@@ -263,7 +263,7 @@
         reader.onload = function(e) {
             try {
                 jsonData = JSON.parse(e.target.result);
-                document.getElementById('statusText').innerHTML = <code><i class="fa-solid fa-file-circle-check"></i> ${file.name}</code>;
+                document.getElementById('statusText').innerHTML = `<i class="fa-solid fa-file-circle-check"></i> ${file.name}`;
                 renderEditor();
             } catch (err) { alert("Format JSON salah! " + err); }
         };
@@ -279,7 +279,7 @@
             const catBlock = document.createElement('div');
             catBlock.className = 'category-block';
             catBlock.dataset.category = category.toLowerCase();
-            let headerHTML = <code>
+            let headerHTML = `
                 <div class="category-header">
                     <div style="display:flex; align-items:center; gap:12px;">
                         <input type="checkbox" style="width:18px; height:18px;" onclick="toggleCategorySelect('${category}', this)">
@@ -293,13 +293,13 @@
                     </div>
                 </div>
                 <ul class="article-list">
-            </code>;
+            `;
             let articlesHTML = '';
             articles.forEach((article, index) => {
                 const title = article[0] || "Tanpa Judul";
                 const imgDisplay = article[2]?.startsWith('http') ? article[2] : '';
-                const articleUrl = <code>https://dalam.web.id/artikel/${article[1]}</code>;
-                articlesHTML += <code>
+                const articleUrl = `https://dalam.web.id/artikel/${article[1]}`;
+                articlesHTML += `
                     <li class="article-item" data-search="${(title + ' ' + article[1]).toLowerCase()}">
                         <div class="check-container">
                             <input type="checkbox" class="item-checkbox" data-cat="${category}" data-idx="${index}" onchange="handleItemSelect()">
@@ -319,7 +319,7 @@
                             <button class="btn btn-danger" style="padding:5px 12px;" onclick="deleteArticle('${category}', ${index})"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
                     </li>
-                </code>;
+                `;
             });
             if (articles.length === 0) articlesHTML = '<li style="padding:20px; text-align:center; opacity:0.5;">Kategori kosong.</li>';
             catBlock.innerHTML = headerHTML + articlesHTML + '</ul>';
@@ -339,7 +339,7 @@
 // Memastikan hanya artikel yang "tampil" (hasil filter) yang akan tercentang
 function toggleCategorySelect(cat, master) {
     // Cari semua checkbox item di dalam blok kategori yang spesifik
-    const items = document.querySelectorAll(<code>.item-checkbox[data-cat="${cat}"]</code>);
+    const items = document.querySelectorAll(`.item-checkbox[data-cat="${cat}"]`);
     items.forEach(checkbox => {
         // Ambil elemen parent (li) untuk cek apakah dia sedang di-hide oleh filter
         const listItem = checkbox.closest('.article-item');
@@ -364,7 +364,7 @@ function toggleCategorySelect(cat, master) {
         }
     }
     function bulkDelete() {
-        if (!confirm(<code>Hapus ${selectedItems.length} artikel terpilih secara permanen?</code>)) return;
+        if (!confirm(`Hapus ${selectedItems.length} artikel terpilih secara permanen?`)) return;
         // Hapus dari belakang agar index tidak bergeser
         const sorted = [...selectedItems].sort((a, b) => b.idx - a.idx);
         sorted.forEach(item => {
@@ -414,7 +414,7 @@ function toggleCategorySelect(cat, master) {
     }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     function openAddArticleModal(cat) {
-        document.getElementById('modalTitle').innerText = <code>Tambah Artikel: ${cat}</code>;
+        document.getElementById('modalTitle').innerText = `Tambah Artikel: ${cat}`;
         document.getElementById('editCategoryKey').value = cat;
         document.getElementById('editArticleIndex').value = -1;
         document.getElementById('inpTitle').value = "";
@@ -482,7 +482,7 @@ function toggleCategorySelect(cat, master) {
         renderEditor();
     }
     function deleteCategory(cat) {
-        if (confirm(<code>Hapus kategori "${cat}"?</code>)) {
+        if (confirm(`Hapus kategori "${cat}"?`)) {
             delete jsonData[cat];
             renderEditor();
         }
@@ -490,7 +490,7 @@ function toggleCategorySelect(cat, master) {
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div id="dynamic-nav-container" class="floating-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

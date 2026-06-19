@@ -188,7 +188,7 @@ button.primary{background:var(--accent);border:none;color:#fff}
 </style>
 <meta name="ai:summary" content="Editor Artikel JSON Pro untuk mengelola, mengedit, mencari, dan mengekspor data artikel berbasis JSON. Dibuat untuk workflow modern, cepat, dan efisien oleh Layar Kosong.">
 <meta name="ai:prompt_hint" content="Editor Artikel JSON Pro untuk mengelola, mengedit, mencari, dan mengekspor data artikel berbasis JSON. Dibuat untuk workflow modern, cepat, dan efisien oleh Layar Kosong.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -251,9 +251,9 @@ button.primary{background:var(--accent);border:none;color:#fff}
 <script>
 let rawData = {};
 let selectedSlugs = new Set();
-/<em> ================= CATEGORY STATE ================= </em>/
+/* ================= CATEGORY STATE ================= */
 let activeCategory = "ALL";
-/<em> ================= VIEW STATE ================= </em>/
+/* ================= VIEW STATE ================= */
 const VIEW_KEY = "json_view_state";
 let viewState = { title:true, slug:true, thumb:true, date:true, desc:true };
 const savedView = localStorage.getItem(VIEW_KEY);
@@ -263,7 +263,7 @@ if(savedView){
 function saveView(){
   localStorage.setItem(VIEW_KEY, JSON.stringify(viewState));
 }
-/<em> ================= THEME ================= </em>/
+/* ================= THEME ================= */
 document.documentElement.dataset.theme =
   localStorage.getItem("theme") || "dark";
 function toggleTheme(){
@@ -271,12 +271,12 @@ function toggleTheme(){
   document.documentElement.dataset.theme = t;
   localStorage.setItem("theme", t);
 }
-/<em> ================= UTIL ================= </em>/
+/* ================= UTIL ================= */
 const esc = s => String(s).replace(/[&<>"']/g,m=>(
   {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]
 ));
 function updateCounter(){
-  counter.textContent = <code>${selectedSlugs.size} dipilih</code>;
+  counter.textContent = `${selectedSlugs.size} dipilih`;
 }
 function fmtDate(d){
   if(!d) return "";
@@ -297,9 +297,9 @@ function fmtDate(d){
     second: "2-digit",
     hour12: false
   });
-  return <code>${tanggal} - ${jam}</code>;
+  return `${tanggal} - ${jam}`;
 }
-/<em> ================= VIEW TOGGLE ================= </em>/
+/* ================= VIEW TOGGLE ================= */
 function toggleView(key,state){
   viewState[key]=state;
   saveView();
@@ -319,11 +319,11 @@ function syncToggleUI(){
   });
 }
 document.addEventListener("DOMContentLoaded",syncToggleUI);
-/<em> ================= CATEGORY DROPDOWN ================= </em>/
+/* ================= CATEGORY DROPDOWN ================= */
 function populateCategoryDropdown(){
   const sel=document.getElementById("categorySelect");
   if(!sel) return;
-  sel.innerHTML=<code><option value="ALL">Kategori</option></code>;
+  sel.innerHTML=`<option value="ALL">Kategori</option>`;
   Object.keys(rawData).forEach(cat=>{
     const o=document.createElement("option");
     o.value=cat; o.textContent=cat;
@@ -332,7 +332,7 @@ function populateCategoryDropdown(){
   sel.value="ALL";
   activeCategory="ALL";
 }
-/<em> ================= LOAD ================= </em>/
+/* ================= LOAD ================= */
 async function loadFromUrl(){
   const url=jsonUrlInput.value.trim();
   if(!url) return alert("Masukkan URL JSON");
@@ -354,7 +354,7 @@ fileInput.onchange=e=>{
   };
   r.readAsText(e.target.files[0]);
 };
-/<em> ================= CATEGORY SORT ================= </em>/
+/* ================= CATEGORY SORT ================= */
 function getLatestDateInCategory(items){
   let max=0;
   for(const a of items){
@@ -363,9 +363,9 @@ function getLatestDateInCategory(items){
   }
   return max;
 }
-/<em> ================= klik judul ================= </em>/
+/* ================= klik judul ================= */
 const BASE_POST_URL = "/artikel/";
-/<em> ================= RENDER ================= </em>/
+/* ================= RENDER ================= */
 function render(){
   const q=searchInput.value.toLowerCase();
   const order=sortSelect.value;
@@ -390,36 +390,36 @@ function render(){
       );
     if(!items.length) continue;
     const h=document.createElement("h3");
-    h.textContent=<code>Kategori ${cat} · ${items.length} artikel</code>;
+    h.textContent=`Kategori ${cat} · ${items.length} artikel`;
     list.appendChild(h);
     items.forEach(a=>{
       const [title,slug,img,date,desc]=a;
       const row=document.createElement("div");
       row.className="item";
-      row.innerHTML=<code>
+      row.innerHTML=`
         <input type="checkbox" data-slug="${esc(slug)}"
           ${selectedSlugs.has(slug)?"checked":""}>
-        ${viewState.thumb&&img?</code>
+        ${viewState.thumb&&img?`
           <img src="${esc(img)}" class="thumb" loading="lazy"
-          onerror="this.style.display='none'"><code>:""}
+          onerror="this.style.display='none'">`:""}
         <div>
-${viewState.title?</code>
+${viewState.title?`
   <div class="title">
     <a href="${BASE_POST_URL}${esc(slug)}"
        target="_blank"
        rel="noopener noreferrer">
       <strong>${esc(title)}</strong>
     </a>
-  </div><code>:""}
-        ${viewState.slug?</code><div class="slug">${esc(slug)}</div><code>:""}
-          ${viewState.date?</code><div class="date">${fmtDate(date)}</div><code>:""}
-          ${viewState.desc?</code><div class="desc">${esc(desc||"")}</div><code>:""}
-        </div></code>;
+  </div>`:""}
+        ${viewState.slug?`<div class="slug">${esc(slug)}</div>`:""}
+          ${viewState.date?`<div class="date">${fmtDate(date)}</div>`:""}
+          ${viewState.desc?`<div class="desc">${esc(desc||"")}</div>`:""}
+        </div>`;
       list.appendChild(row);
     });
   }
 }
-/<em> ================= EVENT DELEGATION (CHECKBOX) ================= </em>/
+/* ================= EVENT DELEGATION (CHECKBOX) ================= */
 document.getElementById("list").addEventListener("change",e=>{
   const cb=e.target;
   if(cb.matches('input[type="checkbox"][data-slug]')){
@@ -429,7 +429,7 @@ document.getElementById("list").addEventListener("change",e=>{
     updateCounter();
   }
 });
-/<em> ================= BULK ================= </em>/
+/* ================= BULK ================= */
 function selectAll(){
   document.querySelectorAll("#list input[type=checkbox][data-slug]")
     .forEach(cb=>{
@@ -444,7 +444,7 @@ function clearAll(){
     .forEach(cb=>cb.checked=false);
   updateCounter();
 }
-/<em> ================= EXPORT ================= </em>/
+/* ================= EXPORT ================= */
 function exportSlug(){
   if(!selectedSlugs.size) return alert("Belum ada pilihan");
   const out=[...selectedSlugs].join("\n");
@@ -457,6 +457,6 @@ function exportSlug(){
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

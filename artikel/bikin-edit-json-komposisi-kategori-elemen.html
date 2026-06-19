@@ -320,7 +320,7 @@
 </style>
 <meta name="ai:summary" content="Edit dan buat file JSON untuk komposisi blok kategori dan elemen secara mudah. Solusi pengelolaan data yang efisien, praktis, dan terpadu.">
 <meta name="ai:prompt_hint" content="Edit dan buat file JSON untuk komposisi blok kategori dan elemen secara mudah. Solusi pengelolaan data yang efisien, praktis, dan terpadu.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Editor JSON Blok Kategori dan Elemen</h1>
@@ -427,7 +427,7 @@
     const selectedCategory = categoryNameInput.value.trim();
     elementsContainer.innerHTML = ''; 
     if (existingData && existingData[selectedCategory]) {
-      console.log(<code>Memuat data untuk kategori: ${selectedCategory}</code>);
+      console.log(`Memuat data untuk kategori: ${selectedCategory}`);
       const elements = existingData[selectedCategory];
       if (elements.length > 0) {
         for (const el of elements) {
@@ -444,7 +444,7 @@
         elementsContainer.appendChild(createElementRow());
       }
     } else {
-      console.log(<code>Membuat baris baru untuk kategori baru: ${selectedCategory}</code>);
+      console.log(`Membuat baris baru untuk kategori baru: ${selectedCategory}`);
       elementsContainer.appendChild(createElementRow());
     }
   });
@@ -460,7 +460,7 @@
     const titlePreview = escapeHtml(data.title || 'Judul...');
     const descPreview = escapeHtml(data.desc || 'Deskripsi...');
     const datePreview = dateValue || 'Tanggal...';
-    div.innerHTML = <code>
+    div.innerHTML = `
       <button class="remove-btn" title="Hapus elemen ini">×</button>
       <div class="element-row-flex">
         <div class="element-inputs">
@@ -485,7 +485,7 @@
             </div>
           </div>
         </div>
-      </div>     </code>;
+      </div>     `;
     // Event tombol hapus elemen
     div.querySelector('.remove-btn').addEventListener('click', () => {
       if(confirm('Hapus elemen ini?')) {
@@ -547,6 +547,6 @@
     addElementBtn.click();
   });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -169,7 +169,7 @@
         .footer-meta a:hover { text-decoration: underline; }
     </style>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main" class="wrapper">
@@ -177,7 +177,7 @@
             <header>
                 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Detail Fitur GNOME 50: Menyambut Era Baru Desktop Tanpa X11</h1>
             </header>
-            <p>Setelah peluncuran <strong>GNOME 50</strong> (dengan nama kode resmi <em>“Tokyo”</em>). Bersamaan dengan mendaratnya Fedora 44, rilis lingkungan desktop yang satu ini membawa gebrakan yang cukup masif. Bukan perombakan visual ekstrem yang bikin pangling, melainkan pematangan infrastruktur yang sangat krusial, terutama di sektor stabilitas layar, kendali keluarga, hingga optimalisasi performa tingkat tinggi.</p>
+            <p>Setelah peluncuran <strong>GNOME 50</strong> (dengan nama kode resmi *“Tokyo”*). Bersamaan dengan mendaratnya Fedora 44, rilis lingkungan desktop yang satu ini membawa gebrakan yang cukup masif. Bukan perombakan visual ekstrem yang bikin pangling, melainkan pematangan infrastruktur yang sangat krusial, terutama di sektor stabilitas layar, kendali keluarga, hingga optimalisasi performa tingkat tinggi.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/86ec754ba1d262b6.webp" srcset="https://pbs.twimg.com/media/HKLGt5KaAAEqjk0?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKLGt5KaAAEqjk0?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKLGt5KaAAEqjk0?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="hero-img" alt="Ilustrasi grafis desktop environment GNOME 50 Tokyo terbaru di tahun 2026">
             <p>Penasaran apa saja amunisi baru yang ditanamkan para pengembang GNOME di rilis ini? Mari kita kupas satu per satu fitur utamanya secara mendetail.</p>
             <h2>1. <em>Wayland-Only</em> (Selamat Tinggal X11)</h2>
@@ -185,42 +185,42 @@
             <p>Apa dampaknya bagi kita sebagai pengguna harian?</p>
             <ul>
                 <li>Performa dan stabilitas keamanan sistem meroket jauh lebih baik.</li>
-                <li>Animasi transisi antarmuka terasa jauh lebih halus tanpa gejala <em>tearing</em>.</li>
+                <li>Animasi transisi antarmuka terasa jauh lebih halus tanpa gejala *tearing*.</li>
                 <li>Dukungan teknologi modern seperti <em>Variable Refresh Rate</em> (VRR) dan <em>fractional scaling</em> (penskalaan pecahan) kini jauh lebih matang.</li>
                 <li><strong>Jangan panik:</strong> Aplikasi lawas yang masih membutuhkan X11 tetap bisa berjalan normal dan mulus melalui subsistem <strong>Xwayland</strong>, hanya saja GNOME tidak lagi menyediakan sesi utama <em>log-in</em> X11.</li>
             </ul>
             <h2>2. <em>Parental Controls</em> &amp; Kesejahteraan Digital</h2>
-            <p>Fitur yang paling mencuri perhatian di versi ini adalah perombakan total pada sistem kendali orang tua <em>(Parental Controls)</em>. Dikembangkan dengan kolaborasi erat bersama tim Endless OS, fitur ini menyasar para orang tua yang ingin memastikan kesejahteraan digital anak-anak mereka.</p>
+            <p>Fitur yang paling mencuri perhatian di versi ini adalah perombakan total pada sistem kendali orang tua *(Parental Controls)*. Dikembangkan dengan kolaborasi erat bersama tim Endless OS, fitur ini menyasar para orang tua yang ingin memastikan kesejahteraan digital anak-anak mereka.</p>
             <ul>
-                <li>Sistem pelacakan <strong>Screen Time</strong> kini super akurat (algoritmanya sudah cerdas memperhitungkan waktu saat perangkat dibiarkan menyala tanpa aktivitas atau <em>idle inhibitors</em>).</li>
+                <li>Sistem pelacakan <strong>Screen Time</strong> kini super akurat (algoritmanya sudah cerdas memperhitungkan waktu saat perangkat dibiarkan menyala tanpa aktivitas atau *idle inhibitors*).</li>
                 <li>Orang tua atau wali bisa <strong>memperpanjang waktu layar</strong> dengan cepat langsung dari <em>pop-up</em> antarmuka ketika batas waktu hampir habis.</li>
                 <li>Kehadiran fitur <strong>bedtime</strong> dan pembatasan durasi layar harian yang akan secara otomatis mengunci <em>desktop</em> ketika waktunya tidur tiba.</li>
             </ul>
             <h2>3. Peningkatan Aksesibilitas Kelas Wahid</h2>
             <p>Desktop yang baik adalah desktop yang bisa dinikmati semua kalangan. GNOME 50 membawa banyak pemolesan di area aksesibilitas:</p>
             <ul>
-                <li>Perbaikan respons pada pembaca layar <em>(screen reader)</em> dan peningkatan drastis pada navigasi murni menggunakan <em>keyboard</em>.</li>
+                <li>Perbaikan respons pada pembaca layar <em>(screen reader)</em> dan peningkatan drastis pada navigasi murni menggunakan *keyboard*.</li>
                 <li>Peningkatan dukungan visibilitas untuk pengguna dengan kebutuhan khusus.</li>
                 <li>Tata letak menu <em>Accessibility</em> di <strong>GNOME Settings</strong> dirapikan sehingga lebih intuitif untuk dikonfigurasi.</li>
             </ul>
             <h2>4. Performa &amp; Dukungan Perangkat Keras</h2>
             <p>Para <em>gamer</em> dan kreator konten pasti akan tersenyum lebar melihat optimasi <em>under-the-hood</em> yang dibawa GNOME 50:</p>
             <ul>
-                <li>Fitur <strong>VRR (Variable Refresh Rate)</strong> sekarang statusnya <strong>diaktifkan secara <em>default</strong></em>! Jika monitormu mendukung teknologi <em>FreeSync</em> atau <em>G-Sync</em>, main <em>game</em> akan terasa sangat mulus.</li>
+                <li>Fitur <strong>VRR (Variable Refresh Rate)</strong> sekarang statusnya <strong>diaktifkan secara <em>default</em></strong><em>*! Jika monitormu mendukung teknologi *FreeSync</em> atau <em>G-Sync*, main *game</em> akan terasa sangat mulus.</li>
                 <li>Penskalaan antarmuka <em>(Fractional Scaling)</em> pada layar resolusi tinggi kini jauh lebih hemat daya dan minim blur.</li>
-                <li>Peningkatan masif pada performa penanganan keping grafis <em>(driver)<strong></em>NVIDIA</strong>.</li>
-                <li>Deteksi kartu grafis ganda <em>(Hybrid Graphics)</em> yang lebih peka, khususnya saat kamu menggunakan menu klik kanan <em>“Launch using Dedicated Graphics Card”</em>.</li>
+                <li>Peningkatan masif pada performa penanganan keping grafis *(driver)<strong>*NVIDIA</strong>.</li>
+                <li>Deteksi kartu grafis ganda <em>(Hybrid Graphics)</em> yang lebih peka, khususnya saat kamu menggunakan menu klik kanan *“Launch using Dedicated Graphics Card”*.</li>
                 <li>Dukungan ruang warna HDR dan manajemen warna <em>(color management)</em> yang makin presisi.</li>
             </ul>
             <h2>5. Pemolesan Remote Desktop</h2>
-            <p>Bekerja dari jarak jauh? Rilis ini menyuntikkan dukungan <strong>hardware acceleration</strong> (akselerasi perangkat keras) langsung ke dalam sesi <em>remote desktop</em>. Hasilnya, transmisi RDP menjadi jauh lebih ringan, stabil, dan minim latensi <em>(lag)</em> saat dikendalikan dari lokasi terpencil.</p>
+            <p>Bekerja dari jarak jauh? Rilis ini menyuntikkan dukungan <strong>hardware acceleration</strong> (akselerasi perangkat keras) langsung ke dalam sesi <em>remote desktop*. Hasilnya, transmisi RDP menjadi jauh lebih ringan, stabil, dan minim latensi *(lag)</em> saat dikendalikan dari lokasi terpencil.</p>
             <h2>6. Nautilus (Files) Makin Responsif</h2>
             <p>Aplikasi pengelola berkas kecintaan kita, GNOME Files (Nautilus), juga mendapat jatah <em>upgrade</em> yang sangat fungsional untuk menunjang produktivitas:</p>
             <ul>
                 <li>Proses pemuatan gambar pratilik <em>(thumbnail loading)</em> untuk <em>folder</em> berisi ribuan foto kini terasa secepat kilat.</li>
-                <li>Perangkat pengubah nama massal <em>(Batch rename tool)</em> diperbarui dengan fitur <em>visual highlighting</em>, sehingga kamu tahu persis teks mana yang akan berubah.</li>
+                <li>Perangkat pengubah nama massal <em>(Batch rename tool)</em> diperbarui dengan fitur *visual highlighting*, sehingga kamu tahu persis teks mana yang akan berubah.</li>
                 <li>Dukungan saringan pencarian <em>(search filters)</em> untuk mencari berbagai tipe ekstensi berkas secara bersamaan.</li>
-                <li>Fitur penyelesaian alamat letak direktori <em>(path bar completions)</em> kini tidak lagi peka terhadap huruf kapital <em>(case-insensitive)</em>.</li>
+                <li>Fitur penyelesaian alamat letak direktori <em>(path bar completions)</em> kini tidak lagi peka terhadap huruf kapital *(case-insensitive)*.</li>
             </ul>
             <h2>7. Penyegaran Aplikasi Default &amp; Libadwaita</h2>
             <p>Tidak hanya sistem inti, aplikasi bawaan juga dikikir agar makin tajam. Perpustakaan komponen desain modern, <strong>Libadwaita 1.9</strong>, turut diimplementasikan dengan <em>widget</em> baru dan penanganan CSS yang lebih cantik.</p>
@@ -238,11 +238,11 @@
                     </tr>
                     <tr>
                         <td><strong>Calendar</strong></td>
-                        <td>Fitur ekspor acara ke format ICS, navigasi penuh via papan ketik, dan daftar klasifikasi peserta <em>(required vs optional)</em>.</td>
+                        <td>Fitur ekspor acara ke format ICS, navigasi penuh via papan ketik, dan daftar klasifikasi peserta *(required vs optional)*.</td>
                     </tr>
                     <tr>
                         <td><strong>Settings</strong></td>
-                        <td>Perbaikan tata letak kalibrasi warna layar dan pengaturan panel penugasan ganda <em>(multitasking)</em>.</td>
+                        <td>Perbaikan tata letak kalibrasi warna layar dan pengaturan panel penugasan ganda *(multitasking)*.</td>
                     </tr>
                     <tr>
                         <td><strong>GNOME Web</strong></td>
@@ -268,12 +268,12 @@
                     </tr>
                     <tr>
                         <td><strong>Kendali Anak</strong></td>
-                        <td>Manajemen <em>Screen time</em>, <em>bedtime</em>, dan limit waktu akurat.</td>
+                        <td>Manajemen *Screen time*, *bedtime*, dan limit waktu akurat.</td>
                         <td>Komputer makin ramah dan aman untuk digunakan anak-anak.</td>
                     </tr>
                     <tr>
                         <td><strong>Gaming &amp; Grafis</strong></td>
-                        <td>VRR <em>default</em>, integrasi NVIDIA apik, HDR.</td>
+                        <td>VRR *default*, integrasi NVIDIA apik, HDR.</td>
                         <td>Pengalaman visual <em>gaming</em> dan desain yang lebih premium.</td>
                     </tr>
                     <tr>
@@ -302,7 +302,7 @@
                 <span>•</span>
                 <span><i class="fa-solid fa-book"></i> Referensi: <a href="https://release.gnome.org/50/" target="_blank" rel="noopener noreferrer">GNOME 50 Release Notes</a></span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

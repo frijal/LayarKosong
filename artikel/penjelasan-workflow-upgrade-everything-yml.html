@@ -279,7 +279,7 @@
     </style>
 <meta name="ai:summary" content="dan santai tentang cara kerja workflow GitHub Actions upgrade-everything.yml untuk otomatis upgrade (minor/patch) dan cleanup dependensi Node.js, lalu membuat Pull Request.">
 <meta name="ai:prompt_hint" content="dan santai tentang cara kerja workflow GitHub Actions upgrade-everything.yml untuk otomatis upgrade (minor/patch) dan cleanup dependensi Node.js, lalu membuat Pull Request.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main>
@@ -301,36 +301,36 @@
                 <p>Workflow ini kerjaannya cukup sistematis. Ini dia urutannya:</p>
                 <ol>
                     <li>
-                        <strong>Kapan Jalan? (<code>on:</code>)</strong>
+                        **Kapan Jalan? (<code>on:</code>)**
                         <ul>
-                            <li><strong>Manual (<code>workflow_dispatch</code>):</strong> Kamu bisa klik tombol 'Run workflow' di tab "Actions" repositori GitHub kamu. Cocok buat ngetes atau kalau lagi pengen update sekarang juga.</li>
-                            <li><strong>Otomatis (<code>schedule</code>):</strong> Udah disetel buat jalan sendiri tiap <strong>tanggal 1 jam 2 pagi UTC</strong> (itu sekitar jam 10 pagi WITA kalau di Balikpapan). Jadi, awal bulan, dependensi proyekmu otomatis dicek.</li>
+                            <li>**Manual (<code>workflow_dispatch</code>):** Kamu bisa klik tombol 'Run workflow' di tab "Actions" repositori GitHub kamu. Cocok buat ngetes atau kalau lagi pengen update sekarang juga.</li>
+                            <li>**Otomatis (<code>schedule</code>):<strong> Udah disetel buat jalan sendiri tiap </strong>tanggal 1 jam 2 pagi UTC** (itu sekitar jam 10 pagi WITA kalau di Balikpapan). Jadi, awal bulan, dependensi proyekmu otomatis dicek.</li>
                         </ul>
                     </li>
                     <li>
-                        <strong>Minta Izin Dulu (<code>permissions:</code>)</strong>
+                        **Minta Izin Dulu (<code>permissions:</code>)**
                         <p>Sebelum mulai kerja, workflow ini minta izin dulu ke GitHub:</p>
                         <ul>
                             <li><code>contents: write</code>: Izin buat nulis ke repositori, soalnya dia bakal ngubah file <code>package.json</code> dan <code>package-lock.json</code>, terus bikin <em>branch</em> baru buat PR.</li>
-                            <li><code>pull-requests: write</code>: Izin khusus buat bikin <em>Pull Request</em>. <strong>Ini penting sangat biar dia bisa ngajuin perubahannya.</strong> Tanpa ini, bakal error kayak yang kamu alamin sebelumnya.</li>
+                            <li><code>pull-requests: write</code>: Izin khusus buat bikin *Pull Request*. <strong>Ini penting sangat biar dia bisa ngajuin perubahannya.</strong> Tanpa ini, bakal error kayak yang kamu alamin sebelumnya.</li>
                         </ul>
                          <p><em>(Izin ini ditulis di level workflow dan di level job, bagus buat kejelasan!)</em></p>
                     </li>
                     <li>
-                        <strong>Mulai Kerja! (<code>jobs: maintenance-pr</code>)</strong>
+                        **Mulai Kerja! (<code>jobs: maintenance-pr</code>)**
                         <p>Cuma ada satu pekerjaan utama di sini, yang jalan di lingkungan Linux (<code>ubuntu-latest</code>). Langkah-langkahnya:</p>
                         <ol type="a">
-                            <li><strong>Ambil Kode (<code>Checkout code</code>):</strong> Ngunduh kode proyekmu ke 'meja kerja' si Actions.</li>
-                            <li><strong>Siapin Alat Node.js (<code>Setup Node.js</code>):</strong> Masang Node.js versi 20 dan aktifin <em>cache</em> npm biar instalasi dependensi bisa lebih cepet kalau tidak banyak berubah.</li>
-                            <li><strong>Pasang Peralatan Tambahan (<code>Install dependencies (untuk tools)</code>):</strong> Jalankan <code>npm install</code>. Ini buat masang <em>tools</em> yang dibutuhin workflow ini (kayak <code>npm-check-updates</code> dan <code>depcheck</code>) yang mungkin kamu daftarin di <code>devDependencies</code> di <code>package.json</code>.</li>
-                            <li><strong>Biar Bisa Dijalankan (<code>Make script executable</code>):</strong> Ngasih izin biar skrip <code>data/cleanup.js</code> bisa dieksekusi.</li>
-                            <li><strong>Langkah 1: Upgrade! (<code>1. Upgrade dependencies</code>):</strong>
+                            <li>**Ambil Kode (<code>Checkout code</code>):** Ngunduh kode proyekmu ke 'meja kerja' si Actions.</li>
+                            <li>**Siapin Alat Node.js (<code>Setup Node.js</code>):** Masang Node.js versi 20 dan aktifin <em>cache</em> npm biar instalasi dependensi bisa lebih cepet kalau tidak banyak berubah.</li>
+                            <li>**Pasang Peralatan Tambahan (<code>Install dependencies (untuk tools)</code>):** Jalankan <code>npm install</code>. Ini buat masang <em>tools</em> yang dibutuhin workflow ini (kayak <code>npm-check-updates</code> dan <code>depcheck</code>) yang mungkin kamu daftarin di <code>devDependencies</code> di <code>package.json</code>.</li>
+                            <li>**Biar Bisa Dijalankan (<code>Make script executable</code>):** Ngasih izin biar skrip <code>data/cleanup.js</code> bisa dieksekusi.</li>
+                            <li>**Langkah 1: Upgrade! (<code>1. Upgrade dependencies</code>):**
                                 <ul>
                                    <li>Masang <code>npm-check-updates</code> (ncu) di 'meja kerja'. <em>(Tips: Kalau ncu udah ada di devDependencies, pakai <code>npx ncu ...</code> mungkin lebih simpel).</em></li>
-                                   <li>Jalankan <code>ncu -u --target minor</code>. Ini perintah saktinya! Dia bakal ngecek semua dependensi di <code>package.json</code>, nyari versi <strong>minor</strong> dan <strong>patch</strong> terbaru, terus langsung <strong>update file <code>package.json</code></strong> kamu. Dijamin aman dari perubahan besar (major) yang bikin pusing.</li>
+                                   <li>Jalankan <code>ncu -u --target minor</code>. Ini perintah saktinya! Dia bakal ngecek semua dependensi di <code>package.json</code>, nyari versi <strong>minor</strong> dan <strong>patch</strong> terbaru, terus langsung **update file <code>package.json</code>** kamu. Dijamin aman dari perubahan besar (major) yang bikin pusing.</li>
                                 </ul>
                             </li>
-                             <li><strong>Langkah 2: Bersih-bersih! (<code>2. Cleanup unused packages</code>):</strong>
+                             <li>**Langkah 2: Bersih-bersih! (<code>2. Cleanup unused packages</code>):**
                                 <ul>
                                    <li>Jalankan skrip <code>data/cleanup.js</code>. Nah, skrip ini kerjaannya bersih-bersih. Kemungkinan besar dia:
                                         <ol>
@@ -341,19 +341,19 @@
                                     </li>
                                 </ul>
                             </li>
-                             <li><strong>Ngecek Ada Hasil Tidak? (<code>Check for changes</code>):</strong>
+                             <li>**Ngecek Ada Hasil Tidak? (<code>Check for changes</code>):**
                                 <ul>
                                    <li>Langkah cerdas nih! Dia ngecek pakai <code>git status</code>, "File <code>package.json</code> atau <code>package-lock.json</code> ada yang berubah tidak ya setelah di-upgrade dan dibersihin?".</li>
                                    <li>Hasilnya disimpan, apakah <code>true</code> (ada perubahan) atau <code>false</code> (tidak ada).</li>
                                 </ul>
                             </li>
-                             <li><strong>Tes Dulu Kalau Ada Perubahan (<code>Run tests</code>):</strong>
+                             <li>**Tes Dulu Kalau Ada Perubahan (<code>Run tests</code>):**
                                 <ul>
                                    <li>Ini cuma jalan kalau langkah sebelumnya bilang <code>true</code>.</li>
                                    <li>Dia coba jalanin perintah <code>npm run build</code> dan <code>npm test</code> (kalau ada di <code>package.json</code> kamu). <strong>Penting banget buat mastiin update dependensi tidak bikin error.</strong></li>
                                 </ul>
                             </li>
-                             <li><strong>Bikin Laporan (PR) Kalau Ada Perubahan (<code>Create Pull Request</code>):</strong>
+                             <li>**Bikin Laporan (PR) Kalau Ada Perubahan (<code>Create Pull Request</code>):**
                                 <ul>
                                    <li>Ini juga cuma jalan kalau ada perubahan (dan asumsinya tes tadi lolos).</li>
                                    <li>Pakai action jagoan <code>peter-evans/create-pull-request</code> buat bikin PR otomatis.</li>
@@ -363,7 +363,7 @@
                                             <li>Judul, pesan commit, dan deskripsinya jelas nerangin isinya (upgrade &amp; cleanup).</li>
                                             <li>Dikasih label (<code class="inline">dependencies</code>, <code>chore</code>, dll).</li>
                                             <li>Langsung minta review ke kamu (<code class="inline">reviewers: frijal</code>).</li>
-                                            <li>Langsung <em>ready</em>, bukan <em>draft</em>.</li>
+                                            <li>Langsung *ready*, bukan *draft*.</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -406,8 +406,8 @@
     </main>
     <footer>
         <p>🄯 2025  | Dibuat dengan cinta dan secangkir kopi.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

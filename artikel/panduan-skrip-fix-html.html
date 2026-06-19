@@ -135,7 +135,7 @@
     </style>
 <meta name="ai:summary" content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux.">
 <meta name="ai:prompt_hint" content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -177,11 +177,11 @@ source venv/bin/activate.fish</code></pre>
                 <div class="callout">
                     <strong>Fitur Utama Skrip:</strong><br>
                     1. Memperbaiki tag yang rusak.<br>
-                    2. Memindahkan konten yang salah tempat ke dalam <code>&lt;body&gt;</code>.<br>
-                    3. Membersihkan tag <code>&lt;script&gt;</code> JSON-LD.<br>
-                    4. Menghapus <code>&lt;div&gt;</code> kosong.<br>
-                    5. Membersihkan spasi dan baris baru di dalam tag (misal: <code>&lt;strong&gt;</code>).<br>
-                    6. Membuat file log <code>perbaikan_log.txt</code> dengan ringkasan.
+                    2. Memindahkan konten yang salah tempat ke dalam `&lt;body&gt;`.<br>
+                    3. Membersihkan tag `&lt;script&gt;` JSON-LD.<br>
+                    4. Menghapus `&lt;div&gt;` kosong.<br>
+                    5. Membersihkan spasi dan baris baru di dalam tag (misal: `&lt;strong&gt;`).<br>
+                    6. Membuat file log `perbaikan_log.txt` dengan ringkasan.
                 </div>
                 <pre><code class="language-python">import os
 import re
@@ -319,7 +319,7 @@ Log untuk file: contoh.html
         </main>
         <footer>
             <p>🄯 2025 - Dibuat dengan bantuan AI. Jaga Data Pribadi Tetap Aman.</p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <script>
@@ -375,6 +375,6 @@ Log untuk file: contoh.html
             }
                });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

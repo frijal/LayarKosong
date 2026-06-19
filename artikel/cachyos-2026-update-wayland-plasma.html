@@ -133,7 +133,7 @@
             .content-body { font-size: 1.05rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -157,13 +157,13 @@
         <h2>Siapa yang Paling Diuntungkan? (Who)</h2>
         <p>Rilis ini ditujukan untuk beberapa kalangan spesifik:</p>
         <ul>
-            <li><i class="fa-solid fa-display"></i> <strong>Penggemar Visual:</strong> Pengguna yang mendambakan tampilan desktop bersih tanpa <em>tearing</em>.</li>
+            <li><i class="fa-solid fa-display"></i> <strong>Penggemar Visual:</strong> Pengguna yang mendambakan tampilan desktop bersih tanpa *tearing*.</li>
             <li><i class="fa-solid fa-gamepad"></i> <strong>Linux Gamers:</strong> Kamu yang butuh FPS stabil dan <em>latency</em> rendah.</li>
             <li><i class="fa-solid fa-laptop"></i> <strong>Pemilik Laptop Baru:</strong> Terutama yang pakai prosesor AMD Zen 5 atau laptop Framework.</li>
             <li><i class="fa-solid fa-microchip"></i> <strong>Power Users:</strong> Pengguna yang suka oprek sistem sampai ke akar-akarnya.</li>
         </ul>
         <h2>Kapan dan Di Mana Rilis Ini Bisa Dinikmati? (When dan Where)</h2>
-        <p>Berita ini resmi diumumkan oleh Michael Larabel pada akhir Januari 2026. Kamu bisa langsung meluncur ke situs resmi mereka di <strong>cachyos.org</strong> untuk mengunduh ISO terbarunya. Rilis ini sudah tersedia secara global di berbagai <em>mirror</em> server, termasuk yang paling dekat dengan kita di Indonesia supaya <em>download</em>-nya makin ngebut.</p>
+        <p>Berita ini resmi diumumkan oleh Michael Larabel pada akhir Januari 2026. Kamu bisa langsung meluncur ke situs resmi mereka di <strong>cachyos.org</strong> untuk mengunduh ISO terbarunya. Rilis ini sudah tersedia secara global di berbagai <em>mirror</em> server, termasuk yang paling dekat dengan kita di Indonesia supaya *download*-nya makin ngebut.</p>
         <h2>Mengapa Transisi Ini Sangat Penting? (Why)</h2>
         <p>Mungkin kamu bertanya, <em>"Kenapa sih harus ganti ke Wayland? X11 kan masih jalan?"</em>. Jawabannya simpel: <strong>Keamanan dan Efisiensi.</strong> X11 itu teknologi yang umurnya sudah puluhan tahun dan sudah sulit untuk dikembangkan lagi untuk menangani layar modern dengan <em>refresh rate</em> tinggi atau HDR.</p>
         <p>CachyOS ingin memastikan penggunanya mendapatkan teknologi paling mutakhir. Penggantian SDDM menjadi <strong>Plasma Login Manager</strong> juga krusial karena integrasi yang lebih mulus dengan sesi Wayland, mengurangi <em>glitch</em> saat transisi dari layar <em>boot</em> ke desktop.</p>
@@ -174,11 +174,11 @@
         <h3>2. Optimasi Btrfs dengan Kompresi Level 1 💾</h3>
         <p>Buat kamu yang suka pakai file system Btrfs, sekarang instalasi default akan langsung mengaktifkan kompresi zstd level 1. Kenapa cuma level 1? Karena ini adalah <em>sweet spot</em> antara menghemat ruang penyimpanan tanpa membebani kerja CPU. Efeknya? Baca-tulis data jadi lebih efisien!</p>
         <h3>3. Full Wayland dan Plasma Login Manager 🖥️</h3>
-        <p>Ini bintang utamanya. Mengikuti jejak Fedora 44, CachyOS kini default ke sesi Wayland. Tidak ada lagi drama layar robek (<em>screen tearing</em>) saat nonton video atau main game. Plasma Login Manager yang baru juga memberikan tampilan yang lebih konsisten dengan tema desktop yang kamu pilih.</p>
+        <p>Ini bintang utamanya. Mengikuti jejak Fedora 44, CachyOS kini default ke sesi Wayland. Tidak ada lagi drama layar robek (*screen tearing*) saat nonton video atau main game. Plasma Login Manager yang baru juga memberikan tampilan yang lebih konsisten dengan tema desktop yang kamu pilih.</p>
         <h3>4. Dukungan NVIDIA Kepler dan Hardware Baru 🏎️</h3>
         <p>Meskipun kita bicara masa depan, CachyOS gak lupa sama pengguna hardware lama. Mereka menyertakan paket <code>nouveau-fw</code> untuk kartu grafis NVIDIA seri Kepler agar bisa menikmati akselerasi video VA-API. Di sisi lain, mereka juga memperbaiki <em>bug</em> instalasi pada laptop Framework yang menggunakan prosesor AMD Zen 5 terbaru. Jadi, dari hardware jadul sampai yang paling baru, semua dirangkul!</p>
         <h2>Analisis E-E-A-T: Pengalaman dan Keahlian</h2>
-        <p>Sebagai pengguna yang juga hobi mantau perkembangan kernel Linux di GitHub, aku melihat langkah CachyOS ini sangat berani. Mereka tidak menunggu "mapan" seperti distro besar lainnya (seperti Debian atau Ubuntu LTS), tapi langsung memberikan apa yang dibutuhkan komunitas <em>bleeding-edge</em>. Keahlian tim pengembang CachyOS dalam meramu <em>v3</em> dan <em>v4</em> x86-64 instruksi set pada paket mereka memberikan bukti nyata bahwa distro ini bukan sekadar <em>skin</em> dari Arch, melainkan hasil rekayasa performa yang serius.</p>
+        <p>Sebagai pengguna yang juga hobi mantau perkembangan kernel Linux di GitHub, aku melihat langkah CachyOS ini sangat berani. Mereka tidak menunggu "mapan" seperti distro besar lainnya (seperti Debian atau Ubuntu LTS), tapi langsung memberikan apa yang dibutuhkan komunitas <em>bleeding-edge*. Keahlian tim pengembang CachyOS dalam meramu *v3</em> dan <em>v4</em> x86-64 instruksi set pada paket mereka memberikan bukti nyata bahwa distro ini bukan sekadar <em>skin</em> dari Arch, melainkan hasil rekayasa performa yang serius.</p>
         <h2>Kesimpulan</h2>
         <p>CachyOS rilis Januari 2026 adalah bukti bahwa ekosistem Linux terus bergerak maju tanpa henti. Dengan transisi ke Wayland secara penuh dan penyederhanaan komponen sistem lewat Limine dan Plasma Login Manager, pengguna mendapatkan sistem yang tidak hanya cepat, tapi juga modern dan siap menghadapi tantangan komputasi masa depan.</p>
         <p>Kalau kamu bosan dengan distro yang itu-itu saja dan ingin merasakan sensasi Arch Linux yang sesungguhnya tanpa harus pusing konfigurasi dari nol, rilis terbaru CachyOS ini wajib masuk daftar coba kamu minggu ini!</p>
@@ -195,10 +195,9 @@
             <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
             <a href="https://t.me/frijal" target="_blank"><i class="fa-brands fa-telegram"></i></a>
         </div>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

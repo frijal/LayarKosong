@@ -223,7 +223,7 @@
             }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -244,24 +244,24 @@
             <img class="article-image" src="https://dalam.web.id/img/img.youtube.com/5b5bcdd80f6f4e28.webp" alt="Ilustrasi peluncuran infrastruktur cloud Azure Linux 4.0 oleh Microsoft" fetchpriority="high" decoding="async">
             <div class="image-caption">Gambar 1: Azure Linux 4.0 kini hadir sebagai sistem operasi virtual machine publik di ekosistem Azure.</div>
             <h2>What: Jadi, Apa Sebenarnya Azure Linux 4.0 Itu?</h2>
-            <p>Secara sederhana, Azure Linux 4.0 dapat didefinisikan sebagai sistem operasi yang ringan (<em>lightweight</em>), aman (<em>secure</em>), dan dioptimalkan secara mendalam untuk kebutuhan <em>cloud</em> (<em>cloud-optimized</em>) yang dirancang langsung oleh tangan dingin para insinyur Microsoft. Distro ini dirancang secara spesifik agar mampu berjalan seefisien mungkin di atas klaster Azure.</p>
-            <p>Pembeda terbesar di versi 4.0 ini adalah ketersediaannya. Kini, Azure Linux tidak lagi terisolasi di dalam lingkungan kontainer saja, melainkan sudah tersedia sebagai <em>regular virtual machine image</em>. Artinya, kamu bisa melakukan proses <em>deployment</em> layaknya mesin server mandiri pada umumnya.</p>
+            <p>Secara sederhana, Azure Linux 4.0 dapat didefinisikan sebagai sistem operasi yang ringan (*lightweight*), aman (*secure*), dan dioptimalkan secara mendalam untuk kebutuhan <em>cloud</em> (*cloud-optimized*) yang dirancang langsung oleh tangan dingin para insinyur Microsoft. Distro ini dirancang secara spesifik agar mampu berjalan seefisien mungkin di atas klaster Azure.</p>
+            <p>Pembeda terbesar di versi 4.0 ini adalah ketersediaannya. Kini, Azure Linux tidak lagi terisolasi di dalam lingkungan kontainer saja, melainkan sudah tersedia sebagai <em>regular virtual machine image*. Artinya, kamu bisa melakukan proses *deployment</em> layaknya mesin server mandiri pada umumnya.</p>
             <p>Untuk mengakomodasi berbagai kebutuhan arsitektur modern, Microsoft menyediakan sistem ini dalam dua versi terpisah:</p>
             <ul>
-                <li><strong>Azure Linux 4.0:</strong> Ditujukan untuk penggunaan server umum (<em>general server</em>) dan kebutuhan Virtual Machine (VM) reguler.</li>
-                <li><strong>Azure Container Linux:</strong> Versi minimalis yang diperkeras tingkat keamanannya (<em>hardened</em>) serta bersifat <em>immutable</em> (tidak dapat diubah setelah dijalankan), dikhususkan murni untuk menjalankan klaster kontainer dengan efisiensi tinggi.</li>
+                <li><strong>Azure Linux 4.0:</strong> Ditujukan untuk penggunaan server umum (*general server*) dan kebutuhan Virtual Machine (VM) reguler.</li>
+                <li><strong>Azure Container Linux:</strong> Versi minimalis yang diperkeras tingkat keamanannya (*hardened*) serta bersifat <em>immutable</em> (tidak dapat diubah setelah dijalankan), dikhususkan murni untuk menjalankan klaster kontainer dengan efisiensi tinggi.</li>
             </ul>
             <h2>Where &amp; When: Di Mana dan Kapan Pengumuman Besar Ini Terjadi?</h2>
             <p>Pengumuman mengejutkan ini terjadi secara langsung di panggung megah <strong>Open Source Summit North America</strong>, salah satu ajang konferensi tahunan paling bergengsi yang digagas oleh Linux Foundation. </p>
             <p>Brendan Burns, selaku perwakilan dari Microsoft, membeberkan kehadiran sistem operasi ini di tengah-tengah sesi presentasinya. Sontak saja, kabar ini langsung mencuri perhatian penuh para pasang mata yang hadir dan seketika dinobatkan menjadi salah satu momen terbesar sepanjang jalannya konferensi tersebut.</p>
             <h2>Why &amp; How: Mengapa Microsoft Membuatnya dan Bagaimana Detail Teknologinya?</h2>
-            <p>Mengapa Microsoft repot-repot merilis distro server ini secara luas? Microsoft menegaskan bahwa langkah ini adalah cara mereka untuk menyajikan pengalaman Linux yang andal dan langsung siap pakai (<em>"batteries-included"</em>) di dalam ekosistem Azure bagi para pelanggannya. Kendati demikian, mereka memastikan akan tetap memberikan dukungan penuh pada distro-distro populer lain yang sudah lama eksis seperti Ubuntu dan Red Hat.</p>
+            <p>Mengapa Microsoft repot-repot merilis distro server ini secara luas? Microsoft menegaskan bahwa langkah ini adalah cara mereka untuk menyajikan pengalaman Linux yang andal dan langsung siap pakai (*"batteries-included"*) di dalam ekosistem Azure bagi para pelanggannya. Kendati demikian, mereka memastikan akan tetap memberikan dukungan penuh pada distro-distro populer lain yang sudah lama eksis seperti Ubuntu dan Red Hat.</p>
             <p>Bagaimana karakteristik teknis dan dukungan yang ditawarkan di dalam Azure Linux 4.0 ini? Berikut adalah detail penting yang wajib kamu ketahui:</p>
             <div class="highlight-box">
                 <ul>
                     <li><strong>Berbasis Fedora:</strong> Arsitektur dasarnya dikembangkan berbasis Fedora, namun dengan paket-paket dependensi yang dikurasi dan diawasi ketat secara berkala oleh Microsoft.</li>
                     <li><strong>Integrasi WSL yang Sempurna:</strong> Berjalan sangat mulus dengan Windows Subsystem for Linux (WSL). Fitur ini memudahkan para developer untuk melakukan proses pengujian skrip atau aplikasi secara lokal di PC Windows 11 mereka sebelum dilempar ke server produksi.</li>
-                    <li><strong>Dukungan Jangka Panjang:</strong> Menyediakan masa dukungan (<em>support</em>) selama 2 tahun penuh yang mencakup pembaruan keamanan bulanan (<em>monthly security updates</em>).</li>
+                    <li><strong>Dukungan Jangka Panjang:</strong> Menyediakan masa dukungan (*support*) selama 2 tahun penuh yang mencakup pembaruan keamanan bulanan (*monthly security updates*).</li>
                     <li><strong>Terbuka untuk Umum:</strong> Proyek ini sepenuhnya bersifat <em>open-source</em> dan seluruh kode sumbernya dapat kamu akses langsung di platform GitHub.</li>
                 </ul>
             </div>
@@ -279,7 +279,7 @@
         </main>
         <footer>
             <p>🄯 2026 Layar Kosong. Didukung oleh teknologi native HTML5 &amp; CSS tanpa library eksternal.</p>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

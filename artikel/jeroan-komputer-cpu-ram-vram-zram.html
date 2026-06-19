@@ -168,7 +168,7 @@
             margin-bottom: 2rem;
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main">
@@ -176,12 +176,12 @@
             <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Bongkar Jeroan Komputer: Memahami Hubungan Rahasia Antara CPU, RAM, VRAM, dan zRAM 💻</h1>
             <p class="intro">Pernahkah kamu merasa laptop mendadak freeze atau mouse patah-patah saat sedang sibuk-sibuknya membuka puluhan tab browser, menjalankan script otomasi, dan memproses gambar secara bersamaan? Sebelum buru-buru menyalahkan sistem operasi, kita perlu berkenalan dengan para "pekerja" di dalam mesinmu.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/1afc093faf6cda05.webp" alt="Ilustrasi komponen internal komputer yang saling terhubung mengelola data" fetchpriority="high" decoding="async">
-            <p>Sistem operasi bertindak sebagai pengatur lalu lintas dari komponen-komponen perangkat keras komputermu. Ketika beban kerja melonjak drastis, manajemen memori yang buruk sering kali menjadi biang kerok terjadinya <em>stuttering</em>. Mari kita bedah satu per satu anatominya agar kamu tahu siapa yang sedang bekerja, dan siapa yang jadi beban.</p>
+            <p>Sistem operasi bertindak sebagai pengatur lalu lintas dari komponen-komponen perangkat keras komputermu. Ketika beban kerja melonjak drastis, manajemen memori yang buruk sering kali menjadi biang kerok terjadinya *stuttering*. Mari kita bedah satu per satu anatominya agar kamu tahu siapa yang sedang bekerja, dan siapa yang jadi beban.</p>
             <h2>1. Prosesor (CPU): Sang Mandor Proyek 🧠</h2>
             <p><em>Central Processing Unit</em> (CPU) adalah otak atau mandor dari seluruh operasi komputermu. Bagian inilah yang pertama kali menerima beban kerja dari setiap perintah yang kamu ketikkan.</p>
             <ul>
                 <li><strong>Fungsi Utama:</strong> Menerima instruksi, melakukan kalkulasi logika, dan mengeksekusi aplikasi.</li>
-                <li><strong>Analogi:</strong> Bayangkan CPU seperti seorang mandor di pabrik. Jika disuruh mengawasi kompilasi kode, menjalankan server lokal, dan merender antarmuka grafis sekaligus, sang mandor pasti kewalahan dan menyebabkan <em>bottleneck</em>.</li>
+                <li><strong>Analogi:</strong> Bayangkan CPU seperti seorang mandor di pabrik. Jika disuruh mengawasi kompilasi kode, menjalankan server lokal, dan merender antarmuka grafis sekaligus, sang mandor pasti kewalahan dan menyebabkan *bottleneck*.</li>
             </ul>
             <h2>2. RAM (Random Access Memory): Meja Kerja Utama 🗄️</h2>
             <p>Kalau prosesor adalah mandornya, RAM adalah <strong>meja kerjanya</strong>.</p>
@@ -193,11 +193,11 @@
             <p>Di sinilah letak kemacetan lalu lintas data sering terjadi bagi pengguna laptop produktivitas. Ada dua jenis GPU:</p>
             <ul>
                 <li><strong>GPU Diskrit (Dedicated):</strong> Kartu grafis kelas berat yang memiliki kepingan memori VRAM sendiri secara fisik. Ia mandiri dan tidak mengganggu performa memori utama.</li>
-                <li><strong>Integrated GPU (iGPU):</strong> Kartu grafis yang menyatu di dalam prosesor utama (seperti Intel HD Graphics). Ia tidak memiliki VRAM fisik, sehingga ia perlu meminta jatah dari meja kerja utama (RAM sistem). Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Sistem ini disebut <em>Shared Memory</em>. Saat grafis meninggi, sebagian RAM akan dipotong paksa.</li>
+                <li><strong>Integrated GPU (iGPU):</strong> Kartu grafis yang menyatu di dalam prosesor utama (seperti Intel HD Graphics). Ia tidak memiliki VRAM fisik, sehingga ia perlu meminta jatah dari meja kerja utama (RAM sistem). Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Sistem ini disebut *Shared Memory*. Saat grafis meninggi, sebagian RAM akan dipotong paksa.</li>
             </ul>
             <h2>4. SWAP: Gudang Penyimpanan Darurat 🛞</h2>
             <p>Apa yang terjadi jika RAM sudah penuh sesak, lalu kamu membuka aplikasi baru yang berat? Sistem akan menggunakan <strong>SWAP</strong>.</p>
-            <p>Sistem akan mencari data di atas RAM yang sedang tidak aktif, lalu membuangnya sementara ke dalam <em>drive</em> penyimpanan utama (SSD/HDD). Kecepatan akses SSD jauh berada di bawah RAM. Proses bongkar-muat data inilah yang membuat laptopmu mendadak <em>freeze</em>.</p>
+            <p>Sistem akan mencari data di atas RAM yang sedang tidak aktif, lalu membuangnya sementara ke dalam <em>drive</em> penyimpanan utama (SSD/HDD). Kecepatan akses SSD jauh berada di bawah RAM. Proses bongkar-muat data inilah yang membuat laptopmu mendadak *freeze*.</p>
             <h2>5. zRAM: Kompresi Memori Modern 🪄</h2>
             <p>Untuk mengatasi kelambatan ekstrem dari metode SWAP konvensional, distribusi Linux modern menerapkan teknologi yang disebut <strong>zRAM</strong>.</p>
             <p>zRAM menggantikan peran SWAP fisik di <em>storage</em> dengan membuat blok terkompresi langsung di dalam RAM itu sendiri. Saat RAM penuh, data dipampatkan menggunakan algoritma super cepat. Berikut adalah bukti nyata sistem yang menggunakan zRAM (berjalan dengan algoritma zstd):</p>
@@ -206,8 +206,8 @@ NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
             <p>Pada output di atas, kamu bisa melihat bagaimana data sebesar 4K berhasil dikompresi hingga menjadi 64 Bytes saja di dalam ruang memori! Sangat efisien, bukan?</p>
             <h2>6. Praktik Langsung: Mengamankan Memori dengan Cgroups 🛠️</h2>
-            <p>Memiliki zRAM dan RAM besar (seperti 16GB) sering kali belum cukup jika lalu lintasnya tidak diatur. Di distribusi berbasis performa seperti CachyOS, kita bisa menggunakan <em>Kernel Control Groups</em> (<em>cgroups</em>) untuk memastikan aplikasi yang sedang kita lihat di layar mendapat prioritas tertinggi.</p>
-            <p>Berikut adalah proses instalasi paket optimasi memori eksperimental (seperti <em>dmemcg-booster</em> dan <em>plasma-foreground-booster</em>) yang bertindak sebagai "polisi lalu lintas" untuk memori sistem:</p>
+            <p>Memiliki zRAM dan RAM besar (seperti 16GB) sering kali belum cukup jika lalu lintasnya tidak diatur. Di distribusi berbasis performa seperti CachyOS, kita bisa menggunakan <em>Kernel Control Groups</em> (*cgroups*) untuk memastikan aplikasi yang sedang kita lihat di layar mendapat prioritas tertinggi.</p>
+            <p>Berikut adalah proses instalasi paket optimasi memori eksperimental (seperti <em>dmemcg-booster</em> dan *plasma-foreground-booster*) yang bertindak sebagai "polisi lalu lintas" untuk memori sistem:</p>
 <pre class="terminal"><code>bagaimana dengan ini? Package (3)                        New Version                Net Change  Download Size
 cachyos/kcgroups                   0.0.dmemcg.experimental-3    0,32 MiB       0,10 MiB
 cachyos/dmemcg-booster             0.1.2-1                      0,45 MiB       0,20 MiB
@@ -231,7 +231,7 @@ Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-syst
 Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → '/usr/lib/systemd/user/dmemcg-booster-user.service'.
 (2/3) installing kcgroups                                    [--------------------------------] 100%
 (3/3) installing plasma-foreground-booster                   [--------------------------------] 100%</code></pre>
-            <p>Perhatikan baris pembuatan <em>symlink</em> di log instalasi di atas. Sistem Linux modern langsung mengaktifkan <em>service booster</em> tersebut baik di level <em>root</em> (<em>system</em>) maupun di level sesi pengguna (<em>user session</em>). Hasilnya? <em>Stuttering</em> hilang, perpindahan antar jendela jadi lebih <em>snappy</em>, dan iGPU tidak lagi rakus membajak seluruh kapasitas <em>shared memory</em> saat sedang terbebani.</p>
+            <p>Perhatikan baris pembuatan <em>symlink</em> di log instalasi di atas. Sistem Linux modern langsung mengaktifkan <em>service booster</em> tersebut baik di level <em>root</em> (*system*) maupun di level sesi pengguna (*user session*). Hasilnya? <em>Stuttering</em> hilang, perpindahan antar jendela jadi lebih <em>snappy*, dan iGPU tidak lagi rakus membajak seluruh kapasitas *shared memory</em> saat sedang terbebani.</p>
             <div class="author-meta">
                 <i class="fa-solid fa-user-pen"></i>
                 <div>
@@ -245,7 +245,7 @@ Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-boo
     </main>
     <footer>
         <p>🄯 2026 Layar Kosong. Didistribusikan di bawah lisensi The Unlicense.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

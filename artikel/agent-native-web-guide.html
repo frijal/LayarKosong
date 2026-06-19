@@ -112,7 +112,7 @@
             background: linear-gradient(145deg, #18181b, #27251f);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
     <!-- NAV -->
@@ -138,10 +138,7 @@
                     </button>
                 </div>
                 <div class="hidden md:flex items-center gap-x-2 text-sm">
-                    <a href="https://dalam.web.id" target="_blank" class="flex items-center gap-x-2 px-4 py-2 text-zinc-400 hover:text-white transition-colors">
-                        <i class="fa-solid fa-globe fa-sm"></i>
-                        <span class="font-medium">dalam.web.id</span>
-                    </a>
+                    <a href="https://dalam.web.id" target="_blank" class="flex items-center gap-x-2 px-4 py-2 text-zinc-400 hover:text-white transition-colors">Jaga Data Pribadi Tetap Aman</a>
                 </div>
             </div>
         </div>
@@ -290,7 +287,7 @@
     return context.next();
   }
   if (accept.includes("text/markdown")) {
-    const markdownResponse = await context.env.ASSETS.fetch(new Request(<code>${url.origin}/llms.md</code>));
+    const markdownResponse = await context.env.ASSETS.fetch(new Request(`${url.origin}/llms.md`));
     return new Response(markdownResponse.body, {
       headers: {
         "Content-Type": "text/markdown; charset=utf-8",
@@ -498,7 +495,7 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
     return context.next();
   }
   if (accept.includes("text/markdown")) {
-    const markdownResponse = await context.env.ASSETS.fetch(new Request(<code>${url.origin}/llms.md</code>));
+    const markdownResponse = await context.env.ASSETS.fetch(new Request(`${url.origin}/llms.md`));
     return new Response(markdownResponse.body, {
       headers: {
         "Content-Type": "text/markdown; charset=utf-8",
@@ -647,7 +644,7 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
             const textToCopy = codeElement.innerText.trim();
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalHTML = button.innerHTML;
-                button.innerHTML = <code><i class="fa-solid fa-check fa-sm"></i> <span>${currentLang === 'id' ? 'Tersalin!' : 'Copied!'}</span></code>;
+                button.innerHTML = `<i class="fa-solid fa-check fa-sm"></i> <span>${currentLang === 'id' ? 'Tersalin!' : 'Copied!'}</span>`;
                 button.disabled = true;
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
@@ -662,7 +659,7 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
                 const originalHTML = button.innerHTML;
-                button.innerHTML = <code><i class="fa-solid fa-check fa-sm"></i> <span>Copied!</span></code>;
+                button.innerHTML = `<i class="fa-solid fa-check fa-sm"></i> <span>Copied!</span>`;
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
                 }, 2000);
@@ -722,6 +719,6 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
         // Boot
         window.onload = init;
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

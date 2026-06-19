@@ -258,7 +258,7 @@ footer a {
 </style>
 <meta name="ai:summary" content="Tutorial lengkap dan santai cara membuat branch Git baru (orphan branch) yang tidak punya riwayat commit dari branch main. Cocok untuk halaman gh-pages atau proyek terpisah.">
 <meta name="ai:prompt_hint" content="Tutorial lengkap dan santai cara membuat branch Git baru (orphan branch) yang tidak punya riwayat commit dari branch main. Cocok untuk halaman gh-pages atau proyek terpisah.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -282,7 +282,7 @@ footer a {
                         </div>
                         <div class="tip">
                             <i class="fa-solid fa-lightbulb"></i>
-                            <strong>Info:</strong> Kamu bebas ganti <code>gh-pages</code> dengan nama branch lain yang kamu suka, misalnya <code>dokumentasi</code> atau <code>v2-release</code>.
+                            <strong>Info:</strong> Kamu bebas ganti `gh-pages` dengan nama branch lain yang kamu suka, misalnya `dokumentasi` atau `v2-release`.
                         </div>
                     </div>
                 </div>
@@ -290,14 +290,14 @@ footer a {
                     <div class="step-icon"><i class="fa-solid fa-broom"></i></div>
                     <div class="step-content">
                         <h3>Langkah 2: Operasi Bersih-Bersih</h3>
-                        <p>Eits, walaupun riwayatnya kosong, file-file dari branch <code>main</code> masih ada di <em>staging area</em>. Kita perlu usir mereka dulu biar tidak ikut di commit pertama. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Sapu bersih dengan perintah ini.</p>
+                        <p>Eits, walaupun riwayatnya kosong, file-file dari branch <code>main</code> masih ada di *staging area*. Kita perlu usir mereka dulu biar tidak ikut di commit pertama. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Sapu bersih dengan perintah ini.</p>
                         <div class="code-block">
                             <pre><code>git rm -rf .</code></pre>
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                          <div class="tip warning">
                             <i class="fa-solid fa-exclamation-triangle"></i>
-                            <strong>Penting:</strong> Perintah ini cuma menghapus file dari <em>index</em> Git, bukan dari hardisk-mu (selama kamu belum commit). Jadi tenang aja, file-mu di branch <code>main</code> tetap aman sentosa.
+                            <strong>Penting:</strong> Perintah ini cuma menghapus file dari *index* Git, bukan dari hardisk-mu (selama kamu belum commit). Jadi tenang aja, file-mu di branch `main` tetap aman sentosa.
                         </div>
                     </div>
                 </div>
@@ -318,7 +318,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                     <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
                     <div class="step-content">
                         <h3>Langkah 4: Terbangkan ke GitHub!</h3>
-                        <p>Semua sudah siap di lokal. Tinggal kita dorong (<em>push</em>) branch baru ini ke rumahnya di repositori GitHub.</p>
+                        <p>Semua sudah siap di lokal. Tinggal kita dorong (*push*) branch baru ini ke rumahnya di repositori GitHub.</p>
                         <div class="code-block">
                             <pre><code>git push origin gh-pages</code></pre>
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
@@ -334,7 +334,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
         </main>
         <footer>
             <p>🄯 2025 - </p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <script>
@@ -358,6 +358,6 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
     });
   });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

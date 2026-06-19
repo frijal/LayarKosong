@@ -331,7 +331,7 @@
 </style>
 <meta name="ai:summary" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
 <meta name="ai:prompt_hint" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -422,7 +422,7 @@ const SCRIPT_NAME = path.basename(__filename); // Nama script ini agar diabaikan
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
 // --------------------
 const imagePaths = [];
-console.log(<code>Memindai '${START_DIR}' untuk mencari gambar...</code>);
+console.log(`Memindai '${START_DIR}' untuk mencari gambar...`);
 // Fungsi rekursif untuk memindai folder
 function findImages(currentDir) {
   try {
@@ -446,12 +446,12 @@ function findImages(currentDir) {
           // 4. Ganti backslash (\) Windows menjadi forward slash (/) untuk URL
           const urlPath = relativePath.replace(/\\/g, '/');
           imagePaths.push(urlPath);
-          console.log(<code>  Menemukan: ${urlPath}</code>);
+          console.log(`  Menemukan: ${urlPath}`);
         }
       }
     }
   } catch (err) {
-    console.error(<code>Gagal membaca folder: ${currentDir}</code>, err);
+    console.error(`Gagal membaca folder: ${currentDir}`, err);
   }
 }
 // Mulai pemindaian
@@ -463,9 +463,9 @@ try {
   // JSON.stringify dengan 'null, 2' membuat file rapi dan mudah dibaca
   const jsonContent = JSON.stringify(imagePaths, null, 2);
   fs.writeFileSync(OUTPUT_FILE, jsonContent, 'utf8');
-  console.log(<code>\n✅ Sukses! ${imagePaths.length} gambar telah disimpan ke '${OUTPUT_FILE}'</code>);
+  console.log(`\n✅ Sukses! ${imagePaths.length} gambar telah disimpan ke '${OUTPUT_FILE}'`);
 } catch (err) {
-  console.error(<code>\n❌ Gagal menulis file: ${err}</code>);
+  console.error(`\n❌ Gagal menulis file: ${err}`);
 }
 </code></pre>
                 <h3><i class="fa-solid fa-terminal"></i>Cara Menjalankan (Node.js)</h3>
@@ -482,10 +482,10 @@ try {
         </main>
         <footer>
             <p>🄯 2025 dalam.web.id. Jaga Data Pribadi Tetap Aman.</p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

@@ -95,7 +95,7 @@
     </style>
 <meta name="ai:summary" content="cara menggabungkan berkas PDF dengan PDFtk di Linux/Windows. Disertai contoh perintah, tips, dan keunggulan penggunaan.">
 <meta name="ai:prompt_hint" content="cara menggabungkan berkas PDF dengan PDFtk di Linux/Windows. Disertai contoh perintah, tips, dan keunggulan penggunaan.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="wrap">
@@ -124,7 +124,7 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
                         <li><code>cat</code>: Perintah untuk menggabungkan (concatenate).</li>
                         <li><code>output berkas-gabungan.pdf</code>: Menentukan nama file hasil gabungan.</li>
                     </ul>
-                    <p class="muted">Tips: Jika file Anda memiliki pola nama yang urut (misalnya, <code>Bab-<em>.pdf</code>), Anda bisa menggunakan wildcard untuk menyeleksi semua file sekaligus: <code>pdftk Bab-</em>.pdf cat output Buku-Lengkap.pdf</code>.</p>
+                    <p class="muted">Tips: Jika file Anda memiliki pola nama yang urut (misalnya, <code>Bab-*.pdf</code>), Anda bisa menggunakan wildcard untuk menyeleksi semua file sekaligus: <code>pdftk Bab-*.pdf cat output Buku-Lengkap.pdf</code>.</p>
                     <h2>Keunggulan PDFtk</h2>
                     <ul>
                         <li><strong>Cepat dan Ringan:</strong> Jauh lebih cepat dibandingkan aplikasi GUI yang berat.</li>
@@ -137,7 +137,7 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
         </main>
         <footer class="site">
             <small>🄯 2025 Belajar Linux · Manajemen PDF jadi lebih mudah.</small>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a3847; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
@@ -159,6 +159,6 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
         });
     })();
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

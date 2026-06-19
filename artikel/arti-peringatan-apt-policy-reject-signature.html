@@ -258,7 +258,7 @@
             color: var(--border-color);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -299,7 +299,7 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</code></pre>
                 <h2><i class="fa-solid fa-screwdriver-wrench icon"></i> Terus, Aku Harus Ngapain Sekarang?</h2>
                 <p>Kamu dihadapkan pada beberapa pilihan solusi, mulai dari yang paling gampang sambil rebahan, sampai yang butuh sedikit modifikasi di balik layar.</p>
                 <h3>Pilihan 1: Santai dan Abaikan Dulu (Sangat Direkomendasikan)</h3>
-                <p>Serius, ini adalah opsi terbaik untuk saat ini. Selama itu hanya <em>Warning</em>, kamu tidak perlu memperbaiki apa-apa. Para pengelola repositori tersebut umumnya sangat profesional; mereka sadar akan tenggat waktu ini dan pasti akan memperbarui "segel" GPG <em>key</em> mereka jauh hari sebelum kedaluwarsa. Nantinya, saat mereka sudah <em>update</em>, peringatan ini akan otomatis lenyap saat kamu menjalankan <code>sudo apt update</code> di bulan-bulan berikutnya.</p>
+                <p>Serius, ini adalah opsi terbaik untuk saat ini. Selama itu hanya <em>Warning</em>, kamu tidak perlu memperbaiki apa-apa. Para pengelola repositori tersebut umumnya sangat profesional; mereka sadar akan tenggat waktu ini dan pasti akan memperbarui "segel" GPG <em>key</em> mereka jauh hari sebelum kedaluwarsa. Nantinya, saat mereka sudah *update*, peringatan ini akan otomatis lenyap saat kamu menjalankan <code>sudo apt update</code> di bulan-bulan berikutnya.</p>
                 <h3>Pilihan 2: Jadi Detektif Dadakan (Buat yang Penasaran)</h3>
                 <p>Kalau kamu tipe pengguna Linux yang haus akan informasi dan ingin tahu kapan tepatnya hari "kiamat" sertifikat tersebut, jalankan saja perintah audit yang disarankan oleh terminal:</p>
 <pre><code>sudo apt update --audit</code></pre>
@@ -328,8 +328,8 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</code></pre>
                 <span>14 Juni 2026</span>
                 <span>Referensi: Dokumentasi Resmi Debian &amp; Komunitas Ubuntu</span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

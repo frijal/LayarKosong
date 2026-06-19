@@ -192,7 +192,7 @@
         .footer-content a:hover { text-decoration: underline; }
     </style>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main" class="container">
@@ -204,7 +204,7 @@
             <p>Namun, bersiaplah menghadapi kenyataan pahit: mengembalikan sistem dari Testing ke Stable itu ibarat memasukkan kembali pasta gigi yang sudah dipencet ke dalam tubenya. Sangat sulit, berantakan, dan butuh kesabaran ekstra. Yuk, kita bedah tuntas apa saja yang sebenarnya terjadi dan bagaimana cara mengeksekusinya.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp" srcset="https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="featured-image" alt="Ilustrasi layar terminal linux saat melakukan proses migrasi repositori">
             <blockquote>
-                <p><i class="fa-solid fa-skull-crossbones"></i> <strong>Peringatan Penting:</strong> Migrasi dari Testing kembali ke Stable <strong>jauh lebih sulit dan berisiko</strong> dibandingkan pembaruan biasa. Secara arsitektur, Debian <strong>tidak mendukung proses downgrade</strong> secara resmi. Karena paket-paket di Testing versinya lebih tinggi, memaksa menurunkannya kerap kali menyebabkan konflik dependensi, paket korup, hingga risiko terburuk: <em>kernel panic</em> dan gagal <em>booting</em>.</p>
+                <p><i class="fa-solid fa-skull-crossbones"></i> <strong>Peringatan Penting:</strong> Migrasi dari Testing kembali ke Stable <strong>jauh lebih sulit dan berisiko</strong> dibandingkan pembaruan biasa. Secara arsitektur, Debian <strong>tidak mendukung proses downgrade</strong> secara resmi. Karena paket-paket di Testing versinya lebih tinggi, memaksa menurunkannya kerap kali menyebabkan konflik dependensi, paket korup, hingga risiko terburuk: <em>kernel panic</em> dan gagal *booting*.</p>
             </blockquote>
             <h2>Metode 1: Cara Terbaik &amp; Paling Aman (Rekomendasi Mutlak)</h2>
             <p>Sejujurnya, jika ada yang bertanya bagaimana cara paling aman untuk kembali? Jawabannya adalah <strong>jangan di-downgrade</strong>. <strong>Lakukan instalasi ulang Debian Stable</strong> (Bookworm) dari nol. Mengapa? Karena ini adalah satu-satunya jalan membersihkan sistem dari sisa-sisa <em>library</em> versi baru yang keras kepala.</p>
@@ -218,7 +218,7 @@
             <h2>Metode 2: Migrasi Manual (Peringatan: Berisiko Sangat Tinggi)</h2>
             <p>Oke, anggaplah kamu seorang <em>sysadmin</em> nekat yang tidak punya akses fisik ke <em>server</em> untuk instal ulang, atau kamu sekadar ingin menguji adrenalin. Jika kamu tetap <em>keukeuh</em> mencoba <em>downgrade</em> manual dari <strong>Testing (Trixie)</strong> ke <strong>Stable (Bookworm)</strong>, jalankan langkah-langkah di bawah ini dengan taruhan sistemmu mungkin tidak akan hidup lagi.</p>
             <h3>1. Backup Data Penting</h3>
-            <p>Saya ulangi, lakukan <em>backup</em>. Jangan berani melangkah ke tahap dua jika kamu belum menyalin berkas pentingmu. Perintah <em>downgrade</em> ini tidak kenal ampun.</p>
+            <p>Saya ulangi, lakukan <em>backup*. Jangan berani melangkah ke tahap dua jika kamu belum menyalin berkas pentingmu. Perintah *downgrade</em> ini tidak kenal ampun.</p>
             <h3>2. Ubah Repository Kembali ke Stable</h3>
             <p>Buka dan sunting berkas daftar sumber repositori APT milikmu:</p>
 <pre><code><span class="comment"># Buka editor teks nano</span>
@@ -244,7 +244,7 @@ sudo aptitude full-upgrade</code></pre>
 <pre><code>sudo apt autoremove --purge
 sudo apt autoclean</code></pre>
             <h3>6. Reboot dan Berdoa</h3>
-            <p>Momen penentuan. Lakukan <em>restart</em>:</p>
+            <p>Momen penentuan. Lakukan *restart*:</p>
 <pre><code>sudo reboot</code></pre>
             <p>Jika antarmuka grafis atau <em>prompt login</em> berhasil muncul, segera cek versi sistem operasimu dengan mengeksekusi <code>cat /etc/debian_version</code>. Jika tertera angka versi rilis Stable (misal 12.x), selamat, kamu lolos dari maut! 🎉</p>
             <h2>Masalah Klasik yang Sering Terjadi Pasca-Downgrade</h2>
@@ -264,7 +264,7 @@ sudo apt autoclean</code></pre>
                         <td>Hapus paksa paket tersebut lalu pasang ulang manual via <code>apt install</code>.</td>
                     </tr>
                     <tr>
-                        <td>Sistem lumpuh total (Gagal <em>boot</em>)</td>
+                        <td>Sistem lumpuh total (Gagal *boot*)</td>
                         <td>Modul <em>kernel</em> inti atau <em>library</em> C (glibc) rusak selama proses penimpaan.</td>
                         <td>Lakukan proses perbaikan darurat via mode <em>chroot</em> menggunakan Live USB.</td>
                     </tr>
@@ -276,7 +276,7 @@ sudo apt autoclean</code></pre>
                     <tr>
                         <td>Lingkungan desktop <em>(GUI)</em> hancur</td>
                         <td>Berkas konfigurasi dari versi baru tidak bisa dibaca oleh perangkat lunak versi lama.</td>
-                        <td>Masuk via sesi TTY (Ctrl+Alt+F3), hapus bersih desktop (GNOME/KDE), lalu <em>reinstall</em>.</td>
+                        <td>Masuk via sesi TTY (Ctrl+Alt+F3), hapus bersih desktop (GNOME/KDE), lalu *reinstall*.</td>
                     </tr>
                 </tbody>
             </table>
@@ -319,8 +319,8 @@ sudo apt autoclean</code></pre>
                 <span>•</span>
                 <span><i class="fa-solid fa-book"></i> Referensi: <a href="https://wiki.debian.org/SystemDowngrade" target="_blank" rel="noopener noreferrer">Debian System Downgrade Wiki</a></span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

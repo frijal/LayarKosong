@@ -200,7 +200,7 @@
             .container { padding: 2rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -217,11 +217,11 @@
             <h2>Skenario Penggunaan yang Ideal</h2>
             <p>Sebagian besar dari kita mungkin merasa nyaman memamerkan aplikasi <em>frontend</em> sederhana melalui URL publik. Tetapi, bagaimana jika sumber daya yang ingin kamu bagikan adalah <em>dashboard</em> admin internal, instans <em>database</em> produksi, atau alat analitik yang sangat rahasia? Zrok sangat ideal digunakan dalam lingkungan kolaboratif di mana berbagi sumber daya wajib dilakukan dengan sangat aman, tanpa pernah sedikit pun bersentuhan dengan paparan internet publik secara mentah-mentah.</p>
             <h2>Bedah Fitur: Keunggulan Zrok</h2>
-            <p>Zrok bukan sekadar jembatan lintas <em>server</em>; ia ibarat brankas digital yang hanya merespons perintah sang pemilik. Berikut adalah kekuatan utamanya:</p>
+            <p>Zrok bukan sekadar jembatan lintas *server*; ia ibarat brankas digital yang hanya merespons perintah sang pemilik. Berikut adalah kekuatan utamanya:</p>
             <ul>
-                <li><strong>Arsitektur Zero-Trust Sejati:</strong> Ini berarti tidak ada entitas apa pun (bahkan perangkat di dalam jaringan yang sama sekalipun) yang diberikan izin akses <em>default</em>. Setiap permintaan koneksi mutlak harus diautentikasi secara eksplisit. Lapis pertahanan yang membuat <em>hacker</em> berpikir dua kali.</li>
+                <li><strong>Arsitektur Zero-Trust Sejati:</strong> Ini berarti tidak ada entitas apa pun (bahkan perangkat di dalam jaringan yang sama sekalipun) yang diberikan izin akses <em>default*. Setiap permintaan koneksi mutlak harus diautentikasi secara eksplisit. Lapis pertahanan yang membuat *hacker</em> berpikir dua kali.</li>
                 <li><strong>Transparansi Open-Source:</strong> Kode sumbernya terbuka bebas untuk publik. Kamu bisa mengaudit setiap baris kode, memastikan tidak ada "pintu belakang" rahasia yang disisipkan oleh korporasi.</li>
-                <li><strong>Privasi Penuh (Self-Hosted):</strong> Tidak seperti bergantung pada peladen (<em>server</em>) milik Cloudflare, kamu memiliki kemerdekaan penuh untuk memasang mesin Zrok di atas infrastrukturmu sendiri.</li>
+                <li><strong>Privasi Penuh (Self-Hosted):</strong> Tidak seperti bergantung pada peladen (*server*) milik Cloudflare, kamu memiliki kemerdekaan penuh untuk memasang mesin Zrok di atas infrastrukturmu sendiri.</li>
                 <li><strong>Fleksibilitas Protokol Multiguna:</strong> Mulai dari memindahkan lalu lintas HTTP konvensional, melakukan transfer file sensitif, hingga menyalurkan paket data TCP dan UDP. Semua diakomodasi dengan sangat adaptif.</li>
                 <li><strong>Otomatisasi Latar Belakang:</strong> Meski terkesan kompleks, alat ini tetap cerdas karena mampu mengelola resolusi IP dan rutinitas penyambungan secara otomatis sehingga meminimalkan konfigurasi manual yang repetitif.</li>
             </ul>
@@ -229,12 +229,12 @@
             <p>Filosofi keamanan tingkat militer ini nyatanya harus dibayar mahal dengan beberapa kerepotan teknis:</p>
             <ul>
                 <li><strong>Kurva Belajar yang Tajam:</strong> Zrok sama sekali tidak dirancang untuk pengguna pemula. Bagi mereka yang tidak terbiasa mengelola <em>server environment</em> Linux, tahap konfigurasi awalnya akan terasa lumayan mengintimidasi.</li>
-                <li><strong>Absennya Inspeksi Lalu Lintas:</strong> Bagi <em>developer</em> aplikasi yang membutuhkan fitur inspeksi paket HTTP (<em>request/response replay</em>) secara <em>real-time</em> seperti yang ada di ngrok atau Pinggy, kamu tidak akan menemukannya di sini.</li>
+                <li><strong>Absennya Inspeksi Lalu Lintas:</strong> Bagi <em>developer</em> aplikasi yang membutuhkan fitur inspeksi paket HTTP (*request/response replay*) secara <em>real-time</em> seperti yang ada di ngrok atau Pinggy, kamu tidak akan menemukannya di sini.</li>
             </ul>
             <h2>Proses Instalasi dan Persiapan</h2>
-            <p>Karena arsitekturnya yang berakar kuat dari budaya perangkat lunak bebas, proses instalasi mewajibkan kamu mengambil (<em>clone</em>) basis kodenya langsung dari repositori Git, lalu merakitnya secara mandiri. Berikut adalah perintah fondasi awalnya:</p>
+            <p>Karena arsitekturnya yang berakar kuat dari budaya perangkat lunak bebas, proses instalasi mewajibkan kamu mengambil (*clone*) basis kodenya langsung dari repositori Git, lalu merakitnya secara mandiri. Berikut adalah perintah fondasi awalnya:</p>
             <pre><code>git clone https://github.com/openziti/zrok</code></pre>
-            <p>Setelah itu, kamu wajib mengikuti panduan pengaturan komprehensif di dokumentasi resmi <em>docs.zrok.io/docs/guides/install/</em> untuk menghidupkan <em>environment</em>-nya di mesin <em>server</em> pilihanmu.</p>
+            <p>Setelah itu, kamu wajib mengikuti panduan pengaturan komprehensif di dokumentasi resmi <em>docs.zrok.io/docs/guides/install/</em> untuk menghidupkan <em>environment*-nya di mesin *server</em> pilihanmu.</p>
             <h2>Skema Harga: Benar-benar Gratis!</h2>
             <p>Berita terbaiknya adalah, Zrok sepenuhnya <strong>gratis untuk digunakan</strong>. Biaya satu-satunya yang harus kamu keluarkan adalah ongkos sewa <em>Virtual Private Server</em> (VPS) atau tagihan listrik <em>server</em> fisik yang kamu gunakan untuk melakukan <em>self-hosting</em> komponen jaringannya.</p>
             <!-- Kotak Kredibilitas E-E-A-T -->
@@ -250,8 +250,8 @@
         <div id="response"></div>
         <footer>
             <p>🄯 2026 Layar Kosong. Dibuat bersih tanpa <em>framework</em> CSS dan <em>JavaScript</em> demi akses web yang bebas hambatan.</p>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

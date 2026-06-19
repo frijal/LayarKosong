@@ -156,7 +156,7 @@
             body { font-size: 16px; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -175,7 +175,7 @@
         <article>
             <p><span class="emoji-span">🐧</span> Halo para pejuang terminal! Pernah tidak sih kamu ngerasa males instal ulang distro Linux karena harus <em>set-up</em> ulang konfigurasi <code>.bashrc</code>, instal ulang ratusan paket <code>apt</code> atau <code>pacman</code>, sampe pindahin kunci SSH? Nah, perkenalkan <strong>TuxSync</strong>, asisten migrasi buat Linux yang bakal bikin hidup kamu jauh lebih enteng!</p>
             <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Apa itu TuxSync?</h2>
-            <p>Kalau di macOS ada <em>Migration Assistant</em> dan di Chrome ada <em>Sync</em>, di Linux sekarang ada <strong>TuxSync</strong>. Ini adalah tool <em>open-source</em> yang didesain buat nyimpen profil mesin Linux kamu secara rapi. Bedanya sama layanan korporat? TuxSync itu <strong>pribadi, transparan, dan kamu pegang kendali penuh</strong>. Data kamu disimpen di GitHub Gist milik kamu sendiri, bukan di server perusahaan antah berantah.</p>
+            <p>Kalau di macOS ada <em>Migration Assistant</em> dan di Chrome ada <em>Sync*, di Linux sekarang ada <strong>TuxSync</strong>. Ini adalah tool *open-source</em> yang didesain buat nyimpen profil mesin Linux kamu secara rapi. Bedanya sama layanan korporat? TuxSync itu <strong>pribadi, transparan, dan kamu pegang kendali penuh</strong>. Data kamu disimpen di GitHub Gist milik kamu sendiri, bukan di server perusahaan antah berantah.</p>
             <h2><i class="fa-solid fa-star"></i> Fitur-Fitur Unggulan</h2>
             <ul>
                 <li><strong>Multi-Distro Support:</strong> Tidak peduli kamu pake Ubuntu (apt), Fedora (dnf), atau Arch Linux (pacman), TuxSync ngerti bahasanya.</li>
@@ -249,9 +249,9 @@ tuxsync list</code></pre>
             <a href="https://github.com/frijal" style="color: #888; margin: 0 10px;"><i class="fa-brands fa-github"></i></a>
             <a href="https://facebook.com/frijal" style="color: #888; margin: 0 10px;"><i class="fa-brands fa-facebook"></i></a>
         </div>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

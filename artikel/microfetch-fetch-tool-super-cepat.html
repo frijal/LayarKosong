@@ -212,7 +212,7 @@
     </style>
 <meta name="ai:summary" content="Microfetch, alat fetch command line yang ditulis dalam Rust dengan fokus ekstrem pada kecepatan (berjalan dalam hitungan mikrosekon), menargetkan pengguna NixOS.">
 <meta name="ai:prompt_hint" content="Microfetch, alat fetch command line yang ditulis dalam Rust dengan fokus ekstrem pada kecepatan (berjalan dalam hitungan mikrosekon), menargetkan pengguna NixOS.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="main-wrapper">
@@ -240,20 +240,20 @@
     <section>
         <h2 id="synopsis"><i class="fa-solid fa-book-open"></i> Sinopsis: Kecil, Cepat, dan Cantik</h2>
         <p>
-            Bosku, ini dia Microfetch! Alat <em>fetch</em> yang <em>saking</em> kecil dan sederhananya, kecepatannya bisa bikin kita ketawa (sambil geleng-geleng kepala). Ditulis menggunakan bahasa <strong>Rust</strong> untuk menjamin kecepatan dan kemudahan <em>maintainability</em>-nya.
+            Bosku, ini dia Microfetch! Alat <em>fetch</em> yang <em>saking</em> kecil dan sederhananya, kecepatannya bisa bikin kita ketawa (sambil geleng-geleng kepala). Ditulis menggunakan bahasa <strong>Rust</strong> untuk menjamin kecepatan dan kemudahan *maintainability*-nya.
         </p>
         <p>
-            Bayangkan, Microfetch bisa berjalan hanya dalam <strong>sepersekian milidetik</strong>! Alat ini menampilkan <em>sebagian besar</em> informasi penting yang sering kamu lihat di komunitas seperti r/unixporn, tapi dengan satu tujuan: <strong>Menggantikan fastfetch</strong> di sistem penulisnya. Walaupun kustomisasi <em>dilarang keras</em> (kita akan bahas ini di bawah!), kamu dipersilakan menggunakannya di sistem kamu, karena alat ini memang 🚀 <em><a href="#benchmarks">sangat cepat</a></em>.
+            Bayangkan, Microfetch bisa berjalan hanya dalam <strong>sepersekian milidetik</strong>! Alat ini menampilkan <em>sebagian besar</em> informasi penting yang sering kamu lihat di komunitas seperti r/unixporn, tapi dengan satu tujuan: <strong>Menggantikan fastfetch</strong> di sistem penulisnya. Walaupun kustomisasi <em>dilarang keras</em> (kita akan bahas ini di bawah!), kamu dipersilakan menggunakannya di sistem kamu, karena alat ini memang 🚀 *[sangat cepat](#benchmarks)*.
         </p>
     </section>
     <section>
         <h2 id="features"><i class="fa-solid fa-wand-magic-sparkles"></i> Fitur Utama (Fokus pada Kecepatan!)</h2>
         <p>
-            Kalau ditanya fitur Microfetch, jawabannya simpel: <strong>Kecepatan!</strong> Tapi, tentu ada beberapa hal teknis yang patut kamu ketahui, terutama sebagai seorang <strong>Social Media Agency</strong> dan <strong>Biro Periklanan</strong> yang butuh alat kerja yang <em>reliable</em>:
+            Kalau ditanya fitur Microfetch, jawabannya simpel: <strong>Kecepatan!</strong> Tapi, tentu ada beberapa hal teknis yang patut kamu ketahui, terutama sebagai seorang <strong>Social Media Agency</strong> dan <strong>Biro Periklanan</strong> yang butuh alat kerja yang *reliable*:
         </p>
         <ul>
             <li><strong>Super Cepat</strong> (Ya, kita sebut lagi)</li>
-            <li><strong>Dependensi Minimalis</strong> (Membuat <em>binary</em> ringan dan <em>portable</em>).</li>
+            <li><strong>Dependensi Minimalis</strong> (Membuat <em>binary</em> ringan dan *portable*).</li>
             <li><strong>Binary Super Kecil</strong>: Hanya sekitar <strong>~370kb</strong> saja! (Bahkan bisa <strong>350kb</strong> menggunakan Mold linker yang diaktifkan di paket Flake NixOS). <span style="opacity: 0.7;">[^1]</span></li>
             <li><strong>Logo Keren NixOS</strong> (Sayangnya, distro lain... <em>inferior</em> katanya! 😂).</li>
             <li><b>Deteksi Info yang Handal</b>, termasuk:
@@ -272,7 +272,7 @@
             Awalnya, penulis menggunakan <a href="https://github.com/fastfetch-cli/fastfetch" target="_blank">Fastfetch</a>. Alat ini sudah cepat, tapi sang penulis (yang mungkin mirip dengan prinsip <strong>Go Back To Door</strong> kamu, memilih jalan sendiri) menyadari bahwa ia <em>tidak tertarik</em> pada fitur-fitur tambahan Fastfetch. Sixel, konfigurasi yang rumit, atau banyak kolom info? Tidak perlu!
         </p>
         <p>
-            Motivasi utama Microfetch adalah menjawab pertanyaan: <strong>"Seberapa cepat sih saya bisa membuat <em>script fetch</em>?"</strong>
+            Motivasi utama Microfetch adalah menjawab pertanyaan: <strong>"Seberapa cepat sih saya bisa membuat *script fetch*?"</strong>
         </p>
         <p>
             Microfetch dibuat dengan mengorbankan semua opsi kustomisasi yang disediakan oleh alat lain. Karena <em>fetch script</em> sudah menjadi semacam ritual inisiasi bagi pengguna Linux, dia memutuskan untuk membuatnya sendiri.
@@ -281,7 +281,7 @@
             <i class="fa-solid fa-puzzle-piece"></i> <p><strong>Filosofi Rust:</strong> Meskipun Rust dikenal dengan <em>dependency tree</em> yang besar dan waktu <em>build</em> yang lama, tim Microfetch berupaya keras menjaga dependensi minimal. Keuntungan menggunakan Rust adalah <em>tooling</em> yang luar biasa dan bahasa yang sangat kuat, memungkinkan Microfetch mencapai performa maksimum. Bahkan, Microfetch kini menggunakan <strong>handwritten assembly</strong> untuk optimasi di beberapa area! Tentu saja itu membuatnya lebih cepat.</p>
         </div>
         <p>
-            Singkatnya: Ini adalah <em>binary</em> kecil, sangat <em>opinionated</em>, berukuran pas, dan memiliki kecepatan yang <strong>sangat mengganggu</strong> (saking cepatnya). Ini bukan memecahkan masalah teknis yang sulit, melainkan sebuah tantangan yang diciptakan sendiri. Mirip seperti <a href="https://en.wikipedia.org/wiki/Rube_Goldberg_machine" target="_blank">Rube-Goldberg Machine</a>, sebuah solusi yang rumit untuk masalah yang sederhana.
+            Singkatnya: Ini adalah <em>binary</em> kecil, sangat *opinionated*, berukuran pas, dan memiliki kecepatan yang <strong>sangat mengganggu</strong> (saking cepatnya). Ini bukan memecahkan masalah teknis yang sulit, melainkan sebuah tantangan yang diciptakan sendiri. Mirip seperti <a href="https://en.wikipedia.org/wiki/Rube_Goldberg_machine" target="_blank">Rube-Goldberg Machine</a>, sebuah solusi yang rumit untuk masalah yang sederhana.
         </p>
          <div class="center-content">
             <img alt="latest demo" src="/img/raw.githubusercontent.com/notashelf/microfetch/main/.github/assets/demo.webp" width="850px" title="Contoh tampilan Microfetch di Terminal">
@@ -290,7 +290,7 @@
     <section>
         <h2 id="benchmarks"><i class="fa-solid fa-tachometer-alt"></i> Data Benchmark: Microfetch vs. Dunia Lain</h2>
         <p>
-            Ini dia bukti klaim kecepatan Microfetch! Benchmark ini dilakukan menggunakan <strong>Hyperfine</strong> di sistem Desktop penulis dalam kondisi <em>medium load</em>. Walaupun kecepatan bisa dipengaruhi oleh <em>race conditions</em> atau konfigurasi kernel (tergantung hardware kamu), rata-rata waktu eksekusi Microfetch di bawah ini sungguh luar biasa:
+            Ini dia bukti klaim kecepatan Microfetch! Benchmark ini dilakukan menggunakan <strong>Hyperfine</strong> di sistem Desktop penulis dalam kondisi <em>medium load*. Walaupun kecepatan bisa dipengaruhi oleh *race conditions</em> atau konfigurasi kernel (tergantung hardware kamu), rata-rata waktu eksekusi Microfetch di bawah ini sungguh luar biasa:
         </p>
         <table class="benchmark-table">
             <caption>Perbandingan Kecepatan Eksekusi (Diukur dengan Hyperfine)</caption>
@@ -373,7 +373,7 @@
     <section>
         <h2 id="installation"><i class="fa-solid fa-box-open"></i> Cara Instalasi (Khususnya Pengguna NixOS)</h2>
         <div class="note-box">
-            <i class="fa-solid fa-font"></i> <p><strong>Catatan Penting Font:</strong> Kamu wajib punya font yang sudah di-<em>patch<strong></em>Nerdfonts</strong> dan <em>terminal emulator</em> kamu harus mendukungnya. Microfetch menggunakan <em>glyph</em> Nerdfonts secara <em>default</em>.</p>
+            <i class="fa-solid fa-font"></i> <p><strong>Catatan Penting Font:</strong> Kamu wajib punya font yang sudah di-*patch<strong>*Nerdfonts</strong> dan <em>terminal emulator</em> kamu harus mendukungnya. Microfetch menggunakan <em>glyph</em> Nerdfonts secara *default*.</p>
         </div>
         <p>Microfetch sudah tersedia dalam <strong>nixpkgs</strong>, membuatnya sangat mudah dipasang untuk pengguna NixOS:</p>
         <h3>1. Instalasi Permanen di NixOS</h3>
@@ -403,7 +403,7 @@
         </p>
         <ul>
             <li>Ini adalah cara terbaik dan satu-satunya yang tidak mengorbankan kecepatan (kecuali kamu menambahkan kode yang buruk).</li>
-            <li>Banyak pengguna telah mengadaptasi Microfetch untuk distro mereka dengan mem-<em>patch</em> <a href="https://github.com/NotAShelf/microfetch/blob/main/src/main.rs" target="_blank">main module</a> dan mengganti logo NixOS dengan logo distro pilihan mereka.</li>
+            <li>Banyak pengguna telah mengadaptasi Microfetch untuk distro mereka dengan mem-*patch* <a href="https://github.com/NotAShelf/microfetch/blob/main/src/main.rs" target="_blank">main module</a> dan mengganti logo NixOS dengan logo distro pilihan mereka.</li>
             <li>Pengguna NixOS bahkan dapat menggunakan <code style="font-family: 'Fira Code', monospace;">.overrideAttrs</code> untuk menyalurkan <em>patch</em> dengan mudah.</li>
         </ul>
         <p>
@@ -440,7 +440,7 @@
             <a href="https://t.me/frijal" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
         </div>
         <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">🄯 2025 Layar Kosong (dalam.web.id). Hati-hati, konten ini dijamin bikin kantuk.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
 <script src="/ext/highlight.js" defer=""></script>
@@ -450,5 +450,5 @@
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

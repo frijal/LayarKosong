@@ -340,7 +340,7 @@
             }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -410,7 +410,7 @@
                 <div class="quiz-question">
                     <p class="question-text">1. Seberapa nyaman Anda mengutak-atik sistem atau masuk ke dalam terminal?</p>
                     <div class="quiz-options">
-                        <label class="quiz-option"><input type="radio" name="q1" value="A"> <span>A. Tidak sama sekali — saya maunya yang langsung jalan setelah <em>install</em>.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="A"> <span>A. Tidak sama sekali — saya maunya yang langsung jalan setelah *install*.</span></label>
                         <label class="quiz-option"><input type="radio" name="q1" value="B"> <span>B. Sedikit saja, kalau memang sangat diperlukan.</span></label>
                         <label class="quiz-option"><input type="radio" name="q1" value="C"> <span>C. Saya nyaman mengonfigurasi, tapi yang salah satu yang penting sistem tetap stabil. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</span></label>
                         <label class="quiz-option"><input type="radio" name="q1" value="D"> <span>D. Sangat nyaman — saya suka mengutak-atik tiap sudut sistem operasi.</span></label>
@@ -430,21 +430,21 @@
                 <div class="quiz-question">
                     <p class="question-text">3. Anda akan memakai mesin (laptop/PC) ini untuk apa salah satu yang sering? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
                     <div class="quiz-options">
-                        <label class="quiz-option"><input type="radio" name="q3" value="A"> <span>A. Kebutuhan <em>office</em> ringan, <em>browsing</em>, dan hiburan multimedia.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="A"> <span>A. Kebutuhan *office* ringan, *browsing*, dan hiburan multimedia.</span></label>
                         <label class="quiz-option"><input type="radio" name="q3" value="B"> <span>B. Desain antarmuka/UX ringan, dengan fokus pada estetika visual.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q3" value="C"> <span>C. Dijadikan <em>server</em> atau <em>workstation</em> produksi untuk bekerja keras.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q3" value="D"> <span>D. <em>Development</em> (coding), eksperimen sistem, atau sekadar mencoba software versi <em>bleeding-edge</em>.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q3" value="E"> <span>E. Menjalankan aplikasi Windows via Wine/compat layer dan <em>gaming</em>.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="C"> <span>C. Dijadikan *server* atau *workstation* produksi untuk bekerja keras.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="D"> <span>D. *Development* (coding), eksperimen sistem, atau sekadar mencoba software versi *bleeding-edge*.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="E"> <span>E. Menjalankan aplikasi Windows via Wine/compat layer dan *gaming*.</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
-                    <p class="question-text">4. Bagaimana spesifik kebutuhan <em>gaming</em> atau dukungan GPU (<em>Graphic Card</em>) Anda?</p>
+                    <p class="question-text">4. Bagaimana spesifik kebutuhan <em>gaming</em> atau dukungan GPU (*Graphic Card*) Anda?</p>
                     <div class="quiz-options">
                         <label class="quiz-option"><input type="radio" name="q4" value="A"> <span>A. Tidak penting sama sekali.</span></label>
                         <label class="quiz-option"><input type="radio" name="q4" value="B"> <span>B. Nyaris tidak penting, fokus ke pekerjaan.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q4" value="C"> <span>C. Kadang-kadang main <em>game</em>, tapi bukan prioritas.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q4" value="D"> <span>D. Saya butuh paket <em>driver</em> terbaru dan siap repot mengonfigurasi sendiri.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q4" value="E"> <span>E. Penting sekali! Ingin pengalaman main <em>game</em> maksimal dengan <em>driver</em> GPU bawaan otomatis (Pop!_OS sangat direkomendasikan di sini).</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="C"> <span>C. Kadang-kadang main *game*, tapi bukan prioritas.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="D"> <span>D. Saya butuh paket *driver* terbaru dan siap repot mengonfigurasi sendiri.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="E"> <span>E. Penting sekali! Ingin pengalaman main *game* maksimal dengan *driver* GPU bawaan otomatis (Pop!_OS sangat direkomendasikan di sini).</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
@@ -452,19 +452,19 @@
                     <div class="quiz-options">
                         <label class="quiz-option"><input type="radio" name="q5" value="A"> <span>A. Penting, tapi saya lebih memilih yang mudah dipakai sejak awal agar tidak perlu baca wiki.</span></label>
                         <label class="quiz-option"><input type="radio" name="q5" value="B"> <span>B. Penting untuk memandu konfigurasi UI/UX.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q5" value="C"> <span>C. Sangat penting untuk <em>troubleshooting</em> lingkungan produksi dan <em>server</em>.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="C"> <span>C. Sangat penting untuk *troubleshooting* lingkungan produksi dan *server*.</span></label>
                         <label class="quiz-option"><input type="radio" name="q5" value="D"> <span>D. Kehidupan saya bergantung padanya; saya rutin membaca forum dan Wiki teknis.</span></label>
                         <label class="quiz-option"><input type="radio" name="q5" value="E"> <span>E. Penting agar proses belajar dan migrasi dari OS sebelah jadi lebih gampang.</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
-                    <p class="question-text">6. Apakah Anda nyaman dengan model rilis bergulir (<em>rolling release</em> / <em>update</em> tiada henti setiap hari)?</p>
+                    <p class="question-text">6. Apakah Anda nyaman dengan model rilis bergulir (*rolling release* / <em>update</em> tiada henti setiap hari)?</p>
                     <div class="quiz-options">
                         <label class="quiz-option"><input type="radio" name="q6" value="A"> <span>A. Tidak, saya mau sistem yang anteng dan stabil saja.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q6" value="B"> <span>B. Tidak terlalu suka terganggu <em>update</em> harian.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q6" value="C"> <span>C. Jelas menolak. Saya condong pada rilis berjangka (<em>Long Term Support</em> / LTS).</span></label>
-                        <label class="quiz-option"><input type="radio" name="q6" value="D"> <span>D. Tentu saja! Saya suka <em>software</em> versi terbaru walau risikonya sesekali ada yang <em>nge-bug</em>.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q6" value="E"> <span>E. Lebih suka basis LTS yang stabil tapi <em>software</em>-nya tetap modern.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q6" value="B"> <span>B. Tidak terlalu suka terganggu *update* harian.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q6" value="C"> <span>C. Jelas menolak. Saya condong pada rilis berjangka (*Long Term Support* / LTS).</span></label>
+                        <label class="quiz-option"><input type="radio" name="q6" value="D"> <span>D. Tentu saja! Saya suka *software* versi terbaru walau risikonya sesekali ada yang *nge-bug*.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q6" value="E"> <span>E. Lebih suka basis LTS yang stabil tapi *software*-nya tetap modern.</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
@@ -473,8 +473,8 @@
                         <label class="quiz-option"><input type="radio" name="q7" value="A"> <span>A. Cukup modern dan bertenaga.</span></label>
                         <label class="quiz-option"><input type="radio" name="q7" value="B"> <span>B. Modern, mampu menjalankan animasi desktop yang ciamik.</span></label>
                         <label class="quiz-option"><input type="radio" name="q7" value="C"> <span>C. Bisa jadi mesin tua/loakan; butuh distro yang enteng tapi stabil menahan beban kerja.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q7" value="D"> <span>D. Sangat modern; saya akan <em>tweak</em> kernelnya sendiri agar performanya optimal.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q7" value="E"> <span>E. Modern, spesifikasi sekelas PC <em>gaming</em> atau <em>workstation</em> Windows.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q7" value="D"> <span>D. Sangat modern; saya akan *tweak* kernelnya sendiri agar performanya optimal.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q7" value="E"> <span>E. Modern, spesifikasi sekelas PC *gaming* atau *workstation* Windows.</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
@@ -482,28 +482,28 @@
                     <div class="quiz-options">
                         <label class="quiz-option"><input type="radio" name="q8" value="A"> <span>A. Lumayan penting, tapi kepraktisan fungsi tetap nomor satu.</span></label>
                         <label class="quiz-option"><input type="radio" name="q8" value="B"> <span>B. Harga mati! UI perlu minimalis, bersih, elegan, dan konsisten ala macOS. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q8" value="C"> <span>C. Bodo amat dengan tampilan, yang penting servernya tidak gampang <em>crash</em>.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q8" value="D"> <span>D. Tidak masalah jelek dari awal, nanti bakal saya rombak habis-habisan sendiri kok (<em>ricing</em>).</span></label>
+                        <label class="quiz-option"><input type="radio" name="q8" value="C"> <span>C. Bodo amat dengan tampilan, yang penting servernya tidak gampang *crash*.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q8" value="D"> <span>D. Tidak masalah jelek dari awal, nanti bakal saya rombak habis-habisan sendiri kok (*ricing*).</span></label>
                         <label class="quiz-option"><input type="radio" name="q8" value="E"> <span>E. Harus sedap dipandang supaya anggota keluarga yang terbiasa pakai Windows tidak bingung.</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
-                    <p class="question-text">9. Apakah Anda butuh dukungan korporat (<em>vendor SLA</em>) atau fitur kelas <em>enterprise</em> (manajemen jarak jauh, dsb)?</p>
+                    <p class="question-text">9. Apakah Anda butuh dukungan korporat (*vendor SLA*) atau fitur kelas <em>enterprise</em> (manajemen jarak jauh, dsb)?</p>
                     <div class="quiz-options">
                         <label class="quiz-option"><input type="radio" name="q9" value="A"> <span>A. Tidak butuh.</span></label>
                         <label class="quiz-option"><input type="radio" name="q9" value="B"> <span>B. Tidak butuh sama sekali.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q9" value="C"> <span>C. Ya, minimal memiliki aura ketangguhan kelas <em>enterprise</em> layaknya <em>server</em> betulan.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q9" value="C"> <span>C. Ya, minimal memiliki aura ketangguhan kelas *enterprise* layaknya *server* betulan.</span></label>
                         <label class="quiz-option"><input type="radio" name="q9" value="D"> <span>D. Tidak perlu, kalau ada rusak saya bongkar dan perbaiki sendiri log-nya.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q9" value="E"> <span>E. Tidak secara khusus, fokus saya hanya kemudahan penggunaan <em>desktop</em>.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q9" value="E"> <span>E. Tidak secara khusus, fokus saya hanya kemudahan penggunaan *desktop*.</span></label>
                     </div>
                 </div>
                 <div class="quiz-question">
-                    <p class="question-text">10. Seberapa cepat Anda ingin solusi ditemukan jika terjadi masalah (<em>error</em>)?</p>
+                    <p class="question-text">10. Seberapa cepat Anda ingin solusi ditemukan jika terjadi masalah (*error*)?</p>
                     <div class="quiz-options">
-                        <label class="quiz-option"><input type="radio" name="q10" value="A"> <span>A. Harus cepat! Dan solusinya bisa diikuti oleh <em>user</em> biasa tanpa <em>coding</em>.</span></label>
+                        <label class="quiz-option"><input type="radio" name="q10" value="A"> <span>A. Harus cepat! Dan solusinya bisa diikuti oleh *user* biasa tanpa *coding*.</span></label>
                         <label class="quiz-option"><input type="radio" name="q10" value="B"> <span>B. perlu mudah, kalau bisa lewat klik-klik di antarmuka pengaturan saja. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</span></label>
                         <label class="quiz-option"><input type="radio" name="q10" value="C"> <span>C. Mengandalkan komunitas besar yang sudah punya panduan standar pemecahan masalah yang paten.</span></label>
-                        <label class="quiz-option"><input type="radio" name="q10" value="D"> <span>D. Lama juga tidak apa-apa, saya sangat suka menelusuri <em>bug</em> secara mendalam (<em>deep troubleshooting</em>).</span></label>
+                        <label class="quiz-option"><input type="radio" name="q10" value="D"> <span>D. Lama juga tidak apa-apa, saya sangat suka menelusuri *bug* secara mendalam (*deep troubleshooting*).</span></label>
                         <label class="quiz-option"><input type="radio" name="q10" value="E"> <span>E. Harus intuitif dan mudah dipahami oleh pengguna yang baru pindah dari Windows.</span></label>
                     </div>
                 </div>
@@ -518,10 +518,10 @@
                 <p id="result-distro-desc" style="font-size: 1.1rem; line-height: 1.6;"></p>
                 <h4 style="margin-top: 1.5rem; color: var(--heading-color); font-size: 1.1rem;"><i class="fa-solid fa-lightbulb" style="color: var(--accent-color);"></i> Tips Cepat Pasca Analisis:</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li><strong>Coba <em>Live USB</em>:</strong> Buat <em>bootable flashdisk</em> distro rekomendasi ini dan coba gunakan langsung tanpa harus menginstal permanen (<em>Live Session</em>).</li>
-                    <li><strong>Periksa Kompatibilitas <em>Driver</em>:</strong> Saat di <em>Live Session</em>, pastikan komponen penting seperti Wi-Fi, <em>Bluetooth</em>, dan VGA (<em>Graphics Card</em>) berfungsi dengan normal.</li>
+                    <li><strong>Coba <em>Live USB</em>:</strong> Buat <em>bootable flashdisk</em> distro rekomendasi ini dan coba gunakan langsung tanpa harus menginstal permanen (*Live Session*).</li>
+                    <li><strong>Periksa Kompatibilitas <em>Driver</em>:</strong> Saat di *Live Session*, pastikan komponen penting seperti Wi-Fi, <em>Bluetooth</em>, dan VGA (*Graphics Card*) berfungsi dengan normal.</li>
                     <li><strong>Lakukan <em>Backup</em>:</strong> Menginstal OS baru akan menyentuh partisi hardisk. Amankan data pekerjaan Anda ke <em>cloud</em> atau hardisk eksternal terlebih dahulu.</li>
-                    <li><strong>Versi Stabil:</strong> Selalu unduh versi LTS (<em>Long Term Support</em>) kecuali Anda sudah mantap dengan risiko rilis bergulir (khusus Arch).</li>
+                    <li><strong>Versi Stabil:</strong> Selalu unduh versi LTS (*Long Term Support*) kecuali Anda sudah mantap dengan risiko rilis bergulir (khusus Arch).</li>
                 </ul>
             </div>
         </article>
@@ -531,7 +531,7 @@
     </main>
     <footer>
         <p>🄯 2026 Layar Kosong. Dirakit menggunakan 100% HTML5 &amp; CSS3 murni untuk <em>Core Web Vitals</em> optimal.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
 <!-- Logika Skrip Interaktif Pengolahan Kuis -->
 <script>
@@ -541,7 +541,7 @@ function calculateQuizResult() {
     let answeredCount = 0;
     // Evaluasi radio button yang di-klik pengguna
     for (let i = 1; i <= totalQuestions; i++) {
-        const checkedOption = document.querySelector(<code>input[name="q${i}"]:checked</code>);
+        const checkedOption = document.querySelector(`input[name="q${i}"]:checked`);
         if (checkedOption) {
             counts[checkedOption.value]++;
             answeredCount++;
@@ -567,7 +567,7 @@ function calculateQuizResult() {
     switch(maxLetter) {
         case 'A':
             distroName = "Zorin OS";
-            distroDesc = "Zorin OS dirancang khusus untuk kenyamanan maksimal. Anda sangat memprioritaskan kemudahan fungsionalitas langsung pakai (<em>out-of-the-box</em>) dan proses adaptasi lingkungan kerja yang cepat tanpa harus sering menyentuh rumitnya konsol terminal.";
+            distroDesc = "Zorin OS dirancang khusus untuk kenyamanan maksimal. Anda sangat memprioritaskan kemudahan fungsionalitas langsung pakai (*out-of-the-box*) dan proses adaptasi lingkungan kerja yang cepat tanpa harus sering menyentuh rumitnya konsol terminal.";
             break;
         case 'B':
             distroName = "elementary OS";
@@ -575,26 +575,26 @@ function calculateQuizResult() {
             break;
         case 'C':
             distroName = "Debian";
-            distroDesc = "Sang Ibu dari segala distro. Prioritas Anda adalah stabilitas jangka panjang yang teruji kerasnya waktu dan minimnya <em>bug</em>. Sangat direkomendasikan untuk menopang <em>setup server</em> tangguh atau <em>workstation</em> produksi harian di mana <em>crash</em> bukanlah sebuah opsi.";
+            distroDesc = "Sang Ibu dari segala distro. Prioritas Anda adalah stabilitas jangka panjang yang teruji kerasnya waktu dan minimnya *bug*. Sangat direkomendasikan untuk menopang *setup server* tangguh atau *workstation* produksi harian di mana *crash* bukanlah sebuah opsi.";
             break;
         case 'D':
             distroName = "Arch Linux";
-            distroDesc = "Anda adalah pengguna tingkat lanjut (<em>power user</em>). Anda menginginkan kendali teknis penuh mutlak, menyukai kustomisasi sistem secara mendetail (<em>ricing</em>), dan selalu lapar akan pembaruan aplikasi versi <em>bleeding-edge</em> paling mutakhir.";
+            distroDesc = "Anda adalah pengguna tingkat lanjut (*power user*). Anda menginginkan kendali teknis penuh mutlak, menyukai kustomisasi sistem secara mendetail (*ricing*), dan selalu lapar akan pembaruan aplikasi versi *bleeding-edge* paling mutakhir.";
             break;
         case 'E':
             // Evaluasi pembobotan sub-kondisi (Gaming vs Windows Transition)
             const q4Checked = document.querySelector('input[name="q4"]:checked');
             if (q4Checked && q4Checked.value === 'E') {
                 distroName = "Pop!_OS";
-                distroDesc = "Pilihan ideal untuk performa dan hiburan! Hasil Anda dominan mengarah pada kebutuhan integrasi perangkat keras kelas berat. Pop!_OS memfasilitasi kebutuhan performa <em>driver GPU dedicated</em> otomatis (seperti NVIDIA) serta optimasi manajemen arsitektur <em>gaming</em> terbaik di kelasnya.";
+                distroDesc = "Pilihan ideal untuk performa dan hiburan! Hasil Anda dominan mengarah pada kebutuhan integrasi perangkat keras kelas berat. Pop!_OS memfasilitasi kebutuhan performa *driver GPU dedicated* otomatis (seperti NVIDIA) serta optimasi manajemen arsitektur *gaming* terbaik di kelasnya.";
             } else {
                 distroName = "Zorin OS (Transisi Windows)";
-                distroDesc = "Anda secara spesifik mencari kenyamanan transisi operasional yang sangat persis dengan alur kerja (<em>workflow</em>) ekosistem Windows. Zorin OS adalah penawar rindu yang akan menghilangkan friksi belajar (<em>learning curve</em>) secara drastis.";
+                distroDesc = "Anda secara spesifik mencari kenyamanan transisi operasional yang sangat persis dengan alur kerja (*workflow*) ekosistem Windows. Zorin OS adalah penawar rindu yang akan menghilangkan friksi belajar (*learning curve*) secara drastis.";
             }
             break;
     }
     // Render output visual pada container DOM target hasil kalkulasi kuis
-    document.getElementById("result-distro-name").innerText = <code>${distroName} (Dominasi Skor: ${maxScore}/10)</code>;
+    document.getElementById("result-distro-name").innerText = `${distroName} (Dominasi Skor: ${maxScore}/10)`;
     document.getElementById("result-distro-desc").innerText = distroDesc;
     const resultBox = document.getElementById("quiz-result");
     resultBox.style.display = "block";
@@ -602,7 +602,5 @@ function calculateQuizResult() {
     resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

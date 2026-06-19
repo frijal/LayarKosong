@@ -179,7 +179,7 @@
             .terminal-box { padding: 20px; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <main>
@@ -192,8 +192,8 @@
         </div>
     </header>
     <section class="intro">
-        <p>Bagi pegiat multimedia atau sysadmin, <strong>FFmpeg</strong> adalah perangkat andalan. Penggunaan baris perintah menawarkan alternatif efisiensi resource yang tinggi dibandingkan dengan pemrosesan melalui antarmuka grafis standar. Lebih cepat, tanpa <em>re-encoding</em> (kualitas tetap asli), dan sangat hemat <em>resource</em>.</p>
-        <p>Inilah cara memotong video dengan kecepatan cahaya menggunakan teknik <em>stream copy</em>:</p>
+        <p>Bagi pegiat multimedia atau sysadmin, <strong>FFmpeg</strong> adalah perangkat andalan. Penggunaan baris perintah menawarkan alternatif efisiensi resource yang tinggi dibandingkan dengan pemrosesan melalui antarmuka grafis standar. Lebih cepat, tanpa <em>re-encoding</em> (kualitas tetap asli), dan sangat hemat *resource*.</p>
+        <p>Inilah cara memotong video dengan kecepatan cahaya menggunakan teknik *stream copy*:</p>
     </section>
     <div class="terminal-box">
         <div class="terminal-header">
@@ -206,7 +206,7 @@
     </div>
     <section class="breakdown">
         <h2>Bedah Perintah: Apa yang Terjadi?</h2>
-        <p>Jangan asal <em>copy-paste</em>, yuk pahami parameternya agar kamu bisa memodifikasi sesuai kebutuhan proyek multimedia kamu:</p>
+        <p>Jangan asal *copy-paste*, yuk pahami parameternya agar kamu bisa memodifikasi sesuai kebutuhan proyek multimedia kamu:</p>
         <div class="desc-grid">
             <div class="desc-item">
                 <strong>-i input.mp4</strong><br>
@@ -214,7 +214,7 @@
             </div>
             <div class="desc-item">
                 <strong>-ss 00:00:10</strong><br>
-                <em>Start Seek</em>. Titik mulai pemotongan. Formatnya <code>HH:MM:SS</code>. Di sini kita mulai dari detik ke-10.
+                <em>Start Seek</em>. Titik mulai pemotongan. Formatnya `HH:MM:SS`. Di sini kita mulai dari detik ke-10.
             </div>
             <div class="desc-item">
                 <strong>-to 00:01:30</strong><br>
@@ -222,11 +222,11 @@
             </div>
             <div class="desc-item">
                 <strong>-c copy</strong><br>
-                <strong>Kuncian utama!</strong> Parameter ini menyuruh FFmpeg menyalin stream audio &amp; video tanpa melakukan proses encoding ulang. Hasilnya? Proses selesai dalam milidetik dan kualitas tidak berkurang 1% pun.
+                **Kuncian utama!** Parameter ini menyuruh FFmpeg menyalin stream audio &amp; video tanpa melakukan proses encoding ulang. Hasilnya? Proses selesai dalam milidetik dan kualitas tidak berkurang 1% pun.
             </div>
             <div class="desc-item">
                 <strong>output.mp4</strong><br>
-                Nama file tujuan. Kamu bisa ganti ekstensinya jika ingin sekalian melakukan <em>remuxing</em> (misal ke .mkv).
+                Nama file tujuan. Kamu bisa ganti ekstensinya jika ingin sekalian melakukan *remuxing* (misal ke .mkv).
             </div>
         </div>
     </section>
@@ -241,7 +241,7 @@
 <footer>
     <p>Ditulis dengan ❤️ oleh <strong>Fakhrul Rijal</strong> di Balikpapan.<br>
     🄯 2025 <a href="https://dalam.web.id" style="color:inherit; font-weight:bold; text-decoration:none;">Layar Kosong</a></p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+ <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <script>
 function copyCode(){
@@ -257,6 +257,6 @@ function copyCode(){
     });
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

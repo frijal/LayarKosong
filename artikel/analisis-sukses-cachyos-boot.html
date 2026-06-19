@@ -180,7 +180,7 @@
     </style>
 <meta name="ai:summary" content="hasil eksekusi bootctl install dan pacman setelah reboot yang sukses memperbaiki error systemd-boot dan VFAT di CachyOS. Sistem kini stabil!">
 <meta name="ai:prompt_hint" content="hasil eksekusi bootctl install dan pacman setelah reboot yang sukses memperbaiki error systemd-boot dan VFAT di CachyOS. Sistem kini stabil!">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -205,9 +205,9 @@
             </pre>
             <h3>Penjelasan Hasil:</h3>
             <ul>
-                <li><i class="fa-solid fa-check"></i> <strong>File Berhasil Disalin:</strong> Baris <code>Copied...</code> mengonfirmasi bahwa <em>bootloader</em> <code>systemd-bootx64.efi</code> berhasil disalin ke Partisi EFI. Ini membuktikan bahwa setelah <em>reboot</em>, masalah "unknown filesystem type vfat" (Kernel Mismatch) sudah hilang, dan <strong>Partisi EFI kamu sudah ter-mount dengan benar ke <code>/boot</code></strong>.</li>
+                <li><i class="fa-solid fa-check"></i> <strong>File Berhasil Disalin:</strong> Baris <code>Copied...</code> mengonfirmasi bahwa <em>bootloader</em> <code>systemd-bootx64.efi</code> berhasil disalin ke Partisi EFI. Ini membuktikan bahwa setelah *reboot*, masalah "unknown filesystem type vfat" (Kernel Mismatch) sudah hilang, dan <strong>Partisi EFI kamu sudah ter-mount dengan benar ke <code>/boot</code></strong>.</li>
                 <li><i class="fa-solid fa-check"></i> <strong>Entry Boot Dibuat:</strong> Baris <code>Created EFI boot entry "Linux Boot Manager"</code> memastikan bahwa firmware UEFI/BIOS tahu persis file mana yang harus dijalankan saat komputer menyala.</li>
-                <li><i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Akses (Security Hole):</strong> Ini adalah peringatan <strong>minor dan umum</strong> pada partisi VFAT/FAT32. Karena VFAT tidak mendukung izin file Linux, saat di-<em>mount</em>, izinnya sering <em>default</em> terlalu terbuka. <strong>Ini tidak memengaruhi <em>booting</strong></em>, hanya peringatan keamanan kecil. Kamu bisa mengabaikannya untuk saat ini atau memperbaikinya nanti dengan mengedit opsi <code>umask</code> di <code>/etc/fstab</code>.</li>
+                <li><i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Akses (Security Hole):</strong> Ini adalah peringatan <strong>minor dan umum</strong> pada partisi VFAT/FAT32. Karena VFAT tidak mendukung izin file Linux, saat di-*mount*, izinnya sering <em>default</em> terlalu terbuka. <strong>Ini tidak memengaruhi *booting</strong>*, hanya peringatan keamanan kecil. Kamu bisa mengabaikannya untuk saat ini atau memperbaikinya nanti dengan mengedit opsi <code>umask</code> di <code>/etc/fstab</code>.</li>
             </ul>
             <h2>2. Analisis <code>sudo pacman -S linux-cachyos...</code> <i class="fa-solid fa-rocket"></i></h2>
             <p>Ini adalah langkah yang memastikan kernel kamu (dan semua file pendukungnya) benar-benar diperbarui ke partisi EFI yang sudah diperbaiki. Ini adalah momen krusial yang sebelumnya gagal total!</p>
@@ -232,7 +232,7 @@
                 <li><i class="fa-solid fa-desktop"></i> <strong>Rekomendasi Reboot:</strong> Pesan <code>INFO: Reboot is recommended</code> muncul karena kamu telah mengganti/memperbaiki paket sistem inti (kernel). Ini adalah anjuran standar untuk mulai menggunakan kernel yang baru dipasang secara penuh.</li>
             </ul>
             <h2>3. Analisis <code>sudo bootctl update</code> <i class="fa-solid fa-arrows-rotate"></i></h2>
-            <p>Perintah terakhir ini berfungsi sebagai pengecekan ulang. Hasilnya mengonfirmasi bahwa semua sudah <em>up to date</em>.</p>
+            <p>Perintah terakhir ini berfungsi sebagai pengecekan ulang. Hasilnya mengonfirmasi bahwa semua sudah *up to date*.</p>
             <pre>&gt; sudo bootctl update
 Skipping "/boot/EFI/systemd/systemd-bootx64.efi", same boot loader version in place already.
 Skipping "/boot/EFI/BOOT/BOOTX64.EFI", same boot loader version in place already.
@@ -241,7 +241,7 @@ Skipping "/boot/EFI/BOOT/bootx64.efi", same boot loader version in place already
             <p>Pesan <code>Skipping... same boot loader version in place already</code> adalah <strong>pesan sukses</strong>. Ini berarti file-file <em>bootloader</em> sudah ada di tempatnya dan versinya sudah benar. Tidak ada lagi yang perlu disalin.</p>
             <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--border-color);">
             <h2><i class="fa-solid fa-power-off"></i> Langkah Terakhir: Reboot Penuh</h2>
-            <p>Karena semua perbaikan sudah selesai dan sistem merekomendasikan <em>reboot</em>, lakukanlah sekali lagi untuk memulai sesi penuh menggunakan kernel dan <em>bootloader</em> yang sudah dipulihkan. Masalahmu sudah beres!</p>
+            <p>Karena semua perbaikan sudah selesai dan sistem merekomendasikan <em>reboot*, lakukanlah sekali lagi untuk memulai sesi penuh menggunakan kernel dan *bootloader</em> yang sudah dipulihkan. Masalahmu sudah beres!</p>
             <pre>sudo reboot</pre>
             <p>Kalau kamu ingin memperbaiki peringatan keamanan <code>world accessible</code> tadi, kamu bisa mengedit file <code>/etc/fstab</code> dan menambahkan opsi <em>mount</em> seperti <code>umask=0077</code> untuk partisi EFI, tapi ini benar-benar bersifat opsional dan tidak wajib.</p>
             <h3><i class="fa-solid fa-comments"></i> Diskusi Lanjutan</h3>
@@ -251,9 +251,9 @@ Skipping "/boot/EFI/BOOT/bootx64.efi", same boot loader version in place already
         <footer>
             <p>🄯 2025 Jaga Data Pribadi Tetap Aman - Analisis Linux Santai.</p>
             <p><small>Dibangun di atas kernel yang kokoh. <i class="fa-solid fa-heart" style="color: #e25555;"></i></small></p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

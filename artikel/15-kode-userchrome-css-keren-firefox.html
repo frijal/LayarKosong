@@ -229,7 +229,7 @@
         }
     </style>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -249,7 +249,7 @@
         <h4><span class="badge-num">1</span> <i class="fa-solid fa-times-circle"></i> Sembunyikan Tombol Close Tab</h4>
         <p>Menghilangkan tombol X di setiap tab agar tidak terklik secara tidak sengaja.</p>
         <div class="code-block">
-            <pre><code>/<em> Sembunyikan tombol close di tab </em>/
+            <pre><code>/* Sembunyikan tombol close di tab */
 .tabbrowser-tab .tab-close-button {
     display: none !important;
 }</code></pre>
@@ -259,7 +259,7 @@
         <h4><span class="badge-num">2</span> <i class="fa-solid fa-chart-line"></i> Tab Aktif dengan Garis Tipis</h4>
         <p>Indikator tab aktif berupa garis tipis di kiri, tampilan ultra minimalis.</p>
         <div class="code-block">
-            <pre><code>/<em> Indikator tab aktif garis tipis </em>/
+            <pre><code>/* Indikator tab aktif garis tipis */
 .tabbrowser-tab[selected="true"] {
     position: relative !important;
 }
@@ -282,7 +282,7 @@
         <h4><span class="badge-num">3</span> <i class="fa-solid fa-plus-circle"></i> Tombol New Tab Muncul Saat Hover</h4>
         <p>Tombol + untuk tab baru hanya muncul ketika kursor mendekat.</p>
         <div class="code-block">
-            <pre><code>/<em> Tombol new tab tersembunyi, muncul saat hover </em>/
+            <pre><code>/* Tombol new tab tersembunyi, muncul saat hover */
 #tabs-newtab-button {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -298,7 +298,7 @@
         <h4><span class="badge-num">4</span> <i class="fa-solid fa-glass-whiskey"></i> Toolbar Semi Transparan (Glass Effect)</h4>
         <p>Memberi efek kaca pada toolbar, elegan dan modern.</p>
         <div class="code-block">
-            <pre><code>/<em> Toolbar transparan dengan blur </em>/
+            <pre><code>/* Toolbar transparan dengan blur */
 #nav-bar {
   backdrop-filter: blur(10px);
   transition: opacity .25s ease-in-out;
@@ -313,7 +313,7 @@
         <h4><span class="badge-num">5</span> <i class="fa-solid fa-arrows-alt-v"></i> Sembunyikan Tab Bar Horizontal</h4>
         <p>Jika kamu menggunakan ekstensi vertical tabs, baris tab default bisa disembunyikan.</p>
         <div class="code-block">
-            <pre><code>/<em> Sembunyikan tab bar horizontal </em>/
+            <pre><code>/* Sembunyikan tab bar horizontal */
 #TabsToolbar {
     visibility: collapse;
 }</code></pre>
@@ -323,7 +323,7 @@
         <h4><span class="badge-num">6</span> <i class="fa-solid fa-arrow-up"></i> Toolbar Mengambang (Floating Toolbar)</h4>
         <p>Toolbar akan mengecil atau tersembunyi, muncul saat di-hover.</p>
         <div class="code-block">
-            <pre><code>/<em> Toolbar floating </em>/
+            <pre><code>/* Toolbar floating */
 #navigator-toolbox {
     margin-top: -40px;
     transition: margin-top .2s ease;
@@ -337,7 +337,7 @@
         <h4><span class="badge-num">7</span> <i class="fa-solid fa-border-all"></i> Tab Membulat (Rounded Tabs)</h4>
         <p>Membuat sudut tab menjadi melengkung, tampilan lebih friendly.</p>
         <div class="code-block">
-            <pre><code>/<em> Tab membulat </em>/
+            <pre><code>/* Tab membulat */
 .tab-background {
     border-radius: 12px !important;
     margin: 2px 4px !important;
@@ -348,7 +348,7 @@
         <h4><span class="badge-num">8</span> <i class="fa-solid fa-i-cursor"></i> Kurangi Lebar Tab Minimal</h4>
         <p>Mengatur lebar tab minimal agar lebih compact.</p>
         <div class="code-block">
-            <pre><code>/<em> Lebar tab minimal lebih kecil </em>/
+            <pre><code>/* Lebar tab minimal lebih kecil */
 .tabbrowser-tab {
     min-width: 60px !important;
 }</code></pre>
@@ -358,7 +358,7 @@
         <h4><span class="badge-num">9</span> <i class="fa-solid fa-palette"></i> Ubah Warna Teks Tab Aktif</h4>
         <p>Memberi warna khusus pada teks tab yang sedang aktif.</p>
         <div class="code-block">
-            <pre><code>/<em> Warna teks tab aktif </em>/
+            <pre><code>/* Warna teks tab aktif */
 .tabbrowser-tab[selected="true"] .tab-text {
     color: #ff7b00 !important;
     font-weight: bold;
@@ -369,7 +369,7 @@
         <h4><span class="badge-num">10</span> <i class="fa-solid fa-bolt"></i> Efek Hover pada Tab</h4>
         <p>Memberikan efek transisi saat kursor di atas tab.</p>
         <div class="code-block">
-            <pre><code>/<em> Efek hover pada tab </em>/
+            <pre><code>/* Efek hover pada tab */
 .tabbrowser-tab:hover .tab-background {
     background-color: rgba(0, 0, 0, 0.1) !important;
     transition: background-color 0.2s ease;
@@ -380,7 +380,7 @@
         <h4><span class="badge-num">11</span> <i class="fa-solid fa-grip-lines"></i> Garis Bawah pada Tab Aktif</h4>
         <p>Alternatif selain garis kiri, menggunakan garis bawah yang tebal.</p>
         <div class="code-block">
-            <pre><code>/<em> Garis bawah tab aktif </em>/
+            <pre><code>/* Garis bawah tab aktif */
 .tabbrowser-tab[selected="true"]::after {
     content: "";
     position: absolute;
@@ -397,7 +397,7 @@
         <h4><span class="badge-num">12</span> <i class="fa-solid fa-tachometer-alt"></i> Hilangkan Spasi di Sekitar Toolbar</h4>
         <p>Membuat tampilan lebih rapat dan modern.</p>
         <div class="code-block">
-            <pre><code>/<em> Menghilangkan padding berlebih </em>/
+            <pre><code>/* Menghilangkan padding berlebih */
 #nav-bar, #PersonalToolbar {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -409,7 +409,7 @@
         <h4><span class="badge-num">13</span> <i class="fa-solid fa-dice-d6"></i> Toolbar dengan Bayangan (Shadow)</h4>
         <p>Memberi efek shadow pada toolbar agar terlihat mengambang.</p>
         <div class="code-block">
-            <pre><code>/<em> Bayangan pada toolbar </em>/
+            <pre><code>/* Bayangan pada toolbar */
 #nav-bar {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin-bottom: 4px;
@@ -420,7 +420,7 @@
         <h4><span class="badge-num">14</span> <i class="fa-solid fa-font"></i> Ubah Font Tab</h4>
         <p>Mengganti font dan ukuran teks pada tab.</p>
         <div class="code-block">
-            <pre><code>/<em> Ganti font tab </em>/
+            <pre><code>/* Ganti font tab */
 .tab-text {
     font-family: 'Poppins', 'Segoe UI', sans-serif !important;
     font-size: 12px !important;
@@ -432,7 +432,7 @@
         <h4><span class="badge-num">15</span> <i class="fa-solid fa-sync-alt"></i> Animasi Loading di Tab</h4>
         <p>Menambahkan efek animasi titik-titik saat tab sedang loading.</p>
         <div class="code-block">
-            <pre><code>/<em> Animasi loading di tab </em>/
+            <pre><code>/* Animasi loading di tab */
 .tab-throbber[busy] {
     animation: pulse 1s infinite;
 }
@@ -467,8 +467,8 @@
     </div>
     <footer>
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong — Artikel ini dilisensikan CC0. Bebas dibagikan dan dimodifikasi. Disusun berdasarkan pengalaman praktik kustomisasi Firefox.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

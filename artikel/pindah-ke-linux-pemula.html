@@ -183,7 +183,7 @@
     </style>
 <meta name="ai:summary" content="Ringkasan diskusi forum lengkap tentang pertanyaan umum pemula yang ingin beralih dari Windows ke Linux. Pelajari kompatibilitas aplikasi, strategi instalasi, perbedaan distro, dan cara mencoba Linux dengan aman.">
 <meta name="ai:prompt_hint" content="Ringkasan diskusi forum lengkap tentang pertanyaan umum pemula yang ingin beralih dari Windows ke Linux. Pelajari kompatibilitas aplikasi, strategi instalasi, perbedaan distro, dan cara mencoba Linux dengan aman.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -214,7 +214,7 @@
                 <h3>A. Dual Boot (Linux &amp; Windows Hidup Berdampingan) <i class="fa-solid fa-yin-yang"></i></h3>
                 <ul>
                     <li><strong>Sangat Layak!</strong> Ini adalah cara yang salah satu yang direkomendasikan untuk pemula. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Anda bisa "mencoba" Linux tanpa perlu kehilangan Windows. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Cukup sisakan sebagian ruang kosong di <em>hard drive</em> Anda untuk partisi Linux.</li>
-                    <li><strong>Cara Menghapus Linux:</strong> Kalau suatu saat Anda bosan dengan Linux di <em>dual boot</em>, gampang kok. Anda tinggal <strong>menghapus partisi Linux</strong> (bisa pakai <em>tool</em> seperti Gparted atau <em>Disk Management</em> di Windows), lalu <strong>memperluas partisi Windows</strong> Anda. <em>Bootloader</em> (GRUB) yang biasanya muncul saat <em>dual boot</em> juga bisa diperbaiki agar Windows bisa <em>boot</em> langsung lagi.</li>
+                    <li><strong>Cara Menghapus Linux:</strong> Kalau suatu saat Anda bosan dengan Linux di <em>dual boot*, gampang kok. Anda tinggal <strong>menghapus partisi Linux</strong> (bisa pakai *tool</em> seperti Gparted atau <em>Disk Management</em> di Windows), lalu <strong>memperluas partisi Windows</strong> Anda. <em>Bootloader</em> (GRUB) yang biasanya muncul saat <em>dual boot</em> juga bisa diperbaiki agar Windows bisa <em>boot</em> langsung lagi.</li>
                 </ul>
                 <h3>B. Pindah Total (Selamat Tinggal Windows!) <i class="fa-solid fa-door-open"></i></h3>
                 <ul>
@@ -235,11 +235,11 @@
                     <li><strong>Package Manager:</strong> Ini adalah "toko aplikasi" bawaan distro untuk menginstal <em>software</em> (misal: apt di Ubuntu/Mint, pacman di Arch).</li>
                     <li><strong>Software Bawaan:</strong> Setiap distro punya pilihan <em>software</em> awal yang berbeda-beda.</li>
                     <li><strong>Rekomendasi Pemula:</strong> Untuk pemula, <strong>Linux Mint</strong> dan <strong>Ubuntu</strong> adalah pilihan terbaik. Mereka stabil, punya banyak dukungan, dan mudah diinstal.</li>
-                    <li><strong>Arch Linux:</strong><strong>TIDAK DIREKOMENDASIKAN</strong> untuk pemula. Arch itu distro yang sangat minimalis dan butuh banyak konfigurasi manual. Enak buat yang suka <em>ngoprek</em>, tapi bisa bikin frustrasi pemula.</li>
+                    <li><strong>Arch Linux:</strong><strong>TIDAK DIREKOMENDASIKAN</strong> untuk pemula. Arch itu distro yang sangat minimalis dan butuh banyak konfigurasi manual. Enak buat yang suka *ngoprek*, tapi bisa bikin frustrasi pemula.</li>
                 </ul>
                 <h3><i class="fa-solid fa-palette"></i> Lingkungan Desktop (Seperti 'Interior' Mobil):</h3>
                 <p>
-                    Ini yang menentukan <strong>tampilan visual, <em>feel</em>, dan antarmuka</strong> komputer Anda. Di Linux, Anda bisa mengganti DE sesuai selera, tidak seperti Windows atau macOS yang tampilannya paten.
+                    Ini yang menentukan <strong>tampilan visual, *feel*, dan antarmuka</strong> komputer Anda. Di Linux, Anda bisa mengganti DE sesuai selera, tidak seperti Windows atau macOS yang tampilannya paten.
                 </p>
                 <ul>
                     <li><strong>Contoh DE Populer:</strong><strong>KDE Plasma, GNOME, Mate, Cinnamon</strong>.</li>
@@ -259,7 +259,7 @@
                 <h3><i class="fa-solid fa-shoe-prints"></i> Distro Hopping (Pindah-pindah Distro):</h3>
                 <ul>
                     <li><strong>Backup Wajib:</strong> Jika Anda sering berpindah-pindah distro, biasanya Anda harus <strong>mencadangkan <em>file</em> pribadi</strong> Anda setiap kali instalasi ulang.</li>
-                    <li><strong>Solusi Partisi /home Terpisah:</strong> Cara lebih canggih adalah dengan <strong>membuat partisi khusus untuk direktori <code>/home</code></strong> Anda. Direktori <code>/home</code> ini berisi semua dokumen, <em>setting</em>, dan <em>file</em> pribadi Anda. Saat Anda menginstal distro baru, Anda cukup menginstal sistem operasi pada partisi terpisah dan "menghubungkan" partisi <code>/home</code> yang sudah ada. Jadi, <em>file</em> pribadi Anda akan tetap aman.</li>
+                    <li><strong>Solusi Partisi /home Terpisah:</strong> Cara lebih canggih adalah dengan <strong>membuat partisi khusus untuk direktori <code>/home</code></strong> Anda. Direktori <code>/home</code> ini berisi semua dokumen, <em>setting*, dan *file</em> pribadi Anda. Saat Anda menginstal distro baru, Anda cukup menginstal sistem operasi pada partisi terpisah dan "menghubungkan" partisi <code>/home</code> yang sudah ada. Jadi, <em>file</em> pribadi Anda akan tetap aman.</li>
                 </ul>
                 <hr>
                 <h2><i class="fa-solid fa-lock"></i> 5. Masalah Tambahan: BitLocker</h2>
@@ -276,9 +276,8 @@
     </div>
     <footer>
         <p>🄯 2025 Diskusi komunitas r/linux4noobs. Selamat mencoba Linux! <i class="fa-solid fa-heart"></i></p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

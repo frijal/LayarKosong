@@ -113,7 +113,7 @@
   </style>
 <meta name="ai:summary" content="Editor JSON Artikel Mingguan dalam format array: alat praktis untuk membuat, mengedit, dan memvalidasi daftar artikel mingguan berbasis JSON langsung dari browser.">
 <meta name="ai:prompt_hint" content="Editor JSON Artikel Mingguan dalam format array: alat praktis untuk membuat, mengedit, dan memvalidasi daftar artikel mingguan berbasis JSON langsung dari browser.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <div class="container">
@@ -162,7 +162,7 @@ function processJSON() {
       if (isNaN(date)) return;
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
-      const key = <code>${item.kategori}-${year}-${month.toString().padStart(2,'0')}</code>;
+      const key = `${item.kategori}-${year}-${month.toString().padStart(2,'0')}`;
       if (!grouped[key]) grouped[key] = { bulan: month, tahun: year, kategori: item.kategori, artikel: [] };
       grouped[key].artikel.push(item);
     });
@@ -170,15 +170,15 @@ function processJSON() {
     let links = "";
     Object.keys(grouped).sort().forEach(key => {
       const group = grouped[key];
-      html += <code><h3>${group.kategori} - ${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</h3><ul></code>;
+      html += `<h3>${group.kategori} - ${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</h3><ul>`;
       group.artikel.forEach(a => {
-        html += <code><li><strong>${a.judul}</strong> - <a href="${a.url}" target="_blank">${a.url}</a></li></code>;
+        html += `<li><strong>${a.judul}</strong> - <a href="${a.url}" target="_blank">${a.url}</a></li>`;
       });
       html += "</ul>";
       // Buat file JSON untuk download
       const blob = new Blob([JSON.stringify(group, null, 2)], {type: "application/json"});
       const url = URL.createObjectURL(blob);
-      links += <code><a href="${url}" download="${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')}.json">${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</a></code>;
+      links += `<a href="${url}" download="${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')}.json">${group.kategori}-${group.tahun}-${group.bulan.toString().padStart(2,'0')} (${group.artikel.length} artikel)</a>`;
     });
     document.getElementById('output').innerHTML = html;
     document.getElementById('downloadLinks').innerHTML = "<h3>Unduh per Bulan & Kategori:</h3>" + links;
@@ -189,6 +189,6 @@ function processJSON() {
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

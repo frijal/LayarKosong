@@ -206,7 +206,7 @@
             color: var(--meta-color);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -225,7 +225,7 @@
                 <p>Bila kita mundur sejenak, rsync pertama kali diperkenalkan pada tahun 1996 oleh Andrew Tridgell dan Paul Mackerras. Saat itu, kebutuhan untuk memindahkan file berukuran besar antar komputer seringkali terkendala oleh koneksi internet yang lambat dan rentan putus. Mereka menciptakan alat ini sebagai solusi cerdas untuk mentransfer file dengan cepat dan sangat efisien.</p>
                 <p>Rahasia di balik kecepatan rsync terletak pada algoritma <em>delta-transfer</em> yang mereka kembangkan. Alih-alih mengirimkan satu file utuh setiap kali ada pembaruan, utilitas ini hanya membaca dan mengirimkan letak perbedaan (<em>delta</em>) dari file tersebut. Berkat inovasi brilian di tahun 90-an ini, rsync masih menjadi primadona dan perangkat disarankan yang terpasang di hampir setiap distribusi Linux hingga detik ini. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
                 <h2>Apa Saja Manfaat Utama Rsync?</h2>
-                <p>Kalau kamu bertanya-tanya kenapa repot-repot pakai CLI (<em>Command Line Interface</em>) ketimbang sekadar <em>drag-and-drop</em>, berikut adalah keunggulan utama yang akan kamu dapatkan:</p>
+                <p>Kalau kamu bertanya-tanya kenapa repot-repot pakai CLI (<em>Command Line Interface</em>) ketimbang sekadar *drag-and-drop*, berikut adalah keunggulan utama yang akan kamu dapatkan:</p>
                 <ul>
                     <li>🔄 <strong>Sinkronisasi Fleksibel:</strong> Bisa diandalkan untuk mensinkronkan file maupun folder, baik di direktori lokal komputer yang sama maupun antar server jarak jauh.</li>
                     <li>⚡ <strong>Transfer Super Cepat:</strong> Dengan algoritma <em>delta</em>, file berukuran raksasa yang hanya mengalami perubahan sedikit bisa disalin dalam hitungan detik.</li>
@@ -270,7 +270,7 @@ LOGFILE=<span class="sh-string">"/var/log/rsync-backup-local.log"</span>
                 <p><em>Catatan: Opsi <code>--delete</code> berfungsi untuk menghapus file di direktori tujuan jika file tersebut sudah dihapus di direktori sumber, menjaga cermin data tetap akurat.</em></p>
                 <h3>2. Tambahkan Tugas ke Cron</h3>
                 <p>Buka editor cron dengan perintah <code>crontab -e</code>, lalu tambahkan baris berikut di bagian paling bawah:</p>
-<pre><code>0 2 <em> </em> * /home/user/backup-rsync-local.sh</code></pre>
+<pre><code>0 2 * * * /home/user/backup-rsync-local.sh</code></pre>
                 <p>Sistem otomatis akan mengeksekusi skrip ini pada <strong>pukul 02:00 dini hari</strong> setiap harinya. Kamu bisa tidur nyenyak!</p>
                 <h2>Workflow Backup Otomatis ke Server Remote (SSH + Cron)</h2>
                 <p>Kalau <em>hard disk</em> lokal rusak, tamatlah riwayat datamu. Solusi direkomendasikan adalah mencadangkan data ke server terpisah yang berlokasi jauh secara otomatis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Pendekatannya serupa, kita hanya perlu menambahkan otentikasi kunci agar tak perlu repot memasukkan <em>password</em> setiap saat.</p>
@@ -290,7 +290,7 @@ LOGFILE=<span class="sh-string">"/var/log/rsync-backup-remote.log"</span>
 </code></pre>
                 <h3>3. Daftarkan di Cron</h3>
                 <p>Sama seperti sebelumnya, jalankan <code>crontab -e</code> dan susupkan baris ini:</p>
-<pre><code>30 2 <em> </em> * /home/user/backup-rsync-remote.sh</code></pre>
+<pre><code>30 2 * * * /home/user/backup-rsync-remote.sh</code></pre>
                 <p>Baris tersebut akan memerintahkan server mengeksekusi proses <em>backup remote</em> tepat <strong>pukul 02:30 dini hari</strong>. Dengan pola ini, <em>backup</em> lokal jalan jam 2, selesai, disusul <em>backup remote</em> jam setengah tiga. Sangat rapi!</p>
                 <p>Dengan menguasai kombinasi rsync, bash, dan cron ini, infrastruktur data milikmu dijamin tangguh dari berbagai insiden tak terduga. Silakan dicoba dan rasakan sendiri kemudahannya.</p>
             </article>
@@ -302,8 +302,8 @@ LOGFILE=<span class="sh-string">"/var/log/rsync-backup-remote.log"</span>
                 <span>Dipublikasikan pada 14 Juni 2026</span> |
                 <span>Referensi: Dokumentasi resmi Rsync (Linux man page)</span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

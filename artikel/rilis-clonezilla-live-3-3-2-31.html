@@ -197,7 +197,7 @@
     </style>
     <!-- Ikon FontAwesome Lite -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main" class="wrapper">
@@ -205,11 +205,11 @@
             <header>
                 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Rilis Clonezilla Live 3.3.2-31: Bawa Enkripsi gocryptfs dan MDRAID yang Lebih Gahar!</h1>
             </header>
-            <p>Halo sobat <em>sysadmin</em>! Menikmati angin sore yang sejuk rasanya kurang <em>afdhal</em> kalau tidak sambil membahas perangkat lunak sakti. Buat kamu yang sering begadang di ruang <em>server</em> berurusan dengan urusan <em>cloning</em> data atau <em>backup</em> masal, pasti sudah menganggap <strong>Clonezilla</strong> sebagai dewa penyelamat, kan? Kabar baiknya, pertengahan tahun ini mereka baru saja melepas pembaruan masif yang sangat pantas untuk kita bedah!</p>
+            <p>Halo sobat <em>sysadmin*! Menikmati angin sore yang sejuk rasanya kurang *afdhal</em> kalau tidak sambil membahas perangkat lunak sakti. Buat kamu yang sering begadang di ruang <em>server</em> berurusan dengan urusan <em>cloning</em> data atau <em>backup</em> masal, pasti sudah menganggap <strong>Clonezilla</strong> sebagai dewa penyelamat, kan? Kabar baiknya, pertengahan tahun ini mereka baru saja melepas pembaruan masif yang sangat pantas untuk kita bedah!</p>
             <!-- Gambar LCP ditempatkan di bawah paragraf pembuka agar tidak memakan ruang di atas fold -->
             <img src="https://dalam.web.id/img/img.youtube.com/46dc42387bf75ed6.webp" srcset="https://img.youtube.com/vi/O3Y8ObmELm0/maxresdefault.jpg 480w, https://img.youtube.com/vi/O3Y8ObmELm0/maxresdefault.jpg 800w, https://img.youtube.com/vi/O3Y8ObmELm0/maxresdefault.jpg 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="hero-img" alt="Ilustrasi hardisk server dan sistem operasi Clonezilla Live Linux">
             <h2>Apa Sih Clonezilla Live Itu?</h2>
-            <p>Bagi yang mungkin baru terjun ke dunia infrastruktur IT, <strong>Clonezilla Live</strong> adalah sebuah sistem operasi portabel berbasis <strong>Debian</strong> yang bisa kamu jalankan langsung dari bilah USB atau CD/DVD tanpa harus melakukan instalasi repot di <em>hardisk</em>. Tugas utamanya sangat krusial: menyalin <em>(meng-clone)</em> isi sebuah partisi atau bahkan seluruh keping penyimpan secara kilat dan seefisien mungkin. Biasanya, ia digunakan saat migrasi komputer kantor, pencadangan sistem darurat, atau <em>deployment</em> puluhan komputer laboratorium secara bersamaan.</p>
+            <p>Bagi yang mungkin baru terjun ke dunia infrastruktur IT, <strong>Clonezilla Live</strong> adalah sebuah sistem operasi portabel berbasis <strong>Debian</strong> yang bisa kamu jalankan langsung dari bilah USB atau CD/DVD tanpa harus melakukan instalasi repot di <em>hardisk*. Tugas utamanya sangat krusial: menyalin *(meng-clone)</em> isi sebuah partisi atau bahkan seluruh keping penyimpan secara kilat dan seefisien mungkin. Biasanya, ia digunakan saat migrasi komputer kantor, pencadangan sistem darurat, atau <em>deployment</em> puluhan komputer laboratorium secara bersamaan.</p>
             <h2>Rilis Terbaru: Menyambut Versi 3.3.2-31</h2>
             <p>Tim pengembang secara resmi baru saja merilis versi <strong>3.3.2-31</strong> ke hadapan publik. Pembaruan yang rilis menjelang pertengahan 2026 ini tidak sekadar menambal <em>bug</em> receh, tetapi memboyong perubahan arsitektur yang cukup esensial. Mari kita bongkar fitur-fitur utamanya secara detail.</p>
             <h3>1. Sistem Dasar Diperbarui ke Debian Unstable (Sid)</h3>
@@ -230,14 +230,14 @@
                 </li>
             </ul>
             <h3>4. Dukungan MDRAID <em>(Software RAID)</em> Kelas Berat</h3>
-            <p>Peningkatan ini akan membuat para pengelola <em>server</em> tersenyum. Clonezilla sekarang jauh lebih cerdas dan mandiri dalam menangani <strong>MDRAID</strong> <em>(Software RAID bawaan Linux)</em>. Mereka melakukan penataan ulang perintah administrasi secara rapi. Beberapa perkakas baru yang disuntikkan antara lain:</p>
+            <p>Peningkatan ini akan membuat para pengelola <em>server</em> tersenyum. Clonezilla sekarang jauh lebih cerdas dan mandiri dalam menangani <strong>MDRAID</strong> *(Software RAID bawaan Linux)*. Mereka melakukan penataan ulang perintah administrasi secara rapi. Beberapa perkakas baru yang disuntikkan antara lain:</p>
             <ul>
                 <li><code>ocs-mdraid-start</code> dan <code>ocs-mdraid-stop</code></li>
                 <li><code>ocs-purge-mdraid-layout</code></li>
                 <li><code>ocs-save-mdraid-layout</code></li>
                 <li><code>ocs-restore-mdraid-layout</code></li>
             </ul>
-            <p>Bahkan, edisi <strong>Lite Server</strong> kini telah resmi mendukung penerapan secara massal menggunakan MDRAID. Selain itu, ada perbaikan logis pada proses penghentian/pembersihan keping RAID agar terhindar dari <em>error</em> "Device is busy" yang menyebalkan saat proses pemulihan <em>(restore)</em>.</p>
+            <p>Bahkan, edisi <strong>Lite Server</strong> kini telah resmi mendukung penerapan secara massal menggunakan MDRAID. Selain itu, ada perbaikan logis pada proses penghentian/pembersihan keping RAID agar terhindar dari <em>error</em> "Device is busy" yang menyebalkan saat proses pemulihan *(restore)*.</p>
             <h2>Ringkasan Perubahan Penting (Versi Lama vs 3.3.2-31)</h2>
             <p>Supaya mudah dipahami, ini dia rangkuman komparasinya:</p>
             <table>
@@ -263,7 +263,7 @@
                         <td>Dukungan baca/tulis <em>hardware</em> modern lebih luas.</td>
                     </tr>
                     <tr>
-                        <td><strong>Enkripsi <em>Image</strong></em></td>
+                        <td><strong>Enkripsi <em>Image</em></strong></td>
                         <td>eCryptFS</td>
                         <td><strong>gocryptfs</strong></td>
                         <td>Metode enkripsi yang jauh lebih modern dan aman dari kebobolan.</td>
@@ -286,9 +286,9 @@
                 <p><i class="fa-solid fa-download"></i> <strong>Informasi Unduhan:</strong> Tertarik mencoba keandalannya? Kamu bisa mengambil berkas ISO rilis stabil terbaru ini langsung melalui tautan repositori resmi mereka di <a href="https://sourceforge.net/projects/clonezilla/files/latest/download" target="_blank" rel="noopener noreferrer">SourceForge Clonezilla Live 3.3.2-31</a>.</p>
             </blockquote>
             <h2>Kesimpulan Santai</h2>
-            <p>Singkatnya, <strong>Clonezilla Live 3.3.2-31</strong> bukanlah sekadar <em>update</em> kosmetik. Rilis ini adalah manuver teknis yang esensial, terutama dengan dipensiunkannya eCryptFS dan diganti oleh <strong>gocryptfs</strong>, plus perombakan masif pada sistem penanganan <em>RAID software</em>. Kalau kamu bekerja di lingkungan yang menuntut keamanan data berlapis dan keping penyimpanan berkelompok <em>(RAID)</em>, versi ini sangat wajib untuk menemani <em>flashdisk</em> operasional di kantong celanamu!</p>
+            <p>Singkatnya, <strong>Clonezilla Live 3.3.2-31</strong> bukanlah sekadar <em>update</em> kosmetik. Rilis ini adalah manuver teknis yang esensial, terutama dengan dipensiunkannya eCryptFS dan diganti oleh <strong>gocryptfs</strong>, plus perombakan masif pada sistem penanganan <em>RAID software*. Kalau kamu bekerja di lingkungan yang menuntut keamanan data berlapis dan keping penyimpanan berkelompok *(RAID)*, versi ini sangat wajib untuk menemani *flashdisk</em> operasional di kantong celanamu!</p>
         </article>
-        <!-- Elemen Wajib Sebelum Footer (Tanpa <em>styling</em> apa pun) -->
+        <!-- Elemen Wajib Sebelum Footer (Tanpa *styling* apa pun) -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <!-- E-E-A-T Footer Inline, Rata Tengah -->
@@ -298,9 +298,8 @@
                 <span>•</span>
                 <span><i class="fa-regular fa-calendar-check"></i> 7 Juni 2026</span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

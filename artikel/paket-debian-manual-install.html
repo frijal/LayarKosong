@@ -200,7 +200,7 @@
     </style>
 <meta name="ai:summary" content="Bingung cara melihat paket Debian yang Anda instal sendiri tanpa terbebani daftar panjang dependensi? Artikel ini merangkum solusi dan perdebatan dari forum Reddit, dari apt-mark hingga trik shell history.">
 <meta name="ai:prompt_hint" content="Bingung cara melihat paket Debian yang Anda instal sendiri tanpa terbebani daftar panjang dependensi? Artikel ini merangkum solusi dan perdebatan dari forum Reddit, dari apt-mark hingga trik shell history.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -230,7 +230,7 @@
                 <div class="code-block"><code>$ apt-mark showmanual</code></div>
                 <h3>2. <code>history | grep "apt install"</code> <i class="fa-solid fa-history"></i> (Solusi "Malas" &amp; Praktis)</h3>
                 <p>
-                    Ini adalah trik cepat yang digunakan oleh OP sendiri sebagai solusi praktis. Dengan melihat riwayat perintah <em>shell</em>, kita bisa mencari semua perintah <code>apt install</code> yang pernah kita ketik.
+                    Ini adalah trik cepat yang digunakan oleh OP sendiri sebagai solusi praktis. Dengan melihat riwayat perintah *shell*, kita bisa mencari semua perintah <code>apt install</code> yang pernah kita ketik.
                 </p>
                 <div class="code-block"><code>$ history | grep "apt install"</code></div>
                 <p>
@@ -238,7 +238,7 @@
                 </p>
                 <h3>3. Melihat Log APT <i class="fa-solid fa-file-alt"></i> (Detail Tapi Membutuhkan Analisis)</h3>
                 <p>
-                    Berkas log APT yang terletak di <code>/var/log/apt</code> menyimpan catatan rinci tentang setiap instalasi, <em>upgrade</em>, dan <em>removal</em>.
+                    Berkas log APT yang terletak di <code>/var/log/apt</code> menyimpan catatan rinci tentang setiap instalasi, *upgrade*, dan *removal*.
                 </p>
                 <div class="code-block"><code>$ cat /var/log/apt/history.log</code></div>
                 <p>
@@ -294,8 +294,8 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                 </p>
                 <ul>
                     <li>Untuk solusi cepat dan praktis (jika <em>history</em> Anda bersih), <strong><code>history | grep "apt install"</code></strong> bisa jadi pilihan.</li>
-                    <li>Untuk hasil yang lebih akurat tetapi memerlukan pemahaman lebih dalam tentang APT, solusi <strong>filter dengan <em>reverse depends</strong></em> atau <strong>pattern prioritas</strong> adalah jalan terbaik.</li>
-                    <li>Dan untuk akurasi tertinggi dalam melihat penambahan Anda di luar instalasi default, metode <strong>VM <em>baseline</strong></em> adalah jawabannya.</li>
+                    <li>Untuk hasil yang lebih akurat tetapi memerlukan pemahaman lebih dalam tentang APT, solusi <strong>filter dengan <em>reverse depends</em></strong> atau <strong>pattern prioritas</strong> adalah jalan terbaik.</li>
+                    <li>Dan untuk akurasi tertinggi dalam melihat penambahan Anda di luar instalasi default, metode <strong>VM <em>baseline</em></strong> adalah jawabannya.</li>
                 </ul>
                 <p>
                     Semoga rangkuman ini membantu Anda lebih memahami seluk-beluk manajemen paket di Debian dan menemukan metode yang paling sesuai untuk kebutuhan Anda. Selamat bereksperimen\!
@@ -310,8 +310,8 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
     </div>
     <footer>
         <p>🄯 2025 Diskusi Reddit r/debian. Tetap semangat mengoprek Linux\! <i class="fa-brands fa-linux"></i></p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

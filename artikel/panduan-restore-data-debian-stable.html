@@ -192,7 +192,7 @@
         }
     </style>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main" class="container">
@@ -202,17 +202,17 @@
             </header>
             <p>Setelah melakukan instalasi ulang <em>server</em> atau laptop dengan sistem operasi Debian Stable yang segar tentu memberikan rasa lega. Antarmuka yang bersih, ruang penyimpanan yang lapang, dan performa yang kembali responsif adalah kenikmatan tersendiri. Namun, pekerjaan belum sepenuhnya selesai. Sekarang adalah waktunya untuk membawa kembali nyawa digitalmu, yakni dokumen, pengaturan, dan aplikasi kesayanganmu ke rumah barunya.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/430f976c68d64647.webp" srcset="https://pbs.twimg.com/media/HKK7MykaYAAF7ek?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK7MykaYAAF7ek?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK7MykaYAAF7ek?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="featured-image" alt="Ilustrasi pemulihan data dan pengaturan linux dari media eksternal">
-            <p>Mengembalikan <em>(restore)</em> data tidak boleh dilakukan asal timpa. Jika salah <em>permission</em> atau keliru menyalin, sistem barumu justru bisa mengalami masalah <em>error</em>. Oleh karena itu, ikuti panduan <strong>langkah demi langkah</strong> di bawah ini untuk mengembalikan data dengan aman dan presisi.</p>
+            <p>Mengembalikan <em>(restore)</em> data tidak boleh dilakukan asal timpa. Jika salah <em>permission</em> atau keliru menyalin, sistem barumu justru bisa mengalami masalah *error*. Oleh karena itu, ikuti panduan <strong>langkah demi langkah</strong> di bawah ini untuk mengembalikan data dengan aman dan presisi.</p>
             <h2>Persiapan Awal yang Wajib Dilakukan</h2>
-            <p>Setelah Debian Stable selesai diinstal dan kamu berhasil <em>login</em> ke layar utama atau terminal, tahan keinginanmu untuk langsung menancapkan <em>flashdisk</em> dan melakukan <em>copy-paste</em>. Lakukan rutinitas pembersihan awal ini terlebih dahulu:</p>
+            <p>Setelah Debian Stable selesai diinstal dan kamu berhasil <em>login</em> ke layar utama atau terminal, tahan keinginanmu untuk langsung menancapkan <em>flashdisk</em> dan melakukan *copy-paste*. Lakukan rutinitas pembersihan awal ini terlebih dahulu:</p>
             <ul>
                 <li><strong>Mutakhirkan sistem:</strong> Pastikan repositori lokal memiliki indeks terbaru.
 <pre><code><span class="keyword">sudo apt</span> update &amp;&amp; <span class="keyword">sudo apt</span> full-upgrade -y</code></pre>
                 </li>
-                <li><strong>Pasang perkakas pemindah data:</strong> Jika utilitas <em>rsync</em> belum ada secara <em>default</em>, instal sekarang juga. Ini adalah alat salah satu yang krusial dalam misi kita. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
+                <li><strong>Pasang perkakas pemindah data:</strong> Jika utilitas <em>rsync</em> belum ada secara *default*, instal sekarang juga. Ini adalah alat salah satu yang krusial dalam misi kita. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
 <pre><code><span class="keyword">sudo apt</span> install rsync -y</code></pre>
                 </li>
-                <li><strong>Hubungkan penyimpanan cadangan:</strong> Pasang <em>drive backup</em> kamu (USB/HDD Eksternal) lalu periksa dan catat lokasi <em>mount</em>-nya. Sebagai contoh di tutorial ini, kita asumsikan lokasinya berada di <code>/media/namauser/Backup</code>.</li>
+                <li><strong>Hubungkan penyimpanan cadangan:</strong> Pasang <em>drive backup</em> kamu (USB/HDD Eksternal) lalu periksa dan catat lokasi *mount*-nya. Sebagai contoh di tutorial ini, kita asumsikan lokasinya berada di <code>/media/namauser/Backup</code>.</li>
             </ul>
             <h2>Langkah 1: Mengembalikan Daftar Aplikasi <em>(Package)</em></h2>
             <p>Alih-alih menginstal aplikasi satu per satu yang melelahkan, kita akan menyuruh sistem membaca daftar paket <em>(package)</em> yang pernah kamu ekspor sebelumnya, dan membiarkan <em>apt</em> bekerja mengunduhnya secara massal.</p>
@@ -236,7 +236,7 @@
 <span class="keyword">rsync</span> -aP /media/namauser/Backup/Downloads/   /home/namauser/Downloads/
 <span class="keyword">rsync</span> -aP /media/namauser/Backup/Desktop/     /home/namauser/Desktop/</code></pre>
             <h2>Langkah 3: Menghidupkan Kembali Konfigurasi <em>(Dotfiles)</em></h2>
-            <p>Pengaturan <em>keyboard shortcut</em>, tema terminal, hingga riwayat <em>bash</em> tersimpan dalam folder tersembunyi <em>(dotfiles)</em>. Ini yang membuat sistem operasi terasa seperti "rumah" milikmu.</p>
+            <p>Pengaturan <em>keyboard shortcut*, tema terminal, hingga riwayat *bash</em> tersimpan dalam folder tersembunyi *(dotfiles)*. Ini yang membuat sistem operasi terasa seperti "rumah" milikmu.</p>
 <pre><code><span class="comment"># Mengembalikan pengaturan mayoritas aplikasi desktop</span>
 <span class="keyword">rsync</span> -aP /media/namauser/Backup/.config/     /home/namauser/.config/
 <span class="comment"># Memulihkan kunci gembok server SSH milikmu</span>
@@ -276,7 +276,7 @@
     htop \
     neofetch</code></pre>
             <h2>Langkah 7: Verifikasi dan Nyalakan Ulang</h2>
-            <p>Semua blok pondasi sudah berdiri. Eksekusi perintah <code>sudo reboot</code> untuk memuat ulang sistem <em>(reboot)</em>. Setelah layar kembali hidup, lakukan pengecekan ringan:</p>
+            <p>Semua blok pondasi sudah berdiri. Eksekusi perintah <code>sudo reboot</code> untuk memuat ulang sistem *(reboot)*. Setelah layar kembali hidup, lakukan pengecekan ringan:</p>
 <pre><code><span class="comment"># Pastikan dokumen tidak gaib</span>
 <span class="keyword">ls</span> ~/Documents ~/Pictures
 <span class="comment"># Verifikasi aplikasi inti apakah sudah terpasang</span>
@@ -284,7 +284,7 @@
 <span class="comment"># Cek status identitas OS</span>
 <span class="keyword">cat</span> /etc/debian_version</code></pre>
             <h2>Daftar Periksa <em>(Checklist)</em> Keberhasilan Restore</h2>
-            <p>Pastikan poin-poin di bawah ini sudah terpenuhi sebelum kamu menghapus data di perangkat <em>backup</em>:</p>
+            <p>Pastikan poin-poin di bawah ini sudah terpenuhi sebelum kamu menghapus data di perangkat *backup*:</p>
             <table>
                 <thead>
                     <tr>
@@ -339,7 +339,7 @@
             <h3>Tips Tambahan Sebagai Penutup</h3>
             <ul>
                 <li><strong>Tahan Diri:</strong> Jangan pernah memformat atau menghapus folder di diska cadanganmu hingga kamu memakai OS baru ini selama minimal 3-4 hari. Kerap kali kita baru sadar ada berkas tertinggal di hari ketiga!</li>
-                <li>Jika saat menjalankan skrip atau membuka folder kamu ditolak dengan notifikasi <em>Access Denied</em>, itu berarti eksekusi <code>chown</code> kamu belum meresap dengan baik ke semua sub-folder. Ulangi peritah perbaikan <em>permission</em>.</li>
+                <li>Jika saat menjalankan skrip atau membuka folder kamu ditolak dengan notifikasi *Access Denied*, itu berarti eksekusi <code>chown</code> kamu belum meresap dengan baik ke semua sub-folder. Ulangi peritah perbaikan *permission*.</li>
                 <li>Jika di masa mendatang kamu ingin proses pencadangan dan pemulihan ini berjalan secara grafis dan instan, pertimbangkan untuk menginstal perangkat lunak <em>snapshot</em> seperti <strong>Timeshift</strong> atau utilitas pencadangan bawaan seperti <strong>Deja Dup</strong>.</li>
             </ul>
         </article>
@@ -351,8 +351,8 @@
                 <span>•</span>
                 <span><i class="fa-regular fa-calendar"></i> Diperbarui: 7 Juni 2026</span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

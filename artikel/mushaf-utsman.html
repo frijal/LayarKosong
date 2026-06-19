@@ -225,7 +225,7 @@
     </style>
 <meta name="ai:summary" content="Ngulik Mushaf Utsman bin Affan: ukuran raksasa, gaya tulisan awal Hijriyah, sejarah penyalinan, plus galeri foto interaktif.">
 <meta name="ai:prompt_hint" content="Ngulik Mushaf Utsman bin Affan: ukuran raksasa, gaya tulisan awal Hijriyah, sejarah penyalinan, plus galeri foto interaktif.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <header class="hero">
@@ -300,18 +300,18 @@
         <div class="container">
             <p>🄯 <span id="year"></span> dalam.web.id — Artikel: Mushaf Utsman bin Affan</p>
         </div>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     <script>
         // Helper: safe query
         const $ = (sel, ctx=document) => ctx.querySelector(sel);
-        const $ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+        const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
         // Year
         $('#year').textContent = new Date().getFullYear();
                 // Lightbox
         (function(){
-            const items = $('.gallery .thumb img').map((img, idx)=>({
-                thumb: img.src, full: img.dataset.full || img.src, alt: img.alt || <code>Gambar ${idx+1}</code>
+            const items = $$('.gallery .thumb img').map((img, idx)=>({
+                thumb: img.src, full: img.dataset.full || img.src, alt: img.alt || `Gambar ${idx+1}`
             }));
             const lb = $('.lightbox');
             if (!lb || items.length === 0) return; // Exit if lightbox or images not found
@@ -324,7 +324,7 @@
             function render(){
                 imgEl.src = items[i].full;
                 imgEl.alt = items[i].alt;
-                counter.textContent = <code>${i+1} / ${items.length}</code>;
+                counter.textContent = `${i+1} / ${items.length}`;
                 btnPrev.disabled = (items.length <= 1);
                 btnNext.disabled = (items.length <= 1);
             }
@@ -332,7 +332,7 @@
             function close(){ lb.classList.remove('open'); document.body.style.overflow='' }
             function prev(){ i = (i - 1 + items.length) % items.length; render() }
             function next(){ i = (i + 1) % items.length; render() }
-            $('.gallery .thumb img').forEach((img, idx)=>{
+            $$('.gallery .thumb img').forEach((img, idx)=>{
                 img.addEventListener('click', ()=>openAt(idx));
             });
             btnClose.addEventListener('click', close);
@@ -347,7 +347,5 @@
             });
         })();
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

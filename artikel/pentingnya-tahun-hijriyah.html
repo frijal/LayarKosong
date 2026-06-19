@@ -249,7 +249,7 @@
     </style>
 <meta name="ai:summary" content="Kenapa hitungan umur anak untuk shalat, haul zakat, dan umur hewan kurban harus pakai tahun Hijriyah, bukan Masehi? Yuk, cari tahu alasannya!">
 <meta name="ai:prompt_hint" content="Kenapa hitungan umur anak untuk shalat, haul zakat, dan umur hewan kurban harus pakai tahun Hijriyah, bukan Masehi? Yuk, cari tahu alasannya!">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <article>
@@ -300,7 +300,7 @@
         </section>
         <footer>
             <p>🄯 2025 dalam.web.id. Dibuat dengan cinta.</p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </article>
     <script>
@@ -317,7 +317,7 @@
                 const today = new Date();
                 // Hitung selisih hari
                 const diffMs = today.getTime() - birthDate.getTime();
-                const diffDays = diffMs / (1000 <em> 60 </em> 60 * 24);
+                const diffDays = diffMs / (1000 * 60 * 60 * 24);
                 if (diffDays < 0) {
                     resultDiv.textContent = 'Tanggal lahirnya tidak boleh di masa depan dong :)';
                     resultDiv.style.color = 'red';
@@ -343,20 +343,18 @@
                 tempDaysHijri %= (daysInHijriYear / 12);
                 const daysHijri = Math.floor(tempDaysHijri);
                 resultDiv.style.color = 'var(--accent-color)';
-                resultDiv.innerHTML = <code>
+                resultDiv.innerHTML = `
                     Perkiraan Umur Kamu:<br>
                     <strong>Umur Masehi:</strong> ${yearsGreg} tahun, ${monthsGreg} bulan, ${daysGreg} hari<br>
                     <strong>Umur Hijriyah:</strong> ${yearsHijri} tahun, ${monthsHijri} bulan, ${daysHijri} hari
                     <br><br>
                     <span style="font-size: 0.9rem; opacity: 0.8;">(Umur Hijriyah kamu ${ageHijri > ageGregorian ? 'lebih tua' : 'lebih muda'} sekitar <strong>${(ageHijri - ageGregorian).toFixed(1)}</strong> tahun!)</span>
-                </code>;
+                `;
             } catch (e) {
                 resultDiv.textContent = 'Oops, ada kesalahan. Coba cek lagi tanggalnya.';
                 resultDiv.style.color = 'red';
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

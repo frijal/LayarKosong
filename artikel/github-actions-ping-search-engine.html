@@ -228,7 +228,7 @@
       color: var(--border-color);
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <div class="container">
@@ -255,11 +255,11 @@
         <p>Penerapannya sangat mudah. Kamu hanya perlu menukar bagian <code>[URL_LENGKAP_SITEMAP]</code> dengan alamat absolut dari sitemap yang ada di server produksimu. Sebagai contoh, jika domainmu adalah <em>dalam.web.id</em>, maka URL yang kamu panggil menjadi <code>https://www.google.com/ping?sitemap=https://dalam.web.id/sitemap.xml</code>.</p>
         <h2><i class="fa-solid fa-code-branch icon-spacing"></i> Di Sinilah Peran Magis GitHub Actions Bermula</h2>
         <p>Nah, di sinilah ide untuk menciptakan sebuah otomatisasi tingkat lanjut menjadi sangat berguna. Daripada kamu harus menyalin dan mengakses URL ping tersebut secara manual melalui <em>browser</em> setiap kali selesai menulis, kita bisa meletakkan beban kerja ini ke pundak <strong>GitHub Actions</strong>.</p>
-        <p>Jika situsmu di-<em>hosting</em> atau di-<em>deploy</em> menggunakan ekosistem GitHub, alur kerja (<em>workflow</em>) yang ideal akan berjalan persis seperti ini:</p>
+        <p>Jika situsmu di-*hosting* atau di-*deploy* menggunakan ekosistem GitHub, alur kerja (<em>workflow</em>) yang ideal akan berjalan persis seperti ini:</p>
         <ol>
           <li><strong>Kejadian (Event):</strong> Kamu baru saja selesai menulis dan melakukan instruksi <code>push</code> ke <em>branch</em> <code>main</code>. <em>Push</em> ini berisi artikel baru sekaligus pembaruan pada <em>file</em> generator <code>sitemap.xml</code> dan <code>rss.xml</code>.</li>
           <li><strong>Pemicu (Trigger):</strong> Mesin GitHub Actions akan mendeteksi perubahan tersebut dan menjalankan <em>workflow deployment</em> secara otomatis.</li>
-          <li><strong>Tindakan (Action):</strong> Tepat setelah situs sukses ter-<em>deploy</em>, kita menyisipkan sebuah langkah pamungkas. Langkah ini akan menjalankan perintah <code>curl</code> pada terminal Linux di peladen GitHub untuk "mengetuk pintu" mesin pencari.</li>
+          <li><strong>Tindakan (Action):</strong> Tepat setelah situs sukses ter-*deploy*, kita menyisipkan sebuah langkah pamungkas. Langkah ini akan menjalankan perintah <code>curl</code> pada terminal Linux di peladen GitHub untuk "mengetuk pintu" mesin pencari.</li>
         </ol>
         <h2><i class="fa-solid fa-terminal icon-spacing"></i> Contoh Skrip Langkah di GitHub Actions</h2>
         <p>Pengintegrasiannya ke dalam file konfigurasi YAML milikmu sangatlah mulus. Kamu cukup menempelkan blok perintah sederhana ini pada bagian paling bawah dari tugas (<em>job</em>) <em>deploy</em> yang sudah ada.</p>
@@ -289,8 +289,8 @@
         <span>14 Juni 2026</span>
         <span>Referensi: Dokumentasi GitHub Actions &amp; Panduan Google Search Central</span>
       </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

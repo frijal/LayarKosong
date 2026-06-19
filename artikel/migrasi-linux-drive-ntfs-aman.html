@@ -181,7 +181,7 @@
     </style>
 <meta name="ai:summary" content="Khawatir beralih dari Windows ke Linux tanpa backup? Ini ringkasan diskusi forum tentang cara aman mengakses dan mengelola drive data NTFS (Windows) Anda di lingkungan Linux yang baru.">
 <meta name="ai:prompt_hint" content="Khawatir beralih dari Windows ke Linux tanpa backup? Ini ringkasan diskusi forum tentang cara aman mengakses dan mengelola drive data NTFS (Windows) Anda di lingkungan Linux yang baru.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -197,7 +197,7 @@
                 <hr>
                 <h2><i class="fa-solid fa-shield-alt"></i> Peringatan Emas: Selalu Buat Cadangan (Backup)!</h2>
                 <p class="alert-box">
-                    <i class="fa-solid fa-exclamation-triangle"></i> <strong>Ini Adalah Nasihat Nomor Satu.</strong> Meskipun pertanyaan utama Anda adalah <em>bisakah drive data diakses</em>, komunitas Linux sepakat bahwa <strong>harus ada cadangan</strong> sebelum melakukan manipulasi partisi atau instalasi OS. Kegagalan <em>hardware</em> bisa terjadi kapan saja, dan kecelakaan saat memilih partisi di <em>installer</em> Linux itu nyata.
+                    <i class="fa-solid fa-exclamation-triangle"></i> <strong>Ini Adalah Nasihat Nomor Satu.</strong> Meskipun pertanyaan utama Anda adalah <em>bisakah drive data diakses*, komunitas Linux sepakat bahwa <strong>harus ada cadangan</strong> sebelum melakukan manipulasi partisi atau instalasi OS. Kegagalan *hardware</em> bisa terjadi kapan saja, dan kecelakaan saat memilih partisi di <em>installer</em> Linux itu nyata.
                 </p>
                 <p>
                     Beberapa pengguna menyarankan:
@@ -222,8 +222,8 @@
                 </p>
                 <ul>
                     <li><strong>Driver NTFS-3G:</strong> Linux menggunakan <em>driver</em> <em>open-source</em> bernama NTFS-3G yang memungkinkan akses baca dan tulis penuh ke NTFS.</li>
-                    <li><strong>Mounting:</strong> <em>Drive</em> Anda mungkin tidak terpasang otomatis (<em>auto-mount</em>) saat <em>startup</em>. Anda mungkin harus mengklik ikon <em>drive</em> di <em>File Manager</em> untuk memasangnya, atau mengatur <em>auto-mount</em> secara permanen melalui utilitas sistem (seperti aplikasi Disk di Mint).</li>
-                    <li><strong>Nonaktifkan Fast Boot Windows:</strong> Pastikan Anda telah <strong>menonaktifkan fitur Fast Boot dan Hibernasi di Windows</strong> sebelum menghapusnya. Jika fitur ini aktif, <em>drive</em> NTFS bisa "terkunci" (<em>locked</em>) dan sulit diakses dari Linux, menyebabkan frustrasi pada pemula.</li>
+                    <li><strong>Mounting:</strong> <em>Drive</em> Anda mungkin tidak terpasang otomatis (*auto-mount*) saat <em>startup*. Anda mungkin harus mengklik ikon *drive</em> di <em>File Manager</em> untuk memasangnya, atau mengatur <em>auto-mount</em> secara permanen melalui utilitas sistem (seperti aplikasi Disk di Mint).</li>
+                    <li><strong>Nonaktifkan Fast Boot Windows:</strong> Pastikan Anda telah <strong>menonaktifkan fitur Fast Boot dan Hibernasi di Windows</strong> sebelum menghapusnya. Jika fitur ini aktif, <em>drive</em> NTFS bisa "terkunci" (*locked*) dan sulit diakses dari Linux, menyebabkan frustrasi pada pemula.</li>
                 </ul>
                 <hr>
                 <h2><i class="fa-solid fa-flask"></i> Batasan Jangka Panjang (Performa &amp; Format)</h2>
@@ -232,7 +232,7 @@
                 </p>
                 <h3>Mengapa NTFS Tidak Ideal untuk Program/Game di Linux:</h3>
                 <ul>
-                    <li><strong>Performa dan Stabilitas:</strong> Beberapa pengguna melaporkan bahwa menjalankan program atau, khususnya, <strong>bermain <em>game</em> dari partisi NTFS di Linux (misalnya melalui Steam Proton) dapat menyebabkan <em>bug</em> atau masalah stabilitas.</strong> Sistem berkas Linux (<em>native</em>) seperti <strong>EXT4</strong> jauh lebih stabil dan berkinerja baik untuk kebutuhan aplikasi dan <em>gaming</em>.</li>
+                    <li><strong>Performa dan Stabilitas:</strong> Beberapa pengguna melaporkan bahwa menjalankan program atau, khususnya, <strong>bermain <em>game</em> dari partisi NTFS di Linux (misalnya melalui Steam Proton) dapat menyebabkan <em>bug</em> atau masalah stabilitas.</strong> Sistem berkas Linux (*native*) seperti <strong>EXT4</strong> jauh lebih stabil dan berkinerja baik untuk kebutuhan aplikasi dan *gaming*.</li>
                     <li><strong>Sistem Berkas Masa Depan:</strong> Jika Anda berencana menggunakan data tersebut secara intensif di Linux, seperti untuk menyimpan pustaka <em>game</em> atau file proyek, rekomendasi jangka panjangnya adalah <strong>memindahkan data, lalu memformat <em>drive</em> tersebut ke EXT4</strong> saat Anda memiliki kesempatan untuk <em>backup</em> semua isinya.</li>
                 </ul>
                 <hr>
@@ -252,7 +252,7 @@
     </div>
     <footer>
         <p>🄯 2025 Sumber: Diskusi komunitas r/linux4noobs. Semua migrasi OS dilakukan atas risiko Anda sendiri. Backup! <i class="fa-solid fa-heart"></i></p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

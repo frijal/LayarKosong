@@ -161,7 +161,7 @@
     </style>
 <meta name="ai:summary" content="Komunikasi adalah kunci. Pelajari bagaimana Grammarly membantu UMKM dan pelajar menulis proposal, email, dan konten media sosial dengan jelas, profesional, dan bebas typo.">
 <meta name="ai:prompt_hint" content="Komunikasi adalah kunci. Pelajari bagaimana Grammarly membantu UMKM dan pelajar menulis proposal, email, dan konten media sosial dengan jelas, profesional, dan bebas typo.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
   <body>
     <div class="container">
@@ -179,7 +179,7 @@
             menulis email, proposal, atau bahkan <em>caption</em> di media sosial bisa
             menentukan citra merek kita. Nah, <strong>Grammarly</strong> hadir
             untuk memastikan setiap tulisan kita jelas, profesional, dan
-            tentunya bebas dari salah ketik (<em>typo</em>) yang memalukan.
+            tentunya bebas dari salah ketik (*typo*) yang memalukan.
           </p>
           <p>
             Grammarly bukan hanya memeriksa tata bahasa atau ejaan. Ia juga bisa
@@ -192,7 +192,7 @@
               ibarat guru privat. Sambil menulis, kita jadi belajar cara
               menyampaikan ide dengan lebih efektif. Kemampuan ini penting,
               karena tulisan yang bagus bisa langsung menaikkan citra sebuah
-              bisnis di dunia <em>online</em>.
+              bisnis di dunia *online*.
             </p>
           </div>
           <h2>Contoh Koreksi dari Grammarly</h2>
@@ -205,7 +205,7 @@
       </main>
       <footer>
         <p>🄯 2025 Frijal. Tulisan hebat, bisnis hebat.</p>
-       <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+       <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <div id="lightbox" class="lightbox">
@@ -226,11 +226,11 @@
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
             // Mengisi galeri dengan gambar
-            const images = Array.from({ length: 6 }, (_, i) => <code>https://picsum.photos/id/${70 + i}/800/600</code>);
+            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${70 + i}/800/600`);
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.alt = <code>Contoh antarmuka Grammarly ${index + 1}</code>;
+                img.alt = `Contoh antarmuka Grammarly ${index + 1}`;
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });
@@ -257,7 +257,5 @@
         }
       });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

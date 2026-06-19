@@ -177,7 +177,7 @@
     </style>
     <!-- Ikon FontAwesome Lite -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main" class="wrapper">
@@ -185,7 +185,7 @@
             <header>
                 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>OpenMandriva: Kelanjutan Legenda Mandrake yang Ditenagai Clang</h1>
             </header>
-            <p>Halo pembaca pengoprek Linux Nusantara! Menikmati hawa pagi yang cerah di Balikpapan rasanya makin lengkap kalau kita membahas sebuah distribusi Linux yang punya cerita <em>rollercoaster</em> di dunia <em>open-source</em>. Pernahkah kamu mendengar nama <strong>OpenMandriva</strong>? Bagi sebagian orang, nama ini mungkin terdengar asing. Namun, bagi para veteran yang sudah bermain Linux sejak era akhir 90-an, distro ini adalah reinkarnasi dari sebuah legenda besar.</p>
+            <p>Halo pembaca pengoprek Linux Nusantara! Menikmati hawa pagi yang cerah di Balikpapan rasanya makin lengkap kalau kita membahas sebuah distribusi Linux yang punya cerita <em>rollercoaster</em> di dunia *open-source*. Pernahkah kamu mendengar nama <strong>OpenMandriva</strong>? Bagi sebagian orang, nama ini mungkin terdengar asing. Namun, bagi para veteran yang sudah bermain Linux sejak era akhir 90-an, distro ini adalah reinkarnasi dari sebuah legenda besar.</p>
             <!-- LCP Image ditempatkan secara strategis di bawah paragraf pertama agar tidak memakan ruang utuh di atas fold -->
             <img src="https://dalam.web.id/img/pbs.twimg.com/1571179477be282c.webp" srcset="https://pbs.twimg.com/media/HKLQS6SbgAAXXXC?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKLQS6SbgAAXXXC?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKLQS6SbgAAXXXC?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="hero-img" alt="Ilustrasi layar desktop environment KDE Plasma pada distro OpenMandriva">
             <p>OpenMandriva bukanlah sistem operasi sembarangan yang dibuat asal-asalan. Ia membawa warisan sejarah yang kuat dan menawarkan racikan teknologi yang cukup langka di ekosistem GNU/Linux saat ini. Mari kita bedah tuntas identitas, sejarah, hingga fitur-fitur praktis yang membuatnya patut kamu pasang di PC atau laptopmu!</p>
@@ -194,17 +194,17 @@
             <h2>Menelusuri Garis Darah Sejarah <em>(The Lineage)</em></h2>
             <p>Untuk memahami jiwa dari OS ini, kita harus mundur beberapa dekade ke belakang. Kisah panjangnya bisa dirangkum dalam tiga fase krusial:</p>
             <ul>
-                <li><strong>Awal Mula (1998):</strong> Semuanya berawal dari kelahiran <strong>Mandrake Linux</strong>. Pada masanya, distro ini sangat revolusioner. Di saat menginstal Linux dianggap sebagai tugas yang hanya bisa dilakukan oleh seorang <em>hacker</em>, Mandrake hadir mendobrak stigma dengan menawarkan antarmuka <em>installer</em> grafis yang sangat <em>user-friendly</em>.</li>
+                <li><strong>Awal Mula (1998):</strong> Semuanya berawal dari kelahiran <strong>Mandrake Linux</strong>. Pada masanya, distro ini sangat revolusioner. Di saat menginstal Linux dianggap sebagai tugas yang hanya bisa dilakukan oleh seorang <em>hacker*, Mandrake hadir mendobrak stigma dengan menawarkan antarmuka *installer</em> grafis yang sangat *user-friendly*.</li>
                 <li><strong>Perubahan Nama (2005):</strong> Karena tersandung masalah hak paten merek dagang, Mandrake terpaksa melakukan peleburan <em>(merger)</em> dengan perusahaan teknologi asal Brasil bernama <strong>Conectiva</strong>. Hasil perkawinan silang ini melahirkan nama baru yang cukup ikonik: <strong>Mandriva Linux</strong>.</li>
                 <li><strong>Kebangkrutan dan Kebangkitan (2012):</strong> Sayangnya, kisah bisnis tak seindah kode pemrogramannya. Perusahaan penyokong Mandriva dihantam badai krisis keuangan hebat hingga akhirnya menghentikan pengembangan resmi di tahun 2012. Tak sudi melihat warisan yang brilian ini musnah ditelan zaman, komunitas setia di seluruh dunia pun bersatu. Mereka mengambil alih kode sumbernya, mendirikan yayasan <strong>OpenMandriva Association</strong>, dan melahirkan kembali proyek ini menjadi OpenMandriva seperti yang kita kenal sekarang.</li>
             </ul>
             <h2>Fitur Sakti dan Keunikan OpenMandriva</h2>
             <p>Di lautan ratusan distro Linux, apa yang membuat OpenMandriva tampil beda? Jawabannya ada pada tiga pilar utama berikut:</p>
             <h3>1. Dikompilasi Penuh dengan Clang (Bukan GCC!)</h3>
-            <p>Ini adalah perangkat andalan dan keunikan paling mutlak yang dimiliki OpenMandriva. Jika 99% distro Linux di luar sana (seperti Ubuntu, Fedora, atau Arch) dibangun dan dikompilasi menggunakan kompiler standar GCC <em>(GNU Compiler Collection)</em>, OpenMandriva mengambil jalan sunyi dengan <strong>menggunakan kompiler Clang/LLVM secara penuh</strong> untuk membangun seluruh sistem operasinya.</p>
+            <p>Ini adalah perangkat andalan dan keunikan paling mutlak yang dimiliki OpenMandriva. Jika 99% distro Linux di luar sana (seperti Ubuntu, Fedora, atau Arch) dibangun dan dikompilasi menggunakan kompiler standar GCC *(GNU Compiler Collection)*, OpenMandriva mengambil jalan sunyi dengan <strong>menggunakan kompiler Clang/LLVM secara penuh</strong> untuk membangun seluruh sistem operasinya.</p>
             <p>Apa untungnya? Clang dikenal memiliki arsitektur yang lebih modern, proses kompilasi yang lebih efisien, serta analisis kode yang lebih ketat. Bagi pengguna akhir, ini bermuara pada <strong>peningkatan performa aplikasi</strong> dan <strong>tingkat keamanan memori yang lebih kokoh</strong>.</p>
             <h3>2. Anak Emas KDE Plasma</h3>
-            <p>Walaupun tersedia pilihan antarmuka lain, lingkungan <em>desktop</em> utama dan yang paling direkomendasikan di OS ini adalah <strong>KDE Plasma</strong>. Tim OpenMandriva memberikan banyak polesan ekstra agar KDE Plasma berjalan sangat ringan, cantik, dan <em>customizable</em>. Jika kamu suka mengutak-atik tampilan <em>desktop</em> hingga ke detail terkecil, kamu akan merasa seperti di Taman Bermain.</p>
+            <p>Walaupun tersedia pilihan antarmuka lain, lingkungan <em>desktop</em> utama dan yang paling direkomendasikan di OS ini adalah <strong>KDE Plasma</strong>. Tim OpenMandriva memberikan banyak polesan ekstra agar KDE Plasma berjalan sangat ringan, cantik, dan <em>customizable*. Jika kamu suka mengutak-atik tampilan *desktop</em> hingga ke detail terkecil, kamu akan merasa seperti di Taman Bermain.</p>
             <h3>3. Netral dan Bebas Agenda Politik</h3>
             <p>Di saat beberapa proyek perangkat lunak sering kali terseret ke dalam pusaran isu sosial atau politik global, OpenMandriva memiliki kebijakan yang sangat tegas. Mereka murni fokus pada aspek teknis, inovasi kode, dan komunitas pengembangan tanpa pernah menyelipkan agenda non-teknis ke dalam peluncuran sistem operasinya.</p>
             <h2>Beragam Edisi Sesuai Selera</h2>
@@ -221,26 +221,26 @@
                 <tbody>
                     <tr>
                         <td><strong>ROME</strong></td>
-                        <td><strong><em>Rolling Release</strong></em></td>
-                        <td>Tidak ada versi final. Pembaruan aplikasi, <em>driver</em>, dan <em>kernel</em> disalurkan secara terus-menerus setiap hari.</td>
-                        <td><em>Power user</em>, <em>gamer</em>, dan antusias yang haus akan <em>software</em> paling mutakhir tanpa perlu instal ulang.</td>
+                        <td><strong>*Rolling Release</strong>*</td>
+                        <td>Tidak ada versi final. Pembaruan aplikasi, <em>driver*, dan *kernel</em> disalurkan secara terus-menerus setiap hari.</td>
+                        <td><em>Power user*, *gamer*, dan antusias yang haus akan *software</em> paling mutakhir tanpa perlu instal ulang.</td>
                     </tr>
                     <tr>
                         <td><strong>ROCK</strong></td>
-                        <td><strong><em>Fixed Release (LTS)</strong></em></td>
+                        <td><strong>*Fixed Release (LTS)</strong>*</td>
                         <td>Versi yang dikunci dan sangat stabil. Mendapatkan pembaruan keamanan jangka panjang.</td>
                         <td>Pengguna kantoran, <em>workstation</em> desain, atau mesin <em>server</em> bisnis yang menuntut stabilitas tanpa kompromi.</td>
                     </tr>
                     <tr>
                         <td><strong>Cooker</strong></td>
-                        <td><strong><em>Development Branch</strong></em></td>
-                        <td>Dapur eksperimen. Tempat di mana kode dan fitur baru diuji secara ekstrem sebelum dirilis. Rawan <em>crash</em>!</td>
-                        <td>Khusus untuk para pengembang, relawan penguji <em>(tester)</em>, dan kontributor aktif.</td>
+                        <td><strong>*Development Branch</strong>*</td>
+                        <td>Dapur eksperimen. Tempat di mana kode dan fitur baru diuji secara ekstrem sebelum dirilis. Rawan *crash*!</td>
+                        <td>Khusus untuk para pengembang, relawan penguji *(tester)*, dan kontributor aktif.</td>
                     </tr>
                 </tbody>
             </table>
             <blockquote>
-                <p><i class="fa-solid fa-flag-checkered"></i> <strong>Kesimpulan Padat:</strong> OpenMandriva bukanlah sekadar distro alternatif biasa. Ia adalah monumen sejarah hidup kelanjutan komunitas dari Mandriva Linux. Keberaniannya menggunakan fondasi kompiler <strong>Clang</strong>, dedikasinya pada <strong>KDE Plasma</strong>, serta tawaran opsi antara <em>rolling release</em> (<strong>ROME</strong>) dan <em>stable release</em> (<strong>ROCK</strong>) menjadikannya pilihan yang sangat menggiurkan. Jika kamu sedang mencari penyegaran dari rutinitas distro <em>mainstream</em>, OpenMandriva jelas pantas mendapat ruang di keping <em>hardisk</em>-mu!</p>
+                <p><i class="fa-solid fa-flag-checkered"></i> <strong>Kesimpulan Padat:</strong> OpenMandriva bukanlah sekadar distro alternatif biasa. Ia adalah monumen sejarah hidup kelanjutan komunitas dari Mandriva Linux. Keberaniannya menggunakan fondasi kompiler <strong>Clang</strong>, dedikasinya pada <strong>KDE Plasma</strong>, serta tawaran opsi antara <em>rolling release</em> (<strong>ROME</strong>) dan <em>stable release</em> (<strong>ROCK</strong>) menjadikannya pilihan yang sangat menggiurkan. Jika kamu sedang mencari penyegaran dari rutinitas distro *mainstream*, OpenMandriva jelas pantas mendapat ruang di keping *hardisk*-mu!</p>
             </blockquote>
         </article>
         <!-- Elemen Wajib Akhir Konten Tanpa Modifikasi Styling -->
@@ -255,7 +255,7 @@
                 <span>•</span>
                 <span><i class="fa-solid fa-book"></i> Referensi: <a href="https://wiki.openmandriva.org/" target="_blank" rel="noopener noreferrer">OpenMandriva Wiki</a></span>
             </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

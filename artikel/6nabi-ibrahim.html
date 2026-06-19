@@ -235,7 +235,7 @@
   <!-- Structured data: Article -->
 <meta name="ai:summary" content="Kisah Nabi Ibrahim: keberanian menghancurkan berhala, api yang jadi sejuk, debat Namrud, Zamzam, kurban, pembangunan Kaabah, dan pangdi luar nalarn haji yang abadi.">
 <meta name="ai:prompt_hint" content="Kisah Nabi Ibrahim: keberanian menghancurkan berhala, api yang jadi sejuk, debat Namrud, Zamzam, kurban, pembangunan Kaabah, dan pangdi luar nalarn haji yang abadi.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <main>
@@ -367,7 +367,7 @@
   <!-- JS: SEO hydration, share, lightbox, info chips (browser/OS/IP/flag), fallbacks -->
   <script>
     (function() {
-      const safe = (f) => { try { f(); } catch (e) { /<em> lanjut </em>/ } };
+      const safe = (f) => { try { f(); } catch (e) { /* lanjut */ } };
       // Canonical & OG/Twitter url/image meta auto + fallback artikel/*.jpg
       safe(() => {
         const url = new URL(window.location.href);
@@ -399,7 +399,7 @@
         const words = text.trim().split(/\s+/).length;
         const min = Math.max(4, Math.round(words / 200));
         const el = document.querySelector('#read-time span');
-        if (el) el.textContent = <code>Waktu baca: ~${min} menit</code>;
+        if (el) el.textContent = `Waktu baca: ~${min} menit`;
       });
       // Lightbox gallery with arrow keys
       safe(() => {
@@ -415,7 +415,7 @@
           idx = i;
           lbImg.src = items[idx].src;
           lb.classList.add('open');
-          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
+          lbIndex.textContent = `${idx+1} / ${items.length}`;
           document.body.style.overflow = 'hidden';
         };
         const closeLb = () => {
@@ -426,7 +426,7 @@
         const step = (d) => {
           idx = (idx + d + items.length) % items.length;
           lbImg.src = items[idx].src;
-          lbIndex.textContent = <code>${idx+1} / ${items.length}</code>;
+          lbIndex.textContent = `${idx+1} / ${items.length}`;
         };
         document.querySelectorAll('.zoomable').forEach((fig, i) => {
           fig.addEventListener('click', () => openAt(i));
@@ -444,7 +444,5 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -170,7 +170,7 @@
             blockquote { margin: 1rem 0; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -188,10 +188,10 @@
         </div>
     </header>
     <article>
-        <p>Halo warga internet yang budiman! 👋 Ada kejadian aneh bin ajaib: internet di rumah lagi lemot parah, buka sosmed <em>loading</em>-nya kayak nunggu jodoh yang tidak dateng-dateng, tapi begitu iseng nyalain VPN atau Cloudflare WARP, tiba-tiba... <em>wusshhh!</em> Lancar jaya?</p>
+        <p>Halo warga internet yang budiman! 👋 Ada kejadian aneh bin ajaib: internet di rumah lagi lemot parah, buka sosmed <em>loading*-nya kayak nunggu jodoh yang tidak dateng-dateng, tapi begitu iseng nyalain VPN atau Cloudflare WARP, tiba-tiba... *wusshhh!</em> Lancar jaya?</p>
         <p>Logika dasarnya kan begini ya: <strong>VPN = Menambah jarak tempuh data</strong>. Data kita perlu mampir dulu ke server VPN, dienkripsi (dibungkus), baru dikirim ke tujuan. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna. Harusnya lebih lambat ? Tapi kenapa fakta di lapangan sering berkata lain, terutama buat kita-kita yang tinggal di Indonesia tercinta ini?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAJlF6cbgAAF65G.webp" alt="Ilustrasi Routing Jaringan VPN vs ISP Lokal" width="100%" height="450">
-        <p>Baru-baru ini, aku nemu diskusi yang bener banget di forum sebelah. Isinya para sepuh jaringan, <em>gamer</em> yang frustrasi sama <em>packet loss</em>, sampai orang dalam ISP yang buka-bukaan soal dapur mereka. Yuk, kita bedah bareng-bareng pake prinsip 5W+1H biar tuntas!</p>
+        <p>Baru-baru ini, aku nemu diskusi yang bener banget di forum sebelah. Isinya para sepuh jaringan, <em>gamer</em> yang frustrasi sama *packet loss*, sampai orang dalam ISP yang buka-bukaan soal dapur mereka. Yuk, kita bedah bareng-bareng pake prinsip 5W+1H biar tuntas!</p>
         <hr>
         <h2><i class="fa-solid fa-search fa-icon"></i> WHAT: Apa yang Sebenarnya Terjadi?</h2>
         <p>Fenomena ini bukan halusinasi atau efek plasebo semata, kawan. Ini nyata. Banyak user melaporkan bahwa saat menggunakan koneksi "polosan" dari ISP (terutama yang plat merah atau ISP <em>tier</em> 3), pengalaman <em>browsing</em> dan <em>gaming</em> terasa berat. Tapi begitu "dibungkus" VPN, latensi jadi stabil dan <em>bandwidth</em> terasa lebih plong.</p>
@@ -236,7 +236,7 @@
         </ol>
         <div class="highlight-box">
             <h3><i class="fa-solid fa-gamepad fa-icon"></i> Studi Kasus Gaming: WuWa &amp; Silver Palace</h3>
-            <p><strong>MuchDrive4744</strong> (OP) lagi persiapan main <em>Wuthering Waves</em> (WuWa). Dia butuh ping stabil buat mekanisme <em>parry</em>/tangkisan yang butuh presisi tinggi. Solusi dari komunitas?</p>
+            <p><strong>MuchDrive4744</strong> (OP) lagi persiapan main <em>Wuthering Waves</em> (WuWa). Dia butuh ping stabil buat mekanisme *parry*/tangkisan yang butuh presisi tinggi. Solusi dari komunitas?</p>
             <ul>
                 <li><strong>Cloudflare WARP:</strong> Bagus buat umum, tapi routingnya kadang "gacha".</li>
                 <li><strong>Proton VPN:</strong> Kalau tau server gamenya di mana (misal Singapura), Proton bisa lebih bagus karena kita bisa pilih server VPN yang satu kota sama server game.</li>
@@ -263,11 +263,11 @@
         <hr>
         <h2><i class="fa-solid fa-lightbulb fa-icon"></i> Kesimpulan: Jadi Mending Pake Apa?</h2>
         <p>Jawabannya: <strong>Tergantung kebutuhan dan dompetmu.</strong></p>
-        <p>Kalau kamu cuma pengen buka Reddit atau situs yang diblokir tanpa pusing settingan, <strong>Cloudflare WARP</strong> atau <strong>DNS over HTTPS (DoH)</strong> udah cukup. Gratis dan lumayan nge-<em>bypass</em> filtering lemot ISP.</p>
+        <p>Kalau kamu cuma pengen buka Reddit atau situs yang diblokir tanpa pusing settingan, <strong>Cloudflare WARP</strong> atau <strong>DNS over HTTPS (DoH)</strong> udah cukup. Gratis dan lumayan nge-*bypass* filtering lemot ISP.</p>
         <p>Tapi kalau kamu <em>gamer</em> yang butuh kestabilan (bukan cuma speed download), atau kerjaan kamu butuh koneksi steril dari "tangan-tangan jahil" filtering ISP, investasi ke <strong>VPN berbayar</strong> atau setup <strong>OpenWRT</strong> di rumah adalah jalan pintasnya. Ingat kata pepatah user Reddit: <em>"Routing itu masalah ribet dan tidak konstan."</em> Jadi, eksperimenlah!</p>
         <p>Kadang, internet sehat itu bukan cuma soal memblokir konten negatif, tapi juga soal menjaga kesehatan mental kita biar tidak emosi nunggu loading. Setuju? 😄</p>
         <div style="background-color: var(--code-bg); padding: 1rem; border-radius: 8px; margin-top: 2rem; border: 1px dashed var(--accent-color);">
-            <strong>Disclaimer:</strong> Artikel ini ditulis berdasarkan pengalaman komunitas dan analisis teknis umum. Kondisi di lapangan bisa berbeda tergantung lokasi (Balikpapan mungkin beda sama Jakarta), jenis ISP, dan paket langganan yang kamu pake.
+            **Disclaimer:** Artikel ini ditulis berdasarkan pengalaman komunitas dan analisis teknis umum. Kondisi di lapangan bisa berbeda tergantung lokasi (Balikpapan mungkin beda sama Jakarta), jenis ISP, dan paket langganan yang kamu pake.
         </div>
     </article>
     <div id="response"></div>
@@ -275,8 +275,8 @@
     <footer style="margin-top: 4rem; font-size: 0.8rem; text-align: center; opacity: 0.6; font-family: 'Inter', sans-serif;">
         <p>🄯 2026 Layar Kosong - Frijal.</p>
         <p>Dibuat dengan <i class="fa-solid fa-heart" style="color: red;"></i> dan kopi sachet.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

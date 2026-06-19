@@ -61,7 +61,7 @@
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
         .zdummy { font-size: 0.85rem; opacity: 0.7; margin-top: 10px; text-align: center; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -77,7 +77,7 @@
             <textarea id="outputMD" readonly="" placeholder="Hasil konversi otomatis..."></textarea>
         </div>
     </div>
-    <div class="zdummy">Didesain khusus mengikuti logika <strong>markdown-enhancer.js</strong></div>
+    <div class="zdummy">Didesain khusus mengikuti logika **markdown-enhancer.js**</div>
 </div>
 <script>
 function doReverse() {
@@ -86,21 +86,21 @@ function doReverse() {
     let md = html
         // 1. Tebal (Strong & B) -> Hanya yang polos tanpa atribut
         // Jika ada <strong class="red"> tetap jadi HTML, jika <strong> polos jadi **
-        .replace(/<(strong|b)>(.*?)<\/\1>/gi, '<strong>$2</strong>')
+        .replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**')
         // 2. Miring (Em & I) -> Hanya yang polos (Tanpa class/FontAwesome)
         // Regex ini memastikan tidak ada karakter lain (seperti class=) di dalam tag pembuka
-        .replace(/<(em|i)>(.<em>?)<\/\1>/gi, '</em>$2*')
-        // 3. Link -> <a href="url">text</a>
+        .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')
+        // 3. Link -> [text](url)
         // Kita hanya ambil link standar. Jika ada class di <a>, biarkan tetap HTML.
-        .replace(/<a href="([^"]<em>)"[^>]</em>>(.*?)<\/a>/gi, (match, url, text) => {
+        .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
             // Jika tag <a> punya class atau id, biarkan jadi HTML murni
-            return match.includes('class=') || match.includes('id=') ? match : <code><a href="${url}">${text}</a></code>;
+            return match.includes('class=') || match.includes('id=') ? match : `[${text}](${url})`;
         })
-        // 4. Inline Code -> <code>text</code>
-        .replace(/<code>(.*?)<\/code>/gi, '<code>$1</code>');
+        // 4. Inline Code -> `text`
+        .replace(/<code>(.*?)<\/code>/gi, '`$1`');
     document.getElementById('outputMD').value = md;
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

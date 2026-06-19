@@ -268,7 +268,7 @@
             color: var(--text-muted);
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main class="container" role="main">
@@ -283,7 +283,7 @@
         </header>
         <article>
             <p>
-                Pernahkah kamu menemukan laptop lama teronggok berdebu di gudang, menyalakannya karena iseng, lalu bingung perlu diapakan? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Itulah yang terjadi pada sebuah Dell Inspiron 600M. Sambil ngopi santai, saya mencoba menghidupkan kembali "fosil" teknologi ini. Tantangannya jelas: perangkat keras lawas ini sudah sangat tertinggal oleh zaman. Namun, bagi para penggiat <em>open-source</em>, tidak ada kata menyerah sebelum mencoba berbagai distro Linux.
+                Pernahkah kamu menemukan laptop lama teronggok berdebu di gudang, menyalakannya karena iseng, lalu bingung perlu diapakan? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Itulah yang terjadi pada sebuah Dell Inspiron 600M. Sambil ngopi santai, saya mencoba menghidupkan kembali "fosil" teknologi ini. Tantangannya jelas: perangkat keras lawas ini sudah sangat tertinggal oleh zaman. Namun, bagi para penggiat *open-source*, tidak ada kata menyerah sebelum mencoba berbagai distro Linux.
             </p>
             <p>
                 Mencari sistem operasi yang tepat untuk komputer <em>vintage</em> di tahun 2026 ini ibarat mencari jarum di tumpukan jerami. Rata-rata distro modern menertawakan spesifikasi di bawah 4 GB RAM. Namun, pencarian ini berujung manis berkat satu nama: <strong>antiX Linux</strong>. Mari kita bedah tuntas mengapa distro ini menjadi pahlawan tanpa tanda jasa bagi perangkat keras purba.
@@ -337,7 +337,7 @@
             <ul>
                 <li><strong>Kernel 32‑bit non‑PAE:</strong> Mampu melakukan <em>boot</em> di arsitektur Pentium M tanpa perlu trik kompilasi manual yang meresahkan.</li>
                 <li><strong>Berbasis Debian tulen (bukan Ubuntu):</strong> Memiliki stabilitas batu karang namun tetap menggunakan manajer paket <code>apt</code> dan paket <code>.deb</code> yang familiar bagi pengguna turunan Debian/Mint.</li>
-                <li><strong>Editan "Base" dengan IceWM:</strong> Menyediakan antarmuka grafis IceWM yang luar biasa ringan (hanya mengonsumsi sekitar ~100–150 MB RAM saat <em>idle</em>). Di sistem dengan RAM 1 GB, kamu benar-benar butuh menghemat setiap megabita yang ada!</li>
+                <li><strong>Editan "Base" dengan IceWM:</strong> Menyediakan antarmuka grafis IceWM yang luar biasa ringan (hanya mengonsumsi sekitar ~100–150 MB RAM saat *idle*). Di sistem dengan RAM 1 GB, kamu benar-benar butuh menghemat setiap megabita yang ada!</li>
                 <li><strong>Bebas systemd:</strong> antiX secara <em>default</em> tidak menggunakan systemd (mereka menggunakan sysVinit atau runit), sebuah keputusan brilian yang menghemat sangat banyak sumber daya pada proses latar belakang di perangkat keras tua.</li>
                 <li><strong>Pembaruan Berkelanjutan:</strong> Meskipun mendukung PC lawas, antiX sangat aktif dipelihara dan selalu mendapatkan pembaruan keamanan terbaru.</li>
             </ul>
@@ -350,7 +350,7 @@
                 <li><strong>Instal Permanen:</strong> Lakukan instalasi langsung ke HDD 60 GB. Sistem operasi yang berjalan penuh dari cakram keras akan jauh lebih responsif ketimbang menjalankannya secara <em>live</em> melalui USB.</li>
                 <li><strong>Pilihan Perangkat Lunak Ultra-Ringan:</strong>
                     <ul>
-                        <li><strong>Peramban Web:</strong> Lupakan Chrome. Gunakan <em>Links2</em> (bisa mode grafis, tanpa JavaScript) untuk bacaan teks dasar. Jika <em>terpaksa</em> membuka situs modern, gunakan <strong>SeaMonkey</strong> atau Firefox-ESR versi sangat lawas (tapi siap-siap tersendat ya!). Alternatif <em>geeky</em>: gunakan <code>w3m</code> di terminal.</li>
+                        <li><strong>Peramban Web:</strong> Lupakan Chrome. Gunakan <em>Links2</em> (bisa mode grafis, tanpa JavaScript) untuk bacaan teks dasar. Jika <em>terpaksa</em> membuka situs modern, gunakan <strong>SeaMonkey</strong> atau Firefox-ESR versi sangat lawas (tapi siap-siap tersendat ya!). Alternatif *geeky*: gunakan <code>w3m</code> di terminal.</li>
                         <li><strong>Produktivitas Kantor:</strong> Duet AbiWord untuk teks dan Gnumeric untuk angka adalah pilihan bawaan terbaik. Untuk yang suka terminal, <code>sc-im</code> adalah <em>spreadsheet</em> jagoan.</li>
                         <li><strong>Manajemen Berkas:</strong> <code>mc</code> (Midnight Commander) untuk navigasi kilat di terminal, atau <code>pcmanfm</code> untuk mode grafis.</li>
                         <li><strong>Multimedia:</strong> Putar video resolusi rendah dengan <code>mpv</code> (tambahkan opsi <code>--vo=xv</code> untuk mengakali kartu grafis ATI lama), atau pakai <code>mplayer</code>.</li>
@@ -365,11 +365,11 @@
             </p>
             <ul>
                 <li><strong>Puppy Linux:</strong> (Seperti Fossapup 9.5 32-bit atau varian lawas Wary/Racy). Kelebihannya ia sangat mungil dan berjalan sepenuhnya dari RAM. Namun, manajemen paketnya unik dan kurang familiar bagi mereka yang terbiasa dengan ekosistem <code>apt</code>.</li>
-                <li><strong>SliTaz:</strong> Distro dengan rilis bergulir (<em>rolling release</em>) yang ukuran ISO-nya cuma sekitar 50 MB! Sangat-sangat ringan, tapi sayangnya basis komunitasnya jauh lebih kecil jika kamu butuh bantuan <em>troubleshooting</em>.</li>
-                <li><strong>Void Linux 32‑bit (musl):</strong> Pilihan mutlak bagi kaum <em>purist</em>. Sangat minimalis dan kencang, tapi kamu harus turun tangan mengonfigurasi banyak hal secara manual, termasuk memastikan penggunaan kernel non-PAE.</li>
+                <li><strong>SliTaz:</strong> Distro dengan rilis bergulir (*rolling release*) yang ukuran ISO-nya cuma sekitar 50 MB! Sangat-sangat ringan, tapi sayangnya basis komunitasnya jauh lebih kecil jika kamu butuh bantuan *troubleshooting*.</li>
+                <li><strong>Void Linux 32‑bit (musl):</strong> Pilihan mutlak bagi kaum *purist*. Sangat minimalis dan kencang, tapi kamu harus turun tangan mengonfigurasi banyak hal secara manual, termasuk memastikan penggunaan kernel non-PAE.</li>
             </ul>
             <p>
-                Pada akhirnya, jika diukur dari keseimbangan antara kemudahan pemakaian, ketersediaan paket (<em>repository</em>), dan dukungan komunitas yang ramah, <strong>antiX tetap keluar sebagai juara bertahan yang sulit ditaklukkan.</strong>
+                Pada akhirnya, jika diukur dari keseimbangan antara kemudahan pemakaian, ketersediaan paket (*repository*), dan dukungan komunitas yang ramah, <strong>antiX tetap keluar sebagai juara bertahan yang sulit ditaklukkan.</strong>
             </p>
             <div class="highlight-box">
                 <h3>💡 Atur Ekspektasi Pemakaian Harianmu</h3>
@@ -401,7 +401,7 @@
         <div class="container">
             <p>🄯 2026 Dibuat murni dengan HTML/CSS, tanpa framework yang memberatkan <em>browser</em> jadulmu.</p>
         </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

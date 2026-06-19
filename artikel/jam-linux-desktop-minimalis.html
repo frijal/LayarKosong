@@ -308,7 +308,7 @@
       }
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <header class="site-header">
@@ -317,21 +317,21 @@
   </header>
   <main role="main">
     <article>
-      <p>Pernahkah kamu baru selesai menginstal distro Linux dengan lingkungan desktop yang ringan, lalu menyadari ada yang aneh dengan penunjuk waktu di pojok layar? Kejadian ini sangat sering menimpa pengguna yang baru saja bermigrasi atau memasang sistem operasi <strong>Debian 13</strong> dengan desktop <em>LXQt</em>, <em>XFCE</em>, atau <em>window manager</em> murni.</p>
+      <p>Pernahkah kamu baru selesai menginstal distro Linux dengan lingkungan desktop yang ringan, lalu menyadari ada yang aneh dengan penunjuk waktu di pojok layar? Kejadian ini sangat sering menimpa pengguna yang baru saja bermigrasi atau memasang sistem operasi <strong>Debian 13</strong> dengan desktop <em>LXQt*, *XFCE*, atau *window manager</em> murni.</p>
       <p>Masalah ini biasanya bermanifestasi dalam bentuk waktu sistem yang tiba-tiba bergeser beberapa jam ke depan atau ke belakang, seolah nilainya sengaja ditukar secara acak. Tentu saja hal ini sangat mengganggu kenyamanan kerja maupun proses sinkronisasi log sistem.</p>
       <img src="https://dalam.web.id/img/pbs.twimg.com/74913b8d6755f8c0.webp" alt="Ilustrasi konfigurasi jam dan kode terminal pada sistem operasi komputer" fetchpriority="high" decoding="async" width="1200" height="675">
       <h2>Membongkar Pajak Desktop Minimalis</h2>
-      <p>Fenomena ini sejatinya merupakan bagian dari apa yang sering disebut sebagai <em>minimalist Linux tax</em> (pajak desktop minimalis). Ketika kamu memilih untuk menggunakan Desktop Environment kelas berat yang gemuk seperti GNOME atau KDE Plasma, sistem secara otomatis akan menyertakan tumpukan servis latar belakang (<em>background daemons</em>) yang masif, termasuk pengelola jaringan otomatis dan modul sinkronisasi waktu instan.</p>
+      <p>Fenomena ini sejatinya merupakan bagian dari apa yang sering disebut sebagai <em>minimalist Linux tax</em> (pajak desktop minimalis). Ketika kamu memilih untuk menggunakan Desktop Environment kelas berat yang gemuk seperti GNOME atau KDE Plasma, sistem secara otomatis akan menyertakan tumpukan servis latar belakang (*background daemons*) yang masif, termasuk pengelola jaringan otomatis dan modul sinkronisasi waktu instan.</p>
       <p>Sebaliknya, desktop minimalis seperti <em>LXQt</em> sengaja membuang seluruh tumpukan komponen non-esensial tersebut demi mengejar efisiensi memori RAM dan kecepatan performa. Ditambah lagi dengan prinsip dasar kestabilan sistem milik Debian yang sangat konservatif: mereka tidak akan memasang atau menjalankan servis baru kecuali kamu secara eksplisit memintanya.</p>
       <h2>Akar Masalah: Konflik Logika UTC vs Waktu Lokal</h2>
-      <p>Mengapa jam bisa mendadak bergeser tepat beberapa jam dari waktu asli? Hal ini terjadi akibat benturan mendasar antara cara kerja mesin komputer internal (<em>Hardware Clock/Real-Time Clock</em>) dengan sistem operasi Linux. Secara bawaan, Linux berasumsi bahwa waktu di dalam komponen <em>hardware</em> motherboard disimpan dalam format <strong>UTC</strong> (Coordinated Universal Time).</p>
-      <p>Namun, jika laptop tersebut berada dalam skema <em>dual-boot</em> dengan sistem operasi Windows, konfigurasi hardware clock dipaksa menggunakan format waktu lokal (<em>Local Time</em>). Ketika Linux membaca jam perangkat keras lokal tersebut dan mengiranya sebagai UTC, ia akan secara keliru menambahkan konversi zona waktu lokal (misalnya offset WITA/WIB) ke atasnya, membuat waktu melompat jauh ke masa depan.</p>
+      <p>Mengapa jam bisa mendadak bergeser tepat beberapa jam dari waktu asli? Hal ini terjadi akibat benturan mendasar antara cara kerja mesin komputer internal (*Hardware Clock/Real-Time Clock*) dengan sistem operasi Linux. Secara bawaan, Linux berasumsi bahwa waktu di dalam komponen <em>hardware</em> motherboard disimpan dalam format <strong>UTC</strong> (Coordinated Universal Time).</p>
+      <p>Namun, jika laptop tersebut berada dalam skema <em>dual-boot</em> dengan sistem operasi Windows, konfigurasi hardware clock dipaksa menggunakan format waktu lokal (*Local Time*). Ketika Linux membaca jam perangkat keras lokal tersebut dan mengiranya sebagai UTC, ia akan secara keliru menambahkan konversi zona waktu lokal (misalnya offset WITA/WIB) ke atasnya, membuat waktu melompat jauh ke masa depan.</p>
       <h2>Solusi Instan Melalui Terminal</h2>
-      <p>Jika sistem kamu mengalami kendala ketiadaan protokol sinkronisasi waktu (<em>NTP</em>) bawaan seperti ini, solusinya sangat sederhana. Langkah taktis yang terbukti andal adalah memasang alat bantu pengelolaan waktu yang kuat, salah satunya adalah <code>chrony</code>.</p>
+      <p>Jika sistem kamu mengalami kendala ketiadaan protokol sinkronisasi waktu (*NTP*) bawaan seperti ini, solusinya sangat sederhana. Langkah taktis yang terbukti andal adalah memasang alat bantu pengelolaan waktu yang kuat, salah satunya adalah <code>chrony</code>.</p>
       <p>Kamu hanya perlu mengeksekusi dua baris perintah ini di dalam terminal untuk memaksa sistem meluruskan waktunya secara instan:</p>
 <pre><code>sudo apt install chrony -y
 sudo timedatectl set-ntp true</code></pre>
-      <p>Setelah perintah di atas dijalankan, daemon <code>chrony</code> akan langsung melakukan kontak dengan pangkalan server waktu di internet dan menyesuaikan jam sistem ke detik yang tepat tanpa perlu melakukan <em>reboot</em>.</p>
+      <p>Setelah perintah di atas dijalankan, daemon <code>chrony</code> akan langsung melakukan kontak dengan pangkalan server waktu di internet dan menyesuaikan jam sistem ke detik yang tepat tanpa perlu melakukan *reboot*.</p>
       <h2>Metode Alternatif untuk Berbagai Skenario</h2>
       <p>Selain menggunakan metode di atas, terdapat beberapa alternatif lain yang bisa kamu sesuaikan dengan filosofi minimalisme sistem yang ingin kamu pertahankan:</p>
       <h3>1. Pendekatan Ringan Bawaan systemd</h3>
@@ -387,7 +387,7 @@ sudo ntpdate pool.ntp.org</code></pre>
       <li>Pembaruan Terakhir: 4 Juni 2026</li>
       <li>Referensi: Dokumentasi Sistem Waktu Debian &amp; Manual Page <code>timedatectl</code></li>
     </ul>
-  <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

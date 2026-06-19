@@ -446,7 +446,7 @@
             }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
@@ -564,7 +564,7 @@
                 <div class="installation-methods">
                     <div class="zdummy">
                         <details open="">
-                            <summary><strong><i class="fa-brands fa-github"></i> Unduh .exe dari GitHub</strong></summary>
+                            <summary>**<i class="fa-brands fa-github"></i> Unduh .exe dari GitHub**</summary>
                             <p>Pergi ke <a target="_blank" href="https://aka.ms/installPowerToys">PowerToys GitHub releases</a>, klik Assets untuk menampilkan download, dan pilih installer yang sesuai dengan arsitektur dan scope instalasi Anda. Untuk kebanyakan perangkat, itu adalah installer x64 per-user.</p>
                             <table>
                                 <tbody><tr>
@@ -592,7 +592,7 @@
                     </div>
                     <div class="zdummy">
                         <details>
-                            <summary><strong><i class="fa-brands fa-microsoft"></i> Microsoft Store</strong></summary>
+                            <summary>**<i class="fa-brands fa-microsoft"></i> Microsoft Store**</summary>
                             <p>Anda dapat dengan mudah menginstal PowerToys dari Microsoft Store. Ini adalah metode yang direkomendasikan untuk kebanyakan pengguna karena memungkinkan update dapat. Hasilnya dapat berbeda bergantung pada konfigurasi, versi perangkat lunak, dan kebutuhan pengguna.</p>
                             <p>
                                 <a target="_blank" href="https://aka.ms/getPowertoys" style="text-decoration:none">
@@ -606,17 +606,17 @@
                     </div>
                     <div class="zdummy">
                         <details>
-                            <summary><strong><i class="fa-solid fa-terminal"></i> WinGet</strong></summary>
+                            <summary>**<i class="fa-solid fa-terminal"></i> WinGet**</summary>
                             <p>Unduh PowerToys dari <a target="_blank" href="https://github.com/microsoft/winget-cli#installing-the-client">WinGet</a>. Memperbarui PowerToys melalui winget akan menghormati scope instalasi PowerToys saat ini. Untuk menginstal PowerToys, jalankan perintah berikut dari command line / PowerShell:</p>
                             <h4>User scope installer [default]</h4>
-                            <pre><code>winget install Microsoft.PowerToys -s winget</code></pre>
+                            <pre>`winget install Microsoft.PowerToys -s winget`</pre>
                             <h4>Machine-wide scope installer</h4>
-                            <pre><code>winget install --scope machine Microsoft.PowerToys -s winget</code></pre>
+                            <pre>`winget install --scope machine Microsoft.PowerToys -s winget`</pre>
                         </details>
                     </div>
                     <div class="zdummy">
                         <details>
-                            <summary><strong><i class="fa-solid fa-box-open"></i> Metode Lainnya</strong></summary>
+                            <summary>**<i class="fa-solid fa-box-open"></i> Metode Lainnya**</summary>
                             <p>Ada <a target="_blank" href="https://learn.microsoft.com/windows/powertoys/install#community-driven-install-tools">metode instalasi yang digerakkan komunitas</a> seperti Chocolatey dan Scoop. Jika ini adalah solusi instalasi pilihan Anda, Anda dapat menemukan petunjuk instalasi di sana.</p>
                         </details>
                     </div>
@@ -804,7 +804,7 @@
             <div style="margin-top: 20px; font-size: 0.8rem; color: var(--text-secondary);">
                 <p><strong>Peringatan:</strong> Selalu backup data penting sebelum menginstal software baru atau mengubah pengaturan sistem. Aku tidak bertanggung jawab atas kerusakan atau kehilangan data.</p>
             </div>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
     <script>
@@ -887,6 +887,6 @@
             }).observe({ type: 'layout-shift', buffered: true });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

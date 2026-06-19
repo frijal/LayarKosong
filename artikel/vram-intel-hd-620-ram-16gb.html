@@ -160,7 +160,7 @@
             margin-bottom: 2rem;
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main role="main">
@@ -171,7 +171,7 @@
             <p>Spesifikasi yang kamu pakai ini adalah tipe mesin <em>workhorse</em> yang sangat umum dan bisa diandalkan untuk produktivitas. Biar tidak penasaran, mari kita bedah satu per satu alasannya dan bagaimana sistem operasimu mengelola sumber daya tersebut.</p>
             <h2>Anatomi Intel HD Graphics 620 🧩</h2>
             <p>VGA 620 di mesin kamu adalah tipe <strong>Integrated GPU (iGPU)</strong>, alias kartu grafis yang menyatu secara langsung di dalam kepingan silikon prosesor (CPU) Intel i5 tersebut.</p>
-            <p>Berbeda dengan VGA diskrit (seperti lini NVIDIA RTX atau AMD Radeon) yang punya kepingan memori (VRAM) sendiri yang disolder terpisah di <em>motherboard</em>, Intel HD 620 ini ibaratnya "anak kos". Dia murni tidak punya memori mandiri, jadi untuk bisa bertahan hidup dan menampilkan gambar, dia harus numpang hidup dari RAM utama komputermu.</p>
+            <p>Berbeda dengan VGA diskrit (seperti lini NVIDIA RTX atau AMD Radeon) yang punya kepingan memori (VRAM) sendiri yang disolder terpisah di *motherboard*, Intel HD 620 ini ibaratnya "anak kos". Dia murni tidak punya memori mandiri, jadi untuk bisa bertahan hidup dan menampilkan gambar, dia harus numpang hidup dari RAM utama komputermu.</p>
             <h2>Sistem "Shared Memory" (UMA) 🔄</h2>
             <p>Karena GPU mutlak butuh tempat untuk menyimpan tekstur visual, <em>framebuffer</em> resolusi layar, dan data grafis agar layar monitormu menyala, sistem komputer akan melakukan mekanisme yang dinamakan <strong>Shared Memory</strong> atau <em>Unified Memory Architecture</em> (UMA).</p>
             <ul>
@@ -180,11 +180,11 @@
             </ul>
             <h2>Kabar Baiknya: RAM Kamu Lega (16GB) 🚀</h2>
             <p>Kalau kapasitas memori utamamu cuma mentok di 4GB atau 8GB, berbagi jatah untuk VRAM dadakan ini bakal bikin sistem menjerit minta ampun dan memicu lemot massal. Tapi karena <em>meja kerja</em> RAM kamu seluas <strong>16GB</strong>, kamu berada di zona yang sangat aman dan nyaman.</p>
-            <p>Sebagai contoh, misalnya sistem secara rakus mengalokasikan 2GB penuh untuk VRAM si Intel HD 620 saat merender antarmuka berat, kamu nyatanya masih punya sisa 14GB <em>pure</em> yang siap dipakai oleh CPU mengeksekusi aplikasi, menjalankan <em>container</em> proyek, atau membuka puluhan tab <em>browser</em>. Angka 14GB itu lebih dari cukup untuk standar penggunaan <em>power user</em> sehari-hari.</p>
+            <p>Sebagai contoh, misalnya sistem secara rakus mengalokasikan 2GB penuh untuk VRAM si Intel HD 620 saat merender antarmuka berat, kamu nyatanya masih punya sisa 14GB <em>pure</em> yang siap dipakai oleh CPU mengeksekusi aplikasi, menjalankan <em>container</em> proyek, atau membuka puluhan tab <em>browser*. Angka 14GB itu lebih dari cukup untuk standar penggunaan *power user</em> sehari-hari.</p>
             <h2>Momen "Aha!": Hubungannya dengan Paket Booster ⚡</h2>
-            <p>Bagi kamu yang menggunakan distribusi Linux yang berfokus pada kecepatan (seperti CachyOS), kamu mungkin ingat tentang paket optimasi kernel yang terinstal di latar belakang (seperti <em>kcgroups</em>, <em>dmemcg-booster</em>, dan <em>plasma-foreground-booster</em>).</p>
+            <p>Bagi kamu yang menggunakan distribusi Linux yang berfokus pada kecepatan (seperti CachyOS), kamu mungkin ingat tentang paket optimasi kernel yang terinstal di latar belakang (seperti *kcgroups*, *dmemcg-booster*, dan *plasma-foreground-booster*).</p>
             <p>Mengingat CPU sentral dan GPU grafis kamu secara harfiah <strong>berebut dari kolam memori fisik yang sama</strong> (yakni kepingan RAM 16GB DDR4 tersebut), ketiga paket optimasi level sistem ini menjadi <strong>berkali-kali lipat lebih berguna</strong> di mesin kamu.</p>
-            <p>Karena memori sistem utama dan VRAM grafis kamu berada di perangkat keras yang persis sama, potensi kemacetan lalu lintas data (<em>bottleneck</em>) sangat rentan terjadi. Paket-paket <em>booster</em> berbasis <em>cgroups</em> tadi akan bertindak sebagai pengatur lalu lintas yang sangat galak dan presisi. Mereka memastikan memori DDR4 kamu dibagi dengan adil dan super cerdas antara kebutuhan CPU (aplikasi yang berjalan) dan kebutuhan GPU (visual rendering di layar), sehingga lag, <em>freeze</em>, dan <em>stuttering</em> saat <em>multitasking</em> berat bisa ditekan seminimal mungkin.</p>
+            <p>Karena memori sistem utama dan VRAM grafis kamu berada di perangkat keras yang persis sama, potensi kemacetan lalu lintas data (*bottleneck*) sangat rentan terjadi. Paket-paket <em>booster</em> berbasis <em>cgroups</em> tadi akan bertindak sebagai pengatur lalu lintas yang sangat galak dan presisi. Mereka memastikan memori DDR4 kamu dibagi dengan adil dan super cerdas antara kebutuhan CPU (aplikasi yang berjalan) dan kebutuhan GPU (visual rendering di layar), sehingga lag, <em>freeze*, dan *stuttering</em> saat <em>multitasking</em> berat bisa ditekan seminimal mungkin.</p>
             <div class="author-meta">
                 <i class="fa-solid fa-microchip"></i>
                 <div>
@@ -198,6 +198,6 @@
     </main>
     <footer>
         <p>🄯 2026 Layar Kosong. Dilisensikan di bawah The Unlicense.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -133,7 +133,7 @@
     </style>
 <meta name="ai:summary" content="tapi lengkap tentang Trojan banking Android">
 <meta name="ai:prompt_hint" content="tapi lengkap tentang Trojan banking Android">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -158,21 +158,21 @@
             <li>Membaca semua yang ada di layar.</li>
             <li>Mengontrol penuh layar (mengklik, menggeser, mengetik) dari jarak jauh.</li>
         </ul>
-        <p>Aplikasi akan mengulang permintaan izin ini terus-menerus (<em>nagging</em>) sampai pengguna lelah atau tak sengaja mengizinkannya.</p>
+        <p>Aplikasi akan mengulang permintaan izin ini terus-menerus (*nagging*) sampai pengguna lelah atau tak sengaja mengizinkannya.</p>
         <h3>3. Serangan Overlay (Mencuri Login) <span class="icon fa-solid fa-money-check-alt"></span></h3>
         <p>Ini adalah cara Sturnus mencuri data perbankan kamu dalam hitungan detik. Saat kamu membuka salah satu dari 30+ aplikasi bank yang ditargetkannya (terutama di Eropa), Sturnus akan:</p>
         <ul>
             <li>Mendeteksi aplikasi bank yang terbuka.</li>
-            <li>Melapisinya dengan layar login palsu (<em>overlay</em>) yang dibuat 100% mirip aslinya.</li>
+            <li>Melapisinya dengan layar login palsu (*overlay*) yang dibuat 100% mirip aslinya.</li>
             <li>Data <em>username</em> dan <em>password</em> yang kamu masukkan akan langsung dikirim ke pihak tak bertanggung jawab.</li>
         </ul>
         <h3>4. On-Device E2EE Bypass (Mengintip Chat) <span class="icon fa-solid fa-eye"></span></h3>
         <p>Fitur inilah yang paling mengkhawatirkan. Kamu mungkin merasa aman karena chat di WhatsApp, Signal, atau Telegram menggunakan <strong>End-to-End Encryption (E2EE)</strong>. Tapi Sturnus punya cara licik:</p>
         <div class="alert">
-            <span class="icon fa-solid fa-exclamation-triangle"></span> <strong>Penting!</strong> Sturnus TIDAK merusak enkripsi E2EE saat pesan dikirim. Ia menunggu pesan itu sampai di HP kamu, didekripsi, dan <strong>membaca teks yang sudah tampil di layar</strong> menggunakan izin Aksesibilitas. Ini seperti seseorang yang mengintip dari balik bahu kamu, tapi secara digital!
+            <span class="icon fa-solid fa-exclamation-triangle"></span> **Penting!** Sturnus TIDAK merusak enkripsi E2EE saat pesan dikirim. Ia menunggu pesan itu sampai di HP kamu, didekripsi, dan **membaca teks yang sudah tampil di layar** menggunakan izin Aksesibilitas. Ini seperti seseorang yang mengintip dari balik bahu kamu, tapi secara digital!
         </div>
         <h3>5. Kontrol Penuh Jarak Jauh (RAT) <span class="icon fa-solid fa-robot"></span></h3>
-        <p>Setelah mendapatkan izin Aksesibilitas, HP kamu benar-benar ada di tangan pelaku serangan siber. Sturnus berfungsi sebagai <strong>RAT (Remote Access Trojan)</strong> dengan kemampuan VNC (Virtual Network Computing) <em>real-time</em>.</p>
+        <p>Setelah mendapatkan izin Aksesibilitas, HP kamu benar-benar ada di tangan pelaku serangan siber. Sturnus berfungsi sebagai <strong>RAT (Remote Access Trojan)</strong> dengan kemampuan VNC (Virtual Network Computing) *real-time*.</p>
         <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk5QNW7iasf3Wllt7yAyQrFfm5TlHOBIepySH4A1244WKJFEAuW3tll9ovgdSM4CJz0P7HBXfd0wQoYE-PGcXtNIFMm-8pt-Vs5FhbGfVcdJxQz2iRE8qhs0hVECC310L0P76tIdxmH8oBvtCipt1BEWUolkHkPPRASINAGStXUGH7xwTdvULgVvRsbYc/s1600/bankingtrojan1.webp" alt="Ilustrasi Remote Access Trojan (RAT) Control Sturnus">
         <ul>
             <li><strong>Trik Layar Update:</strong> Untuk menutupi aksinya, perangkat lunak berbahaya ini menampilkan layar <strong>"Android Update" palsu</strong>. Saat kamu melihat layar itu, pihak tak bertanggung jawab sedang beraksi, mungkin mengklik persetujuan transfer atau mengambil alih akun.</li>
@@ -181,16 +181,16 @@
         <h3>6. Persistensi (Bertahan) <span class="icon fa-solid fa-shield-alt"></span></h3>
         <p>Perangkat Lunak Berbahaya ini sangat sulit dihilangkan. Ia dirancang untuk:</p>
         <ul>
-            <li>Bertahan hidup setelah HP di-<em>restart</em> (Survives reboot).</li>
-            <li>Secara otomatis memblokir upaya penghapusan (<em>removal attempts</em>).</li>
+            <li>Bertahan hidup setelah HP di-*restart* (Survives reboot).</li>
+            <li>Secara otomatis memblokir upaya penghapusan (*removal attempts*).</li>
         </ul>
         <p>Komunikasi C2 (Command &amp; Control) ke server pihak tak bertanggung jawab menggunakan protokol canggih seperti WebSocket dengan enkripsi AES/RSA, membuatnya sulit dideteksi oleh aplikasi keamanan biasa.</p>
         <hr>
         <h2><span class="icon fa-solid fa-hand-holding-heart"></span> Tips Jaga Diri: Jangan Sampai Kena!</h2>
         <div class="alert">
-            <span class="icon fa-solid fa-check-circle"></span> <strong>INGAT SELALU:</strong>
+            <span class="icon fa-solid fa-check-circle"></span> **INGAT SELALU:**
             <ol>
-                <li><strong>Hanya Install dari Play Store Resmi:</strong> Jangan pernah, <em>sekali-kali</em>, install file APK yang dikirim via WhatsApp, Telegram, email, atau link pop-up di browser.</li>
+                <li><strong>Hanya Install dari Play Store Resmi:</strong> Jangan pernah, *sekali-kali*, install file APK yang dikirim via WhatsApp, Telegram, email, atau link pop-up di browser.</li>
                 <li><strong>Tolak Izin Aksesibilitas:</strong> Jangan pernah memberikan izin <strong>Accessibility Services</strong> kepada aplikasi yang aneh atau tidak ada hubungannya dengan fungsi yang diminta (misalnya, aplikasi PDF Reader tidak butuh izin Aksesibilitas!).</li>
                 <li><strong>Cek Izin Aplikasi:</strong> Pergi ke Pengaturan HP kamu, cek di bagian Aplikasi. Jika ada aplikasi mencurigakan yang memiliki izin Aksesibilitas, segera cabut dan hapus aplikasinya!</li>
             </ol>
@@ -201,9 +201,9 @@
     </div>
     <footer>
         <p>🄯 2025<br> Artikel ini disajikan untuk tujuan edukasi dan peningkatan kesadaran keamanan siber.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

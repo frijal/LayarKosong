@@ -248,7 +248,7 @@
       align-items: center;
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <header class="site-header">
@@ -261,8 +261,8 @@
       <p>Usaha awal melakukan investigasi dengan mengecek direktori <code>intel_backlight</code> hingga menggunakan <code>evtest</code> dan <code>acpi_listen</code> sudah sangat mendalam. Fakta bahwa <code>evtest</code> sama sekali tidak mendeteksi input adalah kunci utamanya: <strong>sistem operasi Linux kamu benar-benar buta terhadap tekanan tombol tersebut di level hardware atau kernel</strong>. </p>
       <p>Mari kita bedah masalahnya di sistem Debian 13 ini dan cari solusinya langkah demi langkah.</p>
       <h2>1. Cabut Blacklist pada Modul ideapad_laptop</h2>
-      <p>Langkah <em>blacklist</em> pada modul <code>ideapad_laptop</code> kemungkinan besar adalah biang kerok matinya tombol tersebut. Di banyak laptop Lenovo (terutama seri Ideapad, Yoga, dan Legion), modul inilah yang justru bertanggung jawab untuk menerjemahkan event WMI/ACPI, termasuk <em>hotkeys</em> khusus seperti <em>brightness</em>.</p>
-      <p>Memang, banyak tutorial lawas di forum yang menyuruh melakukan <em>blacklist</em> modul ini untuk mengatasi masalah Wi-Fi yang terkena <em>hard-block</em>. Sayangnya, efek samping dari trik lama tersebut adalah tombol Fn khusus jadi mati total.</p>
+      <p>Langkah <em>blacklist</em> pada modul <code>ideapad_laptop</code> kemungkinan besar adalah biang kerok matinya tombol tersebut. Di banyak laptop Lenovo (terutama seri Ideapad, Yoga, dan Legion), modul inilah yang justru bertanggung jawab untuk menerjemahkan event WMI/ACPI, termasuk <em>hotkeys</em> khusus seperti *brightness*.</p>
+      <p>Memang, banyak tutorial lawas di forum yang menyuruh melakukan <em>blacklist</em> modul ini untuk mengatasi masalah Wi-Fi yang terkena *hard-block*. Sayangnya, efek samping dari trik lama tersebut adalah tombol Fn khusus jadi mati total.</p>
       <p>Untuk menghidupkannya kembali, ikuti langkah ini:</p>
       <ol>
         <li>Buka file <em>blacklist</em> tempat aturan tersebut berada (biasanya ada di dalam direktori <code>/etc/modprobe.d/</code>, misalnya <code>blacklist.conf</code>).</li>
@@ -270,10 +270,10 @@
         <li>Simpan file tersebut, lalu muat kembali modulnya ke kernel dengan perintah berikut:</li>
       </ol>
 <pre><code>sudo modprobe ideapad_laptop</code></pre>
-      <p>Coba tes lagi tombol kecerahanmu. Jika berhasil namun Wi-Fi tiba-tiba mati, itu berarti ada konflik <em>rfkill</em> dari <em>firmware</em> Lenovo yang perlu diatasi dengan rute berbeda, bukan dengan cara mematikan modul <em>hotkey</em>-nya.</p>
+      <p>Coba tes lagi tombol kecerahanmu. Jika berhasil namun Wi-Fi tiba-tiba mati, itu berarti ada konflik <em>rfkill</em> dari <em>firmware</em> Lenovo yang perlu diatasi dengan rute berbeda, bukan dengan cara mematikan modul *hotkey*-nya.</p>
       <h2>2. Workaround Paling Ampuh: Gunakan brightnessctl + Custom Keybinding</h2>
       <p>Keberadaan folder <code>/sys/class/backlight/intel_backlight</code> mengonfirmasi bahwa kontrol <em>backlight</em> layar sebenarnya berfungsi prima. Hanya saja, jembatan antara tombol fisik dan perintah tersebut terputus.</p>
-      <p>Jika kamu malas berurusan dengan modul kernel yang membandel, rute terbaik dan tercepat adalah mem-<em>bypass</em> tombol bawaan dan membuat <em>shortcut</em> baru menggunakan tombol kombinasi lain.</p>
+      <p>Jika kamu malas berurusan dengan modul kernel yang membandel, rute terbaik dan tercepat adalah mem-*bypass* tombol bawaan dan membuat <em>shortcut</em> baru menggunakan tombol kombinasi lain.</p>
       <p>Pertama, pastikan utilitas pengontrol kecerahan sudah terpasang:</p>
 <pre><code>sudo apt update
 sudo apt install brightnessctl</code></pre>
@@ -287,7 +287,7 @@ sudo apt install brightnessctl</code></pre>
       </blockquote>
       <p>Buka pengaturan <em>Keyboard Shortcuts</em> di Desktop Environment Debian yang kamu pakai (entah itu GNOME, KDE Plasma, atau XFCE), lalu daftarkan dua <em>Custom Shortcut</em> baru menggunakan perintah <code>brightnessctl</code> tadi. Pasangkan dengan tombol yang nyaman diraih jari.</p>
       <h2>3. "The Kernel Parameter Roulette"</h2>
-      <p>Mengutak-atik parameter <code>acpi_backlight</code> memang salah satu jalan pintas. Namun, satu hal krusial yang sering terlewat adalah meng-<em>update</em> GRUB setelah selesai mengedit file konfigurasi.</p>
+      <p>Mengutak-atik parameter <code>acpi_backlight</code> memang salah satu jalan pintas. Namun, satu hal krusial yang sering terlewat adalah meng-*update* GRUB setelah selesai mengedit file konfigurasi.</p>
       <p>Sebagai pengingat, saat kamu mengedit file <code>/etc/default/grub</code> dan memodifikasi baris <code>GRUB_CMDLINE_LINUX_DEFAULT</code>, kombinasi yang paling sering menyelamatkan laptop Lenovo adalah:</p>
 <pre><code>acpi_osi=Linux acpi_backlight=vendor</code></pre>
       <p>Atau opsi manipulasi <em>firmware</em> lainnya:</p>
@@ -297,7 +297,7 @@ sudo apt install brightnessctl</code></pre>
 <pre><code>sudo update-grub</code></pre>
       <p>Setelah itu, <em>restart</em> laptopmu dan periksa apakah tombol Fn sudah tersadar dari komanya.</p>
       <h2>4. Cek Pembaruan BIOS / UEFI</h2>
-      <p>Mengingat hasil <code>acpi_listen</code> dan <code>evtest</code> sama sekali kosong tanpa <em>output</em>, ada kemungkinan besar masalah ini bersumber dari kelemahan implementasi <em>firmware</em> bawaan Lenovo yang gagal berkomunikasi dengan versi kernel Linux yang dipakai Debian 13.</p>
+      <p>Mengingat hasil <code>acpi_listen</code> dan <code>evtest</code> sama sekali kosong tanpa <em>output*, ada kemungkinan besar masalah ini bersumber dari kelemahan implementasi *firmware</em> bawaan Lenovo yang gagal berkomunikasi dengan versi kernel Linux yang dipakai Debian 13.</p>
       <p>Langkah pamungkasnya adalah mengecek situs resmi dukungan Lenovo untuk melihat apakah ada pembaruan BIOS untuk model laptopmu. <em>Update</em> BIOS ini diam-diam sering menambal <em>bug</em> pada tabel ACPI/WMI yang membuat OS Linux gagal menerjemahkan <em>keystroke</em> perangkat keras fisik.</p>
       <p>Semoga salah satu eksperimen di atas sukses mengembalikan fungsi tombol layarmu! Tetap semangat menjelajahi sistem, karena hal-hal <em>ngoprek</em> seperti inilah yang membuat pengalaman menggunakan Linux tidak pernah membosankan. 🐧</p>
     </article>
@@ -312,7 +312,7 @@ sudo apt install brightnessctl</code></pre>
       <span>•</span>
       <span>Sumber: Eksperimen Komunitas Linux &amp; Dokumentasi Kernel ACPI</span>
     </div>
-  <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+  <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

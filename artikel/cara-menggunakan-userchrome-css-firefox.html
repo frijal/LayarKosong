@@ -245,7 +245,7 @@
         }
     </style>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -295,7 +295,7 @@
     <div class="css-snippet">
         <h4>1️⃣ Sembunyikan Tombol Close di Tab (biar gak ke-klik salah)</h4>
         <div class="code-block">
-            <pre><code>/<em> Hapus tombol X di tab </em>/
+            <pre><code>/* Hapus tombol X di tab */
 .tabbrowser-tab .tab-close-button {
     display: none !important;
 }</code></pre>
@@ -304,7 +304,7 @@
     <div class="css-snippet">
         <h4>2️⃣ Tab Aktif Jadi Garis Tipis (ultra minimalis)</h4>
         <div class="code-block">
-            <pre><code>/<em> Indikator tab aktif hanya garis di kiri </em>/
+            <pre><code>/* Indikator tab aktif hanya garis di kiri */
 .tabbrowser-tab[selected="true"] {
     position: relative !important;
 }
@@ -318,7 +318,7 @@
     background: var(--tab-active-border, currentColor);
     border-radius: 1px;
 }
-/<em> Hilangkan background highlight default </em>/
+/* Hilangkan background highlight default */
 .tabbrowser-tab:not([selected="true"]) .tab-background,
 .tabbrowser-tab[selected="true"] .tab-background {
     background: transparent !important;
@@ -328,7 +328,7 @@
     <div class="css-snippet">
         <h4>3️⃣ Sembunyikan Tombol + New Tab (muncul saat hover saja)</h4>
         <div class="code-block">
-            <pre><code>/<em> Tombol new tab tersembunyi sampai di-hover </em>/
+            <pre><code>/* Tombol new tab tersembunyi sampai di-hover */
 #tabs-newtab-button {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -343,7 +343,7 @@
     <div class="css-snippet">
         <h4>4️⃣ Toolbar Semi Transparan</h4>
         <div class="code-block">
-            <pre><code>/<em> Toolbar sedikit transparan </em>/
+            <pre><code>/* Toolbar sedikit transparan */
 #nav-bar {
   backdrop-filter: blur(10px);
   transition: opacity .25s ease-in-out;
@@ -357,7 +357,7 @@
     <div class="css-snippet">
         <h4>5️⃣ Sembunyikan Tab Bar (kalau pakai ekstensi vertical tabs)</h4>
         <div class="code-block">
-            <pre><code>/<em> Sembunyikan tab bar horizontal </em>/
+            <pre><code>/* Sembunyikan tab bar horizontal */
 #TabsToolbar {
     visibility: collapse;
 }</code></pre>
@@ -408,8 +408,8 @@
     </div>
     <footer>
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong — Artikel ini dilisensikan CC0. Dibagikan secara bebas untuk komunitas. Dikembangkan berdasarkan pengalaman langsung dan prinsip E-E-A-T.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

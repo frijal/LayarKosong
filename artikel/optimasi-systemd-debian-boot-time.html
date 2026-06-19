@@ -143,7 +143,7 @@
             .container { padding: 20px 15px; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -164,11 +164,11 @@
             </p><ul>
                 <li><strong>Efisiensi Waktu:</strong> Menghemat 5-10 detik setiap kali boot sangat berharga untuk produktivitas.</li>
                 <li><strong>Hemat Resource:</strong> Layanan yang tidak aktif berarti pemakaian RAM dan baterai (di laptop) jadi lebih irit.</li>
-                <li><strong>Keamanan:</strong> Semakin sedikit layanan yang terbuka, semakin sedikit pintu masuk bagi potensi ancaman (<em>attack surface reduction</em>).</li>
+                <li><strong>Keamanan:</strong> Semakin sedikit layanan yang terbuka, semakin sedikit pintu masuk bagi potensi ancaman (*attack surface reduction*).</li>
             </ul>
         <p></p>
         <div class="info-box">
-            <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan:</strong> Selalu pastikan kamu tahu fungsi layanan yang akan dimatikan. Jangan mematikan layanan inti sistem jika tidak ingin Debian-mu mogok!
+            <i class="fa-solid fa-triangle-exclamation"></i> **Peringatan:** Selalu pastikan kamu tahu fungsi layanan yang akan dimatikan. Jangan mematikan layanan inti sistem jika tidak ingin Debian-mu mogok!
         </div>
         <h2>Bagaimana Cara Menganalisisnya? (How)</h2>
         <p>Langkah pertama bukan langsung mematikan, tapi <strong>menganalisis</strong>. Untungnya, <code>systemd</code> punya tool bawaan yang sangat informatif.</p>
@@ -198,7 +198,7 @@
         <p><strong>Jika layanan tersebut bandel dan hidup lagi:</strong></p>
         <pre>sudo systemctl mask bluetooth.service</pre>
         <div class="info-box">
-            <i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Gunakan <code>systemctl list-unit-files --state=enabled</code> untuk melihat semua layanan yang saat ini aktif saat boot.
+            <i class="fa-solid fa-lightbulb"></i> **Pro Tip:** Gunakan `systemctl list-unit-files --state=enabled` untuk melihat semua layanan yang saat ini aktif saat boot.
         </div>
         <h2>Siapa yang Perlu Melakukan Ini? (Who)</h2>
         <p>Kamu, pengguna Debian yang menginginkan performa maksimal. Baik kamu seorang <em>developer</em> yang butuh lingkungan kerja cepat, maupun pengguna laptop yang ingin efisiensi baterai lebih baik. <i class="fa-solid fa-user-gear"></i></p>
@@ -210,9 +210,9 @@
     <div id="related-articles-grid">    </div>
     <footer>
         <p>🄯 2026  - Jurnal IT Open Source</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

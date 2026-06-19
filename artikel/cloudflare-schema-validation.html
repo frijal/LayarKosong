@@ -150,7 +150,7 @@
     </style>
 <meta name="ai:summary" content="Penjelasan kegunaan fitur Schema Validation di Cloudflare. Melindungi server origin dari payload berbahaya dan permintaan API yang tidak sesuai dengan skema (cetak biru) data.">
 <meta name="ai:prompt_hint" content="Penjelasan kegunaan fitur Schema Validation di Cloudflare. Melindungi server origin dari payload berbahaya dan permintaan API yang tidak sesuai dengan skema (cetak biru) data.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -163,12 +163,12 @@
         <p>Skema mendefinisikan secara detail:</p>
         <ul>
             <li><strong>Field Wajib:</strong> Kolom data apa saja yang harus ada (misalnya, nama pengguna, kata sandi).</li>
-            <li><strong>Tipe Data:</strong> Data harus berupa apa (misalnya, umur harus <em>integer</em>, email harus <em>string</em> berformat email).</li>
+            <li><strong>Tipe Data:</strong> Data harus berupa apa (misalnya, umur harus <em>integer*, email harus *string</em> berformat email).</li>
             <li><strong>Batasan:</strong> Panjang karakter maksimal, nilai minimal, atau pola regex tertentu.</li>
         </ul>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp" alt="Ilustrasi data API yang dicek oleh Cloudflare">
-            <p style="font-size:0.9em;"><strong>Gambar:</strong> Cloudflare menjalankan pemeriksaan struktur data di <em>edge network</em> sebelum permintaan mencapai <em>origin server</em>.</p>
+            <p style="font-size:0.9em;"><strong>Gambar:</strong> Cloudflare menjalankan pemeriksaan struktur data di <em>edge network</em> sebelum permintaan mencapai *origin server*.</p>
         </div>
         <hr>
         <h2><i class="fa-solid fa-bolt"></i> 2. Mengapa Validasi Skema Penting di Cloudflare?</h2>
@@ -183,7 +183,7 @@
             <tbody>
                 <tr>
                     <td><strong>Keamanan Tingkat Tinggi</strong></td>
-                    <td>Memblokir <em>payload</em> yang tidak valid (disebut <em>malicious payload</em>). Contoh: Hacker mencoba mengirim string yang sangat panjang ke kolom yang seharusnya hanya menerima 10 karakter, bertujuan menyebabkan <em>buffer overflow</em>.</td>
+                    <td>Memblokir <em>payload</em> yang tidak valid (disebut *malicious payload*). Contoh: Hacker mencoba mengirim string yang sangat panjang ke kolom yang seharusnya hanya menerima 10 karakter, bertujuan menyebabkan *buffer overflow*.</td>
                 </tr>
                 <tr>
                     <td><strong>Efisiensi Server (Origin)</strong></td>
@@ -197,7 +197,7 @@
         </table>
         <hr>
         <h2><i class="fa-solid fa-cogs"></i> 3. Mekanisme Kerja</h2>
-        <p>Cara kerja fitur ini cukup <em>straightforward</em>:</p>
+        <p>Cara kerja fitur ini cukup *straightforward*:</p>
         <ol>
             <li><strong>Anda Unggah Skema:</strong> Anda mengunggah atau mendefinisikan skema API Anda (misalnya, file <code>.json</code> atau <code>.yaml</code> yang mendeskripsikan API Anda) ke Cloudflare.</li>
             <li><strong>Pemeriksaan di Edge:</strong> Ketika permintaan API (misalnya, <code>POST /api/user</code>) masuk ke Cloudflare, Cloudflare akan membaca <em>body</em> (payload) permintaan tersebut.</li>
@@ -219,10 +219,9 @@
         <footer class="footer">
             <p>🄯 2025 Jaga Data Pribadi Tetap Aman | Analisis Cloudflare Schema Validation | <a href="https://dalam.web.id/disclaimer">Kebijakan Privasi</a></p>
             <p style="font-size: 0.8em;">Konten ini dibuat oleh AI (Gemini) untuk membantu menjelaskan fitur teknis web.</p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

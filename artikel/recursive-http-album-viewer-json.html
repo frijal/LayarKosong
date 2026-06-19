@@ -298,7 +298,7 @@
     </style>
 <meta name="ai:summary" content="Recursive HTTP Album Viewer (via JSON) memungkinkan penjelajahan album gambar langsung dari server HTTP dengan data JSON. Mendukung navigasi folder, thumbnail, dan tampilan responsif.">
 <meta name="ai:prompt_hint" content="Recursive HTTP Album Viewer (via JSON) memungkinkan penjelajahan album gambar langsung dari server HTTP dengan data JSON. Mendukung navigasi folder, thumbnail, dan tampilan responsif.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -371,7 +371,7 @@
                 // 1. Ambil file JSON
                 const related-articles-grid = await fetch(url, { cache: 'no-store' }); // Jangan cache list
                 if (!related-articles-grid.ok) {
-                    throw new Error(<code>Gagal mengambil data: ${related-articles-grid.statusText}</code>);
+                    throw new Error(`Gagal mengambil data: ${related-articles-grid.statusText}`);
                 }
                 // 2. Parse JSON
                 const imagePaths = await related-articles-grid.json();
@@ -404,7 +404,7 @@
                     imageCaption.textContent = 'Tidak ada gambar yang ditemukan dalam file JSON.';
                 }
             } catch (err) {
-                alert(<code>Error: ${err.message}. Pastikan URL benar dan file JSON valid.</code>);
+                alert(`Error: ${err.message}. Pastikan URL benar dan file JSON valid.`);
                 console.error(err);
                 welcomeMessage.style.display = 'block'; // Tampilkan lagi pesan
                 viewerArea.style.display = 'none';
@@ -420,10 +420,10 @@
             const thumbDiv = document.createElement('div');
             thumbDiv.className = 'thumbnail';
             thumbDiv.dataset.index = index;
-            thumbDiv.innerHTML = <code>
+            thumbDiv.innerHTML = `
                 <img src="${imgData.fullUrl}" alt="${imgData.name}" loading="lazy">
                 <p title="${imgData.path}">${imgData.name}</p>
-            </code>;
+            `;
             thumbDiv.addEventListener('click', () => {
                 displayImage(index);
             });
@@ -443,7 +443,7 @@
             showRemoteAction(imgData.fullUrl);
             // Beri highlight pada thumbnail yang aktif
             document.querySelectorAll('.thumbnail.active').forEach(th => th.classList.remove('active'));
-            document.querySelector(<code>.thumbnail[data-index="${index}"]</code>).classList.add('active');
+            document.querySelector(`.thumbnail[data-index="${index}"]`).classList.add('active');
         }
         /**
          * Membersihkan data album sebelumnya
@@ -499,6 +499,6 @@
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
+<script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

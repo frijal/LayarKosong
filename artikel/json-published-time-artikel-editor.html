@@ -73,7 +73,7 @@ pre{
 .diff ins{color:#22c55e;text-decoration:none}
 small{color:#555}
 </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div id="iposbrowser"></div><div id="iposbrowser"></div><h1>Strict ISO Date Batch Editor</h1>
@@ -107,9 +107,9 @@ let changes=[];
 const logBox=document.getElementById("log");
 const diffBox=document.getElementById("diffBox");
 const log=m=>logBox.textContent+=m+"\n";
-/<em> STRICT: harus ada "YYYY-MM-DDT </em>/
+/* STRICT: harus ada "YYYY-MM-DDT */
 const STRICT_REGEX = /"\d{4}-\d{2}-\d{2}T/g;
-/<em> ===== PICKERS ===== </em>/
+/* ===== PICKERS ===== */
 pickFolder.onclick=async()=>{
   if(window.showDirectoryPicker){
     try{
@@ -124,7 +124,7 @@ pickFolder.onclick=async()=>{
 folderFallback.onchange=e=>{
   fallbackFiles=[...e.target.files];
   folderHandle=null;
-  log(<code>✔ Folder fallback (${fallbackFiles.length} file)</code>);
+  log(`✔ Folder fallback (${fallbackFiles.length} file)`);
 };
 pickList.onclick=async()=>{
   if(window.showOpenFilePicker){
@@ -144,7 +144,7 @@ listFallback.onchange=e=>{
   listHandle=null;
   log("✔ ubahtanggal.txt dipilih (fallback)");
 };
-/<em> ===== PREVIEW ===== </em>/
+/* ===== PREVIEW ===== */
 preview.onclick=async()=>{
   diffBox.innerHTML="";
   logBox.textContent="";
@@ -175,35 +175,35 @@ preview.onclick=async()=>{
         html=await file.text();
       }else{
         file=fallbackFiles.find(f=>f.name===name);
-        if(!file){log(<code>⚠ Tidak ada: ${name}</code>);continue;}
+        if(!file){log(`⚠ Tidak ada: ${name}`);continue;}
         html=await file.text();
       }
       if(!STRICT_REGEX.test(html)){
-        log(<code>⚠ Pola tidak ditemukan: ${name}</code>);
+        log(`⚠ Pola tidak ditemukan: ${name}`);
         continue;
       }
       const beforeMatches=[...html.matchAll(STRICT_REGEX)]
         .map(m=>m[0]);
       const newHtml=html.replace(
         STRICT_REGEX,
-        <code>"${newDate}T</code>
+        `"${newDate}T`
       );
       const afterMatches=[...newHtml.matchAll(STRICT_REGEX)]
         .map(m=>m[0]);
       changes.push({name,html:newHtml});
-      diffBox.innerHTML+=<code>
+      diffBox.innerHTML+=`
 <div class="diff">
 <strong>${name}</strong><br>
 <del>${beforeMatches[0]}</del><br>
 <ins>"${newDate}T</ins>
-</div></code>;
+</div>`;
     }catch{
-      log(<code>✖ Gagal proses: ${name}</code>);
+      log(`✖ Gagal proses: ${name}`);
     }
   }
-  log(<code>Preview selesai (${changes.length} file)</code>);
+  log(`Preview selesai (${changes.length} file)`);
 };
-/<em> ===== APPLY ===== </em>/
+/* ===== APPLY ===== */
 apply.onclick=async()=>{
   if(!changes.length){
     alert("Tidak ada perubahan untuk diterapkan");
@@ -219,20 +219,20 @@ apply.onclick=async()=>{
         const w=await fh.createWritable();
         await w.write(f.html);
         await w.close();
-        log(<code>✔ Updated ${f.name}</code>);
+        log(`✔ Updated ${f.name}`);
       }else{
         const a=document.createElement("a");
         a.href=URL.createObjectURL(new Blob([f.html],{type:"text/html"}));
         a.download=f.name;
         a.click();
-        log(<code>⬇ Download ${f.name}</code>);
+        log(`⬇ Download ${f.name}`);
       }
     }catch{
-      log(<code>✖ Gagal tulis ${f.name}</code>);
+      log(`✖ Gagal tulis ${f.name}`);
     }
   }
 };
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -229,7 +229,7 @@
         }
     </style>
     <link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -251,7 +251,7 @@
         <h4><i class="fa-solid fa-ban"></i> 1. Matikan Semua Animasi &amp; Transisi</h4>
         <p>Menonaktifkan animasi UI secara global. Ini efek paling signifikan untuk performa.</p>
         <div class="code-block">
-            <pre><code>/<em> Matikan semua animasi dan transisi di seluruh UI </em>/
+            <pre><code>/* Matikan semua animasi dan transisi di seluruh UI */
 * {
     transition: none !important;
     animation: none !important;
@@ -262,7 +262,7 @@
         <h4><i class="fa-solid fa-eye-slash"></i> 2. Hilangkan Efek Blur &amp; Transparansi</h4>
         <p>Backdrop-filter dan opacity menyebabkan komposisi ulang layer yang berat. Matikan saja.</p>
         <div class="code-block">
-            <pre><code>/<em> Nonaktifkan efek blur dan transparansi </em>/
+            <pre><code>/* Nonaktifkan efek blur dan transparansi */
 * {
     backdrop-filter: none !important;
     opacity: 1 !important;
@@ -273,7 +273,7 @@
         <h4><i class="fa-solid fa-border-all"></i> 3. Sederhanakan Tab (Tanpa Background &amp; Hover)</h4>
         <p>Tab dengan efek hover dan background gradien bisa dikurangi.</p>
         <div class="code-block">
-            <pre><code>/<em> Tab polos tanpa background hover </em>/
+            <pre><code>/* Tab polos tanpa background hover */
 .tabbrowser-tab .tab-background {
     background: transparent !important;
 }
@@ -286,7 +286,7 @@
         <h4><i class="fa-solid fa-stop"></i> 4. Matikan Efek Bayangan (Box Shadow)</h4>
         <p>Bayangan di toolbar, popup, dan elemen lain bisa dihilangkan.</p>
         <div class="code-block">
-            <pre><code>/<em> Hilangkan semua box shadow </em>/
+            <pre><code>/* Hilangkan semua box shadow */
 * {
     box-shadow: none !important;
 }</code></pre>
@@ -296,7 +296,7 @@
         <h4><i class="fa-solid fa-palette"></i> 5. Gunakan Warna Solid untuk Background Toolbar</h4>
         <p>Hindari gradien atau gambar latar yang memicu repaint.</p>
         <div class="code-block">
-            <pre><code>/<em> Toolbar warna solid </em>/
+            <pre><code>/* Toolbar warna solid */
 #nav-bar, #TabsToolbar, #PersonalToolbar {
     background: var(--toolbar-bgcolor, #2c3e50) !important;
     background-image: none !important;
@@ -307,7 +307,7 @@
         <h4><i class="fa-solid fa-compress-alt"></i> 6. Kurangi Padding &amp; Margin Berlebih</h4>
         <p>Memperkecil jarak antar elemen membuat UI lebih ringan dan tampilan lebih rapat.</p>
         <div class="code-block">
-            <pre><code>/<em> Minimalkan spacing </em>/
+            <pre><code>/* Minimalkan spacing */
 .tabbrowser-tab {
     padding: 0 2px !important;
 }
@@ -321,7 +321,7 @@
         <h4><i class="fa-solid fa-sync-alt"></i> 7. Nonaktifkan Animasi Loading pada Tab</h4>
         <p>Animasi throbber (spinner) saat loading bisa dimatikan.</p>
         <div class="code-block">
-            <pre><code>/<em> Matikan animasi loading spinner </em>/
+            <pre><code>/* Matikan animasi loading spinner */
 .tab-throbber[busy] {
     display: none !important;
 }</code></pre>
@@ -331,7 +331,7 @@
         <h4><i class="fa-solid fa-window-close"></i> 8. Sembunyikan Elemen yang Tidak Diperlukan</h4>
         <p>Tombol, ikon, atau sidebar yang tidak pernah dipakai hanya membebani render.</p>
         <div class="code-block">
-            <pre><code>/<em> Sembunyikan tombol library, pocket, dll </em>/
+            <pre><code>/* Sembunyikan tombol library, pocket, dll */
 #library-button, #pocket-button, #fxa-toolbar-menu-button {
     display: none !important;
 }</code></pre>
@@ -341,7 +341,7 @@
         <h4><i class="fa-solid fa-tint"></i> 9. Gunakan Gambar Sederhana untuk Scrollbar</h4>
         <p>Scrollbar modern dengan efek blur bisa diganti dengan versi klasik.</p>
         <div class="code-block">
-            <pre><code>/<em> Scrollbar minimalis </em>/
+            <pre><code>/* Scrollbar minimalis */
 scrollbar {
     appearance: none !important;
     background: #ccc !important;
@@ -355,7 +355,7 @@ scrollbar thumb {
         <h4><i class="fa-solid fa-font"></i> 10. Matikan Font Smoothing &amp; Subpixel Rendering</h4>
         <p>Mengurangi beban rendering teks (efeknya kecil, tapi tetap membantu).</p>
         <div class="code-block">
-            <pre><code>/<em> Matikan font smoothing </em>/
+            <pre><code>/* Matikan font smoothing */
 * {
     -webkit-font-smoothing: none !important;
     text-rendering: optimizeSpeed !important;
@@ -365,7 +365,7 @@ scrollbar thumb {
     <h2>🌐 Tweak Tambahan: userContent.css untuk Halaman Web</h2>
     <p>Buat file <strong>userContent.css</strong> di folder chrome yang sama, lalu tambahkan kode berikut untuk mematikan animasi di semua situs web. Ini sangat membantu saat browsing di situs yang berat.</p>
     <div class="code-block">
-        <pre><code>/<em> Matikan animasi di semua situs web (pakai hati-hati) </em>/
+        <pre><code>/* Matikan animasi di semua situs web (pakai hati-hati) */
 @-moz-document url-prefix(http), url-prefix(https) {
     * {
         transition: none !important;
@@ -410,8 +410,8 @@ scrollbar thumb {
     </div>
     <footer>
         <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong — Artikel ini dilisensikan CC0. Dibagikan untuk membantu komunitas mendapatkan performa terbaik dari Firefox. Selalu backup sebelum mencoba tweak.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

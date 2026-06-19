@@ -142,7 +142,7 @@
     </style>
 <meta name="ai:summary" content="tentang Browser Integrity Check Cloudflare. Pelajari bagaimana fitur ini mendeteksi dan memblokir bot berbahaya yang mencoba meniru browser manusia berdasarkan anomali header HTTP.">
 <meta name="ai:prompt_hint" content="tentang Browser Integrity Check Cloudflare. Pelajari bagaimana fitur ini mendeteksi dan memblokir bot berbahaya yang mencoba meniru browser manusia berdasarkan anomali header HTTP.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -151,7 +151,7 @@
         <p>Fitur ini menghemat sumber daya <em>origin server</em> Anda dengan membuang <em>traffic</em> sampah sejak di <strong>Cloudflare Edge</strong>.</p>
         <hr>
         <h2><i class="fa-solid fa-binoculars"></i> 1. Fokus Utama: Evaluasi Header HTTP</h2>
-        <p>Bagaimana Cloudflare tahu apakah Anda manusia atau <em>script</em> bot yang buruk? Jawabannya ada di <strong>HTTP Header</strong>. Setiap kali peramban Anda meminta halaman web, ia mengirimkan serangkaian informasi (<em>header</em>) yang mendeskripsikan dirinya, seperti tipe peramban, bahasa yang disukai, dan versi sistem operasi.</p>
+        <p>Bagaimana Cloudflare tahu apakah Anda manusia atau <em>script</em> bot yang buruk? Jawabannya ada di <strong>HTTP Header</strong>. Setiap kali peramban Anda meminta halaman web, ia mengirimkan serangkaian informasi (*header*) yang mendeskripsikan dirinya, seperti tipe peramban, bahasa yang disukai, dan versi sistem operasi.</p>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIN3IHYdd3q3H_1LKwEk9pB25RsuXyYwufFtf5WslgMMRCSRSsVZLwf9W3FhfKL4WqHORtixomyiJx34pMFjHTHO49t8n4ez7HDF-4ugelYE0yvT3oGq6CqvZo9mWgPB6JCI54R1Os0Ahdx6mZOejOELOS2i3r6xPYuNYWQ4ojZOnH0_TJ4PaU9b0QlhU/s1600/integrity.webp" alt="Diagram proses pemeriksaan integritas browser oleh Cloudflare">
             <p style="font-size:0.9em;"><strong>Gambar:</strong> Proses pemindaian dan pemeriksaan <em>header</em> yang dilakukan Cloudflare di lapisan Edge Network.</p>
@@ -160,12 +160,12 @@
         <p>Bot sederhana sering kali gagal meniru <em>header</em> ini dengan sempurna, dan disitulah Cloudflare memergoki mereka:</p>
         <ul>
             <li><b>Header yang Hilang atau Tidak Lengkap:</b> Peramban sungguhan harus memiliki <em>header</em> standar seperti <code>User-Agent</code> dan <code>Accept-Encoding</code>. Jika <em>header</em> ini hilang atau terlalu singkat, maka adalah tanda bahwa itu bukan peramban sungguhan.</li>
-            <li><strong>Format yang Salah (<em>Mal-Formed</em>):</strong> Jika nilai <em>header</em> memiliki format yang secara teknis tidak mungkin ada (misalnya, <em>User-Agent</em> yang tidak terdaftar atau tidak sesuai sintaks HTTP), itu akan ditandai sebagai ancaman.</li>
+            <li><strong>Format yang Salah (*Mal-Formed*):</strong> Jika nilai <em>header</em> memiliki format yang secara teknis tidak mungkin ada (misalnya, <em>User-Agent</em> yang tidak terdaftar atau tidak sesuai sintaks HTTP), itu akan ditandai sebagai ancaman.</li>
             <li><strong>Ketidaksesuaian Logika:</strong> Misalnya, <em>browser</em> menyatakan dirinya sebagai Chrome terbaru tetapi tidak meminta <em>header</em> tertentu yang seharusnya diminta oleh Chrome (perilaku yang didasarkan pada basis data Cloudflare tentang perilaku <em>browser</em> normal).</li>
         </ul>
         <hr>
         <h2><i class="fa-solid fa-clipboard-check"></i> 2. Mekanisme Blokir dan Keuntungannya</h2>
-        <p>Jika lalu lintas gagal dalam pemeriksaan integritas ini (dikenal sebagai <em>mal-formed traffic</em>), Cloudflare akan bereaksi segera, <strong>sebelum</strong> <em>request</em> tersebut mencapai server Anda.</p>
+        <p>Jika lalu lintas gagal dalam pemeriksaan integritas ini (dikenal sebagai <em>mal-formed traffic*), Cloudflare akan bereaksi segera, <strong>sebelum</strong> *request</em> tersebut mencapai server Anda.</p>
         <h3><i class="fa-solid fa-stop-circle"></i> Apa yang Terjadi Ketika Bot Ditemukan?</h3>
         <p>Bila ancaman terdeteksi, Cloudflare akan memberikan respons yang keras:</p>
         <ul>
@@ -187,7 +187,7 @@
                 </tr>
                 <tr>
                     <td><strong>Pertahanan Lini Pertama</strong></td>
-                    <td>Fitur ini menyaring ancaman paling dasar (<em>low-hanging fruit</em>) seperti <em>scanner</em> kerentanan otomatis dan <em>scraper</em> yang malas sebelum mereka bertemu WAF yang lebih canggih.</td>
+                    <td>Fitur ini menyaring ancaman paling dasar (*low-hanging fruit*) seperti <em>scanner</em> kerentanan otomatis dan <em>scraper</em> yang malas sebelum mereka bertemu WAF yang lebih canggih.</td>
                 </tr>
                 <tr>
                     <td><strong>Menghemat Kuota Aturan WAF</strong></td>
@@ -205,11 +205,11 @@
         <footer class="footer">
             <p>🄯 2025 Jaga Data Pribadi Tetap Aman | Analisis Keamanan Browser Integrity Check | <a href="https://dalam.web.id/disclaimer.html">Kebijakan Privasi</a></p>
             <p style="font-size: 0.8em;">Konten ini dibuat oleh AI (Gemini) untuk membantu menjelaskan fitur teknis web.</p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+    <script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

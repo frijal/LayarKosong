@@ -226,7 +226,7 @@
     </style>
 <meta name="ai:summary" content="Penjelasan teknis mengapa Linux (Open Source) dianggap lebih aman daripada Windows (Closed Source), membahas prinsip">
 <meta name="ai:prompt_hint" content="Penjelasan teknis mengapa Linux (Open Source) dianggap lebih aman daripada Windows (Closed Source), membahas prinsip">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <div class="container">
@@ -235,8 +235,8 @@
             <p>Keraguan Anda tentang kode tertutup vs. terbuka dan realitas keamanan sistem operasi.</p>
         </header>
         <main class="article-content">
-            <p>Ini adalah pertanyaan yang sangat bagus dan sering ditanyakan, terutama yang baru mempelajari Ilmu Komputer. Keraguan tentang <em>open source</em> (<em>sumber terbuka</em>) yang dianggap lebih aman daripada <em>closed source</em> (<em>sumber tertutup</em>) adalah hal yang wajar.</p>
-            <p>Meskipun logika dasar Anda, bahwa kode tertutup lebih sulit diserang karena tidak terlihat, memiliki dasar, realitas keamanan perangkat lunak jauh lebih kompleks. Konsep bahwa keamanan berasal dari penyembunyian kode (<em>Security through obscurity</em>) adalah pandangan yang sudah usang dalam dunia keamanan informasi.</p>
+            <p>Ini adalah pertanyaan yang sangat bagus dan sering ditanyakan, terutama yang baru mempelajari Ilmu Komputer. Keraguan tentang <em>open source</em> (*sumber terbuka*) yang dianggap lebih aman daripada <em>closed source</em> (*sumber tertutup*) adalah hal yang wajar.</p>
+            <p>Meskipun logika dasar Anda, bahwa kode tertutup lebih sulit diserang karena tidak terlihat, memiliki dasar, realitas keamanan perangkat lunak jauh lebih kompleks. Konsep bahwa keamanan berasal dari penyembunyian kode (*Security through obscurity*) adalah pandangan yang sudah usang dalam dunia keamanan informasi.</p>
             <p>Praktisi keamanan modern lebih percaya pada prinsip <strong>Keamanan Melalui Transparansi dan Audit Independen</strong>.</p>
             <hr>
             <h2 class="section-title"><i class="fa-brands fa-linux icon"></i> Model Keamanan Open Source (Linux)</h2>
@@ -245,21 +245,21 @@
             <ul class="list-group">
                 <li><i class="fa-solid fa-eye icon"></i> <strong>Prinsip "Many Eyes":</strong> Ini adalah argumen inti. Karena kode sumber Linux tersedia untuk umum, ribuan pengembang, peneliti keamanan, dan pakar etis <em>hacking</em> dapat meninjau, menguji, dan mengaudit kode tersebut secara konstan.
                     <ul>
-                        <li><strong>Keunggulan:</strong> Jika ada <em>bug</em> atau <em>vulnerability</em>, kemungkinan besar akan ditemukan lebih cepat oleh <em>white hat hacker</em> (peretas etis) daripada oleh <em>black hat hacker</em> (peretas jahat).</li>
+                        <li><strong>Keunggulan:</strong> Jika ada <em>bug</em> atau <em>vulnerability*, kemungkinan besar akan ditemukan lebih cepat oleh *white hat hacker</em> (peretas etis) daripada oleh <em>black hat hacker</em> (peretas jahat).</li>
                         <li>Ini berkebalikan dengan <em>closed source</em> di mana hanya tim internal vendor yang meninjau kode.</li>
                     </ul>
                 </li>
                 <li><i class="fa-solid fa-users-gear icon"></i> <strong>Kepercayaan (Trust) Terdistribusi:</strong> Pengguna tidak perlu bergantung sepenuhnya pada satu perusahaan (Microsoft) untuk memastikan kode mereka tidak mengandung <em>backdoor</em> atau kerentanan yang tidak terdeteksi. Kepercayaan didistribusikan ke seluruh komunitas pengembang global.</li>
             </ul>
             <h3 class="subsection-title">B. Kecepatan <em>Patch</em> dan Pembaruan</h3>
-            <p>Ketika kerentanan ditemukan di Linux (misalnya, <em>kernel</em>), proses perbaikan (<em>patch</em>) dapat terjadi <strong>sangat cepat</strong>:</p>
+            <p>Ketika kerentanan ditemukan di Linux (misalnya, *kernel*), proses perbaikan (*patch*) dapat terjadi <strong>sangat cepat</strong>:</p>
             <ul class="list-group">
                 <li><i class="fa-solid fa-bolt icon"></i> <strong>Proses Cepat Linux:</strong> Kerentanan ditemukan → Komunitas membuat perbaikan → Diuji → Diintegrasikan ke dalam <em>kernel</em> dan didistribusikan oleh distro. Proses ini seringkali memakan waktu <strong>jam hingga hari</strong>.</li>
-                <li><i class="fa-solid fa-clock-rotate-left icon"></i> <strong>Proses Closed Source (Windows):</strong> Kerentanan ditemukan → Dilaporkan ke vendor → Vendor mereplikasi, mengembangkan perbaikan, menguji secara ekstensif secara internal → Dirilis pada jadwal bulanan (<em>patch Tuesday</em>). Waktu antara penemuan dan perbaikan bisa lebih lama.</li>
+                <li><i class="fa-solid fa-clock-rotate-left icon"></i> <strong>Proses Closed Source (Windows):</strong> Kerentanan ditemukan → Dilaporkan ke vendor → Vendor mereplikasi, mengembangkan perbaikan, menguji secara ekstensif secara internal → Dirilis pada jadwal bulanan (*patch Tuesday*). Waktu antara penemuan dan perbaikan bisa lebih lama.</li>
             </ul>
             <h3 class="subsection-title">C. Desain Sistem Operasi (OS) yang Inheren</h3>
             <ul class="list-group">
-                <li><i class="fa-solid fa-user-lock icon"></i> <strong>Model <em>User Permissions</em> yang Ketat:</strong> Secara <em>default</em>, Linux mengoperasikan sebagian besar tugas dalam mode pengguna standar (bukan <em>root</em>). Untuk perubahan signifikan, pengguna <strong>harus secara eksplisit mengautentikasi</strong> sebagai <em>root</em> (menggunakan perintah <code>sudo</code>).
+                <li><i class="fa-solid fa-user-lock icon"></i> <strong>Model <em>User Permissions</em> yang Ketat:</strong> Secara <em>default*, Linux mengoperasikan sebagian besar tugas dalam mode pengguna standar (bukan *root*). Untuk perubahan signifikan, pengguna <strong>harus secara eksplisit mengautentikasi</strong> sebagai *root</em> (menggunakan perintah <code>sudo</code>).
                     <ul>
                         <li><strong>Dampak Keamanan:</strong> Jika sebuah <em>perangkat lunak berbahaya</em> berhasil masuk, lingkup kerusakannya terbatas pada direktori pengguna tersebut, tidak bisa langsung memengaruhi seluruh sistem.</li>
                     </ul>
@@ -268,7 +268,7 @@
             </ul>
             <hr>
             <h2 class="section-title"><i class="fa-solid fa-bug icon"></i> Studi Kasus: Dirty Cow (CVE-2016-5195)</h2>
-            <p>Kerentanan <strong>Dirty Cow</strong> adalah salah satu kerentanan <em>privilege escalation</em> lokal paling serius dalam sejarah Linux dan menjadi contoh sempurna kecepatan respons <em>open source</em>.</p>
+            <p>Kerentanan <strong>Dirty Cow</strong> adalah salah satu kerentanan <em>privilege escalation</em> lokal paling serius dalam sejarah Linux dan menjadi contoh sempurna kecepatan respons *open source*.</p>
             <h3 class="subsection-title">Detail Kerentanan Dirty Cow</h3>
             <p>Nama pangdi luar nalarn lucu ini merujuk pada fitur <em>Copy-on-Write</em> di Linux.</p>
             <table>
@@ -285,11 +285,11 @@
                     </tr>
                     <tr>
                         <td><strong>Tipe</strong></td>
-                        <td>Eskalasi Hak Istimewa Lokal (<em>Local Privilege Escalation - LPE</em>).</td>
+                        <td>Eskalasi Hak Istimewa Lokal (*Local Privilege Escalation - LPE*).</td>
                     </tr>
                     <tr>
                         <td><strong>Dampak</strong></td>
-                        <td>Memungkinkan pengguna lokal yang tidak memiliki hak (<em>unprivileged user</em>) untuk mendapatkan akses <strong>root</strong> penuh pada sistem.</td>
+                        <td>Memungkinkan pengguna lokal yang tidak memiliki hak (*unprivileged user*) untuk mendapatkan akses <strong>root</strong> penuh pada sistem.</td>
                     </tr>
                     <tr>
                         <td><strong>Usia Kerentanan</strong></td>
@@ -298,11 +298,11 @@
                 </tbody>
             </table>
             <h3 class="subsection-title"><i class="fa-solid fa-tachometer-alt icon"></i> Respon Cepat Komunitas Linux</h3>
-            <p>Meskipun kerentanan ini sangat tua, begitu dilaporkan pada Oktober 2016, komunitas menunjukkan kekuatan <em>open source</em>:</p>
+            <p>Meskipun kerentanan ini sangat tua, begitu dilaporkan pada Oktober 2016, komunitas menunjukkan kekuatan *open source*:</p>
             <ul class="list-group">
-                <li><i class="fa-solid fa-code-branch icon"></i> <strong>Verifikasi Cepat:</strong> Karena kodenya terbuka, para ahli keamanan dari berbagai perusahaan (Red Hat, Ubuntu, Google, dll.) dapat langsung <strong>menganalisis kode sumber</strong> yang rentan untuk memverifikasi temuan dan memahami akar masalahnya (kondisi <em>race</em> di subsistem <em>memory management</em>).</li>
+                <li><i class="fa-solid fa-code-branch icon"></i> <strong>Verifikasi Cepat:</strong> Karena kodenya terbuka, para ahli keamanan dari berbagai perusahaan (Red Hat, Ubuntu, Google, dll.) dapat langsung <strong>menganalisis kode sumber</strong> yang rentan untuk memverifikasi temuan dan memahami akar masalahnya (kondisi <em>race</em> di subsistem *memory management*).</li>
                 <li><i class="fa-solid fa-wrench icon"></i> <strong>Pengembangan <em>Patch</em> Instan:</strong> <em>Patch</em> (perbaikan kode) dikembangkan dan diuji oleh pengembang <em>kernel</em> dalam waktu <strong>kurang dari 24 jam</strong> setelah penemuan dan laporan publik.</li>
-                <li><i class="fa-solid fa-share-alt icon"></i> <strong>Distribusi Kilat:</strong> Distributor Linux (distro) segera mengintegrasikan dan merilis pembaruan keamanan. Waktu kritis antara laporan publik tentang kerentanan (<em>zero-day</em>) dan ketersediaan <em>patch</em> untuk pengguna diukur dalam <strong>hitungan jam</strong>.</li>
+                <li><i class="fa-solid fa-share-alt icon"></i> <strong>Distribusi Kilat:</strong> Distributor Linux (distro) segera mengintegrasikan dan merilis pembaruan keamanan. Waktu kritis antara laporan publik tentang kerentanan (*zero-day*) dan ketersediaan <em>patch</em> untuk pengguna diukur dalam <strong>hitungan jam</strong>.</li>
             </ul>
             <p>Berikut contoh pseudo-code yang rentan (ini bukan kode kernel sebenarnya, hanya ilustrasi teknis):</p>
             <pre><code class="c">
@@ -317,13 +317,13 @@ if (page_is_writeable(page)) {
             <h2 class="section-title"><i class="fa-brands fa-windows icon"></i> Tantangan Keamanan Windows</h2>
             <p>Microsoft mengeluarkan banyak pembaruan keamanan, yang sering menunjukkan betapa luasnya serangan yang harus mereka tangani.</p>
             <ul class="list-group">
-                <li><i class="fa-solid fa-crosshairs icon"></i> <strong>Target Populer:</strong> Windows menguasai pangsa pasar yang jauh lebih besar. Bagi peretas, menyerang Windows jauh lebih menguntungkan (<em>High Reward, High Target</em>).</li>
+                <li><i class="fa-solid fa-crosshairs icon"></i> <strong>Target Populer:</strong> Windows menguasai pangsa pasar yang jauh lebih besar. Bagi peretas, menyerang Windows jauh lebih menguntungkan (*High Reward, High Target*).</li>
                 <li><i class="fa-solid fa-gavel icon"></i> <strong>Model Izin Historis:</strong> Windows secara historis mengizinkan pengguna menjalankan sebagian besar tugas harian dengan izin administrator, yang membuatnya <strong>rentan terhadap <em>perangkat lunak berbahaya</em> yang dapat menyebar dengan cepat</strong>.</li>
                 <li><i class="fa-solid fa-user-secret icon"></i> <strong>Risiko Kode Tertutup:</strong> Jika ada kelemahan kritis yang terlewat oleh tim internal Microsoft, kelemahan tersebut bisa bertahan selama bertahun-tahun tanpa diketahui oleh pihak independen (<strong>Risiko Kerentanan yang Tidak Terlihat</strong>).</li>
             </ul>
             <div class="note">
                 <p><strong>Kesimpulan Teknis:</strong></p>
-                <p>Keamanan Linux bukan karena kodenya 'disembunyikan,' melainkan karena <strong>desain arsitekturnya yang ketat (izin <em>root/sudo</em>)</strong> dan <strong>proses audit yang transparan dan terdesentralisasi (Many Eyes)</strong>. Transparansi mempercepat penemuan dan perbaikan, membuat waktu <em>zero-day</em> sangat singkat.</p>
+                <p>Keamanan Linux bukan karena kodenya 'disembunyikan,' melainkan karena <strong>desain arsitekturnya yang ketat (izin <em>root/sudo*)</em></strong><em> dan <strong>proses audit yang transparan dan terdesentralisasi (Many Eyes)</strong>. Transparansi mempercepat penemuan dan perbaikan, membuat waktu *zero-day</em> sangat singkat.</p>
             </div>
     </main>
         <section id="comments" style="margin-top: 50px;">
@@ -334,8 +334,8 @@ if (page_is_writeable(page)) {
 <script>hljs.highlightAll();</script>
        <footer>
             <p><a href="https://dalam.web.id/disclaimer/" style="color: var(--accent); text-decoration: none;">.Jaga Data Pribadi Tetap Aman.</a></p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

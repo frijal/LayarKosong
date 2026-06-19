@@ -151,7 +151,7 @@
             article { width: 95%; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <article>
@@ -177,7 +177,7 @@
         <p><strong>How (Bagaimana):</strong> Data diolah melalui sistem personalisasi internal untuk mengenali pola topik yang sering kamu riset atau gaya bahasa yang kamu suka.</p>
     </div>
     <h2>Apa Sih yang Sebenarnya Berubah? 🧐</h2>
-    <p>Dulu, Copilot cuma ingat apa yang kamu obrolin di dalam jendela chat-nya saja. Tapi sekarang, Microsoft sudah memecah dinding pembatas diantara produknya. Ada sebuah tombol baru berlabel <strong>"Microsoft usage data"</strong> di area <em>Memory/Personalization</em>. Penjelasannya gamblang banget: <em>"Biarkan Copilot menggunakan data dari Bing, MSN, Edge, dan produk Microsoft lainnya yang kamu gunakan."</em></p>
+    <p>Dulu, Copilot cuma ingat apa yang kamu obrolin di dalam jendela chat-nya saja. Tapi sekarang, Microsoft sudah memecah dinding pembatas diantara produknya. Ada sebuah tombol baru berlabel <strong>"Microsoft usage data"</strong> di area <em>Memory/Personalization*. Penjelasannya gamblang banget: *"Biarkan Copilot menggunakan data dari Bing, MSN, Edge, dan produk Microsoft lainnya yang kamu gunakan."</em></p>
     <p>Konsekuensi praktisnya? Kalau kamu sering cari resep makanan sehat di Bing dan baca berita diet di MSN lewat browser Edge, tiba-tiba Copilot bisa saja menyarankan menu makan malam rendah kalori tanpa kamu minta. Kedengarannya keren, tapi buat sebagian orang, ini terasa seperti ada mata-mata digital yang ngikutin kemana pun kita pergi.</p>
     <h2>Antara Kemudahan vs. Privasi (E-E-A-T Perspective) Riset Mendalam</h2>
     <p>Kita melihat ada dua sisi mata pisau di sini. Dari sisi <strong>pengalaman pengguna (UX)</strong>, personalisasi ini punya benefit nyata:</p>
@@ -192,7 +192,7 @@
     <h3>2. Ambiguitas Data</h3>
     <p>Istilah "data penggunaan" itu luas banget. Apakah ini termasuk URL yang kamu kunjungi? Atau cuma kata kunci pencarian? Microsoft belum memberikan skema telemetri yang mendetail di antarmuka penggunanya, dan ini bikin tim audit privasi jadi garuk-garuk kepala.</p>
     <h3>3. Isu Data Sensitif (Kesehatan &amp; Keuangan)</h3>
-    <p>Beberapa laporan menyebutkan Microsoft lagi uji coba integrasi dengan aplikasi kesehatan (seperti <em>Copilot Health Records</em>). Bayangkan kalau data medis kamu juga masuk ke memori AI. Ini butuh kontrol yang jauh lebih ketat dan transparan!</p>
+    <p>Beberapa laporan menyebutkan Microsoft lagi uji coba integrasi dengan aplikasi kesehatan (seperti *Copilot Health Records*). Bayangkan kalau data medis kamu juga masuk ke memori AI. Ini butuh kontrol yang jauh lebih ketat dan transparan!</p>
     <h2>🛡️ Cara Mengelola Privasi Copilot Kamu (Tutorial Sat-set!)</h2>
     <p>Kalau kamu merasa fitur ini terlalu "kepo", tenang saja. Microsoft masih memberikan kunci kontrolnya ke tangan kita. Berikut adalah langkah-langkah yang harus kamu lakukan sekarang juga:</p>
     <div class="step-list">
@@ -204,7 +204,7 @@
         <p>Jangan lupa cek halaman privasi akun Microsoft utama kamu. Pastikan pengaturan <em>model training opt-out</em> juga sudah sesuai dengan keinginanmu.</p>
     </div>
     <h2>Sudut Pandang IT Admin &amp; Perusahaan 🏢</h2>
-    <p>Buat kamu yang mengelola IT di kantor, ada catatan penting nih. Memori Copilot di akun enterprise (Microsoft 365) biasanya disimpan di dalam <em>tenant</em> perusahaan yang bisa dilacak lewat alat <em>eDiscovery</em> atau <em>Microsoft Purview</em>. Jadi, "memori pribadi" karyawan di akun kantor sebenarnya bisa dilihat oleh admin perusahaan jika ada kebutuhan audit hukum. Pastikan kebijakan internal kantor kamu sudah mencakup hal ini biar tidak ada salah paham di kemudian hari.</p>
+    <p>Buat kamu yang mengelola IT di kantor, ada catatan penting nih. Memori Copilot di akun enterprise (Microsoft 365) biasanya disimpan di dalam <em>tenant</em> perusahaan yang bisa dilacak lewat alat <em>eDiscovery</em> atau *Microsoft Purview*. Jadi, "memori pribadi" karyawan di akun kantor sebenarnya bisa dilihat oleh admin perusahaan jika ada kebutuhan audit hukum. Pastikan kebijakan internal kantor kamu sudah mencakup hal ini biar tidak ada salah paham di kemudian hari.</p>
     <h2>Kesimpulan: Gunakan dengan Bijak!</h2>
     <p>AI yang personal memang masa depan komputasi, tapi jangan sampai kita mengorbankan privasi demi kenyamanan semu. Microsoft memang bilang kalau data ini cuma buat personalisasi dan <strong>BUKAN</strong> buat melatih model AI mereka (Foundation Models). Meskipun janji itu manis, kita tetap harus waspada dan rajin-rajin cek pengaturan privasi kita.</p>
     <p>Ingat, privasi digital bukan tentang "tidak ada yang disembunyikan", tapi lebih kepada "bahwa kita punya hak untuk mengontrol informasi diri". Stay safe di dunia digital ya, Sobat!</p>
@@ -220,7 +220,7 @@
     <div class="footer-wrap">
         <p>🄯 2026 <strong>Jaga Data Pribadi Tetap Aman</strong> - Portal Literasi Teknologi &amp; Privasi Digital. Konten ini dibuat dengan standar E-E-A-T untuk memberikan informasi akurat dan terpercaya.</p>
     </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+ <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

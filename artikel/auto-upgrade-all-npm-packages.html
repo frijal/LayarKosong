@@ -274,7 +274,7 @@
     <link href="/ext/vs-dark.min.css" rel="stylesheet">
 <meta name="ai:summary" content="workflow GitHub Actions untuk meng-upgrade semua paket NPM secara otomatis. Termasuk risiko, perbaikan aman, dan template siap pakai dengan PR, pengujian, dan update minor/patch.">
 <meta name="ai:prompt_hint" content="workflow GitHub Actions untuk meng-upgrade semua paket NPM secara otomatis. Termasuk risiko, perbaikan aman, dan template siap pakai dengan PR, pengujian, dan update minor/patch.">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
     <main>
@@ -307,13 +307,13 @@
                 <h3>1) Trigger</h3>
                 <p>
                     Workflow berjalan manual lewat <code class="kbd">workflow_dispatch</code>, dan terjadwal per bulan, pada tanggal 1, setiap jam 02:00 UTC melalui cron.
-                    <code class="kbd">0 2 1 <em> </em></code>. Ini bagus untuk maintenance rutin sekaligus fleksibilitas eksekusi manual.
+                    <code class="kbd">0 2 1 * *</code>. Ini bagus untuk maintenance rutin sekaligus fleksibilitas eksekusi manual.
                 </p>
                 <pre><code class="language-yaml">name: Auto-Upgrade All NPM Packages
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 1 <em> </em>'
+    - cron: '0 2 1 * *'
 </code></pre>
                 <h3>2) Lingkungan</h3>
                 <p>Runner menggunakan <code class="kbd">ubuntu-latest</code> dan Node.js versi 20. Versi Node terbaru memberi kecepatan dan kompatibilitas yang baik, tapi tetap perlu memastikan project kamu kompatibel (misalnya engine constraints di <code class="kbd">package.json</code>).</p>
@@ -375,7 +375,7 @@ jobs:
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 1 <em> </em>' # Setiap awal bulan jam 2 UTC
+    - cron: '0 2 1 * *' # Setiap awal bulan jam 2 UTC
 jobs:
   upgrade-dependencies:
     runs-on: ubuntu-latest
@@ -427,17 +427,17 @@ jobs:
           body: |
             Upgrade otomatis dependencies menggunakan npm-check-updates (target: minor/patch).
             - Build dan test dijalankan di CI.
-            - Perubahan dapat dilihat pada file <code>package.json</code> dan <code>package-lock.json</code>.
+            - Perubahan dapat dilihat pada file `package.json` dan `package-lock.json`.
             - Mohon review sebelum di-merge.
           labels: dependencies, chore, automated pr
           reviewers: frijal # Ganti dengan username GitHub Anda/tim
           # assignees: user1,user2
           draft: false # Set true jika ingin PR dibuat sebagai draft</code></pre>
           <p>
-                    Nama workflow mudah dikenali di tab Actions. Triggernya <code class="kbd">workflow_dispatch</code> (tombol manual Run workflow) dan <code class="kbd">schedule</code> dengan cron <code class="kbd">0 2 1 <em> </em></code> yang berarti jalan otomatis tiap tanggal 1 jam 02:00 UTC (sekitar jam 9 atau 10 pagi WIB tergantung DST). Job utama (<code class="kbd">upgrade-dependencies</code>) berjalan di runner <code class="kbd">ubuntu-latest</code>. Langkah-langkahnya: checkout kode, setup Node.js versi 20, lalu upgrade semua paket memakai <code class="kbd">npm-check-updates</code> dengan flag <code class="kbd">-u</code> (update <code class="kbd">package.json</code>), baru <code class="kbd">npm install</code> untuk memperbarui <code class="kbd">package-lock.json</code>. Di akhir, kalau ada perubahan pada kedua file tersebut, ia akan melakukan commit dan push langsung ke branch tempat workflow berjalan (biasanya <code>main</code> atau <code>master</code>).
+                    Nama workflow mudah dikenali di tab Actions. Triggernya <code class="kbd">workflow_dispatch</code> (tombol manual Run workflow) dan <code class="kbd">schedule</code> dengan cron <code class="kbd">0 2 1 * *</code> yang berarti jalan otomatis tiap tanggal 1 jam 02:00 UTC (sekitar jam 9 atau 10 pagi WIB tergantung DST). Job utama (<code class="kbd">upgrade-dependencies</code>) berjalan di runner <code class="kbd">ubuntu-latest</code>. Langkah-langkahnya: checkout kode, setup Node.js versi 20, lalu upgrade semua paket memakai <code class="kbd">npm-check-updates</code> dengan flag <code class="kbd">-u</code> (update <code class="kbd">package.json</code>), baru <code class="kbd">npm install</code> untuk memperbarui <code class="kbd">package-lock.json</code>. Di akhir, kalau ada perubahan pada kedua file tersebut, ia akan melakukan commit dan push langsung ke branch tempat workflow berjalan (biasanya <code>main</code> atau <code>master</code>).
                 </p>
                 <p>
-                    Kelebihannya jelas: sederhana banget setup-nya, otomatis berjalan rutin, aman karena hanya commit jika benar-benar ada perubahan (<code class="kbd">git diff --cached --quiet</code>), dan fleksibel karena bisa dipicu manual kapan saja perlu. Namun, ada potensi masalah serius: <code class="kbd">ncu -u</code> tanpa filter akan menaikkan versi ke <em>major release</em> terbaru yang hampir pasti mengandung <em>breaking changes</em>. Workflow ini juga tidak punya langkah <em>testing</em> (<code class="kbd">npm test</code>) atau <em>build</em> (<code class="kbd">npm run build</code>) setelah upgrade, jadi bisa saja kode yang di-push itu rusak. Ditambah lagi, commit langsung ke branch utama tanpa <em>Pull Request</em> (PR) itu berisiko mengganggu tim atau bahkan menyebabkan <em>downtime</em> jika branch itu langsung ter-deploy. Terakhir, kadang kita hanya perlu update minor/patch di lockfile untuk keamanan tanpa mengubah range versi di <code>package.json</code>.
+                    Kelebihannya jelas: sederhana banget setup-nya, otomatis berjalan rutin, aman karena hanya commit jika benar-benar ada perubahan (<code class="kbd">git diff --cached --quiet</code>), dan fleksibel karena bisa dipicu manual kapan saja perlu. Namun, ada potensi masalah serius: <code class="kbd">ncu -u</code> tanpa filter akan menaikkan versi ke <em>major release</em> terbaru yang hampir pasti mengandung <em>breaking changes*. Workflow ini juga tidak punya langkah *testing</em> (<code class="kbd">npm test</code>) atau <em>build</em> (<code class="kbd">npm run build</code>) setelah upgrade, jadi bisa saja kode yang di-push itu rusak. Ditambah lagi, commit langsung ke branch utama tanpa <em>Pull Request</em> (PR) itu berisiko mengganggu tim atau bahkan menyebabkan <em>downtime</em> jika branch itu langsung ter-deploy. Terakhir, kadang kita hanya perlu update minor/patch di lockfile untuk keamanan tanpa mengubah range versi di <code>package.json</code>.
                 </p>
                 <p>
                     Rekomendasi versi yang jauh lebih aman adalah: gunakan <code class="kbd">ncu -u --target minor</code> untuk membatasi upgrade hanya ke versi minor dan patch terbaru dalam range yang diizinkan semver. Setelah upgrade, <strong>wajib</strong> jalankan langkah <code class="kbd">npm install</code>, <code class="kbd">npm run build --if-present</code> (jika ada script build), dan <code class="kbd">npm test --if-present</code> (jika ada script test). Terakhir, gunakan action seperti <code class="kbd">peter-evans/create-pull-request</code> untuk membuat PR otomatis ke branch utama. Dengan begini, perubahan tetap diisolasi di branch baru, diuji oleh CI, dan bisa direview oleh tim sebelum di-merge. Kamu bisa menambahkan label (<code class="kbd">dependencies</code>, <code class="kbd">chore</code>), mengatur reviewer otomatis, dan bahkan menautkan changelog jika perlu di body PR. Untuk monorepo, pertimbangkan menjalankan workflow ini per paket/workspace menggunakan matrix strategy agar lebih terkelola.
@@ -458,7 +458,7 @@ npm update --package-lock-only</code></pre>
                 <h2>Bagaimana cara pakai cepat</h2>
                 <ul>
                     <li><strong>Salin template:</strong> Ambil workflow “Safe Auto-Upgrade” di atas dan simpan sebagai file <code>.github/workflows/upgrade-npm.yml</code> di repo Anda.</li>
-                    <li><strong>Sesuaikan jadwal:</strong> Ubah nilai <code>cron</code> jika ingin jadwal berbeda (misalnya, <code>0 2 <em> </em> 1</code> untuk setiap Senin jam 2 UTC).</li>
+                    <li><strong>Sesuaikan jadwal:</strong> Ubah nilai <code>cron</code> jika ingin jadwal berbeda (misalnya, <code>0 2 * * 1</code> untuk setiap Senin jam 2 UTC).</li>
                     <li><strong>Tambah test:</strong> Pastikan project Anda punya script <code>test</code> (dan <code>build</code> jika perlu) di <code>package.json</code> yang bisa dijalankan dengan <code>npm test</code>.</li>
                     <li><strong>Review PR:</strong> Aktifkan <em>branch protection rules</em> di GitHub untuk branch utama Anda dan wajibkan <em>status checks</em> (termasuk test dari workflow ini) lulus sebelum PR bisa di-merge.</li>
                     <li><strong>Reviewer (Opsional):</strong> Ganti <code>frijal</code> di bagian <code>reviewers</code> pada action <code>create-pull-request</code> dengan username GitHub Anda atau tim Anda.</li>
@@ -472,11 +472,11 @@ npm update --package-lock-only</code></pre>
     </main>
     <footer>
         🄯 2025 Frijal — Dibangun dengan GitHub Pages · Tema Prism VS Code Dark+
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
     <!-- Prism.js Core & Languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-core.min.js" defer=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
