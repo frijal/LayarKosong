@@ -50,4 +50,5 @@ OUTPUT YANG DIHARAPKAN:
 Hasilkan SATU blok kode utuh yang langsung siap deploy, dimulai dari `<!DOCTYPE html>` hingga `</html>`. Jangan berikan penjelasan atau basa-basi sebelum/sesudah blok kode.
 
 [OUTLINE]
+
 (Masukkan outline/topik artikelmu di sini)
