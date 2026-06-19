@@ -71,7 +71,41 @@ jobs:
  user_name: 'github-actions[bot]'
  user_email: 'github-actions[bot]@users.noreply.github.com'
  force_orphan: true
-</code></pre></div><p class=note>Kalau kamu ingin lebih ketat, tambahkan validasi checksum (misalnya dengan <span class=kbd>sha256sum</span>) untuk mendeteksi perubahan yang halus.</section><section class=block><h2>Penjelasan singkat dan alasan desain</h2><ul class=list><li><strong>Checkout dua cabang:</strong> Kita butuh snapshot <span class=kbd>main</span> (sumber) dan <span class=kbd>site</span> (target) agar bisa membandingkan keadaan terakhir yang ter-deploy.<li><strong>Seleksi file:</strong> <span class=kbd>rsync</span> dengan kombinasi <span class=kbd>--include</span>/<span class=kbd>--exclude</span> membuat direktori bersih (<span class=kbd>deploy_dir</span>) berisi hanya file yang “diizinkan”.<li><strong>Dry-run:</strong> <span class=kbd>rsync --dry-run --delete</span> menghasilkan daftar perubahan tanpa benar-benar menyalin; jika ada isi <span class=kbd>diff.log</span>, berarti perlu deploy.<li><strong>Conditional deploy:</strong> Langkah deploy memakai kondisi <span class=kbd>if</span> sehingga hanya berjalan bila ada perbedaan; ini mencegah commit kosong.<li><strong>Artifact:</strong> Opsi upload <span class=kbd>diff.log</span> membantu audit dan debugging—praktis kalau suatu saat hasil tidak sesuai ekspektasi.</ul></section><section class=block><h2>Opsi lanjutan dan penguatan</h2><ul class=list><li><strong>Proteksi pola:</strong> Simpan pola <span class=kbd>include/exclude</span> di file terpisah (misalnya <span class=kbd>sync.rules</span>) dan panggil dengan <span class=kbd>--filter='merge sync.rules'</span> agar mudah dirawat.<li><strong>Pre-build:</strong> Jika ada proses build (minify, generate, bundling), jalankan sebelum seleksi agar yang dibandingkan benar-benar output final.<li><strong>Cache:</strong> Tambah caching untuk dependency build agar job makin cepat, tanpa mengubah mekanisme cek perubahan.<li><strong>Notifikasi:</strong> Kirim notifikasi (mis. ke Slack) hanya saat <span class=kbd>changed == true</span> supaya tim dapat sinyal relevan.<li><strong>Keamanan:</strong> Pastikan tidak ada file sensitif yang lolos: validasi dengan skrip audit (regex nama file, ekstensi, path).</ul><div id=related-articles-grid></div><div id=response></div></section><footer class=site><div style=margin-top:10px>🄯 2025 Frijal Docs — Artikel DevOps. Canonical: <a href=https://dalam.web.id/warta-tekno/build-deploy-clean-branch.html>dalam.web.id/artikel/build-deploy-clean-branch.html</a></div><a rel="noopener noreferrer" href=/about target=_blank>☕</a><a rel="noopener noreferrer" href=/data-deletion target=_blank>🛡️</a><a rel="noopener noreferrer" href=/disclaimer target=_blank>⚠️</a><a rel="noopener noreferrer" href=/disclosure target=_blank>📝</a><a rel="noopener noreferrer" href=/lisensi target=_blank>📚</a><a rel="noopener noreferrer" href=/privacy target=_blank>🔰</a><a rel="noopener noreferrer" href=/security-policy target=_blank>⚔️</a></footer></main></div><script>(function() {
+
+ 
+ <p class=note>Kalau kamu ingin lebih ketat, tambahkan validasi checksum (misalnya dengan <span class=kbd>sha256sum</span>) untuk mendeteksi perubahan yang halus.</p>
+ 
+ <section class=block>
+ <h2>Penjelasan singkat dan alasan desain</h2>
+ <ul class=list>
+ <li><strong>Checkout dua cabang:</strong> Kita butuh snapshot <span class=kbd>main</span> (sumber) dan <span class=kbd>site</span> (target) agar bisa membandingkan keadaan terakhir yang ter-deploy.</li>
+ <li><strong>Seleksi file:</strong> <span class=kbd>rsync</span> dengan kombinasi <span class=kbd>--include</span>/<span class=kbd>--exclude</span> membuat direktori bersih (<span class=kbd>deploy_dir</span>) berisi hanya file yang “diizinkan”.</li>
+ <li><strong>Dry-run:</strong> <span class=kbd>rsync --dry-run --delete</span> menghasilkan daftar perubahan tanpa benar-benar menyalin; jika ada isi <span class=kbd>diff.log</span>, berarti perlu deploy.</li>
+ <li><strong>Conditional deploy:</strong> Langkah deploy memakai kondisi <span class=kbd>if</span> sehingga hanya berjalan bila ada perbedaan; ini mencegah commit kosong.</li>
+ <li><strong>Artifact:</strong> Opsi upload <span class=kbd>diff.log</span> membantu audit dan debugging—praktis kalau suatu saat hasil tidak sesuai ekspektasi.</li>
+ </ul>
+ </section>
+ <section class=block>
+ <h2>Opsi lanjutan dan penguatan</h2>
+ <ul class=list>
+ <li><strong>Proteksi pola:</strong> Simpan pola <span class=kbd>include/exclude</span> di file terpisah (misalnya <span class=kbd>sync.rules</span>) dan panggil dengan <span class=kbd>--filter='merge sync.rules'</span> agar mudah dirawat.</li>
+ <li><strong>Pre-build:</strong> Jika ada proses build (minify, generate, bundling), jalankan sebelum seleksi agar yang dibandingkan benar-benar output final.</li>
+ <li><strong>Cache:</strong> Tambah caching untuk dependency build agar job makin cepat, tanpa mengubah mekanisme cek perubahan.</li>
+ <li><strong>Notifikasi:</strong> Kirim notifikasi (mis. ke Slack) hanya saat <span class=kbd>changed == true</span> supaya tim dapat sinyal relevan.</li>
+ <li><strong>Keamanan:</strong> Pastikan tidak ada file sensitif yang lolos: validasi dengan skrip audit (regex nama file, ekstensi, path).</li>
+ </ul>
+ <div id=related-articles-grid></div><div id=response></div>
+ </section>
+ <footer class=site>
+ <div style=margin-top:10px>
+ 🄯 2025 Frijal Docs — Artikel DevOps. Canonical: <a href=https://dalam.web.id/warta-tekno/build-deploy-clean-branch.html>dalam.web.id/artikel/build-deploy-clean-branch.html</a>
+ </div>
+ <a rel="noopener noreferrer" href=/about target=_blank>☕</a> <a rel="noopener noreferrer" href=/data-deletion target=_blank>🛡️</a> <a rel="noopener noreferrer" href=/disclaimer target=_blank>⚠️</a> <a rel="noopener noreferrer" href=/disclosure target=_blank>📝</a> <a rel="noopener noreferrer" href=/lisensi target=_blank>📚</a> <a rel="noopener noreferrer" href=/privacy target=_blank>🔰</a> <a rel="noopener noreferrer" href=/security-policy target=_blank>⚔️</a> 
+</footer>
+ 
+ 
+ 
+ <script>(function() {
  const canonical = document.querySelector('link[rel="canonical"]')?.href || location.href;
  const title = document.title;
  // Fullscreen toggle
@@ -113,4 +147,8 @@ jobs:
  codePane.style.width = wide ? '100%' : '';
  wideBtn.textContent = wide ? 'Kembalikan lebar' : 'Lebarkan area kode';
  });
- })();</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/marquee-url.js></script><script defer src=/ext/lightbox.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/response.js></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-19</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+ })();</script>
+<div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/marquee-url.js></script><script defer src=/ext/lightbox.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/response.js></script>
+
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<noscript>schema_oleh_Fakhrul_Rijal_2026-06-19</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>

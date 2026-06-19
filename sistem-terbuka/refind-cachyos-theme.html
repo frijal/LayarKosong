@@ -34,10 +34,10 @@ function find_refind_conf {
  REFOUND_CONF_PATH="$found_path"
  return 0
  ;;
- [Nn]</em>)
+ [Nn])
  return 2
  ;;
- </em>)
+ )
  echo -e "${RED}Please answer yes or no.${RESET}"
  ;;
  esac
@@ -73,7 +73,7 @@ function install_theme {
  echo -e "${YELLOW}Removing...${RESET}"
  rm -rf "$INSTALL_DIR"
  ;;
- </em>)
+ )
  echo -e "${RED}Aborting to avoid overwriting files.${RESET}"
  exit 1
  ;;
@@ -92,7 +92,7 @@ function install_theme {
  2) size_big="256"; size_small="160" ;;
  3) size_big="384"; size_small="240" ;;
  4) size_big="512"; size_small="320" ;;
- </em>) echo -e "${RED}${bold}Invalid choice. Exiting.${RESET}"; exit 1 ;;
+ ) echo -e "${RED}${bold}Invalid choice. Exiting.${RESET}"; exit 1 ;;
  esac
  echo -e "\nSelected size: ${GREEN}Big $size_big px, Small $size_small px${RESET}\n"
  # Resolution
@@ -112,7 +112,7 @@ function install_theme {
  4) res="3840x2160" ;;
  5) res="3440x1440" ;;
  6) res="5120x2160" ;;
- </em>) echo -e "${RED}${bold}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
+ ) echo -e "${RED}${bold}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
  esac
  res_width="${res%x*}"
  res_height="${res#*x}"
@@ -156,7 +156,7 @@ function uninstall_theme {
  local backup_file
  backup_file=$(ls -t "${REFOUND_CONF_PATH}".bak.cachy-theme.* 2>/dev/null | head -n 1 || true)
  if [[ ! -f "$backup_file" ]]; then
- echo -e "${RED}${bold}No backup found (${REFOUND_CONF_PATH}.bak.cachy-theme.</em>). Cannot proceed.${RESET}"
+ echo -e "${RED}${bold}No backup found (${REFOUND_CONF_PATH}.bak.cachy-theme.). Cannot proceed.${RESET}"
  exit 1
  fi
  echo -e "${YELLOW}Restoring backup: ${bold}$backup_file${normal}${RESET}"
@@ -189,7 +189,7 @@ function reconfigure_theme {
  2) size_big="256"; size_small="160" ;;
  3) size_big="384"; size_small="240" ;;
  4) size_big="512"; size_small="320" ;;
- </em>) echo -e "${RED}Invalid choice. Exiting.${RESET}"; exit 1 ;;
+ ) echo -e "${RED}Invalid choice. Exiting.${RESET}"; exit 1 ;;
  esac
  echo -e "\n${CYAN}Select new monitor resolution for background:${RESET}"
  echo -e "${bold}1) 1280x720 pixel${normal}"
@@ -207,7 +207,7 @@ function reconfigure_theme {
  4) res="3840x2160" ;;
  5) res="3440x1440" ;;
  6) res="5120x2160" ;;
- </em>) echo -e "${RED}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
+ ) echo -e "${RED}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
  esac
  res_width="${res%x*}"
  res_height="${res#*x}"
@@ -252,6 +252,6 @@ case "$menu_choice" in
  2) uninstall_theme ;;
  3) reconfigure_theme ;;
  0) echo -e "${YELLOW}Cancelled by user.${RESET}" && exit 0 ;;
- </em>) echo -e "${RED}Invalid option. Exiting.${RESET}" && exit 1 ;;
+ ) echo -e "${RED}Invalid option. Exiting.${RESET}" && exit 1 ;;
 esac</code></pre></details></section><section class=img-container><h2><i class="fa-solid fa-image"></i> Penampakan Hasilnya</h2><p>Biar tidak beli kucing dalam karung, nih liat dulu preview-nya. Ganteng maksimal kan?</p><img alt="rEFInd Theme Preview CachyOS" sizes="(max-width: 1064px) calc(100vw - 40px), 1024px" srcset="https://dalam.web.id/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/preview-sm.webp 480w, https://dalam.web.id/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/preview-md.webp 720w, https://dalam.web.id/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/preview.webp 1000w" src=/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/preview.webp><img alt="rEFInd Active Screenshot" sizes="(max-width: 1064px) calc(100vw - 40px), 1024px" srcset="https://dalam.web.id/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/rEFInd-active-sm.webp 480w, https://dalam.web.id/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/rEFInd-active-md.webp 720w, https://dalam.web.id/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/rEFInd-active.webp 806w" src=/img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/rEFInd-active.webp></section><section><h3 style=text-align:center;margin-top:50px><i class="fa-solid fa-comments"></i> Diskusi Santai</h3><div id=related-articles-grid></div><div id=response></div></section><footer><p>Made with <i class="fa-solid fa-coffee" style=color:#6f4e37></i> and code by <strong>Fakhrul Rijal</strong>.<p><em>Go Back To Door & HR Generalized</em><div class=social-icons><a href=https://threads.net/frijal target=_blank title=Threads><i class="fa-brands fa-threads"></i></a><a href=https://linkedin.com/in/frijal target=_blank title=LinkedIn><i class="fa-brands fa-linkedin"></i></a><a href=https://github.com/frijal target=_blank title=GitHub><i class="fa-brands fa-github"></i></a><a href=https://mastodon.social/@frijal target=_blank title=Mastodon><i class="fa-brands fa-mastodon"></i></a><a href=https://t.me/frijal target=_blank title=Telegram><i class="fa-brands fa-telegram"></i></a></div><p style=opacity:.6;margin-top:20px;font-size:.8em>🄯 2025 Balikpapan. Hati-hati menyebabkan kantuk.</p><a rel="noopener noreferrer" href=/about target=_blank>☕</a><a rel="noopener noreferrer" href=/data-deletion target=_blank>🛡️</a><a rel="noopener noreferrer" href=/disclaimer target=_blank>⚠️</a><a rel="noopener noreferrer" href=/disclosure target=_blank>📝</a><a rel="noopener noreferrer" href=/lisensi target=_blank>📚</a><a rel="noopener noreferrer" href=/privacy target=_blank>🔰</a><a rel="noopener noreferrer" href=/security-policy target=_blank>⚔️</a></footer></div><script defer src=/ext/highlight.js></script><script defer src=/ext/highlight.js/11.11.1/languages/bash.min.js></script><script>// Initialize Highlight.js
  hljs.highlightAll();</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/marquee-url.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/response.js></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-19</noscript></html><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>

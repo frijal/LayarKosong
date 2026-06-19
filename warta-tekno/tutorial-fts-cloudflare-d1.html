@@ -32,7 +32,7 @@ bun add -d typescript @types/node</code></pre><img alt="Alur proses ekstraksi fi
  .<span class=t-fn>replace</span>(<span class=t-str>/\s+/g</span>, <span class=t-str>' '</span>)
  .<span class=t-fn>replace</span>(<span class=t-str>/'/g</span>, <span class=t-str>"''"</span>)
  .<span class=t-fn>trim</span>();
-}</code></pre><h3>3.2. Ekstraktor Konten HTML Menggunakan Cheerio</h3><p>Lanjut ke fungsi untuk membaca file HTML, menyedot <em>metadata</em> (seperti judul dan gambar <em>OpenGraph</em>), lalu mengambil teks murni artikel dengan secara sadis membuang komponen *noise</em> seperti navigasi, *header*, dan *footer*.<pre><code><span class=t-kw>import</span> { readFileSync } <span class=t-kw>from</span> <span class=t-str>"fs"</span>;
+}</code></pre><h3>3.2. Ekstraktor Konten HTML Menggunakan Cheerio</h3><p>Lanjut ke fungsi untuk membaca file HTML, menyedot <em>metadata</em> (seperti judul dan gambar <em>OpenGraph</em>), lalu mengambil teks murni artikel dengan secara sadis membuang komponen *noise seperti navigasi, *header*, dan *footer*.<pre><code><span class=t-kw>import</span> { readFileSync } <span class=t-kw>from</span> <span class=t-str>"fs"</span>;
 <span class=t-kw>import</span> * <span class=t-kw>as</span> cheerio <span class=t-kw>from</span> <span class=t-str>"cheerio"</span>;
 <span class=t-kw>export function</span> <span class=t-fn>extractArticleData</span>(filePath: <span class=t-typ>string</span>, filename: <span class=t-typ>string</span>, category: <span class=t-typ>string</span>) {
  <span class=t-kw>const</span> html = <span class=t-fn>readFileSync</span>(filePath, <span class=t-str>"utf-8"</span>);
