@@ -29,7 +29,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
   * Teks Sekunder / Footer: 0.85rem hingga 0.9rem (setara 13px – 14px) untuk informasi pelengkap yang tidak terlalu krusial.
 - Fitur Ringkas Halaman (Accordion): Jika ada bagian `<h2>` yang memiliki pembahasan panjang (misalnya di dalamnya mengandung beberapa elemen `<h3>` atau total teksnya melebihi 3 paragraf), kamu WAJIB membungkus seluruh konten di bawah `<h2>` tersebut menggunakan kombinasi tag `<details>` dan `<summary>`. Teks `<h2>` harus bertindak sebagai judul di dalam tag `<summary>`, sementara seluruh konten penjelasnya (`<h3>`, gambar, paragraf) berada di dalam tag `<details>` tersebut agar tampilan halaman lebih ringkas dan bisa di-expand oleh pembaca. Berikan styling CSS murni yang elegan pada tag `<summary>` (seperti efek hover, transisi ringan, dan `cursor: pointer`).
 - HTML5 & Tag Pengecualian: Gunakan Semantic HTML5 (`<main>`, `<article>`, `<header>`, `<h1>` - `<h3>`). NAMUN, untuk pemformatan teks sebaris, abaikan semantik dan WAJIB gunakan tag presentasional klasik ini: `<b>` untuk tebal, `<i>` untuk miring, `<u>` untuk garis bawah, dan `<s>` untuk coret.
-- Visual: Gunakan emoji atau ikon (Unicode/FontAwesome CDN) secukupnya untuk konteks. Jika ada blok kode, buatkan styling CSS sintaks yang elegan menyesuaikan tema gelap/terang.
+- Visual: Gunakan emoji atau ikon FontAwesome (Unicode/FontAwesome CDN) secukupnya untuk konteks. Jika ada blok kode, buatkan styling CSS sintaks yang elegan menyesuaikan tema gelap/terang.
 
 5. SEO & METADATA (UTF-8):
 - Title Tag: `<title>` maksimal 50-60 karakter (sekitar 6-8 kata) agar tidak terpotong di Google.
