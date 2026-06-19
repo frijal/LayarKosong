@@ -1,0 +1,929 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="canonical" href="https://dalam.web.id/artikel/invoice-sewa-layarkosong">
+    <meta property="og:url" content="https://dalam.web.id/artikel/invoice-sewa-layarkosong">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/invoice-sewa-layarkosong">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:title" content="Invoices Penyewaan">
+    <meta name="twitter:title" content="Invoices Penyewaan">
+    <meta name="description" content="Invoice Generator khusus untuk rental/penyewaan dengan auto-DP, auto-tanggal kembali akurat, dan tata letak profesional.">
+    <meta property="og:description" content="Invoice Generator khusus untuk rental/penyewaan dengan auto-DP, auto-tanggal kembali akurat, dan tata letak profesional.">
+    <meta name="twitter:description" content="Invoice Generator khusus untuk rental/penyewaan dengan auto-DP, auto-tanggal kembali akurat, dan tata letak profesional.">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/c7bd0903bd8fa843.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/c7bd0903bd8fa843.webp">
+    <meta property="og:image:alt" content="Invoices Penyewaan">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-05-31T17:53:24.609Z">
+    <meta property="article:modified_time" content="2026-05-31T17:53:24.609Z">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices Penyewaan - Layar Kosong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          --fs-xs: 11px; --fs-sm: 13px; --fs-base: 15px; --fs-md: 17px; --fs-lg: 22px; --fs-xl: 32px; --fs-xxl: 40px;
+          --c-bg: #F5F5F7; --c-surface: #FFFFFF; --c-border: #D2D2D7; --c-border-light: #E8E8ED;
+          --c-text: #1D1D1F; --c-text-sec: #86868B; --c-text-ter: #AEAEB2;
+          --c-accent: #0071E3; --c-accent-hover: #0077ED; --c-accent-light: rgba(0, 113, 227, 0.06);
+          --c-danger: #FF3B30; --c-danger-hover: rgba(255, 59, 48, 0.1);
+          --c-success: #30D158; --c-warning: #FF9F0A;
+          --c-paid: #30D158; --c-overdue: #FF3B30; --c-draft: #86868B; --c-sent: #0071E3;
+          --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+          --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+          --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+          --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 10px rgba(0, 0, 0, 0.04);
+          --ease: cubic-bezier(0.25, 0.1, 0.25, 1); --dur: 0.2s;
+          --invoice-accent: #0071E3; --invoice-header-bg: transparent; --invoice-header-color: var(--c-text); --invoice-radius: var(--radius-lg);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: var(--fs-base); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); line-height: 1.5; min-height: 100vh; }
+        /* HILANGKAN TOMBOL ADJUST (SPIN BUTTON) SAAT EDIT & CETAK */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .toolbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background: rgba(255, 255, 255, 0.72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--c-border-light); gap: 12px; flex-wrap: wrap; }
+        .toolbar-left { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .toolbar-icon { color: var(--c-accent); }
+        .toolbar-title { font-size: var(--fs-base); font-weight: 600; letter-spacing: -0.02em; color: var(--c-text); }
+        .toolbar-center { flex: 1; display: flex; justify-content: center; align-items: center; gap: 16px; }
+        .toolbar-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+        .toolbar-divider { width: 1px; height: 20px; background: var(--c-border); margin: 0 4px; }
+        .template-selector { display: flex; align-items: center; gap: 2px; background: rgba(0, 0, 0, 0.04); border-radius: var(--radius-md); padding: 3px; }
+        .template-btn { display: flex; align-items: center; gap: 5px; padding: 6px 12px; border: none; border-radius: 7px; background: transparent; font-family: var(--font); font-size: var(--fs-xs); font-weight: 500; color: var(--c-text-sec); cursor: pointer; transition: all var(--dur) var(--ease); white-space: nowrap; }
+        .template-btn:hover { color: var(--c-text); }
+        .template-btn.active { background: var(--c-surface); color: var(--c-text); box-shadow: var(--shadow-sm); }
+        .view-options { display: flex; align-items: center; gap: 12px; }
+        .view-option { display: flex; align-items: center; gap: 6px; font-size: var(--fs-xs); font-weight: 500; color: var(--c-text-sec); cursor: pointer; user-select: none; }
+        .view-option input { accent-color: var(--c-accent); width: 14px; height: 14px; }
+        .view-option:hover { color: var(--c-text); }
+        .select-ui { font-family: var(--font); font-size: var(--fs-sm); font-weight: 600; color: var(--c-text); background: transparent; border: 1px solid var(--c-border); border-radius: var(--radius-md); padding: 6px 10px; outline: none; cursor: pointer; transition: all var(--dur) var(--ease); }
+        .select-ui:hover { border-color: var(--c-text-sec); }
+        .select-ui:focus { border-color: var(--c-accent); box-shadow: 0 0 0 2px var(--c-accent-light); }
+        .select-ui--mode { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+        .select-ui--mode:hover { background: var(--c-accent-hover); }
+        .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: none; border-radius: var(--radius-md); font-family: var(--font); font-size: var(--fs-sm); font-weight: 500; cursor: pointer; transition: all var(--dur) var(--ease); white-space: nowrap; line-height: 1; }
+        .btn-ghost { background: transparent; color: var(--c-text-sec); }
+        .btn-ghost:hover { background: rgba(0, 0, 0, 0.04); color: var(--c-text); }
+        .btn-ghost:active { transform: scale(0.97); }
+        .btn-primary { background: var(--c-text); color: #fff; }
+        .btn-primary:hover { opacity: 0.9; box-shadow: 0 2px 8px rgba(0,0,0, 0.3); }
+        .btn-primary:active { transform: scale(0.97); }
+        .invoice-wrapper { display: flex; justify-content: center; padding: 40px 24px 80px; }
+        .invoice { width: 100%; max-width: 820px; background: var(--c-surface); border-radius: var(--invoice-radius); box-shadow: var(--shadow-lg); padding: 0; animation: fadeUp 0.5s var(--ease) both; overflow: hidden; position: relative; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .invoice-band { display: none; padding: 40px 56px 32px; background: var(--invoice-accent); color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .band-title { font-size: var(--fs-xxl); font-weight: 800; letter-spacing: -0.04em; outline: none; line-height: 1; }
+        .invoice-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding: 48px 56px 0; position: relative; }
+        .logo-container { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; z-index: 10; position: relative; }
+        .logo-area { width: 140px; height: 80px; border: 2px dashed var(--c-border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border 0.2s, background 0.2s; overflow: hidden; position: relative; background: #fff; }
+        .logo-area:hover, .logo-area:focus-visible { border-color: var(--c-accent); background: var(--c-accent-light); }
+        .logo-area.has-logo { border-style: solid; border-color: var(--c-border-light); cursor: grab; }
+        .logo-area.has-logo:active { cursor: grabbing; }
+        .logo-area.has-logo:hover { border-color: var(--c-accent); }
+        .logo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--c-text-ter); font-size: var(--fs-xs); font-weight: 500; letter-spacing: 0.02em; pointer-events: none; }
+        .logo-preview { width: 100%; height: 100%; object-fit: contain; display: none; padding: 6px; pointer-events: none; }
+        .logo-resize { display: flex; align-items: center; gap: 8px; justify-content: center; }
+        .logo-resize input[type="range"] { width: 100px; height: 4px; -webkit-appearance: none; appearance: none; background: var(--c-border-light); border-radius: 2px; outline: none; cursor: pointer; }
+        .logo-resize input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--c-accent); border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); cursor: grab; }
+        .logo-hint { font-size: 10px; color: var(--c-text-ter); text-align: center; margin-top: -4px; pointer-events: none; }
+        .invoice-meta { text-align: right; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
+        .invoice-meta > * { pointer-events: auto; }
+        .invoice-title-inline { font-size: var(--fs-xl); font-weight: 700; letter-spacing: -0.03em; color: var(--c-text); line-height: 1.1; outline: none; transition: color var(--dur) var(--ease); }
+        .invoice-title-inline:focus { color: var(--c-accent); }
+        /* HEADER BARIS SEJAJAR + WRAPPER TANGGAL */
+        .meta-top-row { display: flex; flex-direction: row; justify-content: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 8px; }
+        .meta-item { display: flex; align-items: center; gap: 8px; font-size: var(--fs-sm); }
+        .meta-item label { color: var(--c-text-sec); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--fs-xs); }
+        .meta-item .editable { font-family: var(--font); font-size: var(--fs-sm); font-weight: 600; color: var(--c-text); border: none; background: transparent; text-align: right; outline: none; padding: 2px 4px; border-bottom: 1px solid transparent; transition: border-color var(--dur) var(--ease); width: auto; max-width: 140px; }
+        .meta-item .editable:hover { border-bottom-color: var(--c-border); }
+        .meta-item .editable:focus { border-bottom-color: var(--c-accent); }
+        /* Trik Wrapper Tanggal */
+        .date-wrapper { position: relative; display: inline-flex; align-items: center; white-space: nowrap; }
+        .date-wrapper input[type="date"] { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 2; }
+        .date-wrapper .editable-date { font-family: var(--font); font-size: var(--fs-sm); font-weight: 600; color: var(--c-text); padding: 2px 4px; border-bottom: 1px solid transparent; transition: border-color var(--dur) var(--ease); z-index: 1; pointer-events: none; }
+        .date-wrapper:hover .start-date { border-bottom-color: var(--c-border); }
+        .invoice-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 30px 56px 40px; margin: 0; }
+        .party-label, .section-label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-text-sec); margin-bottom: 8px; }
+        .party-details { font-size: var(--fs-sm); line-height: 1.7; color: var(--c-text); white-space: pre-line; outline: none; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--dur) var(--ease); min-height: 80px; margin-left: -10px; }
+        .party-details:hover { background: rgba(0, 0, 0, 0.015); border-color: var(--c-border-light); }
+        .party-details:focus { background: var(--c-accent-light); border-color: var(--c-accent); }
+        .invoice-items { padding: 0 56px; margin-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; }
+        thead th { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-text-sec); padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--c-text); }
+        thead th.col-price, thead th.col-qty, thead th.col-disc, thead th.col-jumlah, thead th.col-total { text-align: right; }
+        tbody tr { transition: background var(--dur) var(--ease); }
+        tbody tr:hover { background: rgba(0, 0, 0, 0.015); }
+        tbody td { padding: 10px 12px; font-size: var(--fs-sm); border-bottom: 1px solid var(--c-border-light); vertical-align: middle; }
+        .col-desc { width: 30%; }
+        .col-jumlah { width: 9%; text-align: right; }
+        .col-price { width: 18%; text-align: right; }
+        .col-qty { width: 13%; text-align: right; }
+        .col-disc { width: 13%; text-align: right; }
+        .col-total { width: 14%; text-align: right; font-weight: 600; }
+        .col-action { width: 3%; text-align: center; }
+        .item-input { width: 100%; border: none; background: transparent; font-family: var(--font); font-size: var(--fs-sm); color: var(--c-text); outline: none; padding: 4px 6px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--dur) var(--ease); }
+        .item-input:hover { border-color: var(--c-border-light); }
+        .item-input:focus { border-color: var(--c-accent); background: var(--c-accent-light); }
+        .item-input.align-right { text-align: right; }
+        .item-total { font-weight: 600; color: var(--c-text); font-variant-numeric: tabular-nums; text-align: right; }
+        .btn-remove { width: 26px; height: 26px; border: none; background: transparent; color: var(--c-text-ter); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--dur) var(--ease); opacity: 0; }
+        tbody tr:hover .btn-remove { opacity: 1; }
+        .btn-remove:hover { background: var(--c-danger-hover); color: var(--c-danger); }
+        .btn-add-item { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; margin-top: 12px; border: 1px dashed var(--c-border); border-radius: var(--radius-md); background: transparent; font-family: var(--font); font-size: var(--fs-sm); font-weight: 500; color: var(--c-text-sec); cursor: pointer; transition: all var(--dur) var(--ease); width: 100%; justify-content: center; }
+        .btn-add-item:hover { border-color: var(--c-accent); color: var(--c-accent); background: var(--c-accent-light); }
+        .invoice-summary { display: flex; justify-content: space-between; padding: 24px 56px 0; gap: 20px; }
+        .summary-spacer { flex: 1; }
+        .summary-table { width: 320px; }
+        .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: var(--fs-sm); color: var(--c-text-sec); border-bottom: 1px solid var(--c-border-light); font-variant-numeric: tabular-nums; transition: opacity 0.2s, height 0.2s, padding 0.2s; }
+        .summary-row.hidden { display: none; }
+        .summary-row span:last-child { font-weight: 500; color: var(--c-text); }
+        .summary-row-bold { font-weight: 600; color: var(--c-text); border-top: 1px solid var(--c-border); margin-top: 4px; padding-top: 8px; }
+        .dp-group { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+        .dp-wrapper { display: flex; align-items: center; gap: 4px; background: var(--c-accent-light); border: 1px solid var(--c-accent); border-radius: var(--radius-sm); padding: 4px 8px; color: var(--c-accent); font-weight: 600; transition: all var(--dur) var(--ease); }
+        .dp-wrapper:focus-within { box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.2); }
+        .dp-wrapper input { border: none; background: transparent; color: inherit; font-weight: inherit; outline: none; font-family: var(--font); font-size: var(--fs-sm); text-align: right; }
+        .dp-wrapper.pct-box input { width: 36px; }
+        .dp-wrapper.nom-box input { width: 100px; }
+        .summary-total { border-bottom: none; border-top: 2px solid var(--c-text); margin-top: 4px; padding-top: 12px; font-size: var(--fs-md); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .summary-total span:first-child { font-weight: 700; color: var(--c-text); }
+        .summary-total span:last-child { font-weight: 700; font-size: var(--fs-lg); color: var(--c-text); letter-spacing: -0.02em; }
+        .editable-inline { outline: none; border-bottom: 1px solid transparent; transition: border-color var(--dur) var(--ease); min-width: 16px; display: inline-block; text-align: center; }
+        .editable-inline:hover { border-bottom-color: var(--c-border); }
+        .editable-inline:focus { border-bottom-color: var(--c-accent); }
+        .invoice-bottom-row { display: flex; justify-content: space-between; align-items: flex-end; padding: 32px 56px 0; border-top: 1px solid var(--c-border-light); margin-top: 32px; gap: 20px; }
+        .invoice-bank { padding: 0; border: none; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; flex: 1; }
+        .bank-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px 24px; }
+        .bank-field { display: flex; flex-direction: column; gap: 2px; }
+        .bank-field label { font-size: var(--fs-xs); font-weight: 500; color: var(--c-text-ter); text-transform: uppercase; letter-spacing: 0.06em; }
+        .bank-field .editable { font-size: var(--fs-sm); color: var(--c-text); outline: none; padding: 4px 6px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--dur) var(--ease); margin-left: -6px; }
+        .bank-field .editable:hover { background: rgba(0, 0, 0, 0.015); border-color: var(--c-border-light); }
+        .bank-field .editable:focus { background: var(--c-accent-light); border-color: var(--c-accent); }
+        .signature-area { display: flex; flex-direction: column; align-items: center; min-width: 200px; }
+        .signature-area .editable { font-size: var(--fs-sm); color: var(--c-text); outline: none; padding: 4px 6px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--dur) var(--ease); text-align: center; width: 100%; }
+        .signature-area .editable:hover { background: rgba(0, 0, 0, 0.015); border-color: var(--c-border-light); }
+        .signature-area .editable:focus { background: var(--c-accent-light); border-color: var(--c-accent); }
+        .signature-label { font-size: var(--fs-sm); color: var(--c-text-sec); margin-top: 2px; text-align: center; width: 100%; }
+        .signature-space { height: 70px; }
+        .invoice-notes { padding: 32px 56px 0; }
+        .notes-content { font-size: var(--fs-sm); color: var(--c-text-sec); line-height: 1.6; outline: none; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--dur) var(--ease); min-height: 40px; margin-left: -10px; }
+        .notes-content:hover { background: rgba(0, 0, 0, 0.015); border-color: var(--c-border-light); }
+        .notes-content:focus { background: var(--c-accent-light); border-color: var(--c-accent); }
+        .invoice-footer { padding: 40px 56px 48px; text-align: center; }
+        .footer-thankyou { font-size: var(--fs-sm); color: var(--c-text-ter); font-weight: 500; letter-spacing: 0.02em; outline: none; padding: 4px 8px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--dur) var(--ease); display: inline-block; }
+        .footer-thankyou:hover { border-color: var(--c-border-light); }
+        .footer-thankyou:focus { border-color: var(--c-accent); background: var(--c-accent-light); }
+        .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--c-text); color: #fff; padding: 10px 20px; border-radius: 100px; font-size: var(--fs-sm); font-weight: 500; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: all 0.35s var(--ease); z-index: 1000; white-space: nowrap; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        [contenteditable="true"] { cursor: text; }
+        [contenteditable="true"]::selection { background: rgba(0, 113, 227, 0.2); }
+        /* Tema Templat */
+        .invoice--minimal { --invoice-accent: #0071E3; }
+        .invoice--minimal .invoice-band { display: none; }
+        .invoice--minimal .invoice-title-inline { display: block; }
+        .invoice--classic { --invoice-accent: #2C3E50; border-radius: var(--radius-sm); }
+        .invoice--classic .invoice-band { display: none; }
+        .invoice--classic .invoice-title-inline { display: block; color: #2C3E50; }
+        .invoice--classic .invoice-header { background: #F8F9FA; border-bottom: 2px solid #2C3E50; padding-bottom: 32px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .invoice--classic .invoice-parties { border-bottom: 1px solid var(--c-border-light); padding-bottom: 32px; }
+        .invoice--classic thead th { border-bottom-color: #2C3E50; color: #2C3E50; }
+        .invoice--classic .summary-total { border-top-color: #2C3E50; }
+        .invoice--classic .party-label, .invoice--classic .section-label { color: #2C3E50; }
+        .invoice--classic .btn-add-item:hover { border-color: #2C3E50; color: #2C3E50; background: rgba(44, 62, 80, 0.04); }
+        .invoice--classic .item-input:focus, .invoice--classic .party-details:focus, .invoice--classic .notes-content:focus, .invoice--classic .signature-area .editable:focus, .invoice--classic .bank-field .editable:focus, .invoice--classic .footer-thankyou:focus { border-color: #2C3E50; background: rgba(44, 62, 80, 0.04); }
+        .invoice--bold { --invoice-accent: #1D1D1F; border-radius: var(--radius-md); }
+        .invoice--bold .invoice-band { display: block; background: #1D1D1F; }
+        .invoice--bold .invoice-title-inline { display: none; }
+        .invoice--bold thead th { background: #F5F5F7; border-bottom: none; padding: 12px; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .invoice--bold .invoice-band .meta-top-row { color: #fff; }
+        .invoice--bold .invoice-band .meta-item label { color: rgba(255,255,255,0.7); }
+        .invoice--bold .invoice-band .meta-item .editable, .invoice--bold .invoice-band .date-wrapper .editable-date { color: #fff; }
+        .invoice--bold thead th:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+        .invoice--bold thead th:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+        .invoice--bold .summary-total { background: #1D1D1F; color: #fff; padding: 14px 16px; border-radius: var(--radius-md); border: none; margin-top: 8px; }
+        .invoice--bold .summary-total span:first-child { color: rgba(255, 255, 255, 0.7); }
+        .invoice--bold .summary-total span:last-child { color: #fff; }
+        .invoice--bold .footer-thankyou { font-weight: 700; font-size: var(--fs-base); color: var(--c-text); }
+        @media (max-width: 680px) {
+          .invoice-header, .invoice-parties, .invoice-items, .invoice-notes, .invoice-footer { padding-left: 24px; padding-right: 24px; }
+          .invoice-bottom-row { flex-direction: column; align-items: flex-start; gap: 32px; padding-left: 24px; padding-right: 24px; }
+          .invoice-header { flex-direction: column-reverse; gap: 20px; }
+          .invoice-meta { text-align: left; }
+          .meta-top-row { justify-content: flex-start; }
+          .meta-item { flex-direction: column; align-items: flex-start; gap: 2px; }
+          .meta-item .editable { text-align: left; }
+          .invoice-parties { grid-template-columns: 1fr; gap: 24px; }
+          .toolbar { padding: 8px 12px; flex-wrap: wrap; }
+          .toolbar-center { order: 3; width: 100%; margin-top: 8px; overflow-x: auto; justify-content: flex-start; }
+          .toolbar-actions .btn span, .template-btn span { display: none; }
+          .invoice-wrapper { padding: 16px 8px 60px; }
+          .invoice-band { padding: 32px 24px 24px; }
+          .invoice-summary { flex-direction: column; gap: 32px; padding-left: 24px; padding-right: 24px; }
+          .summary-spacer { order: 2; width: 100%; display: flex; flex-direction: column; }
+          .summary-table { order: 1; width: 100%; }
+          .signature-area { align-items: flex-start; width: 100%; }
+          .signature-area .editable { text-align: left; }
+          .signature-label { text-align: left; }
+        }
+        @media print {
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white; }
+          .no-print { display: none !important; }
+          .logo-container { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .invoice-wrapper { padding: 0; justify-content: flex-start; }
+          .invoice { box-shadow: none; border-radius: 0; max-width: 100%; margin: 0; overflow: visible; }
+          .invoice-header, .invoice-parties, .invoice-items, .invoice-summary, .invoice-bottom-row, .invoice-notes, .invoice-footer { page-break-inside: avoid; }
+          tr { page-break-inside: avoid; }
+          .item-input { border: none !important; padding: 0; }
+          .party-details, .notes-content, .signature-area .editable, .bank-field .editable, .footer-thankyou { border: none !important; padding-left: 0; padding-right: 0; }
+          .logo-area { border: none !important; background: transparent !important; }
+          .invoice--bold .invoice-band, .invoice--bold .summary-total, .invoice--bold thead th, .invoice--classic .invoice-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .dp-wrapper { background: transparent !important; border: none !important; padding: 0 !important; color: var(--c-text) !important; justify-content: flex-end; }
+          .dp-wrapper input { color: var(--c-text) !important; }
+          .dp-wrapper.pct-box input { width: auto !important; }
+          input[type="number"]::-webkit-outer-spin-button,
+          input[type="number"]::-webkit-inner-spin-button {
+              -webkit-appearance: none !important;
+              margin: 0 !important;
+              display: none !important;
+          }
+          input[type="number"], input[type="text"] {
+              -moz-appearance: textfield !important;
+          }
+          @page { size: A4; margin: 10mm; }
+        }
+    </style>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript></head>
+<body>
+    <header class="toolbar no-print" id="toolbar">
+        <div class="toolbar-left">
+            <svg class="toolbar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <h1 class="toolbar-title"><a href="/" style="text-decoration: none; color: inherit;">Invoices Penyewaan bisa di Ubah Sesukanya.</a></h1>
+        </div>
+        <div class="toolbar-center">
+            <div class="template-selector" id="templateSelector">
+                <button class="template-btn active" data-template="minimal" title="Minimalis">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                        <line x1="7" y1="8" x2="17" y2="8"></line>
+                        <line x1="7" y1="12" x2="13" y2="12"></line>
+                    </svg>
+                    <span>Minimalis</span>
+                </button>
+                <button class="template-btn" data-template="classic" title="Klasik">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="7" y1="14" x2="17" y2="14"></line>
+                        <line x1="7" y1="18" x2="13" y2="18"></line>
+                    </svg>
+                    <span>Klasik</span>
+                </button>
+                <button class="template-btn" data-template="bold" title="Tegas">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                        <rect x="3" y="3" width="18" height="8" rx="2"></rect>
+                        <line x1="7" y1="15" x2="17" y2="15"></line>
+                        <line x1="7" y1="19" x2="13" y2="19"></line>
+                    </svg>
+                    <span>Tegas</span>
+                </button>
+            </div>
+            <div class="toolbar-divider"></div>
+            <div class="view-options">
+                <label class="view-option">
+                    <input type="checkbox" id="toggleDiscount" checked="">
+                    <span>Diskon Ekstra</span>
+                </label>
+                <label class="view-option">
+                    <input type="checkbox" id="toggleTax" checked="">
+                    <span>Pajak</span>
+                </label>
+            </div>
+        </div>
+        <div class="toolbar-actions">
+            <select id="modeTagihan" class="select-ui select-ui--mode" title="Pilih Mode Tagihan untuk Cetak">
+                <option value="lunas">Mode: Cetak Pelunasan</option>
+                <option value="dp">Mode: Cetak Tagihan DP</option>
+            </select>
+            <div class="toolbar-divider"></div>
+            <button class="btn btn-ghost" id="btnNewInvoice" title="Buat Baru">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                <span>Baru</span>
+            </button>
+            <button class="btn btn-primary" id="btnPrintPDF" title="Cetak / Simpan PDF">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                <span>Cetak / PDF</span>
+            </button>
+        </div>
+    </header>
+    <main class="invoice-wrapper">
+        <section class="invoice invoice--minimal" id="invoiceCanvas">
+            <div class="invoice-band">
+                <div class="meta-top-row">
+                    <div class="meta-item">
+                        <label>No. Invoice:</label>
+                        <span contenteditable="true" class="editable" data-field="invoiceNumber">INV-SEWA-001</span>
+                    </div>
+                    <div class="meta-item">
+                        <label>Tgl Sewa:</label>
+                        <div class="date-wrapper">
+                            <span class="editable-date start-date" id="displayDateBold">1 Juni 2026</span>
+                            <span class="editable-date end-date" id="displayEndDateBold"> - 4 Juni 2026</span>
+                            <input type="date" id="invoiceDateBold" data-field="invoiceDate" title="Klik untuk mengubah tanggal">
+                        </div>
+                    </div>
+                </div>
+                <h2 class="band-title" contenteditable="true" data-field="invoiceTitle">INVOICE SEWA</h2>
+            </div>
+            <div class="invoice-header">
+                <div class="logo-container" id="logoContainer">
+                    <div class="logo-area" id="logoArea" tabindex="0" role="button" aria-label="Upload logo">
+                        <input type="file" id="logoInput" accept="image/*" hidden="">
+                        <div class="logo-placeholder" id="logoPlaceholder">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <span>Logo Anda</span>
+                        </div>
+                        <img id="logoPreview" class="logo-preview" alt="Company Logo" draggable="false">
+                    </div>
+                    <div class="logo-resize no-print" id="logoResize" style="display:none;">
+                        <input type="range" id="logoSizeSlider" min="60" max="220" value="140" step="1">
+                    </div>
+                    <div class="logo-hint no-print" id="logoHint" style="display:none;">Geser untuk memindah</div>
+                </div>
+                <div class="invoice-meta">
+                    <div class="meta-top-row" id="metaTopRowStandard">
+                        <div class="meta-item">
+                            <label>No. Invoice:</label>
+                            <span contenteditable="true" class="editable" data-field="invoiceNumber">INV-SEWA-001</span>
+                        </div>
+                        <div class="meta-item">
+                            <label>Tgl Sewa:</label>
+                            <div class="date-wrapper">
+                                <span class="editable-date start-date" id="displayDateStandard">1 Juni 2026</span>
+                                <span class="editable-date end-date" id="displayEndDateStandard"> - 4 Juni 2026</span>
+                                <input type="date" id="invoiceDate" data-field="invoiceDate" title="Klik untuk mengubah tanggal">
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="invoice-title-inline" contenteditable="true" data-field="invoiceTitle">INVOICE SEWA</h2>
+                </div>
+            </div>
+            <div class="invoice-parties">
+                <div class="party">
+                    <h3 class="party-label">dari:</h3>
+                    <div contenteditable="true" class="party-details editable" data-field="fromDetails">Rental Kamera Balikpapan
+Jl. MT Haryono No. 123
+Balikpapan, Kaltim
+0812-3456-7890</div>
+                </div>
+                <div class="party">
+                    <h3 class="party-label">Data Pelanggan</h3>
+                    <div contenteditable="true" class="party-details editable" data-field="toDetails">Nama Pelanggan
+Jl. Jenderal Sudirman
+No KTP: 6471...
+0899-xxxx-xxxx</div>
+                </div>
+            </div>
+            <div class="invoice-items">
+                <table id="itemsTable">
+                    <thead>
+                        <tr>
+                            <th class="col-desc">Barang Sewaan</th>
+                            <th class="col-jumlah">Jml Item</th>
+                            <th class="col-price">Harga Normal/Hari</th>
+                            <th class="col-qty">Durasi (Hari)</th>
+                            <th class="col-disc">Diskon H+1 (%)</th>
+                            <th class="col-total">Total</th>
+                            <th class="col-action no-print"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsBody">
+                        </tbody>
+                </table>
+                <button class="btn btn-add-item no-print" id="btnAddItem">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Tambah Barang</span>
+                </button>
+            </div>
+            <div class="invoice-summary">
+                <div class="summary-spacer">
+                    <p class="no-print" style="font-size: 11px; color: var(--c-text-sec); margin-top: 10px; max-width: 280px;">
+                        *Kolom "Diskon H+1" otomatis memotong tarif barang untuk penyewaan hari kedua dan seterusnya.
+                    </p>
+                </div>
+                <div class="summary-table">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-row" id="discountRow">
+                        <span>Diskon Ekstra (<span contenteditable="true" class="editable-inline" data-field="discountRate" id="discountRateDisplay">0</span>%)</span>
+                        <span id="discountAmount">Rp 0</span>
+                    </div>
+                    <div class="summary-row" id="taxRow">
+                        <span>Pajak (<span contenteditable="true" class="editable-inline" data-field="taxRate" id="taxRateDisplay">0</span>%)</span>
+                        <span id="taxAmount">Rp 0</span>
+                    </div>
+                    <div class="summary-row summary-row-bold">
+                        <span>Total Biaya Sewa</span>
+                        <span id="grandTotal">Rp 0</span>
+                    </div>
+                    <div class="summary-row" style="margin-top: 6px;">
+                        <span>Uang Muka (DP)</span>
+                        <div class="dp-group">
+                            <div class="dp-wrapper pct-box">
+                                <input type="number" id="dpPercentInput" value="0" min="0" max="100" title="Ketik Persentase DP">
+                                <span>%</span>
+                            </div>
+                            <div class="dp-wrapper nom-box">
+                                <span>Rp</span>
+                                <input type="text" id="dpInput" value="0" class="format-ribuan" title="Ketik Nominal DP">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-row" id="sisaRow" style="display:none; color: var(--c-text-sec);">
+                        <span>Sisa Pelunasan (Nanti)</span>
+                        <span id="sisaAmountNanti">Rp 0</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span id="finalLabel">Sisa Tagihan (Pelunasan)</span>
+                        <span id="finalAmount">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="invoice-bottom-row">
+                <div class="invoice-bank">
+                    <h3 class="section-label">Detail Pembayaran</h3>
+                    <div class="bank-grid">
+                        <div class="bank-field">
+                            <label>Metode:</label>
+                            <span contenteditable="true" class="editable" data-field="bankName">BCA / Tunai</span>
+                        </div>
+                        <div class="bank-field">
+                            <label>Atas Nama</label>
+                            <span contenteditable="true" class="editable" data-field="bankAccountName">Toko Rental Kami</span>
+                        </div>
+                        <div class="bank-field">
+                            <label>Nomor Rekening</label>
+                            <span contenteditable="true" class="editable" data-field="bankAccountNumber">123-456-7890</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="signature-area">
+                    <div contenteditable="true" class="editable" data-field="signCity">Balikpapan, ....................</div>
+                    <div class="signature-label">Hormat kami,</div>
+                    <div class="signature-space"></div>
+                    <div contenteditable="true" class="editable" data-field="signName" style="font-weight: 700;">Toko Rental Kami</div>
+                </div>
+            </div>
+            <div class="invoice-notes">
+                <h3 class="section-label">Syarat &amp; Ketentuan Sewa</h3>
+                <div contenteditable="true" class="notes-content editable" data-field="notes">1. Barang hilang/rusak sepenuhnya menjadi tanggung jawab penyewa.
+2. Keterlambatan pengembalian akan dikenakan denda sesuai tarif normal per hari.
+3. Cek kondisi barang sebelum dibawa.</div>
+            </div>
+            <div class="invoice-footer">
+                <div class="footer-thankyou" contenteditable="true" data-field="footerThank">Terima kasih telah menyewa di tempat kami!</div>
+            </div>
+        </section>
+    </main>
+    <div class="toast" id="toast"></div>
+    <script>
+    (() => {
+      'use strict';
+      const $ = (sel) => document.querySelector(sel);
+      const $$ = (sel) => document.querySelectorAll(sel);
+      const invoiceCanvas = $('#invoiceCanvas');
+      const itemsBody = $('#itemsBody');
+      const logoContainer = $('#logoContainer');
+      const logoArea = $('#logoArea');
+      const logoInput = $('#logoInput');
+      const logoPreview = $('#logoPreview');
+      const logoPlaceholder = $('#logoPlaceholder');
+      const logoSizeSlider = $('#logoSizeSlider');
+      const logoResizeCtrl = $('#logoResize');
+      const subtotalEl = $('#subtotal');
+      const discountRow = $('#discountRow');
+      const discountAmountEl = $('#discountAmount');
+      const taxRow = $('#taxRow');
+      const taxAmountEl = $('#taxAmount');
+      const grandTotalEl = $('#grandTotal');
+      const taxRateEl = $('#taxRateDisplay');
+      const discountRateEl = $('#discountRateDisplay');
+      const dpInput = $('#dpInput');
+      const dpPercentInput = $('#dpPercentInput');
+      const modeSelect = $('#modeTagihan');
+      const finalLabel = $('#finalLabel');
+      const finalAmount = $('#finalAmount');
+      const sisaRow = $('#sisaRow');
+      const sisaAmountNanti = $('#sisaAmountNanti');
+      const toastEl = $('#toast');
+      const toggleDiscount = $('#toggleDiscount');
+      const toggleTax = $('#toggleTax');
+      const btnAddItem = $('#btnAddItem');
+      const btnPrintPDF = $('#btnPrintPDF');
+      const btnNewInvoice = $('#btnNewInvoice');
+      const templateBtns = $$('.template-btn');
+      const STORAGE_KEY = 'invoiceSewa_data_v14';
+      let saveTimeout = null;
+      let currentGrandTotal = 0;
+      // ── Format Helper ──
+      function parseRibuan(str) {
+          if(!str) return 0;
+          return parseFloat(str.toString().replace(/\./g, '')) || 0;
+      }
+      function formatRibuanString(val) {
+          if(!val) return '';
+          return new Intl.NumberFormat('id-ID').format(val);
+      }
+      function formatCurrency(n) {
+          return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
+      }
+      function formatTanggalIndo(dateStr) {
+          if (!dateStr) return '';
+          const parts = dateStr.split('-');
+          if(parts.length !== 3) return dateStr;
+          const d = new Date(parts[0], parts[1]-1, parts[2]);
+          if (isNaN(d)) return dateStr;
+          const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+          return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+      }
+      function updateDateDisplays() {
+          let maxDuration = 0;
+          $$('.item-qty').forEach(input => {
+              const val = parseInt(input.value) || 0;
+              if (val > maxDuration) maxDuration = val;
+          });
+          const dates = $$('input[type="date"]');
+          dates.forEach(input => {
+              const wrapper = input.closest('.date-wrapper');
+              if (wrapper) {
+                  const startDisplay = wrapper.querySelector('.start-date');
+                  const endDisplay = wrapper.querySelector('.end-date');
+                  if (startDisplay && input.value) {
+                      startDisplay.textContent = formatTanggalIndo(input.value);
+                      if (maxDuration > 1 && endDisplay) {
+                          const parts = input.value.split('-');
+                          const d = new Date(parts[0], parts[1]-1, parts[2]);
+                          // Tambahkan (maxDuration - 1) ke tanggal awal (karena tanggal 1 terhitung hari pertama)
+                          d.setDate(d.getDate() + (maxDuration - 1));
+                          const endDateStr = `${d.getDate()} ${['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'][d.getMonth()]} ${d.getFullYear()}`;
+                          endDisplay.textContent = " - " + endDateStr;
+                          endDisplay.style.display = "inline";
+                      } else if (endDisplay) {
+                          endDisplay.textContent = "";
+                          endDisplay.style.display = "none";
+                      }
+                  }
+              }
+          });
+      }
+      function init() {
+        loadData();
+        bindEvents();
+        recalculate();
+        setDefaultDates();
+      }
+      function setDefaultDates() {
+        const dates = $$('input[type="date"]');
+        dates.forEach(d => {
+            if (!d.value) d.value = new Date().toISOString().split('T')[0];
+        });
+        updateDateDisplays();
+      }
+      function bindEvents() {
+        btnAddItem.addEventListener('click', () => { addItemRow(); scheduleSave(); });
+        logoArea.addEventListener('click', (e) => { if (logoContainer.classList.contains('is-dragging')) return; logoInput.click(); });
+        logoInput.addEventListener('change', handleLogoFile);
+        logoArea.addEventListener('dragover', (e) => { e.preventDefault(); logoArea.style.borderColor = 'var(--c-accent)'; logoArea.style.background = 'var(--c-accent-light)'; });
+        logoArea.addEventListener('dragleave', () => { logoArea.style.borderColor = ''; logoArea.style.background = ''; });
+        logoArea.addEventListener('drop', (e) => { e.preventDefault(); logoArea.style.borderColor = ''; logoArea.style.background = ''; const file = e.dataTransfer.files[0]; if (file && file.type.startsWith('image/')) processLogoFile(file); });
+        logoSizeSlider.addEventListener('input', (e) => { applyLogoSize(parseInt(e.target.value, 10)); scheduleSave(); });
+        initLogoDrag();
+        btnPrintPDF.addEventListener('click', handlePrint);
+        btnNewInvoice.addEventListener('click', handleNewInvoice);
+        templateBtns.forEach(btn => { btn.addEventListener('click', () => { setTemplate(btn.dataset.template); scheduleSave(); }); });
+        toggleDiscount.addEventListener('change', () => { updateVisibility(); recalculate(); scheduleSave(); });
+        toggleTax.addEventListener('change', () => { updateVisibility(); recalculate(); scheduleSave(); });
+        modeSelect.addEventListener('change', () => { recalculate(); scheduleSave(); });
+        // LOGIKA AUTO-COUNT DP
+        dpPercentInput.addEventListener('input', () => {
+            const pct = parseFloat(dpPercentInput.value) || 0;
+            const nominal = Math.round(currentGrandTotal * (pct / 100));
+            dpInput.value = formatRibuanString(nominal);
+            recalculate();
+            scheduleSave();
+        });
+        // Date Change Synchronization
+        $$('input[type="date"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const field = e.target.dataset.field;
+                if(field) {
+                    $$(`[data-field="${field}"]`).forEach(el => {
+                        if(el !== e.target && el.tagName === 'INPUT') {
+                            el.value = e.target.value;
+                        }
+                    });
+                }
+                updateDateDisplays();
+                scheduleSave();
+            });
+        });
+        // GLOBAL INPUT DELEGATION
+        document.addEventListener('input', (e) => {
+          // Formatter Ribuan Otomatis
+          if (e.target.classList.contains('format-ribuan')) {
+              let rawVal = e.target.value.replace(/[^\d]/g, '');
+              if(rawVal !== '') {
+                  e.target.value = formatRibuanString(rawVal);
+              } else {
+                  e.target.value = '';
+              }
+              if(e.target.id === 'dpInput') {
+                  const val = parseRibuan(rawVal);
+                  if (currentGrandTotal > 0) {
+                      dpPercentInput.value = parseFloat(((val / currentGrandTotal) * 100).toFixed(1));
+                  } else {
+                      dpPercentInput.value = 0;
+                  }
+              }
+          }
+          // Sinkronisasi Data (Title, Invoice No) jika diganti salah satu
+          const field = e.target.dataset.field;
+          if(field && e.target.type !== 'date') {
+              const allMatching = $$(`[data-field="${field}"]`);
+              if(allMatching.length > 1) {
+                  const newVal = (e.target.tagName === 'INPUT') ? e.target.value : e.target.textContent;
+                  allMatching.forEach(el => {
+                      if(el !== e.target) {
+                          if (el.tagName === 'INPUT') el.value = newVal;
+                          else el.textContent = newVal;
+                      }
+                  });
+              }
+          }
+          if (e.target.closest('.invoice')) {
+            if (e.target.classList.contains('item-qty') ||
+                e.target.classList.contains('item-price') ||
+                e.target.classList.contains('item-disc') ||
+                e.target.classList.contains('item-jumlah') ||
+                e.target.dataset.field === 'taxRate' ||
+                e.target.dataset.field === 'discountRate' ||
+                e.target.id === 'dpInput') {
+                recalculate();
+            }
+            scheduleSave();
+          }
+        });
+      }
+      function initLogoDrag() {
+        let isDragging = false, startX, startY, initialX, initialY, xOffset = 0, yOffset = 0;
+        logoArea.addEventListener('mousedown', dragStart);
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('mousemove', drag);
+        function dragStart(e) { if (!logoArea.classList.contains('has-logo') || e.target === logoSizeSlider) return; initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; if (e.target.closest('#logoArea')) { isDragging = true; logoArea.style.cursor = 'grabbing'; } }
+        function dragEnd(e) { initialX = xOffset; initialY = yOffset; isDragging = false; logoArea.style.cursor = 'grab'; if (logoArea.classList.contains('has-logo')) scheduleSave(); }
+        function drag(e) { if (isDragging) { e.preventDefault(); logoContainer.classList.add('is-dragging'); const currentX = e.clientX - initialX, currentY = e.clientY - initialY; xOffset = currentX; yOffset = currentY; setLogoPosition(currentX, currentY); } else { logoContainer.classList.remove('is-dragging'); } }
+      }
+      function setLogoPosition(x, y) { logoContainer.style.transform = `translate3d(${x}px, ${y}px, 0)`; }
+      function updateVisibility() {
+        toggleDiscount.checked ? discountRow.classList.remove('hidden') : discountRow.classList.add('hidden');
+        toggleTax.checked ? taxRow.classList.remove('hidden') : taxRow.classList.add('hidden');
+      }
+      function setTemplate(name) {
+        invoiceCanvas.className = 'invoice invoice--' + name;
+        templateBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.template === name));
+      }
+      function getCurrentTemplate() {
+        for (const btn of templateBtns) { if (btn.classList.contains('active')) return btn.dataset.template; } return 'minimal';
+      }
+      function addItemRow(data = {}) {
+        const tr = document.createElement('tr');
+        tr.classList.add('item-row');
+        tr.innerHTML = `
+          <td><input type="text" class="item-input item-desc" placeholder="Ketik nama barang sewaan..." value="${escapeHTML(data.desc || '')}" /></td>
+          <td><input type="number" class="item-input item-jumlah align-right" placeholder="1" min="1" value="${data.jumlah || '1'}" title="Jumlah unit barang yang disewa" /></td>
+          <td><input type="text" class="item-input item-price format-ribuan align-right" placeholder="0" value="${data.price || ''}" title="Harga sewa per hari" /></td>
+          <td><input type="number" class="item-input item-qty align-right" placeholder="1" min="1" value="${data.qty || '1'}" title="Jumlah durasi hari" /></td>
+          <td><input type="number" class="item-input item-disc align-right" placeholder="0" min="0" max="100" value="${data.disc || '0'}" title="Diskon (%) untuk hari kedua dan seterusnya" /></td>
+          <td class="item-total">Rp 0</td>
+          <td class="col-action no-print">
+            <button class="btn-remove" title="Hapus Barang" aria-label="Remove item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </td>
+        `;
+        tr.querySelector('.btn-remove').addEventListener('click', () => {
+          tr.style.opacity = '0'; tr.style.transform = 'translateX(-10px)'; tr.style.transition = 'all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)';
+          setTimeout(() => { tr.remove(); recalculate(); scheduleSave(); }, 250);
+        });
+        itemsBody.appendChild(tr);
+        tr.style.opacity = '0'; tr.style.transform = 'translateY(6px)';
+        requestAnimationFrame(() => { tr.style.transition = 'all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)'; tr.style.opacity = '1'; tr.style.transform = 'translateY(0)'; });
+        // Update range tanggal kalau item baru ditambahkan/dihapus
+        updateDateDisplays();
+        return tr;
+      }
+      function recalculate() {
+        let subtotal = 0;
+        $$('.item-row').forEach(row => {
+          const jumlah = parseInt(row.querySelector('.item-jumlah').value) || 0;
+          const price = parseRibuan(row.querySelector('.item-price').value);
+          const duration = parseInt(row.querySelector('.item-qty').value) || 0;
+          const discRate = parseFloat(row.querySelector('.item-disc').value) || 0;
+          let totalRow = 0;
+          if (duration > 0 && jumlah > 0) {
+              if (duration === 1) {
+                  totalRow = price * jumlah;
+              } else {
+                  const discountedPrice = price * (1 - (discRate / 100));
+                  totalRow = (price + (discountedPrice * (duration - 1))) * jumlah;
+              }
+          }
+          row.querySelector('.item-total').textContent = formatCurrency(totalRow);
+          subtotal += totalRow;
+        });
+        let discountAmount = 0;
+        if (toggleDiscount.checked) {
+          const globalDiscountRate = parseFloat(discountRateEl.textContent) || 0;
+          discountAmount = subtotal * (globalDiscountRate / 100);
+        }
+        const afterDiscount = subtotal - discountAmount;
+        let taxAmount = 0;
+        if (toggleTax.checked) {
+          const taxRate = parseFloat(taxRateEl.textContent) || 0;
+          taxAmount = afterDiscount * (taxRate / 100);
+        }
+        currentGrandTotal = afterDiscount + taxAmount;
+        const dpValue = parseRibuan(dpInput.value);
+        if (document.activeElement !== dpPercentInput && document.activeElement !== dpInput) {
+             if(currentGrandTotal > 0) {
+                 dpPercentInput.value = parseFloat(((dpValue / currentGrandTotal) * 100).toFixed(1));
+             } else {
+                 dpPercentInput.value = 0;
+             }
+        }
+        const balance = currentGrandTotal - dpValue;
+        subtotalEl.textContent = formatCurrency(subtotal);
+        discountAmountEl.textContent = formatCurrency(discountAmount);
+        taxAmountEl.textContent = formatCurrency(taxAmount);
+        grandTotalEl.textContent = formatCurrency(currentGrandTotal);
+        const mode = modeSelect.value;
+        if (mode === 'dp') {
+            sisaRow.style.display = 'flex';
+            sisaAmountNanti.textContent = formatCurrency(balance);
+            finalLabel.textContent = 'TAGIHAN UANG MUKA (DP)';
+            finalAmount.textContent = formatCurrency(dpValue);
+        } else {
+            sisaRow.style.display = 'none';
+            finalLabel.textContent = 'SISA TAGIHAN (PELUNASAN)';
+            finalAmount.textContent = formatCurrency(balance);
+        }
+        // Panggil update date supaya "sampai tanggal" selalu sinkron dengan durasi max
+        updateDateDisplays();
+      }
+      function handleLogoFile(e) { const file = e.target.files[0]; if (file) processLogoFile(file); }
+      function processLogoFile(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => { setLogo(e.target.result); scheduleSave(); showToast("Logo diunggah. Geser untuk memindah."); };
+        reader.readAsDataURL(file);
+      }
+      function setLogo(dataUrl) {
+        logoPreview.src = dataUrl; logoPreview.style.display = 'block'; logoPlaceholder.style.display = 'none';
+        logoArea.classList.add('has-logo'); logoResizeCtrl.style.display = 'flex'; logoHint.style.display = 'block';
+      }
+      function applyLogoSize(size) { logoArea.style.width = size + 'px'; logoArea.style.height = Math.round(size * 0.57) + 'px'; logoSizeSlider.value = size; }
+      function clearLogo() {
+        logoPreview.src = ''; logoPreview.style.display = 'none'; logoPlaceholder.style.display = 'flex';
+        logoArea.classList.remove('has-logo'); logoArea.style.width = ''; logoArea.style.height = ''; logoInput.value = '';
+        logoResizeCtrl.style.display = 'none'; logoHint.style.display = 'none'; logoSizeSlider.value = 140; setLogoPosition(0, 0);
+      }
+      function handlePrint() { window.print(); }
+      function handleNewInvoice() {
+        if (!confirm("Buat faktur sewa baru? Data pelanggan & barang saat ini akan dihapus.")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        clearLogo();
+        $$('[data-field]').forEach(el => {
+          if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+              if(el.type !== 'date') el.value = '';
+          } else {
+            const defaults = {
+              invoiceTitle: "INVOICE SEWA",
+              invoiceNumber: 'INV-SEWA-001',
+              fromDetails: "Rental Kamera Balikpapan\nJl. MT Haryono No. 123\nBalikpapan, Kaltim\n0812-3456-7890",
+              toDetails: "Nama Pelanggan\nJl. Jenderal Sudirman\nNo KTP: 6471...\n0899-xxxx-xxxx",
+              taxRate: '0', discountRate: '0',
+              notes: "1. Barang hilang/rusak sepenuhnya menjadi tanggung jawab penyewa.\n2. Keterlambatan pengembalian dikenakan denda tarif normal per hari.\n3. Cek kondisi barang sebelum dibawa.",
+              signCity: "Balikpapan, ....................", signName: "Toko Rental Kami",
+              bankName: "BCA / Tunai", bankAccountName: "Toko Rental Kami", bankAccountNumber: '123-456-7890',
+              footerThank: "Terima kasih telah menyewa di tempat kami!"
+            };
+            if (defaults[el.dataset.field] !== undefined) el.textContent = defaults[el.dataset.field];
+          }
+        });
+        modeSelect.value = 'lunas';
+        dpInput.value = '0';
+        dpPercentInput.value = '0';
+        setTemplate('minimal');
+        toggleDiscount.checked = true; toggleTax.checked = true; updateVisibility();
+        itemsBody.innerHTML = ''; addItemRow(); setDefaultDates(); recalculate(); showToast("Faktur sewa baru berhasil dibuat.");
+      }
+      function scheduleSave() { clearTimeout(saveTimeout); saveTimeout = setTimeout(saveData, 400); }
+      function saveData() {
+        const data = {};
+        $$('[data-field]').forEach(el => { if (el.tagName === 'INPUT' || el.tagName === 'SELECT') { data[el.dataset.field] = el.value; } else { data[el.dataset.field] = el.textContent; } });
+        data.items = [];
+        $$('.item-row').forEach(row => {
+            data.items.push({
+                desc: row.querySelector('.item-desc').value,
+                jumlah: row.querySelector('.item-jumlah').value,
+                qty: row.querySelector('.item-qty').value,
+                price: row.querySelector('.item-price').value,
+                disc: row.querySelector('.item-disc').value
+            });
+        });
+        if (logoPreview.src && logoArea.classList.contains('has-logo')) data.logo = logoPreview.src;
+        data.logoSize = parseInt(logoSizeSlider.value, 10);
+        const style = window.getComputedStyle(logoContainer); const matrix = new WebKitCSSMatrix(style.transform);
+        data.logoX = matrix.m41; data.logoY = matrix.m42;
+        data.template = getCurrentTemplate();
+        data.showDiscount = toggleDiscount.checked; data.showTax = toggleTax.checked;
+        data.modeTagihan = modeSelect.value;
+        data.dpValue = dpInput.value;
+        data.dpPercentValue = dpPercentInput.value;
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { console.warn('Failed to save:', e); }
+      }
+      function loadData() {
+        let data; try { data = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) { data = null; }
+        if (!data) { addItemRow(); return; }
+        $$('[data-field]').forEach(el => {
+          const val = data[el.dataset.field];
+          if (val !== undefined) { if (el.tagName === 'INPUT' || el.tagName === 'SELECT') { el.value = val; } else { el.textContent = val; } }
+        });
+        if (data.logo) { setLogo(data.logo); if (data.logoSize) applyLogoSize(data.logoSize); if (data.logoX !== undefined && data.logoY !== undefined) setLogoPosition(data.logoX, data.logoY); }
+        if (data.template) setTemplate(data.template);
+        if (data.showDiscount !== undefined) toggleDiscount.checked = data.showDiscount;
+        if (data.showTax !== undefined) toggleTax.checked = data.showTax;
+        if (data.modeTagihan) modeSelect.value = data.modeTagihan;
+        if (data.dpValue !== undefined) dpInput.value = data.dpValue;
+        if (data.dpPercentValue !== undefined) dpPercentInput.value = data.dpPercentValue;
+        updateVisibility();
+        if (data.items && data.items.length > 0) { data.items.forEach(item => addItemRow(item)); } else { addItemRow(); }
+        updateDateDisplays();
+      }
+      function escapeHTML(str) { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
+      function showToast(message) { toastEl.textContent = message; toastEl.classList.add('show'); clearTimeout(toastEl._timer); toastEl._timer = setTimeout(() => { toastEl.classList.remove('show'); }, 2500); }
+      init();
+    })();
+    </script>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script><script defer src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+</body></html>
