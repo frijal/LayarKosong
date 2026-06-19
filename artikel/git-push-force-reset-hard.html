@@ -247,7 +247,7 @@
     <blockquote>🎯 <strong>Catatan:</strong> Dokumentasi resmi Git selalu bisa dicek di <a href="https://git-scm.com/docs" target="_blank" rel="noopener">git-scm.com/docs</a>. Tapi di sini kita bahasa lebih gaul.</blockquote>
     <h2>3. Apa yang Terjadi Saat Anda Menggunakan git push --force origin main, git reset --hard</h2>
     <h3>Apa yang Sebenarnya Dihapus oleh Hard Reset <i class="fa-solid fa-undo-alt"></i></h3>
-    <pre><code>git reset --hard HEAD~1</code></pre> atau <pre><code>git reset --hard **nomor commit sebelumnya**</code></pre>
+    <pre><code>git reset --hard HEAD~1</code></pre> atau <pre><code>git reset --hard <b>nomor commit sebelumnya<b></code></pre>
     <p>Kode di atas mindahin branch ke satu commit sebelumnya, <strong>dan</strong> buang semua perubahan di working directory dan staging area. Jadi kalo ada file baru yang belum di-commit, bisa ilang selamanya. Tapi commit yang lama (sebelum di-reset) masih ada di reflog — selama belum di-garbage collect.</p>
   <h3>Mekanisme Internal Force Push <i class="fa-solid fa-arrow-up"></i></h3>
     <pre><code>git push --force origin main</code></pre>

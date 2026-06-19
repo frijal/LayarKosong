@@ -322,13 +322,13 @@
         // --- Variabel Global ---
         let allImageData = []; // Menyimpan { name, path, url }
         let currentObjectUrls = []; // Menyimpan URL blob untuk manajemen memori
-        /**
+        /<b>
          * Memicu input file saat tombol diklik
          */
         openFolderBtn.addEventListener('click', () => {
             folderInput.click();
         });
-        /**
+        /<b>
          * Event utama: Saat pengguna memilih folder
          */
         folderInput.addEventListener('change', (e) => {
@@ -368,7 +368,7 @@
                 imageCaption.textContent = 'Tidak ada file gambar yang ditemukan di folder ini.';
             }
         });
-        /**
+        /<b>
          * Membuat dan menambahkan thumbnail ke galeri
          */
         function createThumbnail(imgData, index) {
@@ -386,7 +386,7 @@
             });
             albumGrid.appendChild(thumbDiv);
         }
-        /**
+        /<b>
          * Menampilkan gambar yang dipilih di viewer utama
          */
         function displayImage(index) {
@@ -401,7 +401,7 @@
             document.querySelectorAll('.thumbnail.active').forEach(th => th.classList.remove('active'));
             document.querySelector(`.thumbnail[data-index="${index}"]`).classList.add('active');
         }
-        /**
+        /<b>
          * Membersihkan data album sebelumnya (manajemen memori)
          */
         function cleanupOldAlbum() {
@@ -415,7 +415,7 @@
             copyBtn.disabled = true;
             imageCount.textContent = '0';
         }
-        /**
+        /<b>
          * Event listener untuk tombol copy
          */
         copyBtn.addEventListener('click', () => {
@@ -436,7 +436,7 @@
                 alert('Gagal menyalin.');
             });
         });
-        /**
+        /<b>
          * Fungsi untuk menampilkan tombol "Open Folder" (yang disabled)
          */
         function showLocalAction() {

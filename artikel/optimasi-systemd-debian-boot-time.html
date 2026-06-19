@@ -168,7 +168,7 @@
             </ul>
         <p></p>
         <div class="info-box">
-            <i class="fa-solid fa-triangle-exclamation"></i> **Peringatan:** Selalu pastikan kamu tahu fungsi layanan yang akan dimatikan. Jangan mematikan layanan inti sistem jika tidak ingin Debian-mu mogok!
+            <i class="fa-solid fa-triangle-exclamation"></i> <b>Peringatan:<b> Selalu pastikan kamu tahu fungsi layanan yang akan dimatikan. Jangan mematikan layanan inti sistem jika tidak ingin Debian-mu mogok!
         </div>
         <h2>Bagaimana Cara Menganalisisnya? (How)</h2>
         <p>Langkah pertama bukan langsung mematikan, tapi <strong>menganalisis</strong>. Untungnya, <code>systemd</code> punya tool bawaan yang sangat informatif.</p>
@@ -198,7 +198,7 @@
         <p><strong>Jika layanan tersebut bandel dan hidup lagi:</strong></p>
         <pre>sudo systemctl mask bluetooth.service</pre>
         <div class="info-box">
-            <i class="fa-solid fa-lightbulb"></i> **Pro Tip:** Gunakan `systemctl list-unit-files --state=enabled` untuk melihat semua layanan yang saat ini aktif saat boot.
+            <i class="fa-solid fa-lightbulb"></i> <b>Pro Tip:<b> Gunakan `systemctl list-unit-files --state=enabled` untuk melihat semua layanan yang saat ini aktif saat boot.
         </div>
         <h2>Siapa yang Perlu Melakukan Ini? (Who)</h2>
         <p>Kamu, pengguna Debian yang menginginkan performa maksimal. Baik kamu seorang <em>developer</em> yang butuh lingkungan kerja cepat, maupun pengguna laptop yang ingin efisiensi baterai lebih baik. <i class="fa-solid fa-user-gear"></i></p>

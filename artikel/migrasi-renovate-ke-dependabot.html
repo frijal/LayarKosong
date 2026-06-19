@@ -209,7 +209,7 @@
             <p>Memutuskan untuk ganti gigi dari Renovate ke Dependabot adalah langkah yang cukup masuk akal, apalagi kalau kamu ingin ekosistem yang lebih menyatu dengan infrastruktur <em>native</em> GitHub. File konfigurasimu sebelumnya memang sudah cukup matang, lengkap dengan aturan pengelompokan (<em>grouping</em>) hingga skema *automerge*. Namun, menerjemahkannya ke format Dependabot butuh sedikit penyesuaian karena kedua sistem ini punya filosofi kerja yang berbeda.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/bd28d41dc6848985.webp" alt="Ilustrasi pemindahan konfigurasi dari JSON Renovate ke YAML Dependabot" class="content-img" fetchpriority="high" decoding="async">
             <div class="alert-box">
-                <i class="fa-solid fa-exclamation-triangle"></i> **Realita Pahit Migrasi:**
+                <i class="fa-solid fa-exclamation-triangle"></i> <b>Realita Pahit Migrasi:<b>
                 Ada beberapa fitur Renovate yang ~~harus kamu ikhlaskan~~ tidak didukung langsung oleh Dependabot:
                 <ul>
                     <li><strong>Dukungan Bun:</strong> Dependabot belum memiliki ekosistem <code>bun</code> yang terpisah secara <em>native</em> seperti Renovate. Dia akan membaca <em>project</em> Bun kamu di bawah payung ekosistem <code>npm</code> (akan mem-parsing <code>package.json</code>, tapi perbaikan lockfile <code>bun.lockb</code> mungkin tidak semulus Renovate).</li>

@@ -77,7 +77,7 @@
             <textarea id="outputMD" readonly="" placeholder="Hasil konversi otomatis..."></textarea>
         </div>
     </div>
-    <div class="zdummy">Didesain khusus mengikuti logika **markdown-enhancer.js**</div>
+    <div class="zdummy">Didesain khusus mengikuti logika <b>markdown-enhancer.js<b></div>
 </div>
 <script>
 function doReverse() {
@@ -85,8 +85,8 @@ function doReverse() {
     if (!html) { document.getElementById('outputMD').value = ""; return; }
     let md = html
         // 1. Tebal (Strong & B) -> Hanya yang polos tanpa atribut
-        // Jika ada <strong class="red"> tetap jadi HTML, jika <strong> polos jadi **
-        .replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**')
+        // Jika ada <strong class="red"> tetap jadi HTML, jika <strong> polos jadi <b>
+        .replace(/<(strong|b)>(.*?)<\/\1>/gi, '<b>$2<b>')
         // 2. Miring (Em & I) -> Hanya yang polos (Tanpa class/FontAwesome)
         // Regex ini memastikan tidak ada karakter lain (seperti class=) di dalam tag pembuka
         .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')

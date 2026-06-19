@@ -151,8 +151,8 @@
                                 <h4 class="font-bold text-indigo-700 uppercase tracking-tighter text-sm mb-2">Sinkronisasi File</h4>
                                 <p class="text-gray-600 mb-4">Pake <code class="text-pink-600">rsync</code> dengan aturan whitelist yang ketat.</p>
                                 <pre class="bg-slate-900 text-indigo-300 p-4 rounded-lg text-xs">rsync -a --delete \
-  --include='artikel/***' \
-  --include='ext/***' \
+  --include='artikel/<b>*' \
+  --include='ext/<b>*' \
   --exclude='*' \
   source/ deploy_dir/</pre>
                             </div>

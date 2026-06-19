@@ -301,14 +301,14 @@
                 <p>Workflow ini kerjaannya cukup sistematis. Ini dia urutannya:</p>
                 <ol>
                     <li>
-                        **Kapan Jalan? (<code>on:</code>)**
+                        <b>Kapan Jalan? (<code>on:</code>)<b>
                         <ul>
-                            <li>**Manual (<code>workflow_dispatch</code>):** Kamu bisa klik tombol 'Run workflow' di tab "Actions" repositori GitHub kamu. Cocok buat ngetes atau kalau lagi pengen update sekarang juga.</li>
-                            <li>**Otomatis (<code>schedule</code>):<strong> Udah disetel buat jalan sendiri tiap </strong>tanggal 1 jam 2 pagi UTC** (itu sekitar jam 10 pagi WITA kalau di Balikpapan). Jadi, awal bulan, dependensi proyekmu otomatis dicek.</li>
+                            <li><b>Manual (<code>workflow_dispatch</code>):<b> Kamu bisa klik tombol 'Run workflow' di tab "Actions" repositori GitHub kamu. Cocok buat ngetes atau kalau lagi pengen update sekarang juga.</li>
+                            <li><b>Otomatis (<code>schedule</code>):<strong> Udah disetel buat jalan sendiri tiap </strong>tanggal 1 jam 2 pagi UTC<b> (itu sekitar jam 10 pagi WITA kalau di Balikpapan). Jadi, awal bulan, dependensi proyekmu otomatis dicek.</li>
                         </ul>
                     </li>
                     <li>
-                        **Minta Izin Dulu (<code>permissions:</code>)**
+                        <b>Minta Izin Dulu (<code>permissions:</code>)<b>
                         <p>Sebelum mulai kerja, workflow ini minta izin dulu ke GitHub:</p>
                         <ul>
                             <li><code>contents: write</code>: Izin buat nulis ke repositori, soalnya dia bakal ngubah file <code>package.json</code> dan <code>package-lock.json</code>, terus bikin <em>branch</em> baru buat PR.</li>
@@ -317,20 +317,20 @@
                          <p><em>(Izin ini ditulis di level workflow dan di level job, bagus buat kejelasan!)</em></p>
                     </li>
                     <li>
-                        **Mulai Kerja! (<code>jobs: maintenance-pr</code>)**
+                        <b>Mulai Kerja! (<code>jobs: maintenance-pr</code>)<b>
                         <p>Cuma ada satu pekerjaan utama di sini, yang jalan di lingkungan Linux (<code>ubuntu-latest</code>). Langkah-langkahnya:</p>
                         <ol type="a">
-                            <li>**Ambil Kode (<code>Checkout code</code>):** Ngunduh kode proyekmu ke 'meja kerja' si Actions.</li>
-                            <li>**Siapin Alat Node.js (<code>Setup Node.js</code>):** Masang Node.js versi 20 dan aktifin <em>cache</em> npm biar instalasi dependensi bisa lebih cepet kalau tidak banyak berubah.</li>
-                            <li>**Pasang Peralatan Tambahan (<code>Install dependencies (untuk tools)</code>):** Jalankan <code>npm install</code>. Ini buat masang <em>tools</em> yang dibutuhin workflow ini (kayak <code>npm-check-updates</code> dan <code>depcheck</code>) yang mungkin kamu daftarin di <code>devDependencies</code> di <code>package.json</code>.</li>
-                            <li>**Biar Bisa Dijalankan (<code>Make script executable</code>):** Ngasih izin biar skrip <code>data/cleanup.js</code> bisa dieksekusi.</li>
-                            <li>**Langkah 1: Upgrade! (<code>1. Upgrade dependencies</code>):**
+                            <li><b>Ambil Kode (<code>Checkout code</code>):<b> Ngunduh kode proyekmu ke 'meja kerja' si Actions.</li>
+                            <li><b>Siapin Alat Node.js (<code>Setup Node.js</code>):<b> Masang Node.js versi 20 dan aktifin <em>cache</em> npm biar instalasi dependensi bisa lebih cepet kalau tidak banyak berubah.</li>
+                            <li><b>Pasang Peralatan Tambahan (<code>Install dependencies (untuk tools)</code>):<b> Jalankan <code>npm install</code>. Ini buat masang <em>tools</em> yang dibutuhin workflow ini (kayak <code>npm-check-updates</code> dan <code>depcheck</code>) yang mungkin kamu daftarin di <code>devDependencies</code> di <code>package.json</code>.</li>
+                            <li><b>Biar Bisa Dijalankan (<code>Make script executable</code>):<b> Ngasih izin biar skrip <code>data/cleanup.js</code> bisa dieksekusi.</li>
+                            <li><b>Langkah 1: Upgrade! (<code>1. Upgrade dependencies</code>):<b>
                                 <ul>
                                    <li>Masang <code>npm-check-updates</code> (ncu) di 'meja kerja'. <em>(Tips: Kalau ncu udah ada di devDependencies, pakai <code>npx ncu ...</code> mungkin lebih simpel).</em></li>
-                                   <li>Jalankan <code>ncu -u --target minor</code>. Ini perintah saktinya! Dia bakal ngecek semua dependensi di <code>package.json</code>, nyari versi <strong>minor</strong> dan <strong>patch</strong> terbaru, terus langsung **update file <code>package.json</code>** kamu. Dijamin aman dari perubahan besar (major) yang bikin pusing.</li>
+                                   <li>Jalankan <code>ncu -u --target minor</code>. Ini perintah saktinya! Dia bakal ngecek semua dependensi di <code>package.json</code>, nyari versi <strong>minor</strong> dan <strong>patch</strong> terbaru, terus langsung <b>update file <code>package.json</code><b> kamu. Dijamin aman dari perubahan besar (major) yang bikin pusing.</li>
                                 </ul>
                             </li>
-                             <li>**Langkah 2: Bersih-bersih! (<code>2. Cleanup unused packages</code>):**
+                             <li><b>Langkah 2: Bersih-bersih! (<code>2. Cleanup unused packages</code>):<b>
                                 <ul>
                                    <li>Jalankan skrip <code>data/cleanup.js</code>. Nah, skrip ini kerjaannya bersih-bersih. Kemungkinan besar dia:
                                         <ol>
@@ -341,19 +341,19 @@
                                     </li>
                                 </ul>
                             </li>
-                             <li>**Ngecek Ada Hasil Tidak? (<code>Check for changes</code>):**
+                             <li><b>Ngecek Ada Hasil Tidak? (<code>Check for changes</code>):<b>
                                 <ul>
                                    <li>Langkah cerdas nih! Dia ngecek pakai <code>git status</code>, "File <code>package.json</code> atau <code>package-lock.json</code> ada yang berubah tidak ya setelah di-upgrade dan dibersihin?".</li>
                                    <li>Hasilnya disimpan, apakah <code>true</code> (ada perubahan) atau <code>false</code> (tidak ada).</li>
                                 </ul>
                             </li>
-                             <li>**Tes Dulu Kalau Ada Perubahan (<code>Run tests</code>):**
+                             <li><b>Tes Dulu Kalau Ada Perubahan (<code>Run tests</code>):<b>
                                 <ul>
                                    <li>Ini cuma jalan kalau langkah sebelumnya bilang <code>true</code>.</li>
                                    <li>Dia coba jalanin perintah <code>npm run build</code> dan <code>npm test</code> (kalau ada di <code>package.json</code> kamu). <strong>Penting banget buat mastiin update dependensi tidak bikin error.</strong></li>
                                 </ul>
                             </li>
-                             <li>**Bikin Laporan (PR) Kalau Ada Perubahan (<code>Create Pull Request</code>):**
+                             <li><b>Bikin Laporan (PR) Kalau Ada Perubahan (<code>Create Pull Request</code>):<b>
                                 <ul>
                                    <li>Ini juga cuma jalan kalau ada perubahan (dan asumsinya tes tadi lolos).</li>
                                    <li>Pakai action jagoan <code>peter-evans/create-pull-request</code> buat bikin PR otomatis.</li>

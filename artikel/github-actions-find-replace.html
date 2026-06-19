@@ -255,7 +255,7 @@
               <li><strong>Teks yang mau diganti (search):</strong> Kata, frasa, atau kalimat spesifik yang ingin kamu cari. Ingat, sistem ini bersifat <em>case-sensitive</em>.</li>
               <li><strong>Teks pengganti (replace):</strong> Kata atau frasa baru yang akan menggantikan teks lama.</li>
               <li><strong>Folder target (folder):</strong> Arahkan ke folder spesifik tempat pencarian dilakukan (misal: <code>docs</code> atau <code>src</code>). Jika kamu membiarkannya berisi tanda <code>.</code>, maka pencarian akan menjelajah ke seluruh isi repositori.</li>
-              <li><strong>Polanya file (globs):</strong> Tipe ekstensi file yang akan diubah. Kamu bisa memisahkannya dengan koma (misal: <code>**/*.html,**/*.md</code>).</li>
+              <li><strong>Polanya file (globs):</strong> Tipe ekstensi file yang akan diubah. Kamu bisa memisahkannya dengan koma (misal: <code><b>/*.html,<b>/*.md</code>).</li>
             </ul>
           </li>
           <li>Klik tombol hijau <strong>"Run workflow"</strong> di bagian bawah form. Duduk manis, dan biarkan peladen GitHub yang bekerja!</li>
@@ -279,9 +279,9 @@ on:
         required: false
         default: '.'
       globs:
-        description: 'Polanya file (misal: **/*.txt,**/*.html)'
+        description: 'Polanya file (misal: <b>/*.txt,<b>/*.html)'
         required: false
-        default: '**/*.txt,**/*.html'
+        default: '<b>/*.txt,<b>/*.html'
 jobs:
   replace:
     runs-on: ubuntu-latest
@@ -297,7 +297,7 @@ jobs:
           read -ra GLOBS &lt;&lt;&lt; "${{ github.event.inputs.globs//,/ / }}"
           for g in "${GLOBS[@]}"; do
             echo "🔎 Proses pola: '$g' di folder '$TARGET'"
-            # Gunakan utilitas find -path untuk mencocokkan pola **/*
+            # Gunakan utilitas find -path untuk mencocokkan pola <b>/*
             find "$TARGET" -path "$g" -type f -print0 | while IFS= read -r -d '' file; do
               # Gunakan bahasa perl untuk find &amp; replace yang aman dari karakter aneh
               perl -pi -e 's#\Q$ENV{SEARCH_TERM}\E#$ENV{REPLACE_TERM}#g' "$file"

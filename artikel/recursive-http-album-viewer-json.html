@@ -346,7 +346,7 @@
         // --- Variabel Global ---
         let allImageData = []; // Menyimpan { name, path (relatif), fullUrl }
         let baseURL = '';
-        /**
+        /<b>
          * Memicu pengambilan data saat tombol diklik
          */
         loadAlbumBtn.addEventListener('click', () => {
@@ -357,7 +357,7 @@
             }
             fetchAlbumData(url);
         });
-        /**
+        /<b>
          * Event utama: Mengambil dan memproses file JSON
          */
         async function fetchAlbumData(url) {
@@ -413,7 +413,7 @@
                 loadAlbumBtn.textContent = 'Muat Album';
             }
         }
-        /**
+        /<b>
          * Membuat dan menambahkan thumbnail ke galeri
          */
         function createThumbnail(imgData, index) {
@@ -429,7 +429,7 @@
             });
             albumGrid.appendChild(thumbDiv);
         }
-        /**
+        /<b>
          * Menampilkan gambar yang dipilih di viewer utama
          */
         function displayImage(index) {
@@ -445,7 +445,7 @@
             document.querySelectorAll('.thumbnail.active').forEach(th => th.classList.remove('active'));
             document.querySelector(`.thumbnail[data-index="${index}"]`).classList.add('active');
         }
-        /**
+        /<b>
          * Membersihkan data album sebelumnya
          */
         function cleanupOldAlbum() {
@@ -457,7 +457,7 @@
             copyBtn.disabled = true;
             imageCount.textContent = '0';
         }
-        /**
+        /<b>
          * Event listener untuk tombol copy
          */
         copyBtn.addEventListener('click', () => {
@@ -478,7 +478,7 @@
                 alert('Gagal menyalin.');
             });
         });
-        /**
+        /<b>
          * Fungsi untuk menampilkan tombol "Open URL"
          */
         function showRemoteAction(url) {

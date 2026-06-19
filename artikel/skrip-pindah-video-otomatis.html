@@ -151,7 +151,7 @@ if (!existsSync(targetDir)) {
   mkdirSync(targetDir, { recursive: true });
 }
 // 2. Scan semua video secara rekursif
-const glob = new Glob(`**/*.{${videoExtensions.join(",")}}`);
+const glob = new Glob(`<b>/*.{${videoExtensions.join(",")}}`);
 const absoluteTargetDir = path.resolve(targetDir);
 console.log(`🚀 Mencari video di dalam /${sourceDir}...`);
 let count = 0;
@@ -188,7 +188,7 @@ console.log(`\n✨ Selesai! ${count} video dipindahkan ke ${targetDir}`);
                     <li><strong>Where:</strong> Berjalan di lingkungan lokal (ThinkPad L570).</li>
                     <li><strong>When:</strong> Digunakan saat folder sudah terlalu berantakan atau sebelum proses konversi masal.</li>
                     <li><strong>Why:</strong> Karena memindahkan 64 video secara manual sangat tidak efisien.</li>
-                    <li><strong>How:</strong> Menggunakan pencarian pola glob <code>**/*.{ext}</code> dan fungsi rename asinkron.</li>
+                    <li><strong>How:</strong> Menggunakan pencarian pola glob <code><b>/*.{ext}</code> dan fungsi rename asinkron.</li>
                 </ul>
             </div>
             <p>Dengan folder yang sudah rapi, kamu sekarang siap untuk melangkah ke tahap berikutnya: <strong><a href="https://dalam.web.id/artikel/konversi-video-webm.html" target="_blank" rel="noopener noreferrer">Konversi WebM</a></strong> untuk performa web yang lebih ngebut!</p>
