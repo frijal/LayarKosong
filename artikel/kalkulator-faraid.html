@@ -78,7 +78,7 @@
         .porsi-tag { background: var(--accent); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
         .ref-table td:first-child { font-weight: bold; color: var(--accent); }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="wrapper">
@@ -214,7 +214,7 @@
     </div>
    <div id="related-articles-grid"></div>
     <div id="response"></div>
-<footer> <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer></div> 
+<footer> <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a></footer></div> 
 <script>
     function formatInput(input) {
         let val = input.value.replace(/\D/g, "");
@@ -243,10 +243,10 @@
         // 1. DZAWIL FURUD
         if (psg === 'istri') {
             let p = adaKeturunan ? 1/8 : 1/4;
-            let v = harta * p; hasil.push({ n: "Istri", p: <code>1/${1/p}</code>, v: v, i: v }); sisa -= v;
+            let v = harta * p; hasil.push({ n: "Istri", p: `1/${1/p}`, v: v, i: v }); sisa -= v;
         } else if (psg === 'suami') {
             let p = adaKeturunan ? 1/4 : 1/2;
-            let v = harta * p; hasil.push({ n: "Suami", p: <code>1/${1/p}</code>, v: v, i: v }); sisa -= v;
+            let v = harta * p; hasil.push({ n: "Suami", p: `1/${1/p}`, v: v, i: v }); sisa -= v;
         }
         if (hasAyah) {
             let v = harta * (1/6);
@@ -270,7 +270,7 @@
             } else {
                 let p = (si === 1) ? 1/6 : 1/3;
                 let v = harta * p;
-                hasil.push({ n: <code>Sdr Seibu (${si})</code>, p: p === 1/6 ? "1/6" : "1/3", v: v, i: v / si });
+                hasil.push({ n: `Sdr Seibu (${si})`, p: p === 1/6 ? "1/6" : "1/3", v: v, i: v / si });
                 sisa -= v;
             }
         }
@@ -279,8 +279,8 @@
             if (skl > 0 || skp > 0 || sbl > 0 || sbp > 0) nts.push("Saudara (Kandung/Sebapak) terhijab oleh Anak Kandung.");
             const unit = (al * 2) + ap;
             const perUnit = sisa / unit;
-            if (al > 0) hasil.push({ n: <code>Anak Laki-laki (${al})</code>, p: "Ashabah", v: perUnit <em> 2 </em> al, i: perUnit * 2 });
-            if (ap > 0) hasil.push({ n: <code>Anak Perempuan (${ap})</code>, p: "Ashabah", v: perUnit * ap, i: perUnit });
+            if (al > 0) hasil.push({ n: `Anak Laki-laki (${al})`, p: "Ashabah", v: perUnit * 2 * al, i: perUnit * 2 });
+            if (ap > 0) hasil.push({ n: `Anak Perempuan (${ap})`, p: "Ashabah", v: perUnit * ap, i: perUnit });
             sisa = 0;
         }
         else if (skl > 0 || skp > 0) {
@@ -290,8 +290,8 @@
                 if (sbl > 0 || sbp > 0) nts.push("Saudara Sebapak terhijab oleh Saudara Kandung Laki-laki.");
                 const unitS = (skl * 2) + skp;
                 const perUnitS = sisa / unitS;
-                if (skl > 0) hasil.push({ n: <code>Sdr Kandung L (${skl})</code>, p: "Ashabah", v: perUnitS <em> 2 </em> skl, i: perUnitS * 2 });
-                if (skp > 0) hasil.push({ n: <code>Sdr Kandung P (${skp})</code>, p: "Ashabah", v: perUnitS * skp, i: perUnitS });
+                if (skl > 0) hasil.push({ n: `Sdr Kandung L (${skl})`, p: "Ashabah", v: perUnitS * 2 * skl, i: perUnitS * 2 });
+                if (skp > 0) hasil.push({ n: `Sdr Kandung P (${skp})`, p: "Ashabah", v: perUnitS * skp, i: perUnitS });
                 sisa = 0;
             }
         }
@@ -301,22 +301,20 @@
             } else {
                 const unitSB = (sbl * 2) + sbp;
                 const perUnitSB = sisa / unitSB;
-                if (sbl > 0) hasil.push({ n: <code>Sdr Sebapak L (${sbl})</code>, p: "Ashabah", v: perUnitSB <em> 2 </em> sbl, i: perUnitSB * 2 });
-                if (sbp > 0) hasil.push({ n: <code>Sdr Sebapak P (${sbp})</code>, p: "Ashabah", v: perUnitSB * sbp, i: perUnitSB });
+                if (sbl > 0) hasil.push({ n: `Sdr Sebapak L (${sbl})`, p: "Ashabah", v: perUnitSB * 2 * sbl, i: perUnitSB * 2 });
+                if (sbp > 0) hasil.push({ n: `Sdr Sebapak P (${sbp})`, p: "Ashabah", v: perUnitSB * sbp, i: perUnitSB });
                 sisa = 0;
             }
         }
         const box = document.getElementById('hijabBox');
-        box.innerHTML = nts.map(n => <code><div class="hijab-alert">⚠️ ${n}</div></code>).join('');
+        box.innerHTML = nts.map(n => `<div class="hijab-alert">⚠️ ${n}</div>`).join('');
         const body = document.getElementById('resultBody');
-        body.innerHTML = hasil.map(h => <code><tr><td>${h.n}</td><td><span class="porsi-tag">${h.p}</span></td><td>${fmt(h.i)}</td><td><strong>${fmt(h.v)}</strong></td></tr></code>).join('');
+        body.innerHTML = hasil.map(h => `<tr><td>${h.n}</td><td><span class="porsi-tag">${h.p}</span></td><td>${fmt(h.i)}</td><td><strong>${fmt(h.v)}</strong></td></tr>`).join('');
         document.getElementById('output').style.display = "block";
         window.scrollTo({ top: document.getElementById('output').offsetTop - 20, behavior: 'smooth' });
     }
 </script>
-<noscript>srcset_oleh_Fakhrul_Rijal</noscript>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>markdown_oleh_Fakhrul_Rijal</noscript>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

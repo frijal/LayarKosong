@@ -245,7 +245,7 @@
       #surat-template { font-size: 13px; }
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
   <div class="control-panel">
@@ -422,7 +422,7 @@
     function formatTanggalPilih(dateString) {
       if (!dateString) return "[Tanggal Jatuh Tempo]";
       const date = new Date(dateString);
-      return <code>${date.getDate()} ${bulanIndoList[date.getMonth()]} ${date.getFullYear()}</code>;
+      return `${date.getDate()} ${bulanIndoList[date.getMonth()]} ${date.getFullYear()}`;
     }
     window.addEventListener('DOMContentLoaded', () => {
       // Set default text hari ini
@@ -464,19 +464,19 @@
       } else {
         const benda = toTitleCase(document.getElementById('in-benda').value) || '[Sebutkan barang]';
         const nodok = (document.getElementById('in-nodok').value).toUpperCase() || '[Nomor Dokumen]';
-        jaminanTeks.innerHTML = <code>Untuk menjamin pelunasan hutang ini, PIHAK KEDUA menyerahkan jaminan berupa <strong>${benda}</strong> dengan nomor <strong>${nodok}</strong>. Jaminan akan dikembalikan kepada PIHAK KEDUA setelah hutang dilunasi seluruhnya.</code>;
+        jaminanTeks.innerHTML = `Untuk menjamin pelunasan hutang ini, PIHAK KEDUA menyerahkan jaminan berupa <strong>${benda}</strong> dengan nomor <strong>${nodok}</strong>. Jaminan akan dikembalikan kepada PIHAK KEDUA setelah hutang dilunasi seluruhnya.`;
       }
       // Generate 2 QR Code Berbeda
       const qr1 = document.getElementById("qrcode1");
       const qr2 = document.getElementById("qrcode2");
       qr1.innerHTML = ""; qr2.innerHTML = "";
-      const tglSkrg = <code>${tanggal} ${bulan} ${tahun}</code>;
+      const tglSkrg = `${tanggal} ${bulan} ${tahun}`;
       new QRCode(qr1, {
-        text: <code>Disetujui PIHAK 1: ${nama1} - NIK: ${nik1} - Tanggal: ${tglSkrg}</code>,
+        text: `Disetujui PIHAK 1: ${nama1} - NIK: ${nik1} - Tanggal: ${tglSkrg}`,
         width: 70, height: 70, colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.M
       });
       new QRCode(qr2, {
-        text: <code>Disetujui PIHAK 2: ${nama2} - NIK: ${nik2} - Tanggal: ${tglSkrg}</code>,
+        text: `Disetujui PIHAK 2: ${nama2} - NIK: ${nik2} - Tanggal: ${tglSkrg}`,
         width: 70, height: 70, colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.M
       });
     }
@@ -486,7 +486,7 @@
       const nama = rawNama.replace(/\s+/g, '_');
       const opt = {
         margin:   0,
-        filename:  <code>Hutang_Piutang_${nama}.pdf</code>,
+        filename:  `Hutang_Piutang_${nama}.pdf`,
         image:    { type: 'jpeg', quality: 1 },
         html2canvas: { scale: 2, useCORS: true, scrollY: 0, windowY: 0 },
         jsPDF:    { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -499,14 +499,12 @@
       const nama = rawNama.replace(/\s+/g, '_');
       html2canvas(element, { scale: 2, useCORS: true, scrollY: 0, windowY: 0 }).then(canvas => {
         const link = document.createElement('a');
-        link.download = <code>Hutang_Piutang_${nama}.png</code>;
+        link.download = `Hutang_Piutang_${nama}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
       });
     }
   </script>
-<noscript>minify_oleh_Fakhrul_Rijal</noscript>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

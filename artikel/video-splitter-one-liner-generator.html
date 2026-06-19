@@ -216,7 +216,7 @@
             }
         }
 </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript>
 </head>
 <body>
 <div class="container">
@@ -239,7 +239,7 @@
 function generateScript() {
     const file = document.getElementById('fileName').value;
     const dur = document.getElementById('duration').value;
-    const oneLiner = <code>INPUT="${file}"; DURATION=${dur}; LEN=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$INPUT"); START=0; COUNT=0; while (( $(echo "$START < $LEN" | bc -l) )); do OUTPUT="part_$COUNT.mp4"; ffmpeg -hide_banner -loglevel error -i "$INPUT" -ss $START -t $DURATION -c copy "$OUTPUT" && echo "Berhasil: $OUTPUT"; START=$(echo "$START + $DURATION" | bc); COUNT=$((COUNT+1)); done; echo "Selesai!"</code>;
+    const oneLiner = `INPUT="${file}"; DURATION=${dur}; LEN=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$INPUT"); START=0; COUNT=0; while (( $(echo "$START < $LEN" | bc -l) )); do OUTPUT="part_$COUNT.mp4"; ffmpeg -hide_banner -loglevel error -i "$INPUT" -ss $START -t $DURATION -c copy "$OUTPUT" && echo "Berhasil: $OUTPUT"; START=$(echo "$START + $DURATION" | bc); COUNT=$((COUNT+1)); done; echo "Selesai!"`;
     document.getElementById('output').textContent = oneLiner;
     // Reset teks tombol salin jika generate ulang
     document.getElementById('copyBtn').textContent = "Salin Kode";
@@ -259,8 +259,8 @@ function copyToClipboard() {
     });
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-<noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>

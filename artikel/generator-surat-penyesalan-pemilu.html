@@ -248,7 +248,7 @@
       .tanggal-surat, .tanda-tangan-teks { align-self: center; padding-left: 0; }
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"></head>
+<link href="/ext/marquee-url.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href=/ext/marquee-url.css rel=stylesheet></noscript></head>
 <body>
   <div class="control-panel">
     <h2><a href="/">🛠️ Generator Surat Penyesalan Pemilu</a></h2>
@@ -323,7 +323,7 @@
       const tanggal = hariIni.getDate();
       const bulan = bulanIndo[hariIni.getMonth()];
       const tahun = hariIni.getFullYear();
-      return <code>${tanggal} ${bulan} ${tahun}</code>;
+      return `${tanggal} ${bulan} ${tahun}`;
     }
     const tanggalSekarang = formatTanggalIndonesia();
     window.addEventListener('DOMContentLoaded', () => {
@@ -339,13 +339,13 @@
       document.getElementById('preview-alamat').innerText = kota;
       document.getElementById('preview-nama-ttd').innerText = nama;
       if (kota) {
-        document.getElementById('preview-tanggal').innerText = <code>${kota}, ${tanggalSekarang}</code>;
+        document.getElementById('preview-tanggal').innerText = `${kota}, ${tanggalSekarang}`;
       } else {
         document.getElementById('preview-tanggal').innerText = tanggalSekarang;
       }
       const qrContainer = document.getElementById("qrcode");
       qrContainer.innerHTML = "";
-      const textQR = <code>Surat Permohonan Maaf - ${nama || 'Tanpa Nama'} - ${kota || 'Tanpa Kota'} - ${tanggalSekarang}</code>;
+      const textQR = `Surat Permohonan Maaf - ${nama || 'Tanpa Nama'} - ${kota || 'Tanpa Kota'} - ${tanggalSekarang}`;
       new QRCode(qrContainer, {
         text: textQR,
         width: 90,
@@ -361,7 +361,7 @@
       const nama = toTitleCase(namaRaw);
       const opt = {
         margin:   0,
-        filename:  <code>Surat_Maaf_${nama.replace(/\s+/g, '_')}.pdf</code>,
+        filename:  `Surat_Maaf_${nama.replace(/\s+/g, '_')}.pdf`,
         image:    { type: 'jpeg', quality: 1 },
         html2canvas: { scale: 2, useCORS: true, scrollY: 0, windowY: 0 },
         jsPDF:    { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -374,14 +374,12 @@
       const nama = toTitleCase(namaRaw);
       html2canvas(element, { scale: 2, useCORS: true, scrollY: 0, windowY: 0 }).then(canvas => {
         const link = document.createElement('a');
-        link.download = <code>Surat_Maaf_${nama.replace(/\s+/g, '_')}.png</code>;
+        link.download = `Surat_Maaf_${nama.replace(/\s+/g, '_')}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
       });
     }
   </script>
-<noscript>minify_oleh_Fakhrul_Rijal</noscript>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<noscript>markdown_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 </body></html>
