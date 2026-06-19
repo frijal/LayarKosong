@@ -4,9 +4,11 @@
 # =========================================================
 /*
   X-Content-Type-Options: nosniff
+
 # Prevent Indexing for Preview Domains
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
+
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
 
@@ -25,25 +27,9 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
 
 # =========================================================
-# 3. ATURAN KHUSUS SCRIPT TANPA VERSIONING (KRUSIAL!)
-# Memaksa browser revalidasi ke Cloudflare. Efektif untuk Purge Manual.
-# =========================================================
-/ext/data-provider.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/markdown.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/marquee-url.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/lightbox.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/iposbrowser.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/response.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-
-# =========================================================
-# 4. ASSET STATIS (Long-term Cache)
-# Sisa file di folder /ext/ (seperti .css / fonts) tetap aman di sini.
+# 3. ASET STATIS UMUM (Long-term Cache)
+# Ditulis LEBIH AWAL agar file spesifik di bawah bisa melakukan override.
+# Sisa file di folder /ext/ (seperti fonts / asset pasif) aman di sini.
 # =========================================================
 /img/*
   Cache-Control: public, max-age=31536000, immutable
@@ -78,6 +64,33 @@ https://:version.:project.pages.dev/*
 /*.xsl
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+
+# =========================================================
+# 4. OVERRIDE ASSET TANPA VERSIONING (KRUSIAL!)
+# Wajib di bawah wildcard /ext/* agar bisa menimpa aturan immutable.
+# Memaksa browser revalidasi ke Cloudflare. Efektif untuk Purge Manual.
+# =========================================================
+/ext/data-provider.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/marquee-url.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/lightbox.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/iposbrowser.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/response.js
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+
+# --- CSS ABADI TANPA VERSIONING ---
+# Menyelamatkan CSS dari jebakan cache setahun penuh di lokal browser.
+/ext/fontawesome.css
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/marquee-url.css
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/homepage.css
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
+/ext/sitemap.css
+  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
 
 # =========================================================
 # 5. HALAMAN HTML (Ultra Long-term dengan SWR)
@@ -156,6 +169,10 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 /warta-tekno/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+
+# =========================================================
+# 6. HEADERS LINK AGENT & DISCOVERY (Paling Bawah)
+# =========================================================
 /*
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
   Link: </.well-known/api-catalog>; rel="api-catalog"
