@@ -71,6 +71,6 @@
   // 4. Load Library Core ES Module Cloudflare
   const coreScript: HTMLScriptElement = document.createElement('script');
   coreScript.type = 'module';
-  coreScript.src = 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/search-snippet.es.js';
+  coreScript.src = 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js';
   document.head.appendChild(coreScript);
 })();
