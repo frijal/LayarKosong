@@ -1,4 +1,4 @@
-(()=>{(()=>{let m=document.createElement("style");m.textContent=`
+(()=>{(()=>{let k=document.createElement("style");k.textContent=`
   chat-bubble-snippet {
     /* --- AREA WARNA & BRANDING --- */
     --search-snippet-primary-color: #F6821F;
@@ -33,4 +33,4 @@
       --chat-bubble-button-icon-size: 22px !important;
     }
   }
-  `,document.head.appendChild(m);let q={chatPlaceholder:"Tanya sesuatu ke AI Layar Kosong...",chatTitle:"Asisten AI",chatEmptyTitle:"Mulai Percakapan",chatEmptyDescription:"Kirim pesan untuk mulai mengobrol dengan AI!",errorPrefix:"Waduh, Error:",sendButtonLabel:"Kirim"};if(!document.querySelector("chat-bubble-snippet")){let j=document.createElement("chat-bubble-snippet");j.setAttribute("api-url","https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/"),j.setAttribute("placeholder","Tanya AI Layar Kosong..."),j.setAttribute("translations",JSON.stringify(q)),document.body.appendChild(j)}let k=document.createElement("script");k.type="module",k.src="https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js",document.head.appendChild(k)})();})();
+  `,document.head.appendChild(k);let m={chatPlaceholder:"Tanya sesuatu ke AI Layar Kosong...",chatTitle:"Asisten AI",chatEmptyTitle:"اَلسَّلَامُ عَلَيْكُمْ",chatEmptyDescription:'Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.',errorPrefix:"Waduh, Error:",sendButtonLabel:"Kirim"};if(!document.querySelector("chat-bubble-snippet")){let g=document.createElement("chat-bubble-snippet");g.setAttribute("api-url","https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/"),g.setAttribute("placeholder","Tanya AI Layar Kosong..."),g.setAttribute("translations",JSON.stringify(m)),document.body.appendChild(g)}let j=document.createElement("script");j.type="module",j.src="https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js",document.head.appendChild(j)})();})();

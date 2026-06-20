@@ -39,7 +39,7 @@
   `;
   document.head.appendChild(style);
 
-  // 2. Setup Lokalisasi Bahasa Indonesia (Translations)
+  // 2. Setup Lokalisasi Bahasa Indonesia dengan Link Salam Pembuka
   interface ChatTranslations {
     chatPlaceholder: string;
     chatTitle: string;
@@ -52,8 +52,8 @@
   const idTranslations: ChatTranslations = {
     chatPlaceholder: "Tanya sesuatu ke AI Layar Kosong...",
     chatTitle: "Asisten AI",
-    chatEmptyTitle: "Mulai Percakapan",
-    chatEmptyDescription: "Kirim pesan untuk mulai mengobrol dengan AI!",
+    chatEmptyTitle: "اَلسَّلَامُ عَلَيْكُمْ",
+    chatEmptyDescription: 'Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.',
     errorPrefix: "Waduh, Error:",
     sendButtonLabel: "Kirim"
   };
@@ -63,12 +63,11 @@
     const chatBubble: HTMLElement = document.createElement('chat-bubble-snippet');
     chatBubble.setAttribute('api-url', 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/');
     chatBubble.setAttribute('placeholder', 'Tanya AI Layar Kosong...');
-    //chatBubble.setAttribute('hide-branding', 'true');
     chatBubble.setAttribute('translations', JSON.stringify(idTranslations));
     document.body.appendChild(chatBubble);
   }
 
-  // 4. Load Library Core ES Module Cloudflare (Versi v0.0.40 yang Valid)
+  // 4. Load Library Core ES Module Cloudflare (URL valid versi v0.0.40)
   const coreScript: HTMLScriptElement = document.createElement('script');
   coreScript.type = 'module';
   coreScript.src = 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js';
