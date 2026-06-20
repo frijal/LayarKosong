@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
     <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#0d1117">
+    <meta name="theme-color" content="#00b0ed">
     <link rel="canonical" href="https://dalam.web.id/artikel/github-badges">
     <meta property="og:url" content="https://dalam.web.id/artikel/github-badges">
     <meta property="twitter:url" content="https://dalam.web.id/artikel/github-badges">
@@ -17,8 +15,8 @@
     <meta name="description" content="Layar Kosong - Catatan dan Opini.">
     <meta property="og:description" content="Halaman berisi 200+ GitHub badges dengan format Markdown siap copy. Badge dikelompokkan per kategori, log interaktif, dan mobile-friendly.">
     <meta name="twitter:description" content="Halaman berisi 200+ GitHub badges dengan format Markdown siap copy. Badge dikelompokkan per kategori, log interaktif, dan mobile-friendly.">
-    <meta property="og:image" content="https://img.youtube.com/vi/4cgpu9L2AE8/maxresdefault.jpg">
-    <meta name="twitter:image" content="https://img.youtube.com/vi/4cgpu9L2AE8/maxresdefault.jpg">
+    <meta property="og:image" content="https://dalam.web.id/img/img.youtube.com/167cfcf36d7b566c.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/img.youtube.com/167cfcf36d7b566c.webp">
     <meta property="og:image:alt" content="GitHub Badges Markdown 200+ - Copy-ready Markdown">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="633">
@@ -66,7 +64,6 @@
             --log-bg: rgba(22, 27, 34, 0.85);
             --hover-glow: rgba(88, 166, 255, 0.15);
         }
-
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -75,7 +72,6 @@
             color: var(--text-main);
             line-height: 1.6;
         }
-
         /* Tipografi & Header */
         header.page-header {
             text-align: center;
@@ -83,7 +79,6 @@
             max-width: 900px;
             margin: 0 auto;
         }
-
         h1 {
             font-size: 32px;
             font-weight: 800;
@@ -93,24 +88,20 @@
             -webkit-text-fill-color: transparent;
             line-height: 1.3;
         }
-
         header.page-header p {
             color: var(--text-muted);
             font-size: 16px;
         }
-
         /* Section & Grid Badges */
         #badges-wrapper {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px 20px 80px;
         }
-
         section {
             margin-bottom: 50px;
             animation: fadeIn 0.5s ease-in-out;
         }
-
         h2 {
             font-size: 18px;
             font-weight: 600;
@@ -122,7 +113,6 @@
             align-items: center;
             gap: 12px;
         }
-
         h2::before {
             content: '';
             display: inline-block;
@@ -131,14 +121,12 @@
             background-color: var(--accent-color);
             border-radius: 4px;
         }
-
         .badge-container {
             display: grid;
             /* Auto-fill menghemat media query. Elemen grid akan adaptif secara otomatis */
             grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             gap: 16px;
         }
-
         .badge-box {
             background: var(--surface-color);
             border: 1px solid var(--border-color);
@@ -152,7 +140,6 @@
             overflow: hidden;
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s, box-shadow 0.2s;
         }
-
         .badge-box::after {
             content: 'Copy Markdown';
             position: absolute;
@@ -166,25 +153,21 @@
             opacity: 0;
             transition: all 0.2s ease;
         }
-
         .badge-box:hover {
             transform: translateY(-4px);
             border-color: var(--accent-color);
             box-shadow: 0 6px 24px var(--hover-glow);
         }
-
         .badge-box:hover::after {
             bottom: 8px;
             opacity: 1;
         }
-
         .badge-box img {
             max-width: 100%;
             border-radius: 4px;
             display: block;
             pointer-events: none; /* Cegah drag gambar agar klik lebih mulus */
         }
-
         /* Log Panel (Floating ala Glassmorphism) */
         #log {
             position: fixed;
@@ -209,7 +192,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
             scroll-behavior: smooth;
         }
-
         #log::-webkit-scrollbar {
             width: 8px;
         }
@@ -223,18 +205,15 @@
         #log::-webkit-scrollbar-thumb:hover {
             background: var(--text-muted);
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         /* Responsivitas Mobile */
         @media (max-width: 768px) {
             header.page-header { padding: 40px 15px 10px; }
             h1 { font-size: 24px; }
             .badge-container { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-
             #log {
                 bottom: 0;
                 right: 0;
@@ -249,16 +228,14 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="/ext/marquee-url.css"></head>
 <body>
     <header class="page-header">
-        <h1>GitHub Badges Markdown</h1>
+        <div id="iposbrowser"></div><h1>GitHub Badges Markdown</h1>
         <p>Langsung klik logo untuk menyalin format <code>README.md</code> secara otomatis.</p>
     </header>
-
     <div id="log">Siap menerima perintah copy, Capt... 🚀
 </div>
-
     <script>
         // Fungsi log
         function log(msg){
@@ -266,7 +243,6 @@
             logBox.textContent += msg + "\n";
             logBox.scrollTop = logBox.scrollHeight;
         }
-
         // Fungsi copy ke clipboard
         function copyToClipboard(text){
             navigator.clipboard.writeText(text).then(()=>{
@@ -275,7 +251,6 @@
                 log(`\n❌ Gagal menyalin: ${text}`);
             });
         }
-
         // Badge per kategori
         const badgeData = {
             "License & Legal adalah status lisensi, legalitas dan ketersediaan proyek, seperti gratis, open source, atau public domain.": [
@@ -394,43 +369,33 @@
                 'https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge&animation=glow'
             ]
         };
-
         // Buat wrapper container utama biar strukturnya rapi & gampang di-styling
         const mainWrapper = document.createElement("main");
         mainWrapper.id = "badges-wrapper";
-
         // Generate badge grid
         for(const [category, urls] of Object.entries(badgeData)){
             const section = document.createElement("section");
-
             const h2 = document.createElement("h2");
             h2.textContent = category;
             section.appendChild(h2);
-
             const container = document.createElement("div");
             container.className = "badge-container";
-
             urls.forEach(url => {
                 const box = document.createElement("div");
                 box.className = "badge-box";
                 box.onclick = () => copyToClipboard(`![${category}](${url})`);
-
                 const img = document.createElement("img");
                 img.src = url;
                 img.alt = category;
-
                 box.appendChild(img);
                 container.appendChild(box);
             });
-
             section.appendChild(container);
             mainWrapper.appendChild(section);
         }
-
         // Inject ke body persis sebelum elemen "progress" / skrip di akhir
         document.body.insertBefore(mainWrapper, document.getElementById("progress"));
     </script>
-
-   
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
