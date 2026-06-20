@@ -26,11 +26,7 @@ on:
       run_minify_jsonxml:
         description: 'JSONXML Minify'
         type: boolean
-        default: true
-   #   run_convert_markdown:
-   #     description: 'Ubah ke format Markdown'
-   #     type: boolean
-   #     default: true
+        default: true 
       run_srcset:
         description: 'Image Optimize & Srcset Generator'
         type: boolean
@@ -42,7 +38,6 @@ env:
   DO_SCHEMA: ${{ github.event.inputs.run_schema || 'true' }}
   DO_MINIFY_HTML: ${{ github.event.inputs.run_minify_html || 'true' }}
   DO_MINIFY_JSONXML: ${{ github.event.inputs.run_minify_jsonxml || 'true' }}
-#  DO_CONVERT_MARKDOWN: ${{ github.event.inputs.run_convert_markdown || 'true' }}
   DO_SRCSET: ${{ github.event.inputs.run_srcset || 'true' }}
 
 jobs:
@@ -89,10 +84,6 @@ jobs:
       - name: '7. Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
         run: bun run dapur/inject-schema.ts
-
-   #   - name: '8. Convert HTML to Markdown'
-   #     if: env.DO_CONVERT_MARKDOWN == 'true'
-   #     run: bun run dapur/html-to-markdown.ts
         
       - name: '9. Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
