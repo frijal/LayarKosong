@@ -144,7 +144,3 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-
-      - name: Trigger AI Search Index Synchronization
-        run: |
-          curl -X GET "https://dalam.web.id/sync-index?token=${{ secrets.INDEXNOW_KEY }}"
