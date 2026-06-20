@@ -290,6 +290,7 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
       `<script defer src="/ext/iposbrowser.js"></script>` +
       `<script defer src="/ext/lightbox.js"></script>` +
       `<script defer src="/ext/response.js"></script>` +
+      `<script defer src="/ext/balon-cf.js"></script>` +
       `<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>`
     );
   }
