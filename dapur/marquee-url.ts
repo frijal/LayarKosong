@@ -192,7 +192,16 @@ if (!nav) {
   nav = document.createElement('div');
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
-  document.body.appendChild(nav);
+
+  // Disisipkan persis SETELAH grid related-articles, ikut alur dokumen
+  // (bukan lagi appendChild ke body sebagai overlay fixed)
+  const grid = document.getElementById('related-articles-grid');
+  if (grid && grid.parentElement) {
+    grid.insertAdjacentElement('afterend', nav);
+  } else {
+    // Fallback kalau halaman ini tidak punya grid related-articles
+    (document.querySelector('.container') || document.body).appendChild(nav);
+  }
 }
 
 nav.innerHTML = `
