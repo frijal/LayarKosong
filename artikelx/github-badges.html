@@ -17,8 +17,8 @@
     <meta name="description" content="Layar Kosong - Catatan dan Opini.">
     <meta property="og:description" content="Halaman berisi 200+ GitHub badges dengan format Markdown siap copy. Badge dikelompokkan per kategori, log interaktif, dan mobile-friendly.">
     <meta name="twitter:description" content="Halaman berisi 200+ GitHub badges dengan format Markdown siap copy. Badge dikelompokkan per kategori, log interaktif, dan mobile-friendly.">
-    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta property="og:image" content="https://img.youtube.com/vi/4cgpu9L2AE8/maxresdefault.jpg">
+    <meta name="twitter:image" content="https://img.youtube.com/vi/4cgpu9L2AE8/maxresdefault.jpg">
     <meta property="og:image:alt" content="GitHub Badges Markdown 200+ - Copy-ready Markdown">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="633">
@@ -53,7 +53,6 @@
     <meta name="date" content="2025-09-28">
     <meta name="ai:summary" content="Halaman berisi 200+ GitHub badges dengan format Markdown siap copy. Badge dikelompokkan per kategori, log interaktif, dan mobile-friendly.">
     <meta name="ai:prompt_hint" content="Halaman berisi 200+ GitHub badges dengan format Markdown siap copy. Badge dikelompokkan per kategori, log interaktif, dan mobile-friendly.">
-    <link rel="stylesheet" href="/ext/marquee-url.css">
     <style>
         /* Redesign - Developer Dark Theme
         */
@@ -252,8 +251,6 @@
     </style>
 </head>
 <body>
-    <div id="iposbrowser"></div>
-
     <header class="page-header">
         <h1>GitHub Badges Markdown</h1>
         <p>Langsung klik logo untuk menyalin format <code>README.md</code> secara otomatis.</p>
@@ -434,36 +431,6 @@
         document.body.insertBefore(mainWrapper, document.getElementById("progress"));
     </script>
 
-    <div id="progress"></div>
-    <a id="layar-kosong-header" href="https://dalam.web.id/"></a>
-    <div class="search-floating-container">
-        <input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off">
-        <span id="floatingSearchClear" class="clear-button"></span>
-        <div id="floatingSearchResults" class="floating-results-container"></div>
-    </div>
-    <div id="dynamic-nav-container" class="floating-nav"></div>
-    <section id="related-marquee-section">
-        <div id="related-marquee-container"></div>
-    </section>
-
-    <script defer="" src="/ext/marquee-url.js"></script>
-    <script defer="" src="/ext/iposbrowser.js"></script>
-    <script defer="" src="/ext/response.js"></script>
-    <script>
-        if('modelContext' in navigator){
-            navigator.modelContext.provideContext({
-                tools:[{
-                    name:"baca_llms_index",
-                    description:"Mengambil daftar lengkap artikel Layar Kosong",
-                    inputSchema:{type:"object",properties:{}},
-                    execute:async()=>{
-                        const res=await fetch('/llms.txt');
-                        return await res.text();
-                    }
-                }]
-            });
-        }
-    </script>
-    <div id="internal-nav"></div>
+   
 </body>
 </html>
