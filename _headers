@@ -52,6 +52,12 @@ https://:version.:project.pages.dev/*
 /thumbnail.webp
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+/thumbnail-md.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/thumbnail-sm.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
 /thumbnail.jpg
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
@@ -66,34 +72,7 @@ https://:version.:project.pages.dev/*
   Access-Control-Allow-Origin: *
 
 # =========================================================
-# 4. OVERRIDE ASSET TANPA VERSIONING (KRUSIAL!)
-# Wajib di bawah wildcard /ext/* agar bisa menimpa aturan immutable.
-# Memaksa browser revalidasi ke Cloudflare. Efektif untuk Purge Manual.
-# =========================================================
-/ext/data-provider.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/marquee-url.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/lightbox.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/iposbrowser.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/response.js
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-
-# --- CSS ABADI TANPA VERSIONING ---
-# Menyelamatkan CSS dari jebakan cache setahun penuh di lokal browser.
-/ext/fontawesome.css
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/marquee-url.css
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/homepage.css
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-/ext/sitemap.css
-  Cache-Control: public, max-age=0, s-maxage=31536000, must-revalidate
-
-# =========================================================
-# 5. HALAMAN HTML (Ultra Long-term dengan SWR)
+# 4. HALAMAN HTML (Ultra Long-term dengan SWR)
 # =========================================================
 /404.html
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
@@ -171,7 +150,7 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
 
 # =========================================================
-# 6. HEADERS LINK AGENT & DISCOVERY (Paling Bawah)
+# 5. HEADERS LINK AGENT & DISCOVERY (Paling Bawah)
 # =========================================================
 /*
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
