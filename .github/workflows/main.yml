@@ -1,4 +1,3 @@
-```yaml
 name: Cleanup HTML (Preload & Unicode)
 
 on:
@@ -68,4 +67,3 @@ jobs:
           branch: chore/auto-clean-html
           delete-branch: true
           labels: "automated pr, cleanup"
-```
