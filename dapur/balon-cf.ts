@@ -94,7 +94,7 @@
             if (messageContainer && !shadow.querySelector('.layar-kosong-welcome')) {
               const welcomeDiv = document.createElement('div');
               welcomeDiv.className = 'layar-kosong-welcome';
-              welcomeDiv.innerHTML = '<strong>اَلسَّلَامُ عَلَيْكُمْ</strong><br>Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.';
+              welcomeDiv.innerHTML = '<strong style=\'display:block; font-family:"Noto Naskh Arabic","Amiri",serif; text-align:right; direction:rtl; font-size:1.4em; line-height:1.8;\'>اَلسَّلَامُ عَلَيْكُمْ</strong>Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.';
 
               // Sisipkan di bagian paling atas kontainer pesan chat
               messageContainer.insertBefore(welcomeDiv, messageContainer.firstChild);
