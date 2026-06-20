@@ -276,9 +276,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
       `</div>`
     );
   }
-  if ($("#dynamic-nav-container").length === 0) {
-    $("body").append(`<div id="dynamic-nav-container" class="floating-nav"></div>`);
-  }
   if ($("#internal-nav").length === 0) {
     $("body").append(`<div id="internal-nav"></div>`);
   }
