@@ -141,3 +141,9 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      # === PICU SYNC LOGIK INTERNAL VERSI SAKTI ===
+      - name: 🚀 Trigger Internal D1 to AI Search Sync
+        run: |
+          sleep 4
+          curl -X GET "https://dalam.web.id/dfds67thUYG"
