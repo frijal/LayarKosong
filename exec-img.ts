@@ -1,9 +1,14 @@
 // execute-cleanup.ts
-const pattern = /<link\s+href="[^"]*"\s+fetchpriority=high\s+as=image\s+rel=preload\s*>/g;
+// Gunakan pola yang sama
+const patterns = [
+  /<link\s+[^>]*href=["']?[^" >]+["']?\s+fetchpriority=high\s+as=image\s+rel=preload[^>]*>/gi,
+  /<link\s+rel=["']preload["']\s+as=["']image["']\s+href=["'][^"']*["']\s+fetchpriority=["']high["'][^>]*>/gi
+];
+
 const logFile = Bun.file("list-to-clean.txt");
 
 if (!(await logFile.exists())) {
-  console.error("❌ File list-to-clean.txt tidak ditemukan! Jalankan check-files.ts dulu.");
+  console.error("❌ File list-to-clean.txt tidak ditemukan!");
   process.exit(1);
 }
 
@@ -17,8 +22,11 @@ for (const file of files) {
     const handle = Bun.file(file);
     let htmlContent = await handle.text();
     
-    // Replace target dengan string kosong
-    const newContent = htmlContent.replace(pattern, "");
+    // Loop untuk menghapus semua pattern yang cocok
+    let newContent = htmlContent;
+    for (const pattern of patterns) {
+      newContent = newContent.replace(pattern, "");
+    }
     
     await Bun.write(file, newContent);
     console.log(`✅ Dibersihkan: ${file}`);
@@ -27,4 +35,4 @@ for (const file of files) {
   }
 }
 
-console.log("\n🎉 Semua file di dalam list telah dibersihkan.");
+console.log("\n🎉 Selesai! Semua format preload berhasil dibersihkan.");
