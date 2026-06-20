@@ -3,7 +3,7 @@
   const style: HTMLStyleElement = document.createElement('style');
   style.textContent = `
     chat-bubble-snippet {
-      /* --- AREA WARNA & BRANDING --- */
+      /* --- AREA WARNA & BRANDING ---- */
       --search-snippet-primary-color: #F6821F;
       --search-snippet-primary-hover: #E06B0F;
       --search-snippet-border-radius: 14px;
