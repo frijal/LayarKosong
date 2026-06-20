@@ -177,6 +177,10 @@ function initFloatingSearch(allData: any): void {
 }
 
 function initNavIcons(allData: any, currentFile: string): void {
+  // Tanpa related-articles-grid, navigasi ini sengaja tidak ditampilkan
+  const grid = document.getElementById('related-articles-grid');
+  if (!grid) return;
+
   const catInfo = getCategoryInfo(currentFile, allData);
   if (!catInfo) return;
 
@@ -192,16 +196,7 @@ if (!nav) {
   nav = document.createElement('div');
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
-
-  // Disisipkan persis SETELAH grid related-articles, ikut alur dokumen
-  // (bukan lagi appendChild ke body sebagai overlay fixed)
-  const grid = document.getElementById('related-articles-grid');
-  if (grid && grid.parentElement) {
-    grid.insertAdjacentElement('afterend', nav);
-  } else {
-    // Fallback kalau halaman ini tidak punya grid related-articles
-    (document.querySelector('.container') || document.body).appendChild(nav);
-  }
+  grid.appendChild(nav); // disisipkan sebagai child terakhir DI DALAM grid
 }
 
 nav.innerHTML = `
@@ -283,8 +278,8 @@ async function initializeApp(): Promise<void> {
     initProgressBar();
     initCategoryMarquee(data, currentFile);
     initFloatingSearch(data);
-    initNavIcons(data, currentFile);
     initRelatedGrid(data, currentFile);
+    initNavIcons(data, currentFile);
     adaptMarqueeTextColor();
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', adaptMarqueeTextColor);
   }

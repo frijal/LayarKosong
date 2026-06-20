@@ -345,12 +345,15 @@ color: var(--accent);
   100% { transform: translateX(-50%); }
 }
 
-/* Nav Icons (in-flow, ditaruh setelah #related-articles-grid lewat JS) */
+/* Nav Icons (child terakhir DI DALAM #related-articles-grid) */
 .floating-nav {
+  grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 24px 0 40px;
+  margin-top: 5px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }
 
 .nav-right {
@@ -472,7 +475,7 @@ a:hover { opacity: 0.8; }
 }
 
 @media (max-width: 768px) {
-  .floating-nav { margin: 16px 0 28px; }
+  .floating-nav { padding-top: 16px; }
   .nav-right { gap: 8px; }
   .btn-emoji { font-size: 1.8rem; }
   a.category-link { font-size: 12px; padding: 6px 12px; }
