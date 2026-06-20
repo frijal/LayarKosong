@@ -1,39 +1,71 @@
-name: Auto Clean Hidden Unicode (HTML)
+name: Cleanup HTML (Preload & Unicode)
 
-on:  
+on:
   workflow_dispatch:
+    inputs:
+      cleanup_target:
+        description: "Pilih pekerjaan cleanup yang ingin dijalankan"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - preload
+          - unicode
 
 jobs:
-  autoclean:
+  cleanup-html:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
-      pull-requests: write # Tambahan izin wajib untuk bisa bikin PR otomatis
-      
+      pull-requests: write
+
     steps:
-      - uses: actions/checkout@v7 # (Saya sesuaikan ke v4 karena ini versi paling stabil saat ini)
+      - name: Checkout Code
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
-      - name: Clean hidden unicode in HTML
-        # Mengubah NBSP menjadi &nbsp; agar tipografi aman, 
-        # dan menghapus zero-width characters lainnya tanpa ampun.
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: latest         
+
+      - name: Show Selected Cleanup Target
+        run: |
+          echo "Event name      : ${{ github.event_name }}"
+          echo "Cleanup target  : ${{ github.event.inputs.cleanup_target || 'all' }}"
+
+      - name: 1. Clean HTML Preload (Custom Script)
+        if: ${{ github.event_name == 'push' || github.event.inputs.cleanup_target == 'all' || github.event.inputs.cleanup_target == 'preload' }}
+        run: bun run dapur/pembersih-img-preload.ts
+
+      - name: 2. Clean Hidden Unicode (Perl)
+        if: ${{ github.event_name == 'push' || github.event.inputs.cleanup_target == 'all' || github.event.inputs.cleanup_target == 'unicode' }}
         run: |
           find . -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/&nbsp;/g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
 
-      - name: Create Pull Request if changes exist
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: remove hidden unicode characters from HTML"
-          title: "chore: 🧹 Auto-clean hidden Unicode characters in HTML"
+          commit-message: "chore: auto-clean HTML"
+          title: "🤖 Cleanup: Bersihkan HTML"
           body: |
-            Halo! Bot mendeteksi adanya karakter Unicode tersembunyi (seperti spasi gaib) dari hasil *copy-paste* di file HTML kamu.
-            
-            Karakter tersebut sudah dibersihkan dan diubah menjadi `&nbsp;` agar tipografi tetap aman dan Renovate tidak rewel lagi.
-            
-            Mohon periksa perubahannya dan *merge* jika sudah sesuai! ✨
-          branch: chore/auto-clean-unicode
-          delete-branch: true # Otomatis hapus branch ini setelah PR di-merge
+            Halo Frijal! Bot telah melakukan pembersihan otomatis pada file HTML kamu.
+
+            Target cleanup yang dijalankan:
+
+            `${{ github.event.inputs.cleanup_target || 'all' }}`
+
+            Rincian pekerjaan:
+
+            - `all`: Menghapus preload image yang tidak diinginkan dan membersihkan karakter Unicode tersembunyi.
+            - `preload`: Menghapus tag link preload image yang tidak diinginkan.
+            - `unicode`: Menghapus karakter Unicode tersembunyi seperti zero-width character dan memperbaiki spasi non-breaking.
+
+            Mohon periksa tab **Files changed** untuk memverifikasi perubahannya sebelum di-merge. ✨
+          branch: chore/auto-clean-html
+          delete-branch: true
           labels: "automated pr, cleanup"
