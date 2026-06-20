@@ -108,6 +108,9 @@ jobs:
           [[kv_namespaces]]
           binding = "COUNTS_KV"
           id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          [[ai_search]]
+          binding = "LAYARKOSONG_INDEX"
+          instance_name = "layarkosong-search-index"
           EOF
 
       # 🍳 Run Dapur — DILEWATI kalau mode: update-only
