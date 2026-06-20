@@ -144,3 +144,11 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      # 🤖 SINKRONISASI AI SEARCH (Bypass limit 4MB via Jalur Belakang)
+      - name: ✂️ Split and Push llms.md to Cloudflare AI Search
+        run: bun run dapur/layarkosong-search-index.ts
+        working-directory: source
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
