@@ -1,15 +1,27 @@
+```yaml
 name: Cleanup HTML (Preload & Unicode)
 
 on:
   workflow_dispatch:
+    inputs:
+      cleanup_target:
+        description: "Pilih pekerjaan cleanup yang ingin dijalankan"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - preload
+          - unicode
 
 jobs:
   cleanup-html:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -19,11 +31,17 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
 
+      - name: Show Selected Cleanup Target
+        run: |
+          echo "Event name      : ${{ github.event_name }}"
+          echo "Cleanup target  : ${{ github.event.inputs.cleanup_target || 'all' }}"
+
       - name: 1. Clean HTML Preload (Custom Script)
+        if: ${{ github.event_name == 'push' || github.event.inputs.cleanup_target == 'all' || github.event.inputs.cleanup_target == 'preload' }}
         run: bun run dapur/pembersih-img-preload.ts
 
       - name: 2. Clean Hidden Unicode (Perl)
-        # Menghapus zero-width characters dan memperbaiki spasi non-breaking
+        if: ${{ github.event_name == 'push' || github.event.inputs.cleanup_target == 'all' || github.event.inputs.cleanup_target == 'unicode' }}
         run: |
           find . -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/&nbsp;/g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
 
@@ -31,15 +49,23 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: auto-clean HTML (preload links & unicode)"
-          title: "🤖 Cleanup: Bersihkan HTML (Preload & Karakter Gaib)"
+          commit-message: "chore: auto-clean HTML"
+          title: "🤖 Cleanup: Bersihkan HTML"
           body: |
-            Halo Frijal! Bot telah melakukan pembersihan otomatis pada file HTML kamu:
-            
-            1. **Preload Cleanup**: Menghapus tag link preload iklan yang tidak diinginkan.
-            2. **Unicode Cleanup**: Menghapus karakter Unicode tersembunyi (zero-width) dan memperbaiki spasi non-breaking.
-            
-            Mohon periksa **Files changed** untuk memverifikasi perubahannya sebelum di-merge! ✨
+            Halo Frijal! Bot telah melakukan pembersihan otomatis pada file HTML kamu.
+
+            Target cleanup yang dijalankan:
+
+            `${{ github.event.inputs.cleanup_target || 'all' }}`
+
+            Rincian pekerjaan:
+
+            - `all`: Menghapus preload image yang tidak diinginkan dan membersihkan karakter Unicode tersembunyi.
+            - `preload`: Menghapus tag link preload image yang tidak diinginkan.
+            - `unicode`: Menghapus karakter Unicode tersembunyi seperti zero-width character dan memperbaiki spasi non-breaking.
+
+            Mohon periksa tab **Files changed** untuk memverifikasi perubahannya sebelum di-merge. ✨
           branch: chore/auto-clean-html
           delete-branch: true
           labels: "automated pr, cleanup"
+```
