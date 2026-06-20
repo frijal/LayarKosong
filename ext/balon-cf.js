@@ -1,4 +1,4 @@
-(()=>{(()=>{let k=document.createElement("style");k.textContent=`
+(()=>{(()=>{let A=document.createElement("style");A.textContent=`
   chat-bubble-snippet {
     /* --- AREA WARNA & BRANDING --- */
     --search-snippet-primary-color: #F6821F;
@@ -24,6 +24,19 @@
     --chat-bubble-button-size: 60px !important;
   }
 
+  /* Gaya CSS Kustom untuk Elemen Salam Pembuka buatan kita */
+  .layar-kosong-welcome {
+    padding: 16px;
+    margin: 12px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #F6821F;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #212529;
+  }
+
   /* --- RESPONSIVE DESIGN (MOBILE MODE) --- */
   @media (max-width: 768px) {
     chat-bubble-snippet {
@@ -33,4 +46,4 @@
       --chat-bubble-button-icon-size: 22px !important;
     }
   }
-  `,document.head.appendChild(k);let m={chatPlaceholder:"Tanya sesuatu ke AI Layar Kosong...",chatTitle:"Asisten AI",chatEmptyTitle:"اَلسَّلَامُ عَلَيْكُمْ",chatEmptyDescription:'Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.',errorPrefix:"Waduh, Error:",sendButtonLabel:"Kirim"};if(!document.querySelector("chat-bubble-snippet")){let g=document.createElement("chat-bubble-snippet");g.setAttribute("api-url","https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/"),g.setAttribute("placeholder","Tanya AI Layar Kosong..."),g.setAttribute("translations",JSON.stringify(m)),document.body.appendChild(g)}let j=document.createElement("script");j.type="module",j.src="https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js",document.head.appendChild(j)})();})();
+  `,document.head.appendChild(A);let G={chatPlaceholder:"Tanya sesuatu ke AI Layar Kosong...",chatTitle:"Asisten AI",errorPrefix:"Waduh, Error:",sendButtonLabel:"Kirim"};if(!document.querySelector("chat-bubble-snippet")){let k=document.createElement("chat-bubble-snippet");k.setAttribute("api-url","https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/"),k.setAttribute("placeholder","tanya AI Layar Kosong..."),k.setAttribute("translations",JSON.stringify(G)),k.addEventListener("ready",()=>{let j=k.shadowRoot;if(!j)return;let F=j.querySelector("button")||j.querySelector(".chat-bubble-button");if(F)F.addEventListener("click",()=>{setTimeout(()=>{let x=j.querySelector(".search-snippet-messages")||j.querySelector(".chat-messages")||j.querySelector("div");if(x&&!j.querySelector(".layar-kosong-welcome")){let z=document.createElement("div");z.className="layar-kosong-welcome",z.innerHTML='<strong>اَلسَّلَامُ عَلَيْكُمْ</strong><br>Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.',x.insertBefore(z,x.firstChild)}},50)})}),document.body.appendChild(k)}let q=document.createElement("script");q.type="module",q.src="https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js",document.head.appendChild(q)})();})();

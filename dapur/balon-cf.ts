@@ -27,6 +27,19 @@
     --chat-bubble-button-size: 60px !important;
   }
 
+  /* Gaya CSS Kustom untuk Elemen Salam Pembuka buatan kita */
+  .layar-kosong-welcome {
+    padding: 16px;
+    margin: 12px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #F6821F;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #212529;
+  }
+
   /* --- RESPONSIVE DESIGN (MOBILE MODE) --- */
   @media (max-width: 768px) {
     chat-bubble-snippet {
@@ -39,12 +52,10 @@
   `;
   document.head.appendChild(style);
 
-  // 2. Setup Lokalisasi Bahasa Indonesia dengan Link Salam Pembuka
+  // 2. Setup Lokalisasi Bahasa Indonesia (Gunakan kunci yang valid untuk Bubble)
   interface ChatTranslations {
     chatPlaceholder: string;
     chatTitle: string;
-    chatEmptyTitle: string;
-    chatEmptyDescription: string;
     errorPrefix: string;
     sendButtonLabel: string;
   }
@@ -52,8 +63,6 @@
   const idTranslations: ChatTranslations = {
     chatPlaceholder: "Tanya sesuatu ke AI Layar Kosong...",
     chatTitle: "Asisten AI",
-    chatEmptyTitle: "اَلسَّلَامُ عَلَيْكُمْ",
-    chatEmptyDescription: 'Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.',
     errorPrefix: "Waduh, Error:",
     sendButtonLabel: "Kirim"
   };
@@ -62,12 +71,43 @@
   if (!document.querySelector('chat-bubble-snippet')) {
     const chatBubble: HTMLElement = document.createElement('chat-bubble-snippet');
     chatBubble.setAttribute('api-url', 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/');
-    chatBubble.setAttribute('placeholder', 'Tanya AI Layar Kosong...');
+    chatBubble.setAttribute('placeholder', 'tanya AI Layar Kosong...');
     chatBubble.setAttribute('translations', JSON.stringify(idTranslations));
+
+    // Trik Pemantau Jendela Terbuka untuk Menyisipkan Salam Pembuka
+    chatBubble.addEventListener('ready', () => {
+      // Kita pantau klik pada tombol bundar bubble di dalam Shadow DOM
+      const shadow = chatBubble.shadowRoot;
+      if (!shadow) return;
+
+      // Cari tombol trigger bawaan Cloudflare (biasanya tag button atau class chat-bubble-button)
+      const bubbleButton = shadow.querySelector('button') || shadow.querySelector('.chat-bubble-button');
+
+      if (bubbleButton) {
+        bubbleButton.addEventListener('click', () => {
+          // Kasih jeda sesaat agar jendela chat-nya terbuka dan dirender dulu oleh browser
+          setTimeout(() => {
+            // Cari kontainer area chat tempat jalannya pesan mengalir
+            const messageContainer = shadow.querySelector('.search-snippet-messages') || shadow.querySelector('.chat-messages') || shadow.querySelector('div');
+
+            // Jika kontainer ketemu dan belum dipasangin salam pembuka kustom kita
+            if (messageContainer && !shadow.querySelector('.layar-kosong-welcome')) {
+              const welcomeDiv = document.createElement('div');
+              welcomeDiv.className = 'layar-kosong-welcome';
+              welcomeDiv.innerHTML = '<strong>اَلسَّلَامُ عَلَيْكُمْ</strong><br>Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.';
+
+              // Sisipkan di bagian paling atas kontainer pesan chat
+              messageContainer.insertBefore(welcomeDiv, messageContainer.firstChild);
+            }
+          }, 50);
+        });
+      }
+    });
+
     document.body.appendChild(chatBubble);
   }
 
-  // 4. Load Library Core ES Module Cloudflare (URL valid versi v0.0.40)
+  // 4. Load Library Core ES Module Cloudflare
   const coreScript: HTMLScriptElement = document.createElement('script');
   coreScript.type = 'module';
   coreScript.src = 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js';
