@@ -278,9 +278,9 @@
             <section id="pendahuluan">
                 <h2>Apa Sih <code>markdown.js</code> Itu? 🤔</h2>
                 <p>Gampangnya, <code>markdown.js</code> ini kayak asisten pribadi buat halaman web kamu. Tugasnya simpel tapi keren: <strong>nyulap tulisan bergaya Markdown</strong> (kayak yang biasa kamu pakai di GitHub atau chat) dan <strong>blok kode pemrograman</strong> biar tampil lebih cakep dan rapi di browser.</p>
-                <p>Jadi, kalau kamu nulis <code class="inline"><b>tebal<b></code> atau <code class="inline">*miring*</code> langsung di paragraf HTML, skrip ini bakal otomatis mengubahnya jadi tag <code class="inline">&lt;strong&gt;</code> dan <code class="inline">&lt;em&gt;</code>. Begitu juga buat heading, link, list, bahkan blok kode, biar warnanya sesuai sintaks bahasa pemrograman.</p>
+                <p>Jadi, kalau kamu nulis <code class="inline"><b>tebal<b></b></b></code><b><b> atau <code class="inline">*miring*</code> langsung di paragraf HTML, skrip ini bakal otomatis mengubahnya jadi tag <code class="inline">&lt;strong&gt;</code> dan <code class="inline">&lt;em&gt;</code>. Begitu juga buat heading, link, list, bahkan blok kode, biar warnanya sesuai sintaks bahasa pemrograman.</b></b></p><b><b>
                 <p>Yang lebih asyik, skrip ini pinter! Dia cuma bakal ngunduh pustaka tambahan (namanya <code>highlight.js</code>) kalau di halaman kamu emang ada blok kode yang perlu diwarnai. Hemat kuota, kan? 😉</p>
-            </section>
+            </b></b></section><b><b>
              <section id="ambil-kode">
                  <h2>🚀 Mau Coba Periksa Kodenya?</h2>
                  <p>Kamu bisa lihat dan ambil kode lengkap skrip <code>markdown.js</code> ini langsung dari repositori GitHub:</p>
@@ -306,17 +306,17 @@
                     </li>
                     <li>
                         <strong>Sulap Markdown Jadi HTML (<code>convertInlineMarkdown</code>):</strong>
-                        <p>Ini bagian intinya. Dia punya 'mantra-mantra' (pakai *regular expression</em>) buat ngenalin sintaks Markdown yang umum:</p>
+                        <p>Ini bagian intinya. Dia punya 'mantra-mantra' (pakai *regular expression) buat ngenalin sintaks Markdown yang umum:</p>
                         <ul>
                             <li><code class="inline">#</code> sampai <code class="inline">######</code> jadi heading <code class="inline">&lt;h1&gt;</code> sampai <code class="inline">&lt;h6&gt;</code>.</li>
                             <li><code class="inline">&gt; Kutipan</code> jadi <code class="inline">&lt;blockquote&gt;</code>.</li>
-                            <li><code class="inline"><b>Tebal<b></code>, <code class="inline">*Miring*</code>, dan <code class="inline">`Kode Inline`</code> jadi tag HTML yang sesuai (<code class="inline">&lt;strong&gt;</code>, <code class="inline">&lt;em&gt;</code>, <code class="inline">&lt;code&gt;</code>).</li>
+                            <li><code class="inline"><b>Tebal<b></b></b></code><b><b>, <code class="inline">*Miring*</code>, dan <code class="inline">`Kode Inline`</code> jadi tag HTML yang sesuai (<code class="inline">&lt;strong&gt;</code>, <code class="inline">&lt;em&gt;</code>, <code class="inline">&lt;code&gt;</code>).</b></b></li><b><b>
                             <li><code class="inline">[Teks Link](url)</code> jadi link <code class="inline">&lt;a href="..."&gt;</code> yang otomatis buka di tab baru.</li>
                             <li>List <code class="inline">- Item</code> jadi <code class="inline">&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code> (untuk list sederhana).</li>
                             <li>Blok kode <code class="inline">```...```</code> atau <code class="inline">```js ... ```</code> diubah jadi struktur <code class="inline">&lt;pre&gt;&lt;code class="language-js"&gt;...&lt;/code&gt;&lt;/pre&gt;</code>. Bahasa kodenya (kalau ada) bakal dicatat buat pewarnaan nanti.</li>
                             <li>Tabel Markdown sederhana juga coba diubah jadi tabel HTML (<code class="inline">&lt;table&gt;</code>).</li>
-                        </ul>
-                    </li>
+                        </b></b></ul><b><b>
+                    </b></b></li><b><b>
                     <li>
                         <strong>Cari Target &amp; Terapkan Sulap (<code>enhanceMarkdown</code>):</strong>
                         <p>Skrip ini tidak sembarangan nyulap. Dia cuma nyari elemen-elemen tertentu:</p>
@@ -336,8 +336,8 @@
                         <strong>Mulai Aksi! (Event Listener):</strong>
                         <p>Semua langkah di atas baru dijalankan kalau struktur dasar halaman HTML kamu udah siap (<code class="inline">DOMContentLoaded</code>). Ini biar tidak ganggu proses loading halaman.</p>
                     </li>
-                </ol>
-            </section>
+                </b></b></ol><b><b>
+            </b></b></section><b><b>
             <hr>
             <section id="fitur-utama">
                  <h2>✨ Fitur Kerennya Apa Aja?</h2>
@@ -354,8 +354,8 @@
             </section>
             <hr>
             <div id="related-articles-grid"></div><div id="response"></div>
-    </article>
-    </main>
+    </b></b></b></b></article><b><b><b>
+    </b></b></b></main><b><b><b>
     <footer>
         <p>🄯 2025  | Dibuat dengan cinta dan secangkir kopi.</p>
      <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
@@ -363,5 +363,5 @@
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</b></b></b></body></html>

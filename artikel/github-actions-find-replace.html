@@ -255,11 +255,11 @@
               <li><strong>Teks yang mau diganti (search):</strong> Kata, frasa, atau kalimat spesifik yang ingin kamu cari. Ingat, sistem ini bersifat <em>case-sensitive</em>.</li>
               <li><strong>Teks pengganti (replace):</strong> Kata atau frasa baru yang akan menggantikan teks lama.</li>
               <li><strong>Folder target (folder):</strong> Arahkan ke folder spesifik tempat pencarian dilakukan (misal: <code>docs</code> atau <code>src</code>). Jika kamu membiarkannya berisi tanda <code>.</code>, maka pencarian akan menjelajah ke seluruh isi repositori.</li>
-              <li><strong>Polanya file (globs):</strong> Tipe ekstensi file yang akan diubah. Kamu bisa memisahkannya dengan koma (misal: <code><b>/*.html,<b>/*.md</code>).</li>
-            </ul>
-          </li>
+              <li><strong>Polanya file (globs):</strong> Tipe ekstensi file yang akan diubah. Kamu bisa memisahkannya dengan koma (misal: <code><b>/*.html,<b>/*.md</b></b></code><b><b>).</b></b></li><b><b>
+            </b></b></ul><b><b>
+          </b></b></li><b><b>
           <li>Klik tombol hijau <strong>"Run workflow"</strong> di bagian bawah form. Duduk manis, dan biarkan peladen GitHub yang bekerja!</li>
-        </ol>
+        </b></b></ol><b><b>
         <h2>Kode Workflow Lengkap</h2>
         <p>Untuk mengaktifkan fitur ajaib ini, kamu hanya perlu menyalin blok kode YAML di bawah ini dan menyimpannya di dalam repositorimu tepatnya pada <em>path</em> direktori <code>.github/workflows/find-replace.yml</code>.</p>
 <pre><code>name: ganti isi teks dalam file
@@ -311,7 +311,7 @@ jobs:
           # Gunakan perintah || true agar pipeline tidak terhenti (error) jika tidak ada teks yang berubah
           git commit -m "chore: ganti '${{ github.event.inputs.search }}' -&gt; '${{ github.event.inputs.replace }}'" || true
           git push
-</code></pre>
+</b></b></b></b></b></code></pre><b><b><b>
         <h2>Bedah Singkat Anatomi Kode</h2>
         <p>Bagi kamu yang penasaran bagaimana sihir ini bekerja di belakang layar, berikut adalah penjelasan dari blok kode utama di atas:</p>
         <ul>
@@ -320,17 +320,17 @@ jobs:
           <li><strong>Commit &amp; push...</strong> → Begitu proses modifikasi teks rampung, skrip bot ini akan mengambil alih fungsi Git dasar. Ia akan membungkus seluruh perubahan menjadi sebuah <em>commit</em> baru dengan pesan rekam jejak yang jelas, lalu mendorong (<em>push</em>) perubahannya langsung ke <em>branch</em> repositorimu.</li>
         </ul>
         <p>Dengan alat ini, manajemen aset kode di repositorimu kini jadi jauh lebih mudah, efisien, dan modern. Selamat mencoba dan tingkatkan produktivitas <em>coding</em> kamu!</p>
-      </article>
-    </main>
+      </b></b></b></b></b></article><b><b><b>
+    </b></b></b></main><b><b><b>
     <div id="related-articles-grid"></div><div id="response"></div>
     <footer>
       <div class="footer-content">
         Artikel oleh Frijal (Balikpapan) • Dipublikasikan pada 14 Juni 2026 • Referensi: Dokumentasi Resmi GitHub Actions
       </div>
     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-  </div>
+  </b></b></b></div><b><b><b>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 
 
-<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-</body></html>
+<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</b></b></b></body></html>
