@@ -215,15 +215,57 @@ ${total > 1 ? `
 function initInternalNav(): void {
   const tocContainer = document.getElementById('internal-nav');
   if (!tocContainer) return;
+
   const headings = Array.from(document.querySelectorAll('h2, h3, h4')) as HTMLElement[];
-  const filtered = headings.filter(h => h.innerText.trim().length > 0 && !h.closest('.floating-nav') && !tocContainer.contains(h));
 
-  if (filtered.length === 0) { tocContainer.style.display = 'none'; return; }
+  // 1. Menggunakan textContent agar heading di dalam <details> yang tertutup tetap terbaca
+  const filtered = headings.filter(h => {
+    const text = (h.textContent || '').trim();
+    return text.length > 0 && !h.closest('.floating-nav') && !tocContainer.contains(h);
+  });
 
+  if (filtered.length === 0) {
+    tocContainer.style.display = 'none';
+return;
+  }
+
+  // 2. Render HTML TOC, juga pakai textContent untuk bikin ID dan link
   tocContainer.innerHTML = '<ul class="nav-list">' + filtered.map((h, i) => {
-    if (!h.id) h.id = h.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `section-${i}`;
-    return `<li class="nav-item nav-${h.tagName.toLowerCase()}"><a href="#${h.id}" class="nav-link">${h.innerText.trim()}</a></li>`;
+    const text = (h.textContent || '').trim();
+    if (!h.id) {
+      h.id = text.toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '') || `section-${i}`;
+    }
+    return `<li class="nav-item nav-${h.tagName.toLowerCase()}"><a href="#${h.id}" class="nav-link">${text}</a></li>`;
   }).join('') + '</ul>';
+
+  // 3. Event Listener untuk otomatis membuka <details> saat TOC diklik
+tocContainer.addEventListener('click', (e: Event) => {
+  const target = e.target as HTMLElement;
+
+  // Pastikan yang diklik beneran link TOC
+  if (target.tagName.toLowerCase() === 'a' && target.classList.contains('nav-link')) {
+    const href = target.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      // Cari tag <details> yang membungkus heading tujuan
+      let parentDetails = targetElement.closest('details');
+
+      // Loop untuk buka semua <details> (termasuk kalau ada details di dalam details)
+      while (parentDetails) {
+        if (!parentDetails.open) {
+          parentDetails.open = true;
+        }
+        parentDetails = parentDetails.parentElement?.closest('details') || null;
+      }
+    }
+  }
+});
 }
 
 function initRelatedGrid(allData: any, currentFile: string): void {
