@@ -4,6 +4,14 @@ import { join, resolve } from "node:path";
 const TARGET_DIR = ".";
 
 /**
+ * Fungsi pembantu buat nge-escape karakter khusus regex.
+ * Biar kalau ada kata yang dicari mengandung titik (.) atau tanda tanya (?), nggak error.
+ */
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
  * Memindai folder secara rekursif untuk mencari file HTML
  */
 async function dapatkanFileHtml(dir) {
@@ -49,8 +57,7 @@ async function dapatkanFileBackup(dir) {
 
 /**
  * Memproses file berdasarkan kamus dinamis.
- * Kalau ada perubahan, versi asli file otomatis di-backup ke "<path>-bak"
- * sebelum ditimpa, supaya bisa di-restore lewat panel Restore Manager.
+ * [UPGRADE]: Menggunakan Regex Case-Insensitive dan Cek File Backup!
  */
 async function prosesFile(filePath, kamusKustom) {
     try {
@@ -63,18 +70,28 @@ async function prosesFile(filePath, kamusKustom) {
         for (const item of kamusKustom) {
             if (!item.cari) continue;
 
-            if (content.includes(item.cari)) {
-                content = content.replaceAll(item.cari, item.ganti || "");
+            // Bikin regex dinamis, flag "gi" = Global & Case-Insensitive
+            const polaRegex = new RegExp(escapeRegExp(item.cari), "gi");
+
+            if (polaRegex.test(content)) {
+                content = content.replace(polaRegex, item.ganti || "");
                 rincianPerubahan.push(`"${item.cari}" ➔ "${item.ganti}"`);
                 adaPerubahan = true;
             }
         }
 
         if (adaPerubahan) {
-            // Auto-backup versi asli sebelum ditimpa, satu slot per file (ketimpa tiap run baru)
-            await Bun.write(`${filePath}-bak`, original);
+            const backupPath = `${filePath}-bak`;
+            const fileBackup = Bun.file(backupPath);
+
+            // [FIX FATAL]: Cek dulu, kalau backup original udah ada, JANGAN ditimpa!
+            // Biar versi paling "perawan" tetap utuh meski script dijalankan berkali-kali.
+            if (!(await fileBackup.exists())) {
+                await Bun.write(backupPath, original);
+            }
+
             await Bun.write(filePath, content);
-            return `[BERHASIL] ${filePath}\n   ➔ Perubahan: ${rincianPerubahan.join(", ")}\n   💾 Backup: ${filePath}-bak`;
+            return `[BERHASIL] ${filePath}\n   ➔ Perubahan: ${rincianPerubahan.join(", ")}\n   💾 Backup: ${backupPath}`;
         }
 
         return null;
@@ -417,10 +434,13 @@ Bun.serve({
                     return Response.json({ results: ["[INFO] Tidak ditemukan file .html atau .htm di folder ini."] });
                 }
 
-                const janjiProses = semuaFile.map(file => prosesFile(file, kamusKustom));
-                const hasilProses = await Promise.all(janjiProses);
-
-                const logBersih = hasilProses.filter(log => log !== null);
+                // [UPGRADE RAM]: Ganti Promise.all pakai loop biasa biar kalau filenya ribuan,
+                // RAM/OS laptop nggak pingsan kena limit "Too many open files".
+                const logBersih = [];
+                for (const file of semuaFile) {
+                    const hasil = await prosesFile(file, kamusKustom);
+                    if (hasil) logBersih.push(hasil);
+                }
 
                 if (logBersih.length === 0) {
                     logBersih.push("[INFO] Pemindaian selesai. Konten aman, tidak ditemukan kecocokan pelanggaran AdSense.");
@@ -452,9 +472,18 @@ Bun.serve({
 
                 let restored = 0;
                 const gagal = [];
+                const absoluteTarget = resolve(TARGET_DIR);
 
                 for (const bPath of files) {
-                    if (!bPath.endsWith("-bak")) continue; // safety check, tolak path yang bukan backup
+                    if (!bPath.endsWith("-bak")) continue; // safety check 1
+
+                    const absoluteBackupPath = resolve(bPath);
+
+                    // [SECURITY FIX]: Cegah serangan Path Traversal
+                    if (!absoluteBackupPath.startsWith(absoluteTarget)) {
+                        gagal.push(`${bPath} (Akses di luar folder ditolak)`);
+                        continue;
+                    }
 
                     const backupFile = Bun.file(bPath);
                     if (!(await backupFile.exists())) {
@@ -470,7 +499,7 @@ Bun.serve({
 
                 let message = `Restore berhasil untuk ${restored} file.`;
                 if (gagal.length > 0) {
-                    message += ` ${gagal.length} backup tidak ditemukan/gagal: ${gagal.join(", ")}`;
+                    message += ` ${gagal.length} backup gagal direstore: ${gagal.join(", ")}`;
                 }
 
                 return Response.json({ message });
