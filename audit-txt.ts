@@ -1,11 +1,11 @@
 import { readdir, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import * as cheerio from "cheerio"; // ➔ Integrasi Cheerio
 
 const TARGET_DIR = ".";
 
 /**
  * Fungsi pembantu buat nge-escape karakter khusus regex.
- * Biar kalau ada kata yang dicari mengandung titik (.) atau tanda tanya (?), nggak error.
  */
 function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -56,42 +56,71 @@ async function dapatkanFileBackup(dir) {
 }
 
 /**
- * Memproses file berdasarkan kamus dinamis.
- * [UPGRADE]: Menggunakan Regex Case-Insensitive dan Cek File Backup!
+ * Memproses file menggunakan CHEERIO & DOM Traversal.
+ * Super aman karena tidak akan merusak struktur tag, atribut, class, id, atau script HTML.
  */
 async function prosesFile(filePath, kamusKustom) {
     try {
         const file = Bun.file(filePath);
         const original = await file.text();
-        let content = original;
+
+        // Load HTML ke Cheerio
+        const $ = cheerio.load(original);
         let adaPerubahan = false;
-        let rincianPerubahan = [];
 
-        for (const item of kamusKustom) {
-            if (!item.cari) continue;
+        // Pakai Set biar log tidak banjir duplikat jika 1 kata ditemukan 50 kali di 1 file
+        let rincianPerubahan = new Set();
 
-            // Bikin regex dinamis, flag "gi" = Global & Case-Insensitive
-            const polaRegex = new RegExp(escapeRegExp(item.cari), "gi");
+        // Compile regex di awal biar performa looping lebih kencang
+        const aturanAktif = kamusKustom
+        .filter(item => item.cari)
+        .map(item => ({
+            pola: new RegExp(escapeRegExp(item.cari), "gi"), // Case-Insensitive
+                      ganti: item.ganti || "",
+                      asli: item.cari
+        }));
 
-            if (polaRegex.test(content)) {
-                content = content.replace(polaRegex, item.ganti || "");
-                rincianPerubahan.push(`"${item.cari}" ➔ "${item.ganti}"`);
-                adaPerubahan = true;
-            }
-        }
+        if (aturanAktif.length === 0) return null;
+
+        // Sisir SEMUA elemen KECUALI tag yang sensitif secara fungsional
+        $('*').not('script, style, noscript, head, meta, link').each(function() {
+            // Loop ke setiap child node dari elemen spesifik ini
+            $(this).contents().each(function() {
+                // nodeType === 3 artinya kita cuma nargetin "Text Node" (teks murni yang dibaca user)
+                if (this.nodeType === 3) {
+                    let textTampung = this.data;
+                    let textBerubah = false;
+
+                    for (const aturan of aturanAktif) {
+                        if (aturan.pola.test(textTampung)) {
+                            textTampung = textTampung.replace(aturan.pola, aturan.ganti);
+                            rincianPerubahan.add(`"${aturan.asli}" ➔ "${aturan.ganti}"`);
+                            textBerubah = true;
+                            adaPerubahan = true;
+                        }
+                    }
+
+                    // Kalau teksnya emang kena operasi replace, update node-nya
+                    if (textBerubah) {
+                        this.data = textTampung;
+                    }
+                }
+            });
+        });
 
         if (adaPerubahan) {
+            const content = $.html(); // Generate balik DOM ke string HTML
             const backupPath = `${filePath}-bak`;
             const fileBackup = Bun.file(backupPath);
 
-            // [FIX FATAL]: Cek dulu, kalau backup original udah ada, JANGAN ditimpa!
-            // Biar versi paling "perawan" tetap utuh meski script dijalankan berkali-kali.
+            // Cek dulu, jangan overwrite versi perawan (backup asli)
             if (!(await fileBackup.exists())) {
                 await Bun.write(backupPath, original);
             }
 
             await Bun.write(filePath, content);
-            return `[BERHASIL] ${filePath}\n   ➔ Perubahan: ${rincianPerubahan.join(", ")}\n   💾 Backup: ${backupPath}`;
+            // Array.from biar Set bisa di-join
+            return `[BERHASIL] ${filePath}\n   ➔ Perubahan: ${Array.from(rincianPerubahan).join(", ")}\n   💾 Backup: ${backupPath}`;
         }
 
         return null;
@@ -162,7 +191,7 @@ input[type="number"] { width: 60px; padding: 8px; background: #121214; border: 1
 </head>
 <body>
 <div class="container">
-<h2>AdSense Safety Audit - Bun Dashboard</h2>
+<h2>AdSense Safety Audit - Bun Dashboard (Powered by Cheerio)</h2>
 <p>Target Direktori File HTML: <strong>${resolve(TARGET_DIR)}</strong></p>
 
 <h3>Atur Pasangan Kata (Pekerjaan Saat Ini)</h3>
@@ -337,7 +366,7 @@ async function jalankanProses() {
     }
 
     logsDiv.innerHTML = "Memindai file HTML di folder aktif dan mencocokkan " + rules.length + " aturan AdSense...\\n";
-    statusDiv.innerHTML = "Status: Sedang memproses audit konten...";
+    statusDiv.innerHTML = "Status: Sedang memproses audit konten (Cheerio Engine)...";
 
     try {
         const response = await fetch('/run', {
@@ -352,7 +381,6 @@ async function jalankanProses() {
         const jumlahBerhasil = data.results.filter(line => line.indexOf('[BERHASIL]') === 0).length;
         statusDiv.innerHTML = \`Status: Selesai! \${jumlahBerhasil} file berhasil diproses.\`;
 
-        // Backup baru mungkin baru saja dibuat, refresh daftarnya
         muatDaftarBackup();
 
     } catch (err) {
@@ -434,8 +462,6 @@ Bun.serve({
                     return Response.json({ results: ["[INFO] Tidak ditemukan file .html atau .htm di folder ini."] });
                 }
 
-                // [UPGRADE RAM]: Ganti Promise.all pakai loop biasa biar kalau filenya ribuan,
-                // RAM/OS laptop nggak pingsan kena limit "Too many open files".
                 const logBersih = [];
                 for (const file of semuaFile) {
                     const hasil = await prosesFile(file, kamusKustom);
@@ -475,11 +501,10 @@ Bun.serve({
                 const absoluteTarget = resolve(TARGET_DIR);
 
                 for (const bPath of files) {
-                    if (!bPath.endsWith("-bak")) continue; // safety check 1
+                    if (!bPath.endsWith("-bak")) continue;
 
                     const absoluteBackupPath = resolve(bPath);
 
-                    // [SECURITY FIX]: Cegah serangan Path Traversal
                     if (!absoluteBackupPath.startsWith(absoluteTarget)) {
                         gagal.push(`${bPath} (Akses di luar folder ditolak)`);
                         continue;
@@ -512,4 +537,4 @@ Bun.serve({
     },
 });
 
-console.log("🚀 Engine Bun Aktif! Jalankan browser di: http://localhost:5000");
+console.log("🚀 Engine Bun Aktif dengan DOM Traversal! Jalankan browser di: http://localhost:5000");
