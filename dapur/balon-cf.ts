@@ -62,7 +62,7 @@
 
   const idTranslations: ChatTranslations = {
     chatPlaceholder: "Tanya sesuatu ke AI Layar Kosong...",
-    chatTitle: "Asisten AI",
+    chatTitle: " الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ",
     errorPrefix: "Waduh, Error:",
     sendButtonLabel: "Kirim"
   };
