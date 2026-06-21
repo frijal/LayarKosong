@@ -17,7 +17,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 - CLS: Wajib berikan styling `aspect-ratio` atau dimensi eksplisit (width/height) pada CSS/HTML gambar untuk mencegah layout shift.
 - CSS Kritis: Letakkan semua CSS (reset, typography, styling) di dalam `<style>` pada `<head>`. Hindari properti CSS yang memicu layout recalculation berat (seperti box-shadow berlebih).
 - Elemen Penutup Wajib: Tepat setelah tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
-  <div id="related-articles-grid"></div><div id="response"></div>
+  `<div id="related-articles-grid"></div><div id="response"></div>`
 
 4. DESAIN, CSS & AKSESIBILITAS:
 * Dark/Light Mode: Gunakan CSS murni dengan variabel (`:root`) dan media query `@media (prefers-color-scheme: dark)` untuk perpindahan tema otomatis.
