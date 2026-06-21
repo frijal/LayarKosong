@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tool Generator All-in-One: Link, Thumbnail, Image, List</title>
+    <meta name="description" content="Kumpulan alat web lengkap: pembuat link HTML, downloader thumbnail YouTube, generator kode gambar, dan pembuat list. Gratis dan mudah digunakan.">
+    <meta property="og:title" content="Web Tool Generator All-in-One: Link, Thumbnail, Image, List">
+    <meta property="og:description" content="4 alat web dalam satu halaman: buat link, ambil thumbnail YouTube, generate kode gambar, dan buat list HTML. Praktis untuk konten kreator.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/web-tool-generator-all-in-one.html">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBIDp3takAItRUR.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Web Tool Generator All-in-One: Link, Thumbnail, Image, List">
+    <meta name="twitter:description" content="4 alat praktis untuk konten kreator: generator link HTML, downloader thumbnail YouTube, pembuat kode gambar, dan generator list.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBIDp3takAItRUR.webp">
+    <meta name="news_keywords" content="web tool, generator, link generator, youtube thumbnail, image generator, list generator, html tools">
+    <meta property="article:tag" content="tools">
+    <meta property="article:tag" content="generator">
+    <meta property="article:tag" content="youtube">
+    <meta property="article:tag" content="html">
+    <link rel="canonical" href="https://dalam.web.id/artikel/web-tool-generator-all-in-one.html">
+    <meta name="promphint" content="Apa itu Web Tool Generator? | Web Tool Generator adalah kumpulan alat praktis untuk membuat kode HTML link, mengambil thumbnail YouTube, generate gambar, dan membuat list.">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-body: #f8f6f2;
+            --bg-card: #ffffff;
+            --bg-code: #f0ebe4;
+            --bg-summary: #f0ebe4;
+            --bg-summary-hover: #e5dfd7;
+            --bg-input: #ffffff;
+            --bg-result: #f8f6f2;
+            --bg-tab-active: #2d6b4b;
+            --bg-tab-inactive: #e8e3dc;
+            --bg-tab-hover: #d5cec4;
+            --bg-output: #f5f2ed;
+            --bg-preview: #f8f6f2;
+            --text-primary: #1e1a16;
+            --text-secondary: #3d352e;
+            --text-muted: #6b5f55;
+            --text-inverse: #f8f6f2;
+            --border-color: #d7cec5;
+            --border-light: #e6dfd7;
+            --shadow-soft: rgba(30, 26, 22, 0.06);
+            --shadow-card: 0 4px 20px rgba(30, 26, 22, 0.06);
+            --accent: #2d6b4b;
+            --accent-light: #5a8f6a;
+            --accent-dark: #1f4f35;
+            --accent-bg: #e8f3ed;
+            --btn-text: #ffffff;
+            --link-color: #2d6b4b;
+            --link-hover: #1f4f35;
+            --footer-bg: #f0ebe4;
+            --footer-text: #4a3f36;
+            --input-border: #d5cdc4;
+            --input-focus: #2d6b4b;
+            --tab-text-active: #ffffff;
+            --tab-text-inactive: #4a3f36;
+            --output-border: #d7cec5;
+            --preview-border: #e6dfd7;
+            --copy-hint: #2d6b4b;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #16120f;
+                --bg-card: #1f1a15;
+                --bg-code: #2a241f;
+                --bg-summary: #2a241f;
+                --bg-summary-hover: #36302a;
+                --bg-input: #2a241f;
+                --bg-result: #1f1a15;
+                --bg-tab-active: #5a8f6a;
+                --bg-tab-inactive: #2a241f;
+                --bg-tab-hover: #36302a;
+                --bg-output: #2a241f;
+                --bg-preview: #1f1a15;
+                --text-primary: #eee8e0;
+                --text-secondary: #d5cdc4;
+                --text-muted: #a8978a;
+                --text-inverse: #16120f;
+                --border-color: #3d352e;
+                --border-light: #2f2822;
+                --shadow-soft: rgba(0, 0, 0, 0.3);
+                --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+                --accent: #5a8f6a;
+                --accent-light: #7ab08a;
+                --accent-dark: #2d6b4b;
+                --accent-bg: #1f2f25;
+                --btn-text: #16120f;
+                --link-color: #7ab08a;
+                --link-hover: #9ac8aa;
+                --footer-bg: #1f1a15;
+                --footer-text: #a8978a;
+                --input-border: #4a3f36;
+                --input-focus: #7ab08a;
+                --tab-text-active: #16120f;
+                --tab-text-inactive: #a8978a;
+                --output-border: #3d352e;
+                --preview-border: #2f2822;
+                --copy-hint: #7ab08a;
+            }
+        }
+
+        html {
+            font-size: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 1.5rem 1rem;
+        }
+
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        h1 .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h1 .logo-wrapper img {
+            height: 2.8rem;
+            width: auto;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-secondary {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: var(--link-hover);
+        }
+
+        /* ===== IMAGE ===== */
+        .article-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1200 / 630;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0 2rem;
+            background: var(--bg-code);
+            display: block;
+        }
+
+        /* ===== DETAILS / ACCORDION ===== */
+        details {
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-light);
+            background: var(--bg-card);
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        details[open] {
+            border-color: var(--accent);
+        }
+
+        summary {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 0.9rem 1.5rem;
+            cursor: pointer;
+            background: var(--bg-summary);
+            color: var(--text-primary);
+            transition: background 0.2s, color 0.2s;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            user-select: none;
+            border-radius: 0.75rem;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "▸";
+            font-size: 1.25rem;
+            transition: transform 0.25s ease;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        summary:hover {
+            background: var(--bg-summary-hover);
+        }
+
+        .details-content {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .details-content h3 {
+            margin-top: 1.25rem;
+        }
+
+        .details-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== LISTS ===== */
+        ul,
+        ol {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        ul li,
+        ol li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* ===== TOOL CARD ===== */
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: 1.25rem;
+            border: 1px solid var(--border-light);
+            padding: 1.75rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-card);
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 0.25rem;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: inherit;
+            border: none;
+            border-radius: 0.5rem 0.5rem 0 0;
+            background: var(--bg-tab-inactive);
+            color: var(--tab-text-inactive);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg-tab-hover);
+        }
+
+        .tab-btn.active {
+            background: var(--bg-tab-active);
+            color: var(--tab-text-active);
+        }
+
+        .tool-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tool-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== FORM ELEMENTS ===== */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 0.75rem;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.55rem 0.7rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            border: 1px solid var(--input-border);
+            border-radius: 0.5rem;
+            background: var(--bg-input);
+            color: var(--text-primary);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--input-focus);
+            box-shadow: 0 0 0 3px rgba(45, 107, 75, 0.12);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 4rem;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .row .form-group {
+            flex: 1 1 180px;
+            min-width: 130px;
+        }
+
+        /* ===== OUTPUT ===== */
+        .output-container {
+            margin-top: 1rem;
+        }
+
+        .output-container label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .output-box {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            font-size: 0.9rem;
+            font-family: "SF Mono", "Menlo", "Monaco", "Consolas", monospace;
+            border: 1px solid var(--output-border);
+            border-radius: 0.5rem;
+            background: var(--bg-output);
+            color: var(--text-primary);
+            cursor: pointer;
+            resize: vertical;
+            min-height: 4rem;
+            transition: border-color 0.2s;
+            line-height: 1.6;
+        }
+
+        .output-box:hover {
+            border-color: var(--input-focus);
+        }
+
+        .copy-hint {
+            font-size: 0.8rem;
+            color: var(--copy-hint);
+            margin-top: 0.2rem;
+            min-height: 1.4rem;
+            font-weight: 500;
+        }
+
+        /* ===== PREVIEW ===== */
+        .preview {
+            padding: 1rem;
+            border: 2px dashed var(--preview-border);
+            border-radius: 0.75rem;
+            background: var(--bg-preview);
+            margin: 0.75rem 0;
+            min-height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            overflow-x: auto;
+        }
+
+        .preview img.preview-img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 0.5rem;
+            object-fit: contain;
+        }
+
+        .preview ul,
+        .preview ol {
+            text-align: left;
+            margin: 0;
+        }
+
+        .preview figure {
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .preview figure img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 0.5rem;
+            object-fit: contain;
+        }
+
+        .preview figcaption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .preview a {
+            display: inline-block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h1 .logo-wrapper img {
+                height: 2.2rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            p,
+            .subtitle {
+                font-size: 1rem;
+            }
+            .tool-card {
+                padding: 1rem;
+            }
+            .tabs {
+                gap: 0.25rem;
+            }
+            .tab-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            .row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .row .form-group {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+            .output-box {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.6rem;
+            }
+            .preview {
+                padding: 0.75rem;
+                min-height: 3rem;
+                font-size: 0.85rem;
+            }
+            .preview img.preview-img {
+                max-height: 200px;
+            }
+            .preview figure img {
+                max-height: 200px;
+            }
+            summary {
+                font-size: 1.2rem;
+                padding: 0.7rem 1rem;
+            }
+            .details-content {
+                padding: 0 1rem 1rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            margin-top: 3rem;
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-card);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem 1.5rem;
+        }
+
+        .site-footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .site-footer a:hover {
+            color: var(--link-color);
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            color: var(--border-color);
+            user-select: none;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem 1rem;
+        }
+
+        .mt-0 {
+            margin-top: 0;
+        }
+        .mb-0 {
+            margin-bottom: 0;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .w-full {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <main>
+            <article>
+
+                <!-- ===== HEADER ===== -->
+                <header>
+                    <h1>
+                        <span>Web Tool Generator - All in One</span>
+                        <span class="logo-wrapper">
+                            <img src="https://dalam.web.id/favicon.svg" alt="Logo Layar Kosong" loading="lazy">
+                        </span>
+                    </h1>
+                    <p class="subtitle">Kumpulan alat praktis untuk konten kreator: Link, Thumbnail YouTube, Image, dan List Generator ✨</p>
+                </header>
+  <h2>Mengenal Web Tool Generator: Solusi Praktis untuk Konten Kreator</h2>
+                <p>
+                    <b>Pernahkah Anda</b> merasa repot harus mengetik ulang kode HTML untuk hal-hal sederhana seperti membuat tautan, menampilkan gambar, atau membuat list? Atau mungkin Anda sering membutuhkan thumbnail YouTube untuk referensi desain tetapi malas melakukan screenshot? <b>Web Tool Generator</b> hadir sebagai jawaban atas semua kebutuhan tersebut — sebuah <u>alat serbaguna</u> yang menggabungkan empat fungsi penting dalam satu halaman.
+                </p>
+                           <div class="tool-card">
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="openTab('link-gen')">🔗 Link Gen</button>
+                        <button class="tab-btn" onclick="openTab('yt-gen')">▶️ YT Thumb</button>
+                        <button class="tab-btn" onclick="openTab('img-gen')">🖼️ Image Gen</button>
+                        <button class="tab-btn" onclick="openTab('li-gen')">📋 List Gen</button>
+                    </div>
+
+                    <!-- ============================================================ -->
+                    <!-- 1. LINK GENERATOR -->
+                    <!-- ============================================================ -->
+                    <div id="link-gen" class="tool-section active">
+                        <h3>🔗 Link Generator</h3>
+                        <p style="font-size:0.95rem;color:var(--text-muted);margin-bottom:1rem;">Buat kode HTML tautan (anchor) dengan cepat. Atur URL, teks, target, dan rel attribute.</p>
+
+                        <div class="form-group">
+                            <label for="l-url">URL Tujuan</label>
+                            <input type="text" id="l-url" placeholder="https://contoh.com" oninput="genLink()">
+                        </div>
+                        <div class="form-group">
+                            <label for="l-text">Teks Tautan</label>
+                            <input type="text" id="l-text" placeholder="Klik di sini" oninput="genLink()">
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="l-target">Target</label>
+                                <select id="l-target" onchange="genLink()">
+                                    <option value="_blank">_blank (Tab Baru)</option>
+                                    <option value="_self">_self (Tab Sama)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="l-rel">Rel</label>
+                                <select id="l-rel" onchange="genLink()">
+                                    <option value="noopener noreferrer">noopener noreferrer</option>
+                                    <option value="nofollow">nofollow</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="output-container">
+                            <label for="l-output">Hasil Kode HTML (Klik untuk Copy):</label>
+                            <textarea id="l-output" class="output-box" rows="3" readonly onclick="copyText(this)"></textarea>
+                            <div class="copy-hint" id="l-hint"></div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================================ -->
+                    <!-- 2. YOUTUBE THUMBNAIL -->
+                    <!-- ============================================================ -->
+                    <div id="yt-gen" class="tool-section">
+                        <h3>▶️ YouTube Thumbnail Downloader</h3>
+                        <p style="font-size:0.95rem;color:var(--text-muted);margin-bottom:1rem;">Tempel URL video atau Shorts YouTube, dapatkan thumbnail dalam berbagai resolusi.</p>
+
+                        <div class="form-group">
+                            <label for="yt-url">URL Video / Shorts YouTube</label>
+                            <input type="text" id="yt-url" placeholder="https://www.youtube.com/watch?v=... atau https://youtu.be/..." oninput="genYT()">
+                        </div>
+
+                        <div class="preview" id="yt-preview">Preview gambar akan muncul di sini</div>
+
+                        <div class="output-container">
+                            <label for="yt-output">Hasil Kode HTML (Klik untuk Copy):</label>
+                            <textarea id="yt-output" class="output-box" rows="3" readonly onclick="copyText(this)"></textarea>
+                            <div class="copy-hint" id="yt-hint"></div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================================ -->
+                    <!-- 3. IMAGE CODE GENERATOR -->
+                    <!-- ============================================================ -->
+                    <div id="img-gen" class="tool-section">
+                        <h3>🖼️ Image Code Generator</h3>
+                        <p style="font-size:0.95rem;color:var(--text-muted);margin-bottom:1rem;">Buat kode HTML gambar dengan berbagai opsi: alt, caption, align, ukuran, dan link.</p>
+
+                        <div class="form-group">
+                            <label for="i-url">URL Gambar</label>
+                            <input type="text" id="i-url" placeholder="https://site.com/gambar.jpg" oninput="genImg()">
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="i-alt">Alt Text</label>
+                                <input type="text" id="i-alt" placeholder="Deskripsi gambar" oninput="genImg()">
+                            </div>
+                            <div class="form-group">
+                                <label for="i-caption">Caption</label>
+                                <input type="text" id="i-caption" placeholder="Keterangan gambar" oninput="genImg()">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="i-align">Perataan (Align)</label>
+                                <select id="i-align" onchange="genImg()">
+                                    <option value="none">Default</option>
+                                    <option value="left">Kiri</option>
+                                    <option value="center">Tengah</option>
+                                    <option value="right">Kanan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="i-size">Ukuran</label>
+                                <select id="i-size" onchange="toggleCustomSize()">
+                                    <option value="auto">Auto</option>
+                                    <option value="100%">Full Width Responsive</option>
+                                    <option value="300x200">Medium</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="custom-size-inputs" style="display:none;" class="row">
+                            <div class="form-group">
+                                <label for="i-w">Lebar (px)</label>
+                                <input type="number" id="i-w" placeholder="400" oninput="genImg()">
+                            </div>
+                            <div class="form-group">
+                                <label for="i-h">Tinggi (px)</label>
+                                <input type="number" id="i-h" placeholder="300" oninput="genImg()">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="i-linkable">Jadikan Tautan?</label>
+                                <select id="i-linkable" onchange="genImg()">
+                                    <option value="no">Tidak</option>
+                                    <option value="yes">Ya</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="i-tab">Buka Tab Baru?</label>
+                                <select id="i-tab" onchange="genImg()">
+                                    <option value="_blank">Ya</option>
+                                    <option value="_self">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="preview" id="i-preview">Preview gambar akan muncul di sini</div>
+
+                        <div class="output-container">
+                            <label for="i-output">Hasil Kode HTML (Klik untuk Copy):</label>
+                            <textarea id="i-output" class="output-box" rows="5" readonly onclick="copyText(this)"></textarea>
+                            <div class="copy-hint" id="i-hint"></div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================================ -->
+                    <!-- 4. LIST GENERATOR -->
+                    <!-- ============================================================ -->
+                    <div id="li-gen" class="tool-section">
+                        <h3>📋 List Generator (UL / OL)</h3>
+                        <p style="font-size:0.95rem;color:var(--text-muted);margin-bottom:1rem;">Buat list HTML terurut (ordered) atau tidak terurut (unordered) dengan berbagai gaya.</p>
+
+                        <div class="form-group">
+                            <label for="li-input">Masukkan Daftar (Satu item per baris)</label>
+                            <textarea id="li-input" rows="5" placeholder="Contoh:&#10;Apel&#10;Jeruk&#10;Mangga" oninput="genList()"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="li-type">Tipe List</label>
+                            <select id="li-type" onchange="genList()">
+                                <optgroup label="Unordered List (ul)">
+                                    <option value="ul-disc">Default (Disc)</option>
+                                    <option value="ul-circle">Circle</option>
+                                    <option value="ul-square">Square</option>
+                                    <option value="ul-none">None (Tanpa Simbol)</option>
+                                </optgroup>
+                                <optgroup label="Ordered List (ol)">
+                                    <option value="ol-1">Angka (1, 2, 3)</option>
+                                    <option value="ol-A">Huruf Besar (A, B, C)</option>
+                                    <option value="ol-a">Huruf Kecil (a, b, c)</option>
+                                    <option value="ol-I">Romawi Besar (I, II, III)</option>
+                                    <option value="ol-i">Romawi Kecil (i, ii, iii)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="preview" id="li-preview">Preview list akan muncul di sini</div>
+
+                        <div class="output-container">
+                            <label for="li-output">Hasil Kode HTML (Klik untuk Copy):</label>
+                            <textarea id="li-output" class="output-box" rows="5" readonly onclick="copyText(this)"></textarea>
+                            <div class="copy-hint" id="li-hint"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ===== END TOOL CARD ===== -->
+
+                <p>
+                    <b>Siapa</b> yang membutuhkan alat ini? Jawabannya: <i>semua orang</i> yang bekerja dengan konten digital — blogger, desainer grafis, pengelola media sosial, mahasiswa, hingga pengajar. <b>Di mana</b> pun Anda berada, selama terhubung dengan internet, alat ini siap membantu. <b>Kapan</b> pun Anda butuh membuat link cepat, mengambil thumbnail, atau menghasilkan kode gambar dan list, cukup buka halaman ini.
+                </p>
+                <p>
+                    <b>Mengapa</b> alat ini istimewa? Karena semuanya <b>gratis</b>, <b>tanpa iklan mengganggu</b>, dan <b>berjalan sepenuhnya di browser</b> Anda — tidak ada data yang dikirim ke server, sehingga privasi tetap terjaga. <b>Bagaimana</b> cara kerjanya? Cukup pilih tab yang diinginkan, isi data yang diperlukan, dan kode HTML siap pakai akan muncul secara otomatis. Klik untuk menyalin, tempel di mana pun Anda butuhkan.
+                </p>
+
+                <!-- ===== DETAILS: PENJELASAN FITUR ===== -->
+                <details>
+                    <summary>Fitur Lengkap Web Tool Generator — Apa Saja yang Bisa Dilakukan? 📚</summary>
+                    <div class="details-content">
+                        <h3>1. Link Generator — Buat Tautan HTML dalam Sekejap</h3>
+                        <p>
+                            Fitur ini memungkinkan Anda membuat kode HTML anchor (&lt;a&gt;) dengan cepat. Cukup masukkan URL tujuan, teks yang ingin ditampilkan, pilih target tab (_blank atau _self), dan tentukan rel attribute (noopener noreferrer, nofollow, atau none). Kode siap pakai akan muncul di kotak output — klik untuk menyalin.
+                        </p>
+
+                        <h3>2. YouTube Thumbnail Downloader — Ambil Cover Video</h3>
+                        <p>
+                            Tempel URL video YouTube — baik format <code>watch?v=</code>, <code>youtu.be/</code>, maupun <code>shorts/</code> — dan alat ini akan menampilkan thumbnail dalam resolusi tertinggi (maxresdefault). Anda juga bisa mendapatkan kode HTML gambar untuk langsung disematkan di artikel atau website Anda.
+                        </p>
+
+                        <h3>3. Image Code Generator — Kode Gambar dengan Segala Opsi</h3>
+                        <p>
+                            Fitur paling lengkap di antara yang lain. Anda bisa mengatur URL gambar, alt text, caption, perataan (kiri, tengah, kanan), ukuran (auto, full width, medium, atau custom), serta menjadikannya tautan dengan opsi buka tab baru. Preview langsung ditampilkan agar Anda bisa melihat hasil sebelum menyalin kode.
+                        </p>
+
+                        <h3>4. List Generator — Buat UL/OL dengan Berbagai Gaya</h3>
+                        <p>
+                            Cukup tulis daftar item (satu per baris), pilih tipe list — mulai dari unordered list dengan disc, circle, square, hingga ordered list dengan angka, huruf, atau romawi. Kode HTML siap pakai langsung muncul di kotak output.
+                        </p>
+
+                        <p style="font-style:italic;color:var(--text-muted);margin-top:0.5rem;">
+                            Semua fitur dirancang untuk <b>kemudahan</b> dan <b>kecepatan</b> — sehingga Anda bisa fokus pada konten, bukan pada kode.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- ===== PENGGUNAAN PRAKTIS ===== -->
+                <h2>Panduan Cepat Menggunakan Web Tool Generator</h2>
+                <p>
+                    Alat ini dirancang <b>sangat intuitif</b>. Berikut langkah-langkah singkat untuk memulai:
+                </p>
+                <ol>
+                    <li>Pilih tab yang sesuai dengan kebutuhan Anda: <b>Link Gen</b>, <b>YT Thumb</b>, <b>Image Gen</b>, atau <b>List Gen</b>.</li>
+                    <li>Isi formulir yang tersedia — setiap tab memiliki opsi yang berbeda sesuai fungsinya.</li>
+                    <li>Hasil kode HTML akan <b>otomatis</b> muncul di kotak output di bagian bawah.</li>
+                    <li>Klik pada kotak output untuk <b>menyalin</b> kode ke clipboard — pemberitahuan akan muncul.</li>
+                    <li>Tempel kode di editor HTML, artikel, atau platform yang Anda gunakan.</li>
+                </ol>
+                <p>
+                    <b>Tips:</b> Gunakan fitur preview untuk melihat hasil sebelum menyalin kode, terutama untuk gambar dan list. Ini membantu memastikan tampilan sesuai keinginan Anda.
+                </p>
+
+                <!-- ===== PENUTUP ===== -->
+                <h2>Web Tool Generator: Investasi Kecil untuk Produktivitas Maksimal</h2>
+                <p>
+                    Dalam dunia konten digital, <b>waktu adalah aset</b> yang paling berharga. Dengan Web Tool Generator, Anda menghemat waktu yang biasanya terbuang untuk mengetik kode HTML berulang-ulang. Alat ini adalah <u>sekretaris digital</u> yang siap membantu kapan pun Anda butuh — tanpa instalasi, tanpa biaya, tanpa repot.
+                </p>
+                <p>
+                    Semoga alat ini bermanfaat untuk mendukung kreativitas dan produktivitas Anda. <b>Selamat membuat konten!</b>
+                </p>
+
+                <!-- ===== WAJIB: related & response ===== -->
+                <div id="related-articles-grid"></div>
+                <div id="response"></div>
+
+            </article>
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer">
+            <span>✍️ <b>Tim Dalam.Web.Id</b></span>
+            <span class="footer-divider">|</span>
+            <span>📅 Diterbitkan: <time datetime="2026-06-21">21 Juni 2026</time></span>
+            <span class="footer-divider">|</span>
+
+        </footer>
+
+    </div>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        // ===== TAB SWITCHING =====
+        function openTab(tabId) {
+            document.querySelectorAll('.tool-section').forEach(function(s) {
+                s.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            // Find the clicked button
+            var buttons = document.querySelectorAll('.tab-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                if (buttons[i].getAttribute('onclick') && buttons[i].getAttribute('onclick').indexOf(tabId) !== -1) {
+                    buttons[i].classList.add('active');
+                    break;
+                }
+            }
+        }
+
+        // ===== COPY TO CLIPBOARD =====
+        function copyText(el) {
+            if (!el.value) return;
+            el.select();
+            try {
+                navigator.clipboard.writeText(el.value).then(function() {
+                    var hintId = el.id.split('-')[0] + '-hint';
+                    var hint = document.getElementById(hintId);
+                    if (hint) {
+                        hint.innerText = "✓ Tersalin ke clipboard!";
+                        setTimeout(function() { hint.innerText = ""; }, 2000);
+                    }
+                }).catch(function() {
+                    // Fallback
+                    document.execCommand('copy');
+                    var hintId = el.id.split('-')[0] + '-hint';
+                    var hint = document.getElementById(hintId);
+                    if (hint) {
+                        hint.innerText = "✓ Tersalin ke clipboard!";
+                        setTimeout(function() { hint.innerText = ""; }, 2000);
+                    }
+                });
+            } catch (e) {
+                // Fallback for older browsers
+                document.execCommand('copy');
+                var hintId = el.id.split('-')[0] + '-hint';
+                var hint = document.getElementById(hintId);
+                if (hint) {
+                    hint.innerText = "✓ Tersalin ke clipboard!";
+                    setTimeout(function() { hint.innerText = ""; }, 2000);
+                }
+            }
+        }
+
+        // ================================================================
+        // 1. LINK GENERATOR
+        // ================================================================
+        function genLink() {
+            var url = document.getElementById('l-url').value || '#';
+            var text = document.getElementById('l-text').value || 'Link';
+            var target = document.getElementById('l-target').value;
+            var rel = document.getElementById('l-rel').value;
+            var relAttr = rel !== 'none' ? ' rel="' + rel + '"' : '';
+            document.getElementById('l-output').value = '<a href="' + url + '" target="' + target + '"' + relAttr + '>' + text +
+            '</a>';
+        }
+
+        // ================================================================
+        // 2. YOUTUBE THUMBNAIL
+        // ================================================================
+        function genYT() {
+            var url = document.getElementById('yt-url').value;
+            var output = document.getElementById('yt-output');
+            var preview = document.getElementById('yt-preview');
+            var videoId = "";
+
+            if (!url.trim()) {
+                preview.innerHTML = "Preview gambar akan muncul di sini";
+                output.value = "";
+                return;
+            }
+
+            // Regex yang lebih robust untuk berbagai format URL YouTube
+            var patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^#&?]*)/,
+                /youtube\.com\/embed\/([^#&?]*)/,
+                /youtube\.com\/v\/([^#&?]*)/,
+                /youtube\.com\/shorts\/([^#&?]*)/
+            ];
+
+            for (var i = 0; i < patterns.length; i++) {
+                var match = url.match(patterns[i]);
+                if (match && match[1] && match[1].length === 11) {
+                    videoId = match[1];
+                    break;
+                }
+            }
+
+            // Fallback: coba dengan regex umum
+            if (!videoId) {
+                var regex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                var match2 = url.match(regex);
+                if (match2 && match2[6] && match2[6].length === 11) {
+                    videoId = match2[6];
+                }
+            }
+
+            if (videoId) {
+                var thumbUrl = 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
+                preview.innerHTML = '<img src="' + thumbUrl + '" class="preview-img" alt="YouTube Thumbnail">';
+                output.value = '<img src="' + thumbUrl + '" alt="YouTube Thumbnail">';
+            } else {
+                preview.innerHTML = "❌ URL tidak valid. Pastikan link YouTube-nya benar!";
+                output.value = "";
+            }
+        }
+
+        // ================================================================
+        // 3. IMAGE CODE GENERATOR
+        // ================================================================
+        function toggleCustomSize() {
+            var customInputs = document.getElementById('custom-size-inputs');
+            customInputs.style.display = (document.getElementById('i-size').value === 'custom') ? 'flex' : 'none';
+            genImg();
+        }
+
+        function genImg() {
+            var url = document.getElementById('i-url').value || 'https://dalam.web.id/img/pbs.twimg.com/media/HBIDp3takAItRUR.webp';
+            var alt = document.getElementById('i-alt').value || 'Image';
+            var caption = document.getElementById('i-caption').value;
+            var align = document.getElementById('i-align').value;
+            var sizeMode = document.getElementById('i-size').value;
+            var linkable = document.getElementById('i-linkable').value;
+            var tab = document.getElementById('i-tab').value;
+
+            var style = "";
+            var attrs = "";
+
+            // Alignment
+            if (align === 'center') {
+                style = 'display: block; margin-left: auto; margin-right: auto;';
+            } else if (align === 'left') {
+                style = 'float: left; margin-right: 1rem; margin-bottom: 0.75rem;';
+            } else if (align === 'right') {
+                style = 'float: right; margin-left: 1rem; margin-bottom: 0.75rem;';
+            }
+
+            // Size
+            if (sizeMode === '100%') {
+                attrs = ' width="100%"';
+            } else if (sizeMode === '300x200') {
+                attrs = ' width="300" height="200"';
+            } else if (sizeMode === 'custom') {
+                var w = document.getElementById('i-w').value;
+                var h = document.getElementById('i-h').value;
+                if (w) attrs += ' width="' + w + '"';
+                if (h) attrs += ' height="' + h + '"';
+            }
+
+            var imgTag = '<img src="' + url + '" alt="' + alt + '"' + attrs + (style ? ' style="' + style + '"' : '') + '>';
+
+            // Wrap with link if needed
+            if (linkable === 'yes') {
+                imgTag = '<a href="' + url + '" target="' + tab + '">' + imgTag + '</a>';
+            }
+
+            // Wrap with figure and figcaption if caption exists
+            var result = imgTag;
+            if (caption) {
+                var figStyle = '';
+                if (align === 'center') figStyle = 'text-align: center;';
+                else if (align === 'right') figStyle = 'text-align: right;';
+                else figStyle = 'text-align: left;';
+                result = '<figure style="' + figStyle + ' margin: 0.5rem 0;">\n  ' + imgTag + '\n  <figcaption style="font-size:0.85rem;color:var(--text-muted);margin-top:0.25rem;">' +
+                    caption + '</figcaption>\n</figure>';
+            }
+
+            document.getElementById('i-output').value = result;
+            document.getElementById('i-preview').innerHTML = result;
+        }
+
+        // ================================================================
+        // 4. LIST GENERATOR
+        // ================================================================
+        function genList() {
+            var input = document.getElementById('li-input').value;
+            var type = document.getElementById('li-type').value;
+            var output = document.getElementById('li-output');
+            var preview = document.getElementById('li-preview');
+
+            if (!input.trim()) {
+                preview.innerHTML = "Preview list akan muncul di sini";
+                output.value = "";
+                return;
+            }
+
+            var items = input.split('\n').filter(function(item) {
+                return item.trim() !== "";
+            });
+
+            if (items.length === 0) {
+                preview.innerHTML = "Preview list akan muncul di sini";
+                output.value = "";
+                return;
+            }
+
+            var listItemsHtml = items.map(function(item) {
+                return '  <li>' + item.trim() + '</li>';
+            }).join('\n');
+
+            var finalHtml = "";
+            var parts = type.split('-');
+            var tag = parts[0];
+            var val = parts[1] || 'disc';
+
+            if (tag === 'ul') {
+                var styleAttr = (val !== 'disc') ? ' style="list-style-type: ' + val + ';"' : '';
+                finalHtml = '<ul' + styleAttr + '>\n' + listItemsHtml + '\n</ul>';
+            } else {
+                finalHtml = '<ol type="' + val + '">\n' + listItemsHtml + '\n</ol>';
+            }
+
+            output.value = finalHtml;
+            preview.innerHTML = finalHtml;
+        }
+
+        // ================================================================
+        // INITIALIZATION
+        // ================================================================
+        (function() {
+            // Set default values and generate initial outputs
+            document.getElementById('l-url').value = 'https://dalam.web.id';
+            document.getElementById('l-text').value = 'Kunjungi Layar Kosong';
+            genLink();
+
+            document.getElementById('i-url').value = 'https://dalam.web.id/img/pbs.twimg.com/media/HBIDp3takAItRUR.webp';
+            document.getElementById('i-alt').value = 'Contoh Gambar';
+            genImg();
+
+            document.getElementById('li-input').value = 'Apel\nJeruk\nMangga';
+            genList();
+
+            // Set default YT example with a real video ID
+            document.getElementById('yt-url').value = 'https://youtu.be/NBKg7_1RkB4?si=9Lkrb1Dp9eQPIITs';
+            genYT();
+
+            // Auto-trigger on any change for each tool
+            // Link: already has oninput
+            // YT: already has oninput
+            // Image: already has oninput
+            // List: already has oninput
+        })();
+    </script>
+
+</body>
+</html>
