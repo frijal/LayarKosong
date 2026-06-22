@@ -1,28 +1,55 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recursive Image Album Viewer – Lihat Gambar dari Folder dengan Mudah</title>
-    <meta name="description" content="Buka folder berisi gambar, lihat semua thumbnail dan gambar penuh dengan path lengkap. Alat sederhana berbasis browser tanpa perlu upload ke server.">
-    <meta property="og:title" content="Recursive Image Album Viewer – Lihat Gambar dari Folder">
-    <meta property="og:description" content="Cara praktis melihat semua gambar dari folder dan subfolder di browser Anda. Tampilkan thumbnail, path lengkap, dan salin lokasi gambar dengan satu klik.">
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/recursive-image-album-viewer.html">
-    <meta property="og:image" content="https://dalam.web.id/img/recursive-image-album-viewer.webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Recursive Image Album Viewer – Lihat Gambar dari Folder">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="canonical" href="https://dalam.web.id/artikel/recursive-image-album-viewer">
+    <meta property="og:url" content="https://dalam.web.id/artikel/recursive-image-album-viewer">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/recursive-image-album-viewer">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:title" content="Recursive Image Album Viewer – Lihat Gambar dari Folder dengan Mudah">
+    <meta name="twitter:title" content="Recursive Image Album Viewer – Lihat Gambar dari Folder dengan Mudah">
+    <meta name="description" content="Buka folder berisi gambar, lihat semua thumbnail dan gambar penuh dengan path lengkap. Alat sederhana berbasis browser tanpa perlu upload ke server.">
+    <meta property="og:description" content="Cara praktis melihat semua gambar dari folder dan subfolder di browser Anda. Tampilkan thumbnail, path lengkap, dan salin lokasi gambar dengan satu klik.">
     <meta name="twitter:description" content="Alat ringan untuk menjelajah gambar secara rekursif di dalam folder. Tidak perlu upload, semua diproses di browser Anda. Akses cepat dan aman.">
-    <meta name="news_keywords" content="image viewer, album, folder, recursive, thumbnail, browser, gambar, offline">
+    <meta property="og:image" content="https://dalam.web.id/img/recursive-image-album-viewer.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/recursive-image-album-viewer.webp">
+    <meta property="og:image:alt" content="Recursive Image Album Viewer – Lihat Gambar dari Folder dengan Mudah">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Tools">
     <meta property="article:tag" content="Gambar">
     <meta property="article:tag" content="Produktivitas">
     <meta property="article:tag" content="Browser">
-    <link rel="canonical" href="https://dalam.web.id/artikel/recursive-image-album-viewer.html">
+    <meta property="article:published_time" content="2026-06-22T07:41:05.000Z">
+    <meta property="article:modified_time" content="2026-06-22T07:41:05.000Z">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Image Album Viewer – Lihat Gambar dari Folder dengan Mudah - Layar Kosong</title>
+    <meta name="news_keywords" content="image viewer, album, folder, recursive, thumbnail, browser, gambar, offline">
     <meta name="promphint" content="Bagaimana cara melihat semua gambar di folder dan subfolder di browser? | Gunakan Recursive Image Album Viewer: pilih folder, dan semua gambar akan ditampilkan sebagai thumbnail dan bisa dilihat satu per satu.">
-
     <style>
         /* ===== RESET & VARIABLES ===== */
         :root {
@@ -57,7 +84,6 @@
             --thumb-border: #d6d2cd;
             --display-bg: #1a1a1a;
         }
-
         /* Dark mode */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -80,7 +106,6 @@
                 --display-bg: #0a0a0a;
             }
         }
-
         /* ===== BASE ===== */
         *,
         *::before,
@@ -89,11 +114,9 @@
             margin: 0;
             padding: 0;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: var(--font-body);
             background: var(--bg-body);
@@ -104,7 +127,6 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
         .container {
             width: min(100%, var(--max-width));
             margin: 0 auto;
@@ -114,7 +136,6 @@
             box-shadow: var(--shadow-soft);
             transition: background var(--transition), box-shadow var(--transition);
         }
-
         @media (min-width: 768px) {
             .container {
                 padding: 3rem 2.5rem;
@@ -123,13 +144,11 @@
                 padding: 2rem 1.5rem;
             }
         }
-
         @media (min-width: 1024px) {
             .container {
                 padding: 3.5rem 3rem;
             }
         }
-
         /* ===== TYPOGRAPHY ===== */
         h1 {
             font-size: var(--h1-size);
@@ -139,7 +158,6 @@
             color: var(--text-primary);
             margin-bottom: 0.75rem;
         }
-
         h2 {
             font-size: var(--h2-size);
             line-height: var(--line-height-heading);
@@ -149,7 +167,6 @@
             margin-bottom: 0.75rem;
             letter-spacing: -0.01em;
         }
-
         h3 {
             font-size: var(--h3-size);
             line-height: var(--line-height-heading);
@@ -158,12 +175,10 @@
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
-
         p {
             margin-bottom: 1.25rem;
             color: var(--text-secondary);
         }
-
         a {
             color: var(--accent);
             text-decoration: underline;
@@ -173,7 +188,6 @@
         a:hover {
             color: var(--accent-hover);
         }
-
         /* ===== CODE ===== */
         code {
             font-family: 'JetBrains Mono', 'Fira Code', monospace;
@@ -184,7 +198,6 @@
             color: var(--code-text);
             border: 1px solid var(--code-border);
         }
-
         pre {
             background: var(--code-bg);
             border-radius: var(--radius-md);
@@ -202,7 +215,6 @@
             white-space: pre-wrap;
             word-break: break-word;
         }
-
         /* ===== LISTS ===== */
         ul,
         ol {
@@ -212,7 +224,6 @@
         li {
             margin-bottom: 0.5rem;
         }
-
         /* ===== IMAGE ===== */
         .hero-image-wrap {
             margin: 1.75rem 0 2rem 0;
@@ -228,7 +239,6 @@
             object-fit: cover;
             transition: opacity 0.3s ease;
         }
-
         /* ===== DETAILS / ACCORDION ===== */
         .section-accordion {
             margin-top: 1.5rem;
@@ -238,11 +248,9 @@
         .section-accordion:last-of-type {
             border-bottom: none;
         }
-
         .section-accordion details {
             padding: 0.25rem 0 0.5rem 0;
         }
-
         .section-accordion summary {
             display: flex;
             align-items: center;
@@ -280,7 +288,6 @@
             line-height: 1;
             flex-shrink: 0;
         }
-
         .section-accordion .accordion-content {
             padding-top: 0.5rem;
             padding-bottom: 0.75rem;
@@ -291,7 +298,6 @@
         .section-accordion .accordion-content>*:last-child {
             margin-bottom: 0;
         }
-
         /* ===== TOOL UI ELEMENTS ===== */
         .controls {
             display: flex;
@@ -300,7 +306,6 @@
             gap: 0.75rem;
             margin: 1.5rem 0 1rem 0;
         }
-
         button,
         .btn {
             background: var(--accent);
@@ -324,13 +329,11 @@
             opacity: 0.6;
             cursor: not-allowed;
         }
-
         .note {
             font-size: var(--small-size);
             color: var(--text-muted);
             margin: 0.5rem 0;
         }
-
         .welcome-message {
             text-align: center;
             padding: 3rem 1rem;
@@ -343,20 +346,17 @@
             margin: 0;
             font-size: 1.2rem;
         }
-
         .viewer-area {
             display: none;
             flex-direction: column;
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
-
         .main-display-wrapper {
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
         }
-
         .display-area {
             background: var(--display-bg);
             border-radius: var(--radius-md);
@@ -375,7 +375,6 @@
             object-fit: contain;
             border-radius: var(--radius-sm);
         }
-
         .caption-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -400,7 +399,6 @@
         .caption-wrapper button.copied {
             background: #28a745;
         }
-
         .action-button-container {
             display: flex;
             flex-wrap: wrap;
@@ -412,7 +410,6 @@
             margin: 0;
             font-size: 0.8rem;
         }
-
         .album-grid-wrapper {
             margin-top: 0.5rem;
         }
@@ -420,14 +417,12 @@
             margin-top: 0;
             font-size: var(--h3-size);
         }
-
         .album-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 0.75rem;
             margin-top: 0.75rem;
         }
-
         .thumbnail {
             background: var(--thumb-bg);
             border: 2px solid var(--thumb-border);
@@ -462,7 +457,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
             .album-grid {
@@ -487,7 +481,6 @@
                 max-height: 50vh;
             }
         }
-
         @media (max-width: 400px) {
             .album-grid {
                 grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
@@ -496,14 +489,12 @@
                 font-size: 0.6rem;
             }
         }
-
         /* ===== HR ===== */
         hr {
             border: none;
             border-top: 1px solid var(--border-subtle);
             margin: 2.5rem 0 1.5rem 0;
         }
-
         /* ===== TEXT UTILITIES ===== */
         .text-center {
             text-align: center;
@@ -514,7 +505,6 @@
         .text-small {
             font-size: var(--small-size);
         }
-
         /* ===== FOOTER ===== */
         .article-footer {
             margin-top: 2.5rem;
@@ -537,7 +527,6 @@
             color: var(--border-subtle);
             margin: 0 0.25rem;
         }
-
         /* ===== PRINT ===== */
         @media print {
             body {
@@ -571,21 +560,19 @@
             }
         }
     </style>
-
     <!-- Font Awesome Icons (CDN) untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
-</head>
+<link rel="stylesheet" href="/ext/marquee-url.css"></head>
 <body>
     <div class="container" role="main">
         <!-- ===== HEADER ===== -->
         <header>
-            <h1>Recursive Image Album Viewer</h1>
+            <div id="iposbrowser"></div><h1>Recursive Image Album Viewer</h1>
             <p style="font-size: var(--h3-size); color: var(--text-muted); margin-bottom: 0.25rem; font-weight: 400;">
                 Buka folder berisi gambar, lihat semua thumbnail dan gambar penuh dengan path lengkap
             </p>
         </header>
-
         <!-- ===== LEAD PARAGRAPHS ===== -->
         <p>
             Pernahkah Anda memiliki folder berisi ribuan gambar yang tersusun dalam subfolder bertingkat, dan Anda ingin melihatnya dengan cepat tanpa harus membuka satu per satu? Atau mungkin Anda sedang mengelola arsip foto dan perlu memeriksa konten setiap folder tanpa repot membuka aplikasi berat? Di sinilah <b>Recursive Image Album Viewer</b> hadir sebagai solusi sederhana dan efektif.
@@ -593,24 +580,13 @@
         <p>
             Alat ini memanfaatkan kemampuan <i>File System Access API</i> modern di browser untuk membaca folder secara rekursif—artinya, semua subfolder di dalam folder utama akan ikut dipindai dan gambarnya ditampilkan. Tidak perlu mengunggah file ke server, semua proses berjalan <u>sepenuhnya di sisi klien</u>, sehingga privasi data Anda tetap terjaga. Dengan tampilan yang bersih dan intuitif, Anda bisa menelusuri gambar, melihat path lengkap, dan menyalin lokasi file dengan satu klik.
         </p>
-
         <!-- ===== HERO IMAGE (LCP) ===== -->
         <figure class="hero-image-wrap">
-            <img
-            src="https://dalam.web.id/img/recursive-image-album-viewer.webp"
-            alt="Ilustrasi antarmuka Recursive Image Album Viewer dengan tampilan folder, thumbnail gambar, dan area preview"
-            width="1200"
-            height="630"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            >
+            <img src="https://dalam.web.id/img/recursive-image-album-viewer.webp" alt="Ilustrasi antarmuka Recursive Image Album Viewer dengan tampilan folder, thumbnail gambar, dan area preview" width="1200" height="630" loading="eager" fetchpriority="high" decoding="async">
         </figure>
-
         <p>
             Baik Anda seorang fotografer yang ingin menyeleksi hasil jepretan, desainer yang perlu mengorganisir aset visual, atau sekadar pengguna rumahan yang ingin melihat koleksi gambar keluarga, alat ini memberikan kemudahan yang tak terduga. Tidak perlu instalasi, tidak perlu konfigurasi rumit—<b>cukup buka folder, dan semuanya terpampang</b>.
         </p>
-
         <!-- ===== SECTION 1: APA & MENGAPA ===== -->
         <div class="section-accordion">
             <details>
@@ -630,7 +606,6 @@
                 </div>
             </details>
         </div>
-
         <!-- ===== SECTION 2: SIAPA & KAPAN ===== -->
         <div class="section-accordion">
             <details>
@@ -653,7 +628,6 @@
                 </div>
             </details>
         </div>
-
         <!-- ===== SECTION 3: DIMANA & BAGAIMANA ===== -->
         <div class="section-accordion">
             <details>
@@ -663,31 +637,28 @@
                 <div class="accordion-content">
                     <!-- ===== ANTARMUKA APLIKASI ===== -->
                     <div class="controls">
-                        <button id="openFolderBtn"><i class="fas fa-folder-open"></i> Buka Folder Album</button>
+                        <button id="openFolderBtn"><i class="fa-folder-open fa-solid"></i> Buka Folder Album</button>
                         <input type="file" id="folderInput" webkitdirectory="" multiple="" hidden="">
                         <p class="note" style="font-size: 0.9rem; margin: 0; color: var(--text-muted);">
-                            <i class="fas fa-info-circle"></i> Pilih folder yang berisi gambar. Subfolder akan otomatis terbaca.
+                            <i class="fa-info-circle fa-solid"></i> Pilih folder yang berisi gambar. Subfolder akan otomatis terbaca.
                         </p>
                     </div>
-
                     <div id="welcomeMessage" class="welcome-message">
-                        <p><i class="fas fa-images" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i> Silakan pilih folder berisi gambar untuk memulai...</p>
+                        <p><i class="fa-images fa-solid" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i> Silakan pilih folder berisi gambar untuk memulai...</p>
                     </div>
-
                     <div id="viewerArea" class="viewer-area" style="display: none;">
                         <div class="main-display-wrapper">
                             <figure class="display-area">
                                 <img id="imageDisplay" src="" alt="Gambar yang dipilih">
                                 <div class="caption-wrapper">
                                     <figcaption id="imageCaption"></figcaption>
-                                    <button id="copyBtn" title="Salin Lokasi" disabled=""><i class="fas fa-copy"></i> Salin</button>
+                                    <button id="copyBtn" title="Salin Lokasi" disabled=""><i class="fa-copy fa-solid"></i> Salin</button>
                                 </div>
                             </figure>
                             <div id="actionButtonContainer" class="action-button-container">
                                 <!-- Tombol aksi akan diisi oleh JS -->
                             </div>
                         </div>
-
                         <div class="album-grid-wrapper">
                             <h2>Galeri Album (<span id="imageCount">0</span>)</h2>
                             <div id="albumGrid" class="album-grid">
@@ -698,7 +669,6 @@
                 </div>
             </details>
         </div>
-
         <!-- ===== SECTION 4: TIPS & KEAMANAN ===== -->
         <div class="section-accordion">
             <details>
@@ -721,33 +691,27 @@
                 </div>
             </details>
         </div>
-
         <!-- ===== PENUTUP ===== -->
         <hr>
         <p class="text-center" style="font-style: italic; font-size: var(--h3-size); color: var(--text-secondary);">
             Dengan Recursive Image Album Viewer, menjelajah gambar di dalam folder tidak pernah semudah ini. Cukup pilih folder, dan biarkan alat ini melakukan sisanya.
         </p>
-
         <!-- ===== ELEMEN PENUTUP WAJIB ===== -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>
-
         <!-- ===== FOOTER ===== -->
         <footer class="article-footer">
             <span class="footer-item">✍️ <b>Jaga Data Pribadi Tetap Aman</b></span>
             <span class="footer-item"><span class="sep">|</span> 📅 22 Juni 2026</span>
             <span class="footer-item"><span class="sep">|</span> 🔗 Referensi: <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_API" target="_blank" rel="noopener noreferrer">File System API</a></span>
-        </footer>
-
+         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </div>
     <!-- end .container -->
-
     <!-- ===== JAVASCRIPT UNTUK FUNGSIONALITAS ===== -->
     <script>
         // ============================================================
         // RECURSIVE IMAGE ALBUM VIEWER - FULL SCRIPT
         // ============================================================
-
         // --- Ambil Elemen DOM ---
         const openFolderBtn = document.getElementById('openFolderBtn');
         const folderInput = document.getElementById('folderInput');
@@ -759,18 +723,15 @@
         const actionBtnContainer = document.getElementById('actionButtonContainer');
         const albumGrid = document.getElementById('albumGrid');
         const imageCount = document.getElementById('imageCount');
-
         // --- Variabel Global ---
         let allImageData = []; // Menyimpan { name, path, url }
         let currentObjectUrls = []; // Menyimpan URL blob untuk manajemen memori
-
         /**
          * Memicu input file saat tombol diklik
          */
         openFolderBtn.addEventListener('click', () => {
             folderInput.click();
         });
-
         /**
          * Event utama: Saat pengguna memilih folder
          */
@@ -778,13 +739,11 @@
             const files = e.target.files;
             // 1. Bersihkan album sebelumnya
             cleanupOldAlbum();
-
             if (!files.length) {
                 welcomeMessage.style.display = 'block';
                 viewerArea.style.display = 'none';
                 return;
             }
-
             // 2. Proses file yang dipilih
             for (const file of files) {
                 // Filter hanya file gambar
@@ -801,12 +760,10 @@
                     createThumbnail(imgData, allImageData.length - 1);
                 }
             }
-
             // 3. Update UI
             imageCount.textContent = allImageData.length;
             welcomeMessage.style.display = 'none';
             viewerArea.style.display = 'flex'; // Tampilkan area viewer
-
             // Tampilkan gambar pertama jika ada
             if (allImageData.length > 0) {
                 displayImage(0); // Tampilkan gambar pertama
@@ -817,7 +774,6 @@
                 actionBtnContainer.innerHTML = '';
             }
         });
-
         /**
          * Membuat dan menambahkan thumbnail ke galeri
          */
@@ -825,21 +781,17 @@
             const thumbDiv = document.createElement('div');
             thumbDiv.className = 'thumbnail';
             thumbDiv.dataset.index = index; // Tautkan ke index di array allImageData
-
             // Tampilkan nama file di thumbnail
             thumbDiv.innerHTML = `
                 <img src="${imgData.url}" alt="${imgData.name}" loading="lazy">
                 <p title="${imgData.path}">${imgData.name}</p>
             `;
-
             // Tambahkan event click untuk menampilkan gambar utama
             thumbDiv.addEventListener('click', () => {
                 displayImage(index);
             });
-
             albumGrid.appendChild(thumbDiv);
         }
-
         /**
          * Menampilkan gambar yang dipilih di viewer utama
          */
@@ -849,16 +801,13 @@
             imageDisplay.src = imgData.url;
             imageCaption.textContent = imgData.path; // Caption adalah path rekursif
             copyBtn.disabled = false;
-
             // Tampilkan tombol "Open Folder" yang dinonaktifkan
             showLocalAction();
-
             // Beri highlight pada thumbnail yang aktif
             document.querySelectorAll('.thumbnail.active').forEach(th => th.classList.remove('active'));
             const activeThumb = document.querySelector(`.thumbnail[data-index="${index}"]`);
             if (activeThumb) activeThumb.classList.add('active');
         }
-
         /**
          * Membersihkan data album sebelumnya (manajemen memori)
          */
@@ -874,14 +823,12 @@
             imageCount.textContent = '0';
             actionBtnContainer.innerHTML = '';
         }
-
         /**
          * Event listener untuk tombol copy
          */
         copyBtn.addEventListener('click', () => {
             const textToCopy = imageCaption.textContent;
             if (!textToCopy) return;
-
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalText = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
@@ -897,7 +844,6 @@
                 alert('Gagal menyalin lokasi file. Silakan salin secara manual.');
             });
         });
-
         /**
          * Fungsi untuk menampilkan tombol "Open Folder" (yang disabled)
          */
@@ -913,14 +859,12 @@
             actionBtnContainer.appendChild(btn);
             actionBtnContainer.appendChild(note);
         }
-
         // Menangani error jika gambar (misalnya file korup)
         imageDisplay.onerror = () => {
             imageCaption.textContent = '⚠️ Error: Gagal memuat file gambar ini.';
             actionBtnContainer.innerHTML = '';
             copyBtn.disabled = true;
         };
-
         // ============================================================
         // INISIALISASI AWAL
         // ============================================================
@@ -930,5 +874,4 @@
             viewerArea.style.display = 'none';
         }
     </script>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
