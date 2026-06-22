@@ -39,7 +39,7 @@ jobs:
       - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
         run: |
           set -euo pipefail          
-          bun dapur/gantifontshighlight.ts --quiet --no-backup
+          bun dapur/gantifontshighlight.ts --no-backup
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.ts)
