@@ -20,7 +20,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 * LCP: Gambar PERTAMA di artikel adalah elemen LCP. Letakkan gambar ini mengalir dalam konten (di bawah paragraf pembuka), BUKAN sebagai hero image raksasa di paling atas (above the fold) untuk mempercepat load text.
 * CLS: Wajib berikan styling `aspect-ratio` atau dimensi eksplisit (width/height) pada CSS/HTML gambar untuk mencegah layout shift.
 * CSS Kritis & Resource Loading: Letakkan semua CSS (reset, typography, styling) di dalam `<style>` pada `<head>`. Hindari properti CSS yang memicu layout recalculation berat (seperti box-shadow berlebih). **DILARANG KERAS memuat CSS eksternal menggunakan teknik asinkronus yang mengandalkan tag `<noscript>` sebagai fallback. Panggil aset eksternal secara langsung dan standar.**
-* Elemen Penutup Wajib: Tepat setelah tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
+* Elemen Penutup Wajib: Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
 `<div id="related-articles-grid"></div><div id="response"></div>`
 
 **4. DESAIN, CSS & AKSESIBILITAS:**
