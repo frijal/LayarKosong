@@ -199,7 +199,7 @@
             margin-top: 1.5rem;
             border-bottom: 1px solid var(--border-subtle);
             padding: 0.5rem 0;
-        }
+            }
         .section-accordion:last-of-type { border-bottom: none; }
         .section-accordion details { padding: 0.25rem 0 0.5rem 0; }
         .section-accordion summary {
@@ -368,8 +368,7 @@
         <p>
             Dengan antarmuka minimalis dan responsif, Reverse Markdown Converter memungkinkan Anda <b>menyalin hasil Markdown</b> dan langsung menggunakannya di GitHub, GitLab, Hugo, Jekyll, atau editor teks favorit Anda. Mari eksplorasi alat ini lebih dalam.
         </p>
-        <!-- ===== SECTION 1 ===== -->
-        <div class="section-accordion">
+                <div class="section-accordion">
             <details>
                 <summary><span class="icon-shrink">🔍</span> Apa itu Reverse Markdown Converter?</summary>
                 <div class="accordion-content">
@@ -378,8 +377,7 @@
                 </div>
             </details>
         </div>
-        <!-- ===== SECTION 2 ===== -->
-        <div class="section-accordion">
+                <div class="section-accordion">
             <details>
                 <summary><span class="icon-shrink">👥</span> Siapa yang Membutuhkan dan Kapan?</summary>
                 <div class="accordion-content">
@@ -394,8 +392,7 @@
                 </div>
             </details>
         </div>
-        <!-- ===== SECTION 3: TOOL ===== -->
-        <div class="section-accordion">
+                <div class="section-accordion">
             <details open="">
                 <summary><span class="icon-shrink">🛠️</span> Cara Menggunakan</summary>
                 <div class="accordion-content">
@@ -411,11 +408,11 @@
                         </div>
                         <div class="grid">
                             <div class="box">
-                                <label for="inputHTML"><i class="fa-brands fa-html5"></i> Raw HTML</label>
+                                <label for="inputHTML"><i class="fa-brands fa-html5"></i> Raw HTML <button id="btnClearHTML" style="margin-left: auto; cursor: pointer; font-size: 0.8em; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border-subtle); background: var(--bg-card); color: var(--text-primary); float: right;">Clear Content</button></label>
                                 <textarea id="inputHTML" placeholder="Tempel kode HTML di sini..."></textarea>
                             </div>
                             <div class="box">
-                                <label for="outputMD"><i class="fa-brands fa-markdown"></i> Clean Markdown</label>
+                                <label for="outputMD"><i class="fa-brands fa-markdown"></i> Clean Markdown <button id="btnCopyMD" style="margin-left: auto; cursor: pointer; font-size: 0.8em; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border-subtle); background: var(--bg-card); color: var(--text-primary); float: right;">Copy Content</button></label>
                                 <textarea id="outputMD" readonly="" placeholder="Hasil konversi otomatis..."></textarea>
                             </div>
                         </div>
@@ -432,8 +429,7 @@
                 </div>
             </details>
         </div>
-        <!-- ===== SECTION 4 ===== -->
-        <div class="section-accordion">
+                <div class="section-accordion">
             <details>
                 <summary><span class="icon-shrink">💡</span> Tips Optimal</summary>
                 <div class="accordion-content">
@@ -446,8 +442,7 @@
                 </div>
             </details>
         </div>
-        <!-- ===== SECTION 5 ===== -->
-        <div class="section-accordion">
+                <div class="section-accordion">
             <details>
                 <summary><span class="icon-shrink">🔧</span> Batasan</summary>
                 <div class="accordion-content">
@@ -460,8 +455,7 @@
         <p class="text-center" style="font-style:italic;font-size:var(--h3-size);color:var(--text-secondary);">
             Reverse Markdown Converter – solusi sederhana untuk konversi HTML ke Markdown yang cepat dan akurat.
         </p>
-        <!-- ===== ELEMEN PENUTUP WAJIB ===== -->
-        <div id="related-articles-grid"></div>
+                <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer class="article-footer">
             <span class="footer-item">✍️ <b>Jaga Data Pribadi Tetap Aman</b></span>
@@ -475,6 +469,12 @@
             const input = document.getElementById('inputHTML');
             const output = document.getElementById('outputMD');
             const status = document.getElementById('statusMessage');
+
+            // --- SISIPAN ELEMEN TOMBOL ---
+            const btnClear = document.getElementById('btnClearHTML');
+            const btnCopy = document.getElementById('btnCopyMD');
+            // -----------------------------
+
             let turndown = null;
             let ready = false;
             function initTurndown() {
@@ -553,6 +553,32 @@
             }
             // Event: input
             input.addEventListener('input', doConvert);
+
+            // --- SISIPAN EVENT LISTENER TOMBOL ---
+            if (btnClear) {
+                btnClear.addEventListener('click', function() {
+                    input.value = '';
+                    output.value = '';
+                });
+            }
+
+            if (btnCopy) {
+                btnCopy.addEventListener('click', function() {
+                    if (!output.value) return; 
+                    
+                    navigator.clipboard.writeText(output.value).then(function() {
+                        const originalText = btnCopy.innerHTML;
+                        btnCopy.innerHTML = 'Copied!';
+                        setTimeout(function() {
+                            btnCopy.innerHTML = originalText;
+                        }, 2000);
+                    }).catch(function(err) {
+                        console.error('Gagal copy:', err);
+                    });
+                });
+            }
+            // -------------------------------------
+
             // Inisialisasi Turndown
             function tryInit() {
                 if (typeof TurndownService !== 'undefined') {
