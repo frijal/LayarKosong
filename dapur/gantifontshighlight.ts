@@ -39,30 +39,53 @@ type MapItem = { rx: RegExp; repl: string };
 
 const MAP: MapItem[] = [
   { rx: /https:\/\/.*\/github-dark-dimmed\.min\.css/i,              repl: "/ext/github-dark-dimmed.min.css" },
-  { rx: /https:\/\/.*\/github-dark-dimmed\.css/i,                   repl: "/ext/github-dark-dimmed.css" },
-  { rx: /https:\/\/.*\/github-dark\.min\.css/i,                     repl: "/ext/github-dark.min.css" },
-  { rx: /https:\/\/.*\/github-dark\.css/i,                          repl: "/ext/github-dark.css" },
-  { rx: /https:\/\/.*\/github\.min\.css/i,                          repl: "/ext/github.min.css" },
-  { rx: /https:\/\/.*\/github\.css/i,                               repl: "/ext/github.css" },
-  { rx: /https:\/\/.*\/atom-one-dark\.min\.css/i,                   repl: "/ext/atom-one-dark.min.css" },
-  { rx: /https:\/\/.*\/atom-one-light\.min\.css/i,                  repl: "/ext/atom-one-light.min.css" },
-  { rx: /https:\/\/.*\/prism-okaidia\.min\.css/i,                   repl: "/ext/prism-okaidia.min.css" },
-  { rx: /https:\/\/.*\/prism-tomorrow\.min\.css/i,                  repl: "/ext/prism-tomorrow.min.css" },
-  { rx: /https:\/\/.*\/prism-toolbar\.min\.css/i,                   repl: "/ext/prism-toolbar.min.css" },
-  { rx: /https:\/\/.*\/prism\.min\.css/i,                           repl: "/ext/prism.min.css" },
-  { rx: /https:\/\/.*\/(prism-vsc-dark-plus|vs-dark)\.min\.css/i,   repl: "/ext/vs-dark.min.css" },
-  { rx: /https:\/\/.*\/vs\.min\.css/i,                              repl: "/ext/vs.min.css" },
-  { rx: /https:\/\/.*\/monokai\.min\.css/i,                         repl: "/ext/monokai.min.css" },
-  { rx: /https:\/\/.*\/(styles\/default|prism-coy)\.min\.css/i,     repl: "/ext/default.min.css" },
-  { rx: /https:\/\/.*\/leaflet\.css/i,                              repl: "/ext/leaflet.css" },
-  { rx: /https:\/\/.*\/all(\.min)?\.css/i,                          repl: "/ext/fontawesome.css" },
-  { rx: /https:\/\/use\.fontawesome\.com\/releases\/v[\d.\-a-z]+\/css\/all\.css/i, repl: "/ext/fontawesome.css" },
-  { rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/html2canvas\/[\d.]+\/html2canvas\.min\.js/i, repl: "/ext/html2canvas.min.js" },
-  { rx: /https:\/\/html2canvas\.hertzen\.com\/dist\/html2canvas\.min\.js/i,                        repl: "/ext/html2canvas.min.js" },
-  { rx: /https:\/\/cdn\.jsdelivr\.net\/npm\/html2canvas@[\d.]+\/dist\/html2canvas\.min\.js/i,       repl: "/ext/html2canvas.min.js" },
-  { rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/html2pdf\.js\/[\d.]+\/html2pdf\.bundle\.min\.js/i, repl: "/ext/html2pdf.bundle.min.js" },
-  { rx: /https?:\/\/.*\/highlight\.min\.js/i,                       repl: "/ext/highlight.js" },
-  { rx: /https?:\/\/.*\/qrcode\.min\.js/i,                          repl: "/ext/qrcode.min.js" },
+{ rx: /https:\/\/.*\/github-dark-dimmed\.css/i,                   repl: "/ext/github-dark-dimmed.css" },
+{ rx: /https:\/\/.*\/github-dark\.min\.css/i,                     repl: "/ext/github-dark.min.css" },
+{ rx: /https:\/\/.*\/github-dark\.css/i,                          repl: "/ext/github-dark.css" },
+{ rx: /https:\/\/.*\/github\.min\.css/i,                          repl: "/ext/github.min.css" },
+{ rx: /https:\/\/.*\/github\.css/i,                               repl: "/ext/github.css" },
+
+{ rx: /https:\/\/.*\/atom-one-dark\.min\.css/i,                   repl: "/ext/atom-one-dark.min.css" },
+{ rx: /https:\/\/.*\/atom-one-light\.min\.css/i,                  repl: "/ext/atom-one-light.min.css" },
+
+{ rx: /https:\/\/.*\/prism-okaidia\.min\.css/i,                   repl: "/ext/prism-okaidia.min.css" },
+{ rx: /https:\/\/.*\/prism-tomorrow\.min\.css/i,                  repl: "/ext/prism-tomorrow.min.css" },
+{ rx: /https:\/\/.*\/prism-toolbar\.min\.css/i,                   repl: "/ext/prism-toolbar.min.css" },
+{ rx: /https:\/\/.*\/prism\.min\.css/i,                           repl: "/ext/prism.min.css" },
+{ rx: /https:\/\/.*\/(prism-vsc-dark-plus|vs-dark)\.min\.css/i,   repl: "/ext/vs-dark.min.css" },
+
+{ rx: /https:\/\/.*\/vs\.min\.css/i,                              repl: "/ext/vs.min.css" },
+{ rx: /https:\/\/.*\/monokai\.min\.css/i,                         repl: "/ext/monokai.min.css" },
+{ rx: /https:\/\/.*\/(styles\/default|prism-coy)\.min\.css/i,     repl: "/ext/default.min.css" },
+
+{ rx: /https:\/\/.*\/leaflet\.css/i,                              repl: "/ext/leaflet.css" },
+
+// Font Awesome - dibuat spesifik agar tidak salah menangkap file all.css lain
+{
+  rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/font-awesome\/[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+  repl: "/ext/fontawesome.css"
+},
+{
+  rx: /https:\/\/use\.fontawesome\.com\/releases\/v[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+  repl: "/ext/fontawesome.css"
+},
+{
+  rx: /https:\/\/cdn\.jsdelivr\.net\/npm\/@fortawesome\/fontawesome-free@[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+  repl: "/ext/fontawesome.css"
+},
+{
+  rx: /https:\/\/unpkg\.com\/@fortawesome\/fontawesome-free@[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+  repl: "/ext/fontawesome.css"
+},
+
+{ rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/html2canvas\/[\d.]+\/html2canvas\.min\.js/i,              repl: "/ext/html2canvas.min.js" },
+{ rx: /https:\/\/html2canvas\.hertzen\.com\/dist\/html2canvas\.min\.js/i,                                     repl: "/ext/html2canvas.min.js" },
+{ rx: /https:\/\/cdn\.jsdelivr\.net\/npm\/html2canvas@[\d.]+\/dist\/html2canvas\.min\.js/i,                    repl: "/ext/html2canvas.min.js" },
+
+{ rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/html2pdf\.js\/[\d.]+\/html2pdf\.bundle\.min\.js/i,        repl: "/ext/html2pdf.bundle.min.js" },
+
+{ rx: /https?:\/\/.*\/highlight\.min\.js/i,                       repl: "/ext/highlight.js" },
+{ rx: /https?:\/\/.*\/qrcode\.min\.js/i,                          repl: "/ext/qrcode.min.js" },
 ];
 
 // Atribut yang mubazir setelah resource dipindah ke lokal (tidak butuh SRI check lagi)
