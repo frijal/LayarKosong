@@ -398,7 +398,7 @@
     <!-- Load highlight.js styles (conditional) -->
     <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
     </noscript>
 <link rel="stylesheet" href="/ext/marquee-url.css"></head>
 <body>
@@ -584,10 +584,10 @@ sudo dnf groupupdate sound-and-video</code></pre>
             // Stylesheet sudah dimuat di head, tapi kita muat ulang untuk memastikan
             var link = document.createElement('link');
             link.rel = 'stylesheet';
-            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css';
             link.media = 'all';
             document.head.appendChild(link);
-            loadScript('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js', function() {
+            loadScript('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js', function() {
                 if (typeof hljs !== 'undefined') {
                     hljs.highlightAll();
                 }

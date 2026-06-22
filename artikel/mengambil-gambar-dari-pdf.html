@@ -396,7 +396,7 @@
     <!-- Kita akan muat highlight.js secara kondisional, tapi karena ada blok kode, kita muat dengan defer -->
     <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
     </noscript>
     <!-- Siapkan loader untuk highlight.js -->
 <link rel="stylesheet" href="/ext/marquee-url.css"></head>
@@ -594,9 +594,9 @@
                 document.head.appendChild(link);
             }
             // Pertama, muat stylesheet highlight.js (tema default)
-            loadStylesheet('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css');
+            loadStylesheet('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css');
             // Kedua, muat library highlight.js
-            loadScript('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js', function() {
+            loadScript('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js', function() {
                 // Ketiga, inisialisasi highlightAll
                 if (typeof hljs !== 'undefined') {
                     hljs.highlightAll();
