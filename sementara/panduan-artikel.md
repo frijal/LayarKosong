@@ -8,7 +8,7 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 - Outline: Gunakan [OUTLINE] yang diberikan di akhir prompt sebagai fondasi. Kamu BOLEH meringkasnya. Namun justru DIWAJIBKAN memperluas narasi dan menambah subtopik yang relevan agar artikel sangat tajam dan detail.
 
 2. ATURAN GAMBAR & MEDIA:
-- Penempatan Hero Image: Hero Image tidak diletakkan di awal halaman, melainkan **WAJIB diletakkan setelah beberapa paragraf pembuka (lead paragraphs)** sebagai jembatan visual menuju isi artikel.
+- Penempatan Hero Image tidak diletakkan di awal halaman, melainkan **WAJIB diletakkan setelah beberapa paragraf pembuka (lead paragraphs)** sebagai jembatan visual menuju isi artikel.
 - Tautan Gambar: Gunakan semua URL gambar yang ada di dalam [OUTLINE]. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini sebagai Hero Image: `https://dalam.web.id/thumbnail.webp`
 - Resolusi & Dimensi: Semua gambar harus tampil `width: 100%` (full container width) tanpa merusak rasio asli (jangan melar/gepeng).
 - Aksesibilitas: Semua tag `<img>` wajib memiliki atribut `alt` yang deskriptif.
