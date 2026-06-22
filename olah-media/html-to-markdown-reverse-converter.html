@@ -11,6 +11,7 @@
 
  let turndown = null;
  let ready = false;
+
  function initTurndown() {
  try {
  if (typeof TurndownService !== 'undefined') {
@@ -23,6 +24,24 @@
  strongDelimiter: '**',
  linkStyle: 'inlined'
  });
+
+ // MODIFIKASI: Kunci utama supaya seluruh URL (tautan & gambar) diberikan kembali secara utuh!
+ turndown.addRule('tahanUrlUtuh', {
+ filter: ['a', 'img'],
+ replacement: function (content, node) {
+ if (node.nodeName === 'A') {
+ const href = node.getAttribute('href') || '';
+ const title = node.getAttribute('title');
+ return title ? `[${content}](${href} "${title}")` : `[${content}](${href})`;
+ } else if (node.nodeName === 'IMG') {
+ const src = node.getAttribute('src') || '';
+ const alt = node.getAttribute('alt') || '';
+ const title = node.getAttribute('title');
+ return title ? `![${alt}](${src} "${title}")` : `![${alt}](${src})`;
+ }
+ }
+ });
+
  ready = true;
  status.innerHTML = '<i class="fas fa-check-circle ok"></i> Turndown siap digunakan.';
  return true;
@@ -34,12 +53,14 @@
  return false;
  }
  }
+
  function stripStyleScript(html) {
  return html
  .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
  .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
  .replace(/<link[^>]*rel=["']stylesheet["'][^>]*>/gi, '');
  }
+
  function fallbackConvert(html) {
  let md = html;
  md = md.replace(/<(strong|b)>(.*?)<\/\1>/gi, function(m, tag, c) {
@@ -50,16 +71,28 @@
  if (m.includes('class=') || m.includes('id=')) return m;
  return '*' + c + '*';
  });
- md = md.replace(/<a\s+href=["']([^"']*)["'][^>]*>(.*?)<\/a>/gi, function(m, url, text) {
- if (m.includes('class=') || m.includes('id=')) return m;
- return '[' + text + '](' + url + ')';
+ 
+ // MODIFIKASI: Memastikan URL tautan selamat di Fallback
+ md = md.replace(/<a\s+[^>]*href=["']([^"']*)["'][^>]*>(.*?)<\/a>/gi, function(m, url, text) {
+ // Hapus tag HTML yang mungkin nyelip di dalam text anchor
+ const cleanText = text.replace(/<\/?[^>]+(>|$)/g, ""); 
+ return `[${cleanText}](${url})`;
  });
+
+ // MODIFIKASI: Tambahan krusial penangkap Gambar untuk Fallback
+ md = md.replace(/<img\s+[^>]*src=["']([^"']*)["'][^>]*>/gi, function(m, url) {
+ let altMatch = m.match(/alt=["']([^"']*)["']/i);
+ let alt = altMatch ? altMatch[1] : '';
+ return `![${alt}](${url})`;
+ });
+
  md = md.replace(/<code>(.*?)<\/code>/gi, function(m, c) {
  if (m.includes('class=') || m.includes('id=')) return m;
  return '`' + c + '`';
  });
  return md;
  }
+
  function doConvert() {
  let html = input.value;
  if (!html.trim()) {
@@ -67,15 +100,35 @@
  return;
  }
  html = stripStyleScript(html);
+
  if (ready && turndown) {
  let cleaned = html;
+ 
+ // Pembersihan Tag Teks Standar
  cleaned = cleaned.replace(/<(strong|b|em|i|code)\s+[^>]*>/gi, function(m, tag) {
  return '<' + tag + '>';
  });
+
+ // MODIFIKASI: Filter Tautan (A) - Hanya ambil href & title, buang class/id
  cleaned = cleaned.replace(/<a\s+([^>]*)>/gi, function(m, attrs) {
- var h = attrs.match(/href=["']([^"']*)["']/i);
- return h ? '<a href="' + h[1] + '">' : '<a>';
+ let h = attrs.match(/href=["']([^"']*)["']/i);
+ let t = attrs.match(/title=["']([^"']*)["']/i);
+ let hrefStr = h ? ` href="${h[1]}"` : '';
+ let titleStr = t ? ` title="${t[1]}"` : '';
+ return hrefStr ? `<a${hrefStr}${titleStr}>` : '<a>';
  });
+
+ // MODIFIKASI: Filter Gambar (IMG) - Hanya ambil src, alt & title, buang class/style
+ cleaned = cleaned.replace(/<img\s+([^>]*)>/gi, function(m, attrs) {
+ let s = attrs.match(/src=["']([^"']*)["']/i);
+ let a = attrs.match(/alt=["']([^"']*)["']/i);
+ let t = attrs.match(/title=["']([^"']*)["']/i);
+ let srcStr = s ? ` src="${s[1]}"` : '';
+ let altStr = a ? ` alt="${a[1]}"` : '';
+ let titleStr = t ? ` title="${t[1]}"` : '';
+ return srcStr ? `<img${srcStr}${altStr}${titleStr}>` : '';
+ });
+
  try {
  output.value = turndown.turndown(cleaned);
  return;
@@ -83,8 +136,11 @@
  console.warn('Turndown error, fallback:', e);
  }
  }
+ 
+ // Kalau Turndown mati/error, pakai regex fallback
  output.value = fallbackConvert(html);
  }
+
  // Event: input
  input.addEventListener('input', doConvert);
 
@@ -122,6 +178,7 @@
  }
  return false;
  }
+
  if (document.readyState === 'complete' || document.readyState === 'interactive') {
  if (!tryInit()) {
  status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Turndown...';
@@ -155,6 +212,7 @@
  }
  });
  }
+
  // Expose untuk debugging
  window.__reverseMd = { doConvert, stripStyleScript, fallbackConvert };
  })();</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..." autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/marquee-url.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/lightbox.js></script><script defer src=/ext/response.js></script><script defer src=/ext/balon-cf.js></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-22</noscript></html><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
