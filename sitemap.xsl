@@ -34,7 +34,6 @@ tr:hover { background: #fdfdfd; }
 .lightbox-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
 .lightbox-content { border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); animation: zoomModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: default; }
 img.lightbox-content { max-width: 90%; max-height: 90vh; }
-/* Dimensi khusus Iframe Video 16:9 */
 iframe.lightbox-content { width: 85vw; height: 48vw; max-width: 1024px; max-height: 576px; background: #000; border: none; }
 
 .close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.2s; }
@@ -60,6 +59,7 @@ a:hover { text-decoration: underline; }
 </head>
 <body>
 
+<!-- Lightbox Modal (Hanya aktif di sitemap reguler jika ada media) -->
 <div id="lightbox" class="lightbox-modal" style="cursor: zoom-out;" onclick="closeLightbox(event)">
     <span class="close-lightbox">&#215;</span>
     <img id="lightbox-img" class="lightbox-content" src="" style="display: none;" />
@@ -67,52 +67,98 @@ a:hover { text-decoration: underline; }
 </div>
 
 <div class="container">
-    <h1>XML Sitemap - Layar Kosong</h1>
-    <div class="header-container">
-        <p class="total-info">Total: <strong id="total-count"><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong> Judul Artikel.</p>
-        <div class="pagination-wrapper">
-            <div class="page-info">Halaman <span class="current-page-txt">1</span> dari <span class="total-pages-txt">1</span></div>
-            <div class="nav-buttons">
-                <button class="btn prevBtn" onclick="changePage(-1)">Sebelumnya</button>
-                <button class="btn nextBtn" onclick="changePage(1)">Selanjutnya</button>
+    <!-- DETEKSI JUDUL H1 & TOTAL COUNTER -->
+    <xsl:choose>
+        <xsl:when test="sitemap:sitemapindex">
+            <h1>XML Sitemap Index - Layar Kosong</h1>
+            <div class="header-container">
+                <p class="total-info">Total: <strong id="total-count"><xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap)"/></strong> File Sub-Sitemap.</p>
+                <div class="pagination-wrapper">
+                    <div class="page-info">Halaman <span class="current-page-txt">1</span> dari <span class="total-pages-txt">1</span></div>
+                    <div class="nav-buttons">
+                        <button class="btn prevBtn" onclick="changePage(-1)">Sebelumnya</button>
+                        <button class="btn nextBtn" onclick="changePage(1)">Selanjutnya</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </xsl:when>
+        <xsl:otherwise>
+            <h1>XML Sitemap - Layar Kosong</h1>
+            <div class="header-container">
+                <p class="total-info">Total: <strong id="total-count"><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong> Judul Artikel.</p>
+                <div class="pagination-wrapper">
+                    <div class="page-info">Halaman <span class="current-page-txt">1</span> dari <span class="total-pages-txt">1</span></div>
+                    <div class="nav-buttons">
+                        <button class="btn prevBtn" onclick="changePage(-1)">Sebelumnya</button>
+                        <button class="btn nextBtn" onclick="changePage(1)">Selanjutnya</button>
+                    </div>
+                </div>
+            </div>
+        </xsl:otherwise>
+    </xsl:choose>
     
     <table id="sitemap-table">
-        <thead>
-            <tr>
-                <th class="col-no">#</th>
-                <th>Cover</th>
-                <th>URL Artikel &amp; Media</th>
-                <th>Last Mods.</th>
-            </tr>
-        </thead>
-        <tbody>
-            <xsl:variable name="total" select="count(sitemap:urlset/sitemap:url)" />
-            <xsl:for-each select="sitemap:urlset/sitemap:url">
-                <tr class="sitemap-row">
-                    <td class="col-no"><xsl:value-of select="$total - (position() - 1)"/></td>
-                    <td>
-                        <xsl:if test="image:image/image:loc">
-                            <div class="img-container" onclick="openImageLightbox('{image:image/image:loc}')">
-                                <img class="img-thumb" src="{image:image/image:loc}" title="Klik untuk lihat memperbesar gambar"/>
-                            </div>
-                        </xsl:if>
-                    </td>
-                    <td>
-                        <a href="{sitemap:loc}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
-                        <br/>
-                        <xsl:if test="video:video/video:player_loc">
-                            <span class="video-info" onclick="openVideoLightbox('{video:video/video:player_loc}')" title="Klik untuk menonton video">
-                                <strong class="play-icon">&#9654; TONTON VIDEO:</strong> <xsl:value-of select="video:video/video:title"/>
-                            </span>
-                        </xsl:if>
-                    </td>
-                    <td><xsl:value-of select="substring(sitemap:lastmod, 1, 10)"/></td>
-                </tr>
-            </xsl:for-each>
-        </tbody>
+        <xsl:choose>
+            <!-- TAMPILAN JIKA FILE ADALAH SITEMAP INDEX -->
+            <xsl:when test="sitemap:sitemapindex">
+                <thead>
+                    <tr>
+                        <th class="col-no">#</th>
+                        <th>URL Sub-Sitemap</th>
+                        <th>Last Mods.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <xsl:variable name="totalIndex" select="count(sitemap:sitemapindex/sitemap:sitemap)" />
+                    <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
+                        <tr class="sitemap-row">
+                            <td class="col-no"><xsl:value-of select="$totalIndex - (position() - 1)"/></td>
+                            <td>
+                                <a href="{sitemap:loc}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
+                            </td>
+                            <td><xsl:value-of select="substring(sitemap:lastmod, 1, 10)"/></td>
+                        </tr>
+                    </xsl:for-each>
+                </tbody>
+            </xsl:when>
+            
+            <!-- TAMPILAN JIKA FILE ADALAH SITEMAP REGULER -->
+            <xsl:otherwise>
+                <thead>
+                    <tr>
+                        <th class="col-no">#</th>
+                        <th>Cover</th>
+                        <th>URL Artikel &amp; Media</th>
+                        <th>Last Mods.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <xsl:variable name="totalReg" select="count(sitemap:urlset/sitemap:url)" />
+                    <xsl:for-each select="sitemap:urlset/sitemap:url">
+                        <tr class="sitemap-row">
+                            <td class="col-no"><xsl:value-of select="$totalReg - (position() - 1)"/></td>
+                            <td>
+                                <xsl:if test="image:image/image:loc">
+                                    <div class="img-container" onclick="openImageLightbox('{image:image/image:loc}')">
+                                        <img class="img-thumb" src="{image:image/image:loc}" title="Klik untuk memperbesar gambar"/>
+                                    </div>
+                                </xsl:if>
+                            </td>
+                            <td>
+                                <a href="{sitemap:loc}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
+                                <br/>
+                                <xsl:if test="video:video/video:player_loc">
+                                    <span class="video-info" onclick="openVideoLightbox('{video:video/video:player_loc}')" title="Klik untuk menonton video">
+                                        <strong class="play-icon">&#9654; TONTON VIDEO:</strong> <xsl:value-of select="video:video/video:title"/>
+                                    </span>
+                                </xsl:if>
+                            </td>
+                            <td><xsl:value-of select="substring(sitemap:lastmod, 1, 10)"/></td>
+                        </tr>
+                    </xsl:for-each>
+                </tbody>
+            </xsl:otherwise>
+        </xsl:choose>
     </table>
     
     <div class="pagination-wrapper pagination-bottom">
@@ -128,55 +174,44 @@ a:hover { text-decoration: underline; }
 <![CDATA[
     // -- Lightbox Multimedia Logic --
     function openImageLightbox(url) {
-        document.getElementById('lightbox-video').style.display = 'none'; // Sembunyikan video
-        
+        document.getElementById('lightbox-video').style.display = 'none';
         const lightbox = document.getElementById('lightbox');
         const img = document.getElementById('lightbox-img');
         img.src = url;
         img.style.display = 'block';
-        
         lightbox.style.display = 'flex'; 
         document.body.style.overflow = 'hidden'; 
     }
 
     function openVideoLightbox(url) {
-        document.getElementById('lightbox-img').style.display = 'none'; // Sembunyikan gambar
-        
+        document.getElementById('lightbox-img').style.display = 'none';
         const lightbox = document.getElementById('lightbox');
         const vid = document.getElementById('lightbox-video');
-        
-        // Cek URL, lalu tambahkan parameter autoplay=1 agar video langsung jalan saat modal terbuka
         const autoPlayUrl = url.includes('?') ? url + '&autoplay=1' : url + '?autoplay=1';
         vid.src = autoPlayUrl;
         vid.style.display = 'block';
-        
         lightbox.style.display = 'flex'; 
         document.body.style.overflow = 'hidden'; 
     }
 
     function closeLightbox(event) {
-        // Cek target klik. Mencegah modal tertutup kalau user nge-klik controls YouTube/Gambar.
         if (!event || (event.target.id !== 'lightbox-img' && event.target.id !== 'lightbox-video')) {
             document.getElementById('lightbox').style.display = 'none';
             document.body.style.overflow = 'auto';
-            
-            // PENTING: Kosongkan SRC agar suara video berhenti berkumandang di background!
             document.getElementById('lightbox-img').src = '';
             document.getElementById('lightbox-video').src = '';
         }
     }
 
     document.addEventListener('keydown', function(event){
-        if(event.key === "Escape"){
-            closeLightbox(); 
-        }
+        if(event.key === "Escape"){ closeLightbox(); }
     });
 
-    // -- Pagination Logic --
+    // -- Pagination Logic (Otomatis Menghitung 'sitemap-row' di Kedua Skenario) --
     let currentPage = 1;
     const recordsPerPage = 36;
     const rows = document.getElementsByClassName('sitemap-row');
-    const totalPages = Math.ceil(rows.length / recordsPerPage);
+    const totalPages = Math.ceil(rows.length / recordsPerPage) || 1;
     
     const currentPageEles = document.getElementsByClassName('current-page-txt');
     const totalPagesEles = document.getElementsByClassName('total-pages-txt');
