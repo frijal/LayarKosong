@@ -103,9 +103,9 @@ const YT_ID_REGEXES = [
 ];
 
 // ========== UTILITIES ==========
-const cleanBaseUrl       = BASE_URL.replace(/\/+$/, "");
-const siteUrl            = cleanBaseUrl;
-const searchUrlTemplate  = `${cleanBaseUrl}/search/?q={search_term_string}`;
+const cleanBaseUrl      = BASE_URL.replace(/\/+$/, "");
+const siteUrl           = cleanBaseUrl;
+const searchUrlTemplate = `${cleanBaseUrl}/search/?q={search_term_string}`;
 
 const slugify = (t: unknown): string =>
   String(t).toString().toLowerCase().trim()
@@ -318,24 +318,102 @@ function extractYoutubeIds(html: string): string[] {
   return [...ids];
 }
 
+function countWordsInText(text: string): number {
+  const normalized = cleanText(text)
+    .replace(/https?:\/\/\S+/gi, " ")
+    .replace(/[^\p{L}\p{M}\s'’-]/gu, " ");
+
+  const words = normalized.match(/[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*/gu) || [];
+
+  return words
+    .filter(word => word.length > 1)
+    .length;
+}
+
+function extractTagFragment(html: string, tagName: string): string {
+  const rx = new RegExp(`<${tagName}\\b[^>]*>[\\s\\S]*?<\\/${tagName}>`, "i");
+  return html.match(rx)?.[0] || "";
+}
+
+function fragmentToText(fragment: string): string {
+  if (!fragment) return "";
+
+  const $ = cheerio.load(fragment, {}, false);
+
+  $(
+    [
+      "script",
+      "style",
+      "noscript",
+      "svg",
+      "canvas",
+      "iframe",
+      "template",
+      "footer",
+      "nav",
+      "aside",
+      "#related-articles-grid",
+      "#response",
+      "#progress",
+      "#internal-nav",
+      "#related-marquee-section",
+      "#related-marquee-container",
+      ".search-floating-container",
+      "#floatingSearchResults",
+      "#layar-kosong-header"
+    ].join(", ")
+  ).remove();
+
+  return cleanText($.root().text());
+}
+
 function countWordsFromHtml(html: string): number {
   const $ = cheerio.load(html);
 
-  $("script, style, noscript").remove();
+  $(
+    [
+      "script",
+      "style",
+      "noscript",
+      "svg",
+      "canvas",
+      "iframe",
+      "template",
+      "footer",
+      "nav",
+      "aside",
+      "#related-articles-grid",
+      "#response",
+      "#progress",
+      "#internal-nav",
+      "#related-marquee-section",
+      "#related-marquee-container",
+      ".search-floating-container",
+      "#floatingSearchResults",
+      "#layar-kosong-header"
+    ].join(", ")
+  ).remove();
 
-  const articleText = cleanText($("article").text());
-  const mainText    = cleanText($("main").text());
-  const bodyText    = cleanText($("body").text());
-  const rootText    = cleanText($.root().text());
+  const candidates = [
+    cleanText($("article").first().text()),
+    cleanText($("main article").first().text()),
+    cleanText($('[role="main"]').first().text()),
+    cleanText($("main").first().text()),
+    cleanText($(".container article").first().text()),
+    cleanText($(".container").first().text()),
+    cleanText($("body").text()),
+    cleanText($.root().text()),
 
-  const text = articleText || mainText || bodyText || rootText;
+    // Fallback raw fragment. Ini berguna kalau parser DOM sedang kurang kompak
+    // karena HTML hasil minify terlalu rapat atau pernah disisipi script pihak ketiga.
+    fragmentToText(extractTagFragment(html, "article")),
+    fragmentToText(extractTagFragment(html, "main")),
+    fragmentToText(extractTagFragment(html, "body"))
+  ];
 
-  if (!text) return 0;
+  const counts = candidates.map(countWordsInText);
 
-  return text
-    .split(/\s+/)
-    .filter(word => word.length > 1)
-    .length;
+  return Math.max(0, ...counts);
 }
 
 // ========== META EXTRACTOR ==========
@@ -593,28 +671,28 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
       ]
     },
     {
-  "@type": "WebSite",
-  "@id": websiteId,
-  "url": siteUrl,
-  "name": meta.siteName,
-  "description": SITE_DESCRIPTION,
-  "publisher": { "@id": orgId },
-  "potentialAction": [
-    {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": searchUrlTemplate
-      },
-      "query-input": {
-        "@type": "PropertyValueSpecification",
-        "valueRequired": true,
-        "valueName": "search_term_string"
-      }
-    }
-  ],
-  "inLanguage": meta.language
-},
+      "@type": "WebSite",
+      "@id": websiteId,
+      "url": siteUrl,
+      "name": meta.siteName,
+      "description": SITE_DESCRIPTION,
+      "publisher": { "@id": orgId },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": searchUrlTemplate
+          },
+          "query-input": {
+            "@type": "PropertyValueSpecification",
+            "valueRequired": true,
+            "valueName": "search_term_string"
+          }
+        }
+      ],
+      "inLanguage": meta.language
+    },
     {
       "@type": "Organization",
       "@id": orgId,
@@ -779,7 +857,8 @@ async function main() {
 ❌ File hilang    : ${results.missing}
 🔁 Mode force      : ${FORCE_RESCHEMA ? "aktif" : "nonaktif"}
 🏷️  Article type   : ${SCHEMA_ARTICLE_TYPE}
-🧑 Avatar author   : ${AUTHOR_IMAGE_URL}`);
+🧑 Avatar author   : ${AUTHOR_IMAGE_URL}
+🔎 Search template : ${searchUrlTemplate}`);
 
   } catch (err) {
     console.error("❌ Error fatal:", err);
