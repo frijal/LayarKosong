@@ -46,42 +46,37 @@
 <!-- ========================= -->
 <!-- Metadata SEO Utama -->
 <!-- ========================= -->
-<title>KominFudge: Panduan Lengkap Melewati Pembatasan Internet Indonesia - Layar Kosong</title> 
+<title>KominFudge: Panduan Lengkap Melewati Pembatasan Internet Indonesia - Layar Kosong</title>
 <meta charset="utf-8">
 <meta name="title" content="KominFudge: Panduan Lengkap Melewati Pembatasan Internet Indonesia">
 <meta name="keywords" content="kominfo, blokir internet, internet bebas, DNS, DPI, VPN, ISP Indonesia, bypass blokir, unblokir situs">
 <meta name="publisher" content="Dalam Web">
 <meta name="language" content="id-ID">
-<!-- ========================= -->
-<!-- Open Graph (Facebook, WA, Telegram, dll) -->
-<!-- ========================= -->
-<!-- ========================= -->
-<!-- Twitter / X Card -->
-<!-- ========================= -->
-<!-- ========================= -->
-<!-- News & Advanced Metadata -->
-<!-- ========================= -->
 <meta name="news_keywords" content="internet bebas, kominfo, blokir, DNS, DPI, VPN, ISP Indonesia, bypass, unblokir">
 <meta name="prompthint" content="Panduan praktis untuk menembus pemblokiran internet di Indonesia dengan berbagai metode dan alat yang tersedia">
 <meta name="color-scheme" content="light dark">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
+    :root {
+        color-scheme: light;
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --header-bg: #f8f9fa;
+        --card-bg: #ffffff;
+        --border-color: #dee2e6;
+        --accent-color: #4a6fa5;
+        --warning-color: #ff6b6b;
+        --info-color: #17a2b8;
+        --success-color: #28a745;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --radius: 8px;
+        --transition: all 0.3s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
         :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --header-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --border-color: #dee2e6;
-            --accent-color: #4a6fa5;
-            --warning-color: #ff6b6b;
-            --info-color: #17a2b8;
-            --success-color: #28a745;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --radius: 8px;
-            --transition: all 0.3s ease;
-        }
-        [data-theme="dark"] {
+            color-scheme: dark;
             --bg-color: #121212;
             --text-color: #e0e0e0;
             --header-bg: #1e1e1e;
@@ -93,310 +88,352 @@
             --success-color: #34c759;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: var(--transition);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        header {
-            background-color: var(--header-bg);
-            border-radius: var(--radius);
-            padding: 2rem;
-            margin: 1.5rem 0;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-        .logo-container {
-            margin-bottom: 1.5rem;
-        }
-        .logo-container img {
-            max-width: 100%;
-            height: auto;
-            max-height: 120px;
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin: 1.5rem 0 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-color);
-        }
-        h3 {
-            font-size: 1.3rem;
-            margin: 1.3rem 0 0.8rem;
-        }
-        h4 {
-            font-size: 1.1rem;
-            margin: 1rem 0 0.5rem;
-        }
-        p {
-            margin-bottom: 1rem;
-        }
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        a:hover {
-            text-decoration: underline;
-            opacity: 0.8;
-        }
-        .tagline {
-            font-style: italic;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-        .disclaimer {
-            background-color: rgba(255, 107, 107, 0.1);
-            border-left: 4px solid var(--warning-color);
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1.5rem 0;
-        }
-        .disclaimer p {
-            margin-bottom: 0;
-        }
-        .card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-        .card h3 {
-            margin-top: 0;
-        }
-        .note {
-            background-color: rgba(23, 162, 184, 0.1);
-            border-left: 4px solid var(--info-color);
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
-        }
-        .warning {
-            background-color: rgba(255, 107, 107, 0.1);
-            border-left: 4px solid var(--warning-color);
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
-        }
-        .success {
-            background-color: rgba(40, 167, 69, 0.1);
-            border-left: 4px solid var(--success-color);
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-            display: block;
-        }
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border: 1px solid var(--border-color);
-        }
-        th {
-            background-color: rgba(74, 111, 165, 0.1);
-            font-weight: 600;
-        }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        transition: var(--transition);
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    header {
+        background-color: var(--header-bg);
+        border-radius: var(--radius);
+        padding: 2rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+    }
+
+    .logo-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .logo-container img {
+        max-width: 100%;
+        height: auto;
+        max-height: 120px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--accent-color);
+    }
+
+    h3 {
+        font-size: 1.3rem;
+        margin: 1.3rem 0 0.8rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+        margin: 1rem 0 0.5rem;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    a:hover {
+        text-decoration: underline;
+        opacity: 0.8;
+    }
+
+    .tagline {
+        font-style: italic;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        color: var(--text-color);
+    }
+
+    .disclaimer {
+        background-color: rgba(255, 107, 107, 0.1);
+        border-left: 4px solid var(--warning-color);
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1.5rem 0;
+    }
+
+    .disclaimer p {
+        margin-bottom: 0;
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+    }
+
+    .card h3 {
+        margin-top: 0;
+    }
+
+    .note {
+        background-color: rgba(23, 162, 184, 0.1);
+        border-left: 4px solid var(--info-color);
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+
+    .warning {
+        background-color: rgba(255, 107, 107, 0.1);
+        border-left: 4px solid var(--warning-color);
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+
+    .success {
+        background-color: rgba(40, 167, 69, 0.1);
+        border-left: 4px solid var(--success-color);
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th,
+    td {
+        padding: 0.75rem;
+        text-align: left;
+        border: 1px solid var(--border-color);
+    }
+
+    th {
+        background-color: rgba(74, 111, 165, 0.1);
+        font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    @media (prefers-color-scheme: dark) {
         tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.03);
-        }
-        [data-theme="dark"] tr:nth-child(even) {
             background-color: rgba(255, 255, 255, 0.05);
         }
-        .section-icon {
-            margin-right: 0.5rem;
-            color: var(--accent-color);
-        }
-        .top-recommendations {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        .recommendation-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
+    }
+
+    .section-icon {
+        margin-right: 0.5rem;
+        color: var(--accent-color);
+    }
+
+    .top-recommendations {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .recommendation-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+    }
+
+    .recommendation-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    @media (prefers-color-scheme: dark) {
         .recommendation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-        [data-theme="dark"] .recommendation-card:hover {
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
-        .recommendation-card i {
-            font-size: 2rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-        .theme-toggle {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-        .theme-toggle:hover {
-            opacity: 0.9;
-            transform: scale(1.1);
-        }
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1.5rem 0;
-            justify-content: center;
-        }
-        .nav-link {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-        .nav-link:hover {
-            opacity: 0.9;
-            text-decoration: none;
-            transform: translateY(-2px);
-        }
-        footer {
-            margin-top: 3rem;
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-color);
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        .app-list, .method-list {
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .app-list li, .method-list li {
-            margin-bottom: 0.5rem;
-        }
+    }
+
+    .recommendation-card i {
+        font-size: 2rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 1.5rem 0;
+        justify-content: center;
+    }
+
+    .nav-link {
+        background-color: var(--accent-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: var(--transition);
+    }
+
+    .nav-link:hover {
+        opacity: 0.9;
+        text-decoration: none;
+        transform: translateY(-2px);
+    }
+
+    footer {
+        margin-top: 3rem;
+        padding: 2rem 0;
+        text-align: center;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-color);
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .app-list,
+    .method-list {
+        margin-left: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .app-list li,
+    .method-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+        padding: 1rem;
+        font-family: monospace;
+        margin: 1rem 0;
+        overflow-x: auto;
+    }
+
+    @media (prefers-color-scheme: dark) {
         .code-block {
-            background-color: rgba(0, 0, 0, 0.05);
-            border-radius: 4px;
-            padding: 1rem;
-            font-family: monospace;
-            margin: 1rem 0;
-            overflow-x: auto;
-        }
-        [data-theme="dark"] .code-block {
             background-color: rgba(255, 255, 255, 0.05);
         }
-        .toc {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
+    }
+
+    .toc {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+    }
+
+    .toc h3 {
+        margin-top: 0;
+    }
+
+    .toc ul {
+        margin-left: 1.5rem;
+    }
+
+    .toc li {
+        margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 0 10px;
         }
-        .toc h3 {
-            margin-top: 0;
+
+        h1 {
+            font-size: 1.7rem;
         }
-        .toc ul {
-            margin-left: 1.5rem;
+
+        h2 {
+            font-size: 1.3rem;
         }
-        .toc li {
-            margin-bottom: 0.5rem;
+
+        h3 {
+            font-size: 1.1rem;
         }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            body {
-                padding: 0 10px;
-            }
-            h1 {
-                font-size: 1.7rem;
-            }
-            h2 {
-                font-size: 1.3rem;
-            }
-            h3 {
-                font-size: 1.1rem;
-            }
-            .card {
-                padding: 1rem;
-            }
-            table {
-                font-size: 0.9rem;
-            }
-            th, td {
-                padding: 0.5rem;
-            }
-            .top-recommendations {
-                grid-template-columns: 1fr;
-            }
-            .theme-toggle {
-                top: 80px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-            }
+
+        .card {
+            padding: 1rem;
         }
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            header {
-                padding: 1.5rem 1rem;
-            }
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            .nav-link {
-                width: 100%;
-                text-align: center;
-            }
+
+        table {
+            font-size: 0.9rem;
         }
-    </style>
+
+        th,
+        td {
+            padding: 0.5rem;
+        }
+
+        .top-recommendations {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        header {
+            padding: 1.5rem 1rem;
+        }
+
+        .nav-links {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-link {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
 </head>
 <body>
@@ -1166,10 +1203,7 @@
             <div id="response"></div>
         </section>
     </main>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Ubah tema">
-        <i class="fa-solid fa-moon"></i>
-    </button>
-    <footer>
+       <footer>
         <p><strong>KominFudge</strong> - Panduan Menembus Pemblokiran Indonesia, Dokumentasi ini dibuat untuk edukasi dan membantu masyarakat mengakses internet secara bebas.</p>
         <div class="footer-links">
             <a target="_blank" href="https://github.com/bebasid/KominFudge"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -1180,85 +1214,8 @@
             <p><strong>DISCLAIMER:</strong> <em>KominFudge tidak bertanggung jawab atas kerusakan perangkat anda, ambil dengan risiko anda sendiri. Gunakan informasi ini dengan bijak dan bertanggung jawab.</em></p>
         </div>
         <p>🄯 2024 KominFudge. Semua informasi bersifat edukatif dan dapat berubah sesuai perkembangan teknologi.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>
 </footer>
-    <script>
-        // Deteksi dan toggle tema otomatis
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        const logoLight = document.getElementById('logo-light');
-        const logoDark = document.getElementById('logo-dark');
-        // Cek preferensi tema user
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        // Cek tema yang disimpan di localStorage
-        const currentTheme = localStorage.getItem('theme');
-        // Fungsi untuk mengatur tema
-        function setTheme(theme) {
-            document.body.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            // Update ikon tombol
-            if (theme === 'dark') {
-                themeIcon.className = 'fa-solid fa-sun';
-                logoLight.style.display = 'none';
-                logoDark.style.display = 'block';
-            } else {
-                themeIcon.className = 'fa-solid fa-moon';
-                logoLight.style.display = 'block';
-                logoDark.style.display = 'none';
-            }
-        }
-        // Terapkan tema berdasarkan preferensi atau localStorage
-        if (currentTheme) {
-            setTheme(currentTheme);
-        } else if (prefersDarkScheme.matches) {
-            setTheme('dark');
-        } else {
-            setTheme('light');
-        }
-        // Toggle tema saat tombol diklik
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.body.getAttribute('data-theme');
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-        // Update tema saat preferensi sistem berubah
-        prefersDarkScheme.addEventListener('change', (e) => {
-            if (!localStorage.getItem('theme')) {
-                setTheme(e.matches ? 'dark' : 'light');
-            }
-        });
-        // Smooth scroll untuk navigasi internal
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 20,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        // Simulasi konten untuk bagian komentar dan artikel terkait
-        document.addEventListener('DOMContentLoaded', function() {
-                      // Optimasi untuk Core Web Vitals
-            // Pastikan gambar logo sudah dimuat dengan baik
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.loading = 'lazy';
-            });
-        });
-        // Optimasi INP (Interaction to Next Paint)
-        let isScrolling;
-        window.addEventListener('scroll', function() {
-            window.clearTimeout(isScrolling);
-            isScrolling = setTimeout(function() {
-                // Lakukan tugas non-kritis setelah scroll selesai
-            }, 100);
-        }, false);
-    </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
