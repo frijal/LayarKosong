@@ -12,33 +12,59 @@ Berikut adalah parameter ketat yang WAJIB kamu ikuti:
 
 * Penempatan Hero Image tidak diletakkan di awal halaman, melainkan **WAJIB diletakkan setelah beberapa paragraf pembuka (lead paragraphs)** sebagai jembatan visual menuju isi artikel.
 * Tautan Gambar: Gunakan semua URL gambar yang ada di dalam [OUTLINE]. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini sebagai Hero Image: `https://dalam.web.id/thumbnail.webp`
+* **DILARANG menggunakan preload image dalam bentuk apa pun**, termasuk tetapi tidak terbatas pada pemanggilan berikut:
+
+```html
+<link rel="preload" as="image" href="...">
+```
+
+* Jangan menambahkan `<link rel="preload" as="image">` untuk Hero Image, gambar pertama, gambar LCP, gambar thumbnail, gambar Open Graph, maupun gambar apa pun di dalam dokumen.
+* Optimasi gambar pertama cukup dilakukan langsung pada elemen `<img>` menggunakan atribut yang relevan seperti `fetchpriority="high"` dan `decoding="async"`, tanpa membuat preload image di `<head>`.
 * Resolusi & Dimensi: Semua gambar harus tampil `width: 100%` (full container width) tanpa merusak rasio asli (jangan melar/gepeng).
 * Aksesibilitas: Semua tag `<img>` wajib memiliki atribut `alt` yang deskriptif.
 
 **3. OPTIMASI CORE WEB VITALS (LCP, CLS, INP):**
 
 * LCP: Gambar PERTAMA di artikel adalah elemen LCP. Letakkan gambar ini mengalir dalam konten (di bawah paragraf pembuka), BUKAN sebagai hero image raksasa di paling atas (above the fold) untuk mempercepat load text.
+* Untuk optimasi LCP, **DILARANG menggunakan image preload** dalam bentuk apa pun. Jangan pernah menambahkan kode seperti:
+
+```html
+<link rel="preload" as="image" href="...">
+```
+
+* Jika perlu memberi prioritas pada gambar pertama, gunakan atribut langsung pada tag `<img>`, misalnya `fetchpriority="high"` dan `decoding="async"`, bukan menggunakan preload di `<head>`.
 * CLS: Wajib berikan styling `aspect-ratio` atau dimensi eksplisit (width/height) pada CSS/HTML gambar untuk mencegah layout shift.
 * CSS Kritis & Resource Loading: Letakkan semua CSS (reset, typography, styling) di dalam `<style>` pada `<head>`. Hindari properti CSS yang memicu layout recalculation berat (seperti box-shadow berlebih). **DILARANG KERAS memuat CSS eksternal menggunakan teknik asinkronus yang mengandalkan tag `<noscript>` sebagai fallback. Panggil aset eksternal secara langsung dan standar.**
+* Resource Loading Tambahan: Jangan menggunakan preload image, prefetch image, atau teknik prioritas gambar berbasis `<link>` untuk gambar artikel. Khusus gambar, prioritaskan pengaturan langsung melalui atribut `<img>` dan dimensi eksplisit.
 * Elemen Penutup Wajib: Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
-`<div id="related-articles-grid"></div><div id="response"></div>`
+  `<div id="related-articles-grid"></div><div id="response"></div>`
 
 **4. DESAIN, CSS & AKSESIBILITAS:**
 
 * Dark/Light Mode: Gunakan CSS murni dengan variabel (`:root`) dan media query `@media (prefers-color-scheme: dark)` untuk perpindahan tema otomatis.
+
 * **Aksesibilitas Kontras Warna (WCAG):** WAJIB patuhi standar rasio kontras WCAG Level AA. Pastikan kombinasi warna teks dan *background* memiliki rasio minimal 4.5:1 untuk teks utama, dan 3:1 untuk judul. DILARANG menggunakan warna *low-contrast* (seperti abu-abu muda di atas putih, atau abu-abu gelap di atas hitam) yang menyiksa mata.
+
 * Responsivitas: Gunakan kontainer utama dengan CSS modern: `width: min(100%, 64rem); margin: 0 auto;`. Ini memastikan lebar otomatis 100% di layar selain desktop, dan otomatis terkunci (fix) di 64rem saat dibuka di layar desktop tanpa memicu horizontal scrolling.
+
 * Tipografi & Skala REM: Gunakan system font stack. Ukuran (`font-size`, `margin`, `padding`) WAJIB menggunakan unit `rem` (Dilarang pakai `px` atau `pt`). Wajib terapkan panduan ukuran rem untuk tampilan laptop/desktop berikut:
+
 * Judul Utama (h1): 2rem hingga 2.5rem (setara 32px – 40px) agar menonjol dan mudah dipindai (skimming).
+
 * Sub-judul (h2 / h3): 1.3rem hingga 1.7rem (setara 21px – 28px).
+
 * Teks Isi Utama (Body Text): 1rem hingga 1.25rem (setara 16px – 20px). Sangat direkomendasikan menggunakan nilai 1.125rem (18px) agar nyaman dibaca berlama-lama.
+
 * Teks Sekunder / Footer: 0.85rem hingga 0.9rem (setara 13px – 14px) untuk informasi pelengkap yang tidak terlalu krusial.
+
 * Jika menggunakan text Arabic, maka gunakan font-family: Noto Naskh Arabic, Amiri, serif; supaya tampilannya bagus.
 
-
 * Syntax Highlighting Kode: Jika artikel memuat blok kode seperti `<pre><code>...</code></pre>`, gunakan `highlight.js` secara kondisional untuk memberi pewarnaan sintaks. Diperbolehkan memuat library dari sumber eksternal/CDN terpercaya, pastikan pemanggilannya efisien, aman, dan tidak memblokir rendering utama. Jangan memuat `highlight.js` jika artikel hanya menggunakan inline code atau tidak memiliki blok kode. Pastikan urutan pemanggilan benar: CSS tema highlight.js terlebih dahulu, lalu library `highlight.min.js`, kemudian script inisialisasi `hljs.highlightAll()`. Gunakan atribut `defer`, `crossorigin`, dan `referrerpolicy` bila relevan.
+
 * Fitur Ringkas Halaman (Accordion): Jika ada bagian `<h2>` yang memiliki pembahasan panjang (misalnya di dalamnya mengandung beberapa elemen `<h3>` atau total teksnya melebihi 3 paragraf), kamu WAJIB membungkus seluruh konten di bawah `<h2>` tersebut menggunakan kombinasi tag `<details>` dan `<summary>`. Teks `<h2>` harus bertindak sebagai judul di dalam tag `<summary>`, sementara seluruh konten penjelasnya (`<h3>`, gambar, paragraf) berada di dalam tag `<details>` tersebut agar tampilan halaman lebih ringkas, buat default `<details>` tersebut tertutup, dan bisa di-expand oleh pembaca. Berikan styling CSS murni yang elegan pada tag `<summary>` (seperti efek hover, transisi ringan, dan `cursor: pointer`).
+
 * HTML5 & Tag Pengecualian: Gunakan Semantic HTML5 (`<main>`, `<article>`, `<header>`, `<h1>` - `<h3>`). NAMUN, untuk pemformatan teks sebaris, abaikan semantik dan WAJIB gunakan tag presentasional klasik ini: `<b>` untuk tebal, `<i>` untuk miring, `<u>` untuk garis bawah, dan `<s>` untuk coret. **MUTLAK: DILARANG KERAS MENGGUNAKAN TAG `<noscript>` DI SELURUH DOKUMEN.**
+
 * Visual: Gunakan emoji atau ikon FontAwesome (Unicode/FontAwesome CDN) secukupnya untuk konteks. Jika ada blok kode, buatkan styling CSS sintaks yang elegan menyesuaikan tema gelap/terang, dengan tetap mempertahankan standar kontras WCAG.
 
 **5. SEO & METADATA (UTF-8):**
