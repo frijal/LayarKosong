@@ -68,7 +68,6 @@ const brandingPatterns = [
 ];
 
 // FIX #9 — Satu regex pass gantikan 30+ loop replaceAll terpisah
-// Hasilnya satu traversal string, bukan N traversal berurutan
 const brandingRegex = new RegExp(brandingPatterns.map(escapeRegex).join("|"), "g");
 
 function preProcessRawText(html: string): string {
@@ -103,18 +102,48 @@ function preProcessRawText(html: string): string {
 // -------------------------------------------------------
 
 function parseMarkdownInline(text: string): string {
-  // FIX #2 — Escape dulu sebelum regex markdown berjalan.
+  // Escape dulu sebelum regex markdown berjalan.
   // Karakter seperti < > & di konten asli tidak akan bocor jadi tag HTML.
   let out = escapeHtml(text);
-  out = out.replace(/\*\*(.*?)\*\*/g,                              "<b>$1</b>");
-  out = out.replace(/(?<!\S)\*(?!\s|\*)(.*?)(?<!\s|\*)\*(?!\S)/g, "<em>$1</em>");
-  out = out.replace(/~~(.*?)~~/g,                                  "<del>$1</del>");
-  out = out.replace(/`([^`]+)`/g,                                  "<code>$1</code>");
+
+  // --- Bold ---
+  // Tambah underscore variant (__text__) selain asterisk (**text**)
+  out = out.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+  out = out.replace(/(?<!\w)__(.*?)__(?!\w)/g, "<b>$1</b>");
+  // Catatan guard __bold__:
+  // (?<!\w) — blok jika diawali huruf/angka/underscore (misal: some__word__ tidak match)
+  // (?!\w)  — blok jika diakhiri huruf/angka/underscore
+
+  // --- Italic ---
+  // FIX UTAMA — Ganti (?<!\S)/(?!\S) → (?<![*\w])/(?![*\w])
+  //
+  // Root cause: (?!\S) artinya "karakter sesudah *tutup harus whitespace atau EOL".
+  // Tapi tanda baca (koma, titik, tanda seru, kurung tutup, dll.) adalah \S,
+  // sehingga *domain*, *maintainer*, dan *kontributor*. semuanya GAGAL dikonversi.
+  //
+  // Fix: (?![*\w]) hanya memblok jika karakter sesudahnya adalah huruf/angka atau
+  // asterisk. Tanda baca apapun dibiarkan lolos — sesuai perilaku CommonMark.
+  //
+  // Sebelum: /(?<!\S)\*(?!\s|\*)(.*?)(?<!\s|\*)\*(?!\S)/g  ← gagal di *domain*,
+  // Sesudah: /(?<![*\w])\*(?!\s|\*)(.*?)(?<!\s|\*)\*(?![*\w])/g  ← lolos semua
+  out = out.replace(/(?<![*\w])\*(?!\s|\*)(.*?)(?<!\s|\*)\*(?![*\w])/g, "<em>$1</em>");
+
+  // Tambah underscore variant (_text_) dengan guard yang sama
+  // Guard (?<![_\w]) mencegah false positive di nama file/variabel: file_name tidak match
+  // karena `_` sebelum `name` didahului `e` yang termasuk \w
+  out = out.replace(/(?<![_\w])_(?!\s|_)(.*?)(?<!\s|_)_(?![_\w])/g, "<em>$1</em>");
+
+  // --- Strikethrough & Inline Code ---
+  out = out.replace(/~~(.*?)~~/g, "<del>$1</del>");
+  out = out.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+  // --- Markdown Link ---
   // FIX #8 — URL hanya diinjek jika scheme-nya aman (https/http/mailto/relative)
   out = out.replace(/\[([^\]]+)\]\((.*?)\)/g, (_, linkText, href) => {
-    if (!isSafeUrl(href)) return `[${linkText}](${href})`; // Biarkan mentah jika tidak aman
+    if (!isSafeUrl(href)) return `[${linkText}](${href})`;
     return `<a href="${href}">${linkText}</a>`;
   });
+
   return out;
 }
 
@@ -129,8 +158,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   // === 1. MANIPULASI ATRIBUT & ELEMEN SPESIFIK ===
 
   // FIX #1 — Hapus [.] dari string pencarian.
-  // String.replace() mencari literal "[.]", bukan regex escape titik.
-  // Akibatnya URL asli "dalam.web.id" tidak pernah cocok sebelumnya.
   $('link[rel*="icon"]').each((_, el) => {
     let href = $(el).attr("href");
     if (href) {
@@ -148,22 +175,16 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   });
 
   // FIX #4 — Hilangkan "Jaga Data Pribadi Tetap Aman" dari kondisi delete.
-  // preProcessRawText sudah mengubah teks branding jadi "Jaga Data Pribadi Tetap Aman"
-  // di raw HTML, sehingga kondisi delete lama ikut menghapus anchor yang harusnya dipertahankan.
   $("a").each((_, el) => {
     const text = $(el).text().trim();
     if (text === "Dalam Web") {
       $(el).remove();
     } else if (text === "dalam.web.id") {
-      // Kasus ini hanya terjadi jika preProcessRawText tidak menangkapnya (tidak mungkin sekarang,
-      // tapi dijaga sebagai fallback)
       $(el).text("Jaga Data Pribadi Tetap Aman");
     }
-    // Anchor ber-teks "Jaga Data Pribadi Tetap Aman" = sudah benar, dibiarkan
   });
 
   // FIX #3 — Anchored ke awal string via startsWith + break setelah match pertama.
-  // Sebelumnya: content.replace(word, "") bisa hapus kata dari MANA SAJA di string.
   $('meta[name="description"], meta[property="og:description"]').each((_, el) => {
     let content = $(el).attr("content");
     if (content) {
@@ -178,7 +199,7 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
       for (const word of fluff) {
         if (content.startsWith(word)) {
           content = content.slice(word.length);
-          break; // Satu prefix saja per deskripsi
+          break;
         }
       }
       $(el).attr("content", content);
@@ -186,8 +207,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   });
 
   // FIX #6 — Ganti if-if dengan else-if chain.
-  // Sebelumnya: jika elemen punya dua prefix kelas (edge case migrasi lama),
-  // kedua kondisi berjalan dan menghasilkan dua kelas prefix sekaligus.
   $('[class*="fa"]').each((_, el) => {
     const $el = $(el);
     if ($el.hasClass("far") && $el.hasClass("fa-copyright")) {
@@ -205,16 +224,26 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
 
   // === 2. DETEKSI & PARSING STRAY MARKDOWN ===
 
-  // FIX #10 — Selector spesifik, bukan find("*") yang traverse seluruh DOM.
-  // div, section, img, nav, dll. tidak punya text node langsung, tidak perlu diperiksa.
-  // Scope ketat ke $("body").find() — tidak ada kemungkinan menyentuh <head>, <title>,
-  // atau elemen meta apapun meskipun nama tagnya kebetulan sama.
+  // FIX MD-A — Tambah "span" ke selector.
+  // Sebelumnya text node di dalam <span> tidak terproses sama sekali karena
+  // contents() tidak rekursif — dia hanya lihat direct children dari <p>, <li>, dll.
+  // Dengan menambah span ke sini, find() akan menemukannya dan memprosesnya juga.
+  // Tidak ada risiko double-process: text node milik <p> dan <span> tidak tumpang tindih.
   const TEXT_ELEMENTS =
-    "p, li, h1, h2, h3, h4, h5, h6, td, th, blockquote, figcaption, dt, dd, caption";
+    "p, li, h1, h2, h3, h4, h5, h6, td, th, blockquote, figcaption, dt, dd, caption, span";
 
   $("body").find(TEXT_ELEMENTS).each((_, el) => {
     const $el = $(el);
-    if ($el.is("code, pre, script, style, textarea, a, noscript")) return;
+
+    // FIX MD-B — Ganti $el.is() (dead code) dengan $el.closest() untuk ancestor check.
+    //
+    // Bug lama: $el.is("code, pre, script,...") tidak pernah true karena TEXT_ELEMENTS
+    // tidak mengandung tag-tag tersebut sama sekali. Jadi kondisi ini adalah dead code murni.
+    //
+    // Fix: .closest() memeriksa ke atas pohon DOM, bukan elemen itu sendiri.
+    // Ini yang memastikan teks di dalam <pre><p>...</p></pre> atau <code><span>...</span></code>
+    // (HTML tidak valid tapi bisa ada di artikel lama) tidak ikut diproses.
+    if ($el.closest("pre, code, script, style, textarea, noscript, a").length > 0) return;
 
     $el.contents().each((_, child) => {
       if (child.type === "text") {
@@ -222,8 +251,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
         const parsedHtml = parseMarkdownInline(oldText);
 
         // FIX #2 — Bandingkan dengan escapeHtml(oldText), bukan oldText mentah.
-        // parseMarkdownInline sekarang selalu me-return string yang sudah di-escape,
-        // jadi baseline perbandingannya harus sama.
         if (parsedHtml !== escapeHtml(oldText)) {
           $(child).replaceWith(parsedHtml);
         }
@@ -240,8 +267,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   }
 
   // FIX #7 — Tambah rel="noopener noreferrer" ke semua target="_blank".
-  // Tanpa ini, halaman yang dibuka bisa mengakses window.opener (reverse tabnapping)
-  // dan Lighthouse juga akan memberi warning.
   if ($("footer").length && $('footer a[href="/data-deletion"]').length === 0) {
     const footerLinks = [
       `<a target="_blank" rel="noopener noreferrer" href="/about">☕</a>`,
@@ -260,7 +285,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   }
 
   // FIX #5 — Cek per-elemen, bukan satu selector sebagai gatekeeper untuk semua.
-  // Jika satu elemen sudah ada tapi yang lain belum, masing-masing tetap bisa diinjek.
   if ($("#progress").length === 0) {
     $("body").append(`<div id="progress"></div>`);
   }
@@ -295,8 +319,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
     );
   }
 
-  // Cheerio v1.x+ sudah output emoji & Unicode as-is secara default,
-  // { decodeEntities: false } tidak lagi diperlukan (dan tidak valid di tipe terbaru)
   return $.html();
 }
 
