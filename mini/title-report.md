@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/23/2026, 4:54:34 PM
+Generated on: 6/23/2026, 6:23:25 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/23/2026, 4:54:34 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v22.61 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v22.62 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1286,6 +1286,7 @@ Generated on: 6/23/2026, 4:54:34 PM
 | `artikel/sikat-gigi-aduk.html` | Bahaya Menggunakan Sikat Gigi untuk Mengaduk Minuman - Layar Kosong | Bahaya Menggunakan Sikat Gigi untuk Mengaduk Minuman | Layar Kosong | ✅ Perfect |
 | `artikel/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
 | `artikel/silsilah-keluarga-linux.html` | Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya - Layar Kosong | Silsilah Keluarga Linux: Peta Lengkap Distro & Turunannya | Layar Kosong | ✅ Perfect |
+| `artikel/simulasi-balik-nama-sertifikat-tanah.html` | Simulasi dan Panduan Biaya Balik Nama Sertifikat Tanah - Layar Kosong | Simulasi dan Panduan Biaya Balik Nama Sertifikat Tanah | Layar Kosong | ✅ Perfect |
 | `artikel/sisi-gelap-aplikator.html` | Sisi Gelap 5 Raksasa Aplikator: Persaingan Tarif dan Nasib Mereka - Layar Kosong | Sisi Gelap 5 Raksasa Aplikator: Persaingan Tarif dan Nasib Mereka | Layar Kosong | ✅ Perfect |
 | `artikel/sisi-gelap-makan-bergizi-gratis.html` | Sisi Gelap Makan Bergizi Gratis: Antara Niat Mulia dan Ancaman Gunungan tidak layak Makanan - Layar Kosong | Sisi Gelap Makan Bergizi Gratis: Antara Niat Mulia dan Ancaman Gunungan tidak layak Makanan | Layar Kosong | ✅ Perfect |
 | `artikel/sistem-jamali-tulang-punggung-listrik.html` | Sistem Jamali: Tulang Punggung Listrik Jawa-Bali - Layar Kosong | Sistem Jamali: Tulang Punggung Listrik Jawa-Bali | Layar Kosong | ✅ Perfect |
@@ -1936,6 +1937,7 @@ Generated on: 6/23/2026, 4:54:34 PM
 | `lainnya/sekolah-dipaksa-mengikuti-halusinasi-diplomasi-kekuasaan.html` | Sekolahan Dipaksa Mengikuti Ilusi Diplomasi Kekuasaan - Layar Kosong | Sekolahan Dipaksa Mengikuti Ilusi Diplomasi Kekuasaan | Layar Kosong | ✅ Perfect |
 | `lainnya/seni-mengatur-porsi-makan.html` | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang - Layar Kosong | Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang | Layar Kosong | ✅ Perfect |
 | `lainnya/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
+| `lainnya/simulasi-balik-nama-sertifikat-tanah.html` | Simulasi dan Panduan Biaya Balik Nama Sertifikat Tanah - Layar Kosong | Simulasi dan Panduan Biaya Balik Nama Sertifikat Tanah | Layar Kosong | ✅ Perfect |
 | `lainnya/sistem-jamali-tulang-punggung-listrik.html` | Sistem Jamali: Tulang Punggung Listrik Jawa-Bali - Layar Kosong | Sistem Jamali: Tulang Punggung Listrik Jawa-Bali | Layar Kosong | ✅ Perfect |
 | `lainnya/sop-kondisi-penindakan-tilang-lalu-lintas.html` | Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔 - Layar Kosong | Kondisi dan SOP Penindakan Tilang: Kapan Polisi Boleh Menilang? 🚦🚔 | Layar Kosong | ✅ Perfect |
 | `lainnya/stricken-disturbed-makna-lirik.html` | Makna Mendalam Lagu Stricken Disturbed - Layar Kosong | Makna Mendalam Lagu Stricken Disturbed | Layar Kosong | ✅ Perfect |
