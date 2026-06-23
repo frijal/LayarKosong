@@ -38,13 +38,12 @@
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
-    
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2013-09-13T03:00:00.000Z">
     <meta property="article:modified_time" content="2026-03-13T23:36:07.473Z">
-  <title>Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012</title>
+  <title>Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012 - Layar Kosong</title>
   <meta name="keywords" content="cuti bersama 2012, hari libur nasional 2012, kalender 2012, arsip libur nasional">
 <meta name="news_keywords" content="Cuti Bersama 2012, Hari Libur Nasional 2012, Kalender Indonesia, Arsip Pemerintah">
-
   <style>
     :root {
       --bg: #f7f2ea;
@@ -58,7 +57,6 @@
       --shadow: 0 1.25rem 3.5rem rgba(80, 52, 25, .16);
       --radius: 1.5rem;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #120f0b;
@@ -72,15 +70,12 @@
         --shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, .38);
       }
     }
-
     * {
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
     }
-
     body {
       margin: 0;
       min-height: 100svh;
@@ -94,28 +89,23 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.7;
     }
-
     a {
       color: inherit;
       text-decoration: none;
     }
-
     img {
       display: block;
       max-width: 100%;
       height: auto;
     }
-
     .page {
       width: 100vw;
       min-height: 100svh;
     }
-
     .album-header {
       width: 100%;
       padding: 2rem clamp(1rem, 4vw, 4rem) 1rem;
     }
-
     .album-hero {
       width: 100%;
       min-height: 12rem;
@@ -129,7 +119,6 @@
         var(--surface);
       box-shadow: var(--shadow);
     }
-
     .eyebrow {
       margin: 0 0 .5rem;
       color: var(--accent);
@@ -138,7 +127,6 @@
       letter-spacing: .08em;
       text-transform: uppercase;
     }
-
     h1 {
       max-width: 60rem;
       margin: 0;
@@ -146,19 +134,16 @@
       line-height: 1.08;
       letter-spacing: -.04em;
     }
-
     .lead {
       max-width: 54rem;
       margin: 1rem 0 0;
       color: var(--muted);
       font-size: clamp(1rem, 1.45vw, 1.2rem);
     }
-
     .album-shell {
       width: 100vw;
       padding: 1rem clamp(1rem, 4vw, 4rem) 3rem;
     }
-
     .topbar {
       position: sticky;
       top: 0;
@@ -176,7 +161,6 @@
       backdrop-filter: blur(1rem);
       box-shadow: 0 .75rem 2rem rgba(0, 0, 0, .08);
     }
-
     .jump-nav {
       flex: 1 1 auto;
       min-width: 0;
@@ -187,7 +171,6 @@
       padding: .1rem;
       scroll-snap-type: x proximity;
     }
-
     .jump-nav button,
     .topbar-arrow,
     .control,
@@ -205,11 +188,9 @@
       white-space: nowrap;
       transition: transform .18s ease, background .18s ease, color .18s ease;
     }
-
     .jump-nav button {
       scroll-snap-align: start;
     }
-
     .topbar-arrow {
       flex: 0 0 auto;
       width: 2.7rem;
@@ -219,7 +200,6 @@
       font-size: 1.15rem;
       line-height: 1;
     }
-
     .jump-nav button:hover,
     .topbar-arrow:hover,
     .control:hover,
@@ -228,12 +208,10 @@
       background: var(--accent);
       color: #fffaf3;
     }
-
     .jump-nav button[aria-current="true"] {
       background: var(--accent);
       color: #fffaf3;
     }
-
     .slider {
       position: relative;
       width: 100%;
@@ -243,14 +221,12 @@
       background: var(--surface);
       box-shadow: var(--shadow);
     }
-
     .slides {
       display: flex;
       width: 100%;
       transition: transform .45s cubic-bezier(.2, .8, .2, 1);
       will-change: transform;
     }
-
     .slide {
       flex: 0 0 100%;
       width: 100%;
@@ -261,7 +237,6 @@
       align-items: center;
       padding: clamp(1rem, 3vw, 3rem);
     }
-
     .slide-figure {
       width: 100%;
       margin: 0;
@@ -270,14 +245,12 @@
       background: #111;
       box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, .2);
     }
-
     .slide-figure img {
       width: 100%;
       height: min(68svh, 42rem);
       object-fit: contain;
       background: #111;
     }
-
     .slide-copy {
       align-self: stretch;
       display: flex;
@@ -285,7 +258,6 @@
       justify-content: center;
       padding: clamp(.5rem, 2vw, 1.5rem);
     }
-
     .slide-kicker {
       margin: 0 0 .75rem;
       color: var(--accent);
@@ -294,20 +266,17 @@
       text-transform: uppercase;
       font-size: .85rem;
     }
-
     .slide-copy h2 {
       margin: 0;
       font-size: clamp(1.45rem, 3vw, 3rem);
       line-height: 1.08;
       letter-spacing: -.035em;
     }
-
     .slide-copy p {
       margin: 1rem 0 0;
       color: var(--muted);
       font-size: clamp(1rem, 1.4vw, 1.15rem);
     }
-
     .caption {
       margin-top: 1rem;
       padding: .85rem 1rem;
@@ -318,7 +287,6 @@
       font-size: .96rem;
       font-weight: 650;
     }
-
     .controls {
       position: absolute;
       inset-inline: clamp(.75rem, 2vw, 1.5rem);
@@ -328,12 +296,10 @@
       gap: 1rem;
       pointer-events: none;
     }
-
     .control {
       pointer-events: auto;
       box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .16);
     }
-
     .dots {
       display: flex;
       justify-content: center;
@@ -341,7 +307,6 @@
       gap: .45rem;
       padding: 1rem;
     }
-
     .dot {
       width: .7rem;
       height: .7rem;
@@ -350,98 +315,81 @@
       background: color-mix(in srgb, var(--muted) 45%, transparent);
       cursor: pointer;
     }
-
     .dot[aria-current="true"] {
       width: 2rem;
       background: var(--accent);
     }
-
     .album-footer {
       width: 100%;
       padding: 1.5rem clamp(1rem, 4vw, 4rem) 3rem;
       color: var(--muted);
       text-align: center;
     }
-
     @media (max-width: 56rem) {
       .album-header {
         padding-top: 1rem;
       }
-
       .album-hero {
         border-radius: 1.5rem;
       }
-
       .topbar {
         align-items: center;
         border-radius: 999rem;
         flex-direction: row;
       }
-
       .topbar-arrow {
         width: 2.7rem;
         min-width: 2.7rem;
       }
-
       .slide {
         min-height: auto;
         grid-template-columns: 1fr;
         padding: 1rem;
       }
-
       .slide-figure {
         border-radius: 1.15rem;
       }
-
       .slide-figure img {
         height: auto;
         max-height: 65svh;
       }
-
       .slide-copy {
         padding: .25rem .25rem 4.5rem;
       }
-
       .controls {
         inset-inline: 1rem;
         bottom: 1rem;
       }
-
       .control {
         padding-inline: .9rem;
       }
     }
-
     @media (max-width: 30rem) {
       .album-shell {
         padding-inline: .75rem;
       }
-
       .album-header {
         padding-inline: .75rem;
       }
-
       .jump-nav button,
       .topbar-arrow,
       .control,
       .primary-link {
         font-size: .86rem;
       }
-
       .caption {
         font-size: .9rem;
       }
     }
   </style>
-</head>
-
+<link rel="stylesheet" href="/ext/marquee-url.css"></head>
 <body>
   <div class="page">
     <header class="album-header">
       <div class="album-hero">
         <div>
           <p class="eyebrow">Album Perjalanan 18–25 Desember 2012</p>
-          <h1>
+          <div id="iposbrowser"></div><h1>
             <a href="/" target="_self">
               Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012
             </a>
@@ -453,32 +401,26 @@
         </div>
       </div>
     </header>
-
     <main class="album-shell">
       <div class="topbar">
         <button class="topbar-arrow" type="button" id="topPrevBtn" aria-label="Slide sebelumnya">❮</button>
         <nav class="jump-nav" id="jumpNav" aria-label="Navigasi album"></nav>
         <button class="topbar-arrow" type="button" id="topNextBtn" aria-label="Slide berikutnya">❯</button>
       </div>
-
       <section class="slider" aria-label="Album foto perjalanan">
         <div class="slides" id="slides"></div>
-
         <div class="controls" aria-label="Kontrol slide">
           <button class="control" type="button" id="prevBtn" aria-label="Slide sebelumnya">❮ Sebelumnya</button>
           <button class="control" type="button" id="nextBtn" aria-label="Slide berikutnya">Berikutnya ❯</button>
         </div>
-
         <div class="dots" id="dots" aria-label="Indikator slide"></div>
       </section>
        <div id="related-articles-grid"></div><div id="response"></div>
     </main>
-
     <footer class="album-footer">
       Selamat beraktivitas kembali. Jaket BlankOn sudah terpasang, perjalanan pun tamat dengan elegan.
-    </footer>
+     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </div>
-
   <script>
     const slidesData = [
       {
@@ -666,7 +608,6 @@
         caption: "BlankOn Back View."
       }
     ];
-
     const slides = document.getElementById("slides");
     const jumpNav = document.getElementById("jumpNav");
     const dots = document.getElementById("dots");
@@ -674,11 +615,9 @@
     const topNextBtn = document.getElementById("topNextBtn");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-
     let currentIndex = 0;
     let touchStartX = 0;
     let touchEndX = 0;
-
     function escapeHtml(value) {
       return String(value)
         .replaceAll("&", "&amp;")
@@ -687,7 +626,6 @@
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
     }
-
     function renderAlbum() {
       slides.innerHTML = slidesData.map((item, index) => `
         <article class="slide" aria-label="Slide ${index + 1} dari ${slidesData.length}">
@@ -698,7 +636,6 @@
               loading="${index === 0 ? "eager" : "lazy"}"
               decoding="async">
           </figure>
-
           <div class="slide-copy">
             <p class="slide-kicker">Slide ${index + 1}</p>
             <h2>${escapeHtml(item.title)}</h2>
@@ -707,29 +644,23 @@
           </div>
         </article>
       `).join("");
-
       jumpNav.innerHTML = slidesData.map((item, index) => `
         <button type="button" data-slide="${index}">
           ${escapeHtml(item.menu)}
         </button>
       `).join("");
-
       dots.innerHTML = slidesData.map((_, index) => `
         <button class="dot" type="button" data-slide="${index}" aria-label="Buka slide ${index + 1}"></button>
       `).join("");
     }
-
     function goToSlide(index) {
       if (index < 0) index = slidesData.length - 1;
       if (index >= slidesData.length) index = 0;
-
       currentIndex = index;
       slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-
       document.querySelectorAll("[data-slide]").forEach((button) => {
         button.setAttribute("aria-current", button.dataset.slide == currentIndex ? "true" : "false");
       });
-
       const activeMenu = jumpNav.querySelector(`[data-slide="${currentIndex}"]`);
       if (activeMenu) {
         activeMenu.scrollIntoView({
@@ -739,52 +670,41 @@
         });
       }
     }
-
     function nextSlide() {
       goToSlide(currentIndex + 1);
     }
-
     function prevSlide() {
       goToSlide(currentIndex - 1);
     }
-
     renderAlbum();
     goToSlide(0);
-
     topPrevBtn.addEventListener("click", prevSlide);
     topNextBtn.addEventListener("click", nextSlide);
     prevBtn.addEventListener("click", prevSlide);
     nextBtn.addEventListener("click", nextSlide);
-
     jumpNav.addEventListener("click", (event) => {
       const button = event.target.closest("[data-slide]");
       if (!button) return;
       goToSlide(Number(button.dataset.slide));
     });
-
     dots.addEventListener("click", (event) => {
       const button = event.target.closest("[data-slide]");
       if (!button) return;
       goToSlide(Number(button.dataset.slide));
     });
-
     document.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight") nextSlide();
       if (event.key === "ArrowLeft") prevSlide();
     });
-
     slides.addEventListener("touchstart", (event) => {
       touchStartX = event.changedTouches[0].screenX;
     }, { passive: true });
-
     slides.addEventListener("touchend", (event) => {
       touchEndX = event.changedTouches[0].screenX;
       const distance = touchStartX - touchEndX;
-
       if (Math.abs(distance) < 48) return;
       if (distance > 0) nextSlide();
       if (distance < 0) prevSlide();
     }, { passive: true });
   </script>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
