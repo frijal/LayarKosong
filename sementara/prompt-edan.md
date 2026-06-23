@@ -547,7 +547,7 @@ Sebelum memberikan jawaban final, pastikan:
 13. Footer ada dan tidak menulis kata “E-E-A-T”.
 14. Artikel tetap aman untuk standar AdSense.
 15. Jika ada blok kode, `highlight.js` sudah dipanggil dengan urutan benar.
-16. Jika tidak ada blok kode, `highlight.js` tidak dimuat.
+16. Jika tidak ada blok kode, `highlight.js` tidak usah dimuat.
 17. Tidak ada preload image dalam bentuk apa pun di seluruh dokumen.
 18. Tidak ada kode seperti `<link rel="preload" as="image" href="...">`.
 19. Tidak ada preload image untuk gambar pertama, hero image, gambar LCP, thumbnail, gambar Open Graph, Twitter Card image, atau gambar konten artikel.
