@@ -2,6 +2,7 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { join } from "path";
 import { nanoseconds } from "bun";
 import * as minifyHtml from "@minify-html/node";
+import * as cheerio from "cheerio";
 
 // ========== CONFIG ==========
 const MINIFY_SIGNATURE = "minify_oleh_Fakhrul_Rijal";
@@ -86,33 +87,73 @@ const restoreAttributes = (html: string, vault: string[]): string =>
 // ========== PROTECTION: STYLE BLOCKS ==========
 const protectStyleBlocks = (html: string): { html: string; styles: string[] } => {
     const styles: string[] = [];
+
     const protected_ = html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, (match) => {
         const id = `___STYLE_${styles.length}___`;
         styles.push(match);
         return id;
     });
+
     return { html: protected_, styles };
 };
 
 const restoreStyleBlocks = (html: string, styles: string[]): string =>
     styles.reduce((acc, style, i) => acc.replace(`___STYLE_${i}___`, style), html);
 
-// ========== PROTECTION: MARKDOWN SPACES ==========
-const protectMarkdownSpaces = (html: string): string =>
-    html
-        .replace(/ (\*\*|__|\*|_|~~|`)/g, "&#32;$1")
-        .replace(/(\*\*|__|\*|_|~~|`) /g, "$1&#32;");
-
-const restoreMarkdownSpaces = (html: string): string => {
-    const restored = html.replaceAll("&#32;", " ");
-    return restored
-        .replace(/ {2,}(\*\*|__|\*(?!\*)|_(?!_)|~~|`)/g, " $1")
-        .replace(/(\*\*|__|\*(?!\*)|_(?!_)|~~|`) {2,}/g, "$1 ");
-};
-
 // ========== NORMALIZE SPACES ==========
 const normalizeSpaces = (html: string): string =>
     html.replace(/ {2,}/g, " ");
+
+// ========== CHEERIO FINALIZER ==========
+const finalizeHtmlWithCheerio = (html: string): string => {
+    const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
+
+    // Simpan status doctype agar tidak hilang setelah parse/serialize.
+    const hasDoctype = /^\s*<!doctype\s+html>/i.test(html);
+
+    // Mode dokumen penuh.
+    // Cheerio akan membentuk struktur <html>, <head>, dan <body>.
+    const $ = cheerio.load(html, {}, true);
+
+    // Hapus signature lama agar tidak dobel.
+    $("noscript").each((_, el) => {
+        const text = $(el).text().trim();
+
+        if (text === MINIFY_SIGNATURE) {
+            $(el).remove();
+        }
+    });
+
+    // Pastikan <html> ada.
+    if ($("html").length === 0) {
+        $.root().append("<html></html>");
+    }
+
+    // Pastikan <head> ada.
+    if ($("head").length === 0) {
+        $("html").prepend("<head></head>");
+    }
+
+    // Pastikan <body> ada.
+    if ($("body").length === 0) {
+        $("html").append("<body></body>");
+    }
+
+    // Bubuhkan signature tepat di akhir body.
+    $("body").append(signature);
+
+    let output = $.html().trimEnd();
+
+    // Normalisasi doctype menjadi bentuk ringkas.
+    output = output.replace(/^\s*<!doctype\s+html>/i, "<!doctype html>");
+
+    // Jaga-jaga jika doctype hilang.
+    if (hasDoctype && !/^\s*<!doctype\s+html>/i.test(output)) {
+        output = "<!doctype html>" + output;
+    }
+
+    return output;
+};
 
 // ========== PROCESSOR ==========
 const processFile = async (filePath: string): Promise<void> => {
@@ -132,8 +173,7 @@ const processFile = async (filePath: string): Promise<void> => {
         // 🔒 Langkah 2: Protect → process → restore
         const { html: protected1, vault } = protectAttributes(cleaned);
         const { html: noStyle, styles }   = protectStyleBlocks(protected1);
-        const mdProtected                 = protectMarkdownSpaces(noStyle);
-        const stylesRestored              = restoreStyleBlocks(mdProtected, styles);
+        const stylesRestored              = restoreStyleBlocks(noStyle, styles);
         const restored                    = restoreAttributes(stylesRestored, vault);
 
         // ⚡ Langkah 3: Minify
@@ -142,20 +182,18 @@ const processFile = async (filePath: string): Promise<void> => {
             collapse_whitespaces:                            false,
             ensure_spec_compliant_unquoted_attribute_values: true,
             keep_comments:                                   false,
+            keep_closing_tags:                               true,
             keep_html_and_head_opening_tags:                 true,
             keep_spaces_between_attributes:                  false,
             minify_css:                                      true,
             minify_js:                                       false,
         }).toString();
 
-        // 🔁 Langkah 4: Restore spasi markdown → normalize multi-spasi
-        const spacesRestored = normalizeSpaces(restoreMarkdownSpaces(minified));
+        // 🔁 Langkah 4: Normalize multi-spasi
+        const spacesRestored = normalizeSpaces(minified);
 
-        // 🖊️  Langkah 5: Bubuhkan signature
-        const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
-        const signed = spacesRestored.includes("</body>")
-            ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
-            : spacesRestored.trimEnd() + signature;
+        // 🖊️  Langkah 5: Finalisasi struktur HTML dengan Cheerio + bubuhkan signature
+        const signed = finalizeHtmlWithCheerio(spacesRestored);
 
         const after = signed.length;
 
@@ -178,9 +216,11 @@ const processFile = async (filePath: string): Promise<void> => {
 // ========== HELPERS ==========
 const formatBytes = (bytes: number): string => {
     if (bytes === 0) return "0 Bytes";
+
     const k     = 1024;
     const sizes = ["Bytes", "KB", "MB"];
     const i     = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
+
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 };
 
@@ -193,6 +233,7 @@ const run = async (): Promise<void> => {
             folders.map(async (folder) => {
                 try {
                     const files = await readdir(join(rootDir, folder));
+
                     return files
                         .filter((f) => f.endsWith(".html"))
                         .map((f) => join(rootDir, folder, f));
@@ -226,6 +267,7 @@ const run = async (): Promise<void> => {
 
     if (stats.failed > 0) {
         console.log("\n⚠️  DETAIL ERROR:");
+
         stats.errorList.forEach((item, i) =>
             console.log(`  ${i + 1}. ${item.path} → ${item.error}`)
         );
