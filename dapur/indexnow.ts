@@ -19,6 +19,15 @@ const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 // Jeda antar batch dalam milidetik.
 const BATCH_DELAY_MS = 2000;
 
+function getTodayStamp(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Singapore",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(new Date());
+}
+
 function readLines(filePath: string): string[] {
   if (!existsSync(filePath)) return [];
 
@@ -26,6 +35,12 @@ function readLines(filePath: string): string[] {
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter(Boolean);
+}
+
+function readCacheUrls(filePath: string): string[] {
+  return readLines(filePath).filter((line) => {
+    return line.startsWith("https://") || line.startsWith("http://");
+  });
 }
 
 function uniqueUrls(urls: string[]): string[] {
@@ -50,9 +65,46 @@ function ensureCacheDir(): void {
   mkdirSync(dirname(CACHE_FILE), { recursive: true });
 }
 
-function saveCache(cache: Set<string>): void {
+function appendCacheByDate(urls: string[]): void {
+  if (urls.length === 0) return;
+
   ensureCacheDir();
-  writeFileSync(CACHE_FILE, Array.from(cache).sort().join("\n") + "\n");
+
+  const today = getTodayStamp();
+  const currentContent = existsSync(CACHE_FILE)
+    ? readFileSync(CACHE_FILE, "utf-8").trimEnd()
+    : "";
+
+  const currentLines = currentContent
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const existingUrls = new Set(
+    currentLines.filter((line) => line.startsWith("https://") || line.startsWith("http://"))
+  );
+
+  const freshUrls = urls.filter((url) => !existingUrls.has(url));
+
+  if (freshUrls.length === 0) return;
+
+  const dateHeader = `# ${today}`;
+  const hasTodayHeader = currentLines.includes(dateHeader);
+
+  let nextContent = currentContent;
+
+  if (!nextContent) {
+    nextContent = `${dateHeader}\n`;
+  } else if (!hasTodayHeader) {
+    nextContent += `\n\n${dateHeader}\n`;
+  } else {
+    nextContent += "\n";
+  }
+
+  nextContent += freshUrls.join("\n");
+  nextContent += "\n";
+
+  writeFileSync(CACHE_FILE, nextContent);
 }
 
 function sleep(ms: number): Promise<void> {
@@ -102,7 +154,7 @@ async function submitIndexNow(): Promise<void> {
   }
 
   const sitemapUrls = uniqueUrls(readLines(SITEMAP_FILE));
-  const cache = new Set<string>(readLines(CACHE_FILE));
+  const cache = new Set<string>(readCacheUrls(CACHE_FILE));
 
   const validUrls = sitemapUrls.filter(isValidOwnUrl);
   const skippedUrls = sitemapUrls.length - validUrls.length;
@@ -113,12 +165,13 @@ async function submitIndexNow(): Promise<void> {
 
   const newUrls = validUrls.filter((url) => !cache.has(url));
 
+  console.log(`📂 Total URL valid di sitemap: ${validUrls.length}`);
+
   if (newUrls.length === 0) {
     console.log("✅ Tidak ada URL baru.");
     return;
   }
 
-  console.log(`📂 Total URL valid di sitemap: ${validUrls.length}`);
   console.log(`🆕 Total URL baru ditemukan: ${newUrls.length}`);
 
   const totalBatches = Math.ceil(newUrls.length / BATCH_SIZE);
@@ -133,13 +186,13 @@ async function submitIndexNow(): Promise<void> {
     const ok = await submitBatch(batch, currentBatchNumber, totalBatches);
 
     if (ok) {
+      appendCacheByDate(batch);
       batch.forEach((url) => cache.add(url));
-      saveCache(cache);
 
       successBatches++;
       submittedUrls += batch.length;
 
-      console.log(`   💾 Cache diperbarui untuk ${batch.length} URL.`);
+      console.log(`   💾 Cache diperbarui untuk ${batch.length} URL pada tanggal ${getTodayStamp()}.`);
     } else {
       failedBatches++;
       console.log("   ⚠️ Batch gagal, URL tidak dimasukkan ke cache agar bisa dicoba ulang nanti.");
