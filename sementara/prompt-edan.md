@@ -25,6 +25,7 @@ Sebelum menghasilkan kode final, lakukan urutan kerja berikut secara internal:
 13. Jika sebuah bagian `<h2>` memiliki beberapa `<h3>` atau lebih dari 3 paragraf, bungkus bagian tersebut dengan `<details>` dan `<summary>`.
 14. Susun metadata SEO, Open Graph, Twitter Card, news keywords, article tags, canonical, dan promphint.
 15. Pastikan HTML final valid, lengkap, dan hanya berisi satu dokumen utuh dari `<!DOCTYPE html>` sampai `</html>`.
+16. Pastikan tidak ada preload image dalam bentuk apa pun di seluruh dokumen, termasuk `<link rel="preload" as="image" href="...">`.
 
 Jangan tampilkan proses berpikir, daftar kerja internal, atau penjelasan tambahan di luar blok kode final.
 
@@ -152,6 +153,22 @@ Gunakan aturan berikut untuk semua gambar:
 * `loading="lazy"`
 * `decoding="async"`
 
+13. DILARANG menggunakan preload image dalam bentuk apa pun untuk gambar pertama, hero image, thumbnail, gambar Open Graph, gambar Twitter Card, gambar konten, maupun gambar dekoratif.
+14. DILARANG menambahkan tag seperti berikut di bagian mana pun:
+
+```html
+<link rel="preload" as="image" href="...">
+```
+
+15. DILARANG juga menggunakan variasi preload image lain seperti:
+
+```html
+<link rel="preload" as="image" href="..." imagesrcset="..." imagesizes="...">
+```
+
+16. Jangan menggunakan `<link rel="preload">` untuk resource gambar apa pun, meskipun gambar tersebut dianggap sebagai elemen LCP.
+17. Optimasi gambar harus dilakukan langsung pada elemen `<img>` melalui atribut seperti `width`, `height`, `alt`, `fetchpriority`, `decoding`, dan `loading`, bukan melalui preload image di `<head>`.
+
 ---
 
 ## 5. OPTIMASI CORE WEB VITALS
@@ -164,6 +181,14 @@ Terapkan optimasi berikut:
 2. Letakkan gambar pertama mengalir dalam konten setelah paragraf pembuka.
 3. Jangan membuat hero image raksasa di atas fold.
 4. Pastikan teks pembuka dapat dimuat lebih cepat sebelum gambar besar.
+5. DILARANG menggunakan preload image untuk mengoptimalkan LCP.
+6. Jangan pernah menambahkan kode berikut atau variasinya:
+
+```html
+<link rel="preload" as="image" href="...">
+```
+
+7. Untuk gambar LCP, gunakan prioritas langsung di tag `<img>`, misalnya `fetchpriority="high"` dan `decoding="async"`.
 
 ### CLS
 
@@ -186,6 +211,10 @@ Terapkan optimasi berikut:
 4. DILARANG memuat CSS eksternal menggunakan teknik asinkronus yang mengandalkan `<noscript>` sebagai fallback.
 5. Jika ada aset eksternal, panggil secara langsung dan standar.
 6. DILARANG KERAS menggunakan tag `<noscript>` dalam bentuk apa pun.
+7. DILARANG menggunakan preload image dalam bentuk apa pun.
+8. DILARANG menggunakan `<link rel="preload" as="image" href="...">` di dalam `<head>`, `<body>`, maupun bagian mana pun dari dokumen.
+9. Jika ada aset gambar eksternal, panggil langsung melalui elemen `<img>`, bukan melalui preload image.
+10. Larangan preload image hanya difokuskan pada resource gambar. Jika artikel membutuhkan stylesheet eksternal untuk `highlight.js`, stylesheet tersebut boleh dipanggil langsung dan standar sesuai aturan syntax highlighting, tetapi bukan menggunakan teknik preload image.
 
 ---
 
@@ -315,6 +344,7 @@ Aturannya:
 7. Jangan gunakan `<noscript>`.
 8. Berikan styling CSS tambahan untuk blok kode agar tetap elegan di mode terang dan gelap.
 9. Pastikan kontras kode tetap terbaca.
+10. Jangan menggunakan preload image untuk aset apa pun yang berkaitan dengan blok kode. Jika ada aset eksternal untuk syntax highlighting, panggil langsung dan standar sesuai urutan yang benar, bukan melalui preload image.
 
 ---
 
@@ -381,6 +411,7 @@ Aturan:
 2. `og:description` 150–160 karakter.
 3. `og:url` harus sama dengan canonical.
 4. `og:image` gunakan gambar utama artikel.
+5. `og:image` hanya berupa metadata gambar sosial. Jangan menambahkan preload image untuk `og:image`.
 
 ### Twitter Card
 
@@ -398,6 +429,7 @@ Aturan:
 1. `twitter:title` maksimal 60 karakter.
 2. `twitter:description` 150–160 karakter.
 3. `twitter:image` gunakan gambar utama artikel.
+4. `twitter:image` hanya berupa metadata gambar sosial. Jangan menambahkan preload image untuk `twitter:image`.
 
 ### Canonical
 
@@ -484,6 +516,10 @@ DILARANG KERAS melakukan hal berikut:
 11. Memberikan penjelasan di luar blok kode final.
 12. Mengarang referensi palsu.
 13. Menulis kata “E-E-A-T” secara literal di artikel maupun footer.
+14. Menggunakan preload image dalam bentuk apa pun.
+15. Menambahkan tag `<link rel="preload" as="image" href="...">` di bagian mana pun.
+16. Menggunakan variasi preload image seperti `imagesrcset`, `imagesizes`, atau pola preload lain untuk gambar.
+17. Melakukan preload terhadap hero image, gambar pertama, gambar LCP, gambar konten, thumbnail, `og:image`, atau `twitter:image`.
 
 ---
 
@@ -512,6 +548,10 @@ Sebelum memberikan jawaban final, pastikan:
 14. Artikel tetap aman untuk standar AdSense.
 15. Jika ada blok kode, `highlight.js` sudah dipanggil dengan urutan benar.
 16. Jika tidak ada blok kode, `highlight.js` tidak dimuat.
+17. Tidak ada preload image dalam bentuk apa pun di seluruh dokumen.
+18. Tidak ada kode seperti `<link rel="preload" as="image" href="...">`.
+19. Tidak ada preload image untuk gambar pertama, hero image, gambar LCP, thumbnail, gambar Open Graph, Twitter Card image, atau gambar konten artikel.
+20. Optimasi gambar pertama hanya menggunakan atribut langsung pada `<img>`, misalnya `fetchpriority="high"` dan `decoding="async"`, bukan preload image.
 
 ---
 
