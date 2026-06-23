@@ -26,17 +26,7 @@ jobs:
           bun-version: latest
 
       - name: '3. Install Dependencies'
-        run: bun install 
-
-      # ========== INDEXNOW CACHE ==========
-      - name: 📦 Restore IndexNow Cache
-        uses: actions/cache/restore@v5
-        with:
-          path: .indexnow-cache/indexnow-cache.txt
-          key: indexnow-cache-${{ github.ref_name }}-${{ github.run_id }}
-          restore-keys: |
-            indexnow-cache-${{ github.ref_name }}-
-            indexnow-cache-
+        run: bun install       
 
       # ========== AUTOMATION SCRIPTS ==========
       - name: 🔍 IndexNow Sync
@@ -44,45 +34,8 @@ jobs:
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
-          mkdir -p mini .indexnow-cache
-
-          if [ -f .indexnow-cache/indexnow-cache.txt ]; then
-            cp .indexnow-cache/indexnow-cache.txt mini/indexnow-cache.txt
-            echo "✅ Cache IndexNow lama berhasil dipulihkan."
-          else
-            touch mini/indexnow-cache.txt
-            echo "ℹ️ Cache IndexNow belum ada, membuat file kosong."
-          fi
-
-          bun run dapur/indexnow.ts
-
-          if [ -f mini/indexnow-cache.txt ]; then
-            cp mini/indexnow-cache.txt .indexnow-cache/indexnow-cache.txt
-            echo "💾 Cache IndexNow terbaru disalin ke folder cache sementara."
-          else
-            touch .indexnow-cache/indexnow-cache.txt
-            echo "⚠️ mini/indexnow-cache.txt tidak ditemukan setelah script berjalan."
-          fi
-
-      - name: 💾 Save IndexNow Cache
-        if: always()
-        uses: actions/cache/save@v5
-        with:
-          path: .indexnow-cache/indexnow-cache.txt
-          key: indexnow-cache-${{ github.ref_name }}-${{ github.run_id }}
-
-      - name: 🧹 Cleanup Temporary IndexNow Cache
-        if: always()
-        run: |
-          rm -rf .indexnow-cache
-
-          if git ls-files --error-unmatch mini/indexnow-cache.txt >/dev/null 2>&1; then
-            git checkout -- mini/indexnow-cache.txt || true
-            echo "ℹ️ mini/indexnow-cache.txt tracked di repo, perubahan dikembalikan agar tidak ikut commit."
-          else
-            rm -f mini/indexnow-cache.txt
-            echo "🧹 mini/indexnow-cache.txt tidak tracked, dihapus agar tidak ikut commit."
-          fi
+          touch mini/indexnow-cache.txt
+          bun run dapur/indexnow.ts     
       
       - name: 📸 Scan Unused Images
         run: |
