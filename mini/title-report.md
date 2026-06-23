@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/23/2026, 4:31:39 PM
+Generated on: 6/23/2026, 4:47:47 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/23/2026, 4:31:39 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v22.60 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v22.61 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1134,6 +1134,7 @@ Generated on: 6/23/2026, 4:31:39 PM
 | `artikel/pindah-xfce-ke-kde-linux.html` | Pindah XFCE ke KDE di Linux: Gampang Kok, Tidak Perlu Panik! 🐧 - Layar Kosong | Pindah XFCE ke KDE di Linux: Gampang Kok, Tidak Perlu Panik! 🐧 | Layar Kosong | ✅ Perfect |
 | `artikel/pinggy-alternatif-cloudflare-tunnel.html` | Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal - Layar Kosong | Pinggy: Alternatif Cloudflare Tunnel Paling Praktis via Terminal | Layar Kosong | ✅ Perfect |
 | `artikel/pip-cache-bersih.html` | Mengecilkan Folder pip Cache dan http-v2 di Linux - Layar Kosong | Mengecilkan Folder pip Cache dan http-v2 di Linux | Layar Kosong | ✅ Perfect |
+| `artikel/pkger-d-manajer-paket-desktop-debian-modern.html` | PKGER-D: Manajer Paket Desktop Debian Modern - Layar Kosong | PKGER-D: Manajer Paket Desktop Debian Modern | Layar Kosong | ✅ Perfect |
 | `artikel/poac-perencanaan-partisipatif.html` | POAC dan perencanaan partisipatif: pondasi organisasi yang sehat - Layar Kosong | POAC dan perencanaan partisipatif: pondasi organisasi yang sehat | Layar Kosong | ✅ Perfect |
 | `artikel/pola-hidup-sehat-untuk-usus.html` | Pola Hidup Sehat untuk Usus yang Bahagia - Layar Kosong | Pola Hidup Sehat untuk Usus yang Bahagia | Layar Kosong | ✅ Perfect |
 | `artikel/pola-tidur-nabi-sains.html` | Rahasia Pola Tidur Nabi & Sains Modern: Panduan Istirahat Optimal - Layar Kosong | Rahasia Pola Tidur Nabi & Sains Modern: Panduan Istirahat Optimal | Layar Kosong | ✅ Perfect |
@@ -2557,6 +2558,7 @@ Generated on: 6/23/2026, 4:31:39 PM
 | `sistem-terbuka/pindah-ke-linux-tanpa-terminal.html` | Dilema Pengguna Biasa Pindah ke Linux Tanpa Terminal 🐧 - Layar Kosong | Dilema Pengguna Biasa Pindah ke Linux Tanpa Terminal 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pindah-xfce-ke-kde-linux.html` | Pindah XFCE ke KDE di Linux: Gampang Kok, Tidak Perlu Panik! 🐧 - Layar Kosong | Pindah XFCE ke KDE di Linux: Gampang Kok, Tidak Perlu Panik! 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pip-cache-bersih.html` | Mengecilkan Folder pip Cache dan http-v2 di Linux - Layar Kosong | Mengecilkan Folder pip Cache dan http-v2 di Linux | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/pkger-d-manajer-paket-desktop-debian-modern.html` | PKGER-D: Manajer Paket Desktop Debian Modern - Layar Kosong | PKGER-D: Manajer Paket Desktop Debian Modern | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/prediksi-linux-desktop-2026.html` | Ramalan Linux Desktop 2026: AI Lokal, Kejayaan Rust, hingga Invasi Wayland! 🐧 - Layar Kosong | Ramalan Linux Desktop 2026: AI Lokal, Kejayaan Rust, hingga Invasi Wayland! 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/presto-yum.html` | YUM Presto: Hemat Bandwidth Saat Update - Layar Kosong | YUM Presto: Hemat Bandwidth Saat Update | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/pusat-instalasi-linux.html` | Pusat Instalasi Linux: Menjangkau Semua Kalangan Tanpa Ketakutan - Layar Kosong | Pusat Instalasi Linux: Menjangkau Semua Kalangan Tanpa Ketakutan | Layar Kosong | ✅ Perfect |

@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 23 Jun 2026 | 16:31 WITA
+Update: 23 Jun 2026 | 16:48 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -19,7 +19,7 @@ Update: 23 Jun 2026 | 16:31 WITA
 | 🎨 css   | **49** | dapur, ext |
 | 📄 csv   | **1** | sementara |
 | 📄 gif   | **1** | img |
-| 🎨 html  | **2981** | google2e9cfaf2f2923d27.html, disclaimer.html, search, lainnya, security-policy.html, sitemap.html, 404.html, privacy.html, feed.html, lisensi.html, data-deletion-form.html, sistem-terbuka, data-deletion.html, img.html, about.html, artikel, index.html, dapur, disclosure.html, opini-sosial, gaya-hidup, llms-index.html, jejak-sejarah, warta-tekno, ext, olah-media |
+| 🎨 html  | **2983** | google2e9cfaf2f2923d27.html, disclaimer.html, search, lainnya, security-policy.html, sitemap.html, 404.html, privacy.html, feed.html, lisensi.html, data-deletion-form.html, sistem-terbuka, data-deletion.html, img.html, about.html, artikel, index.html, dapur, disclosure.html, opini-sosial, gaya-hidup, llms-index.html, jejak-sejarah, warta-tekno, ext, olah-media |
 | 📄 ico   | **4** | favicon.ico, artikel, dapur, ext |
 | 🖼️ jpg   | **3** | img, thumbnail.jpg |
 | 📜 js    | **66** | sementara, functions, dapur, ext |
@@ -34,9 +34,9 @@ Update: 23 Jun 2026 | 16:31 WITA
 | 📄 ts    | **76** | search, 0-audit-txt.ts, sementara, 0-komp-editor.ts, functions, 0-dashboard-launcher.ts, 0-dup-finder.ts, 0-cari-hapus.ts, dapur |
 | 📄 txt   | **32** | llms.txt, img, sementara, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, list-to-clean.txt, robots.txt, sitemap.txt, artikel, dapur, ads.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
-| 🖼️ webp  | **3090** | thumbnail.webp, img, thumbnail-md.webp, thumbnail-sm.webp |
+| 🖼️ webp  | **3106** | thumbnail.webp, img, thumbnail-md.webp, thumbnail-sm.webp |
 | 📄 woff2 | **8** | dapur, ext |
 | 📄 xml   | **20** | feed-opini-sosial.xml, sitemap.xml, rss.xml, feed-gaya-hidup-atom.xml, feed-gaya-hidup.xml, sementara, feed-jejak-sejarah.xml, BingSiteAuth.xml, feed-olah-media.xml, feed-sistem-terbuka-atom.xml, feed-sistem-terbuka.xml, feed-olah-media-atom.xml, feed-lainnya-atom.xml, feed-jejak-sejarah-atom.xml, feed-warta-tekno.xml, feed-lainnya.xml, opensearch.xml, feed-opini-sosial-atom.xml, feed-warta-tekno-atom.xml |
 | 📄 xsl   | **3** | rss.xsl, sitemap.xsl, atom.xsl |
 
-**Total File:** 6547
+**Total File:** 6565
