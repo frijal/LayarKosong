@@ -103,8 +103,9 @@ const YT_ID_REGEXES = [
 ];
 
 // ========== UTILITIES ==========
-const cleanBaseUrl = BASE_URL.replace(/\/+$/, "");
-const siteUrl      = `${cleanBaseUrl}/`;
+const cleanBaseUrl       = BASE_URL.replace(/\/+$/, "");
+const siteUrl            = cleanBaseUrl;
+const searchUrlTemplate  = `${cleanBaseUrl}/search/?q={search_term_string}`;
 
 const slugify = (t: unknown): string =>
   String(t).toString().toLowerCase().trim()
@@ -592,28 +593,28 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
       ]
     },
     {
-      "@type": "WebSite",
-      "@id": websiteId,
-      "url": siteUrl,
-      "name": meta.siteName,
-      "description": SITE_DESCRIPTION,
-      "publisher": { "@id": orgId },
-      "potentialAction": [
-        {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": `${siteUrl}?s={search_term_string}`
-          },
-          "query-input": {
-            "@type": "PropertyValueSpecification",
-            "valueRequired": true,
-            "valueName": "search_term_string"
-          }
-        }
-      ],
-      "inLanguage": meta.language
-    },
+  "@type": "WebSite",
+  "@id": websiteId,
+  "url": siteUrl,
+  "name": meta.siteName,
+  "description": SITE_DESCRIPTION,
+  "publisher": { "@id": orgId },
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": searchUrlTemplate
+      },
+      "query-input": {
+        "@type": "PropertyValueSpecification",
+        "valueRequired": true,
+        "valueName": "search_term_string"
+      }
+    }
+  ],
+  "inLanguage": meta.language
+},
     {
       "@type": "Organization",
       "@id": orgId,
