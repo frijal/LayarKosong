@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panduan Kontribusi Proyek Open Source Layar Kosong</title>
+    <meta name="description" content="Temukan cara mudah berkontribusi pada proyek open source Layar Kosong. Mulai dari pelaporan bug, diskusi fitur, hingga pengiriman artikel public domain.">
+    <meta property="og:description" content="Panduan lengkap bagi developer dan penulis yang ingin berkolaborasi di Layar Kosong. Pelajari alur Pull Request, penulisan HTML, dan aturan lisensi kami.">
+    <meta name="twitter:description" content="Ingin karyamu dipublikasikan secara open source? Ikuti panduan kontribusi Layar Kosong ini untuk mengirimkan kode atau artikelmu dengan cepat dan aman.">
+
+    <meta property="og:title" content="Cara Berkontribusi di Proyek Web Statis Layar Kosong">
+    <meta name="twitter:title" content="Cara Berkontribusi di Proyek Web Statis Layar Kosong">
+
+    <meta name="news_keywords" content="Layar Kosong, Open Source, Panduan Kontribusi, GitHub Pull Request, Web Statis, HTML CSS">
+    <meta property="article:tag" content="Open Source, GitHub, Tutorial, Kolaborasi, Web Development">
+
+    <meta property="og:type" content="article">
+     <meta property="og:image" content="https://dalam.web.id/img/panduan-kontribusi-layar-kosong.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/panduan-kontribusi-layar-kosong.webp">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/panduan-kontribusi-proyek-layar-kosong.html">
+    <meta name="promphint" content="Bagaimana cara berkontribusi di Layar Kosong? | Melalui GitHub dengan membuat Issue, berdiskusi, atau mengirimkan Pull Request berupa kode maupun artikel.">
+
+    <style>
+        :root {
+            /* Light Theme - WCAG AA Compliant */
+            --bg-body: #f8fafc;
+            --bg-article: #ffffff;
+            --text-main: #1e293b; /* Contrast > 4.5:1 */
+            --text-muted: #475569; /* Contrast > 4.5:1 */
+            --heading-color: #0f172a; /* Contrast > 4.5:1 */
+            --accent-color: #0284c7;
+            --border-color: #cbd5e1;
+            --bg-code: #f1f5f9;
+            --bg-details: #f8fafc;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Theme - WCAG AA Compliant */
+                --bg-body: #0f172a;
+                --bg-article: #1e293b;
+                --text-main: #e2e8f0; /* Contrast > 4.5:1 */
+                --text-muted: #94a3b8; /* Contrast > 4.5:1 */
+                --heading-color: #f8fafc; /* Contrast > 4.5:1 */
+                --accent-color: #38bdf8;
+                --border-color: #334155;
+                --bg-code: #0f172a;
+                --bg-details: #1e293b;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 1.125rem; /* 18px base for optimal reading */
+            line-height: 1.75;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        article {
+            background-color: var(--bg-article);
+            padding: 2rem 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: var(--heading-color);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        h2 { font-size: 1.65rem; margin-top: 2rem; }
+        h3 { font-size: 1.35rem; margin-top: 1.5rem; }
+
+        p, ul, ol, blockquote {
+            margin-bottom: 1.25rem;
+        }
+
+        ul, ol { padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: var(--heading-color);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+            display: block;
+        }
+
+        pre {
+            background-color: var(--bg-code);
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.95rem;
+            background-color: var(--bg-code);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            background-color: var(--bg-code);
+            color: var(--text-muted);
+            font-style: italic;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        /* Accordion CSS Styling */
+        details {
+            background-color: var(--bg-details);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            outline: none;
+            font-weight: bold;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "▶";
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+        }
+
+        summary h2 {
+            margin: 0;
+            display: inline-block;
+            font-size: 1.65rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (max-width: 48rem) {
+            article { padding: 1.5rem 1rem; }
+            h1 { font-size: 2rem; }
+            summary h2, h2 { font-size: 1.4rem; }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        });
+    </script>
+</head>
+<body>
+    <main class="container">
+        <article>
+            <h1>🤝 Panduan Kontribusi untuk Layar Kosong</h1>
+
+            <p>Halo para kolaborator tangguh! 👋 Selamat datang di markas besar panduan kontribusi untuk proyek <b>Layar Kosong</b>. Kami sungguh sangat antusias menyambut niat baikmu untuk ikut berkarya di repositori ini. Bagi kamu yang sedang mencari panggung untuk mengasah keterampilan *coding* atau sekadar ingin membagikan tulisan bermanfaat, di sinilah arena bermain yang paling tepat.</p>
+
+            <p>Sedikit penyegaran, inisiatif ini dirintis dan dibangun sepenuhnya dengan semangat kebebasan <i>Open Source</i> serta didedikasikan secara tulus untuk <i>Public Domain</i>. Artinya, proyek ini adalah milik publik, dikembangkan oleh publik, dan dinikmati untuk publik di repositori GitHub kami. Entah kamu seorang veteran *frontend* atau pemula yang baru belajar merakit kerangka HTML hari ini, percayalah, sekecil apa pun revisi atau tambahanmu itu <b>BERHARGA BANGET</b> buat kami. Jadi, hilangkan rasa ragu dan mari kita mulai berkontribusi!</p>
+
+
+            <p>Sebelum kita mulai <i>nge-gas</i> membedah *source code* atau menyusun artikel baru, ada baiknya kita menyamakan frekuensi dan memahami beberapa aturan main esensial di bawah ini agar proses kolaborasi ke depannya lancar jaya dan minim konflik.</p>
+
+            <details>
+                <summary><h2>🛡️ Etika Kontribusi (Code of Conduct)</h2></summary>
+
+                <p>Membangun perangkat lunak yang hebat tidak hanya butuh kecerdasan teknis, melainkan juga fondasi komunitas yang sehat. Proyek Layar Kosong ibarat rumah digital kita bersama, dan kami sangat berkomitmen untuk menjaga lingkungannya agar tetap terbuka, ramah, dan inklusif bagi siapa saja tanpa pandang bulu. Pada intinya, kita semua di sini adalah sekumpulan kawan yang dipersatukan oleh satu niat baik.</p>
+
+                <p>Prinsip dasar kami adalah selalu <u>mengedepankan prasangka baik</u> (<i>assume good intent</i>). Dalam diskusi teknis, perbedaan pendapat itu sangat lumrah dan justru menyehatkan. Namun, perdebatan tersebut harus selalu dilandasi rasa saling menghormati dan dibalut dengan sikap profesional. Dilarang keras menggunakan kata-kata kasar atau melontarkan serangan personal kepada sesama kontributor.</p>
+
+                <p>Jika dalam perjalanannya kamu menemukan komentar, *issue*, atau melihat perilaku dari anggota lain yang dirasa kurang pantas atau melanggar norma komunitas, jangan dipendam sendiri. Segera laporkan kejadian tersebut melalui pesan atau diskusi pribadi langsung kepada pengelola repositori di GitHub. Privasi dan kenyamananmu adalah prioritas mutlak yang akan kami jaga.</p>
+
+                <p>Untuk rincian yang lebih formal dan komprehensif, kami sangat mewajibkan seluruh calon kontributor untuk membaca serta mematuhi dokumen <b><a href="https://github.com/frijal/LayarKosong/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CODE_OF_CONDUCT</a></b> kami. Aturan ini bukanlah pajangan, melainkan pedoman krusial demi memastikan proyek ini terus berjalan dalam harmoni.</p>
+            </details>
+
+            <details>
+                <summary><h2>🛠️ Bagaimana Cara Berkontribusi?</h2></summary>
+
+                <p><i>Eits</i>, jangan salah sangka dulu! Berkontribusi di dunia *open source* itu tidak melulu soal menulis baris kode yang rumit, <i>lho</i>. Ekosistem Layar Kosong menyediakan ruang luas dengan berbagai peran seru yang bisa kamu ambil untuk membantu proyek ini agar tampil makin kece.</p>
+
+                <h3>1. Pelaporan Bug (Masalah) 🐛</h3>
+                <p>Pernah menemukan elemen yang tumpang tindih (*overlap*), warna yang menyiksa mata, tautan yang tiba-tiba putus (<i>broken link</i>), atau <i>error</i> aneh saat mengakses halaman Layar Kosong? Nah, insting detektifmu sedang dibutuhkan di sini!</p>
+                <ul>
+                    <li>Gunakan fitur <b><a href="https://github.com/frijal/LayarKosong/issues" target="_blank" rel="noopener">tab Issues di GitHub</a></b> sebagai jalur resmi untuk melaporkan segala bentuk *bug*.</li>
+                    <li>Sajikan deskripsi kasus yang sangat jelas. Ceritakan kronologi kejadiannya, sebutkan peramban (*browser*) yang kamu pakai, dan jabarkan langkah-langkah presisi untuk mereproduksi <i>bug</i> tersebut agar tim kami bisa segera mengujinya.</li>
+                    <li>Jangan lupa untuk menyematkan label yang relevan (misalnya label <code>bug</code> atau <code>needs triage</code>) agar tiket laporanmu mudah disortir oleh para <i>maintainer</i>.</li>
+                </ul>
+
+                <h3>2. Diskusi & Brainstorming Ide Baru 💡</h3>
+                <p>Punya ide segar di luar nalar untuk fitur baru? Menemukan trik optimasi SEO yang belum kami terapkan? Atau sekadar ingin mengobrol seputar tren teknologi HTML/CSS murni terkini? Jangan biarkan ide brilian itu menguap begitu saja!</p>
+                <ul>
+                    <li>Langsung saja meluncur ke <b><a href="https://github.com/frijal/LayarKosong/discussions" target="_blank" rel="noopener">tab Discussions di GitHub</a></b>.</li>
+                    <li>Forum ini didesain khusus sebagai tempat *nongkrong* digital untuk mematangkan konsep, mengkritisi desain, dan menyempurnakan alur logika sebelum kamu mulai menulis satu baris kode pun. Siapa tahu, lemparan gagasamulah yang akan melahirkan fitur <i>killer</i> kami berikutnya.</li>
+                </ul>
+
+                <h3>3. Kontribusi Kode (Pull Request) 💻</h3>
+                <p>Oke, buat kamu para praktisi yang jari-jarinya gatal ingin langsung terjun mengoprek kerangka sistem, ini dia panduan teknis yang kamu tunggu-tunggu! Mulai dari perbaikan algoritma, pembaruan <i>workflow automation</i>, hingga sekadar merapikan margin CSS, semuanya akan kami sambut dengan pintu terbuka.</p>
+
+                <h4>A. Persiapan Alur Kerja (*Git Workflow*)</h4>
+                <ol>
+                    <li>Langkah paling awal, lakukan <b>Fork</b> repositori utama ini ke akun GitHub pribadimu. Anggap saja kamu sedang menyalin buku catatan agar bebas dicoret-coret tanpa merusak aslinya.</li>
+                    <li>Setelah itu, lakukan <b>Clone</b> repositori hasil <i>fork</i> tersebut ke komputer lokalmu agar kamu bisa bekerja secara <i>offline</i> di *code editor* kesayanganmu.</li>
+                    <li>Selalu biasakan membuat <i>branch</i> (cabang) baru sebelum mengubah apa pun. Gunakan penamaan yang deskriptif, misalnya: <code>feat/optimasi-gambar</code> atau <code>fix/navigasi-mobile</code>. Praktik ini sangat vital untuk mencegah konflik pembaruan (*merge conflict*) di masa mendatang.</li>
+                </ol>
+
+                <h4>B. Standar Penulisan Kode</h4>
+                <ul>
+                    <li><b>HTML & Markdown:</b> Filosofi kami adalah kesederhanaan (<i>simplicity</i>) dan kebersihan. Pastikan struktur HTML-mu lulus validasi semantik, terindentasi dengan rapi, dan mudah dibaca oleh manusia.</li>
+                    <li><b>CSS:</b> Karena arsitektur proyek ini adalah situs statis tanpa kerangka kerja (<i>framework</i>) besar demi mengejar performa secepat kilat, usahakan hanya menggunakan CSS murni yang efisien. Hindari properti yang rakus memori. Pendekatan gaya <i>inline</i> atau <i>scoped</i> pada tag <code>&lt;style&gt;</code> sangat kami rekomendasikan. Ingat, minimalis itu indah!</li>
+                    <li><b>Workflow YAML:</b> Jika kamu memodifikasi alur kerja otomatis (<i>GitHub Actions</i>) berformat <code>.yml</code>, lakukan uji coba secara teliti di repositori pribadimu terlebih dahulu untuk memastikan skrip tersebut berjalan tanpa <i>error</i> dan aman dari celah eksploitasi.</li>
+                </ul>
+
+                <h4>C. Prosedur Mengirimkan Pull Request (PR)</h4>
+                <p>Ketika karyamu dirasa sudah rampung dan lulus uji, saatnya mempresentasikan kode tersebut kepada kami:</p>
+                <ul>
+                    <li>Pastikan riwayat <i>commit</i>-mu memiliki pesan log yang spesifik dan konvensional. Contoh yang baik: <br>
+                    <pre><code class="language-bash">fix: Perbaiki tautan favicon yang rusak di halaman utama</code></pre> atau <br>
+                    <pre><code class="language-bash">feat: Tambahkan GitHub Action otomatis untuk ping sitemap ke Google</code></pre></li>
+                    <li>Buka jendela <b>Pull Request</b>, lalu arahkan perubahan dari <i>branch</i> kamu ke <i>branch</i> <code>main</code> milik repositori Layar Kosong utama.</li>
+                    <li><b>Deskripsikan PR-mu secara detail.</b> Ceritakan motivasimu: Masalah apa yang kamu selesaikan? Mengapa pendekatan ini yang kamu pilih? Dan apa hasil akhir dari perubahan ini? Dokumentasi PR yang rapi akan mempercepat proses tinjauan (<i>review</i>) oleh tim <i>maintainer</i>.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary><h2>📝 Kontribusi Konten (Menulis Artikel)</h2></summary>
+
+                <p>Layar Kosong bukanlah semata-mata repositori kode, melainkan wadah publikasi konten berbasis HTML murni yang dirancang untuk edukasi. Oleh karena itu, para penggiat literasi, *blogger*, dan praktisi teknis sangat dipersilakan untuk menyumbangkan tulisan, panduan, atau opini teknis mereka di sini. Bagikan wawasan mahalmu kepada komunitas!</p>
+
+                <p>Alur teknis untuk memublikasikan tulisanmu sangatlah lugas:</p>
+                <ol>
+                    <li>Buatlah sebuah berkas HTML tunggal yang baru (sebagai contoh: <code>artikel-tutorial-git-pemula.html</code>). Pastikan kamu mematuhi struktur semantik HTML5 seperti yang sudah dicontohkan pada *template* dasar kami.</li>
+                    <li>Letakkan berkas HTML yang sudah jadi tersebut ke dalam direktori <b><code>artikelx/</code></b>.</li>
+                    <li>Kirimkan tulisan tersebut melalui jalur <b>Pull Request</b> dengan mengikuti panduan *Git Workflow* yang sudah kita bahas sebelumnya.</li>
+                </ol>
+
+                <blockquote>
+                    <b>⚠️ Deklarasi Penting Mengenai Lisensi:</b> Proyek Layar Kosong sepenuhnya beroperasi di bawah naungan lisensi <b>UNLICENSE</b> (Dedikasi Public Domain). Ini adalah komitmen serius. Konsekuensinya, saat kamu dengan sadar mengirimkan karya artikelmu ke dalam folder <code>artikelx/</code>, kamu secara otomatis melepaskan seluruh hak cipta dan kepemilikan eksklusif atas tulisan tersebut kepada Domain Publik internasional. Siapa pun bebas menggunakan, menyalin, memodifikasi, dan mendistribusikan ulang karyamu tanpa syarat. Pastikan kamu benar-benar nyaman dan ikhlas dengan kebijakan fundamental ini sebelum menekan tombol <i>submit</i> ya! Terima kasih banyak atas kelapangan hatimu. 🙏
+                </blockquote>
+            </details>
+
+            <h2>💖 Dukungan Lainnya: Donasi (Opsional)</h2>
+
+            <p>Bagaimana kalau kamu merasa proyek ini sangat bermanfaat untuk keseharianmu, kamu sangat menyukai visi Layar Kosong, tapi kebetulan kamu sedang tidak punya waktu luang untuk menulis kode atau merangkai artikel? Jangan khawatir!</p>
+
+            <p>Kamu masih bisa memberikan dukungan moril dan materiil dengan cara memberikan <b><a href="https://github.com/sponsors/frijal" target="_blank" rel="noopener">donasi via GitHub Sponsors</a></b>. Bantuan finansial ini akan dialokasikan untuk biaya pemeliharaan *domain*, kopi begadang para *maintainer*, dan riset optimasi situs ke depannya. Sekecil apa pun nominal dukunganmu, hal itu sangatlah berarti bagi napas panjang proyek ini. Terima kasih banyak atas apresiasimu! 💖</p>
+
+            <hr style="border: 0; height: 1px; background-color: var(--border-color); margin: 2.5rem 0;">
+
+            <p>Terima kasih yang sebesar-besarnya sudah menyempatkan waktu berhargamu untuk membaca panduan kontribusi ini dari awal hingga baris terakhir. Mari kita satukan energi untuk membangun situs statis yang makin cepat secara performa, makin efisien di sisi peladen, dan tentunya makin membawa manfaat masif bagi para pembaca. Tetap semangat mengukir karya, Kawan! 💪</p>
+
+            <div id="related-articles-grid"></div><div id="response"></div>
+        </article>
+    </main>
+
+    <footer>
+        <b>Frijal</b>
+        <span>|</span>
+        <i>23 Juni 2026</i>
+        <span>|</span>
+        <span>Referensi: Repositori GitHub Resmi Layar Kosong</span>
+    </footer>
+</body>
+</html>
