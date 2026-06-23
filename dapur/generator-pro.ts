@@ -28,31 +28,31 @@ const decodeHTML = (str: string) => {
 const buildDate = new Date().toISOString().split('T')[0];
 
 const slug = (t: any) => t.toString().toLowerCase().trim()
-.replace(/^[^\w\s]*/u, '')
-.replace(/ & /g, '-and-')
-.replace(/[^a-z0-9\s-]/g, '')
-.replace(/\s+/g, '-')
-.replace(/-+/g, '-');
+    .replace(/^[^\w\s]*/u, '')
+    .replace(/ & /g, '-and-')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
 
 // Fungsi ISO: Format UTC Mutlak berakhiran 'Z'
 const iso = (d: any) => {
     const parsed = new Date(d);
     const base   = isNaN(parsed.getTime()) ? new Date() : parsed;
-    return base.toISOString(); 
+    return base.toISOString();
 };
 
 const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
 
 const mime = (u: string) =>
-({ png: 'image/png', webp: 'image/webp', svg: 'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
+    ({ png: 'image/png', webp: 'image/webp', svg: 'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
 
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
 const escapeXML = (s: string) => s
-.replace(/&/g, '&amp;')
-.replace(/</g, '&lt;')
-.replace(/>/g, '&gt;')
-.replace(/"/g, '&quot;');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 
 const safeCDATA = (s: string) => s.replace(/]]>/g, ']]]]><![CDATA[>');
 
@@ -69,9 +69,9 @@ const imgSize = async (url: string): Promise<number> => {
 const calculateFeedRootDate = (items: any[]): Date => {
     const now = new Date();
     if (!items || items.length === 0) return now;
-    
+
     const newestItemDate = new Date(items[0].lastmod);
-    
+
     if (now.getTime() <= newestItemDate.getTime()) {
         const randomFeedOffset = Math.floor(Math.random() * (180000 - 60000 + 1)) + 60000;
         return new Date(newestItemDate.getTime() + randomFeedOffset);
@@ -105,15 +105,52 @@ const buildAtom = (
     ).join('')}</feed>`;
 };
 
+// ── Sitemap helpers ───────────────────────────────────────────────────────────
+
+/** Bungkus string entries menjadi <urlset> lengkap per kategori */
+const buildSitemapUrlset = (entries: string): string =>
+    `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${entries}
+</urlset>`;
+
+/** Bangun sitemap.xml sebagai <sitemapindex> yang menunjuk ke sitemap per kategori */
+const buildSitemapIndex = (items: { loc: string; lastmod: string }[]): string =>
+    `<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${items.map(it => `
+<sitemap>
+<loc>${escapeXML(it.loc)}</loc>
+<lastmod>${it.lastmod}</lastmod>
+</sitemap>`).join('')}
+</sitemapindex>`;
+
+/**
+ * Hapus semua file sitemap-*.xml lama (numbered maupun kategori stale)
+ * sebelum nulis yang baru — cegah file zombie.
+ * sitemap.xml sendiri tidak tersentuh karena tidak punya dash.
+ */
+const cleanupOldSitemaps = async (): Promise<number> => {
+    const files = await fs.readdir(C.root).catch(() => []);
+    let removed = 0;
+    for (const f of files) {
+        if (/^sitemap-.+\.xml$/i.test(f)) {
+            await fs.rm(`${C.root}/${f}`, { force: true });
+            removed++;
+        }
+    }
+    return removed;
+};
+
+// ── Distribute helper ─────────────────────────────────────────────────────────
+
 const distribute = async (f: string, cat: string, url: string, pre?: string) => {
     const dir = `${C.root}/${slug(cat)}`;
     await fs.mkdir(dir, { recursive: true });
     let html = pre || await Bun.file(`${C.art}/${f}`).text();
     html = html
-    .replace(/<link rel="canonical" href="[^"]+">/i,     `<link rel="canonical" href="${url}">`)
-    .replace(/<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${url}">`)
-    .replace(new RegExp(`${BASE_RE}/artikel/${f.replace('.html', '')}`, 'g'), url)
-    .replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
+        .replace(/<link rel="canonical" href="[^"]+">/i,     `<link rel="canonical" href="${url}">`)
+        .replace(/<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${url}">`)
+        .replace(new RegExp(`${BASE_RE}/artikel/${f.replace('.html', '')}`, 'g'), url)
+        .replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
     await Bun.write(`${dir}/${f}`, html);
 };
 
@@ -181,14 +218,14 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
             if (found?.[3]) { masterDate = found[3]; break; }
         }
         const date = masterDate
-        || txt.match(/article:published_time" content="(.*?)"/i)?.[1]
-        || (await fs.stat(`${C.art}/${f}`)).mtime;
+            || txt.match(/article:published_time" content="(.*?)"/i)?.[1]
+            || (await fs.stat(`${C.art}/${f}`)).mtime;
 
         const img  = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html', '')}.webp`;
         const desc = (txt.match(/description" content="(.*?)"/i)?.[1] || '').trim();
 
         await distribute(f, c, url, txt);
-        
+
         // it.lastmod otomatis tersimpan sebagai string UTC (berakhiran Z) dari fungsi iso()
         flat.push({ title: t, file: f, img, lastmod: iso(date), desc, category: c, loc: url });
         urls.add(url);
@@ -200,17 +237,17 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     let lastProcessedTime = Infinity;
     for (const it of flat) {
         let currentItemTime = new Date(it.lastmod).getTime();
-        
+
         if (currentItemTime >= lastProcessedTime) {
             const randomGap = Math.floor(Math.random() * (7 * 60000 - 60000 + 1)) + 60000;
             currentItemTime = lastProcessedTime - randomGap;
         }
-        
+
         lastProcessedTime = currentItemTime;
         it.lastmod = iso(currentItemTime); // Selalu kembalikan dalam bentuk UTC ISO string
     }
 
-    // JSON otomatis akan berisi string UTC, mantap!
+    // JSON otomatis akan berisi string UTC
     for (const it of flat) {
         (final[it.category] ??= []).push([it.title, it.file, it.img, it.lastmod, it.desc]);
     }
@@ -235,97 +272,132 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
     await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
+    // ── Build sitemap per kategori ────────────────────────────────────────────
     const globalSizes      = new Map<string, number>();
-    let combinedXmlEntries = '';
+    const sitemapByCategory = new Map<string, string[]>(); // catSlug → url entries
 
-for (const it of flat) {
-    const [txt, size] = await Promise.all([
-        Bun.file(`${C.art}/${it.file}`).text(),
-        imgSize(it.img)
-    ]);
-    globalSizes.set(it.img, size);
+    for (const it of flat) {
+        const [txt, size] = await Promise.all([
+            Bun.file(`${C.art}/${it.file}`).text(),
+            imgSize(it.img)
+        ]);
 
-    const vids = [...txt.matchAll(/<iframe[^>]+src="([^"]+)"/gi)]
-    .map(m => m[1])
-    .filter(s => !s.endsWith('.js'));
+        globalSizes.set(it.img, size);
 
-    let videoXml = '';
-vids.forEach(s => {
-    const id = s.match(/embed\/([^/?]+)/)?.[1];
-    if (id) {
-        const videoTitle = decodeHTML(it.title).substring(0, 100);
-        const videoDesc = (it.desc || decodeHTML(it.title)).substring(0, 2048);
+        const vids = [...txt.matchAll(/<iframe[^>]+src="([^"]+)"/gi)]
+            .map(m => m[1])
+            .filter(s => !s.endsWith('.js'));
 
-        // pub date untuk video juga otomatis pakai UTC (it.lastmod)
-        videoXml += `
-        <video:video>
-        <video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc>
-        <video:title><![CDATA[${safeCDATA(videoTitle)}]]></video:title>
-        <video:description><![CDATA[${safeCDATA(videoDesc)}]]></video:description>
-        <video:player_loc>https://www.youtube.com/embed/${id}</video:player_loc>
-        <video:publication_date>${it.lastmod}</video:publication_date>
-        <video:family_friendly>yes</video:family_friendly>
-        </video:video>`;
-    }
-});
+        let videoXml = '';
 
-// <lastmod> sitemap menggunakan nilai mentah it.lastmod yang sudah murni UTC (misal: 2026-06-14T23:59:07.000Z)
-combinedXmlEntries += `
+        vids.forEach(s => {
+            const id = s.match(/embed\/([^/?]+)/)?.[1];
+
+            if (id) {
+                const videoTitle = decodeHTML(it.title).substring(0, 100);
+                const videoDesc  = (it.desc || decodeHTML(it.title)).substring(0, 2048);
+
+                videoXml += `
+<video:video>
+<video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc>
+<video:title><![CDATA[${safeCDATA(videoTitle)}]]></video:title>
+<video:description><![CDATA[${safeCDATA(videoDesc)}]]></video:description>
+<video:player_loc>https://www.youtube.com/embed/${id}</video:player_loc>
+<video:publication_date>${it.lastmod}</video:publication_date>
+<video:family_friendly>yes</video:family_friendly>
+</video:video>`;
+            }
+        });
+
+        // Kelompokkan entry per kategori — satu file sitemap per kategori
+        const catSlug = slug(it.category);
+        if (!sitemapByCategory.has(catSlug)) sitemapByCategory.set(catSlug, []);
+        sitemapByCategory.get(catSlug)!.push(`
 <url>
 <loc>${escapeXML(it.loc)}</loc>
 <lastmod>${it.lastmod}</lastmod>
 <image:image>
 <image:loc>${escapeXML(it.img)}</image:loc>
 </image:image>${videoXml}
-</url>`;
-}
+</url>`);
+    }
 
-const finalSitemapContent =
-`<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-${combinedXmlEntries}
-</urlset>`;
+    // Hapus semua sitemap-*.xml lama (numbered lama + kategori stale) sebelum nulis baru
+    const removedOldSitemaps = await cleanupOldSitemaps();
 
-await Promise.all([
-    Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent),
-    Bun.write(`${C.root}/rss.xml`, buildRss(
-        'Layar Kosong',
-        flat.slice(0, C.limit),
-        `${C.base}/rss.xml`,
-        'RSS Feed artikel terbaru dari Layar Kosong',
-        globalSizes
-    )),
-    Bun.write(`${C.root}/atom.xml`, buildAtom(
-        'Layar Kosong',
-        flat.slice(0, C.limit),
-        `${C.base}/atom.xml`,
-        'Atom Feed artikel terbaru dari Layar Kosong',
-        globalSizes
-    )),
-]);
+    // Bangun metadata + konten tiap sitemap kategori
+    // flat sudah sorted by date — artikel pertama tiap kategori = yang terbaru
+    const categorySitemapItems = [...sitemapByCategory.entries()].map(([catSlug, entries]) => {
+        const fileName = `sitemap-${catSlug}.xml`;
+        const latestInCat = flat.find(it => slug(it.category) === catSlug);
+        const lastmod     = latestInCat?.lastmod || new Date().toISOString();
 
-console.log('✅ Sitemap, JSON, RSS & Atom seluruhnya telah terkunci dalam zona waktu UTC!');
+        return {
+            fileName,
+            loc:     `${C.base}/${fileName}`,
+            lastmod,
+            content: buildSitemapUrlset(entries.join('')),
+            count:   entries.length
+        };
+    });
 
-const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
+    // sitemap.xml = <sitemapindex> yang menunjuk ke semua sitemap kategori
+    const finalSitemapIndexContent = buildSitemapIndex(
+        categorySitemapItems.map(it => ({ loc: it.loc, lastmod: it.lastmod }))
+    );
 
-// Parameter timeZone: 'UTC' dikunci di sini agar tampilan tanggal pada HTML tidak berubah di manapun script ini di-run
-const dateFormatter = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' });
+    await Promise.all([
+        // Tulis sitemap-{kategori}.xml untuk masing-masing kategori
+        ...categorySitemapItems.map(it =>
+            Bun.write(`${C.root}/${it.fileName}`, it.content)
+        ),
+        // sitemap.xml berisi <sitemapindex> yang menunjuk ke semua sitemap kategori
+        Bun.write(`${C.root}/sitemap.xml`, finalSitemapIndexContent),
+        Bun.write(`${C.root}/rss.xml`, buildRss(
+            'Layar Kosong',
+            flat.slice(0, C.limit),
+            `${C.base}/rss.xml`,
+            'RSS Feed artikel terbaru dari Layar Kosong',
+            globalSizes
+        )),
+        Bun.write(`${C.root}/atom.xml`, buildAtom(
+            'Layar Kosong',
+            flat.slice(0, C.limit),
+            `${C.base}/atom.xml`,
+            'Atom Feed artikel terbaru dari Layar Kosong',
+            globalSizes
+        )),
+    ]);
 
-if (tmp) {
-    for (const [cat, arts] of Object.entries(final)) {
-        const s                 = slug(cat);
-        const rUrl              = `${C.base}/feed-${s}.xml`;
-        const rAtomUrl          = `${C.base}/feed-${s}-atom.xml`;
-        const categoryNameClean = sanitize(decodeHTML(cat));
+    console.log(`✅ Sitemap index dibuat : sitemap.xml`);
+    categorySitemapItems.forEach(it =>
+        console.log(`   📂 ${it.fileName.padEnd(32)} ${it.count} URL`)
+    );
+    console.log(`🧹 Sitemap lama dihapus : ${removedOldSitemaps} file`);
+    console.log('✅ Sitemap, JSON, RSS & Atom seluruhnya telah terkunci dalam zona waktu UTC!');
 
-        const categoryArticlesHTML = (arts as any[])
-        .sort((a, b) => new Date(b[3]).getTime() - new Date(a[3]).getTime())
-        .map(a => {
-            const title         = sanitize(a[0]);
-            const cleanUrl      = a[1].replace('.html', '');
-            const image         = a[2];
-            const formattedDate = dateFormatter.format(new Date(a[3]));
-            const displayDesc   = sanitize((a[4] || a[0]).substring(0, 100) + '...');
-            return `
+    // ── Category pages ────────────────────────────────────────────────────────
+    const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
+
+    // Parameter timeZone: 'UTC' dikunci agar tampilan tanggal konsisten di manapun script dijalankan
+    const dateFormatter = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' });
+
+    if (tmp) {
+        for (const [cat, arts] of Object.entries(final)) {
+            const s                 = slug(cat);
+            const rUrl              = `${C.base}/feed-${s}.xml`;
+            const rAtomUrl          = `${C.base}/feed-${s}-atom.xml`;
+            const categoryNameClean = sanitize(decodeHTML(cat));
+
+            const categoryArticlesHTML = (arts as any[])
+                .sort((a, b) => new Date(b[3]).getTime() - new Date(a[3]).getTime())
+                .map(a => {
+                    const title         = sanitize(a[0]);
+                    const cleanUrl      = a[1].replace('.html', '');
+                    const image         = a[2];
+                    const formattedDate = dateFormatter.format(new Date(a[3]));
+                    const displayDesc   = sanitize((a[4] || a[0]).substring(0, 100) + '...');
+                    return `
             <a href="${cleanUrl}" class="article-card">
             <div class="card-thumbnail">
             <img src="${image}" alt="${escapeAttr(title)}" loading="lazy" width="300" height="200" onerror="this.src='/thumbnail.webp'">
@@ -336,53 +408,54 @@ if (tmp) {
             <span class="card-meta">${formattedDate}</span>
             </div>
             </a>`;
-        }).join('');
+                }).join('');
 
-        const pg = tmp
-        .replace(/%%TITLE%%|%%DESCRIPTION%%/g, categoryNameClean)
-        .replace(/%%CATEGORY_NAME%%/g,          decodeHTML(cat))
-        .replace(/%%RSS_URL%%/g,               rUrl)
-        .replace(/%%ATOM_URL%%/g,              rAtomUrl)
-        .replace(/%%CANONICAL_URL%%/g,         `${C.base}/${s}`)
-        .replace(/%%ICON%%/g,                  cat.match(/(\p{Emoji})/u)?.[0] || '📁')
-        .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${categoryNameClean}</span>`)
-        .replace('<div id="loading">Memuat...</div>', '')
-        .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}`);
+            const pg = tmp
+                .replace(/%%TITLE%%|%%DESCRIPTION%%/g, categoryNameClean)
+                .replace(/%%CATEGORY_NAME%%/g,          decodeHTML(cat))
+                .replace(/%%RSS_URL%%/g,               rUrl)
+                .replace(/%%ATOM_URL%%/g,              rAtomUrl)
+                .replace(/%%CANONICAL_URL%%/g,         `${C.base}/${s}`)
+                .replace(/%%ICON%%/g,                  cat.match(/(\p{Emoji})/u)?.[0] || '📁')
+                .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${categoryNameClean}</span>`)
+                .replace('<div id="loading">Memuat...</div>', '')
+                .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}`);
 
-        const catItems = (arts as any[]).map(a => ({
-            title: a[0], file: a[1], img: a[2], lastmod: a[3], desc: a[4],
-            category: cat,
-            loc: `${C.base}/${s}/${a[1].replace('.html', '')}`
-        })).slice(0, C.limit);
+            const catItems = (arts as any[]).map(a => ({
+                title: a[0], file: a[1], img: a[2], lastmod: a[3], desc: a[4],
+                category: cat,
+                loc: `${C.base}/${s}/${a[1].replace('.html', '')}`
+            })).slice(0, C.limit);
 
-        await Promise.all([
-            Bun.write(`${C.root}/${s}/index.html`, pg),
-            Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
-                `Kategori ${categoryNameClean}`,
-                catItems, rUrl,
-                `Artikel ${cat}`,
-                globalSizes
-            )),
-            Bun.write(`${C.root}/feed-${s}-atom.xml`, buildAtom(
-                `Kategori ${categoryNameClean}`,
-                catItems, rAtomUrl,
-                `Artikel ${cat}`,
-                globalSizes
-            )),
-        ]);
+            await Promise.all([
+                Bun.write(`${C.root}/${s}/index.html`, pg),
+                Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
+                    `Kategori ${categoryNameClean}`,
+                    catItems, rUrl,
+                    `Artikel ${cat}`,
+                    globalSizes
+                )),
+                Bun.write(`${C.root}/feed-${s}-atom.xml`, buildAtom(
+                    `Kategori ${categoryNameClean}`,
+                    catItems, rAtomUrl,
+                    `Artikel ${cat}`,
+                    globalSizes
+                )),
+            ]);
+        }
     }
-}
 
-const feedTemplate = await Bun.file(`${C.art}/-/template-feed.html`).text().catch(() => '');
+    // ── Feed page (HTML statis) ───────────────────────────────────────────────
+    const feedTemplate = await Bun.file(`${C.art}/-/template-feed.html`).text().catch(() => '');
 
-if (feedTemplate) {
-    const feedItemsHTML = flat.slice(0, C.limit).map(it => {
-        const encodedLink = encodeURIComponent(it.loc);
-        const encodedText = encodeURIComponent(it.desc || it.title);
-        // Parameter timeZone: 'UTC' dikunci di sini juga
-        const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(it.lastmod));
-        const cleanCat    = it.category.replace(/\p{Emoji_Presentation}\s*/gu, '').trim();
-        return `
+    if (feedTemplate) {
+        const feedItemsHTML = flat.slice(0, C.limit).map(it => {
+            const encodedLink = encodeURIComponent(it.loc);
+            const encodedText = encodeURIComponent(it.desc || it.title);
+            // Parameter timeZone: 'UTC' dikunci di sini juga
+            const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(it.lastmod));
+            const cleanCat    = it.category.replace(/\p{Emoji_Presentation}\s*/gu, '').trim();
+            return `
         <div class="feed-item">
         <div class="feed-item-thumbnail">
         <img src="${it.img}" alt="${escapeAttr(it.title)}" loading="lazy">
@@ -400,21 +473,21 @@ if (feedTemplate) {
         <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}&t=${encodedText}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-facebook"></i></a>
         <a href="https://api.whatsapp.com/send?text=${encodedText}%0A%0A${encodedLink}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="https://www.threads.com/intent/post?text=${encodedText}&url=${encodedLink}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-threads"></i></a>
-        <a href="https://share.flipboard.com/bookmarklet/popout?v=2&title=${encodedText}&url=${encodedLink}&utm_source=dalam.web.id"   onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600');return false;"><i class="fa-brands fa-flipboard"></i></a>
+        <a href="https://share.flipboard.com/bookmarklet/popout?v=2&title=${encodedText}&url=${encodedLink}&utm_source=dalam.web.id" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600');return false;"><i class="fa-brands fa-flipboard"></i></a>
         </div>
         </div>
         </div>`;
-    }).join('');
+        }).join('');
 
-    const finalFeedPage = feedTemplate
-    .replace('<div id="loading"></div>', '')
-    .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
-    .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '')
-    .replace('%%DATE_MODIFIED%%', buildDate);
+        const finalFeedPage = feedTemplate
+            .replace('<div id="loading"></div>', '')
+            .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
+            .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '')
+            .replace('%%DATE_MODIFIED%%', buildDate);
 
-    await Bun.write(`${C.root}/feed.html`, finalFeedPage);
-    console.log('✨ Static Pages Generated (Locked to UTC).');
-}
+        await Bun.write(`${C.root}/feed.html`, finalFeedPage);
+        console.log('✨ Static Pages Generated (Locked to UTC).');
+    }
 
-console.log('✅ Eksekusi Rampung: Semua lini dari Sitemap, JSON, Feed, hingga HTML resmi sinkron dalam UTC tunggal!');
+    console.log('✅ Eksekusi Rampung: Semua lini dari Sitemap, JSON, Feed, hingga HTML resmi sinkron dalam UTC tunggal!');
 })();
