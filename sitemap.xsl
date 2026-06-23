@@ -15,6 +15,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #333; margin: 0; padding: 40px; background: #f4f7f6; }
 .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 h1 { color: #2c3e50; margin-bottom: 20px; }
+h1 a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
+h1 a:hover { opacity: 0.8; text-decoration: none; }
 
 /* Header Flexbox */
 .header-container { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #3498db; padding-bottom: 15px; margin-bottom: 10px; }
@@ -68,10 +70,12 @@ a:hover { text-decoration: underline; }
 
 <div class="container">
     <h1>
-        <xsl:choose>
-            <xsl:when test="sitemap:sitemapindex">XML Sitemap Index - Layar Kosong</xsl:when>
-            <xsl:otherwise>XML Sitemap - Layar Kosong</xsl:otherwise>
-        </xsl:choose>
+        <a href="/sitemap.xml">
+            <xsl:choose>
+                <xsl:when test="sitemap:sitemapindex">XML Sitemap Index - Layar Kosong</xsl:when>
+                <xsl:otherwise>XML Sitemap - Layar Kosong</xsl:otherwise>
+            </xsl:choose>
+        </a>
     </h1>
     <div class="header-container">
         <p class="total-info">Total: 
