@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 23 Jun 2026 | 13:04 WITA
+Update: 23 Jun 2026 | 16:31 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -31,7 +31,7 @@ Update: 23 Jun 2026 | 13:04 WITA
 | 📜 sh    | **13** | sementara, artikel, dapur |
 | 📄 sql   | **1** | init.sql |
 | 📄 svg   | **58** | favicon.svg, img, artikel, dapur, ext |
-| 📄 ts    | **75** | search, 0-audit-txt.ts, sementara, 0-komp-editor.ts, functions, 0-dup-finder.ts, 0-cari-hapus.ts, dapur |
+| 📄 ts    | **76** | search, 0-audit-txt.ts, sementara, 0-komp-editor.ts, functions, 0-dashboard-launcher.ts, 0-dup-finder.ts, 0-cari-hapus.ts, dapur |
 | 📄 txt   | **32** | llms.txt, img, sementara, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, list-to-clean.txt, robots.txt, sitemap.txt, artikel, dapur, ads.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
 | 🖼️ webp  | **3090** | thumbnail.webp, img, thumbnail-md.webp, thumbnail-sm.webp |
@@ -39,4 +39,4 @@ Update: 23 Jun 2026 | 13:04 WITA
 | 📄 xml   | **20** | feed-opini-sosial.xml, sitemap.xml, rss.xml, feed-gaya-hidup-atom.xml, feed-gaya-hidup.xml, sementara, feed-jejak-sejarah.xml, BingSiteAuth.xml, feed-olah-media.xml, feed-sistem-terbuka-atom.xml, feed-sistem-terbuka.xml, feed-olah-media-atom.xml, feed-lainnya-atom.xml, feed-jejak-sejarah-atom.xml, feed-warta-tekno.xml, feed-lainnya.xml, opensearch.xml, feed-opini-sosial-atom.xml, feed-warta-tekno-atom.xml |
 | 📄 xsl   | **3** | rss.xsl, sitemap.xsl, atom.xsl |
 
-**Total File:** 6546
+**Total File:** 6547
