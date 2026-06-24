@@ -11,23 +11,23 @@ on:
         description: 'Generator (JSON, RSS, Sitemap XML)'
         type: boolean
         default: true
-      run_sitemap_txt:
+      run_srcset:
         description: 'Image Optimize & Srcset Generator'
         type: boolean
         default: true
-      run_schema:
+      run_sitemap_txt:
         description: 'Update sitemap.txt'
         type: boolean
         default: true
-      run_minify_html:
+      run_schema:
         description: 'Inject Schema.org'
         type: boolean
         default: true
-      run_minify_jsonxml:
+      run_minify_html:
         description: 'HTML Minify'
         type: boolean
         default: true 
-      run_srcset:
+      run_minify_jsonxml:
         description: 'JSONXML Minify'
         type: boolean
         default: true
