@@ -4,7 +4,7 @@ import sharp from "sharp";
 
 // --- KONFIGURASI FOLDER & INPUT ---
 const TARGET_DIR = "./img";
-const OUTPUT_JSON = "./mini/galeri-data.json";
+const OUTPUT_JSON = "./img/galeri-data.json";
 const SRCSET_TXT_PATH = "./mini/srcset-gambar.txt";
 
 const IMG_EXTS = new Set([".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".avif"]);
