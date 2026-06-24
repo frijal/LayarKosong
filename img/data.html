@@ -163,7 +163,6 @@
                 if (a.type === 'dir' && b.type !== 'dir') return -1;
                 if (a.type !== 'dir' && b.type === 'dir') return 1;
 
-                // Trik komparasi dinamis untuk data dimensi virtual (width * height)
                 let valA, valB;
                 if (currentSortKey === 'dimension') {
                     valA = a.width ? a.width * a.height : 0;
@@ -181,19 +180,18 @@
                 return 0;
             });
 
+            // FIX: Navigasi naik ke tingkat folder sebelumnya
             if (pathKey !== 'root') {
                 const parts = pathKey.split('/');
                 parts.pop();
                 const parentKey = parts.length === 0 ? 'root' : parts.join('/');
-                dirList.appendChild(createRow('📁', 'Parent Directory', '-', '-', '-', '-', '-'));
+                dirList.appendChild(createRow('📁', 'Parent Directory', '-', '-', '-', '-', '-', `changeDir('${parentKey}')`));
             }
 
             items.forEach(item => {
                 if (item.type === 'dir') {
-                    // Row untuk folder
                     dirList.appendChild(createRow('📁', item.name + '/', '-', '-', '-', '-', `<small style="color:#666">Directory</small>`, `changeDir('${item.path}')`));
                 } else {
-                    // Row untuk file gambar dengan visualisasi data lengkap
                     const localPath = item.path; 
                     const localThumbPath = item.thumbPath ? item.thumbPath : localPath;
                     const dimStr = item.width ? `${item.width}x${item.height}` : 'N/A';
@@ -230,8 +228,6 @@
 
         function createRow(icon, name, size, dimension, format, date, actionHtml, onclickAttr = '') {
             const row = document.createElement('tr');
-            
-            // Logika link pemicu navigasi baris
             const linkHtml = onclickAttr ? `<a href="#" onclick="${onclickAttr}; return false;">${name}</a>` : name;
             
             row.innerHTML = `
