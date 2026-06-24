@@ -252,7 +252,7 @@
 Write-Host "[1/3] Membersihkan Cache Aplikasi Modern (Winget &amp; Cache Paket)..." -ForegroundColor Green
 # Membersihkan cache pengelola paket bawaan Windows (Winget) jika ada
 if (Get-Command winget -ErrorAction SilentlyContinue) {
-    winget clean
+    winget source reset --force
 }
 Write-Host "[2/3] Membuat Akun Administrator Baru untuk Pemilik Laptop..." -ForegroundColor Green
 $UserLama = [Environment]::UserName
@@ -279,7 +279,7 @@ Write-Host "`nSilakan keluar (Sign out) sekarang."</code></pre>
                     <li>Buka PowerShell dengan hak akses <b>Administrator</b>.</li>
                     <li>Jalankan perintah pembersihan <i>cache</i>:</li>
                 </ol>
-<pre><code class="language-powershell">winget clean</code></pre>
+<pre><code class="language-powershell">winget source reset --force</code></pre>
                 <p>Jika kamu menginstal aplikasi krusial yang menempel di sistem dan ingin mencabutnya sebelum laptop berpindah tangan, kamu bisa menggunakan perintah <code>winget uninstall "Nama Aplikasi"</code>.</p>
                 <h3>Langkah 2: Buat Akun Admin Baru Secara Manual</h3>
                 <p>Kita butuh akun lokal baru yang bertindak sebagai "rumah sementara" bagi pemilik baru.</p>
