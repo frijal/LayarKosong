@@ -28,7 +28,8 @@ const filesToMinify: string[] = [
 './sitemap-olah-media.xml',
 './sitemap-opini-sosial.xml',
 './sitemap-sistem-terbuka.xml',
-'./sitemap-warta-tekno.xml'
+'./sitemap-warta-tekno.xml',
+'./img/galeri-data.json'
 ];
 
 console.log("🧹 Memulai operasi Sapu Jagat (Minify Data)...");
