@@ -3,8 +3,11 @@ import { writeFileSync, statSync } from "fs";
 import { glob } from "glob";
 import sharp from "sharp";
 
+// Konfigurasi Folder & Aturan Main
 const ROOT_IMG_DIR = "./img"; 
 const OUTPUT_JSON = "./img/galeri-data.json"; 
+
+// Whitelist ketat (selain dari ini otomatis DENY)
 const ONLY_IMAGES_PATTERN = "**/*.{jpg,jpeg,png,webp,gif,svg,avif}";
 
 interface FileItem {
@@ -12,7 +15,7 @@ interface FileItem {
     path: string;
     thumbPath: string | null;
     size: number;
-    date: string;       // 📅 Tambahan Kolom Tanggal
+    date: string;
     width?: number;
     height?: number;
     format?: string;
@@ -29,7 +32,7 @@ type GalleryData = {
     [key: string]: (FileItem | DirItem)[];
 };
 
-// Fungsi pembantu merapikan format tanggal ISO ke YYYY-MM-DD HH:mm
+// Merapikan format tanggal ISO ke YYYY-MM-DD HH:mm
 function formatDate(dateObj: Date): string {
     const pad = (n: number) => n.toString().padStart(2, '0');
     return `${dateObj.getFullYear()}-${pad(dateObj.getMonth() + 1)}-${pad(dateObj.getDate())} ${pad(dateObj.getHours())}:${pad(dateObj.getMinutes())}`;
@@ -38,6 +41,7 @@ function formatDate(dateObj: Date): string {
 async function generateGalleryJson() {
     console.log("🚀 Memulai pemindaian dapur gambar (Mode: Informasi Kaya)...");
 
+    // Scan murni file gambar saja
     const allFiles = await glob(ONLY_IMAGES_PATTERN, {
         cwd: ROOT_IMG_DIR,
         nodir: true,
@@ -47,6 +51,7 @@ async function generateGalleryJson() {
     const galleryMap: GalleryData = { root: [] };
     const processedThumbnails = new Set<string>();
 
+    // Langkah 1: Pilah varian thumbnail agar tidak mengotori list utama
     allFiles.forEach(file => {
         const ext = extname(file);
         const nameWithoutExt = basename(file, ext);
@@ -55,6 +60,7 @@ async function generateGalleryJson() {
         }
     });
 
+    // Langkah 2: Ekstrak file utama & kumpulkan metadatanya
     for (const file of allFiles) {
         if (processedThumbnails.has(file)) continue;
 
@@ -74,27 +80,22 @@ async function generateGalleryJson() {
         const potentialThumb = join(relDir, `${nameWithoutExt}-sm${fileExt}`);
         const hasThumb = allFiles.includes(potentialThumb.replace(/\\/g, "/"));
 
-        // Set tanggal default dari waktu modifikasi file fisik di OS (sangat akurat untuk optimasi aset)
-        let fileDateStr = formatDate(stats.mtime);
-
         let fileData: FileItem = {
             name: filename,
-            path: file,
+            path: file, // Jalur relatif untuk Cloudflare
             thumbPath: hasThumb ? potentialThumb.replace(/\\/g, "/") : null,
             size: stats.size,
-            date: fileDateStr,
+            date: formatDate(stats.mtime),
             type: "file"
         };
 
+        // Gali resolusi & format gambar lewat Sharp
         if (fileExt !== ".svg") {
             try {
                 const metadata = await sharp(fullPath).metadata();
                 fileData.width = metadata.width;
                 fileData.height = metadata.height;
                 fileData.format = metadata.format;
-                
-                // Opsional: Jika ada data EXIF DateTime asli dari jepretan kamera, kamu bisa parse di sini.
-                // Namun stats.mtime jauh lebih konsisten untuk semua jenis format (termasuk webp hasil konversi).
             } catch (err) {
                 console.warn(`⚠️ Gagal membaca metadata Sharp untuk berkas: ${file}`);
             }
@@ -106,6 +107,7 @@ async function generateGalleryJson() {
 
         galleryMap[pathKey].push(fileData);
 
+        // Langkah 3: Rekonstruksi navigasi folder tiruan Apache
         if (pathKey !== "root") {
             const parts = pathKey.split("/");
             let currentBuildPath = "";
@@ -132,12 +134,16 @@ async function generateGalleryJson() {
         }
     }
 
+    // Langkah 4: Tulis data mentah (Format Cantik) ke berkas target
     try {
-        const minifiedJson = JSON.stringify(galleryMap);
-        writeFileSync(OUTPUT_JSON, minifiedJson, "utf-8");
-        console.log(`\n✨ SUKSES! Berkas JSON kaya informasi berhasil disimpan.`);
+        const prettyJson = JSON.stringify(galleryMap, null, 2);
+        writeFileSync(OUTPUT_JSON, prettyJson, "utf-8");
+        
+        console.log(`\n✨ SUKSES! Berkas galeri berhasil disimpan di: ${OUTPUT_JSON}`);
+        console.log(`📊 Total folder teregistrasi: ${Object.keys(galleryMap).length} lokasi.`);
+        console.log(`🧹 Catatan: Jalankan skrip Sapu Jagat untuk memangkas whitespace berkas ini.`);
     } catch (writeErr) {
-        console.error("❌ Gagal meminify JSON:", writeErr);
+        console.error("❌ Gagal menulis berkas galeri-data.json:", writeErr);
     }
 }
 
