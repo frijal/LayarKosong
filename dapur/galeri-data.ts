@@ -1,162 +1,139 @@
-import { readdir, stat } from "node:fs/promises";
-import { join, extname, relative } from "node:path";
+import { join, relative, basename, dirname, extname } from "path";
+import { writeFileSync, statSync } from "fs";
+import { glob } from "glob";
 import sharp from "sharp";
 
-// --- KONFIGURASI FOLDER & INPUT ---
-const TARGET_DIR = "./img";
-const OUTPUT_JSON = "./img/galeri-data.json";
-const SRCSET_TXT_PATH = "./mini/srcset-gambar.txt";
+// Konfigurasi Folder & Aturan Main
+const ROOT_IMG_DIR = "./img"; 
+const OUTPUT_JSON = "./img/galeri-data.json"; 
 
-const IMG_EXTS = new Set([".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".avif"]);
+// Hanya izinkan format gambar ini, selain dari ini otomatis DENY (termasuk file sistem/sampah)
+const ONLY_IMAGES_PATTERN = "**/*.{jpg,jpeg,png,webp,gif,svg,avif}";
 
-interface DirectoryNode {
-    type: "dir" | "file";
+interface FileItem {
     name: string;
     path: string;
-    size?: number;
+    thumbPath: string | null;
+    size: number;
     width?: number;
     height?: number;
     format?: string;
-    thumbPath?: string; // Menyimpan varian lokal terbaik (-sm, -md, atau asli)
+    type: "file";
 }
 
-// Memuat database srcset-gambar.txt ke memori (Set) agar pencarian O(1) super cepat
-async function loadSrcsetDatabase(filePath: string): Promise<Set<string>> {
-    try {
-        const fileContent = await Bun.file(filePath).text();
-        const lines = fileContent.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
-        return new Set(lines);
-    } catch (error) {
-        console.warn(`⚠️ Gagal membaca ${filePath}, pencocokan varian ukuran dinonaktifkan.`);
-        return new Set();
-    }
+interface DirItem {
+    name: string;
+    path: string;
+    type: "dir";
 }
 
-// Fungsi rekursif untuk membaca isi struktur direktori
-async function scanDirectory(dirPath: string, srcsetDb: Set<string>): Promise<DirectoryNode[]> {
-    const entries = await readdir(dirPath, { withFileTypes: true });
-    const result: DirectoryNode[] = [];
+type GalleryData = {
+    [key: string]: (FileItem | DirItem)[];
+};
 
-    for (const entry of entries) {
-        const fullPath = join(dirPath, entry.name);
-        const relPath = relative(TARGET_DIR, fullPath).replace(/\\/g, "/");
+async function generateGalleryJson() {
+    console.log("🚀 Memulai pemindaian dapur gambar (Mode: Whitelist Gambar)...");
 
-        if (entry.isDirectory()) {
-            result.push({
-                type: "dir",
-                name: entry.name,
-                path: relPath,
-            });
+    // Scan murni file gambar saja
+    const allFiles = await glob(ONLY_IMAGES_PATTERN, {
+        cwd: ROOT_IMG_DIR,
+        nodir: true,
+        nocase: true // Kebal terhadap perbedaan kapitalisasi eksensi (cth: .WEBP / .jpg)
+    });
+
+    const galleryMap: GalleryData = { root: [] };
+    const processedThumbnails = new Set<string>();
+
+    // Langkah 1: Pilah varian thumbnail agar tidak mengotori list utama
+    allFiles.forEach(file => {
+        const ext = extname(file);
+        const nameWithoutExt = basename(file, ext);
+        if (nameWithoutExt.endsWith("-sm") || nameWithoutExt.endsWith("-md")) {
+            processedThumbnails.add(file);
+        }
+    });
+
+    // Langkah 2: Ekstrak file utama & kumpulkan metadatanya
+    for (const file of allFiles) {
+        if (processedThumbnails.has(file)) continue;
+
+        const fullPath = join(ROOT_IMG_DIR, file);
+        const stats = statSync(fullPath);
+        const filename = basename(file);
+        const fileExt = extname(file).toLowerCase();
+
+        const relDir = dirname(file);
+        const pathKey = relDir === "." ? "root" : relDir;
+
+        if (!galleryMap[pathKey]) {
+            galleryMap[pathKey] = [];
+        }
+
+        const nameWithoutExt = basename(file, fileExt);
+        const potentialThumb = join(relDir, `${nameWithoutExt}-sm${fileExt}`);
+        const hasThumb = allFiles.includes(potentialThumb.replace(/\\/g, "/"));
+
+        let fileData: FileItem = {
+            name: filename,
+            path: file, // Murni relatif terhadap /img/ untuk Cloudflare
+            thumbPath: hasThumb ? potentialThumb.replace(/\\/g, "/") : null,
+            size: stats.size,
+            type: "file"
+        };
+
+        // Gali dimensi gambar lewat Sharp jika bukan SVG
+        if (fileExt !== ".svg") {
+            try {
+                const metadata = await sharp(fullPath).metadata();
+                fileData.width = metadata.width;
+                fileData.height = metadata.height;
+                fileData.format = metadata.format;
+            } catch (err) {
+                console.warn(`⚠️ Gagal membaca metadata Sharp untuk berkas: ${file}`);
+            }
         } else {
-            const ext = extname(entry.name).toLowerCase();
-            if (IMG_EXTS.has(ext)) {
-                try {
-                    const fileStat = await stat(fullPath);
+            fileData.format = "svg";
+        }
 
-                    // Formulasi path dasar untuk dicocokkan ke database srcset, misal: "img/folder/nama-foto"
-                    const fullImgKey = `img/${relPath}`;
-                    const baseNameWithoutExt = fullImgKey.substring(0, fullImgKey.lastIndexOf("."));
+        galleryMap[pathKey].push(fileData);
 
-                    const smVariant = `${baseNameWithoutExt}-sm${ext}`;
-                    const mdVariant = `${baseNameWithoutExt}-md${ext}`;
+        // Langkah 3: Rekonstruksi struktur navigasi folder (Tiruan Apache)
+        if (pathKey !== "root") {
+            const parts = pathKey.split("/");
+            let currentBuildPath = "";
 
-                    let selectedThumb = fullImgKey; // Default fallback ke dirinya sendiri (Single Foto)
+            for (let i = 0; i < parts.length; i++) {
+                const parentKey = i === 0 ? "root" : currentBuildPath;
+                const dirName = parts[i];
+                currentBuildPath = currentBuildPath ? `${currentBuildPath}/${dirName}` : dirName;
 
-                    // Cek prioritas: cari -sm dulu, jika tidak ada cari -md, jika tidak ada balik ke file asli
-                    if (srcsetDb.has(smVariant)) {
-                        selectedThumb = smVariant;
-                    } else if (srcsetDb.has(mdVariant)) {
-                        selectedThumb = mdVariant;
-                    }
+                if (!galleryMap[parentKey]) galleryMap[parentKey] = [];
 
-                    // Bersihkan prefix 'img/' agar path-nya sesuai struktur folder di browser
-                    const cleanThumbPath = selectedThumb.replace(/^img\//, "");
+                const isDirExist = galleryMap[parentKey].some(
+                    item => item.type === "dir" && item.path === currentBuildPath
+                );
 
-                    // 🧠 BYPASS SHARP UNTUK SVG AGAR TIDAK ERROR DI GITHUB ACTIONS
-                    if (ext === ".svg") {
-                        result.push({
-                            type: "file",
-                            name: entry.name,
-                            path: relPath,
-                            size: fileStat.size,
-                            width: 0,
-                            height: 0,
-                            format: "SVG",
-                                thumbPath: cleanThumbPath
-                        });
-                    } else {
-                        // Jalur normal pakai Sharp untuk non-SVG (png, jpg, webp, dll)
-                        try {
-                            const meta = await sharp(fullPath).metadata();
-
-                            result.push({
-                                type: "file",
-                                name: entry.name,
-                                path: relPath,
-                                size: fileStat.size,
-                                width: meta.width || 0,
-                                height: meta.height || 0,
-                                format: meta.format || ext.substring(1),
-                                    thumbPath: cleanThumbPath
-                            });
-                        } catch (err) {
-                            // Jika sewaktu-waktu ada file non-SVG yang korup, proses tidak akan crash mendadak
-                            console.warn(`⚠️ Gagal membaca metadata Sharp untuk: ${entry.name}`);
-                            result.push({
-                                type: "file",
-                                name: entry.name,
-                                path: relPath,
-                                size: fileStat.size,
-                                format: ext.substring(1),
-                                    thumbPath: cleanThumbPath
-                            });
-                        }
-                    }
-                } catch (err) {
-                    console.error(`❌ Gagal memproses file: ${entry.name}`, err);
+                if (!isDirExist) {
+                    galleryMap[parentKey].unshift({
+                        name: dirName,
+                        path: currentBuildPath,
+                        type: "dir"
+                    });
                 }
             }
         }
     }
 
-    // Urutkan: Folder di atas, File di bawah (Khas Apache)
-    return result.sort((a, b) => {
-        if (a.type !== b.type) return a.type === "dir" ? -1 : 1;
-        return a.name.localeCompare(b.name);
-    });
-}
-
-async function main() {
-    console.log("🚀 Memulai scanning galeri dengan pencocokan otomatis varian dari srcset-gambar.txt...");
-
-    // Load database teks kamu ke memori
-    const srcsetDb = await loadSrcsetDatabase(SRCSET_TXT_PATH);
-    console.log(`📂 Berhasil memuat ${srcsetDb.size} daftar file gambar dari database.`);
-
-    const galleryMap: Record<string, DirectoryNode[]> = {};
-
-    // Scan folder root utama
-    galleryMap["root"] = await scanDirectory(TARGET_DIR, srcsetDb);
-
-    // Scan semua sub-folder secara mendalam
-    async function deepScan(currentDir: string) {
-        const entries = await readdir(currentDir, { withFileTypes: true });
-        for (const entry of entries) {
-            if (entry.isDirectory()) {
-                const subPath = join(currentDir, entry.name);
-                const relPath = relative(TARGET_DIR, subPath).replace(/\\/g, "/");
-
-                galleryMap[relPath] = await scanDirectory(subPath, srcsetDb);
-                await deepScan(subPath);
-            }
-        }
+    // Langkah 4: Tulis & Minify total data ke berkas target
+    try {
+        const minifiedJson = JSON.stringify(galleryMap);
+        writeFileSync(OUTPUT_JSON, minifiedJson, "utf-8");
+        
+        console.log(`\n✨ SUKSES! Berkas galeri termunifikasi (murni gambar) disimpan di: ${OUTPUT_JSON}`);
+        console.log(`📊 Total folder teregistrasi: ${Object.keys(galleryMap).length} lokasi.`);
+    } catch (writeErr) {
+        console.error("❌ Gagal meminify JSON:", writeErr);
     }
-
-    await deepScan(TARGET_DIR);
-
-    // Simpan data akhir ke berkas JSON statis kamu
-    await Bun.write(OUTPUT_JSON, JSON.stringify(galleryMap, null, 2));
-    console.log(`✨ Sukses! File ${OUTPUT_JSON} berhasil di-generate.`);
 }
 
-main().catch(console.error);
+generateGalleryJson();
