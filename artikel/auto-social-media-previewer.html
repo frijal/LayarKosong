@@ -750,7 +750,7 @@ async function fetchWithFallback(targetUrl) {
     }
     throw new Error('Semua API gagal');
 }</code></pre>
-        <p>Skrip sederhana ini dibuat dengan kode yang mendukung <em>multiple API fallback*. Jika API utama (Microlink) gagal karena *rate limit</em> atau masalah CORS, skrip akan secara otomatis beralih ke JSONLink, lalu ke AllOrigins dengan teknik <em>parsing</em> manual pada <em>meta tag</em> dari HTML mentah. Untuk meningkatkan efisiensi dan stabilitas, skrip juga dilengkapi dengan fitur <em>caching</em> otomatis di <em>sessionStorage</em> selama 10 menit, <em>timeout handling*, *loading skeleton*, serta *debug panel</em> untuk inspeksi metadata secara <em>real-time</em>.</p>
+        <p>Skrip sederhana ini dibuat dengan kode yang mendukung <em>multiple API fallback. Jika API utama (Microlink) gagal karena *rate limit</em> atau masalah CORS, skrip akan secara otomatis beralih ke JSONLink, lalu ke AllOrigins dengan teknik <em>parsing</em> manual pada <em>meta tag</em> dari HTML mentah. Untuk meningkatkan efisiensi dan stabilitas, skrip juga dilengkapi dengan fitur <em>caching</em> otomatis di <em>sessionStorage</em> selama 10 menit, <em>timeout handling*, *loading skeleton*, serta *debug panel</em> untuk inspeksi metadata secara <em>real-time</em>.</p>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <div class="meta-inline">
