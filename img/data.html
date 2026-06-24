@@ -100,7 +100,7 @@
             const loadingText = document.getElementById('loading-text');
             const dirTable = document.getElementById('dir-table');
             try {
-                const res = await fetch('./mini/galeri-data.json');
+                const res = await fetch('./img/galeri-data.json');
                 masterData = await res.json();
                 
                 loadingText.style.display = 'none';
