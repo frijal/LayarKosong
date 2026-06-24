@@ -172,14 +172,14 @@
         <table id="dir-table" style="display: none;">
             <thead>
                 <tr>
-                    <th width="5%" onclick="sortTable('type')">Icon<span id="sort-type"></span></th>
-                    <th width="32%" onclick="sortTable('name')">Name<span id="sort-name">▲</span></th>
-                    <th width="8%" class="text-center" onclick="sortTable('items')">Items<span id="sort-items"></span></th>
-                    <th width="10%" class="text-right" onclick="sortTable('size')">Size<span id="sort-size"></span></th>
-                    <th width="15%" class="text-center" onclick="sortTable('dimension')">Dimension<span id="sort-dimension"></span></th>
-                    <th width="8%" class="text-center" onclick="sortTable('format')">Format<span id="sort-format"></span></th>
-                    <th width="12%" onclick="sortTable('date')">Date Modified<span id="sort-date"></span></th>
-                    <th width="10%" class="text-right">Preview</th>
+                    <th width="5%" onclick="sortTable('type')"> # <span id="sort-type"></span></th>
+                    <th width="32%" onclick="sortTable('name')">Nama<span id="sort-name">▲</span></th>
+                    <th width="8%" class="text-center" onclick="sortTable('items')">Jumlah<span id="sort-items"></span></th>
+                    <th width="10%" class="text-right" onclick="sortTable('size')">Ukuran<span id="sort-size"></span></th>
+                    <th width="15%" class="text-center" onclick="sortTable('dimension')">Dimensi<span id="sort-dimension"></span></th>
+                    <th width="8%" class="text-center" onclick="sortTable('format')">Jenis<span id="sort-format"></span></th>
+                    <th width="12%" onclick="sortTable('date')">Tanggal<span id="sort-date"></span></th>
+                    <th width="10%" class="text-right">Tampilan</th>
                 </tr>
             </thead>
             <tbody id="dir-list">
@@ -289,13 +289,13 @@
                 const parts = pathKey.split('/');
                 parts.pop();
                 const parentKey = parts.length === 0 ? 'root' : parts.join('/');
-                dirList.appendChild(createRow('📁', 'Parent Directory', '-', '-', '-', '-', '-', '-', `changeDir('${parentKey}')`));
+                dirList.appendChild(createRow('⏏️', 'Naik ke Atas', '-', '-', '-', '-', '-', '-', `changeDir('${parentKey}')`));
             }
 
             items.forEach(item => {
                 if (item.type === 'dir') {
-                    const countStr = item.totalFiles !== undefined ? `${item.totalFiles} imgs` : '-';
-                    dirList.appendChild(createRow('📁', item.name + '/', countStr, '-', '-', '-', '-', `<small style="color:var(--muted)">Directory</small>`, `changeDir('${item.path}')`));
+                    const countStr = item.totalFiles !== undefined ? `${item.totalFiles}` : '-';
+                    dirList.appendChild(createRow('📂', item.name + '/', countStr, '-', '-', '-', '-', `<small style="color:var(--muted)">Direktori</small>`, `changeDir('${item.path}')`));
                 } else {
                     const localPath = item.path; 
                     const localThumbPath = item.thumbPath ? item.thumbPath : localPath;
@@ -318,7 +318,7 @@
                     `;
 
                     dirList.appendChild(createRow(
-                        '🖼️', 
+                        '🪟', 
                         item.name, 
                         '-',
                         formatSize(item.size), 
