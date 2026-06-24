@@ -750,7 +750,7 @@ async function fetchWithFallback(targetUrl) {
     }
     throw new Error('Semua API gagal');
 }</code></pre>
-        <p>Skrip sederhana ini dibuat dengan kode yang mendukung <em>multiple API fallback*. Jika API utama (Microlink) gagal karena *rate limit</em> atau masalah CORS, skrip akan secara otomatis beralih ke JSONLink, lalu ke AllOrigins dengan teknik <em>parsing</em> manual pada <em>meta tag</em> dari HTML mentah. Untuk meningkatkan efisiensi dan stabilitas, skrip juga dilengkapi dengan fitur <em>caching</em> otomatis di <em>sessionStorage</em> selama 10 menit, <em>timeout handling*, *loading skeleton*, serta *debug panel</em> untuk inspeksi metadata secara *real-time*.</p>
+        <p>Skrip sederhana ini dibuat dengan kode yang mendukung <em>multiple API fallback*. Jika API utama (Microlink) gagal karena *rate limit</em> atau masalah CORS, skrip akan secara otomatis beralih ke JSONLink, lalu ke AllOrigins dengan teknik <em>parsing</em> manual pada <em>meta tag</em> dari HTML mentah. Untuk meningkatkan efisiensi dan stabilitas, skrip juga dilengkapi dengan fitur <em>caching</em> otomatis di <em>sessionStorage</em> selama 10 menit, <em>timeout handling*, *loading skeleton*, serta *debug panel</em> untuk inspeksi metadata secara <em>real-time</em>.</p>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <div class="meta-inline">
@@ -1072,8 +1072,6 @@ async function fetchWithFallback(targetUrl) {
         })();
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
-
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>
