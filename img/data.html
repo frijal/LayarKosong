@@ -63,7 +63,7 @@
     </table>
 
     <hr>
-    <address>Apache/2.4.41 Server at LayarKosong (Engineered via Bun + TS + Sharp & Cloudflare Edge)</address>
+    <address>Apache/2.4.41 Server at LayarKosong (Engineered via Bun + TS + Sharp & Cloudflare KV/Edge)</address>
 
     <div id="lightbox" onclick="closeLightbox()">
         <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
@@ -74,7 +74,6 @@
     </div>
 
     <script>
-        // 🧠 SUDAH BERSIH TANPA GITHUB: Semua mengandalkan internal path Cloudflare kamu
         let masterData = {};
         let currentPath = "root";
         let currentImages = [];
@@ -92,17 +91,18 @@
             const loadingText = document.getElementById('loading-text');
             const dirTable = document.getElementById('dir-table');
             try {
+                // Fetch lokal dari Cloudflare cache-busting
                 const res = await fetch('galeri-data.json?t=' + Date.now());
                 
                 if (!res.ok) {
-                    throw new Error(`Server merespons status: ${res.status}`);
+                    throw new Error(`Gagal memuat galeri-data.json. Status: ${res.status}`);
                 }
 
                 const rawText = await res.text();
                 const cleanText = rawText.trim();
 
                 if (!cleanText.endsWith('}')) {
-                    throw new Error("Struktur galeri-data.json tidak lengkap.");
+                    throw new Error("Struktur berkas galeri-data.json tidak lengkap/buntung di Cloudflare Edge.");
                 }
 
                 masterData = JSON.parse(cleanText);
@@ -114,7 +114,7 @@
             } catch (err) {
                 loadingText.innerHTML = `
                     <div style="color:red; padding:10px; border:1px solid red; background:#fff0f0; max-width:1000px;">
-                        <strong>⚠️ Gagal Memuat Galeri Cloudflare:</strong><br>
+                        <strong>⚠️ Gagal Memuat Integrasi Galeri Cloudflare:</strong><br>
                         <small>${err.message}</small>
                     </div>
                 `;
@@ -143,16 +143,16 @@
                 if (item.type === 'dir') {
                     dirList.appendChild(createRow('📁', item.name + '/', '-', '#', `changeDir('${item.path}')`, '<small style="color:#666">Directory</small>'));
                 } else {
-                    // 🚨 REKAYASA PATH LOKAL:
-                    // Karena browser.html di dalam /img/, dan 'item.path' buatan Bun mengembalikan format "img/folder/file.jpg",
-                    // kita potong bagian prefix "img/"-nya agar jalurnya pas menjadi "../img/folder/file.jpg" atau langsung dari root domain.
-                    const localPath = '../' + item.path; 
-                    const localThumbPath = item.thumbPath ? '../' + item.thumbPath : localPath;
+                    // 🧠 REKAYASA JALUR LOKAL CLOUDFLARE:
+                    // Karena item.path dari JSON bernilai "img/folder/file.jpg"
+                    // sedangkan browser.html berada di dalam folder "img/", 
+                    // kita potong awalan "img/" agar menjadi path relatif yang valid di browser ("folder/file.jpg")
+                    const cleanLocalPath = item.path.replace(/^img\//, '');
+                    const cleanLocalThumbPath = item.thumbPath ? item.thumbPath.replace(/^img\//, '') : cleanLocalPath;
                     
-                    // Metadata dari Sharp di-embed penuh ke memori data halaman
                     currentImages.push({ 
                         name: item.name, 
-                        url: localPath, 
+                        url: cleanLocalPath, 
                         size: formatSize(item.size),
                         dimension: item.width ? `${item.width}x${item.height} px` : 'N/A',
                         format: item.format ? item.format.toUpperCase() : 'UNKNOWN'
@@ -160,8 +160,8 @@
                     const imgIndex = currentImages.length - 1;
 
                     const actionHtml = `
-                        <img src="${localThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Klik untuk preview">
-                        <a href="${localPath}" download="${item.name}" class="btn-download" style="margin-left: 10px;">Download</a>
+                        <img src="${cleanLocalThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Klik untuk preview">
+                        <a href="${cleanLocalPath}" download="${item.name}" class="btn-download" style="margin-left: 10px;">Download</a>
                     `;
 
                     dirList.appendChild(createRow('🖼️', item.name, formatSize(item.size), '#', `openLightbox(${imgIndex})`, actionHtml));
@@ -196,14 +196,13 @@
 
             lightboxImg.src = img.url;
             
-            // Menyematkan data komparasi metadata lokal milik Sharp
             lightboxCaption.innerHTML = `
                 <strong>[ ${currentImageIndex + 1} / ${currentImages.length} ]</strong> - ${img.name}<br>
                 <span class="path-info">
                     Format: <strong>${img.format}</strong> | 
                     Dimensi: <strong>${img.dimension}</strong> | 
                     Bobot: <strong>${img.size}</strong><br>
-                    Status: Verified on Cloudflare Edge Server
+                    Status: Verified on Cloudflare Network Edge
                 </span>
             `;
             
