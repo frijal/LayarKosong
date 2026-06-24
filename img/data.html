@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index of /</title>
+    <style>
+        body { font-family: monospace; background: #fff; color: #000; padding: 20px; }
+        h1 { font-size: 1.5em; margin-bottom: 5px; }
+        hr { border: 0; border-top: 1px solid #000; margin: 10px 0; }
+        table { width: 100%; max-width: 1000px; border-collapse: collapse; text-align: left; }
+        th, td { padding: 4px 10px; white-space: nowrap; vertical-align: middle; }
+        th { border-bottom: 1px solid #000; }
+        a { color: #0000ee; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .size, .action-th, .action-td { text-align: right; }
+        
+        /* Thumbnail Handler Lokal (Mencegah Distorsi Gambar Single) */
+        .preview-thumb { 
+            width: 50px; 
+            height: 40px; 
+            object-fit: cover; 
+            border: 1px solid #ccc; 
+            cursor: pointer; 
+            vertical-align: middle; 
+            display: inline-block; 
+            border-radius: 3px;
+        }
+        
+        .loading { font-style: italic; color: #555; }
+        .btn-download { background: #f0f0f0; border: 1px solid #aaa; color: #000; padding: 2px 6px; font-size: 0.9em; cursor: pointer; text-decoration: none; border-radius: 3px; }
+        .btn-download:hover { background: #e0e0e0; text-decoration: none; border-color: #555; }
+        
+        /* CSS LIGHTBOX (MODAL PREVIEW) */
+        #lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; user-select: none; }
+        #lightbox-img { max-width: 85%; max-height: 70%; border: 3px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); background: #222; }
+        #lightbox-caption { color: #fff; margin-top: 15px; font-size: 1.1em; text-align: center; max-width: 90%; font-family: monospace; line-height: 1.5; }
+        .path-info { color: #00ffcc; font-size: 0.9em; display: block; margin-top: 5px; }
+        #lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
+        
+        /* TOMBOL NAVIGASI LIGHTBOX */
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 30px; font-weight: bold; padding: 15px 20px; cursor: pointer; border-radius: 5px; transition: 0.2s; }
+        .nav-btn:hover { background: rgba(255,255,255,0.3); }
+        #nav-left { left: 20px; }
+        #nav-right { right: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1 id="index-title">Index of /</h1>
+    <hr>
+
+    <div id="loading-text" class="loading">Loading directory contents...</div>
+
+    <table id="dir-table" style="display: none;">
+        <thead>
+            <tr>
+                <th width="5%">Icon</th>
+                <th width="50%">Name</th>
+                <th width="15%" class="size">Size</th>
+                <th width="30%" class="action-th">Actions / Preview</th>
+            </tr>
+        </thead>
+        <tbody id="dir-list">
+            </tbody>
+    </table>
+
+    <hr>
+    <address>Apache/2.4.41 Server at LayarKosong (Engineered via Bun + TS + Sharp)</address>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <button id="nav-left" class="nav-btn" onclick="prevImage(event)">&lt;</button>
+        <button id="nav-right" class="nav-btn" onclick="nextImage(event)">&gt;</button>
+        <img id="lightbox-img" src="" alt="Preview">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <script>
+        // --- KONFIGURASI LIVE URL REPO ---
+        // Sesuaikan dengan domain atau path raw base tempat gambar utama kamu disimpan
+        const RAW_BASE_URL = "https://raw.githubusercontent.com/frijal/LayarKosong/main/img/";
+
+        let masterData = {};
+        let currentPath = "root";
+        let currentImages = [];
+        let currentImageIndex = -1;
+
+        // Helper format ukuran berkas ala Apache
+        function formatSize(bytes) {
+            if (!bytes) return '-';
+            const k = 1024;
+            const sizes = ['B', 'K', 'M', 'G'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return i === 0 ? bytes + 'B' : (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
+        }
+
+        // Ambil basis data JSON statis yang di-generate oleh Bun
+        async function init() {
+            const loadingText = document.getElementById('loading-text');
+            const dirTable = document.getElementById('dir-table');
+            try {
+                const res = await fetch('./mini/galeri-data.json');
+                masterData = await res.json();
+                
+                loadingText.style.display = 'none';
+                dirTable.style.display = 'table';
+                
+                renderPath(currentPath);
+            } catch (err) {
+                loadingText.innerHTML = `<span style="color:red">Gagal memuat galeri-data.json! Pastikan script scanner sudah dijalankan.</span>`;
+            }
+        }
+
+        function renderPath(pathKey) {
+            const dirList = document.getElementById('dir-list');
+            const indexTitle = document.getElementById('index-title');
+            
+            dirList.innerHTML = '';
+            indexTitle.innerText = `Index of /${pathKey === 'root' ? '' : pathKey}`;
+            
+            currentImages = [];
+            const items = masterData[pathKey] || [];
+
+            // 1. Jalur Kembali ke Parent Directory
+            if (pathKey !== 'root') {
+                const parts = pathKey.split('/');
+                parts.pop();
+                const parentKey = parts.length === 0 ? 'root' : parts.join('/');
+                
+                dirList.appendChild(createRow('📁', 'Parent Directory', '-', `#`, `changeDir('${parentKey}')`));
+            }
+
+            // 2. Render Folder dan File Berurutan
+            items.forEach(item => {
+                if (item.type === 'dir') {
+                    dirList.appendChild(createRow('📁', item.name + '/', '-', '#', `changeDir('${item.path}')`, '<small style="color:#666">Directory</small>'));
+                } else {
+                    const fullRawUrl = RAW_BASE_URL + item.path;
+                    
+                    // Gunakan varian -sm/-md dari thumbPath jika tersedia di JSON, jika tidak, pakai file aslinya
+                    const thumbUrl = item.thumbPath ? RAW_BASE_URL + item.thumbPath : fullRawUrl;
+                    
+                    // Amankan data lengkap untuk kebutuhan Lightbox
+                    currentImages.push({ 
+                        name: item.name, 
+                        url: fullRawUrl, 
+                        relPath: item.path,
+                        size: formatSize(item.size),
+                        dimension: item.width ? `${item.width}x${item.height} px` : 'N/A',
+                        format: item.format ? item.format.toUpperCase() : 'UNKNOWN'
+                    });
+                    const imgIndex = currentImages.length - 1;
+
+                    const actionHtml = `
+                        <img src="${thumbUrl}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Klik untuk preview">
+                        <a href="${fullRawUrl}" download="${item.name}" class="btn-download" style="margin-left: 10px;">Download</a>
+                    `;
+
+                    dirList.appendChild(createRow('🖼️', item.name, formatSize(item.size), '#', `openLightbox(${imgIndex})`, actionHtml));
+                }
+            });
+        }
+
+        function createRow(icon, name, size, href, onclickAttr, actionHtml = '') {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${icon}</td>
+                <td><a href="${href}" onclick="${onclickAttr}; return false;">${name}</a></td>
+                <td class="size">${size}</td>
+                <td class="action-td">${actionHtml}</td>
+            `;
+            return row;
+        }
+
+        function changeDir(pathKey) {
+            currentPath = pathKey;
+            renderPath(currentPath);
+        }
+
+        // --- MANAJEMEN PREVIEW LIGHTBOX ---
+        function openLightbox(index) {
+            if (index < 0 || index >= currentImages.length) return;
+            currentImageIndex = index;
+            const img = currentImages[currentImageIndex];
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = img.url;
+            
+            // Render keterangan takarir data gabungan Sharp + Path lengkap
+            lightboxCaption.innerHTML = `
+                <strong>[ ${currentImageIndex + 1} / ${currentImages.length} ]</strong> - ${img.name}<br>
+                <span class="path-info">
+                    Format: <strong>${img.format}</strong> | 
+                    Dimensi: <strong>${img.dimension}</strong> | 
+                    Bobot: <strong>${img.size}</strong><br>
+                    Lokasi: /src/assets/images/${img.relPath}
+                </span>
+            `;
+            
+            lightbox.style.display = 'flex';
+            document.getElementById('nav-left').style.display = currentImages.length > 1 ? 'block' : 'none';
+            document.getElementById('nav-right').style.display = currentImages.length > 1 ? 'block' : 'none';
+        }
+
+        function closeLightbox() { 
+            document.getElementById('lightbox').style.display = 'none'; 
+            document.getElementById('lightbox-img').src = ''; 
+        }
+        
+        function nextImage(e) { 
+            if(e) e.stopPropagation(); 
+            let idx = currentImageIndex + 1; 
+            if(idx >= currentImages.length) idx = 0; 
+            openLightbox(idx); 
+        }
+        
+        function prevImage(e) { 
+            if(e) e.stopPropagation(); 
+            let idx = currentImageIndex - 1; 
+            if(idx < 0) idx = currentImages.length - 1; 
+            openLightbox(idx); 
+        }
+
+        // Navigasi Keyboard Shorcuts (ESC, Panah Kiri, Panah Kanan)
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').style.display === 'flex') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            }
+        });
+
+        // Eksekusi awal
+        init();
+    </script>
+</body>
+</html>
