@@ -8,13 +8,14 @@
         body { font-family: monospace; background: #fff; color: #000; padding: 20px; }
         h1 { font-size: 1.5em; margin-bottom: 5px; }
         hr { border: 0; border-top: 1px solid #000; margin: 10px 0; }
-        table { width: 100%; max-width: 1000px; border-collapse: collapse; text-align: left; }
-        th, td { padding: 4px 10px; white-space: nowrap; vertical-align: middle; }
+        table { width: 100%; max-width: 1200px; border-collapse: collapse; text-align: left; }
+        th, td { padding: 6px 10px; white-space: nowrap; vertical-align: middle; }
         th { border-bottom: 1px solid #000; cursor: pointer; user-select: none; }
         th:hover { background: #f0f0f0; }
         a { color: #0000ee; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        .size, .action-th, .action-td { text-align: right; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
         
         .preview-thumb { 
             width: 50px; 
@@ -37,7 +38,6 @@
         .path-info { color: #00ffcc; font-size: 0.9em; display: block; margin-top: 5px; }
         #lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
         
-        /* Gaya Tombol Download Khusus di Dalam Lightbox */
         .btn-lightbox-download {
             display: inline-block;
             margin-top: 12px;
@@ -54,11 +54,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             transition: 0.1s;
         }
-        .btn-lightbox-download:hover {
-            background: #00ffea;
-            box-shadow: 0 2px 8px rgba(0,255,204,0.5);
-            text-decoration: none;
-        }
+        .btn-lightbox-download:hover { background: #00ffea; box-shadow: 0 2px 8px rgba(0,255,204,0.5); text-decoration: none; }
 
         .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 30px; font-weight: bold; padding: 15px 20px; cursor: pointer; border-radius: 5px; transition: 0.2s; }
         .nav-btn:hover { background: rgba(255,255,255,0.3); }
@@ -76,10 +72,13 @@
     <table id="dir-table" style="display: none;">
         <thead>
             <tr>
-                <th width="5%" onclick="sortTable('type')">Icon <span id="sort-type"></span></th>
-                <th width="50%" onclick="sortTable('name')">Name <span id="sort-name">▲</span></th>
-                <th width="15%" class="size" onclick="sortTable('size')">Size <span id="sort-size"></span></th>
-                <th width="30%" class="action-th" onclick="sortTable('format')">Actions / Preview <span id="sort-format"></span></th>
+                <th width="5%" onclick="sortTable('type')">Icon<span id="sort-type"></span></th>
+                <th width="40%" onclick="sortTable('name')">Name<span id="sort-name">▲</span></th>
+                <th width="10%" class="text-right" onclick="sortTable('size')">Size<span id="sort-size"></span></th>
+                <th width="15%" class="text-center" onclick="sortTable('dimension')">Dimension<span id="sort-dimension"></span></th>
+                <th width="8%" class="text-center" onclick="sortTable('format')">Format<span id="sort-format"></span></th>
+                <th width="12%" onclick="sortTable('date')">Date Modified<span id="sort-date"></span></th>
+                <th width="10%" class="text-right">Preview</th>
             </tr>
         </thead>
         <tbody id="dir-list">
@@ -103,7 +102,6 @@
         let currentImages = [];
         let currentImageIndex = -1;
 
-        // State Pengurutan Default
         let currentSortKey = 'name';
         let currentSortAsc = true; 
 
@@ -120,56 +118,34 @@
             const dirTable = document.getElementById('dir-table');
             try {
                 const res = await fetch('galeri-data.json?t=' + Date.now());
+                if (!res.ok) throw new Error(`Status: ${res.status}`);
                 
-                if (!res.ok) {
-                    throw new Error(`Gagal memuat galeri-data.json. Status: ${res.status}`);
-                }
-
-                const rawText = await res.text();
-                const cleanText = rawText.trim();
-
-                if (!cleanText.endsWith('}')) {
-                    throw new Error("Struktur berkas galeri-data.json tidak lengkap.");
-                }
-
-                masterData = JSON.parse(cleanText);
-                
+                masterData = await res.json();
                 loadingText.style.display = 'none';
                 dirTable.style.display = 'table';
                 
                 renderPath(currentPath);
             } catch (err) {
-                loadingText.innerHTML = `
-                    <div style="color:red; padding:10px; border:1px solid red; background:#fff0f0; max-width:1000px;">
-                        <strong>⚠️ Gagal Memuat Integrasi Galeri Cloudflare:</strong><br>
-                        <small>${err.message}</small>
-                    </div>
-                `;
+                loadingText.innerHTML = `<div style="color:red; padding:10px; border:1px solid red; background:#fff0f0;"><strong>⚠️ Gagal Memuat Integrasi Galeri:</strong><br><small>${err.message}</small></div>`;
             }
         }
 
-        // Fungsi Trigger Klik Header
         function sortTable(key) {
             if (currentSortKey === key) {
-                currentSortAsc = !currentSortAsc; // Balik arah urutan
+                currentSortAsc = !currentSortAsc;
             } else {
                 currentSortKey = key;
-                currentSortAsc = true; // Set default ke ascending saat ganti kolom
+                currentSortAsc = true;
             }
             updateSortIndicators();
             renderPath(currentPath);
         }
 
-        // Memperbarui tanda panah ▲ / ▼ di header
         function updateSortIndicators() {
-            const columns = ['type', 'name', 'size', 'format'];
+            const columns = ['type', 'name', 'size', 'dimension', 'format', 'date'];
             columns.forEach(col => {
                 const indicator = document.getElementById(`sort-${col}`);
-                if (col === currentSortKey) {
-                    indicator.innerText = currentSortAsc ? ' ▲' : ' ▼';
-                } else {
-                    indicator.innerText = '';
-                }
+                if (indicator) indicator.innerText = col === currentSortKey ? (currentSortAsc ? ' ▲' : ' ▼') : '';
             });
         }
 
@@ -183,20 +159,21 @@
             currentImages = [];
             let items = [...(masterData[pathKey] || [])];
 
-            // 🧠 LOGIKA SORTING PINTAR: Folder selalu menang dan tetap berada di atas
             items.sort((a, b) => {
                 if (a.type === 'dir' && b.type !== 'dir') return -1;
                 if (a.type !== 'dir' && b.type === 'dir') return 1;
 
-                let valA = a[currentSortKey] !== undefined ? a[currentSortKey] : '';
-                let valB = b[currentSortKey] !== undefined ? b[currentSortKey] : '';
-
-                if (currentSortKey === 'size') {
-                    valA = a.type === 'dir' ? 0 : Number(valA);
-                    valB = b.type === 'dir' ? 0 : Number(valB);
+                // Trik komparasi dinamis untuk data dimensi virtual (width * height)
+                let valA, valB;
+                if (currentSortKey === 'dimension') {
+                    valA = a.width ? a.width * a.height : 0;
+                    valB = b.width ? b.width * b.height : 0;
+                } else if (currentSortKey === 'size') {
+                    valA = a.type === 'dir' ? 0 : Number(a.size || 0);
+                    valB = b.type === 'dir' ? 0 : Number(b.size || 0);
                 } else {
-                    valA = String(valA).toLowerCase();
-                    valB = String(valB).toLowerCase();
+                    valA = String(a[currentSortKey] || '').toLowerCase();
+                    valB = String(b[currentSortKey] || '').toLowerCase();
                 }
 
                 if (valA < valB) return currentSortAsc ? -1 : 1;
@@ -208,43 +185,63 @@
                 const parts = pathKey.split('/');
                 parts.pop();
                 const parentKey = parts.length === 0 ? 'root' : parts.join('/');
-                
-                dirList.appendChild(createRow('📁', 'Parent Directory', '-', `#`, `changeDir('${parentKey}')`));
+                dirList.appendChild(createRow('📁', 'Parent Directory', '-', '-', '-', '-', '-'));
             }
 
             items.forEach(item => {
                 if (item.type === 'dir') {
-                    dirList.appendChild(createRow('📁', item.name + '/', '-', '#', `changeDir('${item.path}')`, '<small style="color:#666">Directory</small>'));
+                    // Row untuk folder
+                    dirList.appendChild(createRow('📁', item.name + '/', '-', '-', '-', '-', `<small style="color:#666">Directory</small>`, `changeDir('${item.path}')`));
                 } else {
+                    // Row untuk file gambar dengan visualisasi data lengkap
                     const localPath = item.path; 
                     const localThumbPath = item.thumbPath ? item.thumbPath : localPath;
+                    const dimStr = item.width ? `${item.width}x${item.height}` : 'N/A';
+                    const fmtStr = item.format ? item.format.toUpperCase() : 'UNKNOWN';
                     
                     currentImages.push({ 
                         name: item.name, 
                         url: localPath, 
                         size: formatSize(item.size),
-                        dimension: item.width ? `${item.width}x${item.height} px` : 'N/A',
-                        format: item.format ? item.format.toUpperCase() : 'UNKNOWN'
+                        dimension: dimStr + ' px',
+                        format: fmtStr,
+                        date: item.date
                     });
                     const imgIndex = currentImages.length - 1;
 
                     const actionHtml = `
-                        <img src="${localThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Klik untuk preview">
-                        <a href="${localPath}" download="${item.name}" class="btn-download" style="margin-left: 10px;">Download</a>
+                        <img src="${localThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Preview">
+                        <a href="${localPath}" download="${item.name}" class="btn-download" style="margin-left: 10px;" onclick="event.stopPropagation();">Get</a>
                     `;
 
-                    dirList.appendChild(createRow('🖼️', item.name, formatSize(item.size), '#', `openLightbox(${imgIndex})`, actionHtml));
+                    dirList.appendChild(createRow(
+                        '🖼️', 
+                        item.name, 
+                        formatSize(item.size), 
+                        dimStr, 
+                        fmtStr, 
+                        item.date, 
+                        actionHtml, 
+                        `openLightbox(${imgIndex})`
+                    ));
                 }
             });
         }
 
-        function createRow(icon, name, size, href, onclickAttr, actionHtml = '') {
+        function createRow(icon, name, size, dimension, format, date, actionHtml, onclickAttr = '') {
             const row = document.createElement('tr');
+            
+            // Logika link pemicu navigasi baris
+            const linkHtml = onclickAttr ? `<a href="#" onclick="${onclickAttr}; return false;">${name}</a>` : name;
+            
             row.innerHTML = `
                 <td>${icon}</td>
-                <td><a href="${href}" onclick="${onclickAttr}; return false;">${name}</a></td>
-                <td class="size">${size}</td>
-                <td class="action-td">${actionHtml}</td>
+                <td>${linkHtml}</td>
+                <td class="text-right">${size}</td>
+                <td class="text-center">${dimension}</td>
+                <td class="text-center">${format}</td>
+                <td>${date}</td>
+                <td class="text-right">${actionHtml}</td>
             `;
             return row;
         }
@@ -265,14 +262,10 @@
 
             lightboxImg.src = img.url;
             
-            // 🚨 PERUBAHAN DI SINI: Ditambahkan elemen tautan download dengan warna kontras (Cyan Edge)
             lightboxCaption.innerHTML = `
                 <strong>[ ${currentImageIndex + 1} / ${currentImages.length} ]</strong> - ${img.name}<br>
                 <span class="path-info">
-                    Format: <strong>${img.format}</strong> | 
-                    Dimensi: <strong>${img.dimension}</strong> | 
-                    Bobot: <strong>${img.size}</strong><br>
-                    Status: Verified on Cloudflare Network Edge
+                    Format: <strong>${img.format}</strong> | Dimensi: <strong>${img.dimension}</strong> | Bobot: <strong>${img.size}</strong> | Dirilis: <strong>${img.date}</strong>
                 </span>
                 <a href="${img.url}" download="${img.name}" class="btn-lightbox-download" onclick="event.stopPropagation();">
                     💾 Download Image
@@ -289,19 +282,8 @@
             document.getElementById('lightbox-img').src = ''; 
         }
         
-        function nextImage(e) { 
-            if(e) e.stopPropagation(); 
-            let idx = currentImageIndex + 1; 
-            if(idx >= currentImages.length) idx = 0; 
-            openLightbox(idx); 
-        }
-        
-        function prevImage(e) { 
-            if(e) e.stopPropagation(); 
-            let idx = currentImageIndex - 1; 
-            if(idx < 0) idx = currentImages.length - 1; 
-            openLightbox(idx); 
-        }
+        function nextImage(e) { if(e) e.stopPropagation(); let idx = currentImageIndex + 1; if(idx >= currentImages.length) idx = 0; openLightbox(idx); }
+        function prevImage(e) { if(e) e.stopPropagation(); let idx = currentImageIndex - 1; if(idx < 0) idx = currentImages.length - 1; openLightbox(idx); }
 
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('lightbox').style.display === 'flex') {
