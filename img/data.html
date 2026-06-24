@@ -5,15 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /img/</title>
     <style>
-        body { font-family: monospace; background: #fff; color: #000; padding: 20px; }
-        h1 { font-size: 1.5em; margin-bottom: 5px; }
-        hr { border: 0; border-top: 1px solid #000; margin: 10px 0; }
+        /* --- Pendekatan Mobile-First & Tema Dinamis --- */
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --hr-color: #000000;
+            --row-even: #f9f9f9;
+            --row-hover: #f0f0f0;
+            --link-color: #0000ee;
+            --muted: #555555;
+            --border-thumb: #cccccc;
+            --btn-bg: #f0f0f0;
+            --btn-border: #aaaaaa;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #121212;
+                --text: #e0e0e0;
+                --hr-color: #444444;
+                --row-even: #1e1e1e;
+                --row-hover: #2a2a2a;
+                --link-color: #66b2ff;
+                --muted: #aaaaaa;
+                --border-thumb: #444444;
+                --btn-bg: #2a2a2a;
+                --btn-border: #555555;
+            }
+        }
+
+        body { font-family: monospace; background: var(--bg); color: var(--text); padding: 15px; margin: 0; }
+        
+        /* Flexbox Container untuk menyejajarkan Judul dan Logo */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        /* Header Interaktif ke Root */
+        h1 { font-size: 1.3em; margin: 0; }
+        h1 a { color: var(--text); text-decoration: none; }
+        h1 a:hover { text-decoration: underline; text-decoration-style: dashed; }
+        
+        /* Gaya & Ukuran Logo Brand Layar Kosong */
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            display: block;
+            object-fit: contain;
+        }
+
+        hr { border: 0; border-top: 1px solid var(--hr-color); margin: 10px 0; }
+        
+        /* Pembungkus Tabel Responsif di Mobile */
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; max-width: 1200px; border-collapse: collapse; text-align: left; }
-        th, td { padding: 6px 10px; white-space: nowrap; vertical-align: middle; }
-        th { border-bottom: 1px solid #000; cursor: pointer; user-select: none; }
-        th:hover { background: #f0f0f0; }
-        a { color: #0000ee; text-decoration: none; }
+        th, td { padding: 8px 10px; white-space: nowrap; vertical-align: middle; }
+        
+        th { border-bottom: 1px solid var(--hr-color); cursor: pointer; user-select: none; }
+        th:hover { background: var(--row-hover); }
+        
+        /* Warna Selang-Seling & Efek Hover Gambar */
+        tbody tr:nth-child(even) { background: var(--row-even); }
+        tbody tr:hover { background: var(--row-hover); }
+        
+        a { color: var(--link-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
+        
         .text-right { text-align: right; }
         .text-center { text-align: center; }
         
@@ -21,22 +83,33 @@
             width: 50px; 
             height: 40px; 
             object-fit: cover; 
-            border: 1px solid #ccc; 
+            border: 1px solid var(--border-thumb); 
             cursor: pointer; 
             vertical-align: middle; 
             display: inline-block; 
             border-radius: 3px;
         }
         
-        .loading { font-style: italic; color: #555; }
-        .btn-download { background: #f0f0f0; border: 1px solid #aaa; color: #000; padding: 2px 6px; font-size: 0.9em; cursor: pointer; text-decoration: none; border-radius: 3px; }
-        .btn-download:hover { background: #e0e0e0; text-decoration: none; border-color: #555; }
+        .loading { font-style: italic; color: var(--muted); padding: 10px 0; }
         
+        .btn-download { 
+            background: var(--btn-bg); 
+            border: 1px solid var(--btn-border); 
+            color: var(--text); 
+            padding: 3px 8px; 
+            font-size: 0.9em; 
+            cursor: pointer; 
+            text-decoration: none; 
+            border-radius: 3px; 
+        }
+        .btn-download:hover { background: var(--row-hover); border-color: var(--text); }
+        
+        /* Lightbox (Tetap Hitam Pekat untuk Kontras Gambar) */
         #lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; user-select: none; }
-        #lightbox-img { max-width: 85%; max-height: 70%; border: 3px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); background: #222; }
+        #lightbox-img { max-width: 90%; max-height: 65%; border: 3px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); background: #222; }
         #lightbox-caption { color: #fff; margin-top: 15px; font-size: 1.1em; text-align: center; max-width: 90%; font-family: monospace; line-height: 1.5; }
         .path-info { color: #00ffcc; font-size: 0.9em; display: block; margin-top: 5px; }
-        #lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
+        #lightbox-close { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
         
         .btn-lightbox-download {
             display: inline-block;
@@ -44,7 +117,7 @@
             background: #00ffcc;
             color: #000;
             border: 1px solid #00cc99;
-            padding: 5px 14px;
+            padding: 6px 16px;
             font-size: 0.95em;
             font-weight: bold;
             font-family: monospace;
@@ -52,41 +125,54 @@
             text-decoration: none;
             border-radius: 3px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: 0.1s;
         }
-        .btn-lightbox-download:hover { background: #00ffea; box-shadow: 0 2px 8px rgba(0,255,204,0.5); text-decoration: none; }
+        .btn-lightbox-download:hover { background: #00ffea; box-shadow: 0 2px 8px rgba(0,255,204,0.5); }
 
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 30px; font-weight: bold; padding: 15px 20px; cursor: pointer; border-radius: 5px; transition: 0.2s; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 24px; font-weight: bold; padding: 12px 16px; cursor: pointer; border-radius: 5px; }
         .nav-btn:hover { background: rgba(255,255,255,0.3); }
-        #nav-left { left: 20px; }
-        #nav-right { right: 20px; }
+        #nav-left { left: 10px; }
+        #nav-right { right: 10px; }
+
+        @media (min-width: 768px) {
+            body { padding: 20px; }
+            h1 { font-size: 1.5em; }
+            .brand-logo { width: 40px; height: 40px; } /* Sedikit lebih besar di desktop */
+            #nav-left { left: 20px; }
+            #nav-right { right: 20px; }
+            .nav-btn { font-size: 30px; padding: 15px 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <h1 id="index-title">Index of /img/</h1>
+    <div class="header-container">
+        <h1><a href="#" onclick="changeDir('root'); return false;" id="index-title">Index of /img/</a></h1>
+        <img src="/favicon.svg" alt="Layar Kosong Logo" class="brand-logo">
+    </div>
     <hr>
 
     <div id="loading-text" class="loading">Loading directory contents...</div>
 
-    <table id="dir-table" style="display: none;">
-        <thead>
-            <tr>
-                <th width="5%" onclick="sortTable('type')">Icon<span id="sort-type"></span></th>
-                <th width="40%" onclick="sortTable('name')">Name<span id="sort-name">▲</span></th>
-                <th width="10%" class="text-right" onclick="sortTable('size')">Size<span id="sort-size"></span></th>
-                <th width="15%" class="text-center" onclick="sortTable('dimension')">Dimension<span id="sort-dimension"></span></th>
-                <th width="8%" class="text-center" onclick="sortTable('format')">Format<span id="sort-format"></span></th>
-                <th width="12%" onclick="sortTable('date')">Date Modified<span id="sort-date"></span></th>
-                <th width="10%" class="text-right">Preview</th>
-            </tr>
-        </thead>
-        <tbody id="dir-list">
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table id="dir-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th width="5%" onclick="sortTable('type')">Icon<span id="sort-type"></span></th>
+                    <th width="40%" onclick="sortTable('name')">Name<span id="sort-name">▲</span></th>
+                    <th width="10%" class="text-right" onclick="sortTable('size')">Size<span id="sort-size"></span></th>
+                    <th width="15%" class="text-center" onclick="sortTable('dimension')">Dimension<span id="sort-dimension"></span></th>
+                    <th width="8%" class="text-center" onclick="sortTable('format')">Format<span id="sort-format"></span></th>
+                    <th width="12%" onclick="sortTable('date')">Date Modified<span id="sort-date"></span></th>
+                    <th width="10%" class="text-right">Preview</th>
+                </tr>
+            </thead>
+            <tbody id="dir-list">
+            </tbody>
+        </table>
+    </div>
 
     <hr>
-    <address>Apache/2.4.41 Server at LayarKosong (Engineered via Bun + TS + Sharp & Cloudflare KV/Edge)</address>
+    <address>Apache/2.4.31 server @ LayarKosong (Engineered via Bun + TS + Sharp & Cloudflare KV/Edge)</address>
 
     <div id="lightbox" onclick="closeLightbox()">
         <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
@@ -180,7 +266,6 @@
                 return 0;
             });
 
-            // FIX: Navigasi naik ke tingkat folder sebelumnya
             if (pathKey !== 'root') {
                 const parts = pathKey.split('/');
                 parts.pop();
@@ -190,7 +275,7 @@
 
             items.forEach(item => {
                 if (item.type === 'dir') {
-                    dirList.appendChild(createRow('📁', item.name + '/', '-', '-', '-', '-', `<small style="color:#666">Directory</small>`, `changeDir('${item.path}')`));
+                    dirList.appendChild(createRow('📁', item.name + '/', '-', '-', '-', '-', `<small style="color:var(--muted)">Directory</small>`, `changeDir('${item.path}')`));
                 } else {
                     const localPath = item.path; 
                     const localThumbPath = item.thumbPath ? item.thumbPath : localPath;
