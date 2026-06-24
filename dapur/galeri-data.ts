@@ -7,7 +7,7 @@ import sharp from "sharp";
 // KONFIGURASI & DEFINISI TIPE DATA (JALUR SESUAI REQUEST)
 // ==========================================
 const TARGET_DIR = "./img";
-const OUTPUT_JSON = "./mini/galeri-data.json";
+const OUTPUT_JSON = "./img/galeri-data.json";
 const SRCSET_TXT_PATH = "./mini/srcset-gambar.txt"; // Disiapkan jika dibutuhkan untuk sinkronisasi berikutnya
 
 const ONLY_IMAGES_PATTERN = "**/*.{jpg,jpeg,png,webp,avif,svg}";
