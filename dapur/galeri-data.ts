@@ -1,45 +1,5 @@
-import { join, relative, basename, dirname, extname } from "path";
-import { writeFileSync, statSync } from "fs";
-import { glob } from "glob";
-import sharp from "sharp";
-
-// Konfigurasi Folder & Aturan Main
-const ROOT_IMG_DIR = "./img"; 
-const OUTPUT_JSON = "./img/galeri-data.json"; 
-
-// Whitelist ketat (selain dari ini otomatis DENY)
-const ONLY_IMAGES_PATTERN = "**/*.{jpg,jpeg,png,webp,gif,svg,avif}";
-
-interface FileItem {
-    name: string;
-    path: string;
-    thumbPath: string | null;
-    size: number;
-    date: string;
-    width?: number;
-    height?: number;
-    format?: string;
-    type: "file";
-}
-
-interface DirItem {
-    name: string;
-    path: string;
-    type: "dir";
-}
-
-type GalleryData = {
-    [key: string]: (FileItem | DirItem)[];
-};
-
-// Merapikan format tanggal ISO ke YYYY-MM-DD HH:mm
-function formatDate(dateObj: Date): string {
-    const pad = (n: number) => n.toString().padStart(2, '0');
-    return `${dateObj.getFullYear()}-${pad(dateObj.getMonth() + 1)}-${pad(dateObj.getDate())} ${pad(dateObj.getHours())}:${pad(dateObj.getMinutes())}`;
-}
-
 async function generateGalleryJson() {
-    console.log("🚀 Memulai pemindaian dapur gambar (Mode: Informasi Kaya)...");
+    console.log("🚀 Memulai pemindaian dapur gambar (Mode: Informasi Kaya + Counter)...");
 
     // Scan murni file gambar saja
     const allFiles = await glob(ONLY_IMAGES_PATTERN, {
@@ -82,14 +42,13 @@ async function generateGalleryJson() {
 
         let fileData: FileItem = {
             name: filename,
-            path: file, // Jalur relatif untuk Cloudflare
+            path: file,
             thumbPath: hasThumb ? potentialThumb.replace(/\\/g, "/") : null,
             size: stats.size,
             date: formatDate(stats.mtime),
             type: "file"
         };
 
-        // Gali resolusi & format gambar lewat Sharp
         if (fileExt !== ".svg") {
             try {
                 const metadata = await sharp(fullPath).metadata();
@@ -127,24 +86,44 @@ async function generateGalleryJson() {
                     galleryMap[parentKey].unshift({
                         name: dirName,
                         path: currentBuildPath,
-                        type: "dir"
+                        type: "dir",
+                        directFiles: 0, // Nilai inisialisasi awal
+                        totalFiles: 0   // Nilai inisialisasi awal
                     });
                 }
             }
         }
     }
 
-    // Langkah 4: Tulis data mentah (Format Cantik) ke berkas target
+    // 🔥 LANGKAH BARU: Hitung isi gambar menggunakan data allFiles mentah
+    // Menyaring list berkas bersih yang bukan berkas thumbnail-sm atau md
+    const cleanFilesList = allFiles.filter(file => !processedThumbnails.has(file));
+
+    // Iterasi setiap folder yang ada di map untuk menghitung jumlah gambarnya
+    Object.keys(galleryMap).forEach(folderPath => {
+        galleryMap[folderPath].forEach(item => {
+            if (item.type === "dir") {
+                const targetDir = item.path; // contoh: "folderA" atau "folderA/folderA1"
+
+                // 1. Direct count: Berkas yang berada langsung di dalam folder tersebut
+                item.directFiles = cleanFilesList.filter(file => dirname(file) === targetDir).length;
+
+                // 2. Recursive/Total count: Berkas yang diawali oleh jalur folder tersebut (termasuk sub-foldernya)
+                item.totalFiles = cleanFilesList.filter(file => 
+                    file.startsWith(targetDir + "/") || dirname(file) === targetDir
+                ).length;
+            }
+        });
+    });
+
+    // Langkah 4: Tulis data mentah ke berkas target
     try {
         const prettyJson = JSON.stringify(galleryMap, null, 2);
         writeFileSync(OUTPUT_JSON, prettyJson, "utf-8");
         
         console.log(`\n✨ SUKSES! Berkas galeri berhasil disimpan di: ${OUTPUT_JSON}`);
         console.log(`📊 Total folder teregistrasi: ${Object.keys(galleryMap).length} lokasi.`);
-        console.log(`🧹 Catatan: Jalankan skrip Sapu Jagat untuk memangkas whitespace berkas ini.`);
     } catch (writeErr) {
         console.error("❌ Gagal menulis berkas galeri-data.json:", writeErr);
     }
 }
-
-generateGalleryJson();
