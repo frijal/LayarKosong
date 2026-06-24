@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index of /</title>
+    <title>Index of /img/</title>
     <style>
         body { font-family: monospace; background: #fff; color: #000; padding: 20px; }
         h1 { font-size: 1.5em; margin-bottom: 5px; }
@@ -15,7 +15,7 @@
         a:hover { text-decoration: underline; }
         .size, .action-th, .action-td { text-align: right; }
         
-        /* Thumbnail Handler Lokal (Mencegah Distorsi Gambar Single) */
+        /* Thumbnail Handler (Mencegah Distorsi Gambar Single) */
         .preview-thumb { 
             width: 50px; 
             height: 40px; 
@@ -31,14 +31,13 @@
         .btn-download { background: #f0f0f0; border: 1px solid #aaa; color: #000; padding: 2px 6px; font-size: 0.9em; cursor: pointer; text-decoration: none; border-radius: 3px; }
         .btn-download:hover { background: #e0e0e0; text-decoration: none; border-color: #555; }
         
-        /* CSS LIGHTBOX (MODAL PREVIEW) */
+        /* LIGHTBOX PREVIEW */
         #lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; user-select: none; }
         #lightbox-img { max-width: 85%; max-height: 70%; border: 3px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); background: #222; }
         #lightbox-caption { color: #fff; margin-top: 15px; font-size: 1.1em; text-align: center; max-width: 90%; font-family: monospace; line-height: 1.5; }
         .path-info { color: #00ffcc; font-size: 0.9em; display: block; margin-top: 5px; }
         #lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
         
-        /* TOMBOL NAVIGASI LIGHTBOX */
         .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 30px; font-weight: bold; padding: 15px 20px; cursor: pointer; border-radius: 5px; transition: 0.2s; }
         .nav-btn:hover { background: rgba(255,255,255,0.3); }
         #nav-left { left: 20px; }
@@ -47,7 +46,7 @@
 </head>
 <body>
 
-    <h1 id="index-title">Index of /</h1>
+    <h1 id="index-title">Index of /img/</h1>
     <hr>
 
     <div id="loading-text" class="loading">Loading directory contents...</div>
@@ -62,7 +61,7 @@
             </tr>
         </thead>
         <tbody id="dir-list">
-            </tbody>
+        </tbody>
     </table>
 
     <hr>
@@ -77,16 +76,14 @@
     </div>
 
     <script>
-        // --- KONFIGURASI LIVE URL REPO ---
-        // Sesuaikan dengan domain atau path raw base tempat gambar utama kamu disimpan
-        const RAW_BASE_URL = "https://raw.githubusercontent.com/frijal/LayarKosong/main/img/";
+        // KARENA BROWSER.HTML ADA DI FOLDER IMG, BASE URL REPO CUKUP SAMPAI LEVEL ROOT UTAMA REPO
+        const RAW_BASE_URL = "https://raw.githubusercontent.com/frijal/LayarKosong/main/";
 
         let masterData = {};
         let currentPath = "root";
         let currentImages = [];
         let currentImageIndex = -1;
 
-        // Helper format ukuran berkas ala Apache
         function formatSize(bytes) {
             if (!bytes) return '-';
             const k = 1024;
@@ -95,20 +92,39 @@
             return i === 0 ? bytes + 'B' : (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
         }
 
-        // Ambil basis data JSON statis yang di-generate oleh Bun
+        // Fungsi inisialisasi dengan proteksi parsing JSON
         async function init() {
             const loadingText = document.getElementById('loading-text');
             const dirTable = document.getElementById('dir-table');
             try {
-                const res = await fetch('galeri-data.json');
-                masterData = await res.json();
+                // Panggil file JSON yang berada satu lokasi di folder /img/
+                const res = await fetch('galeri-data.json?t=' + Date.now()); // Tambah timestamp anti-cache
+                
+                if (!res.ok) {
+                    throw new Error(`Gagal memuat file. HTTP Status: ${res.status} (${res.statusText})`);
+                }
+
+                const rawText = await res.text();
+                const cleanText = rawText.trim();
+
+                // Deteksi dini jika file JSON terpotong/rusak saat deployment
+                if (!cleanText.endsWith('}')) {
+                    throw new Error("Struktur galeri-data.json tidak utuh atau buntung di akhir baris! Coba trigger ulang build dapur kamu.");
+                }
+
+                masterData = JSON.parse(cleanText);
                 
                 loadingText.style.display = 'none';
                 dirTable.style.display = 'table';
                 
                 renderPath(currentPath);
             } catch (err) {
-                loadingText.innerHTML = `<span style="color:red">Gagal memuat galeri-data.json! Pastikan script scanner sudah dijalankan.</span>`;
+                loadingText.innerHTML = `
+                    <div style="color:red; padding:15px; border:1px solid red; background:#fff0f0; max-width:1000px; font-family:sans-serif; border-radius:4px;">
+                        <strong style="font-size:1.1em;">⚠️ Gagal Memproses Sinkronisasi Galeri:</strong><br>
+                        <p style="margin:5px 0 0 0; font-family:monospace; color:#333;">${err.message}</p>
+                    </div>
+                `;
             }
         }
 
@@ -117,12 +133,12 @@
             const indexTitle = document.getElementById('index-title');
             
             dirList.innerHTML = '';
-            indexTitle.innerText = `Index of /${pathKey === 'root' ? '' : pathKey}`;
+            indexTitle.innerText = `Index of /img/${pathKey === 'root' ? '' : pathKey}`;
             
             currentImages = [];
             const items = masterData[pathKey] || [];
 
-            // 1. Jalur Kembali ke Parent Directory
+            // 1. Tombol Kembali
             if (pathKey !== 'root') {
                 const parts = pathKey.split('/');
                 parts.pop();
@@ -131,17 +147,16 @@
                 dirList.appendChild(createRow('📁', 'Parent Directory', '-', `#`, `changeDir('${parentKey}')`));
             }
 
-            // 2. Render Folder dan File Berurutan
+            // 2. Looping Konten Folder & File
             items.forEach(item => {
                 if (item.type === 'dir') {
                     dirList.appendChild(createRow('📁', item.name + '/', '-', '#', `changeDir('${item.path}')`, '<small style="color:#666">Directory</small>'));
                 } else {
+                    // Script Bun menghasilkan path relatif dari root (mengandung prefix 'img/')
+                    // Jadi: RAW_BASE_URL (root) + item.path ('img/folder/file.jpg') sudah sangat tepat.
                     const fullRawUrl = RAW_BASE_URL + item.path;
-                    
-                    // Gunakan varian -sm/-md dari thumbPath jika tersedia di JSON, jika tidak, pakai file aslinya
                     const thumbUrl = item.thumbPath ? RAW_BASE_URL + item.thumbPath : fullRawUrl;
                     
-                    // Amankan data lengkap untuk kebutuhan Lightbox
                     currentImages.push({ 
                         name: item.name, 
                         url: fullRawUrl, 
@@ -178,7 +193,6 @@
             renderPath(currentPath);
         }
 
-        // --- MANAJEMEN PREVIEW LIGHTBOX ---
         function openLightbox(index) {
             if (index < 0 || index >= currentImages.length) return;
             currentImageIndex = index;
@@ -190,14 +204,13 @@
 
             lightboxImg.src = img.url;
             
-            // Render keterangan takarir data gabungan Sharp + Path lengkap
             lightboxCaption.innerHTML = `
                 <strong>[ ${currentImageIndex + 1} / ${currentImages.length} ]</strong> - ${img.name}<br>
                 <span class="path-info">
                     Format: <strong>${img.format}</strong> | 
                     Dimensi: <strong>${img.dimension}</strong> | 
                     Bobot: <strong>${img.size}</strong><br>
-                    Lokasi: /src/assets/images/${img.relPath}
+                    Lokasi: /${img.relPath}
                 </span>
             `;
             
@@ -225,7 +238,6 @@
             openLightbox(idx); 
         }
 
-        // Navigasi Keyboard Shorcuts (ESC, Panah Kiri, Panah Kanan)
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('lightbox').style.display === 'flex') {
                 if (e.key === 'Escape') closeLightbox();
@@ -234,7 +246,6 @@
             }
         });
 
-        // Eksekusi awal
         init();
     </script>
 </body>
