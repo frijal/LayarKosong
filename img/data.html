@@ -37,6 +37,29 @@
         .path-info { color: #00ffcc; font-size: 0.9em; display: block; margin-top: 5px; }
         #lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
         
+        /* Gaya Tombol Download Khusus di Dalam Lightbox */
+        .btn-lightbox-download {
+            display: inline-block;
+            margin-top: 12px;
+            background: #00ffcc;
+            color: #000;
+            border: 1px solid #00cc99;
+            padding: 5px 14px;
+            font-size: 0.95em;
+            font-weight: bold;
+            font-family: monospace;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: 0.1s;
+        }
+        .btn-lightbox-download:hover {
+            background: #00ffea;
+            box-shadow: 0 2px 8px rgba(0,255,204,0.5);
+            text-decoration: none;
+        }
+
         .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 30px; font-weight: bold; padding: 15px 20px; cursor: pointer; border-radius: 5px; transition: 0.2s; }
         .nav-btn:hover { background: rgba(255,255,255,0.3); }
         #nav-left { left: 20px; }
@@ -162,16 +185,13 @@
 
             // 🧠 LOGIKA SORTING PINTAR: Folder selalu menang dan tetap berada di atas
             items.sort((a, b) => {
-                // Skenario A: Salah satu adalah directory
                 if (a.type === 'dir' && b.type !== 'dir') return -1;
                 if (a.type !== 'dir' && b.type === 'dir') return 1;
 
-                // Skenario B: Sesama directory atau sesama file, urutkan berdasarkan key pilihan
                 let valA = a[currentSortKey] !== undefined ? a[currentSortKey] : '';
                 let valB = b[currentSortKey] !== undefined ? b[currentSortKey] : '';
 
                 if (currentSortKey === 'size') {
-                    // Pastikan ukuran directory dihitung sebagai 0 saat diurutkan angka
                     valA = a.type === 'dir' ? 0 : Number(valA);
                     valB = b.type === 'dir' ? 0 : Number(valB);
                 } else {
@@ -184,7 +204,6 @@
                 return 0;
             });
 
-            // 1. Tombol Kembali ke Parent Directory (Selalu paling atas, tidak ikut di-sort)
             if (pathKey !== 'root') {
                 const parts = pathKey.split('/');
                 parts.pop();
@@ -193,7 +212,6 @@
                 dirList.appendChild(createRow('📁', 'Parent Directory', '-', `#`, `changeDir('${parentKey}')`));
             }
 
-            // 2. Render Data Hasil Pengurutan
             items.forEach(item => {
                 if (item.type === 'dir') {
                     dirList.appendChild(createRow('📁', item.name + '/', '-', '#', `changeDir('${item.path}')`, '<small style="color:#666">Directory</small>'));
@@ -247,6 +265,7 @@
 
             lightboxImg.src = img.url;
             
+            // 🚨 PERUBAHAN DI SINI: Ditambahkan elemen tautan download dengan warna kontras (Cyan Edge)
             lightboxCaption.innerHTML = `
                 <strong>[ ${currentImageIndex + 1} / ${currentImages.length} ]</strong> - ${img.name}<br>
                 <span class="path-info">
@@ -255,6 +274,9 @@
                     Bobot: <strong>${img.size}</strong><br>
                     Status: Verified on Cloudflare Network Edge
                 </span>
+                <a href="${img.url}" download="${img.name}" class="btn-lightbox-download" onclick="event.stopPropagation();">
+                    💾 Download Image
+                </a>
             `;
             
             lightbox.style.display = 'flex';
