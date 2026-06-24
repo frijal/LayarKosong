@@ -10,7 +10,8 @@
         hr { border: 0; border-top: 1px solid #000; margin: 10px 0; }
         table { width: 100%; max-width: 1000px; border-collapse: collapse; text-align: left; }
         th, td { padding: 4px 10px; white-space: nowrap; vertical-align: middle; }
-        th { border-bottom: 1px solid #000; }
+        th { border-bottom: 1px solid #000; cursor: pointer; user-select: none; }
+        th:hover { background: #f0f0f0; }
         a { color: #0000ee; text-decoration: none; }
         a:hover { text-decoration: underline; }
         .size, .action-th, .action-td { text-align: right; }
@@ -52,10 +53,10 @@
     <table id="dir-table" style="display: none;">
         <thead>
             <tr>
-                <th width="5%">Icon</th>
-                <th width="50%">Name</th>
-                <th width="15%" class="size">Size</th>
-                <th width="30%" class="action-th">Actions / Preview</th>
+                <th width="5%" onclick="sortTable('type')">Icon <span id="sort-type"></span></th>
+                <th width="50%" onclick="sortTable('name')">Name <span id="sort-name">▲</span></th>
+                <th width="15%" class="size" onclick="sortTable('size')">Size <span id="sort-size"></span></th>
+                <th width="30%" class="action-th" onclick="sortTable('format')">Actions / Preview <span id="sort-format"></span></th>
             </tr>
         </thead>
         <tbody id="dir-list">
@@ -79,8 +80,12 @@
         let currentImages = [];
         let currentImageIndex = -1;
 
+        // State Pengurutan Default
+        let currentSortKey = 'name';
+        let currentSortAsc = true; 
+
         function formatSize(bytes) {
-            if (!bytes) return '-';
+            if (!bytes || bytes === '-') return '-';
             const k = 1024;
             const sizes = ['B', 'K', 'M', 'G'];
             const i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -91,7 +96,6 @@
             const loadingText = document.getElementById('loading-text');
             const dirTable = document.getElementById('dir-table');
             try {
-                // Fetch lokal dari Cloudflare cache-busting
                 const res = await fetch('galeri-data.json?t=' + Date.now());
                 
                 if (!res.ok) {
@@ -102,7 +106,7 @@
                 const cleanText = rawText.trim();
 
                 if (!cleanText.endsWith('}')) {
-                    throw new Error("Struktur berkas galeri-data.json tidak lengkap/buntung di Cloudflare Edge.");
+                    throw new Error("Struktur berkas galeri-data.json tidak lengkap.");
                 }
 
                 masterData = JSON.parse(cleanText);
@@ -121,16 +125,66 @@
             }
         }
 
+        // Fungsi Trigger Klik Header
+        function sortTable(key) {
+            if (currentSortKey === key) {
+                currentSortAsc = !currentSortAsc; // Balik arah urutan
+            } else {
+                currentSortKey = key;
+                currentSortAsc = true; // Set default ke ascending saat ganti kolom
+            }
+            updateSortIndicators();
+            renderPath(currentPath);
+        }
+
+        // Memperbarui tanda panah ▲ / ▼ di header
+        function updateSortIndicators() {
+            const columns = ['type', 'name', 'size', 'format'];
+            columns.forEach(col => {
+                const indicator = document.getElementById(`sort-${col}`);
+                if (col === currentSortKey) {
+                    indicator.innerText = currentSortAsc ? ' ▲' : ' ▼';
+                } else {
+                    indicator.innerText = '';
+                }
+            });
+        }
+
         function renderPath(pathKey) {
             const dirList = document.getElementById('dir-list');
             const indexTitle = document.getElementById('index-title');
             
             dirList.innerHTML = '';
-            indexTitle.innerText = `Index of /img/${pathKey === 'root' ? '' : pathKey}`;
+            indexTitle.innerText = `Index of /img/${pathKey === 'root' ? '' : pathKey + '/'}`;
             
             currentImages = [];
-            const items = masterData[pathKey] || [];
+            let items = [...(masterData[pathKey] || [])];
 
+            // 🧠 LOGIKA SORTING PINTAR: Folder selalu menang dan tetap berada di atas
+            items.sort((a, b) => {
+                // Skenario A: Salah satu adalah directory
+                if (a.type === 'dir' && b.type !== 'dir') return -1;
+                if (a.type !== 'dir' && b.type === 'dir') return 1;
+
+                // Skenario B: Sesama directory atau sesama file, urutkan berdasarkan key pilihan
+                let valA = a[currentSortKey] !== undefined ? a[currentSortKey] : '';
+                let valB = b[currentSortKey] !== undefined ? b[currentSortKey] : '';
+
+                if (currentSortKey === 'size') {
+                    // Pastikan ukuran directory dihitung sebagai 0 saat diurutkan angka
+                    valA = a.type === 'dir' ? 0 : Number(valA);
+                    valB = b.type === 'dir' ? 0 : Number(valB);
+                } else {
+                    valA = String(valA).toLowerCase();
+                    valB = String(valB).toLowerCase();
+                }
+
+                if (valA < valB) return currentSortAsc ? -1 : 1;
+                if (valA > valB) return currentSortAsc ? 1 : -1;
+                return 0;
+            });
+
+            // 1. Tombol Kembali ke Parent Directory (Selalu paling atas, tidak ikut di-sort)
             if (pathKey !== 'root') {
                 const parts = pathKey.split('/');
                 parts.pop();
@@ -139,20 +193,17 @@
                 dirList.appendChild(createRow('📁', 'Parent Directory', '-', `#`, `changeDir('${parentKey}')`));
             }
 
+            // 2. Render Data Hasil Pengurutan
             items.forEach(item => {
                 if (item.type === 'dir') {
                     dirList.appendChild(createRow('📁', item.name + '/', '-', '#', `changeDir('${item.path}')`, '<small style="color:#666">Directory</small>'));
                 } else {
-                    // 🧠 REKAYASA JALUR LOKAL CLOUDFLARE:
-                    // Karena item.path dari JSON bernilai "img/folder/file.jpg"
-                    // sedangkan browser.html berada di dalam folder "img/", 
-                    // kita potong awalan "img/" agar menjadi path relatif yang valid di browser ("folder/file.jpg")
-                    const cleanLocalPath = item.path.replace(/^img\//, '');
-                    const cleanLocalThumbPath = item.thumbPath ? item.thumbPath.replace(/^img\//, '') : cleanLocalPath;
+                    const localPath = item.path; 
+                    const localThumbPath = item.thumbPath ? item.thumbPath : localPath;
                     
                     currentImages.push({ 
                         name: item.name, 
-                        url: cleanLocalPath, 
+                        url: localPath, 
                         size: formatSize(item.size),
                         dimension: item.width ? `${item.width}x${item.height} px` : 'N/A',
                         format: item.format ? item.format.toUpperCase() : 'UNKNOWN'
@@ -160,8 +211,8 @@
                     const imgIndex = currentImages.length - 1;
 
                     const actionHtml = `
-                        <img src="${cleanLocalThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Klik untuk preview">
-                        <a href="${cleanLocalPath}" download="${item.name}" class="btn-download" style="margin-left: 10px;">Download</a>
+                        <img src="${localThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Klik untuk preview">
+                        <a href="${localPath}" download="${item.name}" class="btn-download" style="margin-left: 10px;">Download</a>
                     `;
 
                     dirList.appendChild(createRow('🖼️', item.name, formatSize(item.size), '#', `openLightbox(${imgIndex})`, actionHtml));
