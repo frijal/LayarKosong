@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js) - Layar Kosong</title>
+    <meta name="description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/membuat-album-json">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js), Layar Kosong">
+    <meta name="promphint" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js) | Gunakan script Python atau Node.js untuk memindai folder album rekursif dengan cepat.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/membuat-album-json">
+    <meta property="og:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
+    <meta property="og:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+    <meta property="og:updated_time" content="2026-06-25T13:51:53.997Z">
+    <meta property="og:image" content="/thumbnail.webp">
+    <meta property="og:image:url" content="/thumbnail.webp">
+    <meta property="og:image:secure_url" content="/thumbnail.webp">
+    <meta property="og:image:alt" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/membuat-album-json">
+    <meta name="twitter:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
+    <meta name="twitter:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+    <meta name="twitter:image" content="/thumbnail.webp">
+    <meta name="twitter:image:alt" content="Cara Membuat File album.json untuk Galeri Gambar (Python &amp; Node.js)">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2025-10-25T13:28:45.344Z">
+    <meta property="article:modified_time" content="2026-06-25T13:51:53.997Z">
+<link rel="stylesheet" href="/ext/fontawesome.css">
+ <style>
+        /* --- 1. Definisikan Variabel Tema Terang (Default) --- */
+        :root {
+            --body-bg: #f4f7f6;
+            --text-main: #333333;
+            --container-bg: #ffffff;
+            --border-color: #eeeeee;
+            /* Komponen Header & Footer */
+            --header-bg: #2c3e50;
+            --header-text: #ffffff;
+            --subtitle-text: #ecf0f1;
+            /* Tipografi & Aksen */
+            --heading-color: #2c3e50;
+            --accent-color: #3498db; /* Blue */
+            --link-hover: #2980b9;
+            /* Blok Khusus & Kotak Info */
+            --pre-bg: #2d2d2d;
+            --pre-text: #f1f1f1;
+            --terminal-bg: #e0e0e0;
+            --terminal-text: #333333;
+            --infobox-bg: #eaf5ff;
+            /* Sosial Media Share */
+            --share-title: #555555;
+            --share-icon: #444444;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        /* --- 2. Otomatis Tema Gelap (Dark Mode) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --body-bg: #0f172a;       /* Slate 900 (Adem banget di mata) */
+                --text-main: #cbd5e1;     /* Teks abu terang lembut */
+                --container-bg: #1e293b;  /* Slate 800 untuk kontainer utama */
+                --border-color: #334155;  /* Border gelap proporsional */
+                /* Header & Footer malam (dibikin sedikit lebih gelap dari bodi) */
+                --header-bg: #0b0f19;
+                --header-text: #f8fafc;
+                --subtitle-text: #94a3b8;
+                /* Judul diselamatkan agar menyala cerah */
+                --heading-color: #f8fafc;
+                --accent-color: #60a5fa;  /* Biru pastel agar kontras di latar gelap */
+                --link-hover: #93c5fd;
+                /* Blok khusus di malam hari */
+                --pre-bg: #0b0f19;        /* Kode pre lebih pekat */
+                --terminal-bg: #334155;   /* Terminal tidak lagi jadi flashbang */
+                --terminal-text: #f1f5f9;
+                --infobox-bg: #1e293b;    /* Menyamakan kontainer atau bisa pakai navy gelap (#172554) */
+                --share-title: #94a3b8;
+                --share-icon: #94a3b8;    /* Ikon sosmed default jadi abu terang */
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            }
+        }
+        /* --- 3. Desain Utama & Tipografi (Base Styles) --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        body, h1, h2, h3, p, ul, ol, pre {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            background-color: var(--body-bg);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* --- Kontainer Widescreen --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            box-shadow: var(--shadow);
+            width: 100%;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        /* --- Header Artikel --- */
+        .article-header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .article-header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Menggunakan fluid typography */
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .article-header .subtitle {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--subtitle-text);
+            transition: color 0.3s;
+        }
+        /* --- Konten Artikel --- */
+        .article-content {
+            padding: 2.5rem;
+        }
+        .article-content hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2.5rem 0;
+            transition: border-color 0.3s;
+        }
+        .article-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .article-content h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem); /* Fleksibel di mobile */
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--heading-color);
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .article-content h2 .fas,
+        .article-content h2 .fa-brands {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        .article-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s;
+        }
+        .article-content h3 .fa-solid {
+            color: var(--share-title);
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        .article-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .article-content a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+        /* --- Blok Kode --- */
+        .article-content pre {
+            background-color: var(--pre-bg);
+            color: var(--pre-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto; 
+            margin: 1.5rem 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .article-content pre code {
+            font-family: inherit;
+        }
+        /* Blok untuk terminal */
+        .terminal-code {
+            background: var(--terminal-bg);
+            color: var(--terminal-text);
+            padding: 0.2rem 0.6rem; /* Disesuaikan agar rapi kalau dipakai sebagai inline-code */
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            display: inline-block; /* Lebih aman menahan layout teks panjang */
+            max-width: 100%;
+            overflow-x: auto;
+            vertical-align: middle;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* --- Info Box untuk "Cara Pakai" --- */
+        .info-box {
+            background: var(--infobox-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .info-box h2 {
+            margin-top: 0;
+            border: none;
+            padding: 0;
+        }
+        .info-box ol {
+            padding-left: 2rem;
+            margin-bottom: 0;
+        }
+        .info-box li {
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        /* --- Bagian Share Media Sosial --- */
+        .share-section {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+        .share-section h3 {
+            margin: 0 0 1.5rem 0;
+            color: var(--share-title);
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .share-buttons a {
+            display: inline-block;
+            font-size: 2rem; 
+            color: var(--share-icon);
+            margin: 0 12px;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.2s;
+        }
+        .share-buttons a:hover {
+            transform: translateY(-3px);
+        }
+        .share-buttons .fa-twitter:hover { color: #1DA1F2; }
+        .share-buttons .fa-whatsapp:hover { color: #25D366; }
+        .share-buttons .fa-facebook:hover { color: #1877F2; }
+        .share-buttons .fa-telegram:hover { color: #0088cc; }
+        .share-buttons .fa-linkedin:hover { color: #0077b5; }
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--header-bg); /* Disinkronkan dengan warna header malam */
+            color: var(--subtitle-text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        /* --- CSS Responsif (Mobile-Friendly) --- */
+        @media (max-width: 900px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .article-header {
+                padding: 2.5rem 1.25rem;
+            }
+            .article-content {
+                padding: 1.5rem 1rem; /* Ruang baca di HP dimaksimalkan */
+            }
+            .article-content p,
+            .info-box li {
+                font-size: 1rem;
+            }
+            .info-box {
+                padding: 1.25rem 1rem 1.25rem 1.5rem; /* Sisi kiri dikasih kelonggaran */
+            }
+            .article-content pre {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+            .share-section {
+                padding: 1.5rem 1rem;
+            }
+            .share-buttons a {
+                margin: 0 8px; /* Jarak ikon sosmed dirapatkan sedikit di HP biar gak patah baris */
+                font-size: 1.8rem;
+            }
+        }
+</style>
+<meta name="ai:summary" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+<meta name="ai:prompt_hint" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
+<link rel="stylesheet" href="/ext/marquee-url.css">
+</head>
+<body>
+    <div class="container">
+        <header class="article-header">
+            <div id="iposbrowser"></div><h1>Buat File <code>album.json</code> Otomatis untuk Galeri Online-mu</h1>
+            <p class="subtitle">Gunakan script Python atau Node.js untuk memindai folder album rekursif dengan cepat.</p>
+        </header>
+        <main>
+            <article class="article-content">
+                <p>Tentu. Karena browser tidak bisa <em>memindai</em> folder di komputer Anda, kita tidak bisa membuatnya dari halaman web.</p>
+                <p>Sebagai gantinya, kita bisa menggunakan script pendek di komputer Anda untuk <em>membuat</em> file <code>album.json</code> tersebut. Setelah file itu jadi, Anda bisa mengunggahnya bersama semua gambar Anda ke server.</p>
+                <p>Saya akan berikan dua opsi script yang paling umum: <strong>Python</strong> (seringkali sudah ada di Mac/Linux dan mudah di-install di Windows) dan <strong>Node.js</strong> (jika Anda lebih suka JavaScript).</p>
+                <p>Keduanya melakukan hal yang sama:</p>
+                <ul>
+                    <li>Memindai folder tempat script dijalankan secara rekursif.</li>
+                    <li>Mencari semua file gambar (jpg, png, webp, gif).</li>
+                    <li>Membuat file <code>album.json</code> yang berisi daftar path relatif dari gambar-gambar tersebut.</li>
+                </ul>
+                <div class="info-box">
+                    <h2><i class="fa-solid fa-rocket"></i>Cara Pakai (Penting!)</h2>
+                    <ol>
+                        <li>Letakkan <em>semua</em> gambar dan subfolder album Anda di dalam satu folder utama (misalnya, <code>album-liburan</code>).</li>
+                        <li>Pilih <strong>salah satu</strong> dari script di bawah ini (Python atau Node.js).</li>
+                        <li>Simpan script tersebut <em>di dalam</em> folder utama tadi (misalnya, <code>album-liburan/buat_json.py</code>).</li>
+                        <li>Jalankan script tersebut dari dalam folder itu.</li>
+                        <li>File <code>album.json</code> akan muncul di folder yang sama.</li>
+                        <li>Unggah <em>seluruh isi</em> folder <code>album-liburan</code> (termasuk <code>album.json</code> dan semua subfolder gambar) ke server web Anda.</li>
+                    </ol>
+                </div>
+                <hr>
+                <h2><i class="fa-brands fa-python"></i>Opsi 1: Script Python (<code>.py</code>)</h2>
+                <p>Metode ini merupakan alternatif yang efisien apabila perangkat Anda telah terintegrasi dengan runtime Python. di dalam folder album Anda, beri nama <code>buat_json.py</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
+<pre><code class="language-python">import os
+import json
+# --- Konfigurasi ---
+START_DIR = '.'  # Titik (.) berarti folder saat ini
+OUTPUT_FILE = 'album.json' # Nama file JSON yang akan dibuat
+SCRIPT_NAME = os.path.basename(__file__) # Nama script ini agar diabaikan
+IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif')
+# --------------------
+image_paths = []
+print(f"Memindai '{START_DIR}' untuk mencari gambar...")
+# os.walk() akan menjelajah semua subfolder secara otomatis
+for root, dirs, files in os.walk(START_DIR, topdown=True):
+    # Abaikan folder .git atau node_modules jika ada
+    dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules']]
+    for file in files:
+        # 1. Abaikan file script ini dan file outputnya sendiri
+        if file == SCRIPT_NAME or file == OUTPUT_FILE:
+            continue
+        # 2. Cek apakah ekstensinya adalah gambar
+        if file.lower().endswith(IMAGE_EXTENSIONS):
+            # 3. Dapatkan path lengkap dan path relatif
+            full_path = os.path.join(root, file)
+            # os.path.relpath akan membuat path relatif (mis: 'subfolder/gambar.jpg')
+            relative_path = os.path.relpath(full_path, START_DIR)
+            # 4. Ganti backslash (\) Windows menjadi forward slash (/) untuk URL
+            relative_path = relative_path.replace(os.path.sep, '/')
+            image_paths.append(relative_path)
+            print(f"  Menemukan: {relative_path}")
+# 5. Urutkan daftar agar rapi
+image_paths.sort()
+# 6. Tulis semua path ke dalam file JSON
+try:
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        # Parameter penjarakan tersebut dikonfigurasikan agar output berkas JSON menyajikan struktur data secara sistematis dan terstruktur.
+        json.dump(image_paths, f, indent=2, ensure_ascii=False)
+    print(f"\n✅ Sukses! {len(image_paths)} gambar telah disimpan ke '{OUTPUT_FILE}'")
+except IOError as e:
+    print(f"\n❌ Gagal menulis file: {e}")
+</code></pre>
+                <h3><i class="fa-solid fa-terminal"></i>Cara Menjalankan (Python)</h3>
+                <p>1. Buka terminal atau Command Prompt.<br>
+                   2. Masuk ke folder album Anda:<br>
+                   <code class="terminal-code">cd path/ke/album-liburan</code><br>
+                   3. Jalankan script:<br>
+                   <code class="terminal-code">python buat_json.py</code> (atau <code>python3 buat_json.py</code>)
+                </p>
+                <hr>
+                <h2><i class="fa-brands fa-node-js"></i>Opsi 2: Script Node.js (<code>.js</code>)</h2>
+                <p>Gunakan ini jika Anda sudah meng-install Node.js di komputer Anda. Buat file baru di dalam folder album Anda, beri nama <code>buat_json.js</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
+<pre><code class="language-javascript">const fs = require('fs');
+const path = require('path');
+// --- Konfigurasi ---
+const START_DIR = '.'; // Titik (.) berarti folder saat ini
+const OUTPUT_FILE = 'album.json'; // Nama file JSON yang akan dibuat
+const SCRIPT_NAME = path.basename(__filename); // Nama script ini agar diabaikan
+const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
+// --------------------
+const imagePaths = [];
+console.log(`Memindai '${START_DIR}' untuk mencari gambar...`);
+// Fungsi rekursif untuk memindai folder
+function findImages(currentDir) {
+  try {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(currentDir, entry.name);
+      // Abaikan folder .git atau node_modules
+      if (entry.isDirectory() &amp;&amp; entry.name !== '.git' &amp;&amp; entry.name !== 'node_modules') {
+        findImages(fullPath); // Rekursif ke subfolder
+      } else if (entry.isFile()) {
+        // 1. Abaikan file script ini dan file outputnya sendiri
+        if (entry.name === SCRIPT_NAME || entry.name === OUTPUT_FILE) {
+          continue;
+        }
+        // 2. Cek apakah ekstensinya adalah gambar
+        const ext = path.extname(entry.name).toLowerCase();
+        if (IMAGE_EXTENSIONS.has(ext)) {
+          // 3. Dapatkan path relatif
+          // path.relative akan membuat path relatif (mis: 'subfolder/gambar.jpg')
+          const relativePath = path.relative(START_DIR, fullPath);
+          // 4. Ganti backslash (\) Windows menjadi forward slash (/) untuk URL
+          const urlPath = relativePath.replace(/\\/g, '/');
+          imagePaths.push(urlPath);
+          console.log(`  Menemukan: ${urlPath}`);
+        }
+      }
+    }
+  } catch (err) {
+    console.error(`Gagal membaca folder: ${currentDir}`, err);
+  }
+}
+// Mulai pemindaian
+findImages(START_DIR);
+// 5. Urutkan daftar agar rapi
+imagePaths.sort();
+// 6. Tulis semua path ke dalam file JSON
+try {
+  // JSON.stringify dengan 'null, 2' membuat file rapi dan mudah dibaca
+  const jsonContent = JSON.stringify(imagePaths, null, 2);
+  fs.writeFileSync(OUTPUT_FILE, jsonContent, 'utf8');
+  console.log(`\n✅ Sukses! ${imagePaths.length} gambar telah disimpan ke '${OUTPUT_FILE}'`);
+} catch (err) {
+  console.error(`\n❌ Gagal menulis file: ${err}`);
+}
+</code></pre>
+                <h3><i class="fa-solid fa-terminal"></i>Cara Menjalankan (Node.js)</h3>
+                <p>1. Buka terminal atau Command Prompt.<br>
+                   2. Masuk ke folder album Anda:<br>
+                   <code class="terminal-code">cd path/ke/album-liburan</code><br>
+                   3. Jalankan script:<br>
+                   <code class="terminal-code">node buat_json.js</code>
+                </p>
+    </article>
+            <section>
+               <div id="related-articles-grid"></div><div id="response"></div>
+            </section>
+        </main>
+        <footer>
+            <p>🄯 2025 dalam.web.id. Jaga Data Pribadi Tetap Aman.</p>
+         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+</footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
