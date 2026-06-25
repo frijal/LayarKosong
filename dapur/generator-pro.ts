@@ -167,10 +167,12 @@ const catLabel = getCategoryLabel(slug(cat));
 
 html = html
 .replace(/<link rel="canonical" href="[^"]+">/i,      `<link rel="canonical" href="${url}">`)
-// INJEKSI META KATEGORI DI SINI UNTUK ARTIKEL HTML
+// INJEKSI META KATEGORI + REPLACE OG:URL
 .replace(/<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${url}">\n    <meta property="article:section" content="${catLabel}">`)
-.replace(new RegExp(`${BASE_RE}/artikel/${f.replace('.html', '')}`, 'g'), url)
-.replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
+// ✨ TAMBAHKAN BARIS INI UNTUK MEMPERBAIKI TWITTER:URL ✨
+.replace(/<meta name="twitter:url" content="[^"]+">/i, `<meta name="twitter:url" content="${url}">`)
+.replace(new RegExp(`${BASE_RE}/artikelx?/${f.replace('.html', '')}`, 'g'), url) // Tambahan 'x?' biar support folder /artikel/ atau /artikelx/
+.replace(/\/artikelx?\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
 
 await Bun.write(`${dir}/${f}`, html);
 };
