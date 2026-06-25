@@ -633,7 +633,7 @@
                         onclick="openLightbox(${imgIndex}); event.stopPropagation();"
                         title="Preview"
                     >
-                    <a href="#" class="btn-download" style="margin-left: 0.625rem;" onclick="copyToClipboard(event, ${jsString(localPath)}, this)">Copy</a>
+                    <a href="#" class="btn-download" style="margin-left: 0.625rem;" onclick="copyToClipboard(event, ${escapeHtml(jsString(localPath))}, this)">Copy</a>
                 `;
 
                 dirList.appendChild(createRow(
@@ -655,7 +655,7 @@
             const displayName = formatDisplayName(name);
 
             const linkHtml = onclickAttr
-                ? `<a href="#" class="name-link" onclick="${onclickAttr}; return false;">${escapeHtml(displayName)}</a>`
+                ? `<a href="#" class="name-link" onclick="${escapeHtml(onclickAttr)}; return false;">${escapeHtml(displayName)}</a>`
                 : escapeHtml(displayName);
 
             row.innerHTML = `
