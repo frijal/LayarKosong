@@ -67,7 +67,7 @@
         /* Pembungkus Tabel Responsif di Mobile */
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         
-        /* FIX: max-width dihapus agar tampilan full width mengikuti layar monitor */
+        /* Table Layout Fixed agar % width dipatuhi */
         table { 
             width: 100%; 
             border-collapse: collapse; 
@@ -79,44 +79,22 @@
         th { padding: 0.5rem 0.625rem; border-bottom: 0.0625rem solid var(--hr-color); cursor: pointer; user-select: none; font-size: 1.1rem; }
         th:hover { background: var(--row-hover); }
         
-        /* 🔥 PENDONGKRAK FONT LIST BARIS (Td): Skala 50%+ lebih tinggi dari thumbnail (40px) */
+        /* 🔥 PENDONGKRAK FONT LIST BARIS (Td) */
         td { 
             padding: 0.75rem 0.625rem; 
             white-space: nowrap; 
             vertical-align: middle; 
-            font-size: 1.25rem; /* Ukuran teks besar (24px) sesuai request */
+            font-size: 1.25rem; 
         }
 
-        /* FIX: Middle truncation untuk kolom Nama */
+        /* FIX: Truncation standar (Titik Tiga di Akhir) tanpa Flexbox */
         td.name-cell {
             overflow: hidden;
-            max-width: 0;   /* trick klasik: di fixed-layout table, cell akan clip sesuai lebar <th>-nya */
-        }
-
-        .name-inner {
-            display: flex;
-            min-width: 0;
-            width: 100%;
-            align-items: center;
-        }
-
-        .name-start {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            flex: 1 1 auto;
-            min-width: 0;
-        }
-
-        .name-end {
-            white-space: nowrap;
-            flex: 0 0 auto;
+            text-overflow: ellipsis; /* Memotong teks berlebih dengan ... */
+            max-width: 0;   /* Wajib untuk kliping di dalam fixed table */
         }
 
         a.name-link {
-            display: flex;
-            min-width: 0;
-            width: 100%;
             color: var(--link-color);
             text-decoration: none;
         }
@@ -135,8 +113,8 @@
         
         /* Ukuran Thumbnail Tetap */
         .preview-thumb { 
-            width: 3.125rem; /* 50px */
-            height: 2.5rem;  /* 40px */
+            width: 3.125rem; 
+            height: 2.5rem;  
             object-fit: cover; 
             border: 0.0625rem solid var(--border-thumb); 
             cursor: pointer; 
@@ -216,13 +194,13 @@
             <thead>
                 <tr>
                     <th width="3%" onclick="sortTable('type')"> # <span id="sort-type"></span></th>
-<th width="50%" onclick="sortTable('name')">Nama<span id="sort-name"></span></th>
-<th width="6%" class="text-center" onclick="sortTable('items')">Jumlah<span id="sort-items"></span></th>
-<th width="7%" class="text-right" onclick="sortTable('size')">Ukuran<span id="sort-size"></span></th>
-<th width="9%" class="text-center" onclick="sortTable('dimension')">Dimensi<span id="sort-dimension"></span></th>
-<th width="6%" class="text-center" onclick="sortTable('format')">Jenis<span id="sort-format"></span></th>
-<th width="9%" onclick="sortTable('date')">Tanggal<span id="sort-date"></span></th>
-<th width="10%" class="text-right">Tampilan</th>
+                    <th width="50%" onclick="sortTable('name')">Nama<span id="sort-name"></span></th>
+                    <th width="6%" class="text-center" onclick="sortTable('items')">Jumlah<span id="sort-items"></span></th>
+                    <th width="7%" class="text-right" onclick="sortTable('size')">Ukuran<span id="sort-size"></span></th>
+                    <th width="9%" class="text-center" onclick="sortTable('dimension')">Dimensi<span id="sort-dimension"></span></th>
+                    <th width="6%" class="text-center" onclick="sortTable('format')">Jenis<span id="sort-format"></span></th>
+                    <th width="9%" onclick="sortTable('date')">Tanggal<span id="sort-date"></span></th>
+                    <th width="10%" class="text-right">Tampilan</th>
                 </tr>
             </thead>
             <tbody id="dir-list">
@@ -294,24 +272,18 @@
             });
         }
 
-        function buildNameHtml(name) {
-            let start, end;
+        /* FIX: Fungsi ini dimodifikasi agar sekadar membersihkan .ekstensi dari string nama file */
+        function formatDisplayName(name) {
+            // Biarkan saja jika itu adalah penanda direktori (contoh: "folder/")
+            if (name.endsWith('/')) return name;
 
-            if (name.endsWith('/')) {
-                start = name.slice(0, -1);
-                end   = '/';
-            } else {
-                const lastDot = name.lastIndexOf('.');
-                if (lastDot > 0 && lastDot < name.length - 1) {
-                    start = name.substring(0, lastDot);
-                    end   = name.substring(lastDot);
-                } else {
-                    start = name;
-                    end   = '';
-                }
+            // Jika itu file, cari titik terakhir dan potong string-nya di sana
+            const lastDot = name.lastIndexOf('.');
+            if (lastDot > 0 && lastDot < name.length - 1) {
+                return name.substring(0, lastDot);
             }
-
-            return `<span class="name-inner"><span class="name-start">${start}</span><span class="name-end">${end}</span></span>`;
+            
+            return name;
         }
 
         function renderPath(pathKey) {
@@ -397,11 +369,14 @@
 
         function createRow(icon, name, itemsCount, size, dimension, format, date, actionHtml, onclickAttr = '') {
             const row = document.createElement('tr');
-            const nameHtml = buildNameHtml(name);
+            
+            // Format namanya jadi tanpa ekstensi
+            const displayName = formatDisplayName(name);
 
+            // Kita tambah title="${name}" supaya saat mouse di-hover, pengunjung bisa lihat nama asli + ekstensinya
             const linkHtml = onclickAttr
-                ? `<a href="#" class="name-link" onclick="${onclickAttr}; return false;">${nameHtml}</a>`
-                : nameHtml;
+                ? `<a href="#" class="name-link" onclick="${onclickAttr}; return false;" title="${name}">${displayName}</a>`
+                : displayName;
             
             row.innerHTML = `
                 <td>${icon}</td>
