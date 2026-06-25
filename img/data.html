@@ -66,7 +66,15 @@
         
         /* Pembungkus Tabel Responsif di Mobile */
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        table { width: 100%; max-width: 75rem; border-collapse: collapse; text-align: left; }
+        
+        /* FIX: Tambahan table-layout: fixed agar % width kolom dipatuhi dan bisa di-truncate */
+        table { 
+            width: 100%; 
+            max-width: 75rem; 
+            border-collapse: collapse; 
+            text-align: left; 
+            table-layout: fixed; 
+        }
         
         /* Ukuran Header Tabel Standar */
         th { padding: 0.5rem 0.625rem; border-bottom: 0.0625rem solid var(--hr-color); cursor: pointer; user-select: none; font-size: 1.1rem; }
@@ -79,6 +87,42 @@
             vertical-align: middle; 
             font-size: 1.25rem; /* Ukuran teks besar (24px) sesuai request */
         }
+
+        /* FIX: Middle truncation untuk kolom Nama */
+        td.name-cell {
+            overflow: hidden;
+            max-width: 0;   /* trick klasik: di fixed-layout table, cell akan clip sesuai lebar <th>-nya */
+        }
+
+        .name-inner {
+            display: flex;
+            min-width: 0;
+            width: 100%;
+            align-items: center;
+        }
+
+        .name-start {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .name-end {
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+        a.name-link {
+            display: flex;
+            min-width: 0;
+            width: 100%;
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a.name-link:hover { text-decoration: underline; }
         
         /* Warna Selang-Seling & Efek Hover Gambar */
         tbody tr:nth-child(even) { background: var(--row-even); }
@@ -162,7 +206,8 @@
 
     <div class="header-container">
         <h1><a href="#" onclick="changeDir('root'); return false;" id="index-title">Index of /img/</a></h1>
-<a href="/" aria-label="Beranda Layar Kosong"><img src="/favicon.svg" alt="Layar Kosong Logo" class="brand-logo"></a></div>
+        <a href="/" aria-label="Beranda Layar Kosong"><img src="/favicon.svg" alt="Layar Kosong Logo" class="brand-logo"></a>
+    </div>
     <hr>
 
     <div id="loading-text" class="loading">Loading directory contents...</div>
@@ -250,6 +295,30 @@
             });
         }
 
+        /* FIX: Menambahkan function buildNameHtml untuk memecah nama file/folder */
+        function buildNameHtml(name) {
+            let start, end;
+
+            if (name.endsWith('/')) {
+                // Direktori: "nama-folder/" → "nama-folder" + "/"
+                start = name.slice(0, -1);
+                end   = '/';
+            } else {
+                const lastDot = name.lastIndexOf('.');
+                if (lastDot > 0 && lastDot < name.length - 1) {
+                    // File dengan ekstensi: "panjang-banget.webp" → "panjang-banget" + ".webp"
+                    start = name.substring(0, lastDot);
+                    end   = name.substring(lastDot);
+                } else {
+                    // Tanpa ekstensi (e.g. "Naik ke Atas")
+                    start = name;
+                    end   = '';
+                }
+            }
+
+            return `<span class="name-inner"><span class="name-start">${start}</span><span class="name-end">${end}</span></span>`;
+        }
+
         function renderPath(pathKey) {
             const dirList = document.getElementById('dir-list');
             const indexTitle = document.getElementById('index-title');
@@ -331,13 +400,18 @@
             });
         }
 
+        /* FIX: Modifikasi fungsi createRow untuk mendukung class "name-cell" dan fungsi pembangun HTML */
         function createRow(icon, name, itemsCount, size, dimension, format, date, actionHtml, onclickAttr = '') {
             const row = document.createElement('tr');
-            const linkHtml = onclickAttr ? `<a href="#" onclick="${onclickAttr}; return false;">${name}</a>` : name;
+            const nameHtml = buildNameHtml(name);
+
+            const linkHtml = onclickAttr
+                ? `<a href="#" class="name-link" onclick="${onclickAttr}; return false;">${nameHtml}</a>`
+                : nameHtml;
             
             row.innerHTML = `
                 <td>${icon}</td>
-                <td>${linkHtml}</td>
+                <td class="name-cell">${linkHtml}</td>
                 <td class="text-center" style="color: var(--muted); font-size: 0.95em;">${itemsCount}</td>
                 <td class="text-right">${size}</td>
                 <td class="text-center">${dimension}</td>
