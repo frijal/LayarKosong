@@ -5,28 +5,39 @@ on:
     workflows: ["🔄 Proses ArtikelX"]
     types: [completed]
     branches: ['main']
+
   workflow_dispatch:
     inputs:
       run_generator:
         description: 'Generator (JSON, RSS, Sitemap XML)'
         type: boolean
         default: true
+
       run_srcset:
         description: 'Image Optimize & Srcset Generator'
         type: boolean
         default: true
+
       run_sitemap_txt:
         description: 'Update sitemap.txt'
         type: boolean
         default: true
+
       run_schema:
         description: 'Inject Schema.org'
         type: boolean
         default: true
+
       run_minify_html:
         description: 'HTML Minify'
         type: boolean
-        default: true 
+        default: true
+
+      run_gallery_data:
+        description: 'Generate galeri-data.json'
+        type: boolean
+        default: true
+
       run_minify_jsonxml:
         description: 'JSONXML Minify'
         type: boolean
@@ -37,14 +48,16 @@ env:
   DO_SITEMAP_TXT: ${{ github.event.inputs.run_sitemap_txt || 'true' }}
   DO_SCHEMA: ${{ github.event.inputs.run_schema || 'true' }}
   DO_MINIFY_HTML: ${{ github.event.inputs.run_minify_html || 'true' }}
+  DO_GALLERY_DATA: ${{ github.event.inputs.run_gallery_data || 'true' }}
   DO_MINIFY_JSONXML: ${{ github.event.inputs.run_minify_jsonxml || 'true' }}
   DO_SRCSET: ${{ github.event.inputs.run_srcset || 'true' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+
     permissions:
       contents: write
 
@@ -53,15 +66,15 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           fetch-depth: 1
-          persist-credentials: true      
+          persist-credentials: true
 
       - name: '2. Setup Bun.js'
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: latest
-      
+
       - name: '3. Install Dependencies'
-        run: bun install 
+        run: bun install
 
       - name: '4. Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
@@ -81,27 +94,49 @@ jobs:
           bun run dapur/bikin-sitemap-txt.ts
           bun run dapur/generate_llms.ts
           bun run dapur/redirectmap.ts
-                              
+
       - name: '7. Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
         run: bun run dapur/inject-schema.ts
-        
+
       - name: '9. Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
         run: bun run dapur/minify-html.ts
 
-      - name: '10. Minify Data (JSON & XML)'
+      - name: '10. Upgrade Git History for galeri-data.json'
+        if: env.DO_GALLERY_DATA == 'true'
+        run: |
+          echo "Cek status repository sebelum upgrade:"
+          git rev-parse --is-shallow-repository
+
+          if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then
+            echo "Repository masih shallow. Mengambil full history untuk Last Commit Date..."
+            git fetch --unshallow --tags --prune
+          else
+            echo "Repository sudah full history. Refresh refs saja..."
+            git fetch --all --tags --prune
+          fi
+
+          echo "Cek status repository setelah upgrade:"
+          git rev-parse --is-shallow-repository
+
+      - name: '10.1. Generate galeri-data.json'
+        if: env.DO_GALLERY_DATA == 'true'
+        run: |
+          bun run dapur/galeri-data.ts
+
+      - name: '11. Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
-        run: bun run dapur/minify-jsonxml.ts        
-      
+        run: bun run dapur/minify-jsonxml.ts
+
       - name: '11. Commit and Push'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"        
-          
+          git config --local user.name "github-actions[bot]"
+
           # Add semua perubahan lainnya (JSON, XML, dan CACHE di folder mini/)
           git add .
-          
+
           if git diff --staged --quiet; then
             echo "✅ Tidak ada perubahan data."
           else
