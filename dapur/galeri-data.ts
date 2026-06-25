@@ -1,4 +1,3 @@
-```ts
 import { writeFileSync, readFileSync, statSync, existsSync, readdirSync } from "fs";
 import { join, extname, basename, dirname } from "path";
 import sharp from "sharp";
@@ -574,4 +573,3 @@ generateGalleryJson().catch((err) => {
     console.error("❌ Gagal generate galeri-data.json:", err);
     process.exit(1);
 });
-```
