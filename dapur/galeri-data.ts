@@ -11,7 +11,6 @@ const ONLY_IMAGES_PATTERN = "**/*.{jpg,jpeg,png,webp,avif,svg}";
 interface FileItem {
     name: string;
     path: string;
-    thumbPath: string | null;
     size: number | null;
     date: string;
     type: "file" | "dir";
@@ -34,14 +33,12 @@ function formatDate(date: Date): string {
     return `${y}-${m}-${d}`;
 }
 
-// ─── Normalisasi separator path ──────────────────────────────────────────────
+// ─── Normalisasi path separator ──────────────────────────────────────────────
 function normPath(p: string): string {
     return p.replace(/\\/g, "/");
 }
 
-// ─── Normalisasi TARGET_DIR menjadi prefix repo ──────────────────────────────
-// "./img" -> "img"
-// "img"   -> "img"
+// ─── TARGET_DIR "./img" → "img" ──────────────────────────────────────────────
 function getTargetRepoPrefix(): string {
     return normPath(TARGET_DIR)
         .replace(/^\.\//, "")
@@ -50,12 +47,24 @@ function getTargetRepoPrefix(): string {
 
 const TARGET_REPO_PREFIX = getTargetRepoPrefix();
 
-// ─── Cek ekstensi gambar ─────────────────────────────────────────────────────
+// ─── Deteksi file gambar ─────────────────────────────────────────────────────
 function isImageFile(p: string): boolean {
     return /\.(jpe?g|png|webp|avif|svg)$/i.test(p);
 }
 
-// ─── Ubah path dari srcset-gambar.txt menjadi relatif terhadap folder img ────
+// ─── Deteksi varian thumbnail, bukan file asli ───────────────────────────────
+function isThumbnailVariant(p: string): boolean {
+    const ext = extname(p);
+    const nameWithoutExt = basename(p, ext);
+    return nameWithoutExt.endsWith("-sm") || nameWithoutExt.endsWith("-md");
+}
+
+// ─── File asli = gambar, tapi bukan -sm / -md ────────────────────────────────
+function isOriginalImageFile(p: string): boolean {
+    return isImageFile(p) && !isThumbnailVariant(p);
+}
+
+// ─── Ubah path "img/xxx.webp" menjadi relatif terhadap folder img ────────────
 // Contoh:
 // "img/foo/bar.webp" -> "foo/bar.webp"
 // "./img/foo.webp"   -> "foo.webp"
@@ -77,7 +86,7 @@ function toImgRelativePath(rawPath: string): string | null {
         p = p.slice(prefix.length);
     }
 
-    if (!p || !isImageFile(p)) return null;
+    if (!p || !isOriginalImageFile(p)) return null;
 
     return p;
 }
@@ -89,8 +98,8 @@ function toGitRepoPath(imgRelativePath: string): string {
     return `${TARGET_REPO_PREFIX}/${normPath(imgRelativePath)}`;
 }
 
-// ─── Baca daftar gambar dari mini/srcset-gambar.txt ──────────────────────────
-function readImageListFromCache(): string[] {
+// ─── Baca daftar file asli dari mini/srcset-gambar.txt ───────────────────────
+function readOriginalImagesFromCache(): string[] {
     if (!existsSync(PATH_LIST_FILE)) return [];
 
     const lines = readFileSync(PATH_LIST_FILE, "utf-8")
@@ -99,7 +108,6 @@ function readImageListFromCache(): string[] {
         .filter((p): p is string => Boolean(p));
 
     const unique = Array.from(new Set(lines));
-
     const existingFiles: string[] = [];
 
     for (const file of unique) {
@@ -116,38 +124,112 @@ function readImageListFromCache(): string[] {
 }
 
 // ─── Fallback: scan langsung folder img pakai glob ───────────────────────────
-async function readImageListFromGlob(): Promise<string[]> {
+async function readOriginalImagesFromGlob(): Promise<string[]> {
     const files = await glob(ONLY_IMAGES_PATTERN, {
         cwd: TARGET_DIR,
         nodir: true,
         nocase: true
     });
 
-    return Array.from(new Set(files.map(normPath).filter(isImageFile)));
+    return Array.from(
+        new Set(
+            files
+                .map(normPath)
+                .filter(isOriginalImageFile)
+        )
+    );
 }
 
-// ─── Ambil daftar gambar utama ───────────────────────────────────────────────
-async function getAllImageFiles(): Promise<string[]> {
-    const fromCache = readImageListFromCache();
+// ─── Ambil daftar gambar asli ────────────────────────────────────────────────
+async function getAllOriginalImageFiles(): Promise<string[]> {
+    const fromCache = readOriginalImagesFromCache();
 
     if (fromCache.length > 0) {
         console.log(`📄 Menggunakan daftar path dari: ${PATH_LIST_FILE}`);
-        console.log(`🖼️ Total path gambar valid dari cache: ${fromCache.length}`);
+        console.log(`🖼️ Total file gambar asli dari cache: ${fromCache.length}`);
         return fromCache;
     }
 
     console.warn(`⚠️ ${PATH_LIST_FILE} tidak ditemukan/kosong. Fallback ke glob folder ${TARGET_DIR}`);
-    const fromGlob = await readImageListFromGlob();
+    const fromGlob = await readOriginalImagesFromGlob();
 
-    console.log(`🖼️ Total path gambar dari glob: ${fromGlob.length}`);
+    console.log(`🖼️ Total file gambar asli dari glob: ${fromGlob.length}`);
     return fromGlob;
 }
 
-// ─── Tanggal dari "Last commit date" Git/GitHub ──────────────────────────────
-// Mengambil commit TERAKHIR yang menyentuh file.
-// Setara dengan konsep "Last commit date" selama repo lokal sudah up-to-date.
-// Fallback ke mtime kalau file belum pernah masuk Git.
-function getGitLastCommitDate(imgRelativePath: string): string | null {
+// ─── Batch Last Commit Date dari Git ─────────────────────────────────────────
+// Ini lebih cepat daripada menjalankan "git log -1" untuk setiap file.
+// Git log berjalan dari commit terbaru ke lama, jadi tanggal pertama yang
+// ditemukan untuk sebuah path adalah Last Commit Date file itu.
+function buildGitLastCommitDateMap(files: string[]): Map<string, string> {
+    const result = new Map<string, string>();
+    const wanted = new Set(files.map(normPath));
+
+    if (wanted.size === 0) return result;
+
+    try {
+        const marker = "__COMMIT_DATE__";
+
+        const proc = Bun.spawnSync(
+            [
+                "git",
+                "log",
+                `--format=${marker}%cI`,
+                "--name-only",
+                "--",
+                TARGET_REPO_PREFIX
+            ],
+            { cwd: process.cwd() }
+        );
+
+        if (proc.exitCode !== 0) {
+            console.warn("⚠️ Gagal membaca batch Last Commit Date dari git log.");
+            return result;
+        }
+
+        const output = proc.stdout.toString();
+        const lines = output.split(/\r?\n/);
+
+        let currentDate = "";
+
+        for (const rawLine of lines) {
+            const line = rawLine.trim();
+
+            if (!line) continue;
+
+            if (line.startsWith(marker)) {
+                const iso = line.slice(marker.length).trim();
+                const d = new Date(iso);
+                currentDate = isNaN(d.getTime()) ? "" : formatDate(d);
+                continue;
+            }
+
+            if (!currentDate) continue;
+
+            const imgRelativePath = toImgRelativePath(line);
+
+            if (!imgRelativePath) continue;
+            if (!wanted.has(imgRelativePath)) continue;
+
+            // Karena git log urut terbaru → lama, jangan timpa data yang sudah ada.
+            if (!result.has(imgRelativePath)) {
+                result.set(imgRelativePath, currentDate);
+            }
+
+            if (result.size === wanted.size) {
+                break;
+            }
+        }
+    } catch (err) {
+        console.warn("⚠️ Gagal membangun Git Last Commit Date map:", err);
+    }
+
+    return result;
+}
+
+// ─── Fallback per file jika batch map tidak menemukan tanggal ────────────────
+// Pakai --follow untuk membantu kasus file pernah rename.
+function getGitLastCommitDateFallback(imgRelativePath: string): string | null {
     try {
         const repoPath = toGitRepoPath(imgRelativePath);
 
@@ -180,41 +262,16 @@ function getGitLastCommitDate(imgRelativePath: string): string | null {
 async function generateGalleryJson() {
     console.log("🚀 Memulai pemindaian galeri...");
 
-    const allFiles = await getAllImageFiles();
+    const allFiles = await getAllOriginalImageFiles();
 
     const galleryMap: GalleryData = { root: [] };
-    const processedThumbnails = new Set<string>();
+    const gitDateMap = buildGitLastCommitDateMap(allFiles);
 
-    // Lookup case-insensitive untuk mencari thumbnail -sm
-    const allFilesLowerSet = new Set(
-        allFiles.map(file => normPath(file).toLowerCase())
-    );
+    console.log(`🕒 Last Commit Date ditemukan untuk ${gitDateMap.size}/${allFiles.length} file.`);
 
-    const allFilesLowerMap = new Map<string, string>(
-        allFiles.map(file => [
-            normPath(file).toLowerCase(),
-            normPath(file)
-        ])
-    );
-
-    // ── Langkah 1: Tandai varian thumbnail ───────────────────────────────────
-    allFiles.forEach(file => {
-        const normalizedFile = normPath(file);
-        const originalExt = extname(normalizedFile);
-        const nameWithoutExt = basename(normalizedFile, originalExt);
-
-        if (nameWithoutExt.endsWith("-sm") || nameWithoutExt.endsWith("-md")) {
-            processedThumbnails.add(normalizedFile);
-        }
-    });
-
-    // ── Langkah 2: Proses file utama ─────────────────────────────────────────
+    // ── Langkah 1: Proses file asli saja ─────────────────────────────────────
     for (const file of allFiles) {
         const normalizedFile = normPath(file);
-
-        // Lewati thumbnail agar tidak muncul sebagai item utama galeri
-        if (processedThumbnails.has(normalizedFile)) continue;
-
         const fullPath = join(TARGET_DIR, normalizedFile);
 
         if (!existsSync(fullPath)) {
@@ -227,43 +284,32 @@ async function generateGalleryJson() {
 
         const originalExt = extname(normalizedFile);
         const fileExtLower = originalExt.toLowerCase();
-        const nameWithoutExt = basename(normalizedFile, originalExt);
 
         const relDir = normPath(dirname(normalizedFile));
         const pathKey = relDir === "." ? "root" : relDir;
 
         if (!galleryMap[pathKey]) galleryMap[pathKey] = [];
 
-        // Cari thumbnail -sm secara case-insensitive
-        const potentialThumbRaw = relDir === "."
-            ? `${nameWithoutExt}-sm${fileExtLower}`
-            : `${relDir}/${nameWithoutExt}-sm${fileExtLower}`;
+        // ── TANGGAL UTAMA: Last Commit Date Git/GitHub ───────────────────────
+        const gitDate =
+            gitDateMap.get(normalizedFile) ??
+            getGitLastCommitDateFallback(normalizedFile);
 
-        const potentialThumbLower = potentialThumbRaw.toLowerCase();
-        const hasThumb = allFilesLowerSet.has(potentialThumbLower);
-
-        const actualThumbPath = hasThumb
-            ? (allFilesLowerMap.get(potentialThumbLower) ?? null)
-            : null;
-
-        // ── TANGGAL UTAMA: Last commit date Git/GitHub ───────────────────────
-        const gitDate = getGitLastCommitDate(normalizedFile);
         const fileDate = gitDate ?? formatDate(stats.mtime);
 
         if (!gitDate) {
-            console.warn(`⚠️ Last commit date tidak ditemukan, pakai mtime: ${toGitRepoPath(normalizedFile)}`);
+            console.warn(`⚠️ Last Commit Date tidak ditemukan, pakai mtime: ${toGitRepoPath(normalizedFile)}`);
         }
 
         const fileData: FileItem = {
             name: filename,
             path: normalizedFile,
-            thumbPath: actualThumbPath,
             size: stats.size,
             date: fileDate,
             type: "file"
         };
 
-        // Sharp hanya untuk metadata teknis gambar: width, height, format
+        // Sharp hanya membaca metadata teknis dari file asli.
         if (fileExtLower !== ".svg") {
             try {
                 const metadata = await sharp(fullPath).metadata();
@@ -281,46 +327,43 @@ async function generateGalleryJson() {
         galleryMap[pathKey].push(fileData);
     }
 
-    // ── Langkah 3: Rekonstruksi folder tiruan ────────────────────────────────
+    // ── Langkah 2: Rekonstruksi folder tiruan ────────────────────────────────
     Object.keys(galleryMap).forEach(pathKey => {
-        if (pathKey !== "root") {
-            const parts = pathKey.split("/");
-            let currentBuildPath = "";
+        if (pathKey === "root") return;
 
-            for (let i = 0; i < parts.length; i++) {
-                const parentKey = i === 0 ? "root" : currentBuildPath;
-                const dirName = parts[i];
+        const parts = pathKey.split("/");
+        let currentBuildPath = "";
 
-                currentBuildPath = currentBuildPath
-                    ? `${currentBuildPath}/${dirName}`
-                    : dirName;
+        for (let i = 0; i < parts.length; i++) {
+            const parentKey = i === 0 ? "root" : currentBuildPath;
+            const dirName = parts[i];
 
-                if (!galleryMap[parentKey]) galleryMap[parentKey] = [];
+            currentBuildPath = currentBuildPath
+                ? `${currentBuildPath}/${dirName}`
+                : dirName;
 
-                const isDirExist = galleryMap[parentKey].some(
-                    item => item.type === "dir" && item.path === currentBuildPath
-                );
+            if (!galleryMap[parentKey]) galleryMap[parentKey] = [];
 
-                if (!isDirExist) {
-                    galleryMap[parentKey].unshift({
-                        name: dirName,
-                        path: currentBuildPath,
-                        thumbPath: null,
-                        size: null,
-                        date: "",
-                        type: "dir",
-                        directFiles: 0,
-                        totalFiles: 0
-                    });
-                }
+            const isDirExist = galleryMap[parentKey].some(
+                item => item.type === "dir" && item.path === currentBuildPath
+            );
+
+            if (!isDirExist) {
+                galleryMap[parentKey].unshift({
+                    name: dirName,
+                    path: currentBuildPath,
+                    size: null,
+                    date: "",
+                    type: "dir",
+                    directFiles: 0,
+                    totalFiles: 0
+                });
             }
         }
     });
 
-    // ── Langkah 4: Counter bottom-up ─────────────────────────────────────────
-    const cleanFilesList = allFiles
-        .map(normPath)
-        .filter(file => !processedThumbnails.has(file));
+    // ── Langkah 3: Counter file asli bottom-up ───────────────────────────────
+    const cleanFilesList = allFiles.map(normPath);
 
     Object.keys(galleryMap).forEach(folderPath => {
         galleryMap[folderPath].forEach(item => {
@@ -367,14 +410,14 @@ async function generateGalleryJson() {
         }
     });
 
-    // ── Langkah 5: Urutkan isi setiap folder ─────────────────────────────────
+    // ── Langkah 4: Urutkan isi setiap folder ─────────────────────────────────
     Object.keys(galleryMap).forEach(pathKey => {
         galleryMap[pathKey].sort((a, b) => {
             // Folder tetap di atas file
             if (a.type === "dir" && b.type !== "dir") return -1;
             if (a.type !== "dir" && b.type === "dir") return 1;
 
-            // File terbaru lebih dulu berdasarkan Last commit date
+            // File terbaru lebih dulu berdasarkan Last Commit Date
             if (a.type === "file" && b.type === "file") {
                 const dateCompare = b.date.localeCompare(a.date);
                 if (dateCompare !== 0) return dateCompare;
@@ -387,7 +430,7 @@ async function generateGalleryJson() {
         });
     });
 
-    // ── Langkah 6: Tulis JSON ────────────────────────────────────────────────
+    // ── Langkah 5: Tulis JSON ────────────────────────────────────────────────
     try {
         writeFileSync(
             OUTPUT_JSON,
@@ -397,6 +440,7 @@ async function generateGalleryJson() {
 
         console.log(`\n✨ SUKSES! Disimpan di: ${OUTPUT_JSON}`);
         console.log(`📊 Total folder: ${Object.keys(galleryMap).length} lokasi.`);
+        console.log(`🖼️ Total file asli: ${allFiles.length}`);
         console.log(`📦 Output JSON: ${OUTPUT_JSON}`);
     } catch (err) {
         console.error(`❌ Gagal tulis ${OUTPUT_JSON}:`, err);
