@@ -1,12 +1,11 @@
-import { writeFileSync, readFileSync, statSync, existsSync } from "fs";
+```ts
+import { writeFileSync, readFileSync, statSync, existsSync, readdirSync } from "fs";
 import { join, extname, basename, dirname } from "path";
-import { glob } from "glob";
 import sharp from "sharp";
 
 const TARGET_DIR = "./img";
 const OUTPUT_JSON = "./img/galeri-data.json";
 const PATH_LIST_FILE = "./mini/srcset-gambar.txt";
-const ONLY_IMAGES_PATTERN = "**/*.{jpg,jpeg,png,webp,avif,svg}";
 
 interface FileItem {
     name: string;
@@ -30,6 +29,7 @@ function formatDate(date: Date): string {
     const y = date.getFullYear();
     const m = String(date.getMonth() + 1).padStart(2, "0");
     const d = String(date.getDate()).padStart(2, "0");
+
     return `${y}-${m}-${d}`;
 }
 
@@ -56,6 +56,7 @@ function isImageFile(p: string): boolean {
 function isThumbnailVariant(p: string): boolean {
     const ext = extname(p);
     const nameWithoutExt = basename(p, ext);
+
     return nameWithoutExt.endsWith("-sm") || nameWithoutExt.endsWith("-md");
 }
 
@@ -69,14 +70,21 @@ function isOriginalImageFile(p: string): boolean {
 // "img/foo/bar.webp" -> "foo/bar.webp"
 // "./img/foo.webp"   -> "foo.webp"
 // "/img/foo.webp"    -> "foo.webp"
+// "foo.webp"         -> "foo.webp"
 function toImgRelativePath(rawPath: string): string | null {
     let p = normPath(rawPath.trim());
 
     if (!p) return null;
     if (p.startsWith("#")) return null;
 
+    // Abaikan URL eksternal atau skema lain.
+    if (/^[a-z][a-z0-9+.-]*:/i.test(p)) return null;
+
     p = p.replace(/^\/+/, "");
     p = p.replace(/^\.\//, "");
+
+    // Hindari path keluar dari folder target.
+    if (p.startsWith("../") || p.includes("/../")) return null;
 
     const prefix = `${TARGET_REPO_PREFIX}/`;
 
@@ -98,7 +106,30 @@ function toGitRepoPath(imgRelativePath: string): string {
     return `${TARGET_REPO_PREFIX}/${normPath(imgRelativePath)}`;
 }
 
+// ─── Cek apakah repo shallow; galeri-data butuh full history ─────────────────
+function warnIfGitHistoryIsShallow(): void {
+    try {
+        const proc = Bun.spawnSync(
+            ["git", "rev-parse", "--is-shallow-repository"],
+            { cwd: process.cwd() }
+        );
+
+        if (proc.exitCode !== 0) return;
+
+        const output = proc.stdout.toString().trim();
+
+        if (output === "true") {
+            console.warn("⚠️ Repo masih shallow clone.");
+            console.warn("⚠️ Last Commit Date mungkin tidak akurat.");
+            console.warn("⚠️ Jalankan workflow dengan fetch-depth: 0 untuk hasil terbaik.");
+        }
+    } catch {
+        // Abaikan jika Git tidak tersedia.
+    }
+}
+
 // ─── Baca daftar file asli dari mini/srcset-gambar.txt ───────────────────────
+// Sekarang hanya sebagai panduan/audit, bukan sumber utama.
 function readOriginalImagesFromCache(): string[] {
     if (!existsSync(PATH_LIST_FILE)) return [];
 
@@ -114,7 +145,7 @@ function readOriginalImagesFromCache(): string[] {
         const fullPath = join(TARGET_DIR, file);
 
         if (existsSync(fullPath)) {
-            existingFiles.push(file);
+            existingFiles.push(normPath(file));
         } else {
             console.warn(`⚠️ Path ada di ${PATH_LIST_FILE}, tapi file tidak ditemukan: ${toGitRepoPath(file)}`);
         }
@@ -123,38 +154,121 @@ function readOriginalImagesFromCache(): string[] {
     return existingFiles;
 }
 
-// ─── Fallback: scan langsung folder img pakai glob ───────────────────────────
-async function readOriginalImagesFromGlob(): Promise<string[]> {
-    const files = await glob(ONLY_IMAGES_PATTERN, {
-        cwd: TARGET_DIR,
-        nodir: true,
-        nocase: true
-    });
+// ─── Sumber utama: scan langsung seluruh folder img pakai fs ─────────────────
+function readOriginalImagesFromFs(): string[] {
+    const result: string[] = [];
 
-    return Array.from(
-        new Set(
-            files
-                .map(normPath)
-                .filter(isOriginalImageFile)
-        )
+    function walk(relativeDir = "") {
+        const currentDir = join(TARGET_DIR, relativeDir);
+
+        if (!existsSync(currentDir)) return;
+
+        const entries = readdirSync(currentDir, { withFileTypes: true });
+
+        for (const entry of entries) {
+            const relativePath = normPath(join(relativeDir, entry.name));
+
+            // Hindari symlink agar tidak terjadi loop/scan liar.
+            if (entry.isSymbolicLink()) continue;
+
+            if (entry.isDirectory()) {
+                walk(relativePath);
+                continue;
+            }
+
+            if (!entry.isFile()) continue;
+
+            const imgRelativePath = toImgRelativePath(relativePath);
+
+            if (imgRelativePath) {
+                result.push(imgRelativePath);
+            }
+        }
+    }
+
+    walk("");
+
+    return Array.from(new Set(result.map(normPath))).sort((a, b) =>
+        a.localeCompare(b, "id", {
+            numeric: true,
+            sensitivity: "base"
+        })
     );
 }
 
 // ─── Ambil daftar gambar asli ────────────────────────────────────────────────
+// Prinsip baru:
+// 1. Scan folder ./img adalah sumber kebenaran.
+// 2. ./mini/srcset-gambar.txt hanya sebagai pembanding/panduan.
+// 3. Hasil akhir adalah gabungan valid yang benar-benar ada di filesystem.
 async function getAllOriginalImageFiles(): Promise<string[]> {
+    const fromFs = readOriginalImagesFromFs();
     const fromCache = readOriginalImagesFromCache();
 
+    const fsSet = new Set(fromFs.map(normPath));
+    const cacheSet = new Set(fromCache.map(normPath));
+
+    const onlyFromFs = fromFs.filter(file => !cacheSet.has(file));
+    const onlyFromCache = fromCache.filter(file => !fsSet.has(file));
+
+    console.log(`📁 Total file gambar asli dari scan folder ${TARGET_DIR}: ${fromFs.length}`);
+
     if (fromCache.length > 0) {
-        console.log(`📄 Menggunakan daftar path dari: ${PATH_LIST_FILE}`);
-        console.log(`🖼️ Total file gambar asli dari cache: ${fromCache.length}`);
-        return fromCache;
+        console.log(`📄 Total file gambar asli dari panduan ${PATH_LIST_FILE}: ${fromCache.length}`);
+    } else {
+        console.warn(`⚠️ ${PATH_LIST_FILE} tidak ditemukan/kosong. Lanjut pakai scan folder penuh.`);
     }
 
-    console.warn(`⚠️ ${PATH_LIST_FILE} tidak ditemukan/kosong. Fallback ke glob folder ${TARGET_DIR}`);
-    const fromGlob = await readOriginalImagesFromGlob();
+    if (onlyFromFs.length > 0) {
+        console.log(`🧩 File ditemukan dari scan folder, tapi tidak ada di ${PATH_LIST_FILE}: ${onlyFromFs.length}`);
 
-    console.log(`🖼️ Total file gambar asli dari glob: ${fromGlob.length}`);
-    return fromGlob;
+        onlyFromFs.slice(0, 30).forEach(file => {
+            console.log(`   + ${toGitRepoPath(file)}`);
+        });
+
+        if (onlyFromFs.length > 30) {
+            console.log(`   ... dan ${onlyFromFs.length - 30} file lainnya.`);
+        }
+    }
+
+    if (onlyFromCache.length > 0) {
+        console.warn(`⚠️ File ada di ${PATH_LIST_FILE}, tapi tidak ditemukan oleh scan folder: ${onlyFromCache.length}`);
+
+        onlyFromCache.slice(0, 30).forEach(file => {
+            console.warn(`   ? ${toGitRepoPath(file)}`);
+        });
+
+        if (onlyFromCache.length > 30) {
+            console.warn(`   ... dan ${onlyFromCache.length - 30} file lainnya.`);
+        }
+    }
+
+    const merged = Array.from(new Set([...fromFs, ...fromCache].map(normPath)))
+        .filter(file => {
+            const fullPath = join(TARGET_DIR, file);
+
+            if (!existsSync(fullPath)) {
+                console.warn(`⚠️ Dilewati karena file tidak ditemukan: ${toGitRepoPath(file)}`);
+                return false;
+            }
+
+            if (!isOriginalImageFile(file)) {
+                console.warn(`⚠️ Dilewati karena bukan file gambar asli: ${toGitRepoPath(file)}`);
+                return false;
+            }
+
+            return true;
+        })
+        .sort((a, b) =>
+            a.localeCompare(b, "id", {
+                numeric: true,
+                sensitivity: "base"
+            })
+        );
+
+    console.log(`🖼️ Total final file gambar asli untuk galeri-data.json: ${merged.length}`);
+
+    return merged;
 }
 
 // ─── Batch Last Commit Date dari Git ─────────────────────────────────────────
@@ -200,6 +314,7 @@ function buildGitLastCommitDateMap(files: string[]): Map<string, string> {
             if (line.startsWith(marker)) {
                 const iso = line.slice(marker.length).trim();
                 const d = new Date(iso);
+
                 currentDate = isNaN(d.getTime()) ? "" : formatDate(d);
                 continue;
             }
@@ -249,9 +364,11 @@ function getGitLastCommitDateFallback(imgRelativePath: string): string | null {
         if (proc.exitCode !== 0) return null;
 
         const output = proc.stdout.toString().trim();
+
         if (!output) return null;
 
         const d = new Date(output);
+
         return isNaN(d.getTime()) ? null : formatDate(d);
     } catch {
         return null;
@@ -261,6 +378,10 @@ function getGitLastCommitDateFallback(imgRelativePath: string): string | null {
 // ─────────────────────────────────────────────────────────────────────────────
 async function generateGalleryJson() {
     console.log("🚀 Memulai pemindaian galeri...");
+    console.log("📌 Sumber utama: scan langsung folder ./img");
+    console.log("📌 Panduan tambahan: ./mini/srcset-gambar.txt");
+
+    warnIfGitHistoryIsShallow();
 
     const allFiles = await getAllOriginalImageFiles();
 
@@ -413,13 +534,14 @@ async function generateGalleryJson() {
     // ── Langkah 4: Urutkan isi setiap folder ─────────────────────────────────
     Object.keys(galleryMap).forEach(pathKey => {
         galleryMap[pathKey].sort((a, b) => {
-            // Folder tetap di atas file
+            // Folder tetap di atas file.
             if (a.type === "dir" && b.type !== "dir") return -1;
             if (a.type !== "dir" && b.type === "dir") return 1;
 
-            // File terbaru lebih dulu berdasarkan Last Commit Date
+            // File terbaru lebih dulu berdasarkan Last Commit Date.
             if (a.type === "file" && b.type === "file") {
                 const dateCompare = b.date.localeCompare(a.date);
+
                 if (dateCompare !== 0) return dateCompare;
             }
 
@@ -444,7 +566,12 @@ async function generateGalleryJson() {
         console.log(`📦 Output JSON: ${OUTPUT_JSON}`);
     } catch (err) {
         console.error(`❌ Gagal tulis ${OUTPUT_JSON}:`, err);
+        process.exit(1);
     }
 }
 
-generateGalleryJson();
+generateGalleryJson().catch((err) => {
+    console.error("❌ Gagal generate galeri-data.json:", err);
+    process.exit(1);
+});
+```
