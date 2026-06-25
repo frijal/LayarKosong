@@ -278,13 +278,14 @@ Jika ada bagian `<h2>` yang memiliki pembahasan panjang, terapkan aturan berikut
 3. Konten penjelas seperti `<h3>`, paragraf, daftar, gambar, dan elemen lain harus berada di dalam `<details>`.
 4. Default `<details>` harus tertutup.
 5. Pembaca dapat membuka bagian tersebut secara manual.
-6. Berikan styling CSS murni yang elegan untuk `<summary>`, termasuk:
+6. Berikan indikator pada baris `<details>` agar pembaca tau, bahwa di dalamnya ada text `<summary>`.
+7. Berikan styling CSS murni yang elegan untuk `<summary>`, termasuk:
 
    * `cursor: pointer`
    * efek hover ringan
    * transisi ringan
    * kontras warna yang tetap memenuhi WCAG
-7. Jangan menggunakan JavaScript untuk accordion.
+8. Jangan menggunakan JavaScript untuk accordion.
 
 Contoh struktur yang benar:
 
