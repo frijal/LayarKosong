@@ -203,11 +203,11 @@
             <thead>
                 <tr>
                     <th width="2%" onclick="sortTable('type')"> # <span id="sort-type"></span></th>
-                    <th width="59%" onclick="sortTable('name')">Nama<span id="sort-name"></span></th>
-                    <th width="4%" class="text-center" onclick="sortTable('items')">Jumlah<span id="sort-items"></span></th>
+                    <th width="57%" onclick="sortTable('name')">Nama<span id="sort-name"></span></th>
+                    <th width="5%" class="text-center" onclick="sortTable('items')">Jumlah<span id="sort-items"></span></th>
                     <th width="6%" class="text-right" onclick="sortTable('size')">Ukuran<span id="sort-size"></span></th>
                     <th width="7%" class="text-center" onclick="sortTable('dimension')">Dimensi<span id="sort-dimension"></span></th>
-                    <th width="4%" class="text-center" onclick="sortTable('format')">Jenis<span id="sort-format"></span></th>
+                    <th width="5%" class="text-center" onclick="sortTable('format')">Jenis<span id="sort-format"></span></th>
                     <th width="8%" onclick="sortTable('date')">Tanggal<span id="sort-date"></span></th>
                     <th width="10%" class="text-right">Tampilan</th>
                 </tr>
@@ -243,6 +243,42 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        }
+
+        // FIX: Fungsi untuk copy link ke clipboard dengan feedback visual
+        async function copyToClipboard(event, path, btnElement) {
+            // Mencegah link pindah ke halaman "#" dan menghentikan efek klik ke elemen lain
+            event.preventDefault();
+            event.stopPropagation();
+
+            // Ubah relative path (misal: /img/file.webp) jadi absolute URL utuh
+            const fullUrl = new URL(path, window.location.origin).href;
+
+            try {
+                // Tembak langsung ke Clipboard API modern
+                await navigator.clipboard.writeText(fullUrl);
+                
+                // Efek Visual Singkat
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'Copied!';
+                btnElement.style.borderColor = '#00cc99'; // Kasih aksen hijau
+                btnElement.style.color = '#00cc99';
+
+                // Kembalikan tombol ke kondisi semula setelah 1.5 detik
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.style.borderColor = '';
+                    btnElement.style.color = '';
+                }, 1500);
+
+            } catch (err) {
+                console.error('Gagal copy link:', err);
+                btnElement.innerText = 'Gagal!';
+                
+                setTimeout(() => {
+                    btnElement.innerText = 'Copy';
+                }, 1500);
+            }
         }
 
         function formatSize(bytes) {
@@ -362,9 +398,10 @@
                     });
                     const imgIndex = currentImages.length - 1;
 
+                    // FIX: Modifikasi tombol Get jadi tombol Copy link
                     const actionHtml = `
                         <img src="${localThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Preview">
-                        <a href="${localPath}" download="${item.name}" class="btn-download" style="margin-left: 0.625rem;" onclick="event.stopPropagation();">Get</a>
+                        <a href="#" class="btn-download" style="margin-left: 0.625rem;" onclick="copyToClipboard(event, '${localPath}', this)">Copy</a>
                     `;
 
                     dirList.appendChild(createRow(
