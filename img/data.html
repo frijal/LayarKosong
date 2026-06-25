@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /img/</title>
     <style>
-        /* --- Pendekatan Mobile-First & Tema Dinamis --- */
         :root {
             --bg: #ffffff;
             --text: #000000;
@@ -34,27 +33,30 @@
             }
         }
 
-        /* Mengunci basis dasar font peramban */
-        html { font-size: 100%; } /* 1rem = 16px */
+        html { font-size: 100%; }
 
-        body { font-family: monospace; background: var(--bg); color: var(--text); padding: 0.9375rem; margin: 0; font-size: 1rem; }
-        
-        /* Flexbox Container untuk menyejajarkan Judul dan Logo */
+        body {
+            font-family: monospace;
+            background: var(--bg);
+            color: var(--text);
+            padding: 0.9375rem;
+            margin: 0;
+            font-size: 1rem;
+        }
+
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%; /* Mengisi full screen */
+            width: 100%;
             margin-top: 0.625rem;
             margin-bottom: 0.3125rem;
         }
 
-        /* Header Interaktif ke Root */
         h1 { font-size: 1.5rem; margin: 0; }
         h1 a { color: var(--text); text-decoration: none; }
         h1 a:hover { text-decoration: underline; text-decoration-style: dashed; }
-        
-        /* Gaya & Ukuran Logo Brand Layar Kosong */
+
         .brand-logo {
             width: 2rem;
             height: 2rem;
@@ -62,98 +64,157 @@
             object-fit: contain;
         }
 
-        hr { border: 0; border-top: 0.0625rem solid var(--hr-color); margin: 0.625rem 0; }
-        
-        /* Pembungkus Tabel Responsif di Mobile */
-        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        
-        /* Table Layout Fixed agar % width dipatuhi */
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            text-align: left; 
-            table-layout: fixed; 
-        }
-        
-        /* Ukuran Header Tabel Standar */
-        th { padding: 0.5rem 0.625rem; border-bottom: 0.0625rem solid var(--hr-color); cursor: pointer; user-select: none; font-size: 1.1rem; }
-        th:hover { background: var(--row-hover); }
-        
-        /* 🔥 PENDONGKRAK FONT LIST BARIS (Td) */
-        td { 
-            padding: 0.75rem 0.625rem; 
-            white-space: nowrap; 
-            vertical-align: middle; 
-            font-size: 1.25rem; 
+        hr {
+            border: 0;
+            border-top: 0.0625rem solid var(--hr-color);
+            margin: 0.625rem 0;
         }
 
-        /* FIX: Truncation standar (Titik Tiga di Akhir) tanpa Flexbox */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            table-layout: fixed;
+        }
+
+        th {
+            padding: 0.5rem 0.625rem;
+            border-bottom: 0.0625rem solid var(--hr-color);
+            cursor: pointer;
+            user-select: none;
+            font-size: 1.1rem;
+        }
+
+        th:hover { background: var(--row-hover); }
+
+        td {
+            padding: 0.75rem 0.625rem;
+            white-space: nowrap;
+            vertical-align: middle;
+            font-size: 1.25rem;
+        }
+
         td.name-cell {
             overflow: hidden;
-            text-overflow: ellipsis; /* Memotong teks berlebih dengan ... */
-            max-width: 0;   /* Wajib untuk kliping di dalam fixed table */
+            text-overflow: ellipsis;
+            max-width: 0;
         }
 
         a.name-link {
             color: var(--link-color);
             text-decoration: none;
         }
-        
+
         a.name-link:hover { text-decoration: underline; }
-        
-        /* Warna Selang-Seling & Efek Hover Gambar */
+
         tbody tr:nth-child(even) { background: var(--row-even); }
         tbody tr:hover { background: var(--row-hover); }
-        
+
         a { color: var(--link-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        
+
         .text-right { text-align: right; }
         .text-center { text-align: center; }
-        
-        /* Ukuran Thumbnail Tetap */
-        .preview-thumb { 
-            width: 3.125rem; 
-            height: 2.5rem;  
-            object-fit: cover; 
-            border: 0.0625rem solid var(--border-thumb); 
-            cursor: pointer; 
-            vertical-align: middle; 
-            display: inline-block; 
+
+        .preview-thumb {
+            width: 3.125rem;
+            height: 2.5rem;
+            object-fit: cover;
+            border: 0.0625rem solid var(--border-thumb);
+            cursor: pointer;
+            vertical-align: middle;
+            display: inline-block;
             border-radius: 0.1875rem;
         }
-        
-        .loading { font-style: italic; color: var(--muted); padding: 0.625rem 0; font-size: 1.1rem; }
-        
-        .btn-download { 
-            background: var(--btn-bg); 
-            border: 0.0625rem solid var(--btn-border); 
-            color: var(--text); 
-            padding: 0.1875rem 0.5rem; 
-            font-size: 1.1rem; 
-            cursor: pointer; 
-            text-decoration: none; 
-            border-radius: 0.1875rem; 
+
+        .loading {
+            font-style: italic;
+            color: var(--muted);
+            padding: 0.625rem 0;
+            font-size: 1.1rem;
         }
-        .btn-download:hover { background: var(--row-hover); border-color: var(--text); }
-        
-        /* Informasi Tambahan kaki halaman (Address sebagai Back to Top) */
-        address { 
-            font-size: 0.95rem; 
-            cursor: pointer; 
-            display: inline-block; 
-            transition: opacity 0.2s ease-in-out; 
+
+        .btn-download {
+            background: var(--btn-bg);
+            border: 0.0625rem solid var(--btn-border);
+            color: var(--text);
+            padding: 0.1875rem 0.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 0.1875rem;
         }
-        
+
+        .btn-download:hover {
+            background: var(--row-hover);
+            border-color: var(--text);
+        }
+
+        address {
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: opacity 0.2s ease-in-out;
+        }
+
         address:hover { opacity: 0.6; }
 
-        /* Lightbox (Tetap Hitam Pekat untuk Kontras Gambar) */
-        #lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; user-select: none; }
-        #lightbox-img { max-width: 90%; max-height: 65%; border: 0.1875rem solid #fff; box-shadow: 0 0 1.25rem rgba(0,0,0,0.5); background: #222; }
-        #lightbox-caption { color: #fff; margin-top: 0.9375rem; font-size: 1.2rem; text-align: center; max-width: 90%; font-family: monospace; line-height: 1.5; }
-        .path-info { color: #00ffcc; font-size: 1rem; display: block; margin-top: 0.3125rem; }
-        #lightbox-close { position: absolute; top: 0.9375rem; right: 1.25rem; color: #fff; font-size: 2.5rem; font-weight: bold; cursor: pointer; }
-        
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            user-select: none;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 65%;
+            border: 0.1875rem solid #fff;
+            box-shadow: 0 0 1.25rem rgba(0,0,0,0.5);
+            background: #222;
+        }
+
+        #lightbox-caption {
+            color: #fff;
+            margin-top: 0.9375rem;
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 90%;
+            font-family: monospace;
+            line-height: 1.5;
+        }
+
+        .path-info {
+            color: #00ffcc;
+            font-size: 1rem;
+            display: block;
+            margin-top: 0.3125rem;
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 0.9375rem;
+            right: 1.25rem;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         .btn-lightbox-download {
             display: inline-block;
             margin-top: 0.75rem;
@@ -169,14 +230,31 @@
             border-radius: 0.1875rem;
             box-shadow: 0 0.125rem 0.3125rem rgba(0,0,0,0.3);
         }
-        .btn-lightbox-download:hover { background: #00ffea; box-shadow: 0 0.125rem 0.5rem rgba(0,255,204,0.5); }
 
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: 0.0625rem solid rgba(255,255,255,0.3); font-size: 1.5rem; font-weight: bold; padding: 0.75rem 1rem; cursor: pointer; border-radius: 0.3125rem; }
+        .btn-lightbox-download:hover {
+            background: #00ffea;
+            box-shadow: 0 0.125rem 0.5rem rgba(0,255,204,0.5);
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 0.0625rem solid rgba(255,255,255,0.3);
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            border-radius: 0.3125rem;
+        }
+
         .nav-btn:hover { background: rgba(255,255,255,0.3); }
         #nav-left { left: 0.625rem; }
         #nav-right { right: 0.625rem; }
 
-        @media (min-width: 48rem) { /* 768px */
+        @media (min-width: 48rem) {
             body { padding: 1.25rem; }
             h1 { font-size: 1.75rem; }
             .brand-logo { width: 2.5rem; height: 2.5rem; }
@@ -210,8 +288,7 @@
                     <th width="10%" class="text-right">Tampilan</th>
                 </tr>
             </thead>
-            <tbody id="dir-list">
-            </tbody>
+            <tbody id="dir-list"></tbody>
         </table>
     </div>
 
@@ -232,79 +309,157 @@
         let currentImages = [];
         let currentImageIndex = -1;
 
-        let currentSortKey = 'name';
-        let currentSortAsc = true; 
+        let currentSortKey = "name";
+        let currentSortAsc = true;
 
         function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function normPath(path) {
+            return String(path || "").replace(/\\/g, "/");
+        }
+
+        function stripImgPrefix(path) {
+            let clean = normPath(path).trim();
+            clean = clean.replace(/^\/+/, "");
+            clean = clean.replace(/^\.\//, "");
+
+            if (clean.startsWith("img/")) {
+                clean = clean.slice(4);
+            }
+
+            return clean;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function jsString(value) {
+            return JSON.stringify(String(value ?? ""));
+        }
+
+        function getVariantPath(path, suffix) {
+            const clean = stripImgPrefix(path);
+            const slashIndex = clean.lastIndexOf("/");
+            const dir = slashIndex >= 0 ? clean.slice(0, slashIndex + 1) : "";
+            const file = slashIndex >= 0 ? clean.slice(slashIndex + 1) : clean;
+            const dotIndex = file.lastIndexOf(".");
+
+            if (dotIndex <= 0) return clean;
+
+            const name = file.slice(0, dotIndex);
+            const ext = file.slice(dotIndex);
+
+            if (name.endsWith("-sm") || name.endsWith("-md")) {
+                return clean;
+            }
+
+            return `${dir}${name}${suffix}${ext}`;
+        }
+
+        function getThumbnailCandidates(item) {
+            const originalPath = stripImgPrefix(item.path);
+
+            const candidates = [];
+
+            if (item.thumbPath) {
+                candidates.push(stripImgPrefix(item.thumbPath));
+            }
+
+            candidates.push(getVariantPath(originalPath, "-sm"));
+            candidates.push(getVariantPath(originalPath, "-md"));
+            candidates.push(originalPath);
+
+            return [...new Set(candidates.filter(Boolean))];
+        }
+
+        function applyThumbFallback(imgElement) {
+            const candidates = JSON.parse(imgElement.dataset.thumbCandidates || "[]");
+            let index = Number(imgElement.dataset.thumbIndex || "0");
+
+            index += 1;
+
+            if (index >= candidates.length) {
+                imgElement.onerror = null;
+                return;
+            }
+
+            imgElement.dataset.thumbIndex = String(index);
+            imgElement.src = candidates[index];
         }
 
         async function copyToClipboard(event, path, btnElement) {
             event.preventDefault();
             event.stopPropagation();
-            const fullUrl = new URL(path, window.location.origin).href;
+
+            const localPath = stripImgPrefix(path);
+            const fullUrl = new URL(localPath, window.location.href).href;
 
             try {
                 await navigator.clipboard.writeText(fullUrl);
-                
+
                 const originalText = btnElement.innerText;
-                btnElement.innerText = 'Copied!';
-                btnElement.style.borderColor = '#00cc99'; 
-                btnElement.style.color = '#00cc99';
+                btnElement.innerText = "Copied!";
+                btnElement.style.borderColor = "#00cc99";
+                btnElement.style.color = "#00cc99";
 
                 setTimeout(() => {
                     btnElement.innerText = originalText;
-                    btnElement.style.borderColor = '';
-                    btnElement.style.color = '';
+                    btnElement.style.borderColor = "";
+                    btnElement.style.color = "";
                 }, 1500);
 
             } catch (err) {
-                console.error('Gagal copy link:', err);
-                btnElement.innerText = 'Gagal!';
-                setTimeout(() => { btnElement.innerText = 'Copy'; }, 1500);
+                console.error("Gagal copy link:", err);
+                btnElement.innerText = "Gagal!";
+                setTimeout(() => { btnElement.innerText = "Copy"; }, 1500);
             }
         }
 
         function formatSize(bytes) {
-            if (!bytes || bytes === '-') return '-';
+            if (!bytes || bytes === "-") return "-";
             const k = 1024;
-            const sizes = ['B', 'K', 'M', 'G'];
+            const sizes = ["B", "K", "M", "G"];
             const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return i === 0 ? bytes + 'B' : (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
+            return i === 0 ? bytes + "B" : (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
         }
 
-        // --- FIX: Logika Pencarian Tanggal Terbaru (Tanpa Menimpa Data File) ---
         function enrichFolderData() {
-            const memo = {}; 
+            const memo = {};
 
             function findLatestDate(pathKey) {
                 if (memo[pathKey]) return memo[pathKey];
-                
+
                 const contents = masterData[pathKey];
+
                 if (!contents) {
-                    memo[pathKey] = '-';
-                    return '-';
+                    memo[pathKey] = "-";
+                    return "-";
                 }
 
-                let latest = '';
+                let latest = "";
+
                 contents.forEach(item => {
-                    // Ambil d secara terpisah untuk evaluasi
                     let d = item.date;
-                    
-                    if (item.type === 'dir') {
-                        // Kalau ini direktori, cari tanggalnya ke dalam
+
+                    if (item.type === "dir") {
                         d = findLatestDate(item.path);
-                        // HANYA injeksi properti date jika dia berupa direktori
-                        item.date = d; 
+                        item.date = d;
                     }
-                    
-                    // Evaluasi nilai d untuk mencari yang paling besar/terbaru
-                    if (d && d !== '-' && d > latest) {
+
+                    if (d && d !== "-" && d > latest) {
                         latest = d;
                     }
                 });
-                
-                memo[pathKey] = latest || '-';
+
+                memo[pathKey] = latest || "-";
                 return memo[pathKey];
             }
 
@@ -314,23 +469,29 @@
         }
 
         async function init() {
-            const loadingText = document.getElementById('loading-text');
-            const dirTable = document.getElementById('dir-table');
+            const loadingText = document.getElementById("loading-text");
+            const dirTable = document.getElementById("dir-table");
+
             try {
-                const res = await fetch('galeri-data.json?t=' + Date.now());
+                const res = await fetch("galeri-data.json?t=" + Date.now());
+
                 if (!res.ok) throw new Error(`Status: ${res.status}`);
-                
+
                 masterData = await res.json();
-                
-                // Menjalankan penyuntikan data tanggal ke folder SAJA
+
+                if (!masterData || typeof masterData !== "object" || !Array.isArray(masterData.root)) {
+                    throw new Error("Struktur galeri-data.json tidak valid. Key root harus berupa array.");
+                }
+
                 enrichFolderData();
 
-                loadingText.style.display = 'none';
-                dirTable.style.display = 'table';
-                
+                loadingText.style.display = "none";
+                dirTable.style.display = "table";
+
+                updateSortIndicators();
                 renderPath(currentPath);
             } catch (err) {
-                loadingText.innerHTML = `<div style="color:red; padding:10px; border:1px solid red; background:#fff0f0;"><strong>⚠️ Gagal Memuat Integrasi Galeri:</strong><br><small>${err.message}</small></div>`;
+                loadingText.innerHTML = `<div style="color:red; padding:0.625rem; border:0.0625rem solid red; background:#fff0f0;"><b>⚠️ Gagal Memuat Integrasi Galeri:</b><br><small>${escapeHtml(err.message)}</small></div>`;
             }
         }
 
@@ -341,138 +502,178 @@
                 currentSortKey = key;
                 currentSortAsc = true;
             }
+
             updateSortIndicators();
             renderPath(currentPath);
         }
 
         function updateSortIndicators() {
-            const columns = ['type', 'name', 'items', 'size', 'dimension', 'format', 'date'];
+            const columns = ["type", "name", "items", "size", "dimension", "format", "date"];
+
             columns.forEach(col => {
                 const indicator = document.getElementById(`sort-${col}`);
-                if (indicator) indicator.innerText = col === currentSortKey ? (currentSortAsc ? ' ▲' : ' ▼') : '';
+                if (indicator) {
+                    indicator.innerText = col === currentSortKey ? (currentSortAsc ? " ▲" : " ▼") : "";
+                }
             });
         }
 
         function formatDisplayName(name) {
-            if (name.endsWith('/')) return name;
-            const lastDot = name.lastIndexOf('.');
-            if (lastDot > 0 && lastDot < name.length - 1) {
-                return name.substring(0, lastDot);
+            const value = String(name);
+
+            if (value.endsWith("/")) return value;
+
+            const lastDot = value.lastIndexOf(".");
+
+            if (lastDot > 0 && lastDot < value.length - 1) {
+                return value.substring(0, lastDot);
             }
-            return name;
+
+            return value;
         }
 
         function renderPath(pathKey) {
-            const dirList = document.getElementById('dir-list');
-            const indexTitle = document.getElementById('index-title');
-            
-            dirList.innerHTML = '';
-            indexTitle.innerText = `Index of /img/${pathKey === 'root' ? '' : pathKey + '/'}`;
-            
+            const dirList = document.getElementById("dir-list");
+            const indexTitle = document.getElementById("index-title");
+
+            dirList.innerHTML = "";
+            indexTitle.innerText = `Index of /img/${pathKey === "root" ? "" : pathKey + "/"}`;
+
             currentImages = [];
             let items = [...(masterData[pathKey] || [])];
 
             items.sort((a, b) => {
-                if (a.type === 'dir' && b.type !== 'dir') return -1;
-                if (a.type !== 'dir' && b.type === 'dir') return 1;
+                if (a.type === "dir" && b.type !== "dir") return -1;
+                if (a.type !== "dir" && b.type === "dir") return 1;
 
-                let valA, valB;
-                if (currentSortKey === 'dimension') {
-                    valA = a.width ? a.width * a.height : 0;
-                    valB = b.width ? b.width * b.height : 0;
-                } else if (currentSortKey === 'size') {
-                    valA = a.type === 'dir' ? 0 : Number(a.size || 0);
-                    valB = b.type === 'dir' ? 0 : Number(b.size || 0);
-                } else if (currentSortKey === 'items') {
-                    valA = a.type === 'dir' ? Number(a.totalFiles || 0) : -1;
-                    valB = b.type === 'dir' ? Number(b.totalFiles || 0) : -1;
+                let valA;
+                let valB;
+
+                if (currentSortKey === "dimension") {
+                    valA = a.width ? Number(a.width) * Number(a.height || 0) : 0;
+                    valB = b.width ? Number(b.width) * Number(b.height || 0) : 0;
+                } else if (currentSortKey === "size") {
+                    valA = a.type === "dir" ? 0 : Number(a.size || 0);
+                    valB = b.type === "dir" ? 0 : Number(b.size || 0);
+                } else if (currentSortKey === "items") {
+                    valA = a.type === "dir" ? Number(a.totalFiles || 0) : -1;
+                    valB = b.type === "dir" ? Number(b.totalFiles || 0) : -1;
                 } else {
-                    valA = String(a[currentSortKey] || '').toLowerCase();
-                    valB = String(b[currentSortKey] || '').toLowerCase();
+                    valA = String(a[currentSortKey] || "").toLowerCase();
+                    valB = String(b[currentSortKey] || "").toLowerCase();
                 }
 
                 if (valA < valB) return currentSortAsc ? -1 : 1;
                 if (valA > valB) return currentSortAsc ? 1 : -1;
-                return 0;
+
+                return String(a.name || "").localeCompare(String(b.name || ""), "id", {
+                    numeric: true,
+                    sensitivity: "base"
+                });
             });
 
-            if (pathKey !== 'root') {
-                const parts = pathKey.split('/');
+            if (pathKey !== "root") {
+                const parts = pathKey.split("/");
                 parts.pop();
-                const parentKey = parts.length === 0 ? 'root' : parts.join('/');
-                dirList.appendChild(createRow('⏏️', 'Naik ke Atas', '-', '-', '-', '-', '-', '-', `changeDir('${parentKey}')`));
+
+                const parentKey = parts.length === 0 ? "root" : parts.join("/");
+
+                dirList.appendChild(createRow(
+                    "⏏️",
+                    "Naik ke Atas",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    `changeDir(${jsString(parentKey)})`
+                ));
             }
 
             items.forEach(item => {
-                if (item.type === 'dir') {
-                    const countStr = item.totalFiles !== undefined ? `${item.totalFiles}` : '-';
-                    dirList.appendChild(createRow(
-                        '📂', 
-                        item.name + '/', 
-                        countStr, 
-                        '-', // format
-                        '-', // size
-                        '-', // dimension
-                        item.date || '-', // Tanggal rekap yang sekarang sudah dijamin benar
-                        `<small style="color:var(--muted)">Direktori</small>`, 
-                        `changeDir('${item.path}')`
-                    ));
-                } else {
-                    const localPath = item.path; 
-                    const localThumbPath = item.thumbPath ? item.thumbPath : localPath;
-                    const dimStr = item.width ? `${item.width}x${item.height}` : 'N/A';
-                    const fmtStr = item.format ? item.format.toUpperCase() : 'UNKNOWN';
-                    
-                    currentImages.push({ 
-                        name: item.name, 
-                        url: localPath, 
-                        size: formatSize(item.size),
-                        dimension: dimStr + ' px',
-                        format: fmtStr,
-                        date: item.date
-                    });
-                    const imgIndex = currentImages.length - 1;
-
-                    const actionHtml = `
-                        <img src="${localThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Preview">
-                        <a href="#" class="btn-download" style="margin-left: 0.625rem;" onclick="copyToClipboard(event, '${localPath}', this)">Copy</a>
-                    `;
+                if (item.type === "dir") {
+                    const countStr = item.totalFiles !== undefined ? `${item.totalFiles}` : "-";
 
                     dirList.appendChild(createRow(
-                        '🪟', 
-                        item.name, 
-                        '-',
-                        fmtStr, // format
-                        formatSize(item.size), // size
-                        dimStr, // dimension
-                        item.date, // Tanggal asli dari JSON (sudah tidak tertimpa)
-                        actionHtml, 
-                        `openLightbox(${imgIndex})`
+                        "📂",
+                        item.name + "/",
+                        countStr,
+                        "-",
+                        "-",
+                        "-",
+                        item.date || "-",
+                        `<small style="color:var(--muted)">Direktori</small>`,
+                        `changeDir(${jsString(item.path)})`
                     ));
+
+                    return;
                 }
+
+                const localPath = stripImgPrefix(item.path);
+                const dimStr = item.width && item.height ? `${item.width}x${item.height}` : "N/A";
+                const fmtStr = item.format ? String(item.format).toUpperCase() : "UNKNOWN";
+
+                currentImages.push({
+                    name: item.name,
+                    url: localPath,
+                    size: formatSize(item.size),
+                    dimension: dimStr + " px",
+                    format: fmtStr,
+                    date: item.date || "-"
+                });
+
+                const imgIndex = currentImages.length - 1;
+                const thumbCandidates = getThumbnailCandidates(item);
+                const firstThumb = thumbCandidates[0] || localPath;
+
+                const actionHtml = `
+                    <img
+                        src="${escapeHtml(firstThumb)}"
+                        alt="Preview ${escapeHtml(item.name)}"
+                        class="preview-thumb"
+                        data-thumb-candidates="${escapeHtml(JSON.stringify(thumbCandidates))}"
+                        data-thumb-index="0"
+                        onerror="applyThumbFallback(this)"
+                        onclick="openLightbox(${imgIndex}); event.stopPropagation();"
+                        title="Preview"
+                    >
+                    <a href="#" class="btn-download" style="margin-left: 0.625rem;" onclick="copyToClipboard(event, ${jsString(localPath)}, this)">Copy</a>
+                `;
+
+                dirList.appendChild(createRow(
+                    "🪟",
+                    item.name,
+                    "-",
+                    fmtStr,
+                    formatSize(item.size),
+                    dimStr,
+                    item.date || "-",
+                    actionHtml,
+                    `openLightbox(${imgIndex})`
+                ));
             });
         }
 
-        // Tatanan argumen sudah disamakan dengan visual HTML (Nama, Jumlah, Jenis, Ukuran, Dimensi, Tanggal, Tampilan)
-        function createRow(icon, name, itemsCount, format, size, dimension, date, actionHtml, onclickAttr = '') {
-            const row = document.createElement('tr');
-            
+        function createRow(icon, name, itemsCount, format, size, dimension, date, actionHtml, onclickAttr = "") {
+            const row = document.createElement("tr");
             const displayName = formatDisplayName(name);
 
             const linkHtml = onclickAttr
-                ? `<a href="#" class="name-link" onclick="${onclickAttr}; return false;">${displayName}</a>`
-                : displayName;
-            
+                ? `<a href="#" class="name-link" onclick="${onclickAttr}; return false;">${escapeHtml(displayName)}</a>`
+                : escapeHtml(displayName);
+
             row.innerHTML = `
-                <td>${icon}</td>
+                <td>${escapeHtml(icon)}</td>
                 <td class="name-cell">${linkHtml}</td>
-                <td class="text-center" style="color: var(--muted); font-size: 0.95em;">${itemsCount}</td>
-                <td class="text-center">${format}</td>
-                <td class="text-right">${size}</td>
-                <td class="text-center">${dimension}</td>                
-                <td>${date}</td>
+                <td class="text-center" style="color: var(--muted); font-size: 0.95em;">${escapeHtml(itemsCount)}</td>
+                <td class="text-center">${escapeHtml(format)}</td>
+                <td class="text-right">${escapeHtml(size)}</td>
+                <td class="text-center">${escapeHtml(dimension)}</td>
+                <td>${escapeHtml(date)}</td>
                 <td class="text-right">${actionHtml}</td>
             `;
+
             return row;
         }
 
@@ -483,43 +684,65 @@
 
         function openLightbox(index) {
             if (index < 0 || index >= currentImages.length) return;
+
             currentImageIndex = index;
             const img = currentImages[currentImageIndex];
 
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxCaption = document.getElementById("lightbox-caption");
 
             lightboxImg.src = img.url;
-            
+            lightboxImg.alt = img.name;
+
             lightboxCaption.innerHTML = `
-                <strong>[ ${currentImageIndex + 1} / ${currentImages.length} ]</strong> - ${img.name}<br>
+                <b>[ ${currentImageIndex + 1} / ${currentImages.length} ]</b> - ${escapeHtml(img.name)}<br>
                 <span class="path-info">
-                    Format: <strong>${img.format}</strong> | Dimensi: <strong>${img.dimension}</strong> | Bobot: <strong>${img.size}</strong> | Dirilis: <strong>${img.date}</strong>
+                    Format: <b>${escapeHtml(img.format)}</b> |
+                    Dimensi: <b>${escapeHtml(img.dimension)}</b> |
+                    Bobot: <b>${escapeHtml(img.size)}</b> |
+                    Dirilis: <b>${escapeHtml(img.date)}</b>
                 </span>
-                <a href="${img.url}" download="${img.name}" class="btn-lightbox-download" onclick="event.stopPropagation();">
+                <a href="${escapeHtml(img.url)}" download="${escapeHtml(img.name)}" class="btn-lightbox-download" onclick="event.stopPropagation();">
                     💾 Download Image
                 </a>
             `;
-            
-            lightbox.style.display = 'flex';
-            document.getElementById('nav-left').style.display = currentImages.length > 1 ? 'block' : 'none';
-            document.getElementById('nav-right').style.display = currentImages.length > 1 ? 'block' : 'none';
+
+            lightbox.style.display = "flex";
+            document.getElementById("nav-left").style.display = currentImages.length > 1 ? "block" : "none";
+            document.getElementById("nav-right").style.display = currentImages.length > 1 ? "block" : "none";
         }
 
-        function closeLightbox() { 
-            document.getElementById('lightbox').style.display = 'none'; 
-            document.getElementById('lightbox-img').src = ''; 
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+            document.getElementById("lightbox-img").src = "";
         }
-        
-        function nextImage(e) { if(e) e.stopPropagation(); let idx = currentImageIndex + 1; if(idx >= currentImages.length) idx = 0; openLightbox(idx); }
-        function prevImage(e) { if(e) e.stopPropagation(); let idx = currentImageIndex - 1; if(idx < 0) idx = currentImages.length - 1; openLightbox(idx); }
 
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').style.display === 'flex') {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowRight') nextImage();
-                if (e.key === 'ArrowLeft') prevImage();
+        function nextImage(e) {
+            if (e) e.stopPropagation();
+
+            let idx = currentImageIndex + 1;
+
+            if (idx >= currentImages.length) idx = 0;
+
+            openLightbox(idx);
+        }
+
+        function prevImage(e) {
+            if (e) e.stopPropagation();
+
+            let idx = currentImageIndex - 1;
+
+            if (idx < 0) idx = currentImages.length - 1;
+
+            openLightbox(idx);
+        }
+
+        document.addEventListener("keydown", (e) => {
+            if (document.getElementById("lightbox").style.display === "flex") {
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowRight") nextImage();
+                if (e.key === "ArrowLeft") prevImage();
             }
         });
 
