@@ -20,7 +20,7 @@
  try {
  showStatus('<i class="fa-solid fa-spinner fa-spin"></i> Menarik data live dari server...', 'info');
  // Panggil file JSON dari domain lokal (dirinya sendiri)
- const res = await fetch(`/${TARGET_FILE}?v=${Date.now()}`);
+ const res = await fetch(`/ext/tool-layarkosong.json?v=${Date.now()}`);
  if (res.ok) {
  db = await res.json();
  render();
