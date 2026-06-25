@@ -59,199 +59,292 @@
     <meta property="article:modified_time" content="2026-06-25T14:11:06.659Z">
     <meta content="kalkulator laundry, harga laundry kiloan, laundry satuan, manajemen laundry, aplikasi kasir laundry, berkah laundry, hitung biaya laundry" name="keywords">
     <script defer="" src="/ext/html2canvas.min.js"></script>
-    <style>
-      body {
-        background: #f2f6ff;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-        margin: 0;
-        padding: 15px;
-        font-family: Poppins, sans-serif;
-        display: flex
-      }
-      .container {
-        box-sizing: border-box;
-        background: #fff;
-        border-radius: 10px;
-        width: 100%;
-        max-width: 800px;
-        padding: 20px;
-        box-shadow: 0 10px 25px #0000001a
-      }
-      h2 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 15px;
-        font-size: 20px
-      }
-      label {
-        color: #333;
-        margin-bottom: 5px;
-        font-weight: 700;
-        display: block
-      }
-      input[type=text],
-      textarea {
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 100%;
-        padding: 6px;
-        font-size: 13px
-      }
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        margin-bottom: 10px;
-        font-size: 14px
-      }
-      th,
-      td {
-        text-align: center;
-        border: 1px solid #ddd;
-        padding: 8px
-      }
-      th {
-        color: #fff;
-        background: #007bff
-      }
-      button {
-        color: #fff;
-        cursor: pointer;
-        background: #55a630;
-        border: none;
-        border-radius: 6px;
-        margin-top: 8px;
-        padding: 10px 15px;
-        font-size: 14px;
-        display: inline-block
-      }
-      .btn-export {
-        background: #0069d9;
-        margin-left: 10px
-      }
-      .btn-reset {
-        background: #dc3545;
-        margin-left: 10px
-      }
-      button:hover {
-        opacity: .9
-      }
-      .total-box {
-        text-align: right;
-        color: #007bff;
-        margin-top: 10px;
-        font-size: 16px;
-        font-weight: 700
-      }
-      .catatan-final {
-        margin-top: 15px
-      }
-      textarea {
-        resize: vertical;
-        min-height: 70px
-      }
-      .nota-summary {
-        color: #000;
-        box-sizing: border-box;
-        background: #fff;
-        width: 300px;
-        padding: 15px;
-        font-family: Courier New, Courier, monospace;
-        position: absolute;
-        top: 0;
-        left: -9999px;
-        display: block !important
-      }
-      .nota-summary table,
-      .nota-summary tr,
-      .nota-summary td {
-        width: 100% !important;
-        display: table !important
-      }
-      .nota-summary td {
-        display: table-cell !important
-      }
-      .nota-header {
-        text-align: center;
-        border-bottom: 1px dashed #000;
-        margin-bottom: 10px;
-        padding-bottom: 10px
-      }
-      .nota-header h3 {
-        text-transform: uppercase;
-        margin: 0;
-        font-size: 18px
-      }
-      .nota-info {
-        margin-bottom: 10px;
-        font-size: 13px
-      }
-      .nota-table {
-        border-collapse: collapse;
-        width: 100%;
-        font-size: 13px
-      }
-      .nota-table th {
-        text-align: left;
-        color: #000;
-        background: 0 0;
-        border-bottom: 1px dashed #000;
-        padding: 5px 0
-      }
-      .nota-table td {
-        vertical-align: top;
-        padding: 5px 0
-      }
-      .nota-footer {
-        border-top: 1px dashed #000;
-        margin-top: 10px;
-        padding-top: 10px
-      }
-      .total-row {
-        justify-content: space-between;
-        font-size: 15px;
-        font-weight: 700;
-        display: flex
-      }
-      .catatan-struk {
-        border-top: 1px solid #eee;
-        margin-top: 10px;
-        padding-top: 5px;
-        font-size: 12px;
-        font-style: italic
-      }
-      @media (width<=600px) {
-        table,
-        thead,
-        tbody,
-        th,
-        td,
-        tr {
-          display: block
-        }
-        thead tr {
-          display: none
-        }
-        tr {
-          background: #fefefe;
-          border: 1px solid #ddd;
-          border-radius: 6px;
-          margin-bottom: 10px;
-          padding: 8px
-        }
-        td {
-          text-align: left;
-          justify-content: space-between;
-          display: flex
-        }
-        td:before {
-          content: attr(data-label);
-          font-weight: 700
-        }
-      }
-    </style>
+
+<style>
+  :root {
+    color-scheme: light;
+    --page-bg: #f2f6ff;
+    --card-bg: #ffffff;
+    --text: #333333;
+    --muted: #555555;
+    --input-bg: #ffffff;
+    --input-border: #cccccc;
+    --table-border: #dddddd;
+    --row-bg: #fefefe;
+    --primary: #007bff;
+    --primary-strong: #0069d9;
+    --success: #55a630;
+    --danger: #dc3545;
+    --button-text: #ffffff;
+    --shadow: 0 0.625rem 1.5625rem #0000001a;
+    --receipt-bg: #ffffff;
+    --receipt-text: #000000;
+    --receipt-border: #000000;
+    --receipt-soft: #eeeeee;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --page-bg: #0f172a;
+      --card-bg: #111827;
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --input-bg: #020617;
+      --input-border: #334155;
+      --table-border: #334155;
+      --row-bg: #1e293b;
+      --primary: #38bdf8;
+      --primary-strong: #0284c7;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --button-text: #ffffff;
+      --shadow: 0 0.625rem 1.5625rem #00000066;
+      --receipt-bg: #ffffff;
+      --receipt-text: #000000;
+      --receipt-border: #000000;
+      --receipt-soft: #eeeeee;
+    }
+  }
+
+  body {
+    background: var(--page-bg);
+    color: var(--text);
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0.9375rem;
+    font-family: Poppins, sans-serif;
+    display: flex;
+  }
+
+  .container {
+    box-sizing: border-box;
+    background: var(--card-bg);
+    border-radius: 0.625rem;
+    width: 100%;
+    max-width: 50rem;
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+  }
+
+  h1,
+  h2 {
+    color: var(--text);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 0.9375rem;
+    font-size: 1.25rem;
+  }
+
+  label {
+    color: var(--text);
+    margin-bottom: 0.3125rem;
+    font-weight: 700;
+    display: block;
+  }
+
+  input[type="text"],
+  textarea {
+    box-sizing: border-box;
+    color: var(--text);
+    background: var(--input-bg);
+    border: 0.0625rem solid var(--input-border);
+    border-radius: 0.375rem;
+    width: 100%;
+    padding: 0.625rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  input[type="text"]::placeholder,
+  textarea::placeholder {
+    color: var(--muted);
+    opacity: 0.8;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 0.625rem;
+    font-size: 0.875rem;
+  }
+
+  th,
+  td {
+    text-align: center;
+    border: 0.0625rem solid var(--table-border);
+    padding: 0.5rem;
+  }
+
+  th {
+    color: #ffffff;
+    background: var(--primary);
+  }
+
+  button {
+    color: var(--button-text);
+    cursor: pointer;
+    background: var(--success);
+    border: none;
+    border-radius: 0.375rem;
+    margin-top: 0.5rem;
+    padding: 0.625rem 0.9375rem;
+    font-size: 0.875rem;
+    display: inline-block;
+  }
+
+  .btn-export {
+    background: var(--primary-strong);
+    margin-left: 0.625rem;
+  }
+
+  .btn-reset {
+    background: var(--danger);
+    margin-left: 0.625rem;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  .total-box {
+    text-align: right;
+    color: var(--primary);
+    margin-top: 0.625rem;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .catatan-final {
+    margin-top: 0.9375rem;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 5rem;
+  }
+
+  .nota-summary {
+    color: var(--receipt-text);
+    box-sizing: border-box;
+    background: var(--receipt-bg);
+    width: 18.75rem;
+    padding: 0.9375rem;
+    font-family: Courier New, Courier, monospace;
+    position: absolute;
+    top: 0;
+    left: -625rem;
+    display: block !important;
+  }
+
+  .nota-summary table,
+  .nota-summary tr,
+  .nota-summary td {
+    width: 100% !important;
+    display: table !important;
+  }
+
+  .nota-summary td {
+    display: table-cell !important;
+  }
+
+  .nota-header {
+    text-align: center;
+    border-bottom: 0.0625rem dashed var(--receipt-border);
+    margin-bottom: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  .nota-header h3 {
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .nota-info {
+    margin-bottom: 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  .nota-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.8125rem;
+  }
+
+  .nota-table th {
+    text-align: left;
+    color: var(--receipt-text);
+    background: transparent;
+    border-bottom: 0.0625rem dashed var(--receipt-border);
+    padding: 0.3125rem 0;
+  }
+
+  .nota-table td {
+    vertical-align: top;
+    padding: 0.3125rem 0;
+  }
+
+  .nota-footer {
+    border-top: 0.0625rem dashed var(--receipt-border);
+    margin-top: 0.625rem;
+    padding-top: 0.625rem;
+  }
+
+  .total-row {
+    justify-content: space-between;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    display: flex;
+  }
+
+  .catatan-struk {
+    border-top: 0.0625rem solid var(--receipt-soft);
+    margin-top: 0.625rem;
+    padding-top: 0.3125rem;
+    font-size: 0.75rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 37.5rem) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    thead tr {
+      display: none;
+    }
+
+    tr {
+      background: var(--row-bg);
+      border: 0.0625rem solid var(--table-border);
+      border-radius: 0.375rem;
+      margin-bottom: 0.625rem;
+      padding: 0.5rem;
+    }
+
+    td {
+      text-align: left;
+      justify-content: space-between;
+      display: flex;
+    }
+
+    td::before {
+      content: attr(data-label);
+      font-weight: 700;
+    }
+  }
+</style>
+
     <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:summary">
     <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:prompt_hint">
 <script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#\/schema\/person\/fakhrul-rijal"},"headline":"Kalkulator Laundry Berkah","description":"Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.","datePublished":"2025-10-29T12:21:57.972Z","dateModified":"2026-06-25T14:11:06.659Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah"},"wordCount":31,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":{"@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah#primaryimage"},"thumbnailUrl":"https:\/\/dalam.web.id\/img\/Kalkulator-Laundry-Berkah.webp","keywords":["Kalkulator Laundry Berkah","Layar Kosong","kalkulator","laundry","berkah","Lainnya"],"articleSection":["Lainnya"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah","url":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah","name":"Kalkulator Laundry Berkah - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah#primaryimage"},"image":{"@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah#primaryimage"},"thumbnailUrl":"https:\/\/dalam.web.id\/img\/Kalkulator-Laundry-Berkah.webp","datePublished":"2025-10-29T12:21:57.972Z","dateModified":"2026-06-25T14:11:06.659Z","description":"Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah#primaryimage","url":"https:\/\/dalam.web.id\/img\/Kalkulator-Laundry-Berkah.webp","contentUrl":"https:\/\/dalam.web.id\/img\/Kalkulator-Laundry-Berkah.webp","width":1000,"height":562,"caption":"Kalkulator Laundry Berkah","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/lainnya\/Kalkulator-Laundry-Berkah#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https:\/\/dalam.web.id\/lainnya"},{"@type":"ListItem","position":3,"name":"Kalkulator Laundry Berkah"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#\/schema\/logo\/image\/","url":"https:\/\/dalam.web.id\/logo.png","contentUrl":"https:\/\/dalam.web.id\/logo.png","width":1024,"height":1024,"caption":"Layar Kosong"},"image":{"@id":"https:\/\/dalam.web.id\/#\/schema\/logo\/image\/"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#\/schema\/person\/fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/favicon.svg","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script>
