@@ -44,7 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 75rem;
+            width: 100%; /* Mengisi full screen */
             margin-top: 0.625rem;
             margin-bottom: 0.3125rem;
         }
@@ -67,10 +67,9 @@
         /* Pembungkus Tabel Responsif di Mobile */
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         
-        /* FIX: Tambahan table-layout: fixed agar % width kolom dipatuhi dan bisa di-truncate */
+        /* FIX: max-width dihapus agar tampilan full width mengikuti layar monitor */
         table { 
             width: 100%; 
-            max-width: 75rem; 
             border-collapse: collapse; 
             text-align: left; 
             table-layout: fixed; 
@@ -295,22 +294,18 @@
             });
         }
 
-        /* FIX: Menambahkan function buildNameHtml untuk memecah nama file/folder */
         function buildNameHtml(name) {
             let start, end;
 
             if (name.endsWith('/')) {
-                // Direktori: "nama-folder/" → "nama-folder" + "/"
                 start = name.slice(0, -1);
                 end   = '/';
             } else {
                 const lastDot = name.lastIndexOf('.');
                 if (lastDot > 0 && lastDot < name.length - 1) {
-                    // File dengan ekstensi: "panjang-banget.webp" → "panjang-banget" + ".webp"
                     start = name.substring(0, lastDot);
                     end   = name.substring(lastDot);
                 } else {
-                    // Tanpa ekstensi (e.g. "Naik ke Atas")
                     start = name;
                     end   = '';
                 }
@@ -400,7 +395,6 @@
             });
         }
 
-        /* FIX: Modifikasi fungsi createRow untuk mendukung class "name-cell" dan fungsi pembangun HTML */
         function createRow(icon, name, itemsCount, size, dimension, format, date, actionHtml, onclickAttr = '') {
             const row = document.createElement('tr');
             const nameHtml = buildNameHtml(name);
