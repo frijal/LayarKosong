@@ -4,19 +4,19 @@ import { glob } from "glob";
 import sharp from "sharp";
 
 // ==========================================
-// KONFIGURASI & DEFINISI TIPE DATA (JALUR SESUAI REQUEST)
+// KONFIGURASI & DEFINISI TIPE DATA
 // ==========================================
 const TARGET_DIR = "./img";
 const OUTPUT_JSON = "./img/galeri-data.json";
-const SRCSET_TXT_PATH = "./mini/srcset-gambar.txt"; // Disiapkan jika dibutuhkan untuk sinkronisasi berikutnya
+const SRCSET_TXT_PATH = "./mini/srcset-gambar.txt";
 
 const ONLY_IMAGES_PATTERN = "**/*.{jpg,jpeg,png,webp,avif,svg}";
 
 interface FileItem {
     name: string;
     path: string;
-    thumbPath: string | null;
-    size: number;
+    thumbPath: string | null; // null untuk folder
+    size: number | null;       // null untuk folder
     date: string;
     type: "file" | "dir";
     width?: number;
@@ -30,18 +30,25 @@ interface GalleryData {
     [key: string]: FileItem[];
 }
 
-// Fungsi pembantu pemformatan tanggal
+// FIX #3: Gunakan local timezone, bukan UTC
 function formatDate(date: Date): string {
-    return date.toISOString().split("T")[0]; // Menghasilkan format YYYY-MM-DD
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+}
+
+// Normalisasi path separator (Windows compat)
+function normPath(p: string): string {
+    return p.replace(/\\/g, "/");
 }
 
 // ==========================================
 // FUNGSI UTAMA GENERATOR
 // ==========================================
 async function generateGalleryJson() {
-    console.log("🚀 Memulai pemindaian dapur gambar (Mode: Informasi Kaya + Counter Bottom-Up)...");
+    console.log("🚀 Memulai pemindaian galeri...");
 
-    // Scan murni file gambar saja
     const allFiles = await glob(ONLY_IMAGES_PATTERN, {
         cwd: TARGET_DIR,
         nodir: true,
@@ -51,70 +58,89 @@ async function generateGalleryJson() {
     const galleryMap: GalleryData = { root: [] };
     const processedThumbnails = new Set<string>();
 
+    // FIX #2: Buat Set lowercase untuk pencarian case-insensitive
+    const allFilesLowerSet = new Set(allFiles.map(f => normPath(f).toLowerCase()));
+    // Map: lowercase path → original path (untuk retrieve path asli)
+    const allFilesLowerMap = new Map<string, string>(
+        allFiles.map(f => [normPath(f).toLowerCase(), normPath(f)])
+    );
+
     // -------------------------------------------------------------------------
-    // Langkah 1: Pilah varian thumbnail untuk penentuan thumbPath di UI browser
+    // Langkah 1: Pilah varian thumbnail
     // -------------------------------------------------------------------------
     allFiles.forEach(file => {
-        const ext = extname(file);
-        const nameWithoutExt = basename(file, ext);
+        const originalExt = extname(file);          // Extension asli, misal ".JPG"
+        const nameWithoutExt = basename(file, originalExt); // FIX #1: pakai originalExt
         if (nameWithoutExt.endsWith("-sm") || nameWithoutExt.endsWith("-md")) {
-            processedThumbnails.add(file);
+            processedThumbnails.add(normPath(file));
         }
     });
 
     // -------------------------------------------------------------------------
-    // Langkah 2: Ekstrak file utama & kumpulkan metadatanya
+    // Langkah 2: Ekstrak file utama & kumpulkan metadata
     // -------------------------------------------------------------------------
     for (const file of allFiles) {
-        // Lewati berkas varian thumbnail agar tidak duplikat di list baris UI utama
-        if (processedThumbnails.has(file)) continue;
+        const normalizedFile = normPath(file);
+
+        if (processedThumbnails.has(normalizedFile)) continue;
 
         const fullPath = join(TARGET_DIR, file);
         const stats = statSync(fullPath);
         const filename = basename(file);
-        const fileExt = extname(file).toLowerCase();
 
-        const relDir = dirname(file);
+        // FIX #1: Pisahkan originalExt & fileExtLower agar basename() benar
+        const originalExt = extname(file);
+        const fileExtLower = originalExt.toLowerCase();
+        const nameWithoutExt = basename(file, originalExt); // Sekarang benar
+
+        const relDir = normPath(dirname(file));
         const pathKey = relDir === "." ? "root" : relDir;
 
         if (!galleryMap[pathKey]) {
             galleryMap[pathKey] = [];
         }
 
-        const nameWithoutExt = basename(file, fileExt);
-        const potentialThumb = join(relDir, `${nameWithoutExt}-sm${fileExt}`);
-        const hasThumb = allFiles.includes(potentialThumb.replace(/\\/g, "/"));
+        // FIX #1 + #2: potentialThumb pakai nameWithoutExt yang benar + case-insensitive lookup
+        const potentialThumbRaw = relDir === "."
+        ? `${nameWithoutExt}-sm${fileExtLower}`
+        : `${relDir}/${nameWithoutExt}-sm${fileExtLower}`;
+        const potentialThumbLower = potentialThumbRaw.toLowerCase();
+
+        const hasThumb = allFilesLowerSet.has(potentialThumbLower);
+        const actualThumbPath = hasThumb
+        ? (allFilesLowerMap.get(potentialThumbLower) ?? null)
+        : null;
 
         let fileData: FileItem = {
             name: filename,
-            path: file,
-            thumbPath: hasThumb ? potentialThumb.replace(/\\/g, "/") : null,
+            path: normalizedFile,
+            thumbPath: actualThumbPath,
             size: stats.size,
-            date: formatDate(stats.mtime),
+            date: formatDate(stats.mtime), // FIX #3: local timezone
             type: "file"
         };
 
-        if (fileExt !== ".svg") {
+        if (fileExtLower !== ".svg") {
             try {
                 const metadata = await sharp(fullPath).metadata();
                 fileData.width = metadata.width;
                 fileData.height = metadata.height;
                 fileData.format = metadata.format;
             } catch (err) {
-                console.warn(`⚠️ Gagal membaca metadata Sharp untuk berkas: ${file}`);
+                console.warn(`⚠️ Gagal baca metadata Sharp: ${file}`);
             }
         } else {
+            // FIX #5: undefined lebih proper daripada 0 untuk SVG
             fileData.format = "svg";
-            fileData.width = 0;
-            fileData.height = 0;
+            fileData.width = undefined;
+            fileData.height = undefined;
         }
 
         galleryMap[pathKey].push(fileData);
     }
 
     // -------------------------------------------------------------------------
-    // Langkah 3: Rekonstruksi navigasi folder tiruan Apache
-    // (Dipisah dari loop utama agar pemetaan objek map stabil)
+    // Langkah 3: Rekonstruksi navigasi folder tiruan
     // -------------------------------------------------------------------------
     Object.keys(galleryMap).forEach(pathKey => {
         if (pathKey !== "root") {
@@ -124,7 +150,9 @@ async function generateGalleryJson() {
             for (let i = 0; i < parts.length; i++) {
                 const parentKey = i === 0 ? "root" : currentBuildPath;
                 const dirName = parts[i];
-                currentBuildPath = currentBuildPath ? `${currentBuildPath}/${dirName}` : dirName;
+                currentBuildPath = currentBuildPath
+                ? `${currentBuildPath}/${dirName}`
+                : dirName;
 
                 if (!galleryMap[parentKey]) galleryMap[parentKey] = [];
 
@@ -133,12 +161,16 @@ async function generateGalleryJson() {
                 );
 
                 if (!isDirExist) {
+                    // FIX #4: Tambah field yang hilang agar interface terpenuhi
                     galleryMap[parentKey].unshift({
                         name: dirName,
                         path: currentBuildPath,
-                        type: "dir",
-                        directFiles: 0,
-                        totalFiles: 0 
+                        thumbPath: null,
+                        size: null,
+                        date: "",   // Akan diisi enrichFolderData() di HTML
+                                                  type: "dir",
+                                                  directFiles: 0,
+                                                  totalFiles: 0
                     });
                 }
             }
@@ -146,47 +178,33 @@ async function generateGalleryJson() {
     });
 
     // -------------------------------------------------------------------------
-    // 🔥 LANGKAH BARU (OPTIMASI): Hitung Semua Berkas dari Bawah ke Atas (Bottom-Up)
+    // Langkah 4: Hitung file dari bawah ke atas (Bottom-Up)
     // -------------------------------------------------------------------------
-    
-    // 1. Dapatkan list gambar mentah murni tanpa filter thumbnail (Termasuk single, -md, -sm, .svg)
-    const cleanFilesList = allFiles.filter(file => {
-        const lowerFile = file.toLowerCase();
-        return lowerFile.endsWith('.jpg') || 
-               lowerFile.endsWith('.jpeg') || 
-               lowerFile.endsWith('.png') || 
-               lowerFile.endsWith('.webp') || 
-               lowerFile.endsWith('.avif') || 
-               lowerFile.endsWith('.svg');
-    });
+    const cleanFilesList = allFiles.map(normPath);
 
-    // 2. Hitung 'directFiles' (berkas langsung) untuk semua folder terlebih dahulu
     Object.keys(galleryMap).forEach(folderPath => {
         galleryMap[folderPath].forEach(item => {
             if (item.type === "dir") {
-                item.directFiles = cleanFilesList.filter(file => dirname(file) === item.path).length;
-                item.totalFiles = item.directFiles; // Set dasar awal totalFiles
+                item.directFiles = cleanFilesList.filter(
+                    file => normPath(dirname(file)) === item.path ||
+                    (dirname(file) === "." && item.path === "root")
+                ).length;
+                item.totalFiles = item.directFiles;
             }
         });
     });
 
-    // 3. Ambil semua path folder unik, urutkan dari yang PALING DALAM ke dangkal (berdasarkan jumlah '/')
     const sortedFolderPaths = Object.keys(galleryMap).sort((a, b) => {
-        const levelsA = a.split('/').length;
-        const levelsB = b.split('/').length;
-        return levelsB - levelsA; // Nilai kedalaman besar didahulukan
+        return b.split("/").length - a.split("/").length;
     });
 
-    // 4. Lakukan akumulasi nilai ke atas (Bubble Up)
     sortedFolderPaths.forEach(currentPath => {
-        if (currentPath === "root") return; // Skip karena root tidak memiliki induk lagi
+        if (currentPath === "root") return;
 
-        // Tentukan path induknya
-        const parts = currentPath.split('/');
+        const parts = currentPath.split("/");
         parts.pop();
-        const parentPath = parts.length === 0 ? "root" : parts.join('/');
+        const parentPath = parts.length === 0 ? "root" : parts.join("/");
 
-        // Hitung total akumulasi dari semua subfolder di dalam currentPath saat ini
         let subfolderTotalSum = 0;
         if (galleryMap[currentPath]) {
             galleryMap[currentPath].forEach(item => {
@@ -196,31 +214,28 @@ async function generateGalleryJson() {
             });
         }
 
-        // Cari item folder ini di dalam data INDUKNYA, lalu perbarui total nilainya
         if (galleryMap[parentPath]) {
             const dirItemInParent = galleryMap[parentPath].find(
                 item => item.type === "dir" && item.path === currentPath
             );
             if (dirItemInParent) {
-                // totalFiles induk adalah file langsung miliknya ditambah total file dari subfolder di bawahnya
-                dirItemInParent.totalFiles = (dirItemInParent.directFiles || 0) + subfolderTotalSum;
+                dirItemInParent.totalFiles =
+                (dirItemInParent.directFiles || 0) + subfolderTotalSum;
             }
         }
     });
 
     // -------------------------------------------------------------------------
-    // Langkah 4: Tulis data mentah ke berkas target JSON
+    // Langkah 5: Tulis ke JSON
     // -------------------------------------------------------------------------
     try {
         const prettyJson = JSON.stringify(galleryMap, null, 2);
         writeFileSync(OUTPUT_JSON, prettyJson, "utf-8");
-        
-        console.log(`\n✨ SUKSES! Berkas galeri berhasil disimpan di: ${OUTPUT_JSON}`);
-        console.log(`📊 Total folder teregistrasi: ${Object.keys(galleryMap).length} lokasi.`);
+        console.log(`\n✨ SUKSES! Disimpan di: ${OUTPUT_JSON}`);
+        console.log(`📊 Total folder: ${Object.keys(galleryMap).length} lokasi.`);
     } catch (writeErr) {
-        console.error(`❌ Gagal menulis berkas ${OUTPUT_JSON}:`, writeErr);
+        console.error(`❌ Gagal menulis ${OUTPUT_JSON}:`, writeErr);
     }
 }
 
-// Eksekusi skrip secara langsung
 generateGalleryJson();
