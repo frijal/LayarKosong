@@ -364,20 +364,14 @@
             return `${dir}${name}${suffix}${ext}`;
         }
 
-        function getThumbnailCandidates(item) {
-            const originalPath = stripImgPrefix(item.path);
+        function getThumbnailCandidates(path) {
+            const originalPath = stripImgPrefix(path);
 
-            const candidates = [];
-
-            if (item.thumbPath) {
-                candidates.push(stripImgPrefix(item.thumbPath));
-            }
-
-            candidates.push(getVariantPath(originalPath, "-sm"));
-            candidates.push(getVariantPath(originalPath, "-md"));
-            candidates.push(originalPath);
-
-            return [...new Set(candidates.filter(Boolean))];
+            return [
+                getVariantPath(originalPath, "-sm"),
+                getVariantPath(originalPath, "-md"),
+                originalPath
+            ].filter((value, index, array) => value && array.indexOf(value) === index);
         }
 
         function applyThumbFallback(imgElement) {
@@ -400,7 +394,8 @@
             event.stopPropagation();
 
             const localPath = stripImgPrefix(path);
-            const fullUrl = new URL(localPath, window.location.href).href;
+            const baseUrl = new URL(".", window.location.href);
+            const fullUrl = new URL(localPath, baseUrl).href;
 
             try {
                 await navigator.clipboard.writeText(fullUrl);
@@ -624,7 +619,7 @@
                 });
 
                 const imgIndex = currentImages.length - 1;
-                const thumbCandidates = getThumbnailCandidates(item);
+                const thumbCandidates = getThumbnailCandidates(localPath);
                 const firstThumb = thumbCandidates[0] || localPath;
 
                 const actionHtml = `
