@@ -1,7 +1,7 @@
 // ----------------------------------------------------------
 // FILE: /ext/disqus-loader.ts
-// Versi V6.9 (Lazy Load Disqus)
-// Updated: 2026-03-01
+// Versi V7.0 (Lazy Load + Auto Theme Sync)
+// Updated: 2026-06-26
 // ----------------------------------------------------------
 
 (function (): void {
@@ -13,7 +13,7 @@
     // 2. Ambil URL halaman dari dataset atau location
     const url: string = container.dataset.href || window.location.href;
 
-    // Tambahkan interface tipis-tipis biar TS nggak protes soal window.disqus_config
+    // Tambahkan interface tipis-tipis biar TS nggak protes soal window.disqus_config dan DISQUS
     interface DisqusWindow extends Window {
         disqus_config?: () => void;
         DISQUS?: any;
@@ -21,7 +21,7 @@
 
     const win = window as unknown as DisqusWindow;
 
-    // 3. Fungsi untuk memuat Disqus
+    // 3. Fungsi untuk memuat Disqus pertama kali
     function loadDisqus(): void {
         if (win.DISQUS) return;
 
@@ -40,7 +40,20 @@
         d.body.appendChild(s);
     }
 
-    // 4. Logika Viewport (Lazy Load) menggunakan Intersection Observer
+    // 4. 🔥 FUNGSI BARU: Memaksa Disqus ganti baju (Reset Theme) secara dinamis
+    function reloadDisqusTheme(): void {
+        if (win.DISQUS) {
+            win.DISQUS.reset({
+                reload: true,
+                config: function (this: any) {
+                    this.page.url = url;
+                    this.page.identifier = url;
+                }
+            });
+        }
+    }
+
+    // 5. Logika Viewport (Lazy Load) menggunakan Intersection Observer
     if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
             if (entries[0].isIntersecting) {
@@ -56,5 +69,22 @@
     } else {
         // Fallback buat browser purba
         loadDisqus();
+    }
+
+    // 6. 🔥 PASUKAN PENYELAMAT: Menguping prefers-color-scheme secara Real-Time
+    if (window.matchMedia) {
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        
+        try {
+            // Browser Modern
+            mediaQuery.addEventListener("change", () => {
+                reloadDisqusTheme();
+            });
+        } catch (e) {
+            // Fallback untuk browser iOS / WebKit lama
+            mediaQuery.addListener(() => {
+                reloadDisqusTheme();
+            });
+        }
     }
 })();
