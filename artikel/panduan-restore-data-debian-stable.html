@@ -1,27 +1,40 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable - Layar Kosong</title>
+    <meta name="description" content="Selesai install ulang Debian Stable? Jangan bingung, ikuti panduan lengkap cara restore data, file konfigurasi dotfiles, hingga daftar package dengan aman.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/panduan-restore-data-debian-stable">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Restore Data Debian, Linux, Install Ulang Debian, rsync, dpkg, Sysadmin, Dotfiles">
+    <meta name="promphint" content="Bagaimana cara mengembalikan data setelah install ulang Debian? Gunakan rsync untuk merestore folder home dan dotfiles, serta gunakan dpkg untuk mengembalikan daftar aplikasi yang terinstall.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#00b0ed">
-    <link rel="canonical" href="https://dalam.web.id/artikel/panduan-restore-data-debian-stable">
-    <meta property="og:url" content="https://dalam.web.id/artikel/panduan-restore-data-debian-stable">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/panduan-restore-data-debian-stable">
-    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/panduan-restore-data-debian-stable">
     <meta property="og:title" content="Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable">
-    <meta name="twitter:title" content="Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable">
-    <meta name="description" content="Selesai install ulang Debian Stable? Jangan bingung, ikuti panduan lengkap cara restore data, file konfigurasi dotfiles, hingga daftar package dengan aman.">
     <meta property="og:description" content="Langkah demi langkah mengembalikan file pribadi dan konfigurasi sistem setelah instalasi ulang Debian Linux. Panduan menggunakan rsync dan dpkg.">
-    <meta name="twitter:description" content="Tutorial cara mengembalikan data (restore) ke sistem operasi Debian Stable yang baru diinstal. Pastikan file /home dan aplikasi lamamu kembali seperti semula!">
+    <meta property="og:updated_time" content="2026-06-25T13:51:57.551Z">
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/430f976c68d64647.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/430f976c68d64647.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/430f976c68d64647.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/430f976c68d64647.webp">
     <meta property="og:image:alt" content="Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="633">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="563">
     <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/panduan-restore-data-debian-stable">
+    <meta name="twitter:title" content="Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable">
+    <meta name="twitter:description" content="Tutorial cara mengembalikan data (restore) ke sistem operasi Debian Stable yang baru diinstal. Pastikan file /home dan aplikasi lamamu kembali seperti semula!">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/430f976c68d64647.webp">
+    <meta name="twitter:image:alt" content="Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
@@ -38,17 +51,14 @@
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Debian">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:published_time" content="2026-06-07T00:35:23.882Z">
-    <meta property="article:modified_time" content="2026-06-07T00:35:23.882Z">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan Lengkap: Restore Data Setelah Install Ulang Debian Stable - Layar Kosong</title>
-    <meta name="news_keywords" content="Restore Data Debian, Linux, Install Ulang Debian, rsync, dpkg, Sysadmin, Dotfiles">
-    <meta name="promphint" content="Bagaimana cara mengembalikan data setelah install ulang Debian? Gunakan rsync untuk merestore folder home dan dotfiles, serta gunakan dpkg untuk mengembalikan daftar aplikasi yang terinstall.">
+    <meta property="article:modified_time" content="2026-06-25T13:51:57.551Z">
     <style>
         /* Mobile-first variables & Tema Gelap/Terang */
         :root {
@@ -202,17 +212,17 @@
             </header>
             <p>Setelah melakukan instalasi ulang <em>server</em> atau laptop dengan sistem operasi Debian Stable yang segar tentu memberikan rasa lega. Antarmuka yang bersih, ruang penyimpanan yang lapang, dan performa yang kembali responsif adalah kenikmatan tersendiri. Namun, pekerjaan belum sepenuhnya selesai. Sekarang adalah waktunya untuk membawa kembali nyawa digitalmu, yakni dokumen, pengaturan, dan aplikasi kesayanganmu ke rumah barunya.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/430f976c68d64647.webp" srcset="https://pbs.twimg.com/media/HKK7MykaYAAF7ek?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK7MykaYAAF7ek?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK7MykaYAAF7ek?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="featured-image" alt="Ilustrasi pemulihan data dan pengaturan linux dari media eksternal">
-            <p>Mengembalikan <em>(restore)</em> data tidak boleh dilakukan asal timpa. Jika salah <em>permission</em> atau keliru menyalin, sistem barumu justru bisa mengalami masalah *error*. Oleh karena itu, ikuti panduan <strong>langkah demi langkah</strong> di bawah ini untuk mengembalikan data dengan aman dan presisi.</p>
+            <p>Mengembalikan <em>(restore)</em> data tidak boleh dilakukan asal timpa. Jika salah <em>permission</em> atau keliru menyalin, sistem barumu justru bisa mengalami masalah <em>error</em>. Oleh karena itu, ikuti panduan <strong>langkah demi langkah</strong> di bawah ini untuk mengembalikan data dengan aman dan presisi.</p>
             <h2>Persiapan Awal yang Wajib Dilakukan</h2>
-            <p>Setelah Debian Stable selesai diinstal dan kamu berhasil <em>login</em> ke layar utama atau terminal, tahan keinginanmu untuk langsung menancapkan <em>flashdisk</em> dan melakukan *copy-paste*. Lakukan rutinitas pembersihan awal ini terlebih dahulu:</p>
+            <p>Setelah Debian Stable selesai diinstal dan kamu berhasil <em>login</em> ke layar utama atau terminal, tahan keinginanmu untuk langsung menancapkan <em>flashdisk</em> dan melakukan <em>copy-paste</em>. Lakukan rutinitas pembersihan awal ini terlebih dahulu:</p>
             <ul>
                 <li><strong>Mutakhirkan sistem:</strong> Pastikan repositori lokal memiliki indeks terbaru.
 <pre><code><span class="keyword">sudo apt</span> update &amp;&amp; <span class="keyword">sudo apt</span> full-upgrade -y</code></pre>
                 </li>
-                <li><strong>Pasang perkakas pemindah data:</strong> Jika utilitas <em>rsync</em> belum ada secara *default*, instal sekarang juga. Ini adalah alat salah satu yang krusial dalam misi kita. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
+                <li><strong>Pasang perkakas pemindah data:</strong> Jika utilitas <em>rsync</em> belum ada secara <em>default</em>, instal sekarang juga. Ini adalah alat salah satu yang krusial dalam misi kita. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
 <pre><code><span class="keyword">sudo apt</span> install rsync -y</code></pre>
                 </li>
-                <li><strong>Hubungkan penyimpanan cadangan:</strong> Pasang <em>drive backup</em> kamu (USB/HDD Eksternal) lalu periksa dan catat lokasi *mount*-nya. Sebagai contoh di tutorial ini, kita asumsikan lokasinya berada di <code>/media/namauser/Backup</code>.</li>
+                <li><strong>Hubungkan penyimpanan cadangan:</strong> Pasang <em>drive backup</em> kamu (USB/HDD Eksternal) lalu periksa dan catat lokasi <em>mount</em>-nya. Sebagai contoh di tutorial ini, kita asumsikan lokasinya berada di <code>/media/namauser/Backup</code>.</li>
             </ul>
             <h2>Langkah 1: Mengembalikan Daftar Aplikasi <em>(Package)</em></h2>
             <p>Alih-alih menginstal aplikasi satu per satu yang melelahkan, kita akan menyuruh sistem membaca daftar paket <em>(package)</em> yang pernah kamu ekspor sebelumnya, dan membiarkan <em>apt</em> bekerja mengunduhnya secara massal.</p>
@@ -236,7 +246,7 @@
 <span class="keyword">rsync</span> -aP /media/namauser/Backup/Downloads/   /home/namauser/Downloads/
 <span class="keyword">rsync</span> -aP /media/namauser/Backup/Desktop/     /home/namauser/Desktop/</code></pre>
             <h2>Langkah 3: Menghidupkan Kembali Konfigurasi <em>(Dotfiles)</em></h2>
-            <p>Pengaturan <em>keyboard shortcut*, tema terminal, hingga riwayat *bash</em> tersimpan dalam folder tersembunyi *(dotfiles)*. Ini yang membuat sistem operasi terasa seperti "rumah" milikmu.</p>
+            <p>Pengaturan <em>keyboard shortcut*, tema terminal, hingga riwayat *bash</em> tersimpan dalam folder tersembunyi <em>(dotfiles)</em>. Ini yang membuat sistem operasi terasa seperti "rumah" milikmu.</p>
 <pre><code><span class="comment"># Mengembalikan pengaturan mayoritas aplikasi desktop</span>
 <span class="keyword">rsync</span> -aP /media/namauser/Backup/.config/     /home/namauser/.config/
 <span class="comment"># Memulihkan kunci gembok server SSH milikmu</span>
@@ -276,7 +286,7 @@
     htop \
     neofetch</code></pre>
             <h2>Langkah 7: Verifikasi dan Nyalakan Ulang</h2>
-            <p>Semua blok pondasi sudah berdiri. Eksekusi perintah <code>sudo reboot</code> untuk memuat ulang sistem *(reboot)*. Setelah layar kembali hidup, lakukan pengecekan ringan:</p>
+            <p>Semua blok pondasi sudah berdiri. Eksekusi perintah <code>sudo reboot</code> untuk memuat ulang sistem <em>(reboot)</em>. Setelah layar kembali hidup, lakukan pengecekan ringan:</p>
 <pre><code><span class="comment"># Pastikan dokumen tidak gaib</span>
 <span class="keyword">ls</span> ~/Documents ~/Pictures
 <span class="comment"># Verifikasi aplikasi inti apakah sudah terpasang</span>
@@ -284,7 +294,7 @@
 <span class="comment"># Cek status identitas OS</span>
 <span class="keyword">cat</span> /etc/debian_version</code></pre>
             <h2>Daftar Periksa <em>(Checklist)</em> Keberhasilan Restore</h2>
-            <p>Pastikan poin-poin di bawah ini sudah terpenuhi sebelum kamu menghapus data di perangkat *backup*:</p>
+            <p>Pastikan poin-poin di bawah ini sudah terpenuhi sebelum kamu menghapus data di perangkat <em>backup</em>:</p>
             <table>
                 <thead>
                     <tr>
@@ -339,7 +349,7 @@
             <h3>Tips Tambahan Sebagai Penutup</h3>
             <ul>
                 <li><strong>Tahan Diri:</strong> Jangan pernah memformat atau menghapus folder di diska cadanganmu hingga kamu memakai OS baru ini selama minimal 3-4 hari. Kerap kali kita baru sadar ada berkas tertinggal di hari ketiga!</li>
-                <li>Jika saat menjalankan skrip atau membuka folder kamu ditolak dengan notifikasi *Access Denied*, itu berarti eksekusi <code>chown</code> kamu belum meresap dengan baik ke semua sub-folder. Ulangi peritah perbaikan *permission*.</li>
+                <li>Jika saat menjalankan skrip atau membuka folder kamu ditolak dengan notifikasi <em>Access Denied</em>, itu berarti eksekusi <code>chown</code> kamu belum meresap dengan baik ke semua sub-folder. Ulangi peritah perbaikan <em>permission</em>.</li>
                 <li>Jika di masa mendatang kamu ingin proses pencadangan dan pemulihan ini berjalan secara grafis dan instan, pertimbangkan untuk menginstal perangkat lunak <em>snapshot</em> seperti <strong>Timeshift</strong> atau utilitas pencadangan bawaan seperti <strong>Deja Dup</strong>.</li>
             </ul>
         </article>
@@ -354,7 +364,5 @@
         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

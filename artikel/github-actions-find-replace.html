@@ -1,27 +1,40 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cara Ganti Teks Massal dapat via GitHub Actions - Layar Kosong</title>
+    <meta name="description" content="Pernah kelelahan mengedit puluhan file sekaligus? Temukan cara praktis membuat workflow pencarian dan penggantian teks otomatis dengan GitHub Actions.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/github-actions-find-replace">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="GitHub Actions, Find and Replace, Workflow Otomatis, Ganti Teks Massal, CI/CD, Refactor Kode">
+    <meta name="promphint" content="Bagaimana cara mengganti teks massal di GitHub? | Gunakan fitur workflow_dispatch di GitHub Actions yang dikombinasikan dengan perintah bash find dan perl untuk mengganti teks secara otomatis.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#00b0ed">
-    <link rel="canonical" href="https://dalam.web.id/artikel/github-actions-find-replace">
-    <meta property="og:url" content="https://dalam.web.id/artikel/github-actions-find-replace">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/github-actions-find-replace">
-    <meta property="twitter:domain" content="https://dalam.web.id">
-    <meta property="og:title" content="Cara Ganti Teks Massal dapat via GitHub Actions ">
-    <meta name="twitter:title" content="Cara Ganti Teks Massal dapat via GitHub Actions ">
-    <meta name="description" content="Pernah kelelahan mengedit puluhan file sekaligus? Temukan cara praktis membuat workflow pencarian dan penggantian teks otomatis dengan GitHub Actions.">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/github-actions-find-replace">
+    <meta property="og:title" content="Cara Ganti Teks Massal dapat via GitHub Actions">
     <meta property="og:description" content="untuk developer: manfaatkan fitur rahasia workflow GitHub Actions sebagai alat find and replace massal di seluruh repositori proyekmu.">
-    <meta name="twitter:description" content="Tingkatkan produktivitas coding dengan otomatisasi. Pelajari langkah-langkah membuat skrip cari dan ganti teks massal menggunakan fitur GitHub Actions.">
+    <meta property="og:updated_time" content="2026-06-25T13:51:53.520Z">
     <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH0UNMu-OgfI1BJy3p3d-k9J4WdQWtTvwVhtc85weigWI2mr2N9L4HuXK8sBoA9UkVxnbFXd8UhJ7-KGMOykTSTgQ0Li9dBUxi2MmQ6Wcmc8sYsPEOHspEsjQfoWKqLa6fGEUBFcZ0K2NqXI0Mm87ppuAE_AGRCxpTAFOc8FGtUx2ukq3Wd1Sf95WsQBc/s1600/github-actions-find-replace.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH0UNMu-OgfI1BJy3p3d-k9J4WdQWtTvwVhtc85weigWI2mr2N9L4HuXK8sBoA9UkVxnbFXd8UhJ7-KGMOykTSTgQ0Li9dBUxi2MmQ6Wcmc8sYsPEOHspEsjQfoWKqLa6fGEUBFcZ0K2NqXI0Mm87ppuAE_AGRCxpTAFOc8FGtUx2ukq3Wd1Sf95WsQBc/s1600/github-actions-find-replace.webp">
-    <meta property="og:image:alt" content="Cara Ganti Teks Massal dapat via GitHub Actions ">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="633">
+    <meta property="og:image:url" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH0UNMu-OgfI1BJy3p3d-k9J4WdQWtTvwVhtc85weigWI2mr2N9L4HuXK8sBoA9UkVxnbFXd8UhJ7-KGMOykTSTgQ0Li9dBUxi2MmQ6Wcmc8sYsPEOHspEsjQfoWKqLa6fGEUBFcZ0K2NqXI0Mm87ppuAE_AGRCxpTAFOc8FGtUx2ukq3Wd1Sf95WsQBc/s1600/github-actions-find-replace.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH0UNMu-OgfI1BJy3p3d-k9J4WdQWtTvwVhtc85weigWI2mr2N9L4HuXK8sBoA9UkVxnbFXd8UhJ7-KGMOykTSTgQ0Li9dBUxi2MmQ6Wcmc8sYsPEOHspEsjQfoWKqLa6fGEUBFcZ0K2NqXI0Mm87ppuAE_AGRCxpTAFOc8FGtUx2ukq3Wd1Sf95WsQBc/s1600/github-actions-find-replace.webp">
+    <meta property="og:image:alt" content="Cara Ganti Teks Massal dapat via GitHub Actions">
+    <meta property="og:image:width" content="637">
+    <meta property="og:image:height" content="235">
     <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/github-actions-find-replace">
+    <meta name="twitter:title" content="Cara Ganti Teks Massal dapat via GitHub Actions">
+    <meta name="twitter:description" content="Tingkatkan produktivitas coding dengan otomatisasi. Pelajari langkah-langkah membuat skrip cari dan ganti teks massal menggunakan fitur GitHub Actions.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH0UNMu-OgfI1BJy3p3d-k9J4WdQWtTvwVhtc85weigWI2mr2N9L4HuXK8sBoA9UkVxnbFXd8UhJ7-KGMOykTSTgQ0Li9dBUxi2MmQ6Wcmc8sYsPEOHspEsjQfoWKqLa6fGEUBFcZ0K2NqXI0Mm87ppuAE_AGRCxpTAFOc8FGtUx2ukq3Wd1Sf95WsQBc/s1600/github-actions-find-replace.webp">
+    <meta name="twitter:image:alt" content="Cara Ganti Teks Massal dapat via GitHub Actions">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
@@ -38,17 +51,14 @@
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Pemrograman">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Otomatisasi">
     <meta property="article:published_time" content="2026-06-14T05:51:55.487Z">
-    <meta property="article:modified_time" content="2026-06-14T05:51:55.487Z">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cara Ganti Teks Massal dapat via GitHub Actions  - Layar Kosong</title>
-  <meta name="news_keywords" content="GitHub Actions, Find and Replace, Workflow Otomatis, Ganti Teks Massal, CI/CD, Refactor Kode">
-  <meta name="promphint" content="Bagaimana cara mengganti teks massal di GitHub? | Gunakan fitur workflow_dispatch di GitHub Actions yang dikombinasikan dengan perintah bash find dan perl untuk mengganti teks secara otomatis.">
+    <meta property="article:modified_time" content="2026-06-25T13:51:53.520Z">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
     /* Tema Terang (Default) */
@@ -330,7 +340,5 @@ jobs:
     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </b></b></b></div><b><b><b>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </b></b></b></body></html>

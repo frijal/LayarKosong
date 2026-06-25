@@ -1,27 +1,40 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Masalah Patching Jaringan Terbatas pada Update Secure Boot - Layar Kosong</title>
+    <meta name="description" content="tentang masalah patching jaringan terbatas (restricted networks) pada update Secure Boot Windows dan mengapa ini berprioritas rendah.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/masalah-patching-jaringan-terbatas-secure-boot">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Patching Issue, Jaringan Terbatas, Restricted Networks, Secure Boot, Windows, Admin IT, Air-Gapped">
+    <meta name="promphint" content="Apa yang dimaksud masalah patching pada jaringan terbatas untuk update Secure Boot? Ini adalah kendala teknis distribusi update pada komputer korporat yang tidak terhubung ke internet (Air-Gapped), sehingga admin IT kesulitan memperbaruinya secara manual.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#00b0ed">
-    <link rel="canonical" href="https://dalam.web.id/artikel/masalah-patching-jaringan-terbatas-secure-boot">
-    <meta property="og:url" content="https://dalam.web.id/artikel/masalah-patching-jaringan-terbatas-secure-boot">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/masalah-patching-jaringan-terbatas-secure-boot">
-    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/masalah-patching-jaringan-terbatas-secure-boot">
     <meta property="og:title" content="Masalah Patching Jaringan Terbatas pada Update Secure Boot">
-    <meta name="twitter:title" content="Masalah Patching Jaringan Terbatas pada Update Secure Boot">
-    <meta name="description" content="tentang masalah patching jaringan terbatas (restricted networks) pada update Secure Boot Windows dan mengapa ini berprioritas rendah.">
     <meta property="og:description" content="Bingung dengan istilah 'masalah patching di jaringan terbatas' dari Microsoft? Artikel ini memtelusuri alasannya secara santai dan mengapa PC rumahan Anda tetap aman.">
-    <meta name="twitter:description" content="Apa itu masalah patching jaringan terbatas pada update Secure Boot Windows? Ketahui penyebabnya yang ternyata cuma bikin pusing admin IT korporat.">
+    <meta property="og:updated_time" content="2026-06-25T13:51:57.104Z">
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/9515708c4d1522bd.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/9515708c4d1522bd.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/9515708c4d1522bd.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/9515708c4d1522bd.webp">
     <meta property="og:image:alt" content="Masalah Patching Jaringan Terbatas pada Update Secure Boot">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="633">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="563">
     <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/masalah-patching-jaringan-terbatas-secure-boot">
+    <meta name="twitter:title" content="Masalah Patching Jaringan Terbatas pada Update Secure Boot">
+    <meta name="twitter:description" content="Apa itu masalah patching jaringan terbatas pada update Secure Boot Windows? Ketahui penyebabnya yang ternyata cuma bikin pusing admin IT korporat.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/9515708c4d1522bd.webp">
+    <meta name="twitter:image:alt" content="Masalah Patching Jaringan Terbatas pada Update Secure Boot">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
@@ -38,26 +51,22 @@
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Windows 11">
     <meta property="article:tag" content="Secure Boot">
     <meta property="article:tag" content="Infrastruktur IT">
     <meta property="article:tag" content="Keamanan Siber">
     <meta property="article:published_time" content="2026-05-30T02:30:00.000Z">
-    <meta property="article:modified_time" content="2026-05-30T03:10:14.612Z">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masalah Patching Jaringan Terbatas pada Update Secure Boot - Layar Kosong</title>
+    <meta property="article:modified_time" content="2026-06-25T13:51:57.104Z">
     <!-- SEO & Metadata Standar -->
-    <meta name="news_keywords" content="Patching Issue, Jaringan Terbatas, Restricted Networks, Secure Boot, Windows, Admin IT, Air-Gapped">
     <meta name="keywords" content="Windows, Secure Boot, Jaringan Terbatas, Update Offline, WSUS, Keamanan Siber">
     <!-- Open Graph / Facebook -->
     <!-- Twitter -->
     <!-- Article Meta (E-E-A-T) -->
     <!-- Custom Meta Promphint -->
-    <meta name="promphint" content="Apa yang dimaksud masalah patching pada jaringan terbatas untuk update Secure Boot? Ini adalah kendala teknis distribusi update pada komputer korporat yang tidak terhubung ke internet (Air-Gapped), sehingga admin IT kesulitan memperbaruinya secara manual.">
     <!-- Optimasi LCP (Largest Contentful Paint) -->
-    
     <!-- CSS Kritis Inline (Mobile First, No Layout Shift, No Pseudo-Elements) -->
     <style>
         :root {

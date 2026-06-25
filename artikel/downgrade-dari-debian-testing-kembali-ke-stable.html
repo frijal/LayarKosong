@@ -1,27 +1,40 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Downgrade dari Debian Testing Kembali ke Stable - Layar Kosong</title>
+    <meta name="description" content="Ingin melakukan downgrade dari Debian Testing (Trixie) kembali ke Stable (Bookworm)? Ketahui risiko, kendala, dan panduan lengkap cara amannya di sini.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/downgrade-dari-debian-testing-kembali-ke-stable">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Debian, Downgrade Debian, Debian Testing, Debian Stable, Linux, Server, APT, Sysadmin">
+    <meta name="promphint" content="Bagaimana cara downgrade Debian Testing ke Stable? Proses ini tidak direkomendasikan karena rawan konflik dependensi, instalasi ulang Debian Stable jauh lebih disarankan.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#00b0ed">
-    <link rel="canonical" href="https://dalam.web.id/artikel/downgrade-dari-debian-testing-kembali-ke-stable">
-    <meta property="og:url" content="https://dalam.web.id/artikel/downgrade-dari-debian-testing-kembali-ke-stable">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/downgrade-dari-debian-testing-kembali-ke-stable">
-    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/downgrade-dari-debian-testing-kembali-ke-stable">
     <meta property="og:title" content="Downgrade dari Debian Testing Kembali ke Stable">
-    <meta name="twitter:title" content="Downgrade dari Debian Testing Kembali ke Stable">
-    <meta name="description" content="Ingin melakukan downgrade dari Debian Testing (Trixie) kembali ke Stable (Bookworm)? Ketahui risiko, kendala, dan panduan lengkap cara amannya di sini.">
     <meta property="og:description" content="Terlanjur upgrade ke Debian Testing dan sistem jadi tidak stabil? Simak panduan teknis cara downgrade ke Debian Stable beserta peringatan risikonya.">
-    <meta name="twitter:description" content="Tutorial cara migrasi mundur (downgrade) dari Debian Testing ke Stable. Proses ini penuh risiko, pastikan kamu membaca panduan ini sebelum mengeksekusi!">
+    <meta property="og:updated_time" content="2026-06-25T13:51:57.581Z">
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp">
     <meta property="og:image:alt" content="Downgrade dari Debian Testing Kembali ke Stable">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="633">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="563">
     <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/downgrade-dari-debian-testing-kembali-ke-stable">
+    <meta name="twitter:title" content="Downgrade dari Debian Testing Kembali ke Stable">
+    <meta name="twitter:description" content="Tutorial cara migrasi mundur (downgrade) dari Debian Testing ke Stable. Proses ini penuh risiko, pastikan kamu membaca panduan ini sebelum mengeksekusi!">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp">
+    <meta name="twitter:image:alt" content="Downgrade dari Debian Testing Kembali ke Stable">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
@@ -38,17 +51,14 @@
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Debian">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="SysAdmin">
     <meta property="article:published_time" content="2026-06-07T00:35:26.906Z">
-    <meta property="article:modified_time" content="2026-06-07T00:35:26.906Z">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Downgrade dari Debian Testing Kembali ke Stable - Layar Kosong</title>
-    <meta name="news_keywords" content="Debian, Downgrade Debian, Debian Testing, Debian Stable, Linux, Server, APT, Sysadmin">
-    <meta name="promphint" content="Bagaimana cara downgrade Debian Testing ke Stable? Proses ini tidak direkomendasikan karena rawan konflik dependensi, instalasi ulang Debian Stable jauh lebih disarankan.">
+    <meta property="article:modified_time" content="2026-06-25T13:51:57.581Z">
     <style>
         /* Mobile-first variables & Tema Gelap/Terang via prefers-color-scheme */
         :root {
@@ -204,7 +214,7 @@
             <p>Namun, bersiaplah menghadapi kenyataan pahit: mengembalikan sistem dari Testing ke Stable itu ibarat memasukkan kembali pasta gigi yang sudah dipencet ke dalam tubenya. Sangat sulit, berantakan, dan butuh kesabaran ekstra. Yuk, kita bedah tuntas apa saja yang sebenarnya terjadi dan bagaimana cara mengeksekusinya.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/f2beecdb55efdc85.webp" srcset="https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK3Vf2asAA8XZD?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="featured-image" alt="Ilustrasi layar terminal linux saat melakukan proses migrasi repositori">
             <blockquote>
-                <p><i class="fa-solid fa-skull-crossbones"></i> <strong>Peringatan Penting:</strong> Migrasi dari Testing kembali ke Stable <strong>jauh lebih sulit dan berisiko</strong> dibandingkan pembaruan biasa. Secara arsitektur, Debian <strong>tidak mendukung proses downgrade</strong> secara resmi. Karena paket-paket di Testing versinya lebih tinggi, memaksa menurunkannya kerap kali menyebabkan konflik dependensi, paket korup, hingga risiko terburuk: <em>kernel panic</em> dan gagal *booting*.</p>
+                <p><i class="fa-solid fa-skull-crossbones"></i> <strong>Peringatan Penting:</strong> Migrasi dari Testing kembali ke Stable <strong>jauh lebih sulit dan berisiko</strong> dibandingkan pembaruan biasa. Secara arsitektur, Debian <strong>tidak mendukung proses downgrade</strong> secara resmi. Karena paket-paket di Testing versinya lebih tinggi, memaksa menurunkannya kerap kali menyebabkan konflik dependensi, paket korup, hingga risiko terburuk: <em>kernel panic</em> dan gagal <em>booting</em>.</p>
             </blockquote>
             <h2>Metode 1: Cara Terbaik &amp; Paling Aman (Rekomendasi Mutlak)</h2>
             <p>Sejujurnya, jika ada yang bertanya bagaimana cara paling aman untuk kembali? Jawabannya adalah <strong>jangan di-downgrade</strong>. <strong>Lakukan instalasi ulang Debian Stable</strong> (Bookworm) dari nol. Mengapa? Karena ini adalah satu-satunya jalan membersihkan sistem dari sisa-sisa <em>library</em> versi baru yang keras kepala.</p>
@@ -244,7 +254,7 @@ sudo aptitude full-upgrade</code></pre>
 <pre><code>sudo apt autoremove --purge
 sudo apt autoclean</code></pre>
             <h3>6. Reboot dan Berdoa</h3>
-            <p>Momen penentuan. Lakukan *restart*:</p>
+            <p>Momen penentuan. Lakukan <em>restart</em>:</p>
 <pre><code>sudo reboot</code></pre>
             <p>Jika antarmuka grafis atau <em>prompt login</em> berhasil muncul, segera cek versi sistem operasimu dengan mengeksekusi <code>cat /etc/debian_version</code>. Jika tertera angka versi rilis Stable (misal 12.x), selamat, kamu lolos dari maut! 🎉</p>
             <h2>Masalah Klasik yang Sering Terjadi Pasca-Downgrade</h2>
@@ -276,7 +286,7 @@ sudo apt autoclean</code></pre>
                     <tr>
                         <td>Lingkungan desktop <em>(GUI)</em> hancur</td>
                         <td>Berkas konfigurasi dari versi baru tidak bisa dibaca oleh perangkat lunak versi lama.</td>
-                        <td>Masuk via sesi TTY (Ctrl+Alt+F3), hapus bersih desktop (GNOME/KDE), lalu *reinstall*.</td>
+                        <td>Masuk via sesi TTY (Ctrl+Alt+F3), hapus bersih desktop (GNOME/KDE), lalu <em>reinstall</em>.</td>
                     </tr>
                 </tbody>
             </table>
@@ -322,7 +332,5 @@ sudo apt autoclean</code></pre>
         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>

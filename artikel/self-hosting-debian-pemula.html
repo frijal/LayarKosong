@@ -1,27 +1,40 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PC Jadul Jadi Server Pribadi - Layar Kosong</title>
+    <meta name="description" content="Ubah PC jadul jadi server pribadi berbasis Debian untuk menyimpan file, password, dan layanan rumahan tanpa bergantung penuh pada cloud berbayar.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/self-hosting-debian-pemula">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="self-hosting, server pribadi, Debian Linux, Docker, Nextcloud, Vaultwarden, homelab, Cloudflare Tunnel, Tailscale">
+    <meta name="promphint" content="Apa manfaat self-hosting di rumah? | Data lebih mandiri, biaya lebih terkendali, dan skill server ikut naik.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#00b0ed">
-    <link rel="canonical" href="https://dalam.web.id/artikel/self-hosting-debian-pemula">
-    <meta property="og:url" content="https://dalam.web.id/artikel/self-hosting-debian-pemula">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/self-hosting-debian-pemula">
-    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/self-hosting-debian-pemula">
     <meta property="og:title" content="PC Jadul Jadi Server Pribadi">
-    <meta name="twitter:title" content="PC Jadul Jadi Server Pribadi">
-    <meta name="description" content="Ubah PC jadul jadi server pribadi berbasis Debian untuk menyimpan file, password, dan layanan rumahan tanpa bergantung penuh pada cloud berbayar.">
     <meta property="og:description" content="self-hosting: manfaatkan laptop bekas sebagai server rumahan untuk Nextcloud, Vaultwarden, Pi-hole, dan homelab pribadi.">
-    <meta name="twitter:description" content="Punya laptop lama menganggur? Jadikan server pribadi ringan dengan Debian, Docker, Cloudflare Tunnel, Tailscale, dan aplikasi self-hosted.">
+    <meta property="og:updated_time" content="2026-06-25T13:51:59.379Z">
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzUlsMaYAEXVZp.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzUlsMaYAEXVZp.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzUlsMaYAEXVZp.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzUlsMaYAEXVZp.webp">
     <meta property="og:image:alt" content="PC Jadul Jadi Server Pribadi">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="633">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="667">
     <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/self-hosting-debian-pemula">
+    <meta name="twitter:title" content="PC Jadul Jadi Server Pribadi">
+    <meta name="twitter:description" content="Punya laptop lama menganggur? Jadikan server pribadi ringan dengan Debian, Docker, Cloudflare Tunnel, Tailscale, dan aplikasi self-hosted.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzUlsMaYAEXVZp.webp">
+    <meta name="twitter:image:alt" content="PC Jadul Jadi Server Pribadi">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
@@ -38,6 +51,8 @@
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Self-Hosting">
     <meta property="article:tag" content="Debian Linux">
@@ -45,12 +60,7 @@
     <meta property="article:tag" content="Server Rumahan">
     <meta property="article:tag" content="Privasi Digital">
     <meta property="article:published_time" content="2026-06-23T03:05:46.000Z">
-    <meta property="article:modified_time" content="2026-06-23T03:05:46.000Z">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PC Jadul Jadi Server Pribadi - Layar Kosong</title>
-  <meta name="news_keywords" content="self-hosting, server pribadi, Debian Linux, Docker, Nextcloud, Vaultwarden, homelab, Cloudflare Tunnel, Tailscale">
-  <meta name="promphint" content="Apa manfaat self-hosting di rumah? | Data lebih mandiri, biaya lebih terkendali, dan skill server ikut naik.">
+    <meta property="article:modified_time" content="2026-06-25T13:51:59.379Z">
   <style>
     :root {
       color-scheme: light;

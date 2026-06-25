@@ -1,27 +1,40 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Perbaikan Otomatis GRUB Bootloader Pakai Skrip Bash - Layar Kosong</title>
+    <meta name="description" content="Komputer Linux kamu tidak bisa booting akibat GRUB rusak? Tenang, gunakan skrip bash otomatis ini untuk melakukan chroot dan reinstall dengan sangat mudah.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/fix-grub-auto">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Perbaikan GRUB, Bootloader Linux, Skrip Bash, Live USB Ubuntu, Debian, Chroot, Grub-install">
+    <meta name="promphint" content="Bagaimana cara memperbaiki GRUB secara otomatis? | Gunakan skrip bash fix-grub.sh lewat Live USB untuk proses mount, chroot, dan grub-install secara instan.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#00b0ed">
-    <link rel="canonical" href="https://dalam.web.id/artikel/fix-grub-auto">
-    <meta property="og:url" content="https://dalam.web.id/artikel/fix-grub-auto">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/fix-grub-auto">
-    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/fix-grub-auto">
     <meta property="og:title" content="Perbaikan Otomatis GRUB Bootloader Pakai Skrip Bash">
-    <meta name="twitter:title" content="Perbaikan Otomatis GRUB Bootloader Pakai Skrip Bash">
-    <meta name="description" content="Komputer Linux kamu tidak bisa booting akibat GRUB rusak? Tenang, gunakan skrip bash otomatis ini untuk melakukan chroot dan reinstall dengan sangat mudah.">
     <meta property="og:description" content="langkah praktis memperbaiki GRUB bootloader Linux yang error menggunakan skrip bash sederhana. Solusi ampuh bagi pengguna Debian dan Ubuntu.">
-    <meta name="twitter:description" content="Atasi masalah boot Linux dengan cepat tanpa pusing. Skrip chroot dan grub-install otomatis ini siap menyelamatkan OS Debian atau Ubuntu kamu dari kematian.">
+    <meta property="og:updated_time" content="2026-06-25T13:51:54.234Z">
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/117157d1b4a0712b.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/117157d1b4a0712b.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/117157d1b4a0712b.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/117157d1b4a0712b.webp">
     <meta property="og:image:alt" content="Perbaikan Otomatis GRUB Bootloader Pakai Skrip Bash">
     <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="633">
+    <meta property="og:image:height" content="576">
     <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/fix-grub-auto">
+    <meta name="twitter:title" content="Perbaikan Otomatis GRUB Bootloader Pakai Skrip Bash">
+    <meta name="twitter:description" content="Atasi masalah boot Linux dengan cepat tanpa pusing. Skrip chroot dan grub-install otomatis ini siap menyelamatkan OS Debian atau Ubuntu kamu dari kematian.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/117157d1b4a0712b.webp">
+    <meta name="twitter:image:alt" content="Perbaikan Otomatis GRUB Bootloader Pakai Skrip Bash">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
@@ -38,17 +51,14 @@
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Bash Script">
     <meta property="article:published_time" content="2026-06-14T08:01:30.859Z">
-    <meta property="article:modified_time" content="2026-06-14T08:01:30.859Z">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perbaikan Otomatis GRUB Bootloader Pakai Skrip Bash - Layar Kosong</title>
-  <meta name="news_keywords" content="Perbaikan GRUB, Bootloader Linux, Skrip Bash, Live USB Ubuntu, Debian, Chroot, Grub-install">
-  <meta name="promphint" content="Bagaimana cara memperbaiki GRUB secara otomatis? | Gunakan skrip bash fix-grub.sh lewat Live USB untuk proses mount, chroot, dan grub-install secara instan.">
+    <meta property="article:modified_time" content="2026-06-25T13:51:54.234Z">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
     /* Variabel Tema Terang & Gelap */
@@ -246,7 +256,7 @@
           <img src="https://dalam.web.id/img/pbs.twimg.com/117157d1b4a0712b.webp" alt="Tangkapan layar terminal Linux yang sedang menjalankan proses eksekusi skrip perbaikan GRUB secara otomatis" class="hero-img" fetchpriority="high">
         </figure>
         <p class="img-caption">Proses terminal saat skrip perbaikan GRUB otomatis sedang mengambil alih sistem untuk melakukan perbaikan.</p>
-        <p>Akar masalah ini bisa bermacam-macam. Kadang-kadang pembaruan sistem operasi raksasa di sebelah yang secara tidak sopan menimpa partisi EFI, atau mungkin ada pembaruan <em>kernel</em> Linux yang gagal tuntas. Apa pun alasannya, ketika <em>bootloader</em> mogok kerja, sistem Debian kesayanganmu tidak akan pernah bisa <em>booting</em> memasuki layar *desktop*.</p>
+        <p>Akar masalah ini bisa bermacam-macam. Kadang-kadang pembaruan sistem operasi raksasa di sebelah yang secara tidak sopan menimpa partisi EFI, atau mungkin ada pembaruan <em>kernel</em> Linux yang gagal tuntas. Apa pun alasannya, ketika <em>bootloader</em> mogok kerja, sistem Debian kesayanganmu tidak akan pernah bisa <em>booting</em> memasuki layar <em>desktop</em>.</p>
         <p>Bagi teknisi atau pengguna Linux berpengalaman, solusi standarnya adalah masuk melalui <em>Live USB*, melakukan rentetan proses *mount*, lalu masuk ke dalam sistem dengan mode *chroot*, dan akhirnya menjalankan *reinstall</em> GRUB. Kedengarannya heroik, namun mengetikkan sepuluh hingga lima belas baris perintah secara manual itu sungguh melelahkan dan sangat rentan terjadi <em>typo</em>. Oleh karena itu, kita akan menyederhanakannya menjadi satu langkah praktis dengan skrip otomatis.</p>
         <h2><i class="fa-solid fa-code icon"></i> Skrip Otomatis (<code>fix-grub.sh</code>)</h2>
         <p>Di bawah ini adalah sebuah mahakarya kecil—skrip Bash yang akan merangkum semua penderitaan proses <strong>mount → chroot → reinstall GRUB</strong> menjadi eksekusi dalam sekali napas. Skrip ini secara otomatis memetakan partisi virtual (seperti <code>/proc</code>, <code>/sys</code>, dan <code>/dev</code>) ke dalam partisi root sistemmu yang rusak, lalu memerintahkan GRUB untuk menanamkan dirinya kembali.</p>
@@ -296,7 +306,5 @@ echo "✅ GRUB berhasil diperbaiki. Silakan reboot komputer Anda."
     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>
