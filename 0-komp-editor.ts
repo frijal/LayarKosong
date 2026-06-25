@@ -159,7 +159,7 @@ async function scanFileHTML() {
 
         komponenTerdata = data.components;
         if (komponenTerdata.length === 0) {
-            listContainer.innerHTML = '<p style="color:#888; padding:15px; text-align:center;">Tidak ditemukan komponen div[id], script[defer], atau link[href] di file ini.</p>';
+            listContainer.innerHTML = '<p style="color:#888; padding:15px; text-align:center;">Semua aman! Tidak ditemukan satupun komponen target di dalam file ini.</p>';
             statusDiv.innerText = "Status: Scan selesai (Kosong).";
             return;
         }
@@ -289,6 +289,9 @@ Bun.serve({
     async fetch(request) {
         const url = new URL(request.url);
 
+        // ✨ INI DIA VARIABEL AJAIBNYA: Taruh semua target di sini agar mudah ditambah/dikurangi
+        const TARGET_SELECTOR = 'div[id], script[defer][src], link[href], a#layar-kosong-header, div.search-floating-container, section#related-marquee-section';
+
         // Halaman Utama UI Dashboard
         if (url.pathname === "/" && request.method === "GET") {
             return new Response(htmlTemplate, {
@@ -314,8 +317,8 @@ Bun.serve({
                 const $ = cheerio.load(htmlContent);
                 const components = [];
 
-                // Cari target: div ber-id, script defer ber-src, link ber-href
-                $('div[id], script[defer][src], link[href]').each((index, element) => {
+                // ✨ Panggil variabel TARGET_SELECTOR di sini
+                $(TARGET_SELECTOR).each((index, element) => {
                     components.push({
                         index: index,
                         tag: element.name,
@@ -343,8 +346,8 @@ Bun.serve({
                 const originalHtml = await fileTarget.text();
                 const $ = cheerio.load(originalHtml);
 
-                // Eksekusi pembersihan berdasarkan urutan index elemen terdaftar yang di-uncheck
-                $('div[id], script[defer][src], link[href]').each((index, element) => {
+                // ✨ Panggil variabel TARGET_SELECTOR yang sama persis di sini untuk menjaga urutan Index
+                $(TARGET_SELECTOR).each((index, element) => {
                     if (removeIndices.includes(index)) {
                         $(element).remove();
                     }
