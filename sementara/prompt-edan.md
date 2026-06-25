@@ -39,15 +39,11 @@ Output harus:
 
 1. Dimulai dari:
 
-```html
-<!DOCTYPE html>
-```
+`<!DOCTYPE html>`
 
 2. Diakhiri dengan:
 
-```html
-</html>
-```
+`</html>`
 
 3. Tidak boleh ada penjelasan, komentar pembuka, basa-basi, catatan tambahan, atau teks apa pun sebelum maupun sesudah blok kode.
 4. Kode harus berupa dokumen HTML lengkap yang mencakup:
@@ -129,7 +125,7 @@ Gunakan struktur artikel berikut:
 Gunakan aturan berikut untuk semua gambar:
 
 1. Gunakan semua URL gambar yang ada di dalam [OUTLINE].
-2. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini sebagai Hero Image:
+2. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini:
    `https://dalam.web.id/thumbnail.webp`
 3. Gambar pertama di artikel adalah elemen LCP.
 4. Gambar pertama WAJIB diletakkan setelah beberapa paragraf pembuka, bukan sebagai hero image raksasa di paling atas.
@@ -156,15 +152,11 @@ Gunakan aturan berikut untuk semua gambar:
 13. DILARANG menggunakan preload image dalam bentuk apa pun untuk gambar pertama, hero image, thumbnail, gambar Open Graph, gambar Twitter Card, gambar konten, maupun gambar dekoratif.
 14. DILARANG menambahkan tag seperti berikut di bagian mana pun:
 
-```html
-<link rel="preload" as="image" href="...">
-```
+`<link rel="preload" as="image" href="...">`
 
 15. DILARANG juga menggunakan variasi preload image lain seperti:
 
-```html
-<link rel="preload" as="image" href="..." imagesrcset="..." imagesizes="...">
-```
+`<link rel="preload" as="image" href="..." imagesrcset="..." imagesizes="...">`
 
 16. Jangan menggunakan `<link rel="preload">` untuk resource gambar apa pun, meskipun gambar tersebut dianggap sebagai elemen LCP.
 17. Optimasi gambar harus dilakukan langsung pada elemen `<img>` melalui atribut seperti `width`, `height`, `alt`, `fetchpriority`, `decoding`, dan `loading`, bukan melalui preload image di `<head>`.
@@ -184,9 +176,7 @@ Terapkan optimasi berikut:
 5. DILARANG menggunakan preload image untuk mengoptimalkan LCP.
 6. Jangan pernah menambahkan kode berikut atau variasinya:
 
-```html
-<link rel="preload" as="image" href="...">
-```
+`<link rel="preload" as="image" href="...">`
 
 7. Untuk gambar LCP, gunakan prioritas langsung di tag `<img>`, misalnya `fetchpriority="high"` dan `decoding="async"`.
 
@@ -227,11 +217,9 @@ Gunakan desain yang bersih, modern, ringan, dan nyaman dibaca.
 1. Gunakan CSS murni dengan variabel `:root`.
 2. Gunakan media query:
 
-```css
-@media (prefers-color-scheme: dark) {
+`@media (prefers-color-scheme: dark) {
   ...
-}
-```
+}`
 
 3. Jangan gunakan JavaScript untuk mengatur tema.
 4. Pastikan tampilan terang dan gelap sama-sama nyaman dibaca.
@@ -254,10 +242,8 @@ Gunakan desain yang bersih, modern, ringan, dan nyaman dibaca.
 
 Gunakan kontainer utama dengan CSS modern berikut:
 
-```css
-width: min(100%, 64rem);
-margin: 0 auto;
-```
+`width: min(100%, 64rem);
+margin: 0 auto;`
 
 Tambahkan padding responsif berbasis `rem` agar konten tidak menempel ke tepi layar pada perangkat mobile.
 
@@ -276,9 +262,7 @@ Tambahkan padding responsif berbasis `rem` agar konten tidak menempel ke tepi la
 5. Gunakan `line-height` yang lega dan nyaman.
 6. Jika menggunakan teks Arab, gunakan:
 
-```css
-font-family: "Noto Naskh Arabic", "Amiri", serif;
-```
+`font-family: "Noto Naskh Arabic", "Amiri", serif;`
 
 ---
 
@@ -304,14 +288,12 @@ Jika ada bagian `<h2>` yang memiliki pembahasan panjang, terapkan aturan berikut
 
 Contoh struktur yang benar:
 
-```html
-<details>
+`<details>
   <summary><h2>Judul Bagian Panjang</h2></summary>
   <p>Isi pembuka bagian.</p>
   <h3>Subbagian</h3>
   <p>Penjelasan lanjutan.</p>
-</details>
-```
+</details>`
 
 ---
 
@@ -319,9 +301,7 @@ Contoh struktur yang benar:
 
 Jika artikel memuat blok kode seperti:
 
-```html
-<pre><code>...</code></pre>
-```
+`<pre><code>...</code></pre>`
 
 maka gunakan `highlight.js` secara kondisional.
 
@@ -367,10 +347,8 @@ Di dalam `<head>`, sertakan metadata lengkap berikut:
 
 Wajib sertakan:
 
-```html
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-```
+`<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">`
 
 ### Title Tag
 
@@ -397,13 +375,11 @@ Aturannya:
 
 Sertakan minimal:
 
-```html
-<meta property="og:type" content="article">
+`<meta property="og:type" content="article">
 <meta property="og:title" content="">
 <meta property="og:description" content="">
 <meta property="og:url" content="">
-<meta property="og:image" content="">
-```
+<meta property="og:image" content="">`
 
 Aturan:
 
@@ -417,12 +393,10 @@ Aturan:
 
 Sertakan minimal:
 
-```html
-<meta name="twitter:card" content="summary_large_image">
+`<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="">
-```
+<meta name="twitter:image" content="">`
 
 Aturan:
 
@@ -435,18 +409,14 @@ Aturan:
 
 Wajib gunakan format:
 
-```html
-<link rel="canonical" href="https://dalam.web.id/artikel/{slug-judul-artikel}.html">
-```
+`<link rel="canonical" href="https://dalam.web.id/artikel/{slug-judul-artikel}.html">`
 
 ### News Keywords dan Article Tags
 
 Sertakan:
 
-```html
-<meta name="news_keywords" content="">
-<meta property="article:tag" content="">
-```
+`<meta name="news_keywords" content="">
+<meta property="article:tag" content="">`
 
 Gunakan keyword dan tag yang relevan dengan artikel, tidak berlebihan, dan tidak spam.
 
@@ -454,9 +424,7 @@ Gunakan keyword dan tag yang relevan dengan artikel, tidak berlebihan, dan tidak
 
 Tambahkan:
 
-```html
-<meta name="promphint" content="[PERTANYAAN SINGKAT RELEVAN] | [JAWABAN SINGKAT PADAT]">
-```
+`<meta name="promphint" content="[PERTANYAAN SINGKAT RELEVAN] | [JAWABAN SINGKAT PADAT]">`
 
 Isi `promphint` harus berupa pertanyaan singkat yang relevan dengan isi artikel, diikuti jawaban singkat dan padat.
 
@@ -486,9 +454,7 @@ Aturannya:
 
 Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
 
-```html
-<div id="related-articles-grid"></div><div id="response"></div>
-```
+`<div id="related-articles-grid"></div><div id="response"></div>`
 
 Kode tersebut harus berada di dalam konten artikel, sebelum `</article>`.
 
@@ -538,9 +504,7 @@ Sebelum memberikan jawaban final, pastikan:
 9. Gambar pertama diletakkan setelah beberapa paragraf pembuka.
 10. Elemen wajib berikut sudah ada tepat sebelum `</article>`:
 
-```html
-<div id="related-articles-grid"></div><div id="response"></div>
-```
+`<div id="related-articles-grid"></div><div id="response"></div>`
 
 11. Metadata SEO lengkap.
 12. Canonical benar.
@@ -559,15 +523,11 @@ Sebelum memberikan jawaban final, pastikan:
 
 Hasilkan **SATU blok kode utuh** yang langsung siap deploy, dimulai dari:
 
-```html
-<!DOCTYPE html>
-```
+`<!DOCTYPE html>`
 
 hingga:
 
-```html
-</html>
-```
+`</html>`
 
 Jangan berikan penjelasan atau basa-basi sebelum maupun sesudah blok kode.
 
