@@ -49,7 +49,7 @@ const LANGUAGE         = "id-ID";
 // Default untuk blog. Kalau mau generik, ganti menjadi "Article".
 const SCHEMA_ARTICLE_TYPE = "BlogPosting";
 
-const LOGO_URL    = "https://dalam.web.id/logo.png";
+const LOGO_URL    = "https://dalam.web.id/favicon.svg";
 const LOGO_WIDTH  = 1024;
 const LOGO_HEIGHT = 1024;
 
@@ -706,7 +706,8 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
         "contentUrl": LOGO_URL,
         "width": LOGO_WIDTH,
         "height": LOGO_HEIGHT,
-        "caption": meta.siteName
+        "caption": meta.siteName,
+        "representativeOfPage": true
       },
       "image": { "@id": logoId },
       "sameAs": orgSameAs
