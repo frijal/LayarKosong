@@ -273,9 +273,9 @@
             return i === 0 ? bytes + 'B' : (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
         }
 
-        // --- FITUR BARU: Mencari & Menyuntikkan Tanggal Terbaru ke Folder ---
+        // --- FIX: Logika Pencarian Tanggal Terbaru (Tanpa Menimpa Data File) ---
         function enrichFolderData() {
-            const memo = {}; // Cache untuk menghindari pengecekan berulang (meningkatkan performa)
+            const memo = {}; 
 
             function findLatestDate(pathKey) {
                 if (memo[pathKey]) return memo[pathKey];
@@ -288,16 +288,17 @@
 
                 let latest = '';
                 contents.forEach(item => {
+                    // Ambil d secara terpisah untuk evaluasi
                     let d = item.date;
                     
-                    // Jika item adalah folder, selami lebih dalam secara rekursif
                     if (item.type === 'dir') {
+                        // Kalau ini direktori, cari tanggalnya ke dalam
                         d = findLatestDate(item.path);
-                        // Injeksi tanggal terbaru yang didapat ke object folder tersebut
+                        // HANYA injeksi properti date jika dia berupa direktori
                         item.date = d; 
                     }
                     
-                    // Bandingkan string tanggal (Karena YYYY-MM-DD, string comparison berfungsi sempurna)
+                    // Evaluasi nilai d untuk mencari yang paling besar/terbaru
                     if (d && d !== '-' && d > latest) {
                         latest = d;
                     }
@@ -307,7 +308,6 @@
                 return memo[pathKey];
             }
 
-            // Jalankan pencarian untuk semua key folder di dalam masterData
             Object.keys(masterData).forEach(key => {
                 findLatestDate(key);
             });
@@ -322,7 +322,7 @@
                 
                 masterData = await res.json();
                 
-                // Menjalankan penyuntikan data tanggal ke folder
+                // Menjalankan penyuntikan data tanggal ke folder SAJA
                 enrichFolderData();
 
                 loadingText.style.display = 'none';
@@ -413,7 +413,7 @@
                         '-', // format
                         '-', // size
                         '-', // dimension
-                        item.date || '-', // Menampilkan tanggal terbaru hasil rekursi
+                        item.date || '-', // Tanggal rekap yang sekarang sudah dijamin benar
                         `<small style="color:var(--muted)">Direktori</small>`, 
                         `changeDir('${item.path}')`
                     ));
@@ -445,7 +445,7 @@
                         fmtStr, // format
                         formatSize(item.size), // size
                         dimStr, // dimension
-                        item.date, 
+                        item.date, // Tanggal asli dari JSON (sudah tidak tertimpa)
                         actionHtml, 
                         `openLightbox(${imgIndex})`
                     ));
