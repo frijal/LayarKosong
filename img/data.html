@@ -137,17 +137,15 @@
         }
         .btn-download:hover { background: var(--row-hover); border-color: var(--text); }
         
-        /* FIX: Informasi Tambahan kaki halaman (Address sebagai Back to Top) */
+        /* Informasi Tambahan kaki halaman (Address sebagai Back to Top) */
         address { 
             font-size: 0.95rem; 
-            cursor: pointer; /* Ubah cursor jadi pointer */
-            display: inline-block; /* Agar klik areanya pas di teks */
-            transition: opacity 0.2s ease-in-out; /* Animasi halus */
+            cursor: pointer; 
+            display: inline-block; 
+            transition: opacity 0.2s ease-in-out; 
         }
         
-        address:hover {
-            opacity: 0.6; /* Efek meredup saat di-hover, tanpa merubah styling teks */
-        }
+        address:hover { opacity: 0.6; }
 
         /* Lightbox (Tetap Hitam Pekat untuk Kontras Gambar) */
         #lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; user-select: none; }
@@ -237,34 +235,23 @@
         let currentSortKey = 'name';
         let currentSortAsc = true; 
 
-        // FIX: Fungsi untuk smooth scroll ke posisi paling atas
         function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // FIX: Fungsi untuk copy link ke clipboard dengan feedback visual
         async function copyToClipboard(event, path, btnElement) {
-            // Mencegah link pindah ke halaman "#" dan menghentikan efek klik ke elemen lain
             event.preventDefault();
             event.stopPropagation();
-
-            // Ubah relative path (misal: /img/file.webp) jadi absolute URL utuh
             const fullUrl = new URL(path, window.location.origin).href;
 
             try {
-                // Tembak langsung ke Clipboard API modern
                 await navigator.clipboard.writeText(fullUrl);
                 
-                // Efek Visual Singkat
                 const originalText = btnElement.innerText;
                 btnElement.innerText = 'Copied!';
-                btnElement.style.borderColor = '#00cc99'; // Kasih aksen hijau
+                btnElement.style.borderColor = '#00cc99'; 
                 btnElement.style.color = '#00cc99';
 
-                // Kembalikan tombol ke kondisi semula setelah 1.5 detik
                 setTimeout(() => {
                     btnElement.innerText = originalText;
                     btnElement.style.borderColor = '';
@@ -274,10 +261,7 @@
             } catch (err) {
                 console.error('Gagal copy link:', err);
                 btnElement.innerText = 'Gagal!';
-                
-                setTimeout(() => {
-                    btnElement.innerText = 'Copy';
-                }, 1500);
+                setTimeout(() => { btnElement.innerText = 'Copy'; }, 1500);
             }
         }
 
@@ -289,6 +273,46 @@
             return i === 0 ? bytes + 'B' : (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
         }
 
+        // --- FITUR BARU: Mencari & Menyuntikkan Tanggal Terbaru ke Folder ---
+        function enrichFolderData() {
+            const memo = {}; // Cache untuk menghindari pengecekan berulang (meningkatkan performa)
+
+            function findLatestDate(pathKey) {
+                if (memo[pathKey]) return memo[pathKey];
+                
+                const contents = masterData[pathKey];
+                if (!contents) {
+                    memo[pathKey] = '-';
+                    return '-';
+                }
+
+                let latest = '';
+                contents.forEach(item => {
+                    let d = item.date;
+                    
+                    // Jika item adalah folder, selami lebih dalam secara rekursif
+                    if (item.type === 'dir') {
+                        d = findLatestDate(item.path);
+                        // Injeksi tanggal terbaru yang didapat ke object folder tersebut
+                        item.date = d; 
+                    }
+                    
+                    // Bandingkan string tanggal (Karena YYYY-MM-DD, string comparison berfungsi sempurna)
+                    if (d && d !== '-' && d > latest) {
+                        latest = d;
+                    }
+                });
+                
+                memo[pathKey] = latest || '-';
+                return memo[pathKey];
+            }
+
+            // Jalankan pencarian untuk semua key folder di dalam masterData
+            Object.keys(masterData).forEach(key => {
+                findLatestDate(key);
+            });
+        }
+
         async function init() {
             const loadingText = document.getElementById('loading-text');
             const dirTable = document.getElementById('dir-table');
@@ -297,6 +321,10 @@
                 if (!res.ok) throw new Error(`Status: ${res.status}`);
                 
                 masterData = await res.json();
+                
+                // Menjalankan penyuntikan data tanggal ke folder
+                enrichFolderData();
+
                 loadingText.style.display = 'none';
                 dirTable.style.display = 'table';
                 
@@ -325,15 +353,12 @@
             });
         }
 
-        /* Fungsi ini memotong ekstensi dari string nama file */
         function formatDisplayName(name) {
             if (name.endsWith('/')) return name;
-
             const lastDot = name.lastIndexOf('.');
             if (lastDot > 0 && lastDot < name.length - 1) {
                 return name.substring(0, lastDot);
             }
-            
             return name;
         }
 
@@ -381,7 +406,17 @@
             items.forEach(item => {
                 if (item.type === 'dir') {
                     const countStr = item.totalFiles !== undefined ? `${item.totalFiles}` : '-';
-                    dirList.appendChild(createRow('📂', item.name + '/', countStr, '-', '-', '-', '-', `<small style="color:var(--muted)">Direktori</small>`, `changeDir('${item.path}')`));
+                    dirList.appendChild(createRow(
+                        '📂', 
+                        item.name + '/', 
+                        countStr, 
+                        '-', // format
+                        '-', // size
+                        '-', // dimension
+                        item.date || '-', // Menampilkan tanggal terbaru hasil rekursi
+                        `<small style="color:var(--muted)">Direktori</small>`, 
+                        `changeDir('${item.path}')`
+                    ));
                 } else {
                     const localPath = item.path; 
                     const localThumbPath = item.thumbPath ? item.thumbPath : localPath;
@@ -398,7 +433,6 @@
                     });
                     const imgIndex = currentImages.length - 1;
 
-                    // FIX: Modifikasi tombol Get jadi tombol Copy link
                     const actionHtml = `
                         <img src="${localThumbPath}" class="preview-thumb" onclick="openLightbox(${imgIndex}); event.stopPropagation();" title="Preview">
                         <a href="#" class="btn-download" style="margin-left: 0.625rem;" onclick="copyToClipboard(event, '${localPath}', this)">Copy</a>
@@ -408,9 +442,9 @@
                         '🪟', 
                         item.name, 
                         '-',
-                        formatSize(item.size), 
-                        dimStr, 
-                        fmtStr, 
+                        fmtStr, // format
+                        formatSize(item.size), // size
+                        dimStr, // dimension
                         item.date, 
                         actionHtml, 
                         `openLightbox(${imgIndex})`
@@ -419,10 +453,10 @@
             });
         }
 
-        function createRow(icon, name, itemsCount, size, dimension, format, date, actionHtml, onclickAttr = '') {
+        // Tatanan argumen sudah disamakan dengan visual HTML (Nama, Jumlah, Jenis, Ukuran, Dimensi, Tanggal, Tampilan)
+        function createRow(icon, name, itemsCount, format, size, dimension, date, actionHtml, onclickAttr = '') {
             const row = document.createElement('tr');
             
-            // Format namanya jadi tanpa ekstensi
             const displayName = formatDisplayName(name);
 
             const linkHtml = onclickAttr
