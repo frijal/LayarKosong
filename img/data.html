@@ -137,8 +137,17 @@
         }
         .btn-download:hover { background: var(--row-hover); border-color: var(--text); }
         
-        /* Informasi Tambahan kaki halaman */
-        address { font-size: 0.95rem; }
+        /* FIX: Informasi Tambahan kaki halaman (Address sebagai Back to Top) */
+        address { 
+            font-size: 0.95rem; 
+            cursor: pointer; /* Ubah cursor jadi pointer */
+            display: inline-block; /* Agar klik areanya pas di teks */
+            transition: opacity 0.2s ease-in-out; /* Animasi halus */
+        }
+        
+        address:hover {
+            opacity: 0.6; /* Efek meredup saat di-hover, tanpa merubah styling teks */
+        }
 
         /* Lightbox (Tetap Hitam Pekat untuk Kontras Gambar) */
         #lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; user-select: none; }
@@ -199,8 +208,8 @@
                     <th width="6%" class="text-right" onclick="sortTable('size')">Ukuran<span id="sort-size"></span></th>
                     <th width="7%" class="text-center" onclick="sortTable('dimension')">Dimensi<span id="sort-dimension"></span></th>
                     <th width="4%" class="text-center" onclick="sortTable('format')">Jenis<span id="sort-format"></span></th>
-                    <th width="7%" onclick="sortTable('date')">Tanggal<span id="sort-date"></span></th>
-                    <th width="11%" class="text-right">Tampilan</th>
+                    <th width="8%" onclick="sortTable('date')">Tanggal<span id="sort-date"></span></th>
+                    <th width="10%" class="text-right">Tampilan</th>
                 </tr>
             </thead>
             <tbody id="dir-list">
@@ -209,7 +218,7 @@
     </div>
 
     <hr>
-    <address>Apache/2.4.31 server @ LayarKosong (Engineered via Bun + TS + Sharp & Cloudflare KV/Edge)</address>
+    <address onclick="scrollToTop()">Apache/2.4.31 server @ LayarKosong (Engineered via Bun + TS + Sharp & Cloudflare KV/Edge)</address>
 
     <div id="lightbox" onclick="closeLightbox()">
         <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
@@ -227,6 +236,14 @@
 
         let currentSortKey = 'name';
         let currentSortAsc = true; 
+
+        // FIX: Fungsi untuk smooth scroll ke posisi paling atas
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
 
         function formatSize(bytes) {
             if (!bytes || bytes === '-') return '-';
@@ -371,7 +388,6 @@
             // Format namanya jadi tanpa ekstensi
             const displayName = formatDisplayName(name);
 
-            // FIX: Atribut title="${name}" dihapus agar tidak muncul tooltip saat di-hover
             const linkHtml = onclickAttr
                 ? `<a href="#" class="name-link" onclick="${onclickAttr}; return false;">${displayName}</a>`
                 : displayName;
