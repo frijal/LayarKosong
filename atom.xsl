@@ -19,7 +19,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 
 /* 🔥 CSS BARU: Styling untuk Logo SVG */
 .header-logo { height: 1.1em; width: auto; object-fit: contain; opacity: 0.9; }
-
+/* Wrapper link untuk logo agar bebas styling dan rapi di dalam flexbox */
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none !important;
+    border: none;
+}
+.logo-link:hover .header-logo {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
 .feed-header p { margin: 0; color: #666; font-size: 15px; line-height: 1.5; }
 .feed-meta { display: flex; justify-content: space-between; font-size: 13px; color: #888; margin-top: 15px; }
 
@@ -56,7 +67,9 @@ tr:hover { background: #fdfdfd; }
         <h1>
             <span><xsl:value-of select="atom:feed/atom:title"/></span>
 
-            <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
+            <a href="/" class="logo-link" title="Kembali ke Beranda">
+    <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
+</a>
         </h1>
         <p><xsl:value-of select="atom:feed/atom:subtitle"/></p>
         <div class="feed-meta">

@@ -34,7 +34,18 @@ h1 a:hover { opacity: 0.8; text-decoration: none; }
     object-fit: contain;
     opacity: 0.9;
 }
-
+/* Wrapper link untuk logo agar bebas styling dan rapi di dalam flexbox */
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none !important;
+    border: none;
+}
+.logo-link:hover .header-logo {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
 /* Header Flexbox */
 .header-container { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #3498db; padding-bottom: 15px; margin-bottom: 10px; }
 .total-info { font-size: 14px; margin: 0; color: #555; }
@@ -89,7 +100,9 @@ a:hover { text-decoration: underline; }
                 <xsl:otherwise>XML Sitemap - Layar Kosong</xsl:otherwise>
             </xsl:choose>
         </a>
-        <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
+        <a href="/" class="logo-link" title="Kembali ke Beranda">
+    <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
+</a>
     </h1>
     <div class="header-container">
         <p class="total-info">Total:
