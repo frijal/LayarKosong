@@ -297,8 +297,9 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   <img
   src="${thumbSrc}"
   alt="${item.title}"
-  loading="lazy"
-  style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"
+  loading="eager"
+  decoding="async"
+  fetchpriority="low"
   onerror="${fallbackChain}">
   </div>
   <div class="rel-info-mini">

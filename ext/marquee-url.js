@@ -20,8 +20,9 @@ ${K>1?`
   <img
   src="${X}"
   alt="${K.title}"
-  loading="lazy"
-  style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"
+  loading="eager"
+  decoding="async"
+  fetchpriority="low"
   onerror="${Y}">
   </div>
   <div class="rel-info-mini">
