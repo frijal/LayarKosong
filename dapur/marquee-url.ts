@@ -274,16 +274,18 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const catInfo = getCategoryInfo(currentFile, allData);
   if (!catInfo) { grid.style.display = 'none'; return; }
 
-  const related = catInfo.list
-  .filter((i: any) => i.id !== currentFile)
-  .sort(() => 0.5 - Math.random())
-  .slice(0, 6);
+  const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
+    // Primary: versi ringan artikel (-sm.webp)
     const smUrl = item.image
     ? item.image.replace(/\.[^/.]+$/, '') + '-sm.webp'
     : null;
+
+    // Default src saat pertama kali dimuat
     const thumbSrc = smUrl ?? '/thumbnail-sm.webp';
+
+    // 🔥 PERUBAHAN: Rantai Fallback Lapis Tiga (Inception onerror)
   const fallbackChain = item.image
   ? `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='/thumbnail-sm.webp'};this.src='${item.image}'`
   : `this.onerror=null;this.src='/thumbnail.webp'`;
@@ -304,21 +306,10 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   <h4>${item.title}</h4>
   </div>
   </a>
-  </div>`;
+  </div>
+  `;
   }).join('');
-
-  // ← TAMBAHAN INI: paksa style via JS setProperty (support !important)
-  grid.querySelectorAll<HTMLImageElement>('.rel-img-mini img').forEach(img => {
-    img.style.setProperty('position', 'absolute', 'important');
-    img.style.setProperty('inset', '0', 'important');
-    img.style.setProperty('width', '100%', 'important');
-    img.style.setProperty('height', '100%', 'important');
-    img.style.setProperty('object-fit', 'cover', 'important');
-    img.style.setProperty('object-position', 'center', 'important');
-    img.style.setProperty('display', 'block', 'important');
-  });
 }
-
 
 // ---------------------------
 // 3. MAIN INITIALIZATION

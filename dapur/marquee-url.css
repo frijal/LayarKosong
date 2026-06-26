@@ -427,7 +427,7 @@ border-top: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
   background: var(--border);
-  position: relative;
+  position: relative; /* ← wajib ada ini */
 }
 
 .rel-img-mini img {
