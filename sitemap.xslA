@@ -6,9 +6,6 @@ xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
 xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
-
-<xsl:key name="kategori" match="sitemap:url" use="substring-before(substring-after(substring-after(sitemap:loc, '://'), '/'), '/')" />
-
 <xsl:template match="/">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -26,23 +23,9 @@ h1 a:hover { opacity: 0.8; text-decoration: none; }
 .total-info { font-size: 14px; margin: 0; color: #555; }
 table { width: 100%; border-collapse: collapse; margin-top: 10px; }
 th { background: #3498db; color: white; text-align: left; padding: 12px; font-size: 14px; }
-td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: middle; }
+td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: top; }
 .col-no { width: 60px; color: #000000; font-family: monospace; font-weight: bold; }
 tr:hover { background: #fdfdfd; }
-
-/* 🔥 CSS BARU: Badge untuk Hitungan Artikel di Sitemap Index */
-.badge-count { background: #f39c12; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 11.5px; font-weight: bold; white-space: nowrap; transition: background 0.3s ease; display: inline-block; min-width: 70px; text-align: center; }
-.badge-count.loaded { background: #27ae60; }
-.badge-count.error { background: #e74c3c; }
-
-/* CSS Kategori Stat (Untuk Halaman URLSet Biasa) */
-.category-stats { margin: 15px 0 25px 0; padding: 15px; background: #f8f9fa; border: 1px solid #e1e8ed; border-radius: 8px; }
-.category-stats h3 { margin: 0 0 12px 0; font-size: 15px; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 8px; }
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.stat-card { background: #fff; border: 1px solid #d1d8dd; padding: 10px 15px; border-radius: 6px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s, border-color 0.2s; }
-.stat-card:hover { transform: translateY(-2px); border-color: #3498db; }
-.cat-name { font-weight: 600; color: #3498db; word-break: break-all; margin-right: 10px; }
-.cat-count { background: #e74c3c; color: #fff; padding: 3px 10px; border-radius: 12px; font-size: 11.5px; font-weight: bold; white-space: nowrap; }
 
 /* Image Preview Thumbnail */
 .img-container { cursor: zoom-in; display: inline-block; transition: transform 0.2s; }
@@ -53,7 +36,9 @@ tr:hover { background: #fdfdfd; }
 .lightbox-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
 .lightbox-content { border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); animation: zoomModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: default; }
 img.lightbox-content { max-width: 90%; max-height: 90vh; }
+/* Dimensi khusus Iframe Video 16:9 */
 iframe.lightbox-content { width: 85vw; height: 48vw; max-width: 1024px; max-height: 576px; background: #000; border: none; }
+
 .close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.2s; }
 .close-lightbox:hover { color: #ccc; }
 @keyframes zoomModal { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -68,6 +53,8 @@ iframe.lightbox-content { width: 85vw; height: 48vw; max-width: 1024px; max-heig
 .page-info { font-size: 13px; color: #666; font-weight: 500; }
 a { color: #3498db; text-decoration: none; font-weight: 600; }
 a:hover { text-decoration: underline; }
+
+/* Video Info Trigger */
 .video-info { font-size: 11px; color: #666; margin-top: 8px; display: inline-block; border-left: 3px solid #e74c3c; padding-left: 8px; cursor: pointer; transition: background 0.2s, padding 0.2s; }
 .video-info:hover { background: #fdf0ef; padding-right: 8px; border-radius: 0 4px 4px 0; color: #c0392b; }
 .play-icon { color: #e74c3c; margin-right: 3px; }
@@ -86,18 +73,18 @@ a:hover { text-decoration: underline; }
         <a href="/sitemap.xml">
             <xsl:choose>
                 <xsl:when test="sitemap:sitemapindex">XML Sitemap Index - Layar Kosong</xsl:when>
-                <xsl:otherwise>Gabungan Sitemap - Layar Kosong</xsl:otherwise>
+                <xsl:otherwise>XML Sitemap - Layar Kosong</xsl:otherwise>
             </xsl:choose>
         </a>
     </h1>
     <div class="header-container">
-        <p class="total-info">Total:
+        <p class="total-info">Total: 
             <strong id="total-count">
                 <xsl:choose>
                     <xsl:when test="sitemap:sitemapindex"><xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap)"/></xsl:when>
                     <xsl:otherwise><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></xsl:otherwise>
                 </xsl:choose>
-            </strong>
+            </strong> 
             <xsl:choose>
                 <xsl:when test="sitemap:sitemapindex"> File Sitemap.</xsl:when>
                 <xsl:otherwise> Judul Artikel.</xsl:otherwise>
@@ -111,28 +98,7 @@ a:hover { text-decoration: underline; }
             </div>
         </div>
     </div>
-
-    <xsl:if test="sitemap:urlset">
-        <div class="category-stats">
-            <h3>📊 Rekapitulasi Artikel per Kategori</h3>
-            <div class="stat-grid">
-                <xsl:for-each select="sitemap:urlset/sitemap:url[generate-id() = generate-id(key('kategori', substring-before(substring-after(substring-after(sitemap:loc, '://'), '/'), '/'))[1])]">
-                    <xsl:variable name="catName" select="substring-before(substring-after(substring-after(sitemap:loc, '://'), '/'), '/')" />
-                    <xsl:variable name="catCount" select="count(key('kategori', $catName))" />
-                    <div class="stat-card">
-                        <span class="cat-name">
-                            <xsl:choose>
-                                <xsl:when test="$catName != ''">/<xsl:value-of select="$catName" /></xsl:when>
-                                <xsl:otherwise>/ (Halaman Utama)</xsl:otherwise>
-                            </xsl:choose>
-                        </span>
-                        <span class="cat-count"><xsl:value-of select="$catCount" /> Artikel</span>
-                    </div>
-                </xsl:for-each>
-            </div>
-        </div>
-    </xsl:if>
-
+    
     <table id="sitemap-table">
         <xsl:choose>
             <xsl:when test="sitemap:sitemapindex">
@@ -140,7 +106,7 @@ a:hover { text-decoration: underline; }
                     <tr>
                         <th class="col-no">#</th>
                         <th>URL Sub-Sitemap</th>
-                        <th style="width: 150px; text-align: center;">Total Artikel</th> <th>Last Mods.</th>
+                        <th>Last Mods.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -149,17 +115,14 @@ a:hover { text-decoration: underline; }
                         <tr class="sitemap-row">
                             <td class="col-no"><xsl:value-of select="$totalIdx - (position() - 1)"/></td>
                             <td>
-                                <a href="{sitemap:loc}" class="sub-sitemap-link" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
-                            </td>
-                            <td style="text-align: center;">
-                                <span class="badge-count">⏳ Menghitung...</span>
+                                <a href="{sitemap:loc}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
                             </td>
                             <td><xsl:value-of select="substring(sitemap:lastmod, 1, 10)"/></td>
                         </tr>
                     </xsl:for-each>
                 </tbody>
             </xsl:when>
-
+            
             <xsl:otherwise>
                 <thead>
                     <tr>
@@ -197,7 +160,7 @@ a:hover { text-decoration: underline; }
             </xsl:otherwise>
         </xsl:choose>
     </table>
-
+    
     <div class="pagination-wrapper pagination-bottom">
         <div class="page-info">Halaman <span class="current-page-txt">1</span> dari <span class="total-pages-txt">1</span></div>
         <div class="nav-buttons">
@@ -209,67 +172,41 @@ a:hover { text-decoration: underline; }
 
 <script type="text/javascript">
 <![CDATA[
-    // 🔥 FITUR BARU: Auto-Fetch Menghitung Jumlah Artikel di dalam Sitemap Index
-    async function fetchSitemapCounts() {
-        const rows = document.querySelectorAll('.sitemap-row');
-        // Jika tidak ada link sub-sitemap, hentikan fungsi ini (berarti kita di halaman URLSet)
-        if (!document.querySelector('.sub-sitemap-link')) return;
-
-        for (let row of rows) {
-            const link = row.querySelector('.sub-sitemap-link');
-            const badge = row.querySelector('.badge-count');
-
-            if (link && badge) {
-                try {
-                    // Tarik data XML dari URL tersebut
-                    const response = await fetch(link.href);
-                    if (!response.ok) throw new Error('Gagal muat');
-
-                    const xmlText = await response.text();
-                    // Gunakan Regex super cepat untuk menghitung tag <url> di dalam file tersebut
-                    const matches = xmlText.match(/<url[\s>]/g);
-                    const count = matches ? matches.length : 0;
-
-                    // Update tampilan badge
-                    badge.innerHTML = count + ' Artikel';
-                    badge.classList.add('loaded');
-                } catch (error) {
-                    badge.innerHTML = 'Error';
-                    badge.classList.add('error');
-                }
-            }
-        }
-    }
-
-    // Jalankan fungsi hitung
-    fetchSitemapCounts();
-
     // -- Lightbox Multimedia Logic --
     function openImageLightbox(url) {
-        document.getElementById('lightbox-video').style.display = 'none';
+        document.getElementById('lightbox-video').style.display = 'none'; // Sembunyikan video
+        
         const lightbox = document.getElementById('lightbox');
         const img = document.getElementById('lightbox-img');
         img.src = url;
         img.style.display = 'block';
-        lightbox.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        
+        lightbox.style.display = 'flex'; 
+        document.body.style.overflow = 'hidden'; 
     }
 
     function openVideoLightbox(url) {
-        document.getElementById('lightbox-img').style.display = 'none';
+        document.getElementById('lightbox-img').style.display = 'none'; // Sembunyikan gambar
+        
         const lightbox = document.getElementById('lightbox');
         const vid = document.getElementById('lightbox-video');
+        
+        // Cek URL, lalu tambahkan parameter autoplay=1 agar video langsung jalan saat modal terbuka
         const autoPlayUrl = url.includes('?') ? url + '&autoplay=1' : url + '?autoplay=1';
         vid.src = autoPlayUrl;
         vid.style.display = 'block';
-        lightbox.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        
+        lightbox.style.display = 'flex'; 
+        document.body.style.overflow = 'hidden'; 
     }
 
     function closeLightbox(event) {
+        // Cek target klik. Mencegah modal tertutup kalau user nge-klik controls YouTube/Gambar.
         if (!event || (event.target.id !== 'lightbox-img' && event.target.id !== 'lightbox-video')) {
             document.getElementById('lightbox').style.display = 'none';
             document.body.style.overflow = 'auto';
+            
+            // PENTING: Kosongkan SRC agar suara video berhenti berkumandang di background!
             document.getElementById('lightbox-img').src = '';
             document.getElementById('lightbox-video').src = '';
         }
@@ -277,16 +214,16 @@ a:hover { text-decoration: underline; }
 
     document.addEventListener('keydown', function(event){
         if(event.key === "Escape"){
-            closeLightbox();
+            closeLightbox(); 
         }
     });
 
     // -- Pagination Logic --
     let currentPage = 1;
     const recordsPerPage = 36;
-    const pgRows = document.getElementsByClassName('sitemap-row');
-    const totalPages = Math.ceil(pgRows.length / recordsPerPage) || 1;
-
+    const rows = document.getElementsByClassName('sitemap-row');
+    const totalPages = Math.ceil(rows.length / recordsPerPage) || 1; // Ditambah fallback || 1 untuk amannya
+    
     const currentPageEles = document.getElementsByClassName('current-page-txt');
     const totalPagesEles = document.getElementsByClassName('total-pages-txt');
     const prevBtns = document.getElementsByClassName('prevBtn');
@@ -295,17 +232,17 @@ a:hover { text-decoration: underline; }
     function updateDisplay() {
         const start = (currentPage - 1) * recordsPerPage;
         const end = start + recordsPerPage;
-
-        for (let i = 0; i < pgRows.length; i++) {
-            pgRows[i].style.display = (i >= start && i < end) ? 'table-row' : 'none';
+        
+        for (let i = 0; i < rows.length; i++) {
+            rows[i].style.display = (i >= start && i < end) ? 'table-row' : 'none';
         }
-
+        
         for (let ele of currentPageEles) ele.innerText = currentPage;
         for (let ele of totalPagesEles) ele.innerText = totalPages;
-
+        
         for (let btn of prevBtns) btn.disabled = (currentPage === 1);
         for (let btn of nextBtns) btn.disabled = (currentPage === totalPages);
-
+        
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
