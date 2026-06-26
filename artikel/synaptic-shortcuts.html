@@ -57,30 +57,357 @@
     <meta property="article:published_time" content="2016-08-15T03:00:00.000Z">
     <meta property="article:modified_time" content="2026-06-25T14:11:16.668Z">
 <meta name="keywords" content="synaptic, package manager, linux, debian, ubuntu, shortcut, tombol pintas, apt">
-    <meta name="date" content="2025-09-28">
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
-        header { text-align: center; color: #007bff; padding-bottom: 10px; border-bottom: 2px solid #007bff; }
-        h1, h2 { color: #007bff; }
-        .gallery { margin: 2rem 0; }
-        .gallery img { width: 100%; height: auto; border-radius: 12px; cursor: pointer; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
-        .gallery img:hover { transform: scale(1.05); }
-        .social-sharing { text-align: center; margin-top: 2rem; }
-        .social-sharing h2 { border: none; font-size: 1.2em; }
-        .social-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-        .social-buttons a { display: inline-block; transition: transform 0.2s; }
-        .social-buttons a:hover { transform: scale(1.15); }
-        .social-buttons svg { width: 32px; height: 32px; }
-        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
-        .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: 12px; }
-        .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        td:last-child { text-align: center; }
-        .copy-btn { background: #007bff; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-    </style>
+   <style>
+    :root {
+        color-scheme: light;
+        --bg: #f6f8fb;
+        --bg-soft: #eef6ff;
+        --text: #172033;
+        --muted: #64748b;
+        --heading: #0f172a;
+        --accent: #2563eb;
+        --accent-hover: #1d4ed8;
+        --accent-soft: rgba(37, 99, 235, 0.12);
+        --green: #14b8a6;
+        --green-soft: rgba(20, 184, 166, 0.12);
+        --card: #ffffff;
+        --card-soft: #f8fafc;
+        --line: #dbe4f0;
+        --image-bg: #e2e8f0;
+        --table-head: #eef6ff;
+        --table-row: #ffffff;
+        --table-row-alt: #f8fafc;
+        --shadow: 0 1rem 2.75rem rgba(15, 23, 42, 0.12);
+        --shadow-soft: 0 0.625rem 1.875rem rgba(15, 23, 42, 0.08);
+        --radius-sm: 0.625rem;
+        --radius-md: 1rem;
+        --radius-lg: 1.5rem;
+        --max-width: 64rem;
+        --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color-scheme: dark;
+            --bg: #08111f;
+            --bg-soft: #101c2f;
+            --text: #e5e7eb;
+            --muted: #a7b3c5;
+            --heading: #f8fafc;
+            --accent: #60a5fa;
+            --accent-hover: #93c5fd;
+            --accent-soft: rgba(96, 165, 250, 0.14);
+            --green: #2dd4bf;
+            --green-soft: rgba(45, 212, 191, 0.12);
+            --card: #111827;
+            --card-soft: #172033;
+            --line: #2f4058;
+            --image-bg: #172033;
+            --table-head: #172033;
+            --table-row: #111827;
+            --table-row-alt: #162033;
+            --shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.42);
+            --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        min-height: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        background:
+            radial-gradient(56rem 30rem at 10% -8%, var(--accent-soft), transparent 62%),
+            radial-gradient(42rem 26rem at 92% 8%, var(--green-soft), transparent 58%),
+            linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, var(--bg));
+        color: var(--text);
+        font-family: var(--font-main);
+        font-size: 1rem;
+        line-height: 1.75;
+        text-rendering: optimizeLegibility;
+    }
+
+    a {
+        color: var(--accent);
+        text-decoration-thickness: 0.08rem;
+        text-underline-offset: 0.18rem;
+        overflow-wrap: anywhere;
+    }
+
+    a:hover {
+        color: var(--accent-hover);
+    }
+
+    a:focus-visible,
+    img:focus-visible {
+        outline: 0.1875rem solid var(--accent);
+        outline-offset: 0.1875rem;
+        border-radius: var(--radius-sm);
+    }
+
+    .container {
+        width: min(100% - 2rem, var(--max-width));
+        min-width: 0;
+        max-width: var(--max-width);
+        margin: 2.5rem auto;
+        padding: clamp(1rem, 3vw, 1.75rem);
+        overflow: hidden;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-lg);
+        background-color: var(--card);
+        box-shadow: var(--shadow);
+    }
+
+    header {
+        margin-bottom: 1.75rem;
+        padding: clamp(1.25rem, 4vw, 2.25rem);
+        border: 0.0625rem solid var(--line);
+        border-bottom: 0.35rem solid var(--accent);
+        border-radius: var(--radius-lg);
+        background:
+            linear-gradient(135deg, var(--accent-soft), transparent 48%),
+            var(--card-soft);
+        box-shadow: var(--shadow-soft);
+        text-align: center;
+    }
+
+    #iposbrowser {
+        margin-bottom: 0.75rem;
+    }
+
+    h1 {
+        margin: 0;
+        color: var(--heading);
+        font-size: clamp(2rem, 6vw, 3.35rem);
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -0.055rem;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+    }
+
+    h2 {
+        margin: 2rem 0 1rem;
+        padding: clamp(1rem, 3vw, 1.25rem);
+        border: 0.0625rem solid var(--line);
+        border-left: 0.35rem solid var(--accent);
+        border-radius: var(--radius-md);
+        background:
+            linear-gradient(135deg, var(--accent-soft), transparent 45%),
+            var(--card-soft);
+        color: var(--heading);
+        box-shadow: var(--shadow-soft);
+        font-size: clamp(1.35rem, 4vw, 1.9rem);
+        font-weight: 850;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+    }
+
+    article,
+    section {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    section {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    article {
+        font-size: clamp(1.02rem, 2.2vw, 1.1rem);
+    }
+
+    article > * {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    p {
+        margin: 0 0 1.15rem;
+        padding: clamp(1rem, 3vw, 1.35rem);
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-md);
+        background-color: var(--card-soft);
+        box-shadow: var(--shadow-soft);
+        overflow-wrap: break-word;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    em {
+        color: inherit;
+    }
+
+    .gallery {
+        margin: 1.5rem 0 2rem;
+        overflow: visible;
+    }
+
+    .gallery img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0.45rem;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-lg);
+        background:
+            linear-gradient(var(--image-bg), var(--image-bg)) padding-box,
+            linear-gradient(135deg, var(--accent), var(--green)) border-box;
+        box-shadow: var(--shadow);
+        cursor: zoom-in;
+        transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+    }
+
+    .gallery img:hover {
+        transform: translateY(-0.2rem);
+        box-shadow: 0 1.75rem 4.5rem rgba(15, 23, 42, 0.18);
+        filter: saturate(1.05) contrast(1.03);
+    }
+
+    table {
+        width: 100%;
+        min-width: 42rem;
+        margin: 1rem 0 0;
+        overflow: hidden;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-md);
+        background-color: var(--table-row);
+        box-shadow: var(--shadow-soft);
+        font-size: 1rem;
+    }
+
+    th,
+    td {
+        padding: 0.95rem 1rem;
+        border-right: 0.0625rem solid var(--line);
+        border-bottom: 0.0625rem solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        overflow-wrap: break-word;
+    }
+
+    th:last-child,
+    td:last-child {
+        border-right: 0;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: 0;
+    }
+
+    th {
+        background:
+            linear-gradient(135deg, var(--accent-soft), transparent 52%),
+            var(--table-head);
+        color: var(--heading);
+        font-weight: 850;
+    }
+
+    td {
+        background-color: var(--table-row);
+        color: var(--text);
+    }
+
+    tbody tr:nth-child(even) td {
+        background-color: var(--table-row-alt);
+    }
+
+    td:last-child {
+        color: var(--heading);
+        font-weight: 850;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background:
+                radial-gradient(56rem 30rem at 10% -8%, rgba(96, 165, 250, 0.12), transparent 62%),
+                radial-gradient(42rem 26rem at 92% 8%, rgba(45, 212, 191, 0.09), transparent 58%),
+                linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, #050b14);
+        }
+    }
+
+    @media (max-width: 48rem) {
+        .container {
+            width: min(100% - 1.5rem, var(--max-width));
+            margin: 1rem auto;
+            padding: 0.875rem;
+        }
+
+        header,
+        h2,
+        p {
+            padding: 1rem;
+        }
+
+        h1 {
+            letter-spacing: -0.035rem;
+        }
+
+        .gallery img {
+            padding: 0.3rem;
+            border-radius: var(--radius-md);
+        }
+
+        table {
+            min-width: 36rem;
+            font-size: 0.95rem;
+        }
+
+        th,
+        td {
+            padding: 0.8rem;
+        }
+    }
+
+    @media (max-width: 30rem) {
+        .container {
+            width: min(100% - 1rem, var(--max-width));
+            padding: 0.75rem;
+        }
+
+        header,
+        h2,
+        p {
+            padding: 0.875rem;
+        }
+
+        table {
+            min-width: 34rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
+        }
+    }
+</style>
 <meta name="ai:summary" content="Panduan interaktif kombinasi tombol pintas (shortcut) Synaptic Package Manager di Debian/Ubuntu, lengkap dengan tooltip dan tombol copy.">
 <meta name="ai:prompt_hint" content="Panduan interaktif kombinasi tombol pintas (shortcut) Synaptic Package Manager di Debian/Ubuntu, lengkap dengan tooltip dan tombol copy.">
 <link rel="stylesheet" href="/ext/marquee-url.css">
@@ -93,8 +420,7 @@
         <article>
             <p>Berikut adalah panduan interaktif kombinasi tombol pintas (<em>shortcut</em>) untuk Synaptic Package Manager, manajer paket grafis populer di Debian, Ubuntu, dan turunannya.</p>
             <section class="gallery">
-                <img loading="lazy" src="https://dalam.web.id/img/synaptic-shortcuts.webp" alt="Tampilan antarmuka Synaptic Package Manager">
-            </section>
+<img loading="lazy" decoding="async" src="https://dalam.web.id/img/synaptic-shortcuts.webp" alt="Tampilan antarmuka Synaptic Package Manager">            </section>
             <section>
                 <h2>Daftar Tombol Pintas</h2>
                 <table>
@@ -105,62 +431,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Perbarui daftar paket</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd> <button class="copy-btn" data-copy="Ctrl+R">Copy</button></td></tr>
-                        <tr><td>Cari paket</td><td><kbd>Ctrl</kbd> + <kbd>F</kbd> <button class="copy-btn" data-copy="Ctrl+F">Copy</button></td></tr>
-                        <tr><td>Lihat properti paket</td><td><kbd>Ctrl</kbd> + <kbd>O</kbd> <button class="copy-btn" data-copy="Ctrl+O">Copy</button></td></tr>
-                        <tr><td>Tandai untuk instalasi</td><td><kbd>Ctrl</kbd> + <kbd>I</kbd> <button class="copy-btn" data-copy="Ctrl+I">Copy</button></td></tr>
-                        <tr><td>Tandai untuk upgrade</td><td><kbd>Ctrl</kbd> + <kbd>U</kbd> <button class="copy-btn" data-copy="Ctrl+U">Copy</button></td></tr>
-                        <tr><td>Tandai untuk dihapus</td><td><kbd>Delete</kbd> <button class="copy-btn" data-copy="Delete">Copy</button></td></tr>
-                        <tr><td>Terapkan perubahan</td><td><kbd>Ctrl</kbd> + <kbd>P</kbd> <button class="copy-btn" data-copy="Ctrl+P">Copy</button></td></tr>
-                        <tr><td>Keluar dari aplikasi</td><td><kbd>Ctrl</kbd> + <kbd>Q</kbd> <button class="copy-btn" data-copy="Ctrl+Q">Copy</button></td></tr>
+                        <tr><td>Perbarui daftar paket</td><td>Ctrl + R </td></tr>
+                        <tr><td>Cari paket</td><td>Ctrl + F </td></tr>
+                        <tr><td>Lihat properti paket</td><td>Ctrl + O </td></tr>
+                        <tr><td>Tandai untuk instalasi</td><td>Ctrl + I </td></tr>
+                        <tr><td>Tandai untuk upgrade</td><td>Ctrl + U </td></tr>
+                        <tr><td>Tandai untuk dihapus</td><td>Delete </td></tr>
+                        <tr><td>Terapkan perubahan</td><td>Ctrl + P </td></tr>
+                        <tr><td>Keluar dari aplikasi</td><td>Ctrl + Q </td></tr>
                     </tbody>
                 </table>
             </section>
-            <section class="social-sharing">
               <div id="related-articles-grid"></div><div id="response"></div>
-            </section>
     </article>
     </main>
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">×</span>
-        <img class="lightbox-content" id="lightbox-img" alt="Gambar - Kombinasi Tombol Pintas Synaptic Package Manager">
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll('.copy-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const textToCopy = this.getAttribute('data-copy');
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        const originalText = this.textContent;
-                        this.textContent = 'Copied!';
-                        setTimeout(() => {
-                            this.textContent = originalText;
-                        }, 1500);
-                    });
-                });
-            });
-            const images = document.querySelectorAll(".gallery img");
-            if (images.length > 0) {
-                const lightbox = document.getElementById("lightbox");
-                const lightboxImg = document.getElementById("lightbox-img");
-                const closeBtn = document.querySelector(".lightbox-close");
-                images.forEach((img) => {
-                    img.addEventListener("click", () => {
-                        lightbox.style.display = "flex";
-                        lightboxImg.src = img.src;
-                    });
-                });
-                function closeLightbox() {
-                    lightbox.style.display = "none";
-                }
-                closeBtn.addEventListener("click", closeLightbox);
-                lightbox.addEventListener("click", (e) => {
-                    if (e.target === lightbox) {
-                        closeLightbox();
-                    }
-                });
-            }
-        });
-    </script>
+
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
