@@ -57,81 +57,201 @@
     <meta property="article:published_time" content="2025-12-31T16:00:00.000Z">
     <meta property="article:modified_time" content="2026-06-25T14:11:08.533Z">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preload" as="image" href="https://pbs.twimg.com/media/G9rPd1FasAMUIMq.jpg">
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
-:root{
-  --bg:#ffffff;
-  --text:#111;
-  --muted:#555;
-  --card:#f4f4f4;
-  --border:#e0e0e0;
-  --accent:#0a7cff;
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #4b5563;
+  --card: #f8fafc;
+  --border: #d1d5db;
+  --accent: #075ca8;
+  --accent-hover: #034f8f;
+  --shadow: rgba(15, 23, 42, 0.1);
+  --max-width: 57.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1rem;
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
 }
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0d0f12;
-    --text:#eaeaea;
-    --muted:#aaa;
-    --card:#16181d;
-    --border:#262a33;
-    --accent:#4ea1ff;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0f172a;
+    --text: #f8fafc;
+    --muted: #cbd5e1;
+    --card: #1e293b;
+    --border: #334155;
+    --accent: #7dd3fc;
+    --accent-hover: #bae6fd;
+    --shadow: rgba(0, 0, 0, 0.35);
   }
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-main{
-  max-width:920px;
-  margin:auto;
-  padding:24px 16px 80px;
+
+html {
+  scroll-behavior: smooth;
 }
-img{
-  max-width:100%;
-  height:auto;
-  display:block;
-  border-radius:14px;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
-h1,h2,h3{
-  line-height:1.3;
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
 }
-h1 a{
-  color:inherit;
-  text-decoration:none;
+
+main {
+  width: min(100%, var(--max-width));
+  margin: 0 auto;
+  padding: 1.5rem 1rem 5rem;
 }
-.meta{
-  color:var(--muted);
-  font-size:9rem;
-  margin-bottom:16px;
+
+h1,
+h2,
+h3 {
+  line-height: 1.3;
+  text-wrap: balance;
 }
-.section{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
-  margin:24px 0;
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+  letter-spacing: -0.035rem;
 }
-ul,ol{padding-left:22px}
-footer{
-  border-top:1px solid var(--border);
-  margin-top:64px;
-  padding-top:24px;
-  color:var(--muted);
-  font-size:9rem;
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
 }
-#related-articles-grid,#response{
-  margin-top:40px;
-  padding:20px;
-  border:1px dashed var(--border);
-  border-radius:14px;
-  text-align:center;
-  color:var(--muted);
+
+h3 {
+  margin: 1.25rem 0 0.75rem;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+}
+
+h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0 0 1.25rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.08rem;
+  text-underline-offset: 0.18rem;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+a:focus-visible {
+  outline: 0.1875rem solid var(--accent);
+  outline-offset: 0.1875rem;
+}
+
+strong {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: var(--radius-md);
+  background-color: var(--card);
+  box-shadow: 0 0.625rem 1.25rem var(--shadow);
+}
+
+.meta {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.section {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--card);
+}
+
+.section p:last-child,
+.section ul:last-child,
+.section ol:last-child {
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.4rem;
+}
+
+li {
+  margin-bottom: 0.55rem;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 1rem;
+}
+
+footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  margin: 0.15rem;
+  border-radius: 999rem;
+  background-color: var(--card);
+  text-decoration: none;
+}
+
+footer a:hover {
+  background-color: var(--border);
+}
+
+@media (max-width: 37.5rem) {
+  main {
+    padding: 1rem 0.875rem 4rem;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+  }
+
+  .section {
+    padding: 1rem;
+  }
 }
 </style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
@@ -205,13 +325,12 @@ Jika mengalami kendala teknis, peserta dapat menghubungi:
 <p>
 Di era digital dan preventif seperti sekarang, skrining kesehatan BPJS ini bisa dibilang langkah kecil dengan dampak besar. Cuma butuh beberapa menit, tanpa biaya, tapi bisa jadi penentu kualitas hidup jangka panjang.
 </p>
-<div id="response"></div>
-<div id="related-articles-grid"></div>
+<div id="related-articles-grid"></div><div id="response"></div>
 <footer>
 <p>
 🄯 2026 <strong>Layar Kosong</strong>. Ditulis untuk edukasi publik. Selalu jaga kesehatan, karena sakit itu mahal — mencegah jauh lebih masuk akal.
 </p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>
 </footer>
 </main>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
