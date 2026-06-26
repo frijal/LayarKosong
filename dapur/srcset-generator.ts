@@ -16,6 +16,11 @@ const ALLOWED_CATEGORIES = [
   "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
 ];
 
+// 🔥 STANDAR CORE WEB VITALS (CWV)
+const TARGET_DESKTOP = 1280;
+const TARGET_MEDIUM  = 960;
+const TARGET_MOBILE  = 640;
+
 // ========== CACHE ==========
 let optimizedCache = new Set<string>();
 if (existsSync(CACHE_FILE)) {
@@ -72,29 +77,37 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     webDesktopUrl: string,
     webMobileUrl: string | null,
     webMediumUrl: string | null,
-    meta: any,
+    desktopW: number,
+    mediumW: number,
+    mobileW: number,
+    desktopH: number,
+    hasMobile: boolean,
+    hasMedium: boolean,
     isFirst: boolean
   ) {
-    const desktopWidth = meta.width > 1024 ? 1024 : meta.width;
-    const mobileWidth  = 480;
-    const mediumWidth  = 720;
-    const hasMobile    = !!webMobileUrl && meta.width > mobileWidth;
-    const hasMedium    = !!webMediumUrl && meta.width > mediumWidth;
     const willHaveSrcset = hasMobile;
+    let changed = false;
 
-    // FIX #1: calc(100vw - 40px) — sesuai padding container 20px kiri + kanan
-    // FIX #2: srcset tiga kandidat: 480w, 720w, 1024w
+    // Injeksi Atribut Intrinsik Anti-CLS
+    const currentW = $img.attr("width");
+    const currentH = $img.attr("height");
+    if (currentW !== desktopW.toString() || currentH !== desktopH.toString()) {
+      $img.attr("width", desktopW.toString());
+      $img.attr("height", desktopH.toString());
+      changed = true;
+    }
+
     const srcsetCandidates: string[] = [];
-    if (hasMobile) srcsetCandidates.push(`${webMobileUrl} ${mobileWidth}w`);
-    if (hasMedium) srcsetCandidates.push(`${webMediumUrl} ${mediumWidth}w`);
-    srcsetCandidates.push(`${webDesktopUrl} ${desktopWidth}w`);
+    if (hasMobile) srcsetCandidates.push(`${webMobileUrl} ${mobileW}w`);
+    if (hasMedium) srcsetCandidates.push(`${webMediumUrl} ${mediumW}w`);
+    srcsetCandidates.push(`${webDesktopUrl} ${desktopW}w`);
 
     const srcsetValue = willHaveSrcset ? srcsetCandidates.join(", ") : "";
-    const sizesValue  = willHaveSrcset
-      ? "(max-width: 1064px) calc(100vw - 40px), 1024px"
-      : "";
 
-    let changed = false;
+    // Asumsi padding 20px di kiri dan kanan kontainer, jadi 100vw - 40px
+    const sizesValue  = willHaveSrcset
+    ? `(max-width: ${desktopW + 40}px) calc(100vw - 40px), ${desktopW}px`
+    : "";
 
     const parent = $img.parent();
     if (parent.is("picture")) {
@@ -105,13 +118,12 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       }
 
       if (willHaveSrcset) {
-        // FIX #3: satu blok prepend — bukan dua kali — agar urutan source terjamin
-        // FIX #4: media query 500px → 640px
+        // 🔥 UPDATE: Media Queries dinamis menyesuaikan lebar Mobile dan Medium
         const mediumSource = hasMedium
-          ? `\n  <source type="image/webp" media="(min-width: 641px) and (max-width: 1064px)" srcset="${webMediumUrl}">`
-          : "";
+        ? `\n  <source type="image/webp" media="(min-width: ${mobileW + 1}px) and (max-width: ${mediumW}px)" srcset="${webMediumUrl}">`
+        : "";
         parent.prepend(
-          `<source type="image/webp" media="(max-width: 640px)" srcset="${webMobileUrl}">${mediumSource}\n  <source type="image/webp" srcset="${webDesktopUrl}">`
+          `<source type="image/webp" media="(max-width: ${mobileW}px)" srcset="${webMobileUrl}">${mediumSource}\n  <source type="image/webp" srcset="${webDesktopUrl}">`
         );
         changed = true;
       } else {
@@ -161,6 +173,23 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const meta = await sharp(inputBuffer).metadata();
       if (!meta?.width || !meta?.height) continue;
 
+      let actualWidth = meta.width;
+      let actualHeight = meta.height;
+      if (meta.orientation && meta.orientation >= 5) {
+        actualWidth = meta.height;
+        actualHeight = meta.width;
+      }
+
+      const needsMobile = actualWidth > TARGET_MOBILE;
+      const needsMedium = actualWidth > TARGET_MEDIUM;
+
+      const finalDesktopWidth = actualWidth > TARGET_DESKTOP ? TARGET_DESKTOP : actualWidth;
+      const finalMediumWidth  = needsMedium ? TARGET_MEDIUM : actualWidth;
+      const finalMobileWidth  = needsMobile ? TARGET_MOBILE : actualWidth;
+
+      const aspectRatio = actualHeight / actualWidth;
+      const finalDesktopHeight = Math.round(finalDesktopWidth * aspectRatio);
+
       const dirName      = path.dirname(cleanPath);
       const ext          = path.extname(cleanPath);
       const baseNameSafe = path.basename(cleanPath, ext).replace(FORBIDDEN_CHARS, "-");
@@ -173,44 +202,40 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const absMediumPath  = path.join(process.cwd(), mediumPath);
       const absMobilePath  = path.join(process.cwd(), mobilePath);
 
-      const needsMobile = meta.width > 480;
-      const needsMedium = meta.width > 720;
-
       const physicalComplete =
-        existsSync(absDesktopPath) &&
-        (!needsMedium || existsSync(absMediumPath)) &&
-        (!needsMobile || existsSync(absMobilePath));
+      existsSync(absDesktopPath) &&
+      (!needsMedium || existsSync(absMediumPath)) &&
+      (!needsMobile || existsSync(absMobilePath));
 
       if (!optimizedCache.has(cleanPath) || !physicalComplete) {
         if (!physicalComplete) {
           ensureDirForFile(absDesktopPath);
 
-          const targetWidth = meta.width > 1024 ? 1024 : meta.width;
           await sharp(inputBuffer)
-            .rotate()
-            .resize(targetWidth, null, { withoutEnlargement: true })
-            .webp({ quality: 90 })
-            .toFile(absDesktopPath);
+          .rotate()
+          .resize(finalDesktopWidth, null, { withoutEnlargement: true })
+          .webp({ quality: 90 })
+          .toFile(absDesktopPath);
 
           if (needsMedium) {
             ensureDirForFile(absMediumPath);
             await sharp(inputBuffer)
-              .rotate()
-              .resize(720, null, { withoutEnlargement: true })
-              .webp({ quality: 85 })
-              .toFile(absMediumPath);
+            .rotate()
+            .resize(finalMediumWidth, null, { withoutEnlargement: true })
+            .webp({ quality: 85 })
+            .toFile(absMediumPath);
           }
 
           if (needsMobile) {
             ensureDirForFile(absMobilePath);
             await sharp(inputBuffer)
-              .rotate()
-              .resize(480, null, { withoutEnlargement: true })
-              .webp({ quality: 80 })
-              .toFile(absMobilePath);
+            .rotate()
+            .resize(finalMobileWidth, null, { withoutEnlargement: true })
+            .webp({ quality: 80 })
+            .toFile(absMobilePath);
           }
 
-          console.log(`  ✨ WebP OK: ${cleanPath}`);
+          console.log(`  ✨ WebP OK: ${cleanPath} (Max: ${finalDesktopWidth}px)`);
         }
 
         if (!optimizedCache.has(cleanPath)) {
@@ -228,7 +253,13 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const webMediumUrl  = needsMedium ? `${BASE_URL}/${mediumPath.replace(/\\/g, "/")}` : null;
       const webMobileUrl  = needsMobile ? `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}` : null;
 
-      const changed = updateImgAttrs($img, webDesktopUrl, webMobileUrl, webMediumUrl, meta, isFirstImage);
+      const changed = updateImgAttrs(
+        $img,
+        webDesktopUrl, webMobileUrl, webMediumUrl,
+        finalDesktopWidth, finalMediumWidth, finalMobileWidth, finalDesktopHeight,
+        needsMobile, needsMedium, isFirstImage
+      );
+
       if (changed) {
         isFirstImage   = false;
         fileHasChanged = true;
@@ -261,19 +292,19 @@ async function main() {
   mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 
   const sitemapUrls = existsSync(SITEMAP_FILE)
-    ? new Set(
-        readFileSync(SITEMAP_FILE, "utf-8")
-          .split("\n").map(l => l.trim()).filter(Boolean)
-      )
-    : new Set<string>();
+  ? new Set(
+    readFileSync(SITEMAP_FILE, "utf-8")
+    .split("\n").map(l => l.trim()).filter(Boolean)
+  )
+  : new Set<string>();
 
   console.log(`📄 sitemap.txt lama : ${sitemapUrls.size} URL terdaftar\n`);
 
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
       return readdirSync(cat)
-        .filter(f => f.endsWith(".html") && f !== "index.html")
-        .map(f => join(cat, f));
+      .filter(f => f.endsWith(".html") && f !== "index.html")
+      .map(f => join(cat, f));
     } catch {
       return [];
     }
