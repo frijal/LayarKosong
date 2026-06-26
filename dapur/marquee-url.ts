@@ -277,31 +277,36 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
-    // Primary: versi ringan -sm.webp
-    // Fallback 1: gambar asli (item.image)
-    // Fallback 2: /thumbnail.webp
+    // Primary: versi ringan artikel (-sm.webp)
     const smUrl = item.image
     ? item.image.replace(/\.[^/.]+$/, '') + '-sm.webp'
     : null;
-    const thumbSrc = smUrl ?? '/thumbnail.webp';
-    const fallback1 = item.image ? `this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='${item.image}'` : `this.onerror=null;this.src='/thumbnail.webp'`;
 
-    return `
-    <div class="rel-card-mini">
-    <a href="${getFullUrl(item.id, allData)}">
-    <div class="rel-img-mini">
-    <img
-    src="${thumbSrc}"
-    alt="${item.title}"
-    loading="lazy"
-    onerror="${fallback1}">
-    </div>
-    <div class="rel-info-mini">
-    <h4>${item.title}</h4>
-    </div>
-    </a>
-    </div>
-    `;
+    // Default src saat pertama kali dimuat
+    const thumbSrc = smUrl ?? '/thumbnail-sm.webp';
+
+    // 🔥 PERUBAHAN: Rantai Fallback Lapis Tiga (Inception onerror)
+  const fallbackChain = item.image
+  ? `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='/thumbnail-sm.webp'};this.src='${item.image}'`
+  : `this.onerror=null;this.src='/thumbnail.webp'`;
+
+  return `
+  <div class="rel-card-mini">
+  <a href="${getFullUrl(item.id, allData)}">
+  <div class="rel-img-mini">
+  <img
+  src="${thumbSrc}"
+  alt="${item.title}"
+  loading="lazy"
+  style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"
+  onerror="${fallbackChain}">
+  </div>
+  <div class="rel-info-mini">
+  <h4>${item.title}</h4>
+  </div>
+  </a>
+  </div>
+  `;
   }).join('');
 }
 
