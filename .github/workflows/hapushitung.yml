@@ -67,9 +67,6 @@ jobs:
           echo "REPORT_DATE=$DATE" >> "$GITHUB_ENV"
           echo "report_date=$DATE" >> "$GITHUB_OUTPUT"
           echo "report_path=$REPORT_PATH" >> "$GITHUB_OUTPUT"
-
-          mkdir -p mini
-
           echo "📊 Membuat laporan ringkas..."
           declare -A ext_count
           declare -A ext_folders
@@ -245,8 +242,6 @@ jobs:
           fi
 
           echo "has_changes=true" >> "$GITHUB_OUTPUT"
-
-          mkdir -p mini
 
           before_audit_status="$(mktemp)"
           git status --porcelain=v1 > "$before_audit_status"
