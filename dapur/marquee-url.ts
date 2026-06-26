@@ -296,7 +296,7 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   }).join('');
 }
 
-// 🔥 FITUR BARU: Keyboard Navigation (Memanfaatkan fungsi getCategoryInfo bawaan)
+// 🔥 FITUR BARU: Keyboard Navigation (Khusus Desktop)
 function initKeyboardNav(allData: any, currentFile: string): void {
   function navigateTo(direction: 'next' | 'prev'): void {
     const catInfo = getCategoryInfo(currentFile, allData);
@@ -319,6 +319,10 @@ function initKeyboardNav(allData: any, currentFile: string): void {
   }
 
   document.addEventListener('keydown', (e: KeyboardEvent) => {
+    // 🔥 SABUK PENGAMAN 1: Matikan fitur ini jika terdeteksi perangkat Mobile/Touchscreen
+    if (isMobileDevice()) return;
+
+    // 🔥 SABUK PENGAMAN 2: Abaikan jika user sedang mengetik di input/Disqus
     const activeElement = document.activeElement as HTMLElement;
     const isTyping = activeElement.tagName === 'INPUT' ||
     activeElement.tagName === 'TEXTAREA' ||
@@ -327,11 +331,13 @@ function initKeyboardNav(allData: any, currentFile: string): void {
 
     if (isTyping) return;
 
+    // Deteksi [Ctrl] + [Panah Kanan]
     if (e.ctrlKey && e.key === 'ArrowRight') {
       e.preventDefault();
       navigateTo('next');
     }
 
+    // Deteksi [Ctrl] + [Panah Kiri]
     if (e.ctrlKey && e.key === 'ArrowLeft') {
       e.preventDefault();
       navigateTo('prev');
