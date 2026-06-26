@@ -63,117 +63,240 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        /* CSS Variables untuk Tema Terang/Gelap Otomatis */
         :root {
+            color-scheme: light;
             --bg-color: #ffffff;
-            --text-color: #222222;
-            --heading-color: #1a237e;
-            --accent-color: #e91e63;
-            --box-bg: #f9f9f9;
-            --border-color: #dddddd;
+            --text-color: #1f2937;
+            --text-muted: #4b5563;
+            --heading-color: #1e3a8a;
+            --accent-color: #c2185b;
+            --accent-hover: #9d174d;
+            --box-bg: #f9fafb;
+            --box-strong-bg: #f3f4f6;
+            --border-color: #d1d5db;
+            --image-bg: #e5e7eb;
+            --shadow-color: rgba(15, 23, 42, 0.12);
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 0.9375rem;
+            --max-width: 62.5rem;
+            --font-article: Georgia, "Times New Roman", serif;
+            --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
+
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #121212;
-                --text-color: #e0e0e0;
-                --heading-color: #9fa8da;
-                --accent-color: #ff4081;
-                --box-bg: #1e1e1e;
-                --border-color: #333333;
+                color-scheme: dark;
+                --bg-color: #111827;
+                --text-color: #f9fafb;
+                --text-muted: #cbd5e1;
+                --heading-color: #c7d2fe;
+                --accent-color: #f472b6;
+                --accent-hover: #f9a8d4;
+                --box-bg: #1f2937;
+                --box-strong-bg: #172033;
+                --border-color: #374151;
+                --image-bg: #263244;
+                --shadow-color: rgba(0, 0, 0, 0.38);
             }
         }
-        /* Tata Letak Widescreen 1 Kolom */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', serif; /* Font klasik untuk artikel panjang agar enak dibaca */
-            line-height: 1.8;
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            transition: all 0.3s ease;
+            font-family: var(--font-article);
+            line-height: 1.8;
+            text-rendering: optimizeLegibility;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
+
+        a {
+            color: var(--accent-color);
+            text-decoration-thickness: 0.08rem;
+            text-underline-offset: 0.18rem;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        a:focus-visible {
+            outline: 0.1875rem solid var(--accent-color);
+            outline-offset: 0.1875rem;
+        }
+
         .wrapper {
-            max-width: 1000px;
+            width: min(100%, var(--max-width));
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 2.5rem 1.25rem;
         }
+
         header {
+            margin-bottom: 3rem;
             text-align: center;
-            margin-bottom: 50px;
         }
-        h1 {
-            font-size: 2.8rem;
-            color: var(--heading-color);
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
+
         .meta-info {
-            font-family: sans-serif;
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+            font-family: var(--font-ui);
             font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 20px;
+            line-height: 1.7;
         }
-        /* Optimasi Core Web Vitals (LCP/CLS) */
-        .img-frame {
-            aspect-ratio: 16 / 9;
-            background: #ccc;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.25;
+            text-wrap: balance;
         }
-        .img-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+
+        h1 {
+            margin: 0 0 1.25rem;
+            color: var(--heading-color);
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.035rem;
         }
+
+        h2 {
+            display: inline-block;
+            margin: 3.125rem 0 1.25rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 0.125rem solid var(--accent-color);
+            color: var(--heading-color);
+            font-size: clamp(1.45rem, 4vw, 2rem);
+        }
+
+        h3 {
+            margin: 1.875rem 0 1rem;
+            color: var(--accent-color);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+        }
+
         article {
+            color: var(--text-color);
             font-size: 1.2rem;
             text-align: justify;
         }
-        h2 {
-            font-size: 2rem;
-            margin-top: 50px;
-            color: var(--heading-color);
-            border-bottom: 2px solid var(--accent-color);
-            display: inline-block;
-        }
-        h3 {
-            font-size: 1.5rem;
-            margin-top: 30px;
-            color: var(--accent-color);
-        }
+
         p {
-            margin-bottom: 25px;
+            margin: 0 0 1.5625rem;
         }
+
+        strong {
+            color: var(--heading-color);
+        }
+
+        .img-frame {
+            aspect-ratio: 16 / 9;
+            margin: 0 0 2.5rem;
+            overflow: hidden;
+            border: 0.0625rem solid var(--border-color);
+            border-radius: var(--radius-lg);
+            background-color: var(--image-bg);
+            box-shadow: 0 0.625rem 1.875rem var(--shadow-color);
+        }
+
+        .img-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            object-fit: cover;
+            background-color: var(--image-bg);
+        }
+
         .highlight-box {
+            margin: 2.5rem 0;
+            padding: 1.875rem;
+            border-left: 0.3125rem solid var(--accent-color);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
             background-color: var(--box-bg);
-            border-left: 5px solid var(--accent-color);
-            padding: 30px;
-            margin: 40px 0;
-            border-radius: 0 10px 10px 0;
             font-style: italic;
         }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
         .fa-icons {
-            margin-right: 10px;
+            margin-right: 0.625rem;
             color: var(--accent-color);
         }
-        /* Footer */
+
         footer {
-            margin-top: 80px;
-            padding: 40px 0;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-family: sans-serif;
+            margin-top: 5rem;
+            padding: 2.5rem 0;
+            border-top: 0.0625rem solid var(--border-color);
+            color: var(--text-muted);
+            font-family: var(--font-ui);
             font-size: 0.9rem;
+            text-align: center;
         }
-        /* Responsive Mobile View */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.5rem; }
-            article { font-size: 1.1rem; text-align: left; }
-            .wrapper { padding: 20px 15px; }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2rem;
+            min-height: 2rem;
+            margin: 0.15rem;
+            border-radius: 999rem;
+            background-color: var(--box-bg);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            background-color: var(--box-strong-bg);
+        }
+
+        @media (max-width: 37.5rem) {
+            .wrapper {
+                padding: 1.25rem 0.9375rem;
+            }
+
+            header {
+                margin-bottom: 2rem;
+            }
+
+            article {
+                font-size: 1.05rem;
+                text-align: left;
+            }
+
+            h1 {
+                letter-spacing: -0.02rem;
+            }
+
+            h2 {
+                display: block;
+                width: fit-content;
+            }
+
+            .highlight-box {
+                padding: 1.25rem;
+            }
+
+            .meta-info {
+                font-size: 0.85rem;
+            }
         }
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
@@ -216,13 +339,11 @@
         <p>Sudah saatnya kita semua—orang tua, guru, masyarakat—menaruh adab kembali ke tempat yang paling tinggi. Mari kita tunjukkan bahwa menjadi keren itu bukan tentang berapa banyak orang yang kita intimidasi, tapi tentang berapa banyak manfaat yang bisa kita tebar di ruang digital.</p>
     </article>
     <!-- Komponen Komentar & Artikel Terkait -->
-    <div id="related-articles-grid" style="background: var(--box-bg); padding: 20px; border-radius: 10px; margin-top: 40px;">
-            </div>
-    <div id="response" style="margin-top: 50px; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
-    </div>
+    <div id="related-articles-grid"></div>
+    <div id="response"></div>
     <footer>
         <p>🄯 2026  - Refleksi Kehidupan Digital. <i class="fa-solid fa-code"></i> Dibuat dengan kepedulian terhadap karakter bangsa.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>
 </footer>
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
