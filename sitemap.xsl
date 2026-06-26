@@ -7,8 +7,6 @@ xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 
-<xsl:key name="kategori" match="sitemap:url" use="substring-before(substring-after(substring-after(sitemap:loc, '://'), '/'), '/')" />
-
 <xsl:template match="/">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,20 +27,6 @@ th { background: #3498db; color: white; text-align: left; padding: 12px; font-si
 td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: middle; }
 .col-no { width: 60px; color: #000000; font-family: monospace; font-weight: bold; }
 tr:hover { background: #fdfdfd; }
-
-/* 🔥 CSS BARU: Badge untuk Hitungan Artikel di Sitemap Index */
-.badge-count { background: #f39c12; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 11.5px; font-weight: bold; white-space: nowrap; transition: background 0.3s ease; display: inline-block; min-width: 70px; text-align: center; }
-.badge-count.loaded { background: #27ae60; }
-.badge-count.error { background: #e74c3c; }
-
-/* CSS Kategori Stat (Untuk Halaman URLSet Biasa) */
-.category-stats { margin: 15px 0 25px 0; padding: 15px; background: #f8f9fa; border: 1px solid #e1e8ed; border-radius: 8px; }
-.category-stats h3 { margin: 0 0 12px 0; font-size: 15px; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 8px; }
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.stat-card { background: #fff; border: 1px solid #d1d8dd; padding: 10px 15px; border-radius: 6px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s, border-color 0.2s; }
-.stat-card:hover { transform: translateY(-2px); border-color: #3498db; }
-.cat-name { font-weight: 600; color: #3498db; word-break: break-all; margin-right: 10px; }
-.cat-count { background: #e74c3c; color: #fff; padding: 3px 10px; border-radius: 12px; font-size: 11.5px; font-weight: bold; white-space: nowrap; }
 
 /* Image Preview Thumbnail */
 .img-container { cursor: zoom-in; display: inline-block; transition: transform 0.2s; }
@@ -86,7 +70,7 @@ a:hover { text-decoration: underline; }
         <a href="/sitemap.xml">
             <xsl:choose>
                 <xsl:when test="sitemap:sitemapindex">XML Sitemap Index - Layar Kosong</xsl:when>
-                <xsl:otherwise>Gabungan Sitemap - Layar Kosong</xsl:otherwise>
+                <xsl:otherwise>XML Sitemap - Layar Kosong</xsl:otherwise>
             </xsl:choose>
         </a>
     </h1>
@@ -112,27 +96,6 @@ a:hover { text-decoration: underline; }
         </div>
     </div>
 
-    <xsl:if test="sitemap:urlset">
-        <div class="category-stats">
-            <h3>📊 Rekapitulasi Artikel per Kategori</h3>
-            <div class="stat-grid">
-                <xsl:for-each select="sitemap:urlset/sitemap:url[generate-id() = generate-id(key('kategori', substring-before(substring-after(substring-after(sitemap:loc, '://'), '/'), '/'))[1])]">
-                    <xsl:variable name="catName" select="substring-before(substring-after(substring-after(sitemap:loc, '://'), '/'), '/')" />
-                    <xsl:variable name="catCount" select="count(key('kategori', $catName))" />
-                    <div class="stat-card">
-                        <span class="cat-name">
-                            <xsl:choose>
-                                <xsl:when test="$catName != ''">/<xsl:value-of select="$catName" /></xsl:when>
-                                <xsl:otherwise>/ (Halaman Utama)</xsl:otherwise>
-                            </xsl:choose>
-                        </span>
-                        <span class="cat-count"><xsl:value-of select="$catCount" /> Artikel</span>
-                    </div>
-                </xsl:for-each>
-            </div>
-        </div>
-    </xsl:if>
-
     <table id="sitemap-table">
         <xsl:choose>
             <xsl:when test="sitemap:sitemapindex">
@@ -140,7 +103,8 @@ a:hover { text-decoration: underline; }
                     <tr>
                         <th class="col-no">#</th>
                         <th>URL Sub-Sitemap</th>
-                        <th style="width: 150px; text-align: center;">Total Artikel</th> <th>Last Mods.</th>
+                        <th style="width: 150px;">Total Artikel</th>
+                        <th>Last Mods.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -151,8 +115,8 @@ a:hover { text-decoration: underline; }
                             <td>
                                 <a href="{sitemap:loc}" class="sub-sitemap-link" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
                             </td>
-                            <td style="text-align: center;">
-                                <span class="badge-count">⏳ Menghitung...</span>
+                            <td>
+                                <span class="article-count">⏳ Menghitung...</span>
                             </td>
                             <td><xsl:value-of select="substring(sitemap:lastmod, 1, 10)"/></td>
                         </tr>
@@ -209,39 +173,33 @@ a:hover { text-decoration: underline; }
 
 <script type="text/javascript">
 <![CDATA[
-    // 🔥 FITUR BARU: Auto-Fetch Menghitung Jumlah Artikel di dalam Sitemap Index
+    // -- Fetch Jumlah Artikel di Index --
     async function fetchSitemapCounts() {
         const rows = document.querySelectorAll('.sitemap-row');
-        // Jika tidak ada link sub-sitemap, hentikan fungsi ini (berarti kita di halaman URLSet)
         if (!document.querySelector('.sub-sitemap-link')) return;
 
         for (let row of rows) {
             const link = row.querySelector('.sub-sitemap-link');
-            const badge = row.querySelector('.badge-count');
+            const countSpan = row.querySelector('.article-count');
 
-            if (link && badge) {
+            if (link && countSpan) {
                 try {
-                    // Tarik data XML dari URL tersebut
                     const response = await fetch(link.href);
                     if (!response.ok) throw new Error('Gagal muat');
 
                     const xmlText = await response.text();
-                    // Gunakan Regex super cepat untuk menghitung tag <url> di dalam file tersebut
                     const matches = xmlText.match(/<url[\s>]/g);
                     const count = matches ? matches.length : 0;
 
-                    // Update tampilan badge
-                    badge.innerHTML = count + ' Artikel';
-                    badge.classList.add('loaded');
+                    // Modifikasi innerHTML langsung tanpa addClass styling
+                    countSpan.innerHTML = count + ' Artikel';
                 } catch (error) {
-                    badge.innerHTML = 'Error';
-                    badge.classList.add('error');
+                    countSpan.innerHTML = 'Error';
                 }
             }
         }
     }
 
-    // Jalankan fungsi hitung
     fetchSitemapCounts();
 
     // -- Lightbox Multimedia Logic --
