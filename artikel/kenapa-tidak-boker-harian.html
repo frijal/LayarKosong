@@ -55,112 +55,140 @@
     <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2013-06-11T06:14:13.067Z">
-    <meta property="article:modified_time" content="2026-06-25T14:11:16.473Z">
-<!-- Open Graph -->
-  <!-- Facebook SDK for Comments -->
-  <style>
+    <meta property="article:modified_time" content="2026-06-25T14:11:16.473Z"><style>
     :root {
+      color-scheme: light;
       --bg: #ffffff;
-      --fg: #333333;
-      --primary: #007acc;
-      --primary-dark: #005a9c;
-      --code-bg: #f4f4f4;
+      --fg: #1f2937;
+      --muted: #5b6472;
+      --primary: #075ca8;
+      --primary-hover: #034f8f;
+      --surface: #f8fafc;
+      --border: #d7e0eb;
+      --shadow-soft: 0 0.625rem 1.875rem rgba(15, 23, 42, 0.08);
+      --max-width: 50rem;
+      --radius-sm: 0.375rem;
+      --radius-md: 0.75rem;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #0f172a;
+        --fg: #f8fafc;
+        --muted: #cbd5e1;
+        --primary: #7dd3fc;
+        --primary-hover: #bae6fd;
+        --surface: #1e293b;
+        --border: #334155;
+        --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
     body {
+      min-height: 100vh;
       margin: 0;
-      font-family: sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(56rem 28rem at 12% -8%, rgba(7, 92, 168, 0.08), transparent 60%),
+        var(--bg);
       color: var(--fg);
-      line-height: 1.6;
+      font-family: var(--font-main);
+      line-height: 1.7;
+      text-rendering: optimizeLegibility;
     }
+
     a {
       color: var(--primary);
       text-decoration: none;
+      text-underline-offset: 0.18rem;
     }
+
     a:hover {
-      color: var(--primary-dark);
+      color: var(--primary-hover);
+      text-decoration: underline;
     }
+
+    a:focus-visible {
+      outline: 0.1875rem solid var(--primary);
+      outline-offset: 0.1875rem;
+      border-radius: var(--radius-sm);
+    }
+
     main {
-      max-width: 800px;
+      width: min(100%, var(--max-width));
       margin: 0 auto;
-      padding: 1rem;
+      padding: 1.25rem 1rem 4rem;
     }
-    h1, h2 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-weight: normal;
+
+    h1,
+    h2 {
+      color: var(--fg);
+      font-weight: 700;
+      line-height: 1.25;
+      text-wrap: balance;
     }
-    p, ul, ol {
-      margin-bottom: 1rem;
+
+    h1 {
+      margin: 0 0 1.25rem;
+      font-size: clamp(1.85rem, 5vw, 2.55rem);
+      letter-spacing: -0.035rem;
     }
-    pre {
-      background: var(--code-bg);
-      padding: 1rem;
-      border-radius: 4px;
-      overflow-x: auto;
+
+    h2 {
+      margin: 2.25rem 0 0.875rem;
+      font-size: clamp(1.25rem, 3.4vw, 1.65rem);
     }
-    code {
-      font-family: monospace;
+
+    p,
+    ol {
+      margin: 0 0 1rem;
     }
-    /* Share Icons */
-    .share {
-      display: flex;
-      gap: 0.5rem;
-      margin: 2rem 0;
+
+    ol {
+      padding-left: 1.45rem;
     }
-    .share a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: var(--code-bg);
-      border-radius: 4px;
-      transition: background 0.2s;
+
+    li {
+      margin-bottom: 0.65rem;
     }
-    .share a:hover {
-      background: var(--primary-dark);
+
+    li p {
+      margin-bottom: 0;
     }
-    .share svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--fg);
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          radial-gradient(56rem 28rem at 12% -8%, rgba(125, 211, 252, 0.1), transparent 60%),
+          var(--bg);
+      }
     }
-    /* Lightbox Overlay */
-    .lb-overlay {
-      position: fixed;
-      top: 0; right: 0; bottom: 0; left: 0;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+
+    @media (max-width: 37.5rem) {
+      main {
+        padding: 1rem 0.875rem 3rem;
+      }
     }
-    .lb-overlay img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    .lb-close, .lb-arrow {
-      position: absolute;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-    .lb-close {
-      top: 1rem; right: 1rem;
-    }
-    .lb-arrow.prev {
-      left: 1rem; top: 50%; transform: translateY(-50%);
-    }
-    .lb-arrow.next {
-      right: 1rem; top: 50%; transform: translateY(-50%);
-    }
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.5rem;
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -201,57 +229,8 @@
       <li><p>Kurangi daging merah &amp; dairy jika sering konstipasi.</p></li>
     </ol>
     <p>Kalau sudah rutin tapi masih kesulitan, dokter adalah teman terbaik.</p>
-    <!-- Lightbox Overlay -->
-    <div class="lb-overlay" id="lightbox">
-      <button class="lb-close" aria-label="Tutup">×</button>
-      <button class="lb-arrow prev" aria-label="Sebelumnya">❮</button>
-      <img src="" alt="Preview">
-      <button class="lb-arrow next" aria-label="Selanjutnya">❯</button>
-    </div>
-    <div class="comments">
+
 <div id="related-articles-grid"></div><div id="response"></div>
-    </div>
     </main>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const images = Array.from(document.querySelectorAll('img.lightbox'));
-      const overlay = document.getElementById('lightbox');
-      const overlayImg = overlay.querySelector('img');
-      const closeBtn = overlay.querySelector('.lb-close');
-      const prevBtn = overlay.querySelector('.prev');
-      const nextBtn = overlay.querySelector('.next');
-      let currentIndex = 0;
-      function openLightbox(i) {
-        currentIndex = i;
-        overlayImg.src = images[i].dataset.large || images[i].src;
-        overlay.style.display = 'flex';
-      }
-      function closeLightbox() {
-        overlay.style.display = 'none';
-      }
-      function showPrev() {
-        openLightbox((currentIndex - 1 + images.length) % images.length);
-      }
-      function showNext() {
-        openLightbox((currentIndex + 1) % images.length);
-      }
-      images.forEach((img, i) => {
-        img.addEventListener('click', () => openLightbox(i));
-      });
-      closeBtn.addEventListener('click', closeLightbox);
-      prevBtn.addEventListener('click', showPrev);
-      nextBtn.addEventListener('click', showNext);
-      overlay.addEventListener('click', e => {
-        if (e.target === overlay) closeLightbox();
-      });
-      document.addEventListener('keydown', e => {
-        if (overlay.style.display === 'flex') {
-          if (e.key === 'Escape') closeLightbox();
-          if (e.key === 'ArrowLeft') showPrev();
-          if (e.key === 'ArrowRight') showNext();
-        }
-      });
-    });
-  </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
