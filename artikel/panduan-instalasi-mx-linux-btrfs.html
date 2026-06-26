@@ -62,89 +62,132 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <link rel="stylesheet" href="/ext/github-dark-dimmed.min.css">
     <script src="/ext/highlight.js"></script>
-    <script>hljs.highlightAll();</script>
-<style>
-        /* Core Web Vitals Optimization: Minified-style CSS */
+    <script>hljs.highlightAll();</script><style>
+    /* ===== VARIABEL & RESET ===== */
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #1a1a1a;
+        --accent-color: #0ea5e9;
+        --secondary-bg: #f1f5f9;
+        --border-color: #cbd5e1;
+        --code-bg: #0f172a;
+        --code-text: #e2e8f0;
+        --max-w: 64rem; /* ← lebar diubah sesuai permintaan */
+    }
+
+    @media (prefers-color-scheme: dark) {
         :root {
-            --bg-color: #ffffff;
-            --text-color: #1a1a1a;
-            --accent-color: #0ea5e9;
-            --secondary-bg: #f1f5f9;
-            --border-color: #cbd5e1;
-            --code-bg: #0f172a;
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --secondary-bg: #1e293b;
+            --border-color: #334155;
+            --code-bg: #1e293b;
             --code-text: #e2e8f0;
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #0f172a;
-                --text-color: #f8fafc;
-                --accent-color: #38bdf8;
-                --secondary-bg: #1e293b;
-                --border-color: #334155;
-            }
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            font-size: 1.2rem;
-            line-height: 1.7;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-        }
-        article {
-            width: 100%;
-            max-width: 1000px; /* Widescreen 1 kolom */
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
-            margin: 25px auto;
-            content-visibility: auto; /* Optimasi LCP/CLS */
-            background-color: var(--secondary-bg);
-        }
-        h1 { font-size: 2.2rem; line-height: 1.3; margin-bottom: 1.2rem; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; }
-        h2 { margin-top: 2.5rem; color: var(--accent-color); font-size: 1.6rem; }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            overflow-x: auto;
-            display: block;
-        }
-        th, td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
-        th { background-color: var(--secondary-bg); font-weight: bold; }
-        pre { margin: 20px 0; border-radius: 8px; overflow: hidden; }
-        code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9rem; }
-        .highlight { color: var(--accent-color); font-weight: bold; }
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            article { padding: 15px; }
-            table { font-size: 0.9rem; }
-        }
-        #related-articles-grid, #response {
-            margin-top: 40px;
-            padding: 20px;
-            background: var(--secondary-bg);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        footer {
-            margin-top: 60px;
-            padding: 30px 0;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-    </style>
+    }
+
+    /* ===== RESET DASAR ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.7;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    /* ===== KONTEN UTAMA ===== */
+    article {
+        width: 100%;
+        max-width: var(--max-w);
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    /* ===== HEADING ===== */
+    h1 {
+        font-size: 2.2rem;
+        line-height: 1.3;
+        margin-bottom: 1.2rem;
+        border-bottom: 3px solid var(--accent-color);
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 2.5rem;
+        color: var(--accent-color);
+        font-size: 1.6rem;
+    }
+
+    /* ===== GAMBAR ===== */
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+        margin: 25px auto;
+        content-visibility: auto; /* optimasi LCP/CLS */
+        background-color: var(--secondary-bg);
+    }
+
+    /* ===== TABEL ===== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: var(--secondary-bg);
+        font-weight: bold;
+    }
+
+    /* ===== KODE ===== */
+    pre {
+        margin: 20px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--code-bg);
+        padding: 1rem;
+    }
+
+    code {
+        font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 0.9rem;
+        color: var(--code-text);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+        margin-top: 60px;
+        padding: 30px 0;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+        h1 { font-size: 1.8rem; }
+        article { padding: 15px; }
+        table { font-size: 0.9rem; }
+        body { font-size: 1rem; }
+    }
+</style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
 </head>
 <body>
