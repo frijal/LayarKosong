@@ -296,11 +296,27 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   }).join('');
 }
 
-// 🔥 FITUR BARU: Keyboard Navigation (Khusus Desktop)
+// 🔥 FITUR UPDATE: Keyboard Navigation (Next, Prev, Up to Category, Down to Root)
 function initKeyboardNav(allData: any, currentFile: string): void {
-  function navigateTo(direction: 'next' | 'prev'): void {
+  function navigateTo(direction: 'next' | 'prev' | 'up' | 'down'): void {
+
+    // 🔽 JALUR EKSPRES: Jika menekan bawah, langsung pulang ke root (Beranda)
+    if (direction === 'down') {
+      window.location.href = '/';
+      return;
+    }
+
     const catInfo = getCategoryInfo(currentFile, allData);
-    if (!catInfo || catInfo.list.length <= 1) return;
+    if (!catInfo) return;
+
+    // 🔼 JALUR KHUSUS: Naik ke landing page kategori (misal: /warta-tekno)
+    if (direction === 'up') {
+      window.location.href = `/${catInfo.slug}`;
+      return;
+    }
+
+    // Jalur navigasi artikel horizontal (Next / Prev)
+    if (catInfo.list.length <= 1) return;
 
     const currentIndex = catInfo.list.findIndex((a: any) => a.id === currentFile);
     if (currentIndex === -1) return;
@@ -319,10 +335,10 @@ function initKeyboardNav(allData: any, currentFile: string): void {
   }
 
   document.addEventListener('keydown', (e: KeyboardEvent) => {
-    // 🔥 SABUK PENGAMAN 1: Matikan fitur ini jika terdeteksi perangkat Mobile/Touchscreen
+    // 1. Matikan jika di perangkat Mobile
     if (isMobileDevice()) return;
 
-    // 🔥 SABUK PENGAMAN 2: Abaikan jika user sedang mengetik di input/Disqus
+    // 2. Abaikan jika user sedang mengetik di pencarian atau komentar Disqus
     const activeElement = document.activeElement as HTMLElement;
     const isTyping = activeElement.tagName === 'INPUT' ||
     activeElement.tagName === 'TEXTAREA' ||
@@ -331,13 +347,25 @@ function initKeyboardNav(allData: any, currentFile: string): void {
 
     if (isTyping) return;
 
-    // Deteksi [Ctrl] + [Panah Kanan]
+    // 🔽 Deteksi [Ctrl] + [Panah Bawah] -> Pulang ke Beranda Root (/)
+    if (e.ctrlKey && e.key === 'ArrowDown') {
+      e.preventDefault(); // Mencegah halaman scroll ke bawah
+      navigateTo('down');
+    }
+
+    // 🔼 Deteksi [Ctrl] + [Panah Atas] -> Naik ke Landing Page Kategori
+    if (e.ctrlKey && e.key === 'ArrowUp') {
+      e.preventDefault(); // Mencegah halaman scroll ke atas
+      navigateTo('up');
+    }
+
+    // ⏩ Deteksi [Ctrl] + [Panah Kanan] -> Artikel Selanjutnya
     if (e.ctrlKey && e.key === 'ArrowRight') {
       e.preventDefault();
       navigateTo('next');
     }
 
-    // Deteksi [Ctrl] + [Panah Kiri]
+    // ⏪ Deteksi [Ctrl] + [Panah Kiri] -> Artikel Sebelumnya
     if (e.ctrlKey && e.key === 'ArrowLeft') {
       e.preventDefault();
       navigateTo('prev');
