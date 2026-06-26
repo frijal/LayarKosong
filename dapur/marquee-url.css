@@ -427,18 +427,24 @@ border-top: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
   background: var(--border);
-  position: relative; /* ← wajib ada ini */
+  position: relative;
 }
 
-.rel-img-mini img {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center !important;
-  display: block !important;
+/* 🔥 Panggil class uniknya di sini */
+.lk-related-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
   transition: transform 0.5s ease;
+
+  /* --- RESET ATURAN DARI CSS IMG GLOBAL --- */
+  margin: 0;
+  border: none;
+  border-radius: 0; /* Hindari double-radius karena induknya sudah punya */
 }
 
 .rel-info-mini h4 {

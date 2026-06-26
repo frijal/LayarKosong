@@ -18,6 +18,7 @@
   <a href="${_(J.id,H)}">
   <div class="rel-img-mini">
   <img
+  class="lk-related-thumb"
   src="${V}"
   alt="${J.title}"
   loading="eager"

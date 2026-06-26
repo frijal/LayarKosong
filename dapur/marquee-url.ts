@@ -280,6 +280,7 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   <a href="${getFullUrl(item.id, allData)}">
   <div class="rel-img-mini">
   <img
+  class="lk-related-thumb"
   src="${thumbSrc}"
   alt="${item.title}"
   loading="eager"
