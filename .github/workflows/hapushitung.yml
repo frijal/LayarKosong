@@ -3,10 +3,19 @@ name: 🔆 Pengecekan & Laporan Konten Harian
 on:
   schedule:
     - cron: 0 13 * * *
-  workflow_dispatch: # Bisa dijalankan manual dari tab Actions
+  workflow_dispatch:
+
+concurrency:
+  group: daily-content-maintenance-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  maintenance_and_reporting:
+  # ============================================================
+  # DIRECT MAINTENANCE
+  # Semua proses selain scan unused images boleh langsung commit main.
+  # ============================================================
+  direct_maintenance:
+    name: 🔆 Direct Maintenance to Main
     runs-on: ubuntu-latest
 
     permissions:
@@ -15,160 +24,386 @@ jobs:
     steps:
       # ========== SETUP ENVIRONMENT ==========
       - name: 1. Checkout Repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           fetch-depth: 1
           persist-credentials: true
 
       - name: 🚀 Setup Bun.js
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: latest
 
-      - name: '3. Install Dependencies'
-        run: bun install       
+      - name: 3. Install Dependencies
+        run: bun install
 
-      # ========== AUTOMATION SCRIPTS ==========
+      # ========== INDEXNOW LANGSUNG ==========
       - name: 🔍 IndexNow Sync
         continue-on-error: true
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
+          mkdir -p mini
           touch mini/indexnow-cache.txt
-          bun run dapur/indexnow.ts     
-      
-      - name: 📸 Scan Unused Images
-        run: |
-          echo "🔎 Menjalankan pengecekan gambar..."
-          bun run dapur/cek-gambar.ts || echo "Script cek-gambar tidak ditemukan, skip."
+          bun run dapur/indexnow.ts
 
+      # ========== DASHBOARD & METADATA ==========
       - name: 🕵️ Update Dashboard Jadwal
-        run: | 
-          bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."            
+        run: |
+          mkdir -p sementara
+          bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
           bun run dapur/metadata-audit.ts
           cp -u artikel/artikel.json sementara/
           # bun run dapur/audit-workflow-efisiensi.ts
 
-      # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
+      # ========== CONTENT REPORT GENERATION ==========
       - name: 📊 Generate Simplified Content Report
         id: generate_report
+        shell: bash
         run: |
-          # Definisikan tanggal dan simpan ke GITHUB_ENV agar bisa diakses langkah lain
-          DATE=$(date +'%Y-%m-%d')
-          echo "REPORT_DATE=$DATE" >> $GITHUB_ENV
+          DATE=$(TZ='Asia/Makassar' date +'%Y-%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
+
+          echo "REPORT_DATE=$DATE" >> "$GITHUB_ENV"
+          echo "report_date=$DATE" >> "$GITHUB_OUTPUT"
+          echo "report_path=$REPORT_PATH" >> "$GITHUB_OUTPUT"
+
+          mkdir -p mini
 
           echo "📊 Membuat laporan ringkas..."
           declare -A ext_count
           declare -A ext_folders
           total_files=0
 
-          # 2. Scanning (Hanya folder utama, abaikan sistem)
           while IFS= read -r -d $'\0' file; do
-            # Ambil ekstensi
             ext="${file##*.}"
             [[ "$file" != *.* ]] && ext="no-ext"
-            
-            # Hitung total per ekstensi
+
             ext_count["$ext"]=$(( ${ext_count["$ext"]:-0} + 1 ))
             total_files=$(( total_files + 1 ))
-            
-            # Catat folder unik (ambil nama folder pertama setelah root)
+
             folder=$(echo "$file" | cut -d'/' -f2)
-            if [[ ! "${ext_folders["$ext"]}" =~ "$folder" ]]; then
+
+            if [[ ! "${ext_folders["$ext"]:-}" =~ (^|[[:space:]])"$folder"($|[[:space:]]) ]]; then
               ext_folders["$ext"]+="$folder "
             fi
-          done < <(find . -maxdepth 3 -not -path '*/.*' -not -path './node_modules*' -not -path './mini*' -type f -print0)
+          done < <(
+            find . \
+              -maxdepth 3 \
+              -not -path '*/.*' \
+              -not -path './node_modules*' \
+              -not -path './mini*' \
+              -type f \
+              -print0
+          )
 
-          # 3. Generate Markdown
           {
             echo "# 🔆 Laporan Ringkas Konten"
-            echo "Update: $(date '+%d %b %Y | %H:%M') WITA"
+            echo "Update: $(TZ='Asia/Makassar' date '+%d %b %Y | %H:%M') WITA"
             echo ""
             echo "### 📑 Statistik Global"
             echo "| Ekstensi | Jumlah | Lokasi Folder |"
             echo "| :--- | :---: | :--- |"
-            
-            # Sort ekstensi berdasarkan abjad
+
             for ext in $(echo "${!ext_count[@]}" | tr ' ' '\n' | sort); do
               count=${ext_count["$ext"]}
-              # Rapikan list folder
               folders=$(echo "${ext_folders["$ext"]}" | sed 's/ $//; s/ /, /g')
-              
-              # Mapping emoji sederhana
-              case $ext in
+
+              case "$ext" in
                 md) emo="📝" ;;
-                webp|jpg|png) emo="🖼️" ;;
-                js|py|sh) emo="📜" ;;
+                webp|jpg|jpeg|png|svg|gif|avif) emo="🖼️" ;;
+                js|ts|py|sh) emo="📜" ;;
                 html|css) emo="🎨" ;;
+                json) emo="🧩" ;;
+                yml|yaml) emo="⚙️" ;;
+                txt) emo="📄" ;;
                 *) emo="📄" ;;
               esac
-              
+
               printf "| %s %-5s | **%d** | %s |\n" "$emo" "$ext" "$count" "$folders"
             done
-            
+
             echo ""
             echo "**Total File:** $total_files"
           } > "$REPORT_PATH"
 
           echo "✅ Laporan disederhanakan: $REPORT_PATH"
 
-          # 4. 🧹 CLEANUP - Keep only 6 newest reports
           echo ""
           echo "🧹 Membersihkan laporan lama..."
 
-          # Hitung jumlah laporan yang ada
-          report_count=$(find mini/ -name "*-laporan_konten.md" 2>/dev/null | wc -l)
+          report_count=$(find mini/ -name "*-laporan_konten.md" -type f 2>/dev/null | wc -l)
           echo "📋 Total laporan yang ada: $report_count"
 
           if [ "$report_count" -gt 6 ]; then
-            # List semua laporan, sort berdasarkan nama (tanggal), ambil yang lama
-            # head -n -6 = ambil semua kecuali 6 terakhir
             find mini/ -name "*-laporan_konten.md" -type f | sort | head -n -6 | while read -r old_report; do
-              echo "🗑️  Menghapus: $(basename "$old_report")"
+              echo "🗑️ Menghapus: $(basename "$old_report")"
               rm -f "$old_report"
             done
-            
-            deleted_count=$((report_count - 6))
-            echo "✨ Berhasil menghapus $deleted_count laporan lama"
+
+            deleted_report_count=$((report_count - 6))
+            echo "✨ Berhasil menghapus $deleted_report_count laporan lama"
           else
             echo "✅ Laporan masih dalam batas (max 6), tidak ada yang dihapus"
           fi
 
-          # Show final report list
           echo ""
           echo "📚 Laporan yang tersisa:"
           find mini/ -name "*-laporan_konten.md" -type f | sort -r | while read -r report; do
             echo "  📄 $(basename "$report")"
-          done      
-      
-      # ========== COMMIT & PUSH ==========
-      - name: 📮 Commit & Push All Changes
+          done
+
+      # ========== COMMIT LANGSUNG KE MAIN ==========
+      - name: 📮 Commit Direct Maintenance to Main
+        shell: bash
         run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            echo "📝 Perubahan ditemukan, melakukan commit..."
-            
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "📝 Perubahan maintenance ditemukan, melakukan commit langsung ke main..."
+
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
-            
+
             git add .
-            
-            # Sekarang env.REPORT_DATE sudah tersedia!
-            DATE=$REPORT_DATE
+
+            DATE="${{ steps.generate_report.outputs.report_date }}"
             added_count=$(git diff --staged --name-status | grep -c "^A" || true)
+            modified_count=$(git diff --staged --name-status | grep -c "^M" || true)
             deleted_count=$(git diff --staged --name-status | grep -c "^D" || true)
-            
-            # [skip ci] sangat penting untuk mencegah infinite loop!
-            git commit -m "chore: Perawatan Harian ($DATE) 📊 [skip ci]
+
+            git commit -m "chore: Perawatan Harian Langsung ($DATE) 📊 [skip ci]
 
             - Added: $added_count file(s)
+            - Modified: $modified_count file(s)
             - Deleted: $deleted_count file(s)
-            - Report: ${DATE}-laporan_konten.md" \
-            --author="frijal <5477182+frijal@users.noreply.github.com>"
-            
-            git pull origin main --rebase --strategy-option=theirs
-            git push origin main
-            echo "✅ Sukses di-push ke main!"
+            - Report: mini/${DATE}-laporan_konten.md" \
+              --author="frijal <5477182+frijal@users.noreply.github.com>"
+
+            git pull origin main --rebase --autostash
+            git push origin HEAD:main
+
+            echo "✅ Direct maintenance berhasil di-push ke main."
           else
-            echo "✅ Tidak ada perubahan yang perlu di-commit."
+            echo "✅ Tidak ada perubahan direct maintenance."
           fi
+
+
+  # ============================================================
+  # SCAN UNUSED IMAGES VIA PR
+  # Hanya step ini yang masuk Pull Request.
+  # Tujuannya agar file gambar yang terhapus bisa diperiksa dulu.
+  # ============================================================
+  scan_unused_images_pr:
+    name: 📸 Scan Unused Images PR
+    runs-on: ubuntu-latest
+    needs: direct_maintenance
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      # ========== SETUP ENVIRONMENT ==========
+      - name: 1. Checkout Repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: 🚀 Setup Bun.js
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: latest
+
+      - name: 3. Install Dependencies
+        run: bun install
+
+      # ========== ONLY SCAN UNUSED IMAGES ==========
+      - name: 📸 Scan Unused Images
+        run: |
+          echo "🔎 Menjalankan pengecekan gambar..."
+          bun run dapur/cek-gambar.ts || echo "Script cek-gambar tidak ditemukan, skip."
+
+      # ========== AUDIT SCAN RESULT ==========
+      - name: 🧾 Audit Scan Image Changes
+        id: audit_scan
+        shell: bash
+        run: |
+          DATE=$(TZ='Asia/Makassar' date +'%Y-%m-%d')
+          AUDIT_PATH="mini/${DATE}-audit-scan-gambar.md"
+
+          echo "scan_date=$DATE" >> "$GITHUB_OUTPUT"
+          echo "audit_path=$AUDIT_PATH" >> "$GITHUB_OUTPUT"
+
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "added_count=0" >> "$GITHUB_OUTPUT"
+            echo "modified_count=0" >> "$GITHUB_OUTPUT"
+            echo "deleted_count=0" >> "$GITHUB_OUTPUT"
+            echo "renamed_count=0" >> "$GITHUB_OUTPUT"
+            echo "✅ Scan gambar tidak menghasilkan perubahan."
+            exit 0
+          fi
+
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+
+          mkdir -p mini
+
+          before_audit_status="$(mktemp)"
+          git status --porcelain=v1 > "$before_audit_status"
+
+          added_count=$(awk 'substr($0,1,2) ~ /A|\?\?/ {c++} END{print c+0}' "$before_audit_status")
+          modified_count=$(awk 'substr($0,1,2) ~ /M/ {c++} END{print c+0}' "$before_audit_status")
+          deleted_count=$(awk 'substr($0,1,2) ~ /D/ {c++} END{print c+0}' "$before_audit_status")
+          renamed_count=$(awk 'substr($0,1,2) ~ /R/ {c++} END{print c+0}' "$before_audit_status")
+
+          echo "added_count=$added_count" >> "$GITHUB_OUTPUT"
+          echo "modified_count=$modified_count" >> "$GITHUB_OUTPUT"
+          echo "deleted_count=$deleted_count" >> "$GITHUB_OUTPUT"
+          echo "renamed_count=$renamed_count" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "# 📸 Audit Scan Gambar Tidak Terpakai"
+            echo ""
+            echo "Tanggal: $DATE"
+            echo ""
+            echo "Audit ini dibuat khusus dari step:"
+            echo ""
+            echo "- \`📸 Scan Unused Images\`"
+            echo ""
+            echo "## Ringkasan"
+            echo ""
+            echo "| Jenis Perubahan | Jumlah |"
+            echo "| :--- | ---: |"
+            echo "| File baru | $added_count |"
+            echo "| File berubah | $modified_count |"
+            echo "| File terhapus | $deleted_count |"
+            echo "| File rename | $renamed_count |"
+            echo ""
+            echo "## Status Git"
+            echo ""
+            echo '```text'
+            cat "$before_audit_status"
+            echo '```'
+            echo ""
+
+            echo "## File Terhapus"
+            echo ""
+
+            deleted_files=$(awk 'substr($0,1,2) ~ /D/ {print substr($0,4)}' "$before_audit_status")
+
+            if [[ -n "$deleted_files" ]]; then
+              while IFS= read -r deleted_file; do
+                echo "- $deleted_file"
+              done <<< "$deleted_files"
+            else
+              echo "Tidak ada file terhapus."
+            fi
+
+            echo ""
+            echo "## File Baru"
+            echo ""
+
+            added_files=$(awk 'substr($0,1,2) ~ /A|\?\?/ {print substr($0,4)}' "$before_audit_status")
+
+            if [[ -n "$added_files" ]]; then
+              while IFS= read -r added_file; do
+                echo "- $added_file"
+              done <<< "$added_files"
+            else
+              echo "Tidak ada file baru."
+            fi
+
+            echo ""
+            echo "## File Berubah"
+            echo ""
+
+            modified_files=$(awk 'substr($0,1,2) ~ /M/ {print substr($0,4)}' "$before_audit_status")
+
+            if [[ -n "$modified_files" ]]; then
+              while IFS= read -r modified_file; do
+                echo "- $modified_file"
+              done <<< "$modified_files"
+            else
+              echo "Tidak ada file berubah."
+            fi
+          } > "$AUDIT_PATH"
+
+          echo "✅ Audit scan gambar dibuat: $AUDIT_PATH"
+
+      - name: 🚨 Safety Summary for Scan Image PR
+        if: steps.audit_scan.outputs.has_changes == 'true'
+        shell: bash
+        run: |
+          echo "## 📸 Ringkasan Scan Gambar" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Jenis | Jumlah |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| :--- | ---: |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| File baru | ${{ steps.audit_scan.outputs.added_count }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| File berubah | ${{ steps.audit_scan.outputs.modified_count }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| File terhapus | ${{ steps.audit_scan.outputs.deleted_count }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| File rename | ${{ steps.audit_scan.outputs.renamed_count }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          if [[ "${{ steps.audit_scan.outputs.deleted_count }}" != "0" ]]; then
+            echo "⚠️ Ada file terhapus dari hasil scan gambar. Periksa tab **Files changed** sebelum merge." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "✅ Tidak ada file terhapus dari hasil scan gambar." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # ========== CREATE PULL REQUEST KHUSUS SCAN GAMBAR ==========
+      - name: 📬 Create Pull Request for Scan Unused Images
+        if: steps.audit_scan.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: bot/scan-unused-images-${{ steps.audit_scan.outputs.scan_date }}-${{ github.run_id }}
+          delete-branch: true
+
+          commit-message: |
+            chore: Scan unused images (${{ steps.audit_scan.outputs.scan_date }}) 📸 [skip ci]
+
+            - Added: ${{ steps.audit_scan.outputs.added_count }} file(s)
+            - Modified: ${{ steps.audit_scan.outputs.modified_count }} file(s)
+            - Deleted: ${{ steps.audit_scan.outputs.deleted_count }} file(s)
+            - Renamed: ${{ steps.audit_scan.outputs.renamed_count }} file(s)
+            - Audit: ${{ steps.audit_scan.outputs.audit_path }}
+
+          title: "📸 Scan Unused Images ${{ steps.audit_scan.outputs.scan_date }}"
+          body: |
+            ## 📸 Pull Request Khusus Scan Unused Images
+
+            PR ini hanya berasal dari step:
+
+            `📸 Scan Unused Images`
+
+            Semua maintenance lain sudah langsung commit ke `main`. PR ini dibuat khusus agar file gambar yang dianggap tidak terpakai tidak langsung hilang tanpa pengecekan.
+
+            ### Ringkasan Perubahan
+
+            | Jenis | Jumlah |
+            | :--- | ---: |
+            | File baru | ${{ steps.audit_scan.outputs.added_count }} |
+            | File berubah | ${{ steps.audit_scan.outputs.modified_count }} |
+            | File terhapus | ${{ steps.audit_scan.outputs.deleted_count }} |
+            | File rename | ${{ steps.audit_scan.outputs.renamed_count }} |
+
+            ### File Audit
+
+            - `${{ steps.audit_scan.outputs.audit_path }}`
+
+            ### Catatan Pemeriksaan
+
+            Periksa tab **Files changed** sebelum merge, terutama jika ada file gambar terhapus.
+
+          labels: |
+            automated
+            scan-unused-images
+            review-required
+
+          author: "frijal <5477182+frijal@users.noreply.github.com>"
+          committer: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+
+      - name: ✅ No Scan Changes
+        if: steps.audit_scan.outputs.has_changes == 'false'
+        run: echo "✅ Tidak ada perubahan dari scan gambar, PR tidak dibuat."
