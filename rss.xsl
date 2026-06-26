@@ -10,7 +10,16 @@
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #333; margin: 0; padding: 40px; background: #f4f7f6; }
 .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .feed-header { border-bottom: 2px solid #e67e22; padding-bottom: 20px; margin-bottom: 20px; }
-.feed-header h1 { color: #e67e22; margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
+
+/* 🔥 UPDATE CSS H1: Menambahkan space-between */
+.feed-header h1 { color: #e67e22; margin: 0 0 10px 0; display: flex; justify-content: space-between; align-items: center; }
+
+/* CSS tambahan agar Icon RSS bawaan dan Teks tetap berdekatan (gap) */
+.feed-header h1 .title-group { display: flex; align-items: center; gap: 10px; }
+
+/* 🔥 CSS BARU: Styling untuk Logo SVG */
+.header-logo { height: 1.1em; width: auto; object-fit: contain; opacity: 0.9; }
+
 .feed-header p { margin: 0; color: #666; font-size: 15px; line-height: 1.5; }
 .feed-meta { display: flex; justify-content: space-between; font-size: 13px; color: #888; margin-top: 15px; }
 
@@ -47,8 +56,12 @@ tr:hover { background: #fdfdfd; }
 <div class="container">
     <div class="feed-header">
         <h1>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
-            <xsl:value-of select="rss/channel/title"/>
+            <span class="title-group">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+                <xsl:value-of select="rss/channel/title"/>
+            </span>
+
+            <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
         </h1>
         <p><xsl:value-of select="rss/channel/description"/></p>
         <div class="feed-meta">
@@ -56,7 +69,7 @@ tr:hover { background: #fdfdfd; }
             <span>Update: <xsl:value-of select="rss/channel/lastBuildDate"/></span>
         </div>
     </div>
-    
+
     <table>
         <thead>
             <tr>
@@ -91,13 +104,13 @@ tr:hover { background: #fdfdfd; }
 <![CDATA[
     function openLightbox(url) {
         document.getElementById('lightbox-img').src = url;
-        document.getElementById('lightbox').style.display = 'flex'; 
-        document.body.style.overflow = 'hidden'; 
+        document.getElementById('lightbox').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
     function closeLightbox(event) {
         if (!event || event.target.id !== 'lightbox-img') {
             document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto'; 
+            document.body.style.overflow = 'auto';
         }
     }
     document.addEventListener('keydown', function(e){ if(e.key === "Escape") closeLightbox(); });
