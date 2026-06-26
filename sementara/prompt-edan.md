@@ -535,3 +535,5 @@ Jangan berikan penjelasan atau basa-basi sebelum maupun sesudah blok kode.
 ---
 
 [OUTLINE]
+
+periksa dan perbaiki <style> di html ini, berikan prefers-color-scheme jika bisa, serta buang jika ada #related-articles-grid dan #response, juga buang selector class css yang tidak terpakai pada body html, jika ada multiple sources gambar image, ubah menjadi satu source saja, karena aku akan gunakan plugin lightbox external, berikan pengganti seluruh blok <style> lama dengan yang sudah diperbaiki.
