@@ -56,33 +56,359 @@
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2014-12-01T03:00:00.000Z">
     <meta property="article:modified_time" content="2026-06-25T14:11:09.551Z">
-  <!-- prettier-ignore -->
 <meta name="keywords" content="EULA, End User License Agreement, lisensi software, Windows, perangkat lunak legal, software bajakan">
-  <!-- Open Graph -->
-  <!-- Styles -->
   <style>
-body {font-family:sans-serif;line-height:1.7;background:#f8f9fa;color:#2c3e50;margin:0}
-.container{max-width:1000px;margin:auto;padding:20px}
-header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center;padding:50px 20px}
-header h1{margin:0;font-size:2.5rem}
-.breadcrumb{background:#fff;padding:10px 20px;border-bottom:1px solid #eee}
-.breadcrumb a{color:#1a659e;text-decoration:none}
-h2{margin:30px 0 15px;font-size:1.8rem;color:#004e89;border-left:4px solid #ff6b35;padding-left:15px}
-.eula-point{background:#fff;border-left:4px solid #ff6b35;margin:20px 0;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-.eula-original{background:#fff3cd;padding:15px}
-.eula-translation{background:#d4edda;padding:15px;font-weight:600}
-.eula-explanation{background:#d1ecf1;padding:15px}
-.image-container{text-align:center;margin:30px 0}
-.image-container img{max-width:100%;border-radius:8px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.2)}
-.social-share{text-align:center;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.08);margin:40px 0}
-.share-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
-.share-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border-radius:25px;color:#fff;font-weight:600;text-decoration:none}
-.facebook{background:#1877f2}.twitter{background:#1da1f2}.whatsapp{background:#25d366}.telegram{background:#0088cc}
-.instagram{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.threads{background:#000}.tiktok{background:#000}
-/* Lightbox */
-.lightbox{display:none;position:fixed;z-index:1000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);align-items:center;justify-content:center}
-.lightbox img{max-width:90%;max-height:90%;border-radius:8px}
-  </style>
+    :root {
+        color-scheme: light;
+        --bg: #f6f8fb;
+        --bg-soft: #eef2ff;
+        --text: #172033;
+        --muted: #64748b;
+        --heading: #0f172a;
+        --accent: #4f46e5;
+        --accent-2: #9333ea;
+        --accent-hover: #4338ca;
+        --accent-soft: rgba(79, 70, 229, 0.12);
+        --orange: #f97316;
+        --orange-soft: rgba(249, 115, 22, 0.12);
+        --yellow-bg: #fff7d6;
+        --yellow-text: #6b4e00;
+        --green-bg: #dcfce7;
+        --green-text: #14532d;
+        --cyan-bg: #e0f7ff;
+        --cyan-text: #164e63;
+        --card: #ffffff;
+        --card-soft: #f8fafc;
+        --line: #dbe4f0;
+        --image-bg: #e2e8f0;
+        --shadow: 0 1rem 2.75rem rgba(15, 23, 42, 0.12);
+        --shadow-soft: 0 0.625rem 1.875rem rgba(15, 23, 42, 0.08);
+        --radius-sm: 0.625rem;
+        --radius-md: 1rem;
+        --radius-lg: 1.5rem;
+        --max-width: 62.5rem;
+        --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color-scheme: dark;
+            --bg: #08111f;
+            --bg-soft: #15152b;
+            --text: #e5e7eb;
+            --muted: #a7b3c5;
+            --heading: #f8fafc;
+            --accent: #818cf8;
+            --accent-2: #c084fc;
+            --accent-hover: #a5b4fc;
+            --accent-soft: rgba(129, 140, 248, 0.14);
+            --orange: #fb923c;
+            --orange-soft: rgba(251, 146, 60, 0.13);
+            --yellow-bg: rgba(250, 204, 21, 0.13);
+            --yellow-text: #fde68a;
+            --green-bg: rgba(34, 197, 94, 0.13);
+            --green-text: #bbf7d0;
+            --cyan-bg: rgba(34, 211, 238, 0.12);
+            --cyan-text: #a5f3fc;
+            --card: #111827;
+            --card-soft: #172033;
+            --line: #2f4058;
+            --image-bg: #172033;
+            --shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.42);
+            --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        min-height: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        background:
+            radial-gradient(56rem 30rem at 10% -8%, var(--accent-soft), transparent 62%),
+            radial-gradient(42rem 26rem at 92% 8%, var(--orange-soft), transparent 58%),
+            linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, var(--bg));
+        color: var(--text);
+        font-family: var(--font-main);
+        line-height: 1.75;
+        text-rendering: optimizeLegibility;
+    }
+
+    a {
+        color: var(--accent);
+        text-decoration-thickness: 0.08rem;
+        text-underline-offset: 0.18rem;
+        overflow-wrap: anywhere;
+    }
+
+    a:hover {
+        color: var(--accent-hover);
+    }
+
+    a:focus-visible {
+        outline: 0.1875rem solid var(--accent);
+        outline-offset: 0.1875rem;
+        border-radius: var(--radius-sm);
+    }
+
+    header {
+        width: min(100% - 2rem, var(--max-width));
+        margin: 2.5rem auto 0;
+        padding: clamp(1.5rem, 5vw, 3rem);
+        border: 0.0625rem solid var(--line);
+        border-bottom: 0.35rem solid var(--accent);
+        border-radius: var(--radius-lg);
+        background:
+            linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #ffffff;
+        box-shadow: var(--shadow);
+        text-align: center;
+    }
+    header h1 {
+        margin: 0;
+        color: #ffffff;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -0.055rem;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+    }
+
+    header p {
+        max-width: 42rem;
+        margin: 1rem auto 0;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: clamp(1.02rem, 2.4vw, 1.2rem);
+        font-weight: 650;
+        line-height: 1.55;
+    }
+
+    .breadcrumb {
+        width: min(100% - 2rem, var(--max-width));
+        margin: 1rem auto 0;
+        padding: 0.85rem 1rem;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-md);
+        background-color: var(--card);
+        color: var(--muted);
+        box-shadow: var(--shadow-soft);
+        font-size: 0.95rem;
+        font-weight: 700;
+        line-height: 1.5;
+    }
+
+    .breadcrumb a {
+        text-decoration: none;
+    }
+
+    .container {
+        width: min(100% - 2rem, var(--max-width));
+        min-width: 0;
+        margin: 1rem auto 2.5rem;
+        padding: clamp(1rem, 3vw, 1.75rem);
+        overflow: hidden;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-lg);
+        background-color: var(--card);
+        box-shadow: var(--shadow);
+    }
+
+    section {
+        min-width: 0;
+        margin-bottom: 1.5rem;
+        padding: clamp(1rem, 3vw, 1.5rem);
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-md);
+        background-color: var(--card-soft);
+        box-shadow: var(--shadow-soft);
+    }
+
+    section:last-of-type {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        margin: 0 0 1rem;
+        padding-left: 0.9rem;
+        border-left: 0.35rem solid var(--orange);
+        color: var(--heading);
+        font-size: clamp(1.35rem, 4vw, 1.9rem);
+        font-weight: 850;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+    }
+
+    p {
+        margin: 0 0 1.15rem;
+        font-size: clamp(1.02rem, 2.2vw, 1.1rem);
+        overflow-wrap: break-word;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    strong {
+        color: var(--heading);
+        font-weight: 850;
+    }
+
+    em {
+        color: inherit;
+    }
+
+    .eula-point {
+        min-width: 0;
+        margin: 1rem 0;
+        overflow: hidden;
+        border: 0.0625rem solid var(--line);
+        border-left: 0.35rem solid var(--orange);
+        border-radius: var(--radius-md);
+        background-color: var(--card);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .eula-point:last-child {
+        margin-bottom: 0;
+    }
+
+    .eula-original,
+    .eula-translation,
+    .eula-explanation {
+        padding: 1rem 1.1rem;
+        overflow-wrap: break-word;
+    }
+
+    .eula-original {
+        background-color: var(--yellow-bg);
+        color: var(--yellow-text);
+        font-style: italic;
+    }
+
+    .eula-translation {
+        border-top: 0.0625rem solid var(--line);
+        background-color: var(--green-bg);
+        color: var(--green-text);
+        font-weight: 750;
+    }
+
+    .eula-explanation {
+        border-top: 0.0625rem solid var(--line);
+        background-color: var(--cyan-bg);
+        color: var(--cyan-text);
+        font-weight: 700;
+    }
+
+    .image-container {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .image-container img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0.45rem;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-lg);
+        background:
+            linear-gradient(var(--image-bg), var(--image-bg)) padding-box,
+            linear-gradient(135deg, var(--accent), var(--orange)) border-box;
+        box-shadow: var(--shadow);
+        cursor: zoom-in;
+        transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+    }
+
+    .image-container img:hover {
+        transform: translateY(-0.2rem);
+        box-shadow: 0 1.75rem 4.5rem rgba(15, 23, 42, 0.18);
+        filter: saturate(1.05) contrast(1.03);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background:
+                radial-gradient(56rem 30rem at 10% -8%, rgba(129, 140, 248, 0.13), transparent 62%),
+                radial-gradient(42rem 26rem at 92% 8%, rgba(251, 146, 60, 0.1), transparent 58%),
+                linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, #050b14);
+        }
+    }
+
+    @media (max-width: 48rem) {
+        header,
+        .breadcrumb,
+        .container {
+            width: min(100% - 1.5rem, var(--max-width));
+        }
+
+        header {
+            margin-top: 1rem;
+            padding: 1.25rem;
+        }
+
+        .container {
+            padding: 0.875rem;
+        }
+
+        section {
+            padding: 1rem;
+        }
+
+        header h1 {
+            letter-spacing: -0.035rem;
+        }
+
+        .image-container img {
+            padding: 0.3rem;
+            border-radius: var(--radius-md);
+        }
+    }
+
+    @media (max-width: 30rem) {
+        header,
+        .breadcrumb,
+        .container {
+            width: min(100% - 1rem, var(--max-width));
+        }
+
+        header,
+        section,
+        .container {
+            padding: 0.875rem;
+        }
+
+        .eula-original,
+        .eula-translation,
+        .eula-explanation {
+            padding: 0.875rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
+        }
+    }
+</style>
 <meta name="date" content="2025-09-28">
 <meta name="ai:summary" content="memahami EULA (End User License Agreement) - Perjanjian lisensi perangkat lunak yang harus dipahami pengguna Windows dan software lainnya.">
 <meta name="ai:prompt_hint" content="memahami EULA (End User License Agreement) - Perjanjian lisensi perangkat lunak yang harus dipahami pengguna Windows dan software lainnya.">
@@ -141,10 +467,8 @@ h2{margin:30px 0 15px;font-size:1.8rem;color:#004e89;border-left:4px solid #ff6b
   <div class="eula-explanation">→ Artinya kita hanya “menyewa hak pakai” Windows, bukan memilikinya.</div>
 </div>
   </section>
-  <!-- Gambar -->
   <div class="image-container">
-<img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQziDXtrcs4LjhjcsJFfNdR6VHWcdpMoa2CdnSq3CilHewNoHhyphenhyphenZL6eX7d4lGDhAs26TKRKzPDGGKX2dZRJSVxY8pO1x0l-ojQJfxw9jKe7sRAgBlwVpN5b4qRgs5mX_5OjuwOoL9UCLIx/s16000/hahahaaa_24xacehuqy.webp" alt="EULA Windows" onclick="openLightbox(this)">
-  </div>
+<img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQziDXtrcs4LjhjcsJFfNdR6VHWcdpMoa2CdnSq3CilHewNoHhyphenhyphenZL6eX7d4lGDhAs26TKRKzPDGGKX2dZRJSVxY8pO1x0l-ojQJfxw9jKe7sRAgBlwVpN5b4qRgs5mX_5OjuwOoL9UCLIx/s16000/hahahaaa_24xacehuqy.webp" alt="EULA Windows" loading="lazy" decoding="async">  </div>
   <div style="text-align:center;font-weight:bold;margin:20px 0">
 Marilah kita gunakan perangkat lunak legal.<br>
 Stop penggunaan perangkat lunak bajakan!<br>
@@ -154,15 +478,7 @@ Pilih Perangkat Lunak Bebas Terbuka.
 </div>
  <div id="related-articles-grid"></div><div id="response"></div>
 </div>
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt="Gambar - EULA (End User License Agreement) - Panduan Lengkap Memahami Lisensi Perangkat Lunak">
-</div>
-<script>
-function openLightbox(img){document.getElementById("lightbox").style.display="flex";document.getElementById("lightbox-img").src=img.src;}
-function closeLightbox(){document.getElementById("lightbox").style.display="none";}
-</script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+    <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script defer src="/ext/lightbox.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
