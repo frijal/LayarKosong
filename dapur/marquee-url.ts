@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * marquee-url.ts v7.1 (Fixed & Full Integrated)
+ * marquee-url.ts v7.2 (Fixed, Full Integrated + Keyboard Nav)
  * =================================================================================
  */
 
@@ -77,7 +77,7 @@ function registerReadTracker(): void {
 }
 
 // ---------------------------
-// 2. UI COMPONENTS
+// 2. UI COMPONENTS & FEATURES
 // ---------------------------
 function initProgressBar(): void {
   const bar = document.getElementById('progress');
@@ -177,7 +177,6 @@ function initFloatingSearch(allData: any): void {
 }
 
 function initNavIcons(allData: any, currentFile: string): void {
-  // Tanpa related-articles-grid, navigasi ini sengaja tidak ditampilkan
   const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
 
@@ -188,28 +187,28 @@ function initNavIcons(allData: any, currentFile: string): void {
   if (idx === -1) return;
 
   const total = catInfo.list.length;
-  const prevI = (idx - 1 + total) % total; // artikel sebelumnya (⏪)
-const nextI = (idx + 1) % total;         // artikel berikutnya (⏩)
+  const prevI = (idx - 1 + total) % total;
+  const nextI = (idx + 1) % total;
 
-let nav = document.getElementById('dynamic-nav-container');
-if (!nav) {
-  nav = document.createElement('div');
-  nav.id = 'dynamic-nav-container';
-  nav.className = 'floating-nav';
-  grid.appendChild(nav); // disisipkan sebagai child terakhir DI DALAM grid
-}
+  let nav = document.getElementById('dynamic-nav-container');
+  if (!nav) {
+    nav = document.createElement('div');
+    nav.id = 'dynamic-nav-container';
+    nav.className = 'floating-nav';
+grid.appendChild(nav);
+  }
 
-nav.innerHTML = `
-<div class="nav-left"><a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a></div>
-<div class="nav-right">
-<a href="/" title="Home" class="btn-emoji">🏠</a>
-<a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
-<a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
-${total > 1 ? `
-  <a href="${getFullUrl(catInfo.list[prevI].id, allData)}" title="${catInfo.list[prevI].title}" class="btn-emoji">⏪</a>
-  <a href="${getFullUrl(catInfo.list[nextI].id, allData)}" title="${catInfo.list[nextI].title}" class="btn-emoji">⏩</a>
-  ` : ''}
-  </div>`;
+  nav.innerHTML = `
+  <div class="nav-left"><a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a></div>
+  <div class="nav-right">
+  <a href="/" title="Home" class="btn-emoji">🏠</a>
+  <a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
+  <a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
+  ${total > 1 ? `
+    <a href="${getFullUrl(catInfo.list[prevI].id, allData)}" title="${catInfo.list[prevI].title}" class="btn-emoji">⏪</a>
+    <a href="${getFullUrl(catInfo.list[nextI].id, allData)}" title="${catInfo.list[nextI].title}" class="btn-emoji">⏩</a>
+    ` : ''}
+    </div>`;
 }
 
 function initInternalNav(): void {
@@ -217,8 +216,6 @@ function initInternalNav(): void {
   if (!tocContainer) return;
 
   const headings = Array.from(document.querySelectorAll('h2, h3, h4')) as HTMLElement[];
-
-  // 1. Menggunakan textContent agar heading di dalam <details> yang tertutup tetap terbaca
   const filtered = headings.filter(h => {
     const text = (h.textContent || '').trim();
     return text.length > 0 && !h.closest('.floating-nav') && !tocContainer.contains(h);
@@ -226,25 +223,19 @@ function initInternalNav(): void {
 
   if (filtered.length === 0) {
     tocContainer.style.display = 'none';
-return;
+    return;
   }
 
-  // 2. Render HTML TOC, juga pakai textContent untuk bikin ID dan link
   tocContainer.innerHTML = '<ul class="nav-list">' + filtered.map((h, i) => {
     const text = (h.textContent || '').trim();
     if (!h.id) {
-      h.id = text.toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '') || `section-${i}`;
+      h.id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `section-${i}`;
     }
     return `<li class="nav-item nav-${h.tagName.toLowerCase()}"><a href="#${h.id}" class="nav-link">${text}</a></li>`;
   }).join('') + '</ul>';
 
-  // 3. Event Listener untuk otomatis membuka <details> saat TOC diklik
 tocContainer.addEventListener('click', (e: Event) => {
   const target = e.target as HTMLElement;
-
-  // Pastikan yang diklik beneran link TOC
   if (target.tagName.toLowerCase() === 'a' && target.classList.contains('nav-link')) {
     const href = target.getAttribute('href');
     if (!href || !href.startsWith('#')) return;
@@ -253,10 +244,7 @@ tocContainer.addEventListener('click', (e: Event) => {
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
-      // Cari tag <details> yang membungkus heading tujuan
       let parentDetails = targetElement.closest('details');
-
-      // Loop untuk buka semua <details> (termasuk kalau ada details di dalam details)
       while (parentDetails) {
         if (!parentDetails.open) {
           parentDetails.open = true;
@@ -277,15 +265,12 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
-    // Primary: versi ringan artikel (-sm.webp)
     const smUrl = item.image
     ? item.image.replace(/\.[^/.]+$/, '') + '-sm.webp'
     : null;
 
-    // Default src saat pertama kali dimuat
     const thumbSrc = smUrl ?? '/thumbnail-sm.webp';
 
-    // 🔥 PERUBAHAN: Rantai Fallback Lapis Tiga (Inception onerror)
   const fallbackChain = item.image
   ? `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='/thumbnail-sm.webp'};this.src='${item.image}'`
   : `this.onerror=null;this.src='/thumbnail.webp'`;
@@ -311,11 +296,53 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   }).join('');
 }
 
+// 🔥 FITUR BARU: Keyboard Navigation (Memanfaatkan fungsi getCategoryInfo bawaan)
+function initKeyboardNav(allData: any, currentFile: string): void {
+  function navigateTo(direction: 'next' | 'prev'): void {
+    const catInfo = getCategoryInfo(currentFile, allData);
+    if (!catInfo || catInfo.list.length <= 1) return;
+
+    const currentIndex = catInfo.list.findIndex((a: any) => a.id === currentFile);
+    if (currentIndex === -1) return;
+
+    const total = catInfo.list.length;
+    const targetIndex = direction === 'next'
+    ? (currentIndex + 1) % total
+    : (currentIndex - 1 + total) % total;
+
+    const targetArticleId = catInfo.list[targetIndex].id;
+    const targetUrl = getFullUrl(targetArticleId, allData);
+
+    if (targetUrl) {
+      window.location.href = targetUrl;
+    }
+  }
+
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    const activeElement = document.activeElement as HTMLElement;
+    const isTyping = activeElement.tagName === 'INPUT' ||
+    activeElement.tagName === 'TEXTAREA' ||
+    activeElement.isContentEditable ||
+    activeElement.closest('#disqus_thread');
+
+    if (isTyping) return;
+
+    if (e.ctrlKey && e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigateTo('next');
+    }
+
+    if (e.ctrlKey && e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigateTo('prev');
+    }
+  });
+}
+
 // ---------------------------
 // 3. MAIN INITIALIZATION
 // ---------------------------
 async function initializeApp(): Promise<void> {
-  // Tunggu sampai provider siap
   while (!(window as any).siteDataProvider) await new Promise(r => setTimeout(r, 100));
 
   const data = await (window as any).siteDataProvider.getFor('marquee-url.ts');
@@ -328,6 +355,8 @@ async function initializeApp(): Promise<void> {
     initFloatingSearch(data);
     initRelatedGrid(data, currentFile);
     initNavIcons(data, currentFile);
+    initKeyboardNav(data, currentFile); // 🔥 Panggil fungsi shortcut di sini!
+
     adaptMarqueeTextColor();
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', adaptMarqueeTextColor);
   }
