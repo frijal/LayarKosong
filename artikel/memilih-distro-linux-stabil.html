@@ -59,91 +59,112 @@
     <meta property="article:tag" content="System Administration">
     <meta property="article:published_time" content="2026-03-18T12:07:51.743Z">
     <meta property="article:modified_time" content="2026-06-25T14:11:10.659Z">
-    <!-- SEO & Metadata -->
-    <!-- Promphint Meta -->
-    <!-- Open Graph / Facebook -->
-    <!-- Twitter Card -->
-    <!-- Tags -->
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
+       <link rel="stylesheet" href="/ext/fontawesome.css"><style>
+    /* ===== RESET & VARIABEL ===== */
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --accent-color: #007bff;
+        --card-bg: #f8f9fa;
+        --max-width: 64rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
         :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --accent-color: #007bff;
-            --card-bg: #f8f9fa;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #3792ff;
+            --card-bg: #1e1e1e;
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --text-color: #e0e0e0;
-                --accent-color: #3792ff;
-                --card-bg: #1e1e1e;
-            }
+    }
+
+    /* ===== LAYOUT DASAR ===== */
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 100%;
+        max-width: var(--max-width);
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    /* ===== HEADER & FOOTER ===== */
+    header {
+        border-bottom: 2px solid var(--accent-color);
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+    }
+
+    footer {
+        margin-top: 50px;
+        padding: 20px 0;
+        border-top: 1px solid #ccc;
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        footer {
+            border-top-color: #444;
+        }
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3 {
+        color: var(--accent-color);
+        margin-top: 1.5em;
+    }
+
+    /* ===== GAMBAR ===== */
+    article img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: block;
+        aspect-ratio: 16 / 9;
+        background: #eee;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        article img {
+            background: #2a2a2a;
+        }
+    }
+
+    /* ===== KOTAK OUTLINE ===== */
+    .outline-box {
+        background-color: var(--card-bg);
+        padding: 20px;
+        border-left: 5px solid var(--accent-color);
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+        .container {
+            padding: 15px;
+        }
+        h1 {
+            font-size: 1.5rem;
         }
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
+            font-size: 1rem;
         }
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        header {
-            border-bottom: 2px solid var(--accent-color);
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-        }
-        article img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: block;
-        }
-        h1, h2, h3 {
-            color: var(--accent-color);
-        }
-        .outline-box {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-left: 5px solid var(--accent-color);
-            margin: 20px 0;
-        }
-        .recovery-steps {
-            background-color: #2d2d2d;
-            color: #f1f1f1;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: monospace;
-            overflow-x: auto;
-        }
-        footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            border-top: 1px solid #ccc;
-            text-align: center;
-            font-size: 0.9em;
-        }
-        /* Mobile Optimization */
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-            h1 { font-size: 1.5rem; }
-        }
-        /* CLS Optimization */
-        img { aspect-ratio: 16 / 9; background: #eee; }
-    </style>
+    }
+</style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
 </head>
 <body>
