@@ -15,9 +15,25 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <style type="text/css">
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #333; margin: 0; padding: 40px; background: #f4f7f6; }
 .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-h1 { color: #2c3e50; margin-bottom: 20px; }
+
+/* 🔥 UPDATE CSS H1: Menambahkan Flexbox untuk posisi teks (kiri) dan logo (kanan) */
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 h1 a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
 h1 a:hover { opacity: 0.8; text-decoration: none; }
+
+/* 🔥 CSS BARU: Styling untuk Logo SVG persegi setara tinggi font */
+.header-logo {
+    height: 1.1em; /* Mengikuti tinggi teks H1 (1.1em agar visualnya seimbang) */
+    width: auto;
+    object-fit: contain;
+    opacity: 0.9;
+}
 
 /* Header Flexbox */
 .header-container { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #3498db; padding-bottom: 15px; margin-bottom: 10px; }
@@ -73,6 +89,7 @@ a:hover { text-decoration: underline; }
                 <xsl:otherwise>XML Sitemap - Layar Kosong</xsl:otherwise>
             </xsl:choose>
         </a>
+        <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
     </h1>
     <div class="header-container">
         <p class="total-info">Total:
@@ -191,7 +208,6 @@ a:hover { text-decoration: underline; }
                     const matches = xmlText.match(/<url[\s>]/g);
                     const count = matches ? matches.length : 0;
 
-                    // Modifikasi innerHTML langsung tanpa addClass styling
                     countSpan.innerHTML = count + ' Artikel';
                 } catch (error) {
                     countSpan.innerHTML = 'Error';
