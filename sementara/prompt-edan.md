@@ -503,7 +503,7 @@ Sebelum memberikan jawaban final, pastikan:
 7. Semua gambar punya `alt`.
 8. Semua gambar punya dimensi eksplisit atau `aspect-ratio`.
 9. Gambar pertama diletakkan setelah beberapa paragraf pembuka.
-10. Elemen wajib berikut sudah ada tepat sebelum `</article>`:
+10. Elemen wajib berikut sudah ada kode ini persis tanpa inline styling tepat sebelum `</article>`:
 
 `<div id="related-articles-grid"></div><div id="response"></div>`
 
