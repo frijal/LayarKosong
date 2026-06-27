@@ -99,30 +99,35 @@ function initCategoryMarquee(data: any, currentFile: string): void {
   const catInfo = getCategoryInfo(currentFile, data);
   if (!catInfo) return;
 
+  // 1. Ambil semua artikel terkait (kecuali yang sedang dibuka)
   const filtered = catInfo.list.filter((i: any) => i.id !== currentFile);
+
+  // 2. Cek mana yang belum dibaca
   const read = JSON.parse(localStorage.getItem('read_marquee_articles') || '[]');
   const unread = filtered.filter((i: any) => !read.includes(i.id));
 
-  if (unread.length === 0) {
-    container.innerHTML = '<p class="marquee-message">Semua artikel terkait sudah dibaca. 😊</p>';
-    return;
-  }
+  // 3. LOGIKA BARU: Kalau unread habis, pakai semua artikel terkait (filtered)
+  // Jadi marquee tidak akan pernah kosong
+  const displayList = (unread.length > 0) ? unread : filtered;
 
-  unread.sort(() => 0.5 - Math.random());
+  // Randomize list biar nggak bosen (tapi tetap konsisten)
+  displayList.sort(() => 0.5 - Math.random());
+
   const isMobile = isMobileDevice();
-  const html = unread.map(item => {
+  const html = displayList.map(item => {
     const url = getFullUrl(item.id, data);
     const tooltip = isMobile ? item.title : (item.description || item.title);
-    return `<a href="${url}" data-article-id="${item.id}" title="${tooltip}">${item.title}</a> • `;
+    return `<a href="${url}" data-article-id="${item.id}" title="${tooltip}">${item.title}</a> <span class="dot">•</span> `;
   }).join('');
 
-  container.innerHTML = `<div class="marquee-content">${html.repeat(10)}</div>`;
-  const mc = container.querySelector('.marquee-content') as HTMLElement | null;
-  if (mc) {
-    const w = mc.offsetWidth;
-    const speed = isMobile ? 40 : 75;
-    mc.style.animationDuration = `${w / 2 / speed}s`;
-  }
+  // SUNTIKAN STRUKTUR BARU (Tanpa if-return yang memblokir tampilan)
+  container.innerHTML = `
+  <div class="marquee-track">
+  <div class="marquee-content">${html}</div>
+  <div class="marquee-content" aria-hidden="true">${html}</div>
+  </div>
+  `;
+
   registerReadTracker();
 }
 
