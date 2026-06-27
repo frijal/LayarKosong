@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 6/26/2026, 3:25:08 PM
+Generated on: 6/27/2026, 2:44:47 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,7 +14,7 @@ Generated on: 6/26/2026, 3:25:08 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v23.0 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v23.7 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -592,6 +592,7 @@ Generated on: 6/26/2026, 3:25:08 PM
 | `artikel/jalankan-aplikasi-windows-di-linux-winapps-winboat.html` | Panduan Lengkap WinApps & WinBoat: Cara Jalankan Aplikasi Windows di Linux Secara Native 2026 - Layar Kosong | Panduan Lengkap WinApps & WinBoat: Cara Jalankan Aplikasi Windows di Linux Secara Native 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/jam-linux-desktop-minimalis.html` | Mengapa Jam di Linux Desktop Minimalis Sering Ngaco? Ini Penyebab dan Solusinya - Layar Kosong | Mengapa Jam di Linux Desktop Minimalis Sering Ngaco? Ini Penyebab dan Solusinya | Layar Kosong | ✅ Perfect |
 | `artikel/jangan-andalkan-satu-ai.html` | Jangan Cuma Andalkan Satu AI, Manfaatkan Kelebihan Masing-Masing! - Layar Kosong | Jangan Cuma Andalkan Satu AI, Manfaatkan Kelebihan Masing-Masing! | Layar Kosong | ✅ Perfect |
+| `artikel/jangan-bawa-virus-konflik-ke-muhammadiyah.html` | Jangan Bawa Virus Konflik ke Muhammadiyah: Menjaga Kerukunan - Layar Kosong | Jangan Bawa Virus Konflik ke Muhammadiyah: Menjaga Kerukunan | Layar Kosong | ✅ Perfect |
 | `artikel/jangan-crying-baby-linux.html` | Jangan Jadi "Crying Baby" di Linux! - Layar Kosong | Jangan Jadi "Crying Baby" di Linux! | Layar Kosong | ✅ Perfect |
 | `artikel/jangan-larang-medsos-anak-regulasi-platform.html` | Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty - Layar Kosong | Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty | Layar Kosong | ✅ Perfect |
 | `artikel/jangan-mudah-menghakimi-orang-lain.html` | Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam - Layar Kosong | Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam | Layar Kosong | ✅ Perfect |
@@ -1694,6 +1695,7 @@ Generated on: 6/26/2026, 3:25:08 PM
 | `jejak-sejarah/istighfar-keajaiban.html` | Keajaiban Istighfar: Solusi Tak Terduga untuk Setiap Masalah 🤲 - Layar Kosong | Keajaiban Istighfar: Solusi Tak Terduga untuk Setiap Masalah 🤲 | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/istighfar-kunci-keberkahan-dan-rezeki.html` | Istighfar: Kunci Rahasia Pembuka Keberkahan dan Rezeki - Layar Kosong | Istighfar: Kunci Rahasia Pembuka Keberkahan dan Rezeki | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/istighfar-kunci-rezeki.html` | Keajaiban Istighfar: Kunci Sederhana Pembuka Pintu Rezeki - Layar Kosong | Keajaiban Istighfar: Kunci Sederhana Pembuka Pintu Rezeki | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/jangan-bawa-virus-konflik-ke-muhammadiyah.html` | Jangan Bawa Virus Konflik ke Muhammadiyah: Menjaga Kerukunan - Layar Kosong | Jangan Bawa Virus Konflik ke Muhammadiyah: Menjaga Kerukunan | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/janganlah-sombong.html` | Janganlah Sombong - Tafsir, Bahaya, dan Jalan Menjauhi Takabbur - Layar Kosong | Janganlah Sombong - Tafsir, Bahaya, dan Jalan Menjauhi Takabbur | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/jejak-peradaban-islam-sains-modern.html` | Mengungkap Jejak Peradaban Islam di Balik Sains Modern - Layar Kosong | Mengungkap Jejak Peradaban Islam di Balik Sains Modern | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/jumat.html` | Keistimewaan Hari Jumat: 7 Amalan & Doa Mustajab - Layar Kosong | Keistimewaan Hari Jumat: 7 Amalan & Doa Mustajab | Layar Kosong | ✅ Perfect |
