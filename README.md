@@ -2,7 +2,7 @@
 
 # 🚀 Panduan Membuat Static Site
 
-![Proses](thumbnail.webp)
+[![Proses](thumbnail.webp)](https://github.com/frijal/LayarKosong/fork)
 
 Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat, ringan, dan **otomatis ter-deploy ke Cloudflare Pages** menggunakan *repository* **Layar Kosong**.
 
