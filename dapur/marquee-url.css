@@ -21,6 +21,7 @@
   --toc-opacity: 0.7;
   --toc-hover-opacity: 1;
   --toc-accent: #007bff; /* Sesuaikan dengan var(--accent) milikmu */
+  --marquee-speed: 320s;
 }
 
 /* ==========================================================
@@ -312,7 +313,7 @@ padding: 0;
   display: flex;
   width: max-content;
   /* Durasi statis 30 detik, eksekusi super ringan via GPU */
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll var(--marquee-speed) linear infinite;
   will-change: transform;
   pointer-events: auto;
 }
@@ -495,6 +496,10 @@ a:hover { opacity: 0.8; }
 }
 
 @media (max-width: 768px) {
+  :root {
+    /* Mobile: 210 detik biar gak kelamaan nunggu teks lewat */
+    --marquee-speed: 210s;
+  }
   .floating-nav { padding-top: 16px; }
   .marquee-track { animation-duration: 20s; }
   .nav-right { gap: 8px; }
