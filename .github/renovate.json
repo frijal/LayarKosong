@@ -2,143 +2,31 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":separateMajorReleases",
-    ":combinePatchMinorReleases",
-    ":rebaseStalePrs"
+    ":semanticCommits",
+    ":automergePatch",
+    ":automergeMinor"
   ],
-  "ignorePaths": [
-    "dapur/**/*.min.js",
-    "ext/**/*.min.js"
-  ],
-  "enabledManagers": ["bun", "github-actions","custom.regex"],
-  "bun": {
-    "enabled": true
-  },
-  "rangeStrategy": "bump",
-  "dependencyDashboard": true,
-  "prConcurrentLimit": 5,
-  "prHourlyLimit": 2,
-  "minimumReleaseAge": "1 days",
-  "postUpdateOptions": [
-    "bun-lockfile-fix"
-  ],
+  "enabledManagers": ["bun", "npm", "github-actions"],
+  "timezone": "Asia/Jakarta",
+  "schedule": ["at any time"],
+  "labels": ["dependencies"],
   "packageRules": [
     {
-      "description": "Group core web processing tools",
-      "matchPackageNames": [
-        "sharp",
-        "@minify-html/node",
-        "cheerio",
-        "@xmldom/xmldom",
-        "glob"
-      ],
-      "groupName": "web-optimizers"
-    },
-    {
-      "description": "Group Cloudflare and Social API tools",
-      "matchPackageNames": ["wrangler", "tumblr.js"],
-      "groupName": "external-services",
-      "automerge": true,
-      "automergeType": "pr"
-    },
-    {
-      "description": "Safe automerge for patch & minor",
-      "matchUpdateTypes": ["patch", "minor"],
+      "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
       "automerge": true,
-      "automergeType": "pr"
+      "platformAutomerge": true
     },
     {
-      "description": "0.x packages = semi-danger zone",
-      "matchCurrentVersion": "/^0./",
-      "automerge": false
-    },
-    {
-      "description": "Major updates = always manual review",
-      "matchUpdateTypes": ["major"],
-      "automerge": false
-    },
-    {
-      "description": "Use semver for npm packages discovered by regex manager",
-      "matchManagers": ["custom.regex"],
-      "matchDatasources": ["npm"],
-      "versioning": "semver"
-    },
-    {
-      "description": "Use semver for GitHub-based assets discovered by regex manager",
-      "matchManagers": ["custom.regex"],
-      "matchDatasources": ["github-releases", "github-tags"],
-      "versioning": "semver"
-    },
-    {
-      "description": "Use semver for cdnjs assets discovered by regex manager",
-      "matchManagers": ["custom.regex"],
-      "matchDatasources": ["cdnjs"],
-      "versioning": "semver"
-    },
-    {
-      "description": "Fallback: treat generic @vX.Y.Z in URLs discovered by regex manager as regex-versioned",
-      "matchManagers": ["custom.regex"],
-      "versioning": "regex",
-      "matchPackageNames": [
-        "/^https?://.*@v?\\d/"
-      ]
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "dev dependencies",
+      "automerge": true
     }
   ],
   "vulnerabilityAlerts": {
+    "enabled": true,
     "labels": ["security"],
-    "assignees": ["frijal"],
     "automerge": true
-  },
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": ["import\\s+[^\\n]*from\\s+[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']", "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": ["https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/", "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "github-releases"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": ["https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/", "src=[\"']https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": ["https?:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/]+)\\/(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/"],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "cdnjs"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": ["src=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']", "href=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "github-tags"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": ["(?<depName>[a-zA-Z0-9_\\-]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})"],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/"],
-      "matchStrings": ["src=[\"'](?<url>https?:\\/\\/[^\"']+@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})[^\"']*)[\"']"],
-      "depNameTemplate": "{{{url}}}",
-      "datasourceTemplate": "github-tags"
-    }
-  ]
+  }
 }
