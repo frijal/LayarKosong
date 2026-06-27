@@ -639,15 +639,14 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
 
   const articleUrl = meta.articleUrl;
 
-  const articleId    = `${articleUrl}#article`;
-  const imageId      = `${articleUrl}#primaryimage`;
-  const breadcrumbId = `${articleUrl}#breadcrumb`;
-  const websiteId    = `${cleanBaseUrl}/#website`;
-  const orgId        = `${cleanBaseUrl}/#organization`;
-  // ===== PERBAIKAN MINOR 1: logo ID rapi =====
-  const logoId       = `${cleanBaseUrl}/#logo`;
-  const personId     = `${cleanBaseUrl}/#/schema/person/fakhrul-rijal`;
-  // ===== PERBAIKAN MINOR 2: author image ID semantik =====
+  const articleId     = `${articleUrl}#article`;
+  const imageId       = `${articleUrl}#primaryimage`;
+  const breadcrumbId  = `${articleUrl}#breadcrumb`;
+  const websiteId     = `${cleanBaseUrl}/#website`;
+  const orgId         = `${cleanBaseUrl}/#organization`;
+  const logoId        = `${cleanBaseUrl}/#logo`;
+  // ===== PERBAIKAN: Person ID rapi =====
+  const personId      = `${cleanBaseUrl}/#fakhrul-rijal`;
   const authorImageId = `${cleanBaseUrl}/#author-image`;
 
   const keywords = uniqueClean([
@@ -956,7 +955,8 @@ async function main() {
 
 🧹 Perbaikan Minor:
   ✅ Logo ID rapi (https://dalam.web.id/#logo)
-  ✅ Author image ID semantik (https://dalam.web.id/#author-image)`);
+  ✅ Author image ID semantik (https://dalam.web.id/#author-image)
+  ✅ Person ID rapi (https://dalam.web.id/#fakhrul-rijal)`);
 
   } catch (err) {
     console.error("❌ Error fatal:", err);
