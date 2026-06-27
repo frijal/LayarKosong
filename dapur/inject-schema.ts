@@ -611,8 +611,8 @@ const generateMultiRatioImages = (rawUrl: string): string[] => {
 
     const variants = [
       fullUrl, // Original 16:9 (1200×675)
-      `${cleanBaseUrl}/cdn-cgi/image/width=1200,height=900,fit=crop${pathWithQuery}`, // 4:3
-      `${cleanBaseUrl}/cdn-cgi/image/width=1000,height=1000,fit=crop${pathWithQuery}` // 1:1 (optimized square)
+      `${cleanBaseUrl}/cdn-cgi/image/width=960,height=720,fit=crop${pathWithQuery}`, // 4:3
+      `${cleanBaseUrl}/cdn-cgi/image/width=720,height=720,fit=crop${pathWithQuery}` // 1:1 (optimized square)
     ];
 
     // ============ STEP 7: Deduplicate & Return ============
@@ -943,20 +943,7 @@ async function main() {
 🔁 Mode force      : ${FORCE_RESCHEMA ? "aktif" : "nonaktif"}
 🏷️  Article type   : ${SCHEMA_ARTICLE_TYPE}
 🧑 Avatar author   : ${AUTHOR_IMAGE_URL}
-🔎 Search template : ${searchUrlTemplate}
-
-✨ Protections Aktif:
-  ✅ Logo Detection (skip resize)
-  ✅ CDN Path Check (prevent double wrap)
-  ✅ Domain Filtering (internal only)
-  ✅ 1000×1000 Square Ratio (bandwidth optimized)
-  ✅ Duplicate Prevention (uniqueClean)
-  ✅ Explicit Fallback (external images)
-
-🧹 Perbaikan Minor:
-  ✅ Logo ID rapi (https://dalam.web.id/#logo)
-  ✅ Author image ID semantik (https://dalam.web.id/#author-image)
-  ✅ Person ID rapi (https://dalam.web.id/#fakhrul-rijal)`);
+🔎 Search template : ${searchUrlTemplate}`);
 
   } catch (err) {
     console.error("❌ Error fatal:", err);
