@@ -7,6 +7,11 @@
     "url": "git+https://github.com/frijal/layarkosong.git"
   },
   "main": "index.js",
+  "private": true,
+  "type": "module",
+  "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator",
+  "homepage": "https://dalam.web.id",
+  "license": "Unlicense",
   "dependencies": {
     "@minify-html/node": "^0.18.1",
     "@xmldom/xmldom": "^0.9.10",
@@ -18,37 +23,8 @@
   "devDependencies": {
     "wrangler": "^4.105.0"
   },
-  "bugs": {
-    "url": "https://github.com/frijal/layarkosong/issues"
-  },
-  "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator",
   "engines": {
     "bun": ">=1.3.0",
     "node": ">=24.18.0"
-  },
-  "homepage": "https://dalam.web.id",
-  "keywords": [
-    "rss",
-    "feed-generator",
-    "screenshot",
-    "puppeteer",
-    "google-gemini",
-    "generative-ai",
-    "web-scraping",
-    "github-actions",
-    "blog-tools"
-  ],
-  "license": "Unlicense",
-  "private": true,
-  "scripts": {
-    "sapu": "bun run dapur/sapu-bersih.ts",
-    "fixseo": "bun run dapur/seo-fixer.ts",
-    "ci-fix-meta-image": "bun run dapur/seo-fixer.ts artikelx",
-    "ci-fix-meta-main": "bun run dapur/seo-fixer.ts artikel",
-    "ci-generate-xml-rss": "bun run dapur/generator-pro.ts",
-    "ci-screenshot": "bun run dapur/screenshot-puppeteer.ts",
-    "ci-all": "bun run sapu && bun run ci-fix-meta-image && bun run ci-generate-xml-rss && bun run ci-screenshot",
-    "generate-ai-api": "bun run dapur/generate-ai-api.ts"
-  },
-  "type": "module"
+  }
 }
