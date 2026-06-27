@@ -185,7 +185,7 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   });
 
   // FIX #3 — Anchored ke awal string via startsWith + break setelah match pertama.
-  $('meta[name="description"], meta[property="og:description"]').each((_, el) => {
+  $('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').each((_, el) => {
     let content = $(el).attr("content");
     if (content) {
       const fluff = [
