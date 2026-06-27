@@ -321,9 +321,9 @@ function extractYoutubeIds(html: string): string[] {
 function countWordsInText(text: string): number {
   const normalized = cleanText(text)
     .replace(/https?:\/\/\S+/gi, " ")
-    .replace(/[^\p{L}\p{M}\s'’-]/gu, " ");
+    .replace(/[^\p{L}\p{M}\s''-]/gu, " ");
 
-  const words = normalized.match(/[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*/gu) || [];
+  const words = normalized.match(/[\p{L}\p{M}]+(?:[''-][\p{L}\p{M}]+)*/gu) || [];
 
   return words
     .filter(word => word.length > 1)
@@ -404,8 +404,6 @@ function countWordsFromHtml(html: string): number {
     cleanText($("body").text()),
     cleanText($.root().text()),
 
-    // Fallback raw fragment. Ini berguna kalau parser DOM sedang kurang kompak
-    // karena HTML hasil minify terlalu rapat atau pernah disisipi script pihak ketiga.
     fragmentToText(extractTagFragment(html, "article")),
     fragmentToText(extractTagFragment(html, "main")),
     fragmentToText(extractTagFragment(html, "body"))
@@ -500,13 +498,22 @@ function extractMetaFromHtml(
   const articleTags  = getAllMeta($, "property", "article:tag");
   const newsKeywords = splitKeywords(getMeta($, "name", "news_keywords"));
 
-  const datePublished =
+  // ========== VALIDASI WAKTU (Time Machine Prevention) ==========
+  let datePublished =
     getMeta($, "property", "article:published_time") ||
     isoDate;
 
-  const dateModified =
+  let dateModified =
     getMeta($, "property", "article:modified_time") ||
     datePublished;
+
+  // Guard: jangan sampai dateModified lebih tua dari datePublished
+  const tPub = new Date(datePublished).getTime();
+  const tMod = new Date(dateModified).getTime();
+
+  if (Number.isFinite(tPub) && Number.isFinite(tMod) && tMod < tPub) {
+    dateModified = datePublished;
+  }
 
   const licenseUrl = absoluteUrl(getLinkRel($, "license"), LICENSE_URL);
 
@@ -547,6 +554,76 @@ function extractMetaFromHtml(
     fediverseProfile
   };
 }
+
+// ========== GLOBAL IMAGE MULTI-RATIO GENERATOR (V4 ULTIMATE) ==========
+/**
+ * Generate multi-ratio images dengan ALL PROTECTIONS:
+ * 1. ✅ Logo detection (skip resize untuk gambar statis)
+ * 2. ✅ cdn-cgi path check (prevent double wrapping)
+ * 3. ✅ 1000×1000 square ratio (bandwidth optimization)
+ * 4. ✅ uniqueClean() (prevent duplicates in array)
+ * 5. ✅ Domain filtering (only resize internal domain)
+ * 6. ✅ Explicit fallback (external/invalid images)
+ * 
+ * Ratios:
+ * - 16:9 (1200×675) - default/original
+ * - 4:3 (1200×900) - standard thumbnail
+ * - 1:1 (1000×1000) - square (Pinterest, Rich snippets)
+ */
+const generateMultiRatioImages = (rawUrl: string): string[] => {
+  // ============ STEP 1: Input Validation & Logo Detection ============
+  const trimmedUrl = cleanText(rawUrl);
+  
+  // Fallback jika input kosong
+  if (!trimmedUrl) {
+    return [LOGO_URL];
+  }
+
+  // PROTEKSI: Logo tidak perlu di-resize (gambar statis)
+  if (trimmedUrl === LOGO_URL) {
+    return [trimmedUrl];
+  }
+
+  // ============ STEP 2: Normalize URL (convert relative → absolute) ============
+  let fullUrl = trimmedUrl;
+  if (trimmedUrl.startsWith("/")) {
+    fullUrl = `${cleanBaseUrl}${trimmedUrl}`;
+  }
+
+  // ============ STEP 3: Parse & Validate URL ============
+  try {
+    const urlObj = new URL(fullUrl);
+
+    // ============ STEP 4: Domain Filter (only resize internal images) ============
+    if (urlObj.hostname !== "dalam.web.id") {
+      // External image: return as-is (no CDN wrapping)
+      return [fullUrl];
+    }
+
+    // ============ STEP 5: cdn-cgi Path Check (prevent double wrapping) ============
+    if (urlObj.pathname.startsWith("/cdn-cgi/image/")) {
+      // Already wrapped: return as-is
+      return [fullUrl];
+    }
+
+    // ============ STEP 6: Generate Multi-Ratio Images ============
+    const pathWithQuery = urlObj.pathname + urlObj.search;
+
+    const variants = [
+      fullUrl, // Original 16:9 (1200×675)
+      `${cleanBaseUrl}/cdn-cgi/image/width=1200,height=900,fit=crop${pathWithQuery}`, // 4:3
+      `${cleanBaseUrl}/cdn-cgi/image/width=1000,height=1000,fit=crop${pathWithQuery}` // 1:1 (optimized square)
+    ];
+
+    // ============ STEP 7: Deduplicate & Return ============
+    return uniqueClean(variants);
+
+  } catch (error) {
+    // ============ ERROR FALLBACK: Invalid URL parsing ============
+    // Jika URL parse gagal, return gambar asli saja
+    return [fullUrl];
+  }
+};
 
 // ========== SCHEMA BUILDER ==========
 function buildSchema(category: string, article: ArticleEntry, htmlContent: string): string {
@@ -590,6 +667,9 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
     meta.twitterSiteProfile
   ]);
 
+  // ========== GUNAKAN GLOBAL IMAGE GENERATOR (V4 ULTIMATE) ==========
+  const multiRatioImages = generateMultiRatioImages(meta.primaryImage.url);
+
   const graph: any[] = [
     {
       "@type": SCHEMA_ARTICLE_TYPE,
@@ -606,7 +686,7 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
       "mainEntityOfPage": { "@id": articleUrl },
       "wordCount": wordCount,
       "publisher": { "@id": orgId },
-      "image": { "@id": imageId },
+      "image": multiRatioImages,
       "thumbnailUrl": meta.primaryImage.url,
       "keywords": keywords,
       "articleSection": [catDisplayName],
@@ -620,7 +700,7 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
       "name": meta.pageTitle,
       "isPartOf": { "@id": websiteId },
       "primaryImageOfPage": { "@id": imageId },
-      "image": { "@id": imageId },
+      "image": multiRatioImages,
       "thumbnailUrl": meta.primaryImage.url,
       "datePublished": meta.datePublished,
       "dateModified": meta.dateModified,
@@ -666,7 +746,8 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
         {
           "@type": "ListItem",
           "position": 3,
-          "name": meta.headline
+          "name": meta.headline,
+          "item": articleUrl
         }
       ]
     },
@@ -852,6 +933,7 @@ async function main() {
 
     console.log(`
 🚀 Article/Blog Schema Injection Selesai!
+📦 Version: V4 ULTIMATE (All Protections)
 🆕 Baru diproses  : ${results.changed}
 🎬 Artikel + video: ${results.withVideo} (${results.totalVideos} VideoObject)
 ⏭️  Di-skip        : ${results.skipped}
@@ -859,7 +941,15 @@ async function main() {
 🔁 Mode force      : ${FORCE_RESCHEMA ? "aktif" : "nonaktif"}
 🏷️  Article type   : ${SCHEMA_ARTICLE_TYPE}
 🧑 Avatar author   : ${AUTHOR_IMAGE_URL}
-🔎 Search template : ${searchUrlTemplate}`);
+🔎 Search template : ${searchUrlTemplate}
+
+✨ Protections Aktif:
+  ✅ Logo Detection (skip resize)
+  ✅ CDN Path Check (prevent double wrap)
+  ✅ Domain Filtering (internal only)
+  ✅ 1000×1000 Square Ratio (bandwidth optimized)
+  ✅ Duplicate Prevention (uniqueClean)
+  ✅ Explicit Fallback (external images)`);
 
   } catch (err) {
     console.error("❌ Error fatal:", err);
