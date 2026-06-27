@@ -72,6 +72,7 @@ jobs:
             --include='.well-known/***' \
             --include='img/***' \
             --include='artikel.json' \
+            --include='artikel-lite.json' \
             --include='redirectmap.json' \
             --include='auth.md' \
             --include='llms.md' \
