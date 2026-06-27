@@ -21,7 +21,7 @@
   --toc-opacity: 0.7;
   --toc-hover-opacity: 1;
   --toc-accent: #007bff; /* Sesuaikan dengan var(--accent) milikmu */
-  --marquee-speed: 1320s;
+  --marquee-speed: 1720s;
 }
 
 /* ==========================================================
@@ -498,7 +498,7 @@ a:hover { opacity: 0.8; }
 @media (max-width: 768px) {
   :root {
     /* Mobile: 210 detik biar gak kelamaan nunggu teks lewat */
-    --marquee-speed: 1210s;
+    --marquee-speed: 1710s;
   }
   .floating-nav { padding-top: 16px; }
   .marquee-track { animation-duration: 20s; }
