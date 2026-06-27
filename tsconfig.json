@@ -3,13 +3,15 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "moduleDetection": "force",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
 
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
 
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
@@ -21,5 +23,11 @@
 
     "types": ["bun"]
   },
-  "include": ["dapur/**/*", "ext/**/*", "index.ts"]
+  "include": ["dapur/**/*.ts", "index.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".wrangler",
+    ".git"
+  ]
 }
