@@ -24,7 +24,7 @@ const UI: Record<string, Record<string, number>> = {
 };
 
 // 🎯 DAFTAR UI YANG CUKUP PAKAI DATA "DIET" (artikel-lite.json)
-const LITE_UIS = ["marquee-url.ts", "iposbrowser.ts"];
+const LITE_UIS = ["marquee-url.ts"];
 
 const mapperCache: Record<string, Function> = {};
 
