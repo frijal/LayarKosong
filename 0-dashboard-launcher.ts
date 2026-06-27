@@ -48,6 +48,13 @@ const scripts: ScriptItem[] = [
     dangerLevel: "danger"
 },
 {
+    id: "repair-tanggal",
+    title: "samakan tanggal html dengan Artikel.json",
+    description: "pastikan tanggal sudah sama.",
+    file: "0-tanggal-repair.ts",
+    dangerLevel: "danger"
+},
+{
     id: "mass-html-duplicate-cleaner",
     title: "Mass HTML Duplicate Cleaner",
     description: "Scan duplikasi potongan HTML di banyak file, lalu hapus duplikat yang tidak dipilih.",
