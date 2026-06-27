@@ -295,6 +295,22 @@ await fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true });
 
 await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
+// =====================================================================
+// 🔥 GENERATE ARTIKEL-LITE.JSON (Untuk Marquee & Related Articles) 🔥
+// =====================================================================
+const LITE_LIMIT = 100;
+const liteDb: Record<string, any[]> = {};
+
+// Looping semua kategori di object 'final', potong sesuai batas LITE_LIMIT
+for (const kategori in final) {
+    liteDb[kategori] = final[kategori].slice(0, LITE_LIMIT);
+}
+
+// Cetak file JSON versi diet-nya (tanpa spasi/null 2 biar langsung padat)
+await Bun.write(`${C.root}/artikel-lite.json`, JSON.stringify(liteDb));
+console.log(`✅ ./artikel-lite.json : Berhasil dicetak dengan limit ${LITE_LIMIT} artikel/kategori`);
+// =====================================================================
+
 // ── Build sitemap per kategori ────────────────────────────────────────────
 const globalSizes      = new Map<string, number>();
 const sitemapByCategory = new Map<string, string[]>(); // catSlug → url entries

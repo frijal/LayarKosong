@@ -303,24 +303,35 @@ pointer-events: none;
 #related-marquee-container {
 overflow: hidden;
 white-space: nowrap;
+display: flex;
 padding: 0;
 }
 
-#related-marquee-container .marquee-content {
-display: inline-block;
-animation: marquee-scroll linear infinite;
-pointer-events: auto;
-padding: 12px 0;
+/* 🔥 TAMBAHAN BARU: Track pembungkus untuk dua kelompok teks */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  /* Durasi statis 30 detik, eksekusi super ringan via GPU */
+  animation: marquee-scroll 30s linear infinite;
+  will-change: transform;
+  pointer-events: auto;
 }
 
-#related-marquee-container:hover .marquee-content {
+#related-marquee-container:hover .marquee-track {
 animation-play-state: paused;
+}
+
+#related-marquee-container .marquee-content {
+display: flex;
+align-items: center;
+padding: 12px 0;
+padding-right: 30px; /* Jarak antara kelompok teks asli dan kloningan */
 }
 
 #related-marquee-container a {
 color: inherit;
 text-decoration: none;
-margin-right: 30px;
+margin-right: 30px; /* Jarak antar link artikel */
 font-weight: 400;
 font-size: 0.85em;
 opacity: 0.8;
@@ -332,14 +343,16 @@ opacity: 1;
 font-weight: 700;
 color: var(--accent);
 }
+
 .marquee-message {
   margin: 0;
   text-align: center;
   font-style: italic;
   padding: 8px 0;
-  color: var(--muted-color, #aaa);
+  color: var(--text-muted);
 }
 
+/* Inti Sulap Looping Seamless */
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -383,7 +396,7 @@ a.category-link.visible {
 }
 
 .btn-emoji {
-  font-size: 2rem;
+  font-size: 1.5rem;
   transition: transform 0.2s ease;
   text-decoration: none;
   text-shadow: 0 2px 5px rgba(0,0,0,0.4);
@@ -488,8 +501,9 @@ a:hover { opacity: 0.8; }
 
 @media (max-width: 768px) {
   .floating-nav { padding-top: 16px; }
+  .marquee-track { animation-duration: 20s; }
   .nav-right { gap: 8px; }
-  .btn-emoji { font-size: 1.8rem; }
+  .btn-emoji { font-size: 1.2rem; }
   a.category-link { font-size: 12px; padding: 6px 12px; }
   #related-articles-grid { grid-template-columns: 1fr !important; gap: 12px; }
   .rel-card-mini a { padding: 8px; }

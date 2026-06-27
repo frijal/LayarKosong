@@ -126,7 +126,7 @@ function initCategoryMarquee(data: any, currentFile: string): void {
   registerReadTracker();
 }
 
-function initFloatingSearch(allData: any): void {
+function initFloatingSearch(): void {
   const wrap = document.querySelector('.search-floating-container') as HTMLElement | null;
   const input = document.getElementById('floatingSearchInput') as HTMLInputElement | null;
   const clear = wrap?.querySelector('.clear-button') as HTMLElement | null;
@@ -134,45 +134,92 @@ function initFloatingSearch(allData: any): void {
 
   if (!wrap || !input || !clear || !results) return;
 
+  let debounceTimer: ReturnType<typeof setTimeout>;
+
+  // 🛡️ Helper untuk mencegah XSS di Floating Search
+  const escapeHTML = (str: string) => {
+    return str.replace(/[&<>'"]/g,
+                       tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+    );
+  };
+
   input.addEventListener('input', () => {
-    const v = input.value.trim().toLowerCase();
+    const v = input.value.trim();
     clear.style.display = v.length ? 'block' : 'none';
-  if (v.length < 3) { results.style.display = 'none'; return; }
 
-  let matches: any[] = [];
-  for (const cat in allData) {
-    for (const item of allData[cat]) {
-      if ((item.title + ' ' + (item.description || '')).toLowerCase().includes(v)) {
-        matches.push(item);
+    // Kalau ngetiknya belum 3 huruf, santai dulu, jangan nembak D1
+  if (v.length < 3) {
+    results.style.display = 'none';
+  return;
+  }
+
+  clearTimeout(debounceTimer);
+
+  // ⏱️ DEBOUNCE 300ms: Nunggu jari user berhenti ngetik
+  debounceTimer = setTimeout(async () => {
+    try {
+      // Tampilkan indikator loading biar user tahu sistem lagi mikir
+      results.innerHTML = `<div class="no-results">⏳ Memindai data...</div>`;
+      results.style.display = 'block';
+
+      // 🚀 NEBENG API D1: Minta 5 hasil saja biar super kilat
+      const safeQuery = encodeURIComponent(v);
+      const apiUrl = `/cari?q=${safeQuery}&page=1&limit=5`;
+
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+      const data = await response.json();
+      const matches = data.results || data.data || [];
+
+      if (matches.length > 0) {
+        // Render HTML dari hasil D1
+        results.innerHTML = matches.map((item: any) => {
+          const fileSlug = item.id ? item.id.replace('.html', '') : 'tanpa-judul';
+          const categoryName = item.category || 'Lainnya';
+          const catSlug = categoryName.toLowerCase().replace(/\s+/g, '-');
+          const url = `/${catSlug}/${fileSlug}`;
+
+          // Potong deskripsi biar nggak kepanjangan di kotak kecil
+          const snippet = item.snippet_text
+          ? item.snippet_text.substring(0, 60) + '...'
+          : 'Lihat artikel selengkapnya';
+
+        return `
+        <a href="${url}">
+        <strong>${escapeHTML(item.title || 'Tanpa Judul')}</strong>
+        <small>${escapeHTML(snippet)}</small>
+        </a>
+        `;
+        }).join('');
+      } else {
+        results.innerHTML = `<div class="no-results">❌ Pencarian "${escapeHTML(v)}" nihil. Tekan Enter untuk detail.</div>`;
       }
+    } catch (err) {
+      console.error("❌ Gagal fetch Floating Search D1:", err);
+      results.innerHTML = `<div class="no-results">⚠️ Ups, database sedang sibuk. Coba sesaat lagi.</div>`;
     }
-  }
-
-  if (matches.length > 0) {
-    results.innerHTML = matches.slice(0, 5).map(item => `
-    <a href="${getFullUrl(item.id, allData)}">
-    <strong>${item.title}</strong>
-    <small>${item.description ? item.description.substring(0, 60) + '...' : 'Lihat artikel'}</small>
-    </a>
-    `).join('');
-    results.style.display = 'block';
-  } else {
-    results.innerHTML = `<div class="no-results">❌ Tekan Tombol Enter untuk Selanjutnya...</div>`;
-    results.style.display = 'block';
-  }
+  }, 300);
   });
 
+  // 🚪 Navigasi Tombol Enter -> Lempar ke Halaman Utama Pencarian
   input.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      window.location.href = `/search/?q=${encodeURIComponent(input.value)}`;
+      const query = input.value.trim();
+      if (query) {
+        window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+      }
     }
   });
 
+  // 🧹 Tombol Clear (X)
   clear.addEventListener('click', () => {
     input.value = '';
     results.style.display = 'none';
     clear.style.display = 'none';
+    clearTimeout(debounceTimer);
+    input.focus(); // Kembalikan kursor ke dalam kotak setelah dihapus
   });
 }
 
@@ -387,7 +434,7 @@ async function initializeApp(): Promise<void> {
     initInternalNav();
     initProgressBar();
     initCategoryMarquee(data, currentFile);
-    initFloatingSearch(data);
+    initFloatingSearch();
     initRelatedGrid(data, currentFile);
     initNavIcons(data, currentFile);
     initKeyboardNav(data, currentFile); // 🔥 Panggil fungsi shortcut di sini!
