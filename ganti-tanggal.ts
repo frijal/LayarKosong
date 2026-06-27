@@ -13,14 +13,13 @@ type ArtikelData = [
 async function sinkronisasiTanggal() {
   const jsonPath = path.join(process.cwd(), 'artikel.json');
   const htmlDir = path.join(process.cwd(), 'artikel');
+  // 💡 Path untuk file log kegagalan
+  const logPath = path.join(process.cwd(), 'laporan-gagal.txt'); 
 
   try {
     const rawData = await fs.readFile(jsonPath, 'utf-8');
     const parsedData = JSON.parse(rawData);
 
-    // 💡 [MAGIC HAPPENS HERE]
-    // Mengambil semua array dari dalam tiap kategori ("Jejak Sejarah", "Warta Tekno", dll)
-    // lalu kita 'flat()' supaya melebur jadi 1 array 1-dimensi berisi data artikel.
     const daftarArtikel: ArtikelData[] = Object.values(parsedData).flat() as ArtikelData[];
 
     if (daftarArtikel.length === 0) {
@@ -33,9 +32,11 @@ async function sinkronisasiTanggal() {
     let sukses = 0;
     let skip = 0;
     let error = 0;
+    
+    // 💡 Penampung daftar file yang bermasalah (nggak ada meta atau gagal dibaca)
+    const daftarGagal: string[] = [];
 
     for (const artikel of daftarArtikel) {
-      // Validasi baris array
       if (!Array.isArray(artikel) || artikel.length < 4) continue;
 
       const fileName = artikel[1];
@@ -50,7 +51,6 @@ async function sinkronisasiTanggal() {
         if ($metaTag.length > 0) {
           const tanggalLama = $metaTag.attr('content');
 
-          // Biar script-nya cerdas, dia cuma nulis (write) kalau tanggalnya beda
           if (tanggalLama !== tanggalKebenaran) {
             $metaTag.attr('content', tanggalKebenaran);
             await fs.writeFile(filePath, $.html(), 'utf-8');
@@ -59,25 +59,42 @@ async function sinkronisasiTanggal() {
             console.log(`   Lama: ${tanggalLama} -> Baru: ${tanggalKebenaran}`);
             sukses++;
           } else {
-            // Tanggal sudah sama, lewati saja
+            // Tanggal sudah sama, lewati. (Ini kategori aman, tidak masuk log gagal)
             skip++;
           }
         } else {
-          console.log(`⚠️ [NO META] Meta tag tidak ditemukan di ${fileName}`);
+          const pesanGagal = `⚠️ [NO META] Meta tag tidak ditemukan di ${fileName}`;
+          console.log(pesanGagal);
+          daftarGagal.push(pesanGagal); // Masukkan ke catatan
           skip++;
         }
       } catch (fileErr: any) {
+        let pesanError = '';
         if (fileErr.code === 'ENOENT') {
-          console.log(`❌ [NOT FOUND] File ${fileName} nggak ada di folder artikel/`);
+          pesanError = `❌ [NOT FOUND] File ${fileName} nggak ada di folder artikel/`;
         } else {
-          console.log(`❌ [ERROR] Gagal membaca ${fileName}: ${fileErr.message}`);
+          pesanError = `❌ [ERROR] Gagal membaca ${fileName}: ${fileErr.message}`;
         }
+        console.log(pesanError);
+        daftarGagal.push(pesanError); // Masukkan ke catatan
         error++;
       }
     }
     
     console.log('\n🎉 Selesai, Mas Frijal! Eksekusi mantap jiwa.');
     console.log(`📊 Statistik Akhir: ${sukses} file diperbarui, ${skip} file dilewati (tanggal sama/tak ada meta), ${error} error.`);
+
+    // 💡 Menulis file log .txt jika ada yang gagal
+    if (daftarGagal.length > 0) {
+        const waktuEksekusi = new Date().toLocaleString('id-ID');
+        const isiLog = `Laporan Gagal Sinkronisasi Tanggal HTML\nWaktu Eksekusi: ${waktuEksekusi}\nTotal File Bermasalah: ${daftarGagal.length}\n\nRincian:\n` + daftarGagal.join('\n');
+        
+        await fs.writeFile(logPath, isiLog, 'utf-8');
+        console.log(`📝 Catatan rincian yang gagal sudah disimpan di: laporan-gagal.txt`);
+    } else {
+        console.log(`✨ Alhamdulillah, mulus lus! Nggak ada file bermasalah, jadi nggak perlu bikin file log.`);
+    }
+
   } catch (err) {
     console.error('❌ Gagal membaca atau mem-parse artikel.json:', err);
   }
