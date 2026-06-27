@@ -936,14 +936,14 @@ async function main() {
     console.log(`
 🚀 Article/Blog Schema Injection Selesai!
 📦 Version: V4 ULTIMATE (All Protections)
-🆕 Baru diproses  : ${results.changed}
-🎬 Artikel + video: ${results.withVideo} (${results.totalVideos} VideoObject)
-⏭️  Di-skip        : ${results.skipped}
-❌ File hilang    : ${results.missing}
-🔁 Mode force      : ${FORCE_RESCHEMA ? "aktif" : "nonaktif"}
-🏷️  Article type   : ${SCHEMA_ARTICLE_TYPE}
-🧑 Avatar author   : ${AUTHOR_IMAGE_URL}
-🔎 Search template : ${searchUrlTemplate}`);
+🆕 Baru diproses    : ${results.changed}
+🎬 Artikel + video  : ${results.withVideo} (${results.totalVideos} VideoObject)
+⏭️ Di-skip          : ${results.skipped}
+❌ File hilang      : ${results.missing}
+🔁 Mode force       : ${FORCE_RESCHEMA ? "aktif" : "nonaktif"}
+🏷️ Article type     : ${SCHEMA_ARTICLE_TYPE}
+🧑 Avatar author    : ${AUTHOR_IMAGE_URL}
+🔎 Search template  : ${searchUrlTemplate}`);
 
   } catch (err) {
     console.error("❌ Error fatal:", err);
