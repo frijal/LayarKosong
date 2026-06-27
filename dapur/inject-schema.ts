@@ -644,8 +644,11 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
   const breadcrumbId = `${articleUrl}#breadcrumb`;
   const websiteId    = `${cleanBaseUrl}/#website`;
   const orgId        = `${cleanBaseUrl}/#organization`;
-  const logoId       = `${cleanBaseUrl}/#/schema/logo/image/`;
+  // ===== PERBAIKAN MINOR 1: logo ID rapi =====
+  const logoId       = `${cleanBaseUrl}/#logo`;
   const personId     = `${cleanBaseUrl}/#/schema/person/fakhrul-rijal`;
+  // ===== PERBAIKAN MINOR 2: author image ID semantik =====
+  const authorImageId = `${cleanBaseUrl}/#author-image`;
 
   const keywords = uniqueClean([
     ...meta.articleTags,
@@ -802,7 +805,7 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
       "image": {
         "@type": "ImageObject",
         "inLanguage": meta.language,
-        "@id": AUTHOR_IMAGE_URL,
+        "@id": authorImageId,
         "url": AUTHOR_IMAGE_URL,
         "contentUrl": AUTHOR_IMAGE_URL,
         "width": AUTHOR_IMAGE_WIDTH,
@@ -949,7 +952,11 @@ async function main() {
   ✅ Domain Filtering (internal only)
   ✅ 1000×1000 Square Ratio (bandwidth optimized)
   ✅ Duplicate Prevention (uniqueClean)
-  ✅ Explicit Fallback (external images)`);
+  ✅ Explicit Fallback (external images)
+
+🧹 Perbaikan Minor:
+  ✅ Logo ID rapi (https://dalam.web.id/#logo)
+  ✅ Author image ID semantik (https://dalam.web.id/#author-image)`);
 
   } catch (err) {
     console.error("❌ Error fatal:", err);
