@@ -1,15 +1,30 @@
 {
   "compilerOptions": {
+    /* Dasar */
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"], // Tambahkan ini
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    
+    /* Strict Mode & Safety (Wajib untuk project modern) */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    
+    /* Module Resolution */
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "noEmit": true,
-    "strict": true,
+    
+    /* Build */
+    "noEmit": true, // Tetap true karena Bun menjalankan file TS secara langsung
     "skipLibCheck": true,
+    "isolatedModules": true, // Sangat disarankan untuk Bun/Vite
+    
+    /* Types */
     "types": ["bun-types"]
-  }
+  },
+  "include": ["dapur/**/*", "index.ts"]
 }
