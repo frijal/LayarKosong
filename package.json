@@ -1,166 +1,54 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    ":separateMajorReleases",
-    ":combinePatchMinorReleases",
-    ":rebaseStalePrs"
-  ],
-  "ignorePaths": [
-    "dapur/**/*.min.js",
-    "ext/**/*.min.js"
-  ],
-  "enabledManagers": ["bun", "github-actions"],
-  "bun": {
-    "enabled": true
+  "name": "layarkosong",
+  "version": "2.0.4",
+  "author": "Fakhrul Rijal <frijal@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frijal/layarkosong.git"
   },
-  "constraints": {
-    "bun": ">=1.3.0"
+  "main": "index.js",
+  "dependencies": {
+    "@minify-html/node": "^0.18.1",
+    "@xmldom/xmldom": "^0.9.10",
+    "cheerio": "^1.2.0",
+    "glob": "^13.0.6",
+    "sharp": "^0.35.2",
+    "tumblr.js": "^5.0.1"
   },
-  "rangeStrategy": "bump",
-  "dependencyDashboard": true,
-  "prConcurrentLimit": 5,
-  "prHourlyLimit": 2,
-  "minimumReleaseAge": "1 days",
-  "postUpdateOptions": [
-    "bun-lockfile-fix"
-  ],
-  "packageRules": [
-    {
-      "description": "Group core web processing tools",
-      "matchPackageNames": [
-        "sharp",
-        "@minify-html/node",
-        "cheerio",
-        "@xmldom/xmldom",
-        "glob"
-      ],
-      "groupName": "web-optimizers"
-    },
-    {
-      "description": "Group Cloudflare and Social API tools",
-      "matchPackageNames": ["wrangler", "tumblr.js"],
-      "groupName": "external-services",
-      "automerge": true,
-      "automergeType": "pr"
-    },
-    {
-      "description": "Safe automerge for patch & minor",
-      "matchUpdateTypes": ["patch", "minor"],
-      "matchCurrentVersion": "!/^0/",
-      "automerge": true,
-      "automergeType": "pr"
-    },
-    {
-      "description": "0.x packages = semi-danger zone",
-      "matchCurrentVersion": "/^0./",
-      "automerge": false
-    },
-    {
-      "description": "Major updates = always manual review",
-      "matchUpdateTypes": ["major"],
-      "automerge": false
-    },
-    {
-      "description": "Use semver for npm packages discovered by regex manager",
-      "matchManagers": ["regex"],
-      "matchDatasources": ["npm"],
-      "versioning": "semver"
-    },
-    {
-      "description": "Use semver for GitHub-based assets discovered by regex manager",
-      "matchManagers": ["regex"],
-      "matchDatasources": ["github-releases", "github-tags"],
-      "versioning": "semver"
-    },
-    {
-      "description": "Use semver for cdnjs assets discovered by regex manager",
-      "matchManagers": ["regex"],
-      "matchDatasources": ["cdnjs"],
-      "versioning": "semver"
-    },
-    {
-      "description": "Fallback: treat generic @vX.Y.Z in URLs discovered by regex manager as regex-versioned",
-      "matchManagers": ["regex"],
-      "versioning": "regex",
-      "matchPackageNames": [
-        "/^https?://.*@v?\\d/"
-      ]
-    }
-  ],
-  "vulnerabilityAlerts": {
-    "labels": ["security"],
-    "assignees": ["frijal"],
-    "automerge": true
+  "devDependencies": {
+    "wrangler": "^4.105.0"
   },
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": [
-        "import\\s+[^\\n]*from\\s+[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']",
-        "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": [
-        "https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/",
-        "src=[\"']https?:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^@\\/]+\\/[^^@\\/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "github-releases"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": [
-        "https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/",
-        "src=[\"']https?:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": [
-        "https?:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/]+)\\/(?<currentValue>\\d+(?:\\.\\d+){0,2})\\/"
-      ],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "cdnjs"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": [
-        "src=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<owner>[^/]+)\\/(?<repo>[^/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']",
-        "href=[\"']https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<owner>[^/]+)\\/(?<repo>[^/]+)@(?<currentValue>v?\\d+(?:\\.\\d+){0,2})\\/[^\"']+[\"']"
-      ],
-      "depNameTemplate": "{{{owner}}}/{{{repo}}}",
-      "datasourceTemplate": "github-tags"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^.*\\.html$/", "/^.*\\.js$/"],
-      "matchStrings": [
-        "(?<depName>[a-zA-Z0-9_\\-]+)@(?<currentValue>\\d+(?:\\.\\d+){0,2})"
-      ],
-      "depNameTemplate": "{{{depName}}}",
-      "datasourceTemplate": "npm"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^package\\.json$/"],
-      "matchStrings": [
-        "\"bun\":\\s*\"(?<currentValue>[^\"]+)\""
-      ],
-      "depNameTemplate": "bun",
-      "datasourceTemplate": "npm",
-      "versioningTemplate": "npm"
-    }
-  ]
+  "bugs": {
+    "url": "https://github.com/frijal/layarkosong/issues"
+  },
+  "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator",
+  "engines": {
+    "bun": ">=1.3.0",
+    "node": ">=24.18.0"
+  },
+  "homepage": "https://dalam.web.id",
+  "keywords": [
+    "rss",
+    "feed-generator",
+    "screenshot",
+    "puppeteer",
+    "google-gemini",
+    "generative-ai",
+    "web-scraping",
+    "github-actions",
+    "blog-tools"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "scripts": {
+    "sapu": "bun run dapur/sapu-bersih.ts",
+    "fixseo": "bun run dapur/seo-fixer.ts",
+    "ci-fix-meta-image": "bun run dapur/seo-fixer.ts artikelx",
+    "ci-fix-meta-main": "bun run dapur/seo-fixer.ts artikel",
+    "ci-generate-xml-rss": "bun run dapur/generator-pro.ts",
+    "ci-screenshot": "bun run dapur/screenshot-puppeteer.ts",
+    "ci-all": "bun run sapu && bun run ci-fix-meta-image && bun run ci-generate-xml-rss && bun run ci-screenshot",
+    "generate-ai-api": "bun run dapur/generate-ai-api.ts"
+  },
+  "type": "module"
 }
