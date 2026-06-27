@@ -1,8 +1,6 @@
 name: 🐳 Build and Push to GHCR
 
-on:
-  push:
-    branches: [main]
+on:  
   schedule:
     - cron: '55 3 4 * *'
   workflow_dispatch:
