@@ -164,7 +164,7 @@ function initFloatingSearch(): void {
 
       // 🚀 NEBENG API D1: Minta 5 hasil saja biar super kilat
       const safeQuery = encodeURIComponent(v);
-      const apiUrl = `/cari?q=${safeQuery}&page=1&limit=5`;
+      const apiUrl = `/cari?q=${safeQuery}&page=1&limit=10`;
 
       const response = await fetch(apiUrl);
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
