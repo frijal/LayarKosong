@@ -59,152 +59,733 @@
     <meta property="article:tag" content="Sosial">
     <meta property="article:published_time" content="2026-03-09T20:52:32.000Z">
     <meta property="article:modified_time" content="2026-06-25T14:11:10.364Z">
-    <style>
-    :root {
-        --bg-color: #ffffff;
-        --text-color: #1a1a1a;
-        --accent-color: #2563eb;
-        --secondary-bg: #f3f4f6;
-        --border-color: #e5e7eb;
-    }
-    @media (prefers-color-scheme: dark) {
+     <style>
+        /* Reset dan variabel */
         :root {
-            --bg-color: #111827;
-            --text-color: #f9fafb;
-            --accent-color: #60a5fa;
-            --secondary-bg: #1f2937;
-            --border-color: #374151;
+            --bg-body: #f8f7f4;
+            --bg-card: #ffffff;
+            --text-primary: #1e1e1e;
+            --text-secondary: #2c2c2c;
+            --text-muted: #3d3d3d;
+            --border-light: #d0cec8;
+            --link-color: #1a4b8c;
+            --link-hover: #0d2f5a;
+            --summary-bg: #f0efe9;
+            --summary-hover: #e5e3db;
+            --shadow-soft: rgba(0, 0, 0, 0.05);
+            --code-bg: #f0ede8;
+            --code-border: #d6d2ca;
+            --footer-text: #4a4a4a;
+            --details-marker: #1a4b8c;
+            --blockquote-border: #1a4b8c;
+            --blockquote-bg: #f3f1ec;
         }
-    }
-    * { box-sizing: border-box; }
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        font-size: 1.2rem;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        display: flex;
-        justify-content: center;
-    }
-    article {
-        max-width: 1000px;
-        width: 100%;
-        padding: 20px;
-    }
-    h1, h2, h3 { line-height: 1.3; }
-    h1 { font-size: 2.2rem; margin-bottom: 1rem; }
-    h2 { border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem; margin-top: 2rem; }
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        display: block;
-        margin: 1.5rem auto;
-        content-visibility: auto;
-    }
-    .highlight { background-color: var(--secondary-bg); padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: bold; }
-    .info-box { background: var(--secondary-bg); padding: 1.5rem; border-left: 5px solid var(--accent-color); border-radius: 4px; margin: 1.5rem 0; }
-    ul, ol { padding-left: 1.5rem; }
-    li { margin-bottom: 0.5rem; }
-    footer {
-        margin-top: 3rem;
-        padding: 2rem 0;
-        border-top: 1px solid var(--border-color);
-        font-size: 0.9rem;
-        text-align: center;
-    }
-    .fa { margin-right: 8px; color: var(--accent-color); }
-    .featured-image { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-</style>
-<link rel="stylesheet" href="/ext/fontawesome.css">
-<link rel="stylesheet" href="/ext/marquee-url.css">
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #1a1a1a;
+                --bg-card: #242424;
+                --text-primary: #eaeaea;
+                --text-secondary: #d4d4d4;
+                --text-muted: #b8b8b8;
+                --border-light: #3d3d3d;
+                --link-color: #7ab0f0;
+                --link-hover: #a8ccf5;
+                --summary-bg: #2e2e2e;
+                --summary-hover: #3a3a3a;
+                --shadow-soft: rgba(0, 0, 0, 0.3);
+                --code-bg: #2a2a2a;
+                --code-border: #444;
+                --footer-text: #b0b0b0;
+                --details-marker: #7ab0f0;
+                --blockquote-border: #7ab0f0;
+                --blockquote-bg: #2a2a2a;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.75;
+            padding: 1.5rem 1rem;
+            font-size: 1.125rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        main {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 0.25rem 1.5rem var(--shadow-soft);
+        }
+
+        @media (min-width: 48rem) {
+            body {
+                padding: 2rem;
+            }
+            main {
+                padding: 3rem 3rem;
+            }
+        }
+
+        @media (min-width: 64rem) {
+            main {
+                padding: 4rem 4.5rem;
+            }
+        }
+
+        /* Tipografi */
+        h1 {
+            font-size: 2.2rem;
+            line-height: 1.25;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        @media (min-width: 48rem) {
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            line-height: 1.3;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            line-height: 1.4;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+        }
+
+        b,
+        strong {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        i,
+        em {
+            font-style: italic;
+        }
+
+        u {
+            text-underline-offset: 0.15em;
+        }
+
+        s {
+            text-decoration: line-through;
+        }
+
+        /* Lead / ringkasan */
+        .lead {
+            font-size: 1.2rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            border-left: 0.25rem solid var(--border-light);
+            padding-left: 1rem;
+        }
+
+        @media (min-width: 48rem) {
+            .lead {
+                font-size: 1.3rem;
+                padding-left: 1.5rem;
+            }
+        }
+
+        /* Gambar */
+        figure {
+            margin: 1.5rem 0 2rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: var(--bg-body);
+            line-height: 0;
+        }
+
+        figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 1200 / 675;
+            object-fit: cover;
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 0.5rem 1rem 0.75rem 1rem;
+            background: var(--bg-body);
+            line-height: 1.5;
+            text-align: center;
+            border-top: 0.0625rem solid var(--border-light);
+        }
+
+        /* Blockquote */
+        blockquote {
+            border-left: 0.25rem solid var(--blockquote-border);
+            background: var(--blockquote-bg);
+            padding: 0.75rem 1.25rem;
+            margin: 1.25rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Daftar */
+        ul,
+        ol {
+            margin: 0.75rem 0 1.25rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        ul li::marker {
+            color: var(--details-marker);
+        }
+
+        /* Details / Accordion */
+        details {
+            margin: 1.5rem 0 1rem 0;
+            border: 0.0625rem solid var(--border-light);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: var(--bg-card);
+            transition: border-color 0.2s;
+        }
+
+        details[open] {
+            border-color: var(--details-marker);
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 0.9rem 1.25rem;
+            background: var(--summary-bg);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s, color 0.2s;
+            user-select: none;
+            border-radius: 0.75rem;
+        }
+
+        summary:hover {
+            background: var(--summary-hover);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "▶";
+            font-size: 0.8rem;
+            color: var(--details-marker);
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+            margin-right: 0.25rem;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        summary h2,
+        summary h3 {
+            display: inline;
+            margin: 0;
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+        }
+
+        .details-content {
+            padding: 1.25rem 1.25rem 0.5rem 1.25rem;
+        }
+
+        .details-content>*:last-child {
+            margin-bottom: 1.25rem;
+        }
+
+        .details-content ul,
+        .details-content ol {
+            margin-top: 0.25rem;
+        }
+
+        /* Kode */
+        pre {
+            background: var(--code-bg);
+            border: 0.0625rem solid var(--code-border);
+            border-radius: 0.5rem;
+            padding: 1rem 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1.25rem 0;
+            font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+        }
+
+        code {
+            font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+            font-size: 0.9em;
+            background: var(--code-bg);
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.25rem;
+            border: 0.0625rem solid var(--code-border);
+            color: var(--text-primary);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 0.0625rem solid var(--border-light);
+            padding: 1rem 0;
+        }
+
+        .faq-item:first-of-type {
+            padding-top: 0.25rem;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0.25rem;
+        }
+
+        .faq-item h3 {
+            margin-top: 0;
+            margin-bottom: 0.25rem;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 0.0625rem solid var(--border-light);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--footer-text);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem 1.5rem;
+        }
+
+        footer span {
+            display: inline-block;
+        }
+
+        footer .sep {
+            color: var(--border-light);
+            font-weight: 300;
+        }
+
+        /* Wajib */
+        #related-articles-grid,
+        #response {
+            margin-top: 2rem;
+        }
+
+        /* Responsive fine-tune */
+        @media (max-width: 36rem) {
+            body {
+                padding: 0.75rem;
+                font-size: 1rem;
+            }
+            main {
+                padding: 1.25rem 1rem;
+                border-radius: 1rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+                margin-top: 1.75rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .lead {
+                font-size: 1rem;
+                padding-left: 0.75rem;
+            }
+            summary {
+                font-size: 1rem;
+                padding: 0.7rem 1rem;
+            }
+            .details-content {
+                padding: 0.75rem 1rem 0.25rem 1rem;
+            }
+            footer {
+                font-size: 0.8rem;
+                gap: 0.5rem 1rem;
+                flex-direction: column;
+            }
+            footer .sep {
+                display: none;
+            }
+            figure {
+                margin: 1rem 0 1.5rem 0;
+            }
+            blockquote {
+                padding: 0.5rem 1rem;
+                margin: 1rem 0;
+            }
+            ul,
+            ol {
+                margin-left: 1.25rem;
+            }
+        }
+
+        @media (min-width: 36rem) and (max-width: 48rem) {
+            main {
+                padding: 1.75rem 1.5rem;
+            }
+            h1 {
+                font-size: 1.9rem;
+            }
+        }
+
+        /* Aksesibilitas: fokus */
+        summary:focus-visible,
+        a:focus-visible {
+            outline: 0.125rem solid var(--details-marker);
+            outline-offset: 0.125rem;
+            border-radius: 0.25rem;
+        }
+
+        /* highlight.js fallback style */
+        .hljs {
+            background: var(--code-bg);
+            color: var(--text-primary);
+        }
+
+        .hljs-comment,
+        .hljs-quote {
+            color: #6a6a6a;
+            font-style: italic;
+        }
+        .hljs-keyword,
+        .hljs-selector-tag,
+        .hljs-subst {
+            color: #b05e5e;
+        }
+        .hljs-number,
+        .hljs-literal,
+        .hljs-variable,
+        .hljs-template-variable,
+        .hljs-tag .hljs-attr {
+            color: #b0804a;
+        }
+        .hljs-string,
+        .hljs-doctag {
+            color: #5a8a5a;
+        }
+        .hljs-title,
+        .hljs-section,
+        .hljs-selector-id {
+            color: #4a7a9a;
+        }
+        .hljs-type,
+        .hljs-class .hljs-title {
+            color: #9a6a4a;
+        }
+        .hljs-attribute {
+            color: #7a7a4a;
+        }
+        .hljs-symbol,
+        .hljs-bullet,
+        .hljs-link {
+            color: #7a6a9a;
+        }
+        .hljs-built_in,
+        .hljs-builtin-name {
+            color: #4a7a7a;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .hljs-comment,
+            .hljs-quote {
+                color: #8a8a8a;
+            }
+            .hljs-keyword,
+            .hljs-selector-tag,
+            .hljs-subst {
+                color: #d48a8a;
+            }
+            .hljs-number,
+            .hljs-literal,
+            .hljs-variable,
+            .hljs-template-variable,
+            .hljs-tag .hljs-attr {
+                color: #d4a06a;
+            }
+            .hljs-string,
+            .hljs-doctag {
+                color: #8aba8a;
+            }
+            .hljs-title,
+            .hljs-section,
+            .hljs-selector-id {
+                color: #7ab0d4;
+            }
+            .hljs-type,
+            .hljs-class .hljs-title {
+                color: #d4a080;
+            }
+            .hljs-attribute {
+                color: #baba7a;
+            }
+            .hljs-symbol,
+            .hljs-bullet,
+            .hljs-link {
+                color: #b0a0d4;
+            }
+            .hljs-built_in,
+            .hljs-builtin-name {
+                color: #7ababa;
+            }
+        }
+    </style>
 </head>
 <body>
-<article>
-    <header>
-        <div id="iposbrowser"></div><h1>Krisis Driver Ojek Online di Indonesia: Ketika Kesejahteraan Menurun dan Konsumen Ikut Terdampak 🛵</h1>
-    </header>
-    <p>Fenomena sulitnya mendapatkan pengemudi ojek online belakangan ini semakin sering dikeluhkan masyarakat di berbagai kota di Indonesia. Banyak pengguna layanan transportasi berbasis aplikasi mulai merasakan waktu tunggu yang lebih lama, meningkatnya pembatalan pesanan, hingga berkurangnya jumlah pengemudi yang tersedia pada jam sibuk.</p>
-    <img src="https://dalam.web.id/img/pbs.twimg.com/ef2263cad8c46256.webp" alt="Ilustrasi driver ojek online di jalan raya Indonesia" class="featured-image" width="1000" height="562">
-    <div class="info-box">
-        <strong>Apa (What) yang sedang terjadi?</strong> Terjadi kelangkaan ketersediaan driver ojek online di jam-jam krusial yang dipicu oleh penurunan motivasi kerja akibat masalah ekonomi.<br>
-        <strong>Mengapa (Why) ini terjadi?</strong> Karena biaya operasional (bensin, servis) naik sementara pendapatan bersih dari aplikasi terus merosot.
-    </div>
-    <p>Di balik kondisi ini, terdapat persoalan yang jauh lebih kompleks dibanding sekadar meningkatnya permintaan layanan. Banyak pengemudi ojek online menghadapi <span class="highlight">krisis kesejahteraan</span> yang semakin terasa akibat menurunnya pendapatan bersih mereka. Tekanan biaya operasional yang terus meningkat, sistem komisi platform, hingga perubahan strategi perusahaan membuat banyak driver mulai <em>resign</em> atau beralih profesi.</p>
-    <section>
-        <h2><i class="fa fa-money-bill-wave"></i> Menurunnya Pendapatan Bersih Driver</h2>
-        <p>Salah satu akar utama dari masalah ini adalah penurunan pendapatan bersih yang dibawa pulang oleh para pengemudi. Dalam beberapa tahun terakhir, tarif perjalanan relatif stagnan sementara biaya operasional terus meningkat.</p>
-        <ul>
-            <li><strong>Harga bahan bakar:</strong> Kenaikan BBM sangat memukul margin harian.</li>
-            <li><strong>Biaya perawatan:</strong> Harga <em>sparepart</em> dan oli yang merangkak naik.</li>
-            <li><strong>Potongan komisi:</strong> Rata-rata tetap di angka <span class="highlight">20%</span>.</li>
-            <li><strong>Pendapatan tidak stabil:</strong> Jumlah orderan harian yang fluktuatif.</li>
-        </ul>
-        <p>Banyak driver merasa pendapatan kotor mereka hanya "numpang lewat" untuk menutupi cicilan motor dan biaya harian tanpa ada sisa untuk tabungan.</p>
-    </section>
-    <section>
-        <h2><i class="fa fa-chart-line"></i> Tarif Perjalanan vs Biaya Hidup</h2>
-        <p>Tarif yang berlaku saat ini dinilai banyak pihak sudah tidak relevan dengan inflasi. Para driver harus bekerja ekstra keras, seringkali lebih dari 12 jam, hanya untuk mencapai angka yang sama dengan beberapa tahun lalu.</p>
-        <ol>
-            <li>Harga bahan bakar (Pertalite/Pertamax) terus naik.</li>
-            <li>Kenaikan biaya servis rutin di bengkel resmi maupun umum.</li>
-            <li>Premi asuransi dan iuran kesehatan mandiri.</li>
-        </ol>
-    </section>
-    <section>
-        <h2><i class="fa fa-gift"></i> Berkurangnya Bonus dan Insentif</h2>
-        <p>Era <strong>"bakar uang"</strong> sudah berakhir. Perusahaan kini lebih fokus pada profitabilitas. Bagi driver, ini berarti:</p>
-        <ul>
-            <li>Target poin yang semakin sulit dicapai.</li>
-            <li>Nilai insentif harian yang dipangkas drastis.</li>
-            <li>Hilangnya subsidi tarif untuk jarak pendek.</li>
-        </ul>
-    </section>
-    <section>
-        <h2><i class="fa fa-users"></i> Persaingan Ketat &amp; Jumlah Driver Membludak</h2>
-        <p>Banjirnya pendaftaran driver baru tanpa kontrol yang ketat membuat "kue" pesanan harus dibagi ke lebih banyak orang. <strong>Dimana (Where)</strong> hal ini paling terasa? Tentu di kota-kota besar seperti Jakarta, Surabaya, dan Balikpapan, di mana konsentrasi driver sangat tinggi di pusat keramaian.</p>
-    </section>
-    <section>
-        <h2><i class="fa fa-exclamation-triangle"></i> Gerakan "Off Bid" &amp; Dampak Konsumen</h2>
-        <p>Keresahan memicu aksi mogok atau <span class="highlight">off bid</span> massal. Dampaknya bagi kamu sebagai konsumen:</p>
-        <ul>
-            <li><i class="fa fa-clock"></i> <strong>Waktu Tunggu:</strong> Bisa 2-3 kali lipat lebih lama.</li>
-            <li><i class="fa fa-ban"></i> <strong>Pembatalan:</strong> Driver lebih selektif memilih rute yang menguntungkan.</li>
-            <li><i class="fa fa-arrow-up-right-dots"></i> <strong>Tarif Dinamis:</strong> Harga melonjak saat "High Demand".</li>
-        </ul>
-    </section>
-    <section>
-        <h2><i class="fa fa-gavel"></i> Peran Pemerintah &amp; Solusi</h2>
-        <p><strong>Siapa (Who)</strong> yang harus bertanggung jawab? Selain perusahaan, pemerintah memiliki peran krusial melalui regulasi.</p>
-        <div class="info-box">
-            <p><strong>Bagaimana (How) solusinya?</strong></p>
-            <ul>
-                <li>Penetapan tarif batas bawah yang lebih manusiawi.</li>
-                <li>Audit terhadap potongan komisi aplikasi.</li>
-                <li>Penyediaan jaminan sosial (BPJS) yang disubsidi.</li>
-            </ul>
-        </div>
-        <p>Referensi regulasi resmi bisa dipantau di <a href="https://www.dephub.go.id" target="_blank" rel="noopener">Kemenhub RI</a>.</p>
-    </section>
-    <section>
-        <h2><i class="fa fa-question-circle"></i> FAQ: Tanya Jawab Singkat</h2>
-        <h3>Mengapa ojol sekarang mahal tapi driver susah didapat?</h3>
-        <p>Karena tarif dinamis aktif akibat kurangnya driver di lapangan yang sedang <em>off bid</em> atau sudah pulang lebih awal karena target tidak tercapai.</p>
-        <h3>Apakah potongan 20% itu besar?</h3>
-        <p>Bagi mitra yang menanggung bensin dan perawatan sendiri, 20% dianggap sangat memberatkan bagi keberlangsungan usaha mandiri mereka.</p>
-    </section>
-    <section>
-        <h2>Kesimpulan</h2>
-        <p>Krisis driver ojek online adalah alarm bagi ekosistem ekonomi digital kita. Perlu ada keseimbangan antara <strong>kemudahan konsumen</strong>, <strong>keuntungan perusahaan</strong>, dan yang paling utama: <strong>kesejahteraan pengemudi</strong> sebagai ujung tombak layanan. Tanpa solusi adil, layanan transportasi online yang kita cintai ini bisa kehilangan daya tariknya di masa depan.</p>
-    </section>
-    <hr>
-    <div id="related-articles-grid">
-          </div>
-    <div id="response">
+    <main>
+        <article>
+            <header>
+                <h1>Krisis Driver Ojek Online di Indonesia: Ketika Kesejahteraan Menurun dan Konsumen Ikut Terdampak</h1>
+                <p class="lead">
+                    Fenomena sulitnya mendapatkan pengemudi ojek online belakangan ini semakin sering dikeluhkan masyarakat di berbagai kota di Indonesia. Banyak pengguna layanan transportasi berbasis aplikasi mulai merasakan waktu tunggu yang lebih lama, meningkatnya pembatalan pesanan, hingga berkurangnya jumlah pengemudi yang tersedia pada jam sibuk.
+                </p>
+            </header>
+
+            <p><b>Apa yang sedang terjadi?</b> Terjadi kelangkaan ketersediaan driver ojek online di jam-jam krusial yang dipicu oleh penurunan motivasi kerja akibat masalah ekonomi. <b>Mengapa ini terjadi?</b> Karena biaya operasional seperti bensin dan servis naik sementara pendapatan bersih dari aplikasi terus merosot.</p>
+
+            <p>Di balik kondisi ini, terdapat persoalan yang jauh lebih kompleks dibanding sekadar meningkatnya permintaan layanan. Banyak pengemudi ojek online menghadapi krisis kesejahteraan yang semakin terasa akibat menurunnya pendapatan bersih mereka. Tekanan biaya operasional yang terus meningkat, sistem komisi platform, hingga perubahan strategi perusahaan membuat banyak driver mulai <i>resign</i> atau beralih profesi.</p>
+
+            <figure>
+                <img src="https://dalam.web.id/img/pbs.twimg.com/ef2263cad8c46256.webp" alt="Ilustrasi driver ojek online di jalan raya Indonesia dengan latar belakang kota dan lalu lintas padat" width="1200" height="675" fetchpriority="high" decoding="async">
+                <figcaption>Ilustrasi driver ojek online di tengah padatnya lalu lintas perkotaan &mdash; keseharian yang kini terasa semakin berat.</figcaption>
+            </figure>
+
+            <p>Sebelum kita menyelami lebih dalam, penting untuk memahami bahwa krisis ini bukanlah kejadian mendadak. Ini adalah akumulasi dari berbagai kebijakan, perubahan pasar, dan tekanan ekonomi yang telah berlangsung selama beberapa tahun terakhir. Para driver yang dulu bisa mengandalkan profesi ini sebagai sumber penghidupan utama, kini harus berpikir ulang.</p>
+
+            <!-- BAGIAN 1: Menurunnya Pendapatan Bersih Driver -->
+            <details>
+                <summary><h2>Menurunnya Pendapatan Bersih Driver</h2></summary>
+                <div class="details-content">
+                    <p>Salah satu akar utama dari masalah ini adalah penurunan pendapatan bersih yang dibawa pulang oleh para pengemudi. Dalam beberapa tahun terakhir, tarif perjalanan relatif stagnan sementara biaya operasional terus meningkat. Ini adalah kombinasi yang mematikan bagi kelangsungan hidup para mitra pengemudi.</p>
+
+                    <p>Banyak driver merasa pendapatan kotor mereka hanya "numpang lewat" untuk menutupi cicilan motor dan biaya harian tanpa ada sisa untuk tabungan. Bahkan, tidak sedikit yang harus bekerja hingga 14 jam sehari hanya untuk mencapai angka yang sama dengan pendapatan mereka tiga atau empat tahun lalu.</p>
+
+                    <h3>Harga Bahan Bakar yang Terus Merangkak</h3>
+                    <p>Kenaikan harga Bahan Bakar Minyak (BBM) adalah pukulan telak bagi para driver. Setiap kali ada kebijakan penyesuaian harga BBM, margin keuntungan mereka langsung tergerus. Untuk setiap liter bensin yang digunakan, driver harus mengeluarkan uang lebih banyak, sementara tarif perjalanan tidak serta-merta naik secara proporsional.</p>
+
+                    <h3>Biaya Perawatan yang Tak Terhindarkan</h3>
+                    <p>Selain bensin, biaya perawatan motor juga menjadi beban berat. Harga <i>sparepart</i>, oli, ban, dan servis rutin di bengkel resmi maupun umum terus merangkak naik. Motor yang digunakan untuk mengantar pesanan setiap hari mengalami keausan yang jauh lebih cepat dibandingkan motor yang hanya dipakai untuk keperluan pribadi.</p>
+
+                    <h3>Potongan Komisi yang Tetap Mengikat</h3>
+                    <p>Rata-rata potongan komisi yang diambil oleh platform aplikasi masih berada di angka 20% per perjalanan. Bagi mitra yang menanggung sendiri biaya bensin dan perawatan, potongan 20% ini dianggap sangat memberatkan bagi keberlangsungan usaha mandiri mereka. Belum lagi potongan-potongan lain seperti biaya administrasi dan asuransi yang kadang tidak transparan.</p>
+
+                    <h3>Pendapatan yang Fluktuatif dan Tak Menentu</h3>
+                    <p>Jumlah orderan harian yang fluktuatif membuat perencanaan keuangan menjadi sulit. Pada hari-hari tertentu, driver bisa mendapatkan banyak pesanan, tetapi di hari lain mereka hanya bisa menganggur di pinggir jalan. Ketidakpastian ini membuat stres dan menguras energi mental para pengemudi.</p>
+                </div>
+            </details>
+
+            <!-- BAGIAN 2: Tarif Perjalanan vs Biaya Hidup -->
+            <details>
+                <summary><h2>Tarif Perjalanan vs Biaya Hidup</h2></summary>
+                <div class="details-content">
+                    <p>Tarif yang berlaku saat ini dinilai banyak pihak sudah tidak relevan dengan inflasi. Para driver harus bekerja ekstra keras, seringkali lebih dari 12 jam, hanya untuk mencapai angka yang sama dengan beberapa tahun lalu. Ini menciptakan jurang yang semakin lebar antara pendapatan dan kebutuhan hidup yang terus bertambah.</p>
+
+                    <p>Jika kita bandingkan dengan kenaikan harga barang kebutuhan pokok, tarif ojek online nyaris tidak bergerak. Sementara itu, harga beras, minyak goreng, telur, dan kebutuhan sehari-hari lainnya melonjak signifikan. Para driver yang sebagian besar adalah tulang punggung keluarga merasakan dampaknya secara langsung.</p>
+
+                    <h3>Harga Bahan Bakar yang Terus Naik</h3>
+                    <p>Kenaikan harga Pertalite dan Pertamax yang terjadi beberapa kali dalam dua tahun terakhir membuat biaya operasional harian membengkak. Seorang driver yang biasanya menghabiskan Rp 30.000 untuk bensin per hari, kini harus mengeluarkan Rp 40.000 hingga Rp 50.000 untuk jarak tempuh yang sama.</p>
+
+                    <h3>Kenaikan Biaya Servis Rutin</h3>
+                    <p>Servis rutin di bengkel resmi maupun umum juga ikut naik. Ganti oli, ganti kampas rem, ganti ban, dan perawatan berkala lainnya menjadi pengeluaran yang tidak bisa dihindari. Motor yang sehat adalah prasyarat untuk bisa bekerja, dan biaya ini semakin membebani pendapatan harian.</p>
+
+                    <h3>Premi Asuransi dan Iuran Kesehatan Mandiri</h3>
+                    <p>Sebagian besar driver ojek online tidak memiliki jaminan sosial dari perusahaan. Mereka harus membayar premi asuransi dan iuran kesehatan (seperti BPJS) secara mandiri. Ini adalah pengeluaran tetap yang harus dikeluarkan setiap bulan, terlepas dari berapa banyak pendapatan yang mereka peroleh.</p>
+                </div>
+            </details>
+
+            <!-- BAGIAN 3: Berkurangnya Bonus dan Insentif -->
+            <details>
+                <summary><h2>Berkurangnya Bonus dan Insentif</h2></summary>
+                <div class="details-content">
+                    <p>Era <b>"bakar uang"</b> sudah berakhir. Perusahaan platform kini lebih fokus pada profitabilitas dan efisiensi biaya. Bagi driver, ini berarti hilangnya berbagai bonus dan insentif yang dulu menjadi penopang pendapatan mereka.</p>
+
+                    <p>Dulu, driver bisa mengandalkan bonus harian, bonus mingguan, dan insentif khusus untuk mencapai target tertentu. Sekarang, semua itu semakin sulit diraih. Bahkan, beberapa jenis bonus telah dihapuskan sama sekali tanpa pengganti yang setara.</p>
+
+                    <h3>Target Poin yang Semakin Sulit Dicapai</h3>
+                    <p>Untuk mendapatkan insentif, driver harus mencapai target poin tertentu dalam sehari. Namun, target ini terus dinaikkan sementara jumlah pesanan tidak bertambah secara signifikan. Akibatnya, banyak driver yang gagal mencapai target dan kehilangan kesempatan mendapatkan bonus.</p>
+
+                    <h3>Nilai Insentif Harian yang Dipangkas</h3>
+                    <p>Bagi driver yang berhasil mencapai target, nilai insentif yang diberikan kini lebih kecil dibandingkan tahun-tahun sebelumnya. Pemangkasan ini membuat driver merasa usaha mereka tidak dihargai dengan layak.</p>
+
+                    <h3>Hilangnya Subsidi Tarif untuk Jarak Pendek</h3>
+                    <p>Dulu, untuk perjalanan jarak pendek, platform sering memberikan subsidi agar tarif tetap menarik bagi konsumen. Kini, subsidi tersebut berkurang atau bahkan hilang sama sekali. Akibatnya, driver mendapatkan pendapatan yang lebih kecil untuk perjalanan jarak pendek yang sebenarnya cukup banyak diminati.</p>
+                </div>
+            </details>
+
+            <!-- BAGIAN 4: Persaingan Ketat & Jumlah Driver Membludak -->
+            <details>
+                <summary><h2>Persaingan Ketat &amp; Jumlah Driver Membludak</h2></summary>
+                <div class="details-content">
+                    <p>Banjirnya pendaftaran driver baru tanpa kontrol yang ketat membuat "kue" pesanan harus dibagi ke lebih banyak orang. <b>Di mana</b> hal ini paling terasa? Tentu di kota-kota besar seperti Jakarta, Surabaya, Bandung, dan Balikpapan, di mana konsentrasi driver sangat tinggi di pusat keramaian.</p>
+
+                    <p>Ketika jumlah driver bertambah sementara jumlah pengguna layanan tidak meningkat secara proporsional, maka pendapatan per driver otomatis menurun. Ini adalah hukum dasar ekonomi penawaran dan permintaan yang bekerja tanpa kompromi.</p>
+
+                    <p>Selain itu, banyaknya driver baru juga menciptakan persaingan yang tidak sehat. Beberapa driver rela mengambil tarif lebih rendah atau menerima pesanan yang sebenarnya tidak menguntungkan hanya untuk mendapatkan penumpang. Hal ini semakin menekan pendapatan rata-rata para driver.</p>
+
+                    <p>Kondisi ini diperparah dengan adanya sistem <i>rating</i> dan <i>score</i> yang membuat driver harus terus berkompetisi untuk mendapatkan pesanan. Driver dengan skor rendah akan mendapatkan prioritas pesanan yang lebih rendah, sehingga mereka harus bekerja lebih keras untuk mempertahankan posisi mereka.</p>
+                </div>
+            </details>
+
+            <!-- BAGIAN 5: Gerakan Off Bid & Dampak Konsumen -->
+            <details>
+                <summary><h2>Gerakan "Off Bid" &amp; Dampak Konsumen</h2></summary>
+                <div class="details-content">
+                    <p>Keresahan yang berkepanjangan di kalangan driver memicu aksi mogok atau <i>off bid</i> massal. Dalam aksi ini, para driver secara kolektif menolak untuk menerima pesanan sebagai bentuk protes terhadap kebijakan yang merugikan mereka.</p>
+
+                    <p>Aksi <i>off bid</i> ini memberikan dampak langsung dan signifikan bagi konsumen. Berikut adalah beberapa dampak yang paling terasa:</p>
+
+                    <ul>
+                        <li><b>Waktu Tunggu:</b> Bisa 2 hingga 3 kali lipat lebih lama dari biasanya. Yang biasanya hanya menunggu 3-5 menit, kini bisa menjadi 10-15 menit atau bahkan lebih.</li>
+                        <li><b>Pembatalan:</b> Driver lebih selektif memilih rute yang menguntungkan. Pesanan dengan jarak pendek atau ke area yang macet seringkali dibatalkan karena dianggap tidak ekonomis.</li>
+                        <li><b>Tarif Dinamis:</b> Harga melonjak tajam saat <i>High Demand</i>. Konsumen harus merogoh kocek lebih dalam untuk mendapatkan layanan yang sama.</li>
+                        <li><b>Ketersediaan Driver:</b> Pada jam-jam tertentu, terutama malam hari atau saat cuaca buruk, jumlah driver yang tersedia sangat terbatas.</li>
+                    </ul>
+
+                    <p>Dampak ini menciptakan lingkaran setan. Konsumen kesulitan mendapatkan layanan, driver kesulitan mendapatkan pendapatan yang layak, dan platform kesulitan menjaga kepuasan kedua belah pihak. Semua pihak dirugikan.</p>
+                </div>
+            </details>
+
+            <!-- BAGIAN 6: Peran Pemerintah & Solusi -->
+            <details>
+                <summary><h2>Peran Pemerintah &amp; Solusi</h2></summary>
+                <div class="details-content">
+                    <p><b>Siapa</b> yang harus bertanggung jawab atas krisis ini? Selain perusahaan platform, pemerintah memiliki peran krusial melalui regulasi dan pengawasan. Tanpa intervensi yang tepat, krisis ini akan terus berlanjut dan bahkan semakin parah.</p>
+
+                    <p><b>Bagaimana</b> solusi yang bisa ditempuh? Ada beberapa langkah yang dapat diambil oleh berbagai pihak untuk mengatasi masalah ini:</p>
+
+                    <h3>Penetapan Tarif Batas Bawah yang Lebih Manusiawi</h3>
+                    <p>Pemerintah perlu menetapkan tarif batas bawah yang lebih realistis dan mempertimbangkan biaya hidup serta inflasi. Tarif ini harus dievaluasi secara berkala agar tetap relevan dengan kondisi ekonomi yang berubah.</p>
+
+                    <h3>Audit Terhadap Potongan Komisi Aplikasi</h3>
+                    <p>Perlu dilakukan audit yang transparan terhadap struktur biaya dan potongan komisi yang diambil oleh platform. Tujuannya adalah untuk memastikan bahwa potongan tersebut tidak memberatkan driver dan masih dalam batas yang wajar.</p>
+
+                    <h3>Penyediaan Jaminan Sosial yang Disubsidi</h3>
+                    <p>Pemerintah dapat menyediakan program jaminan sosial (seperti BPJS Ketenagakerjaan) yang disubsidi untuk para driver ojek online. Ini akan memberikan perlindungan dasar bagi mereka yang selama ini tidak memiliki jaminan dari perusahaan.</p>
+
+                    <h3>Pembatasan Jumlah Driver Baru</h3>
+                    <p>Untuk mengatasi persaingan yang tidak sehat, pemerintah dan platform dapat bekerja sama untuk membatasi jumlah pendaftaran driver baru di area-area yang sudah jenuh. Ini akan membantu menjaga keseimbangan antara jumlah driver dan permintaan pasar.</p>
+
+                    <p>Referensi regulasi resmi dan kebijakan terbaru dapat dipantau di situs <a href="https://www.dephub.go.id" target="_blank" rel="noopener noreferrer">Kementerian Perhubungan Republik Indonesia</a>.</p>
+                </div>
+            </details>
+
+            <!-- FAQ -->
+            <h2>FAQ: Tanya Jawab Singkat</h2>
+
+            <div class="faq-item">
+                <h3>Mengapa ojol sekarang mahal tapi driver susah didapat?</h3>
+                <p>Karena tarif dinamis aktif akibat kurangnya driver di lapangan yang sedang <i>off bid</i> atau sudah pulang lebih awal karena target pendapatan tidak tercapai. Ketika jumlah driver berkurang, platform secara otomatis menaikkan tarif untuk menarik lebih banyak driver, tetapi karena masalah struktural, hal ini tidak cukup untuk mengembalikan jumlah driver ke normal.</p>
             </div>
-    <footer>
+
+            <div class="faq-item">
+                <h3>Apakah potongan 20% itu besar?</h3>
+                <p>Bagi mitra yang menanggung bensin dan perawatan sendiri, 20% dianggap sangat memberatkan bagi keberlangsungan usaha mandiri mereka. Jika dihitung secara total, setelah dikurangi biaya bensin, perawatan, dan potongan, pendapatan bersih yang dibawa pulang bisa turun hingga 40-50% dari pendapatan kotor.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Apa yang bisa dilakukan konsumen untuk membantu?</h3>
+                <p>Konsumen bisa memberikan tip yang layak kepada driver, menghindari pembatalan pesanan di menit-menit terakhir, dan memberikan <i>rating</i> yang jujur dan adil. Selain itu, konsumen juga bisa menyuarakan keprihatinan mereka melalui media sosial dan saluran resmi platform agar perusahaan lebih memperhatikan kesejahteraan driver.</p>
+            </div>
+
+            <!-- Kesimpulan -->
+            <h2>Kesimpulan</h2>
+            <p>Krisis driver ojek online adalah alarm bagi ekosistem ekonomi digital kita. Perlu ada keseimbangan antara <b>kemudahan konsumen</b>, <b>keuntungan perusahaan</b>, dan yang paling utama: <b>kesejahteraan pengemudi</b> sebagai ujung tombak layanan. Tanpa solusi adil, layanan transportasi online yang kita cintai ini bisa kehilangan daya tariknya di masa depan.</p>
+
+            <p>Krisis ini bukan hanya masalah driver atau konsumen, tetapi masalah kolektif yang membutuhkan perhatian semua pihak. Pemerintah, platform aplikasi, driver, dan konsumen harus duduk bersama untuk mencari solusi yang berkelanjutan. Jika tidak, kita semua akan merasakan dampaknya dalam jangka panjang.</p>
+
+            <p>Sudah saatnya kita melihat ojek online bukan sebagai bisnis semata, tetapi sebagai ekosistem yang saling bergantung. Kesejahteraan driver adalah kunci keberlanjutan layanan ini. Ketika driver sejahtera, konsumen akan mendapatkan layanan yang lebih baik, dan platform akan mendapatkan kepercayaan publik yang lebih besar. Ini adalah <i>win-win-win solution</i> yang harus kita perjuangkan bersama.</p>
+
+            <!-- Elemen wajib sebelum penutup article -->
+            <div id="related-articles-grid"></div>
+            <div id="response"></div>
+
+            <footer>
         <p>🄯 2026 <a href="https://dalam.web.id">Layar Kosong</a>. Diterbitkan dengan prinsip CC0 (Public Domain).</p>
 <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>
     </footer>
