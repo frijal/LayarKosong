@@ -298,7 +298,7 @@ await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 // =====================================================================
 // 🔥 GENERATE ARTIKEL-LITE.JSON (Untuk Marquee & Related Articles) 🔥
 // =====================================================================
-const LITE_LIMIT = 100;
+const LITE_LIMIT = 30;
 const liteDb: Record<string, any[]> = {};
 
 // Looping semua kategori di object 'final', potong sesuai batas LITE_LIMIT
