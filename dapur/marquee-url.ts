@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * marquee-url.ts v7.2 (Fixed, Full Integrated + Keyboard Nav)
+ * marquee-url.ts v7.4 (Ultra-Resilient + Pure HTML Link Rel Navigation Core)
  * =================================================================================
  */
 
@@ -36,7 +36,12 @@ function getFullUrl(fileName: string, allData: any): string {
   return `/${cleanSlug(fileName)}`;
 }
 
+/**
+ * Mengambil informasi kategori artikel.
+ * Tetap memiliki jembatan fallback ke Meta Tag jika artikel jadul tidak masuk di Top 30 JSON.
+ */
 function getCategoryInfo(fileName: string, allData: any) {
+  // 1. Cari di Database Terdekat (Top 30 Kategori Terbaru)
   for (const [catName, articles] of Object.entries(allData)) {
     const catArticles = articles as any[];
     if (catArticles.some((a: any) => a.id === fileName)) {
@@ -47,6 +52,23 @@ function getCategoryInfo(fileName: string, allData: any) {
       };
     }
   }
+
+  // 2. FALLBACK KEBAL: Jika artikel jadul (absen di JSON), intip Meta Tag HTML-nya
+  const metaSection = document.querySelector('meta[property="article:section"]');
+  if (metaSection) {
+    const catLabel = metaSection.getAttribute('content');
+    if (catLabel) {
+      const currentSlug = catLabel.toLowerCase().replace(/\s+/g, '-');
+      // Cari daftar artikel cadangan dari kategori yang sama di JSON untuk keperluan Related Grid
+      const fallbackList = allData[catLabel] || allData[Object.keys(allData).find(k => k.toLowerCase().replace(/\s+/g, '-') === currentSlug)!] || [];
+      return {
+        name: catLabel,
+        slug: currentSlug,
+        list: fallbackList as any[]
+      };
+    }
+  }
+
   return null;
 }
 
@@ -97,7 +119,6 @@ function initFloatingSearch(): void {
 
   let debounceTimer: ReturnType<typeof setTimeout>;
 
-  // 🛡️ Helper untuk mencegah XSS di Floating Search
   const escapeHTML = (str: string) => {
     return str.replace(/[&<>'"]/g,
                        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
@@ -108,22 +129,18 @@ function initFloatingSearch(): void {
     const v = input.value.trim();
     clear.style.display = v.length ? 'block' : 'none';
 
-    // Kalau ngetiknya belum 3 huruf, santai dulu, jangan nembak D1
   if (v.length < 3) {
     results.style.display = 'none';
-  return;
+    return;
   }
 
   clearTimeout(debounceTimer);
 
-  // ⏱️ DEBOUNCE 300ms: Nunggu jari user berhenti ngetik
   debounceTimer = setTimeout(async () => {
     try {
-      // Tampilkan indikator loading biar user tahu sistem lagi mikir
       results.innerHTML = `<div class="no-results">⏳ Memindai data...</div>`;
       results.style.display = 'block';
 
-      // 🚀 NEBENG API D1: Minta 5 hasil saja biar super kilat
       const safeQuery = encodeURIComponent(v);
       const apiUrl = `/cari?q=${safeQuery}&page=1&limit=10`;
 
@@ -134,14 +151,12 @@ function initFloatingSearch(): void {
       const matches = data.results || data.data || [];
 
       if (matches.length > 0) {
-        // Render HTML dari hasil D1
         results.innerHTML = matches.map((item: any) => {
           const fileSlug = item.id ? item.id.replace('.html', '') : 'tanpa-judul';
           const categoryName = item.category || 'Lainnya';
           const catSlug = categoryName.toLowerCase().replace(/\s+/g, '-');
           const url = `/${catSlug}/${fileSlug}`;
 
-          // Potong deskripsi biar nggak kepanjangan di kotak kecil
           const snippet = item.snippet_text
           ? item.snippet_text.substring(0, 60) + '...'
           : 'Lihat artikel selengkapnya';
@@ -163,7 +178,6 @@ function initFloatingSearch(): void {
   }, 300);
   });
 
-  // 🚪 Navigasi Tombol Enter -> Lempar ke Halaman Utama Pencarian
   input.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -174,16 +188,19 @@ function initFloatingSearch(): void {
     }
   });
 
-  // 🧹 Tombol Clear (X)
   clear.addEventListener('click', () => {
     input.value = '';
     results.style.display = 'none';
     clear.style.display = 'none';
     clearTimeout(debounceTimer);
-    input.focus(); // Kembalikan kursor ke dalam kotak setelah dihapus
+    input.focus();
   });
 }
 
+/**
+ * ✨ AKTIVASI LOGIKA KEBAL SILSILAH HTML ✨
+ * Membaca eksistensi rel="prev" dan rel="next" langsung dari struktur DOM Kepala HTML.
+ */
 function initNavIcons(allData: any, currentFile: string): void {
   const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
@@ -191,32 +208,34 @@ function initNavIcons(allData: any, currentFile: string): void {
   const catInfo = getCategoryInfo(currentFile, allData);
   if (!catInfo) return;
 
-  const idx = catInfo.list.findIndex((a: any) => a.id === currentFile);
-  if (idx === -1) return;
-
-  const total = catInfo.list.length;
-  const prevI = (idx - 1 + total) % total;
-  const nextI = (idx + 1) % total;
-
   let nav = document.getElementById('dynamic-nav-container');
   if (!nav) {
     nav = document.createElement('div');
     nav.id = 'dynamic-nav-container';
     nav.className = 'floating-nav';
-grid.appendChild(nav);
+    grid.appendChild(nav);
   }
 
-  nav.innerHTML = `
-  <div class="nav-left"><a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a></div>
-  <div class="nav-right">
-  <a href="/" title="Home" class="btn-emoji">🏠</a>
-  <a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
-  <a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
-  ${total > 1 ? `
-    <a href="${getFullUrl(catInfo.list[prevI].id, allData)}" title="${catInfo.list[prevI].title}" class="btn-emoji">⏪</a>
-    <a href="${getFullUrl(catInfo.list[nextI].id, allData)}" title="${catInfo.list[nextI].title}" class="btn-emoji">⏩</a>
-    ` : ''}
-    </div>`;
+  // 🎯 Mengintip langsung ke atas HEAD HTML hasil injeksi pintar Generator
+  const prevTag = document.querySelector('link[rel="prev"]');
+  const nextTag = document.querySelector('link[rel="next"]');
+
+  let prevNextHtml = '';
+if (prevTag) {
+  prevNextHtml += `<a href="${prevTag.getAttribute('href')}" title="Artikel Sebelum" class="btn-emoji">⏪</a>`;
+}
+if (nextTag) {
+  prevNextHtml += `<a href="${nextTag.getAttribute('href')}" title="Artikel Sesudah" class="btn-emoji">⏩</a>`;
+}
+
+nav.innerHTML = `
+<div class="nav-left"><a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a></div>
+<div class="nav-right">
+<a href="/" title="Home" class="btn-emoji">🏠</a>
+<a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
+<a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
+${prevNextHtml}
+</div>`;
 }
 
 function initInternalNav(): void {
@@ -270,6 +289,7 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const catInfo = getCategoryInfo(currentFile, allData);
   if (!catInfo) { grid.style.display = 'none'; return; }
 
+  // Memfilter artikel saat ini dan mengacak rekomendasi dari daftar terdekat
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
@@ -305,49 +325,35 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   }).join('');
 }
 
-// 🔥 FITUR UPDATE: Keyboard Navigation (Next, Prev, Up to Category, Down to Root)
+/**
+ * ✨ NAVIGASI KEYBOARD KEBAL SILSILAH ✨
+ * Memanfaatkan pembacaan atribut DOM Kepala HTML secara langsung untuk navigasi horizontal Ctrl+Panah.
+ */
 function initKeyboardNav(allData: any, currentFile: string): void {
   function navigateTo(direction: 'next' | 'prev' | 'up' | 'down'): void {
-
-    // 🔽 JALUR EKSPRES: Jika menekan bawah, langsung pulang ke root (Beranda)
     if (direction === 'down') {
       window.location.href = '/';
       return;
     }
-
-    const catInfo = getCategoryInfo(currentFile, allData);
-    if (!catInfo) return;
-
-    // 🔼 JALUR KHUSUS: Naik ke landing page kategori (misal: /warta-tekno)
     if (direction === 'up') {
-      window.location.href = `/${catInfo.slug}`;
+      const catInfo = getCategoryInfo(currentFile, allData);
+      if (catInfo) window.location.href = `/${catInfo.slug}`;
       return;
     }
 
-    // Jalur navigasi artikel horizontal (Next / Prev)
-    if (catInfo.list.length <= 1) return;
-
-    const currentIndex = catInfo.list.findIndex((a: any) => a.id === currentFile);
-    if (currentIndex === -1) return;
-
-    const total = catInfo.list.length;
-    const targetIndex = direction === 'next'
-    ? (currentIndex + 1) % total
-    : (currentIndex - 1 + total) % total;
-
-    const targetArticleId = catInfo.list[targetIndex].id;
-    const targetUrl = getFullUrl(targetArticleId, allData);
-
-    if (targetUrl) {
-      window.location.href = targetUrl;
+    // 🎯 Saling sambung horizontal murni membaca link rel head
+    const targetTag = document.querySelector(`link[rel="${direction}"]`);
+    if (targetTag) {
+      const targetUrl = targetTag.getAttribute('href');
+      if (targetUrl) {
+        window.location.href = targetUrl;
+      }
     }
   }
 
   document.addEventListener('keydown', (e: KeyboardEvent) => {
-    // 1. Matikan jika di perangkat Mobile
     if (isMobileDevice()) return;
 
-    // 2. Abaikan jika user sedang mengetik di pencarian atau komentar Disqus
     const activeElement = document.activeElement as HTMLElement;
     const isTyping = activeElement.tagName === 'INPUT' ||
     activeElement.tagName === 'TEXTAREA' ||
@@ -356,29 +362,10 @@ function initKeyboardNav(allData: any, currentFile: string): void {
 
     if (isTyping) return;
 
-    // 🔽 Deteksi [Ctrl] + [Panah Bawah] -> Pulang ke Beranda Root (/)
-    if (e.ctrlKey && e.key === 'ArrowDown') {
-      e.preventDefault(); // Mencegah halaman scroll ke bawah
-      navigateTo('down');
-    }
-
-    // 🔼 Deteksi [Ctrl] + [Panah Atas] -> Naik ke Landing Page Kategori
-    if (e.ctrlKey && e.key === 'ArrowUp') {
-      e.preventDefault(); // Mencegah halaman scroll ke atas
-      navigateTo('up');
-    }
-
-    // ⏩ Deteksi [Ctrl] + [Panah Kanan] -> Artikel Selanjutnya
-    if (e.ctrlKey && e.key === 'ArrowRight') {
-      e.preventDefault();
-      navigateTo('next');
-    }
-
-    // ⏪ Deteksi [Ctrl] + [Panah Kiri] -> Artikel Sebelumnya
-    if (e.ctrlKey && e.key === 'ArrowLeft') {
-      e.preventDefault();
-      navigateTo('prev');
-    }
+    if (e.ctrlKey && e.key === 'ArrowDown') { e.preventDefault(); navigateTo('down'); }
+    if (e.ctrlKey && e.key === 'ArrowUp')   { e.preventDefault(); navigateTo('up'); }
+    if (e.ctrlKey && e.key === 'ArrowRight') { e.preventDefault(); navigateTo('next'); }
+    if (e.ctrlKey && e.key === 'ArrowLeft')  { e.preventDefault(); navigateTo('prev'); }
   });
 }
 
