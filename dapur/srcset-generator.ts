@@ -16,10 +16,10 @@ const ALLOWED_CATEGORIES = [
   "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
 ];
 
-// 🔥 STANDAR CORE WEB VITALS (CWV)
-const TARGET_DESKTOP = 1280;
+// 🔥 STANDAR CORE WEB VITALS (CWV) - UPDATE RESOLUSI
+const TARGET_DESKTOP = 1208;
 const TARGET_MEDIUM  = 960;
-const TARGET_MOBILE  = 640;
+const TARGET_MOBILE  = 720;
 
 // ========== CACHE ==========
 let optimizedCache = new Set<string>();
@@ -211,31 +211,38 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         if (!physicalComplete) {
           ensureDirForFile(absDesktopPath);
 
+          // 🔥 UPDATE SHARP: Mode Infografis (Teks Tajam, Tanpa Blur)
+          // 1. DESKTOP
           await sharp(inputBuffer)
           .rotate()
           .resize(finalDesktopWidth, null, { withoutEnlargement: true })
-          .webp({ quality: 90 })
+          .sharpen({ sigma: 0.3 })
+          .webp({ quality: 92, preset: 'text', smartSubsample: true, effort: 6 })
           .toFile(absDesktopPath);
 
           if (needsMedium) {
             ensureDirForFile(absMediumPath);
+            // 2. MEDIUM
             await sharp(inputBuffer)
             .rotate()
             .resize(finalMediumWidth, null, { withoutEnlargement: true })
-            .webp({ quality: 85 })
+            .sharpen({ sigma: 0.4 })
+            .webp({ quality: 90, preset: 'text', smartSubsample: true, effort: 6 })
             .toFile(absMediumPath);
           }
 
           if (needsMobile) {
             ensureDirForFile(absMobilePath);
+            // 3. MOBILE
             await sharp(inputBuffer)
             .rotate()
             .resize(finalMobileWidth, null, { withoutEnlargement: true })
-            .webp({ quality: 80 })
+            .sharpen({ sigma: 0.5 })
+            .webp({ quality: 88, preset: 'text', smartSubsample: true, effort: 6 })
             .toFile(absMobilePath);
           }
 
-          console.log(`  ✨ WebP OK: ${cleanPath} (Max: ${finalDesktopWidth}px)`);
+          console.log(`  ✨ WebP OK (Infografis Mode): ${cleanPath} (Max: ${finalDesktopWidth}px)`);
         }
 
         if (!optimizedCache.has(cleanPath)) {
