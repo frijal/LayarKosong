@@ -294,16 +294,12 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
-    // Definisi 4 lapis path (dipastikan eksis di server berdasarkan janji Mas Frijal)
     const base = item.image ? item.image.replace(/\.[^/.]+$/, '') : null;
     const sm = base ? `${base}-sm.webp` : '/thumbnail-sm.webp';
     const md = base ? `${base}-md.webp` : '/thumbnail-sm.webp';
     const orig = item.image || '/thumbnail-sm.webp';
     const fallback = '/thumbnail-sm.webp';
 
-    // Rantai Fallback untuk menghindari 404:
-    // Jika sm gagal -> md -> orig -> thumbnail-sm
-    // Kita gunakan 'this.onerror=null' di akhir untuk memutus loop error
     const fallbackChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.src='${fallback}'};this.src='${orig}'};this.src='${md}'};this.src='${sm}'`;
 
     return `
@@ -314,6 +310,8 @@ function initRelatedGrid(allData: any, currentFile: string): void {
     class="lk-related-thumb"
     src="${sm}"
     alt="${item.title}"
+    width="120"
+    height="100"
     loading="lazy"
     decoding="async"
     onerror="this.onerror=null; ${fallbackChain}">
