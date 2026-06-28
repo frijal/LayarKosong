@@ -122,7 +122,7 @@ const cleanupOldSitemaps = async (): Promise<number> => {
     return removed;
 };
 
-// ── Distribute helper (Menulis HTML dengan Injeksi Super Kebal + Judul Tetangga) ──────────
+// ── Distribute helper (Menulis HTML dengan Injeksi Super Kebal + Judul Tetangga Murni) ──
 const distribute = async (
     f: string,
     cat: string,
@@ -141,15 +141,15 @@ const distribute = async (
     const tags = catLabel.split(',').map(t => t.trim()).filter(Boolean);
     const tagsHtml = tags.map(t => `<meta property="article:tag" content="${t}">`).join('\n    ');
 
-    // ✨ SUNTIK URL BESERTA ATRIBUT 'TITLE' (Untuk Tooltip di Frontend) ✨
+    // ✨ SUNTIK URL BESERTA ATRIBUT 'TITLE' (Langsung Judul Bersih) ✨
     let prevNextTags = '';
     if (prevData) {
         const safeTitle = escapeAttr(prevData.title);
-        prevNextTags += `\n    <link rel="prev" href="${prevData.url}" title="Artikel Sebelumnya: ${safeTitle}">`;
+        prevNextTags += `\n    <link rel="prev" href="${prevData.url}" title="${safeTitle}">`;
     }
     if (nextData) {
         const safeTitle = escapeAttr(nextData.title);
-        prevNextTags += `\n    <link rel="next" href="${nextData.url}" title="Artikel Selanjutnya: ${safeTitle}">`;
+        prevNextTags += `\n    <link rel="next" href="${nextData.url}" title="${safeTitle}">`;
     }
 
     // 1. Bersihkan SEMUA sisa tag lama secara total agar tidak terjadi penumpukan
@@ -183,10 +183,10 @@ const distribute = async (
 };
 
 // =============================================================================
-// ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON M MASTER
+// ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Diet Mode V10.3 - Absolute Injection with Tooltip Metadata');
+    console.log('🚀 Diet Mode V10.4 - Clean Title Tooltip Injection');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
@@ -309,7 +309,6 @@ const distribute = async (
         valid.add(`${slug(c)}/${f}`);
     }
 
-    // Sorting utama berdasarkan validitas waktu pusat data
     flat.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
     let lastProcessedTime = Infinity;
     for (const it of flat) {
@@ -323,7 +322,7 @@ const distribute = async (
     }
 
     // =============================================================================
-    // ── TAHAP 2: SUNTIK KRONOLOGI TETANGGA (Termasuk URL & JUDUL)
+    // ── TAHAP 2: SUNTIK KRONOLOGI TETANGGA (URL + JUDUL BERSIH)
     // =============================================================================
     console.log('✨ Menjalankan Tahap 2: Menjahit Silsilah (URL + Judul) untuk Tooltip...');
 
@@ -338,12 +337,9 @@ const distribute = async (
             let prevData: { url: string, title: string } | undefined;
             let nextData: { url: string, title: string } | undefined;
 
-            // arts di-sort descending: index 0 (Terbaru), index Max (Tertua)
-            // Yang lebih baru ada di indeks sebelumnya
             if (i > 0) {
                 nextData = { url: arts[i - 1].loc, title: arts[i - 1].title };
             }
-            // Yang lebih tua ada di indeks setelahnya
             if (i < arts.length - 1) {
                 prevData = { url: arts[i + 1].loc, title: arts[i + 1].title };
             }
@@ -561,5 +557,5 @@ for (const [filename, timeStr] of editedTodayMap.entries()) {
 await Bun.write(CACHE_TODAY_FILE, cacheOut);
     }
 
-    console.log('✅ Selesai! Seluruh rel="prev/next" dirajut dengan Tooltip Judul dari artikel.json.');
+    console.log('✅ Selesai!');
 })();

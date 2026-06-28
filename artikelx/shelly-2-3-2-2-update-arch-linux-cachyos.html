@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Shelly 2.3.2.2 Rilis: Update Stabil untuk Arch Linux dan CachyOS - Layar Kosong</title>
+    <meta name="description" content="Shelly 2.3.2.2 membawa dukungan downgrade package CachyOS, instalasi AppImage drag-and-drop, parsing berita Arch Linux ke Markdown, serta peningkatan UI dan perbaikan bug untuk pengalaman package manager yang lebih baik.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/shelly-2-3-2-2-update-arch-linux-cachyos">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="shelly, arch linux, cachyos, package manager, aur, flathub, appimage, update linux, graphical package manager">
+    <meta name="promphint" content="Apa fitur utama yang dihadirkan Shelly 2.3.2.2? Dukungan downgrade package dari repositori CachyOS, instalasi AppImage via drag-and-drop, parsing berita Arch ke Markdown, serta berbagai peningkatan UI dan perbaikan bug.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/shelly-2-3-2-2-update-arch-linux-cachyos">
+    <meta property="og:title" content="Shelly 2.3.2.2 Rilis: Update Stabil untuk Arch Linux dan CachyOS">
+    <meta property="og:description" content="Zoey Bauer merilis Shelly 2.3.2.2 yang menyamakan updater CachyOS, menambahkan perintah downgrade package, drag-and-drop AppImage, serta berbagai perbaikan UI dan stabilitas. Update wajib bagi pengguna Arch Linux-based.">
+    <meta property="og:updated_time" content="2026-06-07T00:07:55.234Z">
+    <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/11f58f757c63dce5.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/11f58f757c63dce5.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/11f58f757c63dce5.webp">
+    <meta property="og:image:alt" content="Shelly 2.3.2.2 Rilis: Update Stabil untuk Arch Linux dan CachyOS">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="500">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/shelly-2-3-2-2-update-arch-linux-cachyos">
+    <meta name="twitter:title" content="Shelly 2.3.2.2 Rilis: Update Stabil untuk Arch Linux dan CachyOS">
+    <meta name="twitter:description" content="Update stabil Shelly 2.3.2.2 hadir dengan fitur downgrade package dari repo CachyOS, instalasi AppImage yang simpel via drag-and-drop, serta polish UI dan bug fix. Cocok untuk CachyOS dan distro Arch lainnya.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/11f58f757c63dce5.webp">
+    <meta name="twitter:image:alt" content="Shelly 2.3.2.2 Rilis: Update Stabil untuk Arch Linux dan CachyOS">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-06-07T00:00:00.000Z">
+    <meta property="article:modified_time" content="2026-06-07T00:07:55.234Z">
+    <!-- SEO & Metadata -->
+    <meta name="article:tag" content="Linux, Open Source, Package Manager, Arch Linux, CachyOS">
+    <!-- Custom Meta -->
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --text: #1f2937;
+            --text-light: #4b5563;
+            --accent: #0ea5e9;
+            --accent-dark: #0284c8;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --text: #e2e8f0;
+                --text-light: #94a3b8;
+                --accent: #38bdf8;
+                --accent-dark: #0ea5e9;
+                --card-bg: #1e293b;
+                --border: #334155;
+                --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            font-size: 1.05rem;
+        }
+        .container {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+         main {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 2rem 1rem 4rem;
+        }
+        @media (min-width: 64rem) {
+            main {
+                min-width: 64rem;
+                max-width: 64rem;
+                margin: 0 auto;
+            }
+        }
+        article {
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.75rem;
+            border: 1px solid var(--border);
+        }
+        h1 {
+            font-size: 2.25rem;
+            line-height: 1.2;
+            margin: 0 0 1rem 0;
+            font-weight: 800;
+            color: var(--text);
+        }
+        .lead {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text);
+        }
+        h2 i {
+            color: var(--accent);
+            font-size: 1.35rem;
+        }
+        p {
+            margin-bottom: 1.35rem;
+        }
+        strong {
+            font-weight: 700;
+        }
+        em {
+            font-style: italic;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        a:hover {
+            color: var(--accent-dark);
+        }
+        .article-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        ul {
+            padding-left: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .highlight-box {
+            background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .footer-meta {
+            max-width: 64rem;
+            margin: 3rem auto 0;
+            padding: 2rem 1rem 1.5rem;
+            text-align: center;
+            font-size: 0.925rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            line-height: 1.6;
+        }
+        #related-articles-grid,
+        #response {
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.85rem;
+            }
+            article {
+                padding: 1.5rem 1.25rem;
+                border-radius: 0.5rem;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css">
+</head>
+<body>
+    <!-- Simple Site Header -->
+    <header>
+    </header>
+    <main>
+        <article>
+            <!-- Article Header -->
+            <div id="iposbrowser"></div><h1>Shelly 2.3.2.2 Rilis: Update Stabil dengan Dukungan CachyOS dan AppImage Drag-and-Drop</h1>
+            <div class="meta">
+                <span><i class="fa-solid fa-user-edit"></i> Berdasarkan rilis resmi Seafoam Labs</span>
+                <span><i class="fa-solid fa-calendar-alt"></i> 7 Juni 2026</span>
+                <span><i class="fa-solid fa-tag"></i> Arch Linux, CachyOS, Package Manager</span>
+            </div>
+            <p class="lead">Pengembang <strong>Zoey Bauer</strong> merilis <strong>Shelly 2.3.2.2</strong> hari ini sebagai update stabil terbaru untuk graphical package manager open-source yang ditujukan bagi distribusi berbasis Arch Linux. Update ini membawa peningkatan signifikan, terutama bagi pengguna <strong>CachyOS</strong>, sekaligus memperkenalkan cara baru yang lebih praktis untuk mengelola aplikasi AppImage.</p>
+            <!-- LCP Image - First image, full container width, no cropping -->
+            <img src="https://dalam.web.id/img/raw.githubusercontent.com/11f58f757c63dce5.webp" srcset="https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 640w, https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 1024w, https://raw.githubusercontent.com/Seafoam-Labs/Shelly-ALPM/refs/heads/development/shelly_banner.png 1280w" sizes="(max-width: 640px) 100vw, (max-width: 64rem) 100vw, 64rem" alt="Shelly 2.3.2.2 graphical package manager interface untuk Arch Linux dan CachyOS" class="article-image" width="1280" height="720" decoding="async" fetchpriority="high">
+            <p>Shelly sendiri merupakan reimajinasi modern dari package manager default Arch Linux. Selain mendukung AUR dan Flathub, kini ia juga semakin tangguh dengan dukungan AppImage secara native. <strong>CachyOS baru-baru ini mengadopsi Shelly</strong> sebagai GUI package manager default mereka, menandai langkah besar bagi proyek ini.</p>
+            <!-- Section 1: CachyOS Support -->
+            <h2><i class="fa-solid fa-sync-alt"></i> Peningkatan Dukungan untuk CachyOS</h2>
+            <p>Shelly 2.3.2.2 secara khusus meningkatkan kompatibilitas dengan distribusi <strong>CachyOS</strong>. Jalur updater CachyOS kini memiliki fitur parity yang lebih lengkap. Pengguna juga dapat menurunkan versi package langsung dari repositori CachyOS menggunakan perintah baru yang disediakan.</p>
+            <p>Yang paling memudahkan, Shelly kini <strong>secara otomatis mendeteksi repositori pilihan</strong> pengguna. Tidak perlu lagi konfigurasi manual yang rumit — cukup jalankan perintah dan Shelly akan mengenali konteks distribusi yang sedang digunakan.</p>
+            <!-- Section 2: AppImage & New Features -->
+            <h2><i class="fa-solid fa-cube"></i> Instalasi AppImage yang Lebih Simpel</h2>
+            <p>Salah satu fitur paling disambut baik adalah kemampuan menginstal aplikasi AppImage melalui <strong>drag-and-drop</strong>. Cukup seret file AppImage ke jendela Shelly, maka proses instalasi akan berjalan otomatis tanpa perlu perintah terminal yang panjang.</p>
+            <p>Selain itu, rilis ini menambahkan:</p>
+            <ul>
+                <li>Dukungan command-line untuk mengisi <strong>gpg keyring</strong> dengan lebih mudah</li>
+                <li>Sorting berdasarkan kolom ukuran package di tampilan daftar</li>
+                <li>Dukungan flag <strong>--now</strong> untuk berbagai operasi sistem</li>
+                <li>Kemampuan mengurai berita Arch Linux dari format HTML menjadi Markdown yang lebih nyaman dibaca</li>
+            </ul>
+            <div class="highlight-box">
+                <p><strong>Catatan praktis:</strong> Fitur-fitur baru ini dirancang agar pengguna Arch Linux dan turunannya bisa bekerja lebih cepat tanpa perlu sering berpindah antara GUI dan terminal. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
+            </div>
+            <!-- Section 3: UI Improvements -->
+            <h2><i class="fa-solid fa-palette"></i> Penyempurnaan Antarmuka Pengguna</h2>
+            <p>Tim Shelly juga melakukan banyak sentuhan pada sisi visual dan pengalaman pengguna. Halaman <strong>Recommendations</strong> kini dilengkapi loading state yang lebih jelas serta kotak deskripsi yang diperbaiki tampilannya.</p>
+            <p>Dialog pertanyaan menampilkan daftar package terinstal dengan visual yang lebih rapi. Baris di <strong>Shelly Search</strong> menjadi lebih compact sehingga lebih banyak informasi yang bisa ditampilkan dalam satu layar. Margin dan alignment pada dialog detail package juga diperbaiki agar terasa lebih profesional dan nyaman digunakan.</p>
+            <!-- Section 4: Bug Fixes & Translations -->
+            <h2><i class="fa-solid fa-bug"></i> Perbaikan Bug dan Update Terjemahan</h2>
+            <p>Beberapa bug yang mengganggu telah diperbaiki, antara lain masalah pada proses downgrade package serta kegagalan fungsi <strong>“upgrade all”</strong> ketika terjadi partial failure pada daftar upgrade.</p>
+            <p>Di sisi multibahasa, ditambahkan terjemahan baru untuk <strong>bahasa Jerman, Hungaria, dan Jepang</strong>. Sementara terjemahan untuk <strong>Polandia, Brazilian Portuguese, dan Catalan</strong> juga diperbarui agar lebih akurat dan natural.</p>
+            <!-- Section 5: Under the hood -->
+            <h2><i class="fa-solid fa-tools"></i> Di Balik Layar: Stabilitas dan Keandalan</h2>
+            <p>Seperti biasa pada rilis stabil, tim melakukan pembersihan kode serta berbagai peningkatan di balik layar. Tujuannya sederhana: membuat Shelly semakin andal dan minim gangguan saat digunakan sehari-hari.</p>
+            <p>Semua perubahan ini bisa dilihat secara lengkap di halaman rilis resmi proyek.</p>
+            <p>Untuk mencoba Shelly 2.3.2.2, unduh binary siap pakai atau source code langsung dari <a href="https://github.com/Seafoam-Labs/Shelly-ALPM/releases/tag/v2.3.2.2" target="_blank" rel="noopener">halaman rilis GitHub Shelly</a>. Update ini tersedia untuk semua distribusi berbasis Arch Linux.</p>
+            <div id="related-articles-grid"></div>
+            <div id="response"></div>
+        </article>
+    </main>
+    <footer>
+        <div class="footer-meta">
+            <p style="margin:0 0 0.5rem 0;">
+                <strong>Ditulis berdasarkan rilis resmi v2.3.2.2 • Seafoam Labs (Zoey Bauer)</strong><br>
+                7 Juni 2026 • Informasi diverifikasi langsung dari sumber primer proyek open-source
+            </p>
+            <p style="margin:0; font-size:0.85rem; opacity:0.85;">
+                Shelly adalah graphical package manager modern untuk Arch Linux, CachyOS, dan distribusi serupa.
+                Mendukung AUR, Flathub, dan AppImage.
+            </p>
+        </div>
+    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+</body></html>

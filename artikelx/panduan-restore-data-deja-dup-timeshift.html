@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan Restore Data Linux Pakai Deja Dup &amp; Timeshift - Layar Kosong</title>
+    <meta name="description" content="Pusing memulihkan data setelah install ulang Debian? Tenang, ini panduan lengkap restore file dan sistem menggunakan aplikasi GUI Deja Dup dan Timeshift tanpa ribet.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/panduan-restore-data-deja-dup-timeshift">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Restore Data Linux, Deja Dup, Timeshift, Debian Stable, Install Ulang Debian, Backup GUI, Linux Desktop">
+    <meta name="promphint" content="Apa cara paling mudah untuk restore data setelah install ulang Debian? Cara termudah adalah menggunakan aplikasi GUI bawaan seperti Deja Dup untuk mengembalikan file pribadi, atau Timeshift jika ingin merestore keseluruhan sistem dari snapshot.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/panduan-restore-data-deja-dup-timeshift">
+    <meta property="og:title" content="Panduan Restore Data Linux Pakai Deja Dup &amp; Timeshift">
+    <meta property="og:description" content="Panduan visual cara termudah mengembalikan data pribadi dan konfigurasi Linux Debian menggunakan antarmuka grafis Deja Dup dan Timeshift. Cocok buat kamu yang malas berurusan dengan terminal!">
+    <meta property="og:updated_time" content="2026-06-07T00:30:54.277Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/c067cc592fe887fa.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/c067cc592fe887fa.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/c067cc592fe887fa.webp">
+    <meta property="og:image:alt" content="Panduan Restore Data Linux Pakai Deja Dup &amp; Timeshift">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="563">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/panduan-restore-data-deja-dup-timeshift">
+    <meta name="twitter:title" content="Panduan Restore Data Linux Pakai Deja Dup &amp; Timeshift">
+    <meta name="twitter:description" content="Habis install ulang Debian Stable? Jangan panik! Ikuti tutorial santai cara restore data pakai Deja Dup &amp; Timeshift. Klik untuk panduan lengkapnya!">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/c067cc592fe887fa.webp">
+    <meta name="twitter:image:alt" content="Panduan Restore Data Linux Pakai Deja Dup &amp; Timeshift">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Debian">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Tutorial">
+    <meta property="article:published_time" content="2026-06-07T00:26:36.798Z">
+    <meta property="article:modified_time" content="2026-06-07T00:30:54.277Z">
+    <style>
+        /* Mobile-first variables & Tema Gelap/Terang via prefers-color-scheme */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --text-muted: #6c757d;
+            --link-color: #0056b3;
+            --link-hover: #003d82;
+            --border-color: #dee2e6;
+            --table-head-bg: #e9ecef;
+            --code-bg: #282c34; /* Atom One Dark Theme */
+            --code-text: #abb2bf;
+            --code-keyword: #c678dd;
+            --code-string: #98c379;
+            --code-comment: #5c6370;
+            --alert-bg: #d1ecf1;
+            --alert-text: #0c5460;
+            --alert-border: #bee5eb;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1.25rem;
+            --spacing-lg: 2rem;
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --radius: 0.5rem;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e9ecef;
+                --text-muted: #adb5bd;
+                --link-color: #66b2ff;
+                --link-hover: #99ccff;
+                --border-color: #343a40;
+                --table-head-bg: #212529;
+                --code-bg: #1e1e1e;
+                --alert-bg: #11343a;
+                --alert-text: #b8daff;
+                --alert-border: #1a4d56;
+            }
+        }
+        /* Base styles */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+        /* Layout responsif & Center di desktop */
+        .wrapper {
+            width: 100%;
+            padding: var(--spacing-md);
+            box-sizing: border-box;
+        }
+        @media (min-width: 64rem) {
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .wrapper {
+                max-width: 64rem;
+                padding: var(--spacing-lg);
+            }
+        }
+        /* Typography sizing menggunakan rem */
+        h1 { font-size: 2rem; line-height: 1.3; margin-top: 0; margin-bottom: var(--spacing-md); }
+        h2 { font-size: 1.5rem; line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--link-color); border-bottom: 0.125rem solid var(--border-color); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+        p, ul, li { font-size: 1.125rem; margin-bottom: var(--spacing-md); }
+        a { color: var(--link-color); text-decoration: none; border-bottom: 0.0625rem dashed var(--link-color); transition: all 0.2s ease; }
+        a:hover { color: var(--link-hover); border-bottom-style: solid; }
+        /* LCP & Gambar Lainnya */
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius);
+            margin: var(--spacing-lg) 0;
+            background-color: var(--border-color); /* Mencegah Layout Shift */
+        }
+        /* Spesifik LCP agar tidak terlalu dominan di atas lipatan */
+        .lcp-image {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        /* Syntax Highlighting */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+            border: 0.0625rem solid var(--border-color);
+        }
+        code { font-family: inherit; }
+        .comment { color: var(--code-comment); font-style: italic; }
+        .keyword { color: var(--code-keyword); }
+        .string { color: var(--code-string); }
+        /* Tabel Komparasi */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-lg);
+            font-size: 1rem;
+        }
+        th, td {
+            border: 0.0625rem solid var(--border-color);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: middle;
+        }
+        th { background-color: var(--table-head-bg); font-weight: 600; }
+        /* Box Informasi/Catatan */
+        blockquote {
+            background-color: var(--alert-bg);
+            color: var(--alert-text);
+            border-left: 0.375rem solid var(--link-color);
+            margin: 1.5rem 0;
+            padding: 1.25rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 1.05rem;
+        }
+        blockquote p { margin: 0; }
+        /* Footer Inline Center E-E-A-T */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            width: 100%;
+        }
+        .footer-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .footer-meta a { border: none; }
+        .footer-meta a:hover { text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+<link rel="stylesheet" href="/ext/marquee-url.css">
+</head>
+<body>
+    <main role="main" class="wrapper">
+        <article>
+            <header>
+                <div id="iposbrowser"></div><h1>Panduan Restore Data Pakai Deja Dup dan Timeshift di Debian</h1>
+            </header>
+            <p>Buat kamu yang pasti paham rasanya deg-degan habis <em>install</em> ulang <em>server</em> atau laptop Debian kesayangan. <strong>Install ulang</strong> itu memang bikin sistem jadi segar, tapi urusan mengembalikan <em>(restore)</em> data kadang bikin pusing. Apalagi kalau disuruh melototin layar hitam terminal sambil mengetik kode yang panjang-panjang. <em>Hadeh</em>, bikin lelah mata!</p>
+            <img src="https://dalam.web.id/img/pbs.twimg.com/c067cc592fe887fa.webp" srcset="https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="lcp-image" alt="Ilustrasi pemulihan data menggunakan antarmuka grafis Linux">
+            <p>Tenang saja, kawan. Kita tidak perlu umumnya menjadi pelaku ancaman siber yang kaku. Pastikan seluruh langkah dilakukan hanya pada perangkat sendiri atau lingkungan yang memiliki izin resmi. Berikut adalah panduan menggunakan dua aplikasi <em>Graphical User Interface</em> (GUI) yang sangat memanjakan mata untuk mengembalikan data kamu: <strong>Deja Dup</strong> dan <strong>Timeshift</strong>. Keduanya punya fungsi yang sedikit berbeda, mari kita bedah satu per satu!</p>
+            <h2>1. Restore Menggunakan Deja Dup (GUI) — <em>Paling Direkomendasikan</em></h2>
+            <p>Jika tujuan utamamu murni ingin menyelamatkan dokumen pribadi, tugas kuliah, koleksi foto <em>meme*, dan *file</em> unduhan, maka <strong>Deja Dup</strong> adalah sang juru selamat. Aplikasi ini sering kali sudah terpasang bawaan di banyak distro berbasis Debian atau Ubuntu. Antarmukanya sangat sederhana sehingga ramah bagi pemula.</p>
+            <h3>Langkah-langkah Eksekusi Deja Dup</h3>
+            <p><strong>Langkah 1: Install Deja Dup</strong><br>
+            Buka <em>Terminal</em> kesayanganmu sebentar saja dan jalankan:</p>
+<pre><code><span class="keyword">sudo apt</span> update
+<span class="keyword">sudo apt</span> install deja-dup -y</code></pre>
+            <p><strong>Langkah 2: Buka Aplikasinya</strong><br>
+            Cari ikon aplikasi bernama <strong>"Backups"</strong> di menu deretan aplikasi kamu, atau cukup panggil lewat terminal dengan mengetik <code>deja-dup</code>.</p>
+            <p><strong>Langkah 3: Tentukan Lokasi Harta Karunmu</strong><br>
+            Di jendela aplikasi, klik <em>tab<strong>*Restore</strong>. Setelah itu, tekan tombol tebal bertuliskan *"Restore from a previous backup"*. Arahkan ke *flashdisk</em> atau HDD eksternal tempat kamu menyimpan data lamamu, lalu klik <strong>Forward</strong>.</p>
+            <p><strong>Langkah 4: Pilih Data yang Ingin Dikembalikan</strong><br>
+            Aplikasi canggih ini akan membaca arsipmu dan menampilkan struktur folder layaknya <em>file manager</em> biasa. Centang folder-folder krusial seperti <code>Documents</code>, <code>Pictures</code>, <code>Downloads</code>, atau <code>.config</code> (jika kamu juga menyimpan pengaturan *dotfiles). Setelah yakin, klik <strong>Forward</strong> lagi.</p>
+            <p><strong>Langkah 5: Tentukan Lokasi Pendaratan</strong><br>
+            Sistem akan bertanya di mana data ini mau diletakkan. Sangat disarankan untuk memilih opsi <em>"Restore files to original locations"</em> agar sistem secara otomatis meletakkannya kembali ke <code>/home</code> milikmu. Klik <strong>Restore</strong>.</p>
+            <p><strong>Langkah 6: Tunggu Sambil Ngopi</strong><br>
+            Biarkan sistem memindahkan data. Proses ini bisa berjalan beberapa menit hingga hitungan jam tergantung ukuran datamu. Jika sudah selesai, <em>reboot</em> komputermu biar afdal.</p>
+            <h3>Kelebihan &amp; Kekurangan Deja Dup</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th><i class="fa-solid fa-thumbs-up"></i> Kelebihan</th>
+                        <th><i class="fa-solid fa-thumbs-down"></i> Kekurangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Antarmuka grafis yang sangat intuitif.</td>
+                        <td>Kurang memfasilitasi konfigurasi rumit ala <em>sysadmin</em>.</td>
+                    </tr>
+                    <tr>
+                        <td>Mendukung fitur enkripsi berlapis.</td>
+                        <td>Tidak bisa merestore <em>list</em> aplikasi <em>(package list)</em> otomatis.</td>
+                    </tr>
+                    <tr>
+                        <td>Bisa dijadwalkan jalan otomatis di latar belakang.</td>
+                        <td>Hanya fokus pada level <em>User</em>, bukan sistem operasi inti.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>2. Restore Menggunakan Timeshift (Mesin Waktu Sistem)</h2>
+            <p><strong>Timeshift</strong> memiliki arena bermain yang berbeda. Daripada mengurusi <em>file</em> Excel atau PDF-mu, ia lebih fokus untuk mengambil gambar utuh <em>(snapshot)</em> dari sistem operasimu. Mirip seperti fitur <em>System Restore</em> di Windows.</p>
+            <blockquote>
+                <p><i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Ringan:</strong> Karena kamu berada pada skenario <strong>baru selesai install ulang</strong>, cara ini <strong>hanya</strong> bisa dilakukan jika di OS yang lama kamu sempat membuat arsip <em>snapshot</em> Timeshift dan menyimpannya di partisi atau diska eksternal yang terpisah.</p>
+            </blockquote>
+            <h3>Langkah-langkah Eksekusi Timeshift</h3>
+            <p><strong>Langkah 1: Install Timeshift</strong></p>
+<pre><code><span class="keyword">sudo apt</span> install timeshift -y</code></pre>
+            <p><strong>Langkah 2: Buka dan Autentikasi</strong><br>
+            Cari ikon aplikasinya atau jalankan <code>sudo timeshift</code>. Ia butuh akses penuh <em>(root)</em> untuk memanipulasi tulang punggung sistem.</p>
+            <p><strong>Langkah 3: Pilih Titik Kembalimu</strong><br>
+            Di halaman utama, klik opsi <strong>Restore</strong>. Arahkan pembacaan data ke HDD eksternalmu. Pilih <em>snapshot</em> dengan tanggal terbaru sebelum OS lamamu rusak atau diinstal ulang.</p>
+            <p><strong>Langkah 4: Pilih Mode Target</strong><br>
+            Timeshift akan menyuguhkan dua menu makanan:</p>
+            <ul>
+                <li><em>Restore system files only</em> (Cuma <em>file</em> sistem root).</li>
+                <li><em>Restore system + home files</em> (Sistem di-<em>rollback</em> + data pribadi juga ikut diubah).</li>
+            </ul>
+            <p>Pilih sesuai seleramu, lalu klik <strong>Next</strong>.</p>
+            <p><strong>Langkah 5: Konfirmasi Maut</strong><br>
+            Tinjau ulang apa saja partisi yang akan ditimpa. Jika sudah yakin 100%, klik <strong>Restore</strong>. Ingat, proses ini akan menimpa seluruh sistem barumu kembali ke state saat <em>snapshot</em> diambil.</p>
+            <p><strong>Langkah 6: Wajib Reboot</strong><br>
+            Setelah indikator progres penuh, <em>restart</em> komputermu agar <em>kernel</em> Linux memuat sistem dari posisi masa lalunya.</p>
+            <h2>Kesimpulan: Mana yang Harus Dipilih?</h2>
+            <p>Masih bingung mau klik yang mana? Mari kita adu keduanya agar kamu bisa menentukan keputusan terbaik:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skenario Kasus Kamu</th>
+                        <th>Alat Tempur Terbaik</th>
+                        <th>Alasan Singkat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cuma mau menyelamatkan <em>file</em> kerjaan, foto, dan lagu.</td>
+                        <td><strong>Deja Dup</strong></td>
+                        <td>Sangat aman, tidak akan membuat OS <em>crash</em>.</td>
+                    </tr>
+                    <tr>
+                        <td>Ingin data pribadi + pengaturan <em>desktop environment</em> balik.</td>
+                        <td><strong>Deja Dup</strong></td>
+                        <td>Tinggal <em>checklist</em> folder <code>.config</code> di dalamnya.</td>
+                    </tr>
+                    <tr>
+                        <td>Pengen OS barunya langsung berubah jadi OS lamanya secara ajaib.</td>
+                        <td><strong>Timeshift</strong></td>
+                        <td>Kemampuan <em>rollback</em> menyeluruh skala mesin.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Baru banget install ulang Debian Stable.</strong></td>
+                        <td><strong>Deja Dup</strong></td>
+                        <td>Metode paling direkomendasikan &amp; realistis.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Langkah Pamungkas <em>(Bonus Tip)</em></h2>
+            <p>Karena baik Deja Dup maupun Timeshift tidak punya kemampuan sakti untuk mengembalikan aplikasi-aplikasi yang terinstal via <em>apt</em> secara mandiri, kamu harus sedikit menggunakan jurus terminal. Selesai memulihkan data, segera kembalikan daftar aplikasimu dan sempurnakan perizinan berkas:</p>
+<pre><code><span class="comment"># 1. Suntik ulang daftar package dari backup-mu</span>
+<span class="keyword">sudo dpkg</span> --set-selections &lt; /media/namauser/Backup/installed-packages.txt
+<span class="keyword">sudo apt-get</span> dselect-upgrade -y
+<span class="comment"># 2. Rapikan kepemilikan file agar tidak gembok-gembokan</span>
+<span class="keyword">sudo chown</span> -R namauser:namauser /home/namauser
+<span class="comment"># 3. Update dan bersihkan sistem</span>
+<span class="keyword">sudo apt</span> update &amp;&amp; <span class="keyword">sudo apt</span> full-upgrade -y</code></pre>
+            <p>Nah, selesai sudah! Tidak perlu pusing lagi kan? Semoga Debian barumu awet dan performanya sekencang roket! 🚀</p>
+        </article>
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+        <footer>
+            <div class="footer-meta">
+                <span><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <a href="https://github.com/frijal" rel="author">Frijal</a></span>
+                <span>•</span>
+                <span><i class="fa-regular fa-calendar-check"></i> 7 Juni 2026</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-book"></i> Referensi: <a href="https://wiki.gnome.org/Apps/DejaDup" target="_blank" rel="noopener noreferrer">GNOME Deja Dup Docs</a></span>
+            </div>
+        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    </main>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
