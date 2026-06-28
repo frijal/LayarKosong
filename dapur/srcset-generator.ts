@@ -1,5 +1,5 @@
 import { file, write } from "bun";
-import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { load } from "cheerio";
 import path, { join } from "node:path";
 import sharp from "sharp";
