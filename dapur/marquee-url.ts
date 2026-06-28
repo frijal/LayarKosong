@@ -91,6 +91,10 @@ function initFloatingSearch(): void {
 
   if (!wrap || !input || !clear || !results) return;
 
+  if (!clear.innerHTML.trim()) {
+    clear.innerHTML = '❌';
+  }
+
   let debounceTimer: ReturnType<typeof setTimeout>;
 
   // 🛡️ Helper untuk mencegah XSS di Floating Search

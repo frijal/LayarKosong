@@ -206,13 +206,14 @@ border-color: var(--accent);
 .clear-button {
   display: none;
   position: absolute;
-  right: 15px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 22px;
-  color: var(--text-muted);
-  font-weight: bold;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .clear-button:hover {
@@ -427,6 +428,7 @@ a:hover { opacity: 0.8; }
   .marquee-track { animation-duration: 20s; }
   .nav-right { gap: 8px; }
   .btn-emoji { font-size: 1.2rem; }
+  .clear-button { font-size: 16px; }
   a.category-link { font-size: 12px; padding: 6px 12px; }
   #related-articles-grid { grid-template-columns: 1fr !important; gap: 12px; }
   .rel-card-mini a { padding: 8px; }
