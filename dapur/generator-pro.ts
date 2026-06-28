@@ -122,7 +122,7 @@ const cleanupOldSitemaps = async (): Promise<number> => {
     return removed;
 };
 
-// ── Distribute helper (Menulis HTML dengan Injeksi Kebal Gagal) ──────────
+// ── Distribute helper (Menulis HTML dengan Injeksi Super Kebal) ──────────
 const distribute = async (f: string, cat: string, url: string, pre?: string, modTime?: string, prevUrl?: string, nextUrl?: string) => {
     const dir = `${C.root}/${slug(cat)}`;
     await fs.mkdir(dir, { recursive: true });
@@ -133,29 +133,31 @@ const distribute = async (f: string, cat: string, url: string, pre?: string, mod
     const tags = catLabel.split(',').map(t => t.trim()).filter(Boolean);
     const tagsHtml = tags.map(t => `<meta property="article:tag" content="${t}">`).join('\n    ');
 
-    // ✨ PEMBUATAN SILSILAH ARTIKEL (TIDAK PEDULI USIA) ✨
     let prevNextTags = '';
     if (prevUrl) prevNextTags += `\n    <link rel="prev" href="${prevUrl}">`;
     if (nextUrl) prevNextTags += `\n    <link rel="next" href="${nextUrl}">`;
 
-    // 1. Bersihkan sisa tag lama secara total agar tidak terjadi penumpukan
+    // 1. Bersihkan SEMUA sisa tag lama secara total agar tidak terjadi penumpukan
     html = html
     .replace(/<meta property="article:tag" content="[^"]*">\s*/gi, '')
-    .replace(/<link rel="(prev|next)" href="[^"]*">\s*/gi, '');
+    .replace(/<link rel="(prev|next)" href="[^"]*">\s*/gi, '')
+    .replace(/<meta property="article:section" content="[^"]*">\s*/gi, '')
+    .replace(/<meta property="og:url" content="[^"]*">\s*/gi, '')
+    .replace(/<meta name="twitter:url" content="[^"]*">\s*/gi, '');
 
-    // 2. Suntik Tag Silsilah Baru (Kebal Gagal)
-    // Coba suntik di tag Canonical (Rapi)
+    // 2. Siapkan Blok Tag SEO Baru
+    const seoInjection = `${prevNextTags}\n    <meta property="og:url" content="${url}">\n    <meta name="twitter:url" content="${url}">\n    <meta property="article:section" content="${catLabel}">\n    ${tagsHtml}`;
+
+    // 3. Suntik Kebal Gagal (Numpang di Tag Canonical)
     if (html.match(/<link rel="canonical" href="[^"]+">/i)) {
-        html = html.replace(/<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${url}">${prevNextTags}`);
+        html = html.replace(/<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${url}">${seoInjection}`);
     } else {
-        // Kalau kebetulan Canonical hilang, paksa suntik sebelum tag penutup </head>!
-        html = html.replace('</head>', `${prevNextTags}\n</head>`);
+        // Kalau kebetulan Canonical juga hilang, paksa bikin baru sebelum </head>
+        html = html.replace('</head>', `    <link rel="canonical" href="${url}">${seoInjection}\n</head>`);
     }
 
-    // 3. Suntik Meta SEO lainnya
+    // 4. Koreksi URL & Waktu Modified
     html = html
-    .replace(/<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${url}">\n    <meta property="article:section" content="${catLabel}">\n    ${tagsHtml}`)
-    .replace(/<meta name="twitter:url" content="[^"]+">/i, `<meta name="twitter:url" content="${url}">`)
     .replace(new RegExp(`${BASE_RE}/artikelx?/${f.replace('.html', '')}`, 'g'), url)
     .replace(/\/artikelx?\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
 

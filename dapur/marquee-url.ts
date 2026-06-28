@@ -38,7 +38,6 @@ function getFullUrl(fileName: string, allData: any): string {
 
 /**
  * Mengambil informasi kategori artikel.
- * Tetap memiliki jembatan fallback ke Meta Tag jika artikel jadul tidak masuk di Top 30 JSON.
  */
 function getCategoryInfo(fileName: string, allData: any) {
   // 1. Cari di Database Terdekat (Top 30 Kategori Terbaru)
@@ -53,19 +52,31 @@ function getCategoryInfo(fileName: string, allData: any) {
     }
   }
 
-  // 2. FALLBACK KEBAL: Jika artikel jadul (absen di JSON), intip Meta Tag HTML-nya
-  const metaSection = document.querySelector('meta[property="article:section"]');
-  if (metaSection) {
-    const catLabel = metaSection.getAttribute('content');
-    if (catLabel) {
-      const currentSlug = catLabel.toLowerCase().replace(/\s+/g, '-');
-      // Cari daftar artikel cadangan dari kategori yang sama di JSON untuk keperluan Related Grid
-      const fallbackList = allData[catLabel] || allData[Object.keys(allData).find(k => k.toLowerCase().replace(/\s+/g, '-') === currentSlug)!] || [];
-      return {
-        name: catLabel,
-        slug: currentSlug,
-        list: fallbackList as any[]
-      };
+  // 2. FALLBACK CERDAS: Curi Kategori dari URL Canonical untuk Artikel Jadul!
+  const canonicalTag = document.querySelector('link[rel="canonical"]');
+  if (canonicalTag) {
+    const canonicalUrl = canonicalTag.getAttribute('href');
+    if (canonicalUrl) {
+      try {
+        const urlObj = new URL(canonicalUrl);
+        // Pecah URL (misal: /sistem-terbuka/ubuntu-jogja) menjadi array
+        const pathSegments = urlObj.pathname.split('/').filter(Boolean);
+
+        if (pathSegments.length > 0) {
+          const catSlug = pathSegments[0]; // Mendapatkan "sistem-terbuka"
+
+          // Cek apakah kategori ini ada di JSON
+          if (allData[catSlug]) {
+            return {
+              name: catSlug, // Nama tidak masalah, yang penting JSON-nya terbaca
+              slug: catSlug,
+              list: allData[catSlug] as any[]
+            };
+          }
+        }
+      } catch (e) {
+        // Abaikan jika URL tidak valid
+      }
     }
   }
 
