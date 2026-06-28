@@ -303,11 +303,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   if ($("#internal-nav").length === 0) {
     $("body").append(`<div id="internal-nav"></div>`);
   }
-  if ($("#related-marquee-section").length === 0) {
-    $("body").append(
-      `<section id="related-marquee-section"><div id="related-marquee-container"></div></section>`
-    );
-  }
   if ($('script[src="/ext/marquee-url.js"]').length === 0) {
     $("body").append(
       `<script defer src="/ext/marquee-url.js"></script>` +
