@@ -68,7 +68,7 @@ async function sapuJagat() {
         ? (((originalSize - newSize) / originalSize) * 100).toFixed(2)
         : "0.00";
 
-      console.log(`✅ ${filePath.padEnd(25)} : Hemat ${saving.padStart(6)}% | Size: ${(newSize / 1024).toFixed(2)} KB`);
+      console.log(`Hemat ${saving.padStart(6)}% | Size: ${(newSize / 1024).toFixed(2)} KB  : ✅ ${filePath.padEnd(25)}`);
     } catch (err: any) {
       console.error(`❌ Gagal di file ${filePath}:`, err.message);
     }
