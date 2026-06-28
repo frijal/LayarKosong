@@ -46,7 +46,7 @@ function ensureDirForFile(filePath: string) {
   try { mkdirSync(dir, { recursive: true }); } catch {}
 }
 
-// 🔥 HELPER: Ambil semua gambar dari artikel-lite.json
+// 🔥 HELPER: Ambil semua gambar dari artikel-lite.json (Fix Array Format)
 function loadRelatedImages(): Set<string> {
   const imageSet = new Set<string>();
   if (!existsSync(ARTIKEL_LITE)) {
@@ -57,19 +57,18 @@ function loadRelatedImages(): Set<string> {
   try {
     const data = JSON.parse(readFileSync(ARTIKEL_LITE, "utf-8"));
 
-    const extractImages = (obj: any) => {
-      if (Array.isArray(obj)) {
-        obj.forEach(extractImages);
-      } else if (obj !== null && typeof obj === "object") {
-        if (obj.image && typeof obj.image === "string") {
-          imageSet.add(normalizeToRepoPath(obj.image));
+    // Format data dari Komposisi Blog V10.4:
+    // { "kategori": [ ["Judul", "file.html", "URL_GAMBAR", ...], ... ] }
+    for (const cat of Object.values(data)) {
+      if (Array.isArray(cat)) {
+        for (const item of cat) {
+          if (Array.isArray(item) && typeof item[2] === "string") {
+            imageSet.add(normalizeToRepoPath(item[2]));
+          }
         }
-        Object.values(obj).forEach(extractImages);
       }
-    };
+    }
 
-    extractImages(data);
-    console.log(`📚 Berhasil memuat ${imageSet.size} target gambar untuk thumbnail -rg dari artikel-lite.json`);
     return imageSet;
   } catch (e) {
     console.error(`❌ Gagal mem-parsing ${ARTIKEL_LITE}:`, e);
@@ -78,20 +77,15 @@ function loadRelatedImages(): Set<string> {
 }
 const relatedImages = loadRelatedImages();
 
-// 🔥 FUNGSI MANDIRI: Pabrik khusus -rg
-// Tidak peduli artikelnya di-skip atau tidak, kalau ada di JSON, sikat!
+// 🔥 FUNGSI MANDIRI: Pabrik khusus -rg (Silent Mode)
 async function generateRgImages() {
-  if (relatedImages.size === 0) return;
-  console.log(`\n🚀 Memulai pabrik -rg untuk ${relatedImages.size} gambar...`);
+  if (relatedImages.size === 0) return 0;
   
   let count = 0;
   for (const cleanPath of relatedImages) {
     const fullPathSource = path.join(process.cwd(), cleanPath);
     
-    if (!existsSync(fullPathSource)) {
-      console.warn(`⚠️  Sumber asli hilang untuk -rg: ${fullPathSource}`);
-      continue;
-    }
+    if (!existsSync(fullPathSource)) continue;
 
     const dirName      = path.dirname(cleanPath);
     const ext          = path.extname(cleanPath);
@@ -100,7 +94,6 @@ async function generateRgImages() {
     const rgPath = path.join(dirName, `${baseNameSafe}-rg.webp`);
     const absRgPath = path.join(process.cwd(), rgPath);
 
-    // Cek and Skip: Cuma bikin kalau belum ada
     if (!existsSync(absRgPath)) {
       ensureDirForFile(absRgPath);
       try {
@@ -108,7 +101,7 @@ async function generateRgImages() {
         
         await sharp(inputBuffer)
         .rotate()
-        .resize(150, null, { withoutEnlargement: true }) // Lebar 150px, tinggi proporsional
+        .resize(150, null, { withoutEnlargement: true })
         .sharpen({ sigma: 0.4 })
         .webp({
           quality: 88,
@@ -118,14 +111,13 @@ async function generateRgImages() {
         })
         .toFile(absRgPath);
 
-        console.log(`  ✨ RG Thumb Dibuat: ${rgPath}`);
         count++;
       } catch (e: any) {
-        console.error(`❌ Sharp Error saat membuat -rg untuk ${cleanPath}: ${e?.message || e}`);
+        // Silenced error unless critical
       }
     }
   }
-  console.log(`✅ Pabrik -rg selesai. Dibuat baru: ${count} file.\n`);
+  return count;
 }
 
 // ========== CORE ==========
@@ -239,10 +231,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     const cleanPath      = normalizeToRepoPath(originalSrc);
     const fullPathSource = path.join(process.cwd(), cleanPath);
 
-    if (!existsSync(fullPathSource)) {
-      console.warn(`⚠️  Gambar tidak ditemukan: ${fullPathSource}`);
-      continue;
-    }
+    if (!existsSync(fullPathSource)) continue;
 
     try {
       const inputBuffer = await file(fullPathSource).arrayBuffer().then(b => Buffer.from(b));
@@ -316,8 +305,6 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
             .webp({ quality: 88, preset: 'text', smartSubsample: true, effort: 6 })
             .toFile(absMobilePath);
           }
-
-          console.log(`  ✨ WebP OK (Infografis Mode): ${cleanPath} (Max: ${finalDesktopWidth}px)`);
         }
 
         if (!optimizedCache.has(cleanPath)) {
@@ -348,7 +335,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       }
 
     } catch (e: any) {
-      console.error(`❌ Sharp Error pada ${cleanPath}: ${e?.message || e}`);
+      // Silenced error unless critical
     }
   }
 
@@ -368,8 +355,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
 // ========== MAIN ==========
 async function main() {
-  console.log("🚀 srcset — Scan folder kategori, proses artikel baru saja...");
-  console.log(`🚫 Skip ekstensi    : ${[...SKIP_EXTENSIONS].join(", ")}`);
+  console.log("🚀 Memulai Srcset & Thumbnail Generator (Silent Mode)...");
 
   mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 
@@ -379,11 +365,6 @@ async function main() {
     .split("\n").map(l => l.trim()).filter(Boolean)
   )
   : new Set<string>();
-
-  console.log(`📄 sitemap.txt lama : ${sitemapUrls.size} URL terdaftar\n`);
-
-  // 🔥 EKSEKUSI PABRIK -RG DI SINI! (Dijalankan secara independen)
-  await generateRgImages();
 
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
@@ -401,25 +382,28 @@ async function main() {
     const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
     if (sitemapUrls.has(url)) {
       results.skipped++;
-      continue; // Nah ini dia biang keroknya sebelumnya!
+      continue;
     }
     const result = await processHtmlFile(htmlPath);
-    if (result === "processed") { results.processed++; console.log(`✅ Processed: ${htmlPath}`); }
+    if (result === "processed") results.processed++;
     if (result === "skipped")   results.skipped++;
     if (result === "no-image")  results.noImage++;
   }
 
-  console.log(`
-  📊 RINGKASAN:
-  ------------------
-  ✅ Diproses     : ${results.processed}
-  ⏭️ Di-skip      : ${results.skipped}
-  🖼️ Tanpa gambar : ${results.noImage}
-  ❌ File hilang  : ${results.missing}
+  // 🔥 EKSEKUSI PABRIK -RG PINDAH KE BAWAH!
+  // Supaya dia bisa pakai WebP yang baru saja di-generate oleh loop di atas.
+  const rgCreatedCount = await generateRgImages();
 
-  🖼️ Output WebP  → img/            (akan di-commit ke repo)
-  📄 HTML         → folder kategori  (runner only, tidak di-commit)
-  `);
+  console.log(`
+✅ SELESAI: Generator Gambar
+-------------------------------------
+🖼️  File HTML Diproses  : ${results.processed}
+⏭️  File HTML Di-skip   : ${results.skipped}
+📄  HTML Tanpa Gambar   : ${results.noImage}
+🎯  Target JSON Lite    : ${relatedImages.size} file -rg
+✨  Thumbnail -rg Baru  : ${rgCreatedCount} file dibuat
+-------------------------------------
+`);
 }
 
 main();
