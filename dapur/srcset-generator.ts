@@ -202,7 +202,8 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const absMediumPath  = path.join(process.cwd(), mediumPath);
       const absMobilePath  = path.join(process.cwd(), mobilePath);
 
-      const physicalComplete =
+      // const physicalComplete =
+      const physicalComplete = false;
       existsSync(absDesktopPath) &&
       (!needsMedium || existsSync(absMediumPath)) &&
       (!needsMobile || existsSync(absMobilePath));
