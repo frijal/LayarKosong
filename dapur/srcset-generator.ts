@@ -21,14 +21,14 @@ const TARGET_DESKTOP = 1208;
 const TARGET_MEDIUM  = 960;
 const TARGET_MOBILE  = 720;
 
-// ========== CACHE ==========
+// ========== CACHE (AUTO-RESET) ==========
+// Kosongkan cache di memori
 let optimizedCache = new Set<string>();
-if (existsSync(CACHE_FILE)) {
-  optimizedCache = new Set(
-    readFileSync(CACHE_FILE, "utf-8")
-    .split("\n").map(l => l.trim()).filter(Boolean)
-  );
-}
+
+// Kosongkan file fisik (touch / overwrite) setiap kali script jalan
+// supaya hantu gambar lama hilang dan tidak menipu skrip Tukang Sapu
+mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
+writeFileSync(CACHE_FILE, "");
 
 // ========== HELPERS ==========
 function normalizeToRepoPath(src: string): string {
