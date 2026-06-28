@@ -258,8 +258,14 @@ const rawTwitterDesc = $('meta[name="twitter:description"]').attr("content") || 
 const rawNewsKeys = $('meta[name="news_keywords"]').attr("content") || "";
 const rawPromphint = $('meta[name="promphint"]').attr("content") || "";
 
-// 🔥 FIX v2: publishedTime harus dari fallbackTime (bukan dari meta yang belum ada)
-const publishedTime = fallbackTime;
+// 🔥 FIX v2: publishedTime dari meta jika ada (JANGAN UBAH!), hanya fallback jika tidak ada
+const existingPublished = $('meta[property="article:published_time"]').attr("content");
+const publishedTime = existingPublished ? toUTCIso(existingPublished, fallbackTime) : fallbackTime;
+
+// ✅ PROTECTION: Jika masih menggunakan fallback, log untuk awareness
+if (!existingPublished) {
+    console.log(`   📅 ${baseName}: No existing published_time, using fallback: ${publishedTime}`);
+}
 
 // 🔥 STRATEGI BARU: modified_time harus LEBIH TERBARU dari published_time
 // Kita ambil waktu published, lalu tambah random 1-600 detik (1 menit hingga 10 menit)
