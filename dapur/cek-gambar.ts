@@ -8,6 +8,7 @@ const ROOT_DIR = process.cwd();
 const IMG_FOLDER = path.join(ROOT_DIR, "img");
 const OUTPUT_FILE = path.join(IMG_FOLDER, "gambarnganggur.txt");
 const CACHE_FILE = path.join(ROOT_DIR, "mini", "srcset-gambar.txt");
+const ARTIKEL_LITE_FILE = path.join(ROOT_DIR, "artikel-lite.json"); // 🔥 Target baru Tukang Sapu
 
 // Ubah ke true kalau mau tes dulu tanpa benar-benar menghapus file
 const DRY_RUN = false;
@@ -37,7 +38,8 @@ const IMAGE_EXTENSIONS = [
   ".tiff",
 ];
 
-// Varian WebP hasil resize/generator yang ikut dilindungi
+// Varian WebP hasil resize/generator yang ikut dilindungi secara UMUM
+// 🔥 CATATAN: -rg TIDAK dimasukkan ke sini agar tidak dilindungi secara buta.
 const WEBP_VARIANT_SUFFIXES = ["-sm", "-md"];
 
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
@@ -93,13 +95,6 @@ function getAllPhysicalImages(dir: string): ImageFile[] {
 
 /**
  * Lindungi nama gambar yang ditemukan.
- *
- * Contoh:
- * artikel.jpg akan melindungi:
- * - artikel.jpg
- * - artikel.webp
- * - artikel-sm.webp
- * - artikel-md.webp
  */
 function protectImageReference(ref: string) {
   const cleanRef = ref.split("?")[0].split("#")[0];
@@ -120,27 +115,9 @@ function protectImageReference(ref: string) {
   // Lindungi versi WebP utama
   usedBasenames.add(`${nameSafe}.webp`);
 
-  // Lindungi varian resize WebP
+  // Lindungi varian resize WebP umum (-sm, -md)
   for (const suffix of WEBP_VARIANT_SUFFIXES) {
     usedBasenames.add(`${nameSafe}${suffix}.webp`);
-  }
-}
-
-/**
- * Baca satu file HTML dan ambil semua referensi gambar
- */
-async function scanHtmlFile(fullPath: string) {
-  try {
-    const content = await bunFile(fullPath).text();
-    const matches = content.match(IMAGE_REF_REGEX);
-
-    if (matches) {
-      for (const match of matches) {
-        protectImageReference(match);
-      }
-    }
-  } catch {
-    console.warn(`⚠️  Gagal baca: ${fullPath}`);
   }
 }
 
@@ -161,6 +138,45 @@ function loadSrcsetCache() {
   }
 
   console.log(`🛡️  Whitelist Cache: ${cacheLines.length} entri dilindungi.`);
+}
+
+/**
+ * 🔥 BARU: Proteksi khusus untuk thumbnail -rg berbasis artikel-lite.json
+ * Fungsi ini membaca JSON dan HANYA melindungi varian -rg untuk gambar yang terdaftar.
+ */
+function loadArtikelLite() {
+  if (!fs.existsSync(ARTIKEL_LITE_FILE)) {
+    console.warn(`⚠️  File ${ARTIKEL_LITE_FILE} tidak ditemukan. Semua varian -rg mungkin akan disapu bersih!`);
+    return;
+  }
+
+  try {
+    const data = JSON.parse(fs.readFileSync(ARTIKEL_LITE_FILE, "utf-8"));
+    let protectedCount = 0;
+
+    const extractImages = (obj: any) => {
+      if (Array.isArray(obj)) {
+        obj.forEach(extractImages);
+      } else if (obj !== null && typeof obj === "object") {
+        if (obj.image && typeof obj.image === "string") {
+          const cleanRef = obj.image.split("?")[0].split("#")[0];
+          const baseName = path.basename(cleanRef);
+          const rawName = path.basename(baseName, path.extname(baseName));
+          const nameSafe = rawName.replace(FORBIDDEN_CHARS, "-");
+
+          // KHUSUS meloloskan file -rg.webp
+          usedBasenames.add(`${nameSafe}-rg.webp`);
+          protectedCount++;
+        }
+        Object.values(obj).forEach(extractImages);
+      }
+    };
+
+    extractImages(data);
+    console.log(`🛡️  Whitelist Related Grid: ${protectedCount} varian -rg.webp dilindungi dari artikel-lite.json.`);
+  } catch (e) {
+    console.error(`❌ Gagal membaca ${ARTIKEL_LITE_FILE}:`, e);
+  }
 }
 
 /**
@@ -191,13 +207,6 @@ function getHtmlFilesRecursive(dir: string, excludeIndex = false): string[] {
 
 /**
  * Scan file HTML yang berada langsung di root repo.
- *
- * Contoh yang ikut dibaca:
- * - /index.html
- * - /404.html
- * - /sitemap.html
- * - /feed.html
- * - /home.html
  */
 async function scanRootHtmlFiles() {
   if (!fs.existsSync(ROOT_DIR)) return;
@@ -240,13 +249,25 @@ async function scanCategoryFolders() {
 }
 
 /**
+ * Baca satu file HTML dan ambil semua referensi gambar
+ */
+async function scanHtmlFile(fullPath: string) {
+  try {
+    const content = await bunFile(fullPath).text();
+    const matches = content.match(IMAGE_REF_REGEX);
+
+    if (matches) {
+      for (const match of matches) {
+        protectImageReference(match);
+      }
+    }
+  } catch {
+    console.warn(`⚠️  Gagal baca: ${fullPath}`);
+  }
+}
+
+/**
  * Deteksi file -sm.webp dan -md.webp yang yatim.
- *
- * Contoh yatim:
- * - artikel-sm.webp ada
- * - artikel.webp tidak ada
- *
- * Maka artikel-sm.webp dianggap orphan.
  */
 function findOrphanWebpVariants(allImages: ImageFile[]): string[] {
   const orphanFiles: string[] = [];
@@ -275,7 +296,7 @@ function findOrphanWebpVariants(allImages: ImageFile[]): string[] {
 }
 
 async function runCleaner() {
-  console.log("🚀 Memulai Pembersih Gambar V11.1 + Root HTML Scanner...");
+  console.log("🚀 Memulai Pembersih Gambar V12.0 (Integrasi artikel-lite.json)...");
 
   const allImages = getAllPhysicalImages(IMG_FOLDER);
 
@@ -285,22 +306,28 @@ async function runCleaner() {
 
   console.log(`🖼️  Total gambar fisik ditemukan: ${allImages.length}`);
 
+  // 1. Load perlindungan dari cache srcset
   loadSrcsetCache();
 
-  // Baru: scan HTML yang berada langsung di root repo
+  // 2. 🔥 Load perlindungan khusus -rg dari JSON
+  loadArtikelLite();
+
+  // 3. Scan HTML di Root
   await scanRootHtmlFiles();
 
-  // Tetap scan HTML di folder kategori
+  // 4. Scan HTML di Kategori
   await scanCategoryFolders();
 
   const orphanVariantFiles = findOrphanWebpVariants(allImages);
 
   if (orphanVariantFiles.length > 0) {
     console.log(
-      `🕵️  Menemukan ${orphanVariantFiles.length} file varian WebP yatim.`
+      `🕵️  Menemukan ${orphanVariantFiles.length} file varian WebP (-sm/-md) yatim.`
     );
   }
 
+  // Filter utama: Cek apakah basename gambar fisik ada di Set perlindungan (usedBasenames)
+  // File -rg.webp yang tidak terdaftar di artikel-lite.json akan otomatis terjaring di sini.
   const unusedFromHtml = allImages.filter(
     (img) => !usedBasenames.has(img.basename)
   );
