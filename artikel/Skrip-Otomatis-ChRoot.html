@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://dalam.web.id/artikelx/Skrip-Otomatis-ChRoot">
     <meta property="og:title" content="Skrip Otomatis: Setup &amp; Cleanup chroot">
     <meta property="og:description" content="membuat skrip otomatis untuk setup dan cleanup chroot di Linux. Praktis, aman, dan hemat waktu.">
-    <meta property="og:updated_time" content="2026-06-25T14:11:06.889Z">
+    <meta property="og:updated_time" content="2026-06-28T03:02:06.549Z">
     <meta property="og:image" content="https://dalam.web.id/img/Skrip-Otomatis-ChRoot.webp">
     <meta property="og:image:url" content="https://dalam.web.id/img/Skrip-Otomatis-ChRoot.webp">
     <meta property="og:image:secure_url" content="https://dalam.web.id/img/Skrip-Otomatis-ChRoot.webp">
@@ -55,7 +55,7 @@
     <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2016-03-12T02:15:06.000Z">
-    <meta property="article:modified_time" content="2026-06-25T14:11:06.889Z">
+    <meta property="article:modified_time" content="2026-06-28T03:02:06.549Z">
 <!-- Open Graph -->
   <!-- Favicon -->
   <!-- Font -->
@@ -88,7 +88,6 @@
       --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
       --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         color-scheme: dark;
@@ -111,18 +110,15 @@
         --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
       }
     }
-
     *,
     *::before,
     *::after {
       box-sizing: border-box;
     }
-
     html {
       min-height: 100%;
       scroll-behavior: smooth;
     }
-
     body {
       min-height: 100vh;
       margin: 0;
@@ -134,24 +130,20 @@
       line-height: 1.75;
       text-rendering: optimizeLegibility;
     }
-
     a {
       color: var(--accent);
       text-decoration-thickness: 0.08rem;
       text-underline-offset: 0.18rem;
     }
-
     a:hover {
       color: var(--accent-hover);
     }
-
     a:focus-visible,
     button:focus-visible {
       outline: 0.1875rem solid var(--accent);
       outline-offset: 0.1875rem;
       border-radius: var(--radius-sm);
     }
-
     header {
       position: sticky;
       top: 0;
@@ -162,11 +154,9 @@
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(0.75rem);
     }
-
     #iposbrowser {
       margin-bottom: 0.5rem;
     }
-
     header h1 {
       width: min(100%, var(--max-width));
       margin: 0 auto;
@@ -177,13 +167,11 @@
       letter-spacing: -0.02rem;
       text-wrap: balance;
     }
-
     main {
       width: min(100%, var(--max-width));
       margin: 0 auto;
       padding: 2rem 1rem 3.5rem;
     }
-
     section {
       padding: clamp(1rem, 3vw, 1.5rem);
       border: 0.0625rem solid var(--line);
@@ -191,52 +179,43 @@
       background-color: var(--card);
       box-shadow: var(--shadow);
     }
-
     h2,
     h3 {
       color: var(--heading);
       line-height: 1.3;
       text-wrap: balance;
     }
-
     h2 {
       margin: 2.5rem 0 1rem;
       font-size: clamp(1.45rem, 4vw, 1.85rem);
       font-weight: 850;
     }
-
     h3 {
       margin: 2rem 0 1rem;
       color: var(--accent);
       font-size: clamp(1.2rem, 3vw, 1.4rem);
       font-weight: 800;
     }
-
     h3:first-of-type {
       margin-top: 0;
     }
-
     p {
       margin: 0 0 1.15rem;
       font-size: clamp(1.03rem, 2.2vw, 1.12rem);
     }
-
     ul,
     ol {
       margin: 0 0 1.25rem;
       padding-left: 1.35rem;
     }
-
     li {
       margin-bottom: 0.7rem;
       padding-left: 0.15rem;
     }
-
     strong {
       color: var(--heading);
       font-weight: 800;
     }
-
     code {
       border-radius: 0.35rem;
       background-color: var(--inline-code-bg);
@@ -244,13 +223,11 @@
       font-family: var(--font-code);
       font-size: 0.92em;
     }
-
     p code,
     li code,
     h3 code {
       padding: 0.12rem 0.35rem;
     }
-
     pre {
       position: relative;
       margin: 1.35rem 0 1.75rem;
@@ -264,7 +241,6 @@
       color: var(--code-text);
       box-shadow: var(--shadow-soft);
     }
-
     pre::before {
       display: block;
       margin-bottom: 0.9rem;
@@ -275,7 +251,6 @@
       font-size: 0.78rem;
       letter-spacing: 0.12rem;
     }
-
     pre code {
       display: block;
       padding: 0;
@@ -286,7 +261,6 @@
       line-height: 1.7;
       white-space: pre;
     }
-
     .copy-btn {
       position: absolute;
       top: 0.85rem;
@@ -304,12 +278,10 @@
       box-shadow: var(--shadow-soft);
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
-
     .copy-btn:hover {
       background-color: var(--accent-hover);
       transform: translateY(-0.08rem);
     }
-
     footer {
       width: min(100%, var(--max-width));
       margin: 0 auto;
@@ -320,12 +292,10 @@
       font-size: 0.9rem;
       line-height: 1.6;
     }
-
     footer p {
       margin: 0 0 1rem;
       font-size: inherit;
     }
-
     footer a {
       display: inline-flex;
       align-items: center;
@@ -338,12 +308,10 @@
       box-shadow: var(--shadow-soft);
       text-decoration: none;
     }
-
     footer a:hover {
       background-color: var(--accent-soft);
       text-decoration: none;
     }
-
     @media (prefers-color-scheme: dark) {
       body {
         background:
@@ -351,30 +319,24 @@
           linear-gradient(180deg, var(--bg-soft), var(--bg) 45%, #060c16);
       }
     }
-
     @media (max-width: 48rem) {
       header {
         padding: 0.875rem;
       }
-
       main {
         padding: 1.25rem 0.875rem 3rem;
       }
-
       section {
         padding: 1rem;
       }
-
       pre {
         padding: 1rem;
       }
-
       .copy-btn {
         top: 0.75rem;
         right: 0.75rem;
       }
     }
-
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -436,7 +398,6 @@ exit
 sudo ./exit-chroot.sh /srv/chroot/debian</code></pre>
     <p>Dengan cara ini, mount/umount jadi lebih aman dan konsisten. Skrip ini cocok untuk berbagai distro Debian/Ubuntu yang menggunakan chroot untuk testing, recovery, atau pembangunan paket. Periksa kembali target perintah dan siapkan cadangan data sebelum menjalankannya.</p>
       </section>
-
   <div id="related-articles-grid"></div><div id="response"></div>
     </main>
 <footer>
@@ -447,5 +408,4 @@ sudo ./exit-chroot.sh /srv/chroot/debian</code></pre>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-
 </body></html>

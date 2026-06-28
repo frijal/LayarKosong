@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://dalam.web.id/artikelx/flatpak-linux">
     <meta property="og:title" content="Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦">
     <meta property="og:description" content="Capek sama dependensi error? Pelajari cara pakai Flatpak dan Flathub untuk instal aplikasi universal di semua distro Linux. Aman, stabil, dan modern!">
-    <meta property="og:updated_time" content="2026-06-25T14:11:11.305Z">
+    <meta property="og:updated_time" content="2026-06-28T03:02:16.510Z">
     <meta property="og:image" content="https://dalam.web.id/img/flatpak-linux.webp">
     <meta property="og:image:url" content="https://dalam.web.id/img/flatpak-linux.webp">
     <meta property="og:image:secure_url" content="https://dalam.web.id/img/flatpak-linux.webp">
@@ -55,7 +55,7 @@
     <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-27T16:43:06.722Z">
-    <meta property="article:modified_time" content="2026-06-25T14:11:11.305Z">
+    <meta property="article:modified_time" content="2026-06-28T03:02:16.510Z">
 <meta name="keywords" content="Linux, Flatpak, Flathub, Tutorial Linux, Sandbox Linux, Flatseal"><style>
     :root {
         color-scheme: light;
@@ -89,7 +89,6 @@
         --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Helvetica, Arial, sans-serif;
         --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
-
     @media (prefers-color-scheme: dark) {
         :root {
             color-scheme: dark;
@@ -118,19 +117,16 @@
             --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
         }
     }
-
     *,
     *::before,
     *::after {
         box-sizing: border-box;
     }
-
     html {
         min-height: 100%;
         overflow-x: hidden;
         scroll-behavior: smooth;
     }
-
     body {
         min-height: 100vh;
         margin: 0;
@@ -145,18 +141,15 @@
         line-height: 1.75;
         text-rendering: optimizeLegibility;
     }
-
     a {
         color: var(--accent);
         text-decoration-thickness: 0.08rem;
         text-underline-offset: 0.18rem;
         overflow-wrap: anywhere;
     }
-
     a:hover {
         color: var(--accent-hover);
     }
-
     a:focus-visible,
     iframe:focus-visible,
     img:focus-visible {
@@ -164,7 +157,6 @@
         outline-offset: 0.1875rem;
         border-radius: var(--radius-sm);
     }
-
     header {
         width: min(100% - 2rem, var(--max-width));
         max-width: var(--max-width);
@@ -182,7 +174,6 @@
         text-align: center;
         clip-path: none;
     }
-
     h1 {
         margin: 0;
         color: var(--heading);
@@ -193,7 +184,6 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     header p {
         max-width: 46rem;
         margin: 1rem auto 0 !important;
@@ -203,7 +193,6 @@
         line-height: 1.65;
         opacity: 1 !important;
     }
-
     .container {
         width: min(100% - 2rem, var(--max-width));
         min-width: 0;
@@ -216,7 +205,6 @@
         background-color: var(--card);
         box-shadow: var(--shadow);
     }
-
     main,
     section,
     .gallery,
@@ -224,12 +212,10 @@
         min-width: 0;
         max-width: 100%;
     }
-
     main > * {
         min-width: 0;
         max-width: 100%;
     }
-
     section {
         margin-bottom: 1.5rem;
         padding: clamp(1rem, 3vw, 1.5rem);
@@ -238,11 +224,9 @@
         background-color: var(--card-soft);
         box-shadow: var(--shadow-soft);
     }
-
     section:last-of-type {
         margin-bottom: 0;
     }
-
     h2 {
         margin: 2rem 0 1rem;
         padding: clamp(1rem, 3vw, 1.25rem);
@@ -260,7 +244,6 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     h3 {
         margin: 1.75rem 0 0.85rem;
         color: var(--heading);
@@ -269,30 +252,24 @@
         line-height: 1.35;
         overflow-wrap: anywhere;
     }
-
     p {
         margin: 0 0 1.15rem;
         overflow-wrap: break-word;
     }
-
     p[style] {
         color: var(--muted) !important;
         font-size: clamp(1.02rem, 2.2vw, 1.1rem) !important;
     }
-
     p:last-child {
         margin-bottom: 0;
     }
-
     strong {
         color: var(--heading);
         font-weight: 850;
     }
-
     em {
         color: inherit;
     }
-
     code {
         padding: 0.12rem 0.35rem;
         border-radius: 0.35rem;
@@ -302,22 +279,18 @@
         font-size: 0.92em;
         overflow-wrap: anywhere;
     }
-
     ul,
     ol {
         margin: 1rem 0 1.25rem;
         padding-left: 1.35rem;
     }
-
     li {
         margin-bottom: 0.75rem;
         overflow-wrap: break-word;
     }
-
     li:last-child {
         margin-bottom: 0;
     }
-
     .video-container {
         overflow: hidden;
         margin: 0 0 1.5rem;
@@ -326,13 +299,11 @@
         background-color: var(--video-bg);
         box-shadow: var(--shadow-soft);
     }
-
     .video-container iframe {
         display: block;
         border: 0;
         border-radius: inherit;
     }
-
     .zdummy {
         margin: 1.25rem 0;
         padding: clamp(1rem, 3vw, 1.25rem);
@@ -344,7 +315,6 @@
             var(--card);
         box-shadow: var(--shadow-soft);
     }
-
     .gallery {
         display: grid;
         gap: 1.25rem;
@@ -355,13 +325,11 @@
         background-color: var(--card-soft);
         box-shadow: var(--shadow-soft);
     }
-
     .gallery figure {
         min-width: 0;
         max-width: 100%;
         margin: 0;
     }
-
     .gallery img {
         display: block;
         width: 100%;
@@ -378,13 +346,11 @@
         cursor: zoom-in;
         transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
     }
-
     .gallery img:hover {
         transform: translateY(-0.2rem);
         box-shadow: 0 1.75rem 4.5rem rgba(15, 23, 42, 0.18);
         filter: saturate(1.05) contrast(1.03);
     }
-
     .gallery figcaption {
         margin-top: 0.75rem;
         color: var(--muted);
@@ -393,7 +359,6 @@
         line-height: 1.55;
         text-align: center;
     }
-
     pre {
         position: relative;
         display: block;
@@ -413,7 +378,6 @@
         box-shadow: var(--shadow-soft);
         -webkit-overflow-scrolling: touch;
     }
-
     pre::before {
         display: block;
         min-width: max-content;
@@ -426,7 +390,6 @@
         font-size: 0.78rem;
         letter-spacing: 0.12rem;
     }
-
     pre code {
         display: block;
         width: max-content;
@@ -442,7 +405,6 @@
         white-space: pre;
         overflow-wrap: normal;
     }
-
     pre code.hljs {
         width: max-content;
         min-width: 100%;
@@ -452,11 +414,9 @@
         background: transparent !important;
         color: inherit;
     }
-
     .hljs {
         background: transparent !important;
     }
-
     @media (prefers-color-scheme: dark) {
         body {
             background:
@@ -465,52 +425,43 @@
                 linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, #050b14);
         }
     }
-
     @media (max-width: 48rem) {
         header,
         .container {
             width: min(100% - 1.5rem, var(--max-width));
         }
-
         header {
             margin-top: 1rem;
             padding: 1.25rem;
         }
-
         .container {
             margin: 1rem auto;
             padding: 0.875rem;
         }
-
         section,
         h2,
         .zdummy,
         .gallery {
             padding: 1rem;
         }
-
         h1 {
             letter-spacing: -0.035rem;
         }
-
         .gallery img {
             padding: 0.3rem;
             border-radius: var(--radius-md);
         }
-
         pre code,
         pre code.hljs {
             padding: 1rem;
             font-size: 0.86rem;
         }
     }
-
     @media (max-width: 30rem) {
         header,
         .container {
             width: min(100% - 1rem, var(--max-width));
         }
-
         header,
         .container,
         section,
@@ -519,14 +470,12 @@
         .gallery {
             padding: 0.875rem;
         }
-
         pre code,
         pre code.hljs {
             padding: 0.875rem;
             font-size: 0.82rem;
         }
     }
-
     @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -564,12 +513,10 @@
         <img loading="lazy" decoding="async" src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fD8ygl7gcwORzfrsXDEGLnXVup-A36K0JJ-KpseO4Pepgmk_401YI9k_0StJI1Fb86oZPQnXULi8-wfzbUsBFbzBD7_2FWXsQwW4PX_fmoqjWBhhYPAhQ6vXsVGsOuyHLlI7NFDeAkRsBkj0tu3Kh15jLLoGGTYwmSbQ1LFBm8WJ2KmHY6CmTizseKA/s1600/flatpak1.webp" alt="Daftar aplikasi Flatpak yang siap beroperasi">
         <figcaption>Daftar aplikasi Flatpak yang siap beroperasi</figcaption>
     </figure>
-
     <figure>
         <img loading="lazy" decoding="async" src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_ESqbdfp1SdH257zHQ6wTQ9YGbaTDeN1xUY2y-8Hx-cLYcP0VOaS74tDbOFaDZ8F0ZveAvWp8c-ZUoGDBkOzOfe5JMaclyfSP3V-5KHZLgyK92HMrqSvuQR4SE4N3z9xwgcPctISx2rZgb7Lnqmh9_aRINE6eZODUzjg0fS-8fayVRxfQJwVpiWqqL_w/s1600/flatpak2.webp" alt="Remote Flathub aktif">
         <figcaption>Remote Flathub aktif!</figcaption>
     </figure>
-
     <figure>
         <img loading="lazy" decoding="async" src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9Oh40LHHhV-2SanqZeLCk5Q-35-2QlMwQw7mjsTy_TaLi60pubSNQP6dIowwwDXRSdUsPhJRhIIjbAroRj6Qq8oLHUcFh27ixmTqNlTa6fpf9PxNWDHrGEt2pmuSx-hf955wjSwiv4d6_qbvSrr4LOfu5yAMn_GJ8_FMxqF9pgnLLfKJ1fosWvDeFSgw/s1600/flatpak3.webp" alt="Atur izin aplikasi Flatpak menggunakan Flatseal">
         <figcaption>Atur izin pakai Flatseal</figcaption>
@@ -613,5 +560,4 @@
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-
 </body></html>

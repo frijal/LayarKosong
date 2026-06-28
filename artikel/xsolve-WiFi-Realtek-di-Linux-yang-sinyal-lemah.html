@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://dalam.web.id/artikelx/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah">
     <meta property="og:title" content="WiFi Realtek Linux: Sinyal Lemah Fix">
     <meta property="og:description" content="Tutorial lengkap memperbaiki sinyal WiFi Realtek yang lemah di Linux dengan perintah iwconfig, ifconfig, dan modprobe. Langkah-langkah mudah, responsif, dan kompatibel untuk berbagai distro Linux.">
-    <meta property="og:updated_time" content="2026-06-25T14:11:08.638Z">
+    <meta property="og:updated_time" content="2026-06-28T03:02:10.600Z">
     <meta property="og:image" content="https://dalam.web.id/img/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp">
     <meta property="og:image:url" content="https://dalam.web.id/img/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp">
     <meta property="og:image:secure_url" content="https://dalam.web.id/img/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp">
@@ -55,7 +55,8 @@
     <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2016-09-20T11:00:00.000Z">
-    <meta property="article:modified_time" content="2026-06-25T14:11:08.638Z"><style>
+    <meta property="article:modified_time" content="2026-06-28T03:02:10.600Z">
+    <style>
     :root {
         color-scheme: light;
         --bg: #f6f8fb;
@@ -86,7 +87,6 @@
         --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Helvetica, Arial, sans-serif;
         --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
-
     @media (prefers-color-scheme: dark) {
         :root {
             color-scheme: dark;
@@ -113,19 +113,16 @@
             --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
         }
     }
-
     *,
     *::before,
     *::after {
         box-sizing: border-box;
     }
-
     html {
         min-height: 100%;
         overflow-x: hidden;
         scroll-behavior: smooth;
     }
-
     body {
         min-height: 100vh;
         margin: 0;
@@ -140,25 +137,21 @@
         line-height: 1.75;
         text-rendering: optimizeLegibility;
     }
-
     a {
         color: var(--blue);
         text-decoration-thickness: 0.08rem;
         text-underline-offset: 0.18rem;
         overflow-wrap: anywhere;
     }
-
     a:hover {
         color: var(--blue-hover);
     }
-
     a:focus-visible,
     button:focus-visible {
         outline: 0.1875rem solid var(--blue);
         outline-offset: 0.1875rem;
         border-radius: var(--radius-sm);
     }
-
     .container {
         width: min(100% - 2rem, var(--max-width));
         min-width: 0;
@@ -190,7 +183,6 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     h2 {
         margin: 2rem 0 1rem;
         padding: clamp(1rem, 3vw, 1.25rem);
@@ -208,7 +200,6 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     p {
         margin: 0 0 1.15rem;
         padding: clamp(1rem, 3vw, 1.35rem);
@@ -219,16 +210,13 @@
         font-size: clamp(1.02rem, 2.2vw, 1.1rem);
         overflow-wrap: break-word;
     }
-
     p:last-child {
         margin-bottom: 0;
     }
-
     strong {
         color: var(--heading);
         font-weight: 850;
     }
-
     code {
         padding: 0.12rem 0.35rem;
         border-radius: 0.35rem;
@@ -238,7 +226,6 @@
         font-size: 0.92em;
         overflow-wrap: anywhere;
     }
-
     pre {
         position: relative;
         display: block;
@@ -258,7 +245,6 @@
         box-shadow: var(--shadow-soft);
         -webkit-overflow-scrolling: touch;
     }
-
     pre::before {
         display: block;
         min-width: max-content;
@@ -271,7 +257,6 @@
         font-size: 0.78rem;
         letter-spacing: 0.12rem;
     }
-
     pre code {
         display: block;
         width: max-content;
@@ -286,7 +271,6 @@
         line-height: 1.7;
         white-space: pre;
     }
-
     pre code.hljs {
         width: max-content;
         min-width: 100%;
@@ -296,11 +280,9 @@
         background: transparent !important;
         color: inherit;
     }
-
     .hljs {
         background: transparent !important;
     }
-
     .copy-btn {
         position: sticky;
         right: 0.75rem;
@@ -316,11 +298,9 @@
         cursor: pointer;
         font: 800 0.85rem/1 var(--font-main);
     }
-
     .copy-btn:hover {
         background-color: var(--accent-hover);
     }
-
     footer {
         width: min(100% - 2rem, var(--max-width));
         max-width: var(--max-width);
@@ -332,7 +312,6 @@
         font-size: 0.9rem;
         line-height: 1.6;
     }
-
     footer p {
         margin: 0 0 1rem;
         padding: 0;
@@ -342,7 +321,6 @@
         color: inherit;
         font-size: inherit;
     }
-
     footer a {
         display: inline-flex;
         align-items: center;
@@ -355,12 +333,10 @@
         box-shadow: var(--shadow-soft);
         text-decoration: none;
     }
-
     footer a:hover {
         background-color: var(--accent-soft);
         text-decoration: none;
     }
-
     @media (prefers-color-scheme: dark) {
         body {
             background:
@@ -369,55 +345,46 @@
                 linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, #050b14);
         }
     }
-
     @media (max-width: 48rem) {
         .container,
         footer {
             width: min(100% - 1.5rem, var(--max-width));
         }
-
         .container {
             margin: 1rem auto;
             padding: 0.875rem;
         }
-
         h1,
         h2,
         p {
             padding: 1rem;
         }
-
         h1 {
             letter-spacing: -0.035rem;
         }
-
         pre code,
         pre code.hljs {
             padding: 1rem;
             font-size: 0.86rem;
         }
     }
-
     @media (max-width: 30rem) {
         .container,
         footer {
             width: min(100% - 1rem, var(--max-width));
         }
-
         .container,
         h1,
         h2,
         p {
             padding: 0.875rem;
         }
-
         pre code,
         pre code.hljs {
             padding: 0.875rem;
             font-size: 0.82rem;
         }
     }
-
     @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -461,9 +428,7 @@ sudo iwlist wlan0 scan</code>
    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div>
-
     <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-
 </body></html>

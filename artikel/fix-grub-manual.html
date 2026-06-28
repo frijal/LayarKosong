@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://dalam.web.id/artikelx/fix-grub-manual">
     <meta property="og:title" content="Perbaikan Manual GRUB Bootloader (Debian &amp; Turunannya)">
     <meta property="og:description" content="Panduan langkah demi langkah untuk memperbaiki GRUB bootloader secara manual di Debian/Ubuntu menggunakan Live USB dan chroot.">
-    <meta property="og:updated_time" content="2026-06-25T14:11:12.266Z">
+    <meta property="og:updated_time" content="2026-06-28T03:02:18.291Z">
     <meta property="og:image" content="https://dalam.web.id/img/fix-grub-manual.webp">
     <meta property="og:image:url" content="https://dalam.web.id/img/fix-grub-manual.webp">
     <meta property="og:image:secure_url" content="https://dalam.web.id/img/fix-grub-manual.webp">
@@ -55,7 +55,7 @@
     <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2016-06-11T10:55:49.724Z">
-    <meta property="article:modified_time" content="2026-06-25T14:11:12.266Z">
+    <meta property="article:modified_time" content="2026-06-28T03:02:18.291Z">
 <meta name="keywords" content="grub, bootloader, perbaiki grub, grub rescue, debian, ubuntu, linux, chroot, dual boot, uefi">
    <style>
     :root {
@@ -88,7 +88,6 @@
         --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Helvetica, Arial, sans-serif;
         --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
-
     @media (prefers-color-scheme: dark) {
         :root {
             color-scheme: dark;
@@ -115,19 +114,16 @@
             --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
         }
     }
-
     *,
     *::before,
     *::after {
         box-sizing: border-box;
     }
-
     html {
         min-height: 100%;
         overflow-x: hidden;
         scroll-behavior: smooth;
     }
-
     body {
         min-height: 100vh;
         margin: 0;
@@ -142,25 +138,21 @@
         line-height: 1.75;
         text-rendering: optimizeLegibility;
     }
-
     a {
         color: var(--accent);
         text-decoration-thickness: 0.08rem;
         text-underline-offset: 0.18rem;
         overflow-wrap: anywhere;
     }
-
     a:hover {
         color: var(--accent-hover);
     }
-
     a:focus-visible,
     img:focus-visible {
         outline: 0.1875rem solid var(--accent);
         outline-offset: 0.1875rem;
         border-radius: var(--radius-sm);
     }
-
     .container {
         width: min(100% - 2rem, var(--max-width));
         min-width: 0;
@@ -173,7 +165,6 @@
         background-color: var(--card);
         box-shadow: var(--shadow);
     }
-
     header {
         margin-bottom: 1.75rem;
         padding: clamp(1.25rem, 4vw, 2.25rem);
@@ -186,7 +177,6 @@
         box-shadow: var(--shadow-soft);
         text-align: center;
     }
-
     h1 {
         margin: 0;
         color: var(--heading);
@@ -197,7 +187,6 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     h2 {
         margin: 2rem 0 1rem;
         padding: clamp(1rem, 3vw, 1.25rem);
@@ -215,22 +204,18 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     article,
     section {
         min-width: 0;
         max-width: 100%;
     }
-
     article {
         font-size: clamp(1.02rem, 2.2vw, 1.1rem);
     }
-
     article > * {
         min-width: 0;
         max-width: 100%;
     }
-
     p {
         margin: 0 0 1.15rem;
         padding: clamp(1rem, 3vw, 1.35rem);
@@ -240,20 +225,16 @@
         box-shadow: var(--shadow-soft);
         overflow-wrap: break-word;
     }
-
     p:last-child {
         margin-bottom: 0;
     }
-
     strong {
         color: var(--heading);
         font-weight: 850;
     }
-
     em {
         color: inherit;
     }
-
     code {
         padding: 0.12rem 0.35rem;
         border-radius: 0.35rem;
@@ -263,30 +244,24 @@
         font-size: 0.92em;
         overflow-wrap: anywhere;
     }
-
     ol,
     ul {
         margin: 1rem 0 1.25rem;
         padding-left: 1.35rem;
     }
-
     li {
         margin-bottom: 1rem;
         overflow-wrap: break-word;
     }
-
     li:last-child {
         margin-bottom: 0;
     }
-
     li > pre {
         margin-top: 0.75rem;
     }
-
     .gallery {
         margin: 1.5rem 0 2rem;
     }
-
     .gallery img {
         display: block;
         width: 100%;
@@ -303,13 +278,11 @@
         cursor: zoom-in;
         transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
     }
-
     .gallery img:hover {
         transform: translateY(-0.2rem);
         box-shadow: 0 1.75rem 4.5rem rgba(15, 23, 42, 0.18);
         filter: saturate(1.05) contrast(1.03);
     }
-
     pre {
         position: relative;
         display: block;
@@ -329,7 +302,6 @@
         box-shadow: var(--shadow-soft);
         -webkit-overflow-scrolling: touch;
     }
-
     pre::before {
         display: block;
         min-width: max-content;
@@ -342,7 +314,6 @@
         font-size: 0.78rem;
         letter-spacing: 0.12rem;
     }
-
     pre code {
         display: block;
         width: max-content;
@@ -357,7 +328,6 @@
         line-height: 1.7;
         white-space: pre;
     }
-
     pre code.hljs {
         width: max-content;
         min-width: 100%;
@@ -367,11 +337,9 @@
         background: transparent !important;
         color: inherit;
     }
-
     .hljs {
         background: transparent !important;
     }
-
     @media (prefers-color-scheme: dark) {
         body {
             background:
@@ -380,55 +348,46 @@
                 linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, #050b14);
         }
     }
-
     @media (max-width: 48rem) {
         .container {
             width: min(100% - 1.5rem, var(--max-width));
             margin: 1rem auto;
             padding: 0.875rem;
         }
-
         header,
         h2,
         p {
             padding: 1rem;
         }
-
         h1 {
             letter-spacing: -0.035rem;
         }
-
         .gallery img {
             padding: 0.3rem;
             border-radius: var(--radius-md);
         }
-
         pre code,
         pre code.hljs {
             padding: 1rem;
             font-size: 0.86rem;
         }
     }
-
     @media (max-width: 30rem) {
         .container {
             width: min(100% - 1rem, var(--max-width));
             padding: 0.75rem;
         }
-
         header,
         h2,
         p {
             padding: 0.875rem;
         }
-
         pre code,
         pre code.hljs {
             padding: 0.875rem;
             font-size: 0.82rem;
         }
     }
-
     @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -484,9 +443,7 @@ sudo reboot</code></pre>
             <div id="related-articles-grid"></div><div id="response"></div>
     </article>
     </main>
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-
 </body></html>

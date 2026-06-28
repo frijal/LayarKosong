@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://dalam.web.id/artikelx/membedah-hasil-apt-audit-lengkap">
     <meta property="og:title" content="Penjelasan Super Lengkap: Hasil 'apt --audit' Baris per Baris">
     <meta property="og:description" content="Jangan bingung dengan hasil">
-    <meta property="og:updated_time" content="2026-06-25T14:11:15.012Z">
+    <meta property="og:updated_time" content="2026-06-28T03:02:22.869Z">
     <meta property="og:image" content="https://dalam.web.id/img/membedah-hasil-apt-audit-lengkap.webp">
     <meta property="og:image:url" content="https://dalam.web.id/img/membedah-hasil-apt-audit-lengkap.webp">
     <meta property="og:image:secure_url" content="https://dalam.web.id/img/membedah-hasil-apt-audit-lengkap.webp">
@@ -55,7 +55,7 @@
     <link rel="me" href="https://github.com/frijal">
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2016-05-09T20:28:39.000Z">
-    <meta property="article:modified_time" content="2026-06-25T14:11:15.012Z">
+    <meta property="article:modified_time" content="2026-06-28T03:02:22.869Z">
     <meta name="keywords" content="apt audit, modernize-sources, deb822, sources.list, Signature Packet v3, Missing Signed-By, debian, ubuntu, linux, dalam.web.id, terminal error">
     <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png"><style>
     :root {
@@ -87,7 +87,6 @@
         --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Helvetica, Arial, sans-serif;
         --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
-
     @media (prefers-color-scheme: dark) {
         :root {
             color-scheme: dark;
@@ -113,19 +112,16 @@
             --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
         }
     }
-
     *,
     *::before,
     *::after {
         box-sizing: border-box;
     }
-
     html {
         min-height: 100%;
         overflow-x: hidden;
         scroll-behavior: smooth;
     }
-
     body {
         min-height: 100vh;
         margin: 0;
@@ -140,24 +136,20 @@
         line-height: 1.75;
         text-rendering: optimizeLegibility;
     }
-
     a {
         color: var(--accent);
         text-decoration-thickness: 0.08rem;
         text-underline-offset: 0.18rem;
         overflow-wrap: anywhere;
     }
-
     a:hover {
         color: var(--accent-hover);
     }
-
     a:focus-visible {
         outline: 0.1875rem solid var(--accent);
         outline-offset: 0.1875rem;
         border-radius: var(--radius-sm);
     }
-
     .container {
         width: min(100% - 2rem, var(--max-width));
         min-width: 0;
@@ -170,7 +162,6 @@
         background-color: var(--card);
         box-shadow: var(--shadow);
     }
-
     .article-header {
         margin-bottom: 2rem;
         padding: clamp(1.5rem, 5vw, 3rem);
@@ -183,7 +174,6 @@
         box-shadow: var(--shadow-soft);
         text-align: center;
     }
-
     .article-header h1 {
         margin: 0;
         color: var(--heading);
@@ -194,7 +184,6 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     .article-header p {
         max-width: 46rem;
         margin: 1rem auto 0;
@@ -203,7 +192,6 @@
         font-weight: 650;
         line-height: 1.65;
     }
-
     .article-header .meta {
         display: inline-flex;
         align-items: center;
@@ -217,18 +205,15 @@
         font-size: 0.9rem;
         font-weight: 700;
     }
-
     main {
         min-width: 0;
         max-width: 100%;
         font-size: clamp(1.02rem, 2.2vw, 1.08rem);
     }
-
     main > * {
         min-width: 0;
         max-width: 100%;
     }
-
     .content-section {
         margin-bottom: 1.5rem;
         padding: clamp(1rem, 3vw, 1.5rem);
@@ -237,11 +222,9 @@
         background-color: var(--card-soft);
         box-shadow: var(--shadow-soft);
     }
-
     .content-section:last-child {
         margin-bottom: 0;
     }
-
     .content-section h2 {
         display: block;
         margin: 0 0 1rem;
@@ -260,7 +243,6 @@
         overflow-wrap: anywhere;
         text-wrap: balance;
     }
-
     .content-section h3 {
         margin: 1.75rem 0 0.85rem;
         color: var(--heading);
@@ -269,7 +251,6 @@
         line-height: 1.35;
         overflow-wrap: anywhere;
     }
-
     h4 {
         margin: 1.5rem 0 0.75rem;
         color: var(--heading);
@@ -277,21 +258,17 @@
         font-weight: 850;
         line-height: 1.35;
     }
-
     p {
         margin: 0 0 1.15rem;
         overflow-wrap: break-word;
     }
-
     p:last-child {
         margin-bottom: 0;
     }
-
     strong {
         color: var(--heading);
         font-weight: 850;
     }
-
     code {
         padding: 0.12rem 0.35rem;
         border-radius: 0.35rem;
@@ -301,22 +278,18 @@
         font-size: 0.92em;
         overflow-wrap: anywhere;
     }
-
     ul,
     ol {
         margin: 1rem 0 1.25rem;
         padding-left: 1.35rem;
     }
-
     li {
         margin-bottom: 0.75rem;
         overflow-wrap: break-word;
     }
-
     li:last-child {
         margin-bottom: 0;
     }
-
     pre {
         position: relative;
         display: block;
@@ -336,7 +309,6 @@
         box-shadow: var(--shadow-soft);
         -webkit-overflow-scrolling: touch;
     }
-
     pre::before {
         display: block;
         min-width: max-content;
@@ -349,7 +321,6 @@
         font-size: 0.78rem;
         letter-spacing: 0.12rem;
     }
-
     pre code {
         display: block;
         width: max-content;
@@ -365,7 +336,6 @@
         white-space: pre;
         overflow-wrap: normal;
     }
-
     pre code.hljs {
         width: max-content;
         min-width: 100%;
@@ -375,11 +345,9 @@
         background: transparent !important;
         color: inherit;
     }
-
     .hljs {
         background: transparent !important;
     }
-
     @media (prefers-color-scheme: dark) {
         body {
             background:
@@ -388,50 +356,42 @@
                 linear-gradient(180deg, var(--bg-soft), var(--bg) 42%, #050b14);
         }
     }
-
     @media (max-width: 48rem) {
         .container {
             width: min(100% - 1.5rem, var(--max-width));
             margin: 1rem auto;
             padding: 0.875rem;
         }
-
         .article-header,
         .content-section,
         .content-section h2 {
             padding: 1rem;
         }
-
         .article-header h1 {
             letter-spacing: -0.035rem;
         }
-
         pre code,
         pre code.hljs {
             padding: 1rem;
             font-size: 0.86rem;
         }
     }
-
     @media (max-width: 30rem) {
         .container {
             width: min(100% - 1rem, var(--max-width));
             padding: 0.75rem;
         }
-
         .article-header,
         .content-section,
         .content-section h2 {
             padding: 0.875rem;
         }
-
         pre code,
         pre code.hljs {
             padding: 0.875rem;
             font-size: 0.82rem;
         }
     }
-
     @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -442,7 +402,6 @@
         }
     }
 </style>
-
 <meta name="ai:summary" content="Jangan bingung dengan hasil">
 <meta name="ai:prompt_hint" content="Jangan bingung dengan hasil">
 <link rel="stylesheet" href="/ext/marquee-url.css">
@@ -529,9 +488,7 @@ sudo cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.bak</code></pre>
     </main>
     </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div>
-
 <script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-
 </body></html>

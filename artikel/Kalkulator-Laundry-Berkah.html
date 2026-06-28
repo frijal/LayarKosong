@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://dalam.web.id/artikelx/Kalkulator-Laundry-Berkah">
     <meta property="og:title" content="Kalkulator Laundry Berkah">
     <meta property="og:description" content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.">
-    <meta property="og:updated_time" content="2026-06-25T14:11:06.659Z">
+    <meta property="og:updated_time" content="2026-06-28T03:02:06.298Z">
     <meta property="og:image" content="https://dalam.web.id/img/Kalkulator-Laundry-Berkah.webp">
     <meta property="og:image:url" content="https://dalam.web.id/img/Kalkulator-Laundry-Berkah.webp">
     <meta property="og:image:secure_url" content="https://dalam.web.id/img/Kalkulator-Laundry-Berkah.webp">
@@ -53,12 +53,11 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-26T20:21:57.000Z">
-    <meta property="article:modified_time" content="2026-06-25T14:11:06.659Z">
+    <meta property="article:modified_time" content="2026-06-28T03:02:06.298Z">
     <meta content="kalkulator laundry, harga laundry kiloan, laundry satuan, manajemen laundry, aplikasi kasir laundry, berkah laundry, hitung biaya laundry" name="keywords">
     <script defer="" src="/ext/html2canvas.min.js"></script>
-
 <style>
   :root {
     color-scheme: light;
@@ -81,7 +80,6 @@
     --receipt-border: #000000;
     --receipt-soft: #eeeeee;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
@@ -105,7 +103,6 @@
       --receipt-soft: #eeeeee;
     }
   }
-
   body {
     background: var(--page-bg);
     color: var(--text);
@@ -117,7 +114,6 @@
     font-family: Poppins, sans-serif;
     display: flex;
   }
-
   .container {
     box-sizing: border-box;
     background: var(--card-bg);
@@ -127,25 +123,21 @@
     padding: 1.25rem;
     box-shadow: var(--shadow);
   }
-
   h1,
   h2 {
     color: var(--text);
   }
-
   h2 {
     text-align: center;
     margin-bottom: 0.9375rem;
     font-size: 1.25rem;
   }
-
   label {
     color: var(--text);
     margin-bottom: 0.3125rem;
     font-weight: 700;
     display: block;
   }
-
   input[type="text"],
   textarea {
     box-sizing: border-box;
@@ -158,32 +150,27 @@
     font-size: 1rem;
     line-height: 1.5;
   }
-
   input[type="text"]::placeholder,
   textarea::placeholder {
     color: var(--muted);
     opacity: 0.8;
   }
-
   table {
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 0.625rem;
     font-size: 0.875rem;
   }
-
   th,
   td {
     text-align: center;
     border: 0.0625rem solid var(--table-border);
     padding: 0.5rem;
   }
-
   th {
     color: #ffffff;
     background: var(--primary);
   }
-
   button {
     color: var(--button-text);
     cursor: pointer;
@@ -195,21 +182,17 @@
     font-size: 0.875rem;
     display: inline-block;
   }
-
   .btn-export {
     background: var(--primary-strong);
     margin-left: 0.625rem;
   }
-
   .btn-reset {
     background: var(--danger);
     margin-left: 0.625rem;
   }
-
   button:hover {
     opacity: 0.9;
   }
-
   .total-box {
     text-align: right;
     color: var(--primary);
@@ -217,16 +200,13 @@
     font-size: 1rem;
     font-weight: 700;
   }
-
   .catatan-final {
     margin-top: 0.9375rem;
   }
-
   textarea {
     resize: vertical;
     min-height: 5rem;
   }
-
   .nota-summary {
     color: var(--receipt-text);
     box-sizing: border-box;
@@ -239,42 +219,35 @@
     left: -625rem;
     display: block !important;
   }
-
   .nota-summary table,
   .nota-summary tr,
   .nota-summary td {
     width: 100% !important;
     display: table !important;
   }
-
   .nota-summary td {
     display: table-cell !important;
   }
-
   .nota-header {
     text-align: center;
     border-bottom: 0.0625rem dashed var(--receipt-border);
     margin-bottom: 0.625rem;
     padding-bottom: 0.625rem;
   }
-
   .nota-header h3 {
     text-transform: uppercase;
     margin: 0;
     font-size: 1.125rem;
   }
-
   .nota-info {
     margin-bottom: 0.625rem;
     font-size: 0.8125rem;
   }
-
   .nota-table {
     border-collapse: collapse;
     width: 100%;
     font-size: 0.8125rem;
   }
-
   .nota-table th {
     text-align: left;
     color: var(--receipt-text);
@@ -282,25 +255,21 @@
     border-bottom: 0.0625rem dashed var(--receipt-border);
     padding: 0.3125rem 0;
   }
-
   .nota-table td {
     vertical-align: top;
     padding: 0.3125rem 0;
   }
-
   .nota-footer {
     border-top: 0.0625rem dashed var(--receipt-border);
     margin-top: 0.625rem;
     padding-top: 0.625rem;
   }
-
   .total-row {
     justify-content: space-between;
     font-size: 0.9375rem;
     font-weight: 700;
     display: flex;
   }
-
   .catatan-struk {
     border-top: 0.0625rem solid var(--receipt-soft);
     margin-top: 0.625rem;
@@ -308,7 +277,6 @@
     font-size: 0.75rem;
     font-style: italic;
   }
-
   @media (max-width: 37.5rem) {
     table,
     thead,
@@ -318,11 +286,9 @@
     tr {
       display: block;
     }
-
     thead tr {
       display: none;
     }
-
     tr {
       background: var(--row-bg);
       border: 0.0625rem solid var(--table-border);
@@ -330,25 +296,22 @@
       margin-bottom: 0.625rem;
       padding: 0.5rem;
     }
-
     td {
       text-align: left;
       justify-content: space-between;
       display: flex;
     }
-
     td::before {
       content: attr(data-label);
       font-weight: 700;
     }
   }
 </style>
-
     <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:summary">
     <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:prompt_hint">
-</head><body>
+<link rel="stylesheet" href="/ext/marquee-url.css"></head><body>
     <div class="container" id="nota-belanja">
-      <h1><a style="text-decoration: none; color: inherit;" href="/">Kalkulator</a> 🧾 Laundry Berkah</h1>
+      <div id="iposbrowser"></div><h1><a style="text-decoration: none; color: inherit;" href="/">Kalkulator</a> 🧾 Laundry Berkah</h1>
       <div class="konsumen-box"><label for="namaKonsumen">Nama Konsumen:</label><input placeholder="siapa nama konsumen?" id="namaKonsumen" required=""></div><label><input id="toggleDiskon" onchange="toggleKolomDiskon()" type="checkbox"> Gunakan Diskon</label>
       <table id="tabel-belanja">
         <thead>
@@ -557,5 +520,4 @@
     </script>
 <noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-
-</body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
