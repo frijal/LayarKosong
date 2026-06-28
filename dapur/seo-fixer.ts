@@ -174,9 +174,17 @@ await mkdir(path.dirname(localPath), { recursive: true });
 if (isSvg || isGif) {
 await Bun.write(localPath, buffer);
 } else {
+// 🔥 UPDATE SHARP: Mode Infografis (Teks Tajam, Tanpa Blur)
 await sharp(buffer)
 .rotate()
-.webp({ quality: 100, effort: 6 })
+// Menambahkan sharpen ringan untuk mengembalikan detail yang hilang saat konversi format
+.sharpen({ sigma: 0.3 }) 
+.webp({ 
+quality: 95,            // Kualitas dinaikkan sedikit karena ini master image
+preset: 'text',         // Mencegah blur/mbleber pada teks (infografis mode)
+smartSubsample: true,   // Mempertahankan kontras warna tajam
+effort: 6               // Pencarian kompresi maksimal
+})
 .toFile(localPath);
 }
 
