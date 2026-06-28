@@ -258,10 +258,14 @@ const rawTwitterDesc = $('meta[name="twitter:description"]').attr("content") || 
 const rawNewsKeys = $('meta[name="news_keywords"]').attr("content") || "";
 const rawPromphint = $('meta[name="promphint"]').attr("content") || "";
 
-const publishedTime = toUTCIso($('meta[property="article:published_time"]').attr("content"), fallbackTime);
+// 🔥 FIX v2: publishedTime harus dari fallbackTime (bukan dari meta yang belum ada)
+const publishedTime = fallbackTime;
 
-// Fix: modified_time selalu update ke waktu saat proses script berjalan
-const modifiedTime = new Date().toISOString();
+// 🔥 STRATEGI BARU: modified_time harus LEBIH TERBARU dari published_time
+// Kita ambil waktu published, lalu tambah random 1-600 detik (1 menit hingga 10 menit)
+const pubDateObj = new Date(publishedTime);
+const randomOffsetMs = Math.floor(Math.random() * (600000 - 60000 + 1)) + 60000; // 1-10 menit
+const modifiedTime = new Date(pubDateObj.getTime() + randomOffsetMs).toISOString();
 
 const existingTags: string[] = [];
 $('meta[property="article:tag"]').each((_, el) => {
@@ -456,6 +460,7 @@ uniqueTags.forEach(tag => {
 metaTags.push(htmlTag.metaProperty("article:tag", tag));
 });
 
+// 🔥 PENYUNTIKAN YANG SUDAH DIVALIDASI 🔥
 metaTags.push(htmlTag.metaProperty("article:published_time", publishedTime));
 metaTags.push(htmlTag.metaProperty("article:modified_time", modifiedTime));
 
@@ -477,7 +482,8 @@ await Bun.write(file, finalHtml);
 
 async function fixSEO() {
 const baseUrl = BASE_URL;
-console.log("🧼 Memulai SEO Fixer (Bun Turbo TS Mode)...");
+console.log("🧼 Memulai SEO Fixer v2 (Bun Turbo TS Mode)");
+console.log("🔒 SEO Timestamp: published_time ≤ modified_time GUARANTEED\n");
 
 const startTime = performance.now();
 const glob = new Glob(`${TARGET_FOLDER}/*.html`);
@@ -493,7 +499,7 @@ return;
 }
 
 const fallbackMap = await buildFallbackMap(files);
-console.log(`📅 ${fallbackMap.size} fallback timestamps di-pre-generate (tanggal asli terkunci, waktu unik).`);
+console.log(`📅 ${fallbackMap.size} fallback timestamps di-generate (published_time locked ke tanggal asli).\n`);
 
 for (let i = 0; i < files.length; i += CHUNK_SIZE) {
 const chunk = files.slice(i, i + CHUNK_SIZE);
@@ -504,6 +510,7 @@ chunk.map(file => processFile(file, baseUrl, fallbackMap.get(file)!))
 
 const duration = (performance.now() - startTime) / 1000;
 console.log(`\n✅ Selesai! ${files.length} artikel diproses dalam ${duration.toFixed(2)} detik.`);
+console.log("✅ SEO Fixer v2: Semua timestamps sudah valid (published ≤ modified) sebelum Diet Mode!\n");
 }
 
 fixSEO().catch(err => {
