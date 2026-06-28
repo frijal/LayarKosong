@@ -231,8 +231,8 @@
             border-top: 1px solid var(--border-color);
         }
         /* =========================================================
-           📱 RESPONSIVE DESIGN (KHUSUS MOBILE / LAYAR KECIL)
-           ========================================================= */
+            📱 RESPONSIVE DESIGN (KHUSUS MOBILE / LAYAR KECIL)
+            ========================================================= */
         @media (max-width: 768px) {
             /* Izinkan scrolling ke bawah pada body mobile */
             body {
@@ -283,9 +283,14 @@
         <section class="panel">
             <div class="panel-header">
                 <h2>Input HTML Mentah</h2>
-                <button id="btnClearHTML" class="btn" title="Bersihkan Editor">
-                    <i class="fa-solid fa-trash-can"></i> <span>Bersihkan</span>
-                </button>
+                <div style="display: flex; gap: 10px;">
+                    <button id="btnPasteHTML" class="btn" title="Tempel dari Clipboard">
+                        <i class="fa-solid fa-paste"></i> <span>Tempel</span>
+                    </button>
+                    <button id="btnClearHTML" class="btn" title="Bersihkan Editor">
+                        <i class="fa-solid fa-trash-can"></i> <span>Bersihkan</span>
+                    </button>
+                </div>
             </div>
             <textarea id="inputHTML" placeholder="<h1>Tempel kode HTML Anda di sini...</h1>
 <p>Atau mulai mengetik elemen HTML secara manual.</p>"></textarea>
@@ -310,6 +315,7 @@
             const output = document.getElementById('outputMD');
             const status = document.getElementById('statusMessage');
             // --- SISIPAN ELEMEN TOMBOL ---
+            const btnPaste = document.getElementById('btnPasteHTML');
             const btnClear = document.getElementById('btnClearHTML');
             const btnCopy = document.getElementById('btnCopyMD');
             // -----------------------------
@@ -422,7 +428,28 @@
                 }
                 output.value = fallbackConvert(html);
             }
+            
             input.addEventListener('input', doConvert);
+
+            if (btnPaste) {
+                btnPaste.addEventListener('click', async function() {
+                    try {
+                        const text = await navigator.clipboard.readText();
+                        input.value = text;
+                        doConvert();
+                        
+                        const originalText = btnPaste.innerHTML;
+                        btnPaste.innerHTML = '<i class="fa-solid fa-check"></i> <span>Ditempel!</span>';
+                        setTimeout(function() {
+                            btnPaste.innerHTML = originalText;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Gagal paste:', err);
+                        alert('Browser memblokir akses clipboard. Silakan gunakan Ctrl+V atau izinkan akses clipboard pada situs ini.');
+                    }
+                });
+            }
+
             if (btnClear) {
                 btnClear.addEventListener('click', function() {
                     input.value = '';
