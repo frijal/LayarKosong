@@ -1,0 +1,672 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Reverse Markdown Converter – Ubah HTML ke Markdown - Layar Kosong</title>
+    <meta name="description" content="Konversi HTML ke Markdown secara instan. Tempel kode HTML, dapatkan hasil Markdown bersih untuk blog, dokumentasi, atau konten Anda. Gratis, tanpa server.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/html-to-markdown-reverse-converter">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="HTML to Markdown, converter, Markdown, reverse, tools, dokumentasi">
+    <meta name="promphint" content="Bagaimana mengubah HTML ke Markdown? | Tempel HTML di kotak kiri, hasil Markdown muncul otomatis di kanan.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/html-to-markdown-reverse-converter">
+    <meta property="og:title" content="Reverse Markdown Converter – Ubah HTML ke Markdown">
+    <meta property="og:description" content="Alat praktis mengubah HTML menjadi Markdown dengan cepat. Dukung elemen tebal, miring, tautan, dan kode inline. Berjalan sepenuhnya di browser.">
+    <meta property="og:updated_time" content="2026-06-25T14:11:09.558Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-q-cxRaQAAqvZQ.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/media/G-q-cxRaQAAqvZQ.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/media/G-q-cxRaQAAqvZQ.webp">
+    <meta property="og:image:alt" content="Reverse Markdown Converter – Ubah HTML ke Markdown">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="683">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/html-to-markdown-reverse-converter">
+    <meta name="twitter:title" content="Reverse Markdown Converter – Ubah HTML ke Markdown">
+    <meta name="twitter:description" content="Cara mudah mengonversi HTML ke Markdown. Tempel kode, dapatkan hasil bersih untuk README, blog, atau dokumentasi proyek.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-q-cxRaQAAqvZQ.webp">
+    <meta name="twitter:image:alt" content="Reverse Markdown Converter – Ubah HTML ke Markdown">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Tools">
+    <meta property="article:tag" content="Markdown">
+    <meta property="article:tag" content="HTML">
+    <meta property="article:published_time" content="2026-01-29T22:45:54.000Z">
+    <meta property="article:modified_time" content="2026-06-25T14:11:09.558Z">
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        :root {
+            --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            --bg-body: #f8f7f5;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #3d3d3d;
+            --text-muted: #6b6b6b;
+            --border-subtle: #e2e0dd;
+            --accent: #2a6f97;
+            --accent-hover: #1d4f6e;
+            --shadow-soft: 0 2px 10px rgba(0,0,0,0.04);
+            --radius-md: 0.5rem;
+            --radius-sm: 0.3rem;
+            --transition: 0.2s ease;
+            --max-width: 64rem;
+            --h1-size: 2.25rem;
+            --h2-size: 1.5rem;
+            --h3-size: 1.25rem;
+            --body-size: 1.125rem;
+            --small-size: 0.875rem;
+            --line-height-body: 1.75;
+            --line-height-heading: 1.3;
+            --code-bg: #f0edea;
+            --code-border: #d6d2cd;
+            --textarea-bg: #faf9f7;
+            --textarea-border: #ddd;
+            --grid-gap: 1.25rem;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #121212;
+                --bg-card: #1e1e1e;
+                --text-primary: #ececec;
+                --text-secondary: #cccccc;
+                --text-muted: #a0a0a0;
+                --border-subtle: #2e2e2e;
+                --accent: #5b9bd5;
+                --accent-hover: #7bb3e6;
+                --shadow-soft: 0 2px 8px rgba(0,0,0,0.4);
+                --code-bg: #2c2c2c;
+                --code-border: #3a3a3a;
+                --textarea-bg: #1a1a1a;
+                --textarea-border: #3a3a3a;
+            }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-size: var(--body-size);
+            line-height: var(--line-height-body);
+            padding: 1.5rem 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            width: min(100%, var(--max-width));
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 2rem 1.5rem;
+            box-shadow: var(--shadow-soft);
+            transition: background var(--transition);
+        }
+        @media (min-width: 768px) {
+            .container { padding: 3rem 2.5rem; }
+            body { padding: 2rem 1.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .container { padding: 3.5rem 3rem; }
+        }
+        h1 {
+            font-size: var(--h1-size);
+            line-height: var(--line-height-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+        h2 {
+            font-size: var(--h2-size);
+            line-height: var(--line-height-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+        h3 {
+            font-size: var(--h3-size);
+            line-height: var(--line-height-heading);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p { margin-bottom: 1.25rem; color: var(--text-secondary); }
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+            transition: color var(--transition);
+        }
+        a:hover { color: var(--accent-hover); }
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9em;
+            background: var(--code-bg);
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.2rem;
+            border: 1px solid var(--code-border);
+        }
+        pre {
+            background: var(--code-bg);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            border: 1px solid var(--code-border);
+        }
+        pre code {
+            background: transparent;
+            border: none;
+            padding: 0;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--text-secondary); }
+        li { margin-bottom: 0.5rem; }
+        .hero-image-wrap {
+            margin: 1.75rem 0 2rem 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--bg-body);
+        }
+        .hero-image-wrap img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1200 / 630;
+            object-fit: cover;
+        }
+        .section-accordion {
+            margin-top: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0.5rem 0;
+            }
+        .section-accordion:last-of-type { border-bottom: none; }
+        .section-accordion details { padding: 0.25rem 0 0.5rem 0; }
+        .section-accordion summary {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--h2-size);
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem 0;
+            list-style: none;
+            transition: color var(--transition), background var(--transition);
+            user-select: none;
+            border-radius: var(--radius-md);
+        }
+        .section-accordion summary::-webkit-details-marker { display: none; }
+        .section-accordion summary::after {
+            content: "▾";
+            font-size: 1.1rem;
+            margin-left: auto;
+            transition: transform 0.25s ease;
+            color: var(--text-muted);
+        }
+        .section-accordion details[open] summary::after { transform: rotate(180deg); }
+        .section-accordion summary:hover {
+            color: var(--accent);
+            background: var(--bg-body);
+        }
+        .section-accordion .accordion-content {
+            padding-top: 0.5rem;
+            padding-bottom: 0.75rem;
+        }
+        .section-accordion .accordion-content>*:first-child { margin-top: 0; }
+        .section-accordion .accordion-content>*:last-child { margin-bottom: 0; }
+        /* ===== TOOL UI ===== */
+        .tool-box {
+            background: var(--bg-body);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-subtle);
+        }
+        .tool-box .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--grid-gap);
+            margin-top: 0.75rem;
+        }
+        .tool-box .box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+        .tool-box .box textarea {
+            width: 100%;
+            min-height: 280px;
+            padding: 0.75rem;
+            background: var(--textarea-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--textarea-border);
+            border-radius: var(--radius-sm);
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color var(--transition);
+        }
+        .tool-box .box textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .tool-box .box textarea[readonly] {
+            background: var(--code-bg);
+            cursor: default;
+        }
+        .tool-box .status {
+            margin-top: 0.5rem;
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 0.3rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+        }
+        .tool-box .status .ok { color: #28a745; }
+        .tool-box .status .err { color: #dc3545; }
+        .tool-box .zdummy {
+            margin-top: 0.75rem;
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .tool-box .grid { grid-template-columns: 1fr; gap: 1rem; }
+            .tool-box .box textarea { min-height: 180px; }
+        }
+        @media (max-width: 600px) {
+            :root {
+                --h1-size: 1.75rem; --h2-size: 1.3rem; --h3-size: 1.1rem;
+                --body-size: 1rem; --small-size: 0.8rem;
+            }
+            .container { padding: 1.25rem 1rem; }
+            .tool-box { padding: 0.75rem 1rem; }
+            .tool-box .box textarea { min-height: 140px; font-size: 0.8rem; }
+        }
+        @media (max-width: 400px) {
+            .container { padding: 1rem 0.75rem; }
+            .tool-box .box textarea { min-height: 110px; }
+        }
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            margin: 2.5rem 0 1.5rem 0;
+        }
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .article-footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 1.5rem;
+            font-size: var(--small-size);
+            color: var(--text-muted);
+        }
+        .article-footer .footer-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .article-footer .footer-item .sep { color: var(--border-subtle); margin: 0 0.25rem; }
+        @media print {
+            body { background: #fff; padding: 0.5in; }
+            .container { box-shadow: none; padding: 0; }
+            .section-accordion details { display: block !important; }
+            .section-accordion summary::after { display: none; }
+            .section-accordion summary { cursor: default; }
+            .hero-image-wrap { page-break-inside: avoid; }
+            .tool-box .grid { break-inside: avoid; }
+        }
+    </style>
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <script src="https://unpkg.com/turndown@7.2.4/dist/turndown.js" defer="" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="/ext/marquee-url.css"></head>
+<body>
+    <div class="container" role="main">
+        <header>
+            <div id="iposbrowser"></div><h1><i class="fa-solid fa-rotate"></i> Reverse Markdown Converter</h1>
+            <p style="font-size: var(--h3-size); color: var(--text-muted); margin-bottom: 0.25rem; font-weight: 400;">
+                Ubah kode HTML menjadi Markdown yang bersih dan siap pakai
+            </p>
+        </header>
+        <p>
+            Dalam dunia penulisan konten digital, kita sering berhadapan dengan dua format populer: <b>HTML</b> dan <b>Markdown</b>. HTML adalah bahasa markup untuk halaman web, sementara Markdown adalah format teks ringan untuk dokumentasi, README, dan blog. Namun, bagaimana jika Anda memiliki konten HTML dan ingin mengubahnya menjadi Markdown? Di situlah <b>Reverse Markdown Converter</b> berperan.
+        </p>
+        <p>
+            Alat ini dirancang untuk mengonversi HTML ke Markdown dengan cepat—<u>cukup tempelkan kode HTML di sisi kiri</u>, dan Markdown yang setara akan muncul di sisi kanan. Tidak perlu instalasi, semua berjalan di browser Anda tanpa mengirim data ke server. Solusi praktis bagi penulis, pengembang, dan siapa pun yang sering bertukar antara kedua format.
+        </p>
+        <figure class="hero-image-wrap">
+            <img src="https://dalam.web.id/img/pbs.twimg.com/media/G-q-cxRaQAAqvZQ.webp" alt="Ilustrasi konversi dari kode HTML menjadi format Markdown yang lebih sederhana" width="1200" height="630" loading="eager" fetchpriority="high" decoding="async">
+        </figure>
+        <p>
+            Dengan antarmuka minimalis dan responsif, Reverse Markdown Converter memungkinkan Anda <b>menyalin hasil Markdown</b> dan langsung menggunakannya di GitHub, GitLab, Hugo, Jekyll, atau editor teks favorit Anda. Mari eksplorasi alat ini lebih dalam.
+        </p>
+                <div class="section-accordion">
+            <details>
+                <summary><span class="icon-shrink">🔍</span> Apa itu Reverse Markdown Converter?</summary>
+                <div class="accordion-content">
+                    <p><b>Reverse Markdown Converter</b> adalah alat berbasis web yang mengonversi HTML ke Markdown—proses "reverse" karena biasanya kita mengonversi Markdown ke HTML. Alat ini menangani tag seperti <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;a&gt;</code>, dan <code>&lt;code&gt;</code>, mengubahnya menjadi <code>**tebal**</code>, <code>*miring*</code>, <code>[teks](url)</code>, dan <code>`kode`</code>.</p>
+                    <p>Mengapa Anda membutuhkannya? Karena sering kali kita mengambil konten dari sumber HTML—email, halaman web, atau CMS—dan ingin memindahkannya ke lingkungan Markdown. Alat ini mengotomatiskan proses, <u>menghemat waktu dan mengurangi kesalahan</u>.</p>
+                </div>
+            </details>
+        </div>
+                <div class="section-accordion">
+            <details>
+                <summary><span class="icon-shrink">👥</span> Siapa yang Membutuhkan dan Kapan?</summary>
+                <div class="accordion-content">
+                    <p>Reverse Markdown Converter berguna untuk berbagai kalangan:</p>
+                    <ul>
+                        <li><b>Pengembang</b> – mengubah dokumentasi HTML ke file <code>.md</code> untuk repository.</li>
+                        <li><b>Content writer</b> – menerima artikel HTML dan mengeditnya di editor Markdown.</li>
+                        <li><b>Akademisi</b> – menyeragamkan laporan ke Markdown.</li>
+                        <li><b>Pengelola forum</b> – menyalin posting HTML ke platform Markdown.</li>
+                    </ul>
+                    <p>Gunakan kapan saja Anda memiliki HTML yang perlu dikonversi. Alat ini berjalan offline setelah halaman dimuat.</p>
+                </div>
+            </details>
+        </div>
+                <div class="section-accordion">
+            <details open="">
+                <summary><span class="icon-shrink">🛠️</span> Cara Menggunakan</summary>
+                <div class="accordion-content">
+                    <ol>
+                        <li><b>Salin kode HTML</b> dari sumber Anda.</li>
+                        <li><b>Tempelkan</b> ke kotak kiri <i>"Raw HTML"</i>.</li>
+                        <li><b>Hasil Markdown</b> muncul otomatis di kotak kanan.</li>
+                    </ol>
+                    <p>Konversi terjadi <i>real-time</i> saat Anda mengetik. Tidak ada tombol submit. Alat ini menggunakan <b>Turndown</b> library; jika gagal dimuat, fallback regex tersedia.</p>
+                    <div class="tool-box">
+                        <div style="text-align:center;margin-bottom:0.5rem;font-size:0.95rem;color:var(--text-muted);">
+                            <i class="fa-solid fa-arrow-left"></i> Tempel HTML di kiri, ambil Markdown di kanan <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="grid">
+                            <div class="box">
+                                <label for="inputHTML"><i class="fa-brands fa-html5"></i> Raw HTML <button id="btnClearHTML" style="margin-left: auto; cursor: pointer; font-size: 0.8em; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border-subtle); background: var(--bg-card); color: var(--text-primary); float: right;">Clear Content</button></label>
+                                <textarea id="inputHTML" placeholder="Tempel kode HTML di sini..."></textarea>
+                            </div>
+                            <div class="box">
+                                <label for="outputMD"><i class="fa-brands fa-markdown"></i> Clean Markdown <button id="btnCopyMD" style="margin-left: auto; cursor: pointer; font-size: 0.8em; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border-subtle); background: var(--bg-card); color: var(--text-primary); float: right;">Copy Content</button></label>
+                                <textarea id="outputMD" readonly="" placeholder="Hasil konversi otomatis..."></textarea>
+                            </div>
+                        </div>
+                        <div class="status" id="statusMessage">
+                            <i class="fa-spinner fa-spin fa-solid"></i> Memuat library konversi...
+                        </div>
+                        <div class="zdummy">
+                            Didesain dengan <b>Turndown</b> untuk konversi HTML → Markdown yang akurat.
+                            <span style="display:block;font-size:0.8rem;margin-top:0.2rem;">
+                                <i class="fa-shield-alt fa-solid"></i> Tag &lt;style&gt; dan &lt;script&gt; otomatis dihapus dari input.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+                <div class="section-accordion">
+            <details>
+                <summary><span class="icon-shrink">💡</span> Tips Optimal</summary>
+                <div class="accordion-content">
+                    <ul>
+                        <li><b>Gunakan HTML valid</b> – tag tertutup dengan benar menghasilkan Markdown lebih bersih.</li>
+                        <li><b>Perhatikan atribut</b> – class, id, style diabaikan; tambahkan manual ke Markdown jika perlu.</li>
+                        <li><b>Konversi bertahap</b> – untuk HTML kompleks, konversi per bagian agar mudah diperiksa.</li>
+                        <li><b>Periksa tautan</b> – URL pada <code>&lt;a&gt;</code> dan <code>&lt;img&gt;</code> harus benar.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+                <div class="section-accordion">
+            <details>
+                <summary><span class="icon-shrink">🔧</span> Batasan</summary>
+                <div class="accordion-content">
+                    <p>Mendukung elemen dasar: <b>tebal</b>, <b>miring</b>, <b>tautan</b>, <b>kode inline</b>. Dengan Turndown, juga mendukung heading, list, blockquote, dan gambar. Untuk dukungan penuh, gunakan Turndown langsung.</p>
+                    <p><b>Catatan:</b> Semua tag <code>&lt;style&gt;</code>, <code>&lt;script&gt;</code>, dan <code>&lt;link rel="stylesheet"&gt;</code> <u>dihapus</u> dari HTML sebelum konversi untuk menghindari kebocoran kode.</p>
+                </div>
+            </details>
+        </div>
+        <hr>
+        <p class="text-center" style="font-style:italic;font-size:var(--h3-size);color:var(--text-secondary);">
+            Reverse Markdown Converter – solusi sederhana untuk konversi HTML ke Markdown yang cepat dan akurat.
+        </p>
+                <div id="related-articles-grid"></div>
+        <div id="response"></div>
+        <footer class="article-footer">
+            <span class="footer-item">✍️ <b>Jaga Data Pribadi Tetap Aman</b></span>
+            <span class="footer-item"><span class="sep">|</span> 📅 22 Juni 2026</span>
+            <span class="footer-item"><span class="sep">|</span> 🔗 <a href="https://www.markdownguide.org/" target="_blank" rel="noopener">Markdown Guide</a> &amp; <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener">Turndown</a></span>
+         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    </div>
+   <script>
+    (function() {
+        'use strict';
+        const input = document.getElementById('inputHTML');
+        const output = document.getElementById('outputMD');
+        const status = document.getElementById('statusMessage');
+        // --- SISIPAN ELEMEN TOMBOL ---
+        const btnClear = document.getElementById('btnClearHTML');
+        const btnCopy = document.getElementById('btnCopyMD');
+        // -----------------------------
+        let turndown = null;
+        let ready = false;
+        function initTurndown() {
+            try {
+                if (typeof TurndownService !== 'undefined') {
+                    turndown = new TurndownService({
+                        headingStyle: 'atx',
+                        hr: '---',
+                        bulletListMarker: '-',
+                        codeBlockStyle: 'fenced',
+                        emDelimiter: '*',
+                        strongDelimiter: '**',
+                        linkStyle: 'inlined'
+                    });
+                    // MODIFIKASI: Kunci utama supaya seluruh URL (tautan & gambar) diberikan kembali secara utuh!
+                    turndown.addRule('tahanUrlUtuh', {
+                        filter: ['a', 'img'],
+                        replacement: function (content, node) {
+                            if (node.nodeName === 'A') {
+                                const href = node.getAttribute('href') || '';
+                                const title = node.getAttribute('title');
+                                return title ? `[${content}](${href} "${title}")` : `[${content}](${href})`;
+                            } else if (node.nodeName === 'IMG') {
+                                const src = node.getAttribute('src') || '';
+                                const alt = node.getAttribute('alt') || '';
+                                const title = node.getAttribute('title');
+                                return title ? `![${alt}](${src} "${title}")` : `![${alt}](${src})`;
+                            }
+                        }
+                    });
+                    ready = true;
+                    status.innerHTML = '<i class="fas fa-check-circle ok"></i> Turndown siap digunakan.';
+                    return true;
+                }
+                return false;
+            } catch (e) {
+                status.innerHTML = '<i class="fas fa-exclamation-triangle err"></i> Gagal muat Turndown, pakai fallback.';
+                console.warn('Turndown init error:', e);
+                return false;
+            }
+        }
+        function stripStyleScript(html) {
+            return html
+                .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+                .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+                .replace(/<link[^>]*rel=["']stylesheet["'][^>]*>/gi, '');
+        }
+        function fallbackConvert(html) {
+            let md = html;
+            md = md.replace(/<(strong|b)>(.*?)<\/\1>/gi, function(m, tag, c) {
+                if (m.includes('class=') || m.includes('id=')) return m;
+                return '**' + c + '**';
+            });
+            md = md.replace(/<(em|i)>(.*?)<\/\1>/gi, function(m, tag, c) {
+                if (m.includes('class=') || m.includes('id=')) return m;
+                return '*' + c + '*';
+            });
+            // MODIFIKASI: Memastikan URL tautan selamat di Fallback
+            md = md.replace(/<a\s+[^>]*href=["']([^"']*)["'][^>]*>(.*?)<\/a>/gi, function(m, url, text) {
+                // Hapus tag HTML yang mungkin nyelip di dalam text anchor
+                const cleanText = text.replace(/<\/?[^>]+(>|$)/g, ""); 
+                return `[${cleanText}](${url})`;
+            });
+            // MODIFIKASI: Tambahan krusial penangkap Gambar untuk Fallback
+            md = md.replace(/<img\s+[^>]*src=["']([^"']*)["'][^>]*>/gi, function(m, url) {
+                let altMatch = m.match(/alt=["']([^"']*)["']/i);
+                let alt = altMatch ? altMatch[1] : '';
+                return `![${alt}](${url})`;
+            });
+            md = md.replace(/<code>(.*?)<\/code>/gi, function(m, c) {
+                if (m.includes('class=') || m.includes('id=')) return m;
+                return '`' + c + '`';
+            });
+            return md;
+        }
+        function doConvert() {
+            let html = input.value;
+            if (!html.trim()) {
+                output.value = '';
+                return;
+            }
+            html = stripStyleScript(html);
+            if (ready && turndown) {
+                let cleaned = html;
+                // Pembersihan Tag Teks Standar
+                cleaned = cleaned.replace(/<(strong|b|em|i|code)\s+[^>]*>/gi, function(m, tag) {
+                    return '<' + tag + '>';
+                });
+                // MODIFIKASI: Filter Tautan (A) - Hanya ambil href & title, buang class/id
+                cleaned = cleaned.replace(/<a\s+([^>]*)>/gi, function(m, attrs) {
+                    let h = attrs.match(/href=["']([^"']*)["']/i);
+                    let t = attrs.match(/title=["']([^"']*)["']/i);
+                    let hrefStr = h ? ` href="${h[1]}"` : '';
+                    let titleStr = t ? ` title="${t[1]}"` : '';
+                    return hrefStr ? `<a${hrefStr}${titleStr}>` : '<a>';
+                });
+                // MODIFIKASI: Filter Gambar (IMG) - Hanya ambil src, alt & title, buang class/style
+                cleaned = cleaned.replace(/<img\s+([^>]*)>/gi, function(m, attrs) {
+                    let s = attrs.match(/src=["']([^"']*)["']/i);
+                    let a = attrs.match(/alt=["']([^"']*)["']/i);
+                    let t = attrs.match(/title=["']([^"']*)["']/i);
+                    let srcStr = s ? ` src="${s[1]}"` : '';
+                    let altStr = a ? ` alt="${a[1]}"` : '';
+                    let titleStr = t ? ` title="${t[1]}"` : '';
+                    return srcStr ? `<img${srcStr}${altStr}${titleStr}>` : '';
+                });
+                try {
+                    output.value = turndown.turndown(cleaned);
+                    return;
+                } catch (e) {
+                    console.warn('Turndown error, fallback:', e);
+                }
+            }
+            // Kalau Turndown mati/error, pakai regex fallback
+            output.value = fallbackConvert(html);
+        }
+        // Event: input
+        input.addEventListener('input', doConvert);
+        // --- SISIPAN EVENT LISTENER TOMBOL ---
+        if (btnClear) {
+            btnClear.addEventListener('click', function() {
+                input.value = '';
+                output.value = '';
+            });
+        }
+        if (btnCopy) {
+            btnCopy.addEventListener('click', function() {
+                if (!output.value) return; 
+                navigator.clipboard.writeText(output.value).then(function() {
+                    const originalText = btnCopy.innerHTML;
+                    btnCopy.innerHTML = 'Copied!';
+                    setTimeout(function() {
+                        btnCopy.innerHTML = originalText;
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Gagal copy:', err);
+                });
+            });
+        }
+        // -------------------------------------
+        // Inisialisasi Turndown
+        function tryInit() {
+            if (typeof TurndownService !== 'undefined') {
+                initTurndown();
+                if (input.value.trim()) doConvert();
+                return true;
+            }
+            return false;
+        }
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            if (!tryInit()) {
+                status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Turndown...';
+                var tries = 0;
+                var iv = setInterval(function() {
+                    tries++;
+                    if (tryInit()) { clearInterval(iv); return; }
+                    if (tries > 20) {
+                        clearInterval(iv);
+                        status.innerHTML = '<i class="fas fa-exclamation-triangle err"></i> Turndown tidak tersedia, pakai fallback.';
+                        ready = false;
+                        if (input.value.trim()) doConvert();
+                    }
+                }, 200);
+            }
+        } else {
+            document.addEventListener('DOMContentLoaded', function() {
+                if (!tryInit()) {
+                    status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Turndown...';
+                    var tries = 0;
+                    var iv = setInterval(function() {
+                        tries++;
+                        if (tryInit()) { clearInterval(iv); return; }
+                        if (tries > 20) {
+                            clearInterval(iv);
+                            status.innerHTML = '<i class="fas fa-exclamation-triangle err"></i> Turndown tidak tersedia, pakai fallback.';
+                            ready = false;
+                            if (input.value.trim()) doConvert();
+                        }
+                    }, 200);
+                }
+            });
+        }
+        // Expose untuk debugging
+        window.__reverseMd = { doConvert, stripStyleScript, fallbackConvert };
+    })();
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+</body></html>
