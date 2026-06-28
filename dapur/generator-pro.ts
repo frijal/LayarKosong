@@ -122,8 +122,16 @@ const cleanupOldSitemaps = async (): Promise<number> => {
     return removed;
 };
 
-// ── Distribute helper (Menulis HTML dengan Injeksi Super Kebal) ──────────
-const distribute = async (f: string, cat: string, url: string, pre?: string, modTime?: string, prevUrl?: string, nextUrl?: string) => {
+// ── Distribute helper (Menulis HTML dengan Injeksi Super Kebal + Judul Tetangga) ──────────
+const distribute = async (
+    f: string,
+    cat: string,
+    url: string,
+    pre?: string,
+    modTime?: string,
+    prevData?: { url: string, title: string },
+    nextData?: { url: string, title: string }
+) => {
     const dir = `${C.root}/${slug(cat)}`;
     await fs.mkdir(dir, { recursive: true });
 
@@ -133,14 +141,21 @@ const distribute = async (f: string, cat: string, url: string, pre?: string, mod
     const tags = catLabel.split(',').map(t => t.trim()).filter(Boolean);
     const tagsHtml = tags.map(t => `<meta property="article:tag" content="${t}">`).join('\n    ');
 
+    // ✨ SUNTIK URL BESERTA ATRIBUT 'TITLE' (Untuk Tooltip di Frontend) ✨
     let prevNextTags = '';
-    if (prevUrl) prevNextTags += `\n    <link rel="prev" href="${prevUrl}">`;
-    if (nextUrl) prevNextTags += `\n    <link rel="next" href="${nextUrl}">`;
+    if (prevData) {
+        const safeTitle = escapeAttr(prevData.title);
+        prevNextTags += `\n    <link rel="prev" href="${prevData.url}" title="Artikel Sebelumnya: ${safeTitle}">`;
+    }
+    if (nextData) {
+        const safeTitle = escapeAttr(nextData.title);
+        prevNextTags += `\n    <link rel="next" href="${nextData.url}" title="Artikel Selanjutnya: ${safeTitle}">`;
+    }
 
     // 1. Bersihkan SEMUA sisa tag lama secara total agar tidak terjadi penumpukan
     html = html
     .replace(/<meta property="article:tag" content="[^"]*">\s*/gi, '')
-    .replace(/<link rel="(prev|next)" href="[^"]*">\s*/gi, '')
+    .replace(/<link rel="(prev|next)" [^>]*>\s*/gi, '') // Regex diperluas untuk menghapus tag yang punya 'title'
     .replace(/<meta property="article:section" content="[^"]*">\s*/gi, '')
     .replace(/<meta property="og:url" content="[^"]*">\s*/gi, '')
     .replace(/<meta name="twitter:url" content="[^"]*">\s*/gi, '');
@@ -152,7 +167,6 @@ const distribute = async (f: string, cat: string, url: string, pre?: string, mod
     if (html.match(/<link rel="canonical" href="[^"]+">/i)) {
         html = html.replace(/<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${url}">${seoInjection}`);
     } else {
-        // Kalau kebetulan Canonical juga hilang, paksa bikin baru sebelum </head>
         html = html.replace('</head>', `    <link rel="canonical" href="${url}">${seoInjection}\n</head>`);
     }
 
@@ -172,7 +186,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string, mod
 // ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON M MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Diet Mode V10.2 - Absolute Injection (Old & New Articles)');
+    console.log('🚀 Diet Mode V10.3 - Absolute Injection with Tooltip Metadata');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
@@ -218,7 +232,6 @@ const distribute = async (f: string, cat: string, url: string, pre?: string, mod
     ]);
 
     const urls  = new Set(stm.split('\n').filter(Boolean));
-    // 🎯 Mengambil SEMUA file artikel yang ada di folder (tidak peduli usianya)
     const files = [...new Bun.Glob("*.html").scanSync(C.art)].filter(f => !f.startsWith('-'));
     let final: any = {};
     const flat:  any[] = [];
@@ -310,32 +323,33 @@ const distribute = async (f: string, cat: string, url: string, pre?: string, mod
     }
 
     // =============================================================================
-    // ── TAHAP 2: SUNTIK KRONOLOGI TETANGGA KE *SELURUH* ARTIKEL
+    // ── TAHAP 2: SUNTIK KRONOLOGI TETANGGA (Termasuk URL & JUDUL)
     // =============================================================================
-    console.log('✨ Menjalankan Tahap 2: Menjahit Silsilah (Prev/Next) untuk 100% Artikel...');
+    console.log('✨ Menjalankan Tahap 2: Menjahit Silsilah (URL + Judul) untuk Tooltip...');
 
     const articlesByCategory: Record<string, typeof flat> = {};
     for (const it of flat) {
         (articlesByCategory[it.category] ??= []).push(it);
     }
 
-    // Proses ini berlaku untuk semua artikel tanpa dibatasi limit!
     for (const [kategori, arts] of Object.entries(articlesByCategory)) {
         for (let i = 0; i < arts.length; i++) {
             const current = arts[i];
-            let prevUrl = ''; // Lebih Tua (Masa Lalu)
-let nextUrl = ''; // Lebih Baru (Masa Depan)
+            let prevData: { url: string, title: string } | undefined;
+            let nextData: { url: string, title: string } | undefined;
 
-if (i > 0) {
-    nextUrl = arts[i - 1].loc;
-}
-if (i < arts.length - 1) {
-    prevUrl = arts[i + 1].loc;
-}
+            // arts di-sort descending: index 0 (Terbaru), index Max (Tertua)
+            // Yang lebih baru ada di indeks sebelumnya
+            if (i > 0) {
+                nextData = { url: arts[i - 1].loc, title: arts[i - 1].title };
+            }
+            // Yang lebih tua ada di indeks setelahnya
+            if (i < arts.length - 1) {
+                prevData = { url: arts[i + 1].loc, title: arts[i + 1].title };
+            }
 
-const txtContent = await Bun.file(`${C.art}/${current.file}`).text();
-// Fungsi distribute ini dijamin akan mengeksekusi semua HTML yang tua maupun muda
-await distribute(current.file, current.category, current.loc, txtContent, current.finalModTime, prevUrl, nextUrl);
+            const txtContent = await Bun.file(`${C.art}/${current.file}`).text();
+            await distribute(current.file, current.category, current.loc, txtContent, current.finalModTime, prevData, nextData);
         }
     }
 
@@ -365,7 +379,6 @@ await distribute(current.file, current.category, current.loc, txtContent, curren
 
     await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
-    // 🔥 GENERATE ARTIKEL-LITE.JSON (Hanya ini yang di-limit 30) 🔥
     const LITE_LIMIT = 30;
     const liteDb: Record<string, any[]> = {};
     for (const kategori in final) {
@@ -548,5 +561,5 @@ for (const [filename, timeStr] of editedTodayMap.entries()) {
 await Bun.write(CACHE_TODAY_FILE, cacheOut);
     }
 
-    console.log('✅ Selesai! Seluruh rel="prev/next" dirajut murni mengikuti kebenaran absolut artikel.json.');
+    console.log('✅ Selesai! Seluruh rel="prev/next" dirajut dengan Tooltip Judul dari artikel.json.');
 })();

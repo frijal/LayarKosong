@@ -196,6 +196,9 @@ function initFloatingSearch(): void {
   });
 }
 
+/**
+ * ✨ AKTIVASI LOGIKA KEBAL SILSILAH HTML DENGAN TOOLTIP JUDUL ✨
+ */
 function initNavIcons(allData: any, currentFile: string): void {
   const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
@@ -215,17 +218,22 @@ function initNavIcons(allData: any, currentFile: string): void {
   const nextTag = document.querySelector('link[rel="next"]');
 
   let prevNextHtml = '';
+
 if (prevTag) {
-  prevNextHtml += `<a href="${prevTag.getAttribute('href')}" title="Artikel Sebelum" class="btn-emoji">⏪</a>`;
+  // Curi atribut title yang sudah disiapkan Generator, atau pakai default kalau hilang
+  const prevTitle = prevTag.getAttribute('title') || 'Artikel Sebelumnya';
+  prevNextHtml += `<a href="${prevTag.getAttribute('href')}" title="${prevTitle}" class="btn-emoji">⏪</a>`;
 }
+
 if (nextTag) {
-  prevNextHtml += `<a href="${nextTag.getAttribute('href')}" title="Artikel Sesudah" class="btn-emoji">⏩</a>`;
+  const nextTitle = nextTag.getAttribute('title') || 'Artikel Selanjutnya';
+  prevNextHtml += `<a href="${nextTag.getAttribute('href')}" title="${nextTitle}" class="btn-emoji">⏩</a>`;
 }
 
 nav.innerHTML = `
 <div class="nav-left"><a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a></div>
 <div class="nav-right">
-<a href="/" title="Home" class="btn-emoji">🏠</a>
+<a href="/" title="Beranda" class="btn-emoji">🏠</a>
 <a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
 <a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
 ${prevNextHtml}
