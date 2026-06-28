@@ -36,12 +36,8 @@ function getFullUrl(fileName: string, allData: any): string {
   return `/${cleanSlug(fileName)}`;
 }
 
-/**
- * Mengambil informasi kategori artikel.
- * Diperbarui dengan ekstraksi path URL Canonical untuk menjamin kecocokan key JSON 100%.
- */
 function getCategoryInfo(fileName: string, allData: any) {
-  // 1. Cari di Database Terdekat (Top 30 Kategori Terbaru)
+  // 1. CARI DI DATABASE (Untuk Top 30 Artikel Terbaru)
   for (const [catName, articles] of Object.entries(allData)) {
     const catArticles = articles as any[];
     if (catArticles.some((a: any) => a.id === fileName)) {
@@ -53,33 +49,21 @@ function getCategoryInfo(fileName: string, allData: any) {
     }
   }
 
-  // 2. FALLBACK 100% AMAN: Ekstrak slug kategori langsung dari URL Canonical!
-  const canonicalTag = document.querySelector('link[rel="canonical"]');
-  if (canonicalTag) {
-    const canonicalUrl = canonicalTag.getAttribute('href');
-    if (canonicalUrl) {
-      try {
-        const urlObj = new URL(canonicalUrl);
-        // Pecah URL path (misal: /sistem-terbuka/ubuntu-jogja) menjadi segmen array
-        const pathSegments = urlObj.pathname.split('/').filter(Boolean);
+  // 2. FALLBACK ULTRA AMAN: Curi slug kategori langsung dari URL Bar Browser
+  // Cara ini murni membaca 'window.location', 100% anti-gagal dan tidak peduli DOM HTML di-minify atau tidak.
+  const pathSegments = window.location.pathname.split('/').filter(Boolean);
+  if (pathSegments.length > 0) {
+    const currentSlug = pathSegments[0]; // Menangkap "sistem-terbuka", "lainnya", dll.
 
-        if (pathSegments.length > 0) {
-          const catSlug = pathSegments[0]; // Berhasil mengambil "sistem-terbuka", "lainnya", dll.
-
-          // COCOKKAN: Cari apakah slug dari URL ini terdaftar sebagai key di JSON
-          if (allData[catSlug]) {
-            const metaSection = document.querySelector('meta[property="article:section"]');
-            const prettyName = metaSection ? metaSection.getAttribute('content') : catSlug;
-
-            return {
-              name: prettyName, // Menampilkan teks cantik "Linux, Open Source" di UI
-              slug: catSlug,    // Menjaga link rujukan ke "/sistem-terbuka" tetap akurat
-              list: allData[catSlug] as any[] // Mengambil 30 artikel rekomendasi pendukung
-            };
-          }
-        }
-      } catch (e) {
-        console.error("❌ Gagal memproses URL Canonical:", e);
+    // COCOKKAN: Cari key di dalam artikel.json yang slug-nya sama dengan folder URL
+    for (const [catName, articles] of Object.entries(allData)) {
+      const jsonSlug = catName.toLowerCase().replace(/\s+/g, '-');
+      if (jsonSlug === currentSlug) {
+        return {
+          name: catName,
+          slug: jsonSlug,
+          list: articles as any[]
+        };
       }
     }
   }
