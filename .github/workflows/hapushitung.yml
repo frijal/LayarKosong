@@ -38,14 +38,14 @@ jobs:
         run: bun install
 
       # ========== INDEXNOW LANGSUNG ==========
-      - name: 🔍 IndexNow Sync
-        continue-on-error: true
-        env:
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-        run: |
-          mkdir -p mini
-          touch mini/indexnow-cache.txt
-          bun run dapur/indexnow.ts
+  #    - name: 🔍 IndexNow Sync
+  #      continue-on-error: true
+  #      env:
+  #        INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+  #      run: |
+  #        mkdir -p mini
+  #        touch mini/indexnow-cache.txt
+  #        bun run dapur/indexnow.ts
 
       # ========== DASHBOARD & METADATA ==========
       - name: 🕵️ Update Dashboard Jadwal
