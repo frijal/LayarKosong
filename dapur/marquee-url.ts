@@ -294,35 +294,36 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
-    const smUrl = item.image
-    ? item.image.replace(/\.[^/.]+$/, '') + '-sm.webp'
-    : null;
+    // Definisi 4 lapis path (dipastikan eksis di server berdasarkan janji Mas Frijal)
+    const base = item.image ? item.image.replace(/\.[^/.]+$/, '') : null;
+    const sm = base ? `${base}-sm.webp` : '/thumbnail-sm.webp';
+    const md = base ? `${base}-md.webp` : '/thumbnail-sm.webp';
+    const orig = item.image || '/thumbnail-sm.webp';
+    const fallback = '/thumbnail-sm.webp';
 
-    const thumbSrc = smUrl ?? '/thumbnail-sm.webp';
+    // Rantai Fallback untuk menghindari 404:
+    // Jika sm gagal -> md -> orig -> thumbnail-sm
+    // Kita gunakan 'this.onerror=null' di akhir untuk memutus loop error
+    const fallbackChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.src='${fallback}'};this.src='${orig}'};this.src='${md}'};this.src='${sm}'`;
 
-  const fallbackChain = item.image
-  ? `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='/thumbnail-sm.webp'};this.src='${item.image}'`
-  : `this.onerror=null;this.src='/thumbnail.webp'`;
-
-  return `
-  <div class="rel-card-mini">
-  <a href="${getFullUrl(item.id, allData)}">
-  <div class="rel-img-mini">
-  <img
-  class="lk-related-thumb"
-  src="${thumbSrc}"
-  alt="${item.title}"
-  loading="eager"
-  decoding="async"
-  fetchpriority="low"
-  onerror="${fallbackChain}">
-  </div>
-  <div class="rel-info-mini">
-  <h4>${item.title}</h4>
-  </div>
-  </a>
-  </div>
-  `;
+    return `
+    <div class="rel-card-mini">
+    <a href="${getFullUrl(item.id, allData)}">
+    <div class="rel-img-mini">
+    <img
+    class="lk-related-thumb"
+    src="${sm}"
+    alt="${item.title}"
+    loading="lazy"
+    decoding="async"
+    onerror="this.onerror=null; ${fallbackChain}">
+    </div>
+    <div class="rel-info-mini">
+    <h4>${item.title}</h4>
+    </div>
+    </a>
+    </div>
+    `;
   }).join('');
 }
 
