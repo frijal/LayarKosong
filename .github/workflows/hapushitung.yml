@@ -50,7 +50,6 @@ jobs:
       # ========== DASHBOARD & METADATA ==========
       - name: 🕵️ Update Dashboard Jadwal
         run: |
-          mkdir -p sementara
           bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
           bun run dapur/metadata-audit.ts
           cp -u artikel/artikel.json sementara/
