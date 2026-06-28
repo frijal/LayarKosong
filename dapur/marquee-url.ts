@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * marquee-url.ts v7.4 (Ultra-Resilient + Pure HTML Link Rel Navigation Core)
+ * marquee-url.ts v7.5 (Resilient Core - Canonical URL Path Extraction Fallback)
  * =================================================================================
  */
 
@@ -38,6 +38,7 @@ function getFullUrl(fileName: string, allData: any): string {
 
 /**
  * Mengambil informasi kategori artikel.
+ * Diperbarui dengan ekstraksi path URL Canonical untuk menjamin kecocokan key JSON 100%.
  */
 function getCategoryInfo(fileName: string, allData: any) {
   // 1. Cari di Database Terdekat (Top 30 Kategori Terbaru)
@@ -52,30 +53,33 @@ function getCategoryInfo(fileName: string, allData: any) {
     }
   }
 
-  // 2. FALLBACK CERDAS: Curi Kategori dari URL Canonical untuk Artikel Jadul!
+  // 2. FALLBACK 100% AMAN: Ekstrak slug kategori langsung dari URL Canonical!
   const canonicalTag = document.querySelector('link[rel="canonical"]');
   if (canonicalTag) {
     const canonicalUrl = canonicalTag.getAttribute('href');
     if (canonicalUrl) {
       try {
         const urlObj = new URL(canonicalUrl);
-        // Pecah URL (misal: /sistem-terbuka/ubuntu-jogja) menjadi array
+        // Pecah URL path (misal: /sistem-terbuka/ubuntu-jogja) menjadi segmen array
         const pathSegments = urlObj.pathname.split('/').filter(Boolean);
 
         if (pathSegments.length > 0) {
-          const catSlug = pathSegments[0]; // Mendapatkan "sistem-terbuka"
+          const catSlug = pathSegments[0]; // Berhasil mengambil "sistem-terbuka", "lainnya", dll.
 
-          // Cek apakah kategori ini ada di JSON
+          // COCOKKAN: Cari apakah slug dari URL ini terdaftar sebagai key di JSON
           if (allData[catSlug]) {
+            const metaSection = document.querySelector('meta[property="article:section"]');
+            const prettyName = metaSection ? metaSection.getAttribute('content') : catSlug;
+
             return {
-              name: catSlug, // Nama tidak masalah, yang penting JSON-nya terbaca
-              slug: catSlug,
-              list: allData[catSlug] as any[]
+              name: prettyName, // Menampilkan teks cantik "Linux, Open Source" di UI
+              slug: catSlug,    // Menjaga link rujukan ke "/sistem-terbuka" tetap akurat
+              list: allData[catSlug] as any[] // Mengambil 30 artikel rekomendasi pendukung
             };
           }
         }
       } catch (e) {
-        // Abaikan jika URL tidak valid
+        console.error("❌ Gagal memproses URL Canonical:", e);
       }
     }
   }
@@ -208,10 +212,6 @@ function initFloatingSearch(): void {
   });
 }
 
-/**
- * ✨ AKTIVASI LOGIKA KEBAL SILSILAH HTML ✨
- * Membaca eksistensi rel="prev" dan rel="next" langsung dari struktur DOM Kepala HTML.
- */
 function initNavIcons(allData: any, currentFile: string): void {
   const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
@@ -227,7 +227,6 @@ function initNavIcons(allData: any, currentFile: string): void {
     grid.appendChild(nav);
   }
 
-  // 🎯 Mengintip langsung ke atas HEAD HTML hasil injeksi pintar Generator
   const prevTag = document.querySelector('link[rel="prev"]');
   const nextTag = document.querySelector('link[rel="next"]');
 
@@ -300,7 +299,6 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const catInfo = getCategoryInfo(currentFile, allData);
   if (!catInfo) { grid.style.display = 'none'; return; }
 
-  // Memfilter artikel saat ini dan mengacak rekomendasi dari daftar terdekat
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
@@ -336,10 +334,6 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   }).join('');
 }
 
-/**
- * ✨ NAVIGASI KEYBOARD KEBAL SILSILAH ✨
- * Memanfaatkan pembacaan atribut DOM Kepala HTML secara langsung untuk navigasi horizontal Ctrl+Panah.
- */
 function initKeyboardNav(allData: any, currentFile: string): void {
   function navigateTo(direction: 'next' | 'prev' | 'up' | 'down'): void {
     if (direction === 'down') {
@@ -352,7 +346,6 @@ function initKeyboardNav(allData: any, currentFile: string): void {
       return;
     }
 
-    // 🎯 Saling sambung horizontal murni membaca link rel head
     const targetTag = document.querySelector(`link[rel="${direction}"]`);
     if (targetTag) {
       const targetUrl = targetTag.getAttribute('href');
