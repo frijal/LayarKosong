@@ -290,7 +290,7 @@ OS_VERSION=$(grep VERSION_ID /etc/os-release | cut -d <span class="syn-str">'"'<
 <span class="syn-kw">echo</span> <span class="syn-str">"[DONE] Repo openSUSE sekarang menggunakan mirror tercepat!"</span></code></pre>
             <h2>Langkah Menjalankan Skrip di Terminal</h2>
             <p>Untuk mengimplementasikan solusi performa tinggi ini, simpan baris kode di atas ke dalam sebuah berkas bernama <code>opensuse-mirror.sh</code>. Berikan izin eksekusi berkas biner ke dalam skrip tersebut dengan menjalankan perintah <code>chmod +x opensuse-mirror.sh</code> melalui aplikasi emulator terminal pilihan Anda. Setelah itu, eksekusi skrip menggunakan komando <code>sudo ./opensuse-mirror.sh</code>.</p>
-            <p>Setelah skrip berhasil menuntaskan seluruh instruksinya, Anda akan langsung merasakan perbedaan kecepatan respons saat mengunduh pustaka perangkat lunak baru maupun ketika melakukan pembaruan rutin berkala patch keamanan sistem. Hal ini dapat dibuktikan melalui eksekusi pembacaan daftar repositori aktif lewat pemangdi luar nalarn fungsi <code>zypper lr -d</code> yang akan menampilkan skema URL dinamis baru Anda.</p>
+            <p>Setelah skrip berhasil menuntaskan seluruh instruksinya, Anda akan langsung merasakan perbedaan kecepatan respons saat mengunduh pustaka perangkat lunak baru maupun ketika melakukan pembaruan rutin berkala patch keamanan sistem. Hal ini dapat dibuktikan melalui eksekusi pembacaan daftar repositori aktif lewat pemanggilan fungsi <code>zypper lr -d</code> yang akan menampilkan skema URL dinamis baru Anda.</p>
         </article>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
