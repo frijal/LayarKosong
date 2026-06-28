@@ -564,8 +564,7 @@ function extractMetaFromHtml(
  * 4. ✅ uniqueClean() (prevent duplicates in array)
  * 5. ✅ Domain filtering (only resize internal domain)
  * 6. ✅ Explicit fallback (external/invalid images)
- * 
- * Ratios:
+ * * Ratios:
  * - 16:9 (1200×675) - default/original
  * - 4:3 (1200×900) - standard thumbnail
  * - 1:1 (1000×1000) - square (Pinterest, Rich snippets)
@@ -639,15 +638,14 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
 
   const articleUrl = meta.articleUrl;
 
-  const articleId     = `${articleUrl}#article`;
-  const imageId       = `${articleUrl}#primaryimage`;
-  const breadcrumbId  = `${articleUrl}#breadcrumb`;
-  const websiteId     = `${cleanBaseUrl}/#website`;
-  const orgId         = `${cleanBaseUrl}/#organization`;
-  const logoId        = `${cleanBaseUrl}/#logo`;
-  // ===== PERBAIKAN: Person ID rapi =====
-  const personId      = `${cleanBaseUrl}/#fakhrul-rijal`;
-  const authorImageId = `${cleanBaseUrl}/#author-image`;
+  const articleId      = `${articleUrl}#article`;
+  const imageId        = `${articleUrl}#primaryimage`;
+  const breadcrumbId   = `${articleUrl}#breadcrumb`;
+  const websiteId      = `${cleanBaseUrl}/#website`;
+  const orgId          = `${cleanBaseUrl}/#organization`;
+  const logoId         = `${cleanBaseUrl}/#logo`;
+  const personId       = `${cleanBaseUrl}/#fakhrul-rijal`;
+  const authorImageId  = `${cleanBaseUrl}/#author-image`;
 
   const keywords = uniqueClean([
     ...meta.articleTags,
@@ -886,6 +884,8 @@ async function main() {
 
     const signature = `<noscript>${SIGNATURE_KEY}_${new Date().toISOString().slice(0, 10)}</noscript>`;
 
+    console.log("🚀 Memulai Article/Blog Schema Injection V4 ULTIMATE...");
+
     for (const [category, articles] of Object.entries(data)) {
       const catSlug = slugify(category);
 
@@ -928,22 +928,22 @@ async function main() {
           results.totalVideos += ytIds.length;
         }
 
-        const videoLabel = ytIds.length > 0 ? ` 🎬 ×${ytIds.length}` : "";
-        console.log(`✅ Injected${videoLabel}: ${htmlPath}`);
+        // Baris log per-file yang bikin spam telah dihapus
       }
     }
 
     console.log(`
-🚀 Article/Blog Schema Injection Selesai!
-📦 Version: V4 ULTIMATE (All Protections)
-🆕 Baru diproses    : ${results.changed}
-🎬 Artikel + video  : ${results.withVideo} (${results.totalVideos} VideoObject)
-⏭️ Di-skip          : ${results.skipped}
-❌ File hilang      : ${results.missing}
-🔁 Mode force       : ${FORCE_RESCHEMA ? "aktif" : "nonaktif"}
-🏷️ Article type     : ${SCHEMA_ARTICLE_TYPE}
-🧑 Avatar author    : ${AUTHOR_IMAGE_URL}
-🔎 Search template  : ${searchUrlTemplate}`);
+✅ SELESAI: Schema Injection
+📦 Version: V4 ULTIMATE (Silent/Clean Log)
+-------------------------------------
+🆕 Baru diproses   : ${results.changed} artikel
+🎬 Memiliki video  : ${results.withVideo} artikel (${results.totalVideos} embed terdeteksi)
+⏭️ Di-skip         : ${results.skipped} artikel
+❌ File hilang     : ${results.missing} file
+-------------------------------------
+🔁 Mode force      : ${FORCE_RESCHEMA ? "AKTIF" : "NONAKTIF"}
+🏷️ Article type    : ${SCHEMA_ARTICLE_TYPE}
+`);
 
   } catch (err) {
     console.error("❌ Error fatal:", err);
