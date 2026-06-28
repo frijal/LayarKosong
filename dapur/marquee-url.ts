@@ -294,34 +294,28 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
 
   grid.innerHTML = related.map((item: any) => {
-    const base = item.image ? item.image.replace(/\.[^/.]+$/, '') : null;
-    const sm = base ? `${base}-sm.webp` : '/thumbnail-sm.webp';
-    const md = base ? `${base}-md.webp` : '/thumbnail-sm.webp';
-    const orig = item.image || '/thumbnail-sm.webp';
-    const fallback = '/thumbnail-sm.webp';
+    // Karena fix -rg sudah dijamin ada, langsung sikat ke target
+    const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : '/thumbnail-sm.webp';
 
-    const fallbackChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.src='${fallback}'};this.src='${orig}'};this.src='${md}'};this.src='${sm}'`;
-
-    return `
-    <div class="rel-card-mini">
-    <a href="${getFullUrl(item.id, allData)}">
-    <div class="rel-img-mini">
-    <img
-    class="lk-related-thumb"
-    src="${sm}"
-    alt="${item.title}"
-    width="120"
-    height="100"
-    loading="lazy"
-    decoding="async"
-    onerror="this.onerror=null; ${fallbackChain}">
-    </div>
-    <div class="rel-info-mini">
-    <h4>${item.title}</h4>
-    </div>
-    </a>
-    </div>
-    `;
+  return `
+  <div class="rel-card-mini">
+  <a href="${getFullUrl(item.id, allData)}">
+  <div class="rel-img-mini">
+  <img
+  class="lk-related-thumb"
+  src="${rg}"
+  alt="${item.title}"
+  width="120"
+  height="100"
+  loading="lazy"
+  decoding="async">
+  </div>
+  <div class="rel-info-mini">
+  <h4>${item.title}</h4>
+  </div>
+  </a>
+  </div>
+  `;
   }).join('');
 }
 
