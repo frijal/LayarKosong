@@ -186,7 +186,7 @@ const distribute = async (
 // ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Diet Mode V10.4 - Clean Title Tooltip Injection (with sitemap.txt fix)');
+    console.log('🚀 Komposisi Blog V10.4 - Clean Title Tooltip Injection (with sitemap.txt fix)');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
