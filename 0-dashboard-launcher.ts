@@ -62,6 +62,13 @@ const scripts: ScriptItem[] = [
     dangerLevel: "warning"
 },
 {
+    id: "ganti teks dalam file",
+    title: "File Text Replacement",
+    description: "ganti text dalam file.",
+    file: "0-ganti-text.ts",
+    dangerLevel: "warning"
+},
+{
     id: "dynamic-html-cleaner",
     title: "Dynamic HTML Cleaner",
     description: "Scan komponen HTML dalam satu file, lalu hapus elemen yang checkbox-nya dinonaktifkan.",
