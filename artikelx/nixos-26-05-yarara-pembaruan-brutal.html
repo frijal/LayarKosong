@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NixOS 26.05 Yarara: Pembaruan Masif Pecinta Linux - Layar Kosong</title>
+    <meta name="description" content="NixOS 26.05 Yarara resmi dirilis dengan perombakan brutal! Dari transisi sistem boot ke systemd hingga GNOME 50, simak ulasan lengkap fitur barunya di sini.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/nixos-26-05-yarara-pembaruan-brutal">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="NixOS 26.05, Yarara, Linux distro, Nixpkgs, GNOME 50, systemd boot, update Linux terbaru, sistem operasi deklaratif">
+    <meta name="promphint" content="Apa saja pembaruan utama di NixOS 26.05 Yarara? | Rilis ini membawa transisi boot menggunakan systemd, antarmuka GNOME 50, GCC 15, dan penambahan lebih dari 20.000 paket perangkat lunak baru.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/nixos-26-05-yarara-pembaruan-brutal">
+    <meta property="og:title" content="NixOS 26.05 Yarara: Pembaruan Masif Pecinta Linux">
+    <meta property="og:description" content="Pembaruan NixOS 26.05 Yarara membawa lebih dari 20 ribu paket aplikasi baru dan optimasi GCC 15. Pelajari mengapa distro Linux ini semakin digemari developer.">
+    <meta property="og:updated_time" content="2026-06-16T08:53:11.163Z">
+    <meta property="og:image" content="https://dalam.web.id/img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674.webp">
+    <meta property="og:image:alt" content="NixOS 26.05 Yarara: Pembaruan Masif Pecinta Linux">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="683">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/nixos-26-05-yarara-pembaruan-brutal">
+    <meta name="twitter:title" content="NixOS 26.05 Yarara: Pembaruan Masif Pecinta Linux">
+    <meta name="twitter:description" content="Pengguna Linux wajib tahu! Rilis terbaru NixOS 26.05 Yarara mengubah standar sistem operasi deklaratif dengan boot systemd dan antarmuka GNOME 50 yang epik.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674.webp">
+    <meta name="twitter:image:alt" content="NixOS 26.05 Yarara: Pembaruan Masif Pecinta Linux">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Teknologi">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Open Source">
+    <meta property="article:published_time" content="2026-06-16T08:48:24.000Z">
+    <meta property="article:modified_time" content="2026-06-16T08:53:11.163Z">
+    <!-- Meta Title (Maks 60 Karakter, Range 50-60) -->
+    <!-- Deskripsi 1: Standard Meta Description (150-160 Karakter) -->
+    <!-- Open Graph (OG) Tags -->
+     <!-- 50 Karakter -->
+     <!-- 158 Karakter -->
+    <!-- Twitter Card Tags -->
+     <!-- 51 Karakter -->
+     <!-- 156 Karakter -->
+    <!-- Custom & Additional Meta -->
+    <!-- Canonical -->
+    <style>
+        /* CSS Variables untuk Tema Terang dan Gelap */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-muted: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-color: #8b5cf6;
+            --link-color: #3b82f6;
+            --border-color: #cbd5e1;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --quote-bg: #f8fafc;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #020617;
+                --bg-surface: #0f172a;
+                --bg-muted: #1e293b;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --accent-color: #a78bfa;
+                --link-color: #60a5fa;
+                --border-color: #334155;
+                --code-bg: #0b0f19;
+                --quote-bg: #1e293b;
+            }
+        }
+        /* Reset & Base Typography (Unit full rem) */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 1rem;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Layout Container (Mobile First) */
+        .container {
+            width: 100%;
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            background-color: var(--bg-surface);
+            min-height: 100vh;
+        }
+        /* Typography Styling */
+        h1, h2, h3 {
+            color: var(--text-main);
+            line-height: 1.3;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 1rem;
+            letter-spacing: -0.025em;
+        }
+        h2 {
+            font-size: 1.75rem;
+            border-bottom: 0.125rem solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.375rem;
+        }
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+        strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            margin-left: 1.5rem;
+            font-size: 1.125rem;
+            list-style-type: square;
+        }
+        li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+        blockquote {
+            border-left: 0.375rem solid var(--accent-color);
+            background-color: var(--quote-bg);
+            padding: 1.25rem 1.5rem;
+            margin: 2.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-style: italic;
+            color: var(--text-main);
+            font-size: 1.125rem;
+        }
+        /* LCP Image Optimization & Media */
+        figure {
+            margin: 2.5rem 0;
+            width: 100%;
+            background-color: var(--bg-muted);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 0.0625rem solid var(--border-color);
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9; /* Mencegah Layout Shift (CLS) saat dimuat */
+            object-fit: cover;
+            background-color: var(--bg-muted);
+        }
+        figcaption {
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            padding: 0.875rem 1rem;
+            font-style: italic;
+            border-top: 0.0625rem solid var(--border-color);
+            background-color: var(--bg-body);
+        }
+        /* Code Block */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0.5rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 0.0625rem solid var(--border-color);
+            line-height: 1.6;
+        }
+        code {
+            font-family: inherit;
+        }
+        /* Header & Footer */
+        header {
+            margin-bottom: 3.5rem;
+            text-align: center;
+        }
+            footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            text-align: center;
+        }
+        .footer-content {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div id="iposbrowser"></div><h1>NixOS 26.05 Yarara: Pembaruan Masif Pecinta Linux</h1>
+    </header>
+    <main>
+        <article>
+            <p>Kalau belakangan ini kamu lagi asyik <em>ngoprek</em> Linux atau sering dengar kasak-kusuk soal <strong>NixOS</strong> di forum developer, rilis minggu ini jelas memberikan alasan yang sangat solid untuk duduk dan memperhatikan. Akhir Mei lalu, tepatnya pada 30 Mei 2026, proyek ini meluncurkan <strong>NixOS 26.05 "Yarara"</strong>. </p>
+            <p>Ini bukan sekadar <em>update</em> tambal sulam yang isinya <em>bug fix</em> minor. Yarara membawa serangkaian pembaruan fundamental yang menjadikannya salah satu lompatan salah satu yang masif dan salah satu yang dinanti dalam sejarah proyek ini. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Komunitas <em>open-source</em> terus membicarakannya sejak hari pertama peluncuran. Lalu, apa sebenarnya yang bikin rilis ini begitu spesial? Mari kita bedah pakai bahasa manusia yang gampang dicerna.</p>
+            <!-- LCP Image (Elemen Pertama LCP, dengan fetchpriority dan loading eager untuk Core Web Vitals) -->
+            <figure>
+                <img src="https://dalam.web.id/img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674.webp" alt="Ilustrasi konseptual ekosistem NixOS 26.05 Yarara yang ditenagai ribuan paket aplikasi modern" fetchpriority="high" loading="eager">
+                <figcaption>Rilis NixOS 26.05 Yarara memantapkan posisinya sebagai raja OS Linux deklaratif paling mutakhir tahun ini.</figcaption>
+            </figure>
+            <h2>🔧 Rombak Total Sistem Booting</h2>
+            <p>Salah satu perubahan terbesar di versi ini adalah sesuatu yang mungkin tidak akan pernah dilihat langsung oleh pengguna kasual, tetapi efeknya akan sangat terasa setiap kali kamu menekan tombol <em>power</em> komputermu.</p>
+            <p>NixOS kini secara <em>default</em> menggunakan <strong>systemd</strong> untuk menggerakkan proses <em>early boot</em> mereka (fase ini sering disebut sebagai Stage 1 atau <em>initrd</em>). Sebelumnya, OS ini sangat bergantung pada kumpulan <em>shell script</em> lawas untuk menangani fase inisialisasi awal. Transisi ke <em>systemd</em> berarti proses <em>booting</em> sekarang menjadi lebih terpadu, jauh lebih cepat, dan yang terpenting: lebih tangguh.</p>
+            <p>Ketika sistem mengalami <em>crash</em> atau gagal masuk ke desktop, proses <em>troubleshooting</em> (pencarian masalah) menjadi jauh lebih masuk akal dan mudah dilacak. Ini adalah jenis <em>upgrade</em> fondasi yang bekerja diam-diam namun membayarmu dengan kenyamanan setiap hari.</p>
+            <h2>🖥️ Estetika GNOME 50 yang Memanjakan Mata</h2>
+            <p>Bagi kalian kaum pemuja <em>Desktop Environment</em>, rilis ini membawa kabar manis. NixOS 26.05 Yarara berlayar dengan membawa <strong>GNOME 50 "Tokyo"</strong>, versi paling <em>fresh</em> dari lingkungan <em>desktop</em> terpopuler di jagat Linux.</p>
+            <p>GNOME 50 menyuguhkan polesan antarmuka yang sangat matang. Beberapa peningkatan signifikannya ada di fitur aksesibilitas yang jauh lebih responsif dan pengelolaan layar ganda (<em>multi-monitor handling</em>) yang akhirnya terasa mulus tanpa drama <em>glitch</em>. Kalau kamu sebelumnya menggunakan GNOME 48 atau 49, lompatan visual dan performa ke versi 50 ini benar-benar terasa lebih "mahal" dan rapi.</p>
+            <h2>📦 Ledakan 20.000+ Paket Aplikasi Baru</h2>
+            <p>Nah, di sinilah segala sesuatunya menjadi lebih dinamis. Repositori paket raksasa milik mereka, <strong>Nixpkgs</strong>, mendapatkan peningkatan kapasitas yang sangat besar pada rilis ini.</p>
+            <ul>
+                <li>Ada penambahan <strong>20.442 paket perangkat lunak baru</strong>. Ya, kamu tidak salah baca, dua puluh ribu aplikasi baru siap diinstal.</li>
+                <li>Lebih dari <strong>20.000 paket lama</strong> mendapatkan pembaruan versi mutakhir.</li>
+                <li>Sebagai langkah bersih-bersih, sekitar <strong>17.532 paket usang atau terbengkalai dihapus</strong> demi menjaga ekosistem tetap aman, ramping, dan bebas dari kerentanan <em>security</em>.</li>
+            </ul>
+            <p>Pesan moralnya? Apa pun perangkat lunak spesifik (atau <em>tools coding</em> langka) yang kamu butuhkan untuk bekerja hari ini, probabilitas bahwa <em>software</em> tersebut sudah nangkring dengan manis di dalam repositori Nixpkgs menjadi sangat tinggi.</p>
+            <h2>⚙️ GCC 15 dan Puluhan Modul Sistem Baru</h2>
+            <p>Kalau kamu bekerja sebagai <em>developer</em> atau <em>SysAdmin</em> yang memuja gaya konfigurasi deklaratif ala NixOS, <em>update</em> ini terasa seperti hadiah ulang tahun yang dipercepat. Yarara mengintegrasikan <strong>GCC 15</strong>, yang otomatis membawa dukungan standar bahasa pemrograman C/C++ yang lebih superior serta optimasi kode yang jauh lebih efisien untuk proses <em>compiling</em>.</p>
+            <p>Tak hanya itu, sistem operasi ini juga memboyong <strong>85 modul sistem baru</strong>. Modul-modul ini mencakup berbagai utilitas super keren yang bisa langsung kamu aktifkan lewat konfigurasi, mulai dari alat tanda tangan dokumen <em>self-hosted</em>, kontrol kipas pendingin khusus untuk mesin <em>Framework Laptops</em>, hingga dukungan <em>hosting</em> foto terenkripsi secara <em>end-to-end</em>.</p>
+<pre><code># Contoh simplifikasi konfigurasi modul deklaratif NixOS
+{ config, pkgs, ... }:
+{
+  # Mengaktifkan systemd untuk proses initrd yang baru
+  boot.initrd.systemd.enable = true;
+  # Memastikan GNOME 50 aktif sebagai desktop
+  services.xserver.desktopManager.gnome.enable = true;
+}
+</code></pre>
+            <h2>⚠️ Lampu Merah untuk Pengguna Mac Intel Lawas</h2>
+            <p>Di balik semua kabar gembira ini, ada satu pil pahit yang harus ditelan bagi para veteran perangkat keras Apple. Jika kamu masih iseng menjalankan Nix di mesin Mac dengan prosesor Intel jadul, bersiaplah: <strong>ini adalah rilis dukungan terakhir untuk <em>platform</em> kamu.</strong></p>
+            <p>Setelah NixOS 26.05 ini mencapai masa <em>end-of-life</em> (habis masa dukungannya) pada akhir tahun 2026 nanti, dukungan resmi untuk arsitektur <code>x86_64-darwin</code> akan dicabut sepenuhnya dari proyek. Namun tenang saja, untuk kamu yang sudah melakukan <em>upgrade</em> ke Mac berbasis Apple Silicon (seri M), perangkatmu tetap didukung secara penuh tanpa batas.</p>
+            <blockquote>
+                "NixOS bukan sekadar distro Linux; ia adalah paradigma baru dalam cara kita mengelola sistem operasi. Reprodusibilitas adalah raja."
+            </blockquote>
+            <p>Secara keseluruhan, NixOS 26.05 Yarara adalah rilis yang luar biasa solid dan membuktikan kedigdayaan kerja kolektif dari hampir 3.000 kontributor global. Apakah kamu sudah bermigrasi sepenuhnya ke ekosistem NixOS, atau baru sebatas meliriknya dari kejauhan? Ini adalah momen yang salah satu yang pas untuk mulai ikut campur! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
+        </article>
+        <!-- Elemen Wajib Sesuai Aturan (Tanpa modifikasi styling inline) -->
+        <div id="related-articles-grid"></div><div id="response"></div>
+    </main>
+    <!-- Footer Struktur E-E-A-T Sesuai Format -->
+    <footer>
+        <div class="footer-content">
+            Artikel dari <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">Frijal</a> di <a href="https://dalam.web.id/" target="_blank" rel="noopener noreferrer">Layar Kosong</a> pada 16 Juni 2026. Analisis teknis ini mengacu pada pengumuman rilis dan pengujian arsitektur <em>open-source</em> proyek NixOS edisi Yarara.
+        </div>
+    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
