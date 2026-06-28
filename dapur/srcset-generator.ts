@@ -23,8 +23,11 @@ const TARGET_MEDIUM  = 960;
 const TARGET_MOBILE  = 720;
 
 // ========== CACHE (AUTO-RESET) ==========
+// Kosongkan cache di memori
 let optimizedCache = new Set<string>();
 
+// Kosongkan file fisik (touch / overwrite) setiap kali script jalan
+// supaya hantu gambar lama hilang dan tidak menipu skrip Tukang Sapu
 mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 writeFileSync(CACHE_FILE, "");
 
@@ -119,6 +122,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     const willHaveSrcset = hasMobile;
     let changed = false;
 
+    // Injeksi Atribut Intrinsik Anti-CLS
     const currentW = $img.attr("width");
     const currentH = $img.attr("height");
     if (currentW !== desktopW.toString() || currentH !== desktopH.toString()) {
@@ -133,6 +137,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     srcsetCandidates.push(`${webDesktopUrl} ${desktopW}w`);
 
     const srcsetValue = willHaveSrcset ? srcsetCandidates.join(", ") : "";
+    // Asumsi padding 20px di kiri dan kanan kontainer, jadi 100vw - 40px
     const sizesValue  = willHaveSrcset
     ? `(max-width: ${desktopW + 40}px) calc(100vw - 40px), ${desktopW}px`
     : "";
@@ -146,6 +151,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       }
 
       if (willHaveSrcset) {
+        // 🔥 UPDATE: Media Queries dinamis menyesuaikan lebar Mobile dan Medium
         const mediumSource = hasMedium
         ? `\n  <source type="image/webp" media="(min-width: ${mobileW + 1}px) and (max-width: ${mediumW}px)" srcset="${webMediumUrl}">`
         : "";
@@ -222,7 +228,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         // Menggunakan prosesor dan parameter yang sama dengan mode infografis lainnya
         await sharp(inputBuffer)
         .rotate()
-        .resize(150, 150, { fit: 'cover' }) // Tetap dicrop kotak untuk keselarasan grid
+        .resize(150, null, { withoutEnlargement: true }) // 🔥 Lebar 150px, tinggi auto-proporsional
         .sharpen({ sigma: 0.4 })             // Ditajamkan sedikit lebih agresif karena ukurannya kecil
         .webp({
           quality: 88,                       // Kualitas dinaikkan sedikit dari 60 ke 88 agar teks mikro tetap terbaca
