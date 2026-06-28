@@ -186,7 +186,7 @@ const distribute = async (
 // ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Diet Mode V10.4 - Clean Title Tooltip Injection');
+    console.log('🚀 Diet Mode V10.4 - Clean Title Tooltip Injection (with sitemap.txt fix)');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
@@ -227,8 +227,8 @@ const distribute = async (
 
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
-                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
-                                              Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
+                                                      Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
+                                                      Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
     const urls  = new Set(stm.split('\n').filter(Boolean));
@@ -388,7 +388,7 @@ const distribute = async (
     for (const it of flat) {
         const [txt, size] = await Promise.all([
             Bun.file(`${C.art}/${it.file}`).text(),
-                                              imgSize(it.img)
+                                                      imgSize(it.img)
         ]);
         globalSizes.set(it.img, size);
 
@@ -447,6 +447,10 @@ sitemapByCategory.get(catSlug)!.push(`
     await Promise.all([
         ...categorySitemapItems.map(it => Bun.write(`${C.root}/${it.fileName}`, it.content)),
                       Bun.write(`${C.root}/sitemap.xml`, finalSitemapIndexContent),
+                      
+                      // 🔥 INI DIA FIX-NYA: Simpan urls Set kembali ke sitemap.txt
+                      Bun.write(`${C.root}/sitemap.txt`, Array.from(urls).sort().join('\n') + '\n'),
+                      
                       Bun.write(`${C.root}/rss.xml`, buildRss('Layar Kosong', flat.slice(0, C.limit), `${C.base}/rss.xml`, 'RSS Feed artikel terbaru dari Layar Kosong', globalSizes)),
                       Bun.write(`${C.root}/atom.xml`, buildAtom('Layar Kosong', flat.slice(0, C.limit), `${C.base}/atom.xml`, 'Atom Feed artikel terbaru dari Layar Kosong', globalSizes)),
     ]);
@@ -490,7 +494,7 @@ sitemapByCategory.get(catSlug)!.push(`
             .replace(/%%DESCRIPTION%%/g, seoCategoryLabel)
             .replace(/%%CATEGORY_NAME%%/g, seoCategoryLabel)
             .replace(/%%RSS_URL%%/g,               rUrl)
-            .replace(/%%ATOM_URL%%/g,              rAtomUrl)
+            .replace(/%%ATOM_URL%%/g,               rAtomUrl)
             .replace(/%%CANONICAL_URL%%/g,         `${C.base}/${s}`)
             .replace(/%%ICON%%/g,                  cat.match(/(\p{Emoji})/u)?.[0] || '📁')
             .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${seoCategoryLabel}</span>`)
