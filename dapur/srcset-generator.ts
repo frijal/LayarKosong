@@ -8,7 +8,7 @@ import sharp from "sharp";
 const BASE_URL = "https://dalam.web.id";
 const SITEMAP_FILE = "sitemap.txt";
 const CACHE_FILE = "mini/srcset-gambar.txt";
-const ARTIKEL_LITE = "artikel-lite.json"; // 🔥 Ditambahkan untuk target -rg
+const ARTIKEL_LITE = "artikel-lite.json"; 
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
 
@@ -23,11 +23,8 @@ const TARGET_MEDIUM  = 960;
 const TARGET_MOBILE  = 720;
 
 // ========== CACHE (AUTO-RESET) ==========
-// Kosongkan cache di memori
 let optimizedCache = new Set<string>();
 
-// Kosongkan file fisik (touch / overwrite) setiap kali script jalan
-// supaya hantu gambar lama hilang dan tidak menipu skrip Tukang Sapu
 mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 writeFileSync(CACHE_FILE, "");
 
@@ -49,7 +46,7 @@ function ensureDirForFile(filePath: string) {
   try { mkdirSync(dir, { recursive: true }); } catch {}
 }
 
-// 🔥 HELPER: Ambil semua gambar dari artikel-lite.json (Mendukung struktur 30x7 atau dinamis)
+// 🔥 HELPER: Ambil semua gambar dari artikel-lite.json
 function loadRelatedImages(): Set<string> {
   const imageSet = new Set<string>();
   if (!existsSync(ARTIKEL_LITE)) {
@@ -60,7 +57,6 @@ function loadRelatedImages(): Set<string> {
   try {
     const data = JSON.parse(readFileSync(ARTIKEL_LITE, "utf-8"));
 
-    // Pencarian rekursif untuk properti 'image' agar tahan banting dari perubahan struktur JSON
     const extractImages = (obj: any) => {
       if (Array.isArray(obj)) {
         obj.forEach(extractImages);
@@ -81,6 +77,56 @@ function loadRelatedImages(): Set<string> {
   }
 }
 const relatedImages = loadRelatedImages();
+
+// 🔥 FUNGSI MANDIRI: Pabrik khusus -rg
+// Tidak peduli artikelnya di-skip atau tidak, kalau ada di JSON, sikat!
+async function generateRgImages() {
+  if (relatedImages.size === 0) return;
+  console.log(`\n🚀 Memulai pabrik -rg untuk ${relatedImages.size} gambar...`);
+  
+  let count = 0;
+  for (const cleanPath of relatedImages) {
+    const fullPathSource = path.join(process.cwd(), cleanPath);
+    
+    if (!existsSync(fullPathSource)) {
+      console.warn(`⚠️  Sumber asli hilang untuk -rg: ${fullPathSource}`);
+      continue;
+    }
+
+    const dirName      = path.dirname(cleanPath);
+    const ext          = path.extname(cleanPath);
+    const baseNameSafe = path.basename(cleanPath, ext).replace(FORBIDDEN_CHARS, "-");
+    
+    const rgPath = path.join(dirName, `${baseNameSafe}-rg.webp`);
+    const absRgPath = path.join(process.cwd(), rgPath);
+
+    // Cek and Skip: Cuma bikin kalau belum ada
+    if (!existsSync(absRgPath)) {
+      ensureDirForFile(absRgPath);
+      try {
+        const inputBuffer = await file(fullPathSource).arrayBuffer().then(b => Buffer.from(b));
+        
+        await sharp(inputBuffer)
+        .rotate()
+        .resize(150, null, { withoutEnlargement: true }) // Lebar 150px, tinggi proporsional
+        .sharpen({ sigma: 0.4 })
+        .webp({
+          quality: 88,
+          preset: 'text',
+          smartSubsample: true,
+          effort: 6
+        })
+        .toFile(absRgPath);
+
+        console.log(`  ✨ RG Thumb Dibuat: ${rgPath}`);
+        count++;
+      } catch (e: any) {
+        console.error(`❌ Sharp Error saat membuat -rg untuk ${cleanPath}: ${e?.message || e}`);
+      }
+    }
+  }
+  console.log(`✅ Pabrik -rg selesai. Dibuat baru: ${count} file.\n`);
+}
 
 // ========== CORE ==========
 async function processHtmlFile(htmlPath: string): Promise<string> {
@@ -122,7 +168,6 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     const willHaveSrcset = hasMobile;
     let changed = false;
 
-    // Injeksi Atribut Intrinsik Anti-CLS
     const currentW = $img.attr("width");
     const currentH = $img.attr("height");
     if (currentW !== desktopW.toString() || currentH !== desktopH.toString()) {
@@ -137,7 +182,6 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     srcsetCandidates.push(`${webDesktopUrl} ${desktopW}w`);
 
     const srcsetValue = willHaveSrcset ? srcsetCandidates.join(", ") : "";
-    // Asumsi padding 20px di kiri dan kanan kontainer, jadi 100vw - 40px
     const sizesValue  = willHaveSrcset
     ? `(max-width: ${desktopW + 40}px) calc(100vw - 40px), ${desktopW}px`
     : "";
@@ -151,7 +195,6 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       }
 
       if (willHaveSrcset) {
-        // 🔥 UPDATE: Media Queries dinamis menyesuaikan lebar Mobile dan Medium
         const mediumSource = hasMedium
         ? `\n  <source type="image/webp" media="(min-width: ${mobileW + 1}px) and (max-width: ${mediumW}px)" srcset="${webMediumUrl}">`
         : "";
@@ -216,30 +259,6 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const dirName      = path.dirname(cleanPath);
       const ext          = path.extname(cleanPath);
       const baseNameSafe = path.basename(cleanPath, ext).replace(FORBIDDEN_CHARS, "-");
-
-      // 🔥 LOGIKA BARU: Generate -rg.webp (Hanya jika terdaftar di artikel-lite.json)
-      const isRelatedTarget = relatedImages.has(cleanPath);
-      const rgPath = path.join(dirName, `${baseNameSafe}-rg.webp`);
-      const absRgPath = path.join(process.cwd(), rgPath);
-
-      if (isRelatedTarget && !existsSync(absRgPath)) {
-        ensureDirForFile(absRgPath);
-
-        // Menggunakan prosesor dan parameter yang sama dengan mode infografis lainnya
-        await sharp(inputBuffer)
-        .rotate()
-        .resize(150, null, { withoutEnlargement: true }) // 🔥 Lebar 150px, tinggi auto-proporsional
-        .sharpen({ sigma: 0.4 })             // Ditajamkan sedikit lebih agresif karena ukurannya kecil
-        .webp({
-          quality: 88,                       // Kualitas dinaikkan sedikit dari 60 ke 88 agar teks mikro tetap terbaca
-          preset: 'text',                    // Mode optimasi teks
-          smartSubsample: true,              // Anti-blur pada garis kontras teks infografis
-          effort: 6                          // Kompresi maksimal lambat (baca: hasil paling efisien)
-        })
-        .toFile(absRgPath);
-
-        console.log(`  ✨ RG Thumb Baru Dibuat (Infografis Mode): ${rgPath}`);
-      }
 
       const needsMobile = actualWidth > TARGET_MOBILE;
       const needsMedium = actualWidth > TARGET_MEDIUM;
@@ -363,6 +382,9 @@ async function main() {
 
   console.log(`📄 sitemap.txt lama : ${sitemapUrls.size} URL terdaftar\n`);
 
+  // 🔥 EKSEKUSI PABRIK -RG DI SINI! (Dijalankan secara independen)
+  await generateRgImages();
+
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
       return readdirSync(cat)
@@ -379,7 +401,7 @@ async function main() {
     const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
     if (sitemapUrls.has(url)) {
       results.skipped++;
-      continue;
+      continue; // Nah ini dia biang keroknya sebelumnya!
     }
     const result = await processHtmlFile(htmlPath);
     if (result === "processed") { results.processed++; console.log(`✅ Processed: ${htmlPath}`); }
