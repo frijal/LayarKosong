@@ -21,7 +21,6 @@
   --toc-opacity: 0.7;
   --toc-hover-opacity: 1;
   --toc-accent: #007bff; /* Sesuaikan dengan var(--accent) milikmu */
-  --marquee-speed: 2720s;
 }
 
 /* ==========================================================
@@ -169,7 +168,7 @@ border-color: var(--accent);
   width: 100%;
   left: 0;
   top: 100%;
-  max-height: 400px;
+  max-height: 640px;
   overflow-y: auto;
   z-index: 999;
   color: var(--text-main);
@@ -285,78 +284,6 @@ font-size: 12.5px;
 margin-left: 25px;
 font-size: 11.5px;
 opacity: 0.5; /* H4 dibuat lebih subtle */
-}
-
-/* ========================
- * 5. MARQUEE & FLOATING NAV (BOTTOM)
- * ======================== */
-/* Marquee */
-#related-marquee-section {
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;
-z-index: 990;
-overflow: hidden;
-pointer-events: none;
-}
-
-#related-marquee-container {
-overflow: hidden;
-white-space: nowrap;
-display: flex;
-padding: 0;
-}
-
-/* 🔥 TAMBAHAN BARU: Track pembungkus untuk dua kelompok teks */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  /* Durasi statis 30 detik, eksekusi super ringan via GPU */
-  animation: marquee-scroll var(--marquee-speed) linear infinite;
-  will-change: transform;
-  pointer-events: auto;
-}
-
-#related-marquee-container:hover .marquee-track {
-animation-play-state: paused;
-}
-
-#related-marquee-container .marquee-content {
-display: flex;
-align-items: center;
-padding: 12px 0;
-padding-right: 30px; /* Jarak antara kelompok teks asli dan kloningan */
-}
-
-#related-marquee-container a {
-color: inherit;
-text-decoration: none;
-margin-right: 30px; /* Jarak antar link artikel */
-font-weight: 400;
-font-size: 0.85em;
-opacity: 0.8;
-transition: opacity 0.3s;
-}
-
-#related-marquee-container a:hover {
-opacity: 1;
-font-weight: 700;
-color: var(--accent);
-}
-
-.marquee-message {
-  margin: 0;
-  text-align: center;
-  font-style: italic;
-  padding: 8px 0;
-  color: var(--text-muted);
-}
-
-/* Inti Sulap Looping Seamless */
-@keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 /* Nav Icons (child terakhir DI DALAM #related-articles-grid) */
@@ -496,10 +423,6 @@ a:hover { opacity: 0.8; }
 }
 
 @media (max-width: 768px) {
-  :root {
-    /* Mobile: 210 detik biar gak kelamaan nunggu teks lewat */
-    --marquee-speed: 2710s;
-  }
   .floating-nav { padding-top: 16px; }
   .marquee-track { animation-duration: 20s; }
   .nav-right { gap: 8px; }

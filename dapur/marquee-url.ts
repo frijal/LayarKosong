@@ -50,15 +50,6 @@ function getCategoryInfo(fileName: string, allData: any) {
   return null;
 }
 
-function adaptMarqueeTextColor(): void {
-  const container = document.getElementById('related-marquee-container');
-  if (!container) return;
-  const bg = getComputedStyle(document.body).backgroundColor;
-  const [r, g, b] = (bg.match(/\d+/g) || ['0', '0', '0']).map(Number);
-  const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-  container.classList.toggle('theme-light', luminance > 128);
-}
-
 function registerReadTracker(): void {
   const container = document.getElementById('related-marquee-container');
   if (!container) return;
@@ -90,45 +81,6 @@ function initProgressBar(): void {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-}
-
-function initCategoryMarquee(data: any, currentFile: string): void {
-  const container = document.getElementById('related-marquee-container');
-  if (!container) return;
-
-  const catInfo = getCategoryInfo(currentFile, data);
-  if (!catInfo) return;
-
-  // 1. Ambil semua artikel terkait (kecuali yang sedang dibuka)
-  const filtered = catInfo.list.filter((i: any) => i.id !== currentFile);
-
-  // 2. Cek mana yang belum dibaca
-  const read = JSON.parse(localStorage.getItem('read_marquee_articles') || '[]');
-  const unread = filtered.filter((i: any) => !read.includes(i.id));
-
-  // 3. LOGIKA BARU: Kalau unread habis, pakai semua artikel terkait (filtered)
-  // Jadi marquee tidak akan pernah kosong
-  const displayList = (unread.length > 0) ? unread : filtered;
-
-  // Randomize list biar nggak bosen (tapi tetap konsisten)
-  displayList.sort(() => 0.5 - Math.random());
-
-  const isMobile = isMobileDevice();
-  const html = displayList.map(item => {
-    const url = getFullUrl(item.id, data);
-    const tooltip = isMobile ? item.title : (item.description || item.title);
-    return `<a href="${url}" data-article-id="${item.id}" title="${tooltip}">${item.title}</a> <span class="dot">•</span> `;
-  }).join('');
-
-  // SUNTIKAN STRUKTUR BARU (Tanpa if-return yang memblokir tampilan)
-  container.innerHTML = `
-  <div class="marquee-track">
-  <div class="marquee-content">${html}</div>
-  <div class="marquee-content" aria-hidden="true">${html}</div>
-  </div>
-  `;
-
-  registerReadTracker();
 }
 
 function initFloatingSearch(): void {
@@ -438,14 +390,10 @@ async function initializeApp(): Promise<void> {
   if (data) {
     initInternalNav();
     initProgressBar();
-    initCategoryMarquee(data, currentFile);
     initFloatingSearch();
     initRelatedGrid(data, currentFile);
     initNavIcons(data, currentFile);
-    initKeyboardNav(data, currentFile); // 🔥 Panggil fungsi shortcut di sini!
-
-    adaptMarqueeTextColor();
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', adaptMarqueeTextColor);
+    initKeyboardNav(data, currentFile);
   }
 }
 
