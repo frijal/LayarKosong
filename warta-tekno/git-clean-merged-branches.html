@@ -1,4 +1,158 @@
-<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge - Layar Kosong</title><meta content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus." name="description"><link href="https://dalam.web.id/warta-tekno/git-clean-merged-branches" rel="canonical"><link title="Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI" href="https://dalam.web.id/warta-tekno/github-cli-force-merge" rel="prev"><link title="Skrip Otomatis gh-force-merge.sh: Merge &amp; Fallback Otomatis via GitHub CLI" href="https://dalam.web.id/warta-tekno/gh-force-merge" rel="next"><meta content="https://dalam.web.id/warta-tekno/git-clean-merged-branches" property="og:url"><meta content="https://dalam.web.id/warta-tekno/git-clean-merged-branches" name="twitter:url"><meta content="Windows, Teknologi Umum" property="article:section"><meta content="Windows" property="article:tag"><meta content="Teknologi Umum" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge, Layar Kosong" name="news_keywords"><meta content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge | Dengan dukungan opsi --dry-run dan --auto, aman &amp; efisien!" name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge" property="og:title"><meta content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus." property="og:description"><meta content="2025-10-11T04:43:07.491Z" property="og:updated_time"><meta content="https://dalam.web.id/img/git-clean-merged-branches.webp" property="og:image"><meta content="https://dalam.web.id/img/git-clean-merged-branches.webp" property="og:image:url"><meta content="https://dalam.web.id/img/git-clean-merged-branches.webp" property="og:image:secure_url"><meta content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge" property="og:image:alt"><meta content="1000" property="og:image:width"><meta content="562" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge" name="twitter:title"><meta content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus." name="twitter:description"><meta content="https://dalam.web.id/img/git-clean-merged-branches.webp" name="twitter:image"><meta content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2025-10-11T04:38:32.968Z" property="article:published_time"><meta content="2026-06-29T22:33:10.978Z" property="article:modified_time"><style>:root{--bg:#fdfdfd;--text:#222;--accent:#0078ff}@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--text:#c9d1d9;--accent:#58a6ff}}body{background:var(--bg);color:var(--text);margin:0;padding:0;font-family:Inter,Segoe UI,Roboto,sans-serif;line-height:1.6}header{text-align:center;padding:2rem 1rem 1rem}header h1{margin-bottom:.2rem;font-size:1.9rem}article{max-width:960px;margin:auto;padding:1rem 2rem 3rem}code,pre{background:#7f7f7f1a;border-radius:6px;padding:.4em .6em;font-family:JetBrains Mono,monospace;display:block;overflow-x:auto}pre{margin:1em 0}section{margin-bottom:2.5rem}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}footer{text-align:center;border-top:1px solid #7f7f7f33;padding:2rem 0;font-size:.9rem}.social-share{text-align:center;margin-top:2rem}.social-share a{margin:0 .4rem;display:inline-block}.social-share img{filter:grayscale();width:28px;height:28px;transition:all .3s}.social-share img:hover{filter:none;transform:scale(1.1)}@media (width<=600px){header h1{font-size:1.5rem}article{padding:1rem}}</style><meta content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus." name="ai:summary"><meta content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus." name="ai:prompt_hint"><link href="/ext/marquee-url.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge","description":"Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal & remote sekaligus.","datePublished":"2025-10-11T04:38:32.968Z","dateModified":"2026-06-29T22:33:10.978Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches"},"wordCount":447,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/git-clean-merged-branches.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/git-clean-merged-branches.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/git-clean-merged-branches.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/git-clean-merged-branches.webp","keywords":["Windows","Teknologi Umum","Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge","Layar Kosong","skrip","dapat","bersihkan","branch","git","sudah","merge","clean","merged","branches","Warta Tekno"],"articleSection":["Warta Tekno"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches","url":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches","name":"Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/git-clean-merged-branches.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/git-clean-merged-branches.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/git-clean-merged-branches.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/git-clean-merged-branches.webp","datePublished":"2025-10-11T04:38:32.968Z","dateModified":"2026-06-29T22:33:10.978Z","description":"Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal & remote sekaligus.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches#primaryimage","url":"https:\/\/dalam.web.id\/img\/git-clean-merged-branches.webp","contentUrl":"https:\/\/dalam.web.id\/img\/git-clean-merged-branches.webp","width":1000,"height":562,"caption":"Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https:\/\/dalam.web.id\/warta-tekno"},{"@type":"ListItem","position":3,"name":"Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge","item":"https:\/\/dalam.web.id\/warta-tekno\/git-clean-merged-branches"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><header><div id="iposbrowser"></div><h1>🧹 Skrip Otomatis Bersihkan Branch Git yang Sudah Di-Merge</h1><p style="opacity:.8">Dengan dukungan opsi <code>--dry-run</code> dan <code>--auto</code>, aman &amp; efisien!</p></header><article><section><p>Kalau kamu sering kerja bareng tim dan repo Git kamu makin penuh sama branch lama, skrip ini bakal jadi penyelamat. 😎 Dengan skrip Bash ini, kamu bisa menampilkan daftar branch yang sudah di-merge, konfirmasi sebelum hapus, bahkan bersihkan juga di remote kalau mau.</p></section><section><h2>💾 Isi Skrip: <code>clean-merged-branches.sh</code></h2><pre><code>#!/usr/bin/env bash
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge - Layar Kosong</title>
+    <meta name="description" content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus.">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/git-clean-merged-branches">
+    <link rel="prev" href="https://dalam.web.id/warta-tekno/github-cli-force-merge" title="Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI">
+    <link rel="next" href="https://dalam.web.id/warta-tekno/gh-force-merge" title="Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/git-clean-merged-branches">
+    <meta name="twitter:url" content="https://dalam.web.id/warta-tekno/git-clean-merged-branches">
+    <meta property="article:section" content="Windows, Teknologi Umum">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Teknologi Umum">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge, Layar Kosong">
+    <meta name="promphint" content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge | Dengan dukungan opsi --dry-run dan --auto, aman &amp; efisien!">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge">
+    <meta property="og:description" content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus.">
+    <meta property="og:updated_time" content="2025-10-11T04:43:07.491Z">
+    <meta property="og:image" content="https://dalam.web.id/img/git-clean-merged-branches.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/git-clean-merged-branches.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/git-clean-merged-branches.webp">
+    <meta property="og:image:alt" content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="562">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:title" content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge">
+    <meta name="twitter:description" content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/git-clean-merged-branches.webp">
+    <meta name="twitter:image:alt" content="Skrip dapat Bersihkan Branch Git yang Sudah Di-Merge">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2025-10-11T04:38:32.968Z">
+    <meta property="article:modified_time" content="2025-10-11T04:38:32.968Z">
+<style>
+:root {
+  --bg: #fdfdfd;
+  --text: #222;
+  --accent: #0078ff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+header h1 {
+  font-size: 1.9rem;
+  margin-bottom: 0.2rem;
+}
+article {
+  max-width: 960px;
+  margin: auto;
+  padding: 1rem 2rem 3rem;
+}
+code, pre {
+  background: rgba(127,127,127,0.1);
+  border-radius: 6px;
+  padding: 0.4em 0.6em;
+  font-family: "JetBrains Mono", monospace;
+  overflow-x: auto;
+  display: block;
+}
+pre { margin: 1em 0; }
+section { margin-bottom: 2.5rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(127,127,127,0.2);
+  font-size: 0.9rem;
+}
+.social-share {
+  text-align: center;
+  margin-top: 2rem;
+}
+.social-share a {
+  margin: 0 0.4rem;
+  display: inline-block;
+}
+.social-share img {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(1);
+  transition: 0.3s;
+}
+.social-share img:hover {
+  filter: none;
+  transform: scale(1.1);
+}
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  article { padding: 1rem; }
+}
+</style>
+<meta name="ai:summary" content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus.">
+<meta name="ai:prompt_hint" content="Skrip bash otomatis untuk menampilkan dan menghapus branch Git yang sudah di-merge, dengan opsi --dry-run dan --auto. Aman, interaktif, dan bisa bersihkan lokal &amp; remote sekaligus.">
+<link rel="stylesheet" href="/ext/marquee-url.css">
+</head>
+<body>
+<header>
+  <div id="iposbrowser"></div><h1>🧹 Skrip Otomatis Bersihkan Branch Git yang Sudah Di-Merge</h1>
+  <p style="opacity:0.8;">Dengan dukungan opsi <code>--dry-run</code> dan <code>--auto</code>, aman &amp; efisien!</p>
+</header>
+<article>
+  <section>
+    <p>Kalau kamu sering kerja bareng tim dan repo Git kamu makin penuh sama branch lama, skrip ini bakal jadi penyelamat. 😎
+    Dengan skrip Bash ini, kamu bisa menampilkan daftar branch yang sudah di-merge, konfirmasi sebelum hapus, bahkan bersihkan juga di remote kalau mau.</p>
+  </section>
+  <section>
+    <h2>💾 Isi Skrip: <code>clean-merged-branches.sh</code></h2>
+    <pre><code>#!/usr/bin/env bash
 # ===============================================
 # Bersihkan branch Git yang sudah di-merge
 # Versi: 2.0
@@ -11,8 +165,8 @@ RED="\033[1;31m"
 CYAN="\033[1;36m"
 NC="\033[0m"
 if ! git rev-parse --is-inside-work-tree &amp;&gt;/dev/null; then
- echo -e "${RED}❌ Bukan repository Git.${NC}"
- exit 1
+  echo -e "${RED}❌ Bukan repository Git.${NC}"
+  exit 1
 fi
 MAIN_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2&gt;/dev/null | sed 's@^refs/remotes/origin/@@')
 MAIN_BRANCH=${MAIN_BRANCH:-main}
@@ -20,10 +174,10 @@ AUTO=false
 DRY_RUN=false
 # Baca argumen
 for arg in "$@"; do
- case $arg in
- --auto) AUTO=true ;;
- --dry-run) DRY_RUN=true ;;
- esac
+  case $arg in
+    --auto) AUTO=true ;;
+    --dry-run) DRY_RUN=true ;;
+  esac
 done
 echo -e "${CYAN}📦 Branch utama terdeteksi: ${MAIN_BRANCH}${NC}"
 git checkout "$MAIN_BRANCH" &gt;/dev/null 2&gt;&amp;1 || { echo -e "${RED}❌ Gagal checkout.${NC}"; exit 1; }
@@ -31,39 +185,78 @@ echo -e "${YELLOW}🔄 Sinkronisasi dengan remote...${NC}"
 git fetch -p
 MERGED_BRANCHES=$(git branch --merged "$MAIN_BRANCH" | grep -vE "^\*|${MAIN_BRANCH}|master|develop" || true)
 if [ -z "$MERGED_BRANCHES" ]; then
- echo -e "${GREEN}✅ Tidak ada branch yang sudah di-merge.${NC}"
- exit 0
+  echo -e "${GREEN}✅ Tidak ada branch yang sudah di-merge.${NC}"
+  exit 0
 fi
 echo -e "\n${CYAN}📋 Branch yang sudah di-merge:${NC}"
 echo "$MERGED_BRANCHES"
 if $DRY_RUN; then
- echo -e "\n${YELLOW}🧪 Mode dry-run aktif: tidak ada branch yang dihapus.${NC}"
- exit 0
+  echo -e "\n${YELLOW}🧪 Mode dry-run aktif: tidak ada branch yang dihapus.${NC}"
+  exit 0
 fi
 if ! $AUTO; then
- read -rp "$(echo -e "${YELLOW}⚠️ Hapus branch di atas? (y/N): ${NC}")" confirm
- [[ ! "$confirm" =~ ^[Yy]$ ]] &amp;&amp; echo -e "${RED}🚫 Dibatalkan.${NC}" &amp;&amp; exit 0
+  read -rp "$(echo -e "${YELLOW}⚠️  Hapus branch di atas? (y/N): ${NC}")" confirm
+  [[ ! "$confirm" =~ ^[Yy]$ ]] &amp;&amp; echo -e "${RED}🚫 Dibatalkan.${NC}" &amp;&amp; exit 0
 fi
 echo -e "${YELLOW}🧹 Menghapus branch lokal...${NC}"
 while read -r branch; do
- [ -z "$branch" ] &amp;&amp; continue
- git branch -d "$branch" || echo -e "${RED}❌ Gagal hapus $branch${NC}"
+  [ -z "$branch" ] &amp;&amp; continue
+  git branch -d "$branch" || echo -e "${RED}❌ Gagal hapus $branch${NC}"
 done &lt;&lt;&lt;"$MERGED_BRANCHES"
 if $AUTO; then
- DELETE_REMOTE=true
+  DELETE_REMOTE=true
 else
- read -rp "$(echo -e "${YELLOW}🌐 Hapus branch remote juga? (y/N): ${NC}")" confirm_remote
- [[ "$confirm_remote" =~ ^[Yy]$ ]] &amp;&amp; DELETE_REMOTE=true
+  read -rp "$(echo -e "${YELLOW}🌐 Hapus branch remote juga? (y/N): ${NC}")" confirm_remote
+  [[ "$confirm_remote" =~ ^[Yy]$ ]] &amp;&amp; DELETE_REMOTE=true
 fi
 if [ "$DELETE_REMOTE" = true ]; then
- echo -e "${YELLOW}🌍 Menghapus branch remote...${NC}"
- while read -r branch; do
- REMOTE_EXISTS=$(git ls-remote --heads origin "$branch")
- if [ -n "$REMOTE_EXISTS" ]; then
- echo -e "${CYAN}🔸 Menghapus origin/$branch${NC}"
- git push origin --delete "$branch" || echo -e "${RED}❌ Gagal hapus remote: $branch${NC}"
- fi
- done &lt;&lt;&lt;"$MERGED_BRANCHES"
+  echo -e "${YELLOW}🌍 Menghapus branch remote...${NC}"
+  while read -r branch; do
+    REMOTE_EXISTS=$(git ls-remote --heads origin "$branch")
+    if [ -n "$REMOTE_EXISTS" ]; then
+      echo -e "${CYAN}🔸 Menghapus origin/$branch${NC}"
+      git push origin --delete "$branch" || echo -e "${RED}❌ Gagal hapus remote: $branch${NC}"
+    fi
+  done &lt;&lt;&lt;"$MERGED_BRANCHES"
 fi
-echo -e "\n${GREEN}✅ Selesai! Semua branch yang sudah di-merge dibersihkan.${NC}"</code></pre></section><section><h2>⚙️ Cara Pakai</h2><ol><li>Simpan skrip di file <code>clean-merged-branches.sh</code></li><li>Jadikan executable: <pre><code>chmod +x clean-merged-branches.sh</code></pre></li><li>Jalankan di folder Git project: <pre><code>./clean-merged-branches.sh</code></pre></li></ol><p>Kamu juga bisa jalankan dengan opsi tambahan:</p><ul><li><code>--dry-run</code> → hanya tampilkan branch yang akan dihapus tanpa eksekusi</li><li><code>--auto</code> → hapus langsung tanpa konfirmasi (cocok untuk CI/CD)</li></ul><p>Contoh:</p><pre><code>./clean-merged-branches.sh --dry-run
-./clean-merged-branches.sh --auto</code></pre></section><section><h2>💡 Tips Aman Sebelum Bersih-Bersih</h2><ul><li>Pastikan semua perubahan sudah di-merge ke <code>main</code> atau branch utama kamu.</li><li>Gunakan <code>--dry-run</code> dulu untuk memastikan daftar yang aman.</li><li>Backup branch penting dengan <code>git push origin nama_branch</code> sebelum hapus.</li></ul></section><div id="related-articles-grid"></div><div id="response"></div></article><footer><p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</p><a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-29</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
+echo -e "\n${GREEN}✅ Selesai! Semua branch yang sudah di-merge dibersihkan.${NC}"</code></pre>
+  </section>
+  <section>
+    <h2>⚙️ Cara Pakai</h2>
+    <ol>
+      <li>Simpan skrip di file <code>clean-merged-branches.sh</code></li>
+      <li>Jadikan executable:
+        <pre><code>chmod +x clean-merged-branches.sh</code></pre>
+      </li>
+      <li>Jalankan di folder Git project:
+        <pre><code>./clean-merged-branches.sh</code></pre>
+      </li>
+    </ol>
+    <p>Kamu juga bisa jalankan dengan opsi tambahan:</p>
+    <ul>
+      <li><code>--dry-run</code> → hanya tampilkan branch yang akan dihapus tanpa eksekusi</li>
+      <li><code>--auto</code> → hapus langsung tanpa konfirmasi (cocok untuk CI/CD)</li>
+    </ul>
+    <p>Contoh:</p>
+    <pre><code>./clean-merged-branches.sh --dry-run
+./clean-merged-branches.sh --auto</code></pre>
+  </section>
+  <section>
+    <h2>💡 Tips Aman Sebelum Bersih-Bersih</h2>
+    <ul>
+      <li>Pastikan semua perubahan sudah di-merge ke <code>main</code> atau branch utama kamu.</li>
+      <li>Gunakan <code>--dry-run</code> dulu untuk memastikan daftar yang aman.</li>
+      <li>Backup branch penting dengan <code>git push origin nama_branch</code> sebelum hapus.</li>
+    </ul>
+  </section>
+   <div id="related-articles-grid"></div><div id="response"></div>
+    </article>
+<footer>
+  <p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+</footer>
+<!-- Facebook SDK -->
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>

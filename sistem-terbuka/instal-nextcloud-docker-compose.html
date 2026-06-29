@@ -1,30 +1,555 @@
-<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian - Layar Kosong</title><meta content="Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis." name="description"><link href="https://dalam.web.id/sistem-terbuka/instal-nextcloud-docker-compose" rel="canonical"><link title="Debian Kernel Adjustment: Rahasia Performa 'Ngebut' Tanpa Kode Ribet" href="https://dalam.web.id/sistem-terbuka/debian-kernel-adjustment" rel="prev"><link title="Panduan Lengkap WinApps &amp; WinBoat: Cara Jalankan Aplikasi Windows di Linux Secara Native 2026" href="https://dalam.web.id/sistem-terbuka/jalankan-aplikasi-windows-di-linux-winapps-winboat" rel="next"><meta content="https://dalam.web.id/sistem-terbuka/instal-nextcloud-docker-compose" property="og:url"><meta content="https://dalam.web.id/sistem-terbuka/instal-nextcloud-docker-compose" name="twitter:url"><meta content="Linux, Open Source" property="article:section"><meta content="Linux" property="article:tag"><meta content="Open Source" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="Nextcloud Docker Compose, Instal Nextcloud Debian, Self-hosting Cloud, MariaDB Docker, Server Pribadi, Layar Kosong, Frijal" name="news_keywords"><meta content="Nextcloud and MariaDB deployment using Docker Compose guide" name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian" property="og:title"><meta content="Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis." property="og:description"><meta content="2026-02-08T01:00:09.764Z" property="og:updated_time"><meta content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp" property="og:image"><meta content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp" property="og:image:url"><meta content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp" property="og:image:secure_url"><meta content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian" property="og:image:alt"><meta content="1000" property="og:image:width"><meta content="667" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian" name="twitter:title"><meta content="Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis." name="twitter:description"><meta content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp" name="twitter:image"><meta content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2026-02-08T00:52:06.676Z" property="article:published_time"><meta content="2026-06-29T16:02:15.686Z" property="article:modified_time"><link href="/ext/fontawesome.css" rel="stylesheet"><link href="/ext/github-dark.min.css" rel="stylesheet"><style>:root{color-scheme:light;--bg:#f5f8fb;--bg-soft:#eaf6ff;--text:#172033;--muted:#64748b;--heading:#0f172a;--accent:#0082c9;--accent-hover:#0369a1;--accent-soft:#0082c91f;--card:#fff;--card-soft:#f8fafc;--line:#dbe4f0;--code-bg:#0f172a;--code-text:#e5e7eb;--code-muted:#94a3b8;--inline-code-bg:#0082c91f;--inline-code-text:#075985;--alert-bg:#dff6fb;--alert-text:#0c5460;--alert-line:#67e8f9;--image-bg:#e2e8f0;--shadow:0 1rem 2.75rem #0f172a1f;--shadow-soft:0 .625rem 1.875rem #0f172a14;--radius-sm:.625rem;--radius-md:1rem;--radius-lg:1.5rem;--max-width:62.5rem;--font-main:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif;--font-code:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#08111f;--bg-soft:#101c2f;--text:#e5e7eb;--muted:#a7b3c5;--heading:#f8fafc;--accent:#38bdf8;--accent-hover:#7dd3fc;--accent-soft:#38bdf824;--card:#111827;--card-soft:#172033;--line:#2f4058;--code-bg:#020617;--code-text:#f8fafc;--code-muted:#94a3b8;--inline-code-bg:#38bdf824;--inline-code-text:#bae6fd;--alert-bg:#38bdf81f;--alert-text:#e0f2fe;--alert-line:#38bdf8;--image-bg:#172033;--shadow:0 1rem 2.75rem #0000006b;--shadow-soft:0 .625rem 1.875rem #0000004d}}*,:before,:after{box-sizing:border-box}html{scroll-behavior:smooth;min-height:100%}body{background:radial-gradient(56rem 30rem at 10% -8%,var(--accent-soft),transparent 62%),radial-gradient(46rem 28rem at 92% 8%,#16a34a1a,transparent 58%),linear-gradient(180deg,var(--bg-soft),var(--bg)45%,var(--bg));min-height:100vh;color:var(--text);font-family:var(--font-main);text-rendering:optimizeLegibility;margin:0;line-height:1.75}a{color:var(--accent);text-underline-offset:.18rem;text-decoration-thickness:.08rem}a:hover{color:var(--accent-hover)}a:focus-visible{outline:.1875rem solid var(--accent);outline-offset:.1875rem;border-radius:var(--radius-sm)}.container{width:min(100% - 2rem,var(--max-width));border:.0625rem solid var(--line);border-radius:var(--radius-lg);background-color:var(--card);box-shadow:var(--shadow);margin:2.5rem auto;padding:clamp(1rem,3vw,1.5rem)}header{border-bottom:.25rem solid var(--accent);border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--accent-soft),transparent 48%),var(--card-soft);margin-bottom:2rem;padding:clamp(1.25rem,4vw,2.25rem)}.meta-info{color:var(--muted);margin:0 0 .9rem;font-size:.95rem;font-weight:750;line-height:1.5}#iposbrowser{margin-bottom:.75rem}.fa-icon{color:var(--accent);margin-right:.5rem}h1{color:var(--heading);letter-spacing:-.055rem;text-wrap:balance;margin:0;font-size:clamp(2rem,6vw,3.2rem);font-weight:900;line-height:1.08}article{gap:2rem;display:grid}section{border:.0625rem solid var(--line);border-radius:var(--radius-md);background-color:var(--card-soft);box-shadow:var(--shadow-soft);padding:clamp(1rem,3vw,1.5rem)}h2{border-bottom:.1875rem solid var(--accent);color:var(--heading);text-wrap:balance;margin:0 0 1rem;padding-bottom:.55rem;font-size:clamp(1.35rem,4vw,1.9rem);font-weight:850;line-height:1.3}h3{color:var(--heading);text-wrap:balance;margin:1.75rem 0 .75rem;font-size:clamp(1.15rem,3vw,1.4rem);font-weight:800;line-height:1.35}p{margin:0 0 1.15rem;font-size:clamp(1.02rem,2.2vw,1.1rem)}p:last-child{margin-bottom:0}strong{color:var(--heading);font-weight:850}em{color:inherit}p code,li code,.alert code{background-color:var(--inline-code-bg);color:var(--inline-code-text);font-family:var(--font-code);border-radius:.35rem;padding:.12rem .35rem;font-size:.92em}pre{border:.0625rem solid var(--line);border-radius:var(--radius-md);background:linear-gradient(180deg,#ffffff0a,transparent),var(--code-bg);color:var(--code-text);box-shadow:var(--shadow-soft);margin:1rem 0 1.5rem;padding:0;position:relative;overflow:hidden}pre:before{background-color:var(--code-bg);color:var(--code-muted);content:"● ● ● terminal";font-family:var(--font-code);letter-spacing:.12rem;border-bottom:.0625rem solid #94a3b838;padding:.8rem 1rem;font-size:.78rem;display:block}pre:has(code.language-yaml):before{content:"● ● ● docker-compose.yml"}pre:has(code.language-text):before{content:"● ● ● akses browser"}pre code{color:inherit;font-family:var(--font-code);white-space:pre;padding:1.25rem;font-size:.95rem;line-height:1.7;display:block;overflow-x:auto;background:0 0!important}pre code.hljs{color:inherit;padding:1.25rem;background:0 0!important}.hljs{background:0 0!important}.main-img{border:.0625rem solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(var(--image-bg),var(--image-bg))padding-box,linear-gradient(135deg,var(--accent),#38bdf8)border-box;width:100%;height:auto;box-shadow:var(--shadow);cursor:zoom-in;margin:0 0 2rem;padding:.45rem;transition:transform .24s,box-shadow .24s,filter .24s;display:block}.main-img:hover{filter:saturate(1.05)contrast(1.03);transform:translateY(-.2rem);box-shadow:0 1.75rem 4.5rem #0f172a2e}.alert{border:.0625rem solid var(--line);border-left:.35rem solid var(--alert-line);border-radius:var(--radius-md);background-color:var(--alert-bg);color:var(--alert-text);box-shadow:var(--shadow-soft);margin:0;padding:1rem 1.1rem}.alert strong{color:inherit;font-weight:850}ul{margin:0 0 1.25rem;padding-left:1.35rem}li{margin-bottom:.75rem;padding-left:.15rem}li:last-child{margin-bottom:0}footer{border-top:.0625rem solid var(--line);color:var(--muted);text-align:center;margin-top:3rem;padding:2rem 0 1rem;font-size:.9rem;line-height:1.6}footer p{font-size:inherit;margin:0 0 1rem}footer a{background-color:var(--card-soft);min-width:2rem;min-height:2rem;box-shadow:var(--shadow-soft);border-radius:999rem;justify-content:center;align-items:center;margin:.15rem;text-decoration:none;display:inline-flex}footer a:hover{background-color:var(--accent-soft);text-decoration:none}@media (prefers-color-scheme:dark){body{background:radial-gradient(56rem 30rem at 10% -8%,#38bdf81f,transparent 62%),radial-gradient(46rem 28rem at 92% 8%,#4ade8014,transparent 58%),linear-gradient(180deg,var(--bg-soft),var(--bg)45%,#060c16)}.hljs{color:var(--code-text)!important;background:0 0!important}}@media (width<=48rem){.container{width:min(100% - 1.5rem,var(--max-width));margin:1rem auto;padding:.875rem}header,section{padding:1rem}h1{letter-spacing:-.035rem}pre code,pre code.hljs{padding:1rem;font-size:.88rem}.main-img{border-radius:var(--radius-md);padding:.3rem}}@media (prefers-reduced-motion:reduce){*,:before,:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}</style><link href="/ext/marquee-url.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian","description":"Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis.","datePublished":"2026-02-08T00:52:06.676Z","dateModified":"2026-06-29T16:02:15.686Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose"},"wordCount":545,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","keywords":["Linux","Open Source","Nextcloud Docker Compose","Instal Nextcloud Debian","Self-hosting Cloud","MariaDB Docker","Server Pribadi","Layar Kosong","Frijal","panduan","instal","nextcloud","docker","compose","cloud","pribadi","debian","Sistem Terbuka"],"articleSection":["Sistem Terbuka"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose","url":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose","name":"Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","datePublished":"2026-02-08T00:52:06.676Z","dateModified":"2026-06-29T16:02:15.686Z","description":"Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose#primaryimage","url":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","contentUrl":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/media\/HAzdHOlbwAAWmsl.webp","width":1000,"height":667,"caption":"Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https:\/\/dalam.web.id\/sistem-terbuka"},{"@type":"ListItem","position":3,"name":"Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian","item":"https:\/\/dalam.web.id\/sistem-terbuka\/instal-nextcloud-docker-compose"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><div class="container"><header><p class="meta-info"><i class="fa-solid fa-cloud fa-icon"></i> Self-Hosting Series | 13 Feb 2026</p><div id="iposbrowser"></div><h1>Instal Nextcloud Pakai Docker Compose: Cloud Pribadi, Kendali Penuh! ☁️</h1></header><img alt="Cloud Data Security" sizes="(max-width: 1040px) calc(100vw - 40px), 1000px" srcset="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl-sm.webp 720w, https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl-md.webp 960w, https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp 1000w" class="main-img" height="667" src="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp" width="1000"><article><section><h2>Apa Itu Nextcloud?</h2><p>Singkatnya, <strong>Nextcloud</strong> adalah alternatif untuk Google Drive, Dropbox, atau OneDrive. Bedanya, kalau layanan-layanan itu menyimpan datamu di server mereka, Nextcloud menyimpan data di server milikmu sendiri.</p><p>Fiturnya lengkap: bisa menyimpan file, foto, kalender, kontak, sampai kolaborasi dokumen. Dengan bantuan Docker Compose, kita akan menjalankan dua layanan utama sekaligus: aplikasi <strong>Nextcloud</strong> dan database <strong>MariaDB</strong> untuk menyimpan konfigurasi serta data pendukungnya.</p></section><section><h2>Kenapa Pakai Docker Compose?</h2><p>Docker Compose membuat instalasi jauh lebih rapi karena semua layanan ditulis dalam satu file konfigurasi. Kita tidak perlu memasang Nextcloud dan database satu per satu secara manual. Cukup siapkan file <code>docker-compose.yml</code>, jalankan satu perintah, lalu Nextcloud dan MariaDB akan dibuat sebagai container yang saling terhubung.</p></section><section><h2>Persiapan Sebelum Mulai</h2><p>Tutorial ini cocok dijalankan di server Debian yang sudah memiliki Docker dan Docker Compose. Jalankan semua perintah lewat terminal lokal atau SSH. Pastikan juga direktori yang dipakai punya ruang penyimpanan cukup karena file Nextcloud dan database akan disimpan di sana.</p></section><section><h2>Cara Instal Nextcloud dengan Docker Compose</h2><p>Ikuti langkah-langkah berikut secara berurutan.</p><h3>1. Buat Folder Project</h3><p>Kita buat direktori khusus untuk menyimpan konfigurasi, database, dan data Nextcloud:</p><pre><code class="language-bash">mkdir ~/nextcloud-server &amp;&amp; cd ~/nextcloud-server</code></pre><h3>2. Buat File docker-compose.yml</h3><p>Buat file konfigurasi Docker Compose menggunakan editor teks. Contoh berikut memakai <code>nano</code>:</p><pre><code class="language-bash">nano docker-compose.yml</code></pre><p>Lalu isi file tersebut dengan konfigurasi berikut:</p><pre><code class="language-yaml">services:
- db:
- image: mariadb:10.6
- restart: always
- command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
- volumes:
- - ./db:/var/lib/mysql
- environment:
- - MYSQL_ROOT_PASSWORD=ganti_password_root_kamu
- - MYSQL_PASSWORD=ganti_password_user_kamu
- - MYSQL_DATABASE=nextcloud
- - MYSQL_USER=nextcloud
- app:
- image: nextcloud
- restart: always
- ports:
- - 8080:80
- depends_on:
- - db
- volumes:
- - ./data:/var/www/html
- environment:
- - MYSQL_PASSWORD=ganti_password_user_kamu
- - MYSQL_DATABASE=nextcloud
- - MYSQL_USER=nextcloud
- - MYSQL_HOST=db</code></pre><p>Ganti bagian <code>ganti_password_root_kamu</code> dan <code>ganti_password_user_kamu</code> dengan password yang kuat. Jangan gunakan contoh password di atas untuk server sungguhan.</p><h3>3. Jalankan Container</h3><p>Setelah file tersimpan, jalankan Nextcloud dan MariaDB dengan perintah berikut:</p><pre><code class="language-bash">docker compose up -d</code></pre><p>Docker akan mengunduh image yang dibutuhkan, membuat container, lalu menjalankannya di background.</p><h3>4. Cek Status Container</h3><p>Pastikan container Nextcloud dan MariaDB berjalan normal:</p><pre><code class="language-bash">docker compose ps</code></pre><p>Jika ingin melihat log proses instalasi atau mengecek error, gunakan:</p><pre><code class="language-bash">docker compose logs -f</code></pre><h3>5. Akses Lewat Browser</h3><p>Buka browser, lalu akses alamat IP server dengan port <code>8080</code>:</p><pre><code class="language-text">http://alamat-ip-servermu:8080</code></pre><p>Setelah halaman setup Nextcloud tampil, buat akun admin. Pada bagian database, gunakan MariaDB/MySQL dengan detail berikut:</p><pre><code class="language-text">User database : nextcloud
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian - Layar Kosong</title>
+    <meta name="description" content="Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/instal-nextcloud-docker-compose">
+    <link rel="prev" href="https://dalam.web.id/sistem-terbuka/debian-kernel-adjustment" title="Debian Kernel Adjustment: Rahasia Performa 'Ngebut' Tanpa Kode Ribet">
+    <link rel="next" href="https://dalam.web.id/sistem-terbuka/jalankan-aplikasi-windows-di-linux-winapps-winboat" title="Panduan Lengkap WinApps & WinBoat: Cara Jalankan Aplikasi Windows di Linux Secara Native 2026">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/instal-nextcloud-docker-compose">
+    <meta name="twitter:url" content="https://dalam.web.id/sistem-terbuka/instal-nextcloud-docker-compose">
+    <meta property="article:section" content="Linux, Open Source">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Open Source">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Nextcloud Docker Compose, Instal Nextcloud Debian, Self-hosting Cloud, MariaDB Docker, Server Pribadi, Layar Kosong, Frijal">
+    <meta name="promphint" content="Nextcloud and MariaDB deployment using Docker Compose guide">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian">
+    <meta property="og:description" content="Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis.">
+    <meta property="og:updated_time" content="2026-02-08T01:00:09.764Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp">
+    <meta property="og:image:alt" content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="667">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:title" content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian">
+    <meta name="twitter:description" content="Cara instal Nextcloud menggunakan Docker Compose di Debian. membangun server cloud pribadi untuk simpan data aman dan gratis.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp">
+    <meta name="twitter:image:alt" content="Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-02-08T00:52:06.676Z">
+    <meta property="article:modified_time" content="2026-02-08T00:52:06.676Z">
+    <link rel="stylesheet" href="/ext/fontawesome.css"><link rel="stylesheet" href="/ext/github-dark.min.css">
+    <style>
+    :root {
+        color-scheme: light;
+        --bg: #f5f8fb;
+        --bg-soft: #eaf6ff;
+        --text: #172033;
+        --muted: #64748b;
+        --heading: #0f172a;
+        --accent: #0082c9;
+        --accent-hover: #0369a1;
+        --accent-soft: rgba(0, 130, 201, 0.12);
+        --card: #ffffff;
+        --card-soft: #f8fafc;
+        --line: #dbe4f0;
+        --code-bg: #0f172a;
+        --code-text: #e5e7eb;
+        --code-muted: #94a3b8;
+        --inline-code-bg: rgba(0, 130, 201, 0.12);
+        --inline-code-text: #075985;
+        --alert-bg: #dff6fb;
+        --alert-text: #0c5460;
+        --alert-line: #67e8f9;
+        --image-bg: #e2e8f0;
+        --shadow: 0 1rem 2.75rem rgba(15, 23, 42, 0.12);
+        --shadow-soft: 0 0.625rem 1.875rem rgba(15, 23, 42, 0.08);
+        --radius-sm: 0.625rem;
+        --radius-md: 1rem;
+        --radius-lg: 1.5rem;
+        --max-width: 62.5rem;
+        --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+        --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color-scheme: dark;
+            --bg: #08111f;
+            --bg-soft: #101c2f;
+            --text: #e5e7eb;
+            --muted: #a7b3c5;
+            --heading: #f8fafc;
+            --accent: #38bdf8;
+            --accent-hover: #7dd3fc;
+            --accent-soft: rgba(56, 189, 248, 0.14);
+            --card: #111827;
+            --card-soft: #172033;
+            --line: #2f4058;
+            --code-bg: #020617;
+            --code-text: #f8fafc;
+            --code-muted: #94a3b8;
+            --inline-code-bg: rgba(56, 189, 248, 0.14);
+            --inline-code-text: #bae6fd;
+            --alert-bg: rgba(56, 189, 248, 0.12);
+            --alert-text: #e0f2fe;
+            --alert-line: #38bdf8;
+            --image-bg: #172033;
+            --shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.42);
+            --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
+        }
+    }
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+    html {
+        min-height: 100%;
+        scroll-behavior: smooth;
+    }
+    body {
+        min-height: 100vh;
+        margin: 0;
+        background:
+            radial-gradient(56rem 30rem at 10% -8%, var(--accent-soft), transparent 62%),
+            radial-gradient(46rem 28rem at 92% 8%, rgba(22, 163, 74, 0.1), transparent 58%),
+            linear-gradient(180deg, var(--bg-soft), var(--bg) 45%, var(--bg));
+        color: var(--text);
+        font-family: var(--font-main);
+        line-height: 1.75;
+        text-rendering: optimizeLegibility;
+    }
+    a {
+        color: var(--accent);
+        text-decoration-thickness: 0.08rem;
+        text-underline-offset: 0.18rem;
+    }
+    a:hover {
+        color: var(--accent-hover);
+    }
+    a:focus-visible {
+        outline: 0.1875rem solid var(--accent);
+        outline-offset: 0.1875rem;
+        border-radius: var(--radius-sm);
+    }
+    .container {
+        width: min(100% - 2rem, var(--max-width));
+        margin: 2.5rem auto;
+        padding: clamp(1rem, 3vw, 1.5rem);
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-lg);
+        background-color: var(--card);
+        box-shadow: var(--shadow);
+    }
+    header {
+        margin-bottom: 2rem;
+        padding: clamp(1.25rem, 4vw, 2.25rem);
+        border-bottom: 0.25rem solid var(--accent);
+        border-radius: var(--radius-lg);
+        background:
+            linear-gradient(135deg, var(--accent-soft), transparent 48%),
+            var(--card-soft);
+    }
+    .meta-info {
+        margin: 0 0 0.9rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 750;
+        line-height: 1.5;
+    }
+    #iposbrowser {
+        margin-bottom: 0.75rem;
+    }
+    .fa-icon {
+        margin-right: 0.5rem;
+        color: var(--accent);
+    }
+    h1 {
+        margin: 0;
+        color: var(--heading);
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -0.055rem;
+        text-wrap: balance;
+    }
+    article {
+        display: grid;
+        gap: 2rem;
+    }
+    section {
+        padding: clamp(1rem, 3vw, 1.5rem);
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-md);
+        background-color: var(--card-soft);
+        box-shadow: var(--shadow-soft);
+    }
+    h2 {
+        margin: 0 0 1rem;
+        padding-bottom: 0.55rem;
+        border-bottom: 0.1875rem solid var(--accent);
+        color: var(--heading);
+        font-size: clamp(1.35rem, 4vw, 1.9rem);
+        font-weight: 850;
+        line-height: 1.3;
+        text-wrap: balance;
+    }
+    h3 {
+        margin: 1.75rem 0 0.75rem;
+        color: var(--heading);
+        font-size: clamp(1.15rem, 3vw, 1.4rem);
+        font-weight: 800;
+        line-height: 1.35;
+        text-wrap: balance;
+    }
+    p {
+        margin: 0 0 1.15rem;
+        font-size: clamp(1.02rem, 2.2vw, 1.1rem);
+    }
+    p:last-child {
+        margin-bottom: 0;
+    }
+    strong {
+        color: var(--heading);
+        font-weight: 850;
+    }
+    em {
+        color: inherit;
+    }
+    p code,
+    li code,
+    .alert code {
+        padding: 0.12rem 0.35rem;
+        border-radius: 0.35rem;
+        background-color: var(--inline-code-bg);
+        color: var(--inline-code-text);
+        font-family: var(--font-code);
+        font-size: 0.92em;
+    }
+    pre {
+        position: relative;
+        margin: 1rem 0 1.5rem;
+        padding: 0;
+        overflow: hidden;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-md);
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent),
+            var(--code-bg);
+        color: var(--code-text);
+        box-shadow: var(--shadow-soft);
+    }
+    pre::before {
+        display: block;
+        padding: 0.8rem 1rem;
+        border-bottom: 0.0625rem solid rgba(148, 163, 184, 0.22);
+        background-color: var(--code-bg);
+        color: var(--code-muted);
+        content: "● ● ●  terminal";
+        font-family: var(--font-code);
+        font-size: 0.78rem;
+        letter-spacing: 0.12rem;
+    }
+    pre:has(code.language-yaml)::before {
+        content: "● ● ●  docker-compose.yml";
+    }
+    pre:has(code.language-text)::before {
+        content: "● ● ●  akses browser";
+    }
+    pre code {
+        display: block;
+        padding: 1.25rem;
+        overflow-x: auto;
+        background: transparent !important;
+        color: inherit;
+        font-family: var(--font-code);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        white-space: pre;
+    }
+    pre code.hljs {
+        padding: 1.25rem;
+        background: transparent !important;
+        color: inherit;
+    }
+    .hljs {
+        background: transparent !important;
+    }
+    .main-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 0 2rem;
+        padding: 0.45rem;
+        border: 0.0625rem solid var(--line);
+        border-radius: var(--radius-lg);
+        background:
+            linear-gradient(var(--image-bg), var(--image-bg)) padding-box,
+            linear-gradient(135deg, var(--accent), #38bdf8) border-box;
+        box-shadow: var(--shadow);
+        cursor: zoom-in;
+        transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+    }
+    .main-img:hover {
+        transform: translateY(-0.2rem);
+        box-shadow: 0 1.75rem 4.5rem rgba(15, 23, 42, 0.18);
+        filter: saturate(1.05) contrast(1.03);
+    }
+    .alert {
+        margin: 0;
+        padding: 1rem 1.1rem;
+        border: 0.0625rem solid var(--line);
+        border-left: 0.35rem solid var(--alert-line);
+        border-radius: var(--radius-md);
+        background-color: var(--alert-bg);
+        color: var(--alert-text);
+        box-shadow: var(--shadow-soft);
+    }
+    .alert strong {
+        color: inherit;
+        font-weight: 850;
+    }
+    ul {
+        margin: 0 0 1.25rem;
+        padding-left: 1.35rem;
+    }
+    li {
+        margin-bottom: 0.75rem;
+        padding-left: 0.15rem;
+    }
+    li:last-child {
+        margin-bottom: 0;
+    }
+    footer {
+        margin-top: 3rem;
+        padding: 2rem 0 1rem;
+        border-top: 0.0625rem solid var(--line);
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    footer p {
+        margin: 0 0 1rem;
+        font-size: inherit;
+    }
+    footer a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2rem;
+        min-height: 2rem;
+        margin: 0.15rem;
+        border-radius: 999rem;
+        background-color: var(--card-soft);
+        box-shadow: var(--shadow-soft);
+        text-decoration: none;
+    }
+    footer a:hover {
+        background-color: var(--accent-soft);
+        text-decoration: none;
+    }
+    @media (prefers-color-scheme: dark) {
+        body {
+            background:
+                radial-gradient(56rem 30rem at 10% -8%, rgba(56, 189, 248, 0.12), transparent 62%),
+                radial-gradient(46rem 28rem at 92% 8%, rgba(74, 222, 128, 0.08), transparent 58%),
+                linear-gradient(180deg, var(--bg-soft), var(--bg) 45%, #060c16);
+        }
+        .hljs {
+            background: transparent !important;
+            color: var(--code-text) !important;
+        }
+    }
+    @media (max-width: 48rem) {
+        .container {
+            width: min(100% - 1.5rem, var(--max-width));
+            margin: 1rem auto;
+            padding: 0.875rem;
+        }
+        header,
+        section {
+            padding: 1rem;
+        }
+        h1 {
+            letter-spacing: -0.035rem;
+        }
+        pre code,
+        pre code.hljs {
+            padding: 1rem;
+            font-size: 0.88rem;
+        }
+        .main-img {
+            padding: 0.3rem;
+            border-radius: var(--radius-md);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
+        }
+    }
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <p class="meta-info">
+            <i class="fa-solid fa-cloud fa-icon"></i> Self-Hosting Series | 13 Feb 2026
+        </p>
+        <div id="iposbrowser"></div><h1>Instal Nextcloud Pakai Docker Compose: Cloud Pribadi, Kendali Penuh! ☁️</h1>
+    </header>
+    <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp" alt="Cloud Data Security" class="main-img">
+   <article>
+    <section>
+        <h2>Apa Itu Nextcloud?</h2>
+        <p>
+            Singkatnya, <strong>Nextcloud</strong> adalah alternatif untuk Google Drive, Dropbox, atau OneDrive. Bedanya, kalau layanan-layanan itu menyimpan datamu di server mereka, Nextcloud menyimpan data di server milikmu sendiri.
+        </p>
+        <p>
+            Fiturnya lengkap: bisa menyimpan file, foto, kalender, kontak, sampai kolaborasi dokumen. Dengan bantuan Docker Compose, kita akan menjalankan dua layanan utama sekaligus: aplikasi <strong>Nextcloud</strong> dan database <strong>MariaDB</strong> untuk menyimpan konfigurasi serta data pendukungnya.
+        </p>
+    </section>
+    <section>
+        <h2>Kenapa Pakai Docker Compose?</h2>
+        <p>
+            Docker Compose membuat instalasi jauh lebih rapi karena semua layanan ditulis dalam satu file konfigurasi. Kita tidak perlu memasang Nextcloud dan database satu per satu secara manual. Cukup siapkan file <code>docker-compose.yml</code>, jalankan satu perintah, lalu Nextcloud dan MariaDB akan dibuat sebagai container yang saling terhubung.
+        </p>
+    </section>
+    <section>
+        <h2>Persiapan Sebelum Mulai</h2>
+        <p>
+            Tutorial ini cocok dijalankan di server Debian yang sudah memiliki Docker dan Docker Compose. Jalankan semua perintah lewat terminal lokal atau SSH. Pastikan juga direktori yang dipakai punya ruang penyimpanan cukup karena file Nextcloud dan database akan disimpan di sana.
+        </p>
+    </section>
+    <section>
+        <h2>Cara Instal Nextcloud dengan Docker Compose</h2>
+        <p>Ikuti langkah-langkah berikut secara berurutan.</p>
+        <h3>1. Buat Folder Project</h3>
+        <p>Kita buat direktori khusus untuk menyimpan konfigurasi, database, dan data Nextcloud:</p>
+        <pre><code class="language-bash">mkdir ~/nextcloud-server &amp;&amp; cd ~/nextcloud-server</code></pre>
+        <h3>2. Buat File docker-compose.yml</h3>
+        <p>Buat file konfigurasi Docker Compose menggunakan editor teks. Contoh berikut memakai <code>nano</code>:</p>
+        <pre><code class="language-bash">nano docker-compose.yml</code></pre>
+        <p>Lalu isi file tersebut dengan konfigurasi berikut:</p>
+        <pre><code class="language-yaml">services:
+  db:
+    image: mariadb:10.6
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=ganti_password_root_kamu
+      - MYSQL_PASSWORD=ganti_password_user_kamu
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+  app:
+    image: nextcloud
+    restart: always
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    volumes:
+      - ./data:/var/www/html
+    environment:
+      - MYSQL_PASSWORD=ganti_password_user_kamu
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db</code></pre>
+        <p>
+            Ganti bagian <code>ganti_password_root_kamu</code> dan <code>ganti_password_user_kamu</code> dengan password yang kuat. Jangan gunakan contoh password di atas untuk server sungguhan.
+        </p>
+        <h3>3. Jalankan Container</h3>
+        <p>Setelah file tersimpan, jalankan Nextcloud dan MariaDB dengan perintah berikut:</p>
+        <pre><code class="language-bash">docker compose up -d</code></pre>
+        <p>
+            Docker akan mengunduh image yang dibutuhkan, membuat container, lalu menjalankannya di background.
+        </p>
+        <h3>4. Cek Status Container</h3>
+        <p>Pastikan container Nextcloud dan MariaDB berjalan normal:</p>
+        <pre><code class="language-bash">docker compose ps</code></pre>
+        <p>Jika ingin melihat log proses instalasi atau mengecek error, gunakan:</p>
+        <pre><code class="language-bash">docker compose logs -f</code></pre>
+        <h3>5. Akses Lewat Browser</h3>
+        <p>Buka browser, lalu akses alamat IP server dengan port <code>8080</code>:</p>
+        <pre><code class="language-text">http://alamat-ip-servermu:8080</code></pre>
+        <p>
+            Setelah halaman setup Nextcloud tampil, buat akun admin. Pada bagian database, gunakan MariaDB/MySQL dengan detail berikut:
+        </p>
+        <pre><code class="language-text">User database     : nextcloud
 Password database : ganti_password_user_kamu
-Nama database : nextcloud
-Host database : db</code></pre><p>Setelah setup selesai, Nextcloud sudah bisa digunakan sebagai cloud pribadi untuk menyimpan dan mengelola file.</p></section><div class="alert"><i class="fa-solid fa-triangle-exclamation"></i><strong>Penting:</strong> Folder <code>data</code> dan <code>db</code> di direktori project adalah tempat data Nextcloud dan database disimpan. Jangan hapus folder tersebut jika tidak ingin kehilangan data.</div><section><h2>Perintah Tambahan yang Berguna</h2><h3>Mematikan Container</h3><pre><code class="language-bash">docker compose down</code></pre><h3>Menjalankan Lagi Container</h3><pre><code class="language-bash">docker compose up -d</code></pre><h3>Update Image Nextcloud</h3><pre><code class="language-bash">docker compose pull
-docker compose up -d</code></pre><h3>Backup Folder Project</h3><pre><code class="language-bash">tar -czvf nextcloud-server-backup.tar.gz ~/nextcloud-server</code></pre></section><section><h2>Kesimpulan</h2><p>Dengan Docker Compose, proses instalasi Nextcloud jadi lebih ringkas dan mudah dirawat. Semua komponen penting berada dalam satu folder project, mulai dari konfigurasi, database, sampai file aplikasi.</p><p>Sekarang kamu sudah punya cloud pribadi yang berjalan di server sendiri. Data lebih terkendali, konfigurasi lebih rapi, dan proses pemeliharaannya lebih mudah dibanding instalasi manual.</p></section><div id="related-articles-grid"></div><div id="response"></div></article><footer><p>Terima kasih sudah berkunjung ke <strong>Layar Kosong</strong>. <i class="fa-brands fa-twitter fa-icon"></i> <a href="https://x.com/responaja" style="color:inherit">@responaja</a> | <i class="fa-brands fa-telegram fa-icon"></i> <a href="https://t.me/frijal" style="color:inherit">t.me/frijal</a></p><a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer></div><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-29</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
+Nama database     : nextcloud
+Host database     : db</code></pre>
+        <p>
+            Setelah setup selesai, Nextcloud sudah bisa digunakan sebagai cloud pribadi untuk menyimpan dan mengelola file.
+        </p>
+    </section>
+    <div class="alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <strong>Penting:</strong> Folder <code>data</code> dan <code>db</code> di direktori project adalah tempat data Nextcloud dan database disimpan. Jangan hapus folder tersebut jika tidak ingin kehilangan data.
+    </div>
+    <section>
+        <h2>Perintah Tambahan yang Berguna</h2>
+        <h3>Mematikan Container</h3>
+        <pre><code class="language-bash">docker compose down</code></pre>
+        <h3>Menjalankan Lagi Container</h3>
+        <pre><code class="language-bash">docker compose up -d</code></pre>
+        <h3>Update Image Nextcloud</h3>
+        <pre><code class="language-bash">docker compose pull
+docker compose up -d</code></pre>
+        <h3>Backup Folder Project</h3>
+        <pre><code class="language-bash">tar -czvf nextcloud-server-backup.tar.gz ~/nextcloud-server</code></pre>
+    </section>
+    <section>
+        <h2>Kesimpulan</h2>
+        <p>
+            Dengan Docker Compose, proses instalasi Nextcloud jadi lebih ringkas dan mudah dirawat. Semua komponen penting berada dalam satu folder project, mulai dari konfigurasi, database, sampai file aplikasi.
+        </p>
+        <p>
+            Sekarang kamu sudah punya cloud pribadi yang berjalan di server sendiri. Data lebih terkendali, konfigurasi lebih rapi, dan proses pemeliharaannya lebih mudah dibanding instalasi manual.
+        </p>
+    </section>    <div id="related-articles-grid"></div>
+            <div id="response"></div>
+</article>
+    <footer>
+        <p>Terima kasih sudah berkunjung ke <strong>Layar Kosong</strong>.
+            <i class="fa-brands fa-twitter fa-icon"></i> <a href="https://x.com/responaja" style="color:inherit;">@responaja</a> |
+            <i class="fa-brands fa-telegram fa-icon"></i> <a href="https://t.me/frijal" style="color:inherit;">t.me/frijal</a>
+        </p>
+     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>
+</footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+</body></html>
