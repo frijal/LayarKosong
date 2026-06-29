@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * marquee-url.ts v7.5 (Resilient Core - Canonical URL Path Extraction Fallback)
+ * navigator.ts v7.5 (Resilient Core - Canonical URL Path Extraction Fallback)
  * =================================================================================
  */
 
@@ -364,7 +364,7 @@ function initKeyboardNav(allData: any, currentFile: string): void {
 async function initializeApp(): Promise<void> {
   while (!(window as any).siteDataProvider) await new Promise(r => setTimeout(r, 100));
 
-  const data = await (window as any).siteDataProvider.getFor('marquee-url.ts');
+  const data = await (window as any).siteDataProvider.getFor('navigator.ts');
   const currentFile = getCurrentFileName();
 
   if (data) {
