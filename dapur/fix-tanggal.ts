@@ -1,6 +1,6 @@
 // untuk membuat tanggal modifi = tanggal publish.
 // cara pakai: lakukan semuanya secara lokal, kosongkan isi sitemap.txt, lalu jalankan bun fix-tanggal.ts + generator-pro.ts
-// kemudian push semuanya naik ke Repo.
+// kemudian push semuanya naik ke Repo..
 
 import { file, write } from "bun";
 import { utimes } from "node:fs/promises";
