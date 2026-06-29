@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
-          fetch-depth: 1          
+          fetch-depth: 1
           persist-credentials: true
 
       - name: Setup Bun
@@ -50,11 +50,10 @@ jobs:
         id: status
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-            CHANGED=$(git --no-pager status --porcelain | awk '{print $2}' | tr '\n' ',' | sed 's/,$//')
-            echo "changed_files=$CHANGED" >> $GITHUB_OUTPUT
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "changed_count=$(git status --porcelain | wc -l | tr -d ' ')" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "::notice::Tidak ada perubahan pada ekstensi file tersebut."
           fi
 
@@ -63,21 +62,19 @@ jobs:
         uses: peter-evans/create-pull-request@d32e88dac789dcc7906e7d26f69f24116fa9c97d
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: ganti text pada file ${{ github.event.inputs.extensions }}"
+          commit-message: "chore: ganti teks pada file ${{ github.event.inputs.extensions }}"
           branch: "ganti-txt/${{ github.run_id }}"
           delete-branch: true
-          title: "Mass Replace (${{ github.event.inputs.extensions }}): ${{ github.event.inputs.search_text }}"
+          title: "Mass Replace (${{ github.event.inputs.extensions }})"
           body: |
-            ## 🤖 Automated Replacement Report
+            ## 🤖 Automated Replacement
 
-            - **Workflow Run:** `${{ github.workflow }}`
-            - **Waktu Eksekusi:** `${{ github.event.head_commit.timestamp || github.event.repository.pushed_at }}`
-            - **Cari:** `${{ github.event.inputs.search_text }}`
-            - **Ganti:** `${{ github.event.inputs.replace_text }}`
+            Workflow ini menjalankan penggantian teks otomatis menggunakan Bun.
+
+            - **Workflow:** `${{ github.workflow }}`
+            - **Run ID:** `${{ github.run_id }}`
             - **Ekstensi:** `${{ github.event.inputs.extensions }}`
             - **Folder:** `${{ github.event.inputs.folder }}`
+            - **Jumlah file berubah:** `${{ steps.status.outputs.changed_count }}`
 
-            ### 📝 Daftar File yang Diubah
-            ```text
-            ${{ steps.status.outputs.changed_files || 'Tidak ada file yang berubah' }}
-            ```
+            Daftar file yang berubah sengaja tidak ditampilkan agar PR tetap ringan dan tidak memicu batas panjang argumen pada runner.
