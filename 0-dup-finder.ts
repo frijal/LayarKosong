@@ -118,7 +118,7 @@ h3 { margin-top: 30px; color: #3b82f6; border-bottom: 1px solid #29292e; padding
         </div>
         <div class="input-group">
             <label for="search-snippet">2. Potongan Kode / Teks yang Ingin Dicari:</label>
-            <textarea id="search-snippet" placeholder="Paste kode HTML, script, atau teks di sini...&#10;Contoh: if('modelContext' in pemandu)"></textarea>
+            <textarea id="search-snippet" placeholder="Paste kode HTML, script, atau teks di sini...&#10;Contoh: if('modelContext' in navigator)"></textarea>
         </div>
         <button class="btn btn-primary" onclick="scanFileHTML()">🔍 Scan Massal Sekarang</button>
     </div>

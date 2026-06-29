@@ -264,7 +264,7 @@
             document.documentElement.lang = val;
             localStorage.setItem('pref_lang_security', val);
         }
-        const saved = localStorage.getItem('pref_lang_security') || (pemandu.language.startsWith('en') ? 'en' : 'id');
+        const saved = localStorage.getItem('pref_lang_security') || (navigator.language.startsWith('en') ? 'en' : 'id');
         document.getElementById('lang').value = saved;
         switchLang(saved);
     </script>

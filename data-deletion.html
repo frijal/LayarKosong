@@ -252,7 +252,7 @@ Content-Type: application/json
     localStorage.setItem('lang', val);
   }
   // Jalankan saat load
-  const saved = localStorage.getItem('lang') || (pemandu.language.startsWith('en') ? 'en' : 'id');
+  const saved = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
   document.getElementById('lang').value = saved;
   switchLang(saved);
 </script>

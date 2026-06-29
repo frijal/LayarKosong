@@ -265,7 +265,7 @@
     btn.style.borderColor = "#00b0ed";
   }
   // Inisialisasi bahasa saat halaman dimuat
-  const savedLang = localStorage.getItem('lang') || (pemandu.language.startsWith('en') ? 'en' : 'id');
+  const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
   const switcher = document.getElementById('lang-switcher');
   if (switcher) {
     switcher.value = savedLang;

@@ -509,7 +509,7 @@ function switchLang(val) {
   document.documentElement.lang = val;
   localStorage.setItem('pref_lang', val);
 }
-const saved = localStorage.getItem('pref_lang') || (pemandu.language.startsWith('en') ? 'en' : 'id');
+const saved = localStorage.getItem('pref_lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
 document.getElementById('lang').value = saved;
 switchLang(saved);
 </script>

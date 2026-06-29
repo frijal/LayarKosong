@@ -426,7 +426,7 @@
             document.documentElement.lang = val;
             localStorage.setItem('pref_lang_ccby4', val);
         }
-        const saved = localStorage.getItem('pref_lang_ccby4') || (pemandu.language.startsWith('en') ? 'en' : 'id');
+        const saved = localStorage.getItem('pref_lang_ccby4') || (navigator.language.startsWith('en') ? 'en' : 'id');
         document.getElementById('lang').value = saved;
         switchLang(saved);
     </script>

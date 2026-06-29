@@ -792,7 +792,7 @@ body {
         // PDF Download Function
         function downloadPDF() {
         // 1. Deteksi apakah user menggunakan perangkat mobile
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(pemandu.userAgent);
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             if (isMobile) {
         // 2. Cek bahasa yang sedang aktif (berdasarkan tombol toggle atau elemen yang tidak tersembunyi)
         const isEnglish = document.querySelector('.language-toggle .lang-en').style.display === 'none';

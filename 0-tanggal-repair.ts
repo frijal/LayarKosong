@@ -320,7 +320,7 @@ const INJECTED_SELECTORS = [
 ];
 
 const FOOTER_EMOJIS = ["☕", "🛡️", "⚠️", "📝", "📚", "🔰", "⚔️"];
-const INLINE_SCRIPT_SNIPPETS = ["modelContext' in pemandu", "hljs.highlightAll()"];
+const INLINE_SCRIPT_SNIPPETS = ["modelContext' in navigator", "hljs.highlightAll()"];
 
 function ruqyahHtmlCore(rawHtml: string): { html: string; changes: number } {
     const $ = cheerio.load(rawHtml);
