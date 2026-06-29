@@ -258,75 +258,94 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
     });
   });
 
-  // === 3. INJEKSI ELEMEN & ASSETS BARU ===
-
+  // === 3. INJEKSI ELEMEN & ASSETS BARU (DENGAN STRICT GUARD) ===
+  
   if ($('head link[href*="marquee-url.css"]').length === 0) {
-    $("head").append(
-      `<link rel="stylesheet" href="/ext/marquee-url.css">`
-    );
+      $("head").append(`<link rel="stylesheet" href="/ext/marquee-url.css">`);
   }
-
+  
   // FIX #7 — Tambah rel="noopener noreferrer" ke semua target="_blank".
   if ($("footer").length && $('footer a[href="/data-deletion"]').length === 0) {
-    const footerLinks = [
-      `<a target="_blank" rel="noopener noreferrer" href="/about">☕</a>`,
-      `<a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a>`,
-      `<a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a>`,
-      `<a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a>`,
-      `<a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a>`,
-      `<a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a>`,
-      `<a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>`,
-    ].join(" ");
-    $("footer").append(` ${footerLinks}`);
+      const footerLinks = [
+          `<a target="_blank" rel="noopener noreferrer" href="/about">☕</a>`,
+          `<a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a>`,
+          `<a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a>`,
+          `<a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a>`,
+          `<a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a>`,
+          `<a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a>`,
+          `<a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>`,
+      ].join(" ");
+      $("footer").append(` ${footerLinks}`);
   }
-
+  
   if ($("h1").length && $("#iposbrowser").length === 0) {
-    $("h1").first().before('<div id="iposbrowser"></div>');
+      $("h1").first().before('<div id="iposbrowser"></div>');
   }
-
-  // FIX #5 — Cek per-elemen, bukan satu selector sebagai gatekeeper untuk semua.
+  
   if ($("#progress").length === 0) {
-    $("body").append(`<div id="progress"></div>`);
+      $("body").append(`<div id="progress"></div>`);
   }
+  
   if ($("#layar-kosong-header").length === 0) {
-    $("body").append(`<a id="layar-kosong-header" href="https://dalam.web.id/"></a>`);
+      $("body").append(`<a id="layar-kosong-header" href="https://dalam.web.id/"></a>`);
   }
+  
   if ($(".search-floating-container").length === 0) {
-    $("body").append(
-      `<div class="search-floating-container">` +
-        `<input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off">` +
-        `<span id="floatingSearchClear" class="clear-button"></span>` +
-        `<div id="floatingSearchResults" class="floating-results-container"></div>` +
-      `</div>`
-    );
+      $("body").append(
+          `<div class="search-floating-container">` +
+          `<input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off">` +
+          `<span id="floatingSearchClear" class="clear-button"></span>` +
+          `<div id="floatingSearchResults" class="floating-results-container"></div>` +
+          `</div>`
+      );
   }
+  
   if ($("#internal-nav").length === 0) {
-    $("body").append(`<div id="internal-nav"></div>`);
+      $("body").append(`<div id="internal-nav"></div>`);
   }
+  
+  // --- PEMISAHAN GUARD UNTUK SCRIPT EXTERNAL ---
+  
   if ($('script[src="/ext/marquee-url.js"]').length === 0) {
-    // 1. Ambil HTML mentah HANYA dari dalam <body> buat menghindari jebakan og:image di <head>
-    const bodyHtml = $("body").html() || "";
-    
-    // 2. Scan Regex: cari ekstensi gambar yang diakhiri kutip tunggal/ganda.
-    // Flag 'i' bikin dia case-insensitive (mau .JPG atau .jpg bakal kena)
-    const hasImage = /\.(jpg|jpeg|png|gif|webp|avif|svg|bmp)["']/i.test(bodyHtml);
-    
-    // 3. Tentukan script lightbox dimuat atau tidak
-    const lightboxScript = hasImage 
-      ? `<script defer src="/ext/lightbox.js"></script>` 
-      : ``;
-
-    // 4. Injeksi semua script ke body
-    $("body").append(
-      `<script defer src="/ext/marquee-url.js"></script>` +
-      `<script defer src="/ext/iposbrowser.js"></script>` +
-      lightboxScript + // <-- Super dinamis tanpa pusing mikirin nama tag
-      `<script defer src="/ext/response.js"></script>` +
-      `<script defer src="/ext/balon-cf.js"></script>` +
-      `<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>`
-    );
+      $("body").append(`<script defer src="/ext/marquee-url.js"></script>`);
   }
-
+  
+  if ($('script[src="/ext/iposbrowser.js"]').length === 0) {
+      $("body").append(`<script defer src="/ext/iposbrowser.js"></script>`);
+  }
+  
+  // Guard Lightbox + Pengecekan Ekstensi Gambar
+  if ($('script[src="/ext/lightbox.js"]').length === 0) {
+      const bodyHtml = $("body").html() || "";
+      const hasImage = /\.(jpg|jpeg|png|gif|webp|avif|svg|bmp)["']/i.test(bodyHtml);
+      if (hasImage) {
+          $("body").append(`<script defer src="/ext/lightbox.js"></script>`);
+      }
+  }
+  
+  if ($('script[src="/ext/response.js"]').length === 0) {
+      $("body").append(`<script defer src="/ext/response.js"></script>`);
+  }
+  
+  if ($('script[src="/ext/balon-cf.js"]').length === 0) {
+      $("body").append(`<script defer src="/ext/balon-cf.js"></script>`);
+  }
+  
+  // --- GUARD KHUSUS UNTUK INLINE SCRIPT (LLMs) ---
+  let hasLlmsScript = false;
+  $("script:not([src])").each((_, el) => {
+      const scriptContent = $(el).html() || "";
+      if (scriptContent.includes("modelContext' in navigator")) {
+          hasLlmsScript = true;
+      }
+  });
+  
+  if (!hasLlmsScript) {
+      $("body").append(
+          `<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>`
+      );
+  }
+  
   return $.html();
 }
 
