@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya - Layar Kosong</title>
+    <meta name="description" content="Memahami hasil apt --audit di Linux: arti Signature Packet v3, deb822 .sources, Missing Signed-By, dan cara memperbaikinya dengan apt modernize-sources.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/membedah-hasil-apt-audit">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Hasil apt audit, apt modernize-sources, deb822 sources, Missing Signed-By, Linux, Ubuntu, Debian">
+    <meta name="promphint" content="Hasil apt --audit menjelaskan status keamanan repository APT. Masalah umum meliputi Signature Packet v3, sources.list lama, deb822 .sources, dan Missing Signed-By.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/membedah-hasil-apt-audit">
+    <meta property="og:title" content="Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya">
+    <meta property="og:description" content="Memahami hasil apt --audit di Linux: arti Signature Packet v3, deb822 .sources, Missing Signed-By, dan cara memperbaikinya dengan apt modernize-sources.">
+    <meta property="og:updated_time" content="2016-05-09T20:32:21.648Z">
+    <meta property="og:image" content="https://dalam.web.id/img/membedah-hasil-apt-audit.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/membedah-hasil-apt-audit.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/membedah-hasil-apt-audit.webp">
+    <meta property="og:image:alt" content="Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="562">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/membedah-hasil-apt-audit">
+    <meta name="twitter:title" content="Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya">
+    <meta name="twitter:description" content="Memahami hasil apt --audit di Linux: arti Signature Packet v3, deb822 .sources, Missing Signed-By, dan cara memperbaikinya dengan apt modernize-sources.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/membedah-hasil-apt-audit.webp">
+    <meta name="twitter:image:alt" content="Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2016-05-09T20:24:15.165Z">
+    <meta property="article:modified_time" content="2022-08-09T21:16:31.964Z">
+    <meta name="keywords" content="apt audit, modernize-sources, deb822, sources.list, Signature Packet v3, Missing Signed-By, debian, ubuntu, linux, dalam.web.id">
+    <meta name="ai:summary" content="Memahami hasil apt --audit di Linux: arti Signature Packet v3, deb822 .sources, Missing Signed-By, dan cara memperbaikinya dengan apt modernize-sources.">
+    <meta name="ai:prompt_hint" content="Hasil apt --audit menjelaskan status keamanan repository APT. Masalah umum meliputi Signature Packet v3, sources.list lama, deb822 .sources, dan Missing Signed-By.">
+    <link rel="apple-touch-icon" href="/ext/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="/ext/default.min.css">
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f6f8fb;
+            --bg-soft: #eaf2ff;
+            --text: #172033;
+            --muted: #5f6f86;
+            --heading: #0f172a;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-soft: rgba(37, 99, 235, 0.12);
+            --card: #ffffff;
+            --line: #dbe4f0;
+            --code-bg: #0f172a;
+            --code-text: #e5e7eb;
+            --inline-code-bg: rgba(37, 99, 235, 0.12);
+            --inline-code-text: #1e40af;
+            --warning-line: #facc15;
+            --shadow: 0 1rem 2.75rem rgba(15, 23, 42, 0.12);
+            --shadow-soft: 0 0.625rem 1.875rem rgba(15, 23, 42, 0.08);
+            --radius-sm: 0.5rem;
+            --radius-md: 0.875rem;
+            --radius-lg: 1.25rem;
+            --max-width: 56.25rem;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+            --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: dark;
+                --bg: #08111f;
+                --bg-soft: #101c2f;
+                --text: #e5e7eb;
+                --muted: #a7b3c5;
+                --heading: #f8fafc;
+                --accent: #60a5fa;
+                --accent-hover: #93c5fd;
+                --accent-soft: rgba(96, 165, 250, 0.14);
+                --card: #111827;
+                --line: #2f4058;
+                --code-bg: #020617;
+                --code-text: #f8fafc;
+                --inline-code-bg: rgba(96, 165, 250, 0.14);
+                --inline-code-text: #bfdbfe;
+                --warning-line: #facc15;
+                --shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.42);
+                --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
+            }
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        html {
+            min-height: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background:
+                radial-gradient(56rem 30rem at 10% -8%, var(--accent-soft), transparent 62%),
+                linear-gradient(180deg, var(--bg-soft), var(--bg) 45%, var(--bg));
+            color: var(--text);
+            font-family: var(--font-main);
+            line-height: 1.75;
+            text-rendering: optimizeLegibility;
+        }
+        a {
+            color: var(--accent);
+            text-decoration-thickness: 0.08rem;
+            text-underline-offset: 0.18rem;
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+        a:focus-visible {
+            outline: 0.1875rem solid var(--accent);
+            outline-offset: 0.1875rem;
+            border-radius: var(--radius-sm);
+        }
+        .container {
+            width: min(100% - 2rem, var(--max-width));
+            margin: 2.5rem auto;
+            padding: clamp(1.25rem, 4vw, 3rem);
+            border: 0.0625rem solid var(--line);
+            border-radius: var(--radius-lg);
+            background-color: var(--card);
+            box-shadow: var(--shadow);
+        }
+        .article-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        #iposbrowser {
+            margin-bottom: 0.75rem;
+        }
+        .article-header h1 {
+            margin: 0 0 0.75rem;
+            color: var(--heading);
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 850;
+            line-height: 1.12;
+            letter-spacing: -0.05rem;
+            text-wrap: balance;
+        }
+        .article-header p {
+            max-width: 43.75rem;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+            line-height: 1.75;
+        }
+        .article-header .meta {
+            margin-top: 1rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        main {
+            font-size: clamp(1.02rem, 2.2vw, 1.08rem);
+        }
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+        .content-section h2 {
+            display: inline-block;
+            margin: 0 0 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 0.1875rem solid var(--accent);
+            color: var(--heading);
+            font-size: clamp(1.45rem, 4vw, 2rem);
+            font-weight: 800;
+            line-height: 1.3;
+            text-wrap: balance;
+        }
+        .content-section h3 {
+            margin: 1.75rem 0 0.75rem;
+            color: var(--heading);
+            font-size: clamp(1.15rem, 3vw, 1.35rem);
+            font-weight: 800;
+            line-height: 1.35;
+            text-wrap: balance;
+        }
+        p {
+            margin: 0 0 1.15rem;
+        }
+        p:last-child {
+            margin-bottom: 0;
+        }
+        ol {
+            margin: 0 0 1.25rem;
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.15rem;
+        }
+        li:last-child {
+            margin-bottom: 0;
+        }
+        strong {
+            color: var(--heading);
+            font-weight: 800;
+        }
+        pre {
+            position: relative;
+            margin: 1.5rem 0;
+            padding: 1.25rem;
+            overflow-x: auto;
+            border: 0.0625rem solid var(--line);
+            border-radius: var(--radius-md);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent),
+                var(--code-bg);
+            color: var(--code-text);
+            box-shadow: var(--shadow-soft);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        pre::before {
+            display: block;
+            margin-bottom: 0.9rem;
+            color: #94a3b8;
+            content: "● ● ●  apt audit";
+            font-family: var(--font-code);
+            font-size: 0.78rem;
+            letter-spacing: 0.12rem;
+        }
+        pre code {
+            display: block;
+            padding: 0;
+            background: transparent;
+            color: inherit;
+            font-family: var(--font-code);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        p > code,
+        li > code {
+            padding: 0.12rem 0.35rem;
+            border-radius: 0.35rem;
+            background-color: var(--inline-code-bg);
+            color: var(--inline-code-text);
+            font-family: var(--font-code);
+            font-size: 0.92em;
+        }
+        .content-section:first-child pre {
+            border-left: 0.35rem solid var(--warning-line);
+            background:
+                linear-gradient(180deg, rgba(250, 204, 21, 0.08), transparent),
+                var(--code-bg);
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background:
+                    radial-gradient(56rem 30rem at 10% -8%, rgba(96, 165, 250, 0.12), transparent 62%),
+                    linear-gradient(180deg, var(--bg-soft), var(--bg) 45%, #060c16);
+            }
+        }
+        @media (max-width: 48rem) {
+            .container {
+                width: 100%;
+                margin: 0;
+                padding: 1.25rem 0.9375rem;
+                border-right: 0;
+                border-left: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .article-header {
+                margin-bottom: 2rem;
+            }
+            .content-section {
+                margin-bottom: 2.25rem;
+            }
+            pre {
+                padding: 1rem;
+                font-size: 0.88rem;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+    <div class="container">
+        <header class="article-header">
+            <div id="iposbrowser"></div><h1>Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya</h1>
+            <p>"Penjelasan kamu bagus." Berawal dari kalimat itu, mari kita ubah hasil audit teknis di terminal Linux menjadi artikel yang mudah dipahami semua orang!</p>
+            <div class="meta">Dipublikasikan pada 12 Oktober 2025</div>
+        </header>
+        <main>
+            <section class="content-section">
+                <h2>Hasil Auditnya Keluar! Apa Kata Terminal?</h2>
+                <p>Setelah menjalankan perintah <code>sudo apt update --audit</code>, terminal kita jadi lebih "cerewet" dari biasanya. Dia tidak cuma bilang "semua paket sudah update", tapi juga memberikan laporan audit lengkap yang sangat informatif. Kira-kira, beginilah penampakannya:</p>
+                <pre><code class="language-text">Warning: http://download.opensuse.org/.../InRelease: Policy will reject signature within a year...
+Audit: http://.../InRelease: Sub-process /usr/bin/sqv returned an error code (1), error message is:
+   Error: Policy rejected packet type
+   Caused by:
+       Signature Packet v3 is not considered secure since 2026-02-01T00:00:00Z
+Audit: The sources.list(5) entry for 'http://ftp.es.debian.org/debian' should be upgraded to deb822 .sources
+Audit: Missing Signed-By in the sources.list(5) entry for 'http://ftp.es.debian.org/debian'
+... (pesan serupa berulang kali) ...
+Audit: Some sources can be modernized. Run 'apt modernize-sources' to do so.</code></pre>
+                <p>Kelihatannya rumit ya? Sebenarnya tidak juga. Laporan ini cuma memberi tahu dua masalah utama: satu dari luar, yaitu penyedia repositori, dan satu dari dalam, yaitu konfigurasi APT di sistem kita sendiri.</p>
+            </section>
+            <section class="content-section">
+                <h2>Bedah Hasil Audit Satu per Satu</h2>
+                <p>Mari kita kupas laporan ini menjadi dua bagian utama agar lebih gampang dicerna.</p>
+                <h3>Masalah #1: Tanda Tangan Digital Versi Jadul</h3>
+                <p>Pesan <code>Signature Packet v3 is not considered secure since 2026-02-01</code> adalah biang keladi dari peringatan awal. Artinya, repositori dari OpenSuse itu masih memakai "segel keamanan" versi lama, yaitu v3. Standar keamanan modern akan menganggap segel ini tidak aman lagi mulai 1 Februari 2026.</p>
+                <p>Untuk kasus ini, masalahnya berada di sisi penyedia repositori. Pengguna biasa umumnya hanya bisa menunggu pihak penyedia memperbarui tanda tangan digitalnya.</p>
+                <h3>Masalah #2: Konfigurasi Kita yang Perlu Dimodernisasi</h3>
+                <p>Pesan yang paling banyak muncul adalah <code>should be upgraded to deb822 .sources</code> dan <code>Missing Signed-By</code>. Ini artinya cara kita mendaftarkan sumber software di sistem masih memakai format lama.</p>
+                <p>Format baru yang disarankan adalah <code>deb822</code>. Format ini lebih rapi dan lebih aman karena setiap repositori bisa ditautkan langsung ke kunci keamanannya masing-masing lewat konfigurasi <code>Signed-By</code>.</p>
+            </section>
+            <section class="content-section">
+                <h2>Solusi Pamungkas: Modernisasi!</h2>
+                <p>Bagian paling menarik dari audit ini adalah pesan terakhirnya: <code>Run 'apt modernize-sources' to do so</code>. Sistem <code>apt</code> sudah menyiapkan perintah otomatis untuk membereskan konfigurasi sumber paket yang masih memakai format lama.</p>
+                <p>Ikuti langkah-langkah berikut dengan hati-hati.</p>
+                <h3>Langkah 1: Backup Dulu Biar Tenang</h3>
+                <p>Untuk berjaga-jaga, buat salinan konfigurasi lama terlebih dahulu:</p>
+                <pre><code class="language-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+sudo cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.bak</code></pre>
+                <h3>Langkah 2: Jalankan Perintah Modernisasi</h3>
+                <p>Setelah backup selesai, jalankan perintah utama berikut:</p>
+                <pre><code class="language-bash">sudo apt modernize-sources</code></pre>
+                <p>Perintah ini akan mengubah konfigurasi APT lama dari format <code>.list</code> menjadi format <code>.sources</code> atau <code>deb822</code> yang lebih modern.</p>
+                <h3>Langkah 3: Verifikasi Hasilnya</h3>
+                <p>Setelah proses modernisasi selesai, jalankan update sekali lagi:</p>
+                <pre><code class="language-bash">sudo apt update</code></pre>
+                <p>Jika berhasil, peringatan audit tentang format <code>deb822</code> dan <code>Missing Signed-By</code> seharusnya tidak muncul lagi. Peringatan dari repositori luar seperti OpenSuse mungkin masih tampil, tetapi setidaknya konfigurasi lokal di sistem kita sudah lebih rapi dan aman.</p>
+            </section> <div id="related-articles-grid"></div>
+            <div id="response"></div>
+        </main>
+    </div>
+    <section id="related-marquee-section">
+        <div id="related-marquee-container"></div>
+    </section>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -1,0 +1,67 @@
+name: 📎 Sisipkan Sebelum - Sesudah
+
+on:
+  workflow_dispatch:
+    inputs:
+      position:
+        description: 'Sisipkan "sebelum" atau "sesudah" target?'
+        required: true
+        type: choice
+        options: [sesudah, sebelum]
+      target_string:
+        description: 'Target (contoh: </title>)'
+        required: true
+        default: ''
+      sentence:
+        description: 'Kalimat yang disisipkan'
+        required: true
+        default: ''
+      target_directory:
+        description: 'Folder target'
+        required: true
+        default: '.'
+      file_extension:
+        description: 'Ekstensi file (html, js, dll)'
+        required: true
+        default: 'html'
+
+jobs:
+  inject-and-pr:
+    runs-on: ubuntu-latest
+   
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Inject content
+        run: |
+          # Kita gunakan perl karena dia tidak memproses kutip ganda di dalam string 
+          # sesulit sed dan sangat handal untuk injeksi baris baru.
+          
+          POSITION="${{ github.event.inputs.position }}"
+          TARGET='${{ github.event.inputs.target_string }}'
+          SENTENCE='${{ github.event.inputs.sentence }}'
+          
+          # Gunakan QUOTEMETA untuk memastikan target aman dari karakter regex
+          # Kita gunakan delimiter '|' karena tag html sudah pakai '/'
+          if [[ "$POSITION" == "sesudah" ]]; then
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|\$& $SENTENCE|g" {} +
+          else
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|$SENTENCE \$&|g" {} +
+          fi
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "CI: Auto-inject content into *.${{ github.event.inputs.file_extension }}"
+          title: "Auto-inject: Update file content"
+          body: "Workflow otomatis menambahkan script ke file target menggunakan Perl agar karakter kutip tetap terjaga."
+          branch: "auto-inject-changes"
+          delete-branch: true

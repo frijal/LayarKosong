@@ -1,0 +1,81 @@
+name: 🐳 Build and Push to GHCR
+
+on:  
+  schedule:
+    - cron: '55 3 4 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛰️ Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: 🥟 Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 🧹 Sync Lockfiles
+        run: |
+          # 1. Cek apakah package.json ada di root
+          if [ -f "package.json" ]; then
+            echo "✅ package.json ditemukan di root."
+          # 2. ATAU cek apakah ada di sub-folder (ganti 'dapur' sesuai nama folder lo)
+          elif [ -f "dapur/package.json" ]; then
+            echo "✅ package.json ditemukan di sub-folder. Pindah ke sana..."
+            cd dapur
+          else
+            echo "❌ ERROR: package.json tidak ditemukan di mana pun!"
+            ls -R # Biar kita bisa lihat isi foldernya lewat log
+            exit 1
+          fi
+          
+          # 3. Jalankan install setelah kita yakin di posisi yang benar
+          echo "🚀 Menjalankan bun install..."
+          bun install --no-cache
+
+      - name: 🔐 Log in to GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏷️ Extract Metadata
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha,format=short
+
+      - name: 🛠️ Build and Push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            DOCKER_BUILDKIT=1
+
+      - name: 📋 Version Report
+        run: |
+          echo "## 📦 Software Versions in Image" >> $GITHUB_STEP_SUMMARY
+          # Gunakan tag 'latest' yang baru saja di-push
+          docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest sh -c "
+            echo '- **Bun:** ' \$(bun --version)
+            echo '- **Node:** ' \$(node --version)
+            echo '- **Python:** ' \$(python3 --version)
+          " >> $GITHUB_STEP_SUMMARY

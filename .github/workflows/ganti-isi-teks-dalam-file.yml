@@ -1,0 +1,91 @@
+name: "📝 Mass Replace via Bun (PR)"
+
+on:
+  workflow_dispatch:
+    inputs:
+      search_text:
+        description: "Teks/Kalimat yang dicari"
+        required: true
+      replace_text:
+        description: "Teks/Kalimat pengganti"
+        required: false
+      extensions:
+        description: "Ekstensi file (koma-separated, misal: md,ts,js). Kosongkan untuk semua file."
+        required: false
+        default: "html"
+      folder:
+        description: "Lokasi folder (default: .)"
+        required: false
+        default: "."
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: latest
+
+      - name: Log Replacement Parameters
+        run: |
+          echo "🔍 Mencari teks: ${{ github.event.inputs.search_text }}"
+          echo "✏️  Mengganti dengan: ${{ github.event.inputs.replace_text }}"
+          echo "📁 Folder target: ${{ github.event.inputs.folder }}"
+          echo "📄 Ekstensi file: ${{ github.event.inputs.extensions }}"
+
+      - name: Run Filtered Replacement
+        env:
+          SEARCH: ${{ github.event.inputs.search_text }}
+          REPLACE: ${{ github.event.inputs.replace_text }}
+          FOLDER: ${{ github.event.inputs.folder }}
+          EXT: ${{ github.event.inputs.extensions }}
+        run: bun run dapur/ganti-teks.ts
+
+      - name: Check Git Status
+        id: status
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "changed_count=$(git status --porcelain | wc -l | tr -d ' ')" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Tidak ada perubahan pada ekstensi file tersebut."
+          fi
+
+      - name: Create Pull Request
+        if: steps.status.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@d32e88dac789dcc7906e7d26f69f24116fa9c97d
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: ganti teks pada file ${{ github.event.inputs.extensions }}"
+          branch: "ganti-txt/${{ github.run_id }}"
+          delete-branch: true
+          title: "Mass Replace (${{ github.event.inputs.extensions }})"
+          body: |
+            ## 🤖 Automated Replacement
+
+            Workflow ini menjalankan penggantian teks otomatis menggunakan Bun.
+
+            - **Workflow:** `${{ github.workflow }}`
+            - **Run ID:** `${{ github.run_id }}`
+            - **Ekstensi:** `${{ github.event.inputs.extensions }}`
+            - **Folder:** `${{ github.event.inputs.folder }}`
+            - **Jumlah file berubah:** `${{ steps.status.outputs.changed_count }}`
+
+            ### 🔍 Detail Penggantian
+            - **Teks yang dicari:** `${{ github.event.inputs.search_text }}`
+            - **Teks pengganti:** `${{ github.event.inputs.replace_text }}`
+
+            Daftar file yang berubah sengaja tidak ditampilkan agar PR tetap ringan dan tidak memicu batas panjang argumen pada runner.

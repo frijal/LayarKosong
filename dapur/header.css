@@ -1,0 +1,197 @@
+/* =====================================
+  STYLE HEADER (Mandiri / Plug-and-Play)
+  =====================================
+  Dibuat agar 100% aman dari konflik:
+  1. Variabel CSS menggunakan bahasa Indonesia (--warna-...).
+  2. Nama Class CSS menggunakan bahasa Indonesia (.area-header-...).
+  3. TIDAK ADA global reset (* {...}).
+*/
+
+/* Variabel Warna Khusus Header */
+:root {
+  --warna-latar: #121212;
+  --warna-latar-transparan: rgba(18, 18, 18, 0.85);
+  --warna-permukaan: #1e1e1e;
+  --warna-teks-utama: #e0e0e0;
+  --warna-teks-sekunder: #b3b3b3;
+  --warna-aksen: #3da9fc;
+  --warna-garis: #2c2c2c;
+  --warna-bayangan: rgba(61, 169, 252, 0.1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --warna-latar: #f4f4f9;
+    --warna-latar-transparan: rgba(244, 244, 249, 0.85);
+    --warna-permukaan: #ffffff;
+    --warna-teks-utama: #212121;
+    --warna-teks-sekunder: #666666;
+    --warna-aksen: #007bff;
+    --warna-garis: #e0e0e0;
+    --warna-bayangan: rgba(0, 123, 255, 0.15);
+  }
+}
+
+/* =====================================
+  PERUBAHAN PENTING ADA DI SINI:
+  =====================================
+  Skrip header.js akan menambahkan class ini 
+  ke tag <body> secara otomatis.
+  Ini untuk memberi ruang bagi header fixed Anda.
+*/
+body.header-dimuat {
+  /* DIUBAH: Konten Anda mungkin akan tertutup oleh header */
+  padding-top: 4rem;
+}
+
+/* =====================================
+   CSS INTI UNTUK HEADER
+   =====================================
+*/
+.area-header-atas {
+  /* Menggunakan transparan (sesuai permintaan sebelumnya) */
+  background-color: transparent;
+  border-bottom: none;
+  box-shadow: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.area-header-pembungkus {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0rem;
+}
+
+.area-header-baris-bawah {
+  display: flex;
+  /* Diubah ke center agar kotak pencarian di tengah (karena <h1> dihapus) */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  flex-wrap: wrap; /* Agar rapi di mobile */
+}
+
+.area-header-kiri {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+/* Style untuk <h1> (jika ada) */
+.area-header-atas h1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--warna-aksen);
+  font-size: 1.25rem; /* Lebih kecil agar pas di header */
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Style untuk Tautan RSS (jika ada) */
+.area-header-atas .tautan-rss {
+  color: var(--warna-aksen);
+  text-decoration: none;
+  font-size: 1.2rem;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+.area-header-atas .tautan-rss:hover {
+  color: orange;
+}
+
+.logo-pembungkus {
+  display: none; /* Sembunyi di mobile */
+  align-items: center;
+}
+
+.logo-gambar {
+  height: 1.5rem;
+  width: auto;
+}
+
+/* Memastikan link logo tidak berwarna biru/ungu */
+.logo-pembungkus a,
+.logo-pembungkus a:link,
+.logo-pembungkus a:visited,
+.logo-pembungkus a:hover,
+.logo-pembungkus a:active {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: none;
+  display: inline-block;
+  line-height: 0;
+}
+
+/* --- CSS UNTUK PENCARIAN --- */
+.area-pencarian {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  min-width: 0;
+}
+
+.input-pencarian {
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: 1px solid var(--warna-garis);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  /* Ganti ke warna permukaan jika ingin kontras dengan latar transparan */
+  background-color: var(--warna-permukaan);
+  color: var(--warna-teks-utama);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-pencarian::placeholder {
+  color: var(--warna-teks-sekunder);
+}
+
+.input-pencarian:focus {
+  outline: none;
+  border-color: var(--warna-aksen);
+  box-shadow: 0 0 0 2px var(--warna-aksen);
+}
+
+.ikon-pencarian {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: var(--warna-teks-sekunder);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+/* --- Media Query untuk Responsif --- */
+@media (min-width: 640px) {
+  .logo-pembungkus {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .area-header-atas h1 {
+    font-size: 1.75rem; /* Kembalikan ukuran di desktop */
+  }
+}
+
+

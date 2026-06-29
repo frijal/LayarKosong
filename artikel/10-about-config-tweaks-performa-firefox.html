@@ -1,0 +1,484 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>10 about:config Tweaks untuk Performa Firefox Maksimal - Layar Kosong</title>
+    <meta name="description" content="10 tweak about:config untuk mempercepat Firefox. Aktifkan WebRender, kurangi animasi, optimasi RAM, dan tingkatkan responsivitas browser.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/10-about-config-tweaks-performa-firefox">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="about:config, tweak Firefox, optimasi Firefox, Firefox cepat, performa Firefox, Firefox ringan">
+    <meta name="promphint" content="Q: Apa saja tweak about:config untuk meningkatkan performa Firefox? A: Aktifkan WebRender (gfx.webrender.all), matikan animasi tab (browser.tabs.animate), kurangi jumlah proses konten, dan nonaktifkan telemetri. Ada 10 tweak aman di artikel ini.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/10-about-config-tweaks-performa-firefox">
+    <meta property="og:title" content="10 about:config Tweaks untuk Performa Firefox Maksimal">
+    <meta property="og:description" content="Optimasi Firefox lewat about:config. 10 pengaturan yang bisa kamu ubah untuk browser lebih ringan, cepat, dan responsif.">
+    <meta property="og:updated_time" content="2026-03-28T14:21:31.982Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/226fb154c6e4ff82.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/226fb154c6e4ff82.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/226fb154c6e4ff82.webp">
+    <meta property="og:image:alt" content="10 about:config Tweaks untuk Performa Firefox Maksimal">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="667">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/10-about-config-tweaks-performa-firefox">
+    <meta name="twitter:title" content="10 about:config Tweaks untuk Performa Firefox Maksimal">
+    <meta name="twitter:description" content="Kumpulan pengaturan about:config yang aman dan terbukti meningkatkan kecepatan Firefox. Cocok untuk PC spek rendah hingga menengah.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/226fb154c6e4ff82.webp">
+    <meta name="twitter:image:alt" content="10 about:config Tweaks untuk Performa Firefox Maksimal">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Firefox">
+    <meta property="article:tag" content="about:config">
+    <meta property="article:tag" content="Performa">
+    <meta property="article:tag" content="Optimasi">
+    <meta property="article:published_time" content="2026-03-28T14:16:33.916Z">
+    <meta property="article:modified_time" content="2026-05-14T03:23:34.214Z">
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    background: #faf9f8;
+    color: #1a1a1a;
+    padding: 2rem 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+:root {
+    --bg: #faf9f8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #4b5563;
+    --border: #e5e7eb;
+    --accent: #0078d4;
+    --accent-hover: #005a9e;
+    --code-bg: #f3f4f6;
+    --block-bg: #f8f9fa;
+    /* ✅ Tambahan variable khusus tabel */
+    --table-border: #ddd;
+    --table-thead-bg: #2c3e50;
+    --table-thead-text: #fff;
+    --table-row-even: #f9f9f9;
+    --table-row-hover: #f1f1f1;
+    --table-mobile-row-bg: #ffffff;
+    --table-label-color: #2c3e50;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f0f0f;
+        --surface: #1e1e1e;
+        --text: #e5e7eb;
+        --text-muted: #9ca3af;
+        --border: #2d2d2d;
+        --accent: #4c9aff;
+        --accent-hover: #6ab0ff;
+        --code-bg: #2d2d2d;
+        --block-bg: #252525;
+        /* ✅ Override variable tabel untuk dark mode */
+        --table-border: #444;
+        --table-thead-bg: #1f2937;
+        --table-thead-text: #e5e7eb;
+        --table-row-even: #1e1e1e;
+        --table-row-hover: #2a2a2a;
+        --table-mobile-row-bg: #1e1e1e;
+        --table-label-color: #9ca3af;
+    }
+}
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: background 0.2s;
+}
+code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    word-break: break-word; /* ✅ antisipasi nama parameter panjang */
+}
+h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+h2 {
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+    font-weight: 700;
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+}
+h3 {
+    font-size: 1.35rem;
+    margin: 1.5rem 0 0.75rem;
+    font-weight: 600;
+}
+p {
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+}
+a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+a:hover {
+    text-decoration: underline;
+}
+ul, ol {
+    margin: 1rem 0 1.5rem 1.8rem;
+}
+li {
+    margin-bottom: 0.5rem;
+}
+img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200/630;
+    object-fit: cover;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.feature-img {
+    margin: 1rem 0 1.5rem;
+    text-align: center;
+}
+.highlight, .note-box {
+    background: var(--code-bg);
+    padding: 1.2rem;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    border-left: 3px solid var(--accent);
+}
+.code-block {
+    background: var(--code-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+pre {
+    background: var(--code-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+}
+.tweak-card {
+    background: var(--block-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+.tweak-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+/* ✅ Tabel pakai variable, bukan hardcode */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+thead {
+    background-color: var(--table-thead-bg);
+    color: var(--table-thead-text);
+}
+th, td {
+    padding: 12px 15px;
+    border: 1px solid var(--table-border);
+    text-align: left;
+}
+tbody tr:nth-child(even) {
+    background-color: var(--table-row-even);
+}
+tbody tr:hover {
+    background-color: var(--table-row-hover);
+}
+@media (max-width: 640px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    .tweak-card {
+        padding: 1rem;
+        border-radius: 16px;
+    }
+    .tweak-card h4 {
+        font-size: 1.05rem;
+        flex-wrap: wrap;        /* ✅ biar icon + teks tidak overflow */
+        gap: 6px;
+    }
+    .tweak-card h4 code {
+        font-size: 0.8rem;
+        word-break: break-all;  /* ✅ nama parameter panjang bisa wrap */
+        white-space: normal;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--table-border); /* ✅ pakai variable */
+        border-radius: 6px;
+        padding: 10px;
+        background-color: var(--table-mobile-row-bg); /* ✅ pakai variable */
+    }
+    td {
+        border: none;
+        padding: 8px 10px;
+        position: relative;
+    }
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+        color: var(--table-label-color); /* ✅ pakai variable */
+    }
+    .container {
+        padding: 1.5rem;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+.lead {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+.fa, .fas, .far, .fa-brands {
+    margin-right: 6px;
+}
+    </style>
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+<div class="container">
+    <div id="iposbrowser"></div><h1><i class="fa-solid fa-tachometer-alt"></i> 10 about:config Tweaks untuk Performa Firefox Maksimal <i class="fa-brands fa-firefox-browser"></i></h1>
+    <div class="lead">
+        <i class="fa-solid fa-sliders-h"></i> Firefox punya banyak pengaturan tersembunyi di about:config. Dengan sedikit penyesuaian, kamu bisa membuat browser jadi lebih cepat, ringan, dan responsif — terutama buat perangkat dengan spesifikasi terbatas.
+    </div>
+<p>Firefox terasa berat pas buka banyak tab? Atau animasi buka tab membuat ngelag? Tenang, Firefox punya halaman <strong>about:config</strong> yang mirip "laboratorium pengaturan". Di sana kamu bisa ubah berbagai parameter untuk meningkatkan performa.</p>
+    <div class="feature-img">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/226fb154c6e4ff82.webp" alt="Ilustrasi about:config tweaks untuk performa Firefox" loading="eager" width="1000" height="525">
+    </div>
+    <p>Artikel ini akan memberikan <strong>10 tweak yang aman dan terbukti efektif</strong>, berdasarkan prinsip 5W+1H dan pengalaman komunitas (E-E-A-T).</p>
+    <div class="highlight">
+        <i class="fa-solid fa-exclamation-triangle"></i> <strong>Peringatan:</strong> about:config berisi pengaturan tingkat lanjut. Ubah dengan hati-hati. Jangan asal-asalan karena bisa mengganggu stabilitas. Ikuti panduan ini dan selalu catat pengaturan asli sebelum mengubah. 
+    </div>
+    <h2>⚙️ 10 Tweak about:config Paling Berpengaruh</h2>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-charging-station"></i> 1. <code>gfx.webrender.all</code> → <strong>true</strong></h4>
+        <p>Mengaktifkan WebRender, mesin render modern Firefox yang lebih efisien menggunakan GPU. Hasilnya: scrolling lebih halus, penggunaan CPU berkurang, dan animasi lebih ringan. Cocok untuk semua perangkat, terutama yang punya GPU dedicated atau integrated modern. Setelah diaktifkan, restart Firefox.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-stopwatch"></i> 2. <code>browser.tabs.animate</code> → <strong>false</strong></h4>
+        <p>Matikan animasi saat membuka atau menutup tab. Efeknya langsung terasa: tab switching jadi instan, tanpa jeda visual. Sangat membantu untuk perangkat dengan CPU lemah.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-memory"></i> 3. <code>dom.ipc.processCount</code> → <strong>4</strong> (atau sesuai RAM)</h4>
+        <p>Mengatur jumlah proses konten (tab) yang berjalan paralel. Default biasanya 8, tapi jika RAM hanya 8GB, turunkan ke 4 atau 2 untuk menghemat memori. Jika punya RAM 16GB, bisa biarkan 8. Ubah nilai integer sesuai kebutuhan.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-hand-peace"></i> 4. <code>layers.acceleration.disabled</code> → <strong>false</strong></h4>
+        <p>Pastikan akselerasi hardware aktif (nilai false). Ini memungkinkan Firefox menggunakan GPU untuk rendering, meringankan kerja CPU. Sebaliknya, jika kamu punya masalah grafis, set ke true untuk menonaktifkan.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-undo-alt"></i> 5. <code>browser.sessionhistory.max_total_viewers</code> → <strong>0</strong></h4>
+        <p>Mengurangi jumlah halaman yang disimpan dalam cache untuk tombol back/forward. Defaultnya biasanya 1 atau 2. Set ke 0 untuk menghemat RAM, terutama jika kamu jarang menggunakan back/forward.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-chart-line"></i> 6. <code>accessibility.force_disabled</code> → <strong>1</strong></h4>
+        <p>Menonaktifkan layanan aksesibilitas yang seringkali memakan sumber daya. Jika kamu tidak menggunakan screen reader atau alat bantu akses, set ke 1 untuk mematikan semua service aksesibilitas.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-eye"></i> 7. <code>ui.prefersReducedMotion</code> → <strong>1</strong></h4>
+        <p>Memberi sinyal ke sistem operasi bahwa kamu menginginkan animasi minimal. Ini akan mempengaruhi animasi di situs web dan UI Firefox. Cocok untuk pengguna yang lebih suka pengalaman tanpa gangguan visual.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-database"></i> 8. <code>browser.cache.disk.enable</code> → <strong>false</strong> &amp; <code>browser.cache.memory.enable</code> → <strong>true</strong></h4>
+        <p>Nonaktifkan cache disk (HDD) dan aktifkan cache di RAM. Jika punya RAM cukup (8GB+), ini akan mempercepat loading karena cache tidak perlu baca/tulis ke HDD yang lambat. Pastikan kamu memiliki memori yang cukup.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-chart-simple"></i> 9. <code>network.http.max-connections</code> → <strong>48</strong> (atau 64)</h4>
+        <p>Meningkatkan jumlah koneksi paralel maksimal untuk loading situs. Default biasanya 30. Naikkan ke 48 atau 64 agar loading lebih cepat, terutama pada koneksi internet cepat.</p>
+    </div>
+    <div class="tweak-card">
+        <h4><i class="fa-solid fa-microphone-alt"></i> 10. <code>media.hardware-video-decoding.enabled</code> → <strong>true</strong></h4>
+        <p>Aktifkan hardware decoding video. Membantu memutar video YouTube, Netflix, dll dengan beban CPU lebih ringan. Pastikan driver GPU kamu terbaru.</p>
+    </div>
+    <h2>📋 Ringkasan Tweak dalam Tabel</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Nilai yang Disarankan</th>
+      <th>Manfaat Utama</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Parameter">gfx.webrender.all</td>
+      <td data-label="Nilai yang Disarankan">true</td>
+      <td data-label="Manfaat Utama">Render GPU lebih efisien</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">browser.tabs.animate</td>
+      <td data-label="Nilai yang Disarankan">false</td>
+      <td data-label="Manfaat Utama">Buka/tutup tab instan</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">dom.ipc.processCount</td>
+      <td data-label="Nilai yang Disarankan">4 (sesuai RAM)</td>
+      <td data-label="Manfaat Utama">Kontrol penggunaan memori proses</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">layers.acceleration.disabled</td>
+      <td data-label="Nilai yang Disarankan">false</td>
+      <td data-label="Manfaat Utama">Akselerasi hardware aktif</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">browser.sessionhistory.max_total_viewers</td>
+      <td data-label="Nilai yang Disarankan">0</td>
+      <td data-label="Manfaat Utama">Hemat RAM</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">accessibility.force_disabled</td>
+      <td data-label="Nilai yang Disarankan">1</td>
+      <td data-label="Manfaat Utama">Nonaktifkan service aksesibilitas</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">ui.prefersReducedMotion</td>
+      <td data-label="Nilai yang Disarankan">1</td>
+      <td data-label="Manfaat Utama">Kurangi animasi sistem</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">browser.cache.disk.enable</td>
+      <td data-label="Nilai yang Disarankan">false</td>
+      <td data-label="Manfaat Utama">Pakai RAM cache, matikan cache disk</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">browser.cache.memory.enable</td>
+      <td data-label="Nilai yang Disarankan">true</td>
+      <td data-label="Manfaat Utama">Cache RAM aktif</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">network.http.max-connections</td>
+      <td data-label="Nilai yang Disarankan">48</td>
+      <td data-label="Manfaat Utama">Percepat loading situs</td>
+    </tr>
+    <tr>
+      <td data-label="Parameter">media.hardware-video-decoding.enabled</td>
+      <td data-label="Nilai yang Disarankan">true</td>
+      <td data-label="Manfaat Utama">Video playback ringan</td>
+    </tr>
+  </tbody>
+</table>
+    <h2>🧪 Cara Menerapkan Tweak</h2>
+    <ol>
+        <li>Buka Firefox, ketik <code>about:config</code> di address bar, tekan Enter.</li>
+        <li>Klik tombol <strong>"Accept the Risk and Continue"</strong>.</li>
+        <li>Pada kolom pencarian, ketik nama parameter (misal <code>gfx.webrender.all</code>).</li>
+        <li>Jika parameter belum ada, klik tombol <strong>"+ (plus)"</strong> di kanan, pilih tipe (Boolean/Integer/String), lalu isi nilai.</li>
+        <li>Jika sudah ada, klik tombol toggle (untuk boolean) atau double‑klik (untuk integer) untuk mengubah nilai.</li>
+        <li>Ulangi untuk semua tweak yang diinginkan.</li>
+        <li>Restart Firefox agar perubahan diterapkan.</li>
+    </ol>
+    <div class="note-box">
+        <i class="fa-solid fa-save"></i> <strong>Catat Pengaturan Awal:</strong> Sebelum mengubah, catat nilai defaultnya. Jika terjadi masalah, kamu bisa mengembalikan ke nilai semula.
+    </div>
+    <h2>📈 Testimoni &amp; Efek yang Dirasakan</h2>
+    <p>Banyak pengguna dengan spek mirip (i5-7400, 8GB RAM, HDD) melaporkan bahwa setelah menerapkan tweak di atas, Firefox terasa lebih ringan, tab switching lebih cepat, dan YouTube 1080p lebih jarang lag. Beberapa juga merasakan peningkatan skor benchmark (Speedometer). Tentu hasil bisa bervariasi tergantung hardware dan kebiasaan browsing.</p>
+    <h2>⚠️ Hal yang Perlu Diperhatikan</h2>
+    <ul>
+        <li>Beberapa tweak seperti mematikan cache disk bisa menyebabkan browser memuat ulang halaman lebih sering saat restart. Jika menggunakan SSD, lebih baik biarkan cache disk aktif.</li>
+        <li>Menurunkan jumlah proses konten (dom.ipc.processCount) terlalu rendah bisa menyebabkan satu tab crash mempengaruhi tab lain. Sesuaikan dengan kebutuhan.</li>
+        <li>Jika mengalami masalah stabilitas, kembalikan tweak satu per satu untuk menemukan penyebabnya.</li>
+        <li>Setelah update Firefox, beberapa pengaturan mungkin berubah. Periksa kembali jika performa menurun.</li>
+    </ul>
+    <h2>🧠 5W+1H: Memahami about:config Tweaks</h2>
+    <ul>
+        <li><strong>What (Apa itu about:config?)</strong> – Halaman konfigurasi tersembunyi Firefox yang berisi ribuan parameter. Bisa diakses dengan mengetik <code>about:config</code> di address bar.</li>
+        <li><strong>Why (Mengapa perlu tweak?)</strong> – Untuk mengoptimalkan penggunaan sumber daya (RAM/CPU), mengaktifkan fitur eksperimental yang lebih efisien, dan menonaktifkan fitur yang tidak perlu.</li>
+        <li><strong>Who (Siapa yang bisa melakukannya?)</strong> – Siapa saja, asalkan mengikuti panduan. Cocok untuk pengguna dengan PC spek rendah hingga menengah.</li>
+        <li><strong>When (Kapan melakukan?)</strong> – Saat Firefox terasa lambat, atau setelah update besar yang mengubah pengaturan default.</li>
+        <li><strong>Where (Di mana mengubah?)</strong> – Di halaman about:config, ketik nama parameter, lalu ubah nilainya.</li>
+        <li><strong>How (Bagaimana cara kerjanya?)</strong> – Dengan mengubah nilai boolean (true/false), integer, atau string, kita bisa mengaktifkan/menonaktifkan fitur tertentu yang mempengaruhi performa.</li>
+    </ul>
+    <h2>🏁 Kesimpulan</h2>
+    <p>Dengan 10 tweak about:config di atas, kamu bisa meningkatkan performa Firefox secara signifikan, terutama di perangkat dengan spesifikasi terbatas. Kombinasikan dengan tweak CSS (userChrome.css) untuk hasil optimal. Jangan lupa untuk selalu backup profil Firefox sebelum melakukan perubahan besar.  Selamat browsing lebih cepat!</p>
+    <div id="related-articles-grid">
+     </div>
+    <div id="response">
+    </div>
+    <footer>
+        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong — Artikel ini dilisensikan CC0. Selalu backup sebelum tweak. Dikembangkan berdasarkan riset dan pengalaman komunitas.</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

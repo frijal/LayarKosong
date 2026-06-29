@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Troubleshooting GRUB Bootloader Linux: Solusi Tuntas - Layar Kosong</title>
+    <meta name="description" content="Mengalami gagal booting di Linux? Temukan panduan lengkap troubleshooting GRUB bootloader, mulai dari perbaikan UEFI, Boot-Repair, hingga cek file sistem.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/fix-grub-troubleshooting">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Troubleshooting GRUB, Bootloader Linux, Error GRUB Rescue, Perbaikan UEFI, Boot-Repair Ubuntu, Fsck Linux">
+    <meta name="promphint" content="Bagaimana cara mengatasi GRUB Linux yang tetap gagal booting setelah di-update? | Perbaiki konfigurasi partisi UEFI lewat chroot, gunakan utilitas Boot-Repair, atau periksa integritas file sistem dengan perintah fsck.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/fix-grub-troubleshooting">
+    <meta property="og:title" content="Troubleshooting GRUB Bootloader Linux: Solusi Tuntas">
+    <meta property="og:description" content="Jangan panik saat Ubuntu atau Debian gagal masuk sistem. Pelajari trik jitu mengatasi GRUB error dengan metode chroot UEFI dan tool praktis Boot-Repair.">
+    <meta property="og:updated_time" content="2025-09-11T10:59:07.756Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/451a1c3ed56922b.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/451a1c3ed56922b.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/451a1c3ed56922b.webp">
+    <meta property="og:image:alt" content="Troubleshooting GRUB Bootloader Linux: Solusi Tuntas">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="576">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/fix-grub-troubleshooting">
+    <meta name="twitter:title" content="Troubleshooting GRUB Bootloader Linux: Solusi Tuntas">
+    <meta name="twitter:description" content="Sistem Linux kamu macet di layar GRUB rescue? Terapkan langkah-langkah pemecahan masalah bootloader ini untuk mengembalikan akses OS kamu secara aman cepat.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/451a1c3ed56922b.webp">
+    <meta name="twitter:image:alt" content="Troubleshooting GRUB Bootloader Linux: Solusi Tuntas">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Sistem Operasi">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Tutorial">
+    <meta property="article:published_time" content="2025-09-11T10:51:59.151Z">
+    <meta property="article:modified_time" content="2025-09-11T10:51:59.151Z">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        /* Variabel CSS untuk Mode Terang (Default) */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #334155;
+            --text-secondary: #64748b;
+            --heading-color: #0f172a;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --inline-code-bg: #f1f5f9;
+            --inline-code-text: #b91c1c;
+            --quote-border: #3b82f6;
+            --quote-bg: #eff6ff;
+        }
+        /* Dukungan Mode Gelap (Media Query) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #0f172a;
+                --bg-card: #1e293b;
+                --text-primary: #cbd5e1;
+                --text-secondary: #94a3b8;
+                --heading-color: #f8fafc;
+                --accent-color: #60a5fa;
+                --accent-hover: #93c5fd;
+                --border-color: #334155;
+                --code-bg: #020617;
+                --code-text: #e2e8f0;
+                --inline-code-bg: #334155;
+                --inline-code-text: #fca5a5;
+                --quote-border: #60a5fa;
+                --quote-bg: #1e293b;
+            }
+        }
+        /* Reset Dasar & Tipografi */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Pendekatan Mobile-First & Fleksibel */
+        .container {
+            max-width: 64rem;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: var(--heading-color);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2.25rem;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.25rem;
+        }
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 3.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 0.125rem solid var(--border-color);
+        }
+        h3 {
+            font-size: 1.35rem;
+            margin-top: 2rem;
+        }
+        p {
+            margin-bottom: 1.5rem;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 0.0625rem dashed var(--accent-color);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        a:hover {
+            color: var(--accent-hover);
+            border-bottom-style: solid;
+        }
+        /* Gambar dengan Pencegahan CLS */
+        .media-wrapper {
+            margin: 2.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .img-fluid {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9; /* Cegah CLS */
+            object-fit: cover;
+            display: block;
+        }
+        figcaption {
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding: 1rem;
+            font-style: italic;
+            border-top: 0.0625rem solid var(--border-color);
+            background-color: var(--bg-card);
+        }
+        /* Styling Blok Kode & Inline Kode */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 0.0625rem solid var(--border-color);
+            box-shadow: inset 0 0 0.5rem rgba(0,0,0,0.1);
+        }
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        p code, li code {
+            background-color: var(--inline-code-bg);
+            color: var(--inline-code-text);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+            border: 0.0625rem solid var(--border-color);
+        }
+        /* Kutipan dan List */
+        blockquote {
+            background-color: var(--quote-bg);
+            border-left: 0.375rem solid var(--quote-border);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-primary);
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.75rem;
+        }
+        /* Footer E-E-A-T */
+        footer {
+            margin-top: 4.5rem;
+            padding-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            text-align: center;
+        }
+        .footer-info {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .footer-info span:not(:last-child)::after {
+            content: "•";
+            margin-left: 0.75rem;
+            color: var(--border-color);
+        }
+    </style>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+    <div class="container">
+        <header>
+            <div id="iposbrowser"></div><h1>Troubleshooting GRUB Bootloader: Solusi Saat Sistem Menolak Bangun</h1>
+            <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 48rem; margin: 0 auto;">Layar hitam dengan tulisan "grub rescue&gt;" bukanlah akhir dari segalanya. Mari bedah langkah-langkah lanjutan untuk memulihkan sistem Linux yang membandel.</p>
+        </header>
+        <main>
+            <article>
+                <p>Menyalakan komputer dan mendapati sistem operasi menolak untuk <em>booting</em> adalah salah satu pengalaman paling membuat frustrasi bagi pengguna Linux. Situasi ini sering kali terjadi setelah proses pembaruan sistem yang terputus, atau usai menginstal sistem operasi kedua pada pengaturan <em>dual boot</em>.</p>
+                <p>Pada panduan dasar, biasanya kita akan diarahkan untuk masuk ke lingkungan <code>chroot</code> dan sekadar menjalankan perintah <code>update-grub</code>. Namun, bagaimana jika setelah eksekusi tersebut, sistem masih saja menampilkan layar <em>GRUB rescue</em> yang dingin dan misterius? Jangan terburu-buru menginstal ulang OS Anda. Ada beberapa kendala spesifik yang memerlukan penanganan khusus, mulai dari miskonfigurasi arsitektur partisi hingga kerusakan struktur <em>file</em>.</p>
+                <figure class="media-wrapper">
+                    <img src="https://dalam.web.id/img/pbs.twimg.com/451a1c3ed56922b.webp" alt="Tampilan layar hitam terminal menunjukkan pesan kesalahan GRUB rescue mode pada sistem operasi Linux" class="img-fluid" fetchpriority="high" width="1200" height="675">
+                    <figcaption>Tampilan GRUB rescue yang sering kali menjadi mimpi buruk bagi pengguna, namun bisa diselesaikan dengan metode troubleshooting yang tepat.</figcaption>
+                </figure>
+                <h2><i class="fa-solid fa-microchip" style="color: var(--accent-color); margin-right: 0.5rem;"></i> 1. Penanganan Khusus untuk Sistem UEFI</h2>
+                <p>Arsitektur komputer modern tidak lagi menggunakan <em>Legacy BIOS</em>, melainkan beralih ke standar UEFI (<em>Unified Extensible Firmware Interface</em>). Salah satu perbedaan salah satu yang mencolok adalah kewajiban adanya partisi khusus bernama EFI System Partition (ESP). Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Jika sistem Anda menggunakan UEFI, masalah kegagalan <em>booting</em> sering bermuara pada partisi ini yang tidak ikut ter-<em>mount</em> dengan benar saat Anda sedang berada di dalam lingkungan <code>chroot</code>.</p>
+                <p>Bila partisi EFI ini (yang biasanya berlokasi di <code>/dev/sda1</code> atau <code>/dev/nvme0n1p1</code>) terlewat, GRUB tidak akan tahu ke mana ia harus menanamkan instruksi <em>bootloader</em>-nya. Untuk mengatasinya, pastikan Anda memuat (<em>mount</em>) partisi ini ke direktori yang tepat sebelum menjalankan instalasi.</p>
+<pre><code># Pastikan Anda sudah berada di lingkungan chroot lewat Live USB
+# Mount partisi EFI Anda ke direktori yang semestinya
+sudo mount /dev/sda1 /mnt/boot/efi
+# Instal ulang GRUB dengan mendeklarasikan secara eksplisit bahwa sistem ini berarsitektur UEFI
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
+# Perbarui konfigurasi GRUB untuk mengenali kernel dan OS yang terinstal
+update-grub
+</code></pre>
+                <h2><i class="fa-solid fa-toolbox" style="color: var(--accent-color); margin-right: 0.5rem;"></i> 2. Gunakan Boot-Repair (Jalan Pintas Termudah)</h2>
+                <p>Bagi sebagian pengguna, terutama yang baru bermigrasi ke ekosistem Ubuntu atau Debian, berurusan dengan deretan perintah terminal yang panjang bisa terasa sangat mengintimidasi. Adanya satu <em>typo</em> saja bisa membuat perintah gagal dieksekusi.</p>
+                <p>Beruntunglah komunitas Linux sangat peduli. Ada sebuah utilitas ajaib bernama <strong>Boot-Repair</strong>. Aplikasi berbasis antarmuka grafis (GUI) ini memiliki kemampuan pendeteksian cerdas. Ia mampu memindai seluruh <em>drive</em> Anda, mendeteksi di mana sistem operasi berada, dan memperbaiki hampir seluruh masalah registri GRUB secara otomatis hanya dengan satu klik (<em>Recommended repair</em>).</p>
+                <p>Untuk menggunakannya, Anda harus melakukan <em>booting</em> menggunakan Live USB Ubuntu, kemudian menginstal utilitas tersebut melalui PPA resminya:</p>
+<pre><code># Tambahkan repositori PPA resmi Boot-Repair
+sudo add-apt-repository ppa:yannubuntu/boot-repair
+# Perbarui indeks daftar paket
+sudo apt update
+# Instal aplikasi dan langsung jalankan panggilannya
+sudo apt install -y boot-repair &amp;&amp; boot-repair
+</code></pre>
+                <h2><i class="fa-solid fa-hard-drive" style="color: var(--accent-color); margin-right: 0.5rem;"></i> 3. Cek Mode Boot &amp; Integritas File Sistem</h2>
+                <p>Jika kedua langkah di atas sudah ditempuh namun menu GRUB masih tetap enggan membaca <em>kernel</em> Linux Anda, masalahnya mungkin tidak terletak pada <em>bootloader</em> itu sendiri. </p>
+                <p>Pertama, periksalah konfigurasi BIOS/UEFI di <em>motherboard</em> komputer Anda. Pastikan mode <em>boot</em> yang aktif (antara <em>Legacy/CSM</em> atau <em>UEFI</em>) harus selalu konsisten dengan mode yang digunakan saat Anda menginstal sistem operasi pertama kali. Mengubah opsi ini secara tidak sengaja dapat membuat <em>drive</em> Anda gagal terdeteksi sebagai <em>bootable device</em>.</p>
+                <p>Kedua, kerusakan atau inkonsistensi pada sistem berkas (<em>filesystem corruption</em>) akibat mati listrik mendadak bisa menghalangi GRUB untuk memuat memori awal. Solusinya adalah melakukan pengecekan dan perbaikan bad sektor logis menggunakan utilitas <code>fsck</code>.</p>
+<pre><code># PERINGATAN: Jangan pernah menjalankan fsck pada partisi yang sedang aktif (mounted).
+# Jalankan melalui mode Live USB. Ganti sda1 dengan partisi root Anda yang sesungguhnya.
+sudo fsck -f /dev/sda1
+</code></pre>
+                <p>Dengan memeriksa dari berbagai sudut pandang—mulai dari membenarkan penempatan file EFI, menggunakan bantuan utilitas otomatis, hingga merawat integritas sistem berkas—Anda akan memiliki peluang sukses yang jauh lebih besar untuk membangunkan kembali sistem operasi Linux Anda dari tidur panjangnya.</p>
+            </article>
+        </main>
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+        <footer>
+            <div class="footer-info">
+                <span>Artikel oleh Frijal</span>
+                <span>14 Juni 2026</span>
+                <span>Referensi: Dokumentasi Komunitas Ubuntu &amp; Panduan Pemulihan Sistem GNU/Linux</span>
+            </div>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

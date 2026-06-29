@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1 - Layar Kosong</title>
+    <meta name="description" content="dan santai cara membangun sistem pencarian Full-Text Search (FTS) di Cloudflare D1 untuk blog HTML statis menggunakan TypeScript.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/tutorial-fts-cloudflare-d1">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Tutorial Cloudflare D1, Full-Text Search, FTS5 SQLite, TypeScript, Web Statis, Layar Kosong">
+    <meta name="promphint" content="Q: Bagaimana cara membuat pencarian untuk web statis? A: Gunakan Cloudflare D1 dengan tabel virtual FTS5, lalu buat script TypeScript untuk mengekstrak dan sinkronisasi artikel HTML ke dalam database tersebut.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/tutorial-fts-cloudflare-d1">
+    <meta property="og:title" content="Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1">
+    <meta property="og:description" content="Punya blog statis tapi mau punya fitur search secepat kilat tanpa server backend mahal? Ikuti tutorial setup Cloudflare D1 FTS5 otomatis ini.">
+    <meta property="og:updated_time" content="2026-06-01T04:39:01.158Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/43107e9facf6acc.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/43107e9facf6acc.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/43107e9facf6acc.webp">
+    <meta property="og:image:alt" content="Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="563">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/tutorial-fts-cloudflare-d1">
+    <meta name="twitter:title" content="Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1">
+    <meta name="twitter:description" content="Tutorial bikin fitur Full-Text Search untuk situs HTML statis pakai Cloudflare D1 SQLite. Bebas ribet, gratis, dan langsung jalan di edge network!">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/43107e9facf6acc.webp">
+    <meta name="twitter:image:alt" content="Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Tutorial">
+    <meta property="article:tag" content="Cloudflare D1">
+    <meta property="article:tag" content="TypeScript">
+    <meta property="article:tag" content="Full-Text Search">
+    <meta property="article:tag" content="SQLite">
+    <meta property="article:published_time" content="2026-06-01T04:36:23.000Z">
+    <meta property="article:modified_time" content="2026-06-23T09:18:54.053Z">
+    <style>
+        /* CSS Kritis - Native & Responsive (Mobile-First) */
+        :root {
+            --bg-color: #fafafa;
+            --text-color: #1e293b;
+            --accent-color: #1d4ed8;
+            --border-color: #cbd5e1;
+            --code-bg: #f8fafc;
+            --table-header-bg: #e2e8f0;
+            --max-width: 62.5rem; /* 1000px */
+            /* Syntax Highlighting Colors - Light Mode */
+            --syn-kw: #9333ea;
+            --syn-str: #16a34a;
+            --syn-cmt: #64748b;
+            --syn-fn: #2563eb;
+            --syn-num: #d97706;
+            --syn-typ: #0d9488;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #f8fafc;
+                --accent-color: #60a5fa;
+                --border-color: #334155;
+                --code-bg: #1e293b;
+                --table-header-bg: #1e293b;
+                /* Syntax Highlighting Colors - Dark Mode */
+                --syn-kw: #c084fc;
+                --syn-str: #4ade80;
+                --syn-cmt: #94a3b8;
+                --syn-fn: #60a5fa;
+                --syn-num: #fbbf24;
+                --syn-typ: #2dd4bf;
+            }
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        main {
+            display: block;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        h1, h2, h3 {
+            color: var(--text-color);
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-top: 1rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            border-left: 0.25rem solid var(--accent-color);
+            padding-left: 0.5rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+        }
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            border: 0.0625rem solid var(--border-color);
+            margin: 1.25rem 0;
+        }
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.875rem;
+            background-color: var(--code-bg);
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+        }
+        pre code {
+            padding: 0;
+            background-color: transparent;
+            border-radius: 0;
+        }
+        /* Token Syntax Highlighting kustom */
+        .t-kw { color: var(--syn-kw); font-weight: 600; }
+        .t-str { color: var(--syn-str); }
+        .t-cmt { color: var(--syn-cmt); font-style: italic; }
+        .t-fn { color: var(--syn-fn); }
+        .t-num { color: var(--syn-num); }
+        .t-typ { color: var(--syn-typ); }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 0.0625rem solid var(--border-color);
+            text-align: left;
+            font-size: 0.9375rem;
+        }
+        th {
+            background-color: var(--table-header-bg);
+            font-weight: 600;
+        }
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .no-style {
+            all: unset;
+            display: block;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 0.0625rem solid var(--border-color);
+            font-size: 0.875rem;
+            color: var(--text-color);
+        }
+    </style>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+    <main role="main">
+        <div id="iposbrowser"></div><h1>Tutorial: Membangun Sistem Full-Text Search (FTS) di Cloudflare D1 🔍</h1>
+        <p>Punya blog statis berbasis HTML murni tapi ingin punya fitur pencarian pintar layaknya <em>web</em> dinamis besar? Menggunakan skrip pencarian pihak ketiga terkadang penuh iklan, dan menyewa <em>server backend</em> sendiri jelas bisa menguras dompet. Solusi modern paling elegan saat ini adalah memanfaatkan <strong>Cloudflare D1</strong>, yaitu <em>database</em> SQLite <em>serverless</em> yang berjalan secepat kilat langsung di jaringan <em>edge</em> Cloudflare.</p>
+ <img src="https://dalam.web.id/img/pbs.twimg.com/43107e9facf6acc.webp" alt="Ilustrasi sistem pencarian Cloudflare D1 untuk blog statis" decoding="async" fetchpriority="high">
+        <p>Dalam tutorial kali ini, kita akan membangun sebuah skrip otomatisasi berbasis <strong>TypeScript</strong> dan <strong>Bun</strong> untuk memindai artikel HTML lokal kamu, membersihkan kontennya dari "sampah" kode yang tidak perlu, lalu mengunggahnya ke tabel pencarian khusus (<strong>FTS5</strong>) di Cloudflare D1. Yuk, siapkan kopimu dan mari kita mulai ngoding santai. ☕</p>
+        <h2>🛠️ Prasyarat &amp; Persiapan Awal</h2>
+        <p>Sebelum mulai bertempur dengan barisan kode, pastikan kamu sudah menyiapkan beberapa amunisi berikut di komputermu:</p>
+        <ul>
+            <li><strong>Bun</strong> atau <strong>Node.js</strong> sudah terinstal.</li>
+            <li>Akun <strong>Cloudflare</strong> yang aktif.</li>
+            <li><strong>Wrangler CLI</strong> terinstal (bisa lewat <code>npm install -g wrangler</code> atau <code>bun add -g wrangler</code>).</li>
+        </ul>
+        <h2>Langkah 1: Setup Database D1 dan Tabel FTS5</h2>
+        <p>Hal pertama yang wajib kita lakukan adalah membuat ruang penyimpanan D1 baru melalui terminal. Cukup jalankan perintah sakti ini:</p>
+<pre><code>wrangler d1 create layarkosong-db</code></pre>
+        <p>Cloudflare akan merespons dengan memberikan detail konfigurasi. Jangan lupa masukkan detail tersebut ke dalam file <code>wrangler.toml</code> kamu.</p>
+        <p>Setelah <em>database</em> terbuat, kita butuh tabel pencarian. Untungnya, SQLite memiliki modul bawaan yang luar biasa ngebut bernama <strong>FTS5</strong> (<em>Full-Text Search</em>). Buatlah sebuah file SQL bernama <code>schema.sql</code> dan masukkan struktur berikut:</p>
+<pre><code><span class="t-cmt">-- Membuat tabel virtual berbasis FTS5 untuk pencarian cepat</span>
+<span class="t-kw">CREATE VIRTUAL TABLE</span> articles_fts <span class="t-kw">USING</span> <span class="t-fn">fts5</span>(
+    title,
+    content,
+    id <span class="t-typ">UNINDEXED</span>,
+    category <span class="t-typ">UNINDEXED</span>,
+    image <span class="t-typ">UNINDEXED</span>,
+    date <span class="t-typ">UNINDEXED</span>
+);</code></pre>
+        <p><em>Pro-tip:</em> Atribut <code>UNINDEXED</code> memberi tahu SQLite bahwa kolom tersebut cukup disimpan saja sebagai data pelengkap (misalnya untuk menampilkan gambar <em>thumbnail</em> di hasil pencarian), tanpa perlu repot-repot diindeks kata kuncinya. Ini menghemat ukuran <em>database</em> kamu secara signifikan!</p>
+        <p>Sekarang, tembakkan skema tersebut ke <em>database remote</em> kamu dengan perintah:</p>
+<pre><code>wrangler d1 execute layarkosong-db --remote --file=./schema.sql</code></pre>
+        <h2>Langkah 2: Inisialisasi Proyek &amp; Dependencies</h2>
+        <p>Buat folder baru untuk rumah skrip sinkronisasi ini, lalu instal *library<strong>*Cheerio</strong>. Cheerio ini fungsinya semacam pisau bedah untuk membongkar struktur file HTML layaknya jQuery, tapi berjalan murni di sisi <em>server</em>.</p>
+<pre><code>mkdir d1-sync-script &amp;&amp; cd d1-sync-script
+bun init -y
+bun add cheerio
+bun add -d typescript @types/node</code></pre>
+        <img src="https://dalam.web.id/img/pbs.twimg.com/940e1ef16c9e0de9.webp" alt="Alur proses ekstraksi file HTML lokal menuju Cloudflare D1" decoding="async" loading="lazy">
+        <h2>Langkah 3: Menulis Script Pipeline (<code>build-d1.ts</code>)</h2>
+        <p>Buat file baru bernama <code>build-d1.ts</code>. Kita akan merakit skrip ini menjadi 3 bagian utama: Modul Sanitasi, Ekstraktor HTML, dan Orkestrator Eksekusi. Seluruh baris kode di bawah disadur langsung dari sumber repositori resmi <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/search/build-d1.ts" target="_blank" rel="noopener noreferrer">rawgithub proyek</a> Layar Kosong.</p>
+        <h3>3.1. Modul Sanitasi Teks (<code>superCleanText</code>)</h3>
+        <p>Database pencarian itu pemilih, ia butuh teks yang benar-benar bersih. Jika ada simbol <em>markdown</em> nyasar, emoji berlebih, atau tanda petik tunggal yang luput dari <em>escape</em>, kueri SQL kamu bisa meledak (<em>error</em>) atau hasil pencariannya jadi kacau balau.</p>
+<pre><code><span class="t-kw">export function</span> <span class="t-fn">superCleanText</span>(text: <span class="t-typ">string</span>): <span class="t-typ">string</span> {
+    <span class="t-kw">if</span> (!text) <span class="t-kw">return</span> <span class="t-str">""</span>;
+    <span class="t-kw">return</span> text
+        <span class="t-cmt">// Tahap 1: Hapus simbol Markdown yang mungkin nyasar</span>
+        .<span class="t-fn">replace</span>(<span class="t-str">/(\*\*|__)(.*?)\1/g</span>, <span class="t-str">'$2'</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/(\*|_)(.*?)\1/g</span>, <span class="t-str">'$2'</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/#+\s+/g</span>, <span class="t-str">''</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/\[(.*?)\]\(.*?\)/g</span>, <span class="t-str">'$1'</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/&gt;\s+/g</span>, <span class="t-str">''</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/`{1,3}.*?`{1,3}/g</span>, <span class="t-str">''</span>)
+        <span class="t-cmt">// Tahap 2: Lenyapkan Emoji dan Unicode spesial agar FTS SQLite stabil</span>
+        .<span class="t-fn">replace</span>(<span class="t-str">/[\u{1F300}-\u{1F9FF}]/gu</span>, <span class="t-str">''</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/[\u{1F600}-\u{1F64F}]/gu</span>, <span class="t-str">''</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/[\u{1F680}-\u{1F6FF}]/gu</span>, <span class="t-str">''</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/[\u{2600}-\u{26FF}]/gu</span>, <span class="t-str">''</span>)
+        <span class="t-cmt">// Tahap 3: Netralisir SQL Keywords krusial untuk mencegah malfungsi kueri</span>
+        .<span class="t-fn">replace</span>(<span class="t-str">/BEGIN\s+TRANSACTION/gi</span>, <span class="t-str">'BEGIN_TRANSACTION'</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/COMMIT/gi</span>, <span class="t-str">'COMMIT_DONE'</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/ROLLBACK/gi</span>, <span class="t-str">'ROLLBACK_DONE'</span>)
+        <span class="t-cmt">// Tahap 4: Satukan spasi berlebih &amp; jalankan SQL Escape untuk tanda kutip (')</span>
+        .<span class="t-fn">replace</span>(<span class="t-str">/\s+/g</span>, <span class="t-str">' '</span>)
+        .<span class="t-fn">replace</span>(<span class="t-str">/'/g</span>, <span class="t-str">"''"</span>)
+        .<span class="t-fn">trim</span>();
+}</code></pre>
+        <h3>3.2. Ekstraktor Konten HTML Menggunakan Cheerio</h3>
+        <p>Lanjut ke fungsi untuk membaca file HTML, menyedot <em>metadata</em> (seperti judul dan gambar <em>OpenGraph</em>), lalu mengambil teks murni artikel dengan secara sadis membuang komponen <em>noise seperti navigasi, *header</em>, dan <em>footer</em>.</p>
+<pre><code><span class="t-kw">import</span> { readFileSync } <span class="t-kw">from</span> <span class="t-str">"fs"</span>;
+<span class="t-kw">import</span> * <span class="t-kw">as</span> cheerio <span class="t-kw">from</span> <span class="t-str">"cheerio"</span>;
+<span class="t-kw">export function</span> <span class="t-fn">extractArticleData</span>(filePath: <span class="t-typ">string</span>, filename: <span class="t-typ">string</span>, category: <span class="t-typ">string</span>) {
+    <span class="t-kw">const</span> html = <span class="t-fn">readFileSync</span>(filePath, <span class="t-str">"utf-8"</span>);
+    <span class="t-kw">const</span> $ = cheerio.<span class="t-fn">load</span>(html);
+    <span class="t-cmt">// Ambil data metadata penting</span>
+    <span class="t-kw">const</span> title = <span class="t-fn">superCleanText</span>(<span class="t-dat">$('title')</span>.<span class="t-fn">text</span>() || filename);
+    <span class="t-kw">const</span> image = <span class="t-dat">$('meta[property="og:image"]')</span>.<span class="t-fn">attr</span>(<span class="t-str">'content'</span>) || <span class="t-str">"/thumbnail.webp"</span>;
+    <span class="t-kw">const</span> dateISO = <span class="t-dat">$('meta[property="article:published_time"]')</span>.<span class="t-fn">attr</span>(<span class="t-str">'content'</span>) || <span class="t-kw">new</span> <span class="t-fn">Date</span>().<span class="t-fn">toISOString</span>();
+    <span class="t-cmt">// Singkirkan elemen sampah yang mengganggu akurasi pencarian</span>
+    <span class="t-dat">$('script, style, meta, link, noscript, i, header, footer, nav, aside')</span>.<span class="t-fn">remove</span>();
+    <span class="t-cmt">// Tentukan area konten utama secara berjenjang</span>
+    <span class="t-kw">const</span> articleArea = <span class="t-dat">$('article')</span>.length ? <span class="t-dat">$('article')</span>
+                      : <span class="t-dat">$('main')</span>.length ? <span class="t-dat">$('main')</span>
+                      : <span class="t-dat">$('body')</span>;
+    <span class="t-kw">const</span> bodyContent = <span class="t-fn">superCleanText</span>(articleArea.<span class="t-fn">text</span>());
+    <span class="t-kw">return</span> { title, image, dateISO, bodyContent, file: filename, category };
+}</code></pre>
+        <h3>3.3. Orkestrator Eksekusi Utama</h3>
+        <p>Ini adalah bos dari skrip kita. Tugasnya memindai seluruh folder kategori blog, menyusun kueri SQL massal ke dalam satu file sementara (<code>temp_sync.sql</code>), dan memerintahkan Wrangler CLI untuk melakukan <em>upload</em> ke <em>cloud</em> secara otomatis.</p>
+<pre><code><span class="t-kw">import</span> { readdirSync, writeFileSync, unlinkSync } <span class="t-kw">from</span> <span class="t-str">"fs"</span>;
+<span class="t-kw">import</span> { join } <span class="t-kw">from</span> <span class="t-str">"path"</span>;
+<span class="t-kw">import</span> { execSync } <span class="t-kw">from</span> <span class="t-str">"child_process"</span>;
+<span class="t-kw">const</span> ROOT_DIR = <span class="t-str">"./deploy_dir"</span>; <span class="t-cmt">// Sesuaikan dengan folder output HTML kamu</span>
+<span class="t-kw">const</span> ARTICLE_DIRS = [<span class="t-str">"gaya-hidup"</span>, <span class="t-str">"warta-tekno"</span>, <span class="t-str">"jejak-sejarah"</span>];
+<span class="t-kw">const</span> SQL_FILE = <span class="t-str">"./temp_sync.sql"</span>;
+<span class="t-kw">function</span> <span class="t-fn">main</span>() {
+    console.<span class="t-fn">log</span>(<span class="t-str">"Menginisialisasi pipeline sinkronisasi Cloudflare D1..."</span>);
+    <span class="t-cmt">// Perintah awal: Bersihkan database lama untuk fresh-build indeks baru</span>
+    <span class="t-kw">let</span> sqlCommands: <span class="t-typ">string</span>[] = [<span class="t-str">"DELETE FROM articles_fts;"</span>];
+    <span class="t-kw">for</span> (<span class="t-kw">const</span> cat <span class="t-kw">of</span> ARTICLE_DIRS) {
+        <span class="t-kw">const</span> fullPath = <span class="t-fn">join</span>(ROOT_DIR, cat);
+        <span class="t-kw">const</span> files = <span class="t-fn">readdirSync</span>(fullPath).<span class="t-fn">filter</span>(f =&gt; f.<span class="t-fn">endsWith</span>(<span class="t-str">".html"</span>));
+        <span class="t-kw">for</span> (<span class="t-kw">const</span> file <span class="t-kw">of</span> files) {
+            <span class="t-cmt">// Abaikan file indeks utama halaman kategori jika ada</span>
+            <span class="t-kw">if</span> (file === <span class="t-str">"index.html"</span> || file.<span class="t-fn">startsWith</span>(<span class="t-str">"agregat"</span>)) <span class="t-kw">continue</span>;
+            <span class="t-kw">const</span> data = <span class="t-fn">extractArticleData</span>(<span class="t-fn">join</span>(fullPath, file), file, cat);
+            <span class="t-cmt">// Susun kueri INSERT INTO ke tabel virtual FTS5</span>
+            <span class="t-kw">const</span> sql = <span class="t-str">`INSERT INTO articles_fts (title, content, id, category, image, date) VALUES ('${data.title}', '${data.bodyContent}', '${data.file}', '${data.category}', '${data.image}', '${data.dateISO}');`</span>;
+            sqlCommands.<span class="t-fn">push</span>(sql);
+        }
+    }
+    <span class="t-cmt">// Tulis kumpulan kueri ke file sementara</span>
+    <span class="t-fn">writeFileSync</span>(SQL_FILE, sqlCommands.<span class="t-fn">join</span>(<span class="t-str">"\n"</span>));
+    <span class="t-kw">try</span> {
+        console.<span class="t-fn">log</span>(<span class="t-str">"Sedang mengunggah data pencarian ke Cloudflare D1 secara remote..."</span>);
+        <span class="t-fn">execSync</span>(<span class="t-str">`bunx wrangler d1 execute layarkosong-db --remote --file=${SQL_FILE}`</span>, { stdio: <span class="t-str">"inherit"</span> });
+        console.<span class="t-fn">log</span>(<span class="t-str">"Sinkronisasi sukses! Seluruh artikel berhasil masuk indeks FTS."</span>);
+    } <span class="t-kw">catch</span> (error) {
+        console.<span class="t-fn">error</span>(<span class="t-str">"Gagal mengeksekusi sinkronisasi ke Cloudflare:"</span>, error);
+    } <span class="t-kw">finally {</span>
+        <span class="t-cmt">// Apapun yang terjadi, hapus berkas kueri sementara demi keamanan data</span>
+        <span class="t-fn">unlinkSync</span>(SQL_FILE);
+    }
+}
+<span class="t-fn">main</span>();</code></pre>
+        <h2>Langkah 4: Menjalankan Otomatisasi &amp; Implementasi Pencarian</h2>
+        <p>Bagian terseru! Kamu tinggal mengeksekusi <em>script</em> di atas menggunakan Bun setiap kali selesai menulis artikel baru atau melakukan <em>build</em> situs statis:</p>
+<pre><code>bun build-d1.ts</code></pre>
+        <p>Di sisi <em>frontend</em> web, kamu cukup membuat sebuah fungsi Cloudflare Worker (sebagai <em>API endpoint</em> ringan) yang menerima <em>query string</em> dari kolom pencarian pembaca (misal: <code>?q=teknologi</code>), lalu menjalankan kueri SQLite FTS secepat kilat ini:</p>
+<pre><code><span class="t-kw">SELECT</span> id, title, category, image <span class="t-kw">FROM</span> articles_fts <span class="t-kw">WHERE</span> articles_fts <span class="t-kw">MATCH</span> <span class="t-str">'teknologi'</span> <span class="t-kw">ORDER BY</span> rank;</code></pre>
+        <p>Fitur <code>ORDER BY rank</code> adalah fungsi ajaib dari FTS5 yang otomatis mengurutkan artikel berdasarkan tingkat relevansi tertinggi terhadap kata kunci yang diketik. Canggih, kan?</p>
+        <p>Sebagai pengingat, waspadai saat menempatkan skrip ini jika ukuran <em>database</em> artikelmu sudah menyentuh ribuan baris, karena proses eksekusi CLI sekaligus (<em>tanpa batching</em>) bisa sedikit membebani memori lokal. Tapi untuk skala blog personal, skrip ini sudah sangat tangguh dan bisa diandalkan.</p>
+        <div class="no-style">
+            <hr>
+            <p>Artikel oleh Frijal, pengembang <em>web</em> yang berdomisili di Balikpapan. Tulisan ini diulas berdasarkan pengalaman langsung meracik otomatisasi <em>serverless</em> untuk mempercepat performa blog Layar Kosong. Ingin <em>sharing</em> atau ngobrol soal optimasi <em>web statis</em>? Sapa saya di Twitter x.com/responaja, atau intip dan oprek langsung keseluruhan kode sumber proyek ini di repositori GitHub github.com/frijal.</p>
+        </div>
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+    </main>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

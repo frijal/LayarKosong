@@ -1,0 +1,116 @@
+name: 🏃‍♂️ Run Bun Script and Commit (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      script_path:
+        description: 'Path atau nama file .ts yang ingin dijalankan'
+        required: true
+        default: ''
+
+      script_args:
+        description: 'Parameter tambahan untuk script Bun, contoh: --once'
+        required: false
+        default: ''
+
+      fetch_depth:
+        description: 'Git fetch-depth: pilih 0 untuk full history / Last Commit Date, pilih 1 untuk cepat'
+        required: true
+        type: choice
+        default: '1'
+        options:
+          - '1'
+          - '0'
+
+permissions:
+  contents: write
+
+jobs:
+  run-bun-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: ${{ inputs.fetch_depth }}
+          persist-credentials: true
+
+      - name: Debug Git checkout depth
+        run: |
+          echo "Fetch depth input: ${{ inputs.fetch_depth }}"
+          echo "Is shallow repository?"
+          git rev-parse --is-shallow-repository
+          echo ""
+          echo "Latest commits:"
+          git log --oneline -5 || true
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Validate script path and arguments
+        env:
+          SCRIPT_PATH: ${{ inputs.script_path }}
+          SCRIPT_ARGS: ${{ inputs.script_args }}
+        run: |
+          if [[ ! "$SCRIPT_PATH" =~ ^[A-Za-z0-9_./-]+\.ts$ ]]; then
+            echo "❌ script_path tidak valid: $SCRIPT_PATH"
+            echo "Gunakan path .ts biasa, misalnya: dapur/galeri-data.ts"
+            echo "Jika perlu parameter tambahan, isi di kolom script_args, misalnya: --once"
+            exit 1
+          fi
+
+          if [[ ! -f "$SCRIPT_PATH" ]]; then
+            echo "❌ File script tidak ditemukan: $SCRIPT_PATH"
+            exit 1
+          fi
+
+          if [[ -n "$SCRIPT_ARGS" && ! "$SCRIPT_ARGS" =~ ^[A-Za-z0-9_./:=,@%+\ -]+$ ]]; then
+            echo "❌ script_args tidak valid: $SCRIPT_ARGS"
+            echo "Gunakan argumen sederhana, misalnya: --once atau --mode=fast"
+            exit 1
+          fi
+
+          echo "✅ Script valid: $SCRIPT_PATH"
+
+          if [[ -n "$SCRIPT_ARGS" ]]; then
+            echo "✅ Argumen tambahan: $SCRIPT_ARGS"
+          else
+            echo "ℹ️ Tidak ada argumen tambahan."
+          fi
+
+      - name: Run TypeScript script
+        env:
+          SCRIPT_PATH: ${{ inputs.script_path }}
+          SCRIPT_ARGS: ${{ inputs.script_args }}
+        run: |
+          set -f
+
+          if [[ -n "$SCRIPT_ARGS" ]]; then
+            read -r -a EXTRA_ARGS <<< "$SCRIPT_ARGS"
+            bun run "$SCRIPT_PATH" "${EXTRA_ARGS[@]}"
+          else
+            bun run "$SCRIPT_PATH"
+          fi
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push changes
+        run: |
+          git add .
+
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan untuk di-commit."
+            exit 0
+          fi
+
+          git commit -m "chore: update after Bun script run"
+          git push origin HEAD:${{ github.ref_name }}

@@ -1,0 +1,159 @@
+# =========================================================
+# 1. ATURAN GLOBAL & KEAMANAN
+# Semua request akan dapet header ini otomatis
+# =========================================================
+/*
+  X-Content-Type-Options: nosniff
+
+# Prevent Indexing for Preview Domains
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+# =========================================================
+# 2. DATA & XML (Ringkas Menggunakan Wildcard)
+# =========================================================
+/*.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
+/artikel.json
+  Cache-Control: public, max-age=1800, s-maxage=1800, stale-while-revalidate=2419200
+/sitemap.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
+/llms.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
+/.well-known/llms.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=2419200
+
+# =========================================================
+# 3. ASET STATIS UMUM (Long-term Cache)
+# Ditulis LEBIH AWAL agar file spesifik di bawah bisa melakukan override.
+# Sisa file di folder /ext/ (seperti fonts / asset pasif) aman di sini.
+# =========================================================
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/ext/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/favicon.svg
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/favicon.png
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/thumbnail.png
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/thumbnail.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/thumbnail-md.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/thumbnail-sm.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/thumbnail.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/site.webmanifest
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/logo.png
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/*.xsl
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# =========================================================
+# 4. HALAMAN HTML (Ultra Long-term dengan SWR)
+# =========================================================
+/404.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/404
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/about.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/about
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/data-deletion.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/data-deletion
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/data-deletion-form.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/data-deletion-form
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/disclaimer.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/disclaimer
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/disclosure.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/feed.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/feed
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/img.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/img
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/index.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/index
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/lisensi.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/lisensi
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/llms-index.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/llms-index
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/privacy.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/privacy
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/search.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/search
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/security-policy.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/security-policy
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/sitemap.html
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/sitemap
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+
+# --- Artikel Berdasarkan Kategori ---
+/gaya-hidup/*
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/jejak-sejarah/*
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/lainnya/*
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/olah-media/*
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/opini-sosial/*
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/sistem-terbuka/*
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+/warta-tekno/*
+  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=2419200
+
+# =========================================================
+# 5. HEADERS LINK AGENT & DISCOVERY (Paling Bawah)
+# =========================================================
+/*
+  Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
+  Link: </.well-known/api-catalog>; rel="api-catalog"
+  Link: </llms.txt>; rel="alternate"; type="text/markdown"
+  Link: </llms.md>; rel="alternate"; type="text/markdown"

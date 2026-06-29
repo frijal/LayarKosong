@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cara Menambahkan Repositori Pihak Ketiga di Debian Linux - Layar Kosong</title>
+    <meta name="description" content="3 cara mudah menambahkan repositori eksternal di Debian Linux. Mulai dari antarmuka GUI GNOME hingga terminal, lengkap dengan panduan langkah demi langkah.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/cara-menambahkan-repositori-debian">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="debian linux, tambah repositori debian, apt-get, sources.list, linux mint, tutorial linux indonesia, manajemen paket debian">
+    <meta name="promphint" content="Question: Bagaimana cara menambahkan repositori pihak ketiga di Debian menggunakan terminal? Answer: Anda dapat menambahkan repositori baru dengan mengedit file /etc/apt/sources.list secara manual atau menggunakan perintah add-apt-repository.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/cara-menambahkan-repositori-debian">
+    <meta property="og:title" content="Cara Menambahkan Repositori Pihak Ketiga di Debian Linux">
+    <meta property="og:description" content="Butuh aplikasi versi terbaru yang belum ada di repo resmi Debian? Tenang, ikuti panduan santai ini untuk menambahkan repositori pihak ketiga tanpa merusak sistemmu.">
+    <meta property="og:updated_time" content="2026-05-27T09:09:41.756Z">
+    <meta property="og:image" content="https://dalam.web.id/img/static0.howtogeekimages.com/c4020254ac08e4d0.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/static0.howtogeekimages.com/c4020254ac08e4d0.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/static0.howtogeekimages.com/c4020254ac08e4d0.webp">
+    <meta property="og:image:alt" content="Cara Menambahkan Repositori Pihak Ketiga di Debian Linux">
+    <meta property="og:image:width" content="796">
+    <meta property="og:image:height" content="602">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/cara-menambahkan-repositori-debian">
+    <meta name="twitter:title" content="Cara Menambahkan Repositori Pihak Ketiga di Debian Linux">
+    <meta name="twitter:description" content="Tutorial lengkap menginstal paket perangkat lunak eksternal di Debian Linux via APT. Cocok untuk menginstal Wine, Docker, atau aplikasi favorit lainnya.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/static0.howtogeekimages.com/c4020254ac08e4d0.webp">
+    <meta name="twitter:image:alt" content="Cara Menambahkan Repositori Pihak Ketiga di Debian Linux">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Debian">
+    <meta property="article:tag" content="Sysadmin">
+    <meta property="article:published_time" content="2026-05-27T09:06:28.245Z">
+    <meta property="article:modified_time" content="2026-06-09T10:32:42.634Z">
+    <!-- SEO & Metadata Wajib -->
+    <!-- Variasi Deskripsi -->
+    <!-- Custom Meta: Prompt Hint -->
+    <!-- Open Graph (OG) -->
+    <!-- Twitter Card -->
+    <!-- Article Tags -->
+    <!-- Optimasi LCP: Preload gambar pertama (LCP) -->
+    <!-- Ikon FontAwesome (Ringan) -->
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <style>
+        /* CSS Native & Aksesibilitas (Sesuai Catatan: Menggunakan Class Selectors untuk Link) */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --link-color: #0ea5e9;
+            --link-hover: #0369a1;
+            --border-color: #e2e8f0;
+            --meta-color: #64748b;
+            --card-bg: #f8fafc;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --quote-border: #38bdf8;
+        }
+        /* prefers-color-scheme untuk Tema Gelap */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #cbd5e1;
+                --heading-color: #f8fafc;
+                --link-color: #38bdf8;
+                --link-hover: #bae6fd;
+                --border-color: #334155;
+                --meta-color: #94a3b8;
+                --card-bg: #1e293b;
+                --code-bg: #0b1120;
+                --code-text: #e2e8f0;
+                --quote-border: #0ea5e9;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.75;
+            font-size: 16px;
+        }
+        /* Mobile-first Layout: Max 1000px & Center */
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.25rem;
+        }
+        h1, h2, h3 {
+            line-height: 1.3;
+            color: var(--heading-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        h1 { font-size: 1.8rem; margin-top: 1rem; }
+        h2 { font-size: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        h3 { font-size: 1.25rem; }
+        p, ul, ol {
+            margin-bottom: 1.25rem;
+        }
+        ul, ol { padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        /* Tautan menggunakan selektor class untuk menghindari konflik pseudo-elemen */
+        a.article-link {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        a.article-link:hover {
+            text-decoration: underline;
+            color: var(--link-hover);
+        }
+        /* E-E-A-T Author Meta */
+        .author-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            font-size: 0.9rem;
+            color: var(--meta-color);
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        /* Anti-CLS Image Styling: Container dengan aspect-ratio tetap */
+        .img-wrapper {
+            margin: 2rem 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
+        .caption {
+            font-size: 0.85rem;
+            color: var(--meta-color);
+            margin-top: 0.75rem;
+            font-style: italic;
+            display: block;
+        }
+        blockquote {
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--quote-border);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+        .highlight-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1.25rem;
+            font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.9rem;
+        }
+        code {
+            background-color: var(--card-bg);
+            color: var(--heading-color);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--meta-color);
+        }
+        /* Desktop Responsif */
+        @media (min-width: 768px) {
+            body { font-size: 17px; }
+            h1 { font-size: 2.25rem; }
+            .wrapper { padding: 2.5rem; }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+<div class="wrapper">
+    <main role="main">
+        <article>
+            <div id="iposbrowser"></div><h1><i class="fa-brands fa-linux" style="color: #64748b;"></i> Cara Menambahkan Repositori di Debian Linux (Lengkap &amp; Aman)</h1>
+            <!-- Prinsip E-E-A-T: Author, Tanggal, Referensi -->
+            <div class="author-meta">
+                <span><i class="fa-solid fa-user-terminal"></i> Fakhrul Rijal</span>
+                <span><i class="fa-regular fa-calendar-days"></i> 27 Mei 2026</span>
+                <span><i class="fa-solid fa-book"></i> Referensi: Dokumentasi Resmi Debian / APT</span>
+            </div>
+            <div class="highlight-box">
+                <h3><i class="fa-solid fa-thumbtack" style="color: #0ea5e9;"></i> Poin-Poin Penting:</h3>
+                <ul>
+                    <li>Alat GNOME "Software &amp; Updates" memungkinkan Anda untuk menambahkan repositori hanya dengan mengetikkan baris APT dan menekan tombol "Add Source".</li>
+                    <li>Untuk pendekatan klasik, Anda dapat menambahkan repositori ke Debian dengan menyisipkan baris tautan ke dalam file konfigurasi <code>sources.list</code>.</li>
+                    <li>Cara lain yang lebih cepat untuk lingkungan <em>server</em> (atau pengguna mahir) adalah dengan menggunakan utilitas baris perintah <code>add-apt-repository</code>.</li>
+                </ul>
+            </div>
+            <!-- Intro 5W+1H -->
+            <p><strong>Siapa</strong> yang tidak suka dengan stabilitas Debian Linux? Sayangnya, kestabilan ini sering kali berarti perangkat lunak yang tersedia di repositori bawaannya tertinggal beberapa versi. Jika Anda (seperti kebanyakan sysadmin atau *developer) ingin menggunakan paket perangkat lunak versi terbaru yang tidak ada di repo resmi Debian, <strong>apa</strong> yang harus dilakukan? Jawabannya: Anda harus menambahkan repositori pihak ketiga.</p>
+            <p>Secara teknis, Debian Linux menggunakan <a href="https://www.howtogeek.com/791055/apt-vs.-apt-get-whats-the-difference-on-linux/" class="article-link" target="_blank" rel="noopener">manajer paket APT</a> yang bergantung pada daftar alamat repositori untuk mengunduh dan memasang paket perangkat lunak. Entah <strong>kapan</strong> Anda butuh <em>tools</em> pengembangan mutakhir atau <strong>di mana</strong> pun lingkungan kerja Anda (komputer desktop atau <em>server</em> berbasis terminal), tutorial ini akan menjawab <strong>bagaimana</strong> cara mengeksekusinya tanpa merusak sistem tercinta Anda.</p>
+            <p>Kami akan membahas beberapa metode di sini. Anda bisa memilih salah satu yang menurut Anda paling nyaman. Jika Anda masih bingung namun menggunakan desktop visual (GUI), kami merekomendasikan metode <em>Software &amp; Updates</em> di bawah ini.</p>
+            <blockquote>
+                <strong><i class="fa-solid fa-circle-info" style="color: #0ea5e9;"></i> Catatan:</strong> Untuk demonstrasi, kami akan menampilkan semuanya pada Debian 12 dengan Lingkungan Desktop GNOME. Namun, prinsip dasar dari metode ini akan tetap bekerja dengan mulus pada versi yang lebih lama seperti Debian 10 dan 11.
+            </blockquote>
+            <!-- Bagian 1: GUI -->
+            <h2>Menambahkan Repositori ke Debian Menggunakan Alat "Software &amp; Updates"</h2>
+            <p>Jika Anda juga menggunakan <a href="https://www.howtogeek.com/808226/what-is-gnome-in-linux/" class="article-link" target="_blank" rel="noopener">Lingkungan Desktop GNOME</a> seperti kami, Anda pastinya memiliki alat bawaan yang disebut "Software &amp; Updates". Alat ini sangat memanjakan pemula karena memungkinkan penambahan repositori hanya dalam beberapa kali klik.</p>
+            <p>Di layar beranda Anda, klik tombol <strong>"Activities"</strong> di pojok kiri atas layar Anda.</p>
+            <!-- LCP Image: fetchpriority high -->
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/c4020254ac08e4d0.webp" alt="Menekan teks Activities di sudut kiri atas antarmuka GNOME" fetchpriority="high" decoding="async">
+                <figcaption class="caption">Klik tombol Activities di panel atas.</figcaption>
+            </figure>
+            <p>Di bilah pencarian, mulailah mengetik <code>Software &amp; Updates</code>. Anda akan melihat aplikasi tersebut muncul (ikonnya terlihat seperti sebuah bola dunia yang diarsir). Klik ikon tersebut untuk membukanya.</p>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/1eb0aeea1c15283.webp" alt="Memasukkan 'Software &amp; Updates' ke dalam bilah pencarian aplikasi GNOME" loading="lazy" decoding="async">
+            </figure>
+            <p>Saat <em>window</em> alat diluncurkan, Anda akan melihat beberapa tab pengaturan. Klik pada tab <strong>"Other Software"</strong>.</p>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/490da6307710ae2e.webp" alt="Menekan tab Other Software dari kumpulan menu di atas" loading="lazy" decoding="async">
+            </figure>
+            <p>Anda akan melihat daftar perangkat lunak pihak ketiga yang (mungkin) sudah terpasang. Di bagian kiri bawah <em>window</em>, tekan tombol <strong>"Add..."</strong>.</p>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/132c32df64e0ef95.webp" alt="Mengklik tombol Add di bagian bawah tab Other Software" loading="lazy" decoding="async">
+            </figure>
+            <p>Sebuah kotak dialog akan muncul. Sekarang Anda perlu memasukkan URL repositori pihak ketiga dengan format baku (baris APT) seperti di bawah ini:</p>
+<pre><code>deb [URL repositori] [distribusi] [komponen]</code></pre>
+            <p>Mari kita bedah sedikit sintaksnya: Kata kunci <code>deb</code> mengacu pada jenis repositori bawaan Debian. Kemudian, Anda memasukkan <a href="https://www.howtogeek.com/356563/what-is-a-url-uniform-resource-locator/" class="article-link" target="_blank" rel="noopener">URL target</a>. Setelah URL, ketikkan <em>codename</em> dari distribusi Debian Anda (misalnya: <em>bullseye</em>, <em>bookworm</em>) atau klasifikasinya (<em>stable</em>, <em>testing</em>). Terakhir, tambahkan jenis komponen sumbernya (seperti <em>main</em>, <em>contrib</em>, atau <em>non-free</em>).</p>
+            <p>Dalam contoh kali ini, kita akan mencoba menambahkan repositori aplikasi <a href="https://www.howtogeek.com/867863/wine-8.0-helps-you-run-even-more-windows-apps-on-linux-mac/" class="article-link" target="_blank" rel="noopener">Wine</a> (untuk menjalankan aplikasi Windows di Linux). Jika mengikuti format di atas, baris perintahnya akan terlihat seperti ini:</p>
+<pre><code>deb https://dl.winehq.org/wine-builds/debian bookworm main</code></pre>
+            <p>Masukkan baris APT tersebut ke dalam kotak teks yang tersedia. Lalu tekan <strong>"Add Source"</strong>.</p>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/b7d5c70b458f26c3.webp" alt="Memasukkan baris APT dan menekan tombol Add Source" loading="lazy" decoding="async">
+            </figure>
+            <p>Karena ini adalah tindakan administratif tingkat sistem, Anda akan diminta untuk memasukkan kata sandi (<em>root/sudo</em>) Anda. Ketikkan kata sandi Anda dan tekan <strong>"Authenticate"</strong>.</p>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/87deb005f572c9b9.webp" alt="Mengetik kata sandi administratif dan menekan Authenticate" loading="lazy" decoding="async">
+            </figure>
+            <p>Selesai! Repositori tersebut sekarang sudah berhasil ditambahkan ke daftar eksekusi APT Anda.</p>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/7ba9cc3417bc65ee.webp" alt="Repositori baru Wine yang berhasil ditambahkan ke dalam daftar Other Software" loading="lazy" decoding="async">
+            </figure>
+            <!-- Bagian 2: File sources.list -->
+            <h2>Menambahkan Repositori dengan Mengedit File <code>sources.list</code></h2>
+            <p>Jika Anda merasa lebih nyaman bermain di terminal atau mengelola <em>server headless</em>, ini adalah cara tradisional ala sysadmin Linux. Semua repositori sistem yang tersedia sebenarnya bermuara pada satu file teks bernama <code>sources.list</code> yang bersemayam di direktori <code>/etc/apt</code>.</p>
+            <p>Pertama, mari buka file tersebut menggunakan <em>text editor</em> berbasis terminal pilihan Anda. Untuk kemudahan tutorial ini, kita akan menggunakan <a href="https://www.howtogeek.com/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/" class="article-link" target="_blank" rel="noopener">editor teks Nano</a>.</p>
+            <p>Buka terminal Anda dan jalankan perintah berikut:</p>
+<pre><code>sudo nano /etc/apt/sources.list</code></pre>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/3eefa39d4f1018e3.webp" alt="Tampilan file sources.list yang terbuka di dalam editor teks Nano via Terminal" loading="lazy" decoding="async">
+            </figure>
+            <p>Dari tangkapan layar di atas, Anda dapat melihat semua repositori yang aktif. Untuk menambahkan repositori baru, cukup gulir ke bagian paling bawah file dan tambahkan baris dengan format yang sama seperti sebelumnya:</p>
+<pre><code>deb [URL repositori] [distribusi] [komponen]</code></pre>
+            <p>Sekali lagi, kita ambil contoh repositori Wine. Ketikkan baris berikut tepat di akhir file:</p>
+<pre><code>deb https://dl.winehq.org/wine-builds/debian bookworm main</code></pre>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/a36d88f1dd25d1b9.webp" alt="Mengetikkan baris URL repositori Wine ke dalam file sources.list menggunakan Nano" loading="lazy" decoding="async">
+            </figure>
+            <p>Setelah memastikan tidak ada salah ketik, simpan perubahan file dengan menekan kombinasi <em>keyboard</em> <code>Ctrl+O</code> (lalu tekan <em>Enter</em>). Kemudian, keluar dari editor Nano dengan <code>Ctrl+X</code>.</p>
+            <p>Agar sistem membaca perubahan repositori yang baru saja Anda tambahkan, pastikan untuk memperbarui <em>cache</em> indeks APT dengan perintah ini:</p>
+<pre><code>sudo apt update</code></pre>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/c40c13381f74575a.webp" alt="Menjalankan perintah sudo apt update di terminal untuk menyegarkan cache" loading="lazy" decoding="async">
+            </figure>
+            <p>Jika proses pembaruan berjalan mulus tanpa pesan <em>error</em>, itu artinya repositori siap digunakan.</p>
+            <!-- Bagian 3: Command add-apt-repository -->
+            <h2>Menambahkan Repositori Menggunakan Perintah <code>add-apt-repository</code></h2>
+            <p>Metode terakhir yang akan kita bahas adalah sebuah jalan pintas satu baris (<em>one-liner</em>). Perintah <code>add-apt-repository</code> dirancang khusus untuk mengotomatiskan proses penulisan ke file <code>sources.list</code> tanpa harus membuka <em>text editor</em> sama sekali. Perintah ini handal untuk menambahkan repo pihak ketiga standar maupun <a href="https://www.howtogeek.com/285042/how-to-install-software-from-third-party-ppas-in-ubuntu/" class="article-link" target="_blank" rel="noopener">Personal Package Archive (PPA)</a>.</p>
+            <p>Sintaks dasarnya sangat sederhana:</p>
+<pre><code>add-apt-repository [OPSI] [URL Repositori]</code></pre>
+            <p>Jadi, untuk memasukkan repositori Wine andalan kita tadi, cukup buka terminal dan eksekusi perintah ini (pastikan string repositorinya diapit oleh tanda kutip tunggal untuk menghindari eksekusi karakter aneh):</p>
+<pre><code>sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/debian bookworm main'</code></pre>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/296d7e374f1f9411.webp" alt="Menggunakan perintah add-apt-repository di terminal untuk menyuntikkan repositori baru" loading="lazy" decoding="async">
+            </figure>
+            <p>Sistem akan menampilkan ringkasan aksi. Saat diminta, tekan tombol <strong>Enter</strong> untuk mengonfirmasi injeksi.</p>
+            <blockquote>
+                <strong><i class="fa-solid fa-triangle-exclamation" style="color: #eab308;"></i> Peringatan Penting (GPG Key):</strong> Bergantung pada repositori spesifik yang Anda tambahkan, terkadang pihak penyedia mewajibkan Anda untuk mengimpor dan menandatangani <a href="https://www.howtogeek.com/816878/how-to-back-up-and-restore-gpg-keys-on-linux/" class="article-link" target="_blank" rel="noopener">kunci GPG (GNU Privacy Guard)</a> milik mereka untuk proses verifikasi keamanan paket. Jika langkah ini dilewati padahal diwajibkan, APT akan gagal saat melakukan sinkronisasi dengan status "<em>untrusted repo</em>".
+            </blockquote>
+            <p>Jika Anda iseng (atau lupa) lalu mencoba menambahkan repositori yang sebelumnya sudah eksis di sistem, perintah ini cukup pintar untuk memberi tahu Anda bahwa repositori tersebut sudah ada dalam daftar. Lihat contoh penolakannya di bawah ini:</p>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/7d985aca06562d3.webp" alt="Terminal menampilkan pesan error bahwa repositori yang diinput sudah eksis di dalam sistem" loading="lazy" decoding="async">
+            </figure>
+            <p>Seperti biasa, setiap kali ada perubahan sumber daftar paket, sistem wajib diperbarui agar <em>database</em> lokal sinkron. Jalankan kembali:</p>
+<pre><code>sudo apt update</code></pre>
+            <h3>Bagaimana Jika Ingin Menghapusnya?</h3>
+            <p>Sangat mudah. Jika suatu hari Anda ingin membuang repositori tersebut, cukup bubuhkan <em>flag</em> sakti <code>--remove</code> ke dalam perintah awal. Mari kita coba hapus repo Wine yang baru saja kita tambahkan tadi:</p>
+<pre><code>sudo add-apt-repository --remove 'deb https://dl.winehq.org/wine-builds/debian bookworm main'</code></pre>
+            <figure class="img-wrapper">
+                <img src="https://dalam.web.id/img/static0.howtogeekimages.com/6ede511da9fadcd0.webp" alt="Terminal mengeksekusi flag remove untuk menghapus repositori spesifik dari sistem" loading="lazy" decoding="async">
+            </figure>
+            <p>Proses seketika selesai, dan repositori berhasil dihapus dari daftar sistem Anda.</p>
+            <!-- Kesimpulan -->
+            <h2>Gembok Repositori Debian Kini Terbuka</h2>
+            <p>Nah, sekarang Anda sudah mengantongi jurus-jurus penting untuk menyematkan repositori pihak ketiga di ekosistem Debian Linux. Dengan pengetahuan utilitas dasar ini, keterbatasan perangkat lunak <em>outdated</em> di lingkungan <em>stable</em> bisa diatasi.</p>
+            <p>Mulai hari ini, Anda bebas menginstal aplikasi atau platform favorit Anda yang tadinya terkesan mustahil—entah itu klien <a href="https://www.howtogeek.com/753511/how-to-download-and-install-steam-on-linux/" class="article-link" target="_blank" rel="noopener">Steam</a> untuk sedikit relaksasi <em>gaming*, maupun *engine</em> pengembangan vital seperti <a href="https://www.howtogeek.com/devops/how-to-install-and-get-started-with-docker-desktop-on-linux/" class="article-link" target="_blank" rel="noopener">Docker Desktop</a>. Selamat bereksperimen dengan terminal!</p>
+        </article>
+        <!-- Elemen Wajib Akhir Konten (Tanpa Styling Tambahan) -->
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+    </main>
+    <footer>
+        <p>🄯 2026 Layar Kosong. Dirangkum dari basis pengetahuan <em>open-source</em> .</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

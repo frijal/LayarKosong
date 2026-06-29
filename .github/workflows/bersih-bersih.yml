@@ -1,0 +1,42 @@
+name: 🪓 Hapus bareng File dari Folder
+
+on:
+  workflow_dispatch:
+    inputs:
+      targetDir:
+        description: 'Folder target tempat file akan dihapus (contoh: mini, logss, cache)'
+        required: true
+        default: 'mini'
+      extension:
+        description: 'Ekstensi file yang ingin dihapus (contoh: mp3, wav, zip, txt)'
+        required: true
+        default: 'mp3'
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+   
+    permissions:
+      contents: write # penting agar bisa commit & push
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Remove files by extension
+        run: |
+          echo "🔎 Hapus semua file .${{ github.event.inputs.extension }} di folder ${{ github.event.inputs.targetDir }}/"
+          rm -f ${{ github.event.inputs.targetDir }}/*.${{ github.event.inputs.extension }} || true
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git commit -m "🗑️ Remove all .${{ github.event.inputs.extension }} files in ${{ github.event.inputs.targetDir }}/" || echo "No files to delete"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
