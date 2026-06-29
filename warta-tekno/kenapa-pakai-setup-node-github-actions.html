@@ -6,7 +6,7 @@
  document.querySelectorAll('.copy-btn').forEach(btn => {
  btn.addEventListener('click', () => {
  const code = btn.parentElement.querySelector('code').innerText;
- pemandu.clipboard.writeText(code).then(() => {
+ navigator.clipboard.writeText(code).then(() => {
  btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
  setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> Salin', 2000);
  });

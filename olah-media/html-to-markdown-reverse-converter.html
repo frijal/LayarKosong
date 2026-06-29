@@ -135,7 +135,7 @@
  if (btnCopy) {
  btnCopy.addEventListener('click', function() {
  if (!output.value) return; 
- pemandu.clipboard.writeText(output.value).then(function() {
+ navigator.clipboard.writeText(output.value).then(function() {
  const originalText = btnCopy.innerHTML;
  btnCopy.innerHTML = 'Copied!';
  setTimeout(function() {

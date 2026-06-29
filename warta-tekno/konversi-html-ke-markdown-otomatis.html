@@ -122,7 +122,7 @@
  if (btnPaste) {
  btnPaste.addEventListener('click', async function() {
  try {
- const text = await pemandu.clipboard.readText();
+ const text = await navigator.clipboard.readText();
  input.value = text;
  doConvert();
  const originalText = btnPaste.innerHTML;
@@ -145,7 +145,7 @@
  if (btnCopy) {
  btnCopy.addEventListener('click', function() {
  if (!output.value) return;
- pemandu.clipboard.writeText(output.value).then(function() {
+ navigator.clipboard.writeText(output.value).then(function() {
  const originalText = btnCopy.innerHTML;
  btnCopy.innerHTML = '<i class="fa-solid fa-check"></i> <span>Disalin!</span>';
  setTimeout(function() {

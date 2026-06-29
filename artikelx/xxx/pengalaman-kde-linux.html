@@ -385,7 +385,7 @@
           copyButtons.forEach((button) => {
               button.addEventListener('click', () => {
                   const code = button.nextElementSibling.textContent;
-                  pemandu.clipboard.writeText(code)
+                  navigator.clipboard.writeText(code)
                       .then(() => {
                           const originalText = button.textContent;
                           button.textContent = 'Disalin!';

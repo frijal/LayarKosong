@@ -576,7 +576,7 @@
         .getElementById('copyJsonBtn')
         .addEventListener('click', async () => {
           try {
-            await pemandu.clipboard.writeText(
+            await navigator.clipboard.writeText(
               document.getElementById('jsonOutput').value,
             )
             log('📋 JSON berhasil dicopy!')
@@ -602,7 +602,7 @@
         .getElementById('copySitemapBtn')
         .addEventListener('click', async () => {
           try {
-            await pemandu.clipboard.writeText(
+            await navigator.clipboard.writeText(
               document.getElementById('sitemapOutput').value,
             )
             log('📋 Sitemap berhasil dicopy!')

@@ -4,7 +4,7 @@ sudo reflector --country Indonesia,Singapore --latest 10 --sort rate --save /etc
  document.querySelectorAll('.copy-btn').forEach(btn => {
  btn.addEventListener('click', () => {
  const code = btn.nextElementSibling.innerText;
- pemandu.clipboard.writeText(code);
+ navigator.clipboard.writeText(code);
  btn.innerText = 'Tersalin!';
  setTimeout(() => { btn.innerText = 'Salin'; }, 2000);
  });

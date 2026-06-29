@@ -357,7 +357,7 @@ if (platform === 'x' || platform === 'tiktok' || platform === 'threads') {
     }
     function copyCode() {
         const code = document.getElementById('embedCode').textContent;
-        pemandu.clipboard.writeText(code);
+        navigator.clipboard.writeText(code);
         alert("📋 Kode berhasil disalin ke clipboard!");
     }
 </script>

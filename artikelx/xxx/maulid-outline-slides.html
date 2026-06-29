@@ -319,7 +319,7 @@
             btn.addEventListener('click', async () => {
                 const code = btn.nextElementSibling.innerText;
                 try {
-                    await pemandu.clipboard.writeText(code);
+                    await navigator.clipboard.writeText(code);
                     const originalText = btn.innerText;
                     btn.innerText = 'Copied! ✅';
                     setTimeout(() => btn.innerText = originalText, 2000);

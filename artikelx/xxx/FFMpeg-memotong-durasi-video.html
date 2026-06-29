@@ -257,7 +257,7 @@
 <script>
 function copyCode(){
     const code = document.getElementById('ffmpegCode').textContent;
-    pemandu.clipboard.writeText(code).then(()=>{
+    navigator.clipboard.writeText(code).then(()=>{
         const btn = document.querySelector('.copy-btn');
         btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
         btn.style.background = '#10b981';

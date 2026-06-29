@@ -249,7 +249,7 @@
             // Tombol salin kode
             window.copyCode = function() {
                 const c = document.getElementById("code").textContent;
-                pemandu.clipboard.writeText(c).then(() => alert("Kode disalin!"));
+                navigator.clipboard.writeText(c).then(() => alert("Kode disalin!"));
             }
         });
     </script>

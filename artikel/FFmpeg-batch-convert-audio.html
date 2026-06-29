@@ -400,7 +400,7 @@ echo "Semua file audio selesai dikonversi ke format $TARGET_EXT."</code>
 <script>
 function copyCode() {
   const code = document.getElementById("audioCode").innerText;
-  pemandu.clipboard.writeText(code).then(() => {
+  navigator.clipboard.writeText(code).then(() => {
     const btn = document.querySelector('.copy-btn');
     btn.textContent = 'Disalin!';
     setTimeout(()=>{ btn.textContent = 'Copy'; },2000);

@@ -25,7 +25,7 @@ Get-ChildItem -Path $src -Recurse -File -Include *.jpg,*.png | ForEach-Object {
  btn.addEventListener('click', async () => {
  const code = btn.nextElementSibling.innerText;
  try {
- await pemandu.clipboard.writeText(code);
+ await navigator.clipboard.writeText(code);
  const originalText = btn.innerText;
  btn.innerText = 'Copied! ✅';
  btn.style.background = '#2d89ef';

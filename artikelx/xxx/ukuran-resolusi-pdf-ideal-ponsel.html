@@ -390,7 +390,7 @@ echo "✅ Sukses beres, Bos! File PDF kamu siap di: \$OUTPUT"
         dimInput.addEventListener('input', generateScript);
         // Fitur Copy-Paste
         copyBtn.addEventListener('click', () => {
-            pemandu.clipboard.writeText(scriptBox.textContent).then(() => {
+            navigator.clipboard.writeText(scriptBox.textContent).then(() => {
                 const originalHTML = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
                 copyBtn.style.backgroundColor = 'var(--btn-hover)';

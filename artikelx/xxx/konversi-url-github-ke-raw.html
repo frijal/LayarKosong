@@ -284,7 +284,7 @@ print(to_raw_url("https://github.com/frijal/LayarKosong/blob/main/search/build-d
           return;
         }
         try {
-          await pemandu.clipboard.writeText(text);
+          await navigator.clipboard.writeText(text);
           btnCopy.setAttribute('aria-pressed', 'true');
           const prev = output.textContent;
           output.textContent = text + '  — disalin ✅';

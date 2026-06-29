@@ -6,7 +6,7 @@
  }
  // Fungsi copy ke clipboard
  function copyToClipboard(text){
- pemandu.clipboard.writeText(text).then(()=>{
+ navigator.clipboard.writeText(text).then(()=>{
  log(`\n✅ BERHASIL DISALIN:\n${text}\nSilakan letakkan pada README.md di GitHub Anda. Paste aja, lalu kembali lagi ke sini untuk ambil logo lain.`);
  }).catch(e=>{
  log(`\n❌ Gagal menyalin: ${text}`);

@@ -125,7 +125,7 @@
     <script>
         function copyCode(id) {
             const code = document.getElementById(id).innerText;
-            pemandu.clipboard.writeText(code).then(() => {
+            navigator.clipboard.writeText(code).then(() => {
                 alert("Perintah berhasil disalin!");
             });
         }

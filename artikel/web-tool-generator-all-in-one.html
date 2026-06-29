@@ -889,7 +889,7 @@ Mangga" oninput="genList()"></textarea>
             if (!el.value) return;
             el.select();
             try {
-                pemandu.clipboard.writeText(el.value).then(function() {
+                navigator.clipboard.writeText(el.value).then(function() {
                     var hintId = el.id.split('-')[0] + '-hint';
                     var hint = document.getElementById(hintId);
                     if (hint) {

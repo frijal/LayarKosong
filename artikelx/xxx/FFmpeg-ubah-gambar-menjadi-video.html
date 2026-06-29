@@ -310,7 +310,7 @@
 // Copy syntax
 function copyCode(){
   const code = document.getElementById('ffmpegCode').textContent;
-  pemandu.clipboard.writeText(code);
+  navigator.clipboard.writeText(code);
   alert("Syntax copied!");
 }
 </script>

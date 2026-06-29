@@ -37,7 +37,7 @@ echo "Cleanup selesai!"</code></pre><h3>3. Cara Pakainya Gimana?</h3><p>Pertama,
  copyButtons.forEach(button => {
  button.addEventListener('click', () => {
  const code = button.nextElementSibling.textContent;
- pemandu.clipboard.writeText(code).then(() => {
+ navigator.clipboard.writeText(code).then(() => {
  const originalText = button.textContent;
  button.textContent = 'Disalin!';
  button.classList.add('copied');

@@ -10,7 +10,7 @@
 function copyToClipboard() {
  const copyText = document.getElementById("output").textContent;
  if (copyText.startsWith("#")) return; // Jangan salin jika belum di-generate
- pemandu.clipboard.writeText(copyText).then(() => {
+ navigator.clipboard.writeText(copyText).then(() => {
  const btn = document.getElementById("copyBtn");
  btn.textContent = "Tersalin!";
  btn.style.background = "#555";

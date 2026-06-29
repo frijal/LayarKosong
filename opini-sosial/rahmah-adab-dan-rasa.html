@@ -21,7 +21,7 @@
  });
  // Copy title
  document.getElementById('copyTitle').addEventListener('click', () => {
- pemandu.clipboard.writeText(title).then(() => {
+ navigator.clipboard.writeText(title).then(() => {
  const btn = document.getElementById('copyTitle');
  btn.textContent = 'Judul disalin';
  setTimeout(() => btn.textContent = 'Salin judul', 1600);

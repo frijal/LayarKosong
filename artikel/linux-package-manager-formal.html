@@ -189,7 +189,7 @@
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const code = btn.previousElementSibling.innerText;
-            pemandu.clipboard.writeText(code).then(() => {
+            navigator.clipboard.writeText(code).then(() => {
                 btn.textContent = 'Tersalin!';
                 setTimeout(() => btn.textContent = 'Salin', 2000);
             });

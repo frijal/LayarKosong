@@ -238,7 +238,7 @@
                 if (e.target.classList.contains("copy-btn")) {
                     const codeElement = e.target.nextElementSibling?.querySelector("code");
                     if (codeElement) {
-                        pemandu.clipboard.writeText(codeElement.innerText.trim())
+                        navigator.clipboard.writeText(codeElement.innerText.trim())
                             .then(() => {
                                 const originalText = e.target.innerText;
                                 e.target.innerText = "Disalin!";

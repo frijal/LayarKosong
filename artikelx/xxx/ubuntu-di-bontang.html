@@ -335,7 +335,7 @@
         const el = document.querySelector(sel);
         if(!el) return;
         const text = el.textContent;
-        pemandu.clipboard.writeText(text).then(()=>{
+        navigator.clipboard.writeText(text).then(()=>{
           btn.textContent = 'Disalin!';
           setTimeout(()=> btn.textContent = 'Salin', 1200);
         });
