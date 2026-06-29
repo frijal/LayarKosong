@@ -1,12 +1,12 @@
 import { file, write } from "bun";
-import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { load } from "cheerio";
 import path, { join } from "node:path";
 import sharp from "sharp";
 
 // ========== CONFIG ==========
 const BASE_URL = "https://dalam.web.id";
-const CACHE_FILE = "mini/srcset-gambar.txt"; // Target pencatatan utama
+const CACHE_FILE = "mini/srcset-gambar.txt"; // Target sinkronisasi catatan
 const ARTIKEL_LITE = "artikel-lite.json"; 
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
@@ -21,16 +21,10 @@ const TARGET_DESKTOP = 1208;
 const TARGET_MEDIUM  = 960;
 const TARGET_MOBILE  = 720;
 
-// ========== CACHE (BACA & TULIS, BUKAN HAPUS) ==========
-let optimizedCache = new Set<string>();
-mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
+// ========== GLOBAL SETS ==========
+const activeCache = new Set<string>(); // Untuk menampung daftar fresh
 
-if (existsSync(CACHE_FILE)) {
-  optimizedCache = new Set(
-    readFileSync(CACHE_FILE, "utf-8")
-    .split("\n").map(l => l.trim()).filter(Boolean)
-  );
-}
+mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 
 // ========== HELPERS ==========
 function normalizeToRepoPath(src: string): string {
@@ -50,8 +44,8 @@ function ensureDirForFile(filePath: string) {
   try { mkdirSync(dir, { recursive: true }); } catch {}
 }
 
-// 🔥 HELPER: Ambil gambar untuk -rg
-function loadRelatedImages(): Set<string> {
+// 🔥 HELPER: Ambil gambar untuk -rg dari JSON Lite
+function loadRelatedImages() {
   const imageSet = new Set<string>();
   if (!existsSync(ARTIKEL_LITE)) return imageSet;
 
@@ -61,23 +55,22 @@ function loadRelatedImages(): Set<string> {
       if (Array.isArray(cat)) {
         for (const item of cat) {
           if (Array.isArray(item) && typeof item[2] === "string") {
-            imageSet.add(normalizeToRepoPath(item[2]));
+            const cleanPath = normalizeToRepoPath(item[2]);
+            imageSet.add(cleanPath);
+            // Daftarkan juga ke cache agar tidak dianggap zombie oleh Tukang Sapu
+            activeCache.add(cleanPath); 
           }
         }
       }
     }
-    return imageSet;
-  } catch (e) {
-    return imageSet;
-  }
+  } catch (e) {}
+  return imageSet;
 }
 const relatedImages = loadRelatedImages();
 
 async function generateRgImages() {
-  if (relatedImages.size === 0) return 0;
-  
   let count = 0;
-  for (const cleanPath of relatedImages) {
+  for (const cleanPath of relatedImages) { 
     const fullPathSource = path.join(process.cwd(), cleanPath);
     if (!existsSync(fullPathSource)) continue;
 
@@ -111,9 +104,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   const htmlContent = await file(htmlPath).text();
   const $ = load(htmlContent, { decodeEntities: false });
 
-  // Jika HTML sudah pernah diinjeksi signature, langsung skip!
-  if (htmlContent.includes(PICTURE_SIGNATURE)) return "skipped";
-
+  // SENSUS GAMBAR: Daftarkan semua img ke activeCache
   const imageCandidates = $("body img").toArray().filter(el => {
     const src = $(el).attr("src");
     if (!src) return false;
@@ -121,8 +112,14 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
     if (!isLocal) return false;
     const ext = path.extname(src.split("?")[0]).toLowerCase();
     if (SKIP_EXTENSIONS.has(ext)) return false;
+
+    // WAJIB: Masukkan ke sensus aktif agar Tukang Sapu tidak salah hapus
+    activeCache.add(normalizeToRepoPath(src));
     return true;
   });
+
+  // JIKA HTML SUDAH ADA SIGNATURE, langsung skip tanpa proses ulang, TAPI sensusnya sudah aman di atas.
+  if (htmlContent.includes(PICTURE_SIGNATURE)) return "skipped";
 
   if (imageCandidates.length === 0) return "no-image";
 
@@ -251,44 +248,37 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       (!needsMedium || existsSync(absMediumPath)) &&
       (!needsMobile || existsSync(absMobilePath));
 
-      if (!optimizedCache.has(cleanPath) || !physicalComplete) {
-        if (!physicalComplete) {
-          ensureDirForFile(absDesktopPath);
+      if (!physicalComplete) {
+        ensureDirForFile(absDesktopPath);
 
-          // 1. DESKTOP
+        // 1. DESKTOP
+        await sharp(inputBuffer)
+        .rotate()
+        .resize(finalDesktopWidth, null, { withoutEnlargement: true })
+        .sharpen({ sigma: 0.3 })
+        .webp({ quality: 92, preset: 'text', smartSubsample: true, effort: 6 })
+        .toFile(absDesktopPath);
+
+        // 2. MEDIUM
+        if (needsMedium) {
+          ensureDirForFile(absMediumPath);
           await sharp(inputBuffer)
           .rotate()
-          .resize(finalDesktopWidth, null, { withoutEnlargement: true })
-          .sharpen({ sigma: 0.3 })
-          .webp({ quality: 92, preset: 'text', smartSubsample: true, effort: 6 })
-          .toFile(absDesktopPath);
-
-          // 2. MEDIUM
-          if (needsMedium) {
-            ensureDirForFile(absMediumPath);
-            await sharp(inputBuffer)
-            .rotate()
-            .resize(finalMediumWidth, null, { withoutEnlargement: true })
-            .sharpen({ sigma: 0.4 })
-            .webp({ quality: 90, preset: 'text', smartSubsample: true, effort: 6 })
-            .toFile(absMediumPath);
-          }
-
-          // 3. MOBILE
-          if (needsMobile) {
-            ensureDirForFile(absMobilePath);
-            await sharp(inputBuffer)
-            .rotate()
-            .resize(finalMobileWidth, null, { withoutEnlargement: true })
-            .sharpen({ sigma: 0.5 })
-            .webp({ quality: 88, preset: 'text', smartSubsample: true, effort: 6 })
-            .toFile(absMobilePath);
-          }
+          .resize(finalMediumWidth, null, { withoutEnlargement: true })
+          .sharpen({ sigma: 0.4 })
+          .webp({ quality: 90, preset: 'text', smartSubsample: true, effort: 6 })
+          .toFile(absMediumPath);
         }
 
-        if (!optimizedCache.has(cleanPath)) {
-          optimizedCache.add(cleanPath);
-          appendFileSync(CACHE_FILE, `${cleanPath}\n`);
+        // 3. MOBILE
+        if (needsMobile) {
+          ensureDirForFile(absMobilePath);
+          await sharp(inputBuffer)
+          .rotate()
+          .resize(finalMobileWidth, null, { withoutEnlargement: true })
+          .sharpen({ sigma: 0.5 })
+          .webp({ quality: 88, preset: 'text', smartSubsample: true, effort: 6 })
+          .toFile(absMobilePath);
         }
       }
 
@@ -331,7 +321,8 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
 // ========== MAIN ==========
 async function main() {
-  console.log("🚀 Memulai Srcset & Thumbnail Generator (Tanpa Sitemap, Berbasis TXT)...");
+  console.log("🚀 Memulai Srcset & Thumbnail Generator...");
+  console.log("🔍 Mengecek dan merekap seluruh data gambar aktif...");
 
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
@@ -339,7 +330,6 @@ async function main() {
       .filter(f => f.endsWith(".html") && f !== "index.html")
       .map(f => join(cat, f));
     } catch {
-      console.warn(`⚠️ Folder tidak ditemukan atau kosong: ${cat}`);
       return [];
     }
   });
@@ -355,15 +345,22 @@ async function main() {
 
   const rgCreatedCount = await generateRgImages();
 
+  // 🔥 UPDATE BUKU CATATAN (Sinkronisasi Penuh) 🔥
+  // Mengganti isi lama dengan data fresh hasil sensus, agar Tukang Sapu tidak tertipu!
+  const sortedCache = Array.from(activeCache).sort();
+  writeFileSync(CACHE_FILE, sortedCache.join("\n") + "\n");
+
   console.log(`
-✅ SELESAI: Generator Gambar
+✅ SELESAI: Generator Selesai & Buku Catatan Diperbarui
 -------------------------------------
-🖼️  File HTML Diproses  : ${results.processed} (HTML yang ditambahkan srcset)
-⏭️  File HTML Di-skip   : ${results.skipped} (Sudah ada signature)
+🖼️  File HTML Diproses  : ${results.processed} (Baru diinjeksi srcset)
+⏭️  File HTML Di-skip   : ${results.skipped} (Aman)
 📄  HTML Tanpa Gambar   : ${results.noImage}
 🎯  Target JSON Lite    : ${relatedImages.size} file -rg
 ✨  Thumbnail -rg Baru  : ${rgCreatedCount} file dibuat
+📝  Catatan Srcset Baru : ${activeCache.size} gambar ditulis ulang ke srcset-gambar.txt
 -------------------------------------
+Sekarang Tukang Sapu sudah bisa dipanggil untuk merazia zombie! 🧹
 `);
 }
 
