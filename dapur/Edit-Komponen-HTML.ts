@@ -335,7 +335,7 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   let hasLlmsScript = false;
   $("script:not([src])").each((_, el) => {
       const scriptContent = $(el).html() || "";
-      if (scriptContent.includes("modelContext' in pemandu")) {
+      if (scriptContent.includes("modelContext' in navigator")) {
           hasLlmsScript = true;
       }
   });

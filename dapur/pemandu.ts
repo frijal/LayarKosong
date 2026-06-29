@@ -11,7 +11,7 @@
   // 1. HELPER FUNCTIONS
   // ---------------------------
 function isMobileDevice(): boolean {
-  return (window.innerWidth <= 768 || 'ontouchstart' in window || pemandu.maxTouchPoints > 0);
+  return (window.innerWidth <= 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0);
 }
 
 function cleanSlug(id: string): string {
