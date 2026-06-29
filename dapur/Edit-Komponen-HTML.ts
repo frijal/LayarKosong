@@ -304,10 +304,23 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
     $("body").append(`<div id="internal-nav"></div>`);
   }
   if ($('script[src="/ext/marquee-url.js"]').length === 0) {
+    // 1. Ambil HTML mentah HANYA dari dalam <body> buat menghindari jebakan og:image di <head>
+    const bodyHtml = $("body").html() || "";
+    
+    // 2. Scan Regex: cari ekstensi gambar yang diakhiri kutip tunggal/ganda.
+    // Flag 'i' bikin dia case-insensitive (mau .JPG atau .jpg bakal kena)
+    const hasImage = /\.(jpg|jpeg|png|gif|webp|avif|svg|bmp)["']/i.test(bodyHtml);
+    
+    // 3. Tentukan script lightbox dimuat atau tidak
+    const lightboxScript = hasImage 
+      ? `<script defer src="/ext/lightbox.js"></script>` 
+      : ``;
+
+    // 4. Injeksi semua script ke body
     $("body").append(
       `<script defer src="/ext/marquee-url.js"></script>` +
       `<script defer src="/ext/iposbrowser.js"></script>` +
-      `<script defer src="/ext/lightbox.js"></script>` +
+      lightboxScript + // <-- Super dinamis tanpa pusing mikirin nama tag
       `<script defer src="/ext/response.js"></script>` +
       `<script defer src="/ext/balon-cf.js"></script>` +
       `<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>`
