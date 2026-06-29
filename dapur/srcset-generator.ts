@@ -1,13 +1,12 @@
 import { file, write } from "bun";
-import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync } from "node:fs";
 import { load } from "cheerio";
 import path, { join } from "node:path";
 import sharp from "sharp";
 
 // ========== CONFIG ==========
 const BASE_URL = "https://dalam.web.id";
-const SITEMAP_FILE = "sitemap.txt";
-const CACHE_FILE = "mini/srcset-gambar.txt";
+const CACHE_FILE = "mini/srcset-gambar.txt"; // Target pencatatan utama
 const ARTIKEL_LITE = "artikel-lite.json"; 
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
@@ -17,16 +16,21 @@ const ALLOWED_CATEGORIES = [
   "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
 ];
 
-// 🔥 STANDAR CORE WEB VITALS (CWV) - UPDATE RESOLUSI
+// 🔥 STANDAR CORE WEB VITALS (CWV)
 const TARGET_DESKTOP = 1208;
 const TARGET_MEDIUM  = 960;
 const TARGET_MOBILE  = 720;
 
-// ========== CACHE (AUTO-RESET) ==========
+// ========== CACHE (BACA & TULIS, BUKAN HAPUS) ==========
 let optimizedCache = new Set<string>();
-
 mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
-writeFileSync(CACHE_FILE, "");
+
+if (existsSync(CACHE_FILE)) {
+  optimizedCache = new Set(
+    readFileSync(CACHE_FILE, "utf-8")
+    .split("\n").map(l => l.trim()).filter(Boolean)
+  );
+}
 
 // ========== HELPERS ==========
 function normalizeToRepoPath(src: string): string {
@@ -46,19 +50,13 @@ function ensureDirForFile(filePath: string) {
   try { mkdirSync(dir, { recursive: true }); } catch {}
 }
 
-// 🔥 HELPER: Ambil semua gambar dari artikel-lite.json (Fix Array Format)
+// 🔥 HELPER: Ambil gambar untuk -rg
 function loadRelatedImages(): Set<string> {
   const imageSet = new Set<string>();
-  if (!existsSync(ARTIKEL_LITE)) {
-    console.warn(`⚠️ File ${ARTIKEL_LITE} tidak ditemukan, -rg akan dilewati.`);
-    return imageSet;
-  }
+  if (!existsSync(ARTIKEL_LITE)) return imageSet;
 
   try {
     const data = JSON.parse(readFileSync(ARTIKEL_LITE, "utf-8"));
-
-    // Format data dari Komposisi Blog V10.4:
-    // { "kategori": [ ["Judul", "file.html", "URL_GAMBAR", ...], ... ] }
     for (const cat of Object.values(data)) {
       if (Array.isArray(cat)) {
         for (const item of cat) {
@@ -68,23 +66,19 @@ function loadRelatedImages(): Set<string> {
         }
       }
     }
-
     return imageSet;
   } catch (e) {
-    console.error(`❌ Gagal mem-parsing ${ARTIKEL_LITE}:`, e);
     return imageSet;
   }
 }
 const relatedImages = loadRelatedImages();
 
-// 🔥 FUNGSI MANDIRI: Pabrik khusus -rg (Silent Mode)
 async function generateRgImages() {
   if (relatedImages.size === 0) return 0;
   
   let count = 0;
   for (const cleanPath of relatedImages) {
     const fullPathSource = path.join(process.cwd(), cleanPath);
-    
     if (!existsSync(fullPathSource)) continue;
 
     const dirName      = path.dirname(cleanPath);
@@ -98,23 +92,15 @@ async function generateRgImages() {
       ensureDirForFile(absRgPath);
       try {
         const inputBuffer = await file(fullPathSource).arrayBuffer().then(b => Buffer.from(b));
-        
         await sharp(inputBuffer)
         .rotate()
         .resize(150, null, { withoutEnlargement: true })
         .sharpen({ sigma: 0.4 })
-        .webp({
-          quality: 88,
-          preset: 'text',
-          smartSubsample: true,
-          effort: 6
-        })
+        .webp({ quality: 88, preset: 'text', smartSubsample: true, effort: 6 })
         .toFile(absRgPath);
 
         count++;
-      } catch (e: any) {
-        // Silenced error unless critical
-      }
+      } catch (e: any) {}
     }
   }
   return count;
@@ -125,6 +111,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   const htmlContent = await file(htmlPath).text();
   const $ = load(htmlContent, { decodeEntities: false });
 
+  // Jika HTML sudah pernah diinjeksi signature, langsung skip!
   if (htmlContent.includes(PICTURE_SIGNATURE)) return "skipped";
 
   const imageCandidates = $("body img").toArray().filter(el => {
@@ -145,17 +132,9 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   let fileHasChanged = false;
 
   function updateImgAttrs(
-    $img: Cheerio,
-    webDesktopUrl: string,
-    webMobileUrl: string | null,
-    webMediumUrl: string | null,
-    desktopW: number,
-    mediumW: number,
-    mobileW: number,
-    desktopH: number,
-    hasMobile: boolean,
-    hasMedium: boolean,
-    isFirst: boolean
+    $img: Cheerio, webDesktopUrl: string, webMobileUrl: string | null, webMediumUrl: string | null,
+    desktopW: number, mediumW: number, mobileW: number, desktopH: number,
+    hasMobile: boolean, hasMedium: boolean, isFirst: boolean
   ) {
     const willHaveSrcset = hasMobile;
     let changed = false;
@@ -245,10 +224,6 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         actualHeight = meta.width;
       }
 
-      const dirName      = path.dirname(cleanPath);
-      const ext          = path.extname(cleanPath);
-      const baseNameSafe = path.basename(cleanPath, ext).replace(FORBIDDEN_CHARS, "-");
-
       const needsMobile = actualWidth > TARGET_MOBILE;
       const needsMedium = actualWidth > TARGET_MEDIUM;
 
@@ -258,6 +233,10 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
       const aspectRatio = actualHeight / actualWidth;
       const finalDesktopHeight = Math.round(finalDesktopWidth * aspectRatio);
+
+      const dirName      = path.dirname(cleanPath);
+      const ext          = path.extname(cleanPath);
+      const baseNameSafe = path.basename(cleanPath, ext).replace(FORBIDDEN_CHARS, "-");
 
       const desktopPath = path.join(dirName, `${baseNameSafe}.webp`);
       const mediumPath  = path.join(dirName, `${baseNameSafe}-md.webp`);
@@ -284,9 +263,9 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
           .webp({ quality: 92, preset: 'text', smartSubsample: true, effort: 6 })
           .toFile(absDesktopPath);
 
+          // 2. MEDIUM
           if (needsMedium) {
             ensureDirForFile(absMediumPath);
-            // 2. MEDIUM
             await sharp(inputBuffer)
             .rotate()
             .resize(finalMediumWidth, null, { withoutEnlargement: true })
@@ -295,9 +274,9 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
             .toFile(absMediumPath);
           }
 
+          // 3. MOBILE
           if (needsMobile) {
             ensureDirForFile(absMobilePath);
-            // 3. MOBILE
             await sharp(inputBuffer)
             .rotate()
             .resize(finalMobileWidth, null, { withoutEnlargement: true })
@@ -323,8 +302,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const webMobileUrl  = needsMobile ? `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}` : null;
 
       const changed = updateImgAttrs(
-        $img,
-        webDesktopUrl, webMobileUrl, webMediumUrl,
+        $img, webDesktopUrl, webMobileUrl, webMediumUrl,
         finalDesktopWidth, finalMediumWidth, finalMobileWidth, finalDesktopHeight,
         needsMobile, needsMedium, isFirstImage
       );
@@ -334,9 +312,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         fileHasChanged = true;
       }
 
-    } catch (e: any) {
-      // Silenced error unless critical
-    }
+    } catch (e: any) {}
   }
 
   if (!fileHasChanged) return "no-change";
@@ -355,16 +331,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
 // ========== MAIN ==========
 async function main() {
-  console.log("🚀 Memulai Srcset & Thumbnail Generator (Silent Mode)...");
-
-  mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
-
-  const sitemapUrls = existsSync(SITEMAP_FILE)
-  ? new Set(
-    readFileSync(SITEMAP_FILE, "utf-8")
-    .split("\n").map(l => l.trim()).filter(Boolean)
-  )
-  : new Set<string>();
+  console.log("🚀 Memulai Srcset & Thumbnail Generator (Tanpa Sitemap, Berbasis TXT)...");
 
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
@@ -372,40 +339,27 @@ async function main() {
       .filter(f => f.endsWith(".html") && f !== "index.html")
       .map(f => join(cat, f));
     } catch {
+      console.warn(`⚠️ Folder tidak ditemukan atau kosong: ${cat}`);
       return [];
     }
   });
 
-  const results = { processed: 0, skipped: 0, noImage: 0, missing: 0 };
+  const results = { processed: 0, skipped: 0, noImage: 0 };
 
-for (const htmlPath of allFiles) {
-    const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
-
-    // 👇 TAMBAHKAN LOG CCTV SITEMAP DI SINI 👇
-    if (sitemapUrls.has(url)) {
-      console.log(`⏭️ SKIP (Sitemap): File sudah terdaftar -> ${url}`);
-      results.skipped++;
-      continue;
-    } else {
-      console.log(`✅ LOLOS SITEMAP: Memproses -> ${url}`);
-    }
-    // 👆 SAMPAI SINI 👆
-
+  for (const htmlPath of allFiles) {
     const result = await processHtmlFile(htmlPath);
     if (result === "processed") results.processed++;
     if (result === "skipped")   results.skipped++;
     if (result === "no-image")  results.noImage++;
   }
 
-  // 🔥 EKSEKUSI PABRIK -RG PINDAH KE BAWAH!
-  // Supaya dia bisa pakai WebP yang baru saja di-generate oleh loop di atas.
   const rgCreatedCount = await generateRgImages();
 
   console.log(`
 ✅ SELESAI: Generator Gambar
 -------------------------------------
-🖼️  File HTML Diproses  : ${results.processed}
-⏭️  File HTML Di-skip   : ${results.skipped}
+🖼️  File HTML Diproses  : ${results.processed} (HTML yang ditambahkan srcset)
+⏭️  File HTML Di-skip   : ${results.skipped} (Sudah ada signature)
 📄  HTML Tanpa Gambar   : ${results.noImage}
 🎯  Target JSON Lite    : ${relatedImages.size} file -rg
 ✨  Thumbnail -rg Baru  : ${rgCreatedCount} file dibuat
