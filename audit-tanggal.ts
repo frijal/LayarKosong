@@ -44,16 +44,19 @@ async function audit() {
       const modHTML = $('meta[property="article:modified_time"]').attr("content") || "N/A";
       const slug = filename.replace(".html", "");
 
-      // Status Merah jika: 
-      // 1. Modifikasi lebih tua dari Publish (Anomali logika)
-      // 2. Modifikasi sama persis dengan Publish (Biasanya berarti belum pernah diedit atau stempel rusak)
+      // Logika Perbandingan Baru:
+      // ✅ OK: Jika Publish == Modified (Belum diedit)
+      // ✅ OK: Jika Modified > Publish (Sudah diedit dengan betul)
+      // ❌ ANOMALI: Jika Modified < Publish (Logika waktu terbalik)
+      
       const pubTime = new Date(pubHTML).getTime();
       const modTime = new Date(modHTML).getTime();
       
       let status = "✅ OK";
       let style = "";
 
-      if (pubHTML === modHTML || (Number.isFinite(pubTime) && Number.isFinite(modTime) && modTime < pubTime)) {
+      // Hanya anomali jika masa modifikasi lebih awal dari masa terbit
+      if (Number.isFinite(pubTime) && Number.isFinite(modTime) && modTime < pubTime) {
         status = "❌ ANOMALI";
         style = 'style="color: red; font-weight: bold;"';
       }
@@ -63,7 +66,7 @@ async function audit() {
   }
 
   await write("laporan-audit.md", mdContent);
-  console.log("✅ Audit selesai. Cek laporan-audit.md untuk melihat hasilnya.");
+  console.log("✅ Audit selesai dengan kriteria baru. Cek laporan-audit.md.");
 }
 
 audit();
