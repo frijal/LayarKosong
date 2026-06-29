@@ -260,8 +260,8 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
 
   // === 3. INJEKSI ELEMEN & ASSETS BARU (DENGAN STRICT GUARD) ===
   
-  if ($('head link[href*="marquee-url.css"]').length === 0) {
-      $("head").append(`<link rel="stylesheet" href="/ext/marquee-url.css">`);
+  if ($('head link[href*="navigator.css"]').length === 0) {
+      $("head").append(`<link rel="stylesheet" href="/ext/navigator.css">`);
   }
   
   // FIX #7 — Tambah rel="noopener noreferrer" ke semua target="_blank".
@@ -306,8 +306,8 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   
   // --- PEMISAHAN GUARD UNTUK SCRIPT EXTERNAL ---
   
-  if ($('script[src="/ext/marquee-url.js"]').length === 0) {
-      $("body").append(`<script defer src="/ext/marquee-url.js"></script>`);
+  if ($('script[src="/ext/navigator.js"]').length === 0) {
+      $("body").append(`<script defer src="/ext/navigator.js"></script>`);
   }
   
   if ($('script[src="/ext/iposbrowser.js"]').length === 0) {

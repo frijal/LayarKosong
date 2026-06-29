@@ -305,13 +305,13 @@ renderFolders();
 // ============================================================================
 
 const INJECTED_SELECTORS = [
-    'link[href*="marquee-url.css"]',
+    'link[href*="navigator.css"]',
     '#iposbrowser',
     '#progress',
     '#layar-kosong-header',
     '.search-floating-container',
     '#internal-nav',
-    'script[src*="/ext/marquee-url.js"]',
+    'script[src*="/ext/navigator.js"]',
     'script[src*="/ext/iposbrowser.js"]',
     'script[src*="/ext/lightbox.js"]',
     'script[src*="/ext/response.js"]',
