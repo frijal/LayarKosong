@@ -860,7 +860,7 @@
         function copyResult() {
             if (!currentResultValue) return;
             var textToCopy = currentResultValue.replace(/[^0-9,%.↑↓-]/g, "");
-            navigator.clipboard.writeText(textToCopy).then(function() {
+            pemandu.clipboard.writeText(textToCopy).then(function() {
                 var btn = document.getElementById('copyBtn');
                 btn.innerText = '✅ Tersalin!';
                 setTimeout(function() {

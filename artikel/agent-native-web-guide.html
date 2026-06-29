@@ -124,7 +124,7 @@
             background: linear-gradient(145deg, #18181b, #27251f);
         }
     </style>
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body class="bg-zinc-950 text-zinc-200">
     <!-- NAV -->
     <nav class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/95 backdrop-blur-lg">
@@ -653,7 +653,7 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
             const codeElement = document.getElementById(codeId);
             if (!codeElement) return;
             const textToCopy = codeElement.innerText.trim();
-            navigator.clipboard.writeText(textToCopy).then(() => {
+            pemandu.clipboard.writeText(textToCopy).then(() => {
                 const originalHTML = button.innerHTML;
                 button.innerHTML = `<i class="fa-solid fa-check fa-sm"></i> <span>${currentLang === 'id' ? 'Tersalin!' : 'Copied!'}</span>`;
                 button.disabled = true;
@@ -730,4 +730,4 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
         // Boot
         window.onload = init;
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

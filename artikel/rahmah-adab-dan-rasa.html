@@ -225,7 +225,7 @@
   </style>
 <meta name="ai:summary" content="Tulisan reflektif tentang rumah tangga: adab sebagai akar, ekonomi sebagai pemicu. Kekayaan membuat menatap, adab membuat menetap. Tentang suami sederhana, syukur, sabar, dan rahmah dalam pernikahan.">
 <meta name="ai:prompt_hint" content="Tulisan reflektif tentang rumah tangga: adab sebagai akar, ekonomi sebagai pemicu. Kekayaan membuat menatap, adab membuat menetap. Tentang suami sederhana, syukur, sabar, dan rahmah dalam pernikahan.">
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
   <div class="wrap">
     <main class="content"><div id="iposbrowser"></div><h1>Ketika Ekonomi Cuma Pemicu — Rahmah, Adab, Dan Rasa</h1>
@@ -315,7 +315,7 @@
       });
       // Copy title
       document.getElementById('copyTitle').addEventListener('click', () => {
-        navigator.clipboard.writeText(title).then(() => {
+        pemandu.clipboard.writeText(title).then(() => {
           const btn = document.getElementById('copyTitle');
           btn.textContent = 'Judul disalin';
           setTimeout(() => btn.textContent = 'Salin judul', 1600);
@@ -323,4 +323,4 @@
       });
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

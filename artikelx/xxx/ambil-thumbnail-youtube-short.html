@@ -210,7 +210,7 @@
         bCopy.title = "Salin Link Gambar";
         bCopy.addEventListener('click', async () => {
             try {
-                await navigator.clipboard.writeText(imgUrl);
+                await pemandu.clipboard.writeText(imgUrl);
                 alert('URL Gambar berhasil disalin!');
             } catch (err) {
                 alert('Gagal menyalin link.');

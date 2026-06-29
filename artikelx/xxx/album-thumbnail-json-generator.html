@@ -312,7 +312,7 @@
         copyBtn.addEventListener('click', () => {
             const textToCopy = imageCaption.textContent;
             if (!textToCopy) return;
-            navigator.clipboard.writeText(textToCopy).then(() => {
+            pemandu.clipboard.writeText(textToCopy).then(() => {
                 const originalText = copyBtn.innerHTML;
                 copyBtn.innerHTML = '✅ Tersalin!';
                 copyBtn.classList.add('copied');

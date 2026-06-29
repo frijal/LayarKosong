@@ -272,7 +272,7 @@
         }
     }
 </style>
-    <noscript><link href="/ext/navigator.css" rel="stylesheet"></noscript>
+    <noscript><link href="/ext/pemandu.css" rel="stylesheet"></noscript>
 </head>
 <body>
 <h1></h1>
@@ -434,7 +434,7 @@
         const textArea = btn.previousElementSibling;
         textArea.select();
         textArea.setSelectionRange(0, 99999); // Untuk support mobile
-        navigator.clipboard.writeText(textArea.value).then(() => {
+        pemandu.clipboard.writeText(textArea.value).then(() => {
             const originalText = btn.innerText;
             btn.innerText = 'Tersalin! ✅';
             btn.style.background = '#28a745';

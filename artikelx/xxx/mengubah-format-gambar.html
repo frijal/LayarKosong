@@ -252,7 +252,7 @@
         function copyCode() {
             // Mengambil teks dari dalam tag <code> di dalam tag <pre>
             const code = document.querySelector("pre code").innerText;
-            navigator.clipboard.writeText(code.trim()); // trim() untuk menghilangkan spasi berlebih
+            pemandu.clipboard.writeText(code.trim()); // trim() untuk menghilangkan spasi berlebih
             alert("Perintah disalin!");
         }
     </script>

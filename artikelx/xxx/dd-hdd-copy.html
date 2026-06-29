@@ -581,7 +581,7 @@
                 const card = button.closest(".terminal-card");
                 const code = card ? card.querySelector("code") : null;
                 if (!code) return;
-                navigator.clipboard.writeText(code.textContent.trim()).then(() => {
+                pemandu.clipboard.writeText(code.textContent.trim()).then(() => {
                     const original = button.textContent;
                     button.textContent = "Copied!";
                     setTimeout(() => {

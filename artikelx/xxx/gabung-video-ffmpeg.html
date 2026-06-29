@@ -326,7 +326,7 @@ echo "📽️ Video tanpa-audio hasil: $OUTPUT"</code></pre>
     buttons.forEach((btn, index) => {
       btn.addEventListener('click', () => {
         const code = btn.nextElementSibling.innerText;
-        navigator.clipboard.writeText(code).then(() => {
+        pemandu.clipboard.writeText(code).then(() => {
           toast.classList.add('show');
           setTimeout(() => toast.classList.remove('show'), 2000);
         });

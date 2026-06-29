@@ -204,7 +204,7 @@ footer{ margin-top:28px; padding:16px 0 44px; border-top:1px dashed var(--border
 <meta name="date" content="2025-09-28">
 <meta name="ai:summary" content="Versi timeline lengkap perkembangan Maulid Nabi: awal mula pada Dinasti Fathimiyah, penerimaan sebagian ulama, penolakan gerakan tajdid, hingga ragam praktik modern. Disajikan ringkas, berimbang, dan mudah dipahami.">
 <meta name="ai:prompt_hint" content="Versi timeline lengkap perkembangan Maulid Nabi: awal mula pada Dinasti Fathimiyah, penerimaan sebagian ulama, penolakan gerakan tajdid, hingga ragam praktik modern. Disajikan ringkas, berimbang, dan mudah dipahami.">
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
   <header class="hero">
 <div id="iposbrowser"></div><h1 class="title">Timeline Sejarah Maulid Nabi</h1>
@@ -310,8 +310,8 @@ document.addEventListener('click', (e)=>{
   if (e.target.matches('.copy-btn')) {
 const pre = e.target.closest('.codewrap').querySelector('pre');
 const text = pre ? pre.innerText : '';
-if (navigator.clipboard && text) {
-  navigator.clipboard.writeText(text).then(()=>{
+if (pemandu.clipboard && text) {
+  pemandu.clipboard.writeText(text).then(()=>{
 const old = e.target.textContent;
 e.target.textContent = 'Copied!';
 setTimeout(()=> e.target.textContent = old, 1200);
@@ -340,4 +340,4 @@ a.addEventListener('click', e=>{
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
 })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

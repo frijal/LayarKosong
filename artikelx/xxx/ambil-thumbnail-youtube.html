@@ -273,7 +273,7 @@
     }
     async function copyToClipboard(text) {
       try {
-        await navigator.clipboard.writeText(text);
+        await pemandu.clipboard.writeText(text);
         setStatus('URL thumbnail disalin ke clipboard.', 'ok');
       } catch {
         setStatus('Gagal menyalin URL. Salin manual dari tombol Unduh.', 'err');

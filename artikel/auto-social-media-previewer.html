@@ -583,7 +583,7 @@
         }
         .meta-inline span { margin: 0 0.5rem; }
     </style>
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <main role="main">
         <header>
@@ -1023,7 +1023,7 @@ async function fetchWithFallback(targetUrl) {
                     <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://mastodon.social/share?text=${encodedText}%0A${encodedLink}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
                     <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodedLink}&title=${encodedText}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Tumblr"><i class="fa-brands fa-tumblr"></i></a>
-                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${url.replace(/'/g, "\\'")}').then(()=>{this.textContent='✅ Tersalin!';this.classList.add('copied');setTimeout(()=>{this.textContent='📋 Salin';this.classList.remove('copied');},2000);}).catch(()=>{this.textContent='❌ Gagal';setTimeout(()=>{this.textContent='📋 Salin';},1500);});" title="Salin URL">📋 Salin</button>
+                    <button class="copy-btn" onclick="pemandu.clipboard.writeText('${url.replace(/'/g, "\\'")}').then(()=>{this.textContent='✅ Tersalin!';this.classList.add('copied');setTimeout(()=>{this.textContent='📋 Salin';this.classList.remove('copied');},2000);}).catch(()=>{this.textContent='❌ Gagal';setTimeout(()=>{this.textContent='📋 Salin';},1500);});" title="Salin URL">📋 Salin</button>
                 `;
             }
             function populateDebugPanel(targetUrl, metadata) {
@@ -1080,4 +1080,4 @@ async function fetchWithFallback(targetUrl) {
             });
         })();
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

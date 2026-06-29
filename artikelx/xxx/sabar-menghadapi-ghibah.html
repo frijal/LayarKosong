@@ -281,7 +281,7 @@
                 if (button && pre) {
                     button.addEventListener('click', () => {
                         const textToCopy = pre.textContent.trim();
-                        navigator.clipboard.writeText(textToCopy).then(() => {
+                        pemandu.clipboard.writeText(textToCopy).then(() => {
                             const originalText = button.textContent;
                             button.textContent = 'Disalin!';
                             setTimeout(() => {

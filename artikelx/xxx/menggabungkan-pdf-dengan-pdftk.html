@@ -380,7 +380,7 @@
     document.querySelectorAll(".copy-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const code = btn.previousElementSibling.innerText;
-        navigator.clipboard.writeText(code);
+        pemandu.clipboard.writeText(code);
         btn.textContent = "Copied!";
         setTimeout(()=>btn.textContent="Copy", 1500);
       });

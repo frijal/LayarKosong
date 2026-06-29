@@ -312,7 +312,7 @@ footer a {
 </style>
 <meta name="ai:summary" content="Tutorial Git santai tentang cara kerja branch pasif (anak branch) yang tidak minta merge, dan main branch yang aktif memanggil perubahan. Pahami alur kerja Git mendasar.">
 <meta name="ai:prompt_hint" content="Tutorial Git santai tentang cara kerja branch pasif (anak branch) yang tidak minta merge, dan main branch yang aktif memanggil perubahan. Pahami alur kerja Git mendasar.">
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <div class="container">
         <header>
@@ -429,7 +429,7 @@ git pull origin main</code></pre>
         button.addEventListener('click', (e) => {
             const codeBlock = e.currentTarget.previousElementSibling;
             const code = codeBlock.querySelector('code').innerText;
-            navigator.clipboard.writeText(code).then(() => {
+            pemandu.clipboard.writeText(code).then(() => {
                 const originalHTML = e.currentTarget.innerHTML;
                 e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
                 e.currentTarget.disabled = true;
@@ -444,4 +444,4 @@ git pull origin main</code></pre>
     });
 });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

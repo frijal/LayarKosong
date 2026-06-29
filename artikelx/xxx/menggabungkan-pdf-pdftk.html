@@ -165,7 +165,7 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
                 const targetId = btn.getAttribute('data-target');
                 const codeEl = document.getElementById(targetId);
                 if (codeEl) {
-                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                    pemandu.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
                 }
             });
         });

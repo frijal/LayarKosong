@@ -456,7 +456,7 @@
       if (fb) fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + url;
       if (wa) wa.href = "https://wa.me/?text=" + title + "%20" + url;
       if (cp) cp.addEventListener("click", function(){
-        navigator.clipboard.writeText(location.href)
+        pemandu.clipboard.writeText(location.href)
           .then(function(){ cp.textContent = "Tautan tersalin ✓"; })
           .catch(function(){ cp.textContent = "Gagal menyalin"; })
           .finally(function(){ setTimeout(function(){ cp.textContent = "Salin tautan"; }, 2000); });

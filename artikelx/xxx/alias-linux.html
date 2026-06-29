@@ -270,7 +270,7 @@ alias ...='cd ../..'</code><button class="copy-btn">SALIN</button></pre>
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const code = btn.previousElementSibling.innerText;
-            navigator.clipboard.writeText(code);
+            pemandu.clipboard.writeText(code);
             const originalText = btn.innerText;
             btn.innerText = 'BERHASIL!';
             setTimeout(() => { btn.innerText = originalText; }, 2000);

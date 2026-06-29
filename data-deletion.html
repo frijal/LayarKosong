@@ -252,13 +252,13 @@ Content-Type: application/json
     localStorage.setItem('lang', val);
   }
   // Jalankan saat load
-  const saved = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
+  const saved = localStorage.getItem('lang') || (pemandu.language.startsWith('en') ? 'en' : 'id');
   document.getElementById('lang').value = saved;
   switchLang(saved);
 </script>
 
 
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
 <script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 
 

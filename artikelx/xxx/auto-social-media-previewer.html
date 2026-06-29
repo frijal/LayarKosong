@@ -1024,7 +1024,7 @@ async function fetchWithFallback(targetUrl) {
                     <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://mastodon.social/share?text=${encodedText}%0A${encodedLink}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
                     <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodedLink}&title=${encodedText}" onclick="window.open(this.href,'target','${popOpts}');return false;" title="Tumblr"><i class="fa-brands fa-tumblr"></i></a>
-                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${url.replace(/'/g, "\\'")}').then(()=>{this.textContent='✅ Tersalin!';this.classList.add('copied');setTimeout(()=>{this.textContent='📋 Salin';this.classList.remove('copied');},2000);}).catch(()=>{this.textContent='❌ Gagal';setTimeout(()=>{this.textContent='📋 Salin';},1500);});" title="Salin URL">📋 Salin</button>
+                    <button class="copy-btn" onclick="pemandu.clipboard.writeText('${url.replace(/'/g, "\\'")}').then(()=>{this.textContent='✅ Tersalin!';this.classList.add('copied');setTimeout(()=>{this.textContent='📋 Salin';this.classList.remove('copied');},2000);}).catch(()=>{this.textContent='❌ Gagal';setTimeout(()=>{this.textContent='📋 Salin';},1500);});" title="Salin URL">📋 Salin</button>
                 `;
             }
             function populateDebugPanel(targetUrl, metadata) {

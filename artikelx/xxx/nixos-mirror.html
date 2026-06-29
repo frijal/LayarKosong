@@ -164,7 +164,7 @@ echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CO
                 const targetId = btn.getAttribute('data-target');
                 const codeEl = document.getElementById(targetId);
                 if (codeEl) {
-                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                    pemandu.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
                 }
             });
         });

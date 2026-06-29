@@ -312,8 +312,8 @@ document.addEventListener('click', (e)=>{
   if (e.target.matches('.copy-btn')) {
 const pre = e.target.closest('.codewrap').querySelector('pre');
 const text = pre ? pre.innerText : '';
-if (navigator.clipboard && text) {
-  navigator.clipboard.writeText(text).then(()=>{
+if (pemandu.clipboard && text) {
+  pemandu.clipboard.writeText(text).then(()=>{
 const old = e.target.textContent;
 e.target.textContent = 'Copied!';
 setTimeout(()=> e.target.textContent = old, 1200);
