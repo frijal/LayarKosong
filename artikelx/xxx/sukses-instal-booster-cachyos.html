@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi - Layar Kosong</title>
+    <meta name="description" content="Instalasi dmemcg-booster dan kcgroups di CachyOS berhasil! Pahami arti log terminalmu dan langkah selanjutnya agar sistem Linux bebas stuttering.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/sukses-instal-booster-cachyos">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="CachyOS, optimasi linux, dmemcg-booster, kcgroups, systemd, tutorial linux">
+    <meta name="promphint" content="Apa yang harus dilakukan setelah menginstal paket dmemcg-booster di CachyOS? Lakukan restart (reboot) agar aturan kernel cgroups yang baru dimuat secara sempurna dari awal.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/sukses-instal-booster-cachyos">
+    <meta property="og:title" content="Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi">
+    <meta property="og:description" content="Baru saja menginstal paket booster performa di CachyOS? Temukan rahasia di balik symlink otomatis systemd yang membuat manajemen RAM makin efisien.">
+    <meta property="og:updated_time" content="2026-05-31T05:16:08.486Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/7a91fada53977f74.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/7a91fada53977f74.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/7a91fada53977f74.webp">
+    <meta property="og:image:alt" content="Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="563">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/sukses-instal-booster-cachyos">
+    <meta name="twitter:title" content="Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi">
+    <meta name="twitter:description" content="Tips pasca-instalasi plasma-foreground-booster di CachyOS. Lakukan langkah sederhana ini untuk memaksimalkan pembagian memori desktop KDE-mu!">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/7a91fada53977f74.webp">
+    <meta name="twitter:image:alt" content="Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="CachyOS">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Terminal">
+    <meta property="article:tag" content="Performa">
+    <meta property="article:published_time" content="2026-05-31T05:12:42.522Z">
+    <meta property="article:modified_time" content="2026-05-31T05:12:42.522Z">
+    <!-- SEO & Metadata -->
+    <!-- Custom Meta Promphint -->
+    <!-- CSS Kritis -->
+    <style>
+        /* Variabel CSS Tema Terang & Gelap (WCAG AA Minimal) */
+        :root {
+            --bg-body: #f8f9fa;
+            --text-main: #212529;
+            --text-muted: #495057;
+            --accent: #0d6efd;
+            --accent-hover: #0a58ca;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --code-bg: #e9ecef;
+            --code-text: #d63384;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #121212;
+                --text-main: #e0e0e0;
+                --text-muted: #a0a0a0;
+                --accent: #3d8bfd;
+                --accent-hover: #6ea8fe;
+                --card-bg: #1e1e1e;
+                --border-color: #333333;
+                --code-bg: #2b2b2b;
+                --code-text: #f06292;
+            }
+        }
+        /* Reset & Aksesibilitas Dasar */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Layout & Responsivitas */
+        .container {
+            max-width: 62.5rem; /* 1000px asumsi 1rem = 16px */
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 0.0625rem solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        /* Tipografi Skala Rem */
+        h1 {
+            font-size: 2.25rem;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-left: 0.25rem solid var(--accent);
+            padding-left: 0.75rem;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.25rem;
+            text-align: justify;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+        /* Gambar Resolusi Penuh & Bebas Layout Shift */
+        .img-fluid {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            background-color: var(--card-bg); /* Placeholder */
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+        }
+        /* Blok Kode Terminal (Auto-wrap Terpasang) */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--text-main);
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 0.0625rem solid var(--border-color);
+            /* Optimasi Auto-Wrap */
+            white-space: pre-wrap;       /* Mempertahankan spasi tapi otomatis turun baris */
+            word-wrap: break-word;       /* Mencegah teks panjang keluar dari kontainer (legacy) */
+            overflow-wrap: break-word;   /* Standar modern untuk memotong kata yang terlalu panjang */
+        }
+        code {
+            font-family: inherit;
+        }
+        /* Komponen Profil Penulis (E-E-A-T) */
+        .author-meta {
+            background-color: var(--card-bg);
+            border: 0.0625rem solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        .author-meta h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+        .author-meta p {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            text-align: left;
+        }
+        .publish-date {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .social-links a {
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container" role="main">
+        <header>
+            <h1>Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi</h1>
+            <span class="publish-date">📅 31 Mei 2026</span>
+        </header>
+        <article>
+            <p>Sah! Instalasinya sukses besar dan berjalan sangat mulus. Melihat deretan proses di terminal yang bersih tanpa <em>error</em> ini menandakan bahwa sistem operasi komputermu kini siap diajak berlari maraton tanpa takut kehabisan tenaga.</p>
+            <!-- LCP Image: Lebar penuh, fetchpriority tinggi, async -->
+            <img src="https://dalam.web.id/img/pbs.twimg.com/7a91fada53977f74.webp" alt="Ilustrasi terminal Linux yang sukses menginstal paket booster" class="img-fluid" fetchpriority="high" decoding="async">
+            <p>Bagi kamu yang mungkin bertanya-tanya apa yang sebenarnya baru saja dieksekusi oleh sistem saat mengunduh paket optimasi memori tersebut, mari kita lihat perlahan. Ini adalah hasil eksekusi dari terminal:</p>
+<pre><code>:: Proceed with installation? [Y/n]
+:: Retrieving packages...
+ plasma-foreground-booster-...    21,5 KiB  47,0 KiB/s 00:00 [--------------------------------] 100%
+ kcgroups-0.0.dmemcg.experi...   100,2 KiB   195 KiB/s 00:01 [--------------------------------] 100%
+ dmemcg-booster-0.1.2-1-x86_64   204,6 KiB   275 KiB/s 00:01 [--------------------------------] 100%
+ Total (3/3)                     326,2 KiB   320 KiB/s 00:01 [--------------------------------] 100%
+(3/3) checking keys in keyring                               [--------------------------------] 100%
+(3/3) checking package integrity                             [--------------------------------] 100%
+(3/3) loading package files                                  [--------------------------------] 100%
+(3/3) checking for file conflicts                            [--------------------------------] 100%
+(3/3) checking available disk space                          [--------------------------------] 100%
+:: Processing package changes...
+(1/3) installing dmemcg-booster                              [--------------------------------] 100%
+Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service' → '/usr/lib/systemd/system/dmemcg-booster-system.service'.
+Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → '/usr/lib/systemd/user/dmemcg-booster-user.service'.
+(2/3) installing kcgroups                                    [--------------------------------] 100%
+(3/3) installing plasma-foreground-booster                   [--------------------------------] 100%
+:: Running post-transaction hooks...
+(1/4) Reloading system manager configuration...
+(2/4) Reloading user manager configuration...
+(3/4) Arming ConditionNeedsUpdate...
+(4/4) Updating the desktop file MIME type cache...
+Press enter to exit</code></pre>
+            <h2>Rahasia di Balik Log Terminal</h2>
+            <p>Kalau kita perhatikan <em>log</em> terminal yang kamu <em>paste</em> di atas, ada satu bagian yang sangat menarik dan menguntungkan buat kamu sebagai pengguna:</p>
+<pre><code>Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service' → ...
+Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → ...</code></pre>
+            <p><strong>Apa artinya itu?</strong></p>
+            <p>Artinya, CachyOS memiliki mekanisme cerdas yang sudah otomatis mendaftarkan dan menghidupkan <em>service</em> <code>dmemcg-booster</code> ini di dua level sekaligus: level sistem (<em>root</em>) dan level pengguna (<em>user session</em>). Kamu <strong>tidak perlu repot-repot</strong> mengetik perintah <code>sudo systemctl enable ...</code> secara manual ke dalam terminal. Tinggal duduk manis, sistem distribusi modern ini yang mengatur semuanya untukmu secara mulus dari belakang layar.</p>
+            <h2>Apa yang Harus Dilakukan Sekarang?</h2>
+            <p>Karena ketiga paket krusial ini (<code>kcgroups</code>, <code>dmemcg-booster</code>, dan <code>plasma-foreground-booster</code>) berinteraksi langsung dengan cara kernel Linux dan antarmuka desktop (KDE Plasma) membagikan jatah memori, langkah paling sakti selanjutnya adalah:</p>
+            <p><strong>Lakukan Restart (Reboot) pada laptopmu.</strong></p>
+            <p>Meski <em>post-transaction hooks</em> dari manajer paket di atas sudah secara otomatis me-<code>reload</code> konfigurasi <em>systemd*, melakukan proses *restart</em> pada laptop akan memastikan aturan kernel (<em>cgroups</em>) yang baru benar-benar dimuat dari kondisi yang sangat bersih (<em>fresh boot</em>). Selain itu, <em>booster</em> untuk layar depan (KDE Plasma) bisa langsung mulai mengawasi dan memprioritaskan jendela aplikasimu sejak pertama kali kamu melakukan <em>login</em>.</p>
+            <p>Silakan tekan tombol <strong>Enter</strong> untuk keluar dari layar terminal tersebut, lalu <em>restart</em> laptopnya. Setelah sistem menyala kembali, cobalah siksa perangkatmu dengan rutinitas berat yang biasa kamu lakukan—buka banyak tab peramban, jalankan berbagai <em>script*, dan rasakan sendiri apakah kendala *stuttering</em> serta <em>lag</em> yang selama ini mengganggu sudah jauh berkurang! 🚀</p>
+        </article>
+        <!-- Profil Penulis -->
+        <aside class="author-meta">
+            <h3>Editor</h3>
+            <p><strong>Fakhrul Rijal</strong> adalah seorang pengembang sistem independen dan penggiat komunitas <em>open-source</em> yang berbasis di Balikpapan. Rutin membagikan catatan teknis, eksperimen kernel Linux, dan panduan optimalisasi <em>server</em> maupun <em>desktop</em> melalui blog pribadinya.</p>
+            <div class="social-links">
+                <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">🌐 Layar Kosong</a>
+                <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+                <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">🐦 Twitter</a>
+                <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+                <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+            </div>
+        </aside>
+        <!-- Elemen Wajib Akhir Konten -->
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+        <footer>
+            <p>🄯 2026 Layar Kosong. Dirancang murni tanpa framework demi performa optimal.</p>
+              </footer>
+    </div>
+
+
+
+</body></html>

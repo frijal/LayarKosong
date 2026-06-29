@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Skrip Otomatis: Setup &amp; Cleanup chroot - Layar Kosong</title>
+    <meta name="description" content="membuat skrip otomatis untuk setup dan cleanup chroot di Linux. Praktis, aman, dan hemat waktu.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/Skrip-Otomatis-ChRoot">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Skrip Otomatis: Setup &amp; Cleanup chroot, Layar Kosong">
+    <meta name="promphint" content="Skrip Otomatis: Setup &amp; Cleanup chroot | Untuk memudahkan, berikut contoh skrip shell sederhana agar tidak perlu mengetik semua perintah mount/umount secara manual.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/Skrip-Otomatis-ChRoot">
+    <meta property="og:title" content="Skrip Otomatis: Setup &amp; Cleanup chroot">
+    <meta property="og:description" content="membuat skrip otomatis untuk setup dan cleanup chroot di Linux. Praktis, aman, dan hemat waktu.">
+    <meta property="og:updated_time" content="2016-03-12T02:20:46.519Z">
+    <meta property="og:image" content="https://dalam.web.id/img/Skrip-Otomatis-ChRoot.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/Skrip-Otomatis-ChRoot.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/Skrip-Otomatis-ChRoot.webp">
+    <meta property="og:image:alt" content="Skrip Otomatis: Setup &amp; Cleanup chroot">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="562">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/Skrip-Otomatis-ChRoot">
+    <meta name="twitter:title" content="Skrip Otomatis: Setup &amp; Cleanup chroot">
+    <meta name="twitter:description" content="membuat skrip otomatis untuk setup dan cleanup chroot di Linux. Praktis, aman, dan hemat waktu.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/Skrip-Otomatis-ChRoot.webp">
+    <meta name="twitter:image:alt" content="Skrip Otomatis: Setup &amp; Cleanup chroot">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2016-03-12T02:15:06.000Z">
+    <meta property="article:modified_time" content="2016-03-12T02:15:06.000Z">
+<!-- Open Graph -->
+  <!-- Favicon -->
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+  <!-- Lightbox CSS -->
+  <link rel="stylesheet" href="/ext/lightbox.css"><style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --bg-soft: #eaf2ff;
+      --text: #172033;
+      --muted: #5f6f86;
+      --heading: #0f172a;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --card: #ffffff;
+      --line: #dbe4f0;
+      --code-bg: #0f172a;
+      --code-text: #e5e7eb;
+      --inline-code-bg: rgba(37, 99, 235, 0.12);
+      --inline-code-text: #1e40af;
+      --button-text: #ffffff;
+      --shadow: 0 1rem 2.75rem rgba(15, 23, 42, 0.12);
+      --shadow-soft: 0 0.625rem 1.875rem rgba(15, 23, 42, 0.08);
+      --radius-sm: 0.5rem;
+      --radius-md: 0.875rem;
+      --radius-lg: 1.25rem;
+      --max-width: 56.25rem;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+      --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #08111f;
+        --bg-soft: #101c2f;
+        --text: #e5e7eb;
+        --muted: #a7b3c5;
+        --heading: #f8fafc;
+        --accent: #60a5fa;
+        --accent-hover: #93c5fd;
+        --accent-soft: rgba(96, 165, 250, 0.14);
+        --card: #111827;
+        --line: #2f4058;
+        --code-bg: #020617;
+        --code-text: #f8fafc;
+        --inline-code-bg: rgba(96, 165, 250, 0.14);
+        --inline-code-text: #bfdbfe;
+        --button-text: #020617;
+        --shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.42);
+        --shadow-soft: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
+      }
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(56rem 30rem at 10% -8%, var(--accent-soft), transparent 62%),
+        linear-gradient(180deg, var(--bg-soft), var(--bg) 45%, var(--bg));
+      color: var(--text);
+      font-family: var(--font-main);
+      line-height: 1.75;
+      text-rendering: optimizeLegibility;
+    }
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08rem;
+      text-underline-offset: 0.18rem;
+    }
+    a:hover {
+      color: var(--accent-hover);
+    }
+    a:focus-visible,
+    button:focus-visible {
+      outline: 0.1875rem solid var(--accent);
+      outline-offset: 0.1875rem;
+      border-radius: var(--radius-sm);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 1.25rem;
+      border-bottom: 0.0625rem solid var(--line);
+      background-color: color-mix(in srgb, var(--card) 88%, transparent);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(0.75rem);
+    }
+    #iposbrowser {
+      margin-bottom: 0.5rem;
+    }
+    header h1 {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      color: var(--accent);
+      font-size: clamp(1.35rem, 4vw, 1.8rem);
+      font-weight: 850;
+      line-height: 1.2;
+      letter-spacing: -0.02rem;
+      text-wrap: balance;
+    }
+    main {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 2rem 1rem 3.5rem;
+    }
+    section {
+      padding: clamp(1rem, 3vw, 1.5rem);
+      border: 0.0625rem solid var(--line);
+      border-radius: var(--radius-lg);
+      background-color: var(--card);
+      box-shadow: var(--shadow);
+    }
+    h2,
+    h3 {
+      color: var(--heading);
+      line-height: 1.3;
+      text-wrap: balance;
+    }
+    h2 {
+      margin: 2.5rem 0 1rem;
+      font-size: clamp(1.45rem, 4vw, 1.85rem);
+      font-weight: 850;
+    }
+    h3 {
+      margin: 2rem 0 1rem;
+      color: var(--accent);
+      font-size: clamp(1.2rem, 3vw, 1.4rem);
+      font-weight: 800;
+    }
+    h3:first-of-type {
+      margin-top: 0;
+    }
+    p {
+      margin: 0 0 1.15rem;
+      font-size: clamp(1.03rem, 2.2vw, 1.12rem);
+    }
+    ul,
+    ol {
+      margin: 0 0 1.25rem;
+      padding-left: 1.35rem;
+    }
+    li {
+      margin-bottom: 0.7rem;
+      padding-left: 0.15rem;
+    }
+    strong {
+      color: var(--heading);
+      font-weight: 800;
+    }
+    code {
+      border-radius: 0.35rem;
+      background-color: var(--inline-code-bg);
+      color: var(--inline-code-text);
+      font-family: var(--font-code);
+      font-size: 0.92em;
+    }
+    p code,
+    li code,
+    h3 code {
+      padding: 0.12rem 0.35rem;
+    }
+    pre {
+      position: relative;
+      margin: 1.35rem 0 1.75rem;
+      padding: 1.25rem;
+      overflow-x: auto;
+      border: 0.0625rem solid var(--line);
+      border-radius: var(--radius-md);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent),
+        var(--code-bg);
+      color: var(--code-text);
+      box-shadow: var(--shadow-soft);
+    }
+    pre::before {
+      display: block;
+      margin-bottom: 0.9rem;
+      padding-right: 4.5rem;
+      color: #94a3b8;
+      content: "● ● ●  terminal";
+      font-family: var(--font-code);
+      font-size: 0.78rem;
+      letter-spacing: 0.12rem;
+    }
+    pre code {
+      display: block;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font-family: var(--font-code);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      white-space: pre;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      padding: 0.35rem 0.65rem;
+      border: 0;
+      border-radius: 999rem;
+      background-color: var(--accent);
+      color: var(--button-text);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1.3;
+      box-shadow: var(--shadow-soft);
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .copy-btn:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-0.08rem);
+    }
+    footer {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
+      border-top: 0.0625rem solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    footer p {
+      margin: 0 0 1rem;
+      font-size: inherit;
+    }
+    footer a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2rem;
+      min-height: 2rem;
+      margin: 0.15rem;
+      border-radius: 999rem;
+      background-color: var(--card);
+      box-shadow: var(--shadow-soft);
+      text-decoration: none;
+    }
+    footer a:hover {
+      background-color: var(--accent-soft);
+      text-decoration: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          radial-gradient(56rem 30rem at 10% -8%, rgba(96, 165, 250, 0.12), transparent 62%),
+          linear-gradient(180deg, var(--bg-soft), var(--bg) 45%, #060c16);
+      }
+    }
+    @media (max-width: 48rem) {
+      header {
+        padding: 0.875rem;
+      }
+      main {
+        padding: 1.25rem 0.875rem 3rem;
+      }
+      section {
+        padding: 1rem;
+      }
+      pre {
+        padding: 1rem;
+      }
+      .copy-btn {
+        top: 0.75rem;
+        right: 0.75rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+<meta name="ai:summary" content="membuat skrip otomatis untuk setup dan cleanup chroot di Linux. Praktis, aman, dan hemat waktu.">
+<meta name="ai:prompt_hint" content="membuat skrip otomatis untuk setup dan cleanup chroot di Linux. Praktis, aman, dan hemat waktu.">
+
+</head>
+<body>
+<header>
+  <h1>🛠️ Skrip Otomatis: Setup &amp; Cleanup chroot</h1>
+</header>
+<main>
+  <section>
+    <p>Untuk memudahkan, berikut contoh skrip shell sederhana agar tidak perlu mengetik semua perintah mount/umount secara manual.</p>
+    <h3>1. Setup (buat file <code>enter-chroot.sh</code>)</h3>
+    <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
+# enter-chroot.sh
+# Gunakan: sudo ./enter-chroot.sh /srv/chroot/debian
+CHROOT_DIR="$1"
+if [ -z "$CHROOT_DIR" ]; then
+  echo "Usage: $0 /path/to/chroot"
+  exit 1
+fi
+# Mount filesystem penting
+mount --bind /dev "$CHROOT_DIR/dev"
+mount --bind /dev/pts "$CHROOT_DIR/dev/pts"
+mount -t proc /proc "$CHROOT_DIR/proc"
+mount -t sysfs /sys "$CHROOT_DIR/sys"
+# Copy resolv.conf untuk DNS
+cp /etc/resolv.conf "$CHROOT_DIR/etc/"
+# Masuk ke chroot
+chroot "$CHROOT_DIR" /bin/bash</code></pre>
+    <h3>2. Cleanup (buat file <code>exit-chroot.sh</code>)</h3>
+    <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
+# exit-chroot.sh
+# Gunakan: sudo ./exit-chroot.sh /srv/chroot/debian
+CHROOT_DIR="$1"
+if [ -z "$CHROOT_DIR" ]; then
+  echo "Usage: $0 /path/to/chroot"
+  exit 1
+fi
+umount "$CHROOT_DIR/dev/pts"
+umount "$CHROOT_DIR/dev"
+umount "$CHROOT_DIR/proc"
+umount "$CHROOT_DIR/sys"</code></pre>
+    <p>Pastikan memberi izin eksekusi:</p>
+    <pre><button class="copy-btn">Copy</button><code class="language-bash">chmod +x enter-chroot.sh exit-chroot.sh</code></pre>
+    <p>Sekarang kamu cukup menjalankan:</p>
+    <pre><button class="copy-btn">Copy</button><code class="language-bash">sudo ./enter-chroot.sh /srv/chroot/debian
+# ...kerja di dalam chroot...
+exit
+sudo ./exit-chroot.sh /srv/chroot/debian</code></pre>
+    <p>Dengan cara ini, mount/umount jadi lebih aman dan konsisten. Skrip ini cocok untuk berbagai distro Debian/Ubuntu yang menggunakan chroot untuk testing, recovery, atau pembangunan paket. Periksa kembali target perintah dan siapkan cadangan data sebelum menjalankannya.</p>
+      </section>
+  <div id="related-articles-grid"></div><div id="response"></div>
+    </main>
+<footer>
+  <p>🄯 2025 Jaga Data Pribadi Tetap Aman — Artikel ini dibuat dengan ❤️ oleh ChatGPT.</p>
+       
+</footer>
+
+
+
+
+</body></html>
