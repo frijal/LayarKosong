@@ -7,7 +7,7 @@ import { Glob } from 'bun';
 const ROOT_DIR = process.cwd();
 
 // ============================================================================
-// 1. TEMPLATE UI DASHBOARD (TANGGAL REPAIR + GENERATOR PRO TRICK)
+// 1. TEMPLATE UI DASHBOARD (TANGGAL REPAIR + RUQYAH + GENERATOR PRO)
 // ============================================================================
 const htmlTemplate = `
 <!DOCTYPE html>
@@ -15,11 +15,12 @@ const htmlTemplate = `
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tanggal Repair - Layar Kosong</title>
+<title>Dashboard Layar Kosong</title>
 <style>
 * { box-sizing: border-box; }
-body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 24px 32px; background: #121214; color: #e1e1e6; }
-.container { width: 100%; max-width: 800px; margin: 0 auto; background: #202024; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 24px; background: #121214; color: #e1e1e6; }
+/* Lebar dashboard diperbesar hampir 100% dari layar untuk kenyamanan baca log */
+.container { width: 96%; max-width: 1600px; margin: 0 auto; background: #202024; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
 h2 { color: #facc15; border-bottom: 2px solid #29292e; padding-bottom: 10px; margin-top: 0; display: flex; align-items: center; gap: 10px; }
 
 /* Panel Input Folder */
@@ -33,12 +34,16 @@ input[type="text"]:focus { border-color: #facc15; }
 .btn { padding: 12px 20px; font-size: 14px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 .btn-add { background: #4b5563; color: white; }
 .btn-add:hover { background: #6b7280; }
+
 .btn-sync { background: #3b82f6; color: white; width: 100%; font-size: 16px; margin-top: 10px; }
 .btn-sync:hover { background: #2563eb; transform: translateY(-2px); }
 .btn-sync:disabled { background: #4b5563; cursor: not-allowed; transform: none; }
 
-/* Tombol Generator Silet */
-.btn-gen { background: #10b981; color: white; width: 100%; font-size: 16px; margin-top: 12px; border: 1px solid #059669; }
+.btn-ruqyah { background: #9333ea; color: white; width: 100%; font-size: 16px; margin-top: 10px; }
+.btn-ruqyah:hover { background: #7e22ce; transform: translateY(-2px); }
+.btn-ruqyah:disabled { background: #4b5563; cursor: not-allowed; transform: none; }
+
+.btn-gen { background: #10b981; color: white; width: 100%; font-size: 16px; margin-top: 10px; border: 1px solid #059669; }
 .btn-gen:hover { background: #059669; transform: translateY(-2px); }
 .btn-gen:disabled { background: #374151; color: #9ca3af; cursor: not-allowed; transform: none; border-color: #374151; }
 
@@ -59,7 +64,7 @@ input[type="text"]:focus { border-color: #facc15; }
 .color-error { color: #ef4444; }
 
 /* Terminal Log */
-.terminal { background: #0d0d10; color: #34d399; padding: 15px; border-radius: 6px; border: 1px solid #29292e; font-family: 'Fira Code', monospace; font-size: 13px; max-height: 250px; overflow-y: auto; margin-top: 15px; display: none; white-space: pre-wrap; }
+.terminal { background: #0d0d10; color: #34d399; padding: 15px; border-radius: 6px; border: 1px solid #29292e; font-family: 'Fira Code', monospace; font-size: 14px; max-height: 400px; overflow-y: auto; margin-top: 15px; display: none; white-space: pre-wrap; line-height: 1.5; }
 
 .action-area { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; background: #18181c; padding: 15px 20px; border-radius: 6px; border: 1px solid #29292e; }
 #status { font-style: italic; color: #ffb300; font-weight: bold; font-size: 14px; flex: 1; }
@@ -69,11 +74,11 @@ input[type="text"]:focus { border-color: #facc15; }
 </head>
 <body>
 <div class="container">
-<h2>🛠️ Dashboard Reparasi Tanggal HTML & Mesin Waktu</h2>
+<h2>🛠️ Pusat Komando Layar Kosong</h2>
 <p style="color: #a4a4a8; font-size: 13px; margin-top: -5px;">Lokasi Akar: <code style="color: #facc15;">\${ROOT_DIR}</code></p>
 
 <div class="folder-panel">
-<label>Tentukan folder mana saja yang ingin di-scan (contoh: artikel, opini-sosial):</label>
+<label>Tentukan target folder (bisa dipisah koma, contoh: artikel, artikelx):</label>
 
 <div class="input-group">
 <input type="text" id="folder-input" placeholder="Ketik nama folder di sini..." autocomplete="off">
@@ -83,8 +88,9 @@ input[type="text"]:focus { border-color: #facc15; }
 <div class="folder-list" id="folder-list">
 </div>
 
-<button id="btn-sync" class="btn btn-sync" onclick="mulaiSinkronisasi()">🔄 1. Bersihkan File & Cocokkan Tanggal</button>
-<button id="btn-gen" class="btn btn-gen" onclick="jalankanGeneratorPro()" disabled>🚀 2. Lanjutkan ke Generator Pro</button>
+<button id="btn-sync" class="btn btn-sync" onclick="mulaiSinkronisasi()">🔄 1. Cocokkan Tanggal (artikel.json)</button>
+<button id="btn-ruqyah" class="btn btn-ruqyah" onclick="jalankanRuqyahFront()">🧹 2. Ruqyah HTML (Hapus Injeksi DOM)</button>
+<button id="btn-gen" class="btn btn-gen" onclick="jalankanGeneratorPro()" disabled>🚀 3. Lanjutkan ke Generator Pro</button>
 </div>
 
 <div class="stats-grid">
@@ -116,6 +122,7 @@ let folderArray = ['artikel'];
 const folderInput = document.getElementById('folder-input');
 const folderListEl = document.getElementById('folder-list');
 const btnGen = document.getElementById('btn-gen');
+const btnRuqyah = document.getElementById('btn-ruqyah');
 const terminalBox = document.getElementById('terminal-box');
 
 folderInput.addEventListener('keypress', function (e) {
@@ -134,14 +141,24 @@ function renderFolders() {
     \`).join('');
 }
 
+// Mendukung pemisahan tag berbasis koma (,)
 function tambahFolder() {
-    let val = folderInput.value.trim().replace(/^\\/+/, '').replace(/\\/+$/, '');
-    if (val && !folderArray.includes(val)) {
-        folderArray.push(val);
+    let rawVal = folderInput.value;
+    let parts = rawVal.split(',').map(s => s.trim().replace(/^\\/+/, '').replace(/\\/+$/, '')).filter(s => s);
+    
+    let added = false;
+    parts.forEach(val => {
+        if (!folderArray.includes(val)) {
+            folderArray.push(val);
+            added = true;
+        }
+    });
+
+    if (added) {
         folderInput.value = '';
         renderFolders();
-    } else if (folderArray.includes(val)) {
-        alert("Foldernya udah ada di daftar, Jal!");
+    } else if (parts.length > 0) {
+        alert("Foldernya udah ada di daftar semua, Jal!");
     }
 }
 
@@ -150,22 +167,27 @@ function hapusFolder(index) {
     renderFolders();
 }
 
-async function mulaiSinkronisasi() {
+function periksaFolderKosong() {
     if (folderArray.length === 0) {
-        alert("Masukkan minimal satu folder dulu sebelum mulai scan!");
-        return;
+        alert("Masukkan minimal satu folder dulu sebelum mulai proses!");
+        return true;
     }
+    return false;
+}
+
+// ================= ACTION: SINKRONISASI =================
+async function mulaiSinkronisasi() {
+    if (periksaFolderKosong()) return;
 
     const btn = document.getElementById('btn-sync');
     const statusDiv = document.getElementById('status');
     const logLink = document.getElementById('log-link');
 
-    btn.disabled = true;
+    btn.disabled = true; btnRuqyah.disabled = true; btnGen.disabled = true;
     btn.innerHTML = "⏳ Bersih-bersih & Membedah HTML...";
     statusDiv.innerText = "Status: Mengosongkan sitemap & mencari file...";
     logLink.style.display = 'none';
     terminalBox.style.display = 'none';
-    btnGen.disabled = true;
 
     document.getElementById('stat-sukses').innerText = "0";
     document.getElementById('stat-skip').innerText = "0";
@@ -190,21 +212,55 @@ async function mulaiSinkronisasi() {
 
             statusDiv.innerText = data.message;
             statusDiv.style.color = "#00e676";
-
-            // AKTIFKAN TOMBOL GENERATOR PRO SETELAH SELESAI SINKRONISASI
-            btnGen.disabled = false;
-
+            
             if (data.adaLog) logLink.style.display = 'block';
         }
     } catch (err) {
         statusDiv.innerText = "Koneksi terputus: " + err;
         statusDiv.style.color = "#ef4444";
     } finally {
-        btn.disabled = false;
-        btn.innerHTML = "🔄 1. Bersihkan File & Cocokkan Tanggal";
+        btn.disabled = false; btnRuqyah.disabled = false; btnGen.disabled = false;
+        btn.innerHTML = "🔄 1. Cocokkan Tanggal (artikel.json)";
     }
 }
 
+// ================= ACTION: RUQYAH HTML =================
+async function jalankanRuqyahFront() {
+    if (periksaFolderKosong()) return;
+
+    const statusDiv = document.getElementById('status');
+    btnRuqyah.disabled = true;
+    btnRuqyah.innerHTML = "⏳ Sedang Meruqyah File HTML...";
+    statusDiv.innerText = "Status: Mencabut elemen injeksi dari DOM...";
+    statusDiv.style.color = "#a855f7";
+    
+    terminalBox.style.display = 'block';
+    terminalBox.style.color = "#e1e1e6";
+    terminalBox.innerText = "Memulai proses pembersihan masal...";
+
+    try {
+        const response = await fetch('/run-ruqyah', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ targetFolders: folderArray })
+        });
+        const data = await response.json();
+
+        terminalBox.innerText = "📢 [OUTPUT RUQYAH HTML]:\\n" + data.output;
+        statusDiv.innerText = "Status: Ruqyah Selesai!";
+        statusDiv.style.color = "#00e676";
+        btnGen.disabled = false; // Buka kunci generator setelah ruqyah
+        
+    } catch (err) {
+        statusDiv.innerText = "Gagal memanggil fungsi Ruqyah: " + err;
+        statusDiv.style.color = "#ef4444";
+    } finally {
+        btnRuqyah.disabled = false;
+        btnRuqyah.innerHTML = "🧹 2. Ruqyah HTML (Hapus Injeksi DOM)";
+    }
+}
+
+// ================= ACTION: GENERATOR PRO =================
 async function jalankanGeneratorPro() {
     const statusDiv = document.getElementById('status');
     btnGen.disabled = true;
@@ -234,7 +290,7 @@ async function jalankanGeneratorPro() {
         statusDiv.style.color = "#ef4444";
     } finally {
         btnGen.disabled = false;
-        btnGen.innerHTML = "🚀 2. Lanjutkan ke Generator Pro";
+        btnGen.innerHTML = "🚀 3. Lanjutkan ke Generator Pro";
     }
 }
 
@@ -245,7 +301,106 @@ renderFolders();
 `;
 
 // ============================================================================
-// 2. FUNGSI LOGIKA PIPELINE (CLEAN, SYNC, TIME MACHINE)
+// 2A. LOGIKA RUQYAH (PEMBASMI INJEKSI DOM)
+// ============================================================================
+
+const INJECTED_SELECTORS = [
+    'link[href*="marquee-url.css"]',
+    '#iposbrowser',
+    '#progress',
+    '#layar-kosong-header',
+    '.search-floating-container',
+    '#internal-nav',
+    'script[src*="/ext/marquee-url.js"]',
+    'script[src*="/ext/iposbrowser.js"]',
+    'script[src*="/ext/lightbox.js"]',
+    'script[src*="/ext/response.js"]',
+    'script[src*="/ext/balon-cf.js"]',
+    'script[src*="/ext/highlight.js"]'
+];
+
+const FOOTER_EMOJIS = ["☕", "🛡️", "⚠️", "📝", "📚", "🔰", "⚔️"];
+const INLINE_SCRIPT_SNIPPETS = ["modelContext' in navigator", "hljs.highlightAll()"];
+
+function ruqyahHtmlCore(rawHtml: string): { html: string; changes: number } {
+    const $ = cheerio.load(rawHtml);
+    let changes = 0;
+
+    for (const selector of INJECTED_SELECTORS) {
+        const $el = $(selector);
+        if ($el.length > 0) {
+            changes += $el.length;
+            $el.remove();
+        }
+    }
+
+    if ($("footer").length > 0) {
+        $("footer a").each((_, el) => {
+            const text = $(el).text().trim();
+            if (FOOTER_EMOJIS.includes(text)) {
+                $(el).remove();
+                changes++;
+            }
+        });
+    }
+
+    $("script:not([src])").each((_, el) => {
+        const scriptContent = $(el).html() || "";
+        for (const snippet of INLINE_SCRIPT_SNIPPETS) {
+            if (scriptContent.includes(snippet)) {
+                $(el).remove();
+                changes++;
+                break;
+            }
+        }
+    });
+
+    return {
+        html: changes > 0 ? $.html({ _useHtmlParser2: true } as cheerio.CheerioOptions) : rawHtml,
+        changes,
+    };
+}
+
+async function jalankanProsesRuqyah(targetFolders: string[]) {
+    let totalFileBerubah = 0;
+    let totalItemDicabut = 0;
+    let logOutput = "";
+
+    for (const folder of targetFolders) {
+        const fullFolderPath = path.join(ROOT_DIR, folder);
+        try {
+            const stat = await fs.stat(fullFolderPath);
+            if (!stat.isDirectory()) continue;
+
+            const glob = new Glob("*.html");
+            for await (const file of glob.scan({ cwd: fullFolderPath, absolute: true })) {
+                const htmlContent = await fs.readFile(file, 'utf-8');
+                const { html, changes } = ruqyahHtmlCore(htmlContent);
+                
+                if (changes > 0) {
+                    await fs.writeFile(file, html, 'utf-8');
+                    totalFileBerubah++;
+                    totalItemDicabut += changes;
+                    const baseName = path.basename(file);
+                    logOutput += `🧹 Bersih: ${folder}/${baseName} (${changes} item dicabut)\n`;
+                }
+            }
+        } catch (e) {
+            logOutput += `❌ Lewati folder ${folder} (tidak ditemukan atau error memindai)\n`;
+        }
+    }
+    
+    if (totalFileBerubah === 0) {
+        logOutput += `\n✨ Mantap! Semua file di folder terpilih sudah suci dari injeksi.\n`;
+    } else {
+        logOutput += `\n📊 RINGKASAN RUQYAH: ${totalFileBerubah} file berhasil dibersihkan, ${totalItemDicabut} elemen parasit dicabut.\n`;
+    }
+
+    return { success: true, output: logOutput };
+}
+
+// ============================================================================
+// 2B. LOGIKA SINKRONISASI TANGGAL (TETAP SAMA SEPERTI SEBELUMNYA)
 // ============================================================================
 type ArtikelData = [string, string, string, string, string];
 
@@ -259,30 +414,21 @@ async function jalankanSinkronisasi(targetFolders: string[]) {
     const sitemapPath = path.join(ROOT_DIR, 'sitemap.txt');
     const editedTodayPath = path.join(ROOT_DIR, 'mini', 'edited-today.txt');
 
-    let suksesPublish = 0;
-    let modifDiedit = 0;
-    let modifOriginal = 0;
-    let skip = 0;
-    let errorCount = 0;
+    let suksesPublish = 0, modifDiedit = 0, modifOriginal = 0, skip = 0, errorCount = 0;
     const daftarGagal: string[] = [];
     const now = new Date();
 
     try {
-        // --- TAHAP 0: RITUAL WAJIB BERSIH-BERSIH ---
         await fs.writeFile(sitemapPath, '', 'utf-8');
         await fs.mkdir(path.dirname(editedTodayPath), { recursive: true });
         await fs.writeFile(editedTodayPath, '', 'utf-8');
 
-        // 1. Ambil Data JSON Kebenaran Mutlak
         const rawData = await fs.readFile(jsonPath, 'utf-8');
         const parsedData = JSON.parse(rawData);
         const daftarArtikel: ArtikelData[] = Object.values(parsedData).flat() as ArtikelData[];
 
-        if (daftarArtikel.length === 0) {
-            return { error: "Data artikel.json kosong!" };
-        }
+        if (daftarArtikel.length === 0) return { error: "Data artikel.json kosong!" };
 
-        // 2. Petakan Seluruh File HTML Tujuan
         const fileMap = new Map<string, string>();
         for (const folder of targetFolders) {
             const fullFolderPath = path.join(ROOT_DIR, folder);
@@ -293,17 +439,13 @@ async function jalankanSinkronisasi(targetFolders: string[]) {
                 const glob = new Glob("*.html");
                 for await (const file of glob.scan({ cwd: fullFolderPath, absolute: true })) {
                     const baseName = path.basename(file);
-                    if (!baseName.startsWith('-')) {
-                        fileMap.set(baseName, file);
-                    }
+                    if (!baseName.startsWith('-')) fileMap.set(baseName, file);
                 }
             } catch (e) {}
         }
 
-        // 3. Eksekusi Bedah HTML Menggunakan Cheerio
         for (const artikel of daftarArtikel) {
             if (!Array.isArray(artikel) || artikel.length < 4) continue;
-
             const fileName = artikel[1];
             const tanggalKebenaranStr = artikel[3];
             const filePath = fileMap.get(fileName);
@@ -312,28 +454,22 @@ async function jalankanSinkronisasi(targetFolders: string[]) {
             try {
                 const htmlContent = await fs.readFile(filePath, 'utf-8');
                 const $ = cheerio.load(htmlContent, { xmlMode: false });
-
                 const $pubMeta = $('meta[property="article:published_time"]');
                 const $modMeta = $('meta[property="article:modified_time"]');
 
                 if ($pubMeta.length > 0) {
                     const tanggalLama = $pubMeta.attr('content');
-
                     if (tanggalLama !== tanggalKebenaranStr) {
                         $pubMeta.attr('content', tanggalKebenaranStr);
                         suksesPublish++;
-                    } else {
-                        skip++;
-                    }
+                    } else { skip++; }
 
                     const pubDate = new Date(tanggalKebenaranStr);
                     if (isNaN(pubDate.getTime())) {
                         daftarGagal.push(`⚠️ [INVALID DATE] Format ngaco di JSON untuk file: ${filePath}`);
-                        errorCount++;
-                        continue;
+                        errorCount++; continue;
                     }
 
-                    // Rumus Naturalisasi SEO (60% acak, 40% ori)
                     const isEdited = Math.random() > 0.4;
                     const newModDate = isEdited ? getRandomDate(pubDate, now) : pubDate;
                     const newModStr = newModDate.toISOString();
@@ -346,10 +482,8 @@ async function jalankanSinkronisasi(targetFolders: string[]) {
                         $pubMeta.after(`\n    <meta property="article:modified_time" content="${newModStr}">`);
                     }
 
-                    // Tulis ulang & Paksa OS merubah mtime file fisik
                     await fs.writeFile(filePath, $.html(), 'utf-8');
                     await fs.utimes(filePath, newModDate, newModDate);
-
                 } else {
                     daftarGagal.push(`⚠️ [NO META] Tag publish nihil di ${filePath}`);
                     errorCount++;
@@ -368,17 +502,8 @@ async function jalankanSinkronisasi(targetFolders: string[]) {
             adaLog = true;
         }
 
-        return {
-            sukses: suksesPublish,
-            skip,
-            errorCount,
-            adaLog,
-            message: `🧹 Bersih-bersih kelar! Modif Random: ${modifDiedit} | Modif Ori: ${modifOriginal}`
-        };
-
-    } catch (err: any) {
-        return { error: `Gagal memproses sinkronisasi: ${err.message}` };
-    }
+        return { sukses: suksesPublish, skip, errorCount, adaLog, message: `🧹 Bersih-bersih kelar! Modif Random: ${modifDiedit} | Modif Ori: ${modifOriginal}` };
+    } catch (err: any) { return { error: `Gagal memproses sinkronisasi: ${err.message}` }; }
 }
 
 // ============================================================================
@@ -389,63 +514,44 @@ Bun.serve({
     async fetch(request) {
         const url = new URL(request.url);
 
-        // UI Dashboard
         if (url.pathname === "/" && request.method === "GET") {
-            return new Response(htmlTemplate, {
-                headers: { "Content-Type": "text/html; charset=utf-8" },
-            });
+            return new Response(htmlTemplate, { headers: { "Content-Type": "text/html; charset=utf-8" } });
         }
 
-        // Endpoint Sinkronisasi Tanggal
         if (url.pathname === "/sync" && request.method === "POST") {
             try {
                 const body = await request.json();
-                const targetFolders = body.targetFolders || [];
-                const hasil = await jalankanSinkronisasi(targetFolders);
-                return Response.json(hasil);
-            } catch (e) {
-                return Response.json({ error: "Gagal memproses data sinkronisasi." });
-            }
+                return Response.json(await jalankanSinkronisasi(body.targetFolders || []));
+            } catch (e) { return Response.json({ error: "Gagal memproses data sinkronisasi." }); }
         }
 
-        // ENDPOINT EKSEKUSI GENERATOR-PRO (FITUR BARU)
+        // ENDPOINT BARU: RUQYAH HTML
+        if (url.pathname === "/run-ruqyah" && request.method === "POST") {
+            try {
+                const body = await request.json();
+                return Response.json(await jalankanProsesRuqyah(body.targetFolders || []));
+            } catch (e) { return Response.json({ success: false, output: "Error memproses Ruqyah." }); }
+        }
+
         if (url.pathname === "/run-generator" && request.method === "POST") {
             try {
                 const scriptPath = path.join(ROOT_DIR, "dapur", "generator-pro.ts");
-
-                console.log(`⚡ Menjalankan Mesin Generator Pro: bun ${scriptPath}`);
-
-                // Trigger file eksekusi eksternal pakai Bun Subprocess
-                const proc = Bun.spawn(["bun", scriptPath], {
-                    stdout: "pipe",
-                    stderr: "pipe"
-                });
-
-                // Tunggu sampai script selesai bekerja, lalu tangkap lognya
+                const proc = Bun.spawn(["bun", scriptPath], { stdout: "pipe", stderr: "pipe" });
                 const stdoutText = await new Response(proc.stdout).text();
                 const stderrText = await new Response(proc.stderr).text();
                 await proc.exited;
 
                 const statusSukses = proc.exitCode === 0;
-                return Response.json({
-                    success: statusSukses,
-                    output: statusSukses ? stdoutText : stderrText
-                });
-
-            } catch (err: any) {
-                return Response.json({ success: false, output: `Gagal memanggil subprocess: ${err.message}` });
-            }
+                return Response.json({ success: statusSukses, output: statusSukses ? stdoutText : stderrText });
+            } catch (err: any) { return Response.json({ success: false, output: `Gagal memanggil subprocess: ${err.message}` }); }
         }
 
-        // Buka Log Gagal
         if (url.pathname === "/log" && request.method === "GET") {
             try {
                 const logPath = path.join(ROOT_DIR, 'laporan-gagal.txt');
                 const logContent = await fs.readFile(logPath, 'utf-8');
                 return new Response(logContent, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
-            } catch (e) {
-                return new Response("Semua aman terkendali.", { status: 404 });
-            }
+            } catch (e) { return new Response("Semua aman terkendali.", { status: 404 }); }
         }
 
         return new Response("Not Found", { status: 404 });
