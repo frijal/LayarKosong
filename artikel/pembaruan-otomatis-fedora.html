@@ -237,7 +237,7 @@ systemctl status dnf-automatic.timer</code></pre>
       btn.addEventListener('click', (e)=>{
         e.stopPropagation();
         const target = document.getElementById(btn.getAttribute('data-target'));
-        pemandu.clipboard.writeText(target.innerText).then(()=>showToast('Kode disalin!'));
+        navigator.clipboard.writeText(target.innerText).then(()=>showToast('Kode disalin!'));
       });
     });
     </script>

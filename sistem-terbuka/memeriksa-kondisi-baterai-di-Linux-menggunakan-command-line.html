@@ -5,7 +5,7 @@ cat /sys/class/power_supply/BAT0/capacity
 # Menampilkan status (misal: Charging, Discharging)
 cat /sys/class/power_supply/BAT0/status</code><button onclick="copyCode('code3')" class="copy-btn">Copy</button></pre></section><section class="social-sharing"><div id="related-articles-grid"></div><div id="response"></div></section><h2>Diskusi &amp; Jaga Data Pribadi Tetap Aman.</h2></article></main><div class="lightbox" id="lightbox"><span class="lightbox-close">×</span><img alt="Gambar - Cara Memeriksa Kondisi Baterai di Linux via Terminal" class="lightbox-content" id="lightbox-img"></div><script>function copyCode(id) {
  const code = document.getElementById(id).innerText;
- pemandu.clipboard.writeText(code).then(() => {
+ navigator.clipboard.writeText(code).then(() => {
  alert("Perintah berhasil disalin!");
  });
  }

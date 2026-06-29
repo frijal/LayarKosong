@@ -184,7 +184,7 @@ sudo apt install compiz compiz-plugins-extra gnome-do xfishtank recordmydesktop<
                 const targetId = btn.getAttribute('data-target');
                 const codeEl = document.getElementById(targetId);
                 if (codeEl) {
-                    pemandu.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
                 }
             });
         });

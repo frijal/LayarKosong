@@ -434,7 +434,7 @@
         const textArea = btn.previousElementSibling;
         textArea.select();
         textArea.setSelectionRange(0, 99999); // Untuk support mobile
-        pemandu.clipboard.writeText(textArea.value).then(() => {
+        navigator.clipboard.writeText(textArea.value).then(() => {
             const originalText = btn.innerText;
             btn.innerText = 'Tersalin! ✅';
             btn.style.background = '#28a745';

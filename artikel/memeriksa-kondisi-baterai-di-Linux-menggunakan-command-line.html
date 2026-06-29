@@ -174,7 +174,7 @@ cat /sys/class/power_supply/BAT0/status</code><button class="copy-btn" onclick="
     <script>
         function copyCode(id) {
             const code = document.getElementById(id).innerText;
-            pemandu.clipboard.writeText(code).then(() => {
+            navigator.clipboard.writeText(code).then(() => {
                 alert("Perintah berhasil disalin!");
             });
         }

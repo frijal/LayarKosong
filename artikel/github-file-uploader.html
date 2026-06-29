@@ -368,7 +368,7 @@
     });
     function copyUrl() {
         const url = document.getElementById('fileUrl').innerText;
-        pemandu.clipboard.writeText(url);
+        navigator.clipboard.writeText(url);
         alert('URL disalin ke clipboard!');
     }
 </script>

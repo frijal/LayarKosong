@@ -262,7 +262,7 @@ generate();
  if (!preElement) return;
  // Dapatkan teks dari elemen <code> di dalam <pre>
  const code = preElement.querySelector('code').innerText;
- pemandu.clipboard.writeText(code).then(() => {
+ navigator.clipboard.writeText(code).then(() => {
  const originalHTML = e.currentTarget.innerHTML;
  e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
  e.currentTarget.disabled = true;

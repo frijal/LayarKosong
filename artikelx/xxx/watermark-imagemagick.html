@@ -181,7 +181,7 @@ exit 0</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                 const targetId = btn.getAttribute('data-target');
                 const codeEl = document.getElementById(targetId);
                 if (codeEl) {
-                    pemandu.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
                 }
             });
         });

@@ -436,7 +436,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   contentDisplay.addEventListener("click",t=>{
     if(t.target.classList.contains("copy-btn")){
       const codeEl=t.target.nextElementSibling.querySelector("code");
-      if(codeEl) pemandu.clipboard.writeText(codeEl.innerText.trim())
+      if(codeEl) navigator.clipboard.writeText(codeEl.innerText.trim())
       .then(()=>{const btn=t.target,orig=btn.innerText;btn.innerText="Disalin!";setTimeout(()=>btn.innerText=orig,2000);})
       .catch(err=>console.error("Gagal menyalin",err));
     }

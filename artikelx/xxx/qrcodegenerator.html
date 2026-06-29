@@ -633,7 +633,7 @@ async function copyToClipboard() {
   try {
     canvas.toBlob(async (blob) => {
       try {
-        await pemandu.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
         showToast('✅ QR Code disalin ke clipboard!');
       } catch {
         showToast('⚠️ Browser tidak support copy gambar. Coba Download PNG.');

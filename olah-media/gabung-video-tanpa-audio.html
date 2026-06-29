@@ -49,7 +49,7 @@ rm -f daftar.txt temp_*.mp4 2&gt;/dev/null || true
 echo "✨ Selesai! 📽️ Video tanpa-audio hasil: $OUTPUT"
  </code></pre><button onclick="copyCode('script2')" class="copy">📋 Salin Script</button></section><section><div id="related-articles-grid"></div><div id="response"></div></section></main><footer>🄯 2025 Fakhrul Rijal. Dibuat dengan ☕ dan semangat Linux terminal. <a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer><script>function copyCode(id) {
  const code = document.getElementById(id).innerText;
- pemandu.clipboard.writeText(code).then(() => {
+ navigator.clipboard.writeText(code).then(() => {
  const btn = event.target;
  const original = btn.textContent;
  btn.textContent = "✅ Disalin!";

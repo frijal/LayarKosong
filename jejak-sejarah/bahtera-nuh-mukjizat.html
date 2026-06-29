@@ -23,7 +23,7 @@
  if (net === 'wa') shareUrl = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
  if (net === 'tg') shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
  if (net === 'cp') {
- pemandu.clipboard?.writeText(url).then(() => {
+ navigator.clipboard?.writeText(url).then(() => {
  const originalText = btn.innerHTML;
  btn.innerHTML = '✔️ Tersalin';
  setTimeout(() => { btn.innerHTML = originalText; }, 1500);

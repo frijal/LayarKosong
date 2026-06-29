@@ -204,7 +204,7 @@ echo "Semua gambar sudah diresize dan disimpan di $DEST_DIR"
     <script>
       function copyCode() {
         const code = document.querySelector("code.language-bash").innerText;
-        pemandu.clipboard.writeText(code).then(() => {
+        navigator.clipboard.writeText(code).then(() => {
           alert("Kode berhasil dicopy!");
         });
       }

@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const codeBlock = document.querySelector('pre code');
   if (copyButton && codeBlock) {
     copyButton.addEventListener('click', () => {
-      pemandu.clipboard.writeText(codeBlock.innerText)
+      navigator.clipboard.writeText(codeBlock.innerText)
         .then(() => { copyButton.textContent = 'Disalin!'; setTimeout(()=>{copyButton.textContent='Salin';},2000); })
         .catch(err => console.error('Gagal menyalin', err));
     });

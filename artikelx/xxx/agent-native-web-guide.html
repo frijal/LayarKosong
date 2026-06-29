@@ -654,7 +654,7 @@ Content-Signal: ai-train=no, search=yes, ai-input=yes</code></pre>
             const codeElement = document.getElementById(codeId);
             if (!codeElement) return;
             const textToCopy = codeElement.innerText.trim();
-            pemandu.clipboard.writeText(textToCopy).then(() => {
+            navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalHTML = button.innerHTML;
                 button.innerHTML = `<i class="fa-solid fa-check fa-sm"></i> <span>${currentLang === 'id' ? 'Tersalin!' : 'Copied!'}</span>`;
                 button.disabled = true;

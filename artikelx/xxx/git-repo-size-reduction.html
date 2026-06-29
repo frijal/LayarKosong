@@ -353,7 +353,7 @@ git push origin --force --all</code></pre>
         button.addEventListener('click', (e) => {
             const codeBlock = e.currentTarget.previousElementSibling;
             const code = codeBlock.querySelector('code').innerText;
-            pemandu.clipboard.writeText(code).then(() => {
+            navigator.clipboard.writeText(code).then(() => {
                 const originalHTML = e.currentTarget.innerHTML;
                 e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
                 e.currentTarget.disabled = true;

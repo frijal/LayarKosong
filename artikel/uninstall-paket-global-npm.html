@@ -353,7 +353,7 @@ npm uninstall -g pm2</code></pre>
         const codeEl = card.querySelector('pre > code');
         if (!codeEl) return;
         try {
-          await pemandu.clipboard.writeText(codeEl.innerText);
+          await navigator.clipboard.writeText(codeEl.innerText);
           // Ganti ikon jadi centang
           btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5 1.4-1.4L9 13.4l8.1-8.1 1.4 1.4z"></path></svg>`;
           btn.title = "Tersalin!";

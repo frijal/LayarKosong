@@ -176,7 +176,7 @@ sudo ./install.sh</code><button class="copy-btn" data-target="code2">Salin</butt
                 const targetId = btn.getAttribute('data-target');
                 const codeEl = document.getElementById(targetId);
                 if (codeEl) {
-                    pemandu.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
                 }
             });
         });

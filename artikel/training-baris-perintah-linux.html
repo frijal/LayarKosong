@@ -529,7 +529,7 @@
                     <li><strong>EXAMPLES</strong> – contoh pemakaian</li>
                     <li><strong>SEE ALSO</strong> – referensi terkait</li>
                 </ol>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('man ls\nman -k copy')">Copy</button><code class="language-bash">man ls
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('man ls\nman -k copy')">Copy</button><code class="language-bash">man ls
 man -k copy   # cari topik (apropos)</code></pre>
                 <div class="tips-block">
                     <strong>💡 Tips:</strong> Tekan <kbd>q</kbd> untuk keluar. Gunakan <code>man -k subject</code> untuk mencari perintah. Jika manpage tidak ada, coba <code>--help</code>.
@@ -540,7 +540,7 @@ man -k copy   # cari topik (apropos)</code></pre>
                 <h2 id="h4">4 — <code>cd</code> (Change Directory)</h2>
                 <p class="meta-label">Fungsi: berpindah direktori kerja.</p>
                 <p>Sintaks: <code>cd [path]</code>. Path bisa absolut atau relatif. Shortcut: <code>cd</code> saja ke home, <code>cd ~</code>, <code>cd -</code> ke direktori sebelumnya, <code>cd ..</code> naik satu level.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('cd /home/user/Documents\ncd ..\ncd -')">Copy</button><code class="language-bash">cd /home/user/Documents
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('cd /home/user/Documents\ncd ..\ncd -')">Copy</button><code class="language-bash">cd /home/user/Documents
 cd ..       # naik satu tingkat
 cd -        # kembali ke direktori sebelumnya</code></pre>
                 <div class="tips-block">
@@ -553,7 +553,7 @@ cd -        # kembali ke direktori sebelumnya</code></pre>
                 <h2 id="h5">5 — <code>ls</code> (Listing)</h2>
                 <p class="meta-label">Fungsi: menampilkan isi direktori.</p>
                 <p>Opsi umum: <code>-l</code> long listing, <code>-a</code> tampilkan file tersembunyi, <code>-h</code> ukuran mudah dibaca, <code>-R</code> rekursif, <code>-t</code> urut waktu.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('ls -lah\nls -l --color=auto\nls -Rt')">Copy</button><code class="language-bash">ls -lah
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('ls -lah\nls -l --color=auto\nls -Rt')">Copy</button><code class="language-bash">ls -lah
 ls -l --color=auto
 ls -Rt</code></pre>
                 <p><strong>Membaca output <code>ls -l</code>:</strong> <code>-rw-r--r-- 1 user group 2048 ...</code> : tipe file, permission, link count, ukuran.</p>
@@ -564,7 +564,7 @@ ls -Rt</code></pre>
                 <h2 id="h6">6 — <code>mkdir</code> (Make Directory)</h2>
                 <p class="meta-label">Fungsi: membuat direktori baru.</p>
                 <p><code>mkdir -p</code> membuat parent direktori sekaligus, <code>-m</code> set permission.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('mkdir proyek_baru\nmkdir -p ~/projects/2025/aplikasi')">Copy</button><code class="language-bash">mkdir proyek_baru
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('mkdir proyek_baru\nmkdir -p ~/projects/2025/aplikasi')">Copy</button><code class="language-bash">mkdir proyek_baru
 mkdir -p ~/projects/2025/aplikasi</code></pre>
                 <div class="note-block">
                     <strong>💡 Catatan:</strong> Permission dipengaruhi <code>umask</code>. Gunakan <code>-p</code> untuk subfolder nested tanpa error.
@@ -575,7 +575,7 @@ mkdir -p ~/projects/2025/aplikasi</code></pre>
                 <h2 id="h7">7 — <code>ln</code> (Link)</h2>
                 <p class="meta-label">Fungsi: membuat hard link atau symbolic link.</p>
                 <p><strong>Hard link</strong> menunjuk inode sama; <strong>symlink</strong> adalah file pointer.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('# hard link\nln asli.txt salinan_hard.txt\n# symbolic link\nln -s /path/to/asli.txt symlink.txt')">Copy</button><code class="language-bash"># hard link
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('# hard link\nln asli.txt salinan_hard.txt\n# symbolic link\nln -s /path/to/asli.txt symlink.txt')">Copy</button><code class="language-bash"># hard link
 ln asli.txt salinan_hard.txt
 # symbolic link
 ln -s /path/to/asli.txt symlink.txt</code></pre>
@@ -585,7 +585,7 @@ ln -s /path/to/asli.txt symlink.txt</code></pre>
             <section id="page-8" class="card" aria-labelledby="h8">
                 <h2 id="h8">8 — <code>pwd</code> (Print Working Directory)</h2>
                 <p class="meta-label">Fungsi: menampilkan direktori kerja saat ini.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('pwd\npwd -P   # physical (follow symlinks)')">Copy</button><code class="language-bash">pwd
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('pwd\npwd -P   # physical (follow symlinks)')">Copy</button><code class="language-bash">pwd
 pwd -P   # physical (follow symlinks)</code></pre>
             </section>
             <!-- ================= SECTION 9: cp ================= -->
@@ -593,7 +593,7 @@ pwd -P   # physical (follow symlinks)</code></pre>
                 <h2 id="h9">9 — <code>cp</code> (Copy)</h2>
                 <p class="meta-label">Fungsi: menyalin file dan direktori.</p>
                 <p>Opsi: <code>-r</code> rekursif, <code>-a</code> archive, <code>-i</code> interaktif, <code>-u</code> update saja.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('cp file1.txt file2.txt\ncp -r folder1 backup/\ncp -a /etc/skel /backup/skel')">Copy</button><code class="language-bash">cp file1.txt file2.txt
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('cp file1.txt file2.txt\ncp -r folder1 backup/\ncp -a /etc/skel /backup/skel')">Copy</button><code class="language-bash">cp file1.txt file2.txt
 cp -r folder1 backup/folder1
 cp -a /etc/skel /backup/skel</code></pre>
                 <div class="tips-block">
@@ -605,7 +605,7 @@ cp -a /etc/skel /backup/skel</code></pre>
                 <h2 id="h10">10 — <code>rm</code> (Remove)</h2>
                 <p class="meta-label">Fungsi: menghapus file atau direktori.</p>
                 <p>Hati-hati dengan <code>rm -rf</code>. Selalu cek path!</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('rm file.txt\nrm -r folder_contoh\nrm -i penting.txt')">Copy</button><code class="language-bash">rm file.txt
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('rm file.txt\nrm -r folder_contoh\nrm -i penting.txt')">Copy</button><code class="language-bash">rm file.txt
 rm -r folder_contoh
 rm -i penting.txt</code></pre>
                 <div class="danger-light" style="background:var(--danger-light); padding:10px; border-radius:var(--radius-sm); margin-top:8px;">
@@ -616,7 +616,7 @@ rm -i penting.txt</code></pre>
             <section id="page-11" class="card" aria-labelledby="h11">
                 <h2 id="h11">11 — <code>more</code></h2>
                 <p class="meta-label">Fungsi: menampilkan file panjang per halaman.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('more /var/log/syslog')">Copy</button><code class="language-bash">more /var/log/syslog</code></pre>
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('more /var/log/syslog')">Copy</button><code class="language-bash">more /var/log/syslog</code></pre>
                 <p class="note-block"><strong>💡 Catatan:</strong> <code>less</code> lebih fleksibel, tapi <code>more</code> masih ada di sistem minimal.</p>
             </section>
             <!-- ================= SECTION 12: less ================= -->
@@ -626,7 +626,7 @@ rm -i penting.txt</code></pre>
                 <ul>
                     <li>Scroll atas/bawah, pencarian dengan <kbd>/</kbd>, mode follow <code>less +F file</code>.</li>
                 </ul>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('less /var/log/syslog\ncommand | less')">Copy</button><code class="language-bash">less /var/log/syslog
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('less /var/log/syslog\ncommand | less')">Copy</button><code class="language-bash">less /var/log/syslog
 command | less</code></pre>
                 <p><code>less -N</code> untuk nomor baris. Langsung bisa membuka output perintah: <code>ps aux | less</code>.</p>
             </section>
@@ -634,7 +634,7 @@ command | less</code></pre>
             <section id="page-13" class="card" aria-labelledby="h13">
                 <h2 id="h13">13 — <code>touch</code></h2>
                 <p class="meta-label">Fungsi: membuat file kosong atau memperbarui timestamp.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('touch file_baru.txt\ntouch -c file.txt\ntouch -t 202509150830 file.txt')">Copy</button><code class="language-bash">touch file_baru.txt       # buat file kosong
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('touch file_baru.txt\ntouch -c file.txt\ntouch -t 202509150830 file.txt')">Copy</button><code class="language-bash">touch file_baru.txt       # buat file kosong
 touch -c file.txt           # tidak membuat jika tidak ada
 touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
             </section>
@@ -642,14 +642,14 @@ touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
             <section id="page-14" class="card" aria-labelledby="h14">
                 <h2 id="h14">14 — <code>mv</code> (Rename)</h2>
                 <p class="meta-label">Fungsi: mengganti nama file/direktori.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('mv lama.txt baru.txt')">Copy</button><code class="language-bash">mv lama.txt baru.txt    # rename file</code></pre>
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('mv lama.txt baru.txt')">Copy</button><code class="language-bash">mv lama.txt baru.txt    # rename file</code></pre>
                 <p>Jika di filesystem sama, rename instan. Gunakan <code>-i</code> untuk konfirmasi.</p>
             </section>
             <!-- ================= SECTION 15: mv (move) ================= -->
             <section id="page-15" class="card" aria-labelledby="h15">
                 <h2 id="h15">15 — <code>mv</code> (Move)</h2>
                 <p class="meta-label">Fungsi: memindahkan file/direktori ke lokasi lain.</p>
-                <pre><button class="copy-btn" onclick="pemandu.clipboard.writeText('mv file.txt /home/user/Documents/')">Copy</button><code class="language-bash">mv file.txt /home/user/Documents/    # move file</code></pre>
+                <pre><button class="copy-btn" onclick="navigator.clipboard.writeText('mv file.txt /home/user/Documents/')">Copy</button><code class="language-bash">mv file.txt /home/user/Documents/    # move file</code></pre>
                 <p>Antar filesystem bisa copy+delete. Gunakan <code>-v</code> untuk verbose.</p>
                 <img class="illustration" src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxowrADPqsSz0383Brvlf-wp1LXowc5_3C6JNdN_lEdfF4sNTdNpwHxxaG2sBtTUbx-EuwDT6GNC8hJv9dXQJmb7ZNHrRCGLkbUzyTXbBEs656RNuN2kyxAR1EO0amWrez2ILZk3PhaVNoB0uVCfHJL9-LALrDyR5Ysbj-Dji-oB6TvnrUUObMLyIL4lI/s1600/moving-files-in-linux.webp" alt="Ilustrasi perintah mv memindahkan file" width="796" height="442" loading="lazy" decoding="async">
             </section>

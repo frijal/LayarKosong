@@ -281,7 +281,7 @@ ${color}Total: ${totaldown wlan0} ${alignr}IP: ${addr wlan0}
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const code = btn.nextElementSibling.innerText;
-            pemandu.clipboard.writeText(code).then(() => {
+            navigator.clipboard.writeText(code).then(() => {
                 btn.innerText = 'BERHASIL!';
                 btn.style.background = '#22d3ee';
                 setTimeout(() => {

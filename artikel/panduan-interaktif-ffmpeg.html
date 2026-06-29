@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(codeElement){
                 // Clean multiple newlines for better clipboard copy
                 const code = codeElement.innerText.trim().replace(/\n{2,}/g, '\n');
-                pemandu.clipboard.writeText(code)
+                navigator.clipboard.writeText(code)
                 .then(()=>{
                     let originalText = e.target.innerText;
                     e.target.innerText = "Disalin!";

@@ -6,7 +6,7 @@ gh repo star username/repo</code></pre></div><h2>🎁 Tips Bonus GitHub CLI</h2>
  document.querySelectorAll('.copy-btn').forEach(btn => {
  btn.addEventListener('click', () => {
  const code = btn.nextElementSibling.querySelector('code').innerText;
- pemandu.clipboard.writeText(code).then(() => {
+ navigator.clipboard.writeText(code).then(() => {
  btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
  setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> Salin', 2000);
  });
