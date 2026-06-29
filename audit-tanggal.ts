@@ -1,24 +1,18 @@
 import { file, write } from "bun";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import * as cheerio from "cheerio";
 
-// Konfigurasi
-const C = {
-  root: process.cwd(),
-  art: path.join(process.cwd(), "artikel")
+// Mapping nama kategori di JSON ke nama folder fisik
+const CAT_MAP: Record<string, string> = {
+  "Gaya Hidup": "gaya-hidup",
+  "Jejak Sejarah": "jejak-sejarah",
+  "Lainnya": "lainnya",
+  "Olah Media": "olah-media",
+  "Opini Sosial": "opini-sosial",
+  "Sistem Terbuka": "sistem-terbuka",
+  "Warta Tekno": "warta-tekno"
 };
-
-interface ArticleData {
-  title: string;
-  file: string;
-  img: string;
-  lastmod: string; // Master Date dari artikel.json
-  desc: string;
-  category: string;
-  loc: string;
-  finalModTime: string;
-}
 
 async function audit() {
   const data: Record<string, any[][]> = await file("artikel.json").json();
@@ -26,30 +20,40 @@ async function audit() {
   mdContent += `| Slug | Publish (Source) | Modified (HTML) | Status |\n`;
   mdContent += `| :--- | :--- | :--- | :--- |\n`;
 
-  for (const [category, articles] of Object.entries(data)) {
+  for (const [catName, articles] of Object.entries(data)) {
+    const folderName = CAT_MAP[catName];
+    
+    if (!folderName) {
+      console.warn(`⚠️ Kategori tidak terdaftar di map: ${catName}`);
+      continue;
+    }
+
     for (const art of articles) {
-      const [title, filename] = art;
-      const htmlPath = path.join(category, String(filename).replace(/^\//, ""));
+      const filename = String(art[1]);
+      const htmlPath = path.join(folderName, filename);
       
-      if (!existsSync(htmlPath)) continue;
+      if (!existsSync(htmlPath)) {
+        console.warn(`⚠️ File tidak ditemukan: ${htmlPath}`);
+        continue;
+      }
 
       const html = await file(htmlPath).text();
       const $ = cheerio.load(html);
 
-      // Ambil dari HTML
       const pubHTML = $('meta[property="article:published_time"]').attr("content") || "N/A";
       const modHTML = $('meta[property="article:modified_time"]').attr("content") || "N/A";
       const slug = filename.replace(".html", "");
 
-      // Logika Warna
-      // Merah jika: Tanggal publish == modif, ATAU modif lebih tua dari publish
+      // Status Merah jika: 
+      // 1. Modifikasi lebih tua dari Publish (Anomali logika)
+      // 2. Modifikasi sama persis dengan Publish (Biasanya berarti belum pernah diedit atau stempel rusak)
+      const pubTime = new Date(pubHTML).getTime();
+      const modTime = new Date(modHTML).getTime();
+      
       let status = "✅ OK";
       let style = "";
 
-      const pubTime = new Date(pubHTML).getTime();
-      const modTime = new Date(modHTML).getTime();
-
-      if (pubHTML === modHTML || (modTime < pubTime)) {
+      if (pubHTML === modHTML || (Number.isFinite(pubTime) && Number.isFinite(modTime) && modTime < pubTime)) {
         status = "❌ ANOMALI";
         style = 'style="color: red; font-weight: bold;"';
       }
@@ -59,7 +63,7 @@ async function audit() {
   }
 
   await write("laporan-audit.md", mdContent);
-  console.log("✅ Audit selesai. Cek laporan-audit.md");
+  console.log("✅ Audit selesai. Cek laporan-audit.md untuk melihat hasilnya.");
 }
 
 audit();
