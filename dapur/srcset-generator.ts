@@ -378,12 +378,19 @@ async function main() {
 
   const results = { processed: 0, skipped: 0, noImage: 0, missing: 0 };
 
-  for (const htmlPath of allFiles) {
+for (const htmlPath of allFiles) {
     const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
+
+    // 👇 TAMBAHKAN LOG CCTV SITEMAP DI SINI 👇
     if (sitemapUrls.has(url)) {
+      console.log(`⏭️ SKIP (Sitemap): File sudah terdaftar -> ${url}`);
       results.skipped++;
       continue;
+    } else {
+      console.log(`✅ LOLOS SITEMAP: Memproses -> ${url}`);
     }
+    // 👆 SAMPAI SINI 👆
+
     const result = await processHtmlFile(htmlPath);
     if (result === "processed") results.processed++;
     if (result === "skipped")   results.skipped++;
