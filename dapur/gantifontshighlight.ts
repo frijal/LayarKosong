@@ -16,6 +16,7 @@ const noBackup = args.includes("--no-backup");
 const dryRun   = args.includes("--dry-run");
 
 // -------------------- DATA STRUCTURES --------------------
+// Tambahan properti isHljs buat nandain mana aja resource yang masuk geng highlight.js
 type MapItem = { rx: RegExp; repl: string; isHljs?: boolean };
 
 const MAP: MapItem[] = [
@@ -44,21 +45,39 @@ const MAP: MapItem[] = [
   // --- LIBRARY LAIN (isHljs tidak diset / false) ---
   { rx: /https:\/\/.*\/leaflet\.css/i,                              repl: "/ext/leaflet.css" },
 
-  { rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/font-awesome\/[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i, repl: "/ext/fontawesome.css" },
-  { rx: /https:\/\/use\.fontawesome\.com\/releases\/v[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i, repl: "/ext/fontawesome.css" },
-  { rx: /https:\/\/cdn\.jsdelivr\.net\/npm\/@fortawesome\/fontawesome-free@[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i, repl: "/ext/fontawesome.css" },
-  { rx: /https:\/\/unpkg\.com\/@fortawesome\/fontawesome-free@[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i, repl: "/ext/fontawesome.css" },
+  {
+    rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/font-awesome\/[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+    repl: "/ext/fontawesome.css"
+  },
+  {
+    rx: /https:\/\/use\.fontawesome\.com\/releases\/v[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+    repl: "/ext/fontawesome.css"
+  },
+  {
+    rx: /https:\/\/cdn\.jsdelivr\.net\/npm\/@fortawesome\/fontawesome-free@[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+    repl: "/ext/fontawesome.css"
+  },
+  {
+    rx: /https:\/\/unpkg\.com\/@fortawesome\/fontawesome-free@[\d.\-a-z]+\/css\/all(?:\.min)?\.css/i,
+    repl: "/ext/fontawesome.css"
+  },
 
   { rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/html2canvas\/[\d.]+\/html2canvas\.min\.js/i,             repl: "/ext/html2canvas.min.js" },
   { rx: /https:\/\/html2canvas\.hertzen\.com\/dist\/html2canvas\.min\.js/i,                                     repl: "/ext/html2canvas.min.js" },
   { rx: /https:\/\/cdn\.jsdelivr\.net\/npm\/html2canvas@[\d.]+\/dist\/html2canvas\.min\.js/i,                   repl: "/ext/html2canvas.min.js" },
+
   { rx: /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/html2pdf\.js\/[\d.]+\/html2pdf\.bundle\.min\.js/i,       repl: "/ext/html2pdf.bundle.min.js" },
+
   { rx: /https?:\/\/.*\/qrcode\.min\.js/i,                          repl: "/ext/qrcode.min.js" },
 ];
 
+// Atribut yang mubazir setelah resource dipindah ke lokal
 const STALE_ATTRS = ["integrity", "crossorigin", "referrertarget", "referrerpolicy"];
+
+// Regex untuk mendeteksi tag <script src="..."> highlight.js
 const HLJS_SRC_REGEX = /highlight(?:\.min)?\.js/i;
-const HLJS_TRIGGER_REGEX = /highlightAll/i; // Diperlonggar biar gampang kedetect
+// Regex PENDEK & SAKTI: Cukup deteksi pemanggilan highlightAll, apapun bentuk/syntaxnya
+const HLJS_TRIGGER_REGEX = /highlightAll/i;
 
 // -------------------- UTILS --------------------
 function expandGlobs(patterns: string[]): string[] {
@@ -76,6 +95,7 @@ function expandGlobs(patterns: string[]): string[] {
   return Array.from(results);
 }
 
+// Tambah counter removedHljs untuk laporannya
 type ProcessResult = {
   file: string;
   replaced: number;
@@ -94,7 +114,7 @@ async function processFile(file: string): Promise<ProcessResult | null> {
 
   const $ = cheerio.load(content);
 
-  // PENGECEKAN UTAMA
+  // PENGECEKAN UTAMA: Apakah ada blok <pre><code> di halaman ini?
   const hasPreCode = $("pre code").length > 0;
 
   // ---- Step 1 & 2: URL Replacement atau Penghapusan Bloatware ----
@@ -106,12 +126,15 @@ async function processFile(file: string): Promise<ProcessResult | null> {
 
     for (const m of MAP) {
       if (m.rx.test(url)) {
+        
+        // JIKA ini adalah kawanannya hljs TAPI tidak ada <pre><code> di halaman
         if (m.isHljs && !hasPreCode) {
-          $el.remove();
+          $el.remove(); // Basmi elemennya sampai ke akar!
           removedHljs++;
-          break; 
+          break; // Lanjut ke elemen berikutnya
         }
 
+        // Kalau ada pre-code ATAU librarynya bukan hljs, baru replace lokal
         $el.attr(attrName, m.repl);
         replaced++;
         for (const a of STALE_ATTRS) {
@@ -136,17 +159,19 @@ async function processFile(file: string): Promise<ProcessResult | null> {
     });
   }
 
-  // ---- Step 3: Validasi & Injeksi highlight.js DENGAN GENERAL GUARD ----
+  // ---- Step 3: Validasi & Injeksi highlight.js (STRICT GENERAL GUARD) ----
   if (hasPreCode) {
-    // 1. Cek jejak keberadaan tag (Pendeteksi)
-    const hljsScriptEls = $("script[src]").filter((_, el) => HLJS_SRC_REGEX.test($(el).attr("src") ?? ""));
+    const hljsScriptEls = $("script[src]").filter((_, el) => 
+      HLJS_SRC_REGEX.test($(el).attr("src") ?? "")
+    );
     const hasHljsScript = hljsScriptEls.length > 0;
 
-    const triggerScriptEls = $("script:not([src])").filter((_, el) => HLJS_TRIGGER_REGEX.test($(el).html() ?? ""));
+    const triggerScriptEls = $("script:not([src])").filter((_, el) => 
+      HLJS_TRIGGER_REGEX.test($(el).html() ?? "")
+    );
     const hasTrigger = triggerScriptEls.length > 0;
 
-    // 2. GENERAL GUARD (Pengecekan String Persis)
-    // Pastikan persis string ini belum ada sebelum disuntik!
+    // GUARD PERLINDUNGAN GANDA (Pengecekan String Persis)
     const isLibraryAlreadyInjected = $('script[src="/ext/highlight.js"]').length > 0;
     
     let isTriggerAlreadyInjected = false;
@@ -156,7 +181,6 @@ async function processFile(file: string): Promise<ProcessResult | null> {
       }
     });
 
-    // 3. Eksekusi dengan Guard
     if (hasHljsScript && !hasTrigger && !isTriggerAlreadyInjected) {
       // Library ada, trigger belum -> suntik trigger
       hljsScriptEls.first().after("\n<script>hljs.highlightAll();</script>");
@@ -168,7 +192,8 @@ async function processFile(file: string): Promise<ProcessResult | null> {
       libFixed = 1;
     } 
     else if (!hasHljsScript && !hasTrigger && !isLibraryAlreadyInjected && !isTriggerAlreadyInjected) {
-      // Keduanya tidak ada sama sekali! Injeksi utuh di bagian paling bawah <body>
+      // KASUS EKSTREM: Ada <pre><code> tapi library & trigger hilang semua! 
+      // Solusi: Suntik keduanya langsung di bagian paling bawah <body>
       $("body").append(
         `\n<script defer src="/ext/highlight.js"></script>\n<script>hljs.highlightAll();</script>\n`
       );
@@ -208,7 +233,7 @@ const stats = validResults.reduce(
     cln:   acc.cln + curr.cleaned,
     inj:   acc.inj + curr.injected,
     lib:   acc.lib + curr.libFixed,
-    rmv:   acc.rmv + curr.removedHljs, 
+    rmv:   acc.rmv + curr.removedHljs, // Rekap seberapa banyak yang dibasmi
   }),
   { files: 0, rep: 0, cln: 0, inj: 0, lib: 0, rmv: 0 }
 );
