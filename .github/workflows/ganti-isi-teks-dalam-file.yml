@@ -38,6 +38,13 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Log Replacement Parameters
+        run: |
+          echo "🔍 Mencari teks: ${{ github.event.inputs.search_text }}"
+          echo "✏️  Mengganti dengan: ${{ github.event.inputs.replace_text }}"
+          echo "📁 Folder target: ${{ github.event.inputs.folder }}"
+          echo "📄 Ekstensi file: ${{ github.event.inputs.extensions }}"
+
       - name: Run Filtered Replacement
         env:
           SEARCH: ${{ github.event.inputs.search_text }}
@@ -76,5 +83,9 @@ jobs:
             - **Ekstensi:** `${{ github.event.inputs.extensions }}`
             - **Folder:** `${{ github.event.inputs.folder }}`
             - **Jumlah file berubah:** `${{ steps.status.outputs.changed_count }}`
+
+            ### 🔍 Detail Penggantian
+            - **Teks yang dicari:** `${{ github.event.inputs.search_text }}`
+            - **Teks pengganti:** `${{ github.event.inputs.replace_text }}`
 
             Daftar file yang berubah sengaja tidak ditampilkan agar PR tetap ringan dan tidak memicu batas panjang argumen pada runner.
