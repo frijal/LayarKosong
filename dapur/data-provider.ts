@@ -19,12 +19,12 @@ const UI: Record<string, Record<string, number>> = {
 	"homepage.ts": SEMUANYA,
 	"img.html": { title: 1, url: 2, date: 3 },
 	"iposbrowser.ts": { slug: 1, date: 3 },
-	"navigator.ts": { title: 0, id: 1, image: 2, description: 4 },
+	"pemandu.ts": { title: 0, id: 1, image: 2, description: 4 },
 	"sitemap.ts": { title: 0, id: 1, date: 3, description: 4 }
 };
 
 // 🎯 DAFTAR UI YANG CUKUP PAKAI DATA "DIET" (artikel-lite.json)
-const LITE_UIS = ["navigator.ts"];
+const LITE_UIS = ["pemandu.ts"];
 
 const mapperCache: Record<string, Function> = {};
 

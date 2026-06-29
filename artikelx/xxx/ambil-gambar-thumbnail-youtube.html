@@ -687,7 +687,7 @@
             }
             async function copyToClipboard(text) {
                 try {
-                    await navigator.clipboard.writeText(text);
+                    await pemandu.clipboard.writeText(text);
                     alert('URL disalin ke clipboard! ✅');
                 } catch (err) {
                     console.error('Gagal menyalin:', err);

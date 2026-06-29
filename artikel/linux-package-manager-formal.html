@@ -135,7 +135,7 @@
   </style>
 <meta name="ai:summary" content="Penjelasan formal mengenai Linux Package Manager: definisi, fungsi utama, contoh implementasi (APT, DNF, Pacman), serta manfaat dalam manajemen perangkat lunak.">
 <meta name="ai:prompt_hint" content="Penjelasan formal mengenai Linux Package Manager: definisi, fungsi utama, contoh implementasi (APT, DNF, Pacman), serta manfaat dalam manajemen perangkat lunak.">
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
   <header>
     <div id="iposbrowser"></div><h1>Linux Package Manager</h1>
@@ -189,11 +189,11 @@
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const code = btn.previousElementSibling.innerText;
-            navigator.clipboard.writeText(code).then(() => {
+            pemandu.clipboard.writeText(code).then(() => {
                 btn.textContent = 'Tersalin!';
                 setTimeout(() => btn.textContent = 'Salin', 2000);
             });
         });
     });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

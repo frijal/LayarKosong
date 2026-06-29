@@ -71,7 +71,7 @@
     </style>
 <meta name="ai:summary" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
 <meta name="ai:prompt_hint" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body class="bg-gray-50 text-gray-800">
     <div class="flex flex-col md:flex-row min-h-screen">
         <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
@@ -199,7 +199,7 @@
                 if (e.target.classList.contains("copy-btn")) {
                     const codeElement = e.target.nextElementSibling?.querySelector("code");
                     if (codeElement) {
-                        navigator.clipboard.writeText(codeElement.innerText.trim())
+                        pemandu.clipboard.writeText(codeElement.innerText.trim())
                             .then(() => {
                                 const originalText = e.target.innerText;
                                 e.target.innerText = "Disalin!";
@@ -222,4 +222,4 @@
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

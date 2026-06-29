@@ -305,13 +305,13 @@ renderFolders();
 // ============================================================================
 
 const INJECTED_SELECTORS = [
-    'link[href*="navigator.css"]',
+    'link[href*="pemandu.css"]',
     '#iposbrowser',
     '#progress',
     '#layar-kosong-header',
     '.search-floating-container',
     '#internal-nav',
-    'script[src*="/ext/navigator.js"]',
+    'script[src*="/ext/pemandu.js"]',
     'script[src*="/ext/iposbrowser.js"]',
     'script[src*="/ext/lightbox.js"]',
     'script[src*="/ext/response.js"]',
@@ -320,7 +320,7 @@ const INJECTED_SELECTORS = [
 ];
 
 const FOOTER_EMOJIS = ["☕", "🛡️", "⚠️", "📝", "📚", "🔰", "⚔️"];
-const INLINE_SCRIPT_SNIPPETS = ["modelContext' in navigator", "hljs.highlightAll()"];
+const INLINE_SCRIPT_SNIPPETS = ["modelContext' in pemandu", "hljs.highlightAll()"];
 
 function ruqyahHtmlCore(rawHtml: string): { html: string; changes: number } {
     const $ = cheerio.load(rawHtml);

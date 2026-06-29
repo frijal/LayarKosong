@@ -505,7 +505,7 @@ body {
     }
 }
     </style>
-<link rel="stylesheet" href="/ext/navigator.css"></head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <div class="ats-keywords">HRIS,Human Resources Information System,Talent Acquisition,Recruitment,Mining Industry,Screening,Interviewing,HR Generalist,HRGA,Personnel Management,Workforce Planning,Employee Relations,Labor Relations,Onboarding,Training,Development,Coal Mining,Operations Management,Industrial Engineering,Data Processing,Compliance,Regulatory,Performance Management,Compensation,Benefits Administration,Workforce Development,HR Analytics,Recruitment Strategy,Talent Management,Mining Sector,HR Operations,Human Capital Management,Organizational Development,Employee Engagement,HR Policies,Labor Law Compliance,Payroll Administration,Industrial Relations,HR Technology,Succession Planning,Talent Pipeline,Competency Assessment,HR Metrics,Recruitment Process,Sourcing Strategies,Candidate Assessment,HR Business Partner,HR Compliance</div>
     <div class="container">
@@ -791,7 +791,7 @@ body {
         // PDF Download Function
         function downloadPDF() {
         // 1. Deteksi apakah user menggunakan perangkat mobile
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(pemandu.userAgent);
             if (isMobile) {
         // 2. Cek bahasa yang sedang aktif (berdasarkan tombol toggle atau elemen yang tidak tersembunyi)
         const isEnglish = document.querySelector('.language-toggle .lang-en').style.display === 'none';
@@ -826,4 +826,4 @@ font.load().then(function(loadedFont) {
 setTimeout(showBody, 2000);
     </script>
 <noscript>srcset_oleh_Fakhrul_Rijal</noscript>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/navigator.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

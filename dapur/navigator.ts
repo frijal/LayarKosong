@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * navigator.ts v7.5 (Resilient Core - Canonical URL Path Extraction Fallback)
+ * pemandu.ts v7.5 (Resilient Core - Canonical URL Path Extraction Fallback)
  * =================================================================================
  */
 
@@ -11,7 +11,7 @@
   // 1. HELPER FUNCTIONS
   // ---------------------------
 function isMobileDevice(): boolean {
-  return (window.innerWidth <= 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0);
+  return (window.innerWidth <= 768 || 'ontouchstart' in window || pemandu.maxTouchPoints > 0);
 }
 
 function cleanSlug(id: string): string {
@@ -364,7 +364,7 @@ function initKeyboardNav(allData: any, currentFile: string): void {
 async function initializeApp(): Promise<void> {
   while (!(window as any).siteDataProvider) await new Promise(r => setTimeout(r, 100));
 
-  const data = await (window as any).siteDataProvider.getFor('navigator.ts');
+  const data = await (window as any).siteDataProvider.getFor('pemandu.ts');
   const currentFile = getCurrentFileName();
 
   if (data) {

@@ -4,7 +4,7 @@ import { $ } from "bun";
 
 // --- PENGATURAN KURASI ---
 const menuAndalan = [
-  "dashboard.html", "dashboard.ts", "github.css", "github-dark.css", "github-dark-dimmed.css", "halaman-pencarian.css", "halaman-pencarian.ts", "header.css", "header.ts", "header-logo-atas.html", "homepage.css", "iposbrowser.ts", "json-xml.html", "leaflet.css", "lightbox.ts", "markdown.ts", "navigator.css", "navigator.ts", "response.ts", "sitemap.css", "ujihalaman.html", "homepage.ts", "sitemap.ts", "titleToCategory.ts", "data-provider.ts", "balon-cf.ts"
+  "dashboard.html", "dashboard.ts", "github.css", "github-dark.css", "github-dark-dimmed.css", "halaman-pencarian.css", "halaman-pencarian.ts", "header.css", "header.ts", "header-logo-atas.html", "homepage.css", "iposbrowser.ts", "json-xml.html", "leaflet.css", "lightbox.ts", "markdown.ts", "pemandu.css", "pemandu.ts", "response.ts", "sitemap.css", "ujihalaman.html", "homepage.ts", "sitemap.ts", "titleToCategory.ts", "data-provider.ts", "balon-cf.ts"
 ];
 
 const menuAsli = [

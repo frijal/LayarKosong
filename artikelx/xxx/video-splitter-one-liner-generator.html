@@ -260,7 +260,7 @@ function generateScript() {
 function copyToClipboard() {
     const copyText = document.getElementById("output").textContent;
     if (copyText.startsWith("#")) return; // Jangan salin jika belum di-generate
-    navigator.clipboard.writeText(copyText).then(() => {
+    pemandu.clipboard.writeText(copyText).then(() => {
         const btn = document.getElementById("copyBtn");
         btn.textContent = "Tersalin!";
         btn.style.background = "#555";

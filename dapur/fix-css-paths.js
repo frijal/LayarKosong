@@ -7,7 +7,7 @@ const cssFiles = [
   "fontawesome.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css",
   "github-dark.css", "github-dark.min.css", "github.css", "github.min.css",
   "halaman-pencarian.css", "header.css", "homepage.css", "indexhtml.css",
-  "leaflet.css", "lightbox.css", "navigator.css", "monokai.min.css",
+  "leaflet.css", "lightbox.css", "pemandu.css", "monokai.min.css",
   "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css",
   "prism.min.css", "related-articles.css", "sitemap.css", "vs-dark.min.css", "vs.min.css"
 ];

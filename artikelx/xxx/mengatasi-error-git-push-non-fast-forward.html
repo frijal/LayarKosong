@@ -265,7 +265,7 @@ Integrate the remote changes (e.g.hint: 'git pull ...') before pushing again.</c
             copyButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const code = button.nextElementSibling.textContent;
-                    navigator.clipboard.writeText(code).then(() => {
+                    pemandu.clipboard.writeText(code).then(() => {
                         const originalText = button.textContent;
                         button.textContent = 'Disalin!';
                         button.classList.add('copied');

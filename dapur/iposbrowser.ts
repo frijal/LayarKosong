@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!target) return;
 
     // --- A. DETEKSI USER AGENT ---
-    const ua = navigator.userAgent;
+    const ua = pemandu.userAgent;
     const browser = /(firefox|fxios)/i.test(ua) ? 'Firefox' :
     /edg/i.test(ua) ? 'Edge' :
     /chrome|crios/i.test(ua) ? 'Chrome' :

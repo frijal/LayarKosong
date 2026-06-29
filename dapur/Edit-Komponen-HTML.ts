@@ -260,8 +260,8 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
 
   // === 3. INJEKSI ELEMEN & ASSETS BARU (DENGAN STRICT GUARD) ===
   
-  if ($('head link[href*="navigator.css"]').length === 0) {
-      $("head").append(`<link rel="stylesheet" href="/ext/navigator.css">`);
+  if ($('head link[href*="pemandu.css"]').length === 0) {
+      $("head").append(`<link rel="stylesheet" href="/ext/pemandu.css">`);
   }
   
   // FIX #7 — Tambah rel="noopener noreferrer" ke semua target="_blank".
@@ -306,8 +306,8 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   
   // --- PEMISAHAN GUARD UNTUK SCRIPT EXTERNAL ---
   
-  if ($('script[src="/ext/navigator.js"]').length === 0) {
-      $("body").append(`<script defer src="/ext/navigator.js"></script>`);
+  if ($('script[src="/ext/pemandu.js"]').length === 0) {
+      $("body").append(`<script defer src="/ext/pemandu.js"></script>`);
   }
   
   if ($('script[src="/ext/iposbrowser.js"]').length === 0) {
@@ -335,14 +335,14 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
   let hasLlmsScript = false;
   $("script:not([src])").each((_, el) => {
       const scriptContent = $(el).html() || "";
-      if (scriptContent.includes("modelContext' in navigator")) {
+      if (scriptContent.includes("modelContext' in pemandu")) {
           hasLlmsScript = true;
       }
   });
   
   if (!hasLlmsScript) {
       $("body").append(
-          `<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>`
+          `<script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>`
       );
   }
   

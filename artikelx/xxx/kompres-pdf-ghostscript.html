@@ -348,7 +348,7 @@ sudo pacman -S --noconfirm ghostscript</code></pre>
       const code = btn.previousElementSibling.querySelector('code');
       btn.addEventListener('click', async () => {
         try {
-          await navigator.clipboard.writeText(code.textContent);
+          await pemandu.clipboard.writeText(code.textContent);
           btn.textContent = 'Tersalin ✓';
           setTimeout(()=>btn.textContent='Salin perintah', 1500);
         } catch(e) { btn.textContent = 'Gagal menyalin'; }

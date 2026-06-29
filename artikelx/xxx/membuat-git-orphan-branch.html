@@ -357,7 +357,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
         button.addEventListener('click', (e) => {
             const codeBlock = e.currentTarget.previousElementSibling;
             const code = codeBlock.querySelector('code').innerText;
-            navigator.clipboard.writeText(code).then(() => {
+            pemandu.clipboard.writeText(code).then(() => {
                 // Beri feedback visual
                 e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
                 setTimeout(() => {

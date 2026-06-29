@@ -610,7 +610,7 @@
         if (btnCopy) {
             btnCopy.addEventListener('click', function() {
                 if (!output.value) return; 
-                navigator.clipboard.writeText(output.value).then(function() {
+                pemandu.clipboard.writeText(output.value).then(function() {
                     const originalText = btnCopy.innerHTML;
                     btnCopy.innerHTML = 'Copied!';
                     setTimeout(function() {

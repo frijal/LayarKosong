@@ -446,7 +446,7 @@ jobs:
       const codeEl = document.querySelector('#codeBlock pre');
       document.getElementById('copyCode').addEventListener('click', () => {
         const text = codeEl.innerText;
-        navigator.clipboard.writeText(text).then(() => {
+        pemandu.clipboard.writeText(text).then(() => {
           const btn = document.getElementById('copyCode');
           btn.textContent = 'Kode disalin';
           setTimeout(() => btn.textContent = 'Salin kode', 1600);

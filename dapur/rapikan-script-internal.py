@@ -6,11 +6,11 @@ import shutil
 TARGET_DIR = 'artikel/'
 
 SCRIPTS_TO_REMOVE = [
-    r'<script defer="" src="/ext/navigator.js"></script>',
+    r'<script defer="" src="/ext/pemandu.js"></script>',
     r'<script defer="" src="/ext/iposbrowser.js"></script>',
     r'<script defer="" src="/ext/markdown.js"></script>',
     r'<script defer="" src="/ext/pesbukdiskus.js"></script>',
-    r'<script defer src="/ext/navigator.js"></script>',
+    r'<script defer src="/ext/pemandu.js"></script>',
     r'<script defer src="/ext/iposbrowser.js"></script>',
     r'<script defer src="/ext/markdown.js"></script>',
     r'<script defer src="/ext/pesbukdiskus.js"></script>'
@@ -18,7 +18,7 @@ SCRIPTS_TO_REMOVE = [
 
 NEW_BLOCK = (
     '<script defer="" src="/ext/markdown.js"></script>'
-    '<script defer="" src="/ext/navigator.js"></script>'
+    '<script defer="" src="/ext/pemandu.js"></script>'
     '<script defer="" src="/ext/iposbrowser.js"></script>'
     '<script defer="" src="/ext/pesbukdiskus.js"></script>'
 )

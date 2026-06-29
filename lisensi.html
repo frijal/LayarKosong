@@ -426,9 +426,9 @@
             document.documentElement.lang = val;
             localStorage.setItem('pref_lang_ccby4', val);
         }
-        const saved = localStorage.getItem('pref_lang_ccby4') || (navigator.language.startsWith('en') ? 'en' : 'id');
+        const saved = localStorage.getItem('pref_lang_ccby4') || (pemandu.language.startsWith('en') ? 'en' : 'id');
         document.getElementById('lang').value = saved;
         switchLang(saved);
     </script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body>
+<script>if('modelContext' in pemandu){pemandu.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body>
 </html>

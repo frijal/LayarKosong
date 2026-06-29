@@ -308,7 +308,7 @@ print int($total_blocks / 2 + .5), " KB (Estimasi Presisi)\n";</code><button cla
     document.querySelectorAll('.copy-btn').forEach(button => {
         button.addEventListener('click', () => {
             const code = button.nextElementSibling.innerText;
-            navigator.clipboard.writeText(code).then(() => {
+            pemandu.clipboard.writeText(code).then(() => {
                 const originalText = button.innerText;
                 button.innerText = 'BERHASIL!';
                 button.style.background = '#00cec9';

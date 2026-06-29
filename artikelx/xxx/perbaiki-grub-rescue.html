@@ -185,7 +185,7 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code4">Sa
                 const targetId = btn.getAttribute('data-target');
                 const codeEl = document.getElementById(targetId);
                 if (codeEl) {
-                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                    pemandu.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
                 }
             });
         });

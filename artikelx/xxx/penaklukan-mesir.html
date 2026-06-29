@@ -460,7 +460,7 @@
                 const originalText = copyBtn.textContent; // Store original text
                 copyBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    navigator.clipboard.writeText('https://dalam.web.id/artikel/penaklukan-mesir.html')
+                    pemandu.clipboard.writeText('https://dalam.web.id/artikel/penaklukan-mesir.html')
                         .then(() => {
                             copyBtn.textContent = '✔️ Tersalin!'; // Update text
                             setTimeout(() => { copyBtn.textContent = originalText; }, 2000); // Revert after 2 seconds

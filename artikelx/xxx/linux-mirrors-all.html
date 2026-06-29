@@ -431,7 +431,7 @@ else { p.classList.remove('active'); p.setAttribute('aria-hidden','true'); }
 const pre = btn.closest('pre');
 const code = pre.querySelector('code');
 if(!code) return;
-navigator.clipboard.writeText(code.innerText).then(()=>{
+pemandu.clipboard.writeText(code.innerText).then(()=>{
   const old = btn.textContent;
   btn.textContent = 'Copied!';
   setTimeout(()=> btn.textContent = old, 1400);
