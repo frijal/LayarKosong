@@ -1,228 +1,41 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Manajemen Dependencies Node.js - Layar Kosong</title>
-    <meta name="description" content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js.">
-    <link rel="canonical" href="https://dalam.web.id/warta-tekno/cleanup-dependencies">
-    <link rel="prev" href="https://dalam.web.id/warta-tekno/cleanup-doc" title="Pembersih Paket dapat GitHub Pages">
-    <link rel="next" href="https://dalam.web.id/warta-tekno/manajer-kata-sandi-firefox" title="Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu">
-    <meta property="og:url" content="https://dalam.web.id/warta-tekno/cleanup-dependencies">
-    <meta name="twitter:url" content="https://dalam.web.id/warta-tekno/cleanup-dependencies">
-    <meta property="article:section" content="Windows, Teknologi Umum">
-    <meta property="article:tag" content="Windows">
-    <meta property="article:tag" content="Teknologi Umum">
-    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
-    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="color-scheme" content="light dark">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="application-name" content="Layar Kosong">
-    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
-    <meta name="news_keywords" content="Manajemen Dependencies Node.js, Layar Kosong">
-    <meta name="promphint" content="Manajemen Dependencies Node.js | Dependencies yang bersih dan terkelola dengan baik memastikan proyek GitHub Pages tetap ringan dan bebas error. Skrip cleanup.js dan cleanup-auto.js dapat digun">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Manajemen Dependencies Node.js">
-    <meta property="og:description" content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js.">
-    <meta property="og:updated_time" content="2025-10-06T08:39:12.850Z">
-    <meta property="og:image" content="https://dalam.web.id/img/cleanup-dependencies.webp">
-    <meta property="og:image:url" content="https://dalam.web.id/img/cleanup-dependencies.webp">
-    <meta property="og:image:secure_url" content="https://dalam.web.id/img/cleanup-dependencies.webp">
-    <meta property="og:image:alt" content="Manajemen Dependencies Node.js">
-    <meta property="og:image:width" content="1000">
-    <meta property="og:image:height" content="562">
-    <meta property="og:image:type" content="image/webp">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:domain" content="dalam.web.id">
-    <meta name="twitter:title" content="Manajemen Dependencies Node.js">
-    <meta name="twitter:description" content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js.">
-    <meta name="twitter:image" content="https://dalam.web.id/img/cleanup-dependencies.webp">
-    <meta name="twitter:image:alt" content="Manajemen Dependencies Node.js">
-    <meta name="twitter:widgets:new-embed-design" content="on">
-    <meta name="twitter:site" content="@responaja">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="fb:pages" content="917962134736490">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
-    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
-    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
-    <link rel="me" href="https://mastodon.social/@frijal">
-    <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
-    <meta property="article:published_time" content="2025-10-06T08:31:25.000Z">
-    <meta property="article:modified_time" content="2025-10-06T08:31:25.000Z">
-<!-- Open Graph -->
-<!-- Prism.js -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css">
-<style>
-:root {
-  color-scheme: light dark;
-}
-body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  line-height: 1.6;
-  margin: 0 auto;
-  padding: 2rem;
-  max-width: 880px;
-  background: var(--bg, #fafafa);
-  color: var(--fg, #222);
-  transition: color .3s, background .3s;
-}
-@media (prefers-color-scheme: dark) {
-  body {
-    --bg: #0d1117;
-    --fg: #c9d1d9;
-  }
-}
-h1, h2, h3 { color: var(--fg); text-align: center; }
-pre {
-  background: rgba(128,128,128,.15);
-  padding: 1em;
-  border-radius: 6px;
-  overflow-x: auto;
-}
-code { font-family: "Courier New", monospace; }
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1rem 0;
-}
-th, td {
-  border: 1px solid #ccc;
-  padding: 0.7rem;
-  text-align: left;
-}
-th { background: #e0e0e0; }
-@media (prefers-color-scheme: dark) {
-  th { background: #161b22; }
-}
-.share-icons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  justify-content: center;
-}
-.share-icons a svg { width: 28px; height: 28px; fill: var(--fg); transition: transform .2s; }
-.share-icons a:hover svg { transform: scale(1.2); }
-footer {
-  margin-top: 3rem;
-  font-size: 0.9em;
-  opacity: .7;
-  text-align: center;
-}
-img.lazy { filter: blur(8px); transition: filter .5s ease; }
-img.lazy.loaded { filter: blur(0); }
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-.lightbox img {
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 8px;
-}
-.lightbox button {
-  position: absolute;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-}
-.lightbox .prev { left: 5%; }
-.lightbox .next { right: 5%; }
-.lightbox .close { top: 5%; right: 5%; font-size: 2.2rem; }
-</style>
-<meta name="ai:summary" content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js.">
-<meta name="ai:prompt_hint" content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js.">
-
-</head>
-<body>
-<article>
-<h1>📦 Manajemen Dependencies Node.js</h1>
-<p>Dependencies yang bersih dan terkelola dengan baik memastikan proyek <strong>GitHub Pages</strong> tetap ringan dan bebas error. Skrip <code>cleanup.js</code> dan <code>cleanup-auto.js</code> dapat digunakan untuk membersihkan paket tidak terpakai.</p>
-<h2>1️⃣ Mengecek Dependencies Tidak Terpakai</h2>
-<p>Gunakan <code>depcheck</code> untuk mendeteksi paket npm yang tidak digunakan:</p>
-<pre><code class="language-bash">npm install --save-dev depcheck
-npx depcheck</code></pre>
-<h2>2️⃣ Membersihkan Dependencies</h2>
-<p>Setelah menemukan paket tidak terpakai, gunakan:</p>
-<pre><code class="language-bash"># Interaktif
+<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Manajemen Dependencies Node.js - Layar Kosong</title><meta content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js." name="description"><link href="https://dalam.web.id/warta-tekno/cleanup-dependencies" rel="canonical"><link title="Pembersih Paket dapat GitHub Pages" href="https://dalam.web.id/warta-tekno/cleanup-doc" rel="prev"><link title="Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu" href="https://dalam.web.id/warta-tekno/manajer-kata-sandi-firefox" rel="next"><meta content="https://dalam.web.id/warta-tekno/cleanup-dependencies" property="og:url"><meta content="https://dalam.web.id/warta-tekno/cleanup-dependencies" name="twitter:url"><meta content="Windows, Teknologi Umum" property="article:section"><meta content="Windows" property="article:tag"><meta content="Teknologi Umum" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="Manajemen Dependencies Node.js, Layar Kosong" name="news_keywords"><meta content="Manajemen Dependencies Node.js | Dependencies yang bersih dan terkelola dengan baik memastikan proyek GitHub Pages tetap ringan dan bebas error. Skrip cleanup.js dan cleanup-auto.js dapat digun" name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Manajemen Dependencies Node.js" property="og:title"><meta content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js." property="og:description"><meta content="2025-10-06T08:35:48.227Z" property="og:updated_time"><meta content="https://dalam.web.id/img/cleanup-dependencies.webp" property="og:image"><meta content="https://dalam.web.id/img/cleanup-dependencies.webp" property="og:image:url"><meta content="https://dalam.web.id/img/cleanup-dependencies.webp" property="og:image:secure_url"><meta content="Manajemen Dependencies Node.js" property="og:image:alt"><meta content="1000" property="og:image:width"><meta content="562" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Manajemen Dependencies Node.js" name="twitter:title"><meta content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js." name="twitter:description"><meta content="https://dalam.web.id/img/cleanup-dependencies.webp" name="twitter:image"><meta content="Manajemen Dependencies Node.js" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2025-10-06T08:31:25.000Z" property="article:published_time"><meta content="2025-10-06T08:31:25.000Z" property="article:modified_time"><link href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" rel="stylesheet"><style>:root{color-scheme:light dark}body{background:var(--bg,#fafafa);max-width:880px;color:var(--fg,#222);margin:0 auto;padding:2rem;font-family:Segoe UI,system-ui,sans-serif;line-height:1.6;transition:color .3s,background .3s}@media (prefers-color-scheme:dark){body{--bg:#0d1117;--fg:#c9d1d9}}h1,h2,h3{color:var(--fg);text-align:center}pre{background:#80808026;border-radius:6px;padding:1em;overflow-x:auto}code{font-family:Courier New,monospace}table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{text-align:left;border:1px solid #ccc;padding:.7rem}th{background:#e0e0e0}@media (prefers-color-scheme:dark){th{background:#161b22}}.share-icons{justify-content:center;gap:1rem;margin-top:1rem;display:flex}.share-icons a svg{width:28px;height:28px;fill:var(--fg);transition:transform .2s}.share-icons a:hover svg{transform:scale(1.2)}footer{opacity:.7;text-align:center;margin-top:3rem;font-size:.9em}img.lazy{filter:blur(8px);transition:filter .5s}img.lazy.loaded{filter:blur()}.lightbox{z-index:9999;background:#000000d9;justify-content:center;align-items:center;display:none;position:fixed;inset:0}.lightbox img{border-radius:8px;max-width:90%;max-height:80vh}.lightbox button{color:#fff;cursor:pointer;background:0 0;border:none;font-size:2rem;position:absolute}.lightbox .prev{left:5%}.lightbox .next{right:5%}.lightbox .close{font-size:2.2rem;top:5%;right:5%}</style><meta content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js." name="ai:summary"><meta content="membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js." name="ai:prompt_hint"><link href="/ext/marquee-url.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Manajemen Dependencies Node.js","description":"membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js.","datePublished":"2025-10-06T08:31:25.000Z","dateModified":"2025-10-06T08:31:25.000Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies"},"wordCount":168,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/cleanup-dependencies.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/cleanup-dependencies.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/cleanup-dependencies.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/cleanup-dependencies.webp","keywords":["Windows","Teknologi Umum","Manajemen Dependencies Node.js","Layar Kosong","manajemen","dependencies","node","cleanup","Warta Tekno"],"articleSection":["Warta Tekno"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies","url":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies","name":"Manajemen Dependencies Node.js - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/cleanup-dependencies.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/cleanup-dependencies.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/cleanup-dependencies.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/cleanup-dependencies.webp","datePublished":"2025-10-06T08:31:25.000Z","dateModified":"2025-10-06T08:31:25.000Z","description":"membersihkan dan mengelola dependencies Node.js pada proyek GitHub Pages menggunakan cleanup.js dan cleanup-auto.js.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies#primaryimage","url":"https:\/\/dalam.web.id\/img\/cleanup-dependencies.webp","contentUrl":"https:\/\/dalam.web.id\/img\/cleanup-dependencies.webp","width":1000,"height":562,"caption":"Manajemen Dependencies Node.js","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https:\/\/dalam.web.id\/warta-tekno"},{"@type":"ListItem","position":3,"name":"Manajemen Dependencies Node.js","item":"https:\/\/dalam.web.id\/warta-tekno\/cleanup-dependencies"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><article><div id="iposbrowser"></div><h1>📦 Manajemen Dependencies Node.js</h1><p>Dependencies yang bersih dan terkelola dengan baik memastikan proyek <strong>GitHub Pages</strong> tetap ringan dan bebas error. Skrip <code>cleanup.js</code> dan <code>cleanup-auto.js</code> dapat digunakan untuk membersihkan paket tidak terpakai.</p><h2>1️⃣ Mengecek Dependencies Tidak Terpakai</h2><p>Gunakan <code>depcheck</code> untuk mendeteksi paket npm yang tidak digunakan:</p><pre><code class="language-bash">npm install --save-dev depcheck
+npx depcheck</code></pre><h2>2️⃣ Membersihkan Dependencies</h2><p>Setelah menemukan paket tidak terpakai, gunakan:</p><pre><code class="language-bash"># Interaktif
 node ext/cleanup.js
 # Otomatis penuh (CI/CD)
-node ext/cleanup-auto.js</code></pre>
-<h2>3️⃣ Proses yang Dilakukan cleanup-auto.js</h2>
-<ul>
-<li>🔍 Mendeteksi paket tidak terpakai dengan depcheck</li>
-<li>🚮 Menghapus dependencies &amp; devDependencies yang tidak terpakai</li>
-<li>🧹 Menghapus <code>node_modules</code> dan <code>package-lock.json</code></li>
-<li>📦 Menginstal ulang dependensi bersih</li>
-</ul>
-<h2>4️⃣ Contoh Workflow GitHub Actions</h2>
-<pre><code class="language-yaml">name: Cleanup Dependencies
+node ext/cleanup-auto.js</code></pre><h2>3️⃣ Proses yang Dilakukan cleanup-auto.js</h2><ul><li>🔍 Mendeteksi paket tidak terpakai dengan depcheck</li><li>🚮 Menghapus dependencies &amp; devDependencies yang tidak terpakai</li><li>🧹 Menghapus <code>node_modules</code> dan <code>package-lock.json</code></li><li>📦 Menginstal ulang dependensi bersih</li></ul><h2>4️⃣ Contoh Workflow GitHub Actions</h2><pre><code class="language-yaml">name: Cleanup Dependencies
 on:
-  schedule:
-    - cron: '0 0 * * 0' # setiap minggu
-  workflow_dispatch:
+ schedule:
+ - cron: '0 0 * * 0' # setiap minggu
+ workflow_dispatch:
 jobs:
-  clean:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Jalankan cleanup-auto.js
-        run: node ext/cleanup-auto.js</code></pre>
-<h2>💬 Kesimpulan</h2>
-<p>Pilih <code>cleanup.js</code> untuk kontrol manual lokal, dan <code>cleanup-auto.js</code> untuk otomatisasi penuh di pipeline CI/CD.</p>
-<div id="related-articles-grid"></div><div id="response"></div>
-<footer>🄯 2025 Jaga Data Pribadi Tetap Aman · Manajemen Dependencies Node.js        
-</footer>
-    </article>
-<!-- Lazy-load & Prism -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js" defer=""></script>
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
-  const lazyImgs=document.querySelectorAll("img.lazy");
-  if("IntersectionObserver"in window){
-    let obs=new IntersectionObserver((entries,obs)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          const img=e.target;
-          img.src=img.dataset.src;
-          img.onload=()=>img.classList.add("loaded");
-          obs.unobserve(img);
-        }
-      });
-    },{rootMargin:"150px"});
-    lazyImgs.forEach(img=>obs.observe(img));
-  }else{
-    lazyImgs.forEach(img=>{
-      img.src=img.dataset.src;
-      img.onload=()=>img.classList.add("loaded");
-    });
-  }
-  Prism.highlightAll();
-});
-</script>
-
-
-
-</body></html>
+ clean:
+ runs-on: ubuntu-latest
+ steps:
+ - uses: actions/checkout@v4
+ - name: Setup Node.js
+ uses: actions/setup-node@v4
+ with:
+ node-version: '20'
+ - name: Jalankan cleanup-auto.js
+ run: node ext/cleanup-auto.js</code></pre><h2>💬 Kesimpulan</h2><p>Pilih <code>cleanup.js</code> untuk kontrol manual lokal, dan <code>cleanup-auto.js</code> untuk otomatisasi penuh di pipeline CI/CD.</p><div id="related-articles-grid"></div><div id="response"></div><footer>🄯 2025 Jaga Data Pribadi Tetap Aman · Manajemen Dependencies Node.js <a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer></article><script defer="" src="https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js"></script><script>document.addEventListener("DOMContentLoaded",()=>{
+ const lazyImgs=document.querySelectorAll("img.lazy");
+ if("IntersectionObserver"in window){
+ let obs=new IntersectionObserver((entries,obs)=>{
+ entries.forEach(e=>{
+ if(e.isIntersecting){
+ const img=e.target;
+ img.src=img.dataset.src;
+ img.onload=()=>img.classList.add("loaded");
+ obs.unobserve(img);
+ }
+ });
+ },{rootMargin:"150px"});
+ lazyImgs.forEach(img=>obs.observe(img));
+ }else{
+ lazyImgs.forEach(img=>{
+ img.src=img.dataset.src;
+ img.onload=()=>img.classList.add("loaded");
+ });
+ }
+ Prism.highlightAll();
+});</script><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-29</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
