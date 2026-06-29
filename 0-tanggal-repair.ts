@@ -7,7 +7,7 @@ import { Glob } from 'bun';
 const ROOT_DIR = process.cwd();
 
 // ============================================================================
-// 1. TEMPLATE UI DASHBOARD (TANGGAL REPAIR)
+// 1. TEMPLATE UI DASHBOARD (TANGGAL REPAIR + GENERATOR PRO TRICK)
 // ============================================================================
 const htmlTemplate = `
 <!DOCTYPE html>
@@ -37,6 +37,11 @@ input[type="text"]:focus { border-color: #facc15; }
 .btn-sync:hover { background: #2563eb; transform: translateY(-2px); }
 .btn-sync:disabled { background: #4b5563; cursor: not-allowed; transform: none; }
 
+/* Tombol Generator Silet */
+.btn-gen { background: #10b981; color: white; width: 100%; font-size: 16px; margin-top: 12px; border: 1px solid #059669; }
+.btn-gen:hover { background: #059669; transform: translateY(-2px); }
+.btn-gen:disabled { background: #374151; color: #9ca3af; cursor: not-allowed; transform: none; border-color: #374151; }
+
 /* Daftar Folder (Tags) */
 .folder-list { display: flex; flex-wrap: wrap; gap: 10px; min-height: 40px; padding: 10px; background: #121214; border: 1px dashed #45475a; border-radius: 4px; }
 .folder-tag { background: #29292e; color: #e1e1e6; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 8px; font-family: monospace; border: 1px solid #45475a; }
@@ -53,6 +58,9 @@ input[type="text"]:focus { border-color: #facc15; }
 .color-skip { color: #3b82f6; }
 .color-error { color: #ef4444; }
 
+/* Terminal Log */
+.terminal { background: #0d0d10; color: #34d399; padding: 15px; border-radius: 6px; border: 1px solid #29292e; font-family: 'Fira Code', monospace; font-size: 13px; max-height: 250px; overflow-y: auto; margin-top: 15px; display: none; white-space: pre-wrap; }
+
 .action-area { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; background: #18181c; padding: 15px 20px; border-radius: 6px; border: 1px solid #29292e; }
 #status { font-style: italic; color: #ffb300; font-weight: bold; font-size: 14px; flex: 1; }
 #log-link { display: none; color: #ff3e3e; text-decoration: none; font-weight: bold; font-size: 14px; border: 1px solid #ff3e3e; padding: 5px 12px; border-radius: 4px; }
@@ -61,52 +69,55 @@ input[type="text"]:focus { border-color: #facc15; }
 </head>
 <body>
 <div class="container">
-<h2>🛠️ Dashboard Reparasi Tanggal HTML</h2>
-<p style="color: #a4a4a8; font-size: 13px; margin-top: -5px;">Lokasi Akar: <code style="color: #facc15;">${ROOT_DIR}</code></p>
+<h2>🛠️ Dashboard Reparasi Tanggal HTML & Mesin Waktu</h2>
+<p style="color: #a4a4a8; font-size: 13px; margin-top: -5px;">Lokasi Akar: <code style="color: #facc15;">\${ROOT_DIR}</code></p>
 
 <div class="folder-panel">
-    <label>Tentukan folder mana saja yang ingin di-scan (contoh: artikel, opini-sosial):</label>
-    
-    <div class="input-group">
-        <input type="text" id="folder-input" placeholder="Ketik nama folder di sini..." autocomplete="off">
-        <button class="btn btn-add" onclick="tambahFolder()">➕ Tambahkan</button>
-    </div>
+<label>Tentukan folder mana saja yang ingin di-scan (contoh: artikel, opini-sosial):</label>
 
-    <div class="folder-list" id="folder-list">
-        </div>
+<div class="input-group">
+<input type="text" id="folder-input" placeholder="Ketik nama folder di sini..." autocomplete="off">
+<button class="btn btn-add" onclick="tambahFolder()">➕ Tambahkan</button>
+</div>
 
-    <button id="btn-sync" class="btn btn-sync" onclick="mulaiSinkronisasi()">🔄 Mulai Cocokkan Tanggal</button>
+<div class="folder-list" id="folder-list">
+</div>
+
+<button id="btn-sync" class="btn btn-sync" onclick="mulaiSinkronisasi()">🔄 1. Bersihkan File & Cocokkan Tanggal</button>
+<button id="btn-gen" class="btn btn-gen" onclick="jalankanGeneratorPro()" disabled>🚀 2. Lanjutkan ke Generator Pro</button>
 </div>
 
 <div class="stats-grid">
-    <div class="stat-box">
-        <h3 id="stat-sukses" class="color-success">0</h3>
-        <p>Berhasil Update</p>
-    </div>
-    <div class="stat-box">
-        <h3 id="stat-skip" class="color-skip">0</h3>
-        <p>Aman / Lewati</p>
-    </div>
-    <div class="stat-box">
-        <h3 id="stat-error" class="color-error">0</h3>
-        <p>Gagal / No Meta</p>
-    </div>
+<div class="stat-box">
+<h3 id="stat-sukses" class="color-success">0</h3>
+<p>Publish Di-fix</p>
+</div>
+<div class="stat-box">
+<h3 id="stat-skip" class="color-skip">0</h3>
+<p>Aman / Lewati</p>
+</div>
+<div class="stat-box">
+<h3 id="stat-error" class="color-error">0</h3>
+<p>Gagal / No Meta</p>
+</div>
 </div>
 
+<div class="terminal" id="terminal-box"></div>
+
 <div class="action-area">
-    <div id="status">Status: Menunggu instruksi...</div>
-    <a id="log-link" href="/log" target="_blank">📄 Buka Log Gagal</a>
+<div id="status">Status: Menunggu instruksi...</div>
+<a id="log-link" href="/log" target="_blank">📄 Buka Log Gagal</a>
 </div>
 </div>
 
 <script>
-// State Frontend
-let folderArray = ['artikel']; // Default folder pertama kali buka
+let folderArray = ['artikel'];
 
 const folderInput = document.getElementById('folder-input');
 const folderListEl = document.getElementById('folder-list');
+const btnGen = document.getElementById('btn-gen');
+const terminalBox = document.getElementById('terminal-box');
 
-// Fitur nambah folder pakai Enter
 folderInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') tambahFolder();
 });
@@ -116,19 +127,15 @@ function renderFolders() {
         folderListEl.innerHTML = '<span class="empty-msg">Belum ada folder yang dipilih. Ketik di atas lalu Tambahkan.</span>';
         return;
     }
-
     folderListEl.innerHTML = folderArray.map((folder, index) => \`
-        <div class="folder-tag">
-            📁 \${folder} <span onclick="hapusFolder(\${index})" title="Hapus">×</span>
-        </div>
+    <div class="folder-tag">
+    📁 \${folder} <span onclick="hapusFolder(\${index})" title="Hapus">×</span>
+    </div>
     \`).join('');
 }
 
 function tambahFolder() {
-    let val = folderInput.value.trim();
-    // Hilangkan slash depan/belakang kalau user iseng ngetik "/artikel/"
-    val = val.replace(/^\\/+/, '').replace(/\\/+$/, ''); 
-    
+    let val = folderInput.value.trim().replace(/^\\/+/, '').replace(/\\/+$/, '');
     if (val && !folderArray.includes(val)) {
         folderArray.push(val);
         folderInput.value = '';
@@ -152,51 +159,85 @@ async function mulaiSinkronisasi() {
     const btn = document.getElementById('btn-sync');
     const statusDiv = document.getElementById('status');
     const logLink = document.getElementById('log-link');
-    
-    // Reset UI
+
     btn.disabled = true;
-    btn.innerHTML = "⏳ Sedang Membedah HTML...";
-    statusDiv.innerText = "Status: Mencari file di folder yang dipilih...";
+    btn.innerHTML = "⏳ Bersih-bersih & Membedah HTML...";
+    statusDiv.innerText = "Status: Mengosongkan sitemap & mencari file...";
     logLink.style.display = 'none';
+    terminalBox.style.display = 'none';
+    btnGen.disabled = true;
+
     document.getElementById('stat-sukses').innerText = "0";
     document.getElementById('stat-skip').innerText = "0";
     document.getElementById('stat-error').innerText = "0";
 
     try {
-        const response = await fetch('/sync', { 
+        const response = await fetch('/sync', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ targetFolders: folderArray })
         });
-        
+
         const data = await response.json();
 
         if (data.error) {
             statusDiv.innerText = "Status Gagal: " + data.error;
             statusDiv.style.color = "#ef4444";
         } else {
-            // Update Stats
             document.getElementById('stat-sukses').innerText = data.sukses;
             document.getElementById('stat-skip').innerText = data.skip;
             document.getElementById('stat-error').innerText = data.errorCount;
-            
+
             statusDiv.innerText = data.message;
             statusDiv.style.color = "#00e676";
 
-            if (data.adaLog) {
-                logLink.style.display = 'block';
-            }
+            // AKTIFKAN TOMBOL GENERATOR PRO SETELAH SELESAI SINKRONISASI
+            btnGen.disabled = false;
+
+            if (data.adaLog) logLink.style.display = 'block';
         }
     } catch (err) {
-        statusDiv.innerText = "Koneksi ke backend terputus: " + err;
+        statusDiv.innerText = "Koneksi terputus: " + err;
         statusDiv.style.color = "#ef4444";
     } finally {
         btn.disabled = false;
-        btn.innerHTML = "🔄 Mulai Cocokkan Tanggal";
+        btn.innerHTML = "🔄 1. Bersihkan File & Cocokkan Tanggal";
     }
 }
 
-// Inisiasi Render Pertama
+async function jalankanGeneratorPro() {
+    const statusDiv = document.getElementById('status');
+    btnGen.disabled = true;
+    btnGen.innerHTML = "⚡ Mengompilasi Sitemap & Feed...";
+    statusDiv.innerText = "Status: Menjalankan bun dapur/generator-pro.ts...";
+    statusDiv.style.color = "#ffb300";
+
+    try {
+        const response = await fetch('/run-generator', { method: 'POST' });
+        const data = await response.json();
+
+        terminalBox.style.display = 'block';
+
+        if (data.success) {
+            terminalBox.style.color = "#34d399";
+            terminalBox.innerText = "📢 [OUTPUT GENERATOR PRO]:\\n" + data.output;
+            statusDiv.innerText = "Status: Generator Pro Berhasil Dieksekusi! 😎";
+            statusDiv.style.color = "#00e676";
+        } else {
+            terminalBox.style.color = "#f87171";
+            terminalBox.innerText = "❌ [ERROR GENERATOR PRO]:\\n" + data.output;
+            statusDiv.innerText = "Status: Generator Pro Gagal!";
+            statusDiv.style.color = "#ef4444";
+        }
+    } catch (err) {
+        statusDiv.innerText = "Gagal mengontak mesin generator: " + err;
+        statusDiv.style.color = "#ef4444";
+    } finally {
+        btnGen.disabled = false;
+        btnGen.innerHTML = "🚀 2. Lanjutkan ke Generator Pro";
+    }
+}
+
 renderFolders();
 </script>
 </body>
@@ -204,84 +245,113 @@ renderFolders();
 `;
 
 // ============================================================================
-// 2. FUNGSI INTI SINKRONISASI (Menerima Array Folder dari Frontend)
+// 2. FUNGSI LOGIKA PIPELINE (CLEAN, SYNC, TIME MACHINE)
 // ============================================================================
 type ArtikelData = [string, string, string, string, string];
 
+function getRandomDate(start: Date, end: Date): Date {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
 async function jalankanSinkronisasi(targetFolders: string[]) {
     const jsonPath = path.join(ROOT_DIR, 'artikel.json');
-    const logPath = path.join(ROOT_DIR, 'laporan-gagal.txt'); 
+    const logPath = path.join(ROOT_DIR, 'laporan-gagal.txt');
+    const sitemapPath = path.join(ROOT_DIR, 'sitemap.txt');
+    const editedTodayPath = path.join(ROOT_DIR, 'mini', 'edited-today.txt');
 
-    let sukses = 0;
+    let suksesPublish = 0;
+    let modifDiedit = 0;
+    let modifOriginal = 0;
     let skip = 0;
     let errorCount = 0;
     const daftarGagal: string[] = [];
+    const now = new Date();
 
     try {
-        // 1. Baca data kebenaran mutlak (artikel.json)
+        // --- TAHAP 0: RITUAL WAJIB BERSIH-BERSIH ---
+        await fs.writeFile(sitemapPath, '', 'utf-8');
+        await fs.mkdir(path.dirname(editedTodayPath), { recursive: true });
+        await fs.writeFile(editedTodayPath, '', 'utf-8');
+
+        // 1. Ambil Data JSON Kebenaran Mutlak
         const rawData = await fs.readFile(jsonPath, 'utf-8');
         const parsedData = JSON.parse(rawData);
         const daftarArtikel: ArtikelData[] = Object.values(parsedData).flat() as ArtikelData[];
 
         if (daftarArtikel.length === 0) {
-            return { error: "Data artikel.json kosong. Cek file-nya!" };
+            return { error: "Data artikel.json kosong!" };
         }
 
-        // 2. PEMETAAN FILE BERDASARKAN FOLDER TARGET
-        const fileMap = new Map<string, string>(); // Format: { "namafile.html" => "PathAbsolut" }
-
-        // Looping hanya pada folder yang di-request oleh Frontend
+        // 2. Petakan Seluruh File HTML Tujuan
+        const fileMap = new Map<string, string>();
         for (const folder of targetFolders) {
             const fullFolderPath = path.join(ROOT_DIR, folder);
-            
             try {
-                // Pastikan folder tersebut ada biar script nggak mati
                 const stat = await fs.stat(fullFolderPath);
                 if (!stat.isDirectory()) continue;
 
-                // Scan khusus di folder ini pakai Bun.Glob
                 const glob = new Glob("*.html");
                 for await (const file of glob.scan({ cwd: fullFolderPath, absolute: true })) {
-                    fileMap.set(path.basename(file), file);
+                    const baseName = path.basename(file);
+                    if (!baseName.startsWith('-')) {
+                        fileMap.set(baseName, file);
+                    }
                 }
-            } catch (folderErr) {
-                console.log(`⚠️ Folder "${folder}" tidak ditemukan atau gagal dibaca.`);
-            }
+            } catch (e) {}
         }
 
-        // 3. MULAI EKSEKUSI PENCOCOKAN DENGAN CHEERIO
+        // 3. Eksekusi Bedah HTML Menggunakan Cheerio
         for (const artikel of daftarArtikel) {
             if (!Array.isArray(artikel) || artikel.length < 4) continue;
 
             const fileName = artikel[1];
-            const tanggalKebenaran = artikel[3];
-            
-            // Cek apakah file ini ada di daftar folder yang kita scan tadi
+            const tanggalKebenaranStr = artikel[3];
             const filePath = fileMap.get(fileName);
-
-            // Kalau file nggak ketemu di folder yang di-scan, lewati diam-diam.
-            // (Nggak usah masukin ke error, karena mungkin file-nya ada di folder lain 
-            // yang emang nggak dipilih user buat di-scan).
-            if (!filePath) continue; 
+            if (!filePath) continue;
 
             try {
                 const htmlContent = await fs.readFile(filePath, 'utf-8');
                 const $ = cheerio.load(htmlContent, { xmlMode: false });
-                const $metaTag = $('meta[property="article:published_time"]');
 
-                if ($metaTag.length > 0) {
-                    const tanggalLama = $metaTag.attr('content');
+                const $pubMeta = $('meta[property="article:published_time"]');
+                const $modMeta = $('meta[property="article:modified_time"]');
 
-                    if (tanggalLama !== tanggalKebenaran) {
-                        $metaTag.attr('content', tanggalKebenaran);
-                        await fs.writeFile(filePath, $.html(), 'utf-8');
-                        sukses++;
+                if ($pubMeta.length > 0) {
+                    const tanggalLama = $pubMeta.attr('content');
+
+                    if (tanggalLama !== tanggalKebenaranStr) {
+                        $pubMeta.attr('content', tanggalKebenaranStr);
+                        suksesPublish++;
                     } else {
                         skip++;
                     }
+
+                    const pubDate = new Date(tanggalKebenaranStr);
+                    if (isNaN(pubDate.getTime())) {
+                        daftarGagal.push(`⚠️ [INVALID DATE] Format ngaco di JSON untuk file: ${filePath}`);
+                        errorCount++;
+                        continue;
+                    }
+
+                    // Rumus Naturalisasi SEO (60% acak, 40% ori)
+                    const isEdited = Math.random() > 0.4;
+                    const newModDate = isEdited ? getRandomDate(pubDate, now) : pubDate;
+                    const newModStr = newModDate.toISOString();
+
+                    if (isEdited) modifDiedit++; else modifOriginal++;
+
+                    if ($modMeta.length > 0) {
+                        $modMeta.attr('content', newModStr);
+                    } else {
+                        $pubMeta.after(`\n    <meta property="article:modified_time" content="${newModStr}">`);
+                    }
+
+                    // Tulis ulang & Paksa OS merubah mtime file fisik
+                    await fs.writeFile(filePath, $.html(), 'utf-8');
+                    await fs.utimes(filePath, newModDate, newModDate);
+
                 } else {
-                    daftarGagal.push(`⚠️ [NO META] Meta tag tidak ditemukan di ${filePath}`);
-                    skip++;
+                    daftarGagal.push(`⚠️ [NO META] Tag publish nihil di ${filePath}`);
                     errorCount++;
                 }
             } catch (fileErr: any) {
@@ -290,67 +360,91 @@ async function jalankanSinkronisasi(targetFolders: string[]) {
             }
         }
 
-        // 4. PENANGANAN LOG GAGAL
         let adaLog = false;
         if (daftarGagal.length > 0) {
             const waktuEksekusi = new Date().toLocaleString('id-ID');
-            const isiLog = `Laporan Reparasi Tanggal Gagal\nWaktu Eksekusi: ${waktuEksekusi}\nFolder di-Scan: [${targetFolders.join(', ')}]\nTotal File Bermasalah: ${daftarGagal.length}\n\nRincian:\n` + daftarGagal.join('\n');
-            
+            const isiLog = `Laporan Kegagalan\nWaktu: ${waktuEksekusi}\n\nRincian:\n` + daftarGagal.join('\n');
             await fs.writeFile(logPath, isiLog, 'utf-8');
             adaLog = true;
         }
 
         return {
-            sukses,
+            sukses: suksesPublish,
             skip,
             errorCount,
             adaLog,
-            message: `Reparasi kelar! Scan pada folder: ${targetFolders.join(', ')}`
+            message: `🧹 Bersih-bersih kelar! Modif Random: ${modifDiedit} | Modif Ori: ${modifOriginal}`
         };
 
     } catch (err: any) {
-        return { error: `Gagal membaca artikel.json: ${err.message}` };
+        return { error: `Gagal memproses sinkronisasi: ${err.message}` };
     }
 }
 
 // ============================================================================
-// 3. ALUR RUNTIME BACKEND SERVER (BUN.SERVE)
+// 3. RUNTIME SERVER (BUN.SERVE)
 // ============================================================================
 Bun.serve({
     port: 5000,
     async fetch(request) {
         const url = new URL(request.url);
 
-        // ROUTE 1: Tampilkan UI Dashboard
+        // UI Dashboard
         if (url.pathname === "/" && request.method === "GET") {
             return new Response(htmlTemplate, {
                 headers: { "Content-Type": "text/html; charset=utf-8" },
             });
         }
 
-        // ROUTE 2: Terima Array Folder & Eksekusi
+        // Endpoint Sinkronisasi Tanggal
         if (url.pathname === "/sync" && request.method === "POST") {
             try {
                 const body = await request.json();
                 const targetFolders = body.targetFolders || [];
-                
                 const hasil = await jalankanSinkronisasi(targetFolders);
                 return Response.json(hasil);
-            } catch (e: any) {
-                return Response.json({ error: "Gagal memproses request dari frontend." });
+            } catch (e) {
+                return Response.json({ error: "Gagal memproses data sinkronisasi." });
             }
         }
 
-        // ROUTE 3: Buka File Log Gagal
+        // ENDPOINT EKSEKUSI GENERATOR-PRO (FITUR BARU)
+        if (url.pathname === "/run-generator" && request.method === "POST") {
+            try {
+                const scriptPath = path.join(ROOT_DIR, "dapur", "generator-pro.ts");
+
+                console.log(`⚡ Menjalankan Mesin Generator Pro: bun ${scriptPath}`);
+
+                // Trigger file eksekusi eksternal pakai Bun Subprocess
+                const proc = Bun.spawn(["bun", scriptPath], {
+                    stdout: "pipe",
+                    stderr: "pipe"
+                });
+
+                // Tunggu sampai script selesai bekerja, lalu tangkap lognya
+                const stdoutText = await new Response(proc.stdout).text();
+                const stderrText = await new Response(proc.stderr).text();
+                await proc.exited;
+
+                const statusSukses = proc.exitCode === 0;
+                return Response.json({
+                    success: statusSukses,
+                    output: statusSukses ? stdoutText : stderrText
+                });
+
+            } catch (err: any) {
+                return Response.json({ success: false, output: `Gagal memanggil subprocess: ${err.message}` });
+            }
+        }
+
+        // Buka Log Gagal
         if (url.pathname === "/log" && request.method === "GET") {
             try {
                 const logPath = path.join(ROOT_DIR, 'laporan-gagal.txt');
                 const logContent = await fs.readFile(logPath, 'utf-8');
-                return new Response(logContent, {
-                    headers: { "Content-Type": "text/plain; charset=utf-8" }
-                });
+                return new Response(logContent, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
             } catch (e) {
-                return new Response("Belum ada file log / Semua file aman sentosa.", { status: 404 });
+                return new Response("Semua aman terkendali.", { status: 404 });
             }
         }
 
@@ -358,6 +452,6 @@ Bun.serve({
     },
 });
 
-console.log("🚀 Dashboard Tanggal Repair Aktif!");
-console.log(`Lokasi Induk: ${ROOT_DIR}`);
-console.log("Akses UI di: http://localhost:5000");
+console.log("🚀 Dashboard Super Otomatis Aktif!");
+console.log(`Lokasi Kerja: ${ROOT_DIR}`);
+console.log("Gas buka: http://localhost:5000");
