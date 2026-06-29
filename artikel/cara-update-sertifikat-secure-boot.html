@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Windows 11">
     <meta property="article:tag" content="Secure Boot">
     <meta property="article:tag" content="Tutorial">
@@ -249,13 +249,13 @@
                 <div id="iposbrowser"></div><h1>Cara Mudah Memperbarui Sertifikat Secure Boot Windows Agar Tidak Mogok</h1>
                 <div class="zdummy">
                     <div class="meta-item">
-                        <span>✍️</span> <strong>Penulis:</strong> Fakhrul Rijal
+                        <span>&#x270d;&#xfe0f;</span> <strong>Penulis:</strong> Fakhrul Rijal
                     </div>
                     <div class="meta-item">
-                        <span>📅</span> <strong>Diterbitkan:</strong> 30 Mei 2026
+                        <span>&#x1f4c5;</span> <strong>Diterbitkan:</strong> 30 Mei 2026
                     </div>
                     <div class="meta-item">
-                        <span>🏷️</span> <strong>Kategori:</strong> Tutorial Sistem &amp; Keamanan
+                        <span>&#x1f3f7;&#xfe0f;</span> <strong>Kategori:</strong> Tutorial Sistem &amp; Keamanan
                     </div>
                 </div>
             </header>
@@ -266,16 +266,16 @@
                 <img src="https://dalam.web.id/img/pbs.twimg.com/96dc054143378532.webp" alt="Ilustrasi layar komputer Windows saat melakukan pembaruan keamanan Secure Boot" class="main-image" fetchpriority="high" decoding="async">
             </div>
                 <p>
-                    Tapi, supaya PC kamu benar-benar aman dari ancaman gagal <em>booting</em> dan aktivitas harian tetap lancar, berikut adalah cara memastikan sekaligus memperbarui sertifikat <em>Secure Boot</em> tersebut—mulai dari yang paling mudah sampai yang butuh sedikit "ngoprek".
+                    Tapi, supaya PC kamu benar-benar aman dari ancaman gagal <em>booting</em> dan aktivitas harian tetap lancar, berikut adalah cara memastikan sekaligus memperbarui sertifikat <em>Secure Boot</em> tersebut&#x2014;mulai dari yang paling mudah sampai yang butuh sedikit &quot;ngoprek&quot;.
                 </p>
                 <h2>1. Jalur Otomatis (Buat Pengguna Umum)</h2>
                 <p>
-                    Untuk mayoritas pengguna, sertifikat baru (versi 2023) ini didistribusikan langsung via <strong>Windows Update</strong>. Yang perlu kamu lakukan cuma "numpang lewat" dan memastikan fitur pembaruannya berjalan normal:
+                    Untuk mayoritas pengguna, sertifikat baru (versi 2023) ini didistribusikan langsung via <strong>Windows Update</strong>. Yang perlu kamu lakukan cuma &quot;numpang lewat&quot; dan memastikan fitur pembaruannya berjalan normal:
                 </p>
                 <ul>
                     <li><strong>Buka Windows Update:</strong> Klik tombol <em>Start</em>, ketik <strong>Settings</strong>, lalu masuk ke menu <strong>Windows Update</strong>.</li>
                     <li><strong>Cek Pembaruan:</strong> Klik tombol <strong>Check for updates</strong>. Pastikan kamu mengunduh semua pembaruan yang tersedia, termasuk <em>cumulative updates</em> atau <em>optional security updates</em>.</li>
-                    <li><strong>Restart PC:</strong> Ingat artikel sebelumnya yang bilang butuh "restart satu kali"? Nah, setelah <em>update</em> selesai diunduh, segera <em>Restart</em> PC kamu agar sistem bisa menuliskan sertifikat baru tersebut ke dalam <em>firmware</em> UEFI/BIOS. Kadang-kadang, komputer butuh lebih dari satu kali <em>restart</em> untuk benar-benar menerapkannya.</li>
+                    <li><strong>Restart PC:</strong> Ingat artikel sebelumnya yang bilang butuh &quot;restart satu kali&quot;? Nah, setelah <em>update</em> selesai diunduh, segera <em>Restart</em> PC kamu agar sistem bisa menuliskan sertifikat baru tersebut ke dalam <em>firmware</em> UEFI/BIOS. Kadang-kadang, komputer butuh lebih dari satu kali <em>restart</em> untuk benar-benar menerapkannya.</li>
                 </ul>
                 <h2>2. Cara Cek Apakah Sertifikat Sudah Sukses Diperbarui</h2>
                 <p>
@@ -287,7 +287,7 @@
                     <li>Lihat di bawah bagian <strong>Secure boot</strong>. Di versi <em>update</em> terbaru, Windows akan menampilkan indikator status sertifikatnya.</li>
                     <li>Jika muncul lencana (ikon) berwarna <strong>Hijau (Green)</strong>, selamat! Komputermu sudah memakai sertifikat baru dan sepenuhnya aman. Namun, jika statusnya Kuning atau Merah, berarti PC kamu masih butuh tindakan ekstra.</li>
                 </ul>
-                <h2>3. "Jurus Pamungkas": Update BIOS/Firmware</h2>
+                <h2>3. &quot;Jurus Pamungkas&quot;: Update BIOS/Firmware</h2>
                 <p>
                     Kalau kamu sudah melakukan <em>Windows Update</em> berkali-kali tapi sertifikatnya masih belum tembus (atau statusnya masih merah/kuning), masalahnya biasanya ada di produsen laptop atau PC kamu.
                 </p>
@@ -303,7 +303,7 @@
                     Seperti yang sempat disinggung pada kabar sebelumnya, kalau kamu adalah seorang admin TI yang mengurus puluhan komputer kantor, mengeklik <em>update</em> satu per satu tentu melelahkan. Sebagai solusinya, kamu bisa mengeksekusi <em>script</em> yang diam-diam telah diselipkan Microsoft di dalam folder <code>SecureBoot</code>.
                 </p>
                 <p>
-                    Lewat <em>Intune</em> atau <em>Group Policy Object (GPO)</em>, kamu bisa menjalankan <em>script PowerShell</em> (contohnya <code>Start-ScheduledTask -TaskName "\Microsoft\Windows\PI\Secure-Boot-Update"</code>) ke banyak komputer sekaligus tanpa harus mendatangi meja karyawan satu per satu.
+                    Lewat <em>Intune</em> atau <em>Group Policy Object (GPO)</em>, kamu bisa menjalankan <em>script PowerShell</em> (contohnya <code>Start-ScheduledTask -TaskName &quot;\Microsoft\Windows\PI\Secure-Boot-Update&quot;</code>) ke banyak komputer sekaligus tanpa harus mendatangi meja karyawan satu per satu.
                 </p>
                 <p>
                     Intinya buat semua pengguna: cukup rajin-rajin tekan tombol <em>Update</em> dan jangan selalu di-<em>delay</em> sampai berminggu-minggu, ya!
@@ -312,20 +312,20 @@
             <section class="faq-section" id="faq-section">
                 <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
                 <div class="faq-item">
-                    <p class="faq-question">❓ Apakah saya perlu me‑restart komputer setelah memperbarui sertifikat?</p>
+                    <p class="faq-question">&#x2753; Apakah saya perlu me&#x2011;restart komputer setelah memperbarui sertifikat?</p>
                     <p class="faq-answer">Ya, setelah pembaruan diterapkan, pengguna mungkin perlu melakukan restart satu kali untuk mengaktifkan sertifikat baru sepenuhnya ke dalam sistem <em>firmware</em>.</p>
                 </div>
                 <div class="faq-item">
-                    <p class="faq-question">❓ Apa folder baru yang ditambahkan Microsoft ke PC Windows?</p>
+                    <p class="faq-question">&#x2753; Apa folder baru yang ditambahkan Microsoft ke PC Windows?</p>
                     <p class="faq-answer">Microsoft telah menambahkan folder baru yang berisi <em>script</em> khusus untuk membantu administrator TI mengelola dan mengotomatiskan pembaruan sertifikat <em>Secure Boot</em> secara terpusat untuk banyak perangkat.</p>
                 </div>
                 <div class="faq-item">
-                    <p class="faq-question">❓ Apa itu Secure Boot dan mengapa itu penting?</p>
+                    <p class="faq-question">&#x2753; Apa itu Secure Boot dan mengapa itu penting?</p>
                     <p class="faq-answer"><em>Secure Boot</em> adalah fitur keamanan yang memastikan hanya perangkat lunak tepercaya yang dimuat saat komputer Anda dinyalakan, melindunginya dari serangan <em>perangkat lunak berbahaya</em> dan <em>rootkit</em> sebelum sistem operasi dimulai.</p>
                 </div>
                 <div class="faq-item">
-                    <p class="faq-question">❓ Apakah ada masalah lain yang disebutkan Microsoft?</p>
-                    <p class="faq-answer">Selain isu sertifikat, Microsoft juga mencatat adanya "masalah <em>patching</em> pada jaringan Windows yang terbatas" dengan prioritas rendah. Namun, isu tersebut terpisah dari peringatan utama tentang kedaluwarsa sertifikat ini.</p>
+                    <p class="faq-question">&#x2753; Apakah ada masalah lain yang disebutkan Microsoft?</p>
+                    <p class="faq-answer">Selain isu sertifikat, Microsoft juga mencatat adanya &quot;masalah <em>patching</em> pada jaringan Windows yang terbatas&quot; dengan prioritas rendah. Namun, isu tersebut terpisah dari peringatan utama tentang kedaluwarsa sertifikat ini.</p>
                 </div>
             </section>
     <div id="related-articles-grid"></div>
@@ -337,10 +337,10 @@
                     <li>Buku Panduan Windows Security &amp; Manajemen GPO.</li>
                     <li>Situs Dukungan Resmi Manufaktur (ASUS, Lenovo, Dell, HP).</li>
                 </ul>
-            <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
         </article>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

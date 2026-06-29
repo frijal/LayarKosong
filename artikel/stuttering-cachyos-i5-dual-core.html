@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="CachyOS">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Optimasi">
@@ -180,38 +180,38 @@
         <header>
             <div id="iposbrowser"></div><h1>Mengatasi Stuttering di CachyOS: Rahasia Multitasking Lancar dengan Intel i5 Dual-Core</h1>
             <div class="meta-box">
-                <span>📅 31 Mei 2026</span> |
-                <span>✍️ Oleh: <a href="https://dalam.web.id/about" rel="author">Fakhrul Rijal</a></span>
+                <span>&#x1f4c5; 31 Mei 2026</span> |
+                <span>&#x270d;&#xfe0f; Oleh: <a href="https://dalam.web.id/about" rel="author">Fakhrul Rijal</a></span>
             </div>
         </header>
         <article>
             <p>Pernahkah kamu merasakan ada <em>stuttering</em> atau <em>delay</em> saat lagi sibuk-sibuknya membuka banyak aplikasi di sistem operasi kesayanganmu? Keluhan <em>stuttering</em> atau <em>delay</em> saat lagi sibuk-sibuknya itu wajar banget terjadi, terutama jika spesifikasi dapur pacu utama laptop atau komputermu memiliki keterbatasan fisik dalam menangani beban kerja komputasi modern yang datang bersamaan.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/90ff88b07d69e484.webp" alt="Optimasi performa multitasking CachyOS di prosesor Intel i5" class="article-image" fetchpriority="high" decoding="async">
-            <p>Meski RAM 16GB itu terbilang lega, kita harus ingat kalau "otak" utamanya adalah sebuah prosesor intel i5-7200U yang memiliki komposisi, 2 <em>core</em> dan 4 <em>thread</em>. Prosesor ini memang dikenal sangat efisien untuk konsumsi daya, tapi kalau dipaksa bekerja terlalu keras tanpa henti, dia bisa kewalahan membagi fokus perhatiannya pada setiap instruksi data.</p>
-            <p>Apalagi kalau skenario <em>multitasking*-mu sedang ekstrem—misalnya lagi asyik mengeksekusi berbagai macam *script</em> menggunakan <em>runtime</em> super cepat seperti <a href="https://bun.sh" target="_blank" rel="noopener">Bun</a>, sambil melakukan <em>batch processing</em> gambar atau video pakai ImageMagick dan ffmpeg di latar belakang, lalu ditambah lagi puluhan tab <em>browser</em> yang terbuka secara simultan. Dalam kondisi yang sangat padat seperti itu, prosesor akan kebingungan: <em>"Duh, yang mana dulu nih yang harus dikasih tenaga ekstra? Script yang lagi jalan, atau browser yang lagi diklik?"</em></p>
+            <p>Meski RAM 16GB itu terbilang lega, kita harus ingat kalau &quot;otak&quot; utamanya adalah sebuah prosesor intel i5-7200U yang memiliki komposisi, 2 <em>core</em> dan 4 <em>thread</em>. Prosesor ini memang dikenal sangat efisien untuk konsumsi daya, tapi kalau dipaksa bekerja terlalu keras tanpa henti, dia bisa kewalahan membagi fokus perhatiannya pada setiap instruksi data.</p>
+            <p>Apalagi kalau skenario <em>multitasking*-mu sedang ekstrem&#x2014;misalnya lagi asyik mengeksekusi berbagai macam *script</em> menggunakan <em>runtime</em> super cepat seperti <a href="https://bun.sh" target="_blank" rel="noopener">Bun</a>, sambil melakukan <em>batch processing</em> gambar atau video pakai ImageMagick dan ffmpeg di latar belakang, lalu ditambah lagi puluhan tab <em>browser</em> yang terbuka secara simultan. Dalam kondisi yang sangat padat seperti itu, prosesor akan kebingungan: <em>&quot;Duh, yang mana dulu nih yang harus dikasih tenaga ekstra? Script yang lagi jalan, atau browser yang lagi diklik?&quot;</em></p>
             <p>Akibat kebingungan membagi <em>resource</em> (terutama karena GPU juga ikut-ikutan minta jatah RAM atau VRAM shared untuk menampilkan visual antarmuka layar secara instan), sistem akan mengalami <em>micro-stutter</em> atau <em>lag</em> parah saat kamu mencoba pindah antar jendela aplikasi.</p>
-            <p>Nah, di sinilah solusi optimasi kernel di <a href="https://cachyos.org" target="_blank" rel="noopener">CachyOS</a> mengambil peran penting. Dengan menginstal <code>plasma-foreground-booster</code>, <code>dmemcg-booster</code>, dan <code>kcgroups</code>, kamu ibarat menyewa mandor yang galak untuk si prosesor. Sekarang, kalau kamu lagi memproses <em>file</em> media massal di terminal, tapi kamu sedang fokus membaca referensi di <em>browser*, si mandor akan memastikan *browser*-mu tetap mulus dan lancar, sementara proses berat di latar belakang disuruh sedikit "minggir" antreannya. Ini membuktikan kalau keputusanmu untuk menginstal paket *booster</em> tadi sudah sangat tepat.</p>
+            <p>Nah, di sinilah solusi optimasi kernel di <a href="https://cachyos.org" target="_blank" rel="noopener">CachyOS</a> mengambil peran penting. Dengan menginstal <code>plasma-foreground-booster</code>, <code>dmemcg-booster</code>, dan <code>kcgroups</code>, kamu ibarat menyewa mandor yang galak untuk si prosesor. Sekarang, kalau kamu lagi memproses <em>file</em> media massal di terminal, tapi kamu sedang fokus membaca referensi di <em>browser*, si mandor akan memastikan *browser*-mu tetap mulus dan lancar, sementara proses berat di latar belakang disuruh sedikit &quot;minggir&quot; antreannya. Ini membuktikan kalau keputusanmu untuk menginstal paket *booster</em> tadi sudah sangat tepat.</p>
             <h2><strong>Tips Tambahan (Biar Makin Ngebut):</strong></h2>
             <p>Karena kamu pakai CachyOS, biasanya sistem secara otomatis menggunakan <strong>zRAM</strong> (kompresi RAM) alih-alih <em>swap partition</em> biasa di <em>hardisk/SSD</em>. Coba pastikan saja zRAM-nya aktif di dalam konfigurasi tokomu. <strong>zRAM</strong> ini adalah pahlawan tanpa tanda jasa buat pengguna memori <em>shared</em>; saat RAM 16GB-mu mulai penuh karena berbagi dengan VRAM dan aplikasi berat, <strong>zRAM</strong> akan memampatkan data-data yang jarang dipakai secara langsung di dalam RAM (bukan dibuang ke SSD yang lebih lambat), sehingga sistem tidak gampang <em>freeze</em>.</p>
-            <p>Jadi, nikmati saja "vitamin" baru dari CachyOS ini! Harusnya setelah ini, pengalaman pindah-pindah aplikasi saat lagi <em>hectic</em> bakal terasa jauh lebih mulus dan responsif sepanjang hari.</p>
+            <p>Jadi, nikmati saja &quot;vitamin&quot; baru dari CachyOS ini! Harusnya setelah ini, pengalaman pindah-pindah aplikasi saat lagi <em>hectic</em> bakal terasa jauh lebih mulus dan responsif sepanjang hari.</p>
         </article>
         <div class="author-card">
             <h3>Editor</h3>
             <p><strong>Fakhrul Rijal</strong> adalah seorang antusias open-source dan pengembang sistem yang aktif membagikan catatan teknologi di blog pribadinya, <em>Layar Kosong</em>. Berbasis di Balikpapan, ia fokus pada optimasi performa sistem operasi berbasis Linux dan arsitektur runtime modern.</p>
             <div class="author-links">
-                <a href="https://dalam.web.id" target="_blank">🌐 Blog Layar Kosong</a>
-                <a href="https://github.com/frijal" target="_blank">🐙 GitHub</a>
-                <a href="https://x.com/responaja" target="_blank">🐦 Twitter</a>
-                <a href="https://t.me/frijal" target="_blank">💬 Telegram</a>
-                <a href="https://linkedin.com/in/frijal" target="_blank">💼 LinkedIn</a>
+                <a href="https://dalam.web.id" target="_blank">&#x1f310; Blog Layar Kosong</a>
+                <a href="https://github.com/frijal" target="_blank">&#x1f419; GitHub</a>
+                <a href="https://x.com/responaja" target="_blank">&#x1f426; Twitter</a>
+                <a href="https://t.me/frijal" target="_blank">&#x1f4ac; Telegram</a>
+                <a href="https://linkedin.com/in/frijal" target="_blank">&#x1f4bc; LinkedIn</a>
             </div>
         </div>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>🄯 2026 Layar Kosong. Dibuat dengan performa tinggi tanpa framework.</p>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; 2026 Layar Kosong. Dibuat dengan performa tinggi tanpa framework.</p>
+        <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
-<script>hljs.highlightAll();</script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script>
+<script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Distro Linux">
     <meta property="article:tag" content="MX Linux Update">
     <meta property="article:tag" content="Open Source">
@@ -228,32 +228,32 @@
 <body>
 <div class="container">
     <header>
-        <div id="iposbrowser"></div><h1><i class="fa-brands fa-linux"></i> MX Linux 25.2 "Infinity" Kini Tersedia! Peningkatan Performa dan Installer Canggih</h1>
+        <div id="iposbrowser"></div><h1><i class="fa-brands fa-linux"></i> MX Linux 25.2 &quot;Infinity&quot; Kini Tersedia! Peningkatan Performa dan Installer Canggih</h1>
     </header>
     <img src="https://dalam.web.id/img/img.youtube.com/2519d787d30bcbef.webp" alt="Ilustrasi peluncuran MX Linux 25.2 Infinity desktop environment" class="featured" width="1000" height="562" fetchpriority="high" loading="eager">
     <article>
-        <p>Sambil ngopi santai hari ini, aku membawa kabar gembira yang sudah ditunggu-tunggu oleh komunitas pengguna Linux sedunia. Yup, pada tanggal <strong>25 Mei 2026</strong> kemarin, <a target="_blank" href="https://mxlinux.org/author/dolphin_oracle/">dolphin_oracle</a> mewakili Tim Pengembang MX akhirnya resmi mengumumkan peluncuran <strong>MX-25.2 "Infinity"</strong>.</p>
+        <p>Sambil ngopi santai hari ini, aku membawa kabar gembira yang sudah ditunggu-tunggu oleh komunitas pengguna Linux sedunia. Yup, pada tanggal <strong>25 Mei 2026</strong> kemarin, <a target="_blank" href="https://mxlinux.org/author/dolphin_oracle/">dolphin_oracle</a> mewakili Tim Pengembang MX akhirnya resmi mengumumkan peluncuran <strong>MX-25.2 &quot;Infinity&quot;</strong>.</p>
         <p>Bagi kamu yang selalu mencari distro Linux yang ringan, stabil, namun kaya fitur secara <em>out-of-the-box</em>, rilis kali ini membawa perombakan yang cukup krusial dan menarik untuk diulas tuntas. Mari kita bedah bareng menggunakan konsep 5W+1H biar kamu tidak ketinggalan informasi teknisnya!</p>
         <h2><i class="fa-solid fa-bolt"></i> Apa Saja Pembaruan Utamanya? (What)</h2>
         <p>MX-25.2 kini tersedia untuk langsung diunduh dan dipasang. Pembaruan terbesar di seri ini terletak pada jantung sistemnya. Semua rilis kini dilengkapi <strong>kernel Debian 6.12.90</strong> terbaru, kecuali untuk edisi Xfce-ahs (Advanced Hardware Support) yang menggunakan <strong>kernel liquorix 7.0.9</strong> demi memaksimalkan kinerja perangkat keras modern.</p>
-        <p>Selain itu, rilis dengan dukungan AHS kini menyertakan <strong>mesa 26.0.1</strong>. Rilis baru ini sudah mencakup semua pembaruan Debian hingga versi Debian 13.5, serta mencakup seluruh pembaruan dari repositori MX sendiri, termasuk menambal semua "bug meme" terbaru yang sempat ramai di kernel linux belakangan ini.</p>
+        <p>Selain itu, rilis dengan dukungan AHS kini menyertakan <strong>mesa 26.0.1</strong>. Rilis baru ini sudah mencakup semua pembaruan Debian hingga versi Debian 13.5, serta mencakup seluruh pembaruan dari repositori MX sendiri, termasuk menambal semua &quot;bug meme&quot; terbaru yang sempat ramai di kernel linux belakangan ini.</p>
         <h2><i class="fa-solid fa-users-gear"></i> Siapa Saja yang Harus Memperbarui? (Who &amp; When)</h2>
         <p>Rilis ini ditargetkan untuk pengguna baru yang ingin merasakan lingkungan komputasi yang efisien maupun pengguna lawas yang butuh kestabilan ekstra. <strong>Kabar baiknya:</strong> Pengguna MX Linux yang sudah ada saat ini <strong>tidak perlu menginstal ulang</strong>! Semua pembaruan yang dibahas dalam rilis ini otomatis datang melalui saluran pembaruan reguler kamu.</p>
         <h2><i class="fa-solid fa-microchip"></i> Mengapa Pembaruan Komponen Ini Penting? (Why)</h2>
-        <p>Terdapat dua sektor khusus yang mendapat "kasih akung" berlebih dari developer pada rilis kali ini, yaitu alat <em>live system</em> dan <em>installer</em>-nya. Hal ini penting untuk memastikan pengalaman pengguna dari sejak menancapkan <em>flashdisk</em> hingga instalasi berhasil terasa mulus tanpa hambatan.</p>
+        <p>Terdapat dua sektor khusus yang mendapat &quot;kasih akung&quot; berlebih dari developer pada rilis kali ini, yaitu alat <em>live system</em> dan <em>installer</em>-nya. Hal ini penting untuk memastikan pengalaman pengguna dari sejak menancapkan <em>flashdisk</em> hingga instalasi berhasil terasa mulus tanpa hambatan.</p>
         <h3>1. Pembaruan Sistem Live antiX:</h3>
         <ul>
             <li>Beberapa tindakan pengaturan awal saat melakukan <em>boot live</em> telah dipindahkan secara rapi dari <code>rc.local</code>.</li>
             <li>Peningkatan keren pada aplikasi <strong>live-kernel-updater</strong>. Sekarang aplikasi ini mendukung pemasangan beberapa kernel sekaligus. Kernel yang ingin kamu gunakan bisa langsung dipilih di menu boot grub (menu ini digunakan secara <em>default</em> pada boot UEFI dan dapat dipilih bebas pada boot legacy/bios).</li>
             <li>Berkat perubahan cermat pada paket <em>init-diversity-tools</em> versi MX, fitur <strong>penyimpanan persistence semi-otomatis kembali hadir di boot live sysVinit</strong>. Bagi yang menggunakan boot live systemd, sistem akan tetap menggunakan otomatis jika mode semi-otomatis diaktifkan.</li>
-            <li>MX Snapshot dan <em>live-kernel-updater</em> kini akan menyediakan sistem <em>live</em> "berkemampuan microcode", asalkan paket <code>uc-tool-mx</code> terpasang. <em>(Catatan: Paket opsional uc-tool-mx baru yang digunakan oleh live-kernel-updater ini tersedia dan siap dipasang di repositori standar)</em>.</li>
+            <li>MX Snapshot dan <em>live-kernel-updater</em> kini akan menyediakan sistem <em>live</em> &quot;berkemampuan microcode&quot;, asalkan paket <code>uc-tool-mx</code> terpasang. <em>(Catatan: Paket opsional uc-tool-mx baru yang digunakan oleh live-kernel-updater ini tersedia dan siap dipasang di repositori standar)</em>.</li>
         </ul>
         <h3>2. Pembaruan MX Installer (gazelle-installer):</h3>
         <ul>
             <li>Terdapat banyak perbaikan <em>bug</em>, terutama untuk menangani beberapa pengaturan pengguna pada kasus atau perangkat keras khusus.</li>
             <li>Pembaruan terjemahan agar antarmukanya lebih bersahabat untuk pengguna global.</li>
             <li>Menggunakan unit <em>systemd</em> asli untuk mode oobe/oem (yang biasa digunakan secara intensif pada varian <em>spin</em> Raspberry Pi).</li>
-            <li><strong>Fitur Juara: Mode Berbasis Teks Baru!</strong> Saat menjalankan <em>minstall-launcher</em> di konsol berbasis teks, sebuah "tui" (<em>Text-User Interface</em>) berbasis teks kini tersedia. Ini memungkinkan kamu menikmati fitur <em>installer</em> penuh di lingkungan non-grafis. Kamu bahkan bisa memanggilnya di emulator terminal dengan perintah <code>sudo minstall --tui</code>. Semua fitur yang biasanya cuma ada di <em>installer</em> grafis kini utuh tersedia dalam mode teks saja. Sangat memudahkan teknisi server!</li>
+            <li><strong>Fitur Juara: Mode Berbasis Teks Baru!</strong> Saat menjalankan <em>minstall-launcher</em> di konsol berbasis teks, sebuah &quot;tui&quot; (<em>Text-User Interface</em>) berbasis teks kini tersedia. Ini memungkinkan kamu menikmati fitur <em>installer</em> penuh di lingkungan non-grafis. Kamu bahkan bisa memanggilnya di emulator terminal dengan perintah <code>sudo minstall --tui</code>. Semua fitur yang biasanya cuma ada di <em>installer</em> grafis kini utuh tersedia dalam mode teks saja. Sangat memudahkan teknisi server!</li>
         </ul>
         <p>Selain perubahan teknis di atas, ada juga puluhan pembaruan <em>mx-tool</em>, penyegaran pada paket <em>mx-ease-themes</em>, dan bahkan penambahan beberapa <em>wallpaper</em> baru untuk mencuci mata.</p>
         <h2><i class="fa-solid fa-cloud-arrow-down"></i> Di Mana Bisa Mengunduh File ISO-nya? (Where)</h2>
@@ -283,14 +283,14 @@
             <li>Jika memposting masalah <em>nvidia-installer</em> (ddm-mx), harap sertakan isi <code>/var/log/ddm.log</code>.</li>
             <li>Jika memposting masalah <em>remaster</em>, harap sertakan isi <code>/var/log/live/live-remaster.log</code>.</li>
             <li>Jika memposting masalah pada program instalasi, harap sertakan isi <code>/var/log/minstall.log</code>.</li>
-            <li>Jika memposting masalah yang berkaitan dengan MX-Package Installer bagian "Aplikasi Populer", harap sertakan isi <code>/var/log/mxpi.log</code> atau <code>/var/log/mxpi.log.old</code> (pilih mana saja yang sekiranya berisi log kemunculan masalah kamu).</li>
+            <li>Jika memposting masalah yang berkaitan dengan MX-Package Installer bagian &quot;Aplikasi Populer&quot;, harap sertakan isi <code>/var/log/mxpi.log</code> atau <code>/var/log/mxpi.log.old</code> (pilih mana saja yang sekiranya berisi log kemunculan masalah kamu).</li>
         </ul>
         <p>Terima kasih sudah membaca, dan mewakili pesan Dolphin Oracle dari Tim Pengembang MX: Selamat menikmati pengalaman komputasi Infinity yang sesungguhnya!</p>
     </article>
     <div id="related-articles-grid"></div>
     <div id="response"></div>
     <footer>
-        <p>Diketik dengan santai dari Indonesia. 🄯 2026 <strong>Layar Kosong</strong>.</p>
+        <p>Diketik dengan santai dari Indonesia. &#x1f12f; 2026 <strong>Layar Kosong</strong>.</p>
         <div class="social-links">
             <a href="https://dalam.web.id" title="Blog Layar Kosong" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a>
             <a href="https://github.com/frijal" title="GitHub Frijal" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
@@ -299,9 +299,9 @@
             <a href="https://www.linkedin.com/in/frijal" title="LinkedIn Frijal" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
             <a href="https://www.youtube.com/@frijal" title="YouTube Bendera Putih" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
                    </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

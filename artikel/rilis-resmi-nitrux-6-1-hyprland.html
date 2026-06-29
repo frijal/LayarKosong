@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Open Source">
     <meta property="article:tag" content="Nitrux">
@@ -66,7 +66,7 @@
     <!-- Open Graph & Twitter Card Lengkap -->
     <!-- Optimasi Core Web Vitals: Preload Gambar LCP -->
     <!-- FontAwesome Icons (Asynchronous) -->
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
     <style>
         /* CSS Native dengan Dukungan Light/Dark Mode via prefers-color-scheme */
         :root {
@@ -271,7 +271,7 @@
                 </div>
             </header>
             <p><strong>Apa</strong> yang baru di ranah distribusi Linux independen bulan ini? Tim pengembang Nitrux secara resmi telah merilis <strong>Nitrux 6.1</strong>. Sebagai sistem operasi <em>immutable</em> yang konsisten berjalan tanpa <code>systemd</code> dan dibangun di atas fondasi Debian, Nitrux terus mengukuhkan posisinya dengan pendekatan deployment perangkat lunak berbasis AppImage. <strong>Kapan</strong> dan <strong>mengapa</strong> rilis ini penting? Karena pada pembaruan ini, Nitrux memantapkan penggunaan <strong>Hyprland</strong> sebagai <em>compositor</em> Wayland utamanya, sembari menyuntikkan berbagai peningkatan performa dari <em>kernel</em> racikan khusus.</p>
-            <p>Bagi mereka yang menginginkan OS Linux dengan stabilitas <em>immutable</em> namun dengan kustomisasi desktop yang modern, rilis 6.1 ini membawa sejumlah perombakan krusial—mulai dari dapur pacu hingga ekosistem aplikasinya. Mari kita bedah lebih dalam <strong>bagaimana</strong> fitur-fitur baru ini bekerja.</p>
+            <p>Bagi mereka yang menginginkan OS Linux dengan stabilitas <em>immutable</em> namun dengan kustomisasi desktop yang modern, rilis 6.1 ini membawa sejumlah perombakan krusial&#x2014;mulai dari dapur pacu hingga ekosistem aplikasinya. Mari kita bedah lebih dalam <strong>bagaimana</strong> fitur-fitur baru ini bekerja.</p>
             <!-- LCP Image, ukuran proporsional di tengah, tanpa memonopoli 'above the fold' -->
             <div class="img-container">
                 <img src="https://dalam.web.id/img/nxos.org/32c7909269da9d45.webp" alt="Tampilan antarmuka desktop Nitrux 6.1 menggunakan Hyprland" fetchpriority="high" decoding="async">
@@ -299,7 +299,7 @@
             </ul>
             <p>Aplikasi lain seperti Index, Nota, Pix, Shelf, Station, dan VVave juga menerima ragam optimasi <em>workflow</em> dan perbaikan <em>bug</em> minor. Nitrux mengedepankan keamanan berbasis kriptografi dan manajemen konfigurasi yang terstruktur.</p>
             <h2><i class="fa-solid fa-gears" style="margin-right: 0.5rem;"></i> Modernisasi Konfigurasi Desktop</h2>
-            <p>Nitrux 6.1 melakukan perombakan metodologi pada tata letak kustomisasinya. Konfigurasi Hyprland kini dikelola langsung menggunakan skrip <strong>Lua</strong>, memberikan fleksibilitas logika yang lebih tinggi bagi <em>power-users</em>. Selain itu, <em>launcher</em> aplikasi Wofi kini telah digantikan oleh <strong>Vicinae</strong>—sebuah <em>launcher</em> baru yang secara visual terinspirasi oleh fleksibilitas aplikasi Raycast.</p>
+            <p>Nitrux 6.1 melakukan perombakan metodologi pada tata letak kustomisasinya. Konfigurasi Hyprland kini dikelola langsung menggunakan skrip <strong>Lua</strong>, memberikan fleksibilitas logika yang lebih tinggi bagi <em>power-users</em>. Selain itu, <em>launcher</em> aplikasi Wofi kini telah digantikan oleh <strong>Vicinae</strong>&#x2014;sebuah <em>launcher</em> baru yang secara visual terinspirasi oleh fleksibilitas aplikasi Raycast.</p>
             <p>Pembaruan lingkungan desktop lainnya mencakup penyetelan latensi PipeWire terbaru, tata letak Waybar yang disegarkan, skrip konfigurasi MauiKit yang direvisi, serta manajemen Bluetooth berbasis WirePlumber yang lebih mulus.</p>
             <h2><i class="fa-solid fa-shield-halved" style="margin-right: 0.5rem;"></i> Fokus Keamanan: CVE &amp; Integrasi YubiKey</h2>
             <p>Keamanan tetap menjadi prioritas absolut pada rilis kali ini. Nitrux 6.1 langsung menambal serangkaian kerentanan <em>zero-day</em> dan celah keamanan yang baru-baru ini diungkap ke publik, termasuk <code class="inline-code">CVE-2026-31431</code> (Copy Fail), <code class="inline-code">CVE-2026-43284</code> (Dirty Frag), <code class="inline-code">CVE-2026-43500</code> (Fragnesia), dan <code class="inline-code">CVE-2026-46333</code> (ssh-keysign-pwn).</p>
@@ -307,9 +307,9 @@
             <h2><i class="fa-solid fa-toolbox" style="margin-right: 0.5rem;"></i> Utilitas Baru &amp; Opsi Ketersediaan ISO</h2>
             <p>Untuk melengkapi sistemnya, pengembang Nitrux memasukkan beberapa <em>tool</em> krusial:</p>
             <ul>
-                <li><code class="inline-code">dmemcg-booster</code> — versi modifikasi dari <em>daemon</em> Valve yang diadaptasikan khusus untuk sistem OpenRC.</li>
+                <li><code class="inline-code">dmemcg-booster</code> &#x2014; versi modifikasi dari <em>daemon</em> Valve yang diadaptasikan khusus untuk sistem OpenRC.</li>
                 <li><em>Loader</em> HID-BPF yang secara otomatis dipicu lewat <em>event</em> dari <code>udev</code>.</li>
-                <li><strong>Fatresize</strong> — utilitas cerdas untuk mengubah ukuran partisi FAT16/FAT32 dengan aman.</li>
+                <li><strong>Fatresize</strong> &#x2014; utilitas cerdas untuk mengubah ukuran partisi FAT16/FAT32 dengan aman.</li>
                 <li><strong>RealtimeKit</strong> untuk manajemen latensi.</li>
                 <li>Paket font <strong>Meslo Nerd Font</strong> yang sudah dioptimasi untuk pengguna Powerlevel10k.</li>
             </ul>
@@ -323,10 +323,10 @@
         <div id="response"></div>
     </main>
     <footer>
-        <p>🄯 2026 Layar Kosong. Disusun dengan HTML/CSS murni berfokus pada kecepatan <em>Core Web Vitals</em>.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p>&#x1f12f; 2026 Layar Kosong. Disusun dengan HTML/CSS murni berfokus pada kecepatan <em>Core Web Vitals</em>.</p>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

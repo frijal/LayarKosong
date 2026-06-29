@@ -53,11 +53,11 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux, CachyOS, Optimasi Sistem, Hardware">
     <meta property="article:published_time" content="2026-05-31T04:52:35.638Z">
     <meta property="article:modified_time" content="2026-06-12T05:21:44.288Z">
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
     <style>
         :root {
             --bg-color: #fbfbfb;
@@ -197,10 +197,10 @@
 <body>
     <main role="main">
         <article>
-            <div id="iposbrowser"></div><h1>Kupas Tuntas Fitur Eksperimental CachyOS: Rahasia Desktop Mulus Lancar 🚀</h1>
+            <div id="iposbrowser"></div><h1>Kupas Tuntas Fitur Eksperimental CachyOS: Rahasia Desktop Mulus Lancar &#x1f680;</h1>
             <p class="intro">Bagi kamu yang sering mengintip proses pembaruan paket di terminal Linux, mungkin pernah melihat sekumpulan paket berukuran sangat kecil dengan embel-embel <em>experimental</em>. Wah, menarik nih! Itu adalah jajaran paket optimasi memori dan performa khas dari distribusi yang berfokus pada kecepatan.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/458c92069ecb9fb2.webp" alt="Ilustrasi manajemen memori dinamis dan prioritas antarmuka pada sistem operasi Linux modern" fetchpriority="high" decoding="async">
-            <p>Ketiga paket yang mungkin muncul di <em>log</em> pacman kamu sebenarnya punya benang merah yang sangat kuat dengan manajemen memori, masalah <em>stuttering*, dan kejadian *lag</em> di sistem operasi. Biar tidak sekadar asal tekan "Y" saat instalasi, mari kita bedah "sihir" apa yang mau dipasang di sistemmu berdasarkan temuan <em>log</em> terminal ini:</p>
+            <p>Ketiga paket yang mungkin muncul di <em>log</em> pacman kamu sebenarnya punya benang merah yang sangat kuat dengan manajemen memori, masalah <em>stuttering*, dan kejadian *lag</em> di sistem operasi. Biar tidak sekadar asal tekan &quot;Y&quot; saat instalasi, mari kita bedah &quot;sihir&quot; apa yang mau dipasang di sistemmu berdasarkan temuan <em>log</em> terminal ini:</p>
 <pre class="terminal"><span class="terminal-header">Package (3)                        New Version                Net Change  Download Size</span>
 cachyos/kcgroups                   0.0.dmemcg.experimental-3    0,32 MiB       0,10 MiB
 cachyos/dmemcg-booster             0.1.2-1                      0,45 MiB       0,20 MiB
@@ -208,16 +208,16 @@ cachyos/plasma-foreground-booster  0.0.dmemcg.experimental-3    0,04 MiB       0
 Total Download Size:   0,32 MiB
 Total Installed Size:  0,82 MiB
 :: Proceed with installation? [Y/n]</pre>
-            <h2>1. Memahami <code>kcgroups</code> (Kernel Control Groups) 🧩</h2>
+            <h2>1. Memahami <code>kcgroups</code> (Kernel Control Groups) &#x1f9e9;</h2>
             <p><em>Cgroups</em> adalah fitur paling inti dari kernel Linux yang tugasnya membatasi, mengisolasi, dan mengatur jatah sumber daya (seperti siklus CPU, ruang Memori, dan I/O jaringan) untuk sekumpulan proses. Tanpa <em>cgroups*, sebuah aplikasi yang *error</em> bisa memonopoli seluruh tenaga prosesor dan membuat komputermu <em>hang</em> total.</p>
             <p>Paket <strong>kcgroups</strong> ini adalah racikan konfigurasi khusus (sering kali ditambal langsung ke kernel CachyOS) untuk mengoptimalkan cara sistem mengatur grup-grup proses tersebut agar jauh lebih efisien, terutama saat berada di bawah beban kerja yang berat.</p>
-            <h2>2. Peran Vital <code>dmemcg-booster</code> 🛡️</h2>
+            <h2>2. Peran Vital <code>dmemcg-booster</code> &#x1f6e1;&#xfe0f;</h2>
             <p>Kepanjangan dari <em>Dynamic Memory Control Group Booster*, ini adalah sebuah *service</em> cerdas yang berjalan tanpa suara di latar belakang.</p>
             <p>Fungsi utamanya adalah mengatur batas memori secara dinamis. Jika RAM sistem mulai sesak (misalnya karena tumpahan data dari VRAM yang penuh saat bermain game atau merender video), <em>booster</em> ini akan merespons jauh lebih cepat dan lebih akurat daripada algoritma bawaan kernel Linux standar. Hasilnya? Ia sukses mencegah Linux mengalami kejadian <em>freeze</em> atau <em>hang</em> mendadak yang memaksamu melakukan <em>hard reset</em>.</p>
-            <h2>3. <code>plasma-foreground-booster</code>: Sang Bintang Utama 🌟</h2>
+            <h2>3. <code>plasma-foreground-booster</code>: Sang Bintang Utama &#x1f31f;</h2>
             <p>Nah, dari ketiga jajaran tersebut, inilah bintang utamanya untuk pengguna harian. Kalau kamu kebetulan menggunakan <em>desktop environment</em> KDE Plasma, paket ini akan berinteraksi langsung dengan antarmuka grafismu.</p>
-            <p>Ia akan secara konstan memantau jendela atau aplikasi apa yang sedang aktif kamu klik atau lihat di layar (<em>foreground</em>). Begitu terdeteksi, aplikasi tersebut langsung diberikan <strong>prioritas tertinggi</strong> untuk akses CPU dan memori. Sementara itu, aplikasi-aplikasi lain yang cuma berjalan nongkrong di latar belakang (<em>background</em>) akan dipaksa "ngalah" dan prioritas permintaannya diturunkan.</p>
-            <h2>Apa Efek Nyatanya Buat Penggunaan Sehari-hari? 💡</h2>
+            <p>Ia akan secara konstan memantau jendela atau aplikasi apa yang sedang aktif kamu klik atau lihat di layar (<em>foreground</em>). Begitu terdeteksi, aplikasi tersebut langsung diberikan <strong>prioritas tertinggi</strong> untuk akses CPU dan memori. Sementara itu, aplikasi-aplikasi lain yang cuma berjalan nongkrong di latar belakang (<em>background</em>) akan dipaksa &quot;ngalah&quot; dan prioritas permintaannya diturunkan.</p>
+            <h2>Apa Efek Nyatanya Buat Penggunaan Sehari-hari? &#x1f4a1;</h2>
             <p>Bayangkan kamu lagi asyik main <em>game</em> berat atau membuka ratusan tab <em>browser</em> untuk riset sampai memori PC menjerit minta ampun. Di instalasi Linux biasa tanpa konfigurasi ini, semua aplikasi akan saling berebut <em>resource</em> secara tidak terkendali. Ujung-ujungnya, <em>mouse</em> akan terasa patah-patah dan perpindahan antar jendela jadi <em>lag</em> parah.</p>
             <p>Dengan menginstal ketiga paket ini, sistem operasi akan bertindak seperti polisi lalu lintas jalur VIP. Aplikasi yang sedang kamu mainkan atau tonton di depan mata akan dikawal ketat agar tetap mendapat jatah RAM dan CPU maksimal. Praktik ini memastikan pengalaman <em>multitasking</em> terasa jauh lebih <em>snappy</em> (responsif) dan minim <em>stuttering</em>, terlepas dari seberapa berat beban sistem di balik layar.</p>
             <p>Kesimpulannya sangat jelas: Jika kamu melihat <em>prompt</em> pembaruan ini, tekan <strong>Y</strong> dan gas <em>enter*! Total unduhannya bahkan tidak sampai 1 MB, tapi ini adalah salah satu *tweak</em> level kernel terkeren yang bikin performa produktivitas dan hiburan terasa jauh lebih mulus.</p>
@@ -233,9 +233,9 @@ Total Installed Size:  0,82 MiB
         </article>
     </main>
     <footer>
-        <p>🄯 2026 Layar Kosong. Dilisensikan di bawah The Unlicense.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+        <p>&#x1f12f; 2026 Layar Kosong. Dilisensikan di bawah The Unlicense.</p>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

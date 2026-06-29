@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Sistem Operasi">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Open Source">
@@ -251,8 +251,8 @@
     <main>
         <article>
             <p>Sehari setelah peluncuran gemilang kernel Linux 7.1 versi hulu (<em>upstream</em>), komunitas pendukung kebebasan perangkat lunak kembali disuguhkan sebuah pembaruan penting. Yayasan Perangkat Lunak Bebas Amerika Latin (FSFLA) secara resmi telah meluncurkan <strong>GNU Linux-libre 7.1</strong>.</p>
-            <p>Bagi kamu yang belum familier, GNU Linux-libre adalah versi kernel Linux murni yang secara agresif melakukan <em>de-blobbing</em>. Ini adalah proses "pembersihan" secara menyeluruh untuk membuang segala jenis <em>microcode</em> atau <em>firmware</em> biner yang bersifat tertutup (non-bebas) dari berbagai <em>driver</em>. Tujuannya hanya satu: memastikan bahwa inti sistem operasi yang kamu jalankan 100% menghormati kebebasan pengguna.</p>
-            <h2>🧹 Bersih-Bersih Ekstensif di Versi 7.1</h2>
+            <p>Bagi kamu yang belum familier, GNU Linux-libre adalah versi kernel Linux murni yang secara agresif melakukan <em>de-blobbing</em>. Ini adalah proses &quot;pembersihan&quot; secara menyeluruh untuk membuang segala jenis <em>microcode</em> atau <em>firmware</em> biner yang bersifat tertutup (non-bebas) dari berbagai <em>driver</em>. Tujuannya hanya satu: memastikan bahwa inti sistem operasi yang kamu jalankan 100% menghormati kebebasan pengguna.</p>
+            <h2>&#x1f9f9; Bersih-Bersih Ekstensif di Versi 7.1</h2>
             <p>Pada rilis 7.1 ini, tim pengembang masih berhadapan dengan masalah klasik yang terus berulang: ketergantungan yang makin parah pada <em>firmware</em> biner di berbagai perangkat keras modern, khususnya untuk kartu grafis (GPU) dan jaringan WiFi. Berikut adalah ringkasan perubahan teknis yang berhasil dirapikan di GNU Linux-libre 7.1:</p>
             <ul>
                 <li><strong>Perbaikan Kompilasi Rust:</strong> Akhirnya, masalah kompilasi dengan dukungan bahasa pemrograman Rust telah diperbaiki (berkat kontribusi dari Luke Yasuda dan Megver83). Perbaikan krusial ini bahkan langsung di-<em>backport</em> ke rilis stabil <code>7.0.*-gnu</code>.</li>
@@ -261,16 +261,16 @@
                 <li><strong>Pembersihan Ekstrem di Qualcomm:</strong> Tim juga harus menyapu bersih ribuan nama <em>blob</em> (berkas biner) baru yang menyusup ke dalam berkas <em>devicetree</em> untuk perangkat SoC Qualcomm. Selain itu, pembersihan pada <code>rtw89</code> juga disesuaikan untuk mengimbangi <em>refactoring</em> dari pihak hulu.</li>
                 <li><strong>Pemangkasan Driver Kuno:</strong> Sesuai dengan kebijakan kernel utama, GNU Linux-libre 7.1 resmi membuang modul pembersihan untuk berbagai <em>driver</em> yang sudah usang, seperti FORE Systems 200E-series, Alteon AceNIC, YAM untuk AX.25, SMC 91Cxx PCMCIA, dan Sedlbauer Speedfax+.</li>
             </ul>
-            <h2>🕰️ Salam Perpisahan untuk Intel 486</h2>
+            <h2>&#x1f570;&#xfe0f; Salam Perpisahan untuk Intel 486</h2>
             <p>Di balik serangkaian pembaruan teknis di atas, ada sebuah pesan emosional dalam rilis kali ini. Menyusul keputusan kernel Linux hulu (<em>upstream</em>) yang secara resmi menghentikan dukungan untuk CPU lawas Intel 486, tim GNU Linux-libre pun harus mengucapkan selamat tinggal yang cukup menyesakkan.</p>
  <figure>
                 <img src="https://dalam.web.id/img/www.fsfla.org/e8000134c5ba8d79.svg" alt="Ilustrasi maskot GNU dan representasi visual dari arsitektur prosesor legendaris i486" fetchpriority="high" loading="eager">
                 <figcaption>Rilis GNU Linux-libre 7.1 tidak hanya membawa pembersihan sistem, namun juga menutup lembaran sejarah dukungan mesin komputasi legendaris, Intel 486.</figcaption>
             </figure>
-            <p>Dalam pengumuman resminya, tim menyertakan refleksi yang begitu mendalam—bahkan menyempatkan diri untuk membuat karya seni khusus bernuansa pensiunnya i486 untuk rilis 7.1 ini:</p>
+            <p>Dalam pengumuman resminya, tim menyertakan refleksi yang begitu mendalam&#x2014;bahkan menyempatkan diri untuk membuat karya seni khusus bernuansa pensiunnya i486 untuk rilis 7.1 ini:</p>
             <blockquote>
-                "Jika seseorang membuat perangkat kebangkitan bertenaga i486 hari ini, para pencinta nostalgia yang membelinya akan segera sadar bahwa mereka tidak lagi bisa memasang kernel modern di dalamnya. Dunia telah bergerak maju.<br><br>
-                Ini menyedihkan, tidak hanya karena mesin i486 yang bertahan selama ini sebentar lagi cenderung tidak memiliki kernel yang terawat, dan pada akhirnya dikutuk untuk berakhir di tempat pembuangan sampah (atau museum luring!) meskipun masih berfungsi. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Tetapi, hal ini juga menyedihkan karena jendela bagi kita untuk menggunakan sisa-sisa prosesor x86 yang benar-benar bisa digunakan dalam 'kebebasan' (tanpa firmware yang tidak transparan) perlahan mulai tertutup rapat. <em>*sniff*</em>"
+                &quot;Jika seseorang membuat perangkat kebangkitan bertenaga i486 hari ini, para pencinta nostalgia yang membelinya akan segera sadar bahwa mereka tidak lagi bisa memasang kernel modern di dalamnya. Dunia telah bergerak maju.<br><br>
+                Ini menyedihkan, tidak hanya karena mesin i486 yang bertahan selama ini sebentar lagi cenderung tidak memiliki kernel yang terawat, dan pada akhirnya dikutuk untuk berakhir di tempat pembuangan sampah (atau museum luring!) meskipun masih berfungsi. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Tetapi, hal ini juga menyedihkan karena jendela bagi kita untuk menggunakan sisa-sisa prosesor x86 yang benar-benar bisa digunakan dalam &apos;kebebasan&apos; (tanpa firmware yang tidak transparan) perlahan mulai tertutup rapat. <em>*sniff*</em>&quot;
             </blockquote>
             <p>Perpisahan ini menandakan akhir dari sebuah era, di mana perangkat keras masa lalu jauh lebih transparan dibandingkan mesin-mesin modern yang sarat dengan kotak hitam biner dari pabrikan.</p>
             <p>Bagi kamu yang masih teguh memegang prinsip purisme perangkat lunak bebas (<em>free software</em>), arsip lengkap beserta rilis kernel GNU Linux-libre 7.1 terbaru ini dapat diunduh dan dipelajari secara langsung lewat repositori resmi mereka.</p>
@@ -281,8 +281,8 @@
         <div class="footer-content">
             Artikel dari Frijal pada 16 Juni 2026. Analisis teknis ini mengacu pada dokumentasi repositori bebas hambatan dari <a href="https://www.fsfla.org/ikiwiki/selibre/linux-libre/#news" target="_blank" rel="noopener noreferrer">Free Software Foundation Latin America (FSFLA)</a>.
         </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

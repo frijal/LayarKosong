@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-20T17:28:01.693Z">
     <meta property="article:modified_time" content="2026-02-15T13:37:27.352Z">
 <style>
@@ -297,25 +297,25 @@
     <main>
         <article>
             <header>
-                <div id="iposbrowser"></div><h1>🤖 Bedah Workflow upgrade-everything.yml</h1>
+                <div id="iposbrowser"></div><h1>&#x1f916; Bedah Workflow upgrade-everything.yml</h1>
                 <p style="text-align: center; font-size: 1.1rem; color: #888;">Otomatis Upgrade &amp; Cleanup Dependensi Node.js + Bikin PR!</p>
             </header>
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw4RdahPQaBd_WuWLKqam9l9sjBn6yQOo2_7bqq1v22D91zlLVMhU6-RWAYB561a-YgDWg_Gd9FdK3LI6PX5k31Q296ZMHS6-REwjVaFsjsy-pYo1tbpXBL-jwT4ZozmRditys52dPF4L7PBe1gDSpbS4WMbpLtrfQUMbi442HDWJNGUZVeSwjNTewkTE/s1600/upgradeclean.webp" alt="Ilustrasi workflow otomatis">
             <section id="tujuan-workflow">
-                <h2>🎯 Buat Apa Sih Workflow Ini?</h2>
+                <h2>&#x1f3af; Buat Apa Sih Workflow Ini?</h2>
                 <p>Mantap! Workflow GitHub Actions ini beneran keren dan dirancang buat <strong>jaga dependensi Node.js</strong> di proyek kamu biar <strong>tetap update</strong> (versi terbaru) dan <strong>bersih</strong> (buang yang tidak kepakai).</p>
                 <p>Tidak cuma itu, setelah dia beres-beres, dia bakal <strong>ngajuin perubahan itu sebagai Pull Request (PR)</strong>. Jadi, kamu atau tim bisa cek dulu (review) sebelum perubahannya digabung ke kode utama. Lebih aman, kan?</p>
                 <p>Enaknya lagi, workflow ini bisa kamu <strong>jalankan manual</strong> kapan aja kamu mau, atau <strong>dijadwalin otomatis</strong> jalan sebulan sekali. Jadi, urusan <em>maintenance</em> dependensi bisa lebih enteng!</p>
             </section>
             <hr>
             <section id="cara-kerja">
-                <h2>🔎 Gimana Cara Kerjanya? (Langkah demi Langkah)</h2>
+                <h2>&#x1f50e; Gimana Cara Kerjanya? (Langkah demi Langkah)</h2>
                 <p>Workflow ini kerjaannya cukup sistematis. Ini dia urutannya:</p>
                 <ol>
                     <li>
                         <b>Kapan Jalan? (<code>on:</code>)<b>
                         <ul>
-                            <li><b>Manual (<code>workflow_dispatch</code>):<b> Kamu bisa klik tombol 'Run workflow' di tab "Actions" repositori GitHub kamu. Cocok buat ngetes atau kalau lagi pengen update sekarang juga.</b></b></li><b><b>
+                            <li><b>Manual (<code>workflow_dispatch</code>):<b> Kamu bisa klik tombol &apos;Run workflow&apos; di tab &quot;Actions&quot; repositori GitHub kamu. Cocok buat ngetes atau kalau lagi pengen update sekarang juga.</b></b></li><b><b>
                             <li><b>Otomatis (<code>schedule</code>):<strong> Udah disetel buat jalan sendiri tiap </strong>tanggal 1 jam 2 pagi UTC<b> (itu sekitar jam 10 pagi WITA kalau di Balikpapan). Jadi, awal bulan, dependensi proyekmu otomatis dicek.</b></b></li><b><b>
                         </b></b></b></b></ul><b><b><b>
                     </b></b></b></b></b></li><b><b><b>
@@ -332,13 +332,13 @@
                         <b>Mulai Kerja! (<code>jobs: maintenance-pr</code>)<b>
                         <p>Cuma ada satu pekerjaan utama di sini, yang jalan di lingkungan Linux (<code>ubuntu-latest</code>). Langkah-langkahnya:</p>
                         <ol type="a">
-                            <li><b>Ambil Kode (<code>Checkout code</code>):<b> Ngunduh kode proyekmu ke 'meja kerja' si Actions.</b></b></li><b><b>
+                            <li><b>Ambil Kode (<code>Checkout code</code>):<b> Ngunduh kode proyekmu ke &apos;meja kerja&apos; si Actions.</b></b></li><b><b>
                             <li><b>Siapin Alat Node.js (<code>Setup Node.js</code>):<b> Masang Node.js versi 20 dan aktifin <em>cache</em> npm biar instalasi dependensi bisa lebih cepet kalau tidak banyak berubah.</b></b></li><b><b>
                             <li><b>Pasang Peralatan Tambahan (<code>Install dependencies (untuk tools)</code>):<b> Jalankan <code>npm install</code>. Ini buat masang <em>tools</em> yang dibutuhin workflow ini (kayak <code>npm-check-updates</code> dan <code>depcheck</code>) yang mungkin kamu daftarin di <code>devDependencies</code> di <code>package.json</code>.</b></b></li><b><b>
                             <li><b>Biar Bisa Dijalankan (<code>Make script executable</code>):<b> Ngasih izin biar skrip <code>data/cleanup.js</code> bisa dieksekusi.</b></b></li><b><b>
                             <li><b>Langkah 1: Upgrade! (<code>1. Upgrade dependencies</code>):<b>
                                 <ul>
-                                   <li>Masang <code>npm-check-updates</code> (ncu) di 'meja kerja'. <em>(Tips: Kalau ncu udah ada di devDependencies, pakai <code>npx ncu ...</code> mungkin lebih simpel).</em></li>
+                                   <li>Masang <code>npm-check-updates</code> (ncu) di &apos;meja kerja&apos;. <em>(Tips: Kalau ncu udah ada di devDependencies, pakai <code>npx ncu ...</code> mungkin lebih simpel).</em></li>
                                    <li>Jalankan <code>ncu -u --target minor</code>. Ini perintah saktinya! Dia bakal ngecek semua dependensi di <code>package.json</code>, nyari versi <strong>minor</strong> dan <strong>patch</strong> terbaru, terus langsung <b>update file <code>package.json</code><b> kamu. Dijamin aman dari perubahan besar (major) yang bikin pusing.</b></b></li><b><b>
                                 </b></b></ul><b><b>
                             </b></b></b></b></li><b><b><b>
@@ -347,7 +347,7 @@
                                    <li>Jalankan skrip <code>data/cleanup.js</code>. Nah, skrip ini kerjaannya bersih-bersih. Kemungkinan besar dia:
                                         <ol>
                                             <li>Nyari paket/dependensi yang udah tidak kepakai lagi (mungkin pakai <code>depcheck</code>).</li>
-                                            <li>Nghapus paket 'sampah' itu dari <code>package.json</code> atau <code>node_modules</code>.</li>
+                                            <li>Nghapus paket &apos;sampah&apos; itu dari <code>package.json</code> atau <code>node_modules</code>.</li>
                                             <li>Jalanin <code>npm install</code> lagi biar <code>node_modules</code> dan <code>package-lock.json</code> cocok sama <code>package.json</code> yang udah di-update dan dibersihin.</li>
                                         </ol>
                                     </li>
@@ -355,7 +355,7 @@
                             </b></b></li><b><b>
                              <li><b>Ngecek Ada Hasil Tidak? (<code>Check for changes</code>):<b>
                                 <ul>
-                                   <li>Langkah cerdas nih! Dia ngecek pakai <code>git status</code>, "File <code>package.json</code> atau <code>package-lock.json</code> ada yang berubah tidak ya setelah di-upgrade dan dibersihin?".</li>
+                                   <li>Langkah cerdas nih! Dia ngecek pakai <code>git status</code>, &quot;File <code>package.json</code> atau <code>package-lock.json</code> ada yang berubah tidak ya setelah di-upgrade dan dibersihin?&quot;.</li>
                                    <li>Hasilnya disimpan, apakah <code>true</code> (ada perubahan) atau <code>false</code> (tidak ada).</li>
                                 </ul>
                             </b></b></li><b><b>
@@ -386,22 +386,22 @@
             </b></b></b></section><b><b><b>
             <hr>
             <section id="kesimpulan">
-                 <h2>✨ Kerennya Workflow Ini Apa Aja?</h2>
+                 <h2>&#x2728; Kerennya Workflow Ini Apa Aja?</h2>
                  <ul>
-                    <li>✅ <strong>Serba Otomatis:</strong> Bisa jalan sendiri tiap bulan, hemat waktu kamu.</li>
-                    <li>🔒 <strong>Upgrade Aman:</strong> Cuma ambil versi minor &amp; patch, risiko error kecil.</li>
-                    <li>🧹 <strong>Proyek Jadi Rapi:</strong> Ada langkah bersih-bersih paket tidak kepakai.</li>
-                    <li>🧠 <strong>Cerdas:</strong> Cuma bikin PR kalau beneran ada yang di-update atau dibersihin.</li>
-                    <li>🧪 <strong>Ada Tes:</strong> Tidak asal bikin PR, dites dulu biar tidak ngerusak.</li>
-                    <li>📄 <strong>PR Jelas:</strong> Laporan perubahannya (PR) informatif dan gampang dimengerti.</li>
-                    <li>🔑 <strong>Izin Lengkap:</strong> Udah punya izin yang pas buat bikin PR (ini penting!).</li>
-                    <li>🌿 <strong>Manajemen Branch Oke:</strong> Bikin branch baru tiap jalan biar rapi.</li>
+                    <li>&#x2705; <strong>Serba Otomatis:</strong> Bisa jalan sendiri tiap bulan, hemat waktu kamu.</li>
+                    <li>&#x1f512; <strong>Upgrade Aman:</strong> Cuma ambil versi minor &amp; patch, risiko error kecil.</li>
+                    <li>&#x1f9f9; <strong>Proyek Jadi Rapi:</strong> Ada langkah bersih-bersih paket tidak kepakai.</li>
+                    <li>&#x1f9e0; <strong>Cerdas:</strong> Cuma bikin PR kalau beneran ada yang di-update atau dibersihin.</li>
+                    <li>&#x1f9ea; <strong>Ada Tes:</strong> Tidak asal bikin PR, dites dulu biar tidak ngerusak.</li>
+                    <li>&#x1f4c4; <strong>PR Jelas:</strong> Laporan perubahannya (PR) informatif dan gampang dimengerti.</li>
+                    <li>&#x1f511; <strong>Izin Lengkap:</strong> Udah punya izin yang pas buat bikin PR (ini penting!).</li>
+                    <li>&#x1f33f; <strong>Manajemen Branch Oke:</strong> Bikin branch baru tiap jalan biar rapi.</li>
                  </ul>
-                 <p>Secara keseluruhan, workflow <code class="inline">upgrade-everything.yml</code> dan <code class="inline">cleanup.js</code> ini adalah contoh yang <strong>solid dan bagus</strong> buat otomatisasi tugas <em>maintenance</em> dependensi proyek Node.js kamu di GitHub! 👍</p>
+                 <p>Secara keseluruhan, workflow <code class="inline">upgrade-everything.yml</code> dan <code class="inline">cleanup.js</code> ini adalah contoh yang <strong>solid dan bagus</strong> buat otomatisasi tugas <em>maintenance</em> dependensi proyek Node.js kamu di GitHub! &#x1f44d;</p>
             </section>
             <hr>
             <section id="ambil-kode">
-                 <h2>🚀 Mau Lihat Kodenya Langsung?</h2>
+                 <h2>&#x1f680; Mau Lihat Kodenya Langsung?</h2>
                  <p>Kamu bisa lihat kode lengkap workflow <code class="inline">upgrade-everything.yml</code> dan <code class="inline">cleanup.js</code> ini langsung dari repositori GitHub:</p>
                  <p style="text-align: center; margin: 2rem 0;">
                     <a href="https://raw.githubusercontent.com/frijal/LayarKosong/refs/heads/main/.github/workflows/upgrade-everything.yml" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.8rem 1.5rem; background-color: var(--button-bg); color: var(--button-text); border-radius: 8px; font-weight: bold; text-decoration: none;">
@@ -417,10 +417,10 @@
     </b></b></b></article><b><b><b>
     </b></b></b></main><b><b><b>
     <footer>
-        <p>🄯 2025  | Dibuat dengan cinta dan secangkir kopi.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+        <p>&#x1f12f; 2025  | Dibuat dengan cinta dan secangkir kopi.</p>
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </b></b></b></body></html>

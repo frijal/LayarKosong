@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-14T22:56:50.244Z">
     <meta property="article:modified_time" content="2026-05-11T02:49:46.608Z">
 <meta name="keywords" content="GitHub lambat, Firefox ESR Debian, internet lambat Indonesia, solusi GitHub slow, DNS cepat Indonesia">
@@ -143,22 +143,22 @@
             </header>
     <main>
         <div class="card">
-            <p>Eh , tentang internet lambat buat buka GitHub pake Firefox ESR dari Debian... ini masalah klasik yang sering dialamin user di Indonesia, apalagi kalau koneksinya lagi "mood-moodan". Aku coba breakdown kenapa bisa gini, plus solusi praktisnya. Saat ini (17 Desember 2025), GitHub sendiri lagi normal-normal saja, no major outage hari ini. Jadi kemungkinan besar masalahnya dari sisi kita nih...</p>
+            <p>Eh , tentang internet lambat buat buka GitHub pake Firefox ESR dari Debian... ini masalah klasik yang sering dialamin user di Indonesia, apalagi kalau koneksinya lagi &quot;mood-moodan&quot;. Aku coba breakdown kenapa bisa gini, plus solusi praktisnya. Saat ini (17 Desember 2025), GitHub sendiri lagi normal-normal saja, no major outage hari ini. Jadi kemungkinan besar masalahnya dari sisi kita nih...</p>
             <p>Kadang emang bikin kesel banget kan, lagi pengen cepet commit code atau baca repo, eh malah muter-muter loadingnya. Tenang, ini bukan akhir dunia. Banyak coder lain di Indo juga ngalamin hal serupa, apalagi routing ke server luar negeri sering berliku-liku.</p>
         </div>
         <div class="card">
             <h2><i class="fa-solid fa-question-circle"></i> Penyebab Umum yang Paling Mungkin:</h2>
             <ol>
-                <li><strong>Masalah dari Sisi GitHub Sendiri</strong> 🤦♂️<br>
+                <li><strong>Masalah dari Sisi GitHub Sendiri</strong> &#x1f926;&#x2642;&#xfe0f;<br>
                     GitHub UI emang sering dikomplain lambat belakangan ini. Banyak heavy JavaScript, React stuff, dan fitur baru yang bikin loadingnya berat, terutama pas switch tab atau view file/commit. Ini global, bukan cuma di Indo. Beberapa user bilang lebih parah di Firefox daripada Chrome.</li>
-                <li><strong>Firefox ESR di Debian</strong> 🦊<br>
-                    Versi ESR (Extended Support Release) di Debian biasanya agak "kuno" dibanding Firefox biasa dari Mozilla. Kadang ada isu performa seperti loading lambat, high CPU, atau stutter pas scroll/video. Di Debian stable, paketnya dioptimasi buat stabilitas, tapi bisa kurang smooth buat situs modern kayak GitHub.<br>
+                <li><strong>Firefox ESR di Debian</strong> &#x1f98a;<br>
+                    Versi ESR (Extended Support Release) di Debian biasanya agak &quot;kuno&quot; dibanding Firefox biasa dari Mozilla. Kadang ada isu performa seperti loading lambat, high CPU, atau stutter pas scroll/video. Di Debian stable, paketnya dioptimasi buat stabilitas, tapi bisa kurang smooth buat situs modern kayak GitHub.<br>
                     Kalau profil Firefox kamu udah lama (banyak extension, cache numpuk), bisa bikin tambah lemot.</li>
-                <li><strong>Koneksi Internet di Indonesia (Balikpapan khususnya)</strong> 🌐<br>
+                <li><strong>Koneksi Internet di Indonesia (Balikpapan khususnya)</strong> &#x1f310;<br>
                     Routing ke server GitHub (yang mostly di US/Eropa) sering lelet dari Indo. ISP lokal kadang throttling atau routingnya jelek ke situs luar.<br>
                     Kalau lagi peak hour, atau cuaca buruk (hujan deras ganggu sinyal), tambah parah.<br>
                     DNS default ISP juga bisa lambat atau blokir partial (meski GitHub tidak diblok Kominfo).</li>
-                <li><strong>Lainnya</strong> 🔍<br>
+                <li><strong>Lainnya</strong> &#x1f50d;<br>
                     Cache/DNS browser numpuk.<br>
                     Extension/adblocker yang conflict.<br>
                     Hardware: Kalau PC/laptop spek rendah, Firefox ESR bisa makan resource lebih.</li>
@@ -168,43 +168,43 @@
             <h2><i class="fa-solid fa-tools"></i> Solusi yang Bisa Dicoba (Mulai dari yang Gampang):</h2>
             <p>Coba satu-satu ya, jangan langsung semua biar tau mana yang works!</p>
             <ol>
-                <li><strong>Cek Dasar Dulu</strong> ✅<br>
-                    Buka situs lain (google.com, youtube.com) – kalau cepet, berarti spesifik GitHub.<br>
+                <li><strong>Cek Dasar Dulu</strong> &#x2705;<br>
+                    Buka situs lain (google.com, youtube.com) &#x2013; kalau cepet, berarti spesifik GitHub.<br>
                     Coba buka GitHub di browser lain: Install Chromium/Chrome via apt (<code>sudo apt install chromium</code>), atau bahkan Brave. Kalau di Chrome cepet, ya masalahnya di Firefox.</li>
-                <li><strong>Optimasi Firefox ESR</strong> ⚙️<br>
+                <li><strong>Optimasi Firefox ESR</strong> &#x2699;&#xfe0f;<br>
                     Clear cache: Buka Firefox &gt; Menu &gt; Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data &gt; Clear Data.<br>
                     Coba mode Troubleshoot (Safe Mode): Restart Firefox dengan extension dimatiin (Help &gt; Troubleshoot Mode).<br>
                     Di about:config (ketik di address bar):<br>
                     - Cari <code>layers.acceleration.force-enabled</code> &gt; set ke true (buat force hardware acceleration).<br>
                     - Cari <code>network.http.pipelining</code> &gt; set true (kadang bantu loading).<br>
-                    Update Debian kamu: <code>sudo apt update &amp;&amp; sudo apt upgrade</code> – mungkin ada fix buat Firefox ESR.</li>
-                <li><strong>Ganti DNS (Ini Sering Ampuh di Indo)</strong> 🚀<br>
+                    Update Debian kamu: <code>sudo apt update &amp;&amp; sudo apt upgrade</code> &#x2013; mungkin ada fix buat Firefox ESR.</li>
+                <li><strong>Ganti DNS (Ini Sering Ampuh di Indo)</strong> &#x1f680;<br>
                     Pakai DNS cepat kayak Google (8.8.8.8) atau Cloudflare (1.1.1.1).<br>
                     Edit /etc/resolv.conf (tapi sementara), atau install resolvconf/dnsmasq.<br>
                     Alternatif: Pakai 1.1.1.1 app dari Cloudflare (ada versi Linux).</li>
-                <li><strong>Coba VPN (Gratis Dulu)</strong> 🌍<br>
-                    Install ProtonVPN atau Windscribe (ada free tier). Connect ke server Singapore/Japan – sering membuat akses GitHub lebih cepet karena menyesuaikan konfigurasi sesuai dokumentasi resmi routing ISP.<br>
+                <li><strong>Coba VPN (Gratis Dulu)</strong> &#x1f30d;<br>
+                    Install ProtonVPN atau Windscribe (ada free tier). Connect ke server Singapore/Japan &#x2013; sering membuat akses GitHub lebih cepet karena menyesuaikan konfigurasi sesuai dokumentasi resmi routing ISP.<br>
                     Jangan pakai VPN gratisan abal-abal, bisa malah tambah lambat.</li>
-                <li><strong>Upgrade Browser</strong> 🔄<br>
-                    Download Firefox biasa (non-ESR) langsung dari mozilla.org – versi latest biasanya lebih optimized buat situs modern.<br>
-                    Atau install via Flatpak: <code>flatpak install flathub org.mozilla.firefox</code> – ini versi up-to-date, tidak tergantung paket Debian.</li>
-                <li><strong>Kalau Masih Bandel</strong> 😤<br>
-                    periksa melalui speedtest – bandingin kecepatan ke server US.<br>
+                <li><strong>Upgrade Browser</strong> &#x1f504;<br>
+                    Download Firefox biasa (non-ESR) langsung dari mozilla.org &#x2013; versi latest biasanya lebih optimized buat situs modern.<br>
+                    Atau install via Flatpak: <code>flatpak install flathub org.mozilla.firefox</code> &#x2013; ini versi up-to-date, tidak tergantung paket Debian.</li>
+                <li><strong>Kalau Masih Bandel</strong> &#x1f624;<br>
+                    periksa melalui speedtest &#x2013; bandingin kecepatan ke server US.<br>
                     Kalau download repo (git clone), coba pakai HTTPS aja, atau mirror kayak gitlab/gitea kalau ada.</li>
             </ol>
-            <p>Coba mulai dari clear cache sama ganti DNS – biasanya langsung kerasa bedanya. Kalau udah coba semua masih lambat, kasih tau detail lebih lanjut...</p>
+            <p>Coba mulai dari clear cache sama ganti DNS &#x2013; biasanya langsung kerasa bedanya. Kalau udah coba semua masih lambat, kasih tau detail lebih lanjut...</p>
         </div>
         <div class="card">
-            <p>Semangat bro! Jangan sampe masalah kecil kayak gini membuat down. Kamu umumnya bisa atasi ini. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Kalau ada update atau solusi lain yang works, share di komentar. Kita sama-sama belajar ya! 💪🚀</p>
+            <p>Semangat bro! Jangan sampe masalah kecil kayak gini membuat down. Kamu umumnya bisa atasi ini. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Kalau ada update atau solusi lain yang works, share di komentar. Kita sama-sama belajar ya! &#x1f4aa;&#x1f680;</p>
         </div>
         <!-- Kolom Komentar -->
         <div id="related-articles-grid"></div><div id="response"></div>
     </main>
     <footer>
-        <p>🄯 2025 Layar Kosong - Artikel ini dibuat berdasarkan obrolan santai dengan Grok. Kunjungi  buat artikel lain!</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+        <p>&#x1f12f; 2025 Layar Kosong - Artikel ini dibuat berdasarkan obrolan santai dengan Grok. Kunjungi  buat artikel lain!</p>
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

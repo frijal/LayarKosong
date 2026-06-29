@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Cloudflare">
     <meta property="article:tag" content="Email Routing">
     <meta property="article:tag" content="MX Record">
@@ -248,23 +248,23 @@
   <div class="container">
     <!-- Judul dan emoji -->
     <div id="iposbrowser"></div><h1><i class="fa-solid fa-envelope-open-text" style="color: #f39c12;"></i> Cara Setup MX Record Cloudflare untuk Email Komunitas (Gratis, Tanpa Simpan Email)</h1>
-    <p><em>📅 7 Maret 2026 · ☕ 8 menit baca · oleh <strong>dalam.web.id</strong></em></p>
+    <p><em>&#x1f4c5; 7 Maret 2026 &#xb7; &#x2615; 8 menit baca &#xb7; oleh <strong>dalam.web.id</strong></em></p>
     <!-- Gambar unggulan -->
     <!-- Pendahuluan dengan 5W+1H -->
     <div class="highlight">
       <p><i class="fa-solid fa-lightbulb"></i> <strong>5W+1H sekilas:</strong> Mau domain sendiri untuk email komunitas tapi tidak mau ribet kelola server? Cloudflare Email Routing solusinya. <strong>Apa?</strong> Layanan gratis Cloudflare yang jadi penerima email (via MX) lalu langsung forward ke inbox tujuan. <strong>Siapa?</strong> Cocok untuk komunitas, organisasi kecil, atau pribadi. <strong>Di mana?</strong> Di dashboard Cloudflare. <strong>Kapan?</strong> Kapan saja domain udah pake Cloudflare. <strong>Mengapa?</strong> Gratis, tidak simpan email, gampang diatur. <strong>Bagaimana?</strong> Ikuti langkah-langkah di bawah!</p>
     </div>
-    <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp" alt="Ilustrasi email routing Cloudflare untuk komunitas" width="100%" height="auto" loading="lazy">    <h2>🧭 1. Konsep Dasar: Cloudflare Hanya Jadi Penerus</h2>
+    <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp" alt="Ilustrasi email routing Cloudflare untuk komunitas" width="100%" height="auto" loading="lazy">    <h2>&#x1f9ed; 1. Konsep Dasar: Cloudflare Hanya Jadi Penerus</h2>
     <p>Cloudflare <strong>bukan mail server</strong>. Dia cuma:</p>
     <ul>
-      <li>✅ Menerima email via MX record</li>
-      <li>✅ Meneruskannya (forward) ke email tujuan (Gmail, Proton, dll)</li>
-      <li>❌ Tidak menyimpan email apapun</li>
-      <li>❌ Tidak bisa kirim email (butuh SMTP terpisah)</li>
+      <li>&#x2705; Menerima email via MX record</li>
+      <li>&#x2705; Meneruskannya (forward) ke email tujuan (Gmail, Proton, dll)</li>
+      <li>&#x274c; Tidak menyimpan email apapun</li>
+      <li>&#x274c; Tidak bisa kirim email (butuh SMTP terpisah)</li>
     </ul>
     <p>Alurnya gini:</p>
-    <pre>Pengirim → MX Cloudflare → (langsung forward) → Inbox tujuan (Gmail/Proton/dll)</pre>
-    <h2>🚀 2. Cara Setup MX + Forward Email (Gratis)</h2>
+    <pre>Pengirim &#x2192; MX Cloudflare &#x2192; (langsung forward) &#x2192; Inbox tujuan (Gmail/Proton/dll)</pre>
+    <h2>&#x1f680; 2. Cara Setup MX + Forward Email (Gratis)</h2>
     <h3><i class="fa-solid fa-globe"></i> 2.1 Tambah Domain ke Cloudflare</h3>
     <ul>
       <li>Login Cloudflare, klik <strong>Add site</strong>, masukkan domain kamu.</li>
@@ -274,7 +274,7 @@
     </ul>
     <h3><i class="fa-solid fa-mail-bulk"></i> 2.2 Aktifkan Email Routing</h3>
     <ul>
-      <li>Masuk ke dashboard: <strong>Domain → Email → Email Routing</strong>.</li>
+      <li>Masuk ke dashboard: <strong>Domain &#x2192; Email &#x2192; Email Routing</strong>.</li>
       <li>Klik <strong>Enable Email Routing</strong>.</li>
       <li>Cloudflare otomatis nambahin MX record:</li>
     </ul>
@@ -301,11 +301,11 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
     <p>Tambahkan TXT record dengan host <code>_dmarc</code>:</p>
     <pre>v=DMARC1; p=quarantine; rua=mailto:admin@domainkamu.com</pre>
     <p>Setelah stabil bisa naikkan ke <code>p=reject</code>.</p>
-    <h2>📬 3. Kirim Email dari Alamat Domain (karena Cloudflare tidak bisa kirim)</h2>
+    <h2>&#x1f4ec; 3. Kirim Email dari Alamat Domain (karena Cloudflare tidak bisa kirim)</h2>
     <p>Kamu perlu SMTP terpisah. Berikut opsi paling umum:</p>
     <h3><i class="fa-brands fa-google"></i> Opsi A: Kirim via Gmail SMTP (gratis, mudah)</h3>
     <ul>
-      <li>Di Gmail: <strong>Settings → Lihat semua setelan → Akun dan impor → Kirim email sebagai</strong>.</li>
+      <li>Di Gmail: <strong>Settings &#x2192; Lihat semua setelan &#x2192; Akun dan impor &#x2192; Kirim email sebagai</strong>.</li>
       <li>Tambahkan alamat <code>admin@domainkamu.com</code>.</li>
       <li>SMTP: <code>smtp.gmail.com</code>, port 587, TLS, pakai email Gmail dan App Password (kalau 2FA aktif).</li>
       <li>Nanti email keluar lewat server Gmail, tapi <em>From</em> pake alamat domainmu.</li>
@@ -314,19 +314,19 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
     <p>Proton Mail Plus bisa tambah custom domain, dapat DKIM otomatis. Kirim via Proton Bridge atau web.</p>
     <h3><i class="fa-solid fa-server"></i> Opsi C: Custom SMTP (Mailgun, Resend, SendGrid)</h3>
     <p>Lebih profesional, cocok untuk komunitas yang sering kirim massal. Nanti tambahin DKIM dari provider masing-masing. Contoh SPF ditambah <code>include:mailgun.org</code>.</p>
-    <h2>🖥️ 4. Setup Thunderbird (opsional, sebagai email client)</h2>
+    <h2>&#x1f5a5;&#xfe0f; 4. Setup Thunderbird (opsional, sebagai email client)</h2>
     <p>Thunderbird bisa dipakai untuk baca email dari Gmail/Proton via IMAP, dan kirim via SMTP yang sudah dipilih. tidak perlu setting incoming dari Cloudflare.</p>
-    <h2>👥 5. Khusus untuk Komunitas: Banyak Alamat, Banyak Pengurus</h2>
+    <h2>&#x1f465; 5. Khusus untuk Komunitas: Banyak Alamat, Banyak Pengurus</h2>
     <h3>5.1 Role-based address (best practice)</h3>
     <ul>
-      <li><code>ketua@domain.com</code> → forward ke email pribadi ketua</li>
-      <li><code>sekretaris@domain.com</code> → forward ke email pribadi sekretaris</li>
-      <li><code>media@domain.com</code> → forward ke tim media (bisa ke satu atau beberapa email)</li>
-      <li><code>bendahara@domain.com</code> → ke email bendahara</li>
+      <li><code>ketua@domain.com</code> &#x2192; forward ke email pribadi ketua</li>
+      <li><code>sekretaris@domain.com</code> &#x2192; forward ke email pribadi sekretaris</li>
+      <li><code>media@domain.com</code> &#x2192; forward ke tim media (bisa ke satu atau beberapa email)</li>
+      <li><code>bendahara@domain.com</code> &#x2192; ke email bendahara</li>
     </ul>
     <p>Di Cloudflare kamu bisa buat rule masing-masing. Bisa juga satu alamat dikirim ke banyak orang (pisah koma).</p>
     <h3>5.2 Catch-all untuk fleksibilitas</h3>
-    <p>Buat rule catch-all: <code>*@domainkamu.com</code> → ke satu inbox utama. Cocok kalau komunitas sering bikin alamat dadakan (misal <code>event2026@domain.com</code>). Tapi waspada spam.</p>
+    <p>Buat rule catch-all: <code>*@domainkamu.com</code> &#x2192; ke satu inbox utama. Cocok kalau komunitas sering bikin alamat dadakan (misal <code>event2026@domain.com</code>). Tapi waspada spam.</p>
     <h3>5.3 Tabel perbandingan model komunitas</h3>
     <table>
       <thead><tr><th>Model</th><th>Cocok untuk</th><th>Kompleksitas</th></tr></thead>
@@ -336,21 +336,21 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
         <tr><td>SMTP khusus + catch-all</td><td>Komunitas besar, sering kirim massal</td><td>Tinggi</td></tr>
       </tbody>
     </table>
-    <h2>🧪 6. Cek apakah setup sudah benar</h2>
+    <h2>&#x1f9ea; 6. Cek apakah setup sudah benar</h2>
     <ul>
       <li>Kirim email tes ke <code>admin@domainkamu.com</code> dari akun lain.</li>
       <li>Cek MX record: <code>dig mx domainkamu.com</code> (harus muncul mx1, mx2 cloudflare).</li>
       <li>Cek SPF: <code>dig txt domainkamu.com</code>.</li>
     </ul>
     <!-- Ringkasan tabel fitur -->
-    <h2>🎯 Ringkasan fitur Cloudflare Email Routing</h2>
+    <h2>&#x1f3af; Ringkasan fitur Cloudflare Email Routing</h2>
     <table>
       <thead><tr><th>Fitur</th><th>Gratis?</th><th>Perlu server sendiri?</th></tr></thead>
       <tbody>
-        <tr><td>MX record</td><td>✅</td><td>❌</td></tr>
-        <tr><td>Forward email</td><td>✅</td><td>❌</td></tr>
-        <tr><td>Inbox storage</td><td>❌ (tidak disimpan)</td><td>—</td></tr>
-        <tr><td>Kirim email</td><td>❌</td><td>✅ (pakai SMTP lain)</td></tr>
+        <tr><td>MX record</td><td>&#x2705;</td><td>&#x274c;</td></tr>
+        <tr><td>Forward email</td><td>&#x2705;</td><td>&#x274c;</td></tr>
+        <tr><td>Inbox storage</td><td>&#x274c; (tidak disimpan)</td><td>&#x2014;</td></tr>
+        <tr><td>Kirim email</td><td>&#x274c;</td><td>&#x2705; (pakai SMTP lain)</td></tr>
       </tbody>
     </table>
     <!-- Pesan penting keamanan -->
@@ -362,11 +362,11 @@ TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
     <div id="related-articles-grid"></div>
     <!-- Footer -->
     <footer>
-      <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel ini ditulis berdasarkan prinsip E-E-A-T dan pengalaman komunitas.  Dibuat dengan <i class="fa-solid fa-heart" style="color: #e74c3c;"></i> untuk berbagi.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+      <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman &#x2014; Artikel ini ditulis berdasarkan prinsip E-E-A-T dan pengalaman komunitas.  Dibuat dengan <i class="fa-solid fa-heart" style="color: #e74c3c;"></i> untuk berbagi.</p>
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

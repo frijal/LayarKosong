@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-05-29T17:29:35.840Z">
     <meta property="article:modified_time" content="2026-05-29T17:29:35.840Z">
     <meta name="article:tag" content="Linux">
@@ -292,16 +292,16 @@
         </header>
         <article>
             <p>
-                Pernahkah kamu menemukan laptop lama teronggok berdebu di gudang, menyalakannya karena iseng, lalu bingung perlu diapakan? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Itulah yang terjadi pada sebuah Dell Inspiron 600M. Sambil ngopi santai, saya mencoba menghidupkan kembali "fosil" teknologi ini. Tantangannya jelas: perangkat keras lawas ini sudah sangat tertinggal oleh zaman. Namun, bagi para penggiat <em>open-source</em>, tidak ada kata menyerah sebelum mencoba berbagai distro Linux.
+                Pernahkah kamu menemukan laptop lama teronggok berdebu di gudang, menyalakannya karena iseng, lalu bingung perlu diapakan? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Itulah yang terjadi pada sebuah Dell Inspiron 600M. Sambil ngopi santai, saya mencoba menghidupkan kembali &quot;fosil&quot; teknologi ini. Tantangannya jelas: perangkat keras lawas ini sudah sangat tertinggal oleh zaman. Namun, bagi para penggiat <em>open-source</em>, tidak ada kata menyerah sebelum mencoba berbagai distro Linux.
             </p>
             <p>
                 Mencari sistem operasi yang tepat untuk komputer <em>vintage</em> di tahun 2026 ini ibarat mencari jarum di tumpukan jerami. Rata-rata distro modern menertawakan spesifikasi di bawah 4 GB RAM. Namun, pencarian ini berujung manis berkat satu nama: <strong>antiX Linux</strong>. Mari kita bedah tuntas mengapa distro ini menjadi pahlawan tanpa tanda jasa bagi perangkat keras purba.
             </p>
             <figure class="content-image">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/e3e01201baebd256.webp" alt="Ilustrasi laptop tua yang berjalan lancar menggunakan Linux ringan antiX" width="800" height="450" fetchpriority="high" decoding="async">
-                <figcaption>Menyelamatkan "hardware kentang" dari kepunahan menggunakan antiX Linux.</figcaption>
+                <figcaption>Menyelamatkan &quot;hardware kentang&quot; dari kepunahan menggunakan antiX Linux.</figcaption>
             </figure>
-            <h2>🔍 Realitas Perangkat Keras: Si Fosil</h2>
+            <h2>&#x1f50d; Realitas Perangkat Keras: Si Fosil</h2>
             <p>
                 Sebelum kita membahas perangkat lunak, kita harus realistis melihat apa yang ada di bawah kap mesin Dell Inspiron 600M ini. Spesifikasinya cukup membuat teknisi masa kini mengernyitkan dahi.
             </p>
@@ -316,46 +316,46 @@
                     <tbody>
                         <tr>
                             <td><strong>CPU</strong></td>
-                            <td><strong>Pentium M 1,6 GHz</strong> — Murni 32‑bit dan yang paling krusial: <strong>tanpa PAE</strong> (Physical Address Extension). Banyak distro ringan 32-bit pun akan gagal <em>booting</em> karena hal ini.</td>
+                            <td><strong>Pentium M 1,6 GHz</strong> &#x2014; Murni 32&#x2011;bit dan yang paling krusial: <strong>tanpa PAE</strong> (Physical Address Extension). Banyak distro ringan 32-bit pun akan gagal <em>booting</em> karena hal ini.</td>
                         </tr>
                         <tr>
                             <td><strong>RAM</strong></td>
-                            <td><strong>1 GB DDR 333 MHz</strong> — Kapasitas yang sekadar untuk membuka satu tab peramban web modern saja sudah megap-megap.</td>
+                            <td><strong>1 GB DDR 333 MHz</strong> &#x2014; Kapasitas yang sekadar untuk membuka satu tab peramban web modern saja sudah megap-megap.</td>
                         </tr>
                         <tr>
                             <td><strong>GPU</strong></td>
-                            <td><strong>ATI Radeon 9000 (VRAM 32 MB)</strong> — Hanya bisa mengandalkan <em>driver open-source</em> <code>radeon</code> versi sangat lama.</td>
+                            <td><strong>ATI Radeon 9000 (VRAM 32 MB)</strong> &#x2014; Hanya bisa mengandalkan <em>driver open-source</em> <code>radeon</code> versi sangat lama.</td>
                         </tr>
                         <tr>
                             <td><strong>Penyimpanan</strong></td>
-                            <td><strong>HDD IDE/PATA 60 GB</strong> — Kecepatan baca/tulisnya sangat lambat dibandingkan SSD SATA apalagi NVMe.</td>
+                            <td><strong>HDD IDE/PATA 60 GB</strong> &#x2014; Kecepatan baca/tulisnya sangat lambat dibandingkan SSD SATA apalagi NVMe.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <p><strong>Dari tabel di atas, kita menghadapi dua hambatan kritis:</strong></p>
             <ol>
-                <li><strong>Hanya 32‑bit + tanpa PAE:</strong> Hampir semua distro "ringan" (bahkan kernel 32-bit bawaan Debian sekalipun) secara <em>default</em> membutuhkan dukungan PAE pada prosesornya. Jika dipaksakan, sistem cenderung tidak menyala. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. antiX Linux menjadi pengecualian langka karena mereka sengaja menyertakan <strong>kernel non-PAE</strong> sehingga bisa <em>boot</em> dengan lancar.</li>
+                <li><strong>Hanya 32&#x2011;bit + tanpa PAE:</strong> Hampir semua distro &quot;ringan&quot; (bahkan kernel 32-bit bawaan Debian sekalipun) secara <em>default</em> membutuhkan dukungan PAE pada prosesornya. Jika dipaksakan, sistem cenderung tidak menyala. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. antiX Linux menjadi pengecualian langka karena mereka sengaja menyertakan <strong>kernel non-PAE</strong> sehingga bisa <em>boot</em> dengan lancar.</li>
                 <li><strong>Mitos RAM 1 GB:</strong> Penjelajahan web modern hari ini sejatinya membutuhkan 2 hingga 4 GB RAM. Namun, dengan antiX dan pemilihan alur kerja yang sangat ringan, laptop purba ini terbukti masih bisa produktif untuk tugas spesifik seperti menulis naskah, <em>coding</em> ringan, atau manajemen <em>file</em> lokal.</li>
             </ol>
-            <h2>🐧 Kenapa antiX Paling Cocok?</h2>
+            <h2>&#x1f427; Kenapa antiX Paling Cocok?</h2>
             <p>
                 Mungkin kamu bertanya, kenapa tidak pakai Ubuntu versi lama atau Linux Mint saja? Jawabannya sederhana: dukungan mereka sudah mati. Ubuntu 18.04 (rilis 32-bit terakhir) dan Mint 19.3 sudah <em>End of Life</em> (EOL). Varian ringan seperti Lubuntu 18.04 atau Bodhi 5.1 pun bernasib sama. Menggunakan OS yang sudah tidak mendapatkan pembaruan keamanan sebagai <em>daily driver</em> adalah tindakan yang sangat berisiko.
             </p>
             <p>Di sinilah antiX tampil bersinar dengan keunggulannya:</p>
             <ul>
-                <li><strong>Kernel 32‑bit non‑PAE:</strong> Mampu melakukan <em>boot</em> di arsitektur Pentium M tanpa perlu trik kompilasi manual yang meresahkan.</li>
+                <li><strong>Kernel 32&#x2011;bit non&#x2011;PAE:</strong> Mampu melakukan <em>boot</em> di arsitektur Pentium M tanpa perlu trik kompilasi manual yang meresahkan.</li>
                 <li><strong>Berbasis Debian tulen (bukan Ubuntu):</strong> Memiliki stabilitas batu karang namun tetap menggunakan manajer paket <code>apt</code> dan paket <code>.deb</code> yang familiar bagi pengguna turunan Debian/Mint.</li>
-                <li><strong>Editan "Base" dengan IceWM:</strong> Menyediakan antarmuka grafis IceWM yang luar biasa ringan (hanya mengonsumsi sekitar ~100–150 MB RAM saat *idle). Di sistem dengan RAM 1 GB, kamu benar-benar butuh menghemat setiap megabita yang ada!</li>
+                <li><strong>Editan &quot;Base&quot; dengan IceWM:</strong> Menyediakan antarmuka grafis IceWM yang luar biasa ringan (hanya mengonsumsi sekitar ~100&#x2013;150 MB RAM saat *idle). Di sistem dengan RAM 1 GB, kamu benar-benar butuh menghemat setiap megabita yang ada!</li>
                 <li><strong>Bebas systemd:</strong> antiX secara <em>default</em> tidak menggunakan systemd (mereka menggunakan sysVinit atau runit), sebuah keputusan brilian yang menghemat sangat banyak sumber daya pada proses latar belakang di perangkat keras tua.</li>
                 <li><strong>Pembaruan Berkelanjutan:</strong> Meskipun mendukung PC lawas, antiX sangat aktif dipelihara dan selalu mendapatkan pembaruan keamanan terbaru.</li>
             </ul>
-            <h2>🖥️ 5 Langkah Memaksimalkan antiX di Inspiron 600M</h2>
+            <h2>&#x1f5a5;&#xfe0f; 5 Langkah Memaksimalkan antiX di Inspiron 600M</h2>
             <p>
                 Supaya laptop ini tidak kembali masuk kardus, perlakuan khusus sangat diperlukan. Berikut adalah racikan instalasi dan penyesuaian yang saya terapkan:
             </p>
             <ol>
-                <li><strong>Unduh Versi yang Tepat:</strong> Ambil file ISO <strong>antiX 23.2 Base (32‑bit)</strong> dari situs resminya. Hindari edisi <em>Full</em> karena lebih berat; versi <em>Base</em> sudah sangat cukup memberimu desktop IceWM yang bersih untuk mulai dikembangkan.</li>
+                <li><strong>Unduh Versi yang Tepat:</strong> Ambil file ISO <strong>antiX 23.2 Base (32&#x2011;bit)</strong> dari situs resminya. Hindari edisi <em>Full</em> karena lebih berat; versi <em>Base</em> sudah sangat cukup memberimu desktop IceWM yang bersih untuk mulai dikembangkan.</li>
                 <li><strong>Instal Permanen:</strong> Lakukan instalasi langsung ke HDD 60 GB. Sistem operasi yang berjalan penuh dari cakram keras akan jauh lebih responsif ketimbang menjalankannya secara <em>live</em> melalui USB.</li>
                 <li><strong>Pilihan Perangkat Lunak Ultra-Ringan:</strong>
                     <ul>
@@ -365,33 +365,33 @@
                         <li><strong>Multimedia:</strong> Putar video resolusi rendah dengan <code>mpv</code> (tambahkan opsi <code>--vo=xv</code> untuk mengakali kartu grafis ATI lama), atau pakai <code>mplayer</code>.</li>
                     </ul>
                 </li>
-                <li><strong>Manajemen Memori:</strong> Aktifkan <strong>zram</strong> atau <strong>zswap</strong>. Ini adalah kunci rahasia untuk "menyulap" kompresi RAM agar kapasitas 1 GB terasa sedikit lebih lega tanpa harus terlalu sering menyiksa <em>swap space</em> di HDD lambat.</li>
+                <li><strong>Manajemen Memori:</strong> Aktifkan <strong>zram</strong> atau <strong>zswap</strong>. Ini adalah kunci rahasia untuk &quot;menyulap&quot; kompresi RAM agar kapasitas 1 GB terasa sedikit lebih lega tanpa harus terlalu sering menyiksa <em>swap space</em> di HDD lambat.</li>
                 <li><strong>Hindari Beban Tak Perlu:</strong> Ada rumor peramban Pale Moon (dengan <em>build</em> khusus Pentium M) bisa jadi solusi, tapi pada praktiknya sering kali tetap terasa terlalu berat. Fokuskan penggunaan laptop ini murni untuk pekerjaan <strong>luring (offline)</strong> demi produktivitas yang nyata.</li>
             </ol>
-            <h2>🔄 Adakah Alternatif Ringan Lain?</h2>
+            <h2>&#x1f504; Adakah Alternatif Ringan Lain?</h2>
             <p>
                 Tentu saja antiX bukan satu-satunya pemain di arena ini. Jika kamu merasa kurang pas, ada beberapa alternatif ekstrem lainnya:
             </p>
             <ul>
                 <li><strong>Puppy Linux:</strong> (Seperti Fossapup 9.5 32-bit atau varian lawas Wary/Racy). Kelebihannya ia sangat mungil dan berjalan sepenuhnya dari RAM. Namun, manajemen paketnya unik dan kurang familiar bagi mereka yang terbiasa dengan ekosistem <code>apt</code>.</li>
                 <li><strong>SliTaz:</strong> Distro dengan rilis bergulir (<em>rolling release</em>) yang ukuran ISO-nya cuma sekitar 50 MB! Sangat-sangat ringan, tapi sayangnya basis komunitasnya jauh lebih kecil jika kamu butuh bantuan <em>troubleshooting</em>.</li>
-                <li><strong>Void Linux 32‑bit (musl):</strong> Pilihan mutlak bagi kaum <em>purist</em>. Sangat minimalis dan kencang, tapi kamu harus turun tangan mengonfigurasi banyak hal secara manual, termasuk memastikan penggunaan kernel non-PAE.</li>
+                <li><strong>Void Linux 32&#x2011;bit (musl):</strong> Pilihan mutlak bagi kaum <em>purist</em>. Sangat minimalis dan kencang, tapi kamu harus turun tangan mengonfigurasi banyak hal secara manual, termasuk memastikan penggunaan kernel non-PAE.</li>
             </ul>
             <p>
                 Pada akhirnya, jika diukur dari keseimbangan antara kemudahan pemakaian, ketersediaan paket (<em>repository</em>), dan dukungan komunitas yang ramah, <strong>antiX tetap keluar sebagai juara bertahan yang sulit ditaklukkan.</strong>
             </p>
             <div class="highlight-box">
-                <h3>💡 Atur Ekspektasi Pemakaian Harianmu</h3>
+                <h3>&#x1f4a1; Atur Ekspektasi Pemakaian Harianmu</h3>
                 <p>
                     Mari kita perjelas. Di tahun 2026, menggunakan laptop dengan RAM 1 GB dan prosesor <em>single-core</em> purba memiliki batas toleransi yang tegas:
                     <br><br>
-                    ✅ <strong>Sangat cocok untuk:</strong> Menulis tanpa distraksi internet, <em>coding</em> dasar (tanpa IDE raksasa seperti VS Code), bereksperimen dengan perintah terminal CLI, bermain <em>game retro</em> bawaan, pemutar musik luring, dan mencatat ide.
+                    &#x2705; <strong>Sangat cocok untuk:</strong> Menulis tanpa distraksi internet, <em>coding</em> dasar (tanpa IDE raksasa seperti VS Code), bereksperimen dengan perintah terminal CLI, bermain <em>game retro</em> bawaan, pemutar musik luring, dan mencatat ide.
                     <br><br>
-                    ❌ <strong>Sangat menyiksa untuk:</strong> Menjelajah web modern penuh iklan, membuka situs berbasis JavaScript berat, melakukan panggilan video, atau membuka lebih dari tiga tab peramban sekaligus.
+                    &#x274c; <strong>Sangat menyiksa untuk:</strong> Menjelajah web modern penuh iklan, membuka situs berbasis JavaScript berat, melakukan panggilan video, atau membuka lebih dari tiga tab peramban sekaligus.
                 </p>
             </div>
             <p>
-                Meski ada begitu banyak batasan, dengan terinstalnya antiX dan sedikit keikhlasan mengutak-atik, si kecil Inspiron 600M yang sempat tertidur panjang itu terbukti tetap bisa menjalankan fungsi yang bermanfaat. Coba unduh antiX 23 Base sekarang—kamu akan dibuat takjub dan tersenyum melihat betapa gesitnya sang Pentium M tua itu merespons perintahmu!
+                Meski ada begitu banyak batasan, dengan terinstalnya antiX dan sedikit keikhlasan mengutak-atik, si kecil Inspiron 600M yang sempat tertidur panjang itu terbukti tetap bisa menjalankan fungsi yang bermanfaat. Coba unduh antiX 23 Base sekarang&#x2014;kamu akan dibuat takjub dan tersenyum melihat betapa gesitnya sang Pentium M tua itu merespons perintahmu!
             </p>
         </article>
         <aside class="references">
@@ -408,10 +408,10 @@
     </main>
     <footer>
         <div class="container">
-            <p>🄯 2026 Dibuat murni dengan HTML/CSS, tanpa framework yang memberatkan <em>browser</em> jadulmu.</p>
+            <p>&#x1f12f; 2026 Dibuat murni dengan HTML/CSS, tanpa framework yang memberatkan <em>browser</em> jadulmu.</p>
         </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

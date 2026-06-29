@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-02-01T11:15:59.795Z">
     <meta property="article:modified_time" content="2026-02-16T13:53:46.682Z">
 <!-- ===== Basic Metadata ===== -->
@@ -209,7 +209,7 @@
 </head>
 <body>
 <div class="container">
-    <div id="iposbrowser"></div><h1>🚀 Social &amp; Video Embed Generator</h1>
+    <div id="iposbrowser"></div><h1>&#x1f680; Social &amp; Video Embed Generator</h1>
     <p style="text-align:center;">Hasilkan kode responsif untuk halaman HTML.</p>
     <label for="platform">Pilih Platform:</label>
     <select id="platform">
@@ -230,12 +230,12 @@
     <input type="text" id="videoUrl" placeholder="Tempel URL di sini...">
     <button id="main-btn" onclick="generateEmbed()">Hasilkan Kode &amp; Preview</button>
     <div id="resultContainer" style="display:none;">
-        <label>📋 Kode HTML (Rata Tengah &amp; Responsif):</label>
+        <label>&#x1f4cb; Kode HTML (Rata Tengah &amp; Responsif):</label>
         <div class="result-area">
             <button class="copy-btn" onclick="copyCode()">Salin</button>
             <pre id="embedCode"></pre>
         </div>
-        <label>🖼️ Live Preview:</label>
+        <label>&#x1f5bc;&#xfe0f; Live Preview:</label>
         <div class="preview" id="videoPreview"></div>
     </div><div id="related-articles-grid">    </div>
     <div id="response">    </div>
@@ -361,7 +361,7 @@ if (platform === 'x' || platform === 'tiktok' || platform === 'threads') {
         alert("📋 Kode berhasil disalin ke clipboard!");
     }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

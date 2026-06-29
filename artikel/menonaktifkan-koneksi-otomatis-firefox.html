@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-11-04T23:03:19.827Z">
     <meta property="article:modified_time" content="2025-11-13T14:49:03.873Z">
 <meta name="keywords" content="Firefox, Debian, Privasi, about:config, Koneksi Otomatis, Telemetry, Tracking Protection, OpenH264, Snippets">
@@ -198,21 +198,21 @@
 <body>
     <div class="container">
         <header>
-            <div id="iposbrowser"></div><h1>🛡️ Mengintip Jaringan Rahasia Firefox: Perbandingan Mozilla vs. Debian</h1>
+            <div id="iposbrowser"></div><h1>&#x1f6e1;&#xfe0f; Mengintip Jaringan Rahasia Firefox: Perbandingan Mozilla vs. Debian</h1>
             <p>Sejauh Mana Distro Linux Favorit Kita Melindungi Privasi Pengguna?</p>
         </header>
         <article>
             <section id="penjelasan-narasi">
-                <h2><span role="img" aria-label="Magnifying Glass">🔍</span> Narasi Awal: Mengapa Firefox 'Ngobrol' Otomatis?</h2>
-                <p>Halo pengguna Firefox! Sadar atau tidak, peramban kesayangan kita ini ternyata sangat 'rajin' berinteraksi dengan dunia luar begitu kita membukanya. Yup, <strong>Firefox secara default melakukan beberapa koneksi otomatis ke server Mozilla, bahkan ke pihak ketiga, tanpa meminta izin eksplisit dari kita</strong>. Tujuannya sih baik: untuk keamanan (anti-phishing), fungsionalitas (pembaruan), dan terkadang untuk data statistik (Telemetry).</p>
+                <h2><span role="img" aria-label="Magnifying Glass">&#x1f50d;</span> Narasi Awal: Mengapa Firefox &apos;Ngobrol&apos; Otomatis?</h2>
+                <p>Halo pengguna Firefox! Sadar atau tidak, peramban kesayangan kita ini ternyata sangat &apos;rajin&apos; berinteraksi dengan dunia luar begitu kita membukanya. Yup, <strong>Firefox secara default melakukan beberapa koneksi otomatis ke server Mozilla, bahkan ke pihak ketiga, tanpa meminta izin eksplisit dari kita</strong>. Tujuannya sih baik: untuk keamanan (anti-phishing), fungsionalitas (pembaruan), dan terkadang untuk data statistik (Telemetry).</p>
                 <p>Buat kamu yang sangat peduli privasi, koneksi-koneksi ini tentu bikin penasaran. Mozilla sendiri cukup transparan soal ini dan mendokumentasikan daftarnya di halaman resmi mereka: <a href="https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections" target="_blank" style="color: var(--secondary-color);"><b>How to stop Firefox from making automatic connections<b></b></b></a><b><b> (silakan cek, link ini sangat berguna!).</b></b></p><b><b>
                 <div class="note-box">
-                    <strong>⚠️ Catatan Penting dari Admin:</strong>
+                    <strong>&#x26a0;&#xfe0f; Catatan Penting dari Admin:</strong>
                     <p>Tabel perbandingan di bawah ini dibuat pada <strong>23 September 2018</strong> berdasarkan versi <strong>Firefox ESR 60.2.1esr-1</strong> dan profil kosong. Artinya, <strong>pengaturan ini SANGAT mungkin sudah usang</strong> karena Firefox terus berkembang. Namun, perbandingan ini tetap memberikan gambaran historis yang luar biasa tentang perbedaan filosofi antara Mozilla (upstream) dan Debian dalam hal privasi. Pastikan kredensial tidak dibagikan dan data pribadi dikelola sesuai kebutuhan keamanan.</p>
                 </div>
             </b></b></section><b><b>
             <section id="tabel-perbandingan">
-                <h2><span role="img" aria-label="Table">📊</span> Tabel Perbandingan Pengaturan Koneksi Otomatis (2018)</h2>
+                <h2><span role="img" aria-label="Table">&#x1f4ca;</span> Tabel Perbandingan Pengaturan Koneksi Otomatis (2018)</h2>
                 <p>Mari kita lihat perbedaannya. Fokuskan perhatianmu pada kolom <strong>Debian (Default)</strong>. Parameter-parameter inilah yang bisa kamu cek dan ubah di <code>about:config</code> perambanmu.</p>
                 <div class="table-wrapper">
                     <table>
@@ -229,7 +229,7 @@
                             <tr><td><strong>Deteksi portal tertutup (captive portal)</strong></td><td><code>network.captive-portal-service.enabled</code></td><td><code>true</code></td><td><code>true</code></td></tr>
                             <tr><td><strong>Firefox Sync</strong></td><td><em>Memerlukan opt-in pengguna</em></td><td>N/A</td><td>N/A</td></tr>
                             <tr><td><strong>Geolokasi untuk mesin pencari default</strong></td><td><code>browser.search.geoip.url</code></td><td>Aktif</td><td>Aktif</td></tr>
-                            <tr><td><strong>Halaman "What's New" setelah update</strong></td><td><code>browser.startup.homepage_override.mstone</code></td><td>Aktif</td><td>Aktif</td></tr>
+                            <tr><td><strong>Halaman &quot;What&apos;s New&quot; setelah update</strong></td><td><code>browser.startup.homepage_override.mstone</code></td><td>Aktif</td><td>Aktif</td></tr>
                             <tr><td><strong>Kirim Video ke Perangkat (Casting)</strong></td><td><code>browser.casting.enabled</code></td><td><code>false</code></td><td>N/A?</td></tr>
                             <tr><td><strong>Koneksi loopback</strong></td><td><em>Tidak bisa dinonaktifkan</em></td><td>Aktif</td><td><strong>Dinonaktifkan di Linux</strong></td></tr>
                             <tr><td><strong>Koneksi spekulatif paralel</strong></td><td><code>network.http.speculative-parallel-limit</code></td><td><code>6</code></td><td><code>0</code></td></tr>
@@ -257,7 +257,7 @@
                 </div>
             </section>
             <section id="poin-penting">
-                <h2><span role="img" aria-label="Light Bulb">💡</span> Poin Penting: Apa Bedanya Debian &amp; Mozilla?</h2>
+                <h2><span role="img" aria-label="Light Bulb">&#x1f4a1;</span> Poin Penting: Apa Bedanya Debian &amp; Mozilla?</h2>
                 <p>Dari tabel di atas, jelas terlihat bahwa Debian mengambil langkah ekstra untuk privasi dan mengurangi lalu lintas jaringan:</p>
                 <ul>
                     <li><strong>Anti-Cisco OpenH264</strong>: Plugin OpenH264 diunduh otomatis dari server Cisco di versi Mozilla, tapi di Debian, fitur ini dimatikan (<code>media.gmp-gmpopenh264.enabled = false</code>). Ini menghindari koneksi otomatis ke server pihak ketiga (Cisco).</li>
@@ -268,15 +268,15 @@
                 <h3>Yang Masih Aktif (dan Perlu Diperhatikan):</h3>
                 <p>Meskipun sudah lebih ketat, Debian tetap menjaga fungsionalitas dan keamanan inti, yang berarti <strong>masih ada koneksi otomatis yang aktif</strong>:</p>
                 <ul>
-                    <li><strong>Fitur 'Gaya'</strong>: Snippets (konten promosi di halaman baru), geolokasi pencarian, dan DNS prefetching masih aktif.</li>
+                    <li><strong>Fitur &apos;Gaya&apos;</strong>: Snippets (konten promosi di halaman baru), geolokasi pencarian, dan DNS prefetching masih aktif.</li>
                     <li><strong>Keamanan Inti</strong>: Anti-phishing, blocklist ekstensi, dan OCSP tetap aktif (koneksi ke Mozilla/Google).</li>
                 </ul>
                 <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvb2590XSslMHBkUpR67zZ2m-S6Gl3KiRC0J6Z6CVrZbwk0q_e8zNFV7mXDtxnpNe0NKrEDI4OQWyjU56RgW0hWd8kWJ2SEURXcoT3kpmlQeP1bnJ204nTDpNv00Tearq2G9B05VEL0152Tt_gxrxyA9EXbw_W_c0D-7kjmEmrQJ52XePJ8OcSC59J0m8/s1600/firefoxesrdebian13.webp" alt="Tampilan antarmuka Firefox ESR Debian" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
                 <p class="image-caption">Contoh tampilan antarmuka Firefox ESR di lingkungan Debian (Kredit: Narasi Asli)</p>
             </section>
             <section id="cara-manual">
-                <h2><span role="img" aria-label="Wrench">🛠️</span> Panduan Eksklusif: Mematikan Koneksi Otomatis Secara Manual</h2>
-                <p>Mau privasi maksimal, bahkan lebih dari yang ditawarkan Debian? Kamu bisa 'mengoprek' Firefox sendiri! Caranya mudah, cukup ketik <strong><code>about:config</code></strong> di <em>address bar</em> Firefox, terima peringatannya, lalu ubah nilai parameter berikut:</p>
+                <h2><span role="img" aria-label="Wrench">&#x1f6e0;&#xfe0f;</span> Panduan Eksklusif: Mematikan Koneksi Otomatis Secara Manual</h2>
+                <p>Mau privasi maksimal, bahkan lebih dari yang ditawarkan Debian? Kamu bisa &apos;mengoprek&apos; Firefox sendiri! Caranya mudah, cukup ketik <strong><code>about:config</code></strong> di <em>address bar</em> Firefox, terima peringatannya, lalu ubah nilai parameter berikut:</p>
                 <p><strong>Daftar Parameter untuk Privasi Maksimal:</strong></p>
                 <code>
 app.update.enabled = false<br>
@@ -293,18 +293,18 @@ network.prefetch-next = false
                 </blockquote>
             </section>
             <section id="kesimpulan">
-                <h2><span role="img" aria-label="Conclusion">✅</span> Kesimpulan Santai</h2>
+                <h2><span role="img" aria-label="Conclusion">&#x2705;</span> Kesimpulan Santai</h2>
                 <p>Secara garis besar, <strong>Firefox ESR dari Debian adalah pilihan yang lebih privat</strong> dibandingkan versi Firefox <em>upstream</em> dari Mozilla. Debian telah mematikan fitur yang dianggap invasif atau memakan <em>bandwidth</em> seperti pembaruan otomatis dan koneksi spekulatif.</p>
-                <p>Namun, jika kamu adalah seorang "Privacy Maximalist" sejati, menggunakan <strong>Firefox ESR dari Debian + konfigurasi <code>about:config</code> tambahan</strong> seperti di atas adalah kombinasi yang sangat kuat. Alternatifnya? Coba lirik <strong>Tor Browser</strong> atau peramban yang memang fokus pada privasi seperti <strong>Librewolf</strong>!</p>
+                <p>Namun, jika kamu adalah seorang &quot;Privacy Maximalist&quot; sejati, menggunakan <strong>Firefox ESR dari Debian + konfigurasi <code>about:config</code> tambahan</strong> seperti di atas adalah kombinasi yang sangat kuat. Alternatifnya? Coba lirik <strong>Tor Browser</strong> atau peramban yang memang fokus pada privasi seperti <strong>Librewolf</strong>!</p>
                 <div id="related-articles-grid"></div><div id="response"></div>
             </section>
     </b></b></article><b><b>
  <footer>
     <a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
-   <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+   <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
     </b></b></div><b><b>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </b></b></body></html>

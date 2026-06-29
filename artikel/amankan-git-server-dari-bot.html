@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-11-29T04:07:34.000Z">
     <meta property="article:modified_time" content="2025-11-29T04:07:34.000Z">
 <meta name="keywords" content="Git Self-Hosted, Blokir Bot, AI Scraper, Cybersecurity, Nginx, WAF, Anubis, Bot Management, DevOps">
@@ -208,13 +208,13 @@
 <body>
 <div class="container">
     <header>
-        <div id="iposbrowser"></div><h1>Server Git <em>Self-Hosted</em> Panas Terus? Wajib Blokir Bot AI Scraper! 🤖</h1>
+        <div id="iposbrowser"></div><h1>Server Git <em>Self-Hosted</em> Panas Terus? Wajib Blokir Bot AI Scraper! &#x1f916;</h1>
         <p style="color: var(--secondary-text);"><i class="fa-solid fa-code"></i> Panduan Keamanan untuk Developer &amp; Sysadmin</p>
     </header>
     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMD0Y6exuXH4zVnXrmVdQH4AMLd1p6r9jW4jofy9BuQgye7EFAV7Hkg0rHWTZz1xOYribD1bPRHsxVk5B4P_mMX84jcNc2UIuEWIhyOfnQApsczQkzmV8FoHGEOWnnPf9-rPEX03ge21wqYUuCzYehPsCDw0Z-qfxPJYV9ER8mqhCuh2g7fKoK5pe7GOk/s1600/seranganbot.webp" alt="Ilustrasi Serangan Bot pada Server" class="featured-image">
     <article>
         <p>
-            Keputusan untuk pindah dari layanan seperti GitHub atau GitLab ke server Git <em>self-hosted</em> (milik sendiri) itu adalah langkah yang sangat <strong>bagus dan tepat</strong>! Kenapa? Karena kamu memegang kendali penuh atas kode dan data rahasia timmu. Tapi tunggu dulu, begitu kamu mulai menjalankan server Git sendiri, ada satu ritual wajib yang harus kamu lakukan: <strong>memblokir semua bot</strong> (robot <em>crawler</em>). Ini hukumnya *fardhu ain di dunia <em>sysadmin</em> zaman sekarang! 🚫
+            Keputusan untuk pindah dari layanan seperti GitHub atau GitLab ke server Git <em>self-hosted</em> (milik sendiri) itu adalah langkah yang sangat <strong>bagus dan tepat</strong>! Kenapa? Karena kamu memegang kendali penuh atas kode dan data rahasia timmu. Tapi tunggu dulu, begitu kamu mulai menjalankan server Git sendiri, ada satu ritual wajib yang harus kamu lakukan: <strong>memblokir semua bot</strong> (robot <em>crawler</em>). Ini hukumnya *fardhu ain di dunia <em>sysadmin</em> zaman sekarang! &#x1f6ab;
         </p>
         <h2><i class="fa-solid fa-triangle-exclamation"></i> Kenapa Bot Harus Diblokir Keras?</h2>
         <p>
@@ -223,10 +223,10 @@
         <div class="ai-narrative">
             <h4><i class="fa-solid fa-robot"></i> Bot Hari Ini, Beda dengan Bot Dulu!</h4>
             <p>
-                Dulu, bot yang paling mengganggu mungkin cuma <em>spammer</em> atau <em>Googlebot</em> yang sibuk mengindeks artikel. Tapi bot hari ini, termasuk Googlebot (terkadang), Bingbot, dan ratusan bot AI lainnya (yang dikelola raksasa teknologi), datang hanya untuk satu tujuan: <strong>mengambil kode kamu</strong>! 🧠 Mereka menyedot semua <em>source code</em> yang ada di servermu, lalu menggunakannya untuk melatih model AI mereka (seperti model pembuat kode, model penerjemah, dll.).
+                Dulu, bot yang paling mengganggu mungkin cuma <em>spammer</em> atau <em>Googlebot</em> yang sibuk mengindeks artikel. Tapi bot hari ini, termasuk Googlebot (terkadang), Bingbot, dan ratusan bot AI lainnya (yang dikelola raksasa teknologi), datang hanya untuk satu tujuan: <strong>mengambil kode kamu</strong>! &#x1f9e0; Mereka menyedot semua <em>source code</em> yang ada di servermu, lalu menggunakannya untuk melatih model AI mereka (seperti model pembuat kode, model penerjemah, dll.).
             </p>
             <p>
-                Masalah utamanya: Mereka menghabiskan 💸 <strong>bandwidth</strong>, ⚡ <strong>CPU</strong>, 💾 <strong>RAM</strong>, dan <em>storage</em> server kamu <strong>secara gratis</strong>, sementara kamu yang pusing bayar listrik, <em>cooling</em>, dan biaya internetnya. Ini jelas-jelas <strong>eksploitasi sumber daya</strong> yang tidak bisa ditoleransi.
+                Masalah utamanya: Mereka menghabiskan &#x1f4b8; <strong>bandwidth</strong>, &#x26a1; <strong>CPU</strong>, &#x1f4be; <strong>RAM</strong>, dan <em>storage</em> server kamu <strong>secara gratis</strong>, sementara kamu yang pusing bayar listrik, <em>cooling</em>, dan biaya internetnya. Ini jelas-jelas <strong>eksploitasi sumber daya</strong> yang tidak bisa ditoleransi.
             </p>
         </div>
         <h2><i class="fa-solid fa-shield-halved"></i> Panduan Multi-Layer Memblokir Bot</h2>
@@ -235,16 +235,16 @@
         </p>
         <ol>
             <li>
-                <h3>Verifikasi <em>Browser</em> Asli (Browser Challenge) 🌐</h3>
-                <p>Bot biasanya tidak menjalankan JavaScript (JS) secara penuh atau bahkan tidak sama sekali. Manfaatkan celah ini. Kamu bisa pakai teknik "browser challenge" atau <em>CAPTCHA</em> yang hanya bisa dilewati oleh browser sungguhan (Chrome, Firefox, Edge, dll.) yang menjalankan JS dengan benar. Kalau gagal, tolak aksesnya!</p>
+                <h3>Verifikasi <em>Browser</em> Asli (Browser Challenge) &#x1f310;</h3>
+                <p>Bot biasanya tidak menjalankan JavaScript (JS) secara penuh atau bahkan tidak sama sekali. Manfaatkan celah ini. Kamu bisa pakai teknik &quot;browser challenge&quot; atau <em>CAPTCHA</em> yang hanya bisa dilewati oleh browser sungguhan (Chrome, Firefox, Edge, dll.) yang menjalankan JS dengan benar. Kalau gagal, tolak aksesnya!</p>
             </li>
             <li>
-                <h3>Blokir Rentang IP <em>Cloud Provider</em> Secara Massif 🛑</h3>
+                <h3>Blokir Rentang IP <em>Cloud Provider</em> Secara Massif &#x1f6d1;</h3>
                 <p>Ini adalah langkah yang paling brutal namun seringkali paling efektif. Kenapa? Karena hampir semua bot jahat dan bot AI <em>scraper</em> berasal dari infrastruktur <em>cloud</em> besar seperti <strong>AWS, Google Cloud, Azure, Hetzner, OVH, DigitalOcean</strong>, dan sejenisnya. Logikanya, developer sejati tim kamu tidak akan <em>push</em> atau <em>pull</em> kode dari IP server Amazon Web Services, kan?</p>
                 <p>Akungnya, <strong>tidak ada daftar IP gratis yang selalu <em>up-to-date</em></strong><em>*. Kamu harus berlangganan *feed</em> IP berbayar (contoh populer: <strong>MaxMind</strong>, <strong>IP2Proxy</strong>, dll.) yang menyediakan daftar IP <em>proxy*, *VPS*, dan *cloud provider</em> yang <em>real-time</em>. Setelah dapat, masukkan daftar IP tersebut ke <em>firewall</em>, <em>load balancer</em>, atau konfigurasi Nginx kamu. Meskipun berbayar, biaya ini jauh lebih murah daripada bandwidth yang terbuang percuma.</p>
             </li>
             <li>
-                <h3>Pakai <em>Tool</em> <em>Open-Source</em> Khusus Blokir Bot 🔨</h3>
+                <h3>Pakai <em>Tool</em> <em>Open-Source</em> Khusus Blokir Bot &#x1f528;</h3>
                 <p>Jika kamu ingin solusi yang lebih cerdas dan gratis (atau murah), coba alat-alat yang dikembangkan oleh komunitas <em>open-source</em>. Contoh yang sangat direkomendasikan adalah:</p>
                 <ul>
                     <li><i class="fa-solid fa-code-branch"></i> <strong>Anubis:</strong> Modul Nginx yang sangat bagus dan sering di-update, seringkali gratis dan fokus pada <em>threat intelligence</em>.</li>
@@ -252,20 +252,20 @@
                 </ul>
             </li>
             <li>
-                <h3>Lupakan Robots.txt 🗑️</h3>
-                <p>Ini adalah mitos lama yang harus kita kubur dalam-dalam. Sekarang, hampir semua bot—terutama <b>bot AI yang haus data</b> - mengabaikan file <code>robots.txt</code>. Mereka tidak peduli dengan etika <em>crawler</em>; mereka hanya ingin data. Jadi, jangan buang waktu menulis disallow di sana, karena itu sama sekali tidak berguna lagi untuk <em>git server</em>.</p>
+                <h3>Lupakan Robots.txt &#x1f5d1;&#xfe0f;</h3>
+                <p>Ini adalah mitos lama yang harus kita kubur dalam-dalam. Sekarang, hampir semua bot&#x2014;terutama <b>bot AI yang haus data</b> - mengabaikan file <code>robots.txt</code>. Mereka tidak peduli dengan etika <em>crawler</em>; mereka hanya ingin data. Jadi, jangan buang waktu menulis disallow di sana, karena itu sama sekali tidak berguna lagi untuk <em>git server</em>.</p>
             </li>
             <li>
-                <h3>Cara Favorit (Paling Simpel untuk Tim Kecil) 🔑</h3>
+                <h3>Cara Favorit (Paling Simpel untuk Tim Kecil) &#x1f511;</h3>
                 <p>Kalau kamu mengelola tim kecil atau proyek internal yang tertutup, solusi paling mujarab adalah: <b>Lindungi seluruh folder</b> `<code class="language-plaintext">/git/</code>` atau <em>repository</em> kamu <b>dengan password</b> (<em>HTTP Basic Auth</em>). Hanya bagikan <em>username</em> &amp; <em>password</em> ke developer dan kolaborator yang kamu percaya. Ini sangat efektif karena bot tidak bisa menebak kredensial. Namun, metode ini memang <b>tidak skalabel</b> untuk proyek besar atau proyek yang bersifat <em>open-source</em> publik.</p>
             </li>
         </ol>
         <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZD67p9w12C0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" title="Wajib Hukumnya Untuk Memblokir Semua Bot"></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZD67p9w12C0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Wajib Hukumnya Untuk Memblokir Semua Bot"></iframe>
         </div>
         <h2><i class="fa-solid fa-briefcase"></i> Solusi Kelas Perusahaan (WAF Komersial)</h2>
         <p>
-            Jika semua langkah teknis di atas terlalu ribet dan memakan waktu (yang mana waktu <em>sysadmin</em> sangat mahal!), solusi termudah—khususnya untuk perusahaan dengan anggaran keamanan yang serius—adalah menggunakan <strong>WAF komersial (<em>Web Application Firewall</em>) dengan fitur <em>Bot Management</em> canggih.</strong>
+            Jika semua langkah teknis di atas terlalu ribet dan memakan waktu (yang mana waktu <em>sysadmin</em> sangat mahal!), solusi termudah&#x2014;khususnya untuk perusahaan dengan anggaran keamanan yang serius&#x2014;adalah menggunakan <strong>WAF komersial (<em>Web Application Firewall</em>) dengan fitur <em>Bot Management</em> canggih.</strong>
         </p>
         <p>Beberapa contoh WAF yang <em>top-tier</em> di industri:</p>
         <ul>
@@ -273,15 +273,15 @@
             <li><i class="fa-brands fa-aws"></i> <strong>Cloudfront WAF + AWS WAF Bot Control.</strong></li>
             <li><i class="fa-solid fa-star"></i> <strong>Fastly Next-Gen WAF</strong> atau <strong>Akamai Bot Manager.</strong></li>
         </ul>
-        <p>Layanan-layanan ini melakukan semua langkah <em>multi-layer</em> (nomor 1 sampai 5) di atas secara <strong>otomatis</strong>. Mereka meng-<em>update</em> daftar IP bot setiap hari, bahkan setiap jam. Untuk perusahaan besar, biaya langganan WAF ini sangat murah dibandingkan kerugian akibat bot yang terus mengeruk kekayaan intelektual (data kode) kamu. 💰</p>
+        <p>Layanan-layanan ini melakukan semua langkah <em>multi-layer</em> (nomor 1 sampai 5) di atas secara <strong>otomatis</strong>. Mereka meng-<em>update</em> daftar IP bot setiap hari, bahkan setiap jam. Untuk perusahaan besar, biaya langganan WAF ini sangat murah dibandingkan kerugian akibat bot yang terus mengeruk kekayaan intelektual (data kode) kamu. &#x1f4b0;</p>
         <p>
             Dari pengalaman di tempat kerja (perusahaan besar yang <em>listed</em> di bursa), setelah memasang salah satu WAF <em>enterprise</em> + <em>bot management*, akses bot langsung turun hampir <strong>100%</strong>. Server jadi stabil, *resource</em> tidak lagi terkuras, dan data kode yang dikelola tim manusia aman, tidak lagi diambil gratis oleh perusahaan AI.
         </p>
         <p>
-            Informasi ini dibagikan karena banyak teman-teman <em>developer/sysadmin</em> yang cerita: <em>“Server Git self-hosted aku panas terus, bandwidth habis, ternyata disedot bot AI!”</em>
+            Informasi ini dibagikan karena banyak teman-teman <em>developer/sysadmin</em> yang cerita: <em>&#x201c;Server Git self-hosted aku panas terus, bandwidth habis, ternyata disedot bot AI!&#x201d;</em>
         </p>
         <p>
-            Semoga panduan ini membantu. Gunakan sesuai kebutuhan dan skala proyek kamu. Aku sudah kasih cukup petunjuk dan nama-nama <em>tool</em> yang bisa langsung kamu cari dan coba. Semoga sukses dan server Git kamu tetap sejuk, aman, dan hanya diakses oleh tim <strong>manusia</strong> yang kamu cintai! 🧊🔒
+            Semoga panduan ini membantu. Gunakan sesuai kebutuhan dan skala proyek kamu. Aku sudah kasih cukup petunjuk dan nama-nama <em>tool</em> yang bisa langsung kamu cari dan coba. Semoga sukses dan server Git kamu tetap sejuk, aman, dan hanya diakses oleh tim <strong>manusia</strong> yang kamu cintai! &#x1f9ca;&#x1f512;
         </p>
     </article>
     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 50px 0;">
@@ -291,14 +291,14 @@
         <div id="related-articles-grid"></div><div id="response"></div>
          </section>
     <footer>
-        <p>🄯 2025 Jaga Data Pribadi Tetap Aman. 🖤</p>
+        <p>&#x1f12f; 2025 Jaga Data Pribadi Tetap Aman. &#x1f5a4;</p>
         <p style="margin-top: 10px;">
-            <i class="fa-brands fa-github"></i> Developer •      <i class="fa-solid fa-wrench"></i> Sysadmin Tips
+            <i class="fa-brands fa-github"></i> Developer &#x2022;      <i class="fa-solid fa-wrench"></i> Sysadmin Tips
         </p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="SQLite">
     <meta property="article:tag" content="MySQL">
     <meta property="article:tag" content="PostgreSQL">
@@ -248,20 +248,20 @@
 </head>
 <body>
 <div class="container">
- <div id="iposbrowser"></div><h1>🗄️ SQLite, apakah bisa seperti MySQL atau Postgre? <i class="fa-solid fa-database"></i></h1>
+ <div id="iposbrowser"></div><h1>&#x1f5c4;&#xfe0f; SQLite, apakah bisa seperti MySQL atau Postgre? <i class="fa-solid fa-database"></i></h1>
   <div class="featured-image">
         <img src="https://dalam.web.id/img/pbs.twimg.com/76580f0699f49b27.webp" alt="Ilustrasi SQLite dan database server" width="800" height="450" loading="eager">
     </div>
-    <p>Halo, para pejuang kode! Pernah dengar <strong>SQLite</strong> dan berpikir, "Ah, cuma database kecil buatan, mana bisa ngimbangin MySQL atau PostgreSQL"? Eits, jangan salah sangka. Pertanyaan <strong>"SQLite, apakah bisa seperti mysql atau postgre?"</strong> sebenarnya cukup menggoda untuk dibedah. Jawaban singkatnya: <strong>BISA BANGET</strong>, tapi dengan filosofi yang berbeda kayak mobil sport compact vs truk kargo. 🚛⚡ Yuk kita bedah tuntas pakai prinsip <strong>5W+1H</strong> plus pendekatan <strong>E-E-A-T</strong> (Pengalaman, Keahlian, Otoritas, Kepercayaan) biar kamu makin pede pilih database yang pas.</p>
+    <p>Halo, para pejuang kode! Pernah dengar <strong>SQLite</strong> dan berpikir, &quot;Ah, cuma database kecil buatan, mana bisa ngimbangin MySQL atau PostgreSQL&quot;? Eits, jangan salah sangka. Pertanyaan <strong>&quot;SQLite, apakah bisa seperti mysql atau postgre?&quot;</strong> sebenarnya cukup menggoda untuk dibedah. Jawaban singkatnya: <strong>BISA BANGET</strong>, tapi dengan filosofi yang berbeda kayak mobil sport compact vs truk kargo. &#x1f69b;&#x26a1; Yuk kita bedah tuntas pakai prinsip <strong>5W+1H</strong> plus pendekatan <strong>E-E-A-T</strong> (Pengalaman, Keahlian, Otoritas, Kepercayaan) biar kamu makin pede pilih database yang pas.</p>
     <!-- 5W+1H bagian awal -->
-    <h2>🔍 1. APA (What) itu SQLite? <i class="fa-solid fa-question-circle"></i></h2>
-    <p>SQLite adalah <strong>database serverless</strong> yang disimpan dalam satu file <code>.sqlite</code> atau <code>.db</code>. Etidak perlu install service, etidak perlu atur user dan password.  Bandingkan dengan MySQL/PostgreSQL yang <strong>client-server</strong>: mereka butuh daemon berjalan di background, port, dan koneksi jaringan. <strong>Kesimpulan:</strong> SQLite bisa setangguh kakak-kakaknya dalam hal fitur canggih kayak <strong>ACID transaction, Full-Text Search (FTS5), JSON, CTE, window functions</strong>. Hebat kan? 😍</p>
+    <h2>&#x1f50d; 1. APA (What) itu SQLite? <i class="fa-solid fa-question-circle"></i></h2>
+    <p>SQLite adalah <strong>database serverless</strong> yang disimpan dalam satu file <code>.sqlite</code> atau <code>.db</code>. Etidak perlu install service, etidak perlu atur user dan password.  Bandingkan dengan MySQL/PostgreSQL yang <strong>client-server</strong>: mereka butuh daemon berjalan di background, port, dan koneksi jaringan. <strong>Kesimpulan:</strong> SQLite bisa setangguh kakak-kakaknya dalam hal fitur canggih kayak <strong>ACID transaction, Full-Text Search (FTS5), JSON, CTE, window functions</strong>. Hebat kan? &#x1f60d;</p>
     <div class="zdummy3">
-        <i class="fa-solid fa-lightbulb"></i> <strong>Fakta mencengangkan:</strong> SQLite digunakan oleh <strong>Android, iOS, Chrome, Firefox, dan pesawat terbang!</strong> Bukan sekadar database "mainan".
+        <i class="fa-solid fa-lightbulb"></i> <strong>Fakta mencengangkan:</strong> SQLite digunakan oleh <strong>Android, iOS, Chrome, Firefox, dan pesawat terbang!</strong> Bukan sekadar database &quot;mainan&quot;.
     </div>
-    <h2>👤 2. SIAPA (Who) yang paling cocok pakai SQLite? <i class="fa-solid fa-users"></i></h2>
-    <p>Kalau kamu <strong>developer indie, freelancer, tim kecil, atau pelaku startup tahap awal</strong> — SQLite adalah teman sejati. Juga cocok banget untuk aplikasi <strong>edge computing, mobile apps, desktop apps, dan website dengan trafik menengah (ribuan pengunjung/hari)</strong>. Bahkan platform seperti <strong>Bun, Cloudflare Workers</strong> sangat menyanjung SQLite. Sebaliknya, tim enterprise dengan ratusan penulis simultan <strong>tetap butuh MySQL/PostgreSQL</strong>.</p>
-    <h2>📍 3. DIMANA (Where) SQLite bersinar dibanding database lain? <i class="fa-solid fa-map-marker-alt"></i></h2>
+    <h2>&#x1f464; 2. SIAPA (Who) yang paling cocok pakai SQLite? <i class="fa-solid fa-users"></i></h2>
+    <p>Kalau kamu <strong>developer indie, freelancer, tim kecil, atau pelaku startup tahap awal</strong> &#x2014; SQLite adalah teman sejati. Juga cocok banget untuk aplikasi <strong>edge computing, mobile apps, desktop apps, dan website dengan trafik menengah (ribuan pengunjung/hari)</strong>. Bahkan platform seperti <strong>Bun, Cloudflare Workers</strong> sangat menyanjung SQLite. Sebaliknya, tim enterprise dengan ratusan penulis simultan <strong>tetap butuh MySQL/PostgreSQL</strong>.</p>
+    <h2>&#x1f4cd; 3. DIMANA (Where) SQLite bersinar dibanding database lain? <i class="fa-solid fa-map-marker-alt"></i></h2>
     <p>SQLite luar biasa untuk:</p>
     <ul>
         <li><i class="fa-solid fa-mobile-alt"></i> <strong>Aplikasi Mobile &amp; Desktop:</strong> Simpan data lokal (offline-first).</li>
@@ -270,30 +270,30 @@
         <li><i class="fa-solid fa-blog"></i> <strong>Blog atau CMS personal (seperti Layar Kosong):</strong> Hemat resource.</li>
     </ul>
     <p>Sementara MySQL/PostgreSQL dominan di <strong>high-traffic web apps, SaaS, data warehouse, sistem perbankan, aplikasi multi-tenant</strong>.</p>
-    <h2>⏰ 4. KAPAN (When) SQLite bisa menggantikan MySQL atau Postgres? <i class="fa-regular fa-calendar-alt"></i></h2>
+    <h2>&#x23f0; 4. KAPAN (When) SQLite bisa menggantikan MySQL atau Postgres? <i class="fa-regular fa-calendar-alt"></i></h2>
     <p>Gunakan SQLite <strong>daripada database besar</strong> jika:</p>
     <ul>
-        <li>✅ Proyekmu butuh <strong>zero maintenance &amp; zero config</strong>.</li>
-        <li>✅ Jumlah <strong>write simultan</strong> rendah (biasanya &lt; 50 write/detik, tapi dengan WAL bisa lebih tinggi).</li>
-        <li>✅ Kamu ingin backup database cukup copy satu file.</li>
-        <li>✅ Aplikasi berjalan di environment <strong>embedded, IoT, atau CLI tools</strong>.</li>
-        <li>✅ Kamu ingin <strong>cepat dalam development dan testing</strong>.</li>
+        <li>&#x2705; Proyekmu butuh <strong>zero maintenance &amp; zero config</strong>.</li>
+        <li>&#x2705; Jumlah <strong>write simultan</strong> rendah (biasanya &lt; 50 write/detik, tapi dengan WAL bisa lebih tinggi).</li>
+        <li>&#x2705; Kamu ingin backup database cukup copy satu file.</li>
+        <li>&#x2705; Aplikasi berjalan di environment <strong>embedded, IoT, atau CLI tools</strong>.</li>
+        <li>&#x2705; Kamu ingin <strong>cepat dalam development dan testing</strong>.</li>
     </ul>
     <p><strong>Kapan tetap butuh MySQL atau Postgres?</strong> Saat ada <strong>ratusan koneksi write bersamaan, replika baca-tulis terdistribusi, atau skalabilitas horizontal</strong>.</p>
-    <h2>❓ 5. MENGAPA (Why) SQLite bisa jadi pilihan profesional? <i class="fa-solid fa-brain"></i></h2>
+    <h2>&#x2753; 5. MENGAPA (Why) SQLite bisa jadi pilihan profesional? <i class="fa-solid fa-brain"></i></h2>
     <p>Karena <strong>SQLite memiliki fitur yang sangat matang</strong>. Banyak yang kaget begitu tahu SQLite punya:</p>
     <ul>
-        <li>🔐 <strong>ACID compliant</strong> (Atomicity, Consistency, Isolation, Durability) — mati listrik pun tidak korup.</li>
-        <li>🔍 <strong>Full-Text Search (FTS5)</strong> — bikin mesin pencari internal secepat kilat.</li>
-        <li>📦 <strong>JSON support &amp; jsonb</strong> — mirip NoSQL.</li>
-        <li>🧩 <strong>Extensions &amp; virtual tables</strong> — bisa diperluas.</li>
-        <li>⚡ <strong>Read performance sangat tinggi</strong> karena langsung baca file tanpa network roundtrip.</li>
+        <li>&#x1f510; <strong>ACID compliant</strong> (Atomicity, Consistency, Isolation, Durability) &#x2014; mati listrik pun tidak korup.</li>
+        <li>&#x1f50d; <strong>Full-Text Search (FTS5)</strong> &#x2014; bikin mesin pencari internal secepat kilat.</li>
+        <li>&#x1f4e6; <strong>JSON support &amp; jsonb</strong> &#x2014; mirip NoSQL.</li>
+        <li>&#x1f9e9; <strong>Extensions &amp; virtual tables</strong> &#x2014; bisa diperluas.</li>
+        <li>&#x26a1; <strong>Read performance sangat tinggi</strong> karena langsung baca file tanpa network roundtrip.</li>
     </ul>
     <p>Di sisi lain, <strong>MySQL atau Postgres</strong> unggul dalam <strong>concurrency control, role-based access, replication, dan ekosistem tooling enterprise</strong>.</p>
-    <h2>🛠️ 6. BAGAIMANA (How) cara kerja SQLite tanpa server? <i class="fa-solid fa-cogs"></i></h2>
-    <p>SQLite bekerja sebagai <strong>library in-process</strong>. Aplikasi kamu memanggil fungsi SQLite langsung, membaca/menulis file <code>.db</code>. Tidak ada <em>server process</em>, tidak ada <em>socket</em>. Proses ini bikin <strong>latency super rendah</strong>. Untuk menangani konkurensi, SQLite pakai <strong>locking mechanism di level file</strong> — mode WAL (Write-Ahead Logging) memungkinkan satu penulis + banyak pembaca simultan. Hasilnya? Bisa dipakai untuk web app sampai 100k request/hari dengan optimasi tepat!</p>
+    <h2>&#x1f6e0;&#xfe0f; 6. BAGAIMANA (How) cara kerja SQLite tanpa server? <i class="fa-solid fa-cogs"></i></h2>
+    <p>SQLite bekerja sebagai <strong>library in-process</strong>. Aplikasi kamu memanggil fungsi SQLite langsung, membaca/menulis file <code>.db</code>. Tidak ada <em>server process</em>, tidak ada <em>socket</em>. Proses ini bikin <strong>latency super rendah</strong>. Untuk menangani konkurensi, SQLite pakai <strong>locking mechanism di level file</strong> &#x2014; mode WAL (Write-Ahead Logging) memungkinkan satu penulis + banyak pembaca simultan. Hasilnya? Bisa dipakai untuk web app sampai 100k request/hari dengan optimasi tepat!</p>
     <!-- Tabel perbandingan cepat (sebagai pelengkap outline) -->
-    <h2>📊 Perbandingan Cepat: SQLite vs MySQL vs PostgreSQL <i class="fa-solid fa-chart-simple"></i></h2>
+    <h2>&#x1f4ca; Perbandingan Cepat: SQLite vs MySQL vs PostgreSQL <i class="fa-solid fa-chart-simple"></i></h2>
     <div class="table-wrapper">
         <table>
             <thead>
@@ -310,13 +310,13 @@
         </table>
     </div>
     <!-- E-E-A-T Framework dalam bahasa Indonesia santai -->
-    <h2>🧠 Pengalaman &amp; Keahlian (E-E-A-T) : Cerita dari Lapangan <i class="fa-solid fa-medal"></i></h2>
+    <h2>&#x1f9e0; Pengalaman &amp; Keahlian (E-E-A-T) : Cerita dari Lapangan <i class="fa-solid fa-medal"></i></h2>
     <p>Selama bertahun-tahun menggarap proyek dari Balikpapan sampai Jakarta, gue (<em>tim Jaga Data Pribadi Tetap Aman</em>) sudah mencoba ketiga database ini. SQLite berhasil <strong>nge-handle website berita harian dengan 20k visitor/day</strong> tanpa kedip, bahkan menggunakan mode WAL dan cache size yang tepat. MySQL kita pakai untuk aplikasi ERP yang butuh banyak user concurrent write. <strong>Intinya: jangan remehkan SQLite</strong>, dia cabe rawit yang siap ngebut asal sesuai konteks. Kami percaya bahwa memilih database harus berdasarkan <strong>kebutuhan konkret, bukan gengsi teknologi</strong>.</p>
     <div class="zdummy3">
-        <i class="fa-solid fa-rocket"></i> <strong>Tips optimasi Core Web Vitals dari kami:</strong> Gambar dengan ukuran tetap, hindari layout shift, dan SQLite sendiri memberikan performa query yang kilat tanpa overhead jaringan — sangat ramah INP &amp; LCP.
+        <i class="fa-solid fa-rocket"></i> <strong>Tips optimasi Core Web Vitals dari kami:</strong> Gambar dengan ukuran tetap, hindari layout shift, dan SQLite sendiri memberikan performa query yang kilat tanpa overhead jaringan &#x2014; sangat ramah INP &amp; LCP.
     </div>
-    <h2>📌 Kesimpulan Akhir (No Clickbait)</h2>
-    <p><strong>SQLite BISA seperti MySQL atau PostgreSQL</strong> dalam hal fitur canggih, kecepatan baca, dan keandalan transaksi. Namun, <strong>arsitektur serverless-nya</strong> membuatnya paling unggul di skenario <em>single-machine, aplikasi edge, embedded, sampai web moderate traffic</em>. Jangan takut memakai SQLite untuk proyek serius — banyak perusahaan tech unicorn pun menggunakannya di lapisan edge. Untuk kebutuhan heavy multi-writer, replikasi global, tetap andalkan MySQL atau Postgres. Kamu sudah punya gambaran utuh, kan? 😎</p>
+    <h2>&#x1f4cc; Kesimpulan Akhir (No Clickbait)</h2>
+    <p><strong>SQLite BISA seperti MySQL atau PostgreSQL</strong> dalam hal fitur canggih, kecepatan baca, dan keandalan transaksi. Namun, <strong>arsitektur serverless-nya</strong> membuatnya paling unggul di skenario <em>single-machine, aplikasi edge, embedded, sampai web moderate traffic</em>. Jangan takut memakai SQLite untuk proyek serius &#x2014; banyak perusahaan tech unicorn pun menggunakannya di lapisan edge. Untuk kebutuhan heavy multi-writer, replikasi global, tetap andalkan MySQL atau Postgres. Kamu sudah punya gambaran utuh, kan? &#x1f60e;</p>
     <!-- Bagian Related Articles dan Response (sesuai permintaan) -->
     <div id="related-articles-grid">
            </div>
@@ -324,11 +324,11 @@
       </div>
     <!-- Footer -->
     <footer>
-        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel berdasarkan <strong>E-E-A-T &amp; 5W+1H</strong> | <i class="fa-solid fa-sync-alt"></i> Konten原创 &amp; bebas bias | <i class="fa-solid fa-moon"></i> Tema mengikuti preferensi sistem (light/dark) otomatis.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman &#x2014; Artikel berdasarkan <strong>E-E-A-T &amp; 5W+1H</strong> | <i class="fa-solid fa-sync-alt"></i> Konten&#x539f;&#x521b; &amp; bebas bias | <i class="fa-solid fa-moon"></i> Tema mengikuti preferensi sistem (light/dark) otomatis.</p>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
 <!-- tidak ada ARIA, tidak ada hero, sederhana dan responsif -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-05-29T17:32:48.000Z">
     <meta property="article:modified_time" content="2026-05-29T17:32:48.000Z">
     <meta name="article:tag" content="Linux">
@@ -293,80 +293,80 @@
                 Kalau kamu pernah singgah di forum teknologi dan bertanya-tanya, <em>kenapa pengguna Linux membela sistem operasi mereka dengan begitu bersemangat (dan terkadang militan)?</em> Jawabannya mungkin akan sedikit mengejutkanmu.
             </p>
             <p>
-                Bukan karena koleksi <em>game</em> yang makin membaik. Bukan sekadar kebebasan kustomisasi antarmuka desktop yang tanpa batasan otomatis selama sumber daya sistem mencukupi. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Dan bahkan, bukan cuma soal performa yang ringan di perangkat keras tua. Alasan paling fundamental adalah: 👉 <strong>Manajer Paket (Package Manager).</strong>
+                Bukan karena koleksi <em>game</em> yang makin membaik. Bukan sekadar kebebasan kustomisasi antarmuka desktop yang tanpa batasan otomatis selama sumber daya sistem mencukupi. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Dan bahkan, bukan cuma soal performa yang ringan di perangkat keras tua. Alasan paling fundamental adalah: &#x1f449; <strong>Manajer Paket (Package Manager).</strong>
             </p>
             <p>
-                Cara Linux menginstal, memelihara, dan mengelola perangkat lunak benar-benar mendisrupsi dan mengubah total pengalaman pengguna di depan komputer. Begitu kamu terbiasa dengannya, cara kerja sistem lain akan terasa seperti prasejarah. Ini dia rincian alasannya! 👇
+                Cara Linux menginstal, memelihara, dan mengelola perangkat lunak benar-benar mendisrupsi dan mengubah total pengalaman pengguna di depan komputer. Begitu kamu terbiasa dengannya, cara kerja sistem lain akan terasa seperti prasejarah. Ini dia rincian alasannya! &#x1f447;
             </p>
             <figure class="content-image">
                 <img src="https://dalam.web.id/img/scontent_sin2_2.xx.fbcdn.net/e54a00dbedc00a9e.webp" alt="Ilustrasi konsep instalasi perangkat lunak menggunakan Manajer Paket di Linux" width="800" height="450" fetchpriority="high" decoding="async">
-                <figcaption>Lupakan mencari tombol 'Download' palsu; semua kendali kini ada di ujung jarimu.</figcaption>
+                <figcaption>Lupakan mencari tombol &apos;Download&apos; palsu; semua kendali kini ada di ujung jarimu.</figcaption>
             </figure>
-            <h2><span class="emoji-icon">🧩</span> 1. Satu Perintah = Instalasi Perangkat Lunak Penuh</h2>
+            <h2><span class="emoji-icon">&#x1f9e9;</span> 1. Satu Perintah = Instalasi Perangkat Lunak Penuh</h2>
             <p>
-                Di lingkungan Windows, menginstal aplikasi adalah sebuah "petualangan". Kamu harus membuka <em>browser</em>, mencari situs resmi, menghindari jebakan tombol <em>Download</em> palsu dari iklan, mengunduh <em>file</em> <code>.exe</code>, mengekliknya dua kali, dan melewati <em>wizard</em> instalasi yang tak jarang menyelundupkan <em>toolbar</em> atau <em>antivirus</em> sponsor.
+                Di lingkungan Windows, menginstal aplikasi adalah sebuah &quot;petualangan&quot;. Kamu harus membuka <em>browser</em>, mencari situs resmi, menghindari jebakan tombol <em>Download</em> palsu dari iklan, mengunduh <em>file</em> <code>.exe</code>, mengekliknya dua kali, dan melewati <em>wizard</em> instalasi yang tak jarang menyelundupkan <em>toolbar</em> atau <em>antivirus</em> sponsor.
             </p>
             <p>
                 Di Linux? Kamu cukup membuka terminal dan mengetik satu baris perintah. Menginstal aplikasi, membereskan dependensi (pustaka pendukung), hingga memasang <em>update</em> terbaru diselesaikan dalam <strong>satu perintah tunggal</strong>. Semuanya langsung berfungsi tanpa <em>spam wizard</em> pengaturan.
             </p>
             <div class="terminal-block">
                 <code>
-<span style="color: #69ff47;">layar@kosong:~$</span> sudo apt install vlc gimp htop
+<span style="color: #69ff47;">layar@kosong:~&#x24;</span> sudo apt install vlc gimp htop
                 </code>
             </div>
-            <h2><span class="emoji-icon">🔄</span> 2. Perbarui SELURUH Sistem Sekaligus</h2>
+            <h2><span class="emoji-icon">&#x1f504;</span> 2. Perbarui SELURUH Sistem Sekaligus</h2>
             <p>
-                Coba ingat-ingat pengalaman pembaruan di Windows. OS-nya minta <em>restart</em> untuk Windows Update, lalu <em>browser</em> minta <em>update</em> sendiri, disusul notifikasi menjengkelkan dari Adobe, Java, atau aplikasi pihak ketiga lainnya yang masing-masing berjalan di latar belakang secara terpisah. 😅
+                Coba ingat-ingat pengalaman pembaruan di Windows. OS-nya minta <em>restart</em> untuk Windows Update, lalu <em>browser</em> minta <em>update</em> sendiri, disusul notifikasi menjengkelkan dari Adobe, Java, atau aplikasi pihak ketiga lainnya yang masing-masing berjalan di latar belakang secara terpisah. &#x1f605;
             </p>
             <p>
                 Manajer paket Linux menyapu bersih masalah ini. Dengan satu perintah (misalnya <code>sudo dnf upgrade</code> atau <code>sudo pacman -Syu</code>), manajer paket akan memperbarui:
             </p>
             <ul>
-                <li>✅ Lingkungan desktop (GUI).</li>
-                <li>✅ Patch keamanan kernel.</li>
-                <li>✅ Pustaka (<em>library</em>) sistem.</li>
-                <li>✅ Seluruh aplikasi pihak ketiga yang terinstal.</li>
+                <li>&#x2705; Lingkungan desktop (GUI).</li>
+                <li>&#x2705; Patch keamanan kernel.</li>
+                <li>&#x2705; Pustaka (<em>library</em>) sistem.</li>
+                <li>&#x2705; Seluruh aplikasi pihak ketiga yang terinstal.</li>
             </ul>
-            <p>Semuanya terjadi bersamaan, aman, konsisten, dan—yang paling penting—tanpa paksaan <em>restart</em> mendadak di tengah pekerjaanmu.</p>
-            <h2><span class="emoji-icon">🔐</span> 3. Instalasi Perangkat Lunak yang Jauh Lebih Aman</h2>
+            <p>Semuanya terjadi bersamaan, aman, konsisten, dan&#x2014;yang paling penting&#x2014;tanpa paksaan <em>restart</em> mendadak di tengah pekerjaanmu.</p>
+            <h2><span class="emoji-icon">&#x1f510;</span> 3. Instalasi Perangkat Lunak yang Jauh Lebih Aman</h2>
             <p>
                 Aplikasi Linux pada umumnya datang langsung dari <em>repository</em> (gudang perangkat lunak) tepercaya yang dikurasi dan dikelola secara ketat oleh pengembang distro tersebut.
             </p>
             <ul>
-                <li>✔ Perangkat lunak ditandatangani secara kriptografis (<em>cryptographically signed</em>).</li>
-                <li>✔ Risiko terkena <em>perangkat lunak berbahaya</em> atau <em>ransomware</em> turun drastis karena kamu tidak pernah perlu mengunduh <em>file</em> eksekusi dari situs web tak dikenal.</li>
-                <li>✔ Setiap paket diverifikasi oleh komunitas.</li>
+                <li>&#x2714; Perangkat lunak ditandatangani secara kriptografis (<em>cryptographically signed</em>).</li>
+                <li>&#x2714; Risiko terkena <em>perangkat lunak berbahaya</em> atau <em>ransomware</em> turun drastis karena kamu tidak pernah perlu mengunduh <em>file</em> eksekusi dari situs web tak dikenal.</li>
+                <li>&#x2714; Setiap paket diverifikasi oleh komunitas.</li>
             </ul>
-            <h2><span class="emoji-icon">🧠</span> 4. Penanganan Dependensi Otomatis (Selamat Tinggal "Neraka DLL")</h2>
+            <h2><span class="emoji-icon">&#x1f9e0;</span> 4. Penanganan Dependensi Otomatis (Selamat Tinggal &quot;Neraka DLL&quot;)</h2>
             <p>
-                Pernah mengalami <em>error</em> <code>"missing .dll file"</code> saat ingin bermain <em>game</em> atau menjalankan aplikasi di OS sebelah? Itu terjadi karena manajemen <em>library</em> yang berantakan.
+                Pernah mengalami <em>error</em> <code>&quot;missing .dll file&quot;</code> saat ingin bermain <em>game</em> atau menjalankan aplikasi di OS sebelah? Itu terjadi karena manajemen <em>library</em> yang berantakan.
             </p>
             <p>
-                Di Linux, jika aplikasi "A" membutuhkan pustaka tambahan "B" dan "C" untuk berjalan, manajer paket akan mengetahuinya dan <strong>menginstalnya secara otomatis</strong> untukmu. Sistem akan memeriksa seluruh pohon dependensi <em>sebelum</em> instalasi dilakukan. Tidak ada berkas hilang, tidak ada instalasi rusak, dan tidak ada kekacauan kompatibilitas.
+                Di Linux, jika aplikasi &quot;A&quot; membutuhkan pustaka tambahan &quot;B&quot; dan &quot;C&quot; untuk berjalan, manajer paket akan mengetahuinya dan <strong>menginstalnya secara otomatis</strong> untukmu. Sistem akan memeriksa seluruh pohon dependensi <em>sebelum</em> instalasi dilakukan. Tidak ada berkas hilang, tidak ada instalasi rusak, dan tidak ada kekacauan kompatibilitas.
             </p>
-            <h2><span class="emoji-icon">⚡</span> 5. Penyiapan Lebih Cepat = Produktivitas Instan</h2>
+            <h2><span class="emoji-icon">&#x26a1;</span> 5. Penyiapan Lebih Cepat = Produktivitas Instan</h2>
             <p>
                 Punya PC atau laptop baru? Di ekosistem lain, kamu mungkin menghabiskan waktu seharian penuh hanya untuk menginstal ulang lusinan program secara manual satu per satu.
             </p>
             <p>
                 Para pengembang (<em>developer</em>) SANGAT menyukai Linux karena alasan ini. Kamu cukup menyimpan satu berkas <em>script bash</em> (berisi daftar paket favoritmu), dan membiarkan terminal menginstal seluruh lingkungan kerjamu hanya saat kamu pergi menyeduh kopi. Produktivitas instan!
             </p>
-            <h2><span class="emoji-icon">🧹</span> 6. Sistem Bersih — Bahkan Setelah Bertahun-Tahun</h2>
+            <h2><span class="emoji-icon">&#x1f9f9;</span> 6. Sistem Bersih &#x2014; Bahkan Setelah Bertahun-Tahun</h2>
             <p>
-                OS sebelah terkenal dengan "pembusukan sistem" (<em>system rot</em>) akibat tumpukan <em>registry</em> dan sampah <em>cache</em> aplikasi yang sudah dihapus. Di Linux, manajer paket melacak lokasi <strong>setiap berkas</strong> yang diinstal secara presisi.
+                OS sebelah terkenal dengan &quot;pembusukan sistem&quot; (<em>system rot</em>) akibat tumpukan <em>registry</em> dan sampah <em>cache</em> aplikasi yang sudah dihapus. Di Linux, manajer paket melacak lokasi <strong>setiap berkas</strong> yang diinstal secara presisi.
             </p>
             <p>
                 Jadi, ketika kamu menghapus sebuah perangkat lunak dengan perintah <em>purge</em> atau <em>remove</em>, manajer paket akan menyapu bersih ke akar-akarnya. Hasilnya? Tidak ada sampah tersisa, tidak ada kekacauan <em>registry</em>, dan PC kamu tetap secepat hari pertama ia diinstal, meski sudah dipakai bertahun-tahun.
             </p>
-            <h2><span class="emoji-icon">🌍</span> 7. Dibangun di Atas Filosofi Sumber Terbuka Sejak Hari Pertama</h2>
+            <h2><span class="emoji-icon">&#x1f30d;</span> 7. Dibangun di Atas Filosofi Sumber Terbuka Sejak Hari Pertama</h2>
             <p>
-                Banyak orang bilang, <em>"Tapi Windows sekarang punya Winget dan Chocolatey!"</em> Ya, itu benar. Namun ada perbedaan mendasar.
+                Banyak orang bilang, <em>&quot;Tapi Windows sekarang punya Winget dan Chocolatey!&quot;</em> Ya, itu benar. Namun ada perbedaan mendasar.
             </p>
             <p>
                 Distribusi Linux dirancang dengan filosofi manajemen paket yang tertanam di level inti sejak puluhan tahun lalu. Segala hal di OS ini bertumpu padanya. Sebaliknya, Windows menambahkan alat serupa belakangan hanya sebagai pelengkap sekunder. Integrasi yang setengah matang tentu memberikan pengalaman (<em>user experience</em>) yang berbeda secara drastis.
             </p>
             <div class="highlight-box">
-                <h3>💬 Kebenaran yang Sulit Dibantah</h3>
+                <h3>&#x1f4ac; Kebenaran yang Sulit Dibantah</h3>
                 <p>
                     Begitu kamu merasakan sensasi magis menginstal SEMUANYA dari satu sumber sentral tepercaya, dengan kecepatan tinggi, dan memegang kendali penuh atas sistemmu... kembali ke metode penginstal manual konvensional benar-benar terasa purba dan membuang waktu.
                 </p>
@@ -375,7 +375,7 @@
                 </p>
             </div>
             <p style="text-align: center; font-weight: bold; font-size: 1.2rem; color: var(--accent-color); margin-top: 3rem;">
-                🔥 Sudahkah kamu mencoba kekuatan manajer paket Linux?<br>
+                &#x1f525; Sudahkah kamu mencoba kekuatan manajer paket Linux?<br>
                 Apakah kamu tim APT, Pacman, DNF, atau Zypper? Bagikan pengalamanmu!
             </p>
         </article>
@@ -384,7 +384,7 @@
             <ul>
                 <li>Arch Linux Wiki: <a href="https://wiki.archlinux.org/title/Pacman" target="_blank" rel="noopener">Pacman Overview and Package Management</a>.</li>
                 <li>Linux Foundation: <em>Software Management in Modern Linux Distributions</em>.</li>
-                <li>The Debian Administrator's Handbook: <a href="https://debian-handbook.info/browse/stable/apt.html" target="_blank" rel="noopener">Apt, The Advanced Package Tool</a>.</li>
+                <li>The Debian Administrator&apos;s Handbook: <a href="https://debian-handbook.info/browse/stable/apt.html" target="_blank" rel="noopener">Apt, The Advanced Package Tool</a>.</li>
             </ul>
         </aside>
     <div id="related-articles-grid"></div>
@@ -392,10 +392,10 @@
     </main>
     <footer>
         <div class="container">
-            <p>🄯 2026 - Dibuat dengan antusiasme untuk mempopulerkan semangat <em>Open Source</em>.</p>
+            <p>&#x1f12f; 2026 - Dibuat dengan antusiasme untuk mempopulerkan semangat <em>Open Source</em>.</p>
         </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Snap">
     <meta property="article:tag" content="Flatpak">
     <meta property="article:tag" content="Linux">
@@ -258,33 +258,33 @@
 </head>
 <body>
 <div class="container">
-    <div id="iposbrowser"></div><h1>📦🐧 Dari Snap ke Flatpak: Kenapa Aku Akhirnya Pindah dan tidak Nyangka Lebih Enak!</h1>
+    <div id="iposbrowser"></div><h1>&#x1f4e6;&#x1f427; Dari Snap ke Flatpak: Kenapa Aku Akhirnya Pindah dan tidak Nyangka Lebih Enak!</h1>
     <p style="font-size:1.2rem; font-weight:500; color:var(--accent-soft);"><i class="fa-solid fa-quote-left"></i> Dulu aku pikir Snap adalah cara direkomendasikan instal aplikasi di Ubuntu. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Tapi setelah bertahun-tahun, aku sadar ada yang aneh. Spotify lemot, Firefox scroll-nya tidak halus, dan perintah <code>lsblk</code> dipenuhi loop device. Flatpak datang sebagai penyelamat yang tidak aku duga.</p>
     <!-- Gambar 1: Snap Store -->
     <div class="feature-img">
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/edda332fee8c0fce.webp" alt="Snap package store" width="825" height="377" loading="eager">
-        <div class="caption">Snap Store – default di Ubuntu, tapi mulai banyak masalah kecil yang mengganggu.</div>
+        <div class="caption">Snap Store &#x2013; default di Ubuntu, tapi mulai banyak masalah kecil yang mengganggu.</div>
     </div>
     <!-- 5W+1H structured -->
-    <h2>📌 1. Apa yang Terjadi? (What)</h2>
-    <p>Aku adalah pengguna setia Ubuntu. Awalnya, Snap terasa modern: semua aplikasi dalam satu tempat, update otomatis. Tapi lama-lama aku merasakan keanehan: saat membuka Spotify, kadang muncul “pending refresh” yang membuat delay beberapa detik. Firefox terasa berat, video playback patah-patah. Aku kira itu masalah sistem, sampai akhirnya aku coba <strong>Flatpak</strong>. Di sinilah aku sadar: masalahnya ada di Snap, bukan di komputer aku.</p>
-    <h2>🧑💻 2. Siapa yang Mengalami? (Who)</h2>
-    <p>Pengguna Ubuntu dan distro Linux yang mengandalkan Snap sebagai manajer paket utama. Khususnya mereka yang menggunakan aplikasi seperti <strong>Spotify, Firefox, VS Code, atau aplikasi multimedia</strong>. Siapa saja yang pernah merasa “aplikasi tiba-tiba ngadat” tanpa alasan jelas, bisa jadi korban kelemahan Snap.</p>
-    <h2>⏰ 3. Kapan Masalah Ini Muncul? (When)</h2>
+    <h2>&#x1f4cc; 1. Apa yang Terjadi? (What)</h2>
+    <p>Aku adalah pengguna setia Ubuntu. Awalnya, Snap terasa modern: semua aplikasi dalam satu tempat, update otomatis. Tapi lama-lama aku merasakan keanehan: saat membuka Spotify, kadang muncul &#x201c;pending refresh&#x201d; yang membuat delay beberapa detik. Firefox terasa berat, video playback patah-patah. Aku kira itu masalah sistem, sampai akhirnya aku coba <strong>Flatpak</strong>. Di sinilah aku sadar: masalahnya ada di Snap, bukan di komputer aku.</p>
+    <h2>&#x1f9d1;&#x1f4bb; 2. Siapa yang Mengalami? (Who)</h2>
+    <p>Pengguna Ubuntu dan distro Linux yang mengandalkan Snap sebagai manajer paket utama. Khususnya mereka yang menggunakan aplikasi seperti <strong>Spotify, Firefox, VS Code, atau aplikasi multimedia</strong>. Siapa saja yang pernah merasa &#x201c;aplikasi tiba-tiba ngadat&#x201d; tanpa alasan jelas, bisa jadi korban kelemahan Snap.</p>
+    <h2>&#x23f0; 3. Kapan Masalah Ini Muncul? (When)</h2>
     <p>Setiap kali Snap melakukan refresh background (biasanya 4 kali sehari). Di saat itu, aplikasi yang sedang dibuka bisa mengalami jeda. Juga saat pertama kali membuka aplikasi setelah update, delay-nya cukup terasa. Masalah akses GPU terjadi sejak awal karena default confinement Snap yang membatasi akses perangkat keras.</p>
-    <h2>📍 4. Dimana Perbedaan Terlihat? (Where)</h2>
+    <h2>&#x1f4cd; 4. Dimana Perbedaan Terlihat? (Where)</h2>
     <p>Di <strong>antarmuka pengguna</strong> (UI) dan <strong>sistem file</strong>. Coba jalankan <code>lsblk</code> setelah menginstal 10 aplikasi Snap: Anda akan melihat setidaknya 10 loop device. Itu karena setiap Snap memasang squashfs terpisah. Flatpak menggunakan OSTree dan fuse-overlayfs, sehingga daftar perangkat tetap bersih. Perbedaan juga terlihat di <strong>performa aplikasi</strong> dan <strong>kontrol update</strong>.</p>
-    <h2>🤔 5. Mengapa Flatpak Lebih Enak? (Why)</h2>
-    <p>Flatpak tidak punya daemon yang selalu aktif (<code>snapd</code>). Update bisa dikontrol manual, jadi tidak ada “pending refresh” yang mengganggu. Akses ke GPU dan hardware lebih fleksibel. Aku bisa menggunakan <strong>Flatseal</strong> untuk mengatur izin aplikasi secara granular. Ditambah lagi, Flathub sebagai repositori utama lebih terbuka dibanding Snap Store yang dikontrol penuh oleh Canonical.</p>
-    <h2>⚙️ 6. Bagaimana Cara Beralih? (How)</h2>
+    <h2>&#x1f914; 5. Mengapa Flatpak Lebih Enak? (Why)</h2>
+    <p>Flatpak tidak punya daemon yang selalu aktif (<code>snapd</code>). Update bisa dikontrol manual, jadi tidak ada &#x201c;pending refresh&#x201d; yang mengganggu. Akses ke GPU dan hardware lebih fleksibel. Aku bisa menggunakan <strong>Flatseal</strong> untuk mengatur izin aplikasi secara granular. Ditambah lagi, Flathub sebagai repositori utama lebih terbuka dibanding Snap Store yang dikontrol penuh oleh Canonical.</p>
+    <h2>&#x2699;&#xfe0f; 6. Bagaimana Cara Beralih? (How)</h2>
     <p>Instalasi Flatpak gampang: <code>sudo apt install flatpak</code> lalu tambahkan Flathub <code>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo</code>. Kemudian instal aplikasi seperti Spotify: <code>flatpak install flathub com.spotify.Client</code>. Setelah itu, hapus versi Snap-nya dan nikmati kendali penuh. Tapi hati-hati: beberapa paket sistem seperti <code>ubuntu-advantage-tools</code> bisa menginstal ulang snapd secara diam-diam. Periksa selalu dengan <code>snap list</code>.</p>
     <!-- Gambar: Flathub Website -->
     <div class="feature-img">
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/5fb8d0dddf95bbd1.webp" alt="Flathub website screenshot" width="825" height="433" loading="lazy">
-        <div class="caption">Flathub – pusat aplikasi Flatpak yang kaya dan terbuka.</div>
+        <div class="caption">Flathub &#x2013; pusat aplikasi Flatpak yang kaya dan terbuka.</div>
     </div>
     <!-- Tabel Perbandingan -->
-    <h2>📊 Perbandingan Snap vs Flatpak (Berdasarkan Pengalaman)</h2>
+    <h2>&#x1f4ca; Perbandingan Snap vs Flatpak (Berdasarkan Pengalaman)</h2>
     <table>
         <thead>
             <tr><th>Aspek</th><th>Snap</th><th>Flatpak</th></tr>
@@ -309,24 +309,24 @@
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/c8745ca959ec4f2d.webp" alt="Snap games" loading="lazy">
     </div>
     <div class="caption">Koleksi aplikasi di Flathub (atas) dan Snap Store (bawah). Keduanya memiliki banyak pilihan, namun pengalaman pengguna berbeda.</div>
-    <h2>🧩 Tambahan: Kekurangan Flatpak yang Jujur</h2>
-    <p>Tentu Flatpak tidak sempurna. Beberapa aplikasi seperti VS Codium mengalami kendala sandboxing jika butuh akses sistem yang dalam. Tema GTK belum 100% mulus, kadang perlu konfigurasi manual. CLI-nya juga kurang praktis karena harus mengetik ID panjang (<code>flatpak run org.mozilla.firefox</code>). Namun perbedaan besarnya: <strong>Masalah Flatpak bisa dilacak dan diperbaiki</strong> (misal dengan Flatseal). Sedangkan masalah Snap terasa abstrak, seperti sistem “bekerja melawan Anda”.</p>
+    <h2>&#x1f9e9; Tambahan: Kekurangan Flatpak yang Jujur</h2>
+    <p>Tentu Flatpak tidak sempurna. Beberapa aplikasi seperti VS Codium mengalami kendala sandboxing jika butuh akses sistem yang dalam. Tema GTK belum 100% mulus, kadang perlu konfigurasi manual. CLI-nya juga kurang praktis karena harus mengetik ID panjang (<code>flatpak run org.mozilla.firefox</code>). Namun perbedaan besarnya: <strong>Masalah Flatpak bisa dilacak dan diperbaiki</strong> (misal dengan Flatseal). Sedangkan masalah Snap terasa abstrak, seperti sistem &#x201c;bekerja melawan Anda&#x201d;.</p>
     <div class="feature-img">
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/1e9c75da71362bd2.webp" alt="Setting up Flatpak" width="825" height="462" loading="lazy">
         <div class="caption">Proses setup Flatpak di Ubuntu cukup mudah: install flatpak dan tambahkan Flathub.</div>
     </div>
-    <h2>🔍 Apakah Snap Harus Dihapus Total?</h2>
-    <p>Tidak. Aku memilih untuk <strong>menurunkan status Snap</strong>, bukan menghapusnya. Beberapa aplikasi sistem seperti <code>firefox</code> (di Ubuntu) terintegrasi dengan Snap, dan aku masih mempertahankan beberapa tool level sistem dalam bentuk Snap. Prinsipnya: <em>“gunakan alat yang tepat untuk pekerjaan yang tepat”</em>. Untuk aplikasi sehari-hari (Spotify, Telegram, Blender, dll), Flatpak memberi pengalaman lebih halus dan kendali. Jangan lupa periksa apakah ada paket yang memulihkan snapd secara otomatis.</p>
+    <h2>&#x1f50d; Apakah Snap Harus Dihapus Total?</h2>
+    <p>Tidak. Aku memilih untuk <strong>menurunkan status Snap</strong>, bukan menghapusnya. Beberapa aplikasi sistem seperti <code>firefox</code> (di Ubuntu) terintegrasi dengan Snap, dan aku masih mempertahankan beberapa tool level sistem dalam bentuk Snap. Prinsipnya: <em>&#x201c;gunakan alat yang tepat untuk pekerjaan yang tepat&#x201d;</em>. Untuk aplikasi sehari-hari (Spotify, Telegram, Blender, dll), Flatpak memberi pengalaman lebih halus dan kendali. Jangan lupa periksa apakah ada paket yang memulihkan snapd secara otomatis.</p>
     <!-- Artikel Terkait dan Response -->
     <div id="related-articles-grid">
     </div>
     <div id="response">
     </div>
     <footer>
-        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel berdasarkan pengalaman nyata penggunaan Snap dan Flatpak, dengan pendekatan E-E-A-T. Semua perintah dan saran telah diuji. <i class="fa-solid fa-chart-line"></i> Optimasi Core Web Vitals | CSS-only dark mode | Tidak menggunakan JavaScript untuk tema. <i class="fa-brands fa-linux"></i> #Flatpak #Snap #LinuxDesktop #PaketManager</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman &#x2014; Artikel berdasarkan pengalaman nyata penggunaan Snap dan Flatpak, dengan pendekatan E-E-A-T. Semua perintah dan saran telah diuji. <i class="fa-solid fa-chart-line"></i> Optimasi Core Web Vitals | CSS-only dark mode | Tidak menggunakan JavaScript untuk tema. <i class="fa-brands fa-linux"></i> #Flatpak #Snap #LinuxDesktop #PaketManager</p>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

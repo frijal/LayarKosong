@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Generator Label Mentari">
     <meta property="article:tag" content="Barcode UI">
     <meta property="article:tag" content="Layar Kosong">
@@ -417,7 +417,7 @@
 <body>
     <!-- ===== STICKY CONTROLS ===== -->
     <div class="no-print">
-        <div id="iposbrowser"></div><h1 style="text-align:center;margin:0 0 15px;font-family:'IBM Plex Mono',monospace;font-size:16px"><a href="/" target="_blank">Label Generator Mentari</a> (A4 - 24 Tags)</h1>
+        <div id="iposbrowser"></div><h1 style="text-align:center;margin:0 0 15px;font-family:&apos;IBM Plex Mono&apos;,monospace;font-size:16px"><a href="/" target="_blank">Label Generator Mentari</a> (A4 - 24 Tags)</h1>
         <div class="controls">
             <div class="input-group"><label>Data Produk (CSV)</label><input accept=".csv" id="csvFile" type="file"></div>
             <div class="input-group"><label>Browse Logo</label><input accept="image/*" id="logoFile" type="file"></div>
@@ -426,14 +426,14 @@
             <button class="btn-print" onclick="window.print()">PRINT PDF</button>
         </div>
         <div style="text-align:center">
-            <button class="btn-show-guide" id="btnShowGuide" onclick="toggleGuide(true)">▸ Tampilkan Panduan CSV</button>
+            <button class="btn-show-guide" id="btnShowGuide" onclick="toggleGuide(true)">&#x25b8; Tampilkan Panduan CSV</button>
         </div>
     </div>
     <!-- ===== PANDUAN CSV ===== -->
     <div class="guide-section no-print">
         <div class="guide-title">
             Panduan Format File CSV
-            <button class="btn-close-guide" onclick="toggleGuide(false)" title="Tutup panduan">✕ Tutup</button>
+            <button class="btn-close-guide" onclick="toggleGuide(false)" title="Tutup panduan">&#x2715; Tutup</button>
         </div>
         <div class="guide-body">
             <!-- Kolom Kiri -->
@@ -477,7 +477,7 @@
                             <td class="col-name">Satuan</td>
                             <td class="col-desc">
                                 Tampil setelah harga
-                                <br><span class="badge">Pcs · Unit · Pack · Lbr · dll</span>
+                                <br><span class="badge">Pcs &#xb7; Unit &#xb7; Pack &#xb7; Lbr &#xb7; dll</span>
                             </td>
                         </tr>
                     </tbody>
@@ -497,12 +497,12 @@
                     <!-- Nama Produk -->
                     <div class="ld-name">
                         NAMA PRODUK YANG PANJANG <br>MAKS. DUA BARIS
-                        <div class="ld-label">← Kolom 1</div>
+                        <div class="ld-label">&#x2190; Kolom 1</div>
                     </div>
                     <!-- Harga -->
                     <div class="ld-middle">
                         <div class="ld-price">
-                            <span class="ld-label">← Kolom 3 &amp; 4</span>
+                            <span class="ld-label">&#x2190; Kolom 3 &amp; 4</span>
                             <div class="ld-rp">Rp 150.000,-</div>
                             <div class="ld-unit">/ Pcs</div>
                         </div>
@@ -510,7 +510,7 @@
                     <!-- Barcode + Logo -->
                     <div class="ld-bottom">
                         <div class="ld-barcode">
-                            <div class="ld-label">← Kolom 2</div>
+                            <div class="ld-label">&#x2190; Kolom 2</div>
                             <div class="ld-barcode-bars" id="diagramBars"></div>
                             <div class="ld-barcode-text">MNT-LED-010W</div>
                         </div>
@@ -528,7 +528,7 @@
                     </li>
                     <li>
                         <div class="callout-dot">3</div>
-                        <span>Harga diformat otomatis jadi <code>Rp 150.000,-</code> — cukup tulis angkanya saja di CSV.</span>
+                        <span>Harga diformat otomatis jadi <code>Rp 150.000,-</code> &#x2014; cukup tulis angkanya saja di CSV.</span>
                     </li>
                     <li>
                         <div class="callout-dot">4</div>
@@ -640,8 +640,8 @@
             reader.readAsText(csvInput.files[0]);
         }
     </script>
-<a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span></div><section id="related-marquee-section"></section><script defer="" src="/ext/balon-cf.js"></script>
+<a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span></div><section id="related-marquee-section"></section><script defer src="/ext/balon-cf.js"></script>
 <noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
-<div id="progress"></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script></body></html>
+<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script></body></html>

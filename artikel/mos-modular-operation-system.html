@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="MOS">
     <meta property="article:published_time" content="2026-02-25T13:00:00.000Z">
     <meta property="article:modified_time" content="2026-06-23T16:25:11.325Z">
@@ -256,50 +256,50 @@
   </div>
   <article>
     <header>
-      <div id="iposbrowser"></div><h1>🧩 MOS – Sistem Operasi Modular untuk Server Rumahan dan Homelab</h1>
+      <div id="iposbrowser"></div><h1>&#x1f9e9; MOS &#x2013; Sistem Operasi Modular untuk Server Rumahan dan Homelab</h1>
       <div class="article-meta">
         <span><i class="fa-solid fa-calendar-alt"></i> 28 Februari 2026</span>
         <span><i class="fa-solid fa-user-astronaut"></i> Jaga Data Pribadi Tetap Aman</span>
         <span><i class="fa-solid fa-hashtag"></i> #MOS #Homelab #SelfHosting</span>
       </div>
-      <p><em>“MOS itu bukan singkatan. Atau mungkin iya.” Begitu canda sang kreator di README‑nya. Tapi di balik guyonan itu, ada proyek serius: sebuah sistem operasi berbasis Devuan yang dioptimasi untuk server rumah dan homelab, dengan pendekatan modular, privat, dan siap pakai. Yuk, kita bedah tuntas apa itu MOS, kenapa dia lahir, dan apa bedanya dengan OS server lain.</em></p>
+      <p><em>&#x201c;MOS itu bukan singkatan. Atau mungkin iya.&#x201d; Begitu canda sang kreator di README&#x2011;nya. Tapi di balik guyonan itu, ada proyek serius: sebuah sistem operasi berbasis Devuan yang dioptimasi untuk server rumah dan homelab, dengan pendekatan modular, privat, dan siap pakai. Yuk, kita bedah tuntas apa itu MOS, kenapa dia lahir, dan apa bedanya dengan OS server lain.</em></p>
     </header>
     <!-- 5W+1H: APA ITU MOS? -->
     <section>
-      <h2>🔍 Apa Itu MOS? (What)</h2>
-      <p><i class="fa-solid fa-question-circle emoji-icon"></i> <strong>MOS (Modular Operation System)</strong> adalah distribusi Linux yang dibangun di atas <strong>Devuan</strong> – turunan Debian tanpa systemd. MOS dirancang khusus untuk server kecil bertenaga rendah di rumah (<em>homelab</em>), dengan fokus pada kesederhanaan, keandalan, dan overhead minimal. MOS hadir dengan dukungan bawaan untuk teknologi kontainer dan virtualisasi: <strong>Docker, LXC, dan QEMU</strong> (API‑nya hampir lengkap, frontend masih dikembangkan).</p>
+      <h2>&#x1f50d; Apa Itu MOS? (What)</h2>
+      <p><i class="fa-solid fa-question-circle emoji-icon"></i> <strong>MOS (Modular Operation System)</strong> adalah distribusi Linux yang dibangun di atas <strong>Devuan</strong> &#x2013; turunan Debian tanpa systemd. MOS dirancang khusus untuk server kecil bertenaga rendah di rumah (<em>homelab</em>), dengan fokus pada kesederhanaan, keandalan, dan overhead minimal. MOS hadir dengan dukungan bawaan untuk teknologi kontainer dan virtualisasi: <strong>Docker, LXC, dan QEMU</strong> (API&#x2011;nya hampir lengkap, frontend masih dikembangkan).</p>
       <p>Menariknya, MOS bukan sekadar kumpulan paket. Ia punya pendekatan <em>modular</em>: fitur dan driver bisa ditambahkan sebagai plugin melalui <strong>MOS Hub</strong>. Sistem file dan storage juga sudah diakali dengan <strong>mergerfs</strong> dan <strong>SnapRAID</strong> secara default, sehingga kamu bisa menggabungkan banyak disk dengan mudah plus perlindungan paritas ala RAID tanpa kerumitan tradisional.</p>
     </section>
     <section>
-      <h2>🎯 Untuk Siapa MOS Diciptakan? (Who)</h2>
+      <h2>&#x1f3af; Untuk Siapa MOS Diciptakan? (Who)</h2>
       <p><i class="fa-solid fa-users emoji-icon"></i> MOS menyasar segmen yang cukup spesifik, tapi juga luas:</p>
       <ul>
-        <li><strong>Homelabber</strong> – yang suka bereksperimen dengan server di rumah, butuh OS enteng dan stabil.</li>
-        <li><strong>Self‑hoster</strong> – yang ingin menjalankan layanan sendiri (Nextcloud, Bitwarden, dll) tanpa bergantung cloud.</li>
-        <li><strong>Developer</strong> – yang butuh lingkungan pengujian ringan dengan dukungan container dan VM.</li>
-        <li><strong>Siapa pun yang muak dengan systemd</strong> – Devuan adalah rumah yang nyaman bagi mereka.</li>
-        <li><strong>Pengguna yang peduli privasi</strong> – MOS tidak mengirim telemetri atau data apa pun.</li>
+        <li><strong>Homelabber</strong> &#x2013; yang suka bereksperimen dengan server di rumah, butuh OS enteng dan stabil.</li>
+        <li><strong>Self&#x2011;hoster</strong> &#x2013; yang ingin menjalankan layanan sendiri (Nextcloud, Bitwarden, dll) tanpa bergantung cloud.</li>
+        <li><strong>Developer</strong> &#x2013; yang butuh lingkungan pengujian ringan dengan dukungan container dan VM.</li>
+        <li><strong>Siapa pun yang muak dengan systemd</strong> &#x2013; Devuan adalah rumah yang nyaman bagi mereka.</li>
+        <li><strong>Pengguna yang peduli privasi</strong> &#x2013; MOS tidak mengirim telemetri atau data apa pun.</li>
       </ul>
     </section>
     <section>
-      <h2>💡 Kenapa MOS Dibuat? (Why)</h2>
-      <p><i class="fa-solid fa-lightbulb emoji-icon"></i> Ceritanya personal. Sang pencipta, <strong>ich777</strong>, butuh sistem yang “langsung jalan” untuk server di rumah. Awalnya cuma sistem CLI biasa. Lalu seorang teman minta dipakaikan juga, jadilah dia membangun REST API. Dari situ fitur berkembang sedikit demi sedikit: frontend, storage fleksibel, dukungan driver, hingga akhirnya dirilis ke publik. “Saya penasaran apakah orang lain juga merasa perlu OS seperti ini,” tulisnya. Jadi MOS lahir dari kebutuhan nyata dan cinta pada homelab.</p>
-      <p>Alasan teknisnya: banyak OS server umum (Ubuntu Server, Debian) terlalu generik dan penuh paket yang mungkin tidak diperlukan. Sementara distribusi minimalis seperti Alpine butuh konfigurasi manual untuk hal‑hal yang sudah biasa di homelab (Docker, LXC, storage merger). MOS ingin menjadi <em>turnkey solution</em> yang tetap ringan.</p>
+      <h2>&#x1f4a1; Kenapa MOS Dibuat? (Why)</h2>
+      <p><i class="fa-solid fa-lightbulb emoji-icon"></i> Ceritanya personal. Sang pencipta, <strong>ich777</strong>, butuh sistem yang &#x201c;langsung jalan&#x201d; untuk server di rumah. Awalnya cuma sistem CLI biasa. Lalu seorang teman minta dipakaikan juga, jadilah dia membangun REST API. Dari situ fitur berkembang sedikit demi sedikit: frontend, storage fleksibel, dukungan driver, hingga akhirnya dirilis ke publik. &#x201c;Saya penasaran apakah orang lain juga merasa perlu OS seperti ini,&#x201d; tulisnya. Jadi MOS lahir dari kebutuhan nyata dan cinta pada homelab.</p>
+      <p>Alasan teknisnya: banyak OS server umum (Ubuntu Server, Debian) terlalu generik dan penuh paket yang mungkin tidak diperlukan. Sementara distribusi minimalis seperti Alpine butuh konfigurasi manual untuk hal&#x2011;hal yang sudah biasa di homelab (Docker, LXC, storage merger). MOS ingin menjadi <em>turnkey solution</em> yang tetap ringan.</p>
     </section>
     <section>
-      <h2>📅 Kapan MOS Tersedia? (When)</h2>
-      <p><i class="fa-regular fa-clock emoji-icon"></i> MOS saat ini dalam tahap <strong>sangat awal pengembangan</strong> (early stage). Rilis pertama sudah bisa diunduh dari GitHub, tapi perlu diingat: masih banyak <em>bug</em> dan fitur yang belum jadi. Proyek ini aktif dikembangkan, dan pembaruan cukup sering dirilis. Jika kamu tertarik mencoba, siapkan cadangan data, karena MOS disediakan “as is”.</p>
+      <h2>&#x1f4c5; Kapan MOS Tersedia? (When)</h2>
+      <p><i class="fa-regular fa-clock emoji-icon"></i> MOS saat ini dalam tahap <strong>sangat awal pengembangan</strong> (early stage). Rilis pertama sudah bisa diunduh dari GitHub, tapi perlu diingat: masih banyak <em>bug</em> dan fitur yang belum jadi. Proyek ini aktif dikembangkan, dan pembaruan cukup sering dirilis. Jika kamu tertarik mencoba, siapkan cadangan data, karena MOS disediakan &#x201c;as is&#x201d;.</p>
     </section>
     <section>
-      <h2>🌍 Di Mana Mendapatkan MOS? (Where)</h2>
+      <h2>&#x1f30d; Di Mana Mendapatkan MOS? (Where)</h2>
       <p><i class="fa-solid fa-download emoji-icon"></i> Semua kode dan image MOS tersedia secara <strong>open source</strong> di GitHub. Repositori utamanya adalah <a href="https://github.com/ich777/mos-releases" target="_blank" rel="noopener">ich777/mos-releases</a> yang berisi script build dan artefak rilis. Selain itu, ada banyak repositori komponen (kernel, rootfs, paket spesifik) yang bisa diintip. Dokumentasi juga sedang disusun di <a href="https://github.com/ich777/mos-docs" target="_blank" rel="noopener">mos-docs</a>.</p>
     </section>
     <section>
-      <h2>⚙️ Bagaimana Cara Kerja MOS? (How) – Fitur Unggulan</h2>
-      <p>MOS tidak hanya “OS biasa”. Ia sudah dipaketkan dengan seperangkat alat yang membuatnya langsung berguna untuk homelab. Mari kita bedah satu per satu.</p>
-      <h3>🐳 Docker, LXC, QEMU – Siap Pakai</h3>
-      <p>Di instalasi default, MOS sudah menyertakan <strong>Docker</strong> (dari paket <code>mos-moby</code>), <strong>LXC</strong>, dan <strong>QEMU</strong>. Jadi kamu bisa langsung menjalankan container atau VM tanpa perlu install manual. Khusus untuk QEMU, antarmuka frontend masih dalam pengembangan, tetapi API‑nya sudah mendukung hampir semua fitur. Kamu bisa mengelola VM via REST API atau CLI.</p>
-      <h3>💾 Filesystem Cerdas: mergerfs + SnapRAID</h3>
+      <h2>&#x2699;&#xfe0f; Bagaimana Cara Kerja MOS? (How) &#x2013; Fitur Unggulan</h2>
+      <p>MOS tidak hanya &#x201c;OS biasa&#x201d;. Ia sudah dipaketkan dengan seperangkat alat yang membuatnya langsung berguna untuk homelab. Mari kita bedah satu per satu.</p>
+      <h3>&#x1f433; Docker, LXC, QEMU &#x2013; Siap Pakai</h3>
+      <p>Di instalasi default, MOS sudah menyertakan <strong>Docker</strong> (dari paket <code>mos-moby</code>), <strong>LXC</strong>, dan <strong>QEMU</strong>. Jadi kamu bisa langsung menjalankan container atau VM tanpa perlu install manual. Khusus untuk QEMU, antarmuka frontend masih dalam pengembangan, tetapi API&#x2011;nya sudah mendukung hampir semua fitur. Kamu bisa mengelola VM via REST API atau CLI.</p>
+      <h3>&#x1f4be; Filesystem Cerdas: mergerfs + SnapRAID</h3>
       <p>Salah satu keunggulan MOS adalah dukungan storage yang fleksibel. Secara default sudah terintegrasi:</p>
       <ul>
         <li><strong>mergerfs</strong>: menggabungkan beberapa disk menjadi satu kesatuan pool. Cocok buat kamu yang punya banyak hard disk bekas dengan ukuran berbeda. Cukup pasang, dan mereka akan terlihat seperti satu folder besar.</li>
@@ -307,15 +307,15 @@
       </ul>
       <p>Kombinasi ini sangat populer di kalangan homelabber karena murah, mudah diperluas, dan tidak mengunci kita pada hardware tertentu.</p>
       <p>Selain itu, MOS juga menyediakan plugin untuk <strong>nonraid</strong> (via MOS Hub) jika kamu butuh opsi lain.</p>
-      <h3>🔧 Driver sebagai Plugin (NVIDIA, DVB, dll)</h3>
-      <p>MOS mendistribusikan driver hardware sebagai paket opsional (<em>plugin</em>). Saat ini sudah tersedia driver <strong>NVIDIA</strong> dan <strong>DVB</strong> (untuk TV tuner). Ke depan akan ditambah lebih banyak. Pendekatan ini menjaga kernel tetap ramping, dan pengguna hanya menginstal driver yang benar‑benar dibutuhkan.</p>
-      <h3>🔐 Privasi dan Open Source Sejati</h3>
+      <h3>&#x1f527; Driver sebagai Plugin (NVIDIA, DVB, dll)</h3>
+      <p>MOS mendistribusikan driver hardware sebagai paket opsional (<em>plugin</em>). Saat ini sudah tersedia driver <strong>NVIDIA</strong> dan <strong>DVB</strong> (untuk TV tuner). Ke depan akan ditambah lebih banyak. Pendekatan ini menjaga kernel tetap ramping, dan pengguna hanya menginstal driver yang benar&#x2011;benar dibutuhkan.</p>
+      <h3>&#x1f510; Privasi dan Open Source Sejati</h3>
       <p><i class="fa-solid fa-lock emoji-icon"></i> MOS berkomitmen untuk tidak mengumpulkan data apa pun. <strong>Zero telemetry, zero tracking.</strong> Semua berjalan lokal, dan kamu punya kendali penuh. Kode sumbernya terbuka, sehingga siapa pun bisa memeriksa dan memodifikasi. Lisensi tiap komponen mengikuti lisensi upstream, namun secara umum open source.</p>
     </section>
     <!-- SCREENSHOTS placeholder -->
     <section>
-      <h2>📸 Sekilas Tampilan MOS</h2>
-      <p>Berikut adalah cuplikan layar dari MOS (via frontend yang sedang berkembang) dan Swagger API‑nya.</p>
+      <h2>&#x1f4f8; Sekilas Tampilan MOS</h2>
+      <p>Berikut adalah cuplikan layar dari MOS (via frontend yang sedang berkembang) dan Swagger API&#x2011;nya.</p>
       <div class="screenshots">
         <figure>
           <img src="https://dalam.web.id/img/raw.githubusercontent.com/ich777/mos-releases/refs/heads/master/images/2026-01-16_10-39.webp" alt="Contoh dashboard MOS" loading="lazy">
@@ -330,8 +330,8 @@
     </section>
     <!-- Daftar repositori komponen (dari outline) -->
     <section>
-      <h2>📦 Ekosistem MOS: Repositori dan Komponen</h2>
-      <p>MOS tidak hanya satu repositori. Berikut adalah komponen‑komponen yang membangun MOS:</p>
+      <h2>&#x1f4e6; Ekosistem MOS: Repositori dan Komponen</h2>
+      <p>MOS tidak hanya satu repositori. Berikut adalah komponen&#x2011;komponen yang membangun MOS:</p>
       <ul>
         <li><strong>Base OS:</strong> <a href="https://github.com/ich777/mos-kernel">mos-kernel</a>, <a href="https://github.com/ich777/mos-rootfs">mos-rootfs</a></li>
         <li><strong>Frontend &amp; API:</strong> <a href="https://github.com/ich777/mos-frontend">mos-frontend</a>, <a href="https://github.com/ich777/mos-api">mos-api</a></li>
@@ -344,7 +344,7 @@
     </section>
     <!-- System Requirements -->
     <section>
-      <h2>🖥️ Spesifikasi Minimum</h2>
+      <h2>&#x1f5a5;&#xfe0f; Spesifikasi Minimum</h2>
       <p>MOS tidak boros sumber daya, tapi karena ia membawa layanan container dan VM, ada anjuran minimal:</p>
       <ul>
         <li><i class="fa-solid fa-microchip"></i> CPU: x86_64 (64-bit)</li>
@@ -356,8 +356,8 @@
     </section>
     <!-- Status dan disclaimer -->
     <section>
-      <h2>⚠️ Status Proyek: Early Stage, Siap Eksperimen</h2>
-      <p>MOS saat ini <strong>sangat awal</strong>. Penulisnya sendiri bilang: “Bugs can and will occur.” Jadi jika kamu tertarik mencoba, pastikan:</p>
+      <h2>&#x26a0;&#xfe0f; Status Proyek: Early Stage, Siap Eksperimen</h2>
+      <p>MOS saat ini <strong>sangat awal</strong>. Penulisnya sendiri bilang: &#x201c;Bugs can and will occur.&#x201d; Jadi jika kamu tertarik mencoba, pastikan:</p>
       <ul>
         <li>Selalu backup data penting.</li>
         <li>Siap menghadapi perubahan besar (breaking changes) namun penulis berusaha menghindarinya.</li>
@@ -367,39 +367,39 @@
     </section>
     <!-- Filosofi desain -->
     <section>
-      <h2>🧠 Filosofi Desain</h2>
+      <h2>&#x1f9e0; Filosofi Desain</h2>
       <p>MOS dibangun di atas prinsip:</p>
       <ul>
-        <li><i class="fa-solid fa-eye-slash"></i> <strong>Tanpa layanan tersembunyi</strong> – kamu tahu persis apa yang berjalan.</li>
-        <li><i class="fa-solid fa-chart-line"></i> <strong>Tanpa telemetri</strong> – privasi harga mati.</li>
-        <li><i class="fa-solid fa-cloud"></i> <strong>Tanpa ketergantungan cloud paksa</strong> – semua lokal.</li>
-        <li><i class="fa-solid fa-puzzle-piece"></i> <strong>Modular</strong> – fitur bisa ditambah atau dihapus via plugin.</li>
+        <li><i class="fa-solid fa-eye-slash"></i> <strong>Tanpa layanan tersembunyi</strong> &#x2013; kamu tahu persis apa yang berjalan.</li>
+        <li><i class="fa-solid fa-chart-line"></i> <strong>Tanpa telemetri</strong> &#x2013; privasi harga mati.</li>
+        <li><i class="fa-solid fa-cloud"></i> <strong>Tanpa ketergantungan cloud paksa</strong> &#x2013; semua lokal.</li>
+        <li><i class="fa-solid fa-puzzle-piece"></i> <strong>Modular</strong> &#x2013; fitur bisa ditambah atau dihapus via plugin.</li>
       </ul>
       <p>Dengan kata lain, MOS ingin menjadi kanvas kosong yang siap kamu lukis sesuai kebutuhan homelab, tanpa harus membersihkan noda dari pabrikan.</p>
     </section>
     <!-- TODO dan kontribusi -->
     <section>
-      <h2>🚧 TODO – Masih Banyak Pekerjaan</h2>
+      <h2>&#x1f6a7; TODO &#x2013; Masih Banyak Pekerjaan</h2>
       <p>Proyek ini baru memulai perjalanan. Beberapa hal yang ada dalam daftar:</p>
       <ul>
         <li>Menyelesaikan frontend QEMU.</li>
         <li>Menambah lebih banyak driver sebagai plugin.</li>
         <li>Dokumentasi yang lebih rapi.</li>
         <li>Installer yang ramah pengguna.</li>
-        <li>Integrasi dengan lebih banyak tools homelab (Portainer, CasaOS, dll?) – belum diputuskan.</li>
+        <li>Integrasi dengan lebih banyak tools homelab (Portainer, CasaOS, dll?) &#x2013; belum diputuskan.</li>
       </ul>
       <p>Kontribusi sangat terbuka! Jika kamu tertarik membantu, silakan fork repositori, baca panduan kontribusi, dan ajukan pull request. Diskusi ide juga bisa lewat Issues.</p>
     </section>
     <!-- Lisensi -->
     <section>
-      <h2>⚖️ Lisensi</h2>
-      <p>Setiap repositori MOS bisa memiliki lisensi yang berbeda, tergantung komponen. Namun secara umum, kode yang ditulis khusus untuk MOS (script build, konfigurasi) dilisensikan seperti yang tertera di file LICENSE masing‑masing. Untuk paket pihak ketiga (Docker, LXC, kernel, dll), lisensi asli mereka berlaku.  Pastikan membaca LICENSE di repositori terkait sebelum menggunakan.</p>
+      <h2>&#x2696;&#xfe0f; Lisensi</h2>
+      <p>Setiap repositori MOS bisa memiliki lisensi yang berbeda, tergantung komponen. Namun secara umum, kode yang ditulis khusus untuk MOS (script build, konfigurasi) dilisensikan seperti yang tertera di file LICENSE masing&#x2011;masing. Untuk paket pihak ketiga (Docker, LXC, kernel, dll), lisensi asli mereka berlaku.  Pastikan membaca LICENSE di repositori terkait sebelum menggunakan.</p>
     </section>
     <!-- Kesimpulan -->
     <section>
-      <h2>🎉 Mengapa MOS Layak Dilirik?</h2>
-      <p>MOS lahir dari kebutuhan nyata, dikembangkan dengan hati, dan terbuka untuk siapa saja. Ia menawarkan alternatif segar di tengah hiruk‑pikuk distribusi server yang serba berat atau terlalu minimalis. Dengan dukungan container, storage fleksibel, dan filosofi privasi, MOS bisa jadi fondasi homelab impianmu. Tentu masih perlu banyak polesan, tapi buat yang suka petualangan, MOS layak dicoba.</p>
-      <p><strong>Penasaran?</strong> Kunjungi <a href="https://github.com/ich777/mos-releases">GitHub MOS</a>, baca dokumentasi, atau unduh image terbaru. Jangan lupa mampir ke forum atau buka Issue kalau nemu kendala. Selamat berselancar di dunia homelab! 🚀</p>
+      <h2>&#x1f389; Mengapa MOS Layak Dilirik?</h2>
+      <p>MOS lahir dari kebutuhan nyata, dikembangkan dengan hati, dan terbuka untuk siapa saja. Ia menawarkan alternatif segar di tengah hiruk&#x2011;pikuk distribusi server yang serba berat atau terlalu minimalis. Dengan dukungan container, storage fleksibel, dan filosofi privasi, MOS bisa jadi fondasi homelab impianmu. Tentu masih perlu banyak polesan, tapi buat yang suka petualangan, MOS layak dicoba.</p>
+      <p><strong>Penasaran?</strong> Kunjungi <a href="https://github.com/ich777/mos-releases">GitHub MOS</a>, baca dokumentasi, atau unduh image terbaru. Jangan lupa mampir ke forum atau buka Issue kalau nemu kendala. Selamat berselancar di dunia homelab! &#x1f680;</p>
     </section>
     <!-- Div related-articles-grid (kolom komentar) -->
     <div id="related-articles-grid">
@@ -409,12 +409,12 @@
         </div>
     <!-- Footer -->
     <footer>
-      <p>🄯 2026 Jaga Data Pribadi Tetap Aman – berdasarkan informasi publik dari repositori MOS. Semua merek dagang adalah milik pemiliknya masing‑masing. <small>Dibuat dengan mengutamakan akurasi, kedalaman, dan semangat open source. Font Awesome oleh Fonticons, Inc.</small></p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+      <p>&#x1f12f; 2026 Jaga Data Pribadi Tetap Aman &#x2013; berdasarkan informasi publik dari repositori MOS. Semua merek dagang adalah milik pemiliknya masing&#x2011;masing. <small>Dibuat dengan mengutamakan akurasi, kedalaman, dan semangat open source. Font Awesome oleh Fonticons, Inc.</small></p>
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
   </article>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/lightbox.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

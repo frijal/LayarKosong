@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="PowerShell, perawatan Windows, winget upgrade, bersihkan temp, DISM, SFC, storage penuh, Windows maintenance, perintah PowerShell">
-    <meta name="promphint" content="Pertanyaan: Apa saja perintah PowerShell yang bisa membuat perawatan Windows jadi mudah dan cepat? Jawaban: Empat perintah utama: winget upgrade --all --include-unknown untuk update semua aplikasi, Get-ChildItem di $env:TEMP untuk bersihkan sampah, DISM /RestoreHealth diikuti sfc /scannow untuk perbaiki sistem, dan skrip pencari file besar di folder user untuk mengidentifikasi penyebab storage penuh.">
+    <meta name="promphint" content="Pertanyaan: Apa saja perintah PowerShell yang bisa membuat perawatan Windows jadi mudah dan cepat? Jawaban: Empat perintah utama: winget upgrade --all --include-unknown untuk update semua aplikasi, Get-ChildItem di &#x24;env:TEMP untuk bersihkan sampah, DISM /RestoreHealth diikuti sfc /scannow untuk perbaiki sistem, dan skrip pencari file besar di folder user untuk mengidentifikasi penyebab storage penuh.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="PowerShell">
     <meta property="article:tag" content="Windows Maintenance">
     <meta property="article:tag" content="Winget">
@@ -275,31 +275,31 @@
         <span><i class="fa-solid fa-wrench"></i> Perawatan Windows</span>
         <span><i class="fa-solid fa-chart-line"></i> 10 menit rutin</span>
     </div>
-    <div id="iposbrowser"></div><h1>⚡ 4 Perintah PowerShell Ajaib yang Bikin Windows Selalu Sehat (Tanpa Ribet)</h1>
+    <div id="iposbrowser"></div><h1>&#x26a1; 4 Perintah PowerShell Ajaib yang Bikin Windows Selalu Sehat (Tanpa Ribet)</h1>
     <p style="font-size:1.2rem; font-weight:500; color:var(--accent-soft);"><i class="fa-solid fa-magic"></i> Lupakan klik sana-sini, cukup salin tempel satu baris, PC kamu otomatis update, bersih, dan cepat lagi.</p>
     <!-- Gambar 1: Windows Terminal dengan DISM (sebagai pembuka) -->
     <div class="feature-img">
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/5697f41d684ad15c.webp" alt="Windows Terminal dengan perintah DISM" width="1000" height="562" loading="eager" style="aspect-ratio:1000/562">
         <div class="caption"><i class="fa-solid fa-camera"></i> PowerShell atau Windows Terminal jadi sahabat terbaik buat maintenance rutin.</div>
     </div>
-    <p>Halo Sobat Dalam! <i class="fa-solid fa-laptop-code"></i> Pernah tidak sih, tiba-tiba laptop lemot, storage penuh merah, atau aplikasi error tanpa sebab jelas? Daripada buka pengaturan sana-sini, lebih baik kita manfaatkan <strong>PowerShell</strong> dengan perintah satu baris yang langsung beres. Di artikel ini, kita bedah tuntas pakai pendekatan <strong>5W+1H</strong> dan prinsip <strong>E-E-A-T</strong> (Pengalaman, Keahlian, Otoritas, Keterpercayaan). Siap? Yuk, gas! 🔥</p>
+    <p>Halo Sobat Dalam! <i class="fa-solid fa-laptop-code"></i> Pernah tidak sih, tiba-tiba laptop lemot, storage penuh merah, atau aplikasi error tanpa sebab jelas? Daripada buka pengaturan sana-sini, lebih baik kita manfaatkan <strong>PowerShell</strong> dengan perintah satu baris yang langsung beres. Di artikel ini, kita bedah tuntas pakai pendekatan <strong>5W+1H</strong> dan prinsip <strong>E-E-A-T</strong> (Pengalaman, Keahlian, Otoritas, Keterpercayaan). Siap? Yuk, gas! &#x1f525;</p>
     <!-- 5W+1H SECTION -->
-    <h2>📖 1. Apa itu? (What)</h2>
+    <h2>&#x1f4d6; 1. Apa itu? (What)</h2>
     <p>PowerShell adalah alat otomatisasi bawaan Windows yang bisa menjalankan perintah-perintah canggih. Empat perintah yang bakal kita bahas adalah: <strong>winget upgrade</strong> (update semua aplikasi sekali klik), <strong>bersihkan file temp</strong> (hapus sampah digital), <strong>DISM + SFC</strong> (perbaiki file sistem), dan <strong>cari file gede</strong> (identifikasi penyebab storage penuh). Semuanya dalam satu baris, tanpa install software tambahan.</p>
-    <h2>🧑💻 2. Siapa yang Bisa Manfaatin? (Who)</h2>
+    <h2>&#x1f9d1;&#x1f4bb; 2. Siapa yang Bisa Manfaatin? (Who)</h2>
     <p>Siapa saja! Dari pemula yang malas update aplikasi satu-satu, hingga teknisi yang butuh perawatan cepat di banyak PC. Cocok buat pekerja kantoran, gamers, content creator, atau siapa pun yang pakai Windows 10/11. Yang penting, kamu harus menjalankan PowerShell sebagai Administrator untuk beberapa perintah.</p>
-    <h2>⏰ 3. Kapan Waktu Tepat? (When)</h2>
+    <h2>&#x23f0; 3. Kapan Waktu Tepat? (When)</h2>
     <p>Lakukan <strong>rutin sebulan sekali</strong>. Tapi kalau kamu merasa PC mulai lemot, storage mendadak penuh, atau ada aplikasi error, langsung eksekusi perintah-perintah ini. Waktu terbaik: ketika kamu tidak lagi kerja berat, biar proses berjalan lancar. </p>
-    <h2>📍 4. Di Mana Menjalankannya? (Where)</h2>
-    <p>Cukup buka <strong>Windows Terminal (Admin)</strong> atau PowerShell (Admin). Klik kanan Start, pilih “Windows Terminal (Admin)”, lalu salin perintahnya. tidak perlu pindah-pindah folder.</p>
-    <h2>🤔 5. Mengapa Ini Penting? (Why)</h2>
+    <h2>&#x1f4cd; 4. Di Mana Menjalankannya? (Where)</h2>
+    <p>Cukup buka <strong>Windows Terminal (Admin)</strong> atau PowerShell (Admin). Klik kanan Start, pilih &#x201c;Windows Terminal (Admin)&#x201d;, lalu salin perintahnya. tidak perlu pindah-pindah folder.</p>
+    <h2>&#x1f914; 5. Mengapa Ini Penting? (Why)</h2>
     <p>Karena tanpa maintenance, Windows bakal ngumpulin sampah: file temporary, aplikasi versi lawas yang rawan bug, bahkan korupsi file sistem yang bikin crash. Dengan perintah ini, kamu bisa <strong>menghemat waktu, mencegah masalah serius, dan memperpanjang umur PC</strong>. Ini sesuai prinsip E-E-A-T: praktik terbaik yang diakui para ahli IT.</p>
-    <h2>⚙️ 6. Bagaimana Cara Eksekusinya? (How) — Langkah Demi Langkah</h2>
+    <h2>&#x2699;&#xfe0f; 6. Bagaimana Cara Eksekusinya? (How) &#x2014; Langkah Demi Langkah</h2>
     <!-- COMMAND 1: WINGET -->
     <h3><i class="fa-brands fa-windows"></i> A. Update Semua Aplikasi Sekaligus (winget)</h3>
     <div class="feature-img">
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/c8a8018c981799c8.webp" alt="Updating apps with PowerShell" width="1000" height="562" loading="lazy">
-        <div class="caption">Winget — package manager bawaan Windows 11 (bisa diinstal di Windows 10).</div>
+        <div class="caption">Winget &#x2014; package manager bawaan Windows 11 (bisa diinstal di Windows 10).</div>
     </div>
     <p>Bosan mengecek update aplikasi satu per satu? Pakai <strong>winget</strong>. Jalankan perintah ini di PowerShell (Admin):</p>
     <div class="code-block"><pre>winget upgrade --all --include-unknown</pre></div>
@@ -311,7 +311,7 @@
         <div class="caption">File temp yang numpuk bisa makan puluhan GB tanpa disadari.</div>
     </div>
     <p>File temporary dari aplikasi, browser, dan instalasi bisa bikin storage cepat penuh. Perintah ini akan menghapus isi folder %TEMP% dengan aman:</p>
-    <div class="code-block"><pre>Get-ChildItem $env:TEMP -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue</pre></div>
+    <div class="code-block"><pre>Get-ChildItem &#x24;env:TEMP -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue</pre></div>
     <p>Flag <code>-ErrorAction SilentlyContinue</code> memastikan file yang sedang dipakai oleh aplikasi dilewati, jadi tidak error. Setelah perintah selesai, ruang disk langsung lega. Lakukan setiap bulan.</p>
     <!-- COMMAND 3: DISM + SFC REPAIR -->
     <h3><i class="fa-solid fa-tools"></i> C. Perbaiki File Sistem yang Rusak (DISM + SFC)</h3>
@@ -332,16 +332,16 @@
         <div class="caption">Cari file paling besar di folder user pakai PowerShell.</div>
     </div>
     <p>Pernah bingung kenapa drive C: tiba-tiba penuh? Jalankan perintah ini untuk menampilkan file &gt;500MB di folder user:</p>
-    <div class="code-block"><pre>Get-ChildItem -Path C:\Users -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Length -gt 500MB } | Sort-Object Length -Descending | Select-Object FullName, @{Name="Size(GB)";Expression={[math]::Round($_.Length/1GB,2)}}</pre></div>
+    <div class="code-block"><pre>Get-ChildItem -Path C:\Users -Recurse -ErrorAction SilentlyContinue | Where-Object { &#x24;_.Length -gt 500MB } | Sort-Object Length -Descending | Select-Object FullName, @{Name=&quot;Size(GB)&quot;;Expression={[math]::Round(&#x24;_.Length/1GB,2)}}</pre></div>
     <p>Hasilnya daftar file dengan ukuran dalam GB, diurut dari terbesar. Kamu bisa hapus file yang tidak perlu (pastikan bukan file sistem). Jika mau cek seluruh drive C:, ganti <code>-Path C:\Users</code> menjadi <code>-Path C:\</code>.</p>
     <!-- EXTRA OUTLINE: RUTINITAS 10 MENIT -->
-    <h2>📌 Rutinitas 10 Menit yang Saya Lakukan Setiap Bulan</h2>
-    <p>Keempat perintah di atas adalah <strong>monthly maintenance pass</strong> saya. Urutannya: <i class="fa-solid fa-arrow-right"></i> Update aplikasi dengan winget → bersihkan temp → jalankan DISM+SFC → cari file besar. Total tidak sampai 15 menit (kecuali DISM agak lama), tapi efeknya: PC lebih responsif, crash berkurang, dan storage terkontrol. Ini adalah prinsip nyata dari <strong>E-E-A-T</strong>: berdasarkan pengalaman langsung dan rekomendasi praktisi IT.</p>
+    <h2>&#x1f4cc; Rutinitas 10 Menit yang Saya Lakukan Setiap Bulan</h2>
+    <p>Keempat perintah di atas adalah <strong>monthly maintenance pass</strong> saya. Urutannya: <i class="fa-solid fa-arrow-right"></i> Update aplikasi dengan winget &#x2192; bersihkan temp &#x2192; jalankan DISM+SFC &#x2192; cari file besar. Total tidak sampai 15 menit (kecuali DISM agak lama), tapi efeknya: PC lebih responsif, crash berkurang, dan storage terkontrol. Ini adalah prinsip nyata dari <strong>E-E-A-T</strong>: berdasarkan pengalaman langsung dan rekomendasi praktisi IT.</p>
     <div class="feature-img">
         <img src="https://dalam.web.id/img/static0.makeuseofimages.com/5697f41d684ad15c.webp" alt="PowerShell DISM command again" loading="lazy">
         <div class="caption">Jalankan rutin, PC selalu dalam kondisi prima.</div>
     </div>
-    <p>Gimana? Gampang banget kan? Dengan 4 perintah ini, kamu tidak perlu instal software cleaner tambahan. Winget, DISM, SFC, dan cmdlet bawaan sudah cukup handal. Bonus: kalau winget belum ada di Windows 10, install “App Installer” dari Microsoft Store.</p>
+    <p>Gimana? Gampang banget kan? Dengan 4 perintah ini, kamu tidak perlu instal software cleaner tambahan. Winget, DISM, SFC, dan cmdlet bawaan sudah cukup handal. Bonus: kalau winget belum ada di Windows 10, install &#x201c;App Installer&#x201d; dari Microsoft Store.</p>
     <!-- RELATED ARTICLES GRID -->
         <div class="grid-related">
             <div class="zdummy3">
@@ -364,10 +364,10 @@
                 </div>
     </div>
     <footer>
-        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel disusun berdasarkan prinsip E-E-A-T, merujuk pada dokumentasi resmi Microsoft dan pengalaman praktik langsung. Semua perintah telah diuji pada Windows 10/11. <i class="fa-solid fa-chart-line"></i> Optimasi Core Web Vitals | Responsif tanpa Tailwind | Tema mengikuti preferensi sistem. <i class="fa-solid fa-heart"></i> #PowerShell #MaintenanceWindows #Winget #DISM</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman &#x2014; Artikel disusun berdasarkan prinsip E-E-A-T, merujuk pada dokumentasi resmi Microsoft dan pengalaman praktik langsung. Semua perintah telah diuji pada Windows 10/11. <i class="fa-solid fa-chart-line"></i> Optimasi Core Web Vitals | Responsif tanpa Tailwind | Tema mengikuti preferensi sistem. <i class="fa-solid fa-heart"></i> #PowerShell #MaintenanceWindows #Winget #DISM</p>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

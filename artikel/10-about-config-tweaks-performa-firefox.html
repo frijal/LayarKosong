@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Firefox">
     <meta property="article:tag" content="about:config">
     <meta property="article:tag" content="Performa">
@@ -323,9 +323,9 @@ tbody tr:hover {
 <div class="container">
     <div id="iposbrowser"></div><h1><i class="fa-solid fa-tachometer-alt"></i> 10 about:config Tweaks untuk Performa Firefox Maksimal <i class="fa-brands fa-firefox-browser"></i></h1>
     <div class="lead">
-        <i class="fa-solid fa-sliders-h"></i> Firefox punya banyak pengaturan tersembunyi di about:config. Dengan sedikit penyesuaian, kamu bisa membuat browser jadi lebih cepat, ringan, dan responsif — terutama buat perangkat dengan spesifikasi terbatas.
+        <i class="fa-solid fa-sliders-h"></i> Firefox punya banyak pengaturan tersembunyi di about:config. Dengan sedikit penyesuaian, kamu bisa membuat browser jadi lebih cepat, ringan, dan responsif &#x2014; terutama buat perangkat dengan spesifikasi terbatas.
     </div>
-<p>Firefox terasa berat pas buka banyak tab? Atau animasi buka tab membuat ngelag? Tenang, Firefox punya halaman <strong>about:config</strong> yang mirip "laboratorium pengaturan". Di sana kamu bisa ubah berbagai parameter untuk meningkatkan performa.</p>
+<p>Firefox terasa berat pas buka banyak tab? Atau animasi buka tab membuat ngelag? Tenang, Firefox punya halaman <strong>about:config</strong> yang mirip &quot;laboratorium pengaturan&quot;. Di sana kamu bisa ubah berbagai parameter untuk meningkatkan performa.</p>
     <div class="feature-img">
         <img src="https://dalam.web.id/img/pbs.twimg.com/226fb154c6e4ff82.webp" alt="Ilustrasi about:config tweaks untuk performa Firefox" loading="eager" width="1000" height="525">
     </div>
@@ -333,48 +333,48 @@ tbody tr:hover {
     <div class="highlight">
         <i class="fa-solid fa-exclamation-triangle"></i> <strong>Peringatan:</strong> about:config berisi pengaturan tingkat lanjut. Ubah dengan hati-hati. Jangan asal-asalan karena bisa mengganggu stabilitas. Ikuti panduan ini dan selalu catat pengaturan asli sebelum mengubah. 
     </div>
-    <h2>⚙️ 10 Tweak about:config Paling Berpengaruh</h2>
+    <h2>&#x2699;&#xfe0f; 10 Tweak about:config Paling Berpengaruh</h2>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-charging-station"></i> 1. <code>gfx.webrender.all</code> → <strong>true</strong></h4>
+        <h4><i class="fa-solid fa-charging-station"></i> 1. <code>gfx.webrender.all</code> &#x2192; <strong>true</strong></h4>
         <p>Mengaktifkan WebRender, mesin render modern Firefox yang lebih efisien menggunakan GPU. Hasilnya: scrolling lebih halus, penggunaan CPU berkurang, dan animasi lebih ringan. Cocok untuk semua perangkat, terutama yang punya GPU dedicated atau integrated modern. Setelah diaktifkan, restart Firefox.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-stopwatch"></i> 2. <code>browser.tabs.animate</code> → <strong>false</strong></h4>
+        <h4><i class="fa-solid fa-stopwatch"></i> 2. <code>browser.tabs.animate</code> &#x2192; <strong>false</strong></h4>
         <p>Matikan animasi saat membuka atau menutup tab. Efeknya langsung terasa: tab switching jadi instan, tanpa jeda visual. Sangat membantu untuk perangkat dengan CPU lemah.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-memory"></i> 3. <code>dom.ipc.processCount</code> → <strong>4</strong> (atau sesuai RAM)</h4>
+        <h4><i class="fa-solid fa-memory"></i> 3. <code>dom.ipc.processCount</code> &#x2192; <strong>4</strong> (atau sesuai RAM)</h4>
         <p>Mengatur jumlah proses konten (tab) yang berjalan paralel. Default biasanya 8, tapi jika RAM hanya 8GB, turunkan ke 4 atau 2 untuk menghemat memori. Jika punya RAM 16GB, bisa biarkan 8. Ubah nilai integer sesuai kebutuhan.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-hand-peace"></i> 4. <code>layers.acceleration.disabled</code> → <strong>false</strong></h4>
+        <h4><i class="fa-solid fa-hand-peace"></i> 4. <code>layers.acceleration.disabled</code> &#x2192; <strong>false</strong></h4>
         <p>Pastikan akselerasi hardware aktif (nilai false). Ini memungkinkan Firefox menggunakan GPU untuk rendering, meringankan kerja CPU. Sebaliknya, jika kamu punya masalah grafis, set ke true untuk menonaktifkan.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-undo-alt"></i> 5. <code>browser.sessionhistory.max_total_viewers</code> → <strong>0</strong></h4>
+        <h4><i class="fa-solid fa-undo-alt"></i> 5. <code>browser.sessionhistory.max_total_viewers</code> &#x2192; <strong>0</strong></h4>
         <p>Mengurangi jumlah halaman yang disimpan dalam cache untuk tombol back/forward. Defaultnya biasanya 1 atau 2. Set ke 0 untuk menghemat RAM, terutama jika kamu jarang menggunakan back/forward.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-chart-line"></i> 6. <code>accessibility.force_disabled</code> → <strong>1</strong></h4>
+        <h4><i class="fa-solid fa-chart-line"></i> 6. <code>accessibility.force_disabled</code> &#x2192; <strong>1</strong></h4>
         <p>Menonaktifkan layanan aksesibilitas yang seringkali memakan sumber daya. Jika kamu tidak menggunakan screen reader atau alat bantu akses, set ke 1 untuk mematikan semua service aksesibilitas.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-eye"></i> 7. <code>ui.prefersReducedMotion</code> → <strong>1</strong></h4>
+        <h4><i class="fa-solid fa-eye"></i> 7. <code>ui.prefersReducedMotion</code> &#x2192; <strong>1</strong></h4>
         <p>Memberi sinyal ke sistem operasi bahwa kamu menginginkan animasi minimal. Ini akan mempengaruhi animasi di situs web dan UI Firefox. Cocok untuk pengguna yang lebih suka pengalaman tanpa gangguan visual.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-database"></i> 8. <code>browser.cache.disk.enable</code> → <strong>false</strong> &amp; <code>browser.cache.memory.enable</code> → <strong>true</strong></h4>
+        <h4><i class="fa-solid fa-database"></i> 8. <code>browser.cache.disk.enable</code> &#x2192; <strong>false</strong> &amp; <code>browser.cache.memory.enable</code> &#x2192; <strong>true</strong></h4>
         <p>Nonaktifkan cache disk (HDD) dan aktifkan cache di RAM. Jika punya RAM cukup (8GB+), ini akan mempercepat loading karena cache tidak perlu baca/tulis ke HDD yang lambat. Pastikan kamu memiliki memori yang cukup.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-chart-simple"></i> 9. <code>network.http.max-connections</code> → <strong>48</strong> (atau 64)</h4>
+        <h4><i class="fa-solid fa-chart-simple"></i> 9. <code>network.http.max-connections</code> &#x2192; <strong>48</strong> (atau 64)</h4>
         <p>Meningkatkan jumlah koneksi paralel maksimal untuk loading situs. Default biasanya 30. Naikkan ke 48 atau 64 agar loading lebih cepat, terutama pada koneksi internet cepat.</p>
     </div>
     <div class="tweak-card">
-        <h4><i class="fa-solid fa-microphone-alt"></i> 10. <code>media.hardware-video-decoding.enabled</code> → <strong>true</strong></h4>
+        <h4><i class="fa-solid fa-microphone-alt"></i> 10. <code>media.hardware-video-decoding.enabled</code> &#x2192; <strong>true</strong></h4>
         <p>Aktifkan hardware decoding video. Membantu memutar video YouTube, Netflix, dll dengan beban CPU lebih ringan. Pastikan driver GPU kamu terbaru.</p>
     </div>
-    <h2>📋 Ringkasan Tweak dalam Tabel</h2>
+    <h2>&#x1f4cb; Ringkasan Tweak dalam Tabel</h2>
 <table>
   <thead>
     <tr>
@@ -441,48 +441,48 @@ tbody tr:hover {
     </tr>
   </tbody>
 </table>
-    <h2>🧪 Cara Menerapkan Tweak</h2>
+    <h2>&#x1f9ea; Cara Menerapkan Tweak</h2>
     <ol>
         <li>Buka Firefox, ketik <code>about:config</code> di address bar, tekan Enter.</li>
-        <li>Klik tombol <strong>"Accept the Risk and Continue"</strong>.</li>
+        <li>Klik tombol <strong>&quot;Accept the Risk and Continue&quot;</strong>.</li>
         <li>Pada kolom pencarian, ketik nama parameter (misal <code>gfx.webrender.all</code>).</li>
-        <li>Jika parameter belum ada, klik tombol <strong>"+ (plus)"</strong> di kanan, pilih tipe (Boolean/Integer/String), lalu isi nilai.</li>
-        <li>Jika sudah ada, klik tombol toggle (untuk boolean) atau double‑klik (untuk integer) untuk mengubah nilai.</li>
+        <li>Jika parameter belum ada, klik tombol <strong>&quot;+ (plus)&quot;</strong> di kanan, pilih tipe (Boolean/Integer/String), lalu isi nilai.</li>
+        <li>Jika sudah ada, klik tombol toggle (untuk boolean) atau double&#x2011;klik (untuk integer) untuk mengubah nilai.</li>
         <li>Ulangi untuk semua tweak yang diinginkan.</li>
         <li>Restart Firefox agar perubahan diterapkan.</li>
     </ol>
     <div class="note-box">
         <i class="fa-solid fa-save"></i> <strong>Catat Pengaturan Awal:</strong> Sebelum mengubah, catat nilai defaultnya. Jika terjadi masalah, kamu bisa mengembalikan ke nilai semula.
     </div>
-    <h2>📈 Testimoni &amp; Efek yang Dirasakan</h2>
+    <h2>&#x1f4c8; Testimoni &amp; Efek yang Dirasakan</h2>
     <p>Banyak pengguna dengan spek mirip (i5-7400, 8GB RAM, HDD) melaporkan bahwa setelah menerapkan tweak di atas, Firefox terasa lebih ringan, tab switching lebih cepat, dan YouTube 1080p lebih jarang lag. Beberapa juga merasakan peningkatan skor benchmark (Speedometer). Tentu hasil bisa bervariasi tergantung hardware dan kebiasaan browsing.</p>
-    <h2>⚠️ Hal yang Perlu Diperhatikan</h2>
+    <h2>&#x26a0;&#xfe0f; Hal yang Perlu Diperhatikan</h2>
     <ul>
         <li>Beberapa tweak seperti mematikan cache disk bisa menyebabkan browser memuat ulang halaman lebih sering saat restart. Jika menggunakan SSD, lebih baik biarkan cache disk aktif.</li>
         <li>Menurunkan jumlah proses konten (dom.ipc.processCount) terlalu rendah bisa menyebabkan satu tab crash mempengaruhi tab lain. Sesuaikan dengan kebutuhan.</li>
         <li>Jika mengalami masalah stabilitas, kembalikan tweak satu per satu untuk menemukan penyebabnya.</li>
         <li>Setelah update Firefox, beberapa pengaturan mungkin berubah. Periksa kembali jika performa menurun.</li>
     </ul>
-    <h2>🧠 5W+1H: Memahami about:config Tweaks</h2>
+    <h2>&#x1f9e0; 5W+1H: Memahami about:config Tweaks</h2>
     <ul>
-        <li><strong>What (Apa itu about:config?)</strong> – Halaman konfigurasi tersembunyi Firefox yang berisi ribuan parameter. Bisa diakses dengan mengetik <code>about:config</code> di address bar.</li>
-        <li><strong>Why (Mengapa perlu tweak?)</strong> – Untuk mengoptimalkan penggunaan sumber daya (RAM/CPU), mengaktifkan fitur eksperimental yang lebih efisien, dan menonaktifkan fitur yang tidak perlu.</li>
-        <li><strong>Who (Siapa yang bisa melakukannya?)</strong> – Siapa saja, asalkan mengikuti panduan. Cocok untuk pengguna dengan PC spek rendah hingga menengah.</li>
-        <li><strong>When (Kapan melakukan?)</strong> – Saat Firefox terasa lambat, atau setelah update besar yang mengubah pengaturan default.</li>
-        <li><strong>Where (Di mana mengubah?)</strong> – Di halaman about:config, ketik nama parameter, lalu ubah nilainya.</li>
-        <li><strong>How (Bagaimana cara kerjanya?)</strong> – Dengan mengubah nilai boolean (true/false), integer, atau string, kita bisa mengaktifkan/menonaktifkan fitur tertentu yang mempengaruhi performa.</li>
+        <li><strong>What (Apa itu about:config?)</strong> &#x2013; Halaman konfigurasi tersembunyi Firefox yang berisi ribuan parameter. Bisa diakses dengan mengetik <code>about:config</code> di address bar.</li>
+        <li><strong>Why (Mengapa perlu tweak?)</strong> &#x2013; Untuk mengoptimalkan penggunaan sumber daya (RAM/CPU), mengaktifkan fitur eksperimental yang lebih efisien, dan menonaktifkan fitur yang tidak perlu.</li>
+        <li><strong>Who (Siapa yang bisa melakukannya?)</strong> &#x2013; Siapa saja, asalkan mengikuti panduan. Cocok untuk pengguna dengan PC spek rendah hingga menengah.</li>
+        <li><strong>When (Kapan melakukan?)</strong> &#x2013; Saat Firefox terasa lambat, atau setelah update besar yang mengubah pengaturan default.</li>
+        <li><strong>Where (Di mana mengubah?)</strong> &#x2013; Di halaman about:config, ketik nama parameter, lalu ubah nilainya.</li>
+        <li><strong>How (Bagaimana cara kerjanya?)</strong> &#x2013; Dengan mengubah nilai boolean (true/false), integer, atau string, kita bisa mengaktifkan/menonaktifkan fitur tertentu yang mempengaruhi performa.</li>
     </ul>
-    <h2>🏁 Kesimpulan</h2>
+    <h2>&#x1f3c1; Kesimpulan</h2>
     <p>Dengan 10 tweak about:config di atas, kamu bisa meningkatkan performa Firefox secara signifikan, terutama di perangkat dengan spesifikasi terbatas. Kombinasikan dengan tweak CSS (userChrome.css) untuk hasil optimal. Jangan lupa untuk selalu backup profil Firefox sebelum melakukan perubahan besar.  Selamat browsing lebih cepat!</p>
     <div id="related-articles-grid">
      </div>
     <div id="response">
     </div>
     <footer>
-        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong — Artikel ini dilisensikan CC0. Selalu backup sebelum tweak. Dikembangkan berdasarkan riset dan pengalaman komunitas.</p>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong &#x2014; Artikel ini dilisensikan CC0. Selalu backup sebelum tweak. Dikembangkan berdasarkan riset dan pengalaman komunitas.</p>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

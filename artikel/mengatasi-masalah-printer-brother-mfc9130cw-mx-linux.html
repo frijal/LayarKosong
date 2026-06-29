@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-05-29T17:27:09.630Z">
     <meta property="article:modified_time" content="2026-06-10T13:56:34.546Z">
     <meta name="article:tag" content="Linux">
@@ -284,22 +284,22 @@
         </header>
         <article>
             <p>
-                Kombinasi antara MX Linux dan laptop tangguh seperti Lenovo Thinkpad E550 sejatinya adalah lingkungan kerja yang luar biasa stabil. Namun, tentu sangat menjengkelkan ketika urusan pekerjaan terhambat gara-gara printer bermasalah—apalagi sampai membuang banyak kertas akibat mesin yang mencetak tanpa kendali.
+                Kombinasi antara MX Linux dan laptop tangguh seperti Lenovo Thinkpad E550 sejatinya adalah lingkungan kerja yang luar biasa stabil. Namun, tentu sangat menjengkelkan ketika urusan pekerjaan terhambat gara-gara printer bermasalah&#x2014;apalagi sampai membuang banyak kertas akibat mesin yang mencetak tanpa kendali.
             </p>
             <p>
-                Kabar baiknya, Anda tidak sendirian. Kedua masalah yang sering Anda alami—yaitu <strong>printer yang sering tidak terdeteksi di <em>browser</em> Firefox</strong> dan <strong>perintah cetak (jumlah kopi) yang tidak dipatuhi</strong>—adalah kasus <em>bug</em> yang sudah sangat dikenal pada jajaran printer Brother saat beroperasi di sistem Linux. Berikut adalah analisis akar masalah dan solusi tuntas yang bisa Anda coba sekarang juga.
+                Kabar baiknya, Anda tidak sendirian. Kedua masalah yang sering Anda alami&#x2014;yaitu <strong>printer yang sering tidak terdeteksi di <em>browser</em> Firefox</strong> dan <strong>perintah cetak (jumlah kopi) yang tidak dipatuhi</strong>&#x2014;adalah kasus <em>bug</em> yang sudah sangat dikenal pada jajaran printer Brother saat beroperasi di sistem Linux. Berikut adalah analisis akar masalah dan solusi tuntas yang bisa Anda coba sekarang juga.
             </p>
             <figure class="content-image">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/cddd949958a4ef1.webp" alt="Ilustrasi troubleshooting printer Brother di lingkungan MX Linux" width="800" height="450" fetchpriority="high" decoding="async">
-                <figcaption>Menyelesaikan drama printer "ngambek" di sistem operasi Linux.</figcaption>
+                <figcaption>Menyelesaikan drama printer &quot;ngambek&quot; di sistem operasi Linux.</figcaption>
             </figure>
-            <h2>🔍 Penyebab Umum Error Printer Brother di Linux</h2>
+            <h2>&#x1f50d; Penyebab Umum Error Printer Brother di Linux</h2>
             <p>Sebelum masuk ke ranah teknis, mari kita pahami dulu mengapa dua <em>error</em> aneh ini bisa terjadi secara bersamaan:</p>
             <ul>
                 <li><strong>Printer tidak konsisten muncul:</strong> Masalah ini biasanya diakibatkan oleh alamat IP printer di jaringan yang berubah-ubah (DHCP dinamis). Aplikasi seperti Firefox tidak akan bisa menemukan printer di jaringan lokal sampai terjadi <em>broadcast</em> penemuan perangkat secara ulang.</li>
                 <li><strong>Cetak banyak kopi / tidak terkendali:</strong> Ini adalah <em>bug</em> klasik pada struktur <em>file</em> PPD (konfigurasi profil printer) bawaan dari Brother. Karena ada parameter yang tidak kompatibel dengan <em>print server</em> CUPS modern, printer akhirnya mengabaikan batasan perintah jumlah kopi dari sistem, sehingga mencetak terus-menerus atau justru salah membaca instruksi dokumen.</li>
             </ul>
-            <h2>✅ Perbaikan 1: Printer Sering Tidak Muncul di Firefox</h2>
+            <h2>&#x2705; Perbaikan 1: Printer Sering Tidak Muncul di Firefox</h2>
             <p>
                 Langkah pertama adalah membuat keberadaan printer menjadi absolut di jaringan lokal Anda. Kita harus menghentikan kebiasaan sistem yang mengubah alamat IP printer secara acak.
             </p>
@@ -318,16 +318,16 @@
                 </ol>
                 <div class="terminal-block">
                     <code>
-<span style="color: #66d9ef;">user@thinkpad:~$</span> gunzip linux-brprinter-installer-*.*.*-*.gz<br>
-<span style="color: #66d9ef;">user@thinkpad:~$</span> su<br>
+<span style="color: #66d9ef;">user@thinkpad:~&#x24;</span> gunzip linux-brprinter-installer-*.*.*-*.gz<br>
+<span style="color: #66d9ef;">user@thinkpad:~&#x24;</span> su<br>
 <span style="color: #66d9ef;">root@thinkpad:#</span> bash linux-brprinter-installer-*.*.*-* MFC-9130CW
                     </code>
                 </div>
                 <p>
-                    Saat <em>script installer</em> berjalan, ia akan menanyakan beberapa hal dasar. Jawab <strong>Yes (Y)</strong> untuk menyetujui lisensi. Ketika ditanya <em>"Will you specify the Device URI?"</em>, tekan <strong>Y</strong>, lalu masukkan alamat IP Statis (<code>192.168.1.100</code>) yang sudah Anda tetapkan di langkah pertama tadi.
+                    Saat <em>script installer</em> berjalan, ia akan menanyakan beberapa hal dasar. Jawab <strong>Yes (Y)</strong> untuk menyetujui lisensi. Ketika ditanya <em>&quot;Will you specify the Device URI?&quot;</em>, tekan <strong>Y</strong>, lalu masukkan alamat IP Statis (<code>192.168.1.100</code>) yang sudah Anda tetapkan di langkah pertama tadi.
                 </p>
             </div>
-            <h2>✅ Perbaikan 2: Mengatasi Bug Jumlah Cetak (Copies) yang Diabaikan</h2>
+            <h2>&#x2705; Perbaikan 2: Mengatasi Bug Jumlah Cetak (Copies) yang Diabaikan</h2>
             <p>
                 Setelah printer berhasil terdeteksi permanen di Firefox, kita harus menyembuhkan penyakit kedua: printer yang suka menghambur-hamburkan kertas karena <em>bug</em> PPD.
             </p>
@@ -337,7 +337,7 @@
             <ol>
                 <li>Buka <em>browser</em> (Firefox) Anda, lalu ketik alamat ini di URL bar: <code>http://localhost:631</code> (Ini adalah antarmuka web pengaturan CUPS).</li>
                 <li>Pilih tab <strong>Printers</strong>, lalu klik pada nama printer Brother MFC-9130CW Anda.</li>
-                <li>Pada menu <em>dropdown</em> "Administration", pilih opsi <strong>Set Default Options</strong>.</li>
+                <li>Pada menu <em>dropdown</em> &quot;Administration&quot;, pilih opsi <strong>Set Default Options</strong>.</li>
                 <li>Cari dan pastikan bahwa manajemen filter diserahkan pada sistem operasi. Jika opsi di antarmuka kurang spesifik, Anda harus memperbaiki <em>file</em> PPD secara manual melalui terminal.</li>
             </ol>
             <p>Buka terminal dan edit <em>file</em> PPD tersebut sebagai <em>root</em> (gunakan editor teks kesayangan Anda, misalnya <code>nano</code>):</p>
@@ -371,10 +371,10 @@
     </main>
     <footer>
         <div class="container">
-            <p>🄯 2026 - Ditulis untuk komunitas Linux dengan struktur web murni demi kecepatan maksimal.</p>
+            <p>&#x1f12f; 2026 - Ditulis untuk komunitas Linux dengan struktur web murni demi kecepatan maksimal.</p>
         </div>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-27T16:23:16.781Z">
     <meta property="article:modified_time" content="2025-12-27T16:23:16.781Z">
 <meta name="keywords" content="git, github, github actions, workflow permissions, github_token, security, ci/cd, tutorial git, frijal">
@@ -232,7 +232,7 @@
         </header>
         <main>
             <article>
-                <p>Saat kita membuat automasi dengan GitHub Actions, ada satu aspek krusial yang sering terlewat: keamanan. Pengaturan "Workflow permissions" ini mengontrol seberapa besar "kuasa" yang kita berikan pada skrip automasi kita. Yuk, kita pahami artinya biar repositori kita tetap aman!</p>
+                <p>Saat kita membuat automasi dengan GitHub Actions, ada satu aspek krusial yang sering terlewat: keamanan. Pengaturan &quot;Workflow permissions&quot; ini mengontrol seberapa besar &quot;kuasa&quot; yang kita berikan pada skrip automasi kita. Yuk, kita pahami artinya biar repositori kita tetap aman!</p>
                 <div class="image-container">
                     <figure>
                         <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp" alt="Pengaturan Workflow Permissions di GitHub">
@@ -246,19 +246,19 @@
                     <p>Opsi ini memberikan <code>GITHUB_TOKEN</code> kekuasaan penuh. Workflow tidak hanya bisa membaca, tapi juga <strong>menulis/mengubah</strong> data di repositori, seperti push commit baru, membuat rilis, dan lainnya.</p>
                     <blockquote><strong>Analogi:</strong> Ini seperti memberikan kunci master sebuah gedung kepada seorang kontraktor. Dia bisa masuk ke semua ruangan (baca) dan juga merenovasi atau mengubah isi ruangan tersebut (tulis).</blockquote>
                     <h3>Read repository contents... (Izin Hanya Baca)</h3>
-                    <p>Opsi ini membatasi <code>GITHUB_TOKEN</code> agar <strong>hanya bisa membaca</strong> konten. Workflow tidak bisa mengubah apa pun. Ini adalah penerapan "Prinsip Hak Akses Terbatas", standar keamanan yang sangat baik.</p>
+                    <p>Opsi ini membatasi <code>GITHUB_TOKEN</code> agar <strong>hanya bisa membaca</strong> konten. Workflow tidak bisa mengubah apa pun. Ini adalah penerapan &quot;Prinsip Hak Akses Terbatas&quot;, standar keamanan yang sangat baik.</p>
                      <blockquote><strong>Analogi:</strong> Ini seperti memberikan kartu akses tamu. Kontraktor bisa masuk dan melihat semua ruangan untuk mengukur (baca), tapi tidak bisa memindahkan barang atau mengecat dinding (tidak bisa tulis).</blockquote>
                     <div class="recommendation rec-secure">
-                        <strong>💡 Rekomendasi Keamanan</strong>
-                        <p>Pilih <strong>"Read repository contents and packages permissions"</strong>. Ini adalah praktik terbaik yang direkomendasikan GitHub.  Jika ada workflow tertentu yang butuh izin tulis, Anda bisa memberikannya secara spesifik di file <code>.yaml</code> workflow tersebut. Ini jauh lebih aman!</p>
+                        <strong>&#x1f4a1; Rekomendasi Keamanan</strong>
+                        <p>Pilih <strong>&quot;Read repository contents and packages permissions&quot;</strong>. Ini adalah praktik terbaik yang direkomendasikan GitHub.  Jika ada workflow tertentu yang butuh izin tulis, Anda bisa memberikannya secara spesifik di file <code>.yaml</code> workflow tersebut. Ini jauh lebih aman!</p>
                     </div>
                 </section>
                 <section>
                     <h2>2. Izinkan Actions Membuat &amp; Menyetujui PR</h2>
                     <p>Pengaturan ini memberikan kemampuan spesifik kepada workflow untuk membuat <em>Pull Request</em> (PR) baru atau menyetujui PR yang sudah ada. Sangat berguna untuk automasi tingkat lanjut.</p>
-                    <blockquote><strong>Analogi:</strong> Ini seperti memberikan wewenang tambahan kepada asisten AI Anda. Selain bisa membaca laporan, ia kini juga bisa mengajukan proposal baru (membuat PR) dan memberikan 'jempol persetujuan' (approve PR) atas nama Anda jika syarat terpenuhi.</blockquote>
+                    <blockquote><strong>Analogi:</strong> Ini seperti memberikan wewenang tambahan kepada asisten AI Anda. Selain bisa membaca laporan, ia kini juga bisa mengajukan proposal baru (membuat PR) dan memberikan &apos;jempol persetujuan&apos; (approve PR) atas nama Anda jika syarat terpenuhi.</blockquote>
                     <div class="recommendation rec-flexible">
-                        <strong>✅ Rekomendasi Fleksibilitas</strong>
+                        <strong>&#x2705; Rekomendasi Fleksibilitas</strong>
                         <p><strong>Biarkan ini tetap tercentang.</strong> Walaupun mungkin belum Anda gunakan sekarang, mengaktifkannya tidak berbahaya dan membuka pintu untuk automasi canggih di masa depan, seperti bot yang meng-update dependensi secara otomatis.</p>
                     </div>
                 </section>
@@ -277,12 +277,12 @@
                                 <tr>
                                     <td><strong>Workflow permissions</strong></td>
                                     <td><strong>Read ... permissions</strong> (Hanya Baca)</td>
-                                    <td>🔒 Lebih aman (Prinsip Hak Akses Terbatas).</td>
+                                    <td>&#x1f512; Lebih aman (Prinsip Hak Akses Terbatas).</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Allow Actions to create/approve PR</strong></td>
-                                    <td>✅ <strong>Aktifkan</strong></td>
-                                    <td>🤖 Membuka potensi automasi di masa depan.</td>
+                                    <td>&#x2705; <strong>Aktifkan</strong></td>
+                                    <td>&#x1f916; Membuka potensi automasi di masa depan.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -292,11 +292,11 @@
             </article>
         </main>
         <footer>
-            <p>🄯 2025 Frijal.</p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+            <p>&#x1f12f; 2025 Frijal.</p>
+         <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

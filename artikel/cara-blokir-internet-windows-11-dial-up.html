@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Windows 11">
     <meta property="article:tag" content="internet">
     <meta property="article:tag" content="dial-up">
@@ -237,18 +237,18 @@
   <div class="container">
     <article>
       <header>
-        <div id="iposbrowser"></div><h1><i class="fa-solid fa-shield-alt" style="color:#0078d4;"></i> Cara Memblokir Akses Internet Windows 11 untuk Pengguna Dial-Up <span style="font-size:1.5rem;">📡🚫</span></h1>
+        <div id="iposbrowser"></div><h1><i class="fa-solid fa-shield-alt" style="color:#0078d4;"></i> Cara Memblokir Akses Internet Windows 11 untuk Pengguna Dial-Up <span style="font-size:1.5rem;">&#x1f4e1;&#x1f6ab;</span></h1>
         <div class="meta">
           <span><i class="fa-solid fa-tags"></i> Windows 11, dial-up, firewall, optimasi</span>
         </div>
       </header>
       <!-- Pendahuluan -->
-      <p><i class="fa-solid fa-exclamation-triangle" style="color:#ff9800;"></i> <strong>Guys,</strong> pernah ngalamin koneksi dial-up lemot padahal lagi tidak download apa-apa? Bisa jadi Windows 11 diam-diam sibuk <i class="fa-solid fa-download"></i> update, sync OneDrive, atau kirim telemetri. Buat kamu yang masih setia dengan dial-up (atau ingin <em>hemat bandwidth</em>), artikel ini akan membedah tuntas <strong>gimana caranya bikin Windows 11 benar-benar diem dan tidak nyentuh internet</strong> kecuali yang kamu izinkan. ✋😤</p>
+      <p><i class="fa-solid fa-exclamation-triangle" style="color:#ff9800;"></i> <strong>Guys,</strong> pernah ngalamin koneksi dial-up lemot padahal lagi tidak download apa-apa? Bisa jadi Windows 11 diam-diam sibuk <i class="fa-solid fa-download"></i> update, sync OneDrive, atau kirim telemetri. Buat kamu yang masih setia dengan dial-up (atau ingin <em>hemat bandwidth</em>), artikel ini akan membedah tuntas <strong>gimana caranya bikin Windows 11 benar-benar diem dan tidak nyentuh internet</strong> kecuali yang kamu izinkan. &#x270b;&#x1f624;</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCusppYaUAYnnWd.webp" alt="Cara Blokir Akses Internet Windows 11 untuk Dial-Up" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
-      <h2>🔍 Prinsip 5W+1H: Memahami Kebutuhan Blokir Internet di Windows 11</h2>
-      <h3><i class="fa-solid fa-question-circle"></i> What <span style="font-size:1.2rem;">🤔</span> – Apa itu pembatasan akses internet?</h3>
+      <h2>&#x1f50d; Prinsip 5W+1H: Memahami Kebutuhan Blokir Internet di Windows 11</h2>
+      <h3><i class="fa-solid fa-question-circle"></i> What <span style="font-size:1.2rem;">&#x1f914;</span> &#x2013; Apa itu pembatasan akses internet?</h3>
       <p>Membatasi atau <strong>memblokir total koneksi internet</strong> di Windows 11 berarti mencegah sistem, aplikasi background, dan layanan bawaan untuk mengirim atau menerima data. Tujuannya agar koneksi dial-up yang super terbatas hanya dipakai untuk aktivitas yang benar-benar kita mau (misal: browsing saja).</p>
-      <h3><i class="fa-solid fa-user-friends"></i> Who <span style="font-size:1.2rem;">🧑💻</span> – Siapa yang butuh?</h3>
+      <h3><i class="fa-solid fa-user-friends"></i> Who <span style="font-size:1.2rem;">&#x1f9d1;&#x1f4bb;</span> &#x2013; Siapa yang butuh?</h3>
       <p>Khususnya <strong>pengguna dial-up</strong> (ya, masih ada lho!), atau siapa saja yang ingin:</p>
       <ul>
         <li>Bekerja tanpa gangguan update dadakan.</li>
@@ -256,18 +256,18 @@
         <li>Menguji perilaku offline suatu aplikasi.</li>
         <li>Menjaga privasi dari telemetri Windows.</li>
       </ul>
-      <h3><i class="fa-solid fa-clock"></i> When <span style="font-size:1.2rem;">⏰</span> – Kapan perlu dilakukan?</h3>
+      <h3><i class="fa-solid fa-clock"></i> When <span style="font-size:1.2rem;">&#x23f0;</span> &#x2013; Kapan perlu dilakukan?</h3>
       <p>Saat kamu:</p>
       <ul>
         <li>Menggunakan koneksi lambat / dial-up.</li>
         <li>Ingin fokus kerja tanpa notifikasi atau download background.</li>
         <li>Membawa laptop ke tempat dengan WiFi mahal / hot-spot terbatas.</li>
-        <li>Merasa Windows terlalu banyak "ngobrol" dengan server Microsoft.</li>
+        <li>Merasa Windows terlalu banyak &quot;ngobrol&quot; dengan server Microsoft.</li>
       </ul>
-      <h3><i class="fa-solid fa-map-marker-alt"></i> Where <span style="font-size:1.2rem;">📍</span> – Di mana setting-nya?</h3>
+      <h3><i class="fa-solid fa-map-marker-alt"></i> Where <span style="font-size:1.2rem;">&#x1f4cd;</span> &#x2013; Di mana setting-nya?</h3>
       <p>Setting tersebar di beberapa tempat: <i class="fa-solid fa-cog"></i> <strong>Settings</strong>, <i class="fa-solid fa-fire"></i> <strong>Windows Firewall</strong>, <i class="fa-solid fa-tasks"></i> <strong>Group Policy</strong> (khusus Pro), dan <i class="fa-solid fa-network-wired"></i> <strong>Device Manager</strong>. Kita akan bahas satu per satu.</p>
-      <h3><i class="fa-solid fa-question"></i> Why <span style="font-size:1.2rem;">❓</span> – Kenapa repot-repot memblokir?</h3>
-      <p>Karena Windows 11 secara default cukup <em>"rajin"</em> :</p>
+      <h3><i class="fa-solid fa-question"></i> Why <span style="font-size:1.2rem;">&#x2753;</span> &#x2013; Kenapa repot-repot memblokir?</h3>
+      <p>Karena Windows 11 secara default cukup <em>&quot;rajin&quot;</em> :</p>
       <ul>
         <li><i class="fa-solid fa-chart-line"></i> Kirim data diagnostik.</li>
         <li><i class="fa-solid fa-cloud-download-alt"></i> Download update (bahkan fitur opsional).</li>
@@ -275,8 +275,8 @@
         <li><i class="fa-solid fa-store"></i> Update aplikasi Store.</li>
         <li><i class="fa-solid fa-sync-alt"></i> Sinkronisasi OneDrive.</li>
       </ul>
-      <p>Semua itu bisa menghabiskan bandwidth dial-up kamu tanpa izin. 😤</p>
-      <h3><i class="fa-solid fa-hands-helping"></i> How <span style="font-size:1.2rem;">🛠️</span> – Bagaimana cara blokirnya?</h3>
+      <p>Semua itu bisa menghabiskan bandwidth dial-up kamu tanpa izin. &#x1f624;</p>
+      <h3><i class="fa-solid fa-hands-helping"></i> How <span style="font-size:1.2rem;">&#x1f6e0;&#xfe0f;</span> &#x2013; Bagaimana cara blokirnya?</h3>
       <p>Ada <strong>dua pendekatan utama</strong> yang bisa kamu pilih: <strong>soft</strong> (kurangi background traffic) atau <strong>hard</strong> (blok total via firewall). Bahkan bisa sampai <em>physically unplug modem</em>! Berikut langkah detailnya.</p>
       <hr>
       <!-- Pendekatan Soft -->
@@ -285,34 +285,34 @@
         <i class="fa-solid fa-lightbulb"></i> <strong>Rekomendasi pertama:</strong> coba dulu langkah-langkah ini. Biasanya sudah cukup meredam lalu lintas diam-diam.
       </div>
       <h3>1. <i class="fa-solid fa-pause-circle"></i> Pause Windows Update (segera lega)</h3>
-      <p>Buka <strong>Settings → Windows Update</strong> → <em>Pause updates</em> (pilih opsi pause maksimal). Kemudian ke <strong>Advanced options</strong>, matikan "Get the latest updates as soon as they're available" (jika ada) dan "Optional updates".</p>
+      <p>Buka <strong>Settings &#x2192; Windows Update</strong> &#x2192; <em>Pause updates</em> (pilih opsi pause maksimal). Kemudian ke <strong>Advanced options</strong>, matikan &quot;Get the latest updates as soon as they&apos;re available&quot; (jika ada) dan &quot;Optional updates&quot;.</p>
       <h3>2. <i class="fa-solid fa-exchange-alt"></i> Matikan Delivery Optimization</h3>
-      <p>Di <strong>Settings → Windows Update → Advanced options → Delivery Optimization</strong>, set ke <strong>Off</strong>. Ini menghentikan Windows berbagi update via P2P.</p>
+      <p>Di <strong>Settings &#x2192; Windows Update &#x2192; Advanced options &#x2192; Delivery Optimization</strong>, set ke <strong>Off</strong>. Ini menghentikan Windows berbagi update via P2P.</p>
       <h3>3. <i class="fa-solid fa-cloud"></i> Hentikan / Uninstall OneDrive</h3>
-      <p>Klik kanan ikon OneDrive di system tray → <strong>Quit OneDrive</strong>. Buka Settings OneDrive, matikan "Start OneDrive automatically". Atau uninstall via <strong>Settings → Apps → Installed apps → Microsoft OneDrive → Uninstall</strong>.</p>
+      <p>Klik kanan ikon OneDrive di system tray &#x2192; <strong>Quit OneDrive</strong>. Buka Settings OneDrive, matikan &quot;Start OneDrive automatically&quot;. Atau uninstall via <strong>Settings &#x2192; Apps &#x2192; Installed apps &#x2192; Microsoft OneDrive &#x2192; Uninstall</strong>.</p>
       <h3>4. <i class="fa-solid fa-store"></i> Stop Auto-update Microsoft Store</h3>
-      <p>Buka <strong>Microsoft Store</strong> → klik foto profil → <strong>Settings</strong> → matikan <strong>App updates</strong>.</p>
+      <p>Buka <strong>Microsoft Store</strong> &#x2192; klik foto profil &#x2192; <strong>Settings</strong> &#x2192; matikan <strong>App updates</strong>.</p>
       <h3>5. <i class="fa-solid fa-chart-pie"></i> Matikan Widget &amp; umpan berita</h3>
-      <p><strong>Settings → Personalization → Taskbar</strong> → matikan <strong>Widgets</strong>.</p>
+      <p><strong>Settings &#x2192; Personalization &#x2192; Taskbar</strong> &#x2192; matikan <strong>Widgets</strong>.</p>
       <h3>6. <i class="fa-solid fa-microphone-alt"></i> Kurangi telemetri &amp; saran</h3>
-      <p><strong>Settings → Privacy &amp; security → Diagnostics &amp; feedback</strong>:</p>
+      <p><strong>Settings &#x2192; Privacy &amp; security &#x2192; Diagnostics &amp; feedback</strong>:</p>
       <ul>
-        <li>Matikan "Feedback prompts" (jika ada).</li>
-        <li>Matikan "Optional diagnostic data".</li>
-        <li>Matikan "Tailored experiences".</li>
+        <li>Matikan &quot;Feedback prompts&quot; (jika ada).</li>
+        <li>Matikan &quot;Optional diagnostic data&quot;.</li>
+        <li>Matikan &quot;Tailored experiences&quot;.</li>
       </ul>
       <h3>7. <i class="fa-solid fa-wifi"></i> Atur koneksi sebagai Metered</h3>
-      <p><strong>Settings → Network &amp; internet → Properties</strong> → aktifkan <strong>Metered connection</strong>. Ini memberi sinyal ke Windows agar hemat bandwidth.</p>
+      <p><strong>Settings &#x2192; Network &amp; internet &#x2192; Properties</strong> &#x2192; aktifkan <strong>Metered connection</strong>. Ini memberi sinyal ke Windows agar hemat bandwidth.</p>
       <hr>
       <!-- Pendekatan Hard (Firewall) -->
       <h2><i class="fa-solid fa-fire-extinguisher"></i> Pendekatan Hard: Blok Total Outbound, Hanya Izinkan Browser + DNS</h2>
-      <p>Cocok untuk dial-up murni atau situasi "windows harus benar-benar offline". Kita akan set <strong>Windows Firewall</strong> untuk memblokir semua koneksi keluar, lalu buat pengecualian hanya untuk browser dan DNS.</p>
-      <h3>Langkah 1: Buat aturan Allow untuk DNS (agar browser bisa buka website) 🌐</h3>
+      <p>Cocok untuk dial-up murni atau situasi &quot;windows harus benar-benar offline&quot;. Kita akan set <strong>Windows Firewall</strong> untuk memblokir semua koneksi keluar, lalu buat pengecualian hanya untuk browser dan DNS.</p>
+      <h3>Langkah 1: Buat aturan Allow untuk DNS (agar browser bisa buka website) &#x1f310;</h3>
       <ol>
         <li>Tekan <code>Win + R</code>, ketik <code>wf.msc</code>, Enter.</li>
-        <li>Klik kanan <strong>Outbound Rules</strong> → <strong>New Rule…</strong></li>
-        <li>Pilih <strong>Custom</strong> → Next.</li>
-        <li>Pada <strong>Program</strong>: pilih "This program path": <code>C:\Windows\System32\svchost.exe</code></li>
+        <li>Klik kanan <strong>Outbound Rules</strong> &#x2192; <strong>New Rule&#x2026;</strong></li>
+        <li>Pilih <strong>Custom</strong> &#x2192; Next.</li>
+        <li>Pada <strong>Program</strong>: pilih &quot;This program path&quot;: <code>C:\Windows\System32\svchost.exe</code></li>
         <li><strong>Protocol and Ports</strong>:
           <ul>
             <li>Protocol type: <strong>UDP</strong></li>
@@ -322,12 +322,12 @@
         <li><strong>Scope</strong>: biarkan default (Any).</li>
         <li><strong>Action</strong>: Allow the connection.</li>
         <li><strong>Profile</strong>: centang yang kamu pakai (Private/Public).</li>
-        <li>Beri nama: "Allow DNS UDP 53".</li>
+        <li>Beri nama: &quot;Allow DNS UDP 53&quot;.</li>
       </ol>
       <p><strong>Ulangi langkah di atas untuk TCP port 53</strong> (beberapa DNS menggunakan TCP).</p>
-      <h3>Langkah 2: Buat aturan Allow untuk browser favoritmu 🧭</h3>
+      <h3>Langkah 2: Buat aturan Allow untuk browser favoritmu &#x1f9ed;</h3>
       <ol>
-        <li>Masih di <strong>Outbound Rules</strong>, New Rule → Program.</li>
+        <li>Masih di <strong>Outbound Rules</strong>, New Rule &#x2192; Program.</li>
         <li>Pilih path browser:
           <ul>
             <li>Chrome: <code>C:\Program Files\Google\Chrome\Application\chrome.exe</code></li>
@@ -336,28 +336,28 @@
           </ul>
         </li>
         <li>Pilih <strong>Allow the connection</strong>.</li>
-        <li>Beri nama "Allow - Browser".</li>
+        <li>Beri nama &quot;Allow - Browser&quot;.</li>
       </ol>
-      <h3>Langkah 3: Set default Outbound menjadi BLOCK ⛔</h3>
+      <h3>Langkah 3: Set default Outbound menjadi BLOCK &#x26d4;</h3>
       <ol>
         <li>Di <strong>wf.msc</strong>, klik <strong>Windows Defender Firewall Properties</strong>.</li>
         <li>Untuk setiap profile (Domain, Private, Public), pada <strong>Outbound connections</strong> pilih <strong>Block</strong>.</li>
         <li>Klik OK.</li>
       </ol>
       <p><em>Sekarang, Windows 11 tidak bisa mengirim data ke internet kecuali browser yang diizinkan dan lalu lintas DNS.</em></p>
-      <h3>🧩 Jika ada yang error (misal gagal sinkronisasi waktu), kamu bisa tambahkan allow rule untuk program tertentu nantinya.</h3>
+      <h3>&#x1f9e9; Jika ada yang error (misal gagal sinkronisasi waktu), kamu bisa tambahkan allow rule untuk program tertentu nantinya.</h3>
       <hr>
       <!-- Tweaks tambahan untuk pengalaman dial-up -->
       <h2><i class="fa-solid fa-magic"></i> Tweaks Tambahan untuk Pengalaman Dial-Up Makin Ringan</h2>
       <h3><i class="fa-solid fa-search"></i> Matikan Web Search di Start Menu</h3>
-      <p>Gunakan Group Policy (Windows 11 Pro): <code>gpedit.msc</code> → Computer Configuration → Administrative Templates → Windows Components → Search → aktifkan <strong>Do not allow web search</strong> dan <strong>Don't search the web or display web results in Search</strong>.</p>
+      <p>Gunakan Group Policy (Windows 11 Pro): <code>gpedit.msc</code> &#x2192; Computer Configuration &#x2192; Administrative Templates &#x2192; Windows Components &#x2192; Search &#x2192; aktifkan <strong>Do not allow web search</strong> dan <strong>Don&apos;t search the web or display web results in Search</strong>.</p>
       <h3><i class="fa-solid fa-lightbulb"></i> Matikan Tips &amp; Saran Online</h3>
-      <p><strong>Settings → System → Notifications</strong> → matikan "Get tips and suggestions when using Windows".<br>Lalu <strong>Settings → Privacy &amp; security → General</strong> → matikan semua opsi "Show me suggested content".</p>
+      <p><strong>Settings &#x2192; System &#x2192; Notifications</strong> &#x2192; matikan &quot;Get tips and suggestions when using Windows&quot;.<br>Lalu <strong>Settings &#x2192; Privacy &amp; security &#x2192; General</strong> &#x2192; matikan semua opsi &quot;Show me suggested content&quot;.</p>
       <h3><i class="fa-brands fa-edge"></i> Nonaktifkan Preloading di Edge</h3>
       <p>Buka <code>edge://settings/system</code>, matikan <strong>Startup Boost</strong> dan <strong>Continue running background apps when Edge is closed</strong>.</p>
       <!-- Penutup -->
       <hr>
-      <p><i class="fa-solid fa-check-circle" style="color:#4caf50;"></i> <strong>Kesimpulan:</strong> Dengan kombinasi tweak di atas, Windows 11-mu akan lebih <em>senyap</em> secara internet. Untuk pengguna dial-up, metode <strong>firewall outbound block + allow browser</strong> adalah yang paling ampuh. Tapi ingat, kalau mau update Windows atau fitur, kamu perlu revert aturan firewall atau kunjungi tempat dengan WiFi gratis.  😉</p>
+      <p><i class="fa-solid fa-check-circle" style="color:#4caf50;"></i> <strong>Kesimpulan:</strong> Dengan kombinasi tweak di atas, Windows 11-mu akan lebih <em>senyap</em> secara internet. Untuk pengguna dial-up, metode <strong>firewall outbound block + allow browser</strong> adalah yang paling ampuh. Tapi ingat, kalau mau update Windows atau fitur, kamu perlu revert aturan firewall atau kunjungi tempat dengan WiFi gratis.  &#x1f609;</p>
     </article>
     <!-- Kolom komentar (sesuai permintaan) -->
     <div id="related-articles-grid">
@@ -368,10 +368,10 @@
     <!-- Footer sederhana -->
     <footer>
       <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman - Artikel E-E-A-T dan pengalaman nyata pengguna dial-up.</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

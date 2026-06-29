@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="Cara Memperbaiki Error Update Bootloader CachyOS &amp; Masalah Mount VFAT, Layar Kosong">
-    <meta name="promphint" content="Cara Memperbaiki Error Update Bootloader CachyOS &amp; Masalah Mount VFAT | Halo pengguna CachyOS! 👋">
+    <meta name="promphint" content="Cara Memperbaiki Error Update Bootloader CachyOS &amp; Masalah Mount VFAT | Halo pengguna CachyOS! &#x1f44b;">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-05T11:20:52.813Z">
     <meta property="article:modified_time" content="2026-01-28T16:52:13.797Z">
 <link rel="stylesheet" href="/ext/fontawesome.css">
@@ -213,34 +213,34 @@
 <body>
     <div class="container">
         <header>
-            <div id="iposbrowser"></div><h1>Memperbaiki Error Bootloader CachyOS &amp; Masalah "Unknown Filesystem VFAT"</h1>
+            <div id="iposbrowser"></div><h1>Memperbaiki Error Bootloader CachyOS &amp; Masalah &quot;Unknown Filesystem VFAT&quot;</h1>
         </header>
         <article>
-            <p>Halo pengguna CachyOS! 👋</p>
+            <p>Halo pengguna CachyOS! &#x1f44b;</p>
             <p>umumnya kamu nyasar ke halaman ini karena lagi panik, kan? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Kamu baru saja update sistem, tapi tiba-tiba terminal memuntahkan error merah yang bikin deg-degan seperti ini:</p>
             <pre>Updating systemd-boot entries
-Couldn't find EFI system partition.
+Couldn&apos;t find EFI system partition.
 Error: /loader/loader.conf does not exist
 error: command failed to execute correctly</pre>
             <p>Dan ketika kamu mencoba memperbaiki dengan cara manual mounting partisi boot (seperti perintah <code>mount /dev/nvme0n1p1 /boot</code>), sistem malah membalas dengan:</p>
-            <pre>mount: /boot: unknown filesystem type 'vfat'.</pre>
+            <pre>mount: /boot: unknown filesystem type &apos;vfat&apos;.</pre>
             <p>Tenang, tarik napas dulu. Komputer kamu tidak rusak parah kok. Hardware kamu aman. Masalah ini sebenarnya cukup klasik di dunia Linux yang <em>bleeding edge</em> seperti Arch atau CachyOS. Yuk, kita bedah kenapa ini terjadi dan bagaimana cara membereskannya.</p>
             <div class="alert">
                 <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Dini:</strong> <br>
-                Jika kamu mengalami error "unknown filesystem type vfat" saat mencoba mount, <strong>JANGAN RESTART</strong> komputer kamu jika belum punya Flashdisk Installer (Live USB). Kalau restart sekarang tanpa perbaikan, kemungkinan besar sistem cenderung tidak bisa booting. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
+                Jika kamu mengalami error &quot;unknown filesystem type vfat&quot; saat mencoba mount, <strong>JANGAN RESTART</strong> komputer kamu jika belum punya Flashdisk Installer (Live USB). Kalau restart sekarang tanpa perbaikan, kemungkinan besar sistem cenderung tidak bisa booting. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
             </div>
             <h2><i class="fa-solid fa-microchip"></i> Kenapa Sih CachyOS Begini?</h2>
             <p>Jadi begini ceritanya. Error ini terjadi karena fenomena yang disebut <strong>Kernel Mismatch</strong>. Ini sering terjadi kalau kamu melakukan update besar (seperti <code>pacman -Syu</code>) yang di dalamnya ada update Kernel Linux, tapi kamu belum merestart komputer.</p>
             <p>Bayangin sistem operasi kamu itu seperti sebuah gedung:</p>
             <ul>
-                <li>Kernel yang sedang berjalan (di RAM) adalah "Manajer Gedung Lama".</li>
-                <li>Saat kamu update, pacman menghapus file-file modul milik Manajer Lama di harddisk dan menggantinya dengan file milik "Manajer Baru".</li>
+                <li>Kernel yang sedang berjalan (di RAM) adalah &quot;Manajer Gedung Lama&quot;.</li>
+                <li>Saat kamu update, pacman menghapus file-file modul milik Manajer Lama di harddisk dan menggantinya dengan file milik &quot;Manajer Baru&quot;.</li>
             </ul>
-            <p>Masalahnya, Manajer Lama (yang masih aktif di RAM) tiba-tiba butuh alat (driver) buat baca partisi EFI (format VFAT). Dia nyari ke gudang (harddisk), eh alatnya udah diganti sama alat model baru yang dia tidak kenali. Akibatnya? Dia bingung dan bilang <em>"unknown filesystem type"</em>.</p>
-            <p>Karena dia tidak bisa baca partisi EFI, dia tidak bisa memperbarui konfigurasi bootloader (systemd-boot). Inilah kenapa muncul error <code>Couldn't find EFI system partition</code>.</p>
+            <p>Masalahnya, Manajer Lama (yang masih aktif di RAM) tiba-tiba butuh alat (driver) buat baca partisi EFI (format VFAT). Dia nyari ke gudang (harddisk), eh alatnya udah diganti sama alat model baru yang dia tidak kenali. Akibatnya? Dia bingung dan bilang <em>&quot;unknown filesystem type&quot;</em>.</p>
+            <p>Karena dia tidak bisa baca partisi EFI, dia tidak bisa memperbarui konfigurasi bootloader (systemd-boot). Inilah kenapa muncul error <code>Couldn&apos;t find EFI system partition</code>.</p>
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWGE_9DU3NC-XZVvNWns0tHZ1mQwb4Cepk4lTRp_D32QqH_Z8CetEtUwuQTVhxV_oZCo6XinIMtFHc42q5FI5CgK5XYytMEUlRfTfHdZudce1fRFgt2CzcoQGhkjKMOVQJsZH6ZQy1-kZd2gbJ8Et33REREdgYXw0peSJgc6UNQvc3MfyTPpCMiBy2ZRs/s1600/ErrorBootloader.webp" alt="Ilustrasi Integritas Sistem" class="content-image" title="Menjaga Integritas Sistem File">
             <h2><i class="fa-solid fa-truck-medical"></i> Solusi: Operasi Lewat Jalur Belakang (Chroot)</h2>
-            <p>Karena sistem yang sekarang sedang berjalan sudah "hilang ingatan" cara baca partisi boot, kita tidak bisa benerin dari dalam sesi yang sekarang. Kita butuh bantuan dari luar, yaitu menggunakan <strong>Live USB Installer</strong>.</p>
+            <p>Karena sistem yang sekarang sedang berjalan sudah &quot;hilang ingatan&quot; cara baca partisi boot, kita tidak bisa benerin dari dalam sesi yang sekarang. Kita butuh bantuan dari luar, yaitu menggunakan <strong>Live USB Installer</strong>.</p>
             <p>Siapkan flashdisk yang berisi installer CachyOS (atau Arch Linux juga boleh). Colok, restart, dan boot ke flashdisk tersebut. Setelah masuk ke tampilan terminal Live USB, ikuti langkah berikut dengan santai tapi teliti.</p>
             <h3>Langkah 1: Cek Partisi Kamu</h3>
             <p>Di terminal Live USB, ketik perintah ini buat melihat daftar partisi harddisk kamu:</p>
@@ -251,7 +251,7 @@ error: command failed to execute correctly</pre>
                 <li><strong>Partisi EFI/BOOT:</strong> Ukurannya kecil (300MB - 1GB) dan formatnya biasanya VFAT. Contoh: <code>/dev/nvme0n1p1</code> atau <code>/dev/sda1</code>.</li>
             </ul>
             <h3>Langkah 2: Mount Partisi ke /mnt</h3>
-            <p>Kita akan "menempelkan" sistem kamu yang ada di harddisk ke folder sementara di Live USB. Urutannya harus benar ya, Root dulu, baru Boot.</p>
+            <p>Kita akan &quot;menempelkan&quot; sistem kamu yang ada di harddisk ke folder sementara di Live USB. Urutannya harus benar ya, Root dulu, baru Boot.</p>
             <p><strong>Mount Root:</strong> (Ganti <code>/dev/nvme0n1p2</code> sesuai partisi root kamu)</p>
             <pre>sudo mount /dev/nvme0n1p2 /mnt</pre>
             <p><strong>Mount Boot/EFI:</strong> (Ganti <code>/dev/nvme0n1p1</code> sesuai partisi boot kamu)</p>
@@ -283,12 +283,12 @@ sudo reboot</pre>
             <div id="related-articles-grid"></div><div id="response"></div>
     </article>
         <footer>
-            <p>🄯 2025 Jaga Data Pribadi Tetap Aman - Solusi Linux Santai.</p>
+            <p>&#x1f12f; 2025 Jaga Data Pribadi Tetap Aman - Solusi Linux Santai.</p>
             <p><small>Dibuat dengan <i class="fa-solid fa-heart" style="color: #e25555;"></i> dan kopi.</small></p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+         <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

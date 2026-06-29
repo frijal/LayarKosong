@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="KDE">
     <meta property="article:tag" content="Tutorial">
@@ -227,11 +227,11 @@
         <h2>Keterbatasan Perangkat Keras (Saat Ini)</h2>
         <p>Sebelum melangkah jauh, pastikan perangkatmu tidak masuk dalam daftar yang belum sepenuhnya didukung ini:</p>
         <ul>
-            <li><strong>CPU berbasis ARM:</strong> Perangkat seperti seri Apple "M" atau Qualcomm Snapdragon saat ini <del>belum didukung</del>.</li>
-            <li><strong>Kartu Grafis NVIDIA:</strong> Kartu grafis dari seri "Turing" ke atas (contohnya GTX 1630 atau yang lebih baru) bisa langsung berjalan lancar (<em>out of the box</em>). Namun, untuk kartu grafis yang lebih tua, sistem terbatas pada <em>driver</em> "Nouveau", yang <a target="_blank" href="https://linux.kde.org/docs/pre-turing-nvidia/">membutuhkan pengaturan manual</a> (<a target="_blank" href="https://linux.kde.org/nvidia/">pelajari lebih lanjut</a>).</li>
+            <li><strong>CPU berbasis ARM:</strong> Perangkat seperti seri Apple &quot;M&quot; atau Qualcomm Snapdragon saat ini <del>belum didukung</del>.</li>
+            <li><strong>Kartu Grafis NVIDIA:</strong> Kartu grafis dari seri &quot;Turing&quot; ke atas (contohnya GTX 1630 atau yang lebih baru) bisa langsung berjalan lancar (<em>out of the box</em>). Namun, untuk kartu grafis yang lebih tua, sistem terbatas pada <em>driver</em> &quot;Nouveau&quot;, yang <a target="_blank" href="https://linux.kde.org/docs/pre-turing-nvidia/">membutuhkan pengaturan manual</a> (<a target="_blank" href="https://linux.kde.org/nvidia/">pelajari lebih lanjut</a>).</li>
             <li><strong>Kartu Jaringan Nirkabel Broadcom:</strong> Hanya kartu jaringan yang <a target="_blank" href="https://wireless.docs.kernel.org/en/latest/en/users/drivers/brcm80211.html#supported-chips">terdaftar di sini</a> yang didukung langsung. Kartu di luar daftar kemungkinan besar tidak akan berfungsi.</li>
             <li><strong>Layar DisplayLink:</strong> Saat ini tidak didukung. Namun, penggunaan <em>DisplayPort</em> biasa bekerja tanpa masalah.</li>
-            <li><strong>Printer:</strong> Sebagian besar printer nirkabel modern yang mendukung fitur <em>"driverless"</em> (diproduksi 10 tahun terakhir) — termasuk <a target="_blank" href="https://openprinting.github.io/printers/">semua yang ada di daftar ini</a> — akan langsung berfungsi. <em>Driver</em> untuk beberapa printer kabel lawas disertakan, namun tidak semuanya kompatibel. Kamu bisa mengecek daftar <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/?sort=created_date&amp;state=opened&amp;label_name[]=Hardware%20compatibility&amp;label_name[]=Printers%20%f0%9f%94%a8">printer yang diketahui tidak kompatibel di sini</a>.</li>
+            <li><strong>Printer:</strong> Sebagian besar printer nirkabel modern yang mendukung fitur <em>&quot;driverless&quot;</em> (diproduksi 10 tahun terakhir) &#x2014; termasuk <a target="_blank" href="https://openprinting.github.io/printers/">semua yang ada di daftar ini</a> &#x2014; akan langsung berfungsi. <em>Driver</em> untuk beberapa printer kabel lawas disertakan, namun tidak semuanya kompatibel. Kamu bisa mengecek daftar <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/?sort=created_date&amp;state=opened&amp;label_name[]=Hardware%20compatibility&amp;label_name[]=Printers%20%f0%9f%94%a8">printer yang diketahui tidak kompatibel di sini</a>.</li>
         </ul>
         <h2>Masalah Perangkat Lunak yang Diketahui</h2>
         <p>Karena statusnya yang masih <em>testing</em>, silakan lihat daftar <a target="_blank" href="https://invent.kde.org/groups/kde-linux/-/issues?sort=created_date&amp;state=opened&amp;label_name%5B%5D=Significant%20user-facing%20issue&amp;not%5Blabel_name%5D%5B%5D=Hardware%20compatibility&amp;first_page_size=100">batasan signifikan dan masalah yang diketahui di sini</a>.</p>
@@ -242,8 +242,8 @@
             <li>Unduh <em>image</em> file <code>*.raw*</code> terbaru <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">dari sini</a>.</li>
             <li>Verifikasi keaslian file <code>*.raw*</code> tersebut! Kunjungi <a target="_blank" href="https://files.kde.org/kde-linux/?C=M;O=D">halaman unduhan ini</a> dan klik <em>Details</em> pada file yang diunduh. Salin teks karakter acak di sebelah tulisan <em>SHA256</em>. Di komputermu, klik kanan pada file <code>*.raw*</code> yang sudah diunduh, pilih <strong>Properties</strong>, lalu buka *tab<strong>*Checksums</strong>. Tempelkan karakter tadi dan tekan tombol <em>Enter</em>. Jika kolom berubah menjadi hijau, file tersebut aman. Jika tidak, file mungkin korup dan kamu harus mengunduhnya ulang.</li>
             <li>Jika file divalidasi asli, instal aplikasi <a target="_blank" href="https://apps.kde.org/isoimagewriter/">ISO Image Writer</a> dan jalankan aplikasinya.</li>
-            <li>Klik opsi <em>"Path to ISO Image..."</em> lalu cari file <code>*.raw*</code> tadi.</li>
-            <li>Colokkan <em>flash drive</em> USB kamu dan pastikan perangkat tersebut muncul di bagian <em>"To this USB Drive"</em>.</li>
+            <li>Klik opsi <em>&quot;Path to ISO Image...&quot;</em> lalu cari file <code>*.raw*</code> tadi.</li>
+            <li>Colokkan <em>flash drive</em> USB kamu dan pastikan perangkat tersebut muncul di bagian <em>&quot;To this USB Drive&quot;</em>.</li>
             <li>Klik tombol <strong>Create</strong> dan tunggu proses penulisan selesai.</li>
         </ol>
         <h2>Langkah 2: Menyiapkan Komputer Target <i class="fa-solid fa-gear"></i></h2>
@@ -252,7 +252,7 @@
             <li>Pertama, konsultasikan <a target="_blank" href="https://forums.perangkat lunak berbahayabytes.com/topic/319165-pc-common-boot-menu-and-bios-setting-hotkeys/">tabel panduan di sini</a> dan cari tombol <em>BIOS/UEFI Key</em> yang sesuai dengan merek komputermu.</li>
             <li>Lakukan <em>reboot</em> (hidupkan ulang) komputer dan tekan tombol tersebut berulang kali saat layar baru menyala.</li>
             <li>Setelah masuk ke antarmuka UEFI (tampilannya biasanya cukup kaku dan lawas), cari opsi untuk mematikan <strong>Secure Boot</strong> lalu nonaktifkan. Letak menu ini berbeda-beda tiap pabrikan, jadi kamu mungkin perlu sedikit mencari.</li>
-            <li>Setelah dimatikan, cari opsi <em>"Exit and save changes"</em> untuk menyimpan pengaturan.</li>
+            <li>Setelah dimatikan, cari opsi <em>&quot;Exit and save changes&quot;</em> untuk menyimpan pengaturan.</li>
         </ol>
         <p>*Catatan: Syarat mematikan fitur ini akan dihilangkan di masa mendatang setelah <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/issues/3">KDE Linux sepenuhnya mendukung Secure Boot</a>.*</p>
         <h2>Langkah 3: Booting ke Live USB <i class="fa-solid fa-power-off"></i></h2>
@@ -263,8 +263,8 @@
             <li>Saat menu <em>boot</em> muncul, gunakan tombol panah atas/bawah untuk memilih <em>entry</em> yang mewakili <em>flash drive</em> USB kamu, lalu tekan <strong>Enter</strong>.</li>
         </ol>
         <h2>Langkah 4: Eksplorasi Live Session &amp; Instalasi <i class="fa-solid fa-desktop"></i></h2>
-        <p>Selamat! Sekarang kamu berada di dalam <em>"Live Session"</em> KDE Linux. Di tahap ini, silakan selesaikan <em>wizard</em> penyambutan dan mulailah bereksplorasi. Uji coba semua periferal andalanmu (seperti <em>mouse</em>, <em>headset</em>, atau periferal lain yang sering digunakan) untuk memastikan semuanya berfungsi dengan baik.</p>
-        <p>Jika kamu sudah siap untuk melakukan instalasi permanen, klik ganda pada ikon <strong>"Install KDE Linux"</strong> di layar <em>desktop</em> dan ikuti panduan dari <em>installer</em>.</p>
+        <p>Selamat! Sekarang kamu berada di dalam <em>&quot;Live Session&quot;</em> KDE Linux. Di tahap ini, silakan selesaikan <em>wizard</em> penyambutan dan mulailah bereksplorasi. Uji coba semua periferal andalanmu (seperti <em>mouse</em>, <em>headset</em>, atau periferal lain yang sering digunakan) untuk memastikan semuanya berfungsi dengan baik.</p>
+        <p>Jika kamu sudah siap untuk melakukan instalasi permanen, klik ganda pada ikon <strong>&quot;Install KDE Linux&quot;</strong> di layar <em>desktop</em> dan ikuti panduan dari <em>installer</em>.</p>
         <div class="alert-box">
             <p><strong>PERINGATAN:</strong> Menginstal KDE Linux pada keseluruhan disk (menghapus seluruh isi data) adalah opsi yang paling bisa diandalkan. Metode instalasi lain mungkin bisa bekerja, namun diketahui <a target="_blank" href="https://invent.kde.org/kde-linux/kde-linux/-/work_items?label_name%5B%5D=Live%20session%2Finstaller">bisa gagal pada kondisi tertentu</a> sehingga <strong>tidak direkomendasikan</strong>. Jika kamu memilih menghapus disk, semua file kamu akan musnah! Pastikan data penting sudah di-<em>backup</em> di tempat lain.</p>
         </div>
@@ -276,7 +276,7 @@
     <footer>
         <span><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <b>Nate Graham<b></b></b></span><b><b> |
         <span><i class="fa-regular fa-calendar"></i> Terakhir diperbarui: 3 Juni 2026</span>
-    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></b></b></footer><b><b>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marked.min.js"></script><script defer="" src="/ext/highlight.js"></script>
-<script>hljs.highlightAll();</script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></b></b></footer><b><b>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marked.min.js"></script><script defer src="/ext/highlight.js"></script>
+<script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></b></b></body></html>

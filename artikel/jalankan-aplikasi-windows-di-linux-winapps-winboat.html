@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux Tutorial">
     <meta property="article:published_time" content="2026-02-13T10:44:10.930Z">
     <meta property="article:modified_time" content="2026-06-27T11:37:29.389Z">
@@ -169,22 +169,22 @@
 <body>
 <article>
     <header>
-        <div id="iposbrowser"></div><h1>Bongkar Rahasia Jalankan Aplikasi Windows di Linux Secara Native dengan WinApps &amp; WinBoat 🚀🐧</h1>
+        <div id="iposbrowser"></div><h1>Bongkar Rahasia Jalankan Aplikasi Windows di Linux Secara Native dengan WinApps &amp; WinBoat &#x1f680;&#x1f427;</h1>
         <div class="zdummy">
             <i class="fa-solid fa-calendar-alt"></i> Update: 16 Februari 2026 |
             <i class="fa-solid fa-tags"></i> Linux, Windows, Virtualisasi, Open Source
         </div>
     </header>
     <section id="introduction">
-        <p>Halo sobat Linux! 👋 Pernah tiba-tiba "dipaksa" balik ke Windows cuma gara-gara harus buka satu file Excel yang makronya ribet, atau mau pakai Adobe Photoshop versi terbaru? Aku tahu banget rasanya, itu yang namanya <strong>"Aplikasi Biang Kerok"</strong> yang bikin kita susah pindah sepenuhnya ke dunia open source.</p>
+        <p>Halo sobat Linux! &#x1f44b; Pernah tiba-tiba &quot;dipaksa&quot; balik ke Windows cuma gara-gara harus buka satu file Excel yang makronya ribet, atau mau pakai Adobe Photoshop versi terbaru? Aku tahu banget rasanya, itu yang namanya <strong>&quot;Aplikasi Biang Kerok&quot;</strong> yang bikin kita susah pindah sepenuhnya ke dunia open source.</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBQexpiaIAEZGss.webp" alt="Integrasi WinApps dan WinBoat di Linux Desktop" width="100%">
         <p>Selama ini kita mungkin pakai Wine atau Proton, tapi jujur saja, tidak semua aplikasi jalan lancar di sana. Kadang font-nya berantakan, kadang tiba-tiba <em>crash</em>. Nah, hari ini Aku akan mengajak kamu berkenalan dengan cara ketiga yang jauh lebih canggih: menggunakan <strong>RemoteApp VM</strong>. Kita akan membedah dua proyek hebat, <strong>WinApps</strong> dan <strong>WinBoat</strong>, yang memungkinkan aplikasi Windows kamu muncul di menu Linux kamu seolah-olah mereka adalah aplikasi asli. Gak ada lagi jendela desktop Windows yang ganggu, yang ada cuma aplikasi yang kamu butuhkan!</p>
     </section>
     <section id="5w1h">
         <h2><i class="fa-solid fa-info-circle"></i> Memahami Konsep Dasar (5W + 1H)</h2>
-        <p>Sebelum kita masuk ke teknis instalasi, yuk kita pahami dulu apa sebenarnya "makhluk" ini menggunakan prinsip 5W+1H agar kamu punya gambaran besar yang jelas.</p>
+        <p>Sebelum kita masuk ke teknis instalasi, yuk kita pahami dulu apa sebenarnya &quot;makhluk&quot; ini menggunakan prinsip 5W+1H agar kamu punya gambaran besar yang jelas.</p>
         <div class="highlight-box">
-            <p><strong>What (Apa):</strong> WinApps dan WinBoat adalah alat integrasi yang menjalankan salinan asli Windows di dalam mesin virtual (VM) yang tersembunyi, lalu "mengekspor" jendela aplikasinya saja ke desktop Linux kamu menggunakan protokol RDP (Remote Desktop Protocol).</p>
+            <p><strong>What (Apa):</strong> WinApps dan WinBoat adalah alat integrasi yang menjalankan salinan asli Windows di dalam mesin virtual (VM) yang tersembunyi, lalu &quot;mengekspor&quot; jendela aplikasinya saja ke desktop Linux kamu menggunakan protokol RDP (Remote Desktop Protocol).</p>
             <p><strong>Who (Siapa):</strong> Cocok untuk pengguna Linux yang butuh aplikasi spesifik (Adobe CC, Microsoft Office, aplikasi perbankan/bisnis) yang tidak bisa jalan di Wine tapi malas melakukan <em>dual-boot</em>.</p>
             <p><strong>Where (Di mana):</strong> Semua ini berjalan secara lokal di komputer kamu. Data kamu tetap aman di mesinmu sendiri, bukan di cloud.</p>
             <p><strong>When (Kapan):</strong> Gunakan ini saat Wine gagal memberikan performa atau kompatibilitas yang kamu butuhkan. WinApps sudah cukup matang, sementara WinBoat adalah opsi baru yang lebih otomatis.</p>
@@ -194,8 +194,8 @@
     </section>
     <section id="technology">
         <h2><i class="fa-solid fa-cogs"></i> Bagaimana Teknologinya Bekerja?</h2>
-        <p>Ini bagian yang menarik! Bayangkan kamu punya dua sistem yang bekerja sama di balik layar. Pertama, ada <strong>Windows asli</strong> yang berjalan sebagai "tamu" di lingkungan virtual (bisa pakai QEMU/KVM lewat libvirt atau di dalam kontainer Docker/Podman). Windows ini berjalan tanpa antarmuka (<em>headless</em>), jadi kamu tidak bakal lihat desktop Windows-nya.</p>
-        <p>Di dalam Windows tamu itu, ada agen kecil yang bertugas memberi tahu Linux: <em>"Eh, pengguna mau buka Word nih!"</em>. Kemudian, Linux menggunakan aplikasi bernama <strong>xfreerdp</strong> dengan fitur <strong>RemoteApp</strong>. Fitur inilah yang salah satu yang ajaib, karena ia bisa memotong gambar jendela aplikasi saja dan membuang latar belakang desktop Windows-nya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Hasilnya? Microsoft Word muncul di desktop Linux kamu dengan bayangan jendela dan fungsi minimalkan/maksimalkan yang menyatu dengan tema desktop Linux-mu.</p>
+        <p>Ini bagian yang menarik! Bayangkan kamu punya dua sistem yang bekerja sama di balik layar. Pertama, ada <strong>Windows asli</strong> yang berjalan sebagai &quot;tamu&quot; di lingkungan virtual (bisa pakai QEMU/KVM lewat libvirt atau di dalam kontainer Docker/Podman). Windows ini berjalan tanpa antarmuka (<em>headless</em>), jadi kamu tidak bakal lihat desktop Windows-nya.</p>
+        <p>Di dalam Windows tamu itu, ada agen kecil yang bertugas memberi tahu Linux: <em>&quot;Eh, pengguna mau buka Word nih!&quot;</em>. Kemudian, Linux menggunakan aplikasi bernama <strong>xfreerdp</strong> dengan fitur <strong>RemoteApp</strong>. Fitur inilah yang salah satu yang ajaib, karena ia bisa memotong gambar jendela aplikasi saja dan membuang latar belakang desktop Windows-nya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Hasilnya? Microsoft Word muncul di desktop Linux kamu dengan bayangan jendela dan fungsi minimalkan/maksimalkan yang menyatu dengan tema desktop Linux-mu.</p>
         <div class="teacher-advice">
             <p><strong>Pesan Aku:</strong> Jangan samakan ini dengan VirtualBox biasa ya! Di VirtualBox, kamu perlu melihat seluruh desktop Windows. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Di sini, kamu cuma lihat aplikasinya saja. Ini lebih rapi dan efisien untuk alur kerja harian. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         </div>
@@ -225,7 +225,7 @@
                 <tr>
                     <td>Kemudahan</td>
                     <td>Butuh pengetahuan teknis menengah</td>
-                    <td>Sangat mudah, fokus "Just Works"</td>
+                    <td>Sangat mudah, fokus &quot;Just Works&quot;</td>
                 </tr>
                 <tr>
                     <td>Integrasi File</td>
@@ -243,10 +243,10 @@
     </section>
     <section id="requirements">
         <h2><i class="fa-solid fa-clipboard-list"></i> Persiapan Sebelum Memulai</h2>
-        <p>Sobat, karena kita akan menjalankan "Windows di dalam Linux", tentu ada modal hardware yang harus disiapkan. Jangan sampai komputermu jadi lemot karena dipaksa lari marathon tanpa persiapan!</p>
+        <p>Sobat, karena kita akan menjalankan &quot;Windows di dalam Linux&quot;, tentu ada modal hardware yang harus disiapkan. Jangan sampai komputermu jadi lemot karena dipaksa lari marathon tanpa persiapan!</p>
         <ul>
             <li><strong>CPU:</strong> Pastikan mendukung Virtualisasi (VT-x untuk Intel atau AMD-V). Jangan lupa aktifkan fitur ini di BIOS/UEFI ya!</li>
-            <li><strong>RAM:</strong> Minimal 8GB, tapi saya <strong>sangat menyarankan 16GB</strong>. Ingat, Windows itu "rakus" memori, kamu harus sisihkan minimal 4-8GB cuma buat VM Windows-nya saja.</li>
+            <li><strong>RAM:</strong> Minimal 8GB, tapi saya <strong>sangat menyarankan 16GB</strong>. Ingat, Windows itu &quot;rakus&quot; memori, kamu harus sisihkan minimal 4-8GB cuma buat VM Windows-nya saja.</li>
             <li><strong>Disk:</strong> Siapkan ruang kosong minimal 40-64GB. Windows butuh tempat yang luas untuk sistem dan aplikasi-aplikasinya.</li>
             <li><strong>Lisensi:</strong> Kamu tetap butuh lisensi Windows yang valid. Proyek ini tidak menyediakan aktivasi ilegal, ya! Aku sarankan pakai versi <em>Windows IoT Enterprise LTSC</em> karena lebih ringan dan minim bloatware.</li>
         </ul>
@@ -254,7 +254,7 @@
     <section id="installation">
         <h2><i class="fa-solid fa-terminal"></i> Langkah Praktis Instalasi</h2>
         <p>Jika kamu memilih <strong>WinBoat</strong>, prosesnya cukup mudah: download AppImage-nya, berikan izin eksekusi, lalu jalankan. WinBoat akan bertanya di mana kamu ingin menyimpan file VM-nya. Ini bagus banget biar partisi sistem Linux-mu (root) tidak penuh sesak.</p>
-        <p>Jika kamu memilih <strong>WinApps</strong> (jalur libvirt/KVM), langkahnya sedikit lebih "keren":</p>
+        <p>Jika kamu memilih <strong>WinApps</strong> (jalur libvirt/KVM), langkahnya sedikit lebih &quot;keren&quot;:</p>
         <ol>
             <li>Install paket yang dibutuhkan: <code>virt-manager</code>, <code>libvirt</code>, dan <code>xfreerdp</code>.</li>
             <li>Buat VM Windows 10/11 di Virtual Machine Manager.</li>
@@ -268,7 +268,7 @@
         <p>Bicara soal kecepatan, tentu ada <em>overhead</em>. Membuka aplikasi lewat WinApps/WinBoat akan sedikit lebih lambat dibanding aplikasi native Linux atau Wine. Kenapa? Karena sistem harus memastikan VM Windows-nya bangun dari tidur dan koneksi RDP-nya terjalin.</p>
         <p>Tapi begitu aplikasinya sudah terbuka, pengalamannya sangat mulus! Kamu bisa <em>copy-paste</em> teks antar Linux dan Windows, bahkan file-file di folder <code>/home</code> Linux kamu akan muncul sebagai drive jaringan di Windows. Jadi, kamu bisa edit dokumen Excel langsung dari folder dokumen Linux-mu tanpa perlu pindah-pindahkan file. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         <div class="teacher-advice">
-            <p><strong>Tips dari Aku:</strong> Jika kamu pakai monitor ganda (multi-monitor), pastikan versi <code>xfreerdp</code> kamu sudah versi terbaru. Kadang RemoteApp agak "bingung" kalau disuruh loncat antar monitor, tapi ini terus diperbaiki oleh komunitas.</p>
+            <p><strong>Tips dari Aku:</strong> Jika kamu pakai monitor ganda (multi-monitor), pastikan versi <code>xfreerdp</code> kamu sudah versi terbaru. Kadang RemoteApp agak &quot;bingung&quot; kalau disuruh loncat antar monitor, tapi ini terus diperbaiki oleh komunitas.</p>
         </div>
     </section>
     <section id="security">
@@ -290,13 +290,13 @@
 </article>
 <footer>
 <div style="max-width: 1000px; margin: auto; padding: 0 20px; text-align: center;">
-               <p style="display: inline-block; margin-right: 20px;">🄯 2026 <strong>Jaga Data Pribadi Tetap Aman</strong></p>
+               <p style="display: inline-block; margin-right: 20px;">&#x1f12f; 2026 <strong>Jaga Data Pribadi Tetap Aman</strong></p>
      <p style="display: inline-block; font-size: 0.8rem; color: #bdc3c7;">Informasi ini disusun untuk tujuan edukasi. Semua merek dagang adalah milik pemiliknya masing-masing.</p>
     </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div>
-<script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<script defer src="/ext/marquee-url.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="Kenapa Firefox di Ubuntu tidak Boros RAM?, Layar Kosong">
-    <meta name="promphint" content="Kenapa Firefox di Ubuntu tidak Boros RAM? | &quot;Why is Firefox on Ubuntu doesn't eat too much RAM compared to Windows or any other Linux distro (Arch, Endeavour, Mint) eats too much RAM?&quot;">
+    <meta name="promphint" content="Kenapa Firefox di Ubuntu tidak Boros RAM? | &quot;Why is Firefox on Ubuntu doesn&apos;t eat too much RAM compared to Windows or any other Linux distro (Arch, Endeavour, Mint) eats too much RAM?&quot;">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-11-04T19:10:36.199Z">
     <meta property="article:modified_time" content="2025-11-04T19:10:36.199Z">
 <!-- Metadata SEO & Open Graph -->
@@ -354,58 +354,58 @@
                 </div>
                 <div class="original-question">
                     <h3><i class="fa-solid fa-quote-left"></i> Pertanyaan Asli dari Forum</h3>
-                    <p><strong>"Why is Firefox on Ubuntu doesn't eat too much RAM compared to Windows or any other Linux distro (Arch, Endeavour, Mint) eats too much RAM?"</strong></p>
+                    <p><strong>&quot;Why is Firefox on Ubuntu doesn&apos;t eat too much RAM compared to Windows or any other Linux distro (Arch, Endeavour, Mint) eats too much RAM?&quot;</strong></p>
                 </div>
-                <p>Pertanyaan ini muncul di forum tech, dan jawabannya rame banget! Dari yang serius ngomongin <em>MSVC vs GCC</em>, sampe yang cuma bilang <strong>"Windows = spyware"</strong>. Tapi intinya: <strong>Firefox di Ubuntu emang jauh lebih hemat RAM</strong>. Kenapa? Yuk kita bongkar satu-satu.</p>
+                <p>Pertanyaan ini muncul di forum tech, dan jawabannya rame banget! Dari yang serius ngomongin <em>MSVC vs GCC</em>, sampe yang cuma bilang <strong>&quot;Windows = spyware&quot;</strong>. Tapi intinya: <strong>Firefox di Ubuntu emang jauh lebih hemat RAM</strong>. Kenapa? Yuk kita bongkar satu-satu.</p>
                 <h2><i class="fa-solid fa-microchip"></i> 1. Windows = Bloatware + Proses Latar Belakang</h2>
-                <p>Bayangin pas boot, Windows nyalain <strong>60–100+ proses</strong>: telemetry, Cortana, Copilot, Edge auto-start, Windows Defender, update service, cloud sync, dll. Linux? Cuma <strong>10–15 daemon esensial</strong>.</p>
+                <p>Bayangin pas boot, Windows nyalain <strong>60&#x2013;100+ proses</strong>: telemetry, Cortana, Copilot, Edge auto-start, Windows Defender, update service, cloud sync, dll. Linux? Cuma <strong>10&#x2013;15 daemon esensial</strong>.</p>
                 <ul>
-                    <li><strong>Idle RAM Windows 11</strong>: 2.5 – 3.5 GB</li>
-                    <li><strong>Idle RAM Ubuntu (KDE/XFCE)</strong>: 600 MB – 1 GB</li>
+                    <li><strong>Idle RAM Windows 11</strong>: 2.5 &#x2013; 3.5 GB</li>
+                    <li><strong>Idle RAM Ubuntu (KDE/XFCE)</strong>: 600 MB &#x2013; 1 GB</li>
                 </ul>
-                <p>Jadi sebelum buka Firefox, Windows udah "makan dulu" 3 GB. Firefox cuma korban lingkungan!</p>
+                <p>Jadi sebelum buka Firefox, Windows udah &quot;makan dulu&quot; 3 GB. Firefox cuma korban lingkungan!</p>
                 <h2><i class="fa-solid fa-code"></i> 2. Kompilasi Firefox: GCC (Linux) vs MSVC (Windows)</h2>
                 <p>Firefox di Windows dikompilasi pake <strong>MSVC</strong> (Microsoft Visual C++). Ini nyimpan metadata buat debugging, RTTI, dan <strong>Structured Exception Handling (SEH)</strong>. Hasilnya? Binary lebih gede, RAM footprint lebih berat.</p>
-                <p>Di Linux? Pake <strong>GCC/Clang</strong> → lebih ringan, tidak ada overhead SEH, dan dynamic linking lebih efisien.</p>
+                <p>Di Linux? Pake <strong>GCC/Clang</strong> &#x2192; lebih ringan, tidak ada overhead SEH, dan dynamic linking lebih efisien.</p>
                 <div class="img-container">
                     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxYgQa3_0A_VmW8uZscr5ZHApSDD1nXd9ieYrtz94kjHcM_WCieqhP4tu7L1lSqYWhS_aBkc5qeovbfw9mr7zytUERrdztkD78bzw0D6GjnZdRxbUzjoIL_pl_zaUM0fmfwUzZmk68yfu1sd4HY4WwcU4CqpPJbkLxRWyR0Ivt7SZavq9cuv_P67w8zyc/s1600/aboutconfigfirefox.webp" alt="Firefox about:config tweak untuk hemat RAM">
-                    <div class="img-caption">Tweak about:config — perangkat andalan hemat RAM!</div>
+                    <div class="img-caption">Tweak about:config &#x2014; perangkat andalan hemat RAM!</div>
                 </div>
                 <h2><i class="fa-solid fa-memory"></i> 3. Linux Kelola Memori Lebih Pintar</h2>
-                <p>Linux pake <strong>cache cerdas</strong>: data yang jarang dipake bisa langsung dibuang. Ada juga <strong>zram/zswap</strong> buat kompresi swap. Windows? Suka "nyimpan dulu buat jaga-jaga" → RAM bengkak.</p>
+                <p>Linux pake <strong>cache cerdas</strong>: data yang jarang dipake bisa langsung dibuang. Ada juga <strong>zram/zswap</strong> buat kompresi swap. Windows? Suka &quot;nyimpan dulu buat jaga-jaga&quot; &#x2192; RAM bengkak.</p>
                 <div class="tip-box">
-                    <p><strong>Tips Pro</strong>: Pakai <code>zram-generator</code> di Ubuntu → swap dikompresi, performa naik, RAM hemat!</p>
+                    <p><strong>Tips Pro</strong>: Pakai <code>zram-generator</code> di Ubuntu &#x2192; swap dikompresi, performa naik, RAM hemat!</p>
                 </div>
-                <h2><i class="fa-solid fa-home"></i> 4. Ubuntu = "Rumah" Firefox</h2>
-                <p>Firefox dikembangkan bareng tim Debian/Ubuntu. Jadi build-nya <strong>dioptimasi khusus</strong> buat ekosistem .deb. Di Arch/Mint? Kadang pake build AUR atau Snap → beda optimasi, bisa lebih berat.</p>
+                <h2><i class="fa-solid fa-home"></i> 4. Ubuntu = &quot;Rumah&quot; Firefox</h2>
+                <p>Firefox dikembangkan bareng tim Debian/Ubuntu. Jadi build-nya <strong>dioptimasi khusus</strong> buat ekosistem .deb. Di Arch/Mint? Kadang pake build AUR atau Snap &#x2192; beda optimasi, bisa lebih berat.</p>
                 <h2><i class="fa-solid fa-wrench"></i> 5. Tweak Firefox Biar Tidak Rakus</h2>
                 <p>Buka <code>about:config</code>, cari dan ubah:</p>
-                <pre>browser.cache.disk.enable → false
-browser.cache.memory.capacity → 52428 (51 MB)
-browser.ml.chat.enabled → false
-browser.ml.enable → false
-browser.ml.linkPreview.enabled → false
-browser.tabs.groups.smart.enabled → false
-browser.tabs.groups.smart.userEnabled → false
-content.process.limit → 4
-extensions.ml.enabled → false
-extensions.pocket.enabled → false
-gfx.webrender.all → true
-image.mem.max_decoded_image_kb → 51200
-sidebar.revamp → false
-ui.prefersReducedMotion → 1
+                <pre>browser.cache.disk.enable &#x2192; false
+browser.cache.memory.capacity &#x2192; 52428 (51 MB)
+browser.ml.chat.enabled &#x2192; false
+browser.ml.enable &#x2192; false
+browser.ml.linkPreview.enabled &#x2192; false
+browser.tabs.groups.smart.enabled &#x2192; false
+browser.tabs.groups.smart.userEnabled &#x2192; false
+content.process.limit &#x2192; 4
+extensions.ml.enabled &#x2192; false
+extensions.pocket.enabled &#x2192; false
+gfx.webrender.all &#x2192; true
+image.mem.max_decoded_image_kb &#x2192; 51200
+sidebar.revamp &#x2192; false
+ui.prefersReducedMotion &#x2192; 1
 </pre>
                 <p>Matikan juga: <strong>Pocket, Telemetry, Sync (kalau tidak dipake)</strong>.</p>
                 <h2><i class="fa-solid fa-shield-alt"></i> 6. Windows = Spyware? Banyak yang Bilang Iya!</h2>
-                <p>Telemetry, ads di Start Menu, Copilot always-on → semua makan RAM &amp; CPU. Linux? Kamu yang kontrol. Mau hapus apa aja? Bisa!</p>
+                <p>Telemetry, ads di Start Menu, Copilot always-on &#x2192; semua makan RAM &amp; CPU. Linux? Kamu yang kontrol. Mau hapus apa aja? Bisa!</p>
                 <h2><i class="fa-solid fa-exchange-alt"></i> 7. Pindah ke Wayland!</h2>
-                <p>Di X11, memori grafik dihitung di X server → keliatan dobel. Di <strong>Wayland</strong>? Semua di-handle per proses → akurasi lebih baik, performa lebih mulus.</p>
+                <p>Di X11, memori grafik dihitung di X server &#x2192; keliatan dobel. Di <strong>Wayland</strong>? Semua di-handle per proses &#x2192; akurasi lebih baik, performa lebih mulus.</p>
                 <div class="conclusion">
                     <h2><i class="fa-solid fa-trophy"></i> Kesimpulan Akhir</h2>
                     <p><strong>Firefox tidak boros di Ubuntu karena:</strong></p>
                     <p>OS ringan + build optimal + tidak ada bloat Windows + memori dikelola cerdas.</p>
                     <p>Di Windows atau distro lain? Bloatware + kompilasi berat = RAM jebol.</p>
-                    <p><strong>Solusi:</strong> Tweak Firefox + pake Linux ringan (XFCE/MATE) = <span class="highlight">lancar jaya!</span> 🚀</p>
+                    <p><strong>Solusi:</strong> Tweak Firefox + pake Linux ringan (XFCE/MATE) = <span class="highlight">lancar jaya!</span> &#x1f680;</p>
                 </div>
                 <div id="related-articles-grid"></div><div id="response"></div>
     </article>
@@ -413,9 +413,9 @@ ui.prefersReducedMotion → 1
     </main>
     <footer>
         <div class="container">
-            <p>🄯 2025 Dibuat dengan <i class="fa-solid fa-heart" style="color:#e11d48"></i> di Balikpapan.</p>
+            <p>&#x1f12f; 2025 Dibuat dengan <i class="fa-solid fa-heart" style="color:#e11d48"></i> di Balikpapan.</p>
         </div>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
     <!-- Auto Dark Mode -->
     <script>
@@ -423,7 +423,7 @@ ui.prefersReducedMotion → 1
             document.body.classList.add('dark');
         }
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </body></html>

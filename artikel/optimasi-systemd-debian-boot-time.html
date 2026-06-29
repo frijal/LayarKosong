@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-01-31T18:37:26.561Z">
     <meta property="article:modified_time" content="2026-02-25T11:34:35.382Z">
     <!-- Metadata Standar -->
@@ -164,11 +164,11 @@
         <div id="iposbrowser"></div><h1><i class="fa-solid fa-rocket"></i> Optimasi Systemd di Debian: Cara Mempercepat Boot Time dengan Matikan Service Tidak Perlu</h1>
     </header>
     <article>
-        <p>Halo sobat Linuxer! <i class="fa-solid fa-hand-spock"></i> Setelah sebelumnya kita sepakat bahwa Debian adalah pilihan paling stabil, sekarang muncul pertanyaan: <em>"Bisa tidak sih Debian yang stabil ini booting lebih cepat lagi?"</em> Jawabannya: <strong>Bisa banget!</strong></p>
+        <p>Halo sobat Linuxer! <i class="fa-solid fa-hand-spock"></i> Setelah sebelumnya kita sepakat bahwa Debian adalah pilihan paling stabil, sekarang muncul pertanyaan: <em>&quot;Bisa tidak sih Debian yang stabil ini booting lebih cepat lagi?&quot;</em> Jawabannya: <strong>Bisa banget!</strong></p>
         <p>Rahasianya ada di tangan kamu sendiri, yaitu bagaimana kamu mengelola <strong>systemd</strong>. Secara default, Debian menyalakan berbagai layanan (services) untuk memastikan kompatibilitas maksimal. Tapi jujur saja, kita tidak butuh semuanya jalan di waktu bersamaan, kan?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAOl9gMbUAI-j0E.webp" alt="Linux Terminal Tuning" class="hero-img">
         <h2>Apa Itu Optimasi Systemd? (What)</h2>
-        <p>Optimasi <code>systemd</code> adalah seni memilah mana layanan yang wajib jalan saat startup dan mana yang bisa kita "istirahatkan". Dengan melakukan ini, kita mengurangi beban CPU dan antrean pembacaan disk (I/O) saat komputer pertama kali dinyalakan. Hasilnya? Desktop atau prompt server kamu muncul lebih cepat!</p>
+        <p>Optimasi <code>systemd</code> adalah seni memilah mana layanan yang wajib jalan saat startup dan mana yang bisa kita &quot;istirahatkan&quot;. Dengan melakukan ini, kita mengurangi beban CPU dan antrean pembacaan disk (I/O) saat komputer pertama kali dinyalakan. Hasilnya? Desktop atau prompt server kamu muncul lebih cepat!</p>
         <h2>Kenapa Harus Repot Melakukan Ini? (Why)</h2>
         <p>Ada tiga alasan kuat:
             </p><ul>
@@ -185,7 +185,7 @@
         <h3>1. Melihat Waktu Boot Total</h3>
         <p>Gunakan perintah ini untuk melihat berapa lama Debian kamu menghabiskan waktu di kernel dan userspace:</p>
         <pre>systemd-analyze</pre>
-        <h3>2. Mencari "Tersangka" Utama (Blame Game)</h3>
+        <h3>2. Mencari &quot;Tersangka&quot; Utama (Blame Game)</h3>
         <p>Perintah ini akan mengurutkan layanan dari yang paling lama proses startup-nya. Di sinilah kita mencari target operasi:</p>
         <pre>systemd-analyze blame</pre>
         <p>Seringkali kamu akan menemukan <code>NetworkManager-wait-online.service</code> atau <code>plymouth-quit-wait.service</code> memakan waktu paling banyak. <i class="fa-solid fa-magnifying-glass"></i></p>
@@ -193,7 +193,7 @@
         <p>Ingin tahu urutan layanan yang saling menunggu satu sama lain? Gunakan:</p>
         <pre>systemd-analyze critical-chain</pre>
         <h2>Service Mana yang Aman Dimatikan? (Where &amp; When)</h2>
-        <p>Setelah melakukan analisis, biasanya ada beberapa "sampah" layanan yang bisa kita singkirkan, tergantung kebutuhanmu:</p>
+        <p>Setelah melakukan analisis, biasanya ada beberapa &quot;sampah&quot; layanan yang bisa kita singkirkan, tergantung kebutuhanmu:</p>
         <ul class="step-list">
             <li><strong>ModemManager.service:</strong> Kamu tidak pakai modem USB atau kartu SIM? Matikan saja!</li>
             <li><strong>avahi-daemon.service:</strong> Berguna untuk penemuan jaringan otomatis. Jika kamu di lingkungan server statis, ini jarang dibutuhkan.</li>
@@ -213,17 +213,17 @@
         <h2>Siapa yang Perlu Melakukan Ini? (Who)</h2>
         <p>Kamu, pengguna Debian yang menginginkan performa maksimal. Baik kamu seorang <em>developer</em> yang butuh lingkungan kerja cepat, maupun pengguna laptop yang ingin efisiensi baterai lebih baik. <i class="fa-solid fa-user-gear"></i></p>
         <h2>Kesimpulan</h2>
-        <p>Optimasi <code>systemd</code> di Debian bukan sekadar angka di terminal, tapi tentang bagaimana kita memegang kendali penuh atas sistem kita. Dengan membuang layanan yang tidak perlu, Debian kamu bukan cuma makin cepat, tapi juga makin "bersih" dan aman. Jangan lupa jalankan lagi <code>systemd-analyze</code> setelah optimasi untuk melihat bedanya! <i class="fa-solid fa-face-laugh-wink"></i></p>
+        <p>Optimasi <code>systemd</code> di Debian bukan sekadar angka di terminal, tapi tentang bagaimana kita memegang kendali penuh atas sistem kita. Dengan membuang layanan yang tidak perlu, Debian kamu bukan cuma makin cepat, tapi juga makin &quot;bersih&quot; dan aman. Jangan lupa jalankan lagi <code>systemd-analyze</code> setelah optimasi untuk melihat bedanya! <i class="fa-solid fa-face-laugh-wink"></i></p>
     </b></b></b></b></article><b><b><b>
         <p>Berapa detik waktu boot Debian kamu sekarang? Service apa yang paling banyak memakan waktu?</p>
     <div id="response">    </div>
     <div id="related-articles-grid">    </div>
     <footer>
-        <p>🄯 2026  - Jurnal IT Open Source</p>
-     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a> 
+        <p>&#x1f12f; 2026  - Jurnal IT Open Source</p>
+     <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a> 
 </footer>
 </b></b></b></div><b><b><b>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script>
 <script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer="" src="/ext/highlight.js"></script><script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
+<script defer src="/ext/highlight.js"></script>
 </b></b></b></body></html>
