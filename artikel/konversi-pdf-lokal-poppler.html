@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2010-09-11T15:25:38.000Z">
     <meta property="article:modified_time" content="2010-09-11T15:25:38.000Z">
 <meta name="keywords" content="pdftoppm, konversi pdf ke gambar, pdf to png 300 dpi, poppler tools, command line pdf, imagemagick pdf">
@@ -62,7 +62,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/vs.min.css" id="hljs-light-theme">
-    <link rel="stylesheet" href="/ext/vs-dark.min.css" id="hljs-dark-theme" disabled="">
+    <link rel="stylesheet" href="/ext/vs-dark.min.css" id="hljs-dark-theme" disabled>
     <style>
         /* CSS Dasar & Tema Otomatis (Light/Dark) */
         :root {
@@ -182,7 +182,7 @@
 <div class="container">
     <header>
         <div id="iposbrowser"></div><h1>Trik Cepat! Konversi PDF ke Gambar Kualitas 100% dengan Poppler (pdftoppm)</h1>
-        <p>Hai Sobat Layar Kosong! Setelah kemarin kita berpetualang di dunia JavaScript <em>client-side</em> yang penuh drama, sekarang kita kembali ke jalur yang lebih pasti: <strong>Command Line</strong>! ✨</p>
+        <p>Hai Sobat Layar Kosong! Setelah kemarin kita berpetualang di dunia JavaScript <em>client-side</em> yang penuh drama, sekarang kita kembali ke jalur yang lebih pasti: <strong>Command Line</strong>! &#x2728;</p>
             </header>
     <hr>
 <p>Jika kamu mencari solusi konversi PDF ke gambar yang hasilnya <b>terjamin 100% akurat</b>, memiliki kontrol penuh atas resolusi (DPI), dan kecepatan yang <em>gila</em>, maka kamu wajib kenalan dengan <b>Poppler Utilities</b>. Alat utamanya? Tentu saja, <code>pdftoppm</code>!</p>
@@ -209,8 +209,8 @@
         <pre><code class="language-bash">pdftoppm -png -r 300 [nama_file_input].pdf [nama_file_output_prefix]</code></pre>
         <h3>Contoh Nyata Konversi PNG (300 DPI)</h3>
         <p>Misalnya, file PDF kamu bernama <b><code>Dokumen Rahasia.pdf</code></b>:</p>
-        <pre><code class="language-bash">pdftoppm -png -r 300 "Dokumen Rahasia.pdf" hasil_png</code></pre>
-        <p>Setelah perintah dieksekusi, Poppler akan membuat file-file seperti <code>hasil_png-01.png</code>, <code>hasil_png-02.png</code>, dan seterusnya, di folder yang sama.</p><p><strong>Resolusi 300 DPI</strong> ini membuat gambar outputmu 4 hingga 5 kali lebih detail daripada hasil <em>screenshot</em> biasa. Mantap kan? 😉</p>
+        <pre><code class="language-bash">pdftoppm -png -r 300 &quot;Dokumen Rahasia.pdf&quot; hasil_png</code></pre>
+        <p>Setelah perintah dieksekusi, Poppler akan membuat file-file seperti <code>hasil_png-01.png</code>, <code>hasil_png-02.png</code>, dan seterusnya, di folder yang sama.</p><p><strong>Resolusi 300 DPI</strong> ini membuat gambar outputmu 4 hingga 5 kali lebih detail daripada hasil <em>screenshot</em> biasa. Mantap kan? &#x1f609;</p>
         <p>Lihat perbandingan antara resolusi rendah dan tinggi. Perintah kita memastikan kamu mendapatkan hasil seperti yang kamu inginkan.</p>
            </section>
     <hr>
@@ -218,7 +218,7 @@
         <h2><i class="fa-solid fa-compress-alt"></i> Langkah 3: Konversi Alternatif (JPEG Kualitas 100%)</h2>
         <p>PNG memang sempurna, tapi kadang ukurannya bisa membengkak. Kalau kamu butuh file yang lebih kecil untuk diunggah ke web atau media sosial, <strong>JPEG</strong> adalah pilihan yang bagus. Tapi ingat, JPEG itu format <em>lossy</em> (ada kompresi), jadi kita harus memaksa kualitasnya ke level 100%!</p>
         <h3>Contoh Nyata Konversi JPEG (Kualitas 100%)</h3>
-        <pre><code class="language-bash">pdftoppm -jpeg -r 300 -jpegopt quality=100 "Dokumen Rahasia.pdf" hasil_jpg</code></pre>
+        <pre><code class="language-bash">pdftoppm -jpeg -r 300 -jpegopt quality=100 &quot;Dokumen Rahasia.pdf&quot; hasil_jpg</code></pre>
         <p>Opsi <code>-jpegopt quality=100</code> adalah <b>kunci sakti</b> agar Poppler tidak menurunkan kualitas JPEG secara otomatis. Hasilnya? Gambar JPG dengan kompresi minimal pada resolusi 300 DPI!</p>
     </section>
     <hr>
@@ -230,16 +230,16 @@
             <li><i class="fa-solid fa-lock"></i> <strong>Privasi 100%:</strong> File tidak pernah menyentuh server internet mana pun. Semua diolah di perangkat pribadimu.</li>
             <li><i class="fa-solid fa-bolt"></i> <strong>Kecepatan:</strong> Setelah terinstal, prosesnya jauh lebih cepat daripada mengunggah dan mengunduh file besar dari layanan <em>online</em>.</li>
         </ul>
-        <p>Nah, sekarang kamu punya alat konversi PDF paling <em>powerful</em> dan terpercaya di gudang peralatanmu. Selamat mencoba! Jangan lupa <em>share</em> artikel ini kalau merasa terbantu, ya. 😊</p>
+        <p>Nah, sekarang kamu punya alat konversi PDF paling <em>powerful</em> dan terpercaya di gudang peralatanmu. Selamat mencoba! Jangan lupa <em>share</em> artikel ini kalau merasa terbantu, ya. &#x1f60a;</p>
     </section>
     <hr>
     <h2><i class="fa-solid fa-comments"></i> Apakah ada <em>tool</em> Command lain yang kamu pakai? Cerita pengalamanmu mengkonversi PDF.</h2>
     <div id="related-articles-grid"></div><div id="response"></div>
 </div>
 <footer>
-    <p>🄯 2025 Layar Kosong by Fakhrul Rijal. | <a href="https://dalam.web.id/artikel/konversi-pdf-lokal-poppler.html">Artikel ini</a> | Dibuat dengan <i class="fa-solid fa-heart" style="color: red;"></i> di Balikpapan.</p>
+    <p>&#x1f12f; 2025 Layar Kosong by Fakhrul Rijal. | <a href="https://dalam.web.id/artikel/konversi-pdf-lokal-poppler.html">Artikel ini</a> | Dibuat dengan <i class="fa-solid fa-heart" style="color: red;"></i> di Balikpapan.</p>
     <p>Mari terhubung di <a href="https://facebook.com/frijal" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a> | <a href="https://www.youtube.com/@frijal" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a> | <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 <script>
     // Inisialisasi Highlight.js
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -261,4 +261,7 @@
         handleThemeChange(mediaQuery);
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

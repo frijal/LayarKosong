@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Troubleshooting">
@@ -241,11 +241,11 @@
             <ol start="3">
                 <li>Setelah halaman teks editor kosong terbuka, salin dan tempelkan blok skrip persis seperti di bawah ini:</li>
             </ol>
-            <pre><code><span class="sh-keyword">Section</span> <span class="sh-string">"Device"</span>
-    <span class="sh-keyword">Identifier</span>  <span class="sh-string">"Intel Graphics"</span>
-    <span class="sh-keyword">Driver</span>      <span class="sh-string">"intel"</span>
-    <span class="sh-keyword">Option</span>      <span class="sh-string">"TearFree"</span> <span class="sh-string">"true"</span>
-    <span class="sh-keyword">Option</span>      <span class="sh-string">"AccelMethod"</span> <span class="sh-string">"sna"</span>
+            <pre><code><span class="sh-keyword">Section</span> <span class="sh-string">&quot;Device&quot;</span>
+    <span class="sh-keyword">Identifier</span>  <span class="sh-string">&quot;Intel Graphics&quot;</span>
+    <span class="sh-keyword">Driver</span>      <span class="sh-string">&quot;intel&quot;</span>
+    <span class="sh-keyword">Option</span>      <span class="sh-string">&quot;TearFree&quot;</span> <span class="sh-string">&quot;true&quot;</span>
+    <span class="sh-keyword">Option</span>      <span class="sh-string">&quot;AccelMethod&quot;</span> <span class="sh-string">&quot;sna&quot;</span>
 <span class="sh-keyword">EndSection</span></code></pre>
             <ol start="4">
                 <li>Simpan file tersebut. Jika kamu menggunakan Nano, tekan kombinasi tombol <code>Ctrl+O</code> lalu <code>Enter</code> untuk menyimpan, kemudian <code>Ctrl+X</code> untuk keluar.</li>
@@ -254,7 +254,7 @@
             <p>Selesai! Sekarang coba gulir layar kembali. Efek patah-patah yang mengganggu tadi seharusnya sudah menghilang sepenuhnya, mengembalikan kemulusan antarmuka layar layaknya seperti seharusnya.</p>
             <h2>Bagaimana dengan Pengguna Wayland?</h2>
             <p>Bagi kamu yang menggunakan distribusi Linux kekinian dengan <em>display server</em> <strong>Wayland</strong>, kemungkinan besar kamu akan kebingungan membaca artikel ini karena tidak pernah mengalami masalah serupa. Secara arsitektur murni, Wayland didesain jauh lebih modern dan secara bawaan memang kebal terhadap isu <em>screen tearing</em> ini tanpa perlu repot-repot menyunting file konfigurasi tambahan.</p>
-            <p>Akan tetapi, untuk kamu yang memang masih memilih bertahan di ekosistem X11, baik karena alasan kestabilan sistem yang sudah teruji, dukungan aplikasi lama, atau sekadar urusan selera, trik memanggil parameter <em>"TearFree"</em> di atas adalah jalan pintas yang sangat brilian dan menyelamatkan hari.</p>
+            <p>Akan tetapi, untuk kamu yang memang masih memilih bertahan di ekosistem X11, baik karena alasan kestabilan sistem yang sudah teruji, dukungan aplikasi lama, atau sekadar urusan selera, trik memanggil parameter <em>&quot;TearFree&quot;</em> di atas adalah jalan pintas yang sangat brilian dan menyelamatkan hari.</p>
         </article>
         <!-- Struktur Wajib Sistem: Grid Artikel Terkait dan Ruang Respons -->
         <div id="related-articles-grid"></div>
@@ -269,5 +269,8 @@
                 <span>Referensi: Diskusi Forum Komunitas Pengguna Linux</span>
             </div>
         </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

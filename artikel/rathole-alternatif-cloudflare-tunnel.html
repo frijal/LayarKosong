@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="DevOps">
     <meta property="article:tag" content="Self-Hosted">
     <meta property="article:tag" content="Rust">
@@ -66,7 +66,7 @@
     <!-- Custom Meta Promphint -->
     <!-- Preload LCP Image -->
     <!-- FontAwesome Icon Caching -->
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
     <!-- Critical Native CSS -->
     <style>
         :root {
@@ -241,13 +241,13 @@
             <h2>Persiapan dan Proses Instalasi</h2>
             <p>Untuk menyalakan sang monster, kamu harus mengunduh <em>file binary</em> mentahnya langsung dari rilis repositori <em>GitHub</em> resmi mereka (<code>github.com/rapiz1/rathole/releases</code>). Setelah diunduh, kamu wajib menciptakan file <code>client.toml</code> untuk memetakan jalur koneksinya. Strukturnya kurang lebih begini:</p>
             <pre><code>[client]
-remote_addr = "IP-VPS-KAMU:2333"
+remote_addr = &quot;IP-VPS-KAMU:2333&quot;
 [client.services.myservice]
-local_addr = "127.0.0.1:3000"</code></pre>
+local_addr = &quot;127.0.0.1:3000&quot;</code></pre>
             <p>Setelah file sakti itu tersimpan, kamu cukup memanggilnya dari terminal untuk memulai proses penembusan jaringan menuju VPS pribadimu:</p>
             <pre><code>./rathole client.toml</code></pre>
             <h2>Skema Harga: Bayar Server Sendiri</h2>
-            <p>Dari sisi perangkat lunaknya, <a href="https://github.com/rathole-org/rathole" target="_blank" rel="noopener noreferrer">Rathole</a> adalah proyek yang <strong>100% gratis</strong> dan merdeka. Namun, pastikan kamu sudah menyiapkan sedikit anggaran (biasanya berkisar sekitar $5 per bulan) untuk menyewa mesin VPS sebagai peladen perantara yang menampung lalu lintas datamu.</p>
+            <p>Dari sisi perangkat lunaknya, <a href="https://github.com/rathole-org/rathole" target="_blank" rel="noopener noreferrer">Rathole</a> adalah proyek yang <strong>100% gratis</strong> dan merdeka. Namun, pastikan kamu sudah menyiapkan sedikit anggaran (biasanya berkisar sekitar &#x24;5 per bulan) untuk menyewa mesin VPS sebagai peladen perantara yang menampung lalu lintas datamu.</p>
             <!-- Kotak Kredibilitas E-E-A-T -->
             <div class="author-box" aria-label="Informasi Penulis dan Kredibilitas Artikel">
                 <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Fakhrul Rijal</strong></p>
@@ -260,7 +260,10 @@ local_addr = "127.0.0.1:3000"</code></pre>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>🄯 2026 Layar Kosong. Didukung penuh oleh arsitektur <em>web</em> HTML/CSS murni untuk performa instan tanpa <em>bloatware</em>.</p>
-               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; 2026 Layar Kosong. Didukung penuh oleh arsitektur <em>web</em> HTML/CSS murni untuk performa instan tanpa <em>bloatware</em>.</p>
+               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </em></div><em>
-</em><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+</em><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

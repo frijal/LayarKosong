@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Sysadmin">
@@ -244,18 +244,18 @@
             <div id="iposbrowser"></div><h1>Tutorial CHROOT di Debian: Mengisolasi Sistem dan Skrip Otomatisnya</h1>
         </header>
         <article>
-            <p>Bagi para pengguna setia sistem operasi berbasis Linux, terutama Debian dan Ubuntu, berurusan dengan terminal adalah rutinitas harian. Ada satu perintah klasik yang sering kali menjadi "dewa penolong" ketika sistem sedang bermasalah, yakni <strong>chroot</strong>. Secara harfiah, <em>chroot</em> (change root) adalah perintah sakti di ekosistem Unix/Linux yang berfungsi untuk mengganti titik direktori akar (<em>root directory</em>) dari sebuah proses yang sedang berjalan, beserta anak-anak prosesnya, ke direktori lain.</p>
+            <p>Bagi para pengguna setia sistem operasi berbasis Linux, terutama Debian dan Ubuntu, berurusan dengan terminal adalah rutinitas harian. Ada satu perintah klasik yang sering kali menjadi &quot;dewa penolong&quot; ketika sistem sedang bermasalah, yakni <strong>chroot</strong>. Secara harfiah, <em>chroot</em> (change root) adalah perintah sakti di ekosistem Unix/Linux yang berfungsi untuk mengganti titik direktori akar (<em>root directory</em>) dari sebuah proses yang sedang berjalan, beserta anak-anak prosesnya, ke direktori lain.</p>
             <figure class="hero-wrapper">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/5979da96d3a96455.webp" alt="Tampilan antarmuka baris perintah di Terminal Linux yang sedang menjalankan proses eksekusi chroot" class="hero-img" fetchpriority="high">
             </figure>
             <p class="img-caption">Proses pengeksekusian chroot melalui terminal Linux untuk memasuki lingkungan sistem yang terisolasi.</p>
-            <p>Sederhananya, ketika kamu mengeksekusi <code>chroot</code>, kamu sedang menciptakan sebuah "ruang isolasi". Aplikasi atau perintah apa pun yang dijalankan di dalam ruang tersebut akan menganggap bahwa direktori tempatnya berada adalah fondasi utama sistem. Ia tidak akan bisa melihat atau mengintip file-file di luar batas yang sudah kamu tentukan. Konsep ini sering diistilahkan sebagai <em>chroot jail</em> (penjara chroot).</p>
+            <p>Sederhananya, ketika kamu mengeksekusi <code>chroot</code>, kamu sedang menciptakan sebuah &quot;ruang isolasi&quot;. Aplikasi atau perintah apa pun yang dijalankan di dalam ruang tersebut akan menganggap bahwa direktori tempatnya berada adalah fondasi utama sistem. Ia tidak akan bisa melihat atau mengintip file-file di luar batas yang sudah kamu tentukan. Konsep ini sering diistilahkan sebagai <em>chroot jail</em> (penjara chroot).</p>
             <h2>Tiga Kegunaan Utama CHROOT</h2>
             <p>Mungkin kamu bertanya-tanya, untuk skenario seperti apa sebenarnya kita membutuhkan lingkungan yang terisolasi ini? Berikut adalah beberapa contoh penerapan praktis yang paling sering digunakan oleh administrator sistem:</p>
             <ul>
-                <li><span class="icon">🔧</span> <strong>Pemulihan Sistem (System Recovery):</strong> Ini adalah skenario paling populer. Bayangkan komputermu tiba-tiba gagal <em>booting</em> karena konfigurasi GRUB yang rusak sehabis pembaruan. Dengan bantuan Live USB Linux, kamu bisa me-<em>mount</em> partisi sistemmu yang rusak, lalu masuk ke dalamnya menggunakan <code>chroot</code> untuk melakukan perbaikan (misalnya mengeksekusi <code>grub-install</code>) seolah-olah kamu sedang berada di dalam sistem tersebut secara langsung.</li>
-                <li><span class="icon">🐧</span> <strong>Instalasi Sistem Bersarang:</strong> Perintah ini juga sangat berguna ketika kamu ingin membangun dan mengonfigurasi sebuah sistem operasi dari dalam sistem operasi lain. Contohnya saat melakukan <em>bootstrap</em> instalasi dasar Debian menggunakan alat seperti <code>debootstrap</code>, atau saat melakukan kompilasi paket distribusi khusus tanpa harus melakukan <em>reboot</em>.</li>
-                <li><span class="icon">🛡️</span> <strong>Keamanan Server:</strong> Untuk meminimalisasi risiko dari peretasan, kamu bisa menjalankan aplikasi yang rawan (seperti server FTP atau DNS) di dalam kurungan <code>chroot</code>. Jika peretas berhasil membobol layanan tersebut, mereka hanya akan terperangkap di dalam direktori isolasi itu dan tidak memiliki akses modifikasi ke inti sistem komputermu.</li>
+                <li><span class="icon">&#x1f527;</span> <strong>Pemulihan Sistem (System Recovery):</strong> Ini adalah skenario paling populer. Bayangkan komputermu tiba-tiba gagal <em>booting</em> karena konfigurasi GRUB yang rusak sehabis pembaruan. Dengan bantuan Live USB Linux, kamu bisa me-<em>mount</em> partisi sistemmu yang rusak, lalu masuk ke dalamnya menggunakan <code>chroot</code> untuk melakukan perbaikan (misalnya mengeksekusi <code>grub-install</code>) seolah-olah kamu sedang berada di dalam sistem tersebut secara langsung.</li>
+                <li><span class="icon">&#x1f427;</span> <strong>Instalasi Sistem Bersarang:</strong> Perintah ini juga sangat berguna ketika kamu ingin membangun dan mengonfigurasi sebuah sistem operasi dari dalam sistem operasi lain. Contohnya saat melakukan <em>bootstrap</em> instalasi dasar Debian menggunakan alat seperti <code>debootstrap</code>, atau saat melakukan kompilasi paket distribusi khusus tanpa harus melakukan <em>reboot</em>.</li>
+                <li><span class="icon">&#x1f6e1;&#xfe0f;</span> <strong>Keamanan Server:</strong> Untuk meminimalisasi risiko dari peretasan, kamu bisa menjalankan aplikasi yang rawan (seperti server FTP atau DNS) di dalam kurungan <code>chroot</code>. Jika peretas berhasil membobol layanan tersebut, mereka hanya akan terperangkap di dalam direktori isolasi itu dan tidak memiliki akses modifikasi ke inti sistem komputermu.</li>
             </ul>
             <h2>Persiapan yang Melelahkan dan Solusinya</h2>
             <p>Meskipun kegunaannya sangat krusial, satu hal yang kerap membuat pengguna malas menggunakan <code>chroot</code> untuk pemulihan sistem adalah proses persiapannya yang cukup merepotkan. Agar lingkungan isolasi dapat berjalan sempurna selayaknya sistem nyata (misalnya agar program tahu informasi perangkat keras dan proses CPU), kita wajib mengaitkan (<em>mount bind</em>) beberapa direktori virtual penting seperti <code>/dev</code>, <code>/proc</code>, dan <code>/sys</code> secara manual.</p>
@@ -265,30 +265,30 @@
 <pre><code>#!/bin/bash
 # Skrip untuk masuk dan keluar dari lingkungan chroot dengan mudah
 # Pastikan Anda menjalankan skrip ini dengan hak akses root (sudo)
-CHROOT_DIR="/mnt" # Silakan ganti direktori ini sesuai titik mount partisi Anda
+CHROOT_DIR=&quot;/mnt&quot; # Silakan ganti direktori ini sesuai titik mount partisi Anda
 # Fungsi untuk menyiapkan dan memasuki ruang chroot
 enter_chroot() {
-    echo "Mempersiapkan lingkungan chroot di $CHROOT_DIR..."
-    mount --bind /dev "$CHROOT_DIR/dev"
-    mount --bind /dev/pts "$CHROOT_DIR/dev/pts"
-    mount -t proc proc "$CHROOT_DIR/proc"
-    mount -t sysfs sys "$CHROOT_DIR/sys"
-    echo "Memasuki chroot. Ketik 'exit' untuk keluar."
-    chroot "$CHROOT_DIR"
+    echo &quot;Mempersiapkan lingkungan chroot di &#x24;CHROOT_DIR...&quot;
+    mount --bind /dev &quot;&#x24;CHROOT_DIR/dev&quot;
+    mount --bind /dev/pts &quot;&#x24;CHROOT_DIR/dev/pts&quot;
+    mount -t proc proc &quot;&#x24;CHROOT_DIR/proc&quot;
+    mount -t sysfs sys &quot;&#x24;CHROOT_DIR/sys&quot;
+    echo &quot;Memasuki chroot. Ketik &apos;exit&apos; untuk keluar.&quot;
+    chroot &quot;&#x24;CHROOT_DIR&quot;
 }
 # Fungsi untuk membersihkan dan melepas kaitan setelah keluar
 exit_chroot() {
-    echo "Membersihkan direktori virtual..."
-    umount "$CHROOT_DIR/dev/pts"
-    umount "$CHROOT_DIR/dev"
-    umount "$CHROOT_DIR/proc"
-    umount "$CHROOT_DIR/sys"
-    echo "Proses unmount selesai dengan aman."
+    echo &quot;Membersihkan direktori virtual...&quot;
+    umount &quot;&#x24;CHROOT_DIR/dev/pts&quot;
+    umount &quot;&#x24;CHROOT_DIR/dev&quot;
+    umount &quot;&#x24;CHROOT_DIR/proc&quot;
+    umount &quot;&#x24;CHROOT_DIR/sys&quot;
+    echo &quot;Proses unmount selesai dengan aman.&quot;
 }
 # Contoh alur penggunaan skrip:
 # 1. Mount partisi root asli Anda terlebih dahulu: sudo mount /dev/sda1 /mnt
 # 2. Panggil fungsi untuk masuk chroot: enter_chroot
-# 3. Lakukan pekerjaan/perbaikan Anda di dalam sana. Setelah selesai, ketik 'exit'
+# 3. Lakukan pekerjaan/perbaikan Anda di dalam sana. Setelah selesai, ketik &apos;exit&apos;
 # 4. Panggil fungsi untuk bersih-bersih: exit_chroot
 </code></pre>
             <p>Dengan mengadopsi skrip di atas, kamu dapat mengucapkan selamat tinggal pada rutinitas pengetikan manual yang menjemukan. Kamu hanya perlu menyalin fungsinya, mengeksekusi <code>enter_chroot</code>, menyelesaikan masalah <em>bootloader</em> atau instalasi perangkat lunakmu, dan menutupnya dengan manis menggunakan <code>exit_chroot</code>. Pekerjaan IT yang tadinya memakan waktu bermenit-menit, kini bisa diselesaikan dalam hitungan detik dengan elegan dan aman.</p>
@@ -302,5 +302,8 @@ exit_chroot() {
             <span>Dipublikasikan pada 14 Juni 2026</span>
             <span>Referensi: Dokumentasi Resmi Debian GNU/Linux</span>
         </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

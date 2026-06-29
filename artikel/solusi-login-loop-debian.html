@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-03T13:58:09.004Z">
     <meta property="article:modified_time" content="2026-01-10T16:24:12.894Z">
 <meta name="keywords" content="Debian, login loop, gagal login, mental ke login, TTY, NVIDIA driver, permission error, Linux, troubleshooting, tidak bisa masuk desktop">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
@@ -214,15 +214,15 @@
         <div id="iposbrowser"></div><h1>Solusi Gagal Login (Login Loop) di Debian Setelah Install</h1>
         <p>
           Ini masalah yang cukup sering terjadi di dunia Linux, biasa disebut
-          <strong>"login loop"</strong>. Kamu sudah yakin username dan
+          <strong>&quot;login loop&quot;</strong>. Kamu sudah yakin username dan
           password benar, tapi setiap kali login malah mental kembali ke halaman
           login. Tenang, ini bukan berarti instalasi Debian kamu gagal total dan
           biasanya bisa diatasi.
         </p>
         <h2>Langkah Wajib Pertama: Masuk ke Terminal TTY</h2>
         <p>
-          Karena tidak bisa masuk ke desktop, kita akan perbaiki lewat "pintu
-          belakang", yaitu terminal TTY. Di halaman login, tekan tombol:
+          Karena tidak bisa masuk ke desktop, kita akan perbaiki lewat &quot;pintu
+          belakang&quot;, yaitu terminal TTY. Di halaman login, tekan tombol:
         </p>
         <p style="text-align: center; font-size: 1.2rem">
           <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F3</kbd> (atau F4, F5, F6)
@@ -273,8 +273,8 @@ sudo reboot</code></pre>
           Kadang, sistem tidak bisa membuat file sesi login karena permission
           folder <code>home</code> kamu salah. Perbaiki dengan perintah ini di TTY:
         </p>
-        <pre><code>sudo chown -R $(whoami):$(whoami) $HOME
-sudo chown $(whoami):$(whoami) ~/.Xauthority</code></pre>
+        <pre><code>sudo chown -R &#x24;(whoami):&#x24;(whoami) &#x24;HOME
+sudo chown &#x24;(whoami):&#x24;(whoami) ~/.Xauthority</code></pre>
         <p>Setelah itu, coba <code>sudo reboot</code>.</p>
         <h3>3. Cek Sisa Ruang Disk</h3>
         <p>
@@ -302,10 +302,13 @@ sudo chown $(whoami):$(whoami) ~/.Xauthority</code></pre>
     </article>
  <footer>
     <a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </main>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
       });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

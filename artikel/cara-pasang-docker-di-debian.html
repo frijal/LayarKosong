@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Docker">
     <meta property="article:tag" content="Debian">
     <meta property="article:tag" content="Instalasi">
@@ -437,8 +437,8 @@
             </p>
             <p>
                 Cukup panggil kontainernya, jalan deh! Ini bikin sistem kamu tetap bersih dan jauh dari drama
-                <i>"tapi di komputer saya jalan kok!"</i>. Docker membuat deployment menjadi konsisten di mana pun
-                — dari laptop sampai VPS produksi.
+                <i>&quot;tapi di komputer saya jalan kok!&quot;</i>. Docker membuat deployment menjadi konsisten di mana pun
+                &#x2014; dari laptop sampai VPS produksi.
             </p>
             <!-- ===== GAMBAR PERTAMA (LCP) ===== -->
             <div class="article-image-wrap">
@@ -448,7 +448,7 @@
             <details>
                 <summary><h2>Kenapa Pakai Docker di Debian?</h2></summary>
                 <p>
-                    Debian dikenal sebagai OS yang <b>stabil</b> tapi versinya suka agak <i>"ketinggalan"</i> demi
+                    Debian dikenal sebagai OS yang <b>stabil</b> tapi versinya suka agak <i>&quot;ketinggalan&quot;</i> demi
                     keamanan. Dengan Docker, kamu bisa menjalankan aplikasi versi terbaru tanpa perlu merusak stabilitas
                     Debian. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
                 </p>
@@ -477,8 +477,8 @@
                     <code>sudo</code> atau root.
                 </p>
                 <p>
-                    Waktu yang dibutuhkan sekitar <u>10–15 menit</u>, tergantung kecepatan koneksi. Tidak perlu takut
-                    salah — semua langkah bisa diulang jika ada kesalahan.
+                    Waktu yang dibutuhkan sekitar <u>10&#x2013;15 menit</u>, tergantung kecepatan koneksi. Tidak perlu takut
+                    salah &#x2014; semua langkah bisa diulang jika ada kesalahan.
                 </p>
             </details>
             <!-- ===== BAGIAN 3: LANGKAH INSTALASI (PANJANG, dengan blok kode) ===== -->
@@ -498,7 +498,7 @@ sudo apt install ca-certificates curl gnupg lsb-release</code></pre>
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg</code></pre>
                 <h3>3. Setup Repositori</h3>
                 <p>Masukkan alamat repositori Docker ke daftar belanjaan <code>apt</code> kamu:</p>
-                <pre><code class="language-bash">echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</code></pre>
+                <pre><code class="language-bash">echo &quot;deb [arch=&#x24;(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian &#x24;(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</code></pre>
                 <h3>4. Instal Docker Engine</h3>
                 <p>Sekarang, saatnya instalasi inti:</p>
                 <pre><code class="language-bash">sudo apt update
@@ -507,7 +507,7 @@ sudo apt install containerd.io docker-cli docker-compose docker-buildx</code></p
                     <b>Tips Pro:</b> Agar kamu tidak perlu ngetik <code>sudo</code> terus tiap kali mau jalanin
                     perintah Docker, masukkan user kamu ke grup docker:
                     <br>
-                    <code>sudo usermod -aG docker $USER</code>
+                    <code>sudo usermod -aG docker &#x24;USER</code>
                     <br>
                     <i>*Setelah ini, logout dan login kembali ya!</i>
                 </div>
@@ -515,7 +515,7 @@ sudo apt install containerd.io docker-cli docker-compose docker-buildx</code></p
                 <p>Coba cek apakah si paus (logo Docker) sudah berenang di servermu:</p>
                 <pre><code class="language-bash">docker run hello-world</code></pre>
                 <p>
-                    Kalau muncul tulisan <i>"Hello from Docker!"</i>, selamat! Kamu resmi jadi juragan kontainer.
+                    Kalau muncul tulisan <i>&quot;Hello from Docker!&quot;</i>, selamat! Kamu resmi jadi juragan kontainer.
                     Jika terjadi error, periksa kembali langkah-langkah di atas, terutama GPG key dan repositori.
                 </p>
                 <h3>6. (Opsional) Install Docker Compose Plugin</h3>
@@ -544,7 +544,7 @@ sudo apt install containerd.io docker-cli docker-compose docker-buildx</code></p
                     dan mulai deploy aplikasi favoritmu.
                 </p>
                 <p>
-                    <i>Selamat berkontainerisasi!</i> 🐳
+                    <i>Selamat berkontainerisasi!</i> &#x1f433;
                 </p>
             </section>
             <!-- ===== ELEMEN WAJIB ===== -->
@@ -553,12 +553,15 @@ sudo apt install containerd.io docker-cli docker-compose docker-buildx</code></p
             <!-- ===== FOOTER ===== -->
             <footer class="article-footer">
                 <span><b>Penulis:</b> Jaga Data Pribadi Tetap Aman</span>
-                <span class="sep">•</span>
+                <span class="sep">&#x2022;</span>
                 <span><b>Publikasi:</b> 26 Juni 2026</span>
-                <span class="sep">•</span>
+                <span class="sep">&#x2022;</span>
                 <span><b>Referensi:</b> Dokumentasi resmi Docker, panduan komunitas Debian</span>
-                    <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+                    <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
         </article>
     </main>
     <!-- ===== HIGHLIGHT.JS ===== -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

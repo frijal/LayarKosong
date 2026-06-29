@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Web Development, JavaScript, JSON, Frontend, Tutorial">
     <meta property="article:published_time" content="2025-12-20T17:54:08.000Z">
     <meta property="article:modified_time" content="2026-05-03T04:39:12.087Z">
@@ -247,14 +247,14 @@
                 <div id="iposbrowser"></div><h1>Membuat Website dari Data .json? Tentu Saja Bisa!</h1>
             </header>
             <p>Bagi pemula di dunia pemrograman, menyusun kerangka halaman web sering kali terasa seperti pekerjaan manual yang melelahkan. Bagaimana jika kamu memiliki ratusan artikel, haruskah kamu membuat ratusan dokumen HTML secara manual? Tentu saja tidak. Jawabannya adalah dengan memanfaatkan berkas berekstensi <code>.json</code> untuk membangun website.</p>
-            <p>Konsep luar biasa ini sangat mungkin dilakukan dan bahkan merupakan <b>praktik standar yang paling umum</b> dijumpai dalam pengembangan web berskala modern. Konsep brilian ini dikenal luas dengan istilah <i>"Data-Driven Website"</i>, di mana kita secara tegas memisahkan antara elemen tampilan desain (<em>user interface</em>) dengan inti konten data itu sendiri. Ini adalah rahasia dapur yang sama persis dengan alasan mengapa kerangka kerja tingkat lanjut seperti React, Vue, maupun Angular mendominasi industri teknologi saat ini.</p>
-            <h2>Analogi Sederhana: Menjalankan Sebuah Restoran 🍽️</h2>
+            <p>Konsep luar biasa ini sangat mungkin dilakukan dan bahkan merupakan <b>praktik standar yang paling umum</b> dijumpai dalam pengembangan web berskala modern. Konsep brilian ini dikenal luas dengan istilah <i>&quot;Data-Driven Website&quot;</i>, di mana kita secara tegas memisahkan antara elemen tampilan desain (<em>user interface</em>) dengan inti konten data itu sendiri. Ini adalah rahasia dapur yang sama persis dengan alasan mengapa kerangka kerja tingkat lanjut seperti React, Vue, maupun Angular mendominasi industri teknologi saat ini.</p>
+            <h2>Analogi Sederhana: Menjalankan Sebuah Restoran &#x1f37d;&#xfe0f;</h2>
             <p>Untuk memahami arsitekturnya tanpa merasa pusing, mari kita gunakan imajinasi. Bayangkan kamu sedang merintis dan menjalankan sebuah restoran mewah. Setiap bahasa pemrograman memiliki tugas spesifik di restoranmu:</p>
             <ul>
-                <li>🏗️ <b>HTML (Hypertext Markup Language):</b> Ini adalah <b>struktur fisik restoranmu</b>. HTML merepresentasikan dinding, meja, kursi, dan piring kosong yang tertata rapi. Pada dasarnya, ini adalah kerangka hampa tempat kita akan menyajikan hidangan nanti.</li>
-                <li>🎨 <b>CSS (Cascading Style Sheets):</b> Bertugas sebagai <b>dekorator dan desainer interior</b>. CSS akan menentukan warna cat dinding, motif taplak meja, hingga efek pencahayaan ruangan. Inilah yang memanjakan mata para pengunjung restoranmu.</li>
-                <li>📖 <b>Data .json (JavaScript Object Notation):</b> Ini adalah <b>buku menu atau resep rahasia di dalam dapur</b>. Isinya murni hanya data mentah—seperti daftar nama masakan, harga bahan baku, dan langkah meraciknya. Tidak ada unsur keindahan di sini, hanya informasi murni.</li>
-                <li>👨🍳 <b>JavaScript:</b> Bertindak sebagai <b>koki utama sekaligus pelayan restoran</b>. Merekalah yang cerdas membaca lembar resep (data <code>.json</code>), mengolahnya, dan membawanya keluar dari dapur untuk disajikan dengan cantik tepat di atas piring kosong yang sudah disiapkan (struktur HTML).</li>
+                <li>&#x1f3d7;&#xfe0f; <b>HTML (Hypertext Markup Language):</b> Ini adalah <b>struktur fisik restoranmu</b>. HTML merepresentasikan dinding, meja, kursi, dan piring kosong yang tertata rapi. Pada dasarnya, ini adalah kerangka hampa tempat kita akan menyajikan hidangan nanti.</li>
+                <li>&#x1f3a8; <b>CSS (Cascading Style Sheets):</b> Bertugas sebagai <b>dekorator dan desainer interior</b>. CSS akan menentukan warna cat dinding, motif taplak meja, hingga efek pencahayaan ruangan. Inilah yang memanjakan mata para pengunjung restoranmu.</li>
+                <li>&#x1f4d6; <b>Data .json (JavaScript Object Notation):</b> Ini adalah <b>buku menu atau resep rahasia di dalam dapur</b>. Isinya murni hanya data mentah&#x2014;seperti daftar nama masakan, harga bahan baku, dan langkah meraciknya. Tidak ada unsur keindahan di sini, hanya informasi murni.</li>
+                <li>&#x1f468;&#x1f373; <b>JavaScript:</b> Bertindak sebagai <b>koki utama sekaligus pelayan restoran</b>. Merekalah yang cerdas membaca lembar resep (data <code>.json</code>), mengolahnya, dan membawanya keluar dari dapur untuk disajikan dengan cantik tepat di atas piring kosong yang sudah disiapkan (struktur HTML).</li>
             </ul>
             <details>
                 <summary><h2>Cara Kerja Pembuatan Web Dinamis</h2></summary>
@@ -262,64 +262,64 @@
                 <h3>Langkah 1: Siapkan Data dalam Format JSON</h3>
                 <p>Hal pertama yang menjadi pondasi adalah menyiapkan seluruh teks kontenmu dan membungkusnya ke dalam sebuah berkas bernama <code>data.json</code>. JSON memanfaatkan format pasangan kunci-nilai (<i>key-value pair</i>) yang sangat bersahabat, baik untuk dibaca oleh mata manusia maupun diproses oleh logika mesin.</p>
 <pre><code class="language-json">{
-  "posts": [
+  &quot;posts&quot;: [
     {
-      "id": 1,
-      "title": "Selamat Datang di Website Saya",
-      "author": "Frijal",
-      "date": "2025-10-23",
-      "content": "Ini adalah postingan pertama di website yang dibuat sepenuhnya dari data JSON. Sangat fleksibel!"
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Selamat Datang di Website Saya&quot;,
+      &quot;author&quot;: &quot;Frijal&quot;,
+      &quot;date&quot;: &quot;2025-10-23&quot;,
+      &quot;content&quot;: &quot;Ini adalah postingan pertama di website yang dibuat sepenuhnya dari data JSON. Sangat fleksibel!&quot;
     },
     {
-      "id": 2,
-      "title": "Mengapa JSON Sangat Berguna?",
-      "author": "Frijal",
-      "date": "2025-10-24",
-      "content": "Karena JSON memisahkan data dari tampilan, kita bisa mengubah desain tanpa merusak konten."
+      &quot;id&quot;: 2,
+      &quot;title&quot;: &quot;Mengapa JSON Sangat Berguna?&quot;,
+      &quot;author&quot;: &quot;Frijal&quot;,
+      &quot;date&quot;: &quot;2025-10-24&quot;,
+      &quot;content&quot;: &quot;Karena JSON memisahkan data dari tampilan, kita bisa mengubah desain tanpa merusak konten.&quot;
     }
   ]
 }</code></pre>
-                <h3>Langkah 2: Buat "Cetakan" di Struktur HTML</h3>
-                <p>Tahap kedua, bukalah berkas <code>index.html</code> milikmu. Tugasmu di sini adalah membuat sebuah wadah, atau sebut saja "cetakan" kosong yang nantinya akan menjadi muara tempat JavaScript "menuangkan" data artikel.</p>
+                <h3>Langkah 2: Buat &quot;Cetakan&quot; di Struktur HTML</h3>
+                <p>Tahap kedua, bukalah berkas <code>index.html</code> milikmu. Tugasmu di sini adalah membuat sebuah wadah, atau sebut saja &quot;cetakan&quot; kosong yang nantinya akan menjadi muara tempat JavaScript &quot;menuangkan&quot; data artikel.</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang="id"&gt;
+&lt;html lang=&quot;id&quot;&gt;
 &lt;head&gt;
     &lt;title&gt;Blog Berbasis Data JSON&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;header&gt;
         &lt;h1&gt;Blog Teknologi Saya&lt;/h1&gt;
     &lt;/header&gt;
     &lt;!-- Ini adalah wadah utamanya --&gt;
-    &lt;main id="blog-posts-container"&gt;
+    &lt;main id=&quot;blog-posts-container&quot;&gt;
         &lt;!-- Konten dari JSON akan dieksekusi dan tampil di area ini --&gt;
     &lt;/main&gt;
-    &lt;script src="script.js"&gt;&lt;/script&gt;
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-                <p>Perhatikan tag <code>&lt;main&gt;</code> yang ditambahkan atribut <code>id="blog-posts-container"</code>. Saat awal situs dimuat, area ini sepenuhnya kosong melompong.</p>
-                <h3>Langkah 3: Gunakan JavaScript untuk Menghubungkan Keduanya 🔌</h3>
+                <p>Perhatikan tag <code>&lt;main&gt;</code> yang ditambahkan atribut <code>id=&quot;blog-posts-container&quot;</code>. Saat awal situs dimuat, area ini sepenuhnya kosong melompong.</p>
+                <h3>Langkah 3: Gunakan JavaScript untuk Menghubungkan Keduanya &#x1f50c;</h3>
                 <p>Inilah panggung utama tempat keajaiban terjadi. Melalui berkas <code>script.js</code>, kamu akan memerintahkan peramban untuk mengambil data JSON yang bersemayam di peladen, membongkar isinya, lalu mengubahnya menjadi elemen-elemen HTML baru secara otomatis (<i>Dynamic DOM Manipulation</i>).</p>
 <pre><code class="language-javascript">// Menunggu hingga seluruh kerangka elemen HTML dimuat sempurna
-document.addEventListener('DOMContentLoaded', () =&gt; {
+document.addEventListener(&apos;DOMContentLoaded&apos;, () =&gt; {
     // Ambil elemen wadah yang kosong tadi dari HTML
-    const container = document.getElementById('blog-posts-container');
-    // Gunakan 'fetch API' untuk menarik data dari file data.json
+    const container = document.getElementById(&apos;blog-posts-container&apos;);
+    // Gunakan &apos;fetch API&apos; untuk menarik data dari file data.json
     // Ini adalah metode asinkronus modern bawaan JavaScript
-    fetch('data.json')
+    fetch(&apos;data.json&apos;)
         .then(response =&gt; response.json()) // Ubah respon teks mentah menjadi objek JSON asli
         .then(data =&gt; {
-            // Parameter 'data' sekarang menampung seluruh isi file .json
-            let htmlContent = ''; // Siapkan variabel penampung bertipe string kosong
+            // Parameter &apos;data&apos; sekarang menampung seluruh isi file .json
+            let htmlContent = &apos;&apos;; // Siapkan variabel penampung bertipe string kosong
             // Lakukan perulangan (looping) untuk setiap artikel di dalam struktur array data.posts
             data.posts.forEach(post =&gt; {
                 // Rakit string HTML satu per satu memanfaatkan fitur template literal (backtick ``)
                 htmlContent += `
-                    &lt;article class="post"&gt;
-                        &lt;h2&gt;${post.title}&lt;/h2&gt;
-                        &lt;p class="meta"&gt;Artikel oleh &lt;b&gt;${post.author}&lt;/b&gt; pada &lt;i&gt;${post.date}&lt;/i&gt;&lt;/p&gt;
-                        &lt;p&gt;${post.content}&lt;/p&gt;
+                    &lt;article class=&quot;post&quot;&gt;
+                        &lt;h2&gt;&#x24;{post.title}&lt;/h2&gt;
+                        &lt;p class=&quot;meta&quot;&gt;Artikel oleh &lt;b&gt;&#x24;{post.author}&lt;/b&gt; pada &lt;i&gt;&#x24;{post.date}&lt;/i&gt;&lt;/p&gt;
+                        &lt;p&gt;&#x24;{post.content}&lt;/p&gt;
                     &lt;/article&gt;
                 `;
             });
@@ -328,8 +328,8 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
         })
         .catch(error =&gt; {
             // Penanganan mitigasi apabila file .json gagal dimuat (misal: jaringan terputus)
-            console.error('Error memuat data:', error);
-            container.innerHTML = '&lt;p&gt;Maaf, gagal memuat artikel saat ini.&lt;/p&gt;';
+            console.error(&apos;Error memuat data:&apos;, error);
+            container.innerHTML = &apos;&lt;p&gt;Maaf, gagal memuat artikel saat ini.&lt;/p&gt;&apos;;
         });
 });</code></pre>
                 <p>Selesai! Ketika berkas tersebut dieksekusi di peramban, JavaScript akan menarik kedua artikel dari berkas JSON dan merendernya dengan indah langsung ke layar pengunjung situsmu secara spontan dan seketika (<i>real-time</i>).</p>
@@ -342,15 +342,18 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
                 <li><b>Skalabilitas Super Dinamis:</b> Bayangkan kamu punya basis data berisikan 10.000 artikel. Daripada menulis 10.000 file HTML terpisah, JavaScript dengan kemampuan <i>looping</i>-nya akan membangunkan halaman itu untukmu dalam hitungan sepersekian detik.</li>
                 <li><b>Konsep Satu Sumber Data (SSOT):</b> Berkas data mentah ini bukan cuma untuk ranah situs web! File JSON yang persis sama bisa kamu <em>tembak</em> dan sambungkan ke aplikasi seluler (Android atau iOS), aplikasi layar jam tangan pintar, hingga sistem kasir, memastikan data selalu seragam di lintas platform.</li>
             </ul>
-            <p>Kesimpulannya, merancang web memanfaatkan integrasi data mentah tidak hanya "mungkin" untuk direalisasikan, tetapi justru merupakan peta jalan (<em>roadmap</em>) yang <u>sangat direkomendasikan</u> jika kamu ingin mendalami dunia pemrograman mutakhir saat ini. Mulailah berlatih dengan data kecil, dan saksikan kerangka kodemu menjelma menjadi situs web yang cerdas!</p>
+            <p>Kesimpulannya, merancang web memanfaatkan integrasi data mentah tidak hanya &quot;mungkin&quot; untuk direalisasikan, tetapi justru merupakan peta jalan (<em>roadmap</em>) yang <u>sangat direkomendasikan</u> jika kamu ingin mendalami dunia pemrograman mutakhir saat ini. Mulailah berlatih dengan data kecil, dan saksikan kerangka kodemu menjelma menjadi situs web yang cerdas!</p>
             <div id="related-articles-grid"></div><div id="response"></div>
         </article>
     </main>
     <footer>
         <b>Frijal</b>
-        <span>•</span>
+        <span>&#x2022;</span>
         <i>23 Juni 2026</i>
-        <span>•</span>
+        <span>&#x2022;</span>
         <span>Referensi: MDN Web Docs - Fetch API</span>
-            <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+            <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

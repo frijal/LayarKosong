@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-06-01T04:18:47.158Z">
     <meta property="article:modified_time" content="2026-06-01T04:18:47.158Z">
   <meta name="article:tag" content="GitHub, raw link, tutorial, JavaScript, Python">
@@ -198,17 +198,17 @@
       <pre><code>// Fungsi konversi URL GitHub ke raw
 function toRawUrl(githubUrl) {
   return githubUrl
-    .replace("github.com/", "raw.githubusercontent.com/")
-    .replace("/blob/", "/");
+    .replace(&quot;github.com/&quot;, &quot;raw.githubusercontent.com/&quot;)
+    .replace(&quot;/blob/&quot;, &quot;/&quot;);
 }
 // Contoh penggunaan
-console.log(toRawUrl("https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts"));
+console.log(toRawUrl(&quot;https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts&quot;));
 </code></pre>
       <h3>Python</h3>
       <pre><code>def to_raw_url(github_url: str) -&gt; str:
-    return github_url.replace("github.com/", "raw.githubusercontent.com/").replace("/blob/", "/")
+    return github_url.replace(&quot;github.com/&quot;, &quot;raw.githubusercontent.com/&quot;).replace(&quot;/blob/&quot;, &quot;/&quot;)
 # Contoh penggunaan
-print(to_raw_url("https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts"))
+print(to_raw_url(&quot;https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts&quot;))
 </code></pre>
       <h2>Langsung Coba di Sini</h2>
       <section class="converter-box" aria-labelledby="converterTitle">
@@ -216,9 +216,9 @@ print(to_raw_url("https://github.com/frijal/LayarKosong/blob/main/search/build-d
         <label for="githubUrl">Masukkan URL GitHub</label>
         <input id="githubUrl" type="text" inputmode="url" autocomplete="off" placeholder="https://github.com/user/repo/blob/main/path/to/file.ext" aria-describedby="githubHint">
         <div class="controls">
-          <button id="btnConvert" type="button" aria-pressed="false">🔁 Konversi</button>
-          <button id="btnCopy" type="button" class="secondary">📋 Copy Hasil</button>
-          <button id="btnClear" type="button" class="secondary">✖️ Bersihkan</button>
+          <button id="btnConvert" type="button" aria-pressed="false">&#x1f501; Konversi</button>
+          <button id="btnCopy" type="button" class="secondary">&#x1f4cb; Copy Hasil</button>
+          <button id="btnClear" type="button" class="secondary">&#x2716;&#xfe0f; Bersihkan</button>
         </div>
         <div id="output" class="converter-output" role="status" aria-live="polite"></div>
         <p id="githubHint" class="hint">Contoh: <code>https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts</code></p>
@@ -230,8 +230,8 @@ print(to_raw_url("https://github.com/frijal/LayarKosong/blob/main/search/build-d
     <div id="response"></div>
   </main>
   <footer>
-    <p><small>Artikel oleh Fakhrul • 1 Juni 2026</small></p>
-         <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <p><small>Artikel oleh Fakhrul &#x2022; 1 Juni 2026</small></p>
+         <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
   <!-- Skrip fungsional: letakkan di akhir body agar DOM sudah tersedia -->
   <script>
     (function () {
@@ -337,4 +337,7 @@ print(to_raw_url("https://github.com/frijal/LayarKosong/blob/main/search/build-d
       }
     })();
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

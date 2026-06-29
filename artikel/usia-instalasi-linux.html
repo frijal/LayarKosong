@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-08T00:49:11.562Z">
     <meta property="article:modified_time" content="2026-04-08T05:54:22.302Z">
 <meta name="keywords" content="Distro Linux, Usia Instalasi Linux, Bash Script, Python, tune2fs, Ext4, Filesystem Creation Date, Tips Linux">
@@ -197,10 +197,10 @@
     </div>
     <section>
         <p>
-            Halo, teman-teman pecinta Linux dari Balikpapan dan seluruh dunia! 👋 Pernah tidak kamu tiba-tiba merenung, "Sebenarnya sudah berapa lama ya saya setia sama Distro Linux ini?" Usia instalasi itu kadang tidak kerasa, tahu-tahu udah berhari-hari, berbulan-bulan, bahkan bertahun-tahun, seperti kenikmatan <strong>Kopi Susu</strong> yang enak, tahu-tahu udah habis gelasnya. ☕
+            Halo, teman-teman pecinta Linux dari Balikpapan dan seluruh dunia! &#x1f44b; Pernah tidak kamu tiba-tiba merenung, &quot;Sebenarnya sudah berapa lama ya saya setia sama Distro Linux ini?&quot; Usia instalasi itu kadang tidak kerasa, tahu-tahu udah berhari-hari, berbulan-bulan, bahkan bertahun-tahun, seperti kenikmatan <strong>Kopi Susu</strong> yang enak, tahu-tahu udah habis gelasnya. &#x2615;
         </p>
         <p>
-            Mencari tahu usia <em>sejati</em> instalasi Linux (entah itu Arch, Ubuntu, Fedora, atau yang lain) bisa jadi tantangan. Untungnya, ada cara yang sangat <strong>akurat</strong> —yaitu melihat kapan <em>filesystem</em> kamu pertama kali dibuat! Ini adalah tanggal lahir partisi kamu.
+            Mencari tahu usia <em>sejati</em> instalasi Linux (entah itu Arch, Ubuntu, Fedora, atau yang lain) bisa jadi tantangan. Untungnya, ada cara yang sangat <strong>akurat</strong> &#x2014;yaitu melihat kapan <em>filesystem</em> kamu pertama kali dibuat! Ini adalah tanggal lahir partisi kamu.
         </p>
         <p>
             Berikut adalah <em>script</em> Bash/Python super keren yang bisa melakukan trik ini dengan elegan.
@@ -217,30 +217,30 @@
         </p>
         <pre><code class="language-bash">#!/bin/bash
 # 1. Menemukan device partisi root (e.g., /dev/sda2)
-ROOT_DEV=$(findmnt -n -o SOURCE /)
+ROOT_DEV=&#x24;(findmnt -n -o SOURCE /)
 # 2. Ekstrak tanggal pembuatan filesystem menggunakan tune2fs
 # Menggunakan sudo karena tune2fs -l memerlukan izin root
 # Bagian grep/cut/xargs mengambil string tanggal-waktu mentah
-INSTALL_DATE_STRING=$(sudo tune2fs -l "$ROOT_DEV" 2&gt;/dev/null | grep 'Filesystem created:' | cut -d: -f 2- | xargs)
+INSTALL_DATE_STRING=&#x24;(sudo tune2fs -l &quot;&#x24;ROOT_DEV&quot; 2&gt;/dev/null | grep &apos;Filesystem created:&apos; | cut -d: -f 2- | xargs)
 # 3. Proses tanggal di Python dan hitung selisih hari
 # (Catatan: tune2fs hanya bekerja andal untuk ext2/3/4)
-python3 -c "
+python3 -c &quot;
 from datetime import datetime, date
 import locale
-# Atur locale ke 'C' untuk memastikan parsing tanggal konsisten (misalnya 'Mar' vs 'Mär')
+# Atur locale ke &apos;C&apos; untuk memastikan parsing tanggal konsisten (misalnya &apos;Mar&apos; vs &apos;M&#xe4;r&apos;)
 try:
-    locale.setlocale(locale.LC_ALL, 'C')
-    # Parsing format tanggal seperti 'Sat Mar 16 14:30:22 2024'
-    creation_datetime = datetime.strptime('$INSTALL_DATE_STRING', '%a %b %d %H:%M:%S %Y')
+    locale.setlocale(locale.LC_ALL, &apos;C&apos;)
+    # Parsing format tanggal seperti &apos;Sat Mar 16 14:30:22 2024&apos;
+    creation_datetime = datetime.strptime(&apos;&#x24;INSTALL_DATE_STRING&apos;, &apos;%a %b %d %H:%M:%S %Y&apos;)
     d1 = creation_datetime.date()
     d2 = date.today()
-    print(f'\n Tanggal Instalasi Filesystem: {d1}')
-    print(f' Usia Sistem Anda adalah {(d2-d1).days} hari.\n')
+    print(f&apos;\n Tanggal Instalasi Filesystem: {d1}&apos;)
+    print(f&apos; Usia Sistem Anda adalah {(d2-d1).days} hari.\n&apos;)
 except ValueError:
-    print(' ERROR: Tidak dapat mengambil tanggal pembuatan filesystem dari tune2fs.')
-    print('Hal ini terjadi jika filesystem Anda tidak menyimpan creation time (misalnya XFS atau Btrfs).')
-    print('Silakan gunakan metode alternatif (Log Paket) di bagian bawah.\n')
-"</code></pre>
+    print(&apos; ERROR: Tidak dapat mengambil tanggal pembuatan filesystem dari tune2fs.&apos;)
+    print(&apos;Hal ini terjadi jika filesystem Anda tidak menyimpan creation time (misalnya XFS atau Btrfs).&apos;)
+    print(&apos;Silakan gunakan metode alternatif (Log Paket) di bagian bawah.\n&apos;)
+&quot;</code></pre>
     </section>
     <section>
         <h2><i class="fa-solid fa-brain"></i> Cara Script Ini Bekerja (Detail Buat Para Suhu)</h2>
@@ -249,7 +249,7 @@ except ValueError:
         </p>
         <ol>
             <li><strong><code>findmnt -n -o SOURCE /</code></strong>: Script ini fleksibel karena ia tidak berasumsi nama partisi. Ia mencari tahu di <em>device</em> mana (<code>SOURCE</code>) <em>root</em> (<code>/</code>) kamu terpasang.</li>
-            <li><strong><code>sudo tune2fs -l "$ROOT_DEV"</code></strong>: Ini adalah kunci utamanya. <code>tune2fs -l</code> (list superblock) mampu membaca metadata historis dari <em>filesystem</em> keluarga ext, termasuk item yang sangat berguna: <code>Filesystem created:</code>.</li>
+            <li><strong><code>sudo tune2fs -l &quot;&#x24;ROOT_DEV&quot;</code></strong>: Ini adalah kunci utamanya. <code>tune2fs -l</code> (list superblock) mampu membaca metadata historis dari <em>filesystem</em> keluarga ext, termasuk item yang sangat berguna: <code>Filesystem created:</code>.</li>
             <li><strong>Pembersihan Output (<code>grep</code>, <code>cut</code>, <code>xargs</code>)</strong>: Bagian Bash ini bertugas membersihkan output <code>tune2fs</code> menjadi string tanggal mentah yang siap disantap oleh Python.</li>
             <li><strong>Python <code>datetime</code></strong>: Python digunakan untuk memproses string tanggal, membandingkannya dengan tanggal hari ini (<code>date.today()</code>), dan menghitung selisihnya dalam satuan hari. Hasilnya umumnya akurat! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</li>
         </ol>
@@ -261,15 +261,15 @@ except ValueError:
         </div>
         <h3>Untuk Arch/Manjaro (Pacman):</h3>
         <p>Cari <em>timestamp</em> instalasi paket <code>filesystem</code> atau <code>linux</code> yang paling awal di log Pacman:</p>
-        <pre><code class="language-bash">grep -E '\[INSTALL\] filesystem|\[INSTALL\] linux' /var/log/pacman.log | head -n 1</code></pre>
+        <pre><code class="language-bash">grep -E &apos;\[INSTALL\] filesystem|\[INSTALL\] linux&apos; /var/log/pacman.log | head -n 1</code></pre>
         <h3>Untuk Debian/Ubuntu/Mint (APT):</h3>
         <p>Cek log instalasi APT yang mencatat paket <code>base-files</code> atau <code>linux-image</code>:</p>
-        <pre><code class="language-bash">grep ' install ' /var/log/dpkg.log | head -n 1</code></pre>
+        <pre><code class="language-bash">grep &apos; install &apos; /var/log/dpkg.log | head -n 1</code></pre>
         <p>Contoh outputnya akan menunjukkan tanggal dan waktu yang sangat dekat dengan momen instalasi Linux kamu:</p>
         <pre><code class="language-text">2024-03-16 14:30:22 install base-files:amd64 12.0</code></pre>
         <p>Tanggal di awal baris itulah yang bisa kamu jadikan patokan! Sekarang tinggal hitung deh usianya.</p>
         <p>
-            Selamat mencoba, Bosku! Semoga usia instalasi Linux kamu sudah cukup matang, sama seperti kenikmatan <strong>Kopi Susu</strong> yang disruput pelan-pelan. 🚀
+            Selamat mencoba, Bosku! Semoga usia instalasi Linux kamu sudah cukup matang, sama seperti kenikmatan <strong>Kopi Susu</strong> yang disruput pelan-pelan. &#x1f680;
         </p>
     </section>
     <section>
@@ -287,7 +287,10 @@ except ValueError:
             <a href="https://mastodon.social/@frijal" target="_blank" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
             <a href="https://t.me/frijal" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
         </div>
-        <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">🄯 2025 Layar Kosong (dalam.web.id). Hati-hati menyebabkan kantuk.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">&#x1f12f; 2025 Layar Kosong (dalam.web.id). Hati-hati menyebabkan kantuk.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

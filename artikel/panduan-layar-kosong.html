@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-20T17:15:53.286Z">
     <meta property="article:modified_time" content="2025-12-20T17:15:53.286Z">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -463,16 +463,16 @@
         <p>Konsepnya sederhana banget: Kita cuma pakai sekumpulan file HTML yang digabungkan, disimpan rapi, lalu dipanggil menggunakan domain <strong>GitHub Pages</strong> (biasanya <code>usernamekamu.github.io</code>) atau kalau kamu punya, bisa juga pakai domain kustom sendiri. Asyik kan?</p>
         <p>Yang bikin keren, semuanya <strong>otomatis</strong>! Kamu tinggal fokus nulis konten, sisanya biar sistem yang kerja. Tidak perlu jago coding, tidak perlu bayar hosting, dan yang paling penting: <strong>situsmu bakal super cepat!</strong> <i class="fa-solid fa-bolt"></i></p>
         <h2><i class="fa-solid fa-screwdriver-wrench"></i> Tahap 1: Persiapan Lingkungan (Install Git)</h2>
-        <p>Langkah pertama yang paling krusial sebelum mulai: <strong>Pastikan Git CLI sudah terpasang</strong> di komputer atau laptopmu. Git ini kayak "jembatan" yang menghubungkan komputer kamu dengan GitHub. Tanpa ini, kamu tidak bisa upload atau download file dari repository.</p>
+        <p>Langkah pertama yang paling krusial sebelum mulai: <strong>Pastikan Git CLI sudah terpasang</strong> di komputer atau laptopmu. Git ini kayak &quot;jembatan&quot; yang menghubungkan komputer kamu dengan GitHub. Tanpa ini, kamu tidak bisa upload atau download file dari repository.</p>
         <div class="card">
             <span class="card-icon"><i class="fa-brands fa-git-alt"></i></span>
             <h3>Apa itu Git?</h3>
-            <p>Git adalah sistem kontrol versi yang memungkinkan kamu melacak perubahan kode, berkolaborasi dengan orang lain, dan mengelola halaman dengan lebih terorganisir. Bayangin kayak "mesin waktu" buat kode kamu - bisa balik ke versi lama kapan aja!</p>
+            <p>Git adalah sistem kontrol versi yang memungkinkan kamu melacak perubahan kode, berkolaborasi dengan orang lain, dan mengelola halaman dengan lebih terorganisir. Bayangin kayak &quot;mesin waktu&quot; buat kode kamu - bisa balik ke versi lama kapan aja!</p>
         </div>
         <p>Berikut cara instalasi Git untuk berbagai sistem operasi. Pilih sesuai dengan OS yang kamu pakai:</p>
         <h3><i class="fa-brands fa-windows"></i> Windows</h3>
         <p>Buat pengguna Windows, ada dua cara gampang:</p>
-        <p><strong>Cara 1:</strong> Download installer resmi dari <a href="https://git-scm.com/download/win" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> git-scm.com</a>. Tinggal klik "Next, Next, Finish"! Gampang banget.</p>
+        <p><strong>Cara 1:</strong> Download installer resmi dari <a href="https://git-scm.com/download/win" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> git-scm.com</a>. Tinggal klik &quot;Next, Next, Finish&quot;! Gampang banget.</p>
         <p><strong>Cara 2:</strong> Kalau kamu suka pakai command line dan punya <code>winget</code>, bisa langsung ketik perintah ini di terminal:</p>
         <pre><code>winget install --id Git.Git -e --source winget</code></pre>
         <h3><i class="fa-brands fa-apple"></i> macOS</h3>
@@ -512,7 +512,7 @@ sudo yum install git</code></pre>
             <i class="fa-solid fa-circle-check"></i> <strong>Pro Tip:</strong> Setelah install, cek versi Git dengan mengetik <code>git --version</code> di terminal. Kalau muncul nomor versinya, berarti instalasi sukses! <i class="fa-solid fa-thumbs-up"></i>
         </div>
         <h2><i class="fa-solid fa-dna"></i> Tahap 2: Setup Repository (Fork &amp; Clone)</h2>
-        <p>Sekarang Git sudah siap, saatnya kita "duplikat" repository Layar Kosong ke akun GitHub kamu. Proses ini disebut <strong>Fork</strong> - kayak fotokopi repository, jadi punya kamu sendiri deh!</p>
+        <p>Sekarang Git sudah siap, saatnya kita &quot;duplikat&quot; repository Layar Kosong ke akun GitHub kamu. Proses ini disebut <strong>Fork</strong> - kayak fotokopi repository, jadi punya kamu sendiri deh!</p>
         <div class="card">
             <span class="card-icon"><i class="fa-brands fa-github"></i></span>
             <h3>Langkah-langkah Fork Repository</h3>
@@ -533,7 +533,7 @@ sudo yum install git</code></pre>
             <li>Masuk ke repository hasil fork kamu (ada di <code>https://github.com/usernamekamu/LayarKosong</code>)</li>
             <li>Klik tab <strong>Settings</strong> (biasanya ada di kanan atas)</li>
             <li>Scroll ke bawah, cari menu <strong>Pages</strong> di sidebar kiri</li>
-            <li>Pada bagian "Source", pilih <strong>Deploy from a branch</strong></li>
+            <li>Pada bagian &quot;Source&quot;, pilih <strong>Deploy from a branch</strong></li>
             <li>Pilih branch <code>main</code> (atau <code>site</code> sesuai konfigurasi preferensimu) dan folder <code>/ (root)</code></li>
             <li>Klik tombol <strong>Save</strong></li>
         </ol>
@@ -551,7 +551,7 @@ sudo yum install git</code></pre>
                 <li><i class="fa-solid fa-trash"></i> <strong>Hapus semua isi</strong> di dalam folder <code>artikel/</code> (file-file HTML lama)</li>
                 <li><i class="fa-solid fa-image"></i> <strong>Hapus seluruh gambar</strong> di dalam folder <code>img/</code> (gambar-gambar demo)</li>
             </ul>
-            <p><strong>Caranya:</strong> Bisa langsung di GitHub web interface (klik file → klik ikon sampah), atau kalau udah clone ke komputer, hapus lewat file manager biasa.</p>
+            <p><strong>Caranya:</strong> Bisa langsung di GitHub web interface (klik file &#x2192; klik ikon sampah), atau kalau udah clone ke komputer, hapus lewat file manager biasa.</p>
         </div>
         <div class="alert alert-warning">
             <i class="fa-solid fa-triangle-exclamation"></i> <strong>Hati-hati:</strong> Jangan hapus folder-nya, cuma isinya aja! Foldernya tetap harus ada supaya sistem otomasi bisa jalan dengan baik.
@@ -568,7 +568,7 @@ sudo yum install git</code></pre>
     <ol>
         <li>Masuk ke tab <strong>Actions</strong> di repository kamu</li>
         <li>Kamu bakal lihat banner kuning dengan tombol hijau</li>
-        <li>Klik tombol hijau bertuliskan <strong>"I understand my workflows, go ahead and enable them"</strong></li>
+        <li>Klik tombol hijau bertuliskan <strong>&quot;I understand my workflows, go ahead and enable them&quot;</strong></li>
         <li>Semua workflow otomatis sekarang aktif! <i class="fa-solid fa-rocket"></i></li>
     </ol>
     <h3><i class="fa-solid fa-pen-to-square"></i> 3. Mulai Menulis (Workflow Otomatis)</h3>
@@ -578,7 +578,7 @@ sudo yum install git</code></pre>
         <h3>Alur Kerja Publikasi Artikel</h3>
         <ol>
             <li><i class="fa-solid fa-file-code"></i> <strong>Buat file HTML</strong> artikel barumu. Bisa pakai text editor kesukaan (VS Code, Sublime, Notepad++, dll)</li>
-            <li><i class="fa-solid fa-upload"></i> <strong>Upload ke folder <code>artikelx/</code></strong> (perhatikan ada huruf 'x' di belakang). Ini folder staging - tempat artikel "masak" dulu sebelum publish</li>
+            <li><i class="fa-solid fa-upload"></i> <strong>Upload ke folder <code>artikelx/</code></strong> (perhatikan ada huruf &apos;x&apos; di belakang). Ini folder staging - tempat artikel &quot;masak&quot; dulu sebelum publish</li>
             <li><i class="fa-solid fa-code-commit"></i> <strong>Commit dan Push</strong> perubahanmu ke GitHub</li>
             <li><i class="fa-solid fa-gears"></i> <strong>Biarkan Action Bekerja:</strong> Sistem otomatis (<em>workflow</em>) bakal:
                 <ul>
@@ -593,7 +593,7 @@ sudo yum install git</code></pre>
         </ol>
     </div>
     <div class="alert alert-success">
-        <i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Kamu bisa cek progress Action di tab "Actions". Lihat status real-time proses otomasi kamu - sangat memuaskan melihat semuanya berjalan sendiri! <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Kamu bisa cek progress Action di tab &quot;Actions&quot;. Lihat status real-time proses otomasi kamu - sangat memuaskan melihat semuanya berjalan sendiri! <i class="fa-solid fa-heart"></i>
     </div>
     <p><strong>Selesai!</strong> <i class="fa-solid fa-champagne-glasses"></i> Halaman pertamamu sudah terbit. Ulangi langkah ini untuk artikel-artikel berikutnya. Gampang kan? Tinggal fokus nulis, sisanya otomatis!</p>
     <h2><i class="fa-solid fa-palette"></i> Tahap 4: Personalisasi &amp; Konfigurasi</h2>
@@ -713,7 +713,7 @@ Value: usernamekamu.github.io</code></pre>
     <p><span class="badge badge-success"><i class="fa-solid fa-unlock"></i> 100% Free</span> <span class="badge badge-info"><i class="fa-brands fa-osi"></i> Open Source</span> <span class="badge badge-warning"><i class="fa-solid fa-globe"></i> Public Domain</span></p>
 <details style="margin-top: 40px; border: 1px solid var(--border-color); padding: 10px; border-radius: 8px;">
         <summary style="font-weight: bold; cursor: pointer; color: var(--primary-color);">
-            <i class="fa-solid fa-toggle-off"></i> Klik untuk Status Teknis &amp; Badge ⚙️
+            <i class="fa-solid fa-toggle-off"></i> Klik untuk Status Teknis &amp; Badge &#x2699;&#xfe0f;
         </summary>
         <h3 style="margin-top: 20px;"><i class="fa-solid fa-chart-bar"></i> Status Halaman</h3>
         <p>
@@ -749,7 +749,7 @@ Value: usernamekamu.github.io</code></pre>
 <!-- Footer -->
 <footer>
     <div class="container">
-        <p><strong>Layar Kosong</strong> Bangun Situs Statis dengan Mudah <i class="fa-solid fa-heart"></i> 🄯 2025</p>
+        <p><strong>Layar Kosong</strong> Bangun Situs Statis dengan Mudah <i class="fa-solid fa-heart"></i> &#x1f12f; 2025</p>
         <div class="footer-links">
             <a href="https://github.com/frijal/LayarKosong" target="_blank" rel="noopener noreferrer" title="GitHub">
                 <i class="fa-brands fa-github footer-icon"></i>
@@ -783,5 +783,8 @@ Value: usernamekamu.github.io</code></pre>
             <a href="https://github.com/frijal/LayarKosong/discussions">Discussions</a>
         </p>
     </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer></div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+        <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer></div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀 - Layar Kosong</title>
+    <title>FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) &#x1f680; - Layar Kosong</title>
     <meta name="description" content="cara membagi video panjang menjadi beberapa bagian otomatis menggunakan FFmpeg dan Script Bash. Solusi cepat tanpa re-encode untuk workflow efisien.">
     <link rel="canonical" href="https://dalam.web.id/artikelx/FFmpeg-split-video-durasi-otomatis">
     <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
@@ -13,28 +13,28 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="ffmpeg split video, bagi video otomatis, script bash ffmpeg, tutorial ffmpeg indonesia, automation video editing, ffprobe duration script">
-    <meta name="promphint" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀 | Pernah punya video berdurasi jam-jam-an tapi cuma butuh dipecah jadi potongan 20 detik buat konten media sosial? Melakukannya manual satu per satu adalah siksaa">
+    <meta name="promphint" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) &#x1f680; | Pernah punya video berdurasi jam-jam-an tapi cuma butuh dipecah jadi potongan 20 detik buat konten media sosial? Melakukannya manual satu per satu adalah siksaa">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://dalam.web.id/artikelx/FFmpeg-split-video-durasi-otomatis">
-    <meta property="og:title" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀">
+    <meta property="og:title" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) &#x1f680;">
     <meta property="og:description" content="cara membagi video panjang menjadi beberapa bagian otomatis menggunakan FFmpeg dan Script Bash. Solusi cepat tanpa re-encode untuk workflow efisien.">
     <meta property="og:updated_time" content="2013-04-23T08:36:42.241Z">
     <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/7d34c097db84e9c8.webp">
     <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/7d34c097db84e9c8.webp">
     <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/7d34c097db84e9c8.webp">
-    <meta property="og:image:alt" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀">
+    <meta property="og:image:alt" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) &#x1f680;">
     <meta property="og:image:width" content="1672">
     <meta property="og:image:height" content="941">
     <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:domain" content="dalam.web.id">
     <meta name="twitter:url" content="https://dalam.web.id/artikelx/FFmpeg-split-video-durasi-otomatis">
-    <meta name="twitter:title" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀">
+    <meta name="twitter:title" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) &#x1f680;">
     <meta name="twitter:description" content="cara membagi video panjang menjadi beberapa bagian otomatis menggunakan FFmpeg dan Script Bash. Solusi cepat tanpa re-encode untuk workflow efisien.">
     <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/7d34c097db84e9c8.webp">
-    <meta name="twitter:image:alt" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀">
+    <meta name="twitter:image:alt" content="FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) &#x1f680;">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2013-04-23T08:31:19.000Z">
     <meta property="article:modified_time" content="2013-04-23T08:31:19.000Z">
     <meta name="prompt-hint" content="Panduan otomasi multimedia menggunakan FFmpeg untuk memecah file video besar menjadi durasi kecil yang seragam.">
@@ -219,32 +219,32 @@
         </div>
         <pre><code id="ffmpegCode">#!/bin/bash
 # Konfigurasi Awal
-INPUT="input.mp4"
+INPUT=&quot;input.mp4&quot;
 DURATION=20   # Durasi tiap potongan (dalam detik)
 # Mendapatkan durasi total file menggunakan ffprobe
-LEN=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$INPUT")
+LEN=&#x24;(ffprobe -v error -show_entries format=duration -of csv=p=0 &quot;&#x24;INPUT&quot;)
 COUNT=0
 START=0
-echo "Memulai proses pemotongan durasi total: $LEN detik..."
+echo &quot;Memulai proses pemotongan durasi total: &#x24;LEN detik...&quot;
 # Loop pemotongan otomatis
-while (( $(echo "$START &lt; $LEN" | bc -l) )); do
-  OUTPUT="part_$COUNT.mp4"
-  ffmpeg -hide_banner -loglevel error -i "$INPUT" -ss $START -t $DURATION -c copy "$OUTPUT"
-  echo "Berhasil membuat: $OUTPUT"
-  START=$(echo "$START + $DURATION" | bc)
-  COUNT=$((COUNT+1))
+while (( &#x24;(echo &quot;&#x24;START &lt; &#x24;LEN&quot; | bc -l) )); do
+  OUTPUT=&quot;part_&#x24;COUNT.mp4&quot;
+  ffmpeg -hide_banner -loglevel error -i &quot;&#x24;INPUT&quot; -ss &#x24;START -t &#x24;DURATION -c copy &quot;&#x24;OUTPUT&quot;
+  echo &quot;Berhasil membuat: &#x24;OUTPUT&quot;
+  START=&#x24;(echo &quot;&#x24;START + &#x24;DURATION&quot; | bc)
+  COUNT=&#x24;((COUNT+1))
 done
-echo "Otomasi selesai! Semua bagian telah terpotong."</code></pre>
+echo &quot;Otomasi selesai! Semua bagian telah terpotong.&quot;</code></pre>
         <button class="copy-btn" onclick="copyCode()"><i class="fa-regular fa-copy"></i> Salin Script</button>
     </div>
     <div class="logic-card">
         <h2>Bagaimana Skrip Ini Bekerja?</h2>
         <p>Jangan biarkan baris kode di atas mengintimidasi kamu. Logikanya sangat sederhana jika kita bedah satu per satu:</p>
         <ul>
-            <li><span class="tag">ffprobe</span> — Digunakan untuk mengintip metadata video dan mengambil angka durasi total secara presisi.</li>
-            <li><span class="tag">bc -l</span> — Karena Bash standar tidak pandai menghitung angka desimal (koma), kita gunakan <code>bc</code> agar kalkulasi waktu pemotongan tetap akurat.</li>
-            <li><span class="tag">-ss</span> &amp; <span class="tag">-t</span> — Inilah instrumen utamanya. <code>-ss</code> menentukan titik mulai, dan <code>-t</code> menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
-            <li><span class="tag">-c copy</span> — Fitur paling krusial. Ini menyuruh FFmpeg untuk tidak melakukan proses rendering ulang. Video hanya "dikemas ulang" ke file baru, sehingga prosesnya instan.</li>
+            <li><span class="tag">ffprobe</span> &#x2014; Digunakan untuk mengintip metadata video dan mengambil angka durasi total secara presisi.</li>
+            <li><span class="tag">bc -l</span> &#x2014; Karena Bash standar tidak pandai menghitung angka desimal (koma), kita gunakan <code>bc</code> agar kalkulasi waktu pemotongan tetap akurat.</li>
+            <li><span class="tag">-ss</span> &amp; <span class="tag">-t</span> &#x2014; Inilah instrumen utamanya. <code>-ss</code> menentukan titik mulai, dan <code>-t</code> menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
+            <li><span class="tag">-c copy</span> &#x2014; Fitur paling krusial. Ini menyuruh FFmpeg untuk tidak melakukan proses rendering ulang. Video hanya &quot;dikemas ulang&quot; ke file baru, sehingga prosesnya instan.</li>
         </ul>
     </div>
     <div class="highlight-box">
@@ -254,8 +254,8 @@ echo "Otomasi selesai! Semua bagian telah terpotong."</code></pre>
 </main>
 <footer>
     <p>Dibuat dengan semangat efisiensi oleh <strong>Fakhrul Rijal</strong>.<br>
-    🄯 2025 • <a href="https://dalam.web.id" style="color:inherit; font-weight:bold; text-decoration:none;">Layar Kosong</a></p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    &#x1f12f; 2025 &#x2022; <a href="https://dalam.web.id" style="color:inherit; font-weight:bold; text-decoration:none;">Layar Kosong</a></p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 <script>
 function copyCode(){
     const code = document.getElementById("ffmpegCode").textContent;
@@ -270,4 +270,7 @@ function copyCode(){
     });
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

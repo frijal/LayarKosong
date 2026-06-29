@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="FFmpeg, tutorial FFmpeg, command line multimedia, konversi video, edit audio CLI">
-    <meta name="promphint" content="Panduan Interaktif FFmpeg: Manipulasi Audio &amp; Video | Halo bro/sis! 👨💻 FFmpeg itu tool dewa buat ngedit audio/video lewat command line. Gak perlu software berat, cukup terminal aja. Di sini aku rangkum command-co">
+    <meta name="promphint" content="Panduan Interaktif FFmpeg: Manipulasi Audio &amp; Video | Halo bro/sis! &#x1f468;&#x1f4bb; FFmpeg itu tool dewa buat ngedit audio/video lewat command line. Gak perlu software berat, cukup terminal aja. Di sini aku rangkum command-co">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-27T15:42:43.052Z">
     <meta property="article:modified_time" content="2026-04-28T05:13:39.940Z">
 <meta name="keywords" content="FFmpeg, audio, video, konversi, trim, batch convert, resize, extract audio, normalize, tutorial, CLI, multimedia">
@@ -110,99 +110,99 @@
     <div class="container">
         <header>
             <div id="iposbrowser"></div><h1>Panduan Interaktif FFmpeg: Manipulasi Audio &amp; Video</h1>
-            <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.2rem;">Halo bro/sis! 👨💻 FFmpeg itu tool dewa buat ngedit audio/video lewat command line. Gak perlu software berat, cukup terminal aja. Di sini aku rangkum command-command praktis yang sering dipake. Klik navigasi di bawah buat lompat ke section, dan tekan tombol Salin buat copy command langsung. Yuk oprek bareng! 🚀</p>
+            <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.2rem;">Halo bro/sis! &#x1f468;&#x1f4bb; FFmpeg itu tool dewa buat ngedit audio/video lewat command line. Gak perlu software berat, cukup terminal aja. Di sini aku rangkum command-command praktis yang sering dipake. Klik navigasi di bawah buat lompat ke section, dan tekan tombol Salin buat copy command langsung. Yuk oprek bareng! &#x1f680;</p>
             <img src="https://dalam.web.id/img/itsfoss.com/content/images/wordpress/2019/03/ffmpeg_file_information.webp" alt="Contoh output info file FFmpeg di terminal" class="illus">
         </header>
         <nav class="nav-accordion">
-            <details open="">
-                <summary>📂 Navigasi Panduan</summary>
+            <details open>
+                <summary>&#x1f4c2; Navigasi Panduan</summary>
                 <div class="nav-list">
-                    <details><summary>🎵 Audio</summary>
-                        <a href="#ubah-mp3-ogg">Ubah MP3 → OGG</a>
+                    <details><summary>&#x1f3b5; Audio</summary>
+                        <a href="#ubah-mp3-ogg">Ubah MP3 &#x2192; OGG</a>
                         <a href="#batch-audio">Batch Convert Audio</a>
-                        <a href="#wav-mp3">WAV → MP3</a>
+                        <a href="#wav-mp3">WAV &#x2192; MP3</a>
                         <a href="#bitrate-audio">Change Audio Bitrate</a>
                         <a href="#normalize-audio">Normalize Audio</a>
                     </details>
-                    <details><summary>📹 Video</summary>
+                    <details><summary>&#x1f4f9; Video</summary>
                         <a href="#trim-video">Trim Video</a>
                         <a href="#resize-video">Resize Video</a>
                         <a href="#extract-audio">Extract Audio dari Video</a>
-                        <a href="#mp4-webm">Convert MP4 → WebM</a>
+                        <a href="#mp4-webm">Convert MP4 &#x2192; WebM</a>
                         <a href="#batch-video">Batch Convert Video</a>
                     </details>
                 </div>
             </details>
         </nav>
         <main>
-            <h2 id="ubah-mp3-ogg">🎵 Ubah Format Audio MP3 → OGG</h2>
+            <h2 id="ubah-mp3-ogg">&#x1f3b5; Ubah Format Audio MP3 &#x2192; OGG</h2>
             <p>Command sederhana buat konversi satu file. OGG biasanya lebih ringan dan open source.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 output.ogg</code></pre>
             </div>
-            <h2 id="batch-audio">🔄 Batch Convert Audio</h2>
+            <h2 id="batch-audio">&#x1f504; Batch Convert Audio</h2>
             <p>Kalau punya banyak file di satu folder, command ini ubah semuanya sekaligus. Praktis banget!</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
-                <pre><code>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</code></pre>
+                <pre><code>for f in *.mp3; do ffmpeg -i &quot;&#x24;f&quot; &quot;&#x24;{f%.mp3}.ogg&quot;; done</code></pre>
             </div>
-            <h2 id="wav-mp3">🎵 WAV → MP3</h2>
+            <h2 id="wav-mp3">&#x1f3b5; WAV &#x2192; MP3</h2>
             <p>Berkas format WAV umumnya memiliki ukuran data yang signifikan; konversi ke format MP3 dapat meminimalkan volume data dengan tetap mempertahankan stabilitas kualitas audio.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</code></pre>
             </div>
-            <h2 id="bitrate-audio">📊 Change Audio Bitrate</h2>
+            <h2 id="bitrate-audio">&#x1f4ca; Change Audio Bitrate</h2>
             <p>Kontrol ukuran file dengan atur bitrate. Semakin tinggi, semakin bagus suara tapi file lebih besar.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 -b:a 192k output.mp3</code></pre>
             </div>
-            <h2 id="normalize-audio">🔊 Normalize Audio</h2>
+            <h2 id="normalize-audio">&#x1f50a; Normalize Audio</h2>
             <p>Menyelaraskan tingkat volume seluruh berkas, guna menghindari intensitas suara yang terlalu tinggi atau rendah.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
-                <pre><code>ffmpeg -i input.mp3 -af "loudnorm" output.mp3</code></pre>
+                <pre><code>ffmpeg -i input.mp3 -af &quot;loudnorm&quot; output.mp3</code></pre>
             </div>
             <img src="https://dalam.web.id/img/thumbs.dreamstime.com/b/video-production-line-icons-editing-color-grading-adding-special-effects-animation-music-movie-vector-set-designs-images-film-159703911.webp" alt="Ikons manipulasi video editing" class="illus">
-            <h2 id="trim-video">✂️ Trim Video</h2>
+            <h2 id="trim-video">&#x2702;&#xfe0f; Trim Video</h2>
             <p>Potong bagian video tanpa re-encode (cepet!), dari detik 10 sampai 20.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</code></pre>
             </div>
-            <h2 id="resize-video">🖼️ Resize Video</h2>
+            <h2 id="resize-video">&#x1f5bc;&#xfe0f; Resize Video</h2>
             <p>Ubah resolusi video, misalnya ke 720p.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</code></pre>
             </div>
-            <h2 id="extract-audio">🔊 Extract Audio dari Video</h2>
+            <h2 id="extract-audio">&#x1f50a; Extract Audio dari Video</h2>
             <p>Ambil suara doang dari video, jadi file MP3.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</code></pre>
             </div>
-            <h2 id="mp4-webm">🔄 Convert MP4 → WebM</h2>
+            <h2 id="mp4-webm">&#x1f504; Convert MP4 &#x2192; WebM</h2>
             <p>WebM bagus buat web, lebih efisien.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</code></pre>
             </div>
-            <h2 id="batch-video">🔄 Batch Convert Video</h2>
+            <h2 id="batch-video">&#x1f504; Batch Convert Video</h2>
             <p>Ubah semua file MOV jadi MP4 sekaligus.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
-                <pre><code>for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -crf 23 -c:a aac "${f%.mov}.mp4"; done</code></pre>
+                <pre><code>for f in *.mov; do ffmpeg -i &quot;&#x24;f&quot; -c:v libx264 -crf 23 -c:a aac &quot;&#x24;{f%.mov}.mp4&quot;; done</code></pre>
             </div>
-            <h2>💡 Tips Bonus FFmpeg</h2>
+            <h2>&#x1f4a1; Tips Bonus FFmpeg</h2>
             <ul>
-                <li><strong>Info file:</strong> <code>ffmpeg -i input.mp4</code> – Lihat detail codec, resolusi, dll. 📋</li>
-                <li><strong>Compress video:</strong> <code>ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4</code> – CRF越高, file越小 (tapi kualitas turun).</li>
-                <li><strong>Tambah subtitle:</strong> <code>ffmpeg -i input.mp4 -vf subtitles=subs.srt output.mp4</code> 📝</li>
+                <li><strong>Info file:</strong> <code>ffmpeg -i input.mp4</code> &#x2013; Lihat detail codec, resolusi, dll. &#x1f4cb;</li>
+                <li><strong>Compress video:</strong> <code>ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4</code> &#x2013; CRF&#x8d8a;&#x9ad8;, file&#x8d8a;&#x5c0f; (tapi kualitas turun).</li>
+                <li><strong>Tambah subtitle:</strong> <code>ffmpeg -i input.mp4 -vf subtitles=subs.srt output.mp4</code> &#x1f4dd;</li>
             </ul>
-            <p>Selesai sudah panduannya! Anda dapat melakukan pengujian terhadap deretan perintah tersebut melalui antarmuka terminal guna mengonfirmasi fungsionalitasnya. Kalau ada yang bingung atau mau request command lain, komentar aja di bawah. Happy encoding bro! 🔥🎉</p>
+            <p>Selesai sudah panduannya! Anda dapat melakukan pengujian terhadap deretan perintah tersebut melalui antarmuka terminal guna mengonfirmasi fungsionalitasnya. Kalau ada yang bingung atau mau request command lain, komentar aja di bawah. Happy encoding bro! &#x1f525;&#x1f389;</p>
         </main>
    <div id="related-articles-grid">
             <p style="text-align:center; color:var(--muted);">Komentar bakal muncul di sini...</p>
@@ -212,8 +212,8 @@
             </div>
         <footer>
             <p>Artikel informatif, bukan tutorial resmi. Selalu backup file sebelum oprek ya!</p>
-            <p>🄯 Layar Kosong • 2025</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; Layar Kosong &#x2022; 2025</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
     <script>
         // Copy button
@@ -227,4 +227,7 @@
             });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

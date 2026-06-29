@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Robocopy">
     <meta property="article:tag" content="Backup Windows">
     <meta property="article:tag" content="Task Scheduler">
@@ -315,7 +315,7 @@
 <div class="container">
   <!-- HEADER -->
   <header>
-    <div id="iposbrowser"></div><h1><i class="fa-solid fa-copy" style="margin-right: 14px;"></i>📋 Panduan Lengkap Robocopy untuk Sync, Backup, dan Optimasi</h1>
+    <div id="iposbrowser"></div><h1><i class="fa-solid fa-copy" style="margin-right: 14px;"></i>&#x1f4cb; Panduan Lengkap Robocopy untuk Sync, Backup, dan Optimasi</h1>
     <p style="font-size: 1.15rem;"><i class="fa-solid fa-info-circle"></i> Halaman ini menggabungkan seluruh percakapan: sintaks Robocopy, solusi error auditing, opsi yang direkomendasikan, file .bat, penjadwalan Task Scheduler, perbandingan dengan rsync, optimasi performa, dan pertimbangan transfer lewat WLAN.</p>
   </header>
   <!-- GAMBAR THUMBNAIL (sesuai instruksi) -->
@@ -324,7 +324,7 @@
   </div>
   <!-- OUTLINE / DAFTAR ISI TAMBAHAN (tidak meringkas, justru melengkapi) -->
   <div class="outline-box">
-    <h3><i class="fa-solid fa-list-ul"></i> 📌 Outline Artikel (5W+1H &amp; Struktur)</h3>
+    <h3><i class="fa-solid fa-list-ul"></i> &#x1f4cc; Outline Artikel (5W+1H &amp; Struktur)</h3>
     <ul class="fa-ul">
       <li><i class="fa-li fa-solid fa-check-circle"></i><strong>Apa (What):</strong> Robocopy &amp; fungsinya</li>
       <li><i class="fa-li fa-solid fa-check-circle"></i><strong>Siapa (Who):</strong> Admin sistem, IT support, pengguna Windows</li>
@@ -337,12 +337,12 @@
   </div>
   <!-- RINGKASAN PERCAKAPAN -->
   <section>
-    <h2><i class="fa-solid fa-comments"></i> 💬 Ringkasan Percakapan</h2>
+    <h2><i class="fa-solid fa-comments"></i> &#x1f4ac; Ringkasan Percakapan</h2>
     <p>Topik yang dibahas meliputi: penulisan sintaks Robocopy yang benar untuk UNC share, mengatasi error terkait auditing (/COPYALL), memilih opsi untuk hanya menyalin file tanpa menimpa file yang lebih baru, menjalankan beberapa perintah Robocopy dalam satu .bat, perbandingan Robocopy vs rsync, pilihan menjalankan .bat lewat CMD atau PowerShell, serta optimasi performa untuk banyak file dan file besar lewat WLAN.</p>
   </section>
   <!-- 5W+1H SECTION (lebih detail) -->
   <section>
-    <h2><i class="fa-solid fa-question-circle"></i> 🔍 Robocopy dengan 5W+1H (Bahasa Santai)</h2>
+    <h2><i class="fa-solid fa-question-circle"></i> &#x1f50d; Robocopy dengan 5W+1H (Bahasa Santai)</h2>
     <h3><i class="fa-solid fa-tag"></i> Apa itu Robocopy?</h3>
     <p>Robocopy (Robust File Copy) adalah tool command-line bawaan Windows yang super tangguh untuk menyalin file dan folder. Bisa mirroring, multi-threading, dan tahan banting kalau koneksi putus.</p>
     <h3><i class="fa-solid fa-user"></i> Siapa yang butuh?</h3>
@@ -354,23 +354,23 @@
     <h3><i class="fa-solid fa-exclamation"></i> Mengapa pilih Robocopy?</h3>
     <p>Karena gratis, sudah include di Windows, mendukung multi-thread (/MT), dan bisa ngopi atribut file dengan presisi. Jauh lebih powerful daripada copy biasa.</p>
     <h3><i class="fa-solid fa-cogs"></i> Bagaimana cara pakainya?</h3>
-    <p>Tinggal ketik <code>robocopy sumber tujuan [opsi]</code>. Contoh lengkapnya ada di bawah ini 👇</p>
+    <p>Tinggal ketik <code>robocopy sumber tujuan [opsi]</code>. Contoh lengkapnya ada di bawah ini &#x1f447;</p>
   </section>
   <!-- PERINTAH ROBICOPY DIREKOMENDASIKAN -->
   <section>
-    <h2><i class="fa-solid fa-terminal"></i> ⚙️ Perintah Robocopy yang Direkomendasikan</h2>
+    <h2><i class="fa-solid fa-terminal"></i> &#x2699;&#xfe0f; Perintah Robocopy yang Direkomendasikan</h2>
     <h3>Perintah dasar sesuai kebutuhan Anda</h3>
-    <pre><code>robocopy "\\192.168.9.166\Lokasi Awal\Folder Target" "C:\Users\Server\Documents\Tujuan\Folder Target" /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16</code></pre>
-    <h3>📘 Penjelasan opsi penting</h3>
+    <pre><code>robocopy &quot;\\192.168.9.166\Lokasi Awal\Folder Target&quot; &quot;C:\Users\Server\Documents\Tujuan\Folder Target&quot; /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16</code></pre>
+    <h3>&#x1f4d8; Penjelasan opsi penting</h3>
     <ul class="fa-ul">
     <li><i class="fa-li fa-solid fa-angle-right"></i><strong>Pastikan</strong> nama folder sumber dan folder tujuan harus sama.</li>
-      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/E</strong> — salin semua subfolder termasuk yang kosong.</li>
-      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/XO</strong> — exclude older; jangan timpa file di destination yang lebih baru.</li>
-      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/W:0</strong> — waktu tunggu 0 detik sebelum retry.</li>
-      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/R:0</strong> — tidak ada retry; file yang gagal langsung dilewati.</li>
-      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/COPY:DAT</strong> — hanya salin Data, Attributes, Timestamp (tanpa ACL, owner, auditing).</li>
-      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/DCOPY:DAT</strong> — salin atribut folder dasar.</li>
-      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/MT:16</strong> — multi-threading 16 thread untuk percepatan (sesuaikan).</li>
+      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/E</strong> &#x2014; salin semua subfolder termasuk yang kosong.</li>
+      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/XO</strong> &#x2014; exclude older; jangan timpa file di destination yang lebih baru.</li>
+      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/W:0</strong> &#x2014; waktu tunggu 0 detik sebelum retry.</li>
+      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/R:0</strong> &#x2014; tidak ada retry; file yang gagal langsung dilewati.</li>
+      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/COPY:DAT</strong> &#x2014; hanya salin Data, Attributes, Timestamp (tanpa ACL, owner, auditing).</li>
+      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/DCOPY:DAT</strong> &#x2014; salin atribut folder dasar.</li>
+      <li><i class="fa-li fa-solid fa-angle-right"></i><strong>/MT:16</strong> &#x2014; multi-threading 16 thread untuk percepatan (sesuaikan).</li>
     </ul>
     <div class="note">
       <i class="fa-solid fa-sticky-note"></i> <strong>Catatan</strong>: Hindari <strong>/COPYALL</strong> jika Anda tidak memiliki hak Manage Auditing and Security Log; gunakan <strong>/COPY:DAT</strong> untuk menghindari error auditing.
@@ -378,7 +378,7 @@
   </section>
   <!-- ERROR AUDITING -->
   <section>
-    <h2><i class="fa-solid fa-exclamation-triangle"></i> 🚨 Menangani Error Auditing</h2>
+    <h2><i class="fa-solid fa-exclamation-triangle"></i> &#x1f6a8; Menangani Error Auditing</h2>
     <p>Jika muncul pesan:</p>
     <pre><code>ERROR : You do not have the Manage Auditing user right.
 You need this to copy auditing information (/COPY:U or /COPYALL).</code></pre>
@@ -391,13 +391,13 @@ You need this to copy auditing information (/COPY:U or /COPYALL).</code></pre>
   </section>
   <!-- FILE BATCH -->
   <section>
-    <h2><i class="fa-solid fa-file-code"></i> 📄 File Batch (.bat) dengan Beberapa Perintah Robocopy</h2>
+    <h2><i class="fa-solid fa-file-code"></i> &#x1f4c4; File Batch (.bat) dengan Beberapa Perintah Robocopy</h2>
     <p>Contoh file <code>backup.bat</code> yang menjalankan dua perintah Robocopy berurutan dan menulis log terpisah:</p>
     <pre><code>@echo off
 rem Backup 1
-robocopy "\\192.168.9.166\Lokasi Awal\Folder Target" "C:\Users\Server\Documents\Tujuan\Folder Target" /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG:C:\Logs\robocopy_1backup.log
+robocopy &quot;\\192.168.9.166\Lokasi Awal\Folder Target&quot; &quot;C:\Users\Server\Documents\Tujuan\Folder Target&quot; /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG:C:\Logs\robocopy_1backup.log
 rem Backup 2
-robocopy "\\192.168.9.166\Lokasi Awal\Nama Folder Harus Sama" "C:\Users\Server\Documents\Tujuan\Nama Folder Harus Sama" /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG:C:\Logs\robocopy_2backup.log
+robocopy &quot;\\192.168.9.166\Lokasi Awal\Nama Folder Harus Sama&quot; &quot;C:\Users\Server\Documents\Tujuan\Nama Folder Harus Sama&quot; /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG:C:\Logs\robocopy_2backup.log
 echo Semua backup selesai!
 pause</code></pre>
     <ul class="fa-ul">
@@ -408,25 +408,25 @@ pause</code></pre>
   </section>
   <!-- TIMESTAMP LOG -->
   <section>
-    <h2><i class="fa-solid fa-clock"></i> 🕒 Menambahkan Timestamp ke Log</h2>
+    <h2><i class="fa-solid fa-clock"></i> &#x1f552; Menambahkan Timestamp ke Log</h2>
     <p>Contoh menambahkan header waktu ke file log per-run:</p>
     <pre><code>@echo off
 set LOGDIR=C:\Logs
 set LOGFILE=%LOGDIR%\robocopy_all_%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%.log
-if not exist "%LOGDIR%" mkdir "%LOGDIR%"
-echo ============================== &gt;&gt; "%LOGFILE%"
-echo Run at %date% %time% &gt;&gt; "%LOGFILE%"
-echo ============================== &gt;&gt; "%LOGFILE%"
-robocopy "\\192.168.9.166\Lokasi Awal\Folder Target" "C:\Users\Server\Documents\Tujuan\Folder Target" /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG+:"%LOGFILE%"
-robocopy "\\192.168.9.166\Lokasi Awal\Nama Folder Harus Sama" "C:\Users\Server\Documents\Tujuan\Nama Folder Harus Sama" /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG+:"%LOGFILE%"
-echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
+if not exist &quot;%LOGDIR%&quot; mkdir &quot;%LOGDIR%&quot;
+echo ============================== &gt;&gt; &quot;%LOGFILE%&quot;
+echo Run at %date% %time% &gt;&gt; &quot;%LOGFILE%&quot;
+echo ============================== &gt;&gt; &quot;%LOGFILE%&quot;
+robocopy &quot;\\192.168.9.166\Lokasi Awal\Folder Target&quot; &quot;C:\Users\Server\Documents\Tujuan\Folder Target&quot; /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG+:&quot;%LOGFILE%&quot;
+robocopy &quot;\\192.168.9.166\Lokasi Awal\Nama Folder Harus Sama&quot; &quot;C:\Users\Server\Documents\Tujuan\Nama Folder Harus Sama&quot; /E /XO /W:0 /R:0 /COPY:DAT /DCOPY:DAT /MT:16 /LOG+:&quot;%LOGFILE%&quot;
+echo Selesai pada %date% %time% &gt;&gt; &quot;%LOGFILE%&quot;</code></pre>
     <div class="ok">
       <i class="fa-solid fa-globe"></i> <strong>Perhatian</strong>: Format parsing <code>%date%</code> dan <code>%time%</code> bergantung regional Windows; sesuaikan jika perlu.
     </div>
   </section>
   <!-- TASK SCHEDULER -->
   <section>
-    <h2><i class="fa-solid fa-calendar-check"></i> 📅 Menjadwalkan Backup dengan Task Scheduler</h2>
+    <h2><i class="fa-solid fa-calendar-check"></i> &#x1f4c5; Menjadwalkan Backup dengan Task Scheduler</h2>
     <h3>Langkah singkat</h3>
     <ol>
       <li>Buka Task Scheduler: tekan <strong>Win + R</strong>, ketik <code>taskschd.msc</code>, tekan Enter.</li>
@@ -448,7 +448,7 @@ echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
   </section>
   <!-- PERBANDINGAN ROBICOPY VS RSYNC -->
   <section>
-    <h2><i class="fa-solid fa-balance-scale"></i> ⚖️ Perbandingan Robocopy dan Rsync (Singkat)</h2>
+    <h2><i class="fa-solid fa-balance-scale"></i> &#x2696;&#xfe0f; Perbandingan Robocopy dan Rsync (Singkat)</h2>
     <div class="table-wrapper">
       <table>
         <thead>
@@ -467,7 +467,7 @@ echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
   </section>
   <!-- OPTIMASI PERFORMA -->
   <section>
-    <h2><i class="fa-solid fa-tachometer-alt"></i> 🚀 Optimasi Performa Robocopy untuk Banyak Folder dan File</h2>
+    <h2><i class="fa-solid fa-tachometer-alt"></i> &#x1f680; Optimasi Performa Robocopy untuk Banyak Folder dan File</h2>
     <h3>Ringkasan singkat</h3>
     <p>Fokus optimasi: <strong>paralelisasi I/O</strong>, <strong>mengurangi overhead logging/console</strong>, dan <strong>menghindari opsi yang memperlambat</strong> (mis. /Z). Berikut tabel perbandingan opsi yang memengaruhi kecepatan.</p>
     <div class="table-wrapper">
@@ -495,17 +495,17 @@ echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
     </ol>
     <h3>Contoh perintah dioptimalkan</h3>
     <p><strong>Banyak file kecil (paralel):</strong></p>
-    <pre><code>robocopy "\\192.168.9.166\Lokasi Awal\Folder Target" "C:\Users\Server\Documents\Tujuan\Folder Target" /E /XO /MT:16 /R:0 /W:0 /COPY:DAT /DCOPY:DAT /NFL /NDL /NP /NJH /NJS /LOG:C:\Logs\robocopy_store.log</code></pre>
+    <pre><code>robocopy &quot;\\192.168.9.166\Lokasi Awal\Folder Target&quot; &quot;C:\Users\Server\Documents\Tujuan\Folder Target&quot; /E /XO /MT:16 /R:0 /W:0 /COPY:DAT /DCOPY:DAT /NFL /NDL /NP /NJH /NJS /LOG:C:\Logs\robocopy_store.log</code></pre>
     <p><strong>File sangat besar (unbuffered I/O):</strong></p>
-    <pre><code>robocopy "\\192.168.9.166\Data\LargeFiles" "D:\Backup\LargeFiles" /E /XO /J /R:1 /W:1 /COPY:DAT /DCOPY:DAT /NFL /NDL /NP /LOG:D:\Logs\robocopy_large.log</code></pre>
+    <pre><code>robocopy &quot;\\192.168.9.166\Data\LargeFiles&quot; &quot;D:\Backup\LargeFiles&quot; /E /XO /J /R:1 /W:1 /COPY:DAT /DCOPY:DAT /NFL /NDL /NP /LOG:D:\Logs\robocopy_large.log</code></pre>
     <div class="warn">
       <i class="fa-solid fa-microchip"></i> <strong>Catatan penting</strong>: Terlalu banyak thread (/MT terlalu tinggi) dapat menyebabkan I/O contention. Sesuaikan berdasarkan hasil uji dan pemantauan sumber daya.
     </div>
   </section>
   <!-- FILE BESAR WLAN -->
   <section>
-    <h2><i class="fa-solid fa-wifi"></i> 📶 Apakah 2 GB Termasuk File Besar untuk WLAN?</h2>
-    <p>Secara praktis, <strong>2 GB tergolong file besar untuk transfer lewat WLAN</strong>, tetapi apakah terasa lama bergantung pada kecepatan Wi‑Fi, kondisi jaringan, dan perangkat keras.</p>
+    <h2><i class="fa-solid fa-wifi"></i> &#x1f4f6; Apakah 2 GB Termasuk File Besar untuk WLAN?</h2>
+    <p>Secara praktis, <strong>2 GB tergolong file besar untuk transfer lewat WLAN</strong>, tetapi apakah terasa lama bergantung pada kecepatan Wi&#x2011;Fi, kondisi jaringan, dan perangkat keras.</p>
     <h3>Perkiraan waktu transfer (estimasi teoretis)</h3>
     <div class="table-wrapper">
       <table>
@@ -517,7 +517,7 @@ echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
     </div>
     <h3>Faktor yang memengaruhi kecepatan nyata</h3>
     <ul>
-      <li>Standar Wi‑Fi (802.11n/ac/ax) dan kualitas sinyal.</li>
+      <li>Standar Wi&#x2011;Fi (802.11n/ac/ax) dan kualitas sinyal.</li>
       <li>Interferensi, jarak, dan jumlah perangkat di jaringan.</li>
       <li>Overhead SMB/Windows dan enkripsi.</li>
       <li>Antivirus yang memindai file saat transfer.</li>
@@ -535,14 +535,14 @@ echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
   </section>
   <!-- TAMBAHAN PRAKTIS -->
   <section>
-    <h2><i class="fa-solid fa-toolbox"></i> 🧰 Tambahan Praktis dan Troubleshooting</h2>
+    <h2><i class="fa-solid fa-toolbox"></i> &#x1f9f0; Tambahan Praktis dan Troubleshooting</h2>
     <ul class="fa-ul">
       <li><i class="fa-li fa-solid fa-user-lock"></i>Jika UNC share memerlukan kredensial, jalankan task dengan akun yang memiliki akses atau buat skrip untuk memetakan drive sebelum robocopy.</li>
       <li><i class="fa-li fa-solid fa-hourglass-half"></i>Gunakan <code>/TBD</code> jika share name belum tersedia dan Anda ingin menunggu definisi share.</li>
       <li><i class="fa-li fa-solid fa-trash-alt"></i>Untuk sinkronisasi penuh (termasuk menghapus file di destination yang tidak ada di source), gunakan <code>/MIR</code> dengan hati-hati (akan menghapus file di destination).</li>
       <li><i class="fa-li fa-solid fa-flask"></i>Selalu uji skrip pada subset data sebelum menjalankan pada seluruh dataset produksi.</li>
     </ul>
-    <p style="margin-top:10px;">💡 <em>Tips: Gunakan /MT dan /J secara bijak. Backup rutin lebih aman dengan log.</em></p>
+    <p style="margin-top:10px;">&#x1f4a1; <em>Tips: Gunakan /MT dan /J secara bijak. Backup rutin lebih aman dengan log.</em></p>
   </section>
   <!-- DIV related-articles-grid dan response (sesuai instruksi) -->
   <div id="related-articles-grid">
@@ -552,6 +552,9 @@ echo Selesai pada %date% %time% &gt;&gt; "%LOGFILE%"</code></pre>
   <!-- FOOTER -->
   <footer>
     <p><i class="fa-regular fa-copy"></i> Halaman ini menggabungkan seluruh penjelasan yang telah dibahas. Uji setiap perintah di lingkungan Anda dan sesuaikan opsi berdasarkan hasil pengujian dan pemantauan sumber daya.</p>
-           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div> <!-- end container -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

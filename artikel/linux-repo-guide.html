@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-20T17:39:23.746Z">
     <meta property="article:modified_time" content="2026-06-26T19:54:00.147Z">
     <meta name="prompthint" content="Panduan teknis konfigurasi mirror tercepat untuk berbagai distribusi Linux dengan optimasi geografis.">
@@ -193,31 +193,31 @@
         <p style="color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 3px;">
             <i class="fa-solid fa-terminal"></i> Linux Sysadmin Guide
         </p>
-        <div id="iposbrowser"></div><h1>Panduan Memilih Repository Linux Tercepat ⚡</h1>
+        <div id="iposbrowser"></div><h1>Panduan Memilih Repository Linux Tercepat &#x26a1;</h1>
         <p style="opacity: 0.7; font-size: 1.2rem;">Optimasi Update &amp; Instalasi Paket untuk Pejuang Open Source Indonesia</p>
     </header>
     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgC4YbKwRZfHm9yzCytaTy9p9N0YAk-k7t3ZErZOH4Y666Ov8Uu1nYVhGWTXWwjoPlTrr3f4PTR2PO2PnnovZSXn5SbOEW7p29Kjdg5HR7O8MfnYK0XIJDPs_5gVy1PKnysoaGIxAypdHI3F8Mt2za-aB1y7IPMGeo57Ai1hqQLVdS9Sa3iv0xOT39bjZI/s1600/MemilihRepositoryLinuxTercepat.webp" alt="Linux Repo Banner" class="featured-img">
     <div class="narasi-santai">
         <i class="fa-solid fa-quote-left" style="font-size: 2rem; opacity: 0.2; display: block; margin-bottom: 10px;"></i>
-        Halo teman-teman di <strong>Layar Kosong</strong>! Pernah tidak sih lagi asyik mau install <code>neofetch</code> atau update sistem, eh malah dapet kecepatan "siput" cuma beberapa KBps? Padahal internet di Balikpapan lagi kenceng-kencengnya. <br><br>
+        Halo teman-teman di <strong>Layar Kosong</strong>! Pernah tidak sih lagi asyik mau install <code>neofetch</code> atau update sistem, eh malah dapet kecepatan &quot;siput&quot; cuma beberapa KBps? Padahal internet di Balikpapan lagi kenceng-kencengnya. <br><br>
         Nah, masalahnya biasanya bukan di ISP kamu, tapi di <strong>Mirror Repository</strong> yang kamu pake. Secara default, Linux seringkali nge-set mirror global (US atau Eropa). Di artikel ini, saya bakal kasih tau rahasia milih server terdekat biar <code>sudo apt update</code> kamu secepat kilat!
     </div>
     <section>
         <h2 id="debian-family"><i class="fa-brands fa-ubuntu"></i> Keluarga Debian &amp; Ubuntu</h2>
         <p>Keluarga ini adalah yang paling populer. Mereka pakai manajer paket <strong>APT</strong>. Masalahnya, mirror default sering kena limit bandwidth kalau lagi jam sibuk.</p>
         <div class="note-box">
-            <strong>💡 Tips Balikpapan:</strong> Pilihlah mirror lokal Indonesia seperti milik <em>DataUtama</em>, <em>Kambing UI</em>, atau <em>Poliwangi</em>.
+            <strong>&#x1f4a1; Tips Balikpapan:</strong> Pilihlah mirror lokal Indonesia seperti milik <em>DataUtama</em>, <em>Kambing UI</em>, atau <em>Poliwangi</em>.
         </div>
         <p>Untuk Ubuntu, kamu bisa pakai cara keren lewat terminal untuk otomatis cari yang tercepat:</p>
         <div style="position: relative;">
             <button class="copy-btn">Salin</button>
             <pre><code class="language-bash"># Cari mirror tercepat di Indonesia
-sudo sed -i 's|http://archive.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|g' /etc/apt/sources.list</code></pre>
+sudo sed -i &apos;s|http://archive.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|g&apos; /etc/apt/sources.list</code></pre>
         </div>
     </section>
     <section>
         <h2 id="arch-family"><i class="fa-solid fa-archway"></i> Arch Linux &amp; Manjaro</h2>
-        <p>Arch Linux itu "Rolling Release", jadi update-nya sering banget dan gede-gede. Kalau mirror kamu lemot, bisa emosi jiwa nungguinnya.</p>
+        <p>Arch Linux itu &quot;Rolling Release&quot;, jadi update-nya sering banget dan gede-gede. Kalau mirror kamu lemot, bisa emosi jiwa nungguinnya.</p>
         <p>Gunakan tool sakti bernama <code>reflector</code>. Tool ini bakal ngetes ping ke semua mirror dan milihin yang paling segar buat kamu.</p>
         <div style="position: relative;">
             <button class="copy-btn">Salin</button>
@@ -237,23 +237,23 @@ sudo reflector --country Indonesia,Singapore --latest 10 --sort rate --save /etc
         <h2 id="kesimpulan"><i class="fa-solid fa-flag-checkered"></i> Kesimpulan Akhir</h2>
         <p>Memilih repository itu ibarat milih jalan tol. Kalau ada yang dekat dan kosong, ngapain lewat yang jauh dan macet? Jangan lupa untuk selalu melakukan <code>sync</code> ulang setelah ganti mirror ya!</p>
         <div class="narasi-santai" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.1);">
-            <strong>Catatan Penutup:</strong> Selalu pastikan mirror yang kamu pakai itu HTTPS ya biar lebih aman dari serangan man-in-the-middle. Selamat melakukan penyesuaian teknis di Balikpapan! ☕
+            <strong>Catatan Penutup:</strong> Selalu pastikan mirror yang kamu pakai itu HTTPS ya biar lebih aman dari serangan man-in-the-middle. Selamat melakukan penyesuaian teknis di Balikpapan! &#x2615;
         </div>
     </section>
                <div id="related-articles-grid"></div>
             <div id="response"></div>
     <footer>
-        <p>🄯 2025 <strong>Layar Kosong</strong> - Fakhrul Rijal</p>
+        <p>&#x1f12f; 2025 <strong>Layar Kosong</strong> - Fakhrul Rijal</p>
         <p style="font-size: 0.9rem; opacity: 0.6;">Dibuat dengan semangat Open Source dari Balikpapan untuk Indonesia.</p>
         <div style="margin-top: 20px;">
             <a href="https://facebook.com/frijal" style="margin: 0 10px; color: inherit; text-decoration: none;"><i class="fa-brands fa-facebook"></i></a>
             <a href="https://github.com/frijal" style="margin: 0 10px; color: inherit; text-decoration: none;"><i class="fa-brands fa-github"></i></a>
             <a href="https://t.me/frijal" style="margin: 0 10px; color: inherit; text-decoration: none;"><i class="fa-brands fa-telegram"></i></a>
         </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js" defer=""></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-bash.min.js" defer=""></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-bash.min.js" defer></script>
 <script>
     // Fungsi Copy Code yang simpel
     document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -265,4 +265,7 @@ sudo reflector --country Indonesia,Singapore --latest 10 --sort rate --save /etc
         });
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

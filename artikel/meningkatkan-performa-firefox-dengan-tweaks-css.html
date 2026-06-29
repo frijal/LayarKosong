@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Firefox">
     <meta property="article:tag" content="Performa">
     <meta property="article:tag" content="Optimasi">
@@ -251,11 +251,11 @@
         <img src="https://dalam.web.id/img/pbs.twimg.com/755f42d7e3e39287.webp" alt="Ilustrasi tweak CSS untuk performa Firefox" loading="eager" width="1000" height="525">
     </div>
     <p>Artikel ini akan membahas <strong>tweaks CSS</strong> yang fokus pada performa, berdasarkan prinsip 5W+1H dan pengalaman komunitas (E-E-A-T). Siap membuat Firefox lebih ringan? Yuk!</p>
-    <h2>⚙️ Persiapan: Aktifkan userChrome.css</h2>
+    <h2>&#x2699;&#xfe0f; Persiapan: Aktifkan userChrome.css</h2>
     <div class="highlight">
         <i class="fa-solid fa-check-circle"></i> Pastikan kamu sudah mengaktifkan fitur custom stylesheet di <code>about:config</code> dengan mengubah <code>toolkit.legacyUserProfileCustomizations.stylesheets</code> menjadi <strong>true</strong>. Lalu buat folder <strong>chrome</strong> di folder profil Firefox, dan file <strong>userChrome.css</strong> di dalamnya. Untuk tweak konten web, buat juga file <strong>userContent.css</strong> di folder yang sama. Restart setelah perubahan.
     </div>
-    <h2>🚀 10 Tweaks CSS untuk Performa Maksimal</h2>
+    <h2>&#x1f680; 10 Tweaks CSS untuk Performa Maksimal</h2>
     <div class="css-card">
         <h4><i class="fa-solid fa-ban"></i> 1. Matikan Semua Animasi &amp; Transisi</h4>
         <p>Menonaktifkan animasi UI secara global. Ini efek paling signifikan untuk performa.</p>
@@ -371,7 +371,7 @@ scrollbar thumb {
 }</code></pre>
         </div>
     </div>
-    <h2>🌐 Tweak Tambahan: userContent.css untuk Halaman Web</h2>
+    <h2>&#x1f310; Tweak Tambahan: userContent.css untuk Halaman Web</h2>
     <p>Buat file <strong>userContent.css</strong> di folder chrome yang sama, lalu tambahkan kode berikut untuk mematikan animasi di semua situs web. Ini sangat membantu saat browsing di situs yang berat.</p>
     <div class="code-block">
         <pre><code>/* Matikan animasi di semua situs web (pakai hati-hati) */
@@ -383,42 +383,45 @@ scrollbar thumb {
 }</code></pre>
     </div>
     <p>Kode di atas akan membuat semua situs kehilangan efek animasi, namun bisa mengganggu pengalaman di beberapa situs yang mengandalkan animasi (misalnya efek hover). Jika perlu, kamu bisa mengecualikan domain tertentu.</p>
-    <h2>🔧 Kombinasi dengan about:config untuk Performa Lebih Lanjut</h2>
+    <h2>&#x1f527; Kombinasi dengan about:config untuk Performa Lebih Lanjut</h2>
     <p>Selain CSS, kamu juga bisa mengubah beberapa pengaturan di about:config untuk mempercepat Firefox:</p>
     <ul>
-        <li><code>layers.acceleration.disabled</code> → <strong>false</strong> (aktifkan akselerasi hardware jika GPU mendukung)</li>
-        <li><code>gfx.webrender.all</code> → <strong>true</strong> (gunakan WebRender untuk rendering lebih efisien)</li>
-        <li><code>browser.tabs.animate</code> → <strong>false</strong> (nonaktifkan animasi buka/tutup tab)</li>
-        <li><code>ui.prefersReducedMotion</code> → <strong>1</strong> (beri tahu sistem untuk mengurangi animasi)</li>
+        <li><code>layers.acceleration.disabled</code> &#x2192; <strong>false</strong> (aktifkan akselerasi hardware jika GPU mendukung)</li>
+        <li><code>gfx.webrender.all</code> &#x2192; <strong>true</strong> (gunakan WebRender untuk rendering lebih efisien)</li>
+        <li><code>browser.tabs.animate</code> &#x2192; <strong>false</strong> (nonaktifkan animasi buka/tutup tab)</li>
+        <li><code>ui.prefersReducedMotion</code> &#x2192; <strong>1</strong> (beri tahu sistem untuk mengurangi animasi)</li>
     </ul>
     <div class="note-box">
         <i class="fa-solid fa-info-circle"></i> Perubahan di about:config membutuhkan restart. Kombinasikan dengan tweak CSS untuk hasil maksimal.
     </div>
-    <h2>📊 Pengujian: Seberapa Besar Pengaruhnya?</h2>
+    <h2>&#x1f4ca; Pengujian: Seberapa Besar Pengaruhnya?</h2>
     <p>Pada perangkat dengan i5-7400, GT 730, dan RAM 8GB, setelah menerapkan tweak di atas, penggunaan CPU idle turun dari 5-8% menjadi 2-3%, dan UI terasa lebih responsif saat membuka banyak tab. Efek paling terasa pada laptop dengan grafis terintegrasi atau GPU lawas. </p>
-    <h2>⚠️ Hal yang Perlu Diperhatikan</h2>
+    <h2>&#x26a0;&#xfe0f; Hal yang Perlu Diperhatikan</h2>
     <ul>
         <li>Beberapa tweak seperti <code>transition: none</code> bisa membuat efek hover pada tombol hilang. Kamu bisa sesuaikan sesuai kebutuhan.</li>
         <li>Jika menggunakan tema gelap, pastikan warna latar yang kamu set tetap kontras.</li>
         <li>Backup file <code>userChrome.css</code> dan <code>userContent.css</code> sebelum update Firefox besar, karena kadang ada perubahan struktur UI.</li>
     </ul>
-    <h2>🧠 5W+1H: Memahami Tweaks CSS untuk Performa</h2>
+    <h2>&#x1f9e0; 5W+1H: Memahami Tweaks CSS untuk Performa</h2>
     <ul>
-        <li><strong>What (Apa itu tweak CSS performa?)</strong> – Kode CSS yang ditempatkan di userChrome.css (untuk antarmuka) dan userContent.css (untuk halaman web) untuk mengurangi beban grafis, mematikan animasi, dan menyederhanakan tampilan browser.</li>
-        <li><strong>Why (Mengapa perlu?)</strong> – Animasi, transparansi, dan efek bayangan memakan CPU/GPU. Di laptop dengan i5-7400, GT 730, dan RAM 8GB, efek-efek ini bisa bikin scrolling tidak mulus dan tab switching lambat.</li>
-        <li><strong>Who (Siapa yang bisa melakukannya?)</strong> – Semua pengguna Firefox, terutama yang menggunakan perangkat dengan spesifikasi terbatas atau yang menginginkan browser minimalis super cepat.</li>
-        <li><strong>When (Kapan dilakukan?)</strong> – Kapan saja, terutama setelah install ulang Firefox atau saat merasakan adanya lag pada UI.</li>
-        <li><strong>Where (Di mana menulis?)</strong> – Di file userChrome.css di folder chrome (untuk UI) dan userContent.css (untuk konten web).</li>
-        <li><strong>How (Bagaimana cara kerjanya?)</strong> – Dengan meng-override properti CSS bawaan Firefox, kita bisa menonaktifkan transisi, mengurangi kompleksitas visual, dan mengurangi repaint/ reflow yang berat.</li>
+        <li><strong>What (Apa itu tweak CSS performa?)</strong> &#x2013; Kode CSS yang ditempatkan di userChrome.css (untuk antarmuka) dan userContent.css (untuk halaman web) untuk mengurangi beban grafis, mematikan animasi, dan menyederhanakan tampilan browser.</li>
+        <li><strong>Why (Mengapa perlu?)</strong> &#x2013; Animasi, transparansi, dan efek bayangan memakan CPU/GPU. Di laptop dengan i5-7400, GT 730, dan RAM 8GB, efek-efek ini bisa bikin scrolling tidak mulus dan tab switching lambat.</li>
+        <li><strong>Who (Siapa yang bisa melakukannya?)</strong> &#x2013; Semua pengguna Firefox, terutama yang menggunakan perangkat dengan spesifikasi terbatas atau yang menginginkan browser minimalis super cepat.</li>
+        <li><strong>When (Kapan dilakukan?)</strong> &#x2013; Kapan saja, terutama setelah install ulang Firefox atau saat merasakan adanya lag pada UI.</li>
+        <li><strong>Where (Di mana menulis?)</strong> &#x2013; Di file userChrome.css di folder chrome (untuk UI) dan userContent.css (untuk konten web).</li>
+        <li><strong>How (Bagaimana cara kerjanya?)</strong> &#x2013; Dengan meng-override properti CSS bawaan Firefox, kita bisa menonaktifkan transisi, mengurangi kompleksitas visual, dan mengurangi repaint/ reflow yang berat.</li>
     </ul>
-    <h2>🎯 Kesimpulan</h2>
+    <h2>&#x1f3af; Kesimpulan</h2>
     <p>Dengan sedikit kode CSS, Firefox bisa berubah menjadi browser yang jauh lebih ringan dan cepat. Tweaks ini sangat cocok untuk kamu yang menggunakan perangkat dengan spesifikasi terbatas atau yang ingin pengalaman browsing tanpa gangguan animasi. Selamat mencoba dan rasakan perbedaannya!</p>
     <div id="related-articles-grid">
     </div>
     <div id="response">
     </div>
     <footer>
-        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong — Artikel ini dilisensikan CC0. Dibagikan untuk membantu komunitas mendapatkan performa terbaik dari Firefox. Selalu backup sebelum mencoba tweak.</p>
-           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Layar Kosong &#x2014; Artikel ini dilisensikan CC0. Dibagikan untuk membantu komunitas mendapatkan performa terbaik dari Firefox. Selalu backup sebelum mencoba tweak.</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

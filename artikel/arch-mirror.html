@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-07-13T10:56:13.596Z">
     <meta property="article:modified_time" content="2025-07-13T10:56:13.596Z">
     <meta name="keywords" content="arch linux, mirrorlist, reflector, pacman, optimasi arch, skrip bash, linux cepat">
@@ -271,7 +271,7 @@
         </header>
         <article>
             <p>Skrip <code>arch-mirror.sh</code> ini menggunakan utilitas <code>reflector</code> untuk secara otomatis memilih mirror tercepat untuk sistem Arch Linux Anda. Proses ini penting untuk mempercepat unduhan paket dan pembaruan sistem.</p>
-            <div class="note">⚠️ Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file konfigurasi sistem di <code>/etc/pacman.d/mirrorlist</code>.</div>
+            <div class="note">&#x26a0;&#xfe0f; Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file konfigurasi sistem di <code>/etc/pacman.d/mirrorlist</code>.</div>
             <section class="gallery">
                 <img loading="lazy" src="https://dalam.web.id/img/arch-mirror.webp" alt="Logo Arch Linux">
             </section>
@@ -280,21 +280,21 @@
                 <pre><code id="bashCode">#!/bin/bash
 # arch-mirror.sh - Pilih mirror Arch Linux tercepat secara otomatis
 set -e
-echo "[INFO] Memastikan 'reflector' terinstal..."
+echo &quot;[INFO] Memastikan &apos;reflector&apos; terinstal...&quot;
 sudo pacman -Sy --noconfirm reflector
-echo "[INFO] Mem-backup mirrorlist yang ada..."
+echo &quot;[INFO] Mem-backup mirrorlist yang ada...&quot;
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-echo "[INFO] Mencari 10 mirror terbaru dan tercepat..."
+echo &quot;[INFO] Mencari 10 mirror terbaru dan tercepat...&quot;
 sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
-echo "[INFO] Menyinkronkan ulang database paket..."
+echo &quot;[INFO] Menyinkronkan ulang database paket...&quot;
 sudo pacman -Syy
-echo "[SELESAI] Mirrorlist telah diperbarui dengan server tercepat!"</code><button class="copy-btn" onclick="copyCode()">Copy</button></pre>
+echo &quot;[SELESAI] Mirrorlist telah diperbarui dengan server tercepat!&quot;</code><button class="copy-btn" onclick="copyCode()">Copy</button></pre>
       <div id="related-articles-grid"></div><div id="response"></div>      </section>
     </article>
     </main>
     <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">×</span>
-        <img class="lightbox-content" id="lightbox-img" alt="Gambar - arch-mirror.sh — Pilih Mirror Tercepat (Arch Linux)">
+        <span class="lightbox-close">&#xd7;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gambar - arch-mirror.sh &#x2014; Pilih Mirror Tercepat (Arch Linux)">
     </div>
     <script>
         function copyCode() {
@@ -327,4 +327,7 @@ echo "[SELESAI] Mirrorlist telah diperbarui dengan server tercepat!"</code><butt
             }
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

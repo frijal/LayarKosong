@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2014-11-29T07:20:38.000Z">
     <meta property="article:modified_time" content="2014-11-29T07:20:38.000Z">
 <link href="/ext/vs-dark.min.css" rel="stylesheet">
@@ -111,7 +111,7 @@
 <body>
     <div class="wrap">
         <header class="site">
-            <div class="brand">_&gt; Frijal's Page</div>
+            <div class="brand">_&gt; Frijal&apos;s Page</div>
         </header>
         <main>
             <div class="col">
@@ -127,16 +127,16 @@
                     <h3>Menyimpan output ke file</h3>
                     <pre class="language-bash"><code id="code2">curl -o output.html http://example.com</code><button class="copy-btn" data-target="code2">Salin</button></pre>
                     <h3>Mengirim Header Kustom</h3>
-                    <pre class="language-bash"><code id="code3">curl -H "Authorization: Bearer YOUR_TOKEN" http://api.example.com</code><button class="copy-btn" data-target="code3">Salin</button></pre>
+                    <pre class="language-bash"><code id="code3">curl -H &quot;Authorization: Bearer YOUR_TOKEN&quot; http://api.example.com</code><button class="copy-btn" data-target="code3">Salin</button></pre>
                     <h3>Mengikuti Pengalihan (Redirect)</h3>
                     <pre class="language-bash"><code id="code4">curl -L http://example.com</code><button class="copy-btn" data-target="code4">Salin</button></pre>
                     <h2>Operasi HTTP POST/PUT</h2>
                     <h3>Mengirim data form</h3>
-                    <pre class="language-bash"><code id="code5">curl -X POST -d "key1=val1&amp;key2=val2" http://example.com/form</code><button class="copy-btn" data-target="code5">Salin</button></pre>
+                    <pre class="language-bash"><code id="code5">curl -X POST -d &quot;key1=val1&amp;key2=val2&quot; http://example.com/form</code><button class="copy-btn" data-target="code5">Salin</button></pre>
                     <h3>Mengirim data JSON</h3>
-                    <pre class="language-bash"><code id="code6">curl -X POST -d '{"key":"value"}' -H "Content-Type: application/json" http://api.example.com</code><button class="copy-btn" data-target="code6">Salin</button></pre>
+                    <pre class="language-bash"><code id="code6">curl -X POST -d &apos;{&quot;key&quot;:&quot;value&quot;}&apos; -H &quot;Content-Type: application/json&quot; http://api.example.com</code><button class="copy-btn" data-target="code6">Salin</button></pre>
                     <h3>Mengunggah file</h3>
-                    <pre class="language-bash"><code id="code7">curl -X POST -F "file=@/path/to/yourfile.txt" http://example.com/upload</code><button class="copy-btn" data-target="code7">Salin</button></pre>
+                    <pre class="language-bash"><code id="code7">curl -X POST -F &quot;file=@/path/to/yourfile.txt&quot; http://example.com/upload</code><button class="copy-btn" data-target="code7">Salin</button></pre>
                     <h2>Operasi Unduh File</h2>
                     <h3>Mengunduh dengan nama file asli</h3>
                     <pre class="language-bash"><code id="code8">curl -O http://example.com/file.zip</code><button class="copy-btn" data-target="code8">Salin</button></pre>
@@ -147,13 +147,16 @@
             </div>
         </main>
         <footer class="site">
-            <small>🄯 2025 Frijal's Page · Selamat mencoba dan bereksperimen dengan cURL!</small>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <small>&#x1f12f; 2025 Frijal&apos;s Page &#xb7; Selamat mencoba dan bereksperimen dengan cURL!</small>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a2a2a; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/autoloader/prism-autoloader.min.js" defer></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

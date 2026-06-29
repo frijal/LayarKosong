@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Sysadmin">
     <meta property="article:tag" content="Ubuntu">
@@ -238,7 +238,7 @@
                 Setiap distro Linux mengandalkan jaringan server global yang menduplikasikan paket aplikasi mereka agar beban server utama tidak kelebihan muatan. Siapa pun Anda, baik pengguna kasual desktop maupun administrator server, mengoptimalkan jalur unduhan ini sangat penting demi efisiensi waktu kerja Anda. Cara direkomendasikan untuk menyelesaikan kendala ini adalah dengan mendeteksi dan beralih ke server lokal atau server regional terdekat yang memiliki latensi terendah dan bandwidth terbesar secara otomatis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
             </p>
             <div class="callout">
-                <p><strong>📌 Catatan:</strong> Pastikan Anda menjalankan perintah-perintah di bawah ini menggunakan akses kekuasaan penuh (<code>sudo</code>) agar sistem dapat memodifikasi file konfigurasi utama tanpa kendala perizinan.</p>
+                <p><strong>&#x1f4cc; Catatan:</strong> Pastikan Anda menjalankan perintah-perintah di bawah ini menggunakan akses kekuasaan penuh (<code>sudo</code>) agar sistem dapat memodifikasi file konfigurasi utama tanpa kendala perizinan.</p>
             </div>
             <div class="image-container">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/1f1f3d9b080a1a8a.webp" alt="Logo berbagai distro Linux populer seperti Fedora, openSUSE, Ubuntu, Debian, dan Arch Linux yang mendukung pemilihan otomatis mirror repository tercepat" loading="eager" width="1200" height="630">
@@ -261,7 +261,7 @@
                 Arch Linux terkenal dengan filosofinya yang dinamis. Melalui repositori bawaannya, Anda bisa menggunakan <code>reflector</code>, sebuah skrip Python yang sangat powerful untuk menyaring daftar mirror berdasarkan negara, usia pembaruan terakhir, hingga kecepatan unduhan riil saat itu juga.
             </p>
 <pre><code><span class="token comment"># Pilih 5 mirror terbaru dari Indonesia dan urutkan berdasarkan kecepatan tertinggi</span>
-<span class="token keyword">sudo</span> reflector --country <span class="token string">"Indonesia"</span> --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+<span class="token keyword">sudo</span> reflector --country <span class="token string">&quot;Indonesia&quot;</span> --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 <span class="token comment"># Sinkronkan dan segarkan kembali seluruh basis data paket Anda</span>
 <span class="token keyword">sudo</span> pacman -Syyu</code></pre>
             <h2>3. Fedora (DNF)</h2>
@@ -285,10 +285,13 @@
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <div class="meta-inline">
-                <span>✍️ Kontributor: <a href="https://dalam.web.id" rel="author">Fakhrul Rijal</a></span> |
-                <span>📅 Pembaruan: 14 Juni 2026</span> |
-                <span>📖 Dokumentasi Resmi: <a href="https://wiki.debian.org" target="_blank" rel="noopener">Debian</a> &amp; <a href="https://wiki.archlinux.org" target="_blank" rel="noopener">ArchWiki</a></span>
+                <span>&#x270d;&#xfe0f; Kontributor: <a href="https://dalam.web.id" rel="author">Fakhrul Rijal</a></span> |
+                <span>&#x1f4c5; Pembaruan: 14 Juni 2026</span> |
+                <span>&#x1f4d6; Dokumentasi Resmi: <a href="https://wiki.debian.org" target="_blank" rel="noopener">Debian</a> &amp; <a href="https://wiki.archlinux.org" target="_blank" rel="noopener">ArchWiki</a></span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

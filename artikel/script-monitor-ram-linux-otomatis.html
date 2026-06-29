@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-01-24T04:17:11.623Z">
     <meta property="article:modified_time" content="2026-03-19T15:09:31.379Z">
     <meta name="prompt_hint" content="Artikel tutorial teknis tentang manajemen memori Linux dan otomasi monitoring menggunakan script Bash.">
@@ -155,14 +155,14 @@
         <div class="meta-data">
             <i class="fa-solid fa-microchip"></i> Server Management | <i class="fa-solid fa-calendar-day"></i> 27 Januari 2026
         </div>
-        <div id="iposbrowser"></div><h1>Mencegah Server "Hang": Panduan Script Monitoring RAM Linux Otomatis 🚀</h1>
+        <div id="iposbrowser"></div><h1>Mencegah Server &quot;Hang&quot;: Panduan Script Monitoring RAM Linux Otomatis &#x1f680;</h1>
         <p style="font-size: 1.2rem; opacity: 0.8;">Jangan biarkan OOM Killer membunuh proses aplikasi kamu  secara paksa!</p>
     </header>
     <article class="content">
-        <p>Halo lagi, sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang cerah, kali ini kita bakal bahas sesuatu yang tidak kalah krusial dari urusan disk penuh, yaitu: <strong>RAM (Random Access Memory)</strong>. Kalau Disk penuh itu kayak gudang yang gak muat barang, RAM penuh itu kayak otak yang lagi <em>blank</em> gara-gara kebanyakan mikir. Ujung-ujungnya? Server kamu  "ngehang" atau proses penting tiba-tiba mati sendiri.</p>
-        <p>Pernah dengar istilah <strong>OOM (Out Of Memory) Killer</strong>? Itu adalah mekanisme di kernel Linux yang bakal "nembak mati" proses salah satu yang rakus saat RAM sudah kritis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Masalahnya, kadang yang ditembak itu justru proses penting kayak database atau web server. Ngeri kan?</p>
+        <p>Halo lagi, sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang cerah, kali ini kita bakal bahas sesuatu yang tidak kalah krusial dari urusan disk penuh, yaitu: <strong>RAM (Random Access Memory)</strong>. Kalau Disk penuh itu kayak gudang yang gak muat barang, RAM penuh itu kayak otak yang lagi <em>blank</em> gara-gara kebanyakan mikir. Ujung-ujungnya? Server kamu  &quot;ngehang&quot; atau proses penting tiba-tiba mati sendiri.</p>
+        <p>Pernah dengar istilah <strong>OOM (Out Of Memory) Killer</strong>? Itu adalah mekanisme di kernel Linux yang bakal &quot;nembak mati&quot; proses salah satu yang rakus saat RAM sudah kritis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Masalahnya, kadang yang ditembak itu justru proses penting kayak database atau web server. Ngeri kan?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nV6dNasAAb7Fc.webp" alt="Linux RAM Monitoring Dashboard" class="featured-image">
-        <h2>Apa Masalah Utama RAM di Linux? ("What")</h2>
+        <h2>Apa Masalah Utama RAM di Linux? (&quot;What&quot;)</h2>
         <p>Banyak pengguna pemula panik saat liat hasil <code>free -h</code> karena RAM-nya kelihatan hampir habis. Padahal, Linux itu pinter; dia pake sisa RAM buat <em>cache</em> dan <em>buffer</em> biar sistem lebih kencang. Yang jadi masalah itu kalau <strong>Available Memory</strong>-nya sudah menyentuh angka di bawah 10%. Di titik itulah server kamu  mulai berada di zona bahaya.</p>
         <div class="info-panel">
             <h3><i class="fa-solid fa-info-circle"></i> Kenapa Harus Monitor RAM?</h3>
@@ -172,40 +172,40 @@
                 <li><strong>Stabilitas Layanan:</strong> Mencegah aplikasi mendadak <em>restart</em> atau <em>error 500</em> gara-gara gak dapet jatah memori.</li>
             </ul>
         </div>
-        <h2>Siapa yang Perlu Memasang Script Ini? ("Who")</h2>
-        <p>Semua orang yang punya server produksi! Baik itu buat blog pribadi, server aplikasi kantor, atau <em>node</em> kripto. Terutama kalau kamu  pake VPS dengan RAM terbatas (misal 1GB atau 2GB), monitor ini adalah "asuransi" biar kamu  gak perlu bolak-balik <em>reboot</em> server secara manual.</p>
-        <h2>Dimana dan Kapan perlu Bertindak? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ("Where" &amp; "When")</h2>
-        <p>Idealnya, monitor ini dipasang di setiap unit server kamu . Waktunya? Sebaiknya dari hari pertama server itu <em>online</em>. Jangan tunggu sampai ada laporan "Web tidak bisa diakses" baru kamu  sibuk nyari penyebabnya. Dengan script otomatis, kamu  bakal dapet peringatan <strong>sebelum</strong> musibah terjadi.</p>
-        <h2>Bagaimana Caranya? Script RAM-Radar.sh ("How")</h2>
-        <p>Mari kita buat script Bash yang cerdas. Script ini tidak cuma liat RAM yang "used", tapi liat yang "available" (yang benar-benar bisa dipake sistem). Copy script di bawah ini:</p>
+        <h2>Siapa yang Perlu Memasang Script Ini? (&quot;Who&quot;)</h2>
+        <p>Semua orang yang punya server produksi! Baik itu buat blog pribadi, server aplikasi kantor, atau <em>node</em> kripto. Terutama kalau kamu  pake VPS dengan RAM terbatas (misal 1GB atau 2GB), monitor ini adalah &quot;asuransi&quot; biar kamu  gak perlu bolak-balik <em>reboot</em> server secara manual.</p>
+        <h2>Dimana dan Kapan perlu Bertindak? Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. (&quot;Where&quot; &amp; &quot;When&quot;)</h2>
+        <p>Idealnya, monitor ini dipasang di setiap unit server kamu . Waktunya? Sebaiknya dari hari pertama server itu <em>online</em>. Jangan tunggu sampai ada laporan &quot;Web tidak bisa diakses&quot; baru kamu  sibuk nyari penyebabnya. Dengan script otomatis, kamu  bakal dapet peringatan <strong>sebelum</strong> musibah terjadi.</p>
+        <h2>Bagaimana Caranya? Script RAM-Radar.sh (&quot;How&quot;)</h2>
+        <p>Mari kita buat script Bash yang cerdas. Script ini tidak cuma liat RAM yang &quot;used&quot;, tapi liat yang &quot;available&quot; (yang benar-benar bisa dipake sistem). Copy script di bawah ini:</p>
         <div class="script-box">
 <pre><code>#!/bin/bash
 # --- KONFIGURASI ---
 THRESHOLD=15                   # Notifikasi kalau RAM Available &lt; 15%
-HOSTNAME=$(hostname)
-EMAIL="admin@dalam.web.id"     # Ganti email kamu
+HOSTNAME=&#x24;(hostname)
+EMAIL=&quot;admin@dalam.web.id&quot;     # Ganti email kamu
 # --- AMBIL DATA RAM ---
-# Kita pake perintah 'free' dan ambil data 'available'
-TOTAL_RAM=$(free | grep Mem | awk '{print $2}')
-AVAIL_RAM=$(free | grep Mem | awk '{print $7}')
+# Kita pake perintah &apos;free&apos; dan ambil data &apos;available&apos;
+TOTAL_RAM=&#x24;(free | grep Mem | awk &apos;{print &#x24;2}&apos;)
+AVAIL_RAM=&#x24;(free | grep Mem | awk &apos;{print &#x24;7}&apos;)
 # Hitung persentase available RAM
 # Formula: (Available / Total) * 100
-PCT_AVAIL=$(( 100 * AVAIL_RAM / TOTAL_RAM ))
+PCT_AVAIL=&#x24;(( 100 * AVAIL_RAM / TOTAL_RAM ))
 # --- LOGIKA PERINGATAN ---
-if [ "$PCT_AVAIL" -le "$THRESHOLD" ]; then
-    MSG="🚨 BAHAYA RAM! Server $HOSTNAME sisa RAM Available cuma $PCT_AVAIL%."
-    echo "$MSG"
+if [ &quot;&#x24;PCT_AVAIL&quot; -le &quot;&#x24;THRESHOLD&quot; ]; then
+    MSG=&quot;&#x1f6a8; BAHAYA RAM! Server &#x24;HOSTNAME sisa RAM Available cuma &#x24;PCT_AVAIL%.&quot;
+    echo &quot;&#x24;MSG&quot;
     # Kirim ke Email
-    # echo "$MSG" | mail -s "RAM Alert: $HOSTNAME" $EMAIL
+    # echo &quot;&#x24;MSG&quot; | mail -s &quot;RAM Alert: &#x24;HOSTNAME&quot; &#x24;EMAIL
     # OPSIONAL: Kirim ke Telegram (Un-comment kalau mau pake)
-    # TOKEN="BOT_TOKEN_LO"
-    # CHAT_ID="CHAT_ID_LO"
-    # curl -s -X POST https://api.telegram.org/bot$TOKEN/sendMessage -d chat_id=$CHAT_ID -d text="$MSG"
+    # TOKEN=&quot;BOT_TOKEN_LO&quot;
+    # CHAT_ID=&quot;CHAT_ID_LO&quot;
+    # curl -s -X POST https://api.telegram.org/bot&#x24;TOKEN/sendMessage -d chat_id=&#x24;CHAT_ID -d text=&quot;&#x24;MSG&quot;
     # OPSIONAL: Auto-Clear Cache (Gunakan dengan bijak!)
     # sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches
-    # echo "Cache telah dibersihkan otomatis."
+    # echo &quot;Cache telah dibersihkan otomatis.&quot;
 else
-    echo "RAM aman terkendali: $PCT_AVAIL% available."
+    echo &quot;RAM aman terkendali: &#x24;PCT_AVAIL% available.&quot;
 fi</code></pre>
         </div>
         <h3>Cara Pasang (Step-by-Step):</h3>
@@ -219,13 +219,13 @@ fi</code></pre>
             </li>
         </ol>
         <h2>Kesimpulan: Jaga RAM-mu, Jaga Kewarasanmu!</h2>
-        <p>Mengelola server itu soal proaktif, bukan reaktif. Dengan script monitor RAM dan Disk yang sudah kita bahas, server kamu  sekarang punya "indera" buat ngelaporin kondisinya sendiri. Lo tidak perlu lagi jadi pemadam kebakaran yang sibuk nyari masalah pas api sudah besar.</p>
+        <p>Mengelola server itu soal proaktif, bukan reaktif. Dengan script monitor RAM dan Disk yang sudah kita bahas, server kamu  sekarang punya &quot;indera&quot; buat ngelaporin kondisinya sendiri. Lo tidak perlu lagi jadi pemadam kebakaran yang sibuk nyari masalah pas api sudah besar.</p>
         <p>Ingat, server yang sehat adalah awal dari hati yang tenang. Kalau ada script lain yang kamu  butuhin (misal monitor CPU atau status suhu server), jangan ragu buat colek gue di Telegram atau Twitter ya!</p>
   <div id="related-articles-grid"></div>
         <div id="response"></div>
     </article>
     <footer>
-            <p>🄯 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a>. <br>
+            <p>&#x1f12f; 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a>. <br>
         Dibuat dengan semangat otomasi dari <strong>Balikpapan</strong>.</p>
         <p style="font-size: 0.8rem; opacity: 0.6;">Dukung keberlangsungan server kami lewat <a href="https://paypal.me/FakhrulRijal" style="color:var(--text-color)">PayPal</a>.</p>
         <div class="social-icons">
@@ -235,6 +235,9 @@ fi</code></pre>
             <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
             <a href="https://www.youtube.com/@frijal" target="_blank"><i class="fa-brands fa-youtube"></i></a>
         </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

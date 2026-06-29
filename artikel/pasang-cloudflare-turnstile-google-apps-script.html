@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-01-03T20:00:00.000Z">
     <meta property="article:modified_time" content="2026-01-03T20:00:00.000Z">
 <meta name="keywords" content="Cloudflare Turnstile, Google Apps Script, Blog Statis, Form Anti Spam, Tutorial, Web Development, Layar Kosong, Balikpapan">
@@ -241,11 +241,11 @@
         <p><i class="fa-solid fa-lightbulb"></i> <strong>TL;DR:</strong> Kombinasi Cloudflare Turnstile dan Google Apps Script memberikan solusi form anti-spam yang powerful dan gratis untuk blog statis, tanpa perlu server backend yang rumit.</p>
     </div>
     <article class="article-content">
-        <h2 id="intro">👋 Selamat Datang di Tutorial Ini!</h2>
+        <h2 id="intro">&#x1f44b; Selamat Datang di Tutorial Ini!</h2>
         <p>Sering kali kita merasa dilematis saat membangun blog statis. Di satu sisi, performanya ngebut dan aman karena tidak ada database. Tapi di sisi lain, kita sering kebingungan pas mau bikin fitur interaktif seperti form kontak atau permintaan hapus data tanpa harus sewa VPS atau hosting backend.</p>
-        <p>Dulu, aku juga sempat bingung. Masalah utamanya bukan cuma kirim emailnya, tapi gimana cara nahan gempuran bot spam yang haus sangat ngisi form sembarangan. Nah, setelah ngulik sana-sini, akhirnya aku nemu kombinasi "tangguh" yang gratis dan super aman: <strong>Cloudflare Turnstile</strong> dan <strong>Google Apps Script</strong>. Yuk, kita bedah bareng-bareng! 🚀</p>
-        <h2 id="why">🤔 Mengapa Kombinasi Ini Ideal untuk Blog Statis?</h2>
-        <p>Kenapa sih tidak pakai layanan form pihak ketiga saja? Jawabannya simpel: kontrol penuh dan gratis! Dengan cara ini, data tidak "mampir" ke pihak ketiga yang tidak jelas, tapi langsung masuk ke ekosistem Google kamu sendiri.</p>
+        <p>Dulu, aku juga sempat bingung. Masalah utamanya bukan cuma kirim emailnya, tapi gimana cara nahan gempuran bot spam yang haus sangat ngisi form sembarangan. Nah, setelah ngulik sana-sini, akhirnya aku nemu kombinasi &quot;tangguh&quot; yang gratis dan super aman: <strong>Cloudflare Turnstile</strong> dan <strong>Google Apps Script</strong>. Yuk, kita bedah bareng-bareng! &#x1f680;</p>
+        <h2 id="why">&#x1f914; Mengapa Kombinasi Ini Ideal untuk Blog Statis?</h2>
+        <p>Kenapa sih tidak pakai layanan form pihak ketiga saja? Jawabannya simpel: kontrol penuh dan gratis! Dengan cara ini, data tidak &quot;mampir&quot; ke pihak ketiga yang tidak jelas, tapi langsung masuk ke ekosistem Google kamu sendiri.</p>
         <div class="card-grid">
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-shield-alt"></i></div>
@@ -259,11 +259,11 @@
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-gift"></i></div>
-                <h3>Gratis Tis Tis! 🎉</h3>
+                <h3>Gratis Tis Tis! &#x1f389;</h3>
                 <p>Limitnya gede sangat buat ukuran blog pribadi atau web profil UMKM. Tidak bakal bikin kantong jebol.</p>
             </div>
         </div>
-        <h2 id="step1">Langkah 1: Mengatur Cloudflare Turnstile 🛡️</h2>
+        <h2 id="step1">Langkah 1: Mengatur Cloudflare Turnstile &#x1f6e1;&#xfe0f;</h2>
         <p>Turnstile adalah satpam di gardu depan blog kita. Dia yang bakal mastiin yang masuk itu beneran orang Balikpapan atau bot dari antah-berantah.</p>
         <div class="step-box">
             <div class="step-number">1</div>
@@ -274,10 +274,10 @@
             <div class="step-number">2</div>
             <h3>Pasang Widget di HTML</h3>
             <p>Masukkan script API Turnstile di bagian atas halaman kamu, lalu tempelkan <code>div</code> widget di dalam form. Ingat, <strong>Site Key</strong> itu ibarat alamat rumah, sedangkan <strong>Secret Key</strong> jangan sampai ada yang tahu selain kamu dan script Google nanti.</p>
-            <pre><code>&lt;div class="cf-turnstile" data-sitekey="SITE_KEY_KAMU" data-callback="onSuccess"&gt;&lt;/div&gt;</code></pre>
+            <pre><code>&lt;div class=&quot;cf-turnstile&quot; data-sitekey=&quot;SITE_KEY_KAMU&quot; data-callback=&quot;onSuccess&quot;&gt;&lt;/div&gt;</code></pre>
         </div>
-        <h2 id="step2">Langkah 2: Mengatur Google Apps Script 📧</h2>
-        <p>Buka <a href="https://script.google.com/home" target="_blank" rel="noopener noreferrer">Google Apps Script</a>, Sekarang kita siapkan "otak" pengirim emailnya. Google Apps Script bakal nerima data dari form, ngecek validasi Turnstile, baru deh kirim email ke kamu.</p>
+        <h2 id="step2">Langkah 2: Mengatur Google Apps Script &#x1f4e7;</h2>
+        <p>Buka <a href="https://script.google.com/home" target="_blank" rel="noopener noreferrer">Google Apps Script</a>, Sekarang kita siapkan &quot;otak&quot; pengirim emailnya. Google Apps Script bakal nerima data dari form, ngecek validasi Turnstile, baru deh kirim email ke kamu.</p>
         <div class="step-box">
             <div class="step-number">3</div>
             <h3>Tanam Kode di Google Script</h3>
@@ -285,18 +285,18 @@
             <pre><code>function doPost(e) {
   // 1. Cek apakah ada data yang masuk
   if (!e || !e.parameter) {
-    return ContentService.createTextOutput("No data received").setMimeType(ContentService.MimeType.TEXT);
+    return ContentService.createTextOutput(&quot;No data received&quot;).setMimeType(ContentService.MimeType.TEXT);
   }
   var data = e.parameter;
-  var secretKey = "SECRET_KEY_DARI_CLOUDFLARE_TURNSTILE"; // &lt;-- GANTI DENGAN SECRET KEY KAMU!
-  var token = data['cf-turnstile-response'];
+  var secretKey = &quot;SECRET_KEY_DARI_CLOUDFLARE_TURNSTILE&quot;; // &lt;-- GANTI DENGAN SECRET KEY KAMU!
+  var token = data[&apos;cf-turnstile-response&apos;];
   // 2. Verifikasi ke Cloudflare Turnstile
-  var verificationUrl = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+  var verificationUrl = &quot;https://challenges.cloudflare.com/turnstile/v0/siteverify&quot;;
   var options = {
-    'method' : 'post',
-    'payload' : {
-      'secret': secretKey,
-      'response': token
+    &apos;method&apos; : &apos;post&apos;,
+    &apos;payload&apos; : {
+      &apos;secret&apos;: secretKey,
+      &apos;response&apos;: token
     }
   };
   try {
@@ -304,45 +304,48 @@
     var result = JSON.parse(response.getContentText());
     if (result.success) {
       // 3. JIKA LOLOS VERIFIKASI, KIRIM EMAIL
-      var body = "Ada permintaan hapus data baru (Cloudflare Turnstile Verified):\n\n" +
-                 "Nama: " + (data.nama_tampilan || '-') + "\n" +
-                 "Email: " + (data._replyto || '-') + "\n" +
-                 "URL/ID: " + (data.url_atau_id || '-') + "\n" +
-                 "Jenis: " + (data.jenis_data || '-') + "\n" +
-                 "Ket: " + (data.keterangan || '-') + "\n\n" +
-                 "Sent via Google Apps Script";
+      var body = &quot;Ada permintaan hapus data baru (Cloudflare Turnstile Verified):\n\n&quot; +
+                 &quot;Nama: &quot; + (data.nama_tampilan || &apos;-&apos;) + &quot;\n&quot; +
+                 &quot;Email: &quot; + (data._replyto || &apos;-&apos;) + &quot;\n&quot; +
+                 &quot;URL/ID: &quot; + (data.url_atau_id || &apos;-&apos;) + &quot;\n&quot; +
+                 &quot;Jenis: &quot; + (data.jenis_data || &apos;-&apos;) + &quot;\n&quot; +
+                 &quot;Ket: &quot; + (data.keterangan || &apos;-&apos;) + &quot;\n\n&quot; +
+                 &quot;Sent via Google Apps Script&quot;;
       MailApp.sendEmail({
-        to: "contoh-email@namadomain.com", // &lt;-- GANTI DENGAN ALAMAT EMAIL TUJUAN KAMU!
-        subject: "🗑️ [website] Hapus Data: " + (data.nama_tampilan || 'Anonim'),
-        replyTo: data._replyto || "contoh-email@namadomain.com", // &lt;-- GANTI DENGAN ALAMAT EMAIL TUJUAN KAMU!
+        to: &quot;contoh-email@namadomain.com&quot;, // &lt;-- GANTI DENGAN ALAMAT EMAIL TUJUAN KAMU!
+        subject: &quot;&#x1f5d1;&#xfe0f; [website] Hapus Data: &quot; + (data.nama_tampilan || &apos;Anonim&apos;),
+        replyTo: data._replyto || &quot;contoh-email@namadomain.com&quot;, // &lt;-- GANTI DENGAN ALAMAT EMAIL TUJUAN KAMU!
         body: body
       });
-      return ContentService.createTextOutput(JSON.stringify({ "success": true }))
+      return ContentService.createTextOutput(JSON.stringify({ &quot;success&quot;: true }))
                            .setMimeType(ContentService.MimeType.JSON);
     } else {
       // Gagal verifikasi Turnstile
-      return ContentService.createTextOutput(JSON.stringify({ "success": false, "error": "Invalid Captcha" }))
+      return ContentService.createTextOutput(JSON.stringify({ &quot;success&quot;: false, &quot;error&quot;: &quot;Invalid Captcha&quot; }))
                            .setMimeType(ContentService.MimeType.JSON);
     }
   } catch (err) {
     // Tangkap error jika ada masalah di MailApp atau UrlFetch
-    return ContentService.createTextOutput(JSON.stringify({ "success": false, "error": err.toString() }))
+    return ContentService.createTextOutput(JSON.stringify({ &quot;success&quot;: false, &quot;error&quot;: err.toString() }))
                          .setMimeType(ContentService.MimeType.JSON);
   }
 }</code></pre>
         </div>
         <div class="highlight-box">
-            <p><i class="fa-solid fa-exclamation-triangle"></i> <strong>Penting:</strong> Saat melakukan <em>Deployment</em> di Google Script, pastikan pilih akses untuk <strong>"Anyone"</strong> supaya blog kamu bisa kirim data tanpa perlu login akun Google.</p>
+            <p><i class="fa-solid fa-exclamation-triangle"></i> <strong>Penting:</strong> Saat melakukan <em>Deployment</em> di Google Script, pastikan pilih akses untuk <strong>&quot;Anyone&quot;</strong> supaya blog kamu bisa kirim data tanpa perlu login akun Google.</p>
         </div>
-        <h2 id="conclusion">👋 Penutup</h2>
+        <h2 id="conclusion">&#x1f44b; Penutup</h2>
         <p>Implementasi ini bukan cuma soal teknis, tapi soal kenyamanan pembaca. Dengan Turnstile, kita tidak lagi nyiksa pengunjung blog <strong>Layar Kosong</strong> dengan kuis-kuis gambar yang bikin pusing. Blog tetep statis, tapi fitur tetep dinamis dan aman.</p>
-        <p>Semoga tutorial ini ngebantu kamu yang lagi pengen bikin blog jadi lebih profesional. Kalau ada yang bingung pas pasang kodenya, tanya aja di kolom komentar ya! Sampai ketemu di update-an berikutnya! ✨</p>
+        <p>Semoga tutorial ini ngebantu kamu yang lagi pengen bikin blog jadi lebih profesional. Kalau ada yang bingung pas pasang kodenya, tanya aja di kolom komentar ya! Sampai ketemu di update-an berikutnya! &#x2728;</p>
     </article>
     <div id="related-articles-grid"></div><div id="response">
     </div>
     <footer>
-        <p>🄯 2026 <a href="https://dalam.web.id" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Layar Kosong</a>. Dibuat dengan ❤️ di Balikpapan.</p>
+        <p>&#x1f12f; 2026 <a href="https://dalam.web.id" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Layar Kosong</a>. Dibuat dengan &#x2764;&#xfe0f; di Balikpapan.</p>
         <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Dukungan Teknologi: Cloudflare &amp; Google Cloud</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

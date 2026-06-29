@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Kernel">
     <meta property="article:tag" content="OpenSource">
@@ -324,10 +324,10 @@
         <main>
             <article>
                 <header>
-                    <div id="iposbrowser"></div><h1>🐧 Makna di Balik Rilis Linux Kernel 7.1: Lonjakan Kecil untuk Kode, Lompatan Besar untuk Pengguna</h1>
+                    <div id="iposbrowser"></div><h1>&#x1f427; Makna di Balik Rilis Linux Kernel 7.1: Lonjakan Kecil untuk Kode, Lompatan Besar untuk Pengguna</h1>
                                 </header>
-                <p>Di tengah hiruk-pikuk berita tentang kecerdasan buatan dan cloud computing, komunitas Linux kembali mengingatkan dunia bahwa fondasi dari hampir semua teknologi modern adalah <em>kernel</em> — jantung sistem operasi yang tak pernah tidur. Rilis <strong>Linux Kernel 7.1</strong> mungkin terdengar seperti angka versi biasa, namun di baliknya ada pesan besar: <em>open source tidak hanya bertahan, ia terus melaju dengan kecepatan yang mengagumkan</em>.</p>
-                <p>Mari kita bedah satu per satu apa yang sebenarnya berubah, dan mengapa hal itu penting bagi Anda — baik Anda pengguna desktop, administrator server, atau sekadar pecinta teknologi digital yang mendambakan sistem berkecepatan tinggi.</p>
+                <p>Di tengah hiruk-pikuk berita tentang kecerdasan buatan dan cloud computing, komunitas Linux kembali mengingatkan dunia bahwa fondasi dari hampir semua teknologi modern adalah <em>kernel</em> &#x2014; jantung sistem operasi yang tak pernah tidur. Rilis <strong>Linux Kernel 7.1</strong> mungkin terdengar seperti angka versi biasa, namun di baliknya ada pesan besar: <em>open source tidak hanya bertahan, ia terus melaju dengan kecepatan yang mengagumkan</em>.</p>
+                <p>Mari kita bedah satu per satu apa yang sebenarnya berubah, dan mengapa hal itu penting bagi Anda &#x2014; baik Anda pengguna desktop, administrator server, atau sekadar pecinta teknologi digital yang mendambakan sistem berkecepatan tinggi.</p>
                 <div class="article-image-wrapper">
                     <img src="https://dalam.web.id/img/raw.githubusercontent.com/bec2ba5c71da99c4.webp" alt="Ilustrasi arsitektur sistem operasi Linux Kernel 7.1 modern yang tangguh" width="1200" height="675" fetchpriority="high">
                 </div>
@@ -339,16 +339,16 @@
                         <h3>Apa yang baru di Kernel 7.1?</h3>
                         <ul>Scheduler
                             <li><strong>Driver NTFS ditulis ulang dari awal</strong> dengan kode modern yang lebih bersih dan dapat dirawat (<em>maintainable</em>) dalam jangka panjang oleh komunitas global.</li>
-                            <li><strong>Dukungan penuh untuk operasi tulis</strong> — bukan hanya membaca. Anda bisa membuat, menghapus, dan mengedit file di partisi Windows seperti layaknya partisi Linux asli.</li>
+                            <li><strong>Dukungan penuh untuk operasi tulis</strong> &#x2014; bukan hanya membaca. Anda bisa membuat, menghapus, dan mengedit file di partisi Windows seperti layaknya partisi Linux asli.</li>
                             <li><strong>Performa lebih tinggi</strong> karena driver ini terintegrasi langsung ke dalam kernel, bukan sebagai <em>userspace driver</em> (FUSE) yang memiliki overhead tambahan yang membebani memori.</li>
                         </ul>
                         <h3>Maknanya bagi pengguna:</h3>
                         <ul>
-                            <li>Dual-boot Windows dan Linux kini terasa seperti satu ekosistem yang utuh. Bekerja dengan file di drive NTFS tidak lagi terasa “dipaksa”.</li>
+                            <li>Dual-boot Windows dan Linux kini terasa seperti satu ekosistem yang utuh. Bekerja dengan file di drive NTFS tidak lagi terasa &#x201c;dipaksa&#x201d;.</li>
                             <li>Administrator server yang melayani klien berbasis Windows bisa mengakses berkas NTFS dengan kecepatan tinggi mendekati native.</li>
                             <li>Tidak ada lagi alasan bagi korporasi untuk tidak menggunakan Linux sebagai <em>file server</em> utama di lingkungan heterogen.</li>
                         </ul>
-                        <blockquote>💡 <em>Kutipan tak resmi dari pengembang: “Kami ingin pengguna lupa bahwa mereka sedang menggunakan NTFS. Seharusnya semulus ext4.”</em></blockquote>
+                        <blockquote>&#x1f4a1; <em>Kutipan tak resmi dari pengembang: &#x201c;Kami ingin pengguna lupa bahwa mereka sedang menggunakan NTFS. Seharusnya semulus ext4.&#x201d;</em></blockquote>
                     </div>
                 </details>
                 <!-- POIN 2 - DETAILS -->
@@ -369,10 +369,10 @@
                             <li>Sektor server dapat menangani volume permintaan (<em>request</em>) yang jauh lebih masif dalam waktu bersamaan tanpa menuntut peningkatan spesifikasi perangkat keras.</li>
                         </ul>
                         <pre><code><span class="code-cmt"># Memeriksa efisiensi penjadwalan pada Kernel terbaru</span>
-sysctl -a | <span class="code-kw">grep</span> <span class="code-str">"sched"</span>
+sysctl -a | <span class="code-kw">grep</span> <span class="code-str">&quot;sched&quot;</span>
 <span class="code-cmt"># Output sistem teroptimasi:</span>
 <span class="code-val">kernel.sched_child_runs_first = 1</span></code></pre>
-                        <blockquote>🚀 <em>Fakta menarik: Beberapa patch di scheduler 7.1 ditulis oleh pengembang yang sebelumnya bekerja di proyek real-time Linux — pengalaman berharga mereka langsung mengalir ke kernel utama.</em></blockquote>
+                        <blockquote>&#x1f680; <em>Fakta menarik: Beberapa patch di scheduler 7.1 ditulis oleh pengembang yang sebelumnya bekerja di proyek real-time Linux &#x2014; pengalaman berharga mereka langsung mengalir ke kernel utama.</em></blockquote>
                     </div>
                 </details>
                 <!-- POIN 3 - DETAILS -->
@@ -392,7 +392,7 @@ sysctl -a | <span class="code-kw">grep</span> <span class="code-str">"sched"</sp
                             <li>Para gamer Linux yang memanfaatkan ekosistem Steam Proton, Wine, atau game native akan menikmati framerate yang lebih stabil serta minim gangguan <em>stuttering</em>.</li>
                             <li>Peneliti AI dan <em>data scientist</em> yang mengandalkan kartu grafis AMD untuk pemrosesan model skala besar akan mengalami peningkatan stabilitas driver yang signifikan.</li>
                         </ul>
-                        <blockquote>🎮 <em>Catatan: Meskipun bukan rilis “game changer” seperti ketika driver NVIDIA open source muncul pertama kali, peningkatan ini menegaskan komitmen kuat Linux terhadap kenyamanan desktop modern.</em></blockquote>
+                        <blockquote>&#x1f3ae; <em>Catatan: Meskipun bukan rilis &#x201c;game changer&#x201d; seperti ketika driver NVIDIA open source muncul pertama kali, peningkatan ini menegaskan komitmen kuat Linux terhadap kenyamanan desktop modern.</em></blockquote>
                     </div>
                 </details>
                 <!-- POIN 4 - DETAILS -->
@@ -423,7 +423,7 @@ sysctl -a | <span class="code-kw">grep</span> <span class="code-str">"sched"</sp
                             <li>Sistem Linux saat ini menggerakkan seluruh sistem operasi smartphone Android di saku Anda, menguasai lebih dari 90% arsitektur cloud publik dunia, mengotaki semua superkomputer tercepat, hingga perangkat cerdas seperti router dan mobil listrik.</li>
                             <li>Model pengembangan terbuka terbukti tidak hanya sekadar bertahan secara berkelanjutan, melainkan jauh lebih tangkas dalam beradaptasi dengan lompatan teknologi hardware baru dibandingkan dengan sistem operasi komersial yang tertutup.</li>
                         </ul>
-                        <blockquote>🌍 <em>Sebuah ironi yang indah: sistem operasi yang lahir pada tahun 1991 sebagai bentuk “hobi” semata dari seorang mahasiswa Finlandia, kini bertransformasi menjadi pilar digitalisasi global paling kokoh di dunia.</em></blockquote>
+                        <blockquote>&#x1f30d; <em>Sebuah ironi yang indah: sistem operasi yang lahir pada tahun 1991 sebagai bentuk &#x201c;hobi&#x201d; semata dari seorang mahasiswa Finlandia, kini bertransformasi menjadi pilar digitalisasi global paling kokoh di dunia.</em></blockquote>
                     </div>
                 </details>
                 <h2>Apakah Anda Perlu Segera Meng-upgrade?</h2>
@@ -434,7 +434,7 @@ sysctl -a | <span class="code-kw">grep</span> <span class="code-str">"sched"</sp
                     <li><strong>Untuk administrator server korporasi:</strong> Terapkan prinsip kehati-hatian standar; lakukan pengujian menyeluruh di dalam lingkungan <em>staging</em> terlebih dahulu sebelum mengadopsinya secara penuh di server produksi.</li>
                 </ul>
                 <p>Linux Kernel 7.1 pada hakikatnya bukanlah sebuah revolusi yang destruktif. Ia merupakan sebuah evolusi yang sangat terencana, teruji matang, dan kaya akan makna mendalam bagi efisiensi komputasi modern kita semua.</p>
-                <p><strong>Pertanyaan retoris untuk Anda:</strong> Apakah hari ini Anda sudah menggunakan Linux di salah satu perangkat digital Anda? Jika belum, mungkin sekarang adalah momentum yang salah satu yang tepat untuk mulai mencobanya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Bukan karena landasan fanatisme buta, melainkan karena fondasi teknologi masa depan dunia sedang giat dibangun di atas arsitektur terbuka ini — dan Anda memiliki hak penuh untuk terlibat di dalamnya. 🐧</p>
+                <p><strong>Pertanyaan retoris untuk Anda:</strong> Apakah hari ini Anda sudah menggunakan Linux di salah satu perangkat digital Anda? Jika belum, mungkin sekarang adalah momentum yang salah satu yang tepat untuk mulai mencobanya. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Bukan karena landasan fanatisme buta, melainkan karena fondasi teknologi masa depan dunia sedang giat dibangun di atas arsitektur terbuka ini &#x2014; dan Anda memiliki hak penuh untuk terlibat di dalamnya. &#x1f427;</p>
             </article>
             <div id="related-articles-grid"></div><div id="response"></div>
         </main>
@@ -444,6 +444,9 @@ sysctl -a | <span class="code-kw">grep</span> <span class="code-str">"sched"</sp
                 <span>Diperbarui: 16 Juni 2026</span>
                 <span>Lisensi Konten: CC BY-SA 4.0</span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

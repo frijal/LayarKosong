@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="DevOps">
     <meta property="article:tag" content="GitHub">
     <meta property="article:tag" content="Otomatisasi">
@@ -66,7 +66,7 @@
     <!-- Custom Meta Promphint -->
     <!-- Preload LCP Image -->
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
     <!-- Critical Native CSS -->
     <style>
         :root {
@@ -221,7 +221,7 @@
                 Ada beberapa fitur Renovate yang ~~harus kamu ikhlaskan~~ tidak didukung langsung oleh Dependabot:
                 <ul>
                     <li><strong>Dukungan Bun:</strong> Dependabot belum memiliki ekosistem <code>bun</code> yang terpisah secara <em>native</em> seperti Renovate. Dia akan membaca <em>project</em> Bun kamu di bawah payung ekosistem <code>npm</code> (akan mem-parsing <code>package.json</code>, tapi perbaikan lockfile <code>bun.lockb</code> mungkin tidak semulus Renovate).</li>
-                    <li><strong>Aturan Waktu (Hourly Limit &amp; Release Age):</strong> Dependabot tidak punya fitur untuk menunda rilis selama "2 days" atau membatasi pembuatan PR per jam. Dia hanya membatasi total PR yang terbuka saja.</li>
+                    <li><strong>Aturan Waktu (Hourly Limit &amp; Release Age):</strong> Dependabot tidak punya fitur untuk menunda rilis selama &quot;2 days&quot; atau membatasi pembuatan PR per jam. Dia hanya membatasi total PR yang terbuka saja.</li>
                     <li><strong>Dashboard:</strong> File <code>dependencyDashboard</code> digantikan secara otomatis oleh tab <em>Security &amp; Insights</em> bawaan GitHub.</li>
                 </ul>
             </b></b></div><b><b>
@@ -230,40 +230,40 @@
 <pre><code>version: 2
 updates:
   # Ekosistem 1: GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: &quot;github-actions&quot;
+    directory: &quot;/&quot;
     schedule:
-      interval: "daily"
+      interval: &quot;daily&quot;
     open-pull-requests-limit: 5
     assignees:
-      - "frijal"
+      - &quot;frijal&quot;
   # Ekosistem 2: NPM (Untuk Bun / Node.js)
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: &quot;npm&quot;
+    directory: &quot;/&quot;
     schedule:
-      interval: "daily"
+      interval: &quot;daily&quot;
     open-pull-requests-limit: 5
-    versioning-strategy: increase # Setara dengan rangeStrategy: "bump"
+    versioning-strategy: increase # Setara dengan rangeStrategy: &quot;bump&quot;
     assignees:
-      - "frijal"
+      - &quot;frijal&quot;
     # Aturan Pengelompokan (Grouping)
     groups:
       web-optimizers:
         patterns:
-          - "sharp"
-          - "@minify-html/node"
-          - "cheerio"
-          - "@xmldom/xmldom"
-          - "glob"
+          - &quot;sharp&quot;
+          - &quot;@minify-html/node&quot;
+          - &quot;cheerio&quot;
+          - &quot;@xmldom/xmldom&quot;
+          - &quot;glob&quot;
       external-services:
         patterns:
-          - "wrangler"
-          - "tumblr.js"
+          - &quot;wrangler&quot;
+          - &quot;tumblr.js&quot;
     # Mengabaikan update Major (Karena di Renovate kamu set automerge: false)
     # Dependabot tetap akan bikin PR Major,
     # tapi kita tidak akan meng-automerge-nya nanti.</code></pre>
-            <h2>Langkah 2: Mengembalikan "Sihir" Automerge</h2>
-            <p>Di masa lalu, Dependabot punya fitur <code>automerge</code> di dalam YAML-nya. Namun, GitHub sudah menghapus fitur tersebut demi alasan keamanan. Untuk meniru perilaku di file JSON lamamu—yaitu melakukan <em>automerge</em> untuk <code>patch</code> dan <code>minor</code> (kecuali yang berawalan <code>0.x</code>), serta <em>automerge</em> keamanan—kamu wajib membuat <em>GitHub Actions Workflow</em> khusus.</p>
+            <h2>Langkah 2: Mengembalikan &quot;Sihir&quot; Automerge</h2>
+            <p>Di masa lalu, Dependabot punya fitur <code>automerge</code> di dalam YAML-nya. Namun, GitHub sudah menghapus fitur tersebut demi alasan keamanan. Untuk meniru perilaku di file JSON lamamu&#x2014;yaitu melakukan <em>automerge</em> untuk <code>patch</code> dan <code>minor</code> (kecuali yang berawalan <code>0.x</code>), serta <em>automerge</em> keamanan&#x2014;kamu wajib membuat <em>GitHub Actions Workflow</em> khusus.</p>
             <p>Buat file baru di <code>.github/workflows/dependabot-automerge.yml</code> dengan konfigurasi berikut:</p>
 <pre><code>name: Dependabot Auto-merge
 on: pull_request
@@ -273,27 +273,27 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    if: github.actor == &apos;dependabot[bot]&apos;
     steps:
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v2
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: &quot;&#x24;{{ secrets.GITHUB_TOKEN }}&quot;
       - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
+        run: gh pr review --approve &quot;&#x24;PR_URL&quot;
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: &#x24;{{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: &#x24;{{secrets.GITHUB_TOKEN}}
       - name: Auto-merge untuk Patch dan Minor
         # Automerge diaktifkan HANYA jika bukan update Major
-        if: ${{steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'}}
-        run: gh pr merge --auto --squash "$PR_URL"
+        if: &#x24;{{steps.metadata.outputs.update-type == &apos;version-update:semver-patch&apos; || steps.metadata.outputs.update-type == &apos;version-update:semver-minor&apos;}}
+        run: gh pr merge --auto --squash &quot;&#x24;PR_URL&quot;
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}</code></pre>
+          PR_URL: &#x24;{{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: &#x24;{{secrets.GITHUB_TOKEN}}</code></pre>
             <h3>Penyesuaian Ekstra di Repository Settings</h3>
-            <p>Agar alur kerja GitHub Actions di atas berjalan mulus, pastikan kamu mengaktifkan opsi <strong>"Allow auto-merge"</strong> di pengaturan repositorimu (<em>Settings* -&gt; <em>General</em> -&gt; <em>Pull Requests</em>). Dengan kombinasi <code>dependabot.yml</code> dan *workflow</em> rahasia ini, kamu berhasil meniru sekitar 80% kekuatan file konfigurasi Renovate lamamu ke dalam ekosistem Dependabot yang jauh lebih ringan.</p>
+            <p>Agar alur kerja GitHub Actions di atas berjalan mulus, pastikan kamu mengaktifkan opsi <strong>&quot;Allow auto-merge&quot;</strong> di pengaturan repositorimu (<em>Settings* -&gt; <em>General</em> -&gt; <em>Pull Requests</em>). Dengan kombinasi <code>dependabot.yml</code> dan *workflow</em> rahasia ini, kamu berhasil meniru sekitar 80% kekuatan file konfigurasi Renovate lamamu ke dalam ekosistem Dependabot yang jauh lebih ringan.</p>
             <!-- Kredibilitas Konten -->
             <div class="author-box" aria-label="Informasi Keandalan Artikel">
                 <p><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <strong>Fakhrul Rijal</strong></p>
@@ -305,7 +305,10 @@ jobs:
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>🄯 2026 Layar Kosong. Didukung oleh standar HTML dan CSS telanjang tanpa framework.</p>
-               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; 2026 Layar Kosong. Didukung oleh standar HTML dan CSS telanjang tanpa framework.</p>
+               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </b></b></div><b><b>
-</b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+</b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-27T15:46:39.792Z">
     <meta property="article:modified_time" content="2026-01-03T03:41:21.486Z">
 <meta name="keywords" content="GitHub CLI, gh, command line, tutorial, commit, push, branch, pull request, fork, merge, release, issue, repo">
@@ -110,19 +110,19 @@
     <div class="container">
         <header>
             <div id="iposbrowser"></div><h1>Panduan GitHub CLI Lengkap</h1>
-            <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.2rem;">GitHub CLI (gh) itu tool resmi dari GitHub buat ngelola repo, PR, issue, dll langsung dari terminal. Lebih cepet daripada buka web terus. Aku rangkum command-command esensial plus visualnya. Navigasi di bawah buat lompat section, tekan Salin buat copy command. Yuk level up workflow kamu! 🚀</p>
+            <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.2rem;">GitHub CLI (gh) itu tool resmi dari GitHub buat ngelola repo, PR, issue, dll langsung dari terminal. Lebih cepet daripada buka web terus. Aku rangkum command-command esensial plus visualnya. Navigasi di bawah buat lompat section, tekan Salin buat copy command. Yuk level up workflow kamu! &#x1f680;</p>
             <img src="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" alt="Social card GitHub CLI dengan terminal" class="illus">
         </header>
         <nav class="nav-accordion">
-            <details open="">
-                <summary>🔧 Navigasi Panduan GitHub CLI</summary>
+            <details open>
+                <summary>&#x1f527; Navigasi Panduan GitHub CLI</summary>
                 <div class="nav-list">
-                    <details open=""><summary>🌱 Dasar</summary>
+                    <details open><summary>&#x1f331; Dasar</summary>
                         <a href="#login">Login ke GitHub</a>
                         <a href="#clone">Clone Repository</a>
                         <a href="#commit">Commit &amp; Push</a>
                     </details>
-                    <details><summary>⚡ Lanjutan</summary>
+                    <details><summary>&#x26a1; Lanjutan</summary>
                         <a href="#pr">Pull Request</a>
                         <a href="#branch">Branch</a>
                         <a href="#issue">Issue</a>
@@ -135,53 +135,53 @@
             </details>
         </nav>
         <main>
-            <h2 id="login">🔑 Login ke GitHub</h2>
+            <h2 id="login">&#x1f511; Login ke GitHub</h2>
             <p>Langkah pertama: autentikasi akun GitHub kamu via CLI. Bakal buka browser dapat buat approve. </p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh auth login</code></pre>
             </div>
             <img src="https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.webp" alt="Diagram alur login GitHub CLI" class="illus">
-            <h2 id="clone">📥 Clone Repository</h2>
+            <h2 id="clone">&#x1f4e5; Clone Repository</h2>
             <p>Unduh repo orang lain atau punya sendiri ke lokal dengan cepat.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh repo clone username/repo</code></pre>
             </div>
-            <h2 id="commit">📝 Commit &amp; Push</h2>
+            <h2 id="commit">&#x1f4dd; Commit &amp; Push</h2>
             <p>Workflow dasar Git tetep dipake, tapi gh bisa bantu shortcut.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>git add .
-git commit -m "Pesan commit"
+git commit -m &quot;Pesan commit&quot;
 git push</code></pre>
             </div>
-            <h2 id="pr">🔀 Pull Request</h2>
+            <h2 id="pr">&#x1f500; Pull Request</h2>
             <p>Bikin PR langsung dari branch kamu tanpa buka web.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
-                <pre><code>gh pr create --title "Judul PR" --body "Deskripsi detail"</code></pre>
+                <pre><code>gh pr create --title &quot;Judul PR&quot; --body &quot;Deskripsi detail&quot;</code></pre>
             </div>
             <img src="https://dalam.web.id/img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01.webp" alt="Diagram workflow pull request GitHub" class="illus">
-            <h2 id="branch">🌿 Branch</h2>
+            <h2 id="branch">&#x1f33f; Branch</h2>
             <p>Bikin branch baru buat fitur tanpa ganggu main.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>git checkout -b nama-branch-baru</code></pre>
             </div>
-            <h2 id="issue">🐛 Issue</h2>
+            <h2 id="issue">&#x1f41b; Issue</h2>
             <p>Lapor bug atau request fitur langsung dari terminal.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
-                <pre><code>gh issue create --title "Judul Issue" --body "Deskripsi lengkap"</code></pre>
+                <pre><code>gh issue create --title &quot;Judul Issue&quot; --body &quot;Deskripsi lengkap&quot;</code></pre>
             </div>
-            <h2 id="fork">🔱 Fork Repository</h2>
+            <h2 id="fork">&#x1f531; Fork Repository</h2>
             <p>Fork repo orang lain sekaligus clone ke lokal.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh repo fork username/repo --clone=true</code></pre>
             </div>
-            <h2 id="merge">🔄 Merge Branch</h2>
+            <h2 id="merge">&#x1f504; Merge Branch</h2>
             <p>Gabung branch fitur ke main setelah review.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
@@ -189,27 +189,27 @@ git push</code></pre>
 git merge nama-branch</code></pre>
             </div>
             <img src="https://dalam.web.id/img/kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example.webp" alt="Diagram branch dan merge GitHub" class="illus">
-            <h2 id="release">📦 Release</h2>
+            <h2 id="release">&#x1f4e6; Release</h2>
             <p>Bikin tag release baru plus upload asset.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
-                <pre><code>gh release create v1.0.0 file.zip --title "Version 1.0.0"</code></pre>
+                <pre><code>gh release create v1.0.0 file.zip --title &quot;Version 1.0.0&quot;</code></pre>
             </div>
-            <h2 id="watch-star">⭐ Watch &amp; Star</h2>
+            <h2 id="watch-star">&#x2b50; Watch &amp; Star</h2>
             <p>Pantau update repo dan beri star biar support author.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh repo watch username/repo
 gh repo star username/repo</code></pre>
             </div>
-            <h2>🎁 Tips Bonus GitHub CLI</h2>
+            <h2>&#x1f381; Tips Bonus GitHub CLI</h2>
             <ul>
                 <li><strong>Install dulu:</strong> <code>brew install gh</code> (Mac) atau cek docs resmi.</li>
-                <li><strong>List PR:</strong> <code>gh pr list</code> – Lihat semua PR di repo.</li>
-                <li><strong>Checkout PR:</strong> <code>gh pr checkout 123</code> – Langsung switch ke branch PR orang.</li>
-                <li><strong>View repo di browser:</strong> <code>gh repo view --web</code> 🔥</li>
+                <li><strong>List PR:</strong> <code>gh pr list</code> &#x2013; Lihat semua PR di repo.</li>
+                <li><strong>Checkout PR:</strong> <code>gh pr checkout 123</code> &#x2013; Langsung switch ke branch PR orang.</li>
+                <li><strong>View repo di browser:</strong> <code>gh repo view --web</code> &#x1f525;</li>
             </ul>
-            <p>Selesai panduannya bro! Sekarang coba install gh kalau belum, lalu praktekkin command-command ini di project kamu. Workflow bakal jauh lebih cepat. Kalau ada command favorit kamu yang kurang, komentar di bawah . Happy coding, may the forks be with you! 🐙✨</p>
+            <p>Selesai panduannya bro! Sekarang coba install gh kalau belum, lalu praktekkin command-command ini di project kamu. Workflow bakal jauh lebih cepat. Kalau ada command favorit kamu yang kurang, komentar di bawah . Happy coding, may the forks be with you! &#x1f419;&#x2728;</p>
         </main>
         <div id="related-articles-grid">
             <p style="text-align:center; color:var(--muted);">Komentar bakal muncul di sini...</p>
@@ -218,8 +218,8 @@ gh repo star username/repo</code></pre>
             </div>
         <footer>
             <p>Artikel ini informatif, selalu cek docs resmi GitHub CLI untuk update terbaru ya!</p>
-            <p>🄯 Layar Kosong • 2025</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; Layar Kosong &#x2022; 2025</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
     <script>
         // Copy button dengan feedback
@@ -233,4 +233,7 @@ gh repo star username/repo</code></pre>
             });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

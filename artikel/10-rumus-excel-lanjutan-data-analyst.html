@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Data Analyst">
     <meta property="article:tag" content="Tutorial Excel">
     <meta property="article:tag" content="Data Cleansing">
@@ -167,16 +167,16 @@
         <p>Paling males kan kalau rumus udah bener, eh malah muncul <code>#N/A</code>, <code>#DIV/0!</code>, atau <code>#VALUE!</code> gara-gara ada sel yang kosong atau salah format? IFERROR ini tamengnya. Dia bakal mengganti pesan error bawaan Excel dengan teks yang lebih manusiawi.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=IFERROR(rumus_asli, nilai_jika_error)</code></li>
-            <li><strong>Contoh Kasus:</strong> Kamu membagi target (A1) dengan realisasi (B1), tapi B1 kebetulan nol. Biar tidak <code>#DIV/0!</code>, ganti jadi teks "Belum Ada Data".</li>
+            <li><strong>Contoh Kasus:</strong> Kamu membagi target (A1) dengan realisasi (B1), tapi B1 kebetulan nol. Biar tidak <code>#DIV/0!</code>, ganti jadi teks &quot;Belum Ada Data&quot;.</li>
         </ul>
-        <pre><code>=IFERROR(A1/B1, "Belum Ada Data")</code></pre>
+        <pre><code>=IFERROR(A1/B1, &quot;Belum Ada Data&quot;)</code></pre>
         <h2>2. INDEX &amp; MATCH <i class="fa-solid fa-handshake"></i></h2>
         <p>Sebelum XLOOKUP lahir, duo INDEX dan MATCH adalah raja pencarian data. Bahkan sampai sekarang, banyak perusahaan yang Excel-nya belum <em>update</em> ke versi terbaru, jadi kamu tetap <strong>wajib</strong> ngerti ini. Ibaratnya: INDEX mencari isinya, MATCH mencari posisinya.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=INDEX(kolom_hasil, MATCH(nilai_dicari, kolom_pencarian, 0))</code></li>
-            <li><strong>Contoh Kasus:</strong> Mencari Nama (Kolom B) berdasarkan ID "A01" yang ada di Kolom A.</li>
+            <li><strong>Contoh Kasus:</strong> Mencari Nama (Kolom B) berdasarkan ID &quot;A01&quot; yang ada di Kolom A.</li>
         </ul>
-        <pre><code>=INDEX(B:B, MATCH("A01", A:A, 0))</code></pre>
+        <pre><code>=INDEX(B:B, MATCH(&quot;A01&quot;, A:A, 0))</code></pre>
         <h2>3. SUMPRODUCT <i class="fa-solid fa-layer-group"></i></h2>
         <p>Ini rumus magis buat yang suka perhitungan bobot atau inventory. SUMPRODUCT mengalikan komponen-komponen yang bersesuaian dalam array/tabel, lalu mengembalikan jumlah total dari perkalian tersebut dalam satu proses tanpa butuh kolom bantuan.</p>
         <ul>
@@ -185,19 +185,19 @@
         </ul>
         <pre><code>=SUMPRODUCT(A2:A10, B2:B10)</code></pre>
         <h2>4. TEXTSPLIT <i class="fa-solid fa-scissors"></i></h2>
-        <p>Kebalikan dari TEXTJOIN. Sering banget dikasih data hasil tarikan web yang numpuk di satu sel (misal: "Budi,Jakarta,08123"). Dulu harus repot pakai <em>Text to Columns</em>, sekarang tinggal panggil rumus ini buat misahin data pakai koma ke beberapa sel ke samping.</p>
+        <p>Kebalikan dari TEXTJOIN. Sering banget dikasih data hasil tarikan web yang numpuk di satu sel (misal: &quot;Budi,Jakarta,08123&quot;). Dulu harus repot pakai <em>Text to Columns</em>, sekarang tinggal panggil rumus ini buat misahin data pakai koma ke beberapa sel ke samping.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=TEXTSPLIT(teks_asli, pembatas_kolom)</code></li>
-            <li><strong>Contoh Kasus:</strong> Memisahkan kalimat di sel A1 ("Apel, Jeruk, Mangga") menjadi tiga kolom berbeda.</li>
+            <li><strong>Contoh Kasus:</strong> Memisahkan kalimat di sel A1 (&quot;Apel, Jeruk, Mangga&quot;) menjadi tiga kolom berbeda.</li>
         </ul>
-        <pre><code>=TEXTSPLIT(A1, ", ")</code></pre>
+        <pre><code>=TEXTSPLIT(A1, &quot;, &quot;)</code></pre>
         <h2>5. LET <i class="fa-solid fa-code"></i></h2>
-        <p>Rumus kamu panjang banget sampai berulang-ulang nyebut rentang yang sama? LET memungkinkan kamu membuat "variabel" lokal di dalam rumus Excel. Bikin rumus jadi lebih ringkas dan proses <em>loading</em> Excel jadi jauh lebih ringan.</p>
+        <p>Rumus kamu panjang banget sampai berulang-ulang nyebut rentang yang sama? LET memungkinkan kamu membuat &quot;variabel&quot; lokal di dalam rumus Excel. Bikin rumus jadi lebih ringkas dan proses <em>loading</em> Excel jadi jauh lebih ringan.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=LET(nama_variabel, nilai_variabel, perhitungan)</code></li>
             <li><strong>Contoh Kasus:</strong> Menghitung rata-rata nilai, lalu menambahkan teks khusus jika rata-ratanya di atas 80.</li>
         </ul>
-        <pre><code>=LET(RataRata, AVERAGE(A1:A10), IF(RataRata&gt;80, "Lulus", "Gagal"))</code></pre>
+        <pre><code>=LET(RataRata, AVERAGE(A1:A10), IF(RataRata&gt;80, &quot;Lulus&quot;, &quot;Gagal&quot;))</code></pre>
         <h2>6. NETWORKDAYS <i class="fa-solid fa-calendar-check"></i></h2>
         <p>Orang HR atau operasional wajib tahu! Kalau disuruh hitung SLA (Service Level Agreement) atau total hari kerja efektif dalam sebulan, jangan manual ngurangin tanggal merah. Rumus ini langsung ngebuang hari Sabtu-Minggu dan hari libur nasional (kalau kamu masukin list-nya).</p>
         <ul>
@@ -223,11 +223,11 @@
         <p>Versi modern dari MATCH. Lebih tangguh, otomatis nyari persis sama (exact match) tanpa perlu masukin angka 0 di akhir rumus kayak fungsi MATCH jadul. Dan kerennya, bisa nyari dari bawah ke atas juga!</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=XMATCH(nilai_dicari, rentang_pencarian, [mode_pencarian])</code></li>
-            <li><strong>Contoh Kasus:</strong> Mencari tahu ada di baris ke-berapa transaksi dengan nomor resi "RES123" di kolom A.</li>
+            <li><strong>Contoh Kasus:</strong> Mencari tahu ada di baris ke-berapa transaksi dengan nomor resi &quot;RES123&quot; di kolom A.</li>
         </ul>
-        <pre><code>=XMATCH("RES123", A:A)</code></pre>
+        <pre><code>=XMATCH(&quot;RES123&quot;, A:A)</code></pre>
         <h2>10. AGGREGATE <i class="fa-solid fa-cubes"></i></h2>
-        <p>Ini adalah versi super saiyan dari fungsi SUBTOTAL. Kalau kamu ngitung total (SUM) tapi di rentang datanya ada pesan error (kayak <code>#N/A</code>), fungsi SUM biasa akan ikutan error. Tapi dengan AGGREGATE, kamu bisa kasih perintah: "Hitung totalnya, tapi acuhkan baris yang error atau yang lagi di-hide."</p>
+        <p>Ini adalah versi super saiyan dari fungsi SUBTOTAL. Kalau kamu ngitung total (SUM) tapi di rentang datanya ada pesan error (kayak <code>#N/A</code>), fungsi SUM biasa akan ikutan error. Tapi dengan AGGREGATE, kamu bisa kasih perintah: &quot;Hitung totalnya, tapi acuhkan baris yang error atau yang lagi di-hide.&quot;</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=AGGREGATE(nomor_fungsi, opsi_abaikan, rentang_data)</code></li>
             <li><strong>Contoh Kasus:</strong> Menjumlahkan data di kolom A (Fungsi 9 untuk SUM), dengan mengabaikan pesan error (Opsi 6).</li>
@@ -245,13 +245,16 @@
                 <li><strong>How (Bagaimana):</strong> Cukup copas logika rumusnya dari contoh kasus di bawah ini langsung ke lembar kerjamu!</li>
             </ul>
         </div>
-        <h3>Jadi, Udah Siap Bikin Data yang Rapi? 🚀</h3>
+        <h3>Jadi, Udah Siap Bikin Data yang Rapi? &#x1f680;</h3>
         <p>Menguasai Excel memang butuh waktu dan latihan. Tapi dengan 10 rumus lanjutan ini di kantongmu, kamu udah satu langkah lebih jauh dari sekadar analis pemula. Terapkan fungsi IFERROR untuk merapikan visualisasi laporan secara bertahap, atau gunakan fungsi TEXTSPLIT guna memisahkan string data secara sistematis.</p>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
     </article>
 </main>
 <footer>
-    <p>🄯 2026 Layar Kosong | Dioptimasi dengan 💻 untuk kemudahan harimu.</p>
-       <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+    <p>&#x1f12f; 2026 Layar Kosong | Dioptimasi dengan &#x1f4bb; untuk kemudahan harimu.</p>
+       <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

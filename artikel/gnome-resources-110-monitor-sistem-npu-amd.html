@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="GNOME">
     <meta property="article:published_time" content="2026-02-25T11:00:00.000Z">
     <meta property="article:modified_time" content="2026-02-25T11:00:00.000Z">
@@ -237,13 +237,13 @@
             <p><em>GNOME Resources 1.10 resmi dirilis dengan dukungan pemantauan NPU AMD Ryzen AI, pencarian multi-proses, deteksi AppImage, dan berbagai peningkatan performa. Simak ulasan lengkapnya dari pengalaman langsung aku.</em></p>
         </header>
         <!-- Narasi pengalaman pribadi (aku) -->
-        <p>Sebagai pengguna Linux yang sering beralih antara Fedora dan Arch, aku selalu mencari aplikasi monitor sistem yang <em>eye-candy</em> sekaligus fungsional. Selama ini aku pakai <code>htop</code> di terminal atau GNOME System Monitor bawaan. Tapi jujur, GNOME System Monitor terasa agak ketinggalan zaman—tampilannya kurang modern, tidak ada informasi GPU, apalagi NPU. Nah, beberapa waktu lalu aku menemukan <strong>GNOME Resources</strong>, monitor sistem berbasis Rust dan GTK4 yang tampilannya sleek. Dan sekarang, versi 1.10 baru saja rilis dengan fitur yang membuat aku excited: dukungan pemantauan NPU AMD Ryzen AI! 🎉</p>
+        <p>Sebagai pengguna Linux yang sering beralih antara Fedora dan Arch, aku selalu mencari aplikasi monitor sistem yang <em>eye-candy</em> sekaligus fungsional. Selama ini aku pakai <code>htop</code> di terminal atau GNOME System Monitor bawaan. Tapi jujur, GNOME System Monitor terasa agak ketinggalan zaman&#x2014;tampilannya kurang modern, tidak ada informasi GPU, apalagi NPU. Nah, beberapa waktu lalu aku menemukan <strong>GNOME Resources</strong>, monitor sistem berbasis Rust dan GTK4 yang tampilannya sleek. Dan sekarang, versi 1.10 baru saja rilis dengan fitur yang membuat aku excited: dukungan pemantauan NPU AMD Ryzen AI! &#x1f389;</p>
         <p>Di artikel ini, aku akan mengajak Anda menyelami apa itu GNOME Resources, fitur-fitur anyar di versi 1.10, cara instalasi di berbagai distro, hingga pengalaman pribadi aku menggunakannya sebagai <em>daily driver</em>. Yuk, kita mulai petualangan memantau sistem dengan gaya modern!</p>
         <!-- 5W+1H -->
         <h2>GNOME Resources: 5W+1H</h2>
         <p>Sebelum membahas fitur terbaru, mari kita pahami dulu apa itu GNOME Resources dengan pendekatan 5W+1H.</p>
         <h3><i class="fa-solid fa-question-circle feature-icon"></i> Apa itu GNOME Resources?</h3>
-        <p><strong>GNOME Resources</strong> adalah aplikasi pemantau sumber daya sistem untuk lingkungan desktop GNOME. Ditulis dalam bahasa Rust dan menggunakan GTK4 serta libadwaita untuk antarmuka yang modern dan mulus. Aplikasi ini mampu menampilkan penggunaan CPU, memori, GPU, NPU, jaringan, perangkat blok (disk), baterai, serta daftar proses dan aplikasi yang sedang berjalan. Tujuannya adalah memberikan informasi yang cukup tanpa membebani pengguna dengan detail berlebihan—<em>balance between information richness and user-friendliness</em>.</p>
+        <p><strong>GNOME Resources</strong> adalah aplikasi pemantau sumber daya sistem untuk lingkungan desktop GNOME. Ditulis dalam bahasa Rust dan menggunakan GTK4 serta libadwaita untuk antarmuka yang modern dan mulus. Aplikasi ini mampu menampilkan penggunaan CPU, memori, GPU, NPU, jaringan, perangkat blok (disk), baterai, serta daftar proses dan aplikasi yang sedang berjalan. Tujuannya adalah memberikan informasi yang cukup tanpa membebani pengguna dengan detail berlebihan&#x2014;<em>balance between information richness and user-friendliness</em>.</p>
         <h3><i class="fa-solid fa-user feature-icon"></i> Siapa pengembangnya?</h3>
         <p>Proyek ini dikelola oleh <strong>nokyan</strong> (di GitHub) dan kontributor lainnya. GNOME Resources juga telah diterima sebagai bagian dari <strong>GNOME Circle</strong>, kumpulan aplikasi berkualitas yang melengkapi ekosistem GNOME. Jadi, pengembangannya aktif dan mengikuti standar GNOME.</p>
         <h3><i class="fa-solid fa-calendar-check feature-icon"></i> Kapan rilis versi 1.10?</h3>
@@ -257,7 +257,7 @@
         <h2>Fitur Baru GNOME Resources 1.10 yang Bikin Penasaran</h2>
         <p>Mari kita bedah satu per satu fitur anyar yang dibawa oleh versi 1.10. Aku sudah mencobanya langsung di laptop dengan prosesor AMD Ryzen AI 9 HX 370.</p>
         <h3><i class="fa-solid fa-microchip feature-icon"></i> Dukungan Pemantauan NPU AMD Ryzen AI</h3>
-        <p>Ini adalah <em>headliner</em> rilis 1.10. Jika Anda memiliki prosesor AMD Ryzen AI (misalnya seri Ryzen 7040, 8040, atau Strix Point), dan sudah memuat driver kernel <code>amdxdna</code> serta firmware NPU yang sesuai, GNOME Resources akan menampilkan tab NPU dengan informasi utilisasi, frekuensi, dan memory NPU (jika tersedia). Sebelumnya, fitur ini hanya ada untuk Intel Core Ultra. Kini pengguna AMD juga bisa memantau NPU mereka secara <em>real-time</em>. Aku coba menjalankan beberapa task AI ringan (dengan <code>onnxruntime</code> via NPU), dan grafik langsung bergerak. Keren! 🔥</p>
+        <p>Ini adalah <em>headliner</em> rilis 1.10. Jika Anda memiliki prosesor AMD Ryzen AI (misalnya seri Ryzen 7040, 8040, atau Strix Point), dan sudah memuat driver kernel <code>amdxdna</code> serta firmware NPU yang sesuai, GNOME Resources akan menampilkan tab NPU dengan informasi utilisasi, frekuensi, dan memory NPU (jika tersedia). Sebelumnya, fitur ini hanya ada untuk Intel Core Ultra. Kini pengguna AMD juga bisa memantau NPU mereka secara <em>real-time</em>. Aku coba menjalankan beberapa task AI ringan (dengan <code>onnxruntime</code> via NPU), dan grafik langsung bergerak. Keren! &#x1f525;</p>
         <h3><i class="fa-solid fa-search feature-icon"></i> Pencarian Multi-Proses dengan Operator |</h3>
         <p>Di tab Processes, sekarang Anda bisa mencari beberapa nama proses sekaligus menggunakan tanda <code>|</code> (pipe). Misalnya, ketik <code>firefox|chrome|gnome-shell</code> untuk menampilkan semua proses dari browser dan shell. Ini sangat membantu saat ingin memonitor beberapa aplikasi sekaligus tanpa perlu berganti-ganti filter. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
         <h3><i class="fa-solid fa-box feature-icon"></i> Deteksi AppImage dan Aplikasi Portable</h3>
@@ -307,34 +307,34 @@
         <p><small>Semua screenshot di atas diambil dari repositori resmi GNOME Resources.</small></p>
         <h2>Cara Instalasi GNOME Resources di Berbagai Distro</h2>
         <p>Instalasi GNOME Resources sangat mudah. Berikut metode yang direkomendasikan (resmi) dan tidak resmi.</p>
-        <h3>✅ Metode Resmi: Flatpak dari Flathub</h3>
+        <h3>&#x2705; Metode Resmi: Flatpak dari Flathub</h3>
         <p>Ini adalah cara yang didukung penuh oleh pengembang. Pastikan Anda sudah mengaktifkan Flathub. Kemudian jalankan:</p>
         <pre><code>flatpak install flathub net.nokyan.Resources</code></pre>
         <p>Setelah terinstal, Anda bisa menjalankannya dari menu aplikasi atau dengan perintah:</p>
         <pre><code>flatpak run net.nokyan.Resources</code></pre>
         <p>Keuntungan Flatpak: selalu mendapat pembaruan terbaru, terisolasi dari sistem, dan tersedia di semua distribusi Linux.</p>
-        <h3>📦 Arch Linux (Repositori Extra)</h3>
+        <h3>&#x1f4e6; Arch Linux (Repositori Extra)</h3>
         <p>Pengguna Arch bisa langsung memasang dari repositori <code>extra</code> (paket tidak resmi, tapi dikelola oleh Arch packager). Cukup jalankan:</p>
         <pre><code>sudo pacman -S resources</code></pre>
         <p>Versi ini biasanya mengikuti rilis terbaru dengan sedikit jeda.</p>
-        <h3>🟦 Fedora (Copr)</h3>
+        <h3>&#x1f7e6; Fedora (Copr)</h3>
         <p>Untuk Fedora 39+, tersedia di Copr <code>atim/resources</code>. Aktifkan repositori dan instal:</p>
         <pre><code>sudo dnf copr enable atim/resources
 sudo dnf install resources</code></pre>
-        <h3>❄️ NixOS / Nix</h3>
+        <h3>&#x2744;&#xfe0f; NixOS / Nix</h3>
         <p>Di NixOS, tambahkan <code>pkgs.resources</code> ke environment.systemPackages atau gunakan <code>nix-shell</code>. Contoh di configuration.nix:</p>
         <pre><code>environment.systemPackages = [ pkgs.resources ];</code></pre>
         <p>Catatan: Flatpak version mungkin bermasalah dengan deteksi aplikasi di NixOS, jadi paket native lebih disarankan.</p>
-        <h3>🔧 Kompilasi dari Sumber</h3>
-        <p>Jika Anda ingin build sendiri, pastikan dependensi build terpenuhi: <code>glib-2.0</code> ≥ 2.66, <code>gtk4</code> ≥ 4.12, <code>libadwaita-1</code> ≥ 1.8, <code>cargo</code>, dan Rust 1.85+. Kemudian:</p>
+        <h3>&#x1f527; Kompilasi dari Sumber</h3>
+        <p>Jika Anda ingin build sendiri, pastikan dependensi build terpenuhi: <code>glib-2.0</code> &#x2265; 2.66, <code>gtk4</code> &#x2265; 4.12, <code>libadwaita-1</code> &#x2265; 1.8, <code>cargo</code>, dan Rust 1.85+. Kemudian:</p>
         <pre><code>git clone https://github.com/nokyan/resources.git
 cd resources
 meson . build --prefix=/usr/local
 ninja -C build install</code></pre>
         <h3>Dependensi Runtime (Opsional)</h3>
         <ul>
-            <li><code>systemd</code> – diperlukan untuk deteksi aplikasi berbasis cgroups.</li>
-            <li><code>polkit</code> – diperlukan untuk tindakan berprivilese seperti mematikan proses milik pengguna lain.</li>
+            <li><code>systemd</code> &#x2013; diperlukan untuk deteksi aplikasi berbasis cgroups.</li>
+            <li><code>polkit</code> &#x2013; diperlukan untuk tindakan berprivilese seperti mematikan proses milik pengguna lain.</li>
         </ul>
         <p>Tanpa keduanya, aplikasi tetap berjalan tetapi fitur tertentu mungkin tidak berfungsi.</p>
         <h2>Pengalaman Pribadi Menggunakan GNOME Resources 1.10</h2>
@@ -352,11 +352,11 @@ ninja -C build install</code></pre>
                 <tr><th>Fitur</th><th>GNOME Resources</th><th>GNOME System Monitor</th><th>htop (terminal)</th><th>btop (terminal)</th></tr>
             </thead>
             <tbody>
-                <tr><td>Antarmuka Grafis</td><td>✅ Modern (GTK4)</td><td>⚠️ Ketinggalan zaman</td><td>❌ Terminal</td><td>❌ Terminal (TUI)</td></tr>
-                <tr><td>Dukungan GPU</td><td>✅ Ya</td><td>❌ Tidak</td><td>⚠️ (lewat skrip)</td><td>✅ Ya</td></tr>
-                <tr><td>Dukungan NPU</td><td>✅ Intel &amp; AMD</td><td>❌</td><td>❌</td><td>❌</td></tr>
-                <tr><td>Pencarian Multi-Proses</td><td>✅ (operator |)</td><td>❌ Hanya satu</td><td>⚠️ (via regex)</td><td>✅ (filter)</td></tr>
-                <tr><td>Deteksi AppImage</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                <tr><td>Antarmuka Grafis</td><td>&#x2705; Modern (GTK4)</td><td>&#x26a0;&#xfe0f; Ketinggalan zaman</td><td>&#x274c; Terminal</td><td>&#x274c; Terminal (TUI)</td></tr>
+                <tr><td>Dukungan GPU</td><td>&#x2705; Ya</td><td>&#x274c; Tidak</td><td>&#x26a0;&#xfe0f; (lewat skrip)</td><td>&#x2705; Ya</td></tr>
+                <tr><td>Dukungan NPU</td><td>&#x2705; Intel &amp; AMD</td><td>&#x274c;</td><td>&#x274c;</td><td>&#x274c;</td></tr>
+                <tr><td>Pencarian Multi-Proses</td><td>&#x2705; (operator |)</td><td>&#x274c; Hanya satu</td><td>&#x26a0;&#xfe0f; (via regex)</td><td>&#x2705; (filter)</td></tr>
+                <tr><td>Deteksi AppImage</td><td>&#x2705;</td><td>&#x274c;</td><td>&#x274c;</td><td>&#x274c;</td></tr>
                 <tr><td>Sumber Daya CPU</td><td>Rendah</td><td>Sedang</td><td>Sangat rendah</td><td>Rendah</td></tr>
             </tbody>
         </table>
@@ -364,7 +364,7 @@ ninja -C build install</code></pre>
         <h2>Tips dan Trik Memaksimalkan GNOME Resources</h2>
         <ul>
             <li><strong>Gunakan shortcut keyboard:</strong> <kbd>Ctrl+F</kbd> untuk fokus ke kolom pencarian di tab Processes.</li>
-            <li><strong>Sembunyikan tab yang tidak perlu:</strong> Klik kanan pada tab dan pilih "Hide" jika ada informasi yang tidak ingin ditampilkan.</li>
+            <li><strong>Sembunyikan tab yang tidak perlu:</strong> Klik kanan pada tab dan pilih &quot;Hide&quot; jika ada informasi yang tidak ingin ditampilkan.</li>
             <li><strong>Setel ulang grafik:</strong> Klik dua kali pada grafik untuk mereset skala sumbu Y.</li>
             <li><strong>Pantau suhu dan frekuensi:</strong> Meski tidak ditampilkan langsung, beberapa informasi bisa diakses melalui tooltip di grafik CPU/GPU.</li>
             <li><strong>Kombinasikan dengan <code>powerprofilesctl</code>:</strong> Untuk pengguna laptop, ganti profil daya di GNOME Settings, dan lihat dampaknya di Resources.</li>
@@ -373,14 +373,17 @@ ninja -C build install</code></pre>
         <p>Pengembang berencana menambahkan dukungan untuk lebih banyak sensor (suhu, voltase), integrasi dengan systemd untuk manajemen service, dan mungkin tampilan historis. Untuk sekarang, GNOME Resources sudah sangat matang dan layak digunakan sehari-hari.</p>
         <h2>Kesimpulan: Haruskah Anda Beralih ke GNOME Resources?</h2>
         <p>Jika Anda pengguna GNOME dan menginginkan monitor sistem yang modern, informatif, dan mendukung hardware terbaru (terutama NPU), maka <strong>GNOME Resources 1.10 adalah jawabannya</strong>. Dengan tambahan fitur seperti pencarian multi-proses dan deteksi AppImage, aplikasi ini semakin matang. Meskipun paket Flatpak adalah cara resmi, ketersediaan paket native di berbagai distro memudahkan siapa saja untuk mencobanya.</p>
-        <p>Aku pribadi sudah beralih sepenuhnya ke GNOME Resources dan tidak menoleh ke belakang. Cobalah sendiri, dan rasakan perbedaannya! Jangan lupa tinggalkan komentar atau cerita pengalaman Anda di kolom di bawah. 👇</p>
+        <p>Aku pribadi sudah beralih sepenuhnya ke GNOME Resources dan tidak menoleh ke belakang. Cobalah sendiri, dan rasakan perbedaannya! Jangan lupa tinggalkan komentar atau cerita pengalaman Anda di kolom di bawah. &#x1f447;</p>
         <!-- Tempat komentar dan artikel terkait -->
         <div id="related-articles-grid">
                 </div>
         <div id="response">
              </div>
         <footer class="footer">
-            <p>🄯 2026 Jaga Data Pribadi Tetap Aman — 28 Februari 2026.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; 2026 Jaga Data Pribadi Tetap Aman &#x2014; 28 Februari 2026.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </article>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

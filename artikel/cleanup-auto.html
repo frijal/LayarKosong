@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-27T16:22:11.850Z">
     <meta property="article:modified_time" content="2026-04-16T18:50:22.088Z">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
@@ -146,58 +146,58 @@
         <span style="width: 8px; height: 8px; background: currentColor; border-radius: 50%;"></span>
         Workflow Active
     </div>
-    <div id="iposbrowser"></div><h1>🧹 Pembersihan Otomatis Dependencies Node.js</h1>
+    <div id="iposbrowser"></div><h1>&#x1f9f9; Pembersihan Otomatis Dependencies Node.js</h1>
     <p>
-        Pernah ngerasa proyek Node.js kamu makin berat gara-gara <em>dependencies</em> yang sebenernya tidak kepakai? Kalau dibiarin, repo kamu cuma jadi "gudang sampah" kode.
-        Di sini saya bagiin cara bersihin itu semua secara <strong>non-interaktif</strong>—cocok banget buat kamu yang pengen automasi di GitHub Actions tanpa drama ketik "y/n" di terminal.
+        Pernah ngerasa proyek Node.js kamu makin berat gara-gara <em>dependencies</em> yang sebenernya tidak kepakai? Kalau dibiarin, repo kamu cuma jadi &quot;gudang sampah&quot; kode.
+        Di sini saya bagiin cara bersihin itu semua secara <strong>non-interaktif</strong>&#x2014;cocok banget buat kamu yang pengen automasi di GitHub Actions tanpa drama ketik &quot;y/n&quot; di terminal.
     </p>
     <div class="feature-grid">
         <div class="feature-card">
-            <h3 style="margin-top:0">🔍 Deteksi Cerdas</h3>
+            <h3 style="margin-top:0">&#x1f50d; Deteksi Cerdas</h3>
             <p style="font-size:1rem; margin:0">Mencari paket yang terdaftar di package.json tapi absen di kode sumber.</p>
         </div>
         <div class="feature-card">
-            <h3 style="margin-top:0">⚡ Tanpa Konfirmasi</h3>
+            <h3 style="margin-top:0">&#x26a1; Tanpa Konfirmasi</h3>
             <p style="font-size:1rem; margin:0">Skrip berjalan mandiri, langsung eksekusi tanpa nunggu jawaban kamu.</p>
         </div>
         <div class="feature-card">
-            <h3 style="margin-top:0">♻️ Fresh Install</h3>
+            <h3 style="margin-top:0">&#x267b;&#xfe0f; Fresh Install</h3>
             <p style="font-size:1rem; margin:0">Hapus node_modules dan pasang ulang biar semuanya bersih dari cache.</p>
         </div>
     </div>
-    <h2>🪄 Skrip Utama: <code>cleanup-auto.js</code></h2>
-    <p>Simpan skrip sakti ini di folder <code>ext/cleanup-auto.js</code>. Skrip ini pakai library <code>depcheck</code> buat nyari mana yang cuma "numpang" doang.</p>
+    <h2>&#x1fa84; Skrip Utama: <code>cleanup-auto.js</code></h2>
+    <p>Simpan skrip sakti ini di folder <code>ext/cleanup-auto.js</code>. Skrip ini pakai library <code>depcheck</code> buat nyari mana yang cuma &quot;numpang&quot; doang.</p>
     <pre><code class="language-js">#!/usr/bin/env node
 /<b>
  * CLEANUP AUTO v1.1
  * Menghapus paket tidak terpakai secara otomatis
  */
-import { execSync } from 'node:child_process';
-import depcheck from 'depcheck';
-import fs from 'node:fs';
+import { execSync } from &apos;node:child_process&apos;;
+import depcheck from &apos;depcheck&apos;;
+import fs from &apos;node:fs&apos;;
 (async () =&gt; {
-  console.log('🚀 Memulai audit dependencies...');
+  console.log(&apos;&#x1f680; Memulai audit dependencies...&apos;);
   const result = await depcheck(process.cwd(), {});
   const unused = [...result.dependencies, ...result.devDependencies];
   if (unused.length === 0) {
-    console.log('✅ Bersih! Tidak ada paket yang perlu dihapus.');
+    console.log(&apos;&#x2705; Bersih! Tidak ada paket yang perlu dihapus.&apos;);
   } else {
-    console.log('🧹 Menghapus paket tak terpakai:', unused.join(', '));
-    execSync(`npm uninstall ${unused.join(' ')}`, { stdio: 'inherit' });
+    console.log(&apos;&#x1f9f9; Menghapus paket tak terpakai:&apos;, unused.join(&apos;, &apos;));
+    execSync(`npm uninstall &#x24;{unused.join(&apos; &apos;)}`, { stdio: &apos;inherit&apos; });
   }
-  console.log('🗑️ Membersihkan node_modules &amp; lockfile...');
-  fs.rmSync('node_modules', { recursive: true, force: true });
-  fs.rmSync('package-lock.json', { force: true });
-  console.log('📦 Menjalankan instalasi ulang yang bersih...');
-  execSync('npm install', { stdio: 'inherit' });
-  console.log('✨ Selesai! Repo kamu sekarang lebih ramping.');
+  console.log(&apos;&#x1f5d1;&#xfe0f; Membersihkan node_modules &amp; lockfile...&apos;);
+  fs.rmSync(&apos;node_modules&apos;, { recursive: true, force: true });
+  fs.rmSync(&apos;package-lock.json&apos;, { force: true });
+  console.log(&apos;&#x1f4e6; Menjalankan instalasi ulang yang bersih...&apos;);
+  execSync(&apos;npm install&apos;, { stdio: &apos;inherit&apos; });
+  console.log(&apos;&#x2728; Selesai! Repo kamu sekarang lebih ramping.&apos;);
 })();</b></code></pre><b>
-    <h2>⚙️ Jadwalkan di GitHub Actions</h2>
+    <h2>&#x2699;&#xfe0f; Jadwalkan di GitHub Actions</h2>
     <p>Ngapain jalanin manual kalau bisa disuruh tiap minggu? Pakai file YAML ini di <code>.github/workflows/cleanup.yml</code>.</p>
     <pre><code class="language-yaml">name: Weekly Dependency Cleanup
 on:
   schedule:
-    - cron: '0 21 * * 0' # Setiap Minggu Malam (WIB menyesuaikan)
+    - cron: &apos;0 21 * * 0&apos; # Setiap Minggu Malam (WIB menyesuaikan)
   workflow_dispatch:
 jobs:
   automation:
@@ -206,17 +206,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: &apos;20&apos;
+          cache: &apos;npm&apos;
       - name: Install Tools
         run: npm ci
       - name: Eksekusi Skrip Pembersihan
         run: node ext/cleanup-auto.js</code></pre>
     <div class="tip-box">
-        <h3 style="margin-top:0">💡 Tips:</h3>
+        <h3 style="margin-top:0">&#x1f4a1; Tips:</h3>
         <p style="margin:0">
             Pastikan kamu sudah install <code>depcheck</code> di proyek kamu sebelum menjalankan skrip ini (<code>npm install depcheck --save-dev</code>).
-            Gunakan workflow ini di branch <em>development</em> dulu buat mastiin tidak ada paket "ajaib" yang hilang tapi ternyata dibutuhin di produksi!
+            Gunakan workflow ini di branch <em>development</em> dulu buat mastiin tidak ada paket &quot;ajaib&quot; yang hilang tapi ternyata dibutuhin di produksi!
         </p>
     </div>
     <div id="related-articles-grid"></div><div id="response"></div>
@@ -224,4 +224,7 @@ jobs:
 <script src="https://cdn.jsdelivr.net/npm/prismjs@latest/prism.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-javascript.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-yaml.min.js"></script>
-</b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+</b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

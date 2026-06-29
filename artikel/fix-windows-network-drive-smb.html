@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Windows 10">
     <meta property="article:tag" content="Windows 11">
     <meta property="article:tag" content="network drive">
@@ -255,7 +255,7 @@
       <header>
         <div id="iposbrowser"></div><h1>
           <i class="fa-solid fa-network-wired" style="color:#0078d4;"></i> Fix Network Drive Windows 10/11: Mapping SMB Share dengan Credentials + Reconnect
-          <span style="font-size:1.8rem;">🔧📁</span>
+          <span style="font-size:1.8rem;">&#x1f527;&#x1f4c1;</span>
         </h1>
         <div class="meta">
           <span><i class="fa-solid fa-tags"></i> Windows 10, Windows 11, SMB, troubleshooting</span>
@@ -263,16 +263,16 @@
       </header>
       <!-- Gambar unggulan -->
       <!-- Pendahuluan dengan 5W+1H -->
-      <p><i class="fa-solid fa-exclamation-circle" style="color:#d32f2f;"></i> <strong>Pernah ngalamin network drive yang kemarin masih lancar</strong>, tiba-tiba hari ini minta password mulu, muncul error <em>"Access is denied"</em>, <em>"Multiple connections to a server"</em>, atau <em>"The mapped network drive could not be created"</em>? Tenang, kamu tidak sendirian. 🥲 Masalah ini sering sangat terjadi di Windows 10/11, apalagi setelah ganti password, reboot, pakai VPN, atau pindah akun Microsoft ke lokal. </p>
+      <p><i class="fa-solid fa-exclamation-circle" style="color:#d32f2f;"></i> <strong>Pernah ngalamin network drive yang kemarin masih lancar</strong>, tiba-tiba hari ini minta password mulu, muncul error <em>&quot;Access is denied&quot;</em>, <em>&quot;Multiple connections to a server&quot;</em>, atau <em>&quot;The mapped network drive could not be created&quot;</em>? Tenang, kamu tidak sendirian. &#x1f972; Masalah ini sering sangat terjadi di Windows 10/11, apalagi setelah ganti password, reboot, pakai VPN, atau pindah akun Microsoft ke lokal. </p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCuyysUaUAUHlLp.webp" alt="Ilustrasi network drive Windows dan folder sharing" loading="lazy">
       <div class="image-caption"><i class="fa-solid fa-image"></i> Network drive yang suka bermasalah? Kita benahi bersama!</div>
-      <p>Di artikel ini, aku bakal kasih panduan <strong>lengkap dan santai</strong> cara mapping SMB share dengan credentials yang tepat, biar koneksi stabil dan reconnect otomatis setiap login. Plus, kita bakal bahas tuntas pakai pendekatan <strong>5W+1H</strong> biar makin paham akar masalahnya. Siap? Yuk simak! 👇</p>
-      <h2>🔍 Prinsip 5W+1H: Memahami Masalah Network Drive</h2>
-      <h3><i class="fa-solid fa-question-circle"></i> What <span style="font-size:1.2rem;">❓</span> – Apa itu mapping network drive?</h3>
+      <p>Di artikel ini, aku bakal kasih panduan <strong>lengkap dan santai</strong> cara mapping SMB share dengan credentials yang tepat, biar koneksi stabil dan reconnect otomatis setiap login. Plus, kita bakal bahas tuntas pakai pendekatan <strong>5W+1H</strong> biar makin paham akar masalahnya. Siap? Yuk simak! &#x1f447;</p>
+      <h2>&#x1f50d; Prinsip 5W+1H: Memahami Masalah Network Drive</h2>
+      <h3><i class="fa-solid fa-question-circle"></i> What <span style="font-size:1.2rem;">&#x2753;</span> &#x2013; Apa itu mapping network drive?</h3>
       <p>Mapping network drive adalah cara menghubungkan folder bersama (shared folder) dari komputer lain, NAS, atau server ke PC Windows kamu sebagai drive maya (misal drive Z:). Biasanya pakai protokol SMB (Server Message Block).</p>
-      <h3><i class="fa-solid fa-user-friends"></i> Who <span style="font-size:1.2rem;">🧑💼</span> – Siapa yang sering mengalami?</h3>
+      <h3><i class="fa-solid fa-user-friends"></i> Who <span style="font-size:1.2rem;">&#x1f9d1;&#x1f4bc;</span> &#x2013; Siapa yang sering mengalami?</h3>
       <p>Semua pengguna Windows 10/11 yang mengakses file dari perangkat lain di jaringan: pengguna NAS (Synology, QNAP), karyawan kantor dengan file server, atau yang suka sharing folder antar PC. Terutama yang sering ganti password atau berpindah jaringan (kantor, rumah, VPN). </p>
-      <h3><i class="fa-solid fa-clock"></i> When <span style="font-size:1.2rem;">⏰</span> – Kapan masalah muncul?</h3>
+      <h3><i class="fa-solid fa-clock"></i> When <span style="font-size:1.2rem;">&#x23f0;</span> &#x2013; Kapan masalah muncul?</h3>
       <ul>
         <li>Setelah reboot atau login ulang.</li>
         <li>Setelah mengganti password akun (lokal/domain).</li>
@@ -280,9 +280,9 @@
         <li>Setelah mengganti metode login (misal dari akun Microsoft ke lokal).</li>
         <li>Jika ada konflik credentials lama yang masih tersimpan.</li>
       </ul>
-      <h3><i class="fa-solid fa-map-marker-alt"></i> Where <span style="font-size:1.2rem;">📍</span> – Di mana setting-nya?</h3>
-      <p>Pengaturan ada di beberapa tempat: <i class="fa-solid fa-folder-open"></i> File Explorer (This PC → Map network drive), <i class="fa-solid fa-key"></i> Credential Manager, <i class="fa-solid fa-terminal"></i> Command Prompt (pakai <code>net use</code>).</p>
-      <h3><i class="fa-solid fa-question"></i> Why <span style="font-size:1.2rem;">❓</span> – Kenapa error terjadi?</h3>
+      <h3><i class="fa-solid fa-map-marker-alt"></i> Where <span style="font-size:1.2rem;">&#x1f4cd;</span> &#x2013; Di mana setting-nya?</h3>
+      <p>Pengaturan ada di beberapa tempat: <i class="fa-solid fa-folder-open"></i> File Explorer (This PC &#x2192; Map network drive), <i class="fa-solid fa-key"></i> Credential Manager, <i class="fa-solid fa-terminal"></i> Command Prompt (pakai <code>net use</code>).</p>
+      <h3><i class="fa-solid fa-question"></i> Why <span style="font-size:1.2rem;">&#x2753;</span> &#x2013; Kenapa error terjadi?</h3>
       <ul>
         <li><strong>Sesi SMB ganda:</strong> Windows menyimpan koneksi lama dengan kredensial berbeda.</li>
         <li><strong>Credential kadaluarsa:</strong> Password berubah tapi credential manager masih menyimpan yang lama.</li>
@@ -290,7 +290,7 @@
         <li><strong>Konflik server name vs IP:</strong> Windows anggap berbeda antara <code>\\NAS</code> dan <code>\\192.168.1.10</code>.</li>
         <li><strong>Koneksi tidak persist:</strong> Lupa centang reconnect at sign-in.</li>
       </ul>
-      <h3><i class="fa-solid fa-hands-helping"></i> How <span style="font-size:1.2rem;">🛠️</span> – Gimana cara fix-nya?</h3>
+      <h3><i class="fa-solid fa-hands-helping"></i> How <span style="font-size:1.2rem;">&#x1f6e0;&#xfe0f;</span> &#x2013; Gimana cara fix-nya?</h3>
       <p>Ada dua metode utama: lewat <strong>File Explorer</strong> (grafis) dan <strong>NET USE</strong> (command line, lebih reliable). Dua-duanya kita bahas tuntas di bawah, plus cara bersihin cache credentials.</p>
       <hr>
       <!-- Prasyarat -->
@@ -304,9 +304,9 @@
       <!-- Step by step File Explorer -->
       <h2><i class="fa-solid fa-folder-open"></i> Metode 1: Mapping via File Explorer (Mudah &amp; Cepat)</h2>
       <h3>1. Putuskan koneksi drive yang bermasalah</h3>
-      <p>Buka <strong>File Explorer → This PC</strong>. Klik kanan drive network yang error → <strong>Disconnect</strong>. Ini penting biar tidak konflik nantinya.</p>
+      <p>Buka <strong>File Explorer &#x2192; This PC</strong>. Klik kanan drive network yang error &#x2192; <strong>Disconnect</strong>. Ini penting biar tidak konflik nantinya.</p>
       <h3>2. Bersihkan credentials lama di Credential Manager</h3>
-      <p>Tekan <code>Win + S</code>, ketik <strong>Credential Manager</strong> → buka. Pilih <strong>Windows Credentials</strong>. Cari entri yang mirip dengan server/share kamu, misal:</p>
+      <p>Tekan <code>Win + S</code>, ketik <strong>Credential Manager</strong> &#x2192; buka. Pilih <strong>Windows Credentials</strong>. Cari entri yang mirip dengan server/share kamu, misal:</p>
       <ul>
         <li><code>\\NAS</code></li>
         <li><code>\\NAS.local</code></li>
@@ -315,7 +315,7 @@
       <p>Klik entri itu, pilih <strong>Remove</strong>. Kalau ragu, hapus semua yang berhubungan dengan host yang sama (termasuk IP).</p>
       <h3>3. Mapping ulang dengan credentials baru</h3>
       <ol>
-        <li>Di File Explorer → <strong>This PC</strong> → klik <strong>Map network drive</strong> (Windows 11: klik tiga titik ⋮ → Map network drive).</li>
+        <li>Di File Explorer &#x2192; <strong>This PC</strong> &#x2192; klik <strong>Map network drive</strong> (Windows 11: klik tiga titik &#x22ee; &#x2192; Map network drive).</li>
         <li>Pilih huruf drive (misal Z:).</li>
         <li>Isi <strong>Folder</strong> dengan path UNC, contoh: <code>\\NAS\Share</code>.</li>
         <li>Ceklis <strong>Reconnect at sign-in</strong>.</li>
@@ -337,7 +337,7 @@
       <h2><i class="fa-solid fa-terminal"></i> Metode 2: Mapping via NET USE (Lebih Reliable &amp; Bisa Script)</h2>
       <p>Buat yang suka command line atau mapping sering gagal via GUI, <code>net use</code> adalah jurus pamungkas.</p>
       <h3>1. Buka Command Prompt sebagai Administrator</h3>
-      <p>Tekan <code>Win + X</code> → pilih <strong>Windows Terminal (Admin)</strong> atau <strong>Command Prompt (Admin)</strong>.</p>
+      <p>Tekan <code>Win + X</code> &#x2192; pilih <strong>Windows Terminal (Admin)</strong> atau <strong>Command Prompt (Admin)</strong>.</p>
       <h3>2. Hapus sesi SMB yang bermasalah</h3>
       <p>Ketik perintah berikut untuk melihat koneksi yang ada:</p>
       <pre><code>net use</code></pre>
@@ -360,15 +360,15 @@
         <i class="fa-solid fa-info-circle"></i> <strong>Tip: Konsisten dalam penamaan server</strong><br>
         Windows menganggap <code>\\NAS</code>, <code>\\NAS.local</code>, dan <code>\\192.168.1.50</code> sebagai entitas berbeda. Kalau kamu simpan credential untuk satu format, gunakan format itu terus.
       </div>
-      <h3><i class="fa-solid fa-exclamation-triangle"></i> Error: "Multiple connections to a server or shared resource by the same user..."</h3>
+      <h3><i class="fa-solid fa-exclamation-triangle"></i> Error: &quot;Multiple connections to a server or shared resource by the same user...&quot;</h3>
       <p>Artinya sudah ada sesi SMB ke server yang sama dengan credentials berbeda. Solusi: <code>net use \\server /delete</code> + hapus credentials di Credential Manager, lalu mapping ulang.</p>
-      <h3><i class="fa-solid fa-ban"></i> Error: "Access is denied" padahal password benar</h3>
+      <h3><i class="fa-solid fa-ban"></i> Error: &quot;Access is denied&quot; padahal password benar</h3>
       <ul>
         <li>Coba gunakan format username lengkap: <code>NAMA-SERVER\nama-user</code>.</li>
         <li>Pastikan user memang punya akses ke share tersebut.</li>
         <li>Hapus sesi lama (langkah 2 metode net use).</li>
       </ul>
-      <h3><i class="fa-solid fa-plug"></i> Drive muncul "Disconnected" setelah boot, tapi bisa diklik</h3>
+      <h3><i class="fa-solid fa-plug"></i> Drive muncul &quot;Disconnected&quot; setelah boot, tapi bisa diklik</h3>
       <p>Ini biasa karena network belum siap saat login. Tunggu 30-60 detik, biasanya Windows akan reconnect otomatis. Pastikan opsi <strong>Reconnect at sign-in</strong> atau <code>/persistent:yes</code> sudah dipakai.</p>
       <h3><i class="fa-solid fa-shield-alt"></i> Catatan tentang versi SMB</h3>
       <p>Windows 10/11 menggunakan SMB2/SMB3 secara default. SMB1 sudah usang dan tidak aman. Jangan aktifkan SMB1 kecuali untuk perangkat lawas yang memang membutuhkan.</p>
@@ -384,7 +384,10 @@
     <div id="response">
     </div>
     <footer>
-      <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman – Ditulis berdasarkan pengalaman nyata dan prinsip E-E-A-T. Semoga network drive-mu selalu reconnect!</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+      <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman &#x2013; Ditulis berdasarkan pengalaman nyata dan prinsip E-E-A-T. Semoga network drive-mu selalu reconnect!</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

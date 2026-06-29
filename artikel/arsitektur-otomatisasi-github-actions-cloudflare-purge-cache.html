@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="sistem-terbuka">
     <meta property="article:tag" content="warta-tekno">
     <meta property="article:published_time" content="2026-06-28T03:31:34.962Z">
@@ -234,29 +234,29 @@
                 <h2>Dapur Pacu di Balik Layar: Peran GitHub Actions</h2>
                 <p>Semua keajaiban ini dimulai dari repositori kode. Ketika seorang penulis merampungkan artikelnya dan melakukan <i>commit</i>, sebuah mesin integrasi berkesinambungan (CI/CD) bernama GitHub Actions langsung terbangun dari tidurnya. Lingkungan virtual ini bertindak sebagai koki dapur yang mengolah bahan mentah menjadi hidangan siap saji.</p>
                 <p>Di dalam <i>pipeline</i> ini, berbagai skrip berbasis Bun mengeksekusi tugas-tugas kritis. Pertama, sistem akan menyisir seluruh artikel baru dan mengunduh aset eksternal agar aman dari risiko tautan mati di masa depan. Selanjutnya, generator khusus akan membedah setiap gambar, memotong resolusinya menjadi beberapa ukuran spesifik untuk desktop dan perangkat seluler, lalu mengonversinya ke format WebP berkualitas tinggi dengan ketajaman yang telah disesuaikan khusus untuk membaca teks infografis.</p>
-                <p>Sebagai penutup di fase dapur, sebuah skrip "tukang sapu" berpatroli memastikan tidak ada file yatim piatu atau sisa gambar basi yang membebani repositori. Semua proses ini sering kali hanya memakan waktu beberapa detik berkat manajemen <i>cache</i> yang cerdas.</p>
+                <p>Sebagai penutup di fase dapur, sebuah skrip &quot;tukang sapu&quot; berpatroli memastikan tidak ada file yatim piatu atau sisa gambar basi yang membebani repositori. Semua proses ini sering kali hanya memakan waktu beberapa detik berkat manajemen <i>cache</i> yang cerdas.</p>
                 <h2>Distribusi Global via Cloudflare Pages</h2>
                 <p>Setelah GitHub Actions selesai memasak, aset yang telah matang dilemparkan ke infrastruktur Cloudflare Pages. Ini adalah tahap di mana data statis didistribusikan melintasi samudra dan benua. Cloudflare menggunakan algoritma pencocokan <i>hash</i> pintar untuk memastikan bahwa mereka hanya mengunggah file yang benar-benar mengalami perubahan.</p>
                 <p>Contoh nyata dari efisiensi ini terlihat jelas pada log penyebaran (<i>deployment</i>) ketika ribuan aset baru disuntikkan ke dalam sistem. Mesin pekerja (<i>worker</i>) Cloudflare mampu menyortir, memvalidasi, dan mendistribusikan pembaruan masif dalam waktu kurang dari setengah menit.</p>
-<pre><code class="language-bash">⛅️ wrangler 4.105.0
-────────────────────
-✨ Compiled Worker successfully
+<pre><code class="language-bash">&#x26c5;&#xfe0f; wrangler 4.105.0
+&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;
+&#x2728; Compiled Worker successfully
 Uploading... (2976/8773)
 Uploading... (5921/8773)
 Uploading... (8773/8773)
-✨ Success! Uploaded 6929 files (1844 already uploaded) (23.75 sec)
-🌎 Deploying...
-✨ Deployment complete!</code></pre>
+&#x2728; Success! Uploaded 6929 files (1844 already uploaded) (23.75 sec)
+&#x1f30e; Deploying...
+&#x2728; Deployment complete!</code></pre>
                 <p>Hasil akhirnya adalah latensi yang nyaris nol. Pengunjung dari Singapura, London, maupun Jakarta akan menerima salinan data persis dari peladen (<i>server</i>) terdekat di kota mereka, menjadikan skor metrik pengalaman pengguna seperti <i>Largest Contentful Paint</i> (LCP) berada di tingkat optimal.</p>
                 <details>
                     <summary><h2>Mengapa Harus Purge All Cache di Cloudflare?</h2></summary>
-                    <p>Setelah melakukan perombakan masif pada situs web—seperti menghapus fitur, memperbarui tata letak CSS, atau menyuntikkan elemen HTML baru ke ribuan artikel sekaligus—menyiram aset ke jaringan pengiriman saja tidaklah cukup. Anda diwajibkan untuk menekan tombol <b>Purge Everything</b> secara manual di konsol Cloudflare. Tindakan ini ibarat mereset memori seluruh peladen di dunia untuk mengambil data paling segar dari pusat.</p>
+                    <p>Setelah melakukan perombakan masif pada situs web&#x2014;seperti menghapus fitur, memperbarui tata letak CSS, atau menyuntikkan elemen HTML baru ke ribuan artikel sekaligus&#x2014;menyiram aset ke jaringan pengiriman saja tidaklah cukup. Anda diwajibkan untuk menekan tombol <b>Purge Everything</b> secara manual di konsol Cloudflare. Tindakan ini ibarat mereset memori seluruh peladen di dunia untuk mengambil data paling segar dari pusat.</p>
                     <h3>1. Mencegah Efek Frankenstein (Belang-Bonteng)</h3>
                     <p>Ketika struktur HTML sebuah halaman berubah drastis namun peramban pengguna masih menyimpan CSS versi lama dari memori sementara, situs web dapat tampil berantakan sesaat. Membersihkan seluruh <i>cache</i> memastikan bahwa peramban akan mengunduh pasangan kerangka dan gaya (HTML dan CSS) dalam versi yang sinkron, mencegah benturan visual yang membingungkan pengunjung.</p>
                     <h3>2. Memaksa Pembaruan Peladen Tepi Global</h3>
                     <p>Jaringan pengiriman konten memiliki peladen cabang yang sangat agresif dalam menahan aset statis demi kecepatan. Kadang kala, meskipun kode baru telah diluncurkan, beberapa cabang terpencil masih mempertahankan salinan lama yang belum kedaluwarsa. Melakukan pembersihan total mengirimkan komando absolut untuk membuang memori lama tanpa terkecuali.</p>
                     <h3>3. Merapikan Header Gambar yang Tersembunyi</h3>
-                    <p>Dalam kasus optimasi gambar, Anda mungkin mengganti tingkat kompresi atau algoritma perenderan suatu gambar tanpa mengubah nama berkasnya. Karena URL gambar tetap sama, infrastruktur sering kali terkecoh dan menganggap tidak ada perubahan. Pembersihan menyeluruh menjamin bahwa modifikasi kedalaman piksel dan kualitas gambar—terutama untuk infografis resolusi tajam—dapat segera dinikmati oleh khalayak luas tanpa terjebak di resolusi buram peninggalan masa lalu.</p>
+                    <p>Dalam kasus optimasi gambar, Anda mungkin mengganti tingkat kompresi atau algoritma perenderan suatu gambar tanpa mengubah nama berkasnya. Karena URL gambar tetap sama, infrastruktur sering kali terkecoh dan menganggap tidak ada perubahan. Pembersihan menyeluruh menjamin bahwa modifikasi kedalaman piksel dan kualitas gambar&#x2014;terutama untuk infografis resolusi tajam&#x2014;dapat segera dinikmati oleh khalayak luas tanpa terjebak di resolusi buram peninggalan masa lalu.</p>
                 </details>
                 <div id="related-articles-grid"></div><div id="response"></div>
             </article>
@@ -264,11 +264,14 @@ Uploading... (8773/8773)
         <footer>
             <div class="footer-inline">
                 <span>Fakhrul Rijal</span>
-                <span>•</span>
+                <span>&#x2022;</span>
                 <span>28 Juni 2026</span>
-                <span>•</span>
+                <span>&#x2022;</span>
                 <span>Referensi: Dokumentasi Wrangler CI/CD &amp; Cloudflare Pages</span>
             </div>
-                <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+                <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

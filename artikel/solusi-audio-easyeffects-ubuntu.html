@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-12T01:55:19.501Z">
     <meta property="article:modified_time" content="2026-01-11T12:05:11.332Z">
     <meta name="keywords" content="EasyEffects, Ubuntu, Linux, Bang &amp; Olufsen, HP Elitebook, audio flat, speaker ngebass, PipeWire, Flatpak, troubleshooting audio">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
@@ -217,10 +217,10 @@
   <body>
     <main class="container">
       <article>
-        <div id="iposbrowser"></div><h1>Mengatasi Audio "Cempreng" di Ubuntu pada Laptop HP Bang &amp; Olufsen</h1>
+        <div id="iposbrowser"></div><h1>Mengatasi Audio &quot;Cempreng&quot; di Ubuntu pada Laptop HP Bang &amp; Olufsen</h1>
         <p>
           Selamat datang di dunia Linux! Pindah dari Windows ke Ubuntu memang
-          menyenangkan, tapi kadang ada hal-hal kecil yang bikin "kangen", salah
+          menyenangkan, tapi kadang ada hal-hal kecil yang bikin &quot;kangen&quot;, salah
           satunya kualitas audio. Pengalaman ini sangat umum, terutama bagi
           pengguna laptop dengan audio premium seperti HP EliteBook 830 G6 yang
           berlogo Bang &amp; Olufsen.
@@ -230,18 +230,18 @@
           sekadar driver biasa, tapi juga software <em>Digital Signal Processing</em>
           (DSP) yang sudah di-tuning khusus untuk speaker laptopmu. Hal ini yang
           membuat suara terdengar lebih ngebass dan bertenaga. Sayangnya, driver
-          ini tidak tersedia untuk Linux, sehingga suara bawaan terdengar "flat"
+          ini tidak tersedia untuk Linux, sehingga suara bawaan terdengar &quot;flat&quot;
           dan loyo.
         </blockquote>
         <p>
           Kabar baiknya, masalah ini bisa diatasi! Aplikasi seperti
           <strong>EasyEffects</strong> adalah solusi paling populer untuk mengembalikan
-          "warna" audio di Linux. Namun, kadang aplikasi ini suka berhenti
+          &quot;warna&quot; audio di Linux. Namun, kadang aplikasi ini suka berhenti
           sendiri saat berjalan di latar belakang, misalnya saat ganti video
           YouTube. Mari kita bahas kenapa ini terjadi dan solusinya.
         </p>
         <hr>
-        <h2>🔧 Kenapa EasyEffects Sering Berhenti Sendiri?</h2>
+        <h2>&#x1f527; Kenapa EasyEffects Sering Berhenti Sendiri?</h2>
         <p>
           Aplikasi ini bekerja di atas server audio Linux (PipeWire). Ada
           beberapa alasan mengapa koneksinya bisa terputus:
@@ -265,7 +265,7 @@
           </li>
         </ul>
         <hr>
-        <h2>✅ Solusi Paling Praktis dan Stabil</h2>
+        <h2>&#x2705; Solusi Paling Praktis dan Stabil</h2>
         <p>
           Berikut adalah langkah-langkah yang direkomendasikan untuk membuat
           EasyEffects berjalan stabil, diurutkan dari yang paling penting.
@@ -296,7 +296,7 @@ sudo apt install easyeffects</code></pre>
           Dengan perintah ini, EasyEffects akan otomatis aktif saat Anda login
           dan terus berjalan di latar belakang.
         </p>
-        <h3>3. Pastikan Tidak Ada Opsi "Quit on Window Close"</h3>
+        <h3>3. Pastikan Tidak Ada Opsi &quot;Quit on Window Close&quot;</h3>
         <p>
           Walaupun sudah berjalan sebagai service, tidak ada salahnya memastikan
           pengaturan ini. Ini adalah penyebab umum aplikasi berhenti.
@@ -304,7 +304,7 @@ sudo apt install easyeffects</code></pre>
         <ol>
           <li>Buka aplikasi EasyEffects.</li>
           <li>Klik menu hamburger (tiga garis) dan pilih <strong>Preferences</strong>.</li>
-          <li>Pastikan opsi <strong>"Quit on Window Close"</strong> tidak dicentang.</li>
+          <li>Pastikan opsi <strong>&quot;Quit on Window Close&quot;</strong> tidak dicentang.</li>
         </ol>
         <h3>4. Restart Layanan Audio Jika Perlu</h3>
         <p>
@@ -314,7 +314,7 @@ sudo apt install easyeffects</code></pre>
         <pre><code>systemctl --user restart pipewire.service
 systemctl --user restart pipewire-pulse.service</code></pre>
         <hr>
-        <h2>🎶 Tips Tambahan untuk Kualitas Suara Maksimal</h2>
+        <h2>&#x1f3b6; Tips Tambahan untuk Kualitas Suara Maksimal</h2>
         <p>
           Meskipun sudah stabil, Anda masih bisa meningkatkan kualitas suaranya
           agar lebih mendekati pengalaman di Windows.
@@ -323,21 +323,21 @@ systemctl --user restart pipewire-pulse.service</code></pre>
           <li>
             <strong>Gunakan Preset Komunitas:</strong> Daripada mengatur dari
             nol, cari dan impor preset buatan komunitas. Gunakan kata kunci
-            "EasyEffects community presets" di Google atau GitHub. Preset ini
+            &quot;EasyEffects community presets&quot; di Google atau GitHub. Preset ini
             biasanya berupa file <code>.json</code> yang bisa diimpor ke EasyEffects.
           </li>
           <li>
             <strong>Mulai dengan Efek Minimal:</strong> Jangan langsung
             mengaktifkan banyak efek. Kombinasi <strong>Bass Enhancer</strong> dan
-            <strong>Limiter</strong> biasanya sudah cukup untuk memberi "power" pada suara
+            <strong>Limiter</strong> biasanya sudah cukup untuk memberi &quot;power&quot; pada suara
             tanpa membuatnya pecah.
           </li>
           <li>
             <strong>Contoh Setting Cepat:</strong>
             <ul>
               <li>
-                <strong>Bass Enhancer:</strong> atur 'amount' ke 0.6 - 0.8 dan
-                'floor' ke 80 Hz.
+                <strong>Bass Enhancer:</strong> atur &apos;amount&apos; ke 0.6 - 0.8 dan
+                &apos;floor&apos; ke 80 Hz.
               </li>
               <li>
                 <strong>Equalizer:</strong> Naikkan sedikit frekuensi rendah
@@ -361,6 +361,9 @@ systemctl --user restart pipewire-pulse.service</code></pre>
     </article>
        <footer>
     <a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

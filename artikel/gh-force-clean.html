@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-11T04:51:45.358Z">
     <meta property="article:modified_time" content="2025-10-11T04:51:45.358Z">
 <!-- Open Graph -->
@@ -137,71 +137,71 @@ footer {
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <header>
-  <div id="iposbrowser"></div><h1>🧹 Skrip Otomatis gh-force-clean.sh</h1>
+  <div id="iposbrowser"></div><h1>&#x1f9f9; Skrip Otomatis gh-force-clean.sh</h1>
   <p style="opacity:0.8;">Bersihkan branch Git yang sudah di-merge (lokal &amp; remote) dengan aman dan cepat</p>
 </header>
 <article>
   <section>
     <p>Kalau kamu sering kerja di repo Git yang penuh branch lama, skrip ini bisa jadi solusi.
-    Dengan <strong>gh-force-clean.sh</strong>, kamu bisa otomatis menghapus branch lokal dan remote yang sudah di-merge ke <code>main</code> (atau branch lain), tanpa repot periksa satu-satu. 🚀</p>
+    Dengan <strong>gh-force-clean.sh</strong>, kamu bisa otomatis menghapus branch lokal dan remote yang sudah di-merge ke <code>main</code> (atau branch lain), tanpa repot periksa satu-satu. &#x1f680;</p>
     <p>Cocok buat developer yang ingin menjaga repo tetap bersih, atau buat pipeline CI/CD yang rapi.</p>
   </section>
   <section>
-    <h2>🧩 Fitur Unggulan</h2>
+    <h2>&#x1f9e9; Fitur Unggulan</h2>
     <ul>
-      <li>🔍 Deteksi otomatis branch yang sudah di-merge ke branch utama</li>
-      <li>🧹 Bersihkan branch lokal &amp; remote sekaligus</li>
-      <li>⚙️ Dukungan opsi <code>--dry-run</code> untuk simulasi</li>
-      <li>🤖 Mode <code>--auto</code> untuk CI/CD tanpa konfirmasi</li>
-      <li>🔧 Bisa ganti branch utama pakai <code>--base &lt;nama_branch&gt;</code></li>
-      <li>🌈 Output berwarna, mudah dibaca di terminal</li>
+      <li>&#x1f50d; Deteksi otomatis branch yang sudah di-merge ke branch utama</li>
+      <li>&#x1f9f9; Bersihkan branch lokal &amp; remote sekaligus</li>
+      <li>&#x2699;&#xfe0f; Dukungan opsi <code>--dry-run</code> untuk simulasi</li>
+      <li>&#x1f916; Mode <code>--auto</code> untuk CI/CD tanpa konfirmasi</li>
+      <li>&#x1f527; Bisa ganti branch utama pakai <code>--base &lt;nama_branch&gt;</code></li>
+      <li>&#x1f308; Output berwarna, mudah dibaca di terminal</li>
     </ul>
   </section>
   <section>
-    <h2>⚙️ Isi Skrip: <code>gh-force-clean.sh</code></h2>
+    <h2>&#x2699;&#xfe0f; Isi Skrip: <code>gh-force-clean.sh</code></h2>
     <pre><code>#!/usr/bin/env bash
 set -euo pipefail
-RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; RESET='\033[0m'
-DRY_RUN=false; AUTO=false; BASE_BRANCH="main"
+RED=&apos;\033[0;31m&apos;; GREEN=&apos;\033[0;32m&apos;; YELLOW=&apos;\033[1;33m&apos;; CYAN=&apos;\033[0;36m&apos;; RESET=&apos;\033[0m&apos;
+DRY_RUN=false; AUTO=false; BASE_BRANCH=&quot;main&quot;
 usage() {
-  echo "Gunakan: $0 [--dry-run] [--auto] [--base <branch>]"
+  echo &quot;Gunakan: &#x24;0 [--dry-run] [--auto] [--base <branch>]&quot;
   exit 0
 }
-while [[ $# -gt 0 ]]; do
-  case "$1" in
+while [[ &#x24;# -gt 0 ]]; do
+  case &quot;&#x24;1&quot; in
     --dry-run) DRY_RUN=true; shift ;;
     --auto) AUTO=true; shift ;;
-    --base) BASE_BRANCH="${2:-main}"; shift 2 ;;
+    --base) BASE_BRANCH=&quot;&#x24;{2:-main}&quot;; shift 2 ;;
     -h|--help) usage ;;
-    ) echo "Argumen tidak dikenal: $1"; usage ;;
+    ) echo &quot;Argumen tidak dikenal: &#x24;1&quot;; usage ;;
   esac
 done
-echo -e "${CYAN}🔍 Mengecek branch utama: ${BASE_BRANCH}${RESET}"
+echo -e &quot;&#x24;{CYAN}&#x1f50d; Mengecek branch utama: &#x24;{BASE_BRANCH}&#x24;{RESET}&quot;
 git fetch -p origin &gt;/dev/null 2&gt;&amp;1
-git checkout "$BASE_BRANCH" &gt;/dev/null 2&gt;&amp;1 || exit 1
-MERGED_BRANCHES=$(git branch --merged "$BASE_BRANCH" | grep -vE "^\*|$BASE_BRANCH$")
-REMOTE_MERGED=$(git branch -r --merged "origin/$BASE_BRANCH" | grep -vE "origin/(HEAD|$BASE_BRANCH)$")
-[[ -z "$MERGED_BRANCHES" ]] &amp;&amp; echo "Tidak ada branch lokal yang sudah di-merge"
-[[ -z "$REMOTE_MERGED" ]] &amp;&amp; echo "Tidak ada branch remote yang sudah di-merge"
-if [[ "$DRY_RUN" == true ]]; then
-  echo "[DRY RUN] Tidak ada branch dihapus."
+git checkout &quot;&#x24;BASE_BRANCH&quot; &gt;/dev/null 2&gt;&amp;1 || exit 1
+MERGED_BRANCHES=&#x24;(git branch --merged &quot;&#x24;BASE_BRANCH&quot; | grep -vE &quot;^\*|&#x24;BASE_BRANCH&#x24;&quot;)
+REMOTE_MERGED=&#x24;(git branch -r --merged &quot;origin/&#x24;BASE_BRANCH&quot; | grep -vE &quot;origin/(HEAD|&#x24;BASE_BRANCH)&#x24;&quot;)
+[[ -z &quot;&#x24;MERGED_BRANCHES&quot; ]] &amp;&amp; echo &quot;Tidak ada branch lokal yang sudah di-merge&quot;
+[[ -z &quot;&#x24;REMOTE_MERGED&quot; ]] &amp;&amp; echo &quot;Tidak ada branch remote yang sudah di-merge&quot;
+if [[ &quot;&#x24;DRY_RUN&quot; == true ]]; then
+  echo &quot;[DRY RUN] Tidak ada branch dihapus.&quot;
   exit 0
 fi
-if [[ "$AUTO" == false ]]; then
-  read -rp "Lanjut hapus semua branch yang sudah di-merge? [y/N]: " CONFIRM
-  [[ ! "$CONFIRM" =~ ^[Yy]$ ]] &amp;&amp; { echo "Dibatalkan."; exit 0; }
+if [[ &quot;&#x24;AUTO&quot; == false ]]; then
+  read -rp &quot;Lanjut hapus semua branch yang sudah di-merge? [y/N]: &quot; CONFIRM
+  [[ ! &quot;&#x24;CONFIRM&quot; =~ ^[Yy]&#x24; ]] &amp;&amp; { echo &quot;Dibatalkan.&quot;; exit 0; }
 fi
-for BR in $MERGED_BRANCHES; do
-  git branch -d "$BR" &gt;/dev/null 2&gt;&amp;1 || git branch -D "$BR" &gt;/dev/null 2&gt;&amp;1
+for BR in &#x24;MERGED_BRANCHES; do
+  git branch -d &quot;&#x24;BR&quot; &gt;/dev/null 2&gt;&amp;1 || git branch -D &quot;&#x24;BR&quot; &gt;/dev/null 2&gt;&amp;1
 done
-for RB in $REMOTE_MERGED; do
-  RB_NAME=$(echo "$RB" | sed 's|origin/||')
-  git push origin --delete "$RB_NAME" &gt;/dev/null 2&gt;&amp;1 || true
+for RB in &#x24;REMOTE_MERGED; do
+  RB_NAME=&#x24;(echo &quot;&#x24;RB&quot; | sed &apos;s|origin/||&apos;)
+  git push origin --delete &quot;&#x24;RB_NAME&quot; &gt;/dev/null 2&gt;&amp;1 || true
 done
-echo -e "${GREEN}✅ Pembersihan selesai.${RESET}"</branch></code></pre>
+echo -e &quot;&#x24;{GREEN}&#x2705; Pembersihan selesai.&#x24;{RESET}&quot;</branch></code></pre>
   </section>
   <section>
-    <h2>💡 Cara Menggunakan</h2>
+    <h2>&#x1f4a1; Cara Menggunakan</h2>
     <pre><code>chmod +x gh-force-clean.sh
 # Mode interaktif (manual)
 ./gh-force-clean.sh
@@ -209,11 +209,11 @@ echo -e "${GREEN}✅ Pembersihan selesai.${RESET}"</branch></code></pre>
 ./gh-force-clean.sh --dry-run
 # Mode otomatis untuk CI/CD
 ./gh-force-clean.sh --auto
-# Jika repo kamu pakai branch utama "develop"
+# Jika repo kamu pakai branch utama &quot;develop&quot;
 ./gh-force-clean.sh --base develop</code></pre>
   </section>
   <section>
-    <h2>🧠 Tips Aman</h2>
+    <h2>&#x1f9e0; Tips Aman</h2>
     <ul>
       <li>Selalu jalankan <code>--dry-run</code> dulu sebelum hapus sungguhan.</li>
       <li>Gunakan <code>--auto</code> hanya di pipeline atau repositori yang kamu kontrol penuh.</li>
@@ -223,6 +223,9 @@ echo -e "${GREEN}✅ Pembersihan selesai.${RESET}"</branch></code></pre>
   <div id="related-articles-grid"></div><div id="response"></div>
     </article>
 <footer>
-  <p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+  <p>&#x1f12f; 2025 Jaga Data Pribadi Tetap Aman Developer Santai</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

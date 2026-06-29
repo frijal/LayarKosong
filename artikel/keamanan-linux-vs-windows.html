@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-11-07T11:15:56.000Z">
     <meta property="article:modified_time" content="2026-04-23T11:05:06.997Z">
     <meta name="keywords" content="linux vs windows, keamanan siber, open source, closed source, dirty cow, cve-2016-5195, kernel linux, privilege escalation, many eyes principle">
@@ -496,7 +496,7 @@
             <p>Model keamanan Linux didukung oleh empat pilar utama: <strong>Transparansi, Audit Komunitas, Kecepatan Perbaikan,</strong> dan <strong>Desain Sistem Operasi yang Inheren.</strong></p>
             <h3 class="subsection-title">A. Transparansi dan Audit Komunitas</h3>
             <ul class="list-group">
-                <li><i class="fa-solid fa-eye icon"></i> <strong>Prinsip "Many Eyes":</strong> Ini adalah argumen inti. Karena kode sumber Linux tersedia untuk umum, ribuan pengembang, peneliti keamanan, dan pakar etis <em>hacking</em> dapat meninjau, menguji, dan mengaudit kode tersebut secara konstan.
+                <li><i class="fa-solid fa-eye icon"></i> <strong>Prinsip &quot;Many Eyes&quot;:</strong> Ini adalah argumen inti. Karena kode sumber Linux tersedia untuk umum, ribuan pengembang, peneliti keamanan, dan pakar etis <em>hacking</em> dapat meninjau, menguji, dan mengaudit kode tersebut secara konstan.
                     <ul>
                         <li><strong>Keunggulan:</strong> Jika ada <em>bug</em> atau <em>vulnerability*, kemungkinan besar akan ditemukan lebih cepat oleh *white hat hacker</em> (peretas etis) daripada oleh <em>black hat hacker</em> (peretas jahat).</li>
                         <li>Ini berkebalikan dengan <em>closed source</em> di mana hanya tim internal vendor yang meninjau kode.</li>
@@ -507,8 +507,8 @@
             <h3 class="subsection-title">B. Kecepatan <em>Patch</em> dan Pembaruan</h3>
             <p>Ketika kerentanan ditemukan di Linux (misalnya, *kernel), proses perbaikan (<em>patch</em>) dapat terjadi <strong>sangat cepat</strong>:</p>
             <ul class="list-group">
-                <li><i class="fa-solid fa-bolt icon"></i> <strong>Proses Cepat Linux:</strong> Kerentanan ditemukan → Komunitas membuat perbaikan → Diuji → Diintegrasikan ke dalam <em>kernel</em> dan didistribusikan oleh distro. Proses ini seringkali memakan waktu <strong>jam hingga hari</strong>.</li>
-                <li><i class="fa-solid fa-clock-rotate-left icon"></i> <strong>Proses Closed Source (Windows):</strong> Kerentanan ditemukan → Dilaporkan ke vendor → Vendor mereplikasi, mengembangkan perbaikan, menguji secara ekstensif secara internal → Dirilis pada jadwal bulanan (<em>patch Tuesday</em>). Waktu antara penemuan dan perbaikan bisa lebih lama.</li>
+                <li><i class="fa-solid fa-bolt icon"></i> <strong>Proses Cepat Linux:</strong> Kerentanan ditemukan &#x2192; Komunitas membuat perbaikan &#x2192; Diuji &#x2192; Diintegrasikan ke dalam <em>kernel</em> dan didistribusikan oleh distro. Proses ini seringkali memakan waktu <strong>jam hingga hari</strong>.</li>
+                <li><i class="fa-solid fa-clock-rotate-left icon"></i> <strong>Proses Closed Source (Windows):</strong> Kerentanan ditemukan &#x2192; Dilaporkan ke vendor &#x2192; Vendor mereplikasi, mengembangkan perbaikan, menguji secara ekstensif secara internal &#x2192; Dirilis pada jadwal bulanan (<em>patch Tuesday</em>). Waktu antara penemuan dan perbaikan bisa lebih lama.</li>
             </ul>
             <h3 class="subsection-title">C. Desain Sistem Operasi (OS) yang Inheren</h3>
             <ul class="list-group">
@@ -576,10 +576,13 @@ if (page_is_writeable(page)) {
             </ul>
             <div class="note">
                 <p><strong>Kesimpulan Teknis:</strong></p>
-                <p>Keamanan Linux bukan karena kodenya 'disembunyikan,' melainkan karena <strong>desain arsitekturnya yang ketat (izin <em>root/sudo</em>)</strong><em> dan <strong>proses audit yang transparan dan terdesentralisasi (Many Eyes)</strong>. Transparansi mempercepat penemuan dan perbaikan, membuat waktu *zero-day</em> sangat singkat.</p>
+                <p>Keamanan Linux bukan karena kodenya &apos;disembunyikan,&apos; melainkan karena <strong>desain arsitekturnya yang ketat (izin <em>root/sudo</em>)</strong><em> dan <strong>proses audit yang transparan dan terdesentralisasi (Many Eyes)</strong>. Transparansi mempercepat penemuan dan perbaikan, membuat waktu *zero-day</em> sangat singkat.</p>
             </div>            <div id="related-articles-grid"></div><div id="response"></div>
     </main>
        <footer>
-        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Git">
     <meta property="article:tag" content="Git Pull">
     <meta property="article:tag" content="Git Rebase">
@@ -467,11 +467,11 @@
   <main class="page">
     <article class="article-card">
       <header class="article-header">
-        <p class="eyebrow">🧭 Git Workflow</p>
+        <p class="eyebrow">&#x1f9ed; Git Workflow</p>
         <div id="iposbrowser"></div><h1>Git Pull Cabang Berlainan: Pilih Rebase atau Merge</h1>
         <p class="lead">
           Ada pesan Git yang kelihatannya seperti error besar, padahal sebenarnya Git cuma bertanya:
-          “branch lokal dan remote sudah beda arah, mau disatukan pakai strategi apa?”
+          &#x201c;branch lokal dan remote sudah beda arah, mau disatukan pakai strategi apa?&#x201d;
           Nah, di sinilah kita perlu memilih dengan sadar, bukan asal pencet enter sambil berharap semesta baik-baik saja.
         </p>
          </header>
@@ -506,7 +506,7 @@ fatal: Perlu sebutkan cara merujukkan cabang yang berlainan.</span></code></pre>
         </div>
         <h2>Apa yang Sebenarnya Terjadi Saat Git Pull?</h2>
         <p>
-          Banyak orang menganggap <code>git pull</code> sebagai “ambil update terbaru”. Itu tidak salah, tapi belum lengkap.
+          Banyak orang menganggap <code>git pull</code> sebagai &#x201c;ambil update terbaru&#x201d;. Itu tidak salah, tapi belum lengkap.
           Secara praktis, <code>git pull</code> adalah gabungan dari dua tahap:
         </p>
         <ol>
@@ -516,7 +516,7 @@ fatal: Perlu sebutkan cara merujukkan cabang yang berlainan.</span></code></pre>
         <p>
           Kalau branch lokal belum punya commit baru, prosesnya gampang. Git cukup memajukan pointer branch lokal
           mengikuti remote. Ini disebut fast-forward. Tapi kalau lokal dan remote sama-sama punya commit baru,
-          Git butuh strategi. Di situlah muncul pesan “cabang-cabang yang berlainan”.
+          Git butuh strategi. Di situlah muncul pesan &#x201c;cabang-cabang yang berlainan&#x201d;.
         </p>
         <blockquote>
           Git bukan sedang menolak bekerja. Ia hanya menolak menebak keputusan penting atas nama kita.
@@ -581,11 +581,11 @@ fatal: Perlu sebutkan cara merujukkan cabang yang berlainan.</span></code></pre>
         <div class="warning">
           <strong>Catatan kecil:</strong>
           merge bukan pilihan buruk. Namun kalau kamu sering membuat commit kecil di lokal, riwayat bisa terasa ramai.
-          Bukan salah, hanya kadang kurang nyaman dibaca. Seperti grup keluarga yang semua orang membalas “siap”.
+          Bukan salah, hanya kadang kurang nyaman dibaca. Seperti grup keluarga yang semua orang membalas &#x201c;siap&#x201d;.
         </div>
         <h2>Pilihan Kedua: Rebase</h2>
         <p>
-          Rebase cocok kalau kamu ingin riwayat yang lebih linear. Commit lokal akan “diangkat” lalu ditempatkan ulang
+          Rebase cocok kalau kamu ingin riwayat yang lebih linear. Commit lokal akan &#x201c;diangkat&#x201d; lalu ditempatkan ulang
           di atas commit terbaru dari remote. Hasil akhirnya tampak seperti kamu bekerja setelah update remote terakhir.
         </p>
         <pre><code><span class="token-command">git pull --rebase</span></code></pre>
@@ -750,7 +750,7 @@ true</span></code></pre>
         </p>
         <h2>Penutup</h2>
         <p>
-          Pesan “cabang-cabang yang berlainan” bukan tanda repository rusak. Itu tanda Git sedang meminta keputusan
+          Pesan &#x201c;cabang-cabang yang berlainan&#x201d; bukan tanda repository rusak. Itu tanda Git sedang meminta keputusan
           eksplisit karena branch lokal dan remote sudah punya jalur commit masing-masing. Pilihannya ada tiga:
           merge untuk menjaga histori cabang, rebase untuk riwayat linear, dan fast-forward only untuk disiplin paling ketat.
         </p>
@@ -768,6 +768,9 @@ true</span></code></pre>
         <span>18 Juni 2026</span>
         <span>Rujukan teknis: dokumentasi resmi Git yang sudah ditautkan dalam artikel</span>
       </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
   </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

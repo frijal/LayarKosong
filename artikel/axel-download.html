@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2011-08-01T02:45:34.000Z">
     <meta property="article:modified_time" content="2019-12-05T19:59:38.166Z">
     <style>
@@ -224,41 +224,41 @@
         <article>
             <header class="article-header">
                 <svg class="article-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                 </svg>
                 <div>
                     <div id="iposbrowser"></div><h1>Axel: Download Accelerator Ringan yang Bikin Ngebut!</h1>
                 </div>
             </header>
             <p class="intro">
-                Sebuah "curhatan" singkat soal koneksi internet di negara ini, dan penemuan sebuah tool kecil yang ternyata jadi juru selamat.
+                Sebuah &quot;curhatan&quot; singkat soal koneksi internet di negara ini, dan penemuan sebuah tool kecil yang ternyata jadi juru selamat.
             </p>
             <p>
-                Saya sudah terlalu jenuh dengan janji-janji dari operator <em>mobile-broadband</em> yang ada di negara ini... 🐒 Meskipun sudah sedikit terobati dengan hadirnya koneksi ADSL dari PT.Telkom. 🤓
+                Saya sudah terlalu jenuh dengan janji-janji dari operator <em>mobile-broadband</em> yang ada di negara ini... &#x1f412; Meskipun sudah sedikit terobati dengan hadirnya koneksi ADSL dari PT.Telkom. &#x1f913;
             </p>
             <p>
-                Namun, jika saya sedang berada diluar rumah dan ingin mendownload sesuatu, tentunya harus menggunakan koneksi dari <em>mobile-broadband</em>... 😞
+                Namun, jika saya sedang berada diluar rumah dan ingin mendownload sesuatu, tentunya harus menggunakan koneksi dari <em>mobile-broadband</em>... &#x1f61e;
             </p>
             <h2>Masalah Klasik: Download Pakai WGET</h2>
             <p>
-                Untuk kegiatan sedot-menyedot biasanya menggunakan <code>wget</code>, namun ternyata ketika diterapkan pada koneksi broadband, harus membuat saya lebih bersabar... sembari menunggu proses sedot rampung, saya iseng buka Synaptic untuk mencari <em>tool download</em> yang mungkin bisa mengatasi kendala lambatnya koneksi <em>mobile-broadband</em>…
+                Untuk kegiatan sedot-menyedot biasanya menggunakan <code>wget</code>, namun ternyata ketika diterapkan pada koneksi broadband, harus membuat saya lebih bersabar... sembari menunggu proses sedot rampung, saya iseng buka Synaptic untuk mencari <em>tool download</em> yang mungkin bisa mengatasi kendala lambatnya koneksi <em>mobile-broadband</em>&#x2026;
             </p>
             <h2>Penemuan Ajaib: <code>axel</code></h2>
             <p>
-                Akhirnya menemukan sebuah paket bernama <strong>AXEL</strong> yang sangat ringan dan ampuh... dari keterangan yang didapat ketika mengetikkan <code>axel -h</code> ternyata paket ini menggunakan <em>multiple akses</em> ke sebuah sumber tujuan URL tempat berkas yang akan saya ambil berada…
+                Akhirnya menemukan sebuah paket bernama <strong>AXEL</strong> yang sangat ringan dan ampuh... dari keterangan yang didapat ketika mengetikkan <code>axel -h</code> ternyata paket ini menggunakan <em>multiple akses</em> ke sebuah sumber tujuan URL tempat berkas yang akan saya ambil berada&#x2026;
             </p>
             <figure>
                 <p>
-                    "Axel is a light download accelerator for Linux. It tries to accelerate the download
-                    process by using multiple connections to the remote server..."
+                    &quot;Axel is a light download accelerator for Linux. It tries to accelerate the download
+                    process by using multiple connections to the remote server...&quot;
                 </p>
-                <figcaption>— Kurang lebih begitu isi dari <code>axel -h</code> atau <code>man axel</code>.</figcaption>
+                <figcaption>&#x2014; Kurang lebih begitu isi dari <code>axel -h</code> atau <code>man axel</code>.</figcaption>
             </figure>
             <p>
-                Intinya, si <code>axel</code> ini "ngeroyok" file yang mau di-download. Dia buka beberapa koneksi sekaligus ke server, terus masing-masing koneksi download bagian file yang beda-beda. Setelah semua bagian selesai, baru deh disatuin lagi. Keren, kan?
+                Intinya, si <code>axel</code> ini &quot;ngeroyok&quot; file yang mau di-download. Dia buka beberapa koneksi sekaligus ke server, terus masing-masing koneksi download bagian file yang beda-beda. Setelah semua bagian selesai, baru deh disatuin lagi. Keren, kan?
             </p>
             <p>
-                Dengan menggunakan tool download ini saya bisa tersenyum... karena bisa mendapatkan kecepatan akses yang lebih baik daripada <code>wget</code>... 😂
+                Dengan menggunakan tool download ini saya bisa tersenyum... karena bisa mendapatkan kecepatan akses yang lebih baik daripada <code>wget</code>... &#x1f602;
             </p>
             <h2>Cara Install dan Pakai Axel</h2>
             <p>
@@ -284,4 +284,7 @@ axel -n 10 -a -o ubuntu.iso http://example.com/ubuntu-latest.iso</code></pre>
             </section>
     </article>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

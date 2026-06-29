@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Troubleshooting">
@@ -246,10 +246,10 @@
         <p>Pengguna Linux pastinya sudah akrab dengan yang namanya pembaruan sistem yang kadang membawa kejutan yang tidak menyenangkan. Salah satu momen yang salah satu yang membekas bagi pengguna Fedora 15 terjadi pada pembaruan tertanggal 26 Mei 2011. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Pembaruan paket NetworkManager tersebut ternyata membawa <em>bug</em> krusial yang membuat koneksi seluler, modem USB, dan fungsi <em>tethering</em> ponsel mati total.</p>
         <p>Akar masalahnya berada pada paket <code>gnome-0.8.999.3.git20110526.fc15</code>. Namun, komunitas <em>open source</em> merespons dengan cepat. Beberapa hari kemudian, muncul <em>build</em> perbaikan pada versi <code>NetworkManager-gnome-0.8.9997-1.git20110531.fc15</code>. Tantangannya adalah, bagaimana cara mengunduh dan memperbarui sistem ketika sistem itu sendiri tidak bisa terhubung ke internet seluler? Tenang, mari kita bedah prosesnya dari awal hingga beres.</p>
         <div class="alert">
-          ⚠️ <strong>Peringatan Singkat:</strong> Sebelum kita melangkah ke proses penghapusan profil konfigurasi lama di direktori <code>/etc/NetworkManager/system-connections</code>, pastikan kamu sudah melakukan pencadangan (<em>backup</em>) direktorinya. Ini sangat penting sebagai langkah mitigasi jika terjadi kesalahan.
+          &#x26a0;&#xfe0f; <strong>Peringatan Singkat:</strong> Sebelum kita melangkah ke proses penghapusan profil konfigurasi lama di direktori <code>/etc/NetworkManager/system-connections</code>, pastikan kamu sudah melakukan pencadangan (<em>backup</em>) direktorinya. Ini sangat penting sebagai langkah mitigasi jika terjadi kesalahan.
         </div>
         <h2>Langkah Ringkas via Terminal</h2>
-        <p>Menggunakan terminal (<em>command line</em>) adalah pendekatan paling rapi, cepat, dan mudah ditelusuri riwayatnya jika terjadi kegagalan. Sebelum mengeksekusi perintah-perintah di bawah ini, pastikan kamu memiliki akses internet sementara—bisa dengan menumpang jaringan Wi-Fi teman atau menggunakan kabel LAN, lalu simpan semua file RPM ke dalam satu folder terpusat.</p>
+        <p>Menggunakan terminal (<em>command line</em>) adalah pendekatan paling rapi, cepat, dan mudah ditelusuri riwayatnya jika terjadi kegagalan. Sebelum mengeksekusi perintah-perintah di bawah ini, pastikan kamu memiliki akses internet sementara&#x2014;bisa dengan menumpang jaringan Wi-Fi teman atau menggunakan kabel LAN, lalu simpan semua file RPM ke dalam satu folder terpusat.</p>
         <h3>1. Unduh Paket yang Diperlukan</h3>
         <p>Pertama-tama, kita buat folder khusus agar <em>file installer</em> tidak berserakan. Buka terminalmu dan jalankan baris perintah berikut:</p>
 <pre><code>mkdir -p ~/Downloads/nm-fix &amp;&amp; cd ~/Downloads/nm-fix
@@ -308,11 +308,14 @@ sudo systemctl restart NetworkManager
     <footer>
       <div class="meta-inline">
         <span>Artikel oleh Frijal</span>
-        <span>•</span>
+        <span>&#x2022;</span>
         <span>14 Juni 2026</span>
-        <span>•</span>
+        <span>&#x2022;</span>
         <span>Referensi: Arsip Red Hat dan Proyek Fedora (2011)</span>
       </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

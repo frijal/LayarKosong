@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Homelab">
     <meta property="article:tag" content="Networking">
     <meta property="article:tag" content="Tutorial">
@@ -228,10 +228,10 @@
   <main class="container">
     <article>
       <header>
-        <div id="iposbrowser"></div><h1>Akses Nextcloud dari Luar Rumah: Cara Aman &amp; Gratis Pakai Cloudflare Tunnel 🌐</h1>
+        <div id="iposbrowser"></div><h1>Akses Nextcloud dari Luar Rumah: Cara Aman &amp; Gratis Pakai Cloudflare Tunnel &#x1f310;</h1>
         <p class="lead-text">Membangun server rumahan selalu terasa magis sampai kamu sadar data tersebut hanya bisa diakses saat terkoneksi ke Wi-Fi rumah. Mari bongkar rahasia mengaksesnya dari belahan dunia mana pun tanpa membahayakan jaringan lokalmu.</p>
       </header>
-      <p>Sebagai pengabdi server rumahan <i>(homelab enthusiast)</i>, kita sering kali dihadapkan pada satu masalah yang lumayan menyebalkan: <b>ISP kita pelit!</b> Mayoritas penyedia layanan internet untuk rumahan menerapkan sistem <i>Carrier-Grade NAT</i> (CGNAT). Artinya, IP yang terpasang di router kita adalah IP Private yang tidak bisa "dilihat" apalagi dipanggil langsung dari lautan internet global.</p>
+      <p>Sebagai pengabdi server rumahan <i>(homelab enthusiast)</i>, kita sering kali dihadapkan pada satu masalah yang lumayan menyebalkan: <b>ISP kita pelit!</b> Mayoritas penyedia layanan internet untuk rumahan menerapkan sistem <i>Carrier-Grade NAT</i> (CGNAT). Artinya, IP yang terpasang di router kita adalah IP Private yang tidak bisa &quot;dilihat&quot; apalagi dipanggil langsung dari lautan internet global.</p>
       <p>Zaman dulu, solusi paling lumrah adalah menelepon ISP untuk minta IP Publik dinamis, lalu melakukan <i>Port Forwarding</i> di router. Tapi mari bicara jujur, membuka port di router rumahan itu sama saja seperti membuka pintu depan rumah lebar-lebar untuk maling digital. Skrip otomatis dari peretas di seluruh dunia bisa dengan mudah mengintai dan mencari celah dari port yang terbuka tersebut.</p>
       <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAz7RQfa0AA6Ol0.webp" alt="Ilustrasi peta topologi internet dan koneksi node global untuk tunneling" width="1200" height="675" fetchpriority="high" decoding="async">
       <h2>Mengapa Kita Sangat Membutuhkan Tunneling?</h2>
@@ -249,7 +249,7 @@
         <div class="details-content">
           <p>Jika semua bahan sudah siap, mari kita bangun jembatan penghubung antara server lokal dan domain publik kamu. Ikuti langkah ini secara berurutan agar tidak ada error di tengah jalan.</p>
           <h3>1. Setup di Dashboard Cloudflare</h3>
-          <p>Langkah pertama adalah membuat "terowongan" secara virtual. Login ke dashboard Cloudflare kamu, lalu navigasikan ke menu <b>Zero Trust</b>, pilih <b>Networks</b>, dan klik <b>Tunnels</b>.</p>
+          <p>Langkah pertama adalah membuat &quot;terowongan&quot; secara virtual. Login ke dashboard Cloudflare kamu, lalu navigasikan ke menu <b>Zero Trust</b>, pilih <b>Networks</b>, dan klik <b>Tunnels</b>.</p>
           <p>Klik tombol <i>Create a Tunnel</i>. Berikan nama yang mudah diingat dan deskriptif, misalnya <code>Server-Debian-Balikpapan</code>, lalu simpan. Setelah terbuat, Cloudflare akan memberikan sebuah <b>Token</b> yang panjangnya mirip gerbong kereta. <b>Simpan token ini baik-baik!</b> Ini adalah kunci rahasia agar server kamu bisa diakui oleh Cloudflare.</p>
           <h3>2. Update File Docker Compose</h3>
           <p>Kita tidak akan menginstal aplikasi <i>cloudflared</i> langsung di sistem operasi host. Agar lebih rapi dan terisolasi, kita akan menambahkannya sebagai layanan baru di dalam ekosistem Docker yang sama dengan Nextcloud.</p>
@@ -275,7 +275,7 @@
             <li><b>Subdomain:</b> Isi dengan kata <code>cloud</code> (atau kata apa saja sesuai selera).</li>
             <li><b>Domain:</b> Pilih domain utama yang sudah kamu integrasikan ke Cloudflare.</li>
             <li><b>Service Type:</b> Pilih <code>HTTP</code>.</li>
-            <li><b>URL:</b> Ketik <code>app:80</code> (Asumsinya, nama service Nextcloud di file compose kamu adalah 'app'. Jika namanya 'nextcloud', maka tulis <code>nextcloud:80</code>).</li>
+            <li><b>URL:</b> Ketik <code>app:80</code> (Asumsinya, nama service Nextcloud di file compose kamu adalah &apos;app&apos;. Jika namanya &apos;nextcloud&apos;, maka tulis <code>nextcloud:80</code>).</li>
           </ul>
           <h3>5. Konfigurasi Trusted Domains di Nextcloud</h3>
           <p>Ini adalah langkah yang paling sering dilewatkan dan membuat orang pusing karena Nextcloud tiba-tiba menampilkan error keamanan. Secara default, Nextcloud akan menolak akses dari nama domain baru yang belum diizinkan. Kita harus mendaftarkan domain tersebut ke dalam daftar putih.</p>
@@ -297,6 +297,9 @@
         <span><b>Penulis:</b> Frijal</span>
         <span><b>Diterbitkan:</b> 23 Juni 2026</span>
       </div>
-            <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
   </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

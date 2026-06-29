@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2016-03-12T02:15:06.000Z">
     <meta property="article:modified_time" content="2026-01-07T22:22:36.383Z">
 <!-- Open Graph -->
@@ -352,7 +352,7 @@
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <header>
-  <div id="iposbrowser"></div><h1>🛠️ Skrip Otomatis: Setup &amp; Cleanup chroot</h1>
+  <div id="iposbrowser"></div><h1>&#x1f6e0;&#xfe0f; Skrip Otomatis: Setup &amp; Cleanup chroot</h1>
 </header>
 <main>
   <section>
@@ -361,33 +361,33 @@
     <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # enter-chroot.sh
 # Gunakan: sudo ./enter-chroot.sh /srv/chroot/debian
-CHROOT_DIR="$1"
-if [ -z "$CHROOT_DIR" ]; then
-  echo "Usage: $0 /path/to/chroot"
+CHROOT_DIR=&quot;&#x24;1&quot;
+if [ -z &quot;&#x24;CHROOT_DIR&quot; ]; then
+  echo &quot;Usage: &#x24;0 /path/to/chroot&quot;
   exit 1
 fi
 # Mount filesystem penting
-mount --bind /dev "$CHROOT_DIR/dev"
-mount --bind /dev/pts "$CHROOT_DIR/dev/pts"
-mount -t proc /proc "$CHROOT_DIR/proc"
-mount -t sysfs /sys "$CHROOT_DIR/sys"
+mount --bind /dev &quot;&#x24;CHROOT_DIR/dev&quot;
+mount --bind /dev/pts &quot;&#x24;CHROOT_DIR/dev/pts&quot;
+mount -t proc /proc &quot;&#x24;CHROOT_DIR/proc&quot;
+mount -t sysfs /sys &quot;&#x24;CHROOT_DIR/sys&quot;
 # Copy resolv.conf untuk DNS
-cp /etc/resolv.conf "$CHROOT_DIR/etc/"
+cp /etc/resolv.conf &quot;&#x24;CHROOT_DIR/etc/&quot;
 # Masuk ke chroot
-chroot "$CHROOT_DIR" /bin/bash</code></pre>
+chroot &quot;&#x24;CHROOT_DIR&quot; /bin/bash</code></pre>
     <h3>2. Cleanup (buat file <code>exit-chroot.sh</code>)</h3>
     <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # exit-chroot.sh
 # Gunakan: sudo ./exit-chroot.sh /srv/chroot/debian
-CHROOT_DIR="$1"
-if [ -z "$CHROOT_DIR" ]; then
-  echo "Usage: $0 /path/to/chroot"
+CHROOT_DIR=&quot;&#x24;1&quot;
+if [ -z &quot;&#x24;CHROOT_DIR&quot; ]; then
+  echo &quot;Usage: &#x24;0 /path/to/chroot&quot;
   exit 1
 fi
-umount "$CHROOT_DIR/dev/pts"
-umount "$CHROOT_DIR/dev"
-umount "$CHROOT_DIR/proc"
-umount "$CHROOT_DIR/sys"</code></pre>
+umount &quot;&#x24;CHROOT_DIR/dev/pts&quot;
+umount &quot;&#x24;CHROOT_DIR/dev&quot;
+umount &quot;&#x24;CHROOT_DIR/proc&quot;
+umount &quot;&#x24;CHROOT_DIR/sys&quot;</code></pre>
     <p>Pastikan memberi izin eksekusi:</p>
     <pre><button class="copy-btn">Copy</button><code class="language-bash">chmod +x enter-chroot.sh exit-chroot.sh</code></pre>
     <p>Sekarang kamu cukup menjalankan:</p>
@@ -400,6 +400,9 @@ sudo ./exit-chroot.sh /srv/chroot/debian</code></pre>
   <div id="related-articles-grid"></div><div id="response"></div>
     </main>
 <footer>
-  <p>🄯 2025 Jaga Data Pribadi Tetap Aman — Artikel ini dibuat dengan ❤️ oleh ChatGPT.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+  <p>&#x1f12f; 2025 Jaga Data Pribadi Tetap Aman &#x2014; Artikel ini dibuat dengan &#x2764;&#xfe0f; oleh ChatGPT.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

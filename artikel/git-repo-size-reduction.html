@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-19T19:44:56.753Z">
     <meta property="article:modified_time" content="2026-03-17T21:18:23.554Z">
 <!-- Metadata Dasar -->
@@ -67,7 +67,7 @@
      <!-- GANTI DENGAN USERNAME TWITTER KAMU -->
     <!-- CSS & Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
@@ -253,7 +253,7 @@ footer a { color: var(--header-color); text-decoration: none; }
 <body>
     <div class="container">
         <header>
-            <div id="iposbrowser"></div><h1>Repo Lokal Gendut? Waktunya Diet <code>node_modules</code>! 🏋️♂️</h1>
+            <div id="iposbrowser"></div><h1>Repo Lokal Gendut? Waktunya Diet <code>node_modules</code>! &#x1f3cb;&#xfe0f;&#x2642;&#xfe0f;</h1>
             <p class="subtitle">Karena build di GitHub, kita gak perlu menarik <code>node_modules</code> ke komputer. Yuk, pelajari cara mencegah dan membersihkannya dari repositori Git.</p>
         </header>
         <main>
@@ -265,7 +265,7 @@ footer a { color: var(--header-color); text-decoration: none; }
                         <h2>Skenario 1: Pencegahan (Wajib Dilakukan!)</h2>
                     </div>
                     <div class="scenario-body">
-                        <p>Ini adalah langkah paling krusial. Kita akan "mengajari" Git untuk selamanya mengabaikan <code>node_modules</code> menggunakan file ajaib bernama <code>.gitignore</code>.</p>
+                        <p>Ini adalah langkah paling krusial. Kita akan &quot;mengajari&quot; Git untuk selamanya mengabaikan <code>node_modules</code> menggunakan file ajaib bernama <code>.gitignore</code>.</p>
                         <h4>Langkah 1: Buat dan Isi <code>.gitignore</code></h4>
                         <p>Di folder utama proyekmu, buat file baru bernama <strong>.gitignore</strong> (pakai titik di depan). Lalu, isi dengan daftar file/folder yang mau diabaikan.</p>
                         <div class="code-block">
@@ -279,7 +279,7 @@ npm-debug.log
 /build</code></pre>
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
-                        <h4>Langkah 2: "Un-track" <code>node_modules</code> (Jika Terlanjur di-<code>add</code>)</h4>
+                        <h4>Langkah 2: &quot;Un-track&quot; <code>node_modules</code> (Jika Terlanjur di-<code>add</code>)</h4>
                         <p>Kalau kamu pernah tidak sengaja menjalankan <code>git add .</code> dan <code>node_modules</code> ikut masuk, kita perlu mengeluarkannya dari pelacakan Git.</p>
                         <div class="code-block">
                             <pre><code># Perintah ini HANYA menghapus dari Git, BUKAN dari komputermu
@@ -287,10 +287,10 @@ git rm -r --cached node_modules</code></pre>
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <h4>Langkah 3: Simpan Perubahanmu</h4>
-                        <p>Terakhir, commit <code>.gitignore</code> dan perubahan "untracking" tadi agar aturan ini berlaku selamanya.</p>
+                        <p>Terakhir, commit <code>.gitignore</code> dan perubahan &quot;untracking&quot; tadi agar aturan ini berlaku selamanya.</p>
                         <div class="code-block">
                             <pre><code>git add .gitignore
-git commit -m "feat: Add .gitignore and untrack node_modules"
+git commit -m &quot;feat: Add .gitignore and untrack node_modules&quot;
 git push</code></pre>
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
@@ -304,14 +304,14 @@ git push</code></pre>
                     <div class="scenario-body">
                         <p>Jika <code>node_modules</code> sudah terlanjur masuk ke riwayat commit-commit lama, repo kamu akan tetap besar. Ada dua cara untuk menyembuhkannya.</p>
                         <h4>Opsi A: Cara Cepat &amp; Gampang (<code>Shallow Clone</code>)</h4>
-                        <p>Kalau kamu cuma butuh kode versi terbaru dan gak peduli riwayat lama, <code>clone</code> ulang saja repo-mu dengan mode "dangkal".</p>
+                        <p>Kalau kamu cuma butuh kode versi terbaru dan gak peduli riwayat lama, <code>clone</code> ulang saja repo-mu dengan mode &quot;dangkal&quot;.</p>
                         <div class="code-block">
                             <pre><code># Hanya akan menarik 1 commit terakhir, ukurannya jadi super kecil!
 git clone --depth 1 https://github.com/user/repo.git</code></pre>
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <div class="tip"><i class="fa-solid fa-info-circle"></i> <strong>Kelemahan:</strong> Kamu tidak bisa melihat atau kembali ke commit-commit lama di komputermu.</div>
-                        <h4>Opsi B: Cara "Pembersihan Total" (Menulis Ulang Sejarah)</h4>
+                        <h4>Opsi B: Cara &quot;Pembersihan Total&quot; (Menulis Ulang Sejarah)</h4>
                         <p>Ini adalah operasi tingkat lanjut untuk menghapus <code>node_modules</code> dari <strong>seluruh</strong> riwayat Git secara permanen. Lakukan dengan hati-hati!</p>
                         <div class="warning-box">
                             <i class="fa-solid fa-exclamation-triangle"></i>
@@ -319,7 +319,7 @@ git clone --depth 1 https://github.com/user/repo.git</code></pre>
                             <ul>
                                 <li><strong>Wajib Backup!</strong> Buat salinan folder proyekmu dulu.</li>
                                 <li>Operasi ini akan mengubah riwayat commit. Semua anggota tim harus <code>clone</code> ulang.</li>
-                                <li>Ini adalah operasi yang "merusak" (<em>destructive</em>).</li>
+                                <li>Ini adalah operasi yang &quot;merusak&quot; (<em>destructive</em>).</li>
                             </ul>
                         </div>
                         <p>Cara modern untuk ini adalah menggunakan <code>git-filter-repo</code>.</p>
@@ -332,7 +332,7 @@ git filter-repo --path node_modules --invert-paths
 git push origin --force --all</code></pre>
                              <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
-                        <p>Setelah ini, repositorimu akan "sembuh" dan ukurannya menyusut drastis. Semua anggota tim harus menghapus folder lama mereka dan melakukan <code>git clone</code> yang baru.</p>
+                        <p>Setelah ini, repositorimu akan &quot;sembuh&quot; dan ukurannya menyusut drastis. Semua anggota tim harus menghapus folder lama mereka dan melakukan <code>git clone</code> yang baru.</p>
                     </div>
                 </div>
     </article>
@@ -341,8 +341,8 @@ git push origin --force --all</code></pre>
             </div>
         </main>
         <footer>
-            <p>🄯 2025 - </p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; 2025 - </p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
     <script>document.addEventListener('DOMContentLoaded', () => {
     // --- Fungsi Tombol Salin Kode ---
@@ -368,4 +368,7 @@ git push origin --force --all</code></pre>
     });
 });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

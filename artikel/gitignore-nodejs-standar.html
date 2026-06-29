@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache &amp; node_modules Masuk Repo), Layar Kosong">
-    <meta name="promphint" content="Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache &amp; node_modules Masuk Repo) | Mantap, Fakhrul 👍. Biar folder seperti .npm-cache/_cacache atau node_modules tidak ikut ke‑commit lagi ke Git repo kamu, penting banget pakai file .gitignore y">
+    <meta name="promphint" content="Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache &amp; node_modules Masuk Repo) | Mantap, Fakhrul &#x1f44d;. Biar folder seperti .npm-cache/_cacache atau node_modules tidak ikut ke&#x2011;commit lagi ke Git repo kamu, penting banget pakai file .gitignore y">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-27T17:21:43.487Z">
     <meta property="article:modified_time" content="2025-12-27T17:21:43.487Z">
 <meta name="keywords" content=".gitignore, nodejs, npm, node_modules, .npm-cache, git, version control, best practice, template">
@@ -214,15 +214,15 @@
         <nav class="nav">
             <div class="brand" title="Layar Kosong">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 7.5C4 6.12 5.12 5 6.5 5h11c1.38 0 2.5 1.12 2.5 2.5v9c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 19 4 17.88 4 16.5v-9Z" stroke="currentColor" stroke-width="1.3"></path>
-                    <path d="M8 9h8M8 12h6M8 15h4" stroke="currentColor" stroke-width="1.3"></path>
+                    <path d="M4 7.5C4 6.12 5.12 5 6.5 5h11c1.38 0 2.5 1.12 2.5 2.5v9c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 19 4 17.88 4 16.5v-9Z" stroke="currentColor" stroke-width="1.3"/>
+                    <path d="M8 9h8M8 12h6M8 15h4" stroke="currentColor" stroke-width="1.3"/>
                 </svg>
                 <span>Layar Kosong</span>
             </div>
             <div class="tools">
                 <button class="btn" id="btn-fullscreen" title="Fullscreen">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4" stroke="currentColor" stroke-width="1.5"></path>
+                        <path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4" stroke="currentColor" stroke-width="1.5"/>
                     </svg>
                     <span>Fullscreen</span>
                 </button>
@@ -237,11 +237,11 @@
             <div class="content">
                 <div id="iposbrowser"></div><h1 class="title">Jaga Repomu Tetap Bersih: Contoh <code>.gitignore</code> Lengkap untuk Node.js</h1>
                 <div class="meta">
-                    <span>Oleh: Frijal</span> •
-                    <span>Git, Node.js, Best Practice</span> •
+                    <span>Oleh: Frijal</span> &#x2022;
+                    <span>Git, Node.js, Best Practice</span> &#x2022;
                     <span>Update Terakhir: 25 Okt 2025</span>
                 </div>
-                <p>Mantap, Fakhrul 👍. Biar folder seperti <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> tidak ikut ke‑commit lagi ke Git repo kamu, penting banget pakai file <code class="kbd">.gitignore</code> yang bener. File ini ngasih tau Git file atau folder mana aja yang harus diabaikan.</p>
+                <p>Mantap, Fakhrul &#x1f44d;. Biar folder seperti <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> tidak ikut ke&#x2011;commit lagi ke Git repo kamu, penting banget pakai file <code class="kbd">.gitignore</code> yang bener. File ini ngasih tau Git file atau folder mana aja yang harus diabaikan.</p>
                 <p>Berikut contoh <code class="kbd">.gitignore</code> standar yang sudah siap pakai dan cukup lengkap untuk project Node.js:</p>
                 <div class="section">
                     <h2><i class="fa-solid fa-file-code"></i>Contoh <code class="kbd">.gitignore</code> untuk Node.js</h2>
@@ -321,18 +321,18 @@ Thumbs.db
                 <div class="section">
                     <h2><i class="fa-solid fa-star"></i>Catatan Penting</h2>
                     <ul>
-                        <li><strong>Wajib:</strong> <code class="kbd">node_modules/</code> dan <code class="kbd">.npm-cache/</code> → Ini dia biang kerok utama yang bikin repo jadi berat dan lambat kalau sampai ikut ke‑commit. Isinya cuma hasil download/cache yang bisa digenerate ulang kapan aja.</li>
-                        <li><strong>Opsional (Lockfiles):</strong> <code class="kbd">package-lock.json</code>, <code class="kbd">yarn.lock</code>, <code class="kbd">pnpm-lock.yaml</code> → Mengabaikan file lock (<code class="kbd">#</code> di depannya berarti diabaikan oleh <code>.gitignore</code> ini) berarti setiap kali orang lain atau CI/CD install dependencies, mereka bisa dapat versi paket yang sedikit berbeda (tapi masih sesuai range di <code>package.json</code>). Kalau kamu ingin dependency selalu <em>fresh</em> dengan versi patch/minor terbaru, bisa diabaikan.  <strong>Tapi</strong>, kalau kamu butuh <em>reproducible build</em> (hasil build yang pasti sama persis di mana pun), <strong>sebaiknya file lock ini tetap di‑commit</strong> (hapus tanda <code class="kbd">#</code> di depannya). Ini praktik yang paling umum dan disarankan.</li>
-                        <li><strong>Tambahan Penting:</strong> <code class="kbd">.env</code> dan variasinya (<code class="kbd">.env.local</code>, dll.) → <strong>Jangan pernah</strong> commit file environment yang berisi <em>credential</em> (API key, password database, dll.) ke repo publik. Bahaya banget!</li>
+                        <li><strong>Wajib:</strong> <code class="kbd">node_modules/</code> dan <code class="kbd">.npm-cache/</code> &#x2192; Ini dia biang kerok utama yang bikin repo jadi berat dan lambat kalau sampai ikut ke&#x2011;commit. Isinya cuma hasil download/cache yang bisa digenerate ulang kapan aja.</li>
+                        <li><strong>Opsional (Lockfiles):</strong> <code class="kbd">package-lock.json</code>, <code class="kbd">yarn.lock</code>, <code class="kbd">pnpm-lock.yaml</code> &#x2192; Mengabaikan file lock (<code class="kbd">#</code> di depannya berarti diabaikan oleh <code>.gitignore</code> ini) berarti setiap kali orang lain atau CI/CD install dependencies, mereka bisa dapat versi paket yang sedikit berbeda (tapi masih sesuai range di <code>package.json</code>). Kalau kamu ingin dependency selalu <em>fresh</em> dengan versi patch/minor terbaru, bisa diabaikan.  <strong>Tapi</strong>, kalau kamu butuh <em>reproducible build</em> (hasil build yang pasti sama persis di mana pun), <strong>sebaiknya file lock ini tetap di&#x2011;commit</strong> (hapus tanda <code class="kbd">#</code> di depannya). Ini praktik yang paling umum dan disarankan.</li>
+                        <li><strong>Tambahan Penting:</strong> <code class="kbd">.env</code> dan variasinya (<code class="kbd">.env.local</code>, dll.) &#x2192; <strong>Jangan pernah</strong> commit file environment yang berisi <em>credential</em> (API key, password database, dll.) ke repo publik. Bahaya banget!</li>
                         <li><strong>Build Output:</strong> Folder seperti <code class="kbd">dist/</code>, <code class="kbd">build/</code>, <code class="kbd">.next/</code> (untuk Next.js) berisi hasil kompilasi kode kamu. Ini biasanya tidak perlu di-commit karena bisa digenerate ulang dari source code. Kecuali, memang tujuan kamu mem-publish hasil build-nya (misal ke GitHub Pages).</li>
                         <li><strong>Lain-lain:</strong> Contoh di atas juga mengabaikan file log, data runtime, hasil test coverage, file sistem operasi (<code class="kbd">.DS_Store</code>, <code class="kbd">Thumbs.db</code>), dan folder konfigurasi editor (<code class="kbd">.vscode/</code>, <code class="kbd">.idea/</code>) yang umumnya tidak relevan untuk di-commit bareng source code.</li>
                     </ul>
                 </div>
                  <div class="tip">
                      <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                         <circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16h.01"></path>
+                         <circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16h.01"/>
                      </svg>
-                     <div>Dengan <code class="kbd">.gitignore</code> yang rapi seperti ini, kasus folder <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> muncul lagi di commit-an Git kamu tidak akan terulang. Repo jadi lebih ringan dan fokus ke source code asli! ✨</div>
+                     <div>Dengan <code class="kbd">.gitignore</code> yang rapi seperti ini, kasus folder <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> muncul lagi di commit-an Git kamu tidak akan terulang. Repo jadi lebih ringan dan fokus ke source code asli! &#x2728;</div>
                  </div>
                <div id="related-articles-grid"></div><div id="response"></div>
             </div>
@@ -340,15 +340,15 @@ Thumbs.db
     </main>
     <footer>
         <div class="foot">
-            <span>🄯 2025 Layar Kosong</span>
-            <span>•</span>
-            <span>Dibuat dengan ❤️ di Balikpapan</span>
+            <span>&#x1f12f; 2025 Layar Kosong</span>
+            <span>&#x2022;</span>
+            <span>Dibuat dengan &#x2764;&#xfe0f; di Balikpapan</span>
         </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-core.min.js" defer=""></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-ignore.min.js" defer=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-core.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/autoloader/prism-autoloader.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-ignore.min.js" defer></script>
 <script>
     // Fullscreen toggle
     const btnFs = document.getElementById('btn-fullscreen');
@@ -361,4 +361,7 @@ Thumbs.db
         }
     });
    </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

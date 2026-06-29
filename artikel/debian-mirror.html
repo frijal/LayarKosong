@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Otomatisasi">
     <meta property="article:tag" content="Tutorial">
@@ -147,7 +147,7 @@
         <main>
             <article>
                 <p>Pernah tidak sih kamu merasa kesal karena proses <code>sudo apt update</code> atau instalasi paket di Debian maupun Ubuntu terasa sangat lambat? Sering kali, biang keladinya bukan internetmu yang bermasalah, melainkan server <em>mirror repository</em> yang sedang kamu gunakan terlalu jauh atau sedang penuh sesak oleh trafik.</p>
-                <p>Kondisi ini bikin waktu produktifmu terbuang sia-sia hanya untuk mengunduh daftar paket. Beruntungnya, ada cara cerdas untuk mengatasi hal ini dengan bantuan utilitas <code>netselect-apt</code>. Kita akan mengotomatisasi pemilihannya agar sistem selalu mengambil data dari server yang paling "ngebut" buat lokasi tempat tinggalmu.</p>
+                <p>Kondisi ini bikin waktu produktifmu terbuang sia-sia hanya untuk mengunduh daftar paket. Beruntungnya, ada cara cerdas untuk mengatasi hal ini dengan bantuan utilitas <code>netselect-apt</code>. Kita akan mengotomatisasi pemilihannya agar sistem selalu mengambil data dari server yang paling &quot;ngebut&quot; buat lokasi tempat tinggalmu.</p>
                 <figure>
                     <img src="https://dalam.web.id/img/pbs.twimg.com/b1153eca67cf275a.webp" alt="Logo Debian dan Ubuntu" width="1200" height="675">
                     <figcaption>Dua raksasa distribusi Linux yang membutuhkan mirror cepat untuk kinerja optimal.</figcaption>
@@ -158,18 +158,18 @@
                 <pre><code>#!/bin/bash
 # debian-mirror.sh - Otomatis pilih mirror tercepat untuk Debian/Ubuntu
 set -e
-echo "[INFO] Memperbarui daftar paket &amp; menginstal netselect-apt..."
+echo &quot;[INFO] Memperbarui daftar paket &amp; menginstal netselect-apt...&quot;
 sudo apt update
 sudo apt install -y netselect-apt
-echo "[INFO] Menjalankan netselect-apt untuk rilis 'stable'..."
+echo &quot;[INFO] Menjalankan netselect-apt untuk rilis &apos;stable&apos;...&quot;
 sudo netselect-apt stable
-echo "[INFO] Mem-backup sources.list yang lama..."
+echo &quot;[INFO] Mem-backup sources.list yang lama...&quot;
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-echo "[INFO] Mengganti sources.list dengan hasil mirror tercepat..."
+echo &quot;[INFO] Mengganti sources.list dengan hasil mirror tercepat...&quot;
 sudo mv sources.list /etc/apt/sources.list
-echo "[INFO] Memperbarui daftar paket dari mirror baru..."
+echo &quot;[INFO] Memperbarui daftar paket dari mirror baru...&quot;
 sudo apt update
-echo "[SELESAI] Mirror tercepat berhasil dipasang!"</code></pre>
+echo &quot;[SELESAI] Mirror tercepat berhasil dipasang!&quot;</code></pre>
                 <p>Skrip ini bekerja dengan cara menguji latensi (waktu respon) dari berbagai cermin repositori di seluruh dunia dan secara pintar menentukan mana yang paling dekat serta responsif dengan koneksi internet yang kamu pakai saat ini.</p>
                 <h2>Proses Eksekusi</h2>
                 <p>Setelah file <code>debian-mirror.sh</code> tersimpan di direktori kerja kamu, berikan izin akses eksekusi agar skrip dapat berjalan:</p>
@@ -183,11 +183,14 @@ sudo ./debian-mirror.sh</code></pre>
         <footer>
             <div style="display: flex; justify-content: center; gap: 1rem;">
                 <span>Artikel oleh Frijal</span>
-                <span>•</span>
+                <span>&#x2022;</span>
                 <span>14 Juni 2026</span>
-                <span>•</span>
+                <span>&#x2022;</span>
                 <span>Referensi: Dokumentasi Resmi Debian</span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

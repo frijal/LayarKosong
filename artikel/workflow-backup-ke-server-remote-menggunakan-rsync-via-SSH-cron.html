@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Sysadmin">
     <meta property="article:tag" content="Tutorial">
@@ -224,7 +224,7 @@
         </header>
         <main>
             <article>
-                <p class="intro-lead">Pernah jantungan gara-gara data penting hilang atau server tiba-tiba crash? Tenang, mari kita kenalan lebih jauh dengan alat andalan para sysadmin yang siap menyelamatkan harimu. 🛠️</p>
+                <p class="intro-lead">Pernah jantungan gara-gara data penting hilang atau server tiba-tiba crash? Tenang, mari kita kenalan lebih jauh dengan alat andalan para sysadmin yang siap menyelamatkan harimu. &#x1f6e0;&#xfe0f;</p>
                 <figure>
                     <img src="https://dalam.web.id/img/pbs.twimg.com/75f422375257ba0a.webp" alt="Ilustrasi server dan transfer data yang merepresentasikan kegunaan perintah rsync" fetchpriority="high" loading="eager">
                     <figcaption>Ilustrasi sinkronisasi data yang efisien menggunakan utilitas rsync.</figcaption>
@@ -236,11 +236,11 @@
                 <h2>Apa Saja Manfaat Utama Rsync?</h2>
                 <p>Kalau kamu bertanya-tanya kenapa repot-repot pakai CLI (<em>Command Line Interface</em>) ketimbang sekadar <em>drag-and-drop</em>, berikut adalah keunggulan utama yang akan kamu dapatkan:</p>
                 <ul>
-                    <li>🔄 <strong>Sinkronisasi Fleksibel:</strong> Bisa diandalkan untuk mensinkronkan file maupun folder, baik di direktori lokal komputer yang sama maupun antar server jarak jauh.</li>
-                    <li>⚡ <strong>Transfer Super Cepat:</strong> Dengan algoritma <em>delta</em>, file berukuran raksasa yang hanya mengalami perubahan sedikit bisa disalin dalam hitungan detik.</li>
-                    <li>🛡️ <strong>Keamanan Terjamin:</strong> Dukungan integrasi langsung dengan protokol SSH (<em>Secure Shell</em>), memastikan lalu lintas datamu dienkripsi dengan aman.</li>
-                    <li>💾 <strong>Hemat Resource:</strong> Meringankan beban <em>bandwidth</em> dan memangkas waktu <em>downtime</em> selama proses transfer data masif berlangsung.</li>
-                    <li>📂 <strong>Presisi Metadata:</strong> Mendukung metode penyalinan yang sanggup mempertahankan <em>permissions</em>, kepemilikan, <em>timestamp</em> asli, hingga tautan simbolik (<em>symlink</em>).</li>
+                    <li>&#x1f504; <strong>Sinkronisasi Fleksibel:</strong> Bisa diandalkan untuk mensinkronkan file maupun folder, baik di direktori lokal komputer yang sama maupun antar server jarak jauh.</li>
+                    <li>&#x26a1; <strong>Transfer Super Cepat:</strong> Dengan algoritma <em>delta</em>, file berukuran raksasa yang hanya mengalami perubahan sedikit bisa disalin dalam hitungan detik.</li>
+                    <li>&#x1f6e1;&#xfe0f; <strong>Keamanan Terjamin:</strong> Dukungan integrasi langsung dengan protokol SSH (<em>Secure Shell</em>), memastikan lalu lintas datamu dienkripsi dengan aman.</li>
+                    <li>&#x1f4be; <strong>Hemat Resource:</strong> Meringankan beban <em>bandwidth</em> dan memangkas waktu <em>downtime</em> selama proses transfer data masif berlangsung.</li>
+                    <li>&#x1f4c2; <strong>Presisi Metadata:</strong> Mendukung metode penyalinan yang sanggup mempertahankan <em>permissions</em>, kepemilikan, <em>timestamp</em> asli, hingga tautan simbolik (<em>symlink</em>).</li>
                 </ul>
                 <h2>Cara Menggunakan Rsync untuk Pemula</h2>
                 <p>Jangan panik dulu melihat terminal hitam putih. Format perintah dasarnya sangat masuk akal dan mudah diingat. Strukturnya selalu seperti ini:</p>
@@ -257,10 +257,10 @@
 <pre><code><span class="sh-keyword">rsync</span> -avz username@server:/var/www/ /home/user/backup-www/</code></pre>
                 <h3>4. Backup dengan Pengecualian (Exclude)</h3>
                 <p>Kasus: Menyalin direktori proyek, tapi kamu malas membawa file sampah sementara (seperti ekstensi <code>.tmp</code> atau folder <code>node_modules</code>).</p>
-<pre><code><span class="sh-keyword">rsync</span> -av --exclude=<span class="sh-string">"*.tmp"</span> /project/ /backup/project/</code></pre>
+<pre><code><span class="sh-keyword">rsync</span> -av --exclude=<span class="sh-string">&quot;*.tmp&quot;</span> /project/ /backup/project/</code></pre>
                 <p><strong>Penjelasan Opsi (Flags) Umum:</strong></p>
                 <ul>
-                    <li><code>-a</code> : Mode <em>archive</em>. Ini adalah "paket kombo" yang akan mempertahankan izin, <em>symlink</em>, dan atribut file secara utuh.</li>
+                    <li><code>-a</code> : Mode <em>archive</em>. Ini adalah &quot;paket kombo&quot; yang akan mempertahankan izin, <em>symlink</em>, dan atribut file secara utuh.</li>
                     <li><code>-v</code> : <em>Verbose</em>. Menampilkan rentetan detail file apa saja yang sedang diproses di layar terminalmu.</li>
                     <li><code>-h</code> : <em>Human-readable</em>. Mengubah format ukuran dari <em>byte</em> menjadi KB, MB, atau GB yang lebih ramah di mata.</li>
                     <li><code>-z</code> : <em>Compress</em>. Melakukan kompresi data selama proses pengiriman untuk memangkas konsumsi <em>bandwidth</em> jaringan.</li>
@@ -271,10 +271,10 @@
                 <p>Simpan kode ini dalam file bernama <code>backup-rsync-local.sh</code> dan pastikan kamu memberi izin eksekusi (<code>chmod +x</code>).</p>
 <pre><code><span class="sh-comment">#!/bin/bash</span>
 <span class="sh-comment"># Script backup folder Documents ke /backup secara harian</span>
-SRC=<span class="sh-string">"/home/user/Documents/"</span>
-DEST=<span class="sh-string">"/backup/Documents/"</span>
-LOGFILE=<span class="sh-string">"/var/log/rsync-backup-local.log"</span>
-<span class="sh-keyword">rsync</span> -avh --delete <span class="sh-string">"$SRC"</span> <span class="sh-string">"$DEST"</span> &gt;&gt; <span class="sh-string">"$LOGFILE"</span> 2&gt;&amp;1
+SRC=<span class="sh-string">&quot;/home/user/Documents/&quot;</span>
+DEST=<span class="sh-string">&quot;/backup/Documents/&quot;</span>
+LOGFILE=<span class="sh-string">&quot;/var/log/rsync-backup-local.log&quot;</span>
+<span class="sh-keyword">rsync</span> -avh --delete <span class="sh-string">&quot;&#x24;SRC&quot;</span> <span class="sh-string">&quot;&#x24;DEST&quot;</span> &gt;&gt; <span class="sh-string">&quot;&#x24;LOGFILE&quot;</span> 2&gt;&amp;1
 </code></pre>
                 <p><em>Catatan: Opsi <code>--delete</code> berfungsi untuk menghapus file di direktori tujuan jika file tersebut sudah dihapus di direktori sumber, menjaga cermin data tetap akurat.</em></p>
                 <h3>2. Tambahkan Tugas ke Cron</h3>
@@ -285,17 +285,17 @@ LOGFILE=<span class="sh-string">"/var/log/rsync-backup-local.log"</span>
                 <p>Kalau <em>hard disk</em> lokal rusak, tamatlah riwayat datamu. Solusi direkomendasikan adalah mencadangkan data ke server terpisah yang berlokasi jauh secara otomatis. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Pendekatannya serupa, kita hanya perlu menambahkan otentikasi kunci agar tak perlu repot memasukkan <em>password</em> setiap saat.</p>
                 <h3>1. Setup SSH Key Tanpa Password (Opsional tapi Wajib Coba)</h3>
                 <p>Pertama, buatlah gembok dan kunci digital (SSH <em>key pair</em>) dari komputermu:</p>
-<pre><code><span class="sh-keyword">ssh-keygen</span> -t ed25519 -C <span class="sh-string">"user@client"</span></code></pre>
-                <p>Kemudian, lemparkan "gembok" (<em>public key</em>) tersebut ke server tujuanmu:</p>
+<pre><code><span class="sh-keyword">ssh-keygen</span> -t ed25519 -C <span class="sh-string">&quot;user@client&quot;</span></code></pre>
+                <p>Kemudian, lemparkan &quot;gembok&quot; (<em>public key</em>) tersebut ke server tujuanmu:</p>
 <pre><code><span class="sh-keyword">ssh-copy-id</span> username@server</code></pre>
                 <h3>2. Buat Skrip Bash Remote</h3>
                 <p>Buat file <code>backup-rsync-remote.sh</code> dengan isian seperti ini:</p>
 <pre><code><span class="sh-comment">#!/bin/bash</span>
 <span class="sh-comment"># Script amankan Documents ke server seberang pulau</span>
-SRC=<span class="sh-string">"/home/user/Documents/"</span>
-DEST=<span class="sh-string">"username@server:/home/username/backup/Documents/"</span>
-LOGFILE=<span class="sh-string">"/var/log/rsync-backup-remote.log"</span>
-<span class="sh-keyword">rsync</span> -avz --delete -e ssh <span class="sh-string">"$SRC"</span> <span class="sh-string">"$DEST"</span> &gt;&gt; <span class="sh-string">"$LOGFILE"</span> 2&gt;&amp;1
+SRC=<span class="sh-string">&quot;/home/user/Documents/&quot;</span>
+DEST=<span class="sh-string">&quot;username@server:/home/username/backup/Documents/&quot;</span>
+LOGFILE=<span class="sh-string">&quot;/var/log/rsync-backup-remote.log&quot;</span>
+<span class="sh-keyword">rsync</span> -avz --delete -e ssh <span class="sh-string">&quot;&#x24;SRC&quot;</span> <span class="sh-string">&quot;&#x24;DEST&quot;</span> &gt;&gt; <span class="sh-string">&quot;&#x24;LOGFILE&quot;</span> 2&gt;&amp;1
 </code></pre>
                 <h3>3. Daftarkan di Cron</h3>
                 <p>Sama seperti sebelumnya, jalankan <code>crontab -e</code> dan susupkan baris ini:</p>
@@ -311,6 +311,9 @@ LOGFILE=<span class="sh-string">"/var/log/rsync-backup-remote.log"</span>
                 <span>Dipublikasikan pada 14 Juni 2026</span> |
                 <span>Referensi: Dokumentasi resmi Rsync (Linux man page)</span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

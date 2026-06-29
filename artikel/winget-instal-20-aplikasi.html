@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-12T01:57:41.033Z">
     <meta property="article:modified_time" content="2026-03-29T08:51:43.923Z">
 <link rel="stylesheet" href="/ext/pemandu.css"></head><body> 
@@ -87,80 +87,83 @@
 <meta name="ai:summary" content="Winget bikin setup Windows jadi cepat, aman, dan otomatis. + skrip PowerShell untuk memasang 20 aplikasi sekaligus, lengkap dengan tips, ekspor/impor daftar, dan best practice.">
 <meta name="ai:prompt_hint" content="Winget bikin setup Windows jadi cepat, aman, dan otomatis. + skrip PowerShell untuk memasang 20 aplikasi sekaligus, lengkap dengan tips, ekspor/impor daftar, dan best practice."><main>
     <article>
-    &nbsp; <div id="iposbrowser"></div><h1>Pasang 20 Aplikasi Windows Sekaligus dengan Winget</h1>
-    &nbsp; <p class="lead">Winget bikin setup Windows jadi cepat, aman, dan otomatis. + skrip PowerShell untuk memasang 20 aplikasi sekaligus, lengkap dengan tips, ekspor/impor daftar, dan best practice.</p>
-    &nbsp; <h2>Winget itu apa sih?</h2>
-    &nbsp; <p>Winget adalah manajer paket resmi dari Microsoft untuk Windows 10 dan 11, dirilis sejak 2020.  Bisa dibilang ini “toko aplikasi” yang hidup di dalam Command Prompt atau PowerShell.</p>
-    &nbsp; <ul>
+    &#xa0; <div id="iposbrowser"></div><h1>Pasang 20 Aplikasi Windows Sekaligus dengan Winget</h1>
+    &#xa0; <p class="lead">Winget bikin setup Windows jadi cepat, aman, dan otomatis. + skrip PowerShell untuk memasang 20 aplikasi sekaligus, lengkap dengan tips, ekspor/impor daftar, dan best practice.</p>
+    &#xa0; <h2>Winget itu apa sih?</h2>
+    &#xa0; <p>Winget adalah manajer paket resmi dari Microsoft untuk Windows 10 dan 11, dirilis sejak 2020.  Bisa dibilang ini &#x201c;toko aplikasi&#x201d; yang hidup di dalam Command Prompt atau PowerShell.</p>
+    &#xa0; <ul>
         <li>Semua paket diambil dari repositori resmi yang dikurasi komunitas.</li>
         <li>Aman, karena yang dipasang adalah versi asli dari publisher.</li>
         <li>Karena berbasis command line, Winget gampang diintegrasikan ke skrip atau dipakai untuk instalasi massal.</li>
-    &nbsp; </ul>
-    &nbsp; <h2>Instalasi massal: hemat waktu &amp; lebih aman</h2>
-    &nbsp; <p>Biasanya, kalau habis install ulang Windows, kita harus unduh installer satu per satu: browser, pemutar musik, editor teks, dan seterusnya. Itu bisa makan waktu berjam-jam, plus ada risiko salah klik link palsu yang ternyata perangkat lunak berbahaya. </p>
-    &nbsp; <p>Dengan Winget, cukup jalankan satu perintah. Contoh untuk 20 aplikasi populer:</p>
-    &nbsp; <pre><code>winget install MarkText.MarkText AIMP.AIMP Microsoft.VisualStudioCode Notepad++.Notepad++ VideoLAN.VLC 7zip.7zip Audacity.Audacity Discord.Discord Spotify.Spotify REALiX.HWiNFO Microsoft.PowerToys BlastApps.FluentSearch Git.Git Python.Python.3 Zen-Team.Zen-Browser OBSProject.OBSStudio Notion.Notion SlackTechnologies.Slack Zoom.Zoom Valve.Steam</code></pre>
-    &nbsp; <p>Selesai. Tinggal ditinggal beristirahat sejenak, Windows akan dapat memasang semuanya tanpa klik-klik installer. </p>
-    &nbsp; <h2>Tips praktis</h2>
-    &nbsp; <ul>
-        <li><strong>Nama paket</strong> harus sesuai format: <code>Publisher.App</code>. Misalnya Slack → <code>SlackTechnologies.Slack</code>, Steam → <code>Valve.Steam</code>.</li>
+    &#xa0; </ul>
+    &#xa0; <h2>Instalasi massal: hemat waktu &amp; lebih aman</h2>
+    &#xa0; <p>Biasanya, kalau habis install ulang Windows, kita harus unduh installer satu per satu: browser, pemutar musik, editor teks, dan seterusnya. Itu bisa makan waktu berjam-jam, plus ada risiko salah klik link palsu yang ternyata perangkat lunak berbahaya. </p>
+    &#xa0; <p>Dengan Winget, cukup jalankan satu perintah. Contoh untuk 20 aplikasi populer:</p>
+    &#xa0; <pre><code>winget install MarkText.MarkText AIMP.AIMP Microsoft.VisualStudioCode Notepad++.Notepad++ VideoLAN.VLC 7zip.7zip Audacity.Audacity Discord.Discord Spotify.Spotify REALiX.HWiNFO Microsoft.PowerToys BlastApps.FluentSearch Git.Git Python.Python.3 Zen-Team.Zen-Browser OBSProject.OBSStudio Notion.Notion SlackTechnologies.Slack Zoom.Zoom Valve.Steam</code></pre>
+    &#xa0; <p>Selesai. Tinggal ditinggal beristirahat sejenak, Windows akan dapat memasang semuanya tanpa klik-klik installer. </p>
+    &#xa0; <h2>Tips praktis</h2>
+    &#xa0; <ul>
+        <li><strong>Nama paket</strong> harus sesuai format: <code>Publisher.App</code>. Misalnya Slack &#x2192; <code>SlackTechnologies.Slack</code>, Steam &#x2192; <code>Valve.Steam</code>.</li>
         <li>Kalau lupa, pakai <code>winget search [nama]</code> untuk cari ID paket yang benar.</li>
         <li>Ada juga opsi GUI:
-        &nbsp; <ul>
-            <li><a href="https://winstall.app" target="_blank" rel="noopener">winstall.app</a> → pilih aplikasi, otomatis dibuatkan perintah Winget.</li>
-            <li><a href="https://wingetui.com/" target="_blank" rel="noopener">WingetUI</a> → antarmuka grafis, jadi tidak perlu command line.</li>
-        &nbsp; </ul>
+        &#xa0; <ul>
+            <li><a href="https://winstall.app" target="_blank" rel="noopener">winstall.app</a> &#x2192; pilih aplikasi, otomatis dibuatkan perintah Winget.</li>
+            <li><a href="https://wingetui.com/" target="_blank" rel="noopener">WingetUI</a> &#x2192; antarmuka grafis, jadi tidak perlu command line.</li>
+        &#xa0; </ul>
         </li>
-    &nbsp; </ul>
-    &nbsp; <h2>Ekspor &amp; impor daftar aplikasi</h2>
-    &nbsp; <p>Kalau sering pindah PC, Winget juga bisa ekspor daftar aplikasi ke file JSON:</p>
-    &nbsp; <pre><code>winget export -o daftar.json</code></pre>
-    &nbsp; <p>Lalu di mesin baru:</p>
-    &nbsp; <pre><code>winget import -i daftar.json</code></pre>
-    &nbsp; <p>Semua aplikasi lama langsung terpasang lagi. Selain itu, Winget mendukung file konfigurasi YAML (DSC) untuk sekaligus mengatur aplikasi + setting Windows sesuai kebutuhan.</p>
-    &nbsp; <h2>Contoh skrip PowerShell siap pakai</h2>
+    &#xa0; </ul>
+    &#xa0; <h2>Ekspor &amp; impor daftar aplikasi</h2>
+    &#xa0; <p>Kalau sering pindah PC, Winget juga bisa ekspor daftar aplikasi ke file JSON:</p>
+    &#xa0; <pre><code>winget export -o daftar.json</code></pre>
+    &#xa0; <p>Lalu di mesin baru:</p>
+    &#xa0; <pre><code>winget import -i daftar.json</code></pre>
+    &#xa0; <p>Semua aplikasi lama langsung terpasang lagi. Selain itu, Winget mendukung file konfigurasi YAML (DSC) untuk sekaligus mengatur aplikasi + setting Windows sesuai kebutuhan.</p>
+    &#xa0; <h2>Contoh skrip PowerShell siap pakai</h2>
     <p><strong>Simpan sebagai <code>setup.ps1</code>, lalu jalankan dengan hak Administrator agar mulus.</strong></p>
     <div class="code-block"><code><span class="comment"># setup.ps1</span>
 <span class="comment"># Skrip instalasi massal aplikasi Windows dengan Winget</span>
 <span class="comment"># Jalankan dengan hak administrator agar semua aplikasi bisa terpasang</span>
-<span class="cmdlet">Write-Host</span> <span class="string">"=== Instalasi aplikasi favorit dimulai... ==="</span> -ForegroundColor Cyan
+<span class="cmdlet">Write-Host</span> <span class="string">&quot;=== Instalasi aplikasi favorit dimulai... ===&quot;</span> -ForegroundColor Cyan
 <span class="comment"># Daftar aplikasi (ID paket Winget)</span>
-<span class="var">$apps</span> = @(
-  <span class="string">"MarkText.MarkText"</span>,
-  <span class="string">"AIMP.AIMP"</span>,
-  <span class="string">"Microsoft.VisualStudioCode"</span>,
-  <span class="string">"Notepad++.Notepad++"</span>,
-  <span class="string">"VideoLAN.VLC"</span>,
-  <span class="string">"7zip.7zip"</span>,
-  <span class="string">"Audacity.Audacity"</span>,
-  <span class="string">"Discord.Discord"</span>,
-  <span class="string">"Spotify.Spotify"</span>,
-  <span class="string">"REALiX.HWiNFO"</span>,
-  <span class="string">"Microsoft.PowerToys"</span>,
-  <span class="string">"BlastApps.FluentSearch"</span>,
-  <span class="string">"Git.Git"</span>,
-  <span class="string">"Python.Python.3"</span>,
-  <span class="string">"Zen-Team.Zen-Browser"</span>,
-  <span class="string">"OBSProject.OBSStudio"</span>,
-  <span class="string">"Notion.Notion"</span>,
-  <span class="string">"SlackTechnologies.Slack"</span>,
-  <span class="string">"Zoom.Zoom"</span>,
-  <span class="string">"Valve.Steam"</span>
+<span class="var">&#x24;apps</span> = @(
+  <span class="string">&quot;MarkText.MarkText&quot;</span>,
+  <span class="string">&quot;AIMP.AIMP&quot;</span>,
+  <span class="string">&quot;Microsoft.VisualStudioCode&quot;</span>,
+  <span class="string">&quot;Notepad++.Notepad++&quot;</span>,
+  <span class="string">&quot;VideoLAN.VLC&quot;</span>,
+  <span class="string">&quot;7zip.7zip&quot;</span>,
+  <span class="string">&quot;Audacity.Audacity&quot;</span>,
+  <span class="string">&quot;Discord.Discord&quot;</span>,
+  <span class="string">&quot;Spotify.Spotify&quot;</span>,
+  <span class="string">&quot;REALiX.HWiNFO&quot;</span>,
+  <span class="string">&quot;Microsoft.PowerToys&quot;</span>,
+  <span class="string">&quot;BlastApps.FluentSearch&quot;</span>,
+  <span class="string">&quot;Git.Git&quot;</span>,
+  <span class="string">&quot;Python.Python.3&quot;</span>,
+  <span class="string">&quot;Zen-Team.Zen-Browser&quot;</span>,
+  <span class="string">&quot;OBSProject.OBSStudio&quot;</span>,
+  <span class="string">&quot;Notion.Notion&quot;</span>,
+  <span class="string">&quot;SlackTechnologies.Slack&quot;</span>,
+  <span class="string">&quot;Zoom.Zoom&quot;</span>,
+  <span class="string">&quot;Valve.Steam&quot;</span>
 )
 <span class="comment"># Loop instalasi</span>
-<span class="cmdlet">foreach</span> (<span class="var">$app</span> in <span class="var">$apps</span>) {
-  <span class="cmdlet">Write-Host</span> <span class="string">"&gt;&gt; Menginstal $app ..."</span> -ForegroundColor Yellow
-  <span class="cmdlet">winget</span> install --id <span class="var">$app</span> --silent --accept-package-agreements --accept-source-agreements
+<span class="cmdlet">foreach</span> (<span class="var">&#x24;app</span> in <span class="var">&#x24;apps</span>) {
+  <span class="cmdlet">Write-Host</span> <span class="string">&quot;&gt;&gt; Menginstal &#x24;app ...&quot;</span> -ForegroundColor Yellow
+  <span class="cmdlet">winget</span> install --id <span class="var">&#x24;app</span> --silent --accept-package-agreements --accept-source-agreements
 }
-<span class="cmdlet">Write-Host</span> <span class="string">"=== Semua aplikasi sudah diproses! ==="</span> -ForegroundColor Green
+<span class="cmdlet">Write-Host</span> <span class="string">&quot;=== Semua aplikasi sudah diproses! ===&quot;</span> -ForegroundColor Green
 </code></div>
-    &nbsp; <h2>Hemat waktu banget</h2>
-    &nbsp; <p>Instal manual 20 aplikasi bisa makan 2–3 jam. Dengan Winget, cukup 10–15 menit. Kamu juga bisa bikin skrip pribadi (batch/PowerShell) berisi daftar aplikasi favorit, jadi setiap kali setup ulang Windows tinggal jalankan skrip itu.</p>
-    &nbsp; <blockquote>👉 Intinya: <strong>Winget bikin setup Windows jadi cepat, aman, dan otomatis</strong>. Sekali coba, rasanya malas balik ke cara manual lagi.</blockquote>
+    &#xa0; <h2>Hemat waktu banget</h2>
+    &#xa0; <p>Instal manual 20 aplikasi bisa makan 2&#x2013;3 jam. Dengan Winget, cukup 10&#x2013;15 menit. Kamu juga bisa bikin skrip pribadi (batch/PowerShell) berisi daftar aplikasi favorit, jadi setiap kali setup ulang Windows tinggal jalankan skrip itu.</p>
+    &#xa0; <blockquote>&#x1f449; Intinya: <strong>Winget bikin setup Windows jadi cepat, aman, dan otomatis</strong>. Sekali coba, rasanya malas balik ke cara manual lagi.</blockquote>
 <div id="related-articles-grid"></div><div id="response"></div>
     </article>
-&nbsp; </main><footer>
-    <p>🄯 2025 dalam.web.id</p>
-&nbsp;         
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+&#xa0; </main><footer>
+    <p>&#x1f12f; 2025 dalam.web.id</p>
+&#xa0;         
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

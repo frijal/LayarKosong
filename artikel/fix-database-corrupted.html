@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-11T04:40:11.764Z">
     <meta property="article:modified_time" content="2025-12-10T14:07:59.459Z">
 <!-- 🔎 Open Graph -->
@@ -131,17 +131,17 @@ footer {
 <body>
 <header>
   <img src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo">
-  <div id="iposbrowser"></div><h1>💾 Memperbaiki Error “Database Corrupted / Failed to Commit Transaction”</h1>
+  <div id="iposbrowser"></div><h1>&#x1f4be; Memperbaiki Error &#x201c;Database Corrupted / Failed to Commit Transaction&#x201d;</h1>
   <p>Error ini biasanya muncul saat pacman gagal menulis ke database paket karena file rusak, ruang disk penuh, atau update terhenti tiba-tiba.</p>
 </header>
 <main>
 <section>
-  <h2>⚠️ Contoh Pesan Error</h2>
+  <h2>&#x26a0;&#xfe0f; Contoh Pesan Error</h2>
   <pre><code>error: failed to commit transaction (database is corrupted)
 error: could not open file /var/lib/pacman/local/.../desc: No such file or directory</code></pre>
 </section>
 <section>
-  <h2>🔍 Penyebab Umum</h2>
+  <h2>&#x1f50d; Penyebab Umum</h2>
   <ul>
     <li>Proses update dihentikan paksa (misalnya listrik mati atau ditekan Ctrl+C).</li>
     <li>File database pacman di folder <code>/var/lib/pacman/</code> rusak.</li>
@@ -150,31 +150,31 @@ error: could not open file /var/lib/pacman/local/.../desc: No such file or direc
   </ul>
 </section>
 <section>
-  <h2>🧭 Langkah-Langkah Memperbaiki</h2>
-  <h3>1️⃣ Pastikan Ruang Disk Cukup</h3>
+  <h2>&#x1f9ed; Langkah-Langkah Memperbaiki</h2>
+  <h3>1&#xfe0f;&#x20e3; Pastikan Ruang Disk Cukup</h3>
   <pre><code>df -h</code></pre>
   <p>Jika ruang kosong &lt; 500 MB, hapus cache lama:</p>
   <pre><code>sudo pacman -Scc</code></pre>
-  <h3>2️⃣ Periksa &amp; Perbaiki Database Pacman</h3>
+  <h3>2&#xfe0f;&#x20e3; Periksa &amp; Perbaiki Database Pacman</h3>
   <pre><code>sudo rm -f /var/lib/pacman/db.lck
-sudo pacman -D --asdeps $(pacman -Qdtq)</code></pre>
+sudo pacman -D --asdeps &#x24;(pacman -Qdtq)</code></pre>
   <p>Hapus file lock yang tertinggal dan rapikan dependensi yatim.</p>
-  <h3>3️⃣ Periksa File Database yang Rusak</h3>
-  <pre><code>sudo find /var/lib/pacman/local/ -name "desc" | while read f; do
-  grep -q "%NAME%" "$f" || echo "File rusak: $f"
+  <h3>3&#xfe0f;&#x20e3; Periksa File Database yang Rusak</h3>
+  <pre><code>sudo find /var/lib/pacman/local/ -name &quot;desc&quot; | while read f; do
+  grep -q &quot;%NAME%&quot; &quot;&#x24;f&quot; || echo &quot;File rusak: &#x24;f&quot;
 done</code></pre>
   <p>Kalau ada file rusak, hapus folder paket tersebut secara manual.</p>
-  <h3>4️⃣ Sinkronkan Ulang Database</h3>
+  <h3>4&#xfe0f;&#x20e3; Sinkronkan Ulang Database</h3>
   <pre><code>sudo pacman -Syyu</code></pre>
   <p>Ini akan memuat ulang semua database paket dari repositori resmi.</p>
-  <h3>5️⃣ Jika Masih Error, Rebuild Database Lokal</h3>
+  <h3>5&#xfe0f;&#x20e3; Jika Masih Error, Rebuild Database Lokal</h3>
   <pre><code>sudo rm -r /var/lib/pacman/local
-sudo pacman -Syu --overwrite '*'</code></pre>
-  <p><strong>Peringatan:</strong> Langkah ini ekstrem — hanya gunakan jika semua cara lain gagal.
+sudo pacman -Syu --overwrite &apos;*&apos;</code></pre>
+  <p><strong>Peringatan:</strong> Langkah ini ekstrem &#x2014; hanya gunakan jika semua cara lain gagal.
   Akan membangun ulang database lokal dari awal.</p>
 </section>
 <section>
-  <h2>💡 Tips Tambahan</h2>
+  <h2>&#x1f4a1; Tips Tambahan</h2>
   <ul>
     <li>Gunakan UPS atau baterai jika sering update di laptop.</li>
     <li>Pastikan tidak ada dua proses pacman berjalan bersamaan.</li>
@@ -182,8 +182,8 @@ sudo pacman -Syu --overwrite '*'</code></pre>
   </ul>
 </section>
 <section>
-  <h2>✅ Kesimpulan</h2>
-  <p>Error “database corrupted” biasanya tidak fatal.
+  <h2>&#x2705; Kesimpulan</h2>
+  <p>Error &#x201c;database corrupted&#x201d; biasanya tidak fatal.
   Dengan sedikit perintah pemulihan, kamu bisa memperbaiki pacman tanpa reinstall.
   Kuncinya adalah <strong>sinkronisasi penuh</strong> dan <strong>jangan memaksa update setengah jalan</strong>.</p>
 </section>
@@ -192,9 +192,12 @@ sudo pacman -Syu --overwrite '*'</code></pre>
 </section>
     </main>
 <footer>
-  🄯 2025 Jaga Data Pribadi Tetap Aman — Seri “Masalah Umum Arch Linux” · dibuat dengan ❤
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+  &#x1f12f; 2025 Jaga Data Pribadi Tetap Aman &#x2014; Seri &#x201c;Masalah Umum Arch Linux&#x201d; &#xb7; dibuat dengan &#x2764;
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 <script>
 window.onload = () => window.scrollTo({ top: 0, behavior: "smooth" });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

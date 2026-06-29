@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Git">
     <meta property="article:published_time" content="2026-02-23T11:00:00.000Z">
     <meta property="article:modified_time" content="2026-06-11T17:58:43.593Z">
@@ -242,25 +242,25 @@
 <body>
   <article>
     <div id="iposbrowser"></div><h1>git push --force origin main, git reset --hard: 7 Kebenaran Penting yang Harus Diketahui Developer</h1>
-    <p><i class="fa-solid fa-calendar-alt fa-icon-margin"></i> 26 Februari 2026 · <i class="fa-solid fa-clock"></i> 12 menit membaca · <i class="fa-solid fa-user-ninja"></i> Admin Pinggiran</p>
+    <p><i class="fa-solid fa-calendar-alt fa-icon-margin"></i> 26 Februari 2026 &#xb7; <i class="fa-solid fa-clock"></i> 12 menit membaca &#xb7; <i class="fa-solid fa-user-ninja"></i> Admin Pinggiran</p>
     <!-- Pendahuluan dengan 5W+1H santai -->
     <h2>1. Pendahuluan: Perintah Git yang Kritis <i class="fa-solid fa-exclamation-triangle" style="color:#e67e22;"></i></h2>
-    <p>Hai, para pejuang kode! Kalau kamu sudah pernah berkutat dengan Git, pasti pernah dengar cerita horor tentang <strong>git push --force origin main, git reset --hard</strong>. Dua perintah ini sakti mandraguna — bisa nyelametin hidup, tapi juga bisa membuat sangat terkejut kalau salah pake. <i class="fa-solid fa-skull"></i> Tenang, di artikel ini gue bakal kupas tuntas: apa, mengapa, siapa, kapan, di mana, dan bagaimana menggunakan perintah ini dengan aman. Semua disajikan bahasa santai, lengkap, dan tidak ada yang diringkas. Siap? Ayo gas!</p>
+    <p>Hai, para pejuang kode! Kalau kamu sudah pernah berkutat dengan Git, pasti pernah dengar cerita horor tentang <strong>git push --force origin main, git reset --hard</strong>. Dua perintah ini sakti mandraguna &#x2014; bisa nyelametin hidup, tapi juga bisa membuat sangat terkejut kalau salah pake. <i class="fa-solid fa-skull"></i> Tenang, di artikel ini gue bakal kupas tuntas: apa, mengapa, siapa, kapan, di mana, dan bagaimana menggunakan perintah ini dengan aman. Semua disajikan bahasa santai, lengkap, dan tidak ada yang diringkas. Siap? Ayo gas!</p>
     <h3>Mengapa Developer Menggunakan Force Push dan Hard Reset?  <i class="fa-solid fa-question-circle"></i></h3>
     <p>Biasanya karena panik <i class="fa-solid fa-face-surprise"></i> atau ingin membersihkan riwayat. Misalnya, kamu nge-commit file .env berisi password, atau tiba-tiba branch lokal kacau karena merge conflict yang ruwet.  Force push bisa membuat remote branch sesuai dengan lokal.  Hard reset bisa mengembalikan keadaan ke commit tertentu sambil buang semua perubahan. Tapi kalau asal pake, siap-siap gigit jari.</p>
     <h2>2. Memahami Dasar Git Sebelum Menggunakan Perintah Berbahaya</h2>
     <h3>Bagaimana Git Melacak Perubahan <i class="fa-solid fa-history"></i></h3>
     <p>Git tuh seperti mesin waktu dengan banyak cabang. Setiap commit adalah foto kondisi proyek. Git nyatanya tidak pernah hapus data langsung, tapi bisa membuat referensi (HEAD, branch) ilang. Makanya kadang kita masih bisa balikin.</p>
     <h3>Perbedaan Repositori Lokal dan Remote <i class="fa-solid fa-cloud-upload-alt"></i></h3>
-    <p>Lokal punya kendali penuh, remote jadi sumber kebenaran bersama. <code>git push</code> biasa cuma nambah commit baru. <code>git push --force</code> berkata "pokoknya punya gue yang bener, timpa saja". Nah, kalau ada orang lain yang udah push duluan, kerjaannya lenyap. Serem kan?</p>
-    <blockquote>🎯 <strong>Catatan:</strong> Dokumentasi resmi Git selalu bisa dicek di <a href="https://git-scm.com/docs" target="_blank" rel="noopener">git-scm.com/docs</a>. Tapi di sini kita bahasa lebih gaul.</blockquote>
+    <p>Lokal punya kendali penuh, remote jadi sumber kebenaran bersama. <code>git push</code> biasa cuma nambah commit baru. <code>git push --force</code> berkata &quot;pokoknya punya gue yang bener, timpa saja&quot;. Nah, kalau ada orang lain yang udah push duluan, kerjaannya lenyap. Serem kan?</p>
+    <blockquote>&#x1f3af; <strong>Catatan:</strong> Dokumentasi resmi Git selalu bisa dicek di <a href="https://git-scm.com/docs" target="_blank" rel="noopener">git-scm.com/docs</a>. Tapi di sini kita bahasa lebih gaul.</blockquote>
     <h2>3. Apa yang Terjadi Saat Anda Menggunakan git push --force origin main, git reset --hard</h2>
     <h3>Apa yang Sebenarnya Dihapus oleh Hard Reset <i class="fa-solid fa-undo-alt"></i></h3>
     <pre><code>git reset --hard HEAD~1</code></pre> atau <pre><code>git reset --hard <b>nomor commit sebelumnya<b></b></b></code></pre><b><b>
-    <p>Kode di atas mindahin branch ke satu commit sebelumnya, <strong>dan</strong> buang semua perubahan di working directory dan staging area. Jadi kalo ada file baru yang belum di-commit, bisa ilang selamanya. Tapi commit yang lama (sebelum di-reset) masih ada di reflog — selama belum di-garbage collect.</p>
+    <p>Kode di atas mindahin branch ke satu commit sebelumnya, <strong>dan</strong> buang semua perubahan di working directory dan staging area. Jadi kalo ada file baru yang belum di-commit, bisa ilang selamanya. Tapi commit yang lama (sebelum di-reset) masih ada di reflog &#x2014; selama belum di-garbage collect.</p>
   <h3>Mekanisme Internal Force Push <i class="fa-solid fa-arrow-up"></i></h3>
     <pre><code>git push --force origin main</code></pre>
-    <p>Perintah ini bilang ke remote: <em>"lupakan semua punya kamu, mulai sekarang pakai riwayatku"</em>. Remote nurut aja tanpa protes. Akibatnya, commit yang sebelumnya ada di remote (misalnya dari kolaborator) langsung lenyap dari main.</p>
+    <p>Perintah ini bilang ke remote: <em>&quot;lupakan semua punya kamu, mulai sekarang pakai riwayatku&quot;</em>. Remote nurut aja tanpa protes. Akibatnya, commit yang sebelumnya ada di remote (misalnya dari kolaborator) langsung lenyap dari main.</p>
     <!-- Gambar dari referensi visual -->
     <img src="https://dalam.web.id/img/AAAAAA/pxeexqyfvf4hw3zxtbn.webp" alt="Ilustrasi Git force push" loading="lazy">
     <img src="https://dalam.web.id/img/i.sstatic.net/Hg5bt.webp" alt="Diagram Git reset" loading="lazy">
@@ -295,7 +295,7 @@
     <p><code>git revert</code> bikin commit baru yang isinya kebalikan dari commit tertentu. Tidak ada history yang ditulis ulang, jadi aman buat branch publik. Revert adalah teman sejati.</p>
     <h2>8. Praktik Terbaik untuk Tim</h2>
     <h3>Protokol Komunikasi <i class="fa-solid fa-comments"></i></h3>
-    <p>Sebelum force push ke branch bareng, wajib ngomong dulu di chat grup: "Gue mau force push ke branch fitur A, ada yang lagi kerja di situ?" Simpel, tapi nyegah bencana.</p>
+    <p>Sebelum force push ke branch bareng, wajib ngomong dulu di chat grup: &quot;Gue mau force push ke branch fitur A, ada yang lagi kerja di situ?&quot; Simpel, tapi nyegah bencana.</p>
     <h3>Aturan Perlindungan Branch <i class="fa-solid fa-lock"></i></h3>
     <p>Di GitHub/GitLab, kamu bisa atur branch <code>main</code> atau <code>develop</code> supaya tidak bisa di-force push, bahkan oleh admin sekalipun. Wajib pake pull request dan review. Ini pagar utama.</p>
     <img src="https://dalam.web.id/img/www.bitfarm-archiv.com/pics/Versioning.webp" alt="Konsep versioning" loading="lazy">
@@ -329,7 +329,7 @@
     <h3>6. Mengapa tim melarang force push?</h3>
     <p>Karena bisa menghapus riwayat yang jadi acuan anggota tim lain, menyebabkan konflik dan kerja ganda.</p>
     <h2>12. Kesimpulan</h2>
-    <p><i class="fa-solid fa-gem"></i> Git itu ibarat pisau dapur: bisa sangat berguna, bisa juga berisiko. <strong>git push --force origin main, git reset --hard</strong> adalah pisau paling tajam. Pahami kapan, di mana, dan bagaimana menggunakannya. Jangan lupa komunikasi, backup, dan selalu utamakan keselamatan kerja tim. Dengan bekal artikel ini, kamu sekarang lebih pede dan siap ngadepin situasi genting. Selamat coding, jangan lupa tersenyum! 😎</p>
+    <p><i class="fa-solid fa-gem"></i> Git itu ibarat pisau dapur: bisa sangat berguna, bisa juga berisiko. <strong>git push --force origin main, git reset --hard</strong> adalah pisau paling tajam. Pahami kapan, di mana, dan bagaimana menggunakannya. Jangan lupa komunikasi, backup, dan selalu utamakan keselamatan kerja tim. Dengan bekal artikel ini, kamu sekarang lebih pede dan siap ngadepin situasi genting. Selamat coding, jangan lupa tersenyum! &#x1f60e;</p>
       <p>Punya pengalaman pahit atau manis soal force push? Atau punya trik lain? Tulis di sini, kita bisa belajar bareng. Karena berbagi itu indah.</p>
     <div id="related-articles-grid">
         </div>
@@ -337,6 +337,9 @@
         </div>
   </b></b></article><b><b>
   <footer>
-    <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Semoga Indonesia makin kebal error. Artikel ini diketik dengan sepenuh hati menggunakan E-E-A-T, SEO, dan cinta.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-</b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+    <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman &#x2014; Semoga Indonesia makin kebal error. Artikel ini diketik dengan sepenuh hati menggunakan E-E-A-T, SEO, dan cinta.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+</b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

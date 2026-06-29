@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2013-04-16T08:31:19.000Z">
     <meta property="article:modified_time" content="2013-04-16T08:31:19.000Z">
 <style>
@@ -302,8 +302,8 @@
   }
 </style>
   <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js" defer=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js" defer></script>
 <meta name="ai:summary" content="Panduan detail cara mengubah format audio M4A ke OGG menggunakan FFmpeg dan find di Linux/Unix. Disertai langkah-langkah praktis, perintah siap pakai, dan tips.">
 <meta name="ai:prompt_hint" content="Panduan detail cara mengubah format audio M4A ke OGG menggunakan FFmpeg dan find di Linux/Unix. Disertai langkah-langkah praktis, perintah siap pakai, dan tips.">
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
@@ -321,13 +321,13 @@
   <h2>Langkah-langkah Konversi</h2>
   <ol>
     <li><b>Ubah M4A ke MP3</b></li>
-    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name '*.m4a' -exec bash -c 'ffmpeg -i "$0" -acodec libmp3lame -aq 2 "${0/%m4a/mp3}"' '{}' \;</code></pre>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name &apos;*.m4a&apos; -exec bash -c &apos;ffmpeg -i &quot;&#x24;0&quot; -acodec libmp3lame -aq 2 &quot;&#x24;{0/%m4a/mp3}&quot;&apos; &apos;{}&apos; \;</code></pre>
     <li><b>Hapus berkas M4A yang tersisa</b></li>
-    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name '*.m4a' -delete</code></pre>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name &apos;*.m4a&apos; -delete</code></pre>
     <li><b>Ubah MP3 ke OGG</b></li>
-    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name '*.mp3' -exec bash -c 'ffmpeg -i "$0" -c:a libvorbis -q:a 8 "${0/%mp3/ogg}"' '{}' \;</code></pre>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name &apos;*.mp3&apos; -exec bash -c &apos;ffmpeg -i &quot;&#x24;0&quot; -c:a libvorbis -q:a 8 &quot;&#x24;{0/%mp3/ogg}&quot;&apos; &apos;{}&apos; \;</code></pre>
     <li><b>Hapus berkas MP3 setelah selesai</b></li>
-    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name '*.mp3' -delete</code></pre>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">find . -type f -name &apos;*.mp3&apos; -delete</code></pre>
   </ol>
   <p>
     Proses ini bisa memakan waktu lama tergantung banyaknya file.
@@ -339,8 +339,8 @@
   </div>
     </main>
 <footer>
-  <div>🄯 2025 Tutorial FFmpeg</div>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+  <div>&#x1f12f; 2025 Tutorial FFmpeg</div>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
 <script>
 function copyCode(btn) {
   const code = btn.nextElementSibling.innerText;
@@ -350,4 +350,7 @@ function copyCode(btn) {
   });
 }
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

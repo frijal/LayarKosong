@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="github actions, node 24, bun, migrasi, ci/cd, devops, node.js, workflow">
-    <meta name="promphint" content="Bagaimana cara menguji GitHub Actions dengan Node 24 sebelum resmi? | Tambahkan env FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true di workflow dan gunakan actions/setup-node@v4 dengan node-version '24'.">
+    <meta name="promphint" content="Bagaimana cara menguji GitHub Actions dengan Node 24 sebelum resmi? | Tambahkan env FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true di workflow dan gunakan actions/setup-node@v4 dengan node-version &apos;24&apos;.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="github actions, node 24, bun, migrasi, ci/cd">
     <meta property="article:published_time" content="2026-03-08T23:11:50.000Z">
     <meta property="article:modified_time" content="2026-05-25T22:39:06.918Z">
@@ -508,7 +508,7 @@
                 <p class="lead">
                     Node.js 20 akan mencapai End of Life pada April 2026, dan GitHub akan mengganti
                     default runner mereka ke Node 24 mulai 2 Juni 2026. Bagi pengguna Bun, ini bukan
-                    ancaman—asalkan kamu tahu langkah tepat. Simak panduan lengkapnya di sini.
+                    ancaman&#x2014;asalkan kamu tahu langkah tepat. Simak panduan lengkapnya di sini.
                 </p>
             </header>
             <!-- ===== OPENING ===== -->
@@ -523,14 +523,14 @@
                 Bagi siapa pun yang menggunakan GitHub Actions untuk CI/CD, perubahan ini tidak bisa
                 diabaikan. Meskipun proyekmu menggunakan Bun sebagai <i>runtime</i> dan <i>package manager</i>
                 utama, lingkungan <i>runner</i> GitHub tetap berjalan di atas Node.js. Jika lingkungan
-                tersebut beralih ke versi 24, maka dependensi native—seperti <code>sharp</code> atau
-                <code>@minify-html/node</code>—bisa mengalami kegagalan <i>build</i> jika tidak disiapkan
+                tersebut beralih ke versi 24, maka dependensi native&#x2014;seperti <code>sharp</code> atau
+                <code>@minify-html/node</code>&#x2014;bisa mengalami kegagalan <i>build</i> jika tidak disiapkan
                 dengan benar.
             </p>
             <!-- ===== FIRST IMAGE (LCP) ===== -->
             <figure class="article-image">
                 <img src="https://dalam.web.id/img/pbs.twimg.com/6ae1cb1dda3e2ce3.webp" alt="Ilustrasi proses migrasi GitHub Actions dari Node 20 ke Node 24 dengan latar belakang kode dan logo Bun" width="1200" height="675" decoding="async" fetchpriority="high" loading="eager">
-                <figcaption>Ilustrasi transisi GitHub Actions menuju Node 24—sebuah momen penting bagi para pengguna Bun.</figcaption>
+                <figcaption>Ilustrasi transisi GitHub Actions menuju Node 24&#x2014;sebuah momen penting bagi para pengguna Bun.</figcaption>
             </figure>
             <!-- ===== MENGAPA NODE 24 PENTING ===== -->
             <h2>Mengapa Node 24 Penting bagi Pengguna Bun?</h2>
@@ -546,7 +546,7 @@
                 Perubahan ini terjadi di lingkungan <i>runner</i> GitHub Actions, dan alasan utamanya
                 adalah untuk menjaga keamanan dan performa sistem CI/CD agar tidak tertinggal dari
                 standar teknologi terbaru. Bagi kamu yang sudah mengadopsi Bun, kabar baiknya adalah
-                Bun menangani modul native dengan lebih tangguh dibanding Node.js tradisional—tapi tetap
+                Bun menangani modul native dengan lebih tangguh dibanding Node.js tradisional&#x2014;tapi tetap
                 perlu pengujian dini.
             </p>
             <!-- ===== LANGKAH MIGRASI (DIBUNGKUS DETAILS) ===== -->
@@ -559,8 +559,8 @@
                         bahwa proyekmu siap untuk lingkungan terbaru. Tambahkan blok berikut:
                     </p>
                     <pre><code class="language-json">{
-  "engines": {
-    "node": "&gt;=24.0.0"
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=24.0.0&quot;
   }
 }</code></pre>
                     <h3>2. Uji Coba dengan GitHub Actions (Flag Pengujian)</h3>
@@ -578,7 +578,7 @@
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: &apos;24&apos;
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -645,10 +645,10 @@
             <!-- ===== CHECKLIST ===== -->
             <h2>Checklist Migrasi Singkat</h2>
             <ul>
-                <li>Update <code>engines</code> di <code>package.json</code> ke <code>"node": "&gt;=24.0.0"</code>.</li>
+                <li>Update <code>engines</code> di <code>package.json</code> ke <code>&quot;node&quot;: &quot;&gt;=24.0.0&quot;</code>.</li>
                 <li>Tambahkan <code>FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true</code> di workflow GitHub.</li>
                 <li>Update <code>sharp</code> dan <code>@minify-html/node</code> ke versi terbaru.</li>
-                <li>Gunakan <code>actions/setup-node@v4</code> dengan <code>node-version: '24'</code>.</li>
+                <li>Gunakan <code>actions/setup-node@v4</code> dengan <code>node-version: &apos;24&apos;</code>.</li>
                 <li>Gunakan <code>oven-sh/setup-bun@v2</code> dengan <code>bun-version: latest</code>.</li>
                 <li>Jalankan <code>bun install --frozen-lockfile</code> di CI.</li>
             </ul>
@@ -685,11 +685,14 @@
         <!-- ===== FOOTER ===== -->
         <footer class="article-footer">
             <span><b>Jaga Data Pribadi Tetap Aman</b></span>
-            <span class="sep">•</span>
+            <span class="sep">&#x2022;</span>
             <span>23 Juni 2026</span>
-            <span class="sep">•</span>
+            <span class="sep">&#x2022;</span>
             <span>Referensi: Panduan ini disusun berdasarkan pengalaman langsung dengan GitHub Actions, Bun, dan diskusi komunitas developer.</span>
-                <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+                <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </main>
     <!-- ===== highlight.js ===== (dimuat karena ada blok kode) -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

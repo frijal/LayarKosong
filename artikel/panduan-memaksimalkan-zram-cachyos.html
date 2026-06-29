@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="CachyOS">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
@@ -203,33 +203,33 @@
     <div class="container" role="main">
         <header>
             <div id="iposbrowser"></div><h1>Panduan Maksimal zRAM di CachyOS: Rahasia Multitasking Tanpa Ngelag</h1>
-            <span class="meta-date">📅 31 Mei 2026 | Jakarta, Indonesia</span>
+            <span class="meta-date">&#x1f4c5; 31 Mei 2026 | Jakarta, Indonesia</span>
         </header>
         <article>
-            <p>Pernah bertanya-tanya bagaimana cara menggunakan fitur kompresi memori virtual yang sering dibicarakan para pengguna Linux? Kabar baiknya: karena kamu menggunakan <strong>CachyOS</strong> (yang berbasis Arch Linux dan sangat berorientasi pada performa ekstrem), kemungkinan besar <strong>zRAM</strong> sudah aktif secara otomatis dari sananya! 🐧</p>
+            <p>Pernah bertanya-tanya bagaimana cara menggunakan fitur kompresi memori virtual yang sering dibicarakan para pengguna Linux? Kabar baiknya: karena kamu menggunakan <strong>CachyOS</strong> (yang berbasis Arch Linux dan sangat berorientasi pada performa ekstrem), kemungkinan besar <strong>zRAM</strong> sudah aktif secara otomatis dari sananya! &#x1f427;</p>
             <p>Tim pengembang CachyOS mengonfigurasi ini di luar kotak (<em>out of the box</em>) karena mereka tahu persis betapa krusialnya fitur ini untuk manajemen memori modern, terutama ketika kita dihadapkan pada keterbatasan sumber daya sistem inti. Namun, sebagai seorang <em>power user</em>, tentu kurang afdal rasanya kalau kita tidak mengecek dan memahami cara kerjanya secara fundamental.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/14d2fc4a546d8456.webp" alt="Ilustrasi Terminal Linux dan Performa CachyOS" class="hero-image" fetchpriority="high" decoding="async">
             <p>Berikut adalah panduan santai untuk mengecek, membaca, dan (jika perlu) mengoptimalkan <strong>zRAM</strong> di sistem komputermu agar sesi <em>multitasking</em> harian tetap mulus.</p>
-            <h2>1. Cara Mengecek Apakah zRAM Sudah Aktif 💻</h2>
+            <h2>1. Cara Mengecek Apakah zRAM Sudah Aktif &#x1f4bb;</h2>
             <p>Buka terminal kesayanganmu dan ketik perintah sakti ini:</p>
 <pre><code>zramctl</code></pre>
             <p>Jika <strong>zRAM</strong> sudah aktif, kamu akan melihat <em>output</em> berupa tabel status. Jika tidak muncul apa-apa, berarti belum aktif (walau di ekosistem CachyOS kejadian seperti ini sangat jarang terjadi). Kamu juga bisa memverifikasinya lewat perintah pengecekan memori virtual (<em>swap</em>) standar:</p>
 <pre><code>swapon --show</code></pre>
             <p>Kalau di kolom <code>NAME</code> muncul <code>/dev/zram0</code>, selamat! Sistemmu sudah menggunakan fitur kompresi memori yang efisien.</p>
-            <h2>2. Cara Membaca Output <code>zramctl</code> 📊</h2>
+            <h2>2. Cara Membaca Output <code>zramctl</code> &#x1f4ca;</h2>
             <p>Saat kamu mengetik <code>zramctl</code>, ada beberapa kolom penting yang perlu diperhatikan secara saksama:</p>
             <ul>
                 <li><strong>ALGORITHM:</strong> Biasanya berisi <code>zstd</code> atau <code>lz4</code>. Ini adalah algoritma kompresinya. <code>zstd</code> adalah favorit masa kini karena rasio kompresinya sangat tinggi dengan beban CPU yang sangat ringan (sangat cocok untuk arsitektur CPU <em>dual-core</em> seperti i5-7200U kamu).</li>
-                <li><strong>DISKSIZE:</strong> Ini adalah batas maksimal memori virtual yang disediakan. Biasanya diatur sekitar 50% hingga 100% dari total RAM fisik (sekitar 8GB atau 16GB di mesin standar). Jangan panik, angka ini <em>tidak</em> langsung memakan RAM 16GB-mu. Ini cuma "batas atas" atau plafon.</li>
+                <li><strong>DISKSIZE:</strong> Ini adalah batas maksimal memori virtual yang disediakan. Biasanya diatur sekitar 50% hingga 100% dari total RAM fisik (sekitar 8GB atau 16GB di mesin standar). Jangan panik, angka ini <em>tidak</em> langsung memakan RAM 16GB-mu. Ini cuma &quot;batas atas&quot; atau plafon.</li>
                 <li><strong>DATA:</strong> Ini adalah jumlah memori asli (sebelum dikompres) yang sedang dilempar untuk diurus oleh sistem.</li>
                 <li><strong>COMPR:</strong> Ini adalah ukuran memori <em>setelah</em> dikompresi. (Misal: DATA 1GB bisa menyusut jadi COMPR 250MB. Bayangkan betapa banyak ruang RAM yang bisa diselamatkan!).</li>
             </ul>
-            <h2>3. Di Mana Letak Pengaturannya? ⚙️</h2>
+            <h2>3. Di Mana Letak Pengaturannya? &#x2699;&#xfe0f;</h2>
             <p>Kalau kamu gatal ingin mengutak-atik (misalnya mengubah ukuran maksimalnya), distro Linux modern biasanya menggunakan paket pembantu seperti <code>systemd-zram-setup</code> atau <code>zram-generator</code>.</p>
             <p>File konfigurasinya biasanya ada di direktori: <code>/etc/systemd/zram-generator.conf</code></p>
             <p>Kalau kamu membuka file tersebut menggunakan editor teks (seperti <code>nano</code> atau <em>vim</em> dengan akses <code>sudo</code>), kamu bisa melihat atau mengubah parameternya. <em>Rule of thumb</em> yang aman: biarkan ukurannya setara dengan RAM fisikmu atau minimal setengahnya.</p>
-            <h2>4. Bumbu Rahasia: Swappiness 🚀</h2>
-            <p>Agar kompresi ini bekerja maksimal, sistem operasi harus tahu seberapa "agresif" dia harus melempar data yang tidak terpakai. Ini diatur oleh parameter kernel bernama <code>swappiness</code>. Untuk mengecek nilainya saat ini, jalankan:</p>
+            <h2>4. Bumbu Rahasia: Swappiness &#x1f680;</h2>
+            <p>Agar kompresi ini bekerja maksimal, sistem operasi harus tahu seberapa &quot;agresif&quot; dia harus melempar data yang tidak terpakai. Ini diatur oleh parameter kernel bernama <code>swappiness</code>. Untuk mengecek nilainya saat ini, jalankan:</p>
 <pre><code>cat /proc/sys/vm/swappiness</code></pre>
             <ul>
                 <li>Nilai ideal biasanya cukup tinggi, di kisaran 100 hingga 150 (maksimal 200 di kernel terbaru).</li>
@@ -237,19 +237,19 @@
                 <li>Tim CachyOS biasanya sudah menyetel nilai ini dengan sangat presisi, jadi kemungkinan kamu tidak perlu merusaknya lagi.</li>
             </ul>
             <p>Intinya, fitur ini ibarat <em>set-and-forget</em> (pasang dan lupakan). Sistem operasi yang akan bekerja keras di belakang layar, memampatkan dan mengekstrak data dalam hitungan milidetik.</p>
-            <h2>Menganalisis Kinerja Sistem Secara Langsung 🔍</h2>
+            <h2>Menganalisis Kinerja Sistem Secara Langsung &#x1f50d;</h2>
             <p>Mari kita telusuri contoh spesifik dari <em>output</em> terminal di bawah ini supaya kamu tahu persis seberapa keren sistem yang sedang berjalan:</p>
 <pre><code>NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
             <p>Mantap! Hasilnya sangat optimal. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Konfigurasi bawaan sistem memang tidak pernah mengecewakan. Ini adalah buktinya:</p>
             <ul>
                 <li><strong>ALGORITHM (<code>zstd</code>)</strong>: Ini adalah pilihan algoritma paling top saat ini. Zstandard punya daya kompresi tinggi tapi beban komputasinya sangat ringan, sehingga prosesor tidak akan <em>ngos-ngosan</em> saat harus memampatkan instruksi secara <em>real-time</em>.</li>
-                <li><strong>DISKSIZE (<code>15,5G</code>)</strong>: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar "kapasitas wadah". Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
+                <li><strong>DISKSIZE (<code>15,5G</code>)</strong>: Batas maksimal kapasitas di-set hampir menyamai total RAM fisik. Seperti yang dibahas sebelumnya, ini sekadar &quot;kapasitas wadah&quot;. Selama tidak terpakai, sisa RAM tetap bebas digunakan aplikasi lain.</li>
                 <li><strong>DATA (<code>4K</code>) &amp; COMPR (<code>64B</code>)</strong>: Nah, ini bagian yang paling fantastis! Saat sistem sedang santai (baru ada beban 4 Kilobytes), algoritma berhasil memampatkannya hingga sekecil 64 Bytes saja. Bayangkan betapa ekstrem penghematan memorinya saat nanti sistem sedang padat-padatnya!</li>
                 <li><strong>MOUNTPOINT (<code>[SWAP]</code>)</strong>: Ini konfirmasi akhir bahwa partisi virtual sudah resmi bertugas. Ketimbang Linux membuang tumpahan data ke <em>storage</em> yang bisa memperpendek umur SSD, ia akan langsung mengompresnya secara instan.</li>
             </ul>
             <p>Kesimpulannya: Perangkatmu sekarang memiliki perlindungan manajemen antrean yang sangat solid. Kombinasi RAM 16GB, <em>setup</em> kompresi yang berjalan paripurna ini, ditambah paket <em>booster</em> CachyOS (<code>kcgroups</code>, <code>dmemcg-booster</code>, dan <code>plasma-foreground-booster</code>), adalah racikan paling optimal.</p>
-            <p>Sekarang kamu bisa jauh lebih leluasa melakukan <em>multitasking</em> intens—mulai dari membuka ratusan referensi, menjalankan <em>script</em> otomasi web berbasis Bun, hingga melakukan <em>batch processing</em> ubah ukuran gambar massal di latar belakang—tanpa perlu cemas antarmuka <em>desktop</em> mendadak <em>stuttering</em> atau <em>freeze</em>. Mesinmu sudah mengerti dengan sangat jelas siapa yang perlu diprioritaskan! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. ⚡</p>
+            <p>Sekarang kamu bisa jauh lebih leluasa melakukan <em>multitasking</em> intens&#x2014;mulai dari membuka ratusan referensi, menjalankan <em>script</em> otomasi web berbasis Bun, hingga melakukan <em>batch processing</em> ubah ukuran gambar massal di latar belakang&#x2014;tanpa perlu cemas antarmuka <em>desktop</em> mendadak <em>stuttering</em> atau <em>freeze</em>. Mesinmu sudah mengerti dengan sangat jelas siapa yang perlu diprioritaskan! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. &#x26a1;</p>
         </article>
         <aside class="author-box">
             <h3>Editor</h3>
@@ -259,7 +259,10 @@
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>🄯 2026 Hak Cipta Dilindungi. Direkayasa untuk Performa Web yang Optimal.</p>
-               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; 2026 Hak Cipta Dilindungi. Direkayasa untuk Performa Web yang Optimal.</p>
+               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-19T19:11:16.416Z">
     <meta property="article:modified_time" content="2025-10-21T13:11:39.437Z">
 <!-- Metadata Dasar -->
@@ -67,7 +67,7 @@
      <!-- GANTI DENGAN USERNAME TWITTER KAMU -->
     <!-- CSS & Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>:root {
@@ -259,7 +259,7 @@ footer a { color: var(--header-color); text-decoration: none; }
 <body>
     <div class="container">
         <header>
-            <div id="iposbrowser"></div><h1>Alur Kerja Cerdas: Satu Job untuk Semua Tugas Perawatan Harian 🚀</h1>
+            <div id="iposbrowser"></div><h1>Alur Kerja Cerdas: Satu Job untuk Semua Tugas Perawatan Harian &#x1f680;</h1>
             <p class="subtitle">Sebuah studi kasus tentang cara mengubah workflow yang terpisah-pisah menjadi satu proses tunggal yang efisien, bersih, dan atomik.</p>
         </header>
         <main>
@@ -269,7 +269,7 @@ footer a { color: var(--header-color); text-decoration: none; }
                 <div class="problem-box">
                     <ul>
                         <li><i class="fa-solid fa-undo"></i> <strong>Boros `checkout`</strong>: Setiap job harus melakukan <code>checkout</code> repositori dari awal. Ini membuang waktu.</li>
-                        <li><i class="fa-solid fa-random"></i> <strong>Riwayat Commit Berantakan</strong>: Setiap job membuat commit-nya sendiri-sendiri, menghasilkan riwayat Git yang "berisik".</li>
+                        <li><i class="fa-solid fa-random"></i> <strong>Riwayat Commit Berantakan</strong>: Setiap job membuat commit-nya sendiri-sendiri, menghasilkan riwayat Git yang &quot;berisik&quot;.</li>
                         <li><i class="fa-solid fa-hourglass-half"></i> <strong>Potensi Masalah Timing</strong>: Data yang digunakan oleh job kedua mungkin sudah usang karena tidak melihat perubahan yang dibuat oleh job pertama.</li>
                     </ul>
                 </div>
@@ -302,17 +302,17 @@ footer a { color: var(--header-color); text-decoration: none; }
                         <div class="timeline-icon commit"><i class="fa-brands fa-git-alt"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah Final: Satu Commit untuk Semua</h3>
-                            <p>Inilah bagian terbaiknya. Semua perubahan—gambar baru, gambar yang dihapus, dan laporan baru—dikemas ke dalam <strong>satu commit atomik</strong>. Riwayat Git menjadi bersih dan mudah dibaca.</p>
+                            <p>Inilah bagian terbaiknya. Semua perubahan&#x2014;gambar baru, gambar yang dihapus, dan laporan baru&#x2014;dikemas ke dalam <strong>satu commit atomik</strong>. Riwayat Git menjadi bersih dan mudah dibaca.</p>
                         </div>
                     </div>
                 </div>
                 <h3>Kode Final Workflow:</h3>
                 <p>Inilah wujud akhir dari workflow yang sudah dioptimalkan. Satu job, satu tujuan, efisiensi maksimal.</p>
                 <div class="code-block">
-                    <pre><code>name: 🔆 Perawatan &amp; Laporan Konten Harian
+                    <pre><code>name: &#x1f506; Perawatan &amp; Laporan Konten Harian
 on:
   schedule:
-    - cron: '0 21 * * *'
+    - cron: &apos;0 21 * * *&apos;
   workflow_dispatch:
 jobs:
   maintenance_and_reporting:
@@ -320,39 +320,39 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: '1. Checkout Repository'
+      - name: &apos;1. Checkout Repository&apos;
         uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: '2. Setup Node.js'
+      - name: &apos;2. Setup Node.js&apos;
         uses: actions/setup-node@v4
-        with: { node-version: '20' }
-      - name: '3. Generate Missing Screenshots'
+        with: { node-version: &apos;20&apos; }
+      - name: &apos;3. Generate Missing Screenshots&apos;
         run: |
           npm install puppeteer --no-save
           node ext/screenshot-puppeteer.js
-      - name: '4. Cari dan Hapus Gambar Orphan'
+      - name: &apos;4. Cari dan Hapus Gambar Orphan&apos;
         id: cleanup_step
         run: |
           # ... (script cleanup) ...
-      - name: '5. Hitung File &amp; Buat Laporan'
+      - name: &apos;5. Hitung File &amp; Buat Laporan&apos;
         run: |
           # ... (script reporting) ...
-      - name: '6. Rotasi Laporan Lama'
+      - name: &apos;6. Rotasi Laporan Lama&apos;
         run: |
           # ... (script rotasi) ...
-      - name: '7. Hapus File Sementara'
+      - name: &apos;7. Hapus File Sementara&apos;
         run: rm -rf tmp/ __pycache__/
-      - name: '8. Commit All Changes'
+      - name: &apos;8. Commit All Changes&apos;
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config --global user.name &apos;github-actions[bot]&apos;
+          git config --global user.email &apos;41898282+github-actions[bot]@users.noreply.github.com&apos;
           git add img/ mini/
           if ! git diff --staged --quiet; then
-            git commit -m "chore: Daily maintenance (screenshots, cleanup, report)"
+            git commit -m &quot;chore: Daily maintenance (screenshots, cleanup, report)&quot;
             git pull origin main --rebase
             git push
           else
-            echo "✅ Tidak ada perubahan baru."
+            echo &quot;&#x2705; Tidak ada perubahan baru.&quot;
           fi</code></pre>
                     <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                 </div>
@@ -362,8 +362,8 @@ jobs:
             </div>
         </main>
         <footer>
-            <p>🄯 2025 - </p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+            <p>&#x1f12f; 2025 - </p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </div>
     <script>document.addEventListener('DOMContentLoaded', () => {
     // --- Fungsi Tombol Salin Kode ---
@@ -389,4 +389,7 @@ jobs:
     });
    });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Git Expert">
     <meta property="article:published_time" content="2026-02-13T21:00:00.000Z">
     <meta property="article:modified_time" content="2026-03-02T10:03:43.383Z">
@@ -162,26 +162,26 @@
 <body>
 <div class="widescreen-wrapper">
     <header>
-        <div id="iposbrowser"></div><h1>Strategi "Diet" Repositori: Menguasai Git Sparse Checkout 🚀</h1>
+        <div id="iposbrowser"></div><h1>Strategi &quot;Diet&quot; Repositori: Menguasai Git Sparse Checkout &#x1f680;</h1>
         <div class="meta-info">
-            <i class="fa fa-user"></i> Fakhrul Rijal &nbsp; | &nbsp;
-            <i class="fa fa-map-marker"></i> Balikpapan &nbsp; | &nbsp;
+            <i class="fa fa-user"></i> Fakhrul Rijal &#xa0; | &#xa0;
+            <i class="fa fa-map-marker"></i> Balikpapan &#xa0; | &#xa0;
             <i class="fa fa-calendar"></i> 16 Februari 2026
         </div>
     </header>
     <main>
         <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBSor0dboAEReCZ.webp" alt="Git Sparse Checkout Visualization" class="hero-img">
         <section class="content-section">
-            <h2>Why: Mengapa Kita perlu Melakukan Ini?  🤔</h2>
-            <p>Pernahkah kamu merasa repositori proyekmu tumbuh menjadi "monster"? Di blog <strong>Layar Kosong</strong>, ribuan file HTML adalah inti dari segalanya, namun folder <code>img/</code> seringkali berisi ribuan aset visual yang ukurannya bergiga-giga. Masalah muncul saat kita harus bekerja di perangkat dengan penyimpanan terbatas atau saat koneksi internet sedang tidak bersahabat di Balikpapan.</p>
-            <p><strong>Sparse Checkout</strong> hadir sebagai solusi "bedah plastik" untuk repositori Git. Alih-alih mengunduh dan menampilkan seluruh isi folder, kita bisa memilih secara spesifik folder mana yang ingin kita munculkan di lokal kita tanpa menghapusnya dari server GitHub.</p>
+            <h2>Why: Mengapa Kita perlu Melakukan Ini?  &#x1f914;</h2>
+            <p>Pernahkah kamu merasa repositori proyekmu tumbuh menjadi &quot;monster&quot;? Di blog <strong>Layar Kosong</strong>, ribuan file HTML adalah inti dari segalanya, namun folder <code>img/</code> seringkali berisi ribuan aset visual yang ukurannya bergiga-giga. Masalah muncul saat kita harus bekerja di perangkat dengan penyimpanan terbatas atau saat koneksi internet sedang tidak bersahabat di Balikpapan.</p>
+            <p><strong>Sparse Checkout</strong> hadir sebagai solusi &quot;bedah plastik&quot; untuk repositori Git. Alih-alih mengunduh dan menampilkan seluruh isi folder, kita bisa memilih secara spesifik folder mana yang ingin kita munculkan di lokal kita tanpa menghapusnya dari server GitHub.</p>
         </section>
         <section class="content-section">
-            <h2>What: Apa Itu Sparse Checkout Sebenarnya? 🧠</h2>
-            <p>Secara harfiah, <em>sparse</em> berarti jarang atau tipis. Dalam konteks Git, teknik ini memungkinkan kita untuk melakukan <code>checkout</code> hanya pada subset file dari pohon kerja (working tree). Bayangkan sebuah perpustakaan raksasa; Sparse Checkout memungkinkan kamu hanya mengambil buku di rak "Teknologi" tanpa perlu menyentuh rak "Sejarah" atau "Seni", meskipun kamu memegang kunci seluruh perpustakaan tersebut.</p>
+            <h2>What: Apa Itu Sparse Checkout Sebenarnya? &#x1f9e0;</h2>
+            <p>Secara harfiah, <em>sparse</em> berarti jarang atau tipis. Dalam konteks Git, teknik ini memungkinkan kita untuk melakukan <code>checkout</code> hanya pada subset file dari pohon kerja (working tree). Bayangkan sebuah perpustakaan raksasa; Sparse Checkout memungkinkan kamu hanya mengambil buku di rak &quot;Teknologi&quot; tanpa perlu menyentuh rak &quot;Sejarah&quot; atau &quot;Seni&quot;, meskipun kamu memegang kunci seluruh perpustakaan tersebut.</p>
         </section>
         <section class="content-section">
-            <h2>How: Langkah Demi Langkah Eksekusi Hemat 🛠️</h2>
+            <h2>How: Langkah Demi Langkah Eksekusi Hemat &#x1f6e0;&#xfe0f;</h2>
             <h3>1. Clone Tanpa Beban (Initial Step)</h3>
             <p>Langkah pertama pakai github CLI, <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBSpNDvbcAESqeL.webp" alt="Git Sparse Checkout Solusi Hemat Storage Penyimpanan" width="100%" style="display: block; margin-left: auto; margin-right: auto;"> dimulai saat proses <code>clone</code>. Kita menggunakan filter <code>blob:none</code> agar Git tidak mengunduh isi file besar sampai kita benar-benar membutuhkannya.</p>
             <ul>
@@ -205,26 +205,29 @@ gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1</code>
             <p>Git modern menggunakan mode <em>Cone</em> secara default (hanya mendukung folder utuh). Karena kita ingin menggunakan pola pengecualian (tanda seru <code>!</code>), kita harus mematikannya.</p>
 <pre><code>git config core.sparseCheckoutCone false
 git sparse-checkout init</code></pre>
-            <h3>3. Menetapkan Aturan "Gaib"</h3>
+            <h3>3. Menetapkan Aturan &quot;Gaib&quot;</h3>
             <p>Ini adalah bagian inti. Kita memberitahu Git untuk mengambil semua file di semua folder (<code>/*</code>), tapi abaikan folder <code>img/</code> dan <code>.github/workflows/</code> secara spesifik.</p>
-<pre><code>git sparse-checkout set --no-cone "/*" "!/img/" "!/.github/workflows/"</code></pre>
+<pre><code>git sparse-checkout set --no-cone &quot;/*&quot; &quot;!/img/&quot; &quot;!/.github/workflows/&quot;</code></pre>
 <p>Seketika, folder <code>img/</code> dan <code>.github/workflows/</code> akan menghilang dari File Explorer, namun mereka tetap berada di dalam server repo Github, dan status repositori kamu tetap <code>clean</code>, aman sentosa.</p>
         </section>
         <section class="content-section">
-            <h2>Where &amp; When: Dimana Aturan Ini Disimpan? 📍</h2>
+            <h2>Where &amp; When: Dimana Aturan Ini Disimpan? &#x1f4cd;</h2>
             <p>Aturan Sparse Checkout tersimpan di folder rahasia, dengan nama <code>.git/info/sparse-checkout</code>. Karena folder <code>.git</code> ini terbawa saat kamu memindahkan hardisk antar komputer, konfigurasi diet ini akan <strong>tetap berlaku otomatis</strong> di mana pun hardisk itu dicolokkan. Kamu tidak perlu melakukan setting ulang setiap kali pindah perangkat!</p>   </section>
         <div class="zdummy">
             <i class="fa fa-exclamation-triangle"></i> <strong>Penting:</strong> Jika folder yang kamu abaikan tetap muncul, kamu mungkin perlu memicu sinkronisasi ulang index dengan perintah: <br>
             <code>git read-tree -mu HEAD</code>
         </div>
         <section class="content-section">
-            <h2>Who: Siapa yang Mendapatkan Manfaat Terbesar? 👥</h2>
+            <h2>Who: Siapa yang Mendapatkan Manfaat Terbesar? &#x1f465;</h2>
             <p>Teknik ini sangat krusial bagi aku di <strong>Layar Kosong</strong> yang sering melakukan otomasi. Dengan mengabaikan folder gambar dan workflow, proses <code>git status</code>, <code>git add</code>, dan <code>git pull</code> menjadi jauh lebih cepat karena Git tidak perlu memindai ribuan file gambar yang statis.</p>
         </section>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         </main></div>
     <footer>
-        <p>🄯 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a> - Catatan Digital Fakhrul Rijal. Optimized for Core Web Vitals | No HERO | No ARIA | Pure Performance.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+        <p>&#x1f12f; 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a> - Catatan Digital Fakhrul Rijal. Optimized for Core Web Vitals | No HERO | No ARIA | Pure Performance.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>
