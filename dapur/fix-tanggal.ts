@@ -1,3 +1,5 @@
+//cara pakai: lakukan semuanya secara lokal, kosongkan isi sitemap.txt, lalu jalankan bun fix-tanggal.ts + generator-pro.ts
+
 import { file, write } from "bun";
 import { utimes } from "node:fs/promises";
 import { readdirSync, existsSync } from "node:fs";
