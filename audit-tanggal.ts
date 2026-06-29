@@ -3,7 +3,6 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import * as cheerio from "cheerio";
 
-// Mapping nama kategori di JSON ke nama folder fisik
 const CAT_MAP: Record<string, string> = {
   "Gaya Hidup": "gaya-hidup",
   "Jejak Sejarah": "jejak-sejarah",
@@ -16,57 +15,68 @@ const CAT_MAP: Record<string, string> = {
 
 async function audit() {
   const data: Record<string, any[][]> = await file("artikel.json").json();
-  let mdContent = `# Laporan Audit Tanggal Artikel (Master vs HTML)\n\n`;
-  mdContent += `| Slug | Publish (Source) | Modified (HTML) | Status |\n`;
-  mdContent += `| :--- | :--- | :--- | :--- |\n`;
+  const allArticles: any[] = [];
+  const timeFrequency = new Map<string, number>();
 
+  // 1. Koleksi data dari semua kategori
   for (const [catName, articles] of Object.entries(data)) {
     const folderName = CAT_MAP[catName];
-    
-    if (!folderName) {
-      console.warn(`⚠️ Kategori tidak terdaftar di map: ${catName}`);
-      continue;
-    }
+    if (!folderName) continue;
 
     for (const art of articles) {
       const filename = String(art[1]);
       const htmlPath = path.join(folderName, filename);
       
-      if (!existsSync(htmlPath)) {
-        console.warn(`⚠️ File tidak ditemukan: ${htmlPath}`);
-        continue;
-      }
+      if (!existsSync(htmlPath)) continue;
 
       const html = await file(htmlPath).text();
       const $ = cheerio.load(html);
 
       const pubHTML = $('meta[property="article:published_time"]').attr("content") || "N/A";
       const modHTML = $('meta[property="article:modified_time"]').attr("content") || "N/A";
-      const slug = filename.replace(".html", "");
-
-      // Logika Perbandingan Baru:
-      // ✅ OK: Jika Publish == Modified (Belum diedit)
-      // ✅ OK: Jika Modified > Publish (Sudah diedit dengan betul)
-      // ❌ ANOMALI: Jika Modified < Publish (Logika waktu terbalik)
       
-      const pubTime = new Date(pubHTML).getTime();
-      const modTime = new Date(modHTML).getTime();
-      
-      let status = "✅ OK";
-      let style = "";
-
-      // Hanya anomali jika masa modifikasi lebih awal dari masa terbit
-      if (Number.isFinite(pubTime) && Number.isFinite(modTime) && modTime < pubTime) {
-        status = "❌ ANOMALI";
-        style = 'style="color: red; font-weight: bold;"';
+      // Hitung frekuensi waktu untuk deteksi duplikat
+      if (modHTML !== "N/A") {
+        timeFrequency.set(modHTML, (timeFrequency.get(modHTML) || 0) + 1);
       }
 
-      mdContent += `| ${slug} | ${pubHTML} | <span ${style}>${modHTML}</span> | ${status} |\n`;
+      allArticles.push({
+        slug: filename.replace(".html", ""),
+        pub: pubHTML,
+        mod: modHTML
+      });
     }
   }
 
+  // 2. Sortir berdasarkan Tanggal Modif (Kolom 1)
+  allArticles.sort((a, b) => a.mod.localeCompare(b.mod));
+
+  // 3. Generate Markdown
+  let mdContent = `# Laporan Audit Tanggal Artikel (Inverted View)\n\n`;
+  mdContent += `| Modified Time | Slug | Status |\n`;
+  mdContent += `| :--- | :--- | :--- |\n`;
+
+  for (const art of allArticles) {
+    const pubTime = new Date(art.pub).getTime();
+    const modTime = new Date(art.mod).getTime();
+    const count = timeFrequency.get(art.mod) || 0;
+
+    let status = "✅ OK";
+    let style = "";
+
+    // Deteksi Anomali:
+    // 1. Modifikasi lebih tua dari Publish
+    // 2. Waktu modifikasi duplikat (terlalu banyak di detik yang sama)
+    if ((Number.isFinite(pubTime) && Number.isFinite(modTime) && modTime < pubTime) || count > 1) {
+      status = count > 1 ? "🔴 DUPLIKAT" : "❌ ANOMALI";
+      style = 'style="color: red; font-weight: bold;"';
+    }
+
+    mdContent += `| <span ${style}>${art.mod}</span> | ${art.slug} | ${status} |\n`;
+  }
+
   await write("laporan-audit.md", mdContent);
-  console.log("✅ Audit selesai dengan kriteria baru. Cek laporan-audit.md.");
+  console.log("✅ Laporan audit inverted telah dibuat: laporan-audit.md");
 }
 
 audit();
