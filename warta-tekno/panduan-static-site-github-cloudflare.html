@@ -58,7 +58,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-05-29T15:06:27.000Z">
     <meta property="article:modified_time" content="2026-05-29T15:06:27.000Z">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -247,10 +247,10 @@
 <body>
     <article>
         <header>
-            <div id="iposbrowser"></div><h1>🚀 Panduan Membuat Static Site dengan Layar Kosong</h1>
+            <div id="iposbrowser"></div><h1>&#x1f680; Panduan Membuat Static Site dengan Layar Kosong</h1>
             <p>Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat, ringan, dan <strong>otomatis ter-deploy ke Cloudflare Pages</strong> menggunakan <em>repository</em> <strong>Layar Kosong</strong>.</p>
             <p>Konsepnya simpel: Kamu cukup fokus menulis di GitHub, dan biarkan <strong>GitHub Actions + Cloudflare Wrangler</strong> yang bekerja mengirimkan artikelmu ke internet secara instan.</p>
-            <h3>✨ Fitur Unggulan:</h3>
+            <h3>&#x2728; Fitur Unggulan:</h3>
             <ul>
                 <li><strong>Direct Deploy:</strong> Menggunakan Wrangler untuk pengiriman kilat tanpa <em>branch</em> perantara.</li>
                 <li><strong>Search Engine:</strong> <em>Client-side JavaScript</em> super ngebut menggunakan data dari <code>artikel.json</code> &amp; Cloudflare D1.</li>
@@ -258,45 +258,45 @@
             </ul>
         </header>
         <section>
-            <h2>🧠 Arsitektur Otomatisasi (CI/CD)</h2>
-            <p>Penasaran bagaimana "Layar Kosong" memproses draf kasarmu menjadi situs yang <em>live</em>? Berikut adalah alur kerja estafet otomatisnya:</p>
+            <h2>&#x1f9e0; Arsitektur Otomatisasi (CI/CD)</h2>
+            <p>Penasaran bagaimana &quot;Layar Kosong&quot; memproses draf kasarmu menjadi situs yang <em>live</em>? Berikut adalah alur kerja estafet otomatisnya:</p>
             <div class="mermaid-container">
                 <div class="mermaid">
                 graph TD
-                    subgraph WF1 ["🔄 Workflow 1: Proses ArtikelX (Persiapan Awal)"]
+                    subgraph WF1 [&quot;&#x1f504; Workflow 1: Proses ArtikelX (Persiapan Awal)&quot;]
                         direction TB
-                        Start1(((Mulai))) --&gt; Trig1{"Trigger:<br>Push (artikelx/*.html)<br>atau Manual"}
-                        Trig1 --&gt; Check1["1️⃣ Checkout Repo &amp; Setup Bun.js"]
-                        Check1 --&gt; S_HTML[/"2️⃣ Edit Komponen HTML"/]
-                        S_HTML --&gt; S_Clean[/"3️⃣ Sterilize Schema"/]
-                        S_Clean --&gt; S_Font[/"4️⃣ Ganti Aset ke Lokal"/]
-                        S_Font --&gt; S_SEO[/"5️⃣ Injeksi SEO, Mirror, WebP"/]
-                        S_SEO --&gt; Move["6️⃣ Pindah file ke 'artikel/'"]
-                        Move --&gt; Commit1["7️⃣ Commit &amp; Push Perubahan"]
+                        Start1(((Mulai))) --&gt; Trig1{&quot;Trigger:<br>Push (artikelx/*.html)<br>atau Manual&quot;}
+                        Trig1 --&gt; Check1[&quot;1&#xfe0f;&#x20e3; Checkout Repo &amp; Setup Bun.js&quot;]
+                        Check1 --&gt; S_HTML[/&quot;2&#xfe0f;&#x20e3; Edit Komponen HTML&quot;/]
+                        S_HTML --&gt; S_Clean[/&quot;3&#xfe0f;&#x20e3; Sterilize Schema&quot;/]
+                        S_Clean --&gt; S_Font[/&quot;4&#xfe0f;&#x20e3; Ganti Aset ke Lokal&quot;/]
+                        S_Font --&gt; S_SEO[/&quot;5&#xfe0f;&#x20e3; Injeksi SEO, Mirror, WebP&quot;/]
+                        S_SEO --&gt; Move[&quot;6&#xfe0f;&#x20e3; Pindah file ke &apos;artikel/&apos;&quot;]
+                        Move --&gt; Commit1[&quot;7&#xfe0f;&#x20e3; Commit &amp; Push Perubahan&quot;]
                     end
-                    subgraph WF2 ["☢️ Workflow 2: Build &amp; Generate Site Files (Pabrik Produksi)"]
+                    subgraph WF2 [&quot;&#x2622;&#xfe0f; Workflow 2: Build &amp; Generate Site Files (Pabrik Produksi)&quot;]
                         direction TB
-                        Trig2{"Trigger:<br>WF1 Sukses"} --&gt; Build1{"Generate Data?"}
-                        Build1 -- Ya --&gt; S_Gen[/"generator-pro.ts"/] --&gt; Build2{"Generate Srcset?"}
+                        Trig2{&quot;Trigger:<br>WF1 Sukses&quot;} --&gt; Build1{&quot;Generate Data?&quot;}
+                        Build1 -- Ya --&gt; S_Gen[/&quot;generator-pro.ts&quot;/] --&gt; Build2{&quot;Generate Srcset?&quot;}
                         Build1 -- Tidak --&gt; Build2
-                        Build2 -- Ya --&gt; S_Srcset[/"srcset-generator.ts"/] --&gt; Build3{"Update Sitemap?"}
+                        Build2 -- Ya --&gt; S_Srcset[/&quot;srcset-generator.ts&quot;/] --&gt; Build3{&quot;Update Sitemap?&quot;}
                         Build2 -- Tidak --&gt; Build3
-                        Build3 -- Ya --&gt; S_SiteTXT[/"koki.ts, dll"/] --&gt; Build4{"Inject Schema?"}
+                        Build3 -- Ya --&gt; S_SiteTXT[/&quot;koki.ts, dll&quot;/] --&gt; Build4{&quot;Inject Schema?&quot;}
                         Build3 -- Tidak --&gt; Build4
-                        Build4 -- Ya --&gt; S_Inject[/"inject-schema.ts"/] --&gt; Build5{"Ubah Markdown?"}
+                        Build4 -- Ya --&gt; S_Inject[/&quot;inject-schema.ts&quot;/] --&gt; Build5{&quot;Ubah Markdown?&quot;}
                         Build4 -- Tidak --&gt; Build5
-                        Build5 -- Ya --&gt; S_MD[/"html-to-markdown.ts"/] --&gt; Build6{"Minify File?"}
+                        Build5 -- Ya --&gt; S_MD[/&quot;html-to-markdown.ts&quot;/] --&gt; Build6{&quot;Minify File?&quot;}
                         Build5 -- Tidak --&gt; Build6
-                        Build6 -- Ya --&gt; S_Min[/"Minify HTML/JSON/XML"/] --&gt; Commit2["Commit, Pull --rebase &amp; Push Data"]
+                        Build6 -- Ya --&gt; S_Min[/&quot;Minify HTML/JSON/XML&quot;/] --&gt; Commit2[&quot;Commit, Pull --rebase &amp; Push Data&quot;]
                         Build6 -- Tidak --&gt; Commit2
                     end
-                    subgraph WF3 ["🚀 Workflow 3: Cloudflare Deployer (Peluncuran Publik)"]
+                    subgraph WF3 [&quot;&#x1f680; Workflow 3: Cloudflare Deployer (Peluncuran Publik)&quot;]
                         direction TB
-                        Trig3{"Trigger:<br>WF2 Sukses"} --&gt; Rsync["1️⃣ Bersihkan Direktori (rsync)"]
-                        Rsync --&gt; Config["2️⃣ Injeksi Kredensial ke /tmp/wrangler.toml"]
-                        Config --&gt; D1Build[/"3️⃣ Eksekusi build-d1.ts"/]
-                        D1Build --&gt; Deploy{"4️⃣ Deploy ke Cloudflare Pages"}
-                        Deploy -- "Berhasil" --&gt; Success(((Layar Kosong<br>Go Live! 🎉)))
+                        Trig3{&quot;Trigger:<br>WF2 Sukses&quot;} --&gt; Rsync[&quot;1&#xfe0f;&#x20e3; Bersihkan Direktori (rsync)&quot;]
+                        Rsync --&gt; Config[&quot;2&#xfe0f;&#x20e3; Injeksi Kredensial ke /tmp/wrangler.toml&quot;]
+                        Config --&gt; D1Build[/&quot;3&#xfe0f;&#x20e3; Eksekusi build-d1.ts&quot;/]
+                        D1Build --&gt; Deploy{&quot;4&#xfe0f;&#x20e3; Deploy ke Cloudflare Pages&quot;}
+                        Deploy -- &quot;Berhasil&quot; --&gt; Success(((Layar Kosong<br>Go Live! &#x1f389;)))
                     end
                     Commit1 --&gt; Trig2
                     Commit2 --&gt; Trig3
@@ -304,23 +304,23 @@
             </div>
         </section>
         <section>
-            <h2>🛠️ Dapur Rahasia: Script Otomatisasi (Bun.js &amp; TypeScript)</h2>
-            <p>Tertarik melihat jeroan kode di balik arsitektur di atas? Silakan ngintip "resep rahasia" di bawah ini beserta kode utuh <em>workflow</em> YAML-nya:</p>
+            <h2>&#x1f6e0;&#xfe0f; Dapur Rahasia: Script Otomatisasi (Bun.js &amp; TypeScript)</h2>
+            <p>Tertarik melihat jeroan kode di balik arsitektur di atas? Silakan ngintip &quot;resep rahasia&quot; di bawah ini beserta kode utuh <em>workflow</em> YAML-nya:</p>
             <details>
-                <summary>1️⃣ Script Tahap Persiapan (Proses ArtikelX)</summary>
+                <summary>1&#xfe0f;&#x20e3; Script Tahap Persiapan (Proses ArtikelX)</summary>
                 <p><strong>File:</strong> <code>.github/workflows/proses-artikelx.yml</code></p>
                 <ul>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/Edit-Komponen-HTML.ts" target="_blank">Edit-Komponen-HTML.ts</a> — Memodifikasi struktur HTML agar sesuai standar SEO.</li>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/clean-schema.ts" target="_blank">clean-schema.ts</a> — Membersihkan tag atau <em>schema markup</em> berlebih.</li>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/gantifontshighlight.ts" target="_blank">gantifontshighlight.ts</a> — Menarik aset <em>third-party</em> menjadi aset lokal.</li>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/seo-fixer.ts" target="_blank">seo-fixer.ts</a> — Injeksi meta SEO dan konversi gambar ke format WebP otomatis.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/Edit-Komponen-HTML.ts" target="_blank">Edit-Komponen-HTML.ts</a> &#x2014; Memodifikasi struktur HTML agar sesuai standar SEO.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/clean-schema.ts" target="_blank">clean-schema.ts</a> &#x2014; Membersihkan tag atau <em>schema markup</em> berlebih.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/gantifontshighlight.ts" target="_blank">gantifontshighlight.ts</a> &#x2014; Menarik aset <em>third-party</em> menjadi aset lokal.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/seo-fixer.ts" target="_blank">seo-fixer.ts</a> &#x2014; Injeksi meta SEO dan konversi gambar ke format WebP otomatis.</li>
                 </ul>
-                <pre><code class="language-yaml">name: 🔄 Proses ArtikelX
+                <pre><code class="language-yaml">name: &#x1f504; Proses ArtikelX
 on:
   push:
-    branches: ['main']
+    branches: [&apos;main&apos;]
     paths:
-      - 'artikelx/*.html'
+      - &apos;artikelx/*.html&apos;
   workflow_dispatch:
 permissions:
   contents: write
@@ -334,17 +334,17 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: true
-      - name: '2. Setup Bun.js'
+      - name: &apos;2. Setup Bun.js&apos;
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
           bun-version: latest
       - name: Install Node dependencies
         run: bun install
-      - name: 🔰 Edit Komponen HTML (Bun.js)
+      - name: &#x1f530; Edit Komponen HTML (Bun.js)
         run: bun run dapur/Edit-Komponen-HTML.ts
-      - name: 🧹 Sterilize Schema (Bun.js)
+      - name: &#x1f9f9; Sterilize Schema (Bun.js)
         run: bun run dapur/clean-schema.ts artikelx/
-      - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
+      - name: &#x1f6e0;&#xfe0f; Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
         run: |
           set -euo pipefail
           bun dapur/gantifontshighlight.ts --quiet --no-backup
@@ -358,159 +358,159 @@ jobs:
           set -euo pipefail
           shopt -s nullglob
           files=(artikelx/*.html)
-          if [[ ${#files[@]} -gt 0 ]]; then
-            mv -f "${files[@]}" artikel/
-            echo "Berhasil pindahkan ${#files[@]} file ke artikel/"
+          if [[ &#x24;{#files[@]} -gt 0 ]]; then
+            mv -f &quot;&#x24;{files[@]}&quot; artikel/
+            echo &quot;Berhasil pindahkan &#x24;{#files[@]} file ke artikel/&quot;
           else
-            echo "Tidak ada file di artikelx/"
+            echo &quot;Tidak ada file di artikelx/&quot;
           fi
       - name: Commit &amp; Push
         run: |
           set -euo pipefail
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email &quot;github-actions[bot]@users.noreply.github.com&quot;
+          git config --local user.name &quot;github-actions[bot]&quot;
           # PERBAIKAN: img/ ditambahkan agar gambar hasil mirroring ikut ter-upload
           git add .
           if git diff --staged --quiet; then
-            echo "Tidak ada perubahan."
+            echo &quot;Tidak ada perubahan.&quot;
             exit 0
           fi
-          git commit -m "Proses ArtikelX: Move, Mirror &amp; WebP"
+          git commit -m &quot;Proses ArtikelX: Move, Mirror &amp; WebP&quot;
           git push origin main</code></pre>
                             </details>
             <details>
-                <summary>2️⃣ Script Tahap Produksi (Build &amp; Generate)</summary>
+                <summary>2&#xfe0f;&#x20e3; Script Tahap Produksi (Build &amp; Generate)</summary>
                 <p><strong>File:</strong> <code>.github/workflows/generate-json-xml.yml</code></p>
                 <ul>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/generator-pro.ts" target="_blank">generator-pro.ts</a> — Pembuat file <code>artikel.json</code>, XML, dan RSS Feed.</li>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/srcset-generator.ts" target="_blank">srcset-generator.ts</a> — Mengoptimasi ukuran gambar untuk berbagai perangkat.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/generator-pro.ts" target="_blank">generator-pro.ts</a> &#x2014; Pembuat file <code>artikel.json</code>, XML, dan RSS Feed.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/srcset-generator.ts" target="_blank">srcset-generator.ts</a> &#x2014; Mengoptimasi ukuran gambar untuk berbagai perangkat.</li>
                     <li><strong>Sitemap &amp; Redirect:</strong> <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/koki.ts" target="_blank">koki.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/bikin-sitemap-txt.ts" target="_blank">bikin-sitemap-txt.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/generate_llms.ts" target="_blank">generate_llms.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/redirectmap.ts" target="_blank">redirectmap.ts</a>.</li>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/inject-schema.ts" target="_blank">inject-schema.ts</a> — Injeksi <em>Schema.org</em>.</li>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/html-to-markdown.ts" target="_blank">html-to-markdown.ts</a> — Konversi ke Markdown.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/inject-schema.ts" target="_blank">inject-schema.ts</a> &#x2014; Injeksi <em>Schema.org</em>.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/html-to-markdown.ts" target="_blank">html-to-markdown.ts</a> &#x2014; Konversi ke Markdown.</li>
                     <li><strong>Minifier:</strong> <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/minify-html.ts" target="_blank">minify-html.ts</a> dan <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/minify-jsonxml.ts" target="_blank">minify-jsonxml.ts</a>.</li>
                 </ul>
-                <pre><code class="language-yaml">name: ☢️ Build and Generate Site Files
+                <pre><code class="language-yaml">name: &#x2622;&#xfe0f; Build and Generate Site Files
 on:
   workflow_run:
-    workflows: ["🔄 Proses ArtikelX"]
+    workflows: [&quot;&#x1f504; Proses ArtikelX&quot;]
     types: [completed]
-    branches: ['main']
+    branches: [&apos;main&apos;]
   workflow_dispatch:
     inputs:
       run_generator:
-        description: 'Generator (JSON, RSS, Sitemap XML)'
+        description: &apos;Generator (JSON, RSS, Sitemap XML)&apos;
         type: boolean
         default: true
       run_sitemap_txt:
-        description: 'Update sitemap.txt'
+        description: &apos;Update sitemap.txt&apos;
         type: boolean
         default: true
       run_schema:
-        description: 'Inject Schema.org'
+        description: &apos;Inject Schema.org&apos;
         type: boolean
         default: true
       run_minify_html:
-        description: 'HTML Minify'
+        description: &apos;HTML Minify&apos;
         type: boolean
         default: true
       run_minify_jsonxml:
-        description: 'JSONXML Minify'
+        description: &apos;JSONXML Minify&apos;
         type: boolean
         default: true
       run_convert_markdown:
-        description: 'Ubah ke format Markdown'
+        description: &apos;Ubah ke format Markdown&apos;
         type: boolean
         default: true
       run_srcset:
-        description: 'Image Optimize &amp; Srcset Generator'
+        description: &apos;Image Optimize &amp; Srcset Generator&apos;
         type: boolean
         default: true
 env:
-  DO_GENERATOR: ${{ github.event.inputs.run_generator || 'true' }}
-  DO_SITEMAP_TXT: ${{ github.event.inputs.run_sitemap_txt || 'true' }}
-  DO_SCHEMA: ${{ github.event.inputs.run_schema || 'true' }}
-  DO_MINIFY_HTML: ${{ github.event.inputs.run_minify_html || 'true' }}
-  DO_MINIFY_JSONXML: ${{ github.event.inputs.run_minify_jsonxml || 'true' }}
-  DO_CONVERT_MARKDOWN: ${{ github.event.inputs.run_convert_markdown || 'true' }}
-  DO_SRCSET: ${{ github.event.inputs.run_srcset || 'true' }}
+  DO_GENERATOR: &#x24;{{ github.event.inputs.run_generator || &apos;true&apos; }}
+  DO_SITEMAP_TXT: &#x24;{{ github.event.inputs.run_sitemap_txt || &apos;true&apos; }}
+  DO_SCHEMA: &#x24;{{ github.event.inputs.run_schema || &apos;true&apos; }}
+  DO_MINIFY_HTML: &#x24;{{ github.event.inputs.run_minify_html || &apos;true&apos; }}
+  DO_MINIFY_JSONXML: &#x24;{{ github.event.inputs.run_minify_jsonxml || &apos;true&apos; }}
+  DO_CONVERT_MARKDOWN: &#x24;{{ github.event.inputs.run_convert_markdown || &apos;true&apos; }}
+  DO_SRCSET: &#x24;{{ github.event.inputs.run_srcset || &apos;true&apos; }}
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != &apos;workflow_run&apos; || github.event.workflow_run.conclusion == &apos;success&apos;
     permissions:
       contents: write
     steps:
-      - name: '1. Checkout Repository'
+      - name: &apos;1. Checkout Repository&apos;
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 1
           persist-credentials: true
-      - name: '2. Setup Bun.js'
+      - name: &apos;2. Setup Bun.js&apos;
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: latest
-      - name: '3. Install Dependencies'
+      - name: &apos;3. Install Dependencies&apos;
         run: bun install
-      - name: '4. Generate artikel.json, Sitemap XML &amp; RSS'
-        if: env.DO_GENERATOR == 'true'
+      - name: &apos;4. Generate artikel.json, Sitemap XML &amp; RSS&apos;
+        if: env.DO_GENERATOR == &apos;true&apos;
         run: bun run dapur/generator-pro.ts
         env:
           RSS_LIMIT: 30
-      - name: '5. Optimize Images &amp; Generate Srcset'
-        if: env.DO_SRCSET == 'true'
+      - name: &apos;5. Optimize Images &amp; Generate Srcset&apos;
+        if: env.DO_SRCSET == &apos;true&apos;
         run: bun run dapur/srcset-generator.ts
-      - name: '6. Update sitemap.txt (Native Bun - Sorted by Date)'
-        if: env.DO_SITEMAP_TXT == 'true'
+      - name: &apos;6. Update sitemap.txt (Native Bun - Sorted by Date)&apos;
+        if: env.DO_SITEMAP_TXT == &apos;true&apos;
         run: |
           bun run dapur/koki.ts --once
           bun run dapur/bikin-sitemap-txt.ts
           bun run dapur/generate_llms.ts
           bun run dapur/redirectmap.ts
-      - name: '7. Inject SEO Schema'
-        if: env.DO_SCHEMA == 'true'
+      - name: &apos;7. Inject SEO Schema&apos;
+        if: env.DO_SCHEMA == &apos;true&apos;
         run: bun run dapur/inject-schema.ts
-      - name: '8. Convert HTML to Markdown'
-        if: env.DO_CONVERT_MARKDOWN == 'true'
+      - name: &apos;8. Convert HTML to Markdown&apos;
+        if: env.DO_CONVERT_MARKDOWN == &apos;true&apos;
         run: bun run dapur/html-to-markdown.ts
-      - name: '9. Minify HTML'
-        if: env.DO_MINIFY_HTML == 'true'
+      - name: &apos;9. Minify HTML&apos;
+        if: env.DO_MINIFY_HTML == &apos;true&apos;
         run: bun run dapur/minify-html.ts
-      - name: '10. Minify Data (JSON &amp; XML)'
-        if: env.DO_MINIFY_JSONXML == 'true'
+      - name: &apos;10. Minify Data (JSON &amp; XML)&apos;
+        if: env.DO_MINIFY_JSONXML == &apos;true&apos;
         run: bun run dapur/minify-jsonxml.ts
-      - name: '11. Commit and Push'
+      - name: &apos;11. Commit and Push&apos;
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email &quot;github-actions[bot]@users.noreply.github.com&quot;
+          git config --local user.name &quot;github-actions[bot]&quot;
           # Add semua perubahan lainnya (JSON, XML, dan CACHE di folder mini/)
           git add .
           if git diff --staged --quiet; then
-            echo "✅ Tidak ada perubahan data."
+            echo &quot;&#x2705; Tidak ada perubahan data.&quot;
           else
-            git commit -m "beres: 🚀 update data site [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m &quot;beres: &#x1f680; update data site [&#x24;(date +&apos;%Y-%m-%d %H:%M&apos;)]&quot;
             git pull --rebase origin main
             git push origin main
           fi</code></pre>
                 </details>
             <details>
-                <summary>3️⃣ Script Tahap Deploy (Cloudflare)</summary>
+                <summary>3&#xfe0f;&#x20e3; Script Tahap Deploy (Cloudflare)</summary>
                 <p><strong>File:</strong> <code>.github/workflows/CloudflarePages.yml</code></p>
                 <ul>
-                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/search/build-d1.ts" target="_blank">build-d1.ts</a> — Membangun indeks pencarian dan melemparnya ke Cloudflare D1 Database.</li>
+                    <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/search/build-d1.ts" target="_blank">build-d1.ts</a> &#x2014; Membangun indeks pencarian dan melemparnya ke Cloudflare D1 Database.</li>
                 </ul>
-                <pre><code class="language-yaml">name: 🚀 Cloudflare Deployer Filter &amp; Direct
+                <pre><code class="language-yaml">name: &#x1f680; Cloudflare Deployer Filter &amp; Direct
 on:
   workflow_run:
-    workflows: ["☢️ Build and Generate Site Files"]
+    workflows: [&quot;&#x2622;&#xfe0f; Build and Generate Site Files&quot;]
     types: [completed]
   push:
     branches:
       - main
     paths:
       # Daftar filter trigger tetap sama (untuk efisiensi trigger)
-      #- 'wrangler.toml'  # Tambahkan ini biar kalau config berubah, dia auto-run
-      - '_redirects'
-      - '_headers'
+      #- &apos;wrangler.toml&apos;  # Tambahkan ini biar kalau config berubah, dia auto-run
+      - &apos;_redirects&apos;
+      - &apos;_headers&apos;
   workflow_dispatch:
 permissions:
   contents: read # Cukup READ saja, karena kita gak perlu push balik ke repo!
@@ -518,7 +518,7 @@ permissions:
 jobs:
   deploy-direct:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    if: &#x24;{{ github.event_name != &apos;workflow_run&apos; || github.event.workflow_run.conclusion == &apos;success&apos; }}
     steps:
       # 1. Ambil source code dari main
       - name: Checkout source branch
@@ -527,76 +527,76 @@ jobs:
           path: source
           fetch-depth: 1
           persist-credentials: true
-      - name: '1.5 Setup Node.js v22'
+      - name: &apos;1.5 Setup Node.js v22&apos;
         uses: actions/setup-node@v6
         with:
           node-version: 24.16.0
-      - name: '2. Setup Bun.js'
+      - name: &apos;2. Setup Bun.js&apos;
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
           bun-version: latest
       - name: Install dependencies
         run:  bun install
         working-directory: source
-      - name: 🧹 Prepare Clean Directory (rsync)
+      - name: &#x1f9f9; Prepare Clean Directory (rsync)
         run: |
           mkdir deploy_dir
           # rsync tetap bersih karena wrangler.toml masih di /tmp/
           rsync -a --delete \
-            --include='gaya-hidup/<b>*' \
-            --include='jejak-sejarah/<b>*' \
-            --include='lainnya/<b>*' \
-            --include='olah-media/<b>*' \
-            --include='opini-sosial/<b>*' \
-            --include='sistem-terbuka/<b>*' \
-            --include='warta-tekno/<b>*' \
-            --include='functions/<b>*' \
-            --include='search/<b>*' \
-            --include='ext/<b>*' \
-            --include='.well-known/<b>*' \
-            --include='img/<b>*' \
-            --include='artikel.json' \
-            --include='redirectmap.json' \
-            --include='llms.md' \
-            --include='_redirects' \
-            --include='_headers' \
-            --include='*.html' \
-            --include='*.xml' \
-            --include='*.xsl' \
-            --include='*.txt' \
-            --include='favicon.*' \
-            --include='icon.*' \
-            --include='logo.*' \
-            --include='thumbnail.*' \
-            --include='thumbnail-sm.*' \
-            --include='*.webmanifest' \
-            --exclude='*' \
+            --include=&apos;gaya-hidup/<b>*&apos; \
+            --include=&apos;jejak-sejarah/<b>*&apos; \
+            --include=&apos;lainnya/<b>*&apos; \
+            --include=&apos;olah-media/<b>*&apos; \
+            --include=&apos;opini-sosial/<b>*&apos; \
+            --include=&apos;sistem-terbuka/<b>*&apos; \
+            --include=&apos;warta-tekno/<b>*&apos; \
+            --include=&apos;functions/<b>*&apos; \
+            --include=&apos;search/<b>*&apos; \
+            --include=&apos;ext/<b>*&apos; \
+            --include=&apos;.well-known/<b>*&apos; \
+            --include=&apos;img/<b>*&apos; \
+            --include=&apos;artikel.json&apos; \
+            --include=&apos;redirectmap.json&apos; \
+            --include=&apos;llms.md&apos; \
+            --include=&apos;_redirects&apos; \
+            --include=&apos;_headers&apos; \
+            --include=&apos;*.html&apos; \
+            --include=&apos;*.xml&apos; \
+            --include=&apos;*.xsl&apos; \
+            --include=&apos;*.txt&apos; \
+            --include=&apos;favicon.*&apos; \
+            --include=&apos;icon.*&apos; \
+            --include=&apos;logo.*&apos; \
+            --include=&apos;thumbnail.*&apos; \
+            --include=&apos;thumbnail-sm.*&apos; \
+            --include=&apos;*.webmanifest&apos; \
+            --exclude=&apos;*&apos; \
             source/ deploy_dir/
-      # 🔑 2. CREATE CONFIG (Tetap di /tmp agar aman)
+      # &#x1f511; 2. CREATE CONFIG (Tetap di /tmp agar aman)
       - name: Create Temporary Wrangler Config
         run: |
           cat &lt;<eof> /tmp/wrangler.toml
           #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
-          name = "layarkosong"
-          compatibility_date = "2025-12-01"
-          pages_build_output_dir = "deploy_dir"
+          name = &quot;layarkosong&quot;
+          compatibility_date = &quot;2025-12-01&quot;
+          pages_build_output_dir = &quot;deploy_dir&quot;
           [vars]
-          BUN_VERSION = "latest"
-          NODE_VERSION = "24"
+          BUN_VERSION = &quot;latest&quot;
+          NODE_VERSION = &quot;24&quot;
           [[d1_databases]]
-          binding = "DB"
-          database_name = "layarkosong-db"
-          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+          binding = &quot;DB&quot;
+          database_name = &quot;layarkosong-db&quot;
+          database_id = &quot;&#x24;{{ secrets.CLOUDFLARE_ID_D1 }}&quot;
           [[kv_namespaces]]
-          binding = "COUNTS_KV"
-          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          binding = &quot;COUNTS_KV&quot;
+          id = &quot;&#x24;{{ secrets.CLOUDFLARE_ID_KV }}&quot;
           EOF
-      # 🍳 3. RUN DAPUR (Membaca deploy_dir)
+      # &#x1f373; 3. RUN DAPUR (Membaca deploy_dir)
       - name: Run Dapur (Build D1)
         run: bun run source/search/build-d1.ts
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      # 🚀 4. DEPLOY (Retry 3x)
+          CLOUDFLARE_API_TOKEN: &#x24;{{ secrets.CF_API_TOKEN }}
+      # &#x1f680; 4. DEPLOY (Retry 3x)
       - name: Deploy to Cloudflare Pages
         run: |
           # 1. Pastikan wrangler.toml ada di root untuk dibaca wrangler
@@ -606,37 +606,37 @@ jobs:
           cp -r source/functions ./functions
           max_attempts=3
           attempt=1
-          until [ $attempt -gt $max_attempts ]
+          until [ &#x24;attempt -gt &#x24;max_attempts ]
           do
-            echo "🚀 Attempt $attempt to deploy..."
+            echo &quot;&#x1f680; Attempt &#x24;attempt to deploy...&quot;
             # 3. Jalankan deploy dari root (.) mengarah ke folder statis (deploy_dir)
             # Wrangler otomatis akan mencari folder ./functions di root!
             if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
-              echo "✅ Deploy succeeded on attempt $attempt"
+              echo &quot;&#x2705; Deploy succeeded on attempt &#x24;attempt&quot;
               break
             else
-              echo "⚠️ Deploy failed on attempt $attempt"
-              attempt=$((attempt+1))
-              [ $attempt -le $max_attempts ] &amp;&amp; sleep 15
+              echo &quot;&#x26a0;&#xfe0f; Deploy failed on attempt &#x24;attempt&quot;
+              attempt=&#x24;((attempt+1))
+              [ &#x24;attempt -le &#x24;max_attempts ] &amp;&amp; sleep 15
             fi
           done
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}</eof></b></b></b></b></b></b></b></b></b></b></b></b></code></pre><b><b><b>
+          CLOUDFLARE_API_TOKEN: &#x24;{{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: &#x24;{{ secrets.CF_ACCOUNT_ID }}</eof></b></b></b></b></b></b></b></b></b></b></b></b></code></pre><b><b><b>
                             </b></b></b></details><b><b><b>
         </b></b></b></section><b><b><b>
         <hr style="border: 1px solid var(--border-color); margin: 40px 0;">
         <section>
-            <h2>🛠️ Tahap 1: Persiapan Lingkungan (Git &amp; Bun)</h2>
+            <h2>&#x1f6e0;&#xfe0f; Tahap 1: Persiapan Lingkungan (Git &amp; Bun)</h2>
             <p>Langkah pertama: <strong>Pastikan Git dan Bun sudah terpasang</strong> di komputermu. Karena kita ingin performa super cepat, seluruh eksekusi <em>script</em> dan <em>deployment</em> akan menggunakan perintah <code>bunx wrangler</code> karena tidak menggunakan Node.js.</p>
             <ul>
                 <li><strong>Git:</strong> <a href="https://git-scm.com/downloads" target="_blank">Download di sini</a>.</li>
                 <li><strong>Bun:</strong> <a href="https://bun.sh/" target="_blank">Panduan instalasi resmi</a> (Runtime JavaScript berkecepatan kilat).</li>
             </ul>
-            <h3>🪟 Windows</h3>
+            <h3>&#x1fa9f; Windows</h3>
             <p>Unduh dan instal Git dari git-scm.com (atau gunakan <code>winget install --id Git.Git -e --source winget</code>). Setelah itu, instal Bun secara <em>native</em> melalui PowerShell:</p>
-            <pre><code>powershell -c "irm bun.sh/install.ps1 | iex"</code></pre>
-            <h3>🍎 macOS / 🐧 Linux</h3>
+            <pre><code>powershell -c &quot;irm bun.sh/install.ps1 | iex&quot;</code></pre>
+            <h3>&#x1f34e; macOS / &#x1f427; Linux</h3>
             <p>Buka terminal dan ketik perintah berikut untuk menginstal Bun:</p>
             <pre><code>curl -fsSL https://bun.sh/install | bash</code></pre>
             <p>Sedangkan untuk menginstal Git, sesuaikan dengan sistem operasimu:</p>
@@ -650,21 +650,21 @@ sudo dnf install git
 sudo pacman -S git</code></pre>
         </section>
         <section>
-            <h2>🧬 Tahap 2: Setup Repository (Fork &amp; Cloudflare)</h2>
+            <h2>&#x1f9ec; Tahap 2: Setup Repository (Fork &amp; Cloudflare)</h2>
             <ol>
                 <li><strong>Fork Repository:</strong> Lakukan <em>Fork</em> pada repository ini ke akunmu. Cukup centang branch <code>main</code> saja.</li>
             </ol>
             <blockquote>
-                👉 <a href="https://github.com/frijal/LayarKosong/fork" target="_blank"><strong>Klik di sini untuk Fork Repo</strong></a>
+                &#x1f449; <a href="https://github.com/frijal/LayarKosong/fork" target="_blank"><strong>Klik di sini untuk Fork Repo</strong></a>
             </blockquote>
             <ol start="2">
                 <li><strong>Mendaftar Cloudflare Pages:</strong> Login ke dashboard <a href="https://dash.cloudflare.com/" target="_blank">Cloudflare</a>. Pilih <strong>Workers &amp; Pages</strong> &gt; <strong>Create application</strong> &gt; <strong>Pages</strong> &gt; <strong>Upload assets</strong>. Beri nama proyekmu.</li>
-                <li><strong>Ambil API Token:</strong> Buka <strong>My Profile</strong> &gt; <strong>API Tokens</strong> &gt; <strong>Create Token</strong>. Gunakan <em>template</em> "Edit Cloudflare Workers". Simpan <strong>Account ID</strong> dan <strong>API Token</strong> kamu.</li>
+                <li><strong>Ambil API Token:</strong> Buka <strong>My Profile</strong> &gt; <strong>API Tokens</strong> &gt; <strong>Create Token</strong>. Gunakan <em>template</em> &quot;Edit Cloudflare Workers&quot;. Simpan <strong>Account ID</strong> dan <strong>API Token</strong> kamu.</li>
             </ol>
         </section>
         <section>
-            <h2>🏗️ Tahap 3: Otomatisasi (GitHub Secrets)</h2>
-            <h3>1. Bersihkan Konten Lama 🧹</h3>
+            <h2>&#x1f3d7;&#xfe0f; Tahap 3: Otomatisasi (GitHub Secrets)</h2>
+            <h3>1. Bersihkan Konten Lama &#x1f9f9;</h3>
             <p>Hapus semua file contoh bawaan agar situsmu bersih: hapus isi folder <code>artikel/</code> dan <code>img/</code>.</p>
             <h3>2. Pasang Kunci Rahasia</h3>
             <p>Agar GitHub bisa mengirim file ke Cloudflare secara otomatis:</p>
@@ -679,36 +679,36 @@ sudo pacman -S git</code></pre>
             </ol>
         </section>
         <section>
-            <h2>✍️ Tahap 4: Mulai Menulis dan Produksi</h2>
-            <p>Di sinilah keajaiban terjadi. Ikuti alur "dapur" ini:</p>
+            <h2>&#x270d;&#xfe0f; Tahap 4: Mulai Menulis dan Produksi</h2>
+            <p>Di sinilah keajaiban terjadi. Ikuti alur &quot;dapur&quot; ini:</p>
             <ol>
                 <li>Buat file HTML artikel barumu.</li>
-                <li>Masukkan file tersebut ke dalam folder <strong><code>artikelx/</code></strong> (perhatikan akhiran 'x').</li>
+                <li>Masukkan file tersebut ke dalam folder <strong><code>artikelx/</code></strong> (perhatikan akhiran &apos;x&apos;).</li>
                 <li>Lakukan <code>git commit</code> dan <code>git push</code>.</li>
                 <li><strong>Biarkan Action Bekerja:</strong> Sistem otomatis akan mendeteksi file baru, memprosesnya, dan memindahkannya ke etalase utama yang siap tayang!</li>
             </ol>
-            <p>🎉 <strong>Selesai!</strong> Halaman pertamamu sudah terbit ke seluruh penjuru dunia.</p>
+            <p>&#x1f389; <strong>Selesai!</strong> Halaman pertamamu sudah terbit ke seluruh penjuru dunia.</p>
         </section>
         <section>
-            <h2>🎨 Tahap 5: Personalisasi Identitas &amp; Konfigurasi</h2>
+            <h2>&#x1f3a8; Tahap 5: Personalisasi Identitas &amp; Konfigurasi</h2>
             <h3>Konfigurasi Inti (Wajib Diubah)</h3>
             <ul>
-                <li><strong><code>wrangler.toml</code></strong>: Ganti <code>name = "layarkosong"</code> menjadi nama proyek Cloudflare-mu.</li>
+                <li><strong><code>wrangler.toml</code></strong>: Ganti <code>name = &quot;layarkosong&quot;</code> menjadi nama proyek Cloudflare-mu.</li>
                 <li><strong><code>artikel.json</code></strong>: Nyawa mesin pencari blogmu, biarkan sistem yang mengupdatenya otomatis.</li>
                 <li><strong>Folder <code>ext/</code></strong>: Sesuaikan URL dan nama domain pada seluruh file konfigurasi di dalamnya.</li>
             </ul>
             <h3>Halaman Root (Sesuaikan Identitasmu)</h3>
             <p>Edit file-file berikut yang ada di halaman utama (<em>root</em>): <code>index.html</code>, <code>search.html</code>, <code>404.html</code>, <code>robots.txt</code>, <code>sitemap.html</code>, hingga <em>favicon</em> dan <em>thumbnail</em> bawaan.</p>
-            <h3>🙏 Checklist Pra-Peluncuran</h3>
+            <h3>&#x1f64f; Checklist Pra-Peluncuran</h3>
             <ul>
-                <li><input type="checkbox" disabled=""> Ganti semua URL dari <code>dalam.web.id</code> ke domain kamu.</li>
-                <li><input type="checkbox" disabled=""> Update informasi kontak dan metadata.</li>
-                <li><input type="checkbox" disabled=""> Sesuaikan warna, logo, dan <em>branding</em>.</li>
-                <li><input type="checkbox" disabled=""> Test semua link internal.</li>
+                <li><input type="checkbox" disabled> Ganti semua URL dari <code>dalam.web.id</code> ke domain kamu.</li>
+                <li><input type="checkbox" disabled> Update informasi kontak dan metadata.</li>
+                <li><input type="checkbox" disabled> Sesuaikan warna, logo, dan <em>branding</em>.</li>
+                <li><input type="checkbox" disabled> Test semua link internal.</li>
             </ul>
         </section>
         <section>
-            <h2>🌐 Tahap 6: Domain Custom (Opsional)</h2>
+            <h2>&#x1f310; Tahap 6: Domain Custom (Opsional)</h2>
             <p>Jika kamu punya domain sendiri:</p>
             <ol>
                 <li>Tambahkan file <code>CNAME</code> di root repository.</li>
@@ -717,16 +717,19 @@ sudo pacman -S git</code></pre>
             </ol>
         </section>
         <section>
-            <h2>💬 Butuh Bantuan?</h2>
+            <h2>&#x1f4ac; Butuh Bantuan?</h2>
             <p>Jika <em>workflow</em> macet atau bingung set-up Cloudflare, langsung saja meluncur ke ruang diskusi.</p>
             <blockquote>
-                👉 <a href="https://github.com/frijal/LayarKosong/discussions" target="_blank"><strong>Diskusi di Repository LayarKosong</strong></a>
+                &#x1f449; <a href="https://github.com/frijal/LayarKosong/discussions" target="_blank"><strong>Diskusi di Repository LayarKosong</strong></a>
             </blockquote>
-            <p><em>Keep coding and stay awesome!</em> ✌️</p>
+            <p><em>Keep coding and stay awesome!</em> &#x270c;&#xfe0f;</p>
         </section>   <div id="related-articles-grid"></div>
         <div id="response"></div>
     </b></b></b></article><b><b><b>
-<footer>       <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer><noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
-</b></b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<footer>       <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer><noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
+</b></b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+
 <noscript>schema_oleh_Fakhrul_Rijal_2026-06-29</noscript>
 </body></html>
