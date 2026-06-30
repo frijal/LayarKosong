@@ -1,0 +1,66 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":automergePatch",
+    ":automergeMinor"
+  ],
+  "enabledManagers": [
+    "bun",
+    "npm",
+    "github-actions",
+    "html",
+    "custom.regex"
+  ],
+  "timezone": "Asia/Jakarta",
+  "schedule": ["at any time"],
+  "labels": ["dependencies"],
+  "html": {
+    "managerFilePatterns": ["/\\.html?$/"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.html?$/"],
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "semver",
+      "matchStrings": [
+        "https://cdn\\.jsdelivr\\.net/npm/(?<depName>(?:@[^/@\\s\"']+/)?[^/@\\s\"']+)@(?<currentValue>\\d+\\.\\d+\\.\\d+(?:[-+][0-9A-Za-z.-]+)?)",
+        "https://unpkg\\.com/(?<depName>(?:@[^/@\\s\"']+/)?[^/@\\s\"']+)@(?<currentValue>\\d+\\.\\d+\\.\\d+(?:[-+][0-9A-Za-z.-]+)?)"
+      ]
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.html?$/"],
+      "matchStrings": [
+        "<!--\\s*renovate:\\s*datasource=(?<datasource>[a-zA-Z0-9-]+)\\s+depName=(?<depName>[^\\s]+)(?:\\s+versioning=(?<versioning>[^\\s]+))?\\s*-->\\s*\\n\\s*<(?:script|link)[^>]+(?:src|href)=[\"'][^\"']*?(?<currentValue>\\d+\\.\\d+\\.\\d+(?:[-+][0-9A-Za-z.-]+)?)[^\"']*[\"'][^>]*>"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true,
+      "platformAutomerge": true
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "dev dependencies",
+      "automerge": true
+    },
+    {
+      "matchManagers": ["html", "custom.regex"],
+      "groupName": "html cdn dependencies",
+      "addLabels": ["html", "cdn"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "automerge": true
+  }
+}

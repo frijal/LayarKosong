@@ -1,0 +1,23 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "skills": [
+    {
+      "name": "layar_kosong_rss_feed",
+      "type": "rss",
+      "description": "Feed RSS resmi dari blog Layar Kosong untuk mendapatkan update artikel terbaru tentang gaya hidup, opini sosial, dan warta tekno.",
+      "url": "https://dalam.web.id/rss.xml"
+    },
+    {
+      "name": "layar_kosong_llms_txt",
+      "type": "documentation",
+      "description": "Ringkasan padat konten Layar Kosong yang dioptimalkan khusus untuk dibaca oleh model bahasa besar (LLM).",
+      "url": "https://dalam.web.id/llms.txt"
+    },
+    {
+      "name": "layar_kosong_llms_md",
+      "type": "documentation",
+      "description": "Arsip dan dokumentasi lengkap konten Layar Kosong dalam format Markdown murni untuk pembacaan mendalam oleh AI.",
+      "url": "https://dalam.web.id/llms.md"
+    }
+  ]
+}

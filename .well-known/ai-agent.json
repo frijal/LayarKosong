@@ -1,0 +1,33 @@
+{
+  "manifest_version": 1,
+  "name": "Layar Kosong AI Structured Index",
+  "description": "Indeks data terstruktur (JSON) dan panduan konten mentah (llms.txt / llms.md) dari semua artikel Blog Layar Kosong, dioptimalkan untuk Generative Engine Optimization (GEO).",
+  
+  "ai_apis": [
+    {
+      "type": "index",
+      "url": "https://dalam.web.id/api/v1/index.json",
+      "format": "json",
+      "purpose": "Provides a comprehensive, structured index of all blog articles including URL, title, summary, and category for efficient knowledge retrieval (RAG)."
+    },
+    {
+      "type": "content_guide",
+      "url": "https://dalam.web.id/llms.txt",
+      "format": "markdown",
+      "purpose": "Content guide using the standard llms.txt path for compliance and quick ingestion."
+    },
+    {
+      "type": "content_guide",
+      "url": "https://dalam.web.id/llms.md",
+      "format": "markdown",
+      "purpose": "Alternative content guide using the explicit llms.md extension for clarity."
+    }
+  ],
+  
+  "contact": {
+    "email": "sini@dalam.web.id",
+    "security": "https://dalam.web.id/.well-known/security.txt"
+  },
+  
+  "preferred_languages": ["id", "en"]
+}

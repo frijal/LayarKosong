@@ -1,0 +1,39 @@
+{
+  "name": "layarkosong",
+  "version": "2.0.4",
+  "author": "Fakhrul Rijal <frijal@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frijal/layarkosong.git"
+  },
+  "main": "index.ts",
+  "private": true,
+  "type": "module",
+  "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator",
+  "homepage": "https://dalam.web.id",
+  "license": "Unlicense",
+  "scripts": {
+    "start": "bun run index.ts",
+    "dev": "bun run index.ts",
+    "typecheck": "tsc --noEmit",
+    "outdated": "bun outdated",
+    "update": "bun update",
+    "update:latest": "bun update --latest"
+  },
+  "dependencies": {
+    "@minify-html/node": "*",
+    "@xmldom/xmldom": "*",
+    "cheerio": "*",
+    "glob": "*",
+    "sharp": "*",
+    "tumblr.js": "*"
+  },
+  "devDependencies": {
+    "typescript": "*",
+    "wrangler": "*"
+  },
+  "engines": {
+    "bun": ">=1.3.0",
+    "node": ">=24.18.0"
+  }
+}

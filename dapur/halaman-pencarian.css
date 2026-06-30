@@ -1,0 +1,491 @@
+/* =============================================================
+ * STYLE HALAMAN PENCARIAN (v11.0 - CSS-FIRST THEME EDITION)
+ * Theme detection 100% menggunakan CSS prefers-color-scheme
+ * Live Explorer Edition 🚀
+ * ============================================================= */
+
+/* ========================================
+ * 🎨 VARIABEL TEMA - LIGHT MODE (DEFAULT)
+ * ======================================== */
+:root {
+    /* Warna Dasar */
+    --warna-latar: #ffffff;
+    --warna-permukaan: #f8f9fa;
+    --warna-garis: #e1e4e8;
+    --warna-bayangan: rgba(0, 0, 0, 0.05);
+
+    /* Warna Teks */
+    --warna-teks-utama: #24292e;
+    --warna-teks-sekunder: #586069;
+
+    /* Warna Aksen */
+    --warna-aksen: #007bff;
+    --warna-aksen-hover: #0056b3;
+
+    /* Warna Background Konten */
+    --warna-bg-konten: #ffffff;
+}
+
+/* ========================================
+ * 🌙 VARIABEL TEMA - DARK MODE
+ * ======================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Warna Dasar */
+        --warna-latar: #0d1117;
+        --warna-permukaan: #161b22;
+        --warna-garis: #30363d;
+        --warna-bayangan: rgba(0, 0, 0, 0.3);
+
+        /* Warna Teks */
+        --warna-teks-utama: #c9d1d9;
+        --warna-teks-sekunder: #8b949e;
+
+        /* Warna Aksen */
+        --warna-aksen: #58a6ff;
+        --warna-aksen-hover: #1f6feb;
+
+        /* Warna Background Konten */
+        --warna-bg-konten: #161b22;
+    }
+}
+
+/* ========================================
+ * 1️⃣ BASE SETUP
+ * ======================================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--warna-latar);
+    color: var(--warna-teks-utama);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.pembungkus-lebar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ========================================
+ * 2️⃣ KONTEN UTAMA & KOTAK PENCARIAN
+ * ======================================== */
+.area-konten-pencarian {
+    flex: 1;
+    margin-top: 2rem;
+}
+
+.status-pencarian {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.status-pencarian h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--warna-teks-utama);
+}
+
+.status-pencarian .font-bold {
+    color: var(--warna-aksen);
+}
+
+/* 🔍 Kotak Input Live Search */
+.search-input-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    color: var(--warna-teks-sekunder);
+}
+
+#live-search-box {
+width: 100%;
+/* Perhatikan padding kanan diubah jadi 50px agar teks tidak nabrak tombol X */
+padding: 16px 50px 16px 50px;
+border-radius: 12px;
+border: 2px solid var(--warna-garis);
+background-color: var(--warna-permukaan);
+color: var(--warna-teks-utama);
+font-size: 1.1rem;
+font-family: inherit;
+outline: none;
+box-shadow: 0 4px 12px var(--warna-bayangan);
+transition: all 0.3s ease;
+box-sizing: border-box;
+}
+
+#live-search-box:focus {
+border-color: var(--warna-aksen);
+box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+}
+
+/* Mematikan ikon X bawaan Chrome/Safari agar tidak dobel */
+#live-search-box::-webkit-search-cancel-button {
+-webkit-appearance: none;
+appearance: none;
+}
+
+/* ❌ Tombol Clear "X" */
+.clear-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--warna-teks-sekunder);
+    cursor: pointer;
+    padding: 6px;
+    display: none; /* Awalnya disembunyikan */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+    color: var(--warna-teks-utama);
+    background-color: var(--warna-garis);
+}
+
+.clear-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+    #live-search-box:focus {
+    box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.15);
+    }
+}
+
+/* ========================================
+ * 3️⃣ GRID HASIL PENCARIAN
+ * ======================================== */
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 4rem;
+}
+
+/* ========================================
+ * 4️⃣ CARD STYLING (Live Explorer Update)
+ * ======================================== */
+.result-card {
+    background-color: var(--warna-permukaan);
+    border: 1px solid var(--warna-garis);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--warna-bayangan);
+    border-color: var(--warna-aksen);
+}
+
+/* Wrapper Thumbnail & Animasi */
+.card-img-wrapper {
+    position: relative;
+    height: 180px;
+    background-color: var(--warna-garis);
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.result-card:hover .card-img-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Badge Kode Artikel (Misal: 7-1) */
+.card-code {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-tag {
+    font-size: 0.65rem;
+    color: var(--warna-aksen);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--warna-teks-utama);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--warna-teks-sekunder);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Footer Kartu (Tanggal & Tombol Baca) */
+.card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--warna-garis);
+    font-size: 0.8rem;
+    color: var(--warna-teks-sekunder);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-read-more {
+    color: var(--warna-aksen);
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.result-card:hover .card-read-more {
+    transform: translateX(4px);
+}
+
+/* ========================================
+ * 5️⃣ HIGHLIGHT MARKER (FTS SQLite)
+ * ======================================== */
+mark {
+    background-color: var(--warna-aksen);
+    color: #ffffff;
+    padding: 0 3px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* Dark mode: penyesuaian kontras untuk mark */
+@media (prefers-color-scheme: dark) {
+    mark {
+        background-color: rgba(88, 166, 255, 0.25);
+        color: var(--warna-aksen);
+    }
+}
+
+/* ========================================
+ * 6️⃣ LOADING INDICATOR
+ * ======================================== */
+#loading-indicator {
+text-align: center;
+padding: 4rem 0;
+color: var(--warna-teks-sekunder);
+}
+
+.spinner-pencarian {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--warna-garis);
+    border-top: 3px solid var(--warna-aksen);
+    border-radius: 50%;
+    animation: putar 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes putar {
+    to { transform: rotate(360deg); }
+}
+
+/* ========================================
+ * 7️⃣ NAVIGATION BUTTONS
+ * ======================================== */
+.search-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.btn-nav {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--warna-bg-konten);
+    border: 2px solid var(--warna-aksen);
+    color: var(--warna-teks-utama);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.btn-nav:hover {
+    background-color: var(--warna-aksen);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--warna-bayangan);
+}
+
+.btn-nav:active {
+    transform: translateY(0);
+}
+
+.btn-nav:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ========================================
+ * 8️⃣ FOOTER
+ * ======================================== */
+.footer-pencarian {
+    background-color: var(--warna-permukaan);
+    border-top: 1px solid var(--warna-garis);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--warna-teks-sekunder);
+    margin-top: auto;
+}
+
+.footer-pencarian a {
+    text-decoration: none;
+    margin: 0 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer-pencarian a:hover {
+    opacity: 1;
+}
+
+/* ========================================
+ * 9️⃣ RESPONSIVE - MOBILE
+ * ======================================== */
+@media (max-width: 640px) {
+    .search-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .pembungkus-lebar {
+        padding: 0 1rem;
+    }
+
+    .card-img-wrapper {
+        height: 140px;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+    }
+
+    .card-desc {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .btn-nav {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ========================================
+ * 🔟 EXTRA SMALL DEVICES
+ * ======================================== */
+@media (max-width: 480px) {
+    .search-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #live-search-box {
+    font-size: 1rem;
+    }
+
+    .btn-nav {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ========================================
+ * 1️⃣1️⃣ HIDE HEADER SEARCH BOX
+ * Menyembunyikan kotak pencarian bawaan header
+ * khusus di halaman Live Explorer ini saja.
+ * ======================================== */
+#header-placeholder input[type="search"],
+#header-placeholder form,
+#header-placeholder .search-container {
+display: none !important;
+}
+
+/* ========================================
+ * ✨ SMOOTH TRANSITIONS UNTUK SEMUA
+ * ======================================== */
+* {
+    transition-property: background-color, color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+/* Kecuali animasi yang butuh timing spesifik */
+.result-card,
+.btn-nav,
+.spinner-pencarian {
+    transition: all 0.2s ease;
+}

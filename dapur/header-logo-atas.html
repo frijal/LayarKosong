@@ -1,0 +1,46 @@
+<!-- 
+  File ini HANYA berisi HTML untuk header.
+  Tidak ada <!doctype>, <html>, <head>, atau <body>.
+  Class CSS sudah disesuaikan dengan header.css versi bahasa Indonesia.
+-->
+<header id="main-header" class="area-header-atas">
+  <div class="area-header-pembungkus">
+    <!-- Logo (hidden on mobile, visible on desktop) -->
+    <div class="logo-pembungkus"> 
+      <a href="/" aria-label="home">
+       <img class="logo-gambar" src="/ext/icons/fsf.svg" alt="FSF" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/cloudflare.svg" alt="Cloudflare" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/thinkpad.svg" alt="ThinkPad" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/linuxfoundation.svg" alt="Linux Foundation" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/github.svg" alt="GitHub" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/copilot.svg" alt="Copilot" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/openai.svg" alt="OpenAI" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/gemini.svg" alt="Gemini" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/blogger.svg" alt="Blogger" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/linux.svg" alt="Linux" loading="lazy">
+  <img class="logo-gambar" src="/ext/icons/favicon.svg" alt="Layar Kosong" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Baris Bawah untuk Judul dan Pencarian -->
+    <div class="area-header-baris-bawah">
+      <!-- Form pencarian -->
+      <form
+        action="https://dalam.web.id/search"
+        method="get"
+        class="area-pencarian"
+      >
+        <span class="ikon-pencarian">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+        <input
+          type="search"
+          name="q"
+          placeholder="cari artikel..."
+          class="input-pencarian"
+          required
+        />
+      </form>
+    </div>
+  </div>
+</header>

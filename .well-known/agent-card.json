@@ -1,0 +1,23 @@
+{
+  "$schema": "https://a2a-protocol.org/schema/v1/agent-card.json",
+  "name": "Layar Kosong Agent",
+  "version": "1.0",
+  "description": "Agen perwakilan resmi dari blog Layar Kosong.",
+  "supportedInterfaces": [
+    {
+      "type": "http",
+      "url": "https://dalam.web.id",
+      "transport": "https"
+    }
+  ],
+  "capabilities": [
+    "content-retrieval"
+  ],
+  "skills": [
+    {
+      "id": "read-llms",
+      "name": "Read LLMS",
+      "description": "Membaca ringkasan konten."
+    }
+  ]
+}
