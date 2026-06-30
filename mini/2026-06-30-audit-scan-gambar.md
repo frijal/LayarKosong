@@ -12,65 +12,77 @@ Audit ini dibuat khusus dari step:
 | :--- | ---: |
 | File baru | 0 |
 | File berubah | 1 |
-| File terhapus | 304 |
+| File terhapus | 328 |
 | File rename | 0 |
 
 ## Status Git
 
 ```text
 D  img/AAAAAA/1dhfgsdgss-rg.webp
-D  img/AAAAAA/FFmpeg-ubah-gambar-menjadi-video.webp
 D  img/AAAAAA/ghuploader-rg.webp
-D  img/AAAAAA/ubah-gabung.html.webp
-D  img/FFmpeg-split-video-durasi-otomatis-sm.webp
-D  img/FFmpeg-split-video-durasi-otomatis.webp
-D  img/alias-linux-sm.webp
-D  img/alias-linux.webp
-D  img/audio-visualizer-sm.webp
-D  img/audio-visualizer.webp
+D  img/Skrip-Otomatis-ChRoot-sm.webp
+D  img/Skrip-Otomatis-ChRoot.webp
+D  img/aur-explained-sm.webp
+D  img/aur-explained.webp
 D  img/blogger.googleusercontent.com/4e0657bbc27dbcb1-rg.webp
+D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhh3NObdLIGWsCY_NzU4QOb136aG9vNxsUXrHcuEtu_i_ozuYeAQzrlOYi3ufVAaY8_5-n3vQ_Q6iEJnQQyoXiaIk48DqUyBKMXOFKoYL5FERJqS5RSXZ1QswHF_7SwlhZDgR9Thyu1Nb4M/s800/Screen%252520Ruler_005-sm.webp
+D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhh3NObdLIGWsCY_NzU4QOb136aG9vNxsUXrHcuEtu_i_ozuYeAQzrlOYi3ufVAaY8_5-n3vQ_Q6iEJnQQyoXiaIk48DqUyBKMXOFKoYL5FERJqS5RSXZ1QswHF_7SwlhZDgR9Thyu1Nb4M/s800/Screen%252520Ruler_005.webp
+D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBdvJV53PzuFnKOuVW47LNEF6JL9vkAUAhDX_29CUDQn-V2TxjbU95J7XIUq276Jt_HR93nfI_ZHz9WJU2nqgI05q9aZtmuqgHvCjKx9jmrB9jb4YtV2Ldp_8r9FWJoRFfr04OIS1-6pyF/s1600/Screenshot+from+2013-05-24+18%253A46%253A56-sm.webp
+D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBdvJV53PzuFnKOuVW47LNEF6JL9vkAUAhDX_29CUDQn-V2TxjbU95J7XIUq276Jt_HR93nfI_ZHz9WJU2nqgI05q9aZtmuqgHvCjKx9jmrB9jb4YtV2Ldp_8r9FWJoRFfr04OIS1-6pyF/s1600/Screenshot+from+2013-05-24+18%253A46%253A56.webp
+D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZjouMbtCK2wk9GrvGIi2_OA93KxmgdLT5CUHLjids3SalPctBVMtK6fIGiUO3nJE5tgXWh3v7stdMwccC-EAMkJ0I_rAKIsjHTp5nb7RIGQaMdx1OufN1sJpX6-qGH8St8ZxJxuVrkCwH/s1600/article-logo.webp
+D  img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya-sm.webp
+D  img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.webp
 D  img/cf_assets.www.cloudflare.com/f689c7066fd9065c-rg.webp
 D  img/distrowatch.com/4e1b7e91552d68f4-rg.webp
 D  img/docs.getaurora.dev/6365a62e4c59ecf9-rg.webp
-D  img/ffmpeg-panduan-interaktif-sm.webp
-D  img/ffmpeg-panduan-interaktif.webp
+D  img/fix-grub-manual-md.webp
+D  img/fix-grub-manual-sm.webp
+D  img/fix-grub-manual.webp
  M img/gambarnganggur.txt
-D  img/hijab-yang-berkeadaban-sm.webp
-D  img/hijab-yang-berkeadaban.webp
-D  img/hukum-mendengarkan-aib-sm.webp
-D  img/hukum-mendengarkan-aib.webp
+D  img/grub-recovery-bundle-md.webp
+D  img/grub-recovery-bundle-sm.webp
+D  img/grub-recovery-bundle.webp
+D  img/handbrake-preset-custom-sm.webp
+D  img/handbrake-preset-custom.webp
 D  img/i.ytimg.com/5313a012c87b8ced-rg.webp
 D  img/image.idntimes.com/ded1aab6fe63c0ac-rg.webp
-D  img/imagemagick-guide-sm.webp
-D  img/imagemagick-guide.webp
-D  img/imagemagick-paksa-rasio-16-9-sm.webp
-D  img/imagemagick-paksa-rasio-16-9.webp
+D  img/imagemagick-resize-semua-foto-dalam-satu-folder-lalu-menyimpannya-di-folder-tujuan-sm.webp
+D  img/imagemagick-resize-semua-foto-dalam-satu-folder-lalu-menyimpannya-di-folder-tujuan.webp
 D  img/images.openai.com/a78aa67178001e46-rg.webp
 D  img/images.openai.com/e10e0b8c808c2073-rg.webp
 D  img/img.youtube.com/46dc42387bf75ed6-rg.webp
 D  img/img.youtube.com/4731e15e3aded465-rg.webp
 D  img/img.youtube.com/ee27abd61ada6b09-rg.webp
-D  img/jangan-crying-baby-linux-sm.webp
-D  img/jangan-crying-baby-linux.webp
-D  img/kenapa-tidak-boker-harian-sm.webp
-D  img/kenapa-tidak-boker-harian.webp
-D  img/kesehatan-pencernaan-boker-sm.webp
-D  img/kesehatan-pencernaan-boker.webp
-D  img/larangan-ghibah-sm.webp
-D  img/larangan-ghibah.webp
-D  img/lisensi-perangkat-lunak-sm.webp
-D  img/lisensi-perangkat-lunak.webp
+D  img/iptv-linux-md.webp
+D  img/iptv-linux-sm.webp
+D  img/iptv-linux.webp
+D  img/janganlah-sombong-sm.webp
+D  img/janganlah-sombong.webp
 D  img/majalahsedane.org/f1fb4486048faf99-rg.webp
-D  img/maulid-nabi-sm.webp
-D  img/maulid-nabi.webp
-D  img/maulid-timeline-sm.webp
-D  img/maulid-timeline.webp
-D  img/minuman-bantu-pencernaan-sm.webp
-D  img/minuman-bantu-pencernaan.webp
+D  img/maulid-kajian-lengkap-sm.webp
+D  img/maulid-kajian-lengkap.webp
+D  img/maulid-perbandingan-sm.webp
+D  img/maulid-perbandingan.webp
+D  img/maulid-ringkas-sm.webp
+D  img/maulid-ringkas.webp
+D  img/membedah-hasil-apt-audit-lengkap-sm.webp
+D  img/membedah-hasil-apt-audit-lengkap.webp
+D  img/membedah-hasil-apt-audit-sm.webp
+D  img/membedah-hasil-apt-audit.webp
+D  img/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line-md.webp
+D  img/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line-sm.webp
+D  img/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line.webp
+D  img/mudahnya-wanita-masuk-surga-sm.webp
+D  img/mudahnya-wanita-masuk-surga.webp
 D  img/muhammadiyah.or.id/75b15c6aa92c7580-rg.webp
-D  img/panduan-interaktif-ffmpeg-sm.webp
-D  img/panduan-interaktif-ffmpeg.webp
-D  img/pbs.twimg.com/12297a399ec4dda0-rg.webp
+D  img/multi-video-youtube-gallery-sm.webp
+D  img/multi-video-youtube-gallery.webp
+D  img/noreferrer-sm.webp
+D  img/noreferrer-tanpa-target-blank-sm.webp
+D  img/noreferrer-tanpa-target-blank.webp
+D  img/noreferrer.webp
+D  img/ojol-parkir-balikpapan-sm.webp
+D  img/ojol-parkir-balikpapan.webp
 D  img/pbs.twimg.com/1571179477be282c-rg.webp
 D  img/pbs.twimg.com/19d3675cbd008610-rg.webp
 D  img/pbs.twimg.com/1afc093faf6cda05-rg.webp
@@ -126,7 +138,6 @@ D  img/pbs.twimg.com/9c9d05ed592d03fc-rg.webp
 D  img/pbs.twimg.com/9d1c557be3672861-rg.webp
 D  img/pbs.twimg.com/a01d61a29a413850-rg.webp
 D  img/pbs.twimg.com/a6ee4d7ae58c6098-rg.webp
-D  img/pbs.twimg.com/a8ae3a7ec594eba3-rg.webp
 D  img/pbs.twimg.com/ad4c5085b8b5142d-rg.webp
 D  img/pbs.twimg.com/b14a07f05d161d7f-rg.webp
 D  img/pbs.twimg.com/b2070d2b3b6c444f-rg.webp
@@ -144,14 +155,12 @@ D  img/pbs.twimg.com/cca5e3493ee2447b-rg.webp
 D  img/pbs.twimg.com/d4d612d6f4ecdf5e-rg.webp
 D  img/pbs.twimg.com/d667ebfe1a81a1a3-rg.webp
 D  img/pbs.twimg.com/d7ad81bff80a1efe-rg.webp
-D  img/pbs.twimg.com/d93a4eb376dc156-rg.webp
 D  img/pbs.twimg.com/deadd69cee0bc53a-rg.webp
 D  img/pbs.twimg.com/e122ec4ad83325fc-rg.webp
 D  img/pbs.twimg.com/e2c414801c52b5ef-rg.webp
 D  img/pbs.twimg.com/ea29d6346aa6cab9-rg.webp
 D  img/pbs.twimg.com/ea5a0d602f86e207-rg.webp
 D  img/pbs.twimg.com/ef3b13bce3d2aba9-rg.webp
-D  img/pbs.twimg.com/f04f3b06d96b59e5-rg.webp
 D  img/pbs.twimg.com/f1524250a096e3f7-rg.webp
 D  img/pbs.twimg.com/f1a19ef5c465e174-rg.webp
 D  img/pbs.twimg.com/f57c24ed56400a48-rg.webp
@@ -174,11 +183,8 @@ D  img/pbs.twimg.com/media/HAQQu41a8AEwCHb-rg.webp
 D  img/pbs.twimg.com/media/HBIDp3takAItRUR-rg.webp
 D  img/pbs.twimg.com/media/HBskJBWbsAAWEY0-rg.webp
 D  img/pinggy.io/6a667cd9a3652e43-rg.webp
-D  img/pinggy.io/adc993f0b84878cf-rg.webp
-D  img/pinggy.io/cec0762a4e37d15c-rg.webp
-D  img/previews.123rf.com/e48271ccc3a0bed2-rg.webp
-D  img/rangkuman-akhir-pencernaan-sehat-sm.webp
-D  img/rangkuman-akhir-pencernaan-sehat.webp
+D  img/ppdb-sktm-palsu-sm.webp
+D  img/ppdb-sktm-palsu.webp
 D  img/raw.githubusercontent.com/1692251175c1732a-rg.webp
 D  img/raw.githubusercontent.com/17b4c534125fba4a-rg.webp
 D  img/raw.githubusercontent.com/2566d7b29fbb9f4c-rg.webp
@@ -187,13 +193,13 @@ D  img/raw.githubusercontent.com/2ee386c0b079b6b3-rg.webp
 D  img/raw.githubusercontent.com/3217fb96aa3b6d2b-rg.webp
 D  img/raw.githubusercontent.com/32659ba5de0c3bba-rg.webp
 D  img/raw.githubusercontent.com/36f51641d15c0512-rg.webp
+D  img/raw.githubusercontent.com/438b5926a9dd6497-rg.webp
 D  img/raw.githubusercontent.com/45e696e22f66bb13-rg.webp
 D  img/raw.githubusercontent.com/465e004c5c6af46-rg.webp
 D  img/raw.githubusercontent.com/4821ce92c4340b5b-rg.webp
 D  img/raw.githubusercontent.com/4ab5c1865d645ecf-rg.webp
 D  img/raw.githubusercontent.com/4b662eb57c0ceffe-rg.webp
 D  img/raw.githubusercontent.com/4f324ae746ae9f8e-rg.webp
-D  img/raw.githubusercontent.com/5140f5caafe95afc-rg.webp
 D  img/raw.githubusercontent.com/514446c4aee01a7b-rg.webp
 D  img/raw.githubusercontent.com/5152ab09945f62a2-rg.webp
 D  img/raw.githubusercontent.com/5a78191e5d5c15db-rg.webp
@@ -203,6 +209,7 @@ D  img/raw.githubusercontent.com/72af4215a78d2177-rg.webp
 D  img/raw.githubusercontent.com/745e19b7d8d86cd1-rg.webp
 D  img/raw.githubusercontent.com/78386c12f3aa3038-rg.webp
 D  img/raw.githubusercontent.com/7ccdd526e75b7779-rg.webp
+D  img/raw.githubusercontent.com/7de274b645dd113e-rg.webp
 D  img/raw.githubusercontent.com/7dfa01edc16cfc3-rg.webp
 D  img/raw.githubusercontent.com/8ad99b745211e528-rg.webp
 D  img/raw.githubusercontent.com/9b757b3c5e157836-rg.webp
@@ -221,45 +228,54 @@ D  img/raw.githubusercontent.com/f4eedf7a35724939-rg.webp
 D  img/raw.githubusercontent.com/f6fe76a894ace9d3-rg.webp
 D  img/raw.githubusercontent.com/fb8a0aa58485f0f-rg.webp
 D  img/raw.githubusercontent.com/ffcd6e32165244e-rg.webp
-D  "img/rawgithub/ChatGPT Image Jun 28, 2026, 11_32_40 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 28, 2026, 11_40_54 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_13_56 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_17_35 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_27_35 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_33_57 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_38_51 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_46_38 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_58_58 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_16_55 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_22_15 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_47_21 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_52_19 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_56_17 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_00_36 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_04_37 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_09_19 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_15_14 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_20_55 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_30_05 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 04_52_58 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_25_51 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_42_40 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_47_44 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_57_53 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_01_49 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_06_23 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_14_53 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_19_35 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_24_35 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_31_34 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_36_48 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 08_13_32 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 08_57_13 PM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_34_24 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_40_42 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_46_39 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_55_21 AM.png"
-D  "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_59_32 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 01_02_52 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 01_55_50 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_01_04 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_05_59 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_11_32 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_16_40 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_21_34 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_22_44 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_34_26 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_40_26 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_49_11 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_11_19 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_17_13 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_21_47 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_28_02 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_37_10 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 05_14_53 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 09_52_24 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_22_17 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_34_30 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_43_25 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_48_30 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_54_12 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_06_07 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_11_56 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_16_46 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_27_59 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_33_43 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_39_35 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_44_12 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_49_53 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_54_56 AM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_01_24 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_09_06 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_28_27 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_33_27 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_38_12 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_44_13 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_49_36 PM.png"
+D  "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_58_35 PM.png"
+D  "img/rawgithub/Pasted image (2).png"
+D  "img/rawgithub/Pasted image.png"
+D  "img/rawgithub/Screenshot From 2026-06-30 16-44-24.png"
+D  "img/rawgithub/Screenshot From 2026-06-30 16-48-32.png"
+D  img/rawgithub/Untitled.png
+D  img/rawgithub/sdgsdgdg.png
+D  img/ringkasan-windows-vs-linux-sm.webp
+D  img/ringkasan-windows-vs-linux.webp
 D  img/scontent_cgk1_1.xx.fbcdn.net/cad3f3b51aa9b568-rg.webp
 D  img/scontent_cgk1_2.xx.fbcdn.net/18d17dea2ef257aa-rg.webp
 D  img/scontent_cgk1_2.xx.fbcdn.net/9940f8fc3f77abd7-rg.webp
@@ -303,82 +319,102 @@ D  img/scontent_sin6_1.xx.fbcdn.net/79dfcfd0eefa7159-rg.webp
 D  img/scontent_sin6_1.xx.fbcdn.net/7a248806fb32404-rg.webp
 D  img/scontent_sin6_2.xx.fbcdn.net/2a16ab25887eab08-rg.webp
 D  img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674-rg.webp
-D  img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe-md.webp
-D  img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe-rg.webp
-D  img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe-sm.webp
-D  img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe.webp
 D  img/scontent_sin6_3.xx.fbcdn.net/6913a6c89605ea24-rg.webp
 D  img/scontent_sin6_3.xx.fbcdn.net/98fed4f9136cb002-rg.webp
 D  img/scontent_sin6_3.xx.fbcdn.net/d8c1a451a18f97b4-rg.webp
 D  img/scontent_sin6_3.xx.fbcdn.net/df408cbb9af91b5-rg.webp
 D  img/scontent_sin6_3.xx.fbcdn.net/efe97550fd03c762-rg.webp
+D  img/sejarah-rsync-sm.webp
+D  img/sejarah-rsync.webp
+D  img/skrip-otomatis-chroot-linux-sm.webp
+D  img/skrip-otomatis-chroot-linux.webp
+D  img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah-md.webp
+D  img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah-sm.webp
+D  img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp
 D  img/static0.howtogeekimages.com/2255a542417ba080-rg.webp
 D  img/static0.howtogeekimages.com/8eb1c651b94e0e78-rg.webp
-D  img/susu-dan-pencernaan-sm.webp
-D  img/susu-dan-pencernaan.webp
-D  img/ubahpotong-sm.webp
-D  img/ubahpotong.webp
+D  img/synaptic-shortcuts-md.webp
+D  img/synaptic-shortcuts-sm.webp
+D  img/synaptic-shortcuts.webp
+D  img/target-blank-vs-empty-sm.webp
+D  img/target-blank-vs-empty.webp
+D  img/usb-bootable-ubuntu-md.webp
+D  img/usb-bootable-ubuntu-sm.webp
+D  img/usb-bootable-ubuntu.webp
+D  img/windows-vs-linux-kebiasaan-sm.webp
+D  img/windows-vs-linux-kebiasaan.webp
 D  img/www.fsfla.org/e8000134c5ba8d79-rg.webp
 D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix-Template-rg.webp
-D  img/zsync-blankon-md.webp
-D  img/zsync-blankon-sm.webp
-D  img/zsync-blankon.webp
+D  img/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah-sm.webp
+D  img/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp
 ```
 
 ## File Terhapus
 
 - img/AAAAAA/1dhfgsdgss-rg.webp
-- img/AAAAAA/FFmpeg-ubah-gambar-menjadi-video.webp
 - img/AAAAAA/ghuploader-rg.webp
-- img/AAAAAA/ubah-gabung.html.webp
-- img/FFmpeg-split-video-durasi-otomatis-sm.webp
-- img/FFmpeg-split-video-durasi-otomatis.webp
-- img/alias-linux-sm.webp
-- img/alias-linux.webp
-- img/audio-visualizer-sm.webp
-- img/audio-visualizer.webp
+- img/Skrip-Otomatis-ChRoot-sm.webp
+- img/Skrip-Otomatis-ChRoot.webp
+- img/aur-explained-sm.webp
+- img/aur-explained.webp
 - img/blogger.googleusercontent.com/4e0657bbc27dbcb1-rg.webp
+- img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhh3NObdLIGWsCY_NzU4QOb136aG9vNxsUXrHcuEtu_i_ozuYeAQzrlOYi3ufVAaY8_5-n3vQ_Q6iEJnQQyoXiaIk48DqUyBKMXOFKoYL5FERJqS5RSXZ1QswHF_7SwlhZDgR9Thyu1Nb4M/s800/Screen%252520Ruler_005-sm.webp
+- img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhh3NObdLIGWsCY_NzU4QOb136aG9vNxsUXrHcuEtu_i_ozuYeAQzrlOYi3ufVAaY8_5-n3vQ_Q6iEJnQQyoXiaIk48DqUyBKMXOFKoYL5FERJqS5RSXZ1QswHF_7SwlhZDgR9Thyu1Nb4M/s800/Screen%252520Ruler_005.webp
+- img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBdvJV53PzuFnKOuVW47LNEF6JL9vkAUAhDX_29CUDQn-V2TxjbU95J7XIUq276Jt_HR93nfI_ZHz9WJU2nqgI05q9aZtmuqgHvCjKx9jmrB9jb4YtV2Ldp_8r9FWJoRFfr04OIS1-6pyF/s1600/Screenshot+from+2013-05-24+18%253A46%253A56-sm.webp
+- img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBdvJV53PzuFnKOuVW47LNEF6JL9vkAUAhDX_29CUDQn-V2TxjbU95J7XIUq276Jt_HR93nfI_ZHz9WJU2nqgI05q9aZtmuqgHvCjKx9jmrB9jb4YtV2Ldp_8r9FWJoRFfr04OIS1-6pyF/s1600/Screenshot+from+2013-05-24+18%253A46%253A56.webp
+- img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZjouMbtCK2wk9GrvGIi2_OA93KxmgdLT5CUHLjids3SalPctBVMtK6fIGiUO3nJE5tgXWh3v7stdMwccC-EAMkJ0I_rAKIsjHTp5nb7RIGQaMdx1OufN1sJpX6-qGH8St8ZxJxuVrkCwH/s1600/article-logo.webp
+- img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya-sm.webp
+- img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.webp
 - img/cf_assets.www.cloudflare.com/f689c7066fd9065c-rg.webp
 - img/distrowatch.com/4e1b7e91552d68f4-rg.webp
 - img/docs.getaurora.dev/6365a62e4c59ecf9-rg.webp
-- img/ffmpeg-panduan-interaktif-sm.webp
-- img/ffmpeg-panduan-interaktif.webp
-- img/hijab-yang-berkeadaban-sm.webp
-- img/hijab-yang-berkeadaban.webp
-- img/hukum-mendengarkan-aib-sm.webp
-- img/hukum-mendengarkan-aib.webp
+- img/fix-grub-manual-md.webp
+- img/fix-grub-manual-sm.webp
+- img/fix-grub-manual.webp
+- img/grub-recovery-bundle-md.webp
+- img/grub-recovery-bundle-sm.webp
+- img/grub-recovery-bundle.webp
+- img/handbrake-preset-custom-sm.webp
+- img/handbrake-preset-custom.webp
 - img/i.ytimg.com/5313a012c87b8ced-rg.webp
 - img/image.idntimes.com/ded1aab6fe63c0ac-rg.webp
-- img/imagemagick-guide-sm.webp
-- img/imagemagick-guide.webp
-- img/imagemagick-paksa-rasio-16-9-sm.webp
-- img/imagemagick-paksa-rasio-16-9.webp
+- img/imagemagick-resize-semua-foto-dalam-satu-folder-lalu-menyimpannya-di-folder-tujuan-sm.webp
+- img/imagemagick-resize-semua-foto-dalam-satu-folder-lalu-menyimpannya-di-folder-tujuan.webp
 - img/images.openai.com/a78aa67178001e46-rg.webp
 - img/images.openai.com/e10e0b8c808c2073-rg.webp
 - img/img.youtube.com/46dc42387bf75ed6-rg.webp
 - img/img.youtube.com/4731e15e3aded465-rg.webp
 - img/img.youtube.com/ee27abd61ada6b09-rg.webp
-- img/jangan-crying-baby-linux-sm.webp
-- img/jangan-crying-baby-linux.webp
-- img/kenapa-tidak-boker-harian-sm.webp
-- img/kenapa-tidak-boker-harian.webp
-- img/kesehatan-pencernaan-boker-sm.webp
-- img/kesehatan-pencernaan-boker.webp
-- img/larangan-ghibah-sm.webp
-- img/larangan-ghibah.webp
-- img/lisensi-perangkat-lunak-sm.webp
-- img/lisensi-perangkat-lunak.webp
+- img/iptv-linux-md.webp
+- img/iptv-linux-sm.webp
+- img/iptv-linux.webp
+- img/janganlah-sombong-sm.webp
+- img/janganlah-sombong.webp
 - img/majalahsedane.org/f1fb4486048faf99-rg.webp
-- img/maulid-nabi-sm.webp
-- img/maulid-nabi.webp
-- img/maulid-timeline-sm.webp
-- img/maulid-timeline.webp
-- img/minuman-bantu-pencernaan-sm.webp
-- img/minuman-bantu-pencernaan.webp
+- img/maulid-kajian-lengkap-sm.webp
+- img/maulid-kajian-lengkap.webp
+- img/maulid-perbandingan-sm.webp
+- img/maulid-perbandingan.webp
+- img/maulid-ringkas-sm.webp
+- img/maulid-ringkas.webp
+- img/membedah-hasil-apt-audit-lengkap-sm.webp
+- img/membedah-hasil-apt-audit-lengkap.webp
+- img/membedah-hasil-apt-audit-sm.webp
+- img/membedah-hasil-apt-audit.webp
+- img/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line-md.webp
+- img/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line-sm.webp
+- img/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line.webp
+- img/mudahnya-wanita-masuk-surga-sm.webp
+- img/mudahnya-wanita-masuk-surga.webp
 - img/muhammadiyah.or.id/75b15c6aa92c7580-rg.webp
-- img/panduan-interaktif-ffmpeg-sm.webp
-- img/panduan-interaktif-ffmpeg.webp
-- img/pbs.twimg.com/12297a399ec4dda0-rg.webp
+- img/multi-video-youtube-gallery-sm.webp
+- img/multi-video-youtube-gallery.webp
+- img/noreferrer-sm.webp
+- img/noreferrer-tanpa-target-blank-sm.webp
+- img/noreferrer-tanpa-target-blank.webp
+- img/noreferrer.webp
+- img/ojol-parkir-balikpapan-sm.webp
+- img/ojol-parkir-balikpapan.webp
 - img/pbs.twimg.com/1571179477be282c-rg.webp
 - img/pbs.twimg.com/19d3675cbd008610-rg.webp
 - img/pbs.twimg.com/1afc093faf6cda05-rg.webp
@@ -434,7 +470,6 @@ D  img/zsync-blankon.webp
 - img/pbs.twimg.com/9d1c557be3672861-rg.webp
 - img/pbs.twimg.com/a01d61a29a413850-rg.webp
 - img/pbs.twimg.com/a6ee4d7ae58c6098-rg.webp
-- img/pbs.twimg.com/a8ae3a7ec594eba3-rg.webp
 - img/pbs.twimg.com/ad4c5085b8b5142d-rg.webp
 - img/pbs.twimg.com/b14a07f05d161d7f-rg.webp
 - img/pbs.twimg.com/b2070d2b3b6c444f-rg.webp
@@ -452,14 +487,12 @@ D  img/zsync-blankon.webp
 - img/pbs.twimg.com/d4d612d6f4ecdf5e-rg.webp
 - img/pbs.twimg.com/d667ebfe1a81a1a3-rg.webp
 - img/pbs.twimg.com/d7ad81bff80a1efe-rg.webp
-- img/pbs.twimg.com/d93a4eb376dc156-rg.webp
 - img/pbs.twimg.com/deadd69cee0bc53a-rg.webp
 - img/pbs.twimg.com/e122ec4ad83325fc-rg.webp
 - img/pbs.twimg.com/e2c414801c52b5ef-rg.webp
 - img/pbs.twimg.com/ea29d6346aa6cab9-rg.webp
 - img/pbs.twimg.com/ea5a0d602f86e207-rg.webp
 - img/pbs.twimg.com/ef3b13bce3d2aba9-rg.webp
-- img/pbs.twimg.com/f04f3b06d96b59e5-rg.webp
 - img/pbs.twimg.com/f1524250a096e3f7-rg.webp
 - img/pbs.twimg.com/f1a19ef5c465e174-rg.webp
 - img/pbs.twimg.com/f57c24ed56400a48-rg.webp
@@ -482,11 +515,8 @@ D  img/zsync-blankon.webp
 - img/pbs.twimg.com/media/HBIDp3takAItRUR-rg.webp
 - img/pbs.twimg.com/media/HBskJBWbsAAWEY0-rg.webp
 - img/pinggy.io/6a667cd9a3652e43-rg.webp
-- img/pinggy.io/adc993f0b84878cf-rg.webp
-- img/pinggy.io/cec0762a4e37d15c-rg.webp
-- img/previews.123rf.com/e48271ccc3a0bed2-rg.webp
-- img/rangkuman-akhir-pencernaan-sehat-sm.webp
-- img/rangkuman-akhir-pencernaan-sehat.webp
+- img/ppdb-sktm-palsu-sm.webp
+- img/ppdb-sktm-palsu.webp
 - img/raw.githubusercontent.com/1692251175c1732a-rg.webp
 - img/raw.githubusercontent.com/17b4c534125fba4a-rg.webp
 - img/raw.githubusercontent.com/2566d7b29fbb9f4c-rg.webp
@@ -495,13 +525,13 @@ D  img/zsync-blankon.webp
 - img/raw.githubusercontent.com/3217fb96aa3b6d2b-rg.webp
 - img/raw.githubusercontent.com/32659ba5de0c3bba-rg.webp
 - img/raw.githubusercontent.com/36f51641d15c0512-rg.webp
+- img/raw.githubusercontent.com/438b5926a9dd6497-rg.webp
 - img/raw.githubusercontent.com/45e696e22f66bb13-rg.webp
 - img/raw.githubusercontent.com/465e004c5c6af46-rg.webp
 - img/raw.githubusercontent.com/4821ce92c4340b5b-rg.webp
 - img/raw.githubusercontent.com/4ab5c1865d645ecf-rg.webp
 - img/raw.githubusercontent.com/4b662eb57c0ceffe-rg.webp
 - img/raw.githubusercontent.com/4f324ae746ae9f8e-rg.webp
-- img/raw.githubusercontent.com/5140f5caafe95afc-rg.webp
 - img/raw.githubusercontent.com/514446c4aee01a7b-rg.webp
 - img/raw.githubusercontent.com/5152ab09945f62a2-rg.webp
 - img/raw.githubusercontent.com/5a78191e5d5c15db-rg.webp
@@ -511,6 +541,7 @@ D  img/zsync-blankon.webp
 - img/raw.githubusercontent.com/745e19b7d8d86cd1-rg.webp
 - img/raw.githubusercontent.com/78386c12f3aa3038-rg.webp
 - img/raw.githubusercontent.com/7ccdd526e75b7779-rg.webp
+- img/raw.githubusercontent.com/7de274b645dd113e-rg.webp
 - img/raw.githubusercontent.com/7dfa01edc16cfc3-rg.webp
 - img/raw.githubusercontent.com/8ad99b745211e528-rg.webp
 - img/raw.githubusercontent.com/9b757b3c5e157836-rg.webp
@@ -529,45 +560,54 @@ D  img/zsync-blankon.webp
 - img/raw.githubusercontent.com/f6fe76a894ace9d3-rg.webp
 - img/raw.githubusercontent.com/fb8a0aa58485f0f-rg.webp
 - img/raw.githubusercontent.com/ffcd6e32165244e-rg.webp
-- "img/rawgithub/ChatGPT Image Jun 28, 2026, 11_32_40 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 28, 2026, 11_40_54 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_13_56 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_17_35 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_27_35 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_33_57 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_38_51 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_46_38 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 01_58_58 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_16_55 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_22_15 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_47_21 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_52_19 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 02_56_17 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_00_36 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_04_37 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_09_19 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_15_14 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_20_55 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 03_30_05 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 04_52_58 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_25_51 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_42_40 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_47_44 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 06_57_53 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_01_49 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_06_23 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_14_53 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_19_35 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_24_35 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_31_34 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 07_36_48 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 08_13_32 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 08_57_13 PM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_34_24 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_40_42 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_46_39 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_55_21 AM.png"
-- "img/rawgithub/ChatGPT Image Jun 29, 2026, 12_59_32 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 01_02_52 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 01_55_50 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_01_04 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_05_59 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_11_32 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_16_40 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_21_34 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_22_44 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_34_26 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_40_26 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 02_49_11 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_11_19 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_17_13 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_21_47 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_28_02 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 03_37_10 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 05_14_53 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 09_52_24 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_22_17 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_34_30 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_43_25 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_48_30 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 10_54_12 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_06_07 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_11_56 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_16_46 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_27_59 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_33_43 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_39_35 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_44_12 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_49_53 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 11_54_56 AM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_01_24 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_09_06 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_28_27 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_33_27 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_38_12 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_44_13 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_49_36 PM.png"
+- "img/rawgithub/ChatGPT Image Jun 30, 2026, 12_58_35 PM.png"
+- "img/rawgithub/Pasted image (2).png"
+- "img/rawgithub/Pasted image.png"
+- "img/rawgithub/Screenshot From 2026-06-30 16-44-24.png"
+- "img/rawgithub/Screenshot From 2026-06-30 16-48-32.png"
+- img/rawgithub/Untitled.png
+- img/rawgithub/sdgsdgdg.png
+- img/ringkasan-windows-vs-linux-sm.webp
+- img/ringkasan-windows-vs-linux.webp
 - img/scontent_cgk1_1.xx.fbcdn.net/cad3f3b51aa9b568-rg.webp
 - img/scontent_cgk1_2.xx.fbcdn.net/18d17dea2ef257aa-rg.webp
 - img/scontent_cgk1_2.xx.fbcdn.net/9940f8fc3f77abd7-rg.webp
@@ -611,26 +651,34 @@ D  img/zsync-blankon.webp
 - img/scontent_sin6_1.xx.fbcdn.net/7a248806fb32404-rg.webp
 - img/scontent_sin6_2.xx.fbcdn.net/2a16ab25887eab08-rg.webp
 - img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674-rg.webp
-- img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe-md.webp
-- img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe-rg.webp
-- img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe-sm.webp
-- img/scontent_sin6_3.xx.fbcdn.net/2167a39af8227fe.webp
 - img/scontent_sin6_3.xx.fbcdn.net/6913a6c89605ea24-rg.webp
 - img/scontent_sin6_3.xx.fbcdn.net/98fed4f9136cb002-rg.webp
 - img/scontent_sin6_3.xx.fbcdn.net/d8c1a451a18f97b4-rg.webp
 - img/scontent_sin6_3.xx.fbcdn.net/df408cbb9af91b5-rg.webp
 - img/scontent_sin6_3.xx.fbcdn.net/efe97550fd03c762-rg.webp
+- img/sejarah-rsync-sm.webp
+- img/sejarah-rsync.webp
+- img/skrip-otomatis-chroot-linux-sm.webp
+- img/skrip-otomatis-chroot-linux.webp
+- img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah-md.webp
+- img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah-sm.webp
+- img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp
 - img/static0.howtogeekimages.com/2255a542417ba080-rg.webp
 - img/static0.howtogeekimages.com/8eb1c651b94e0e78-rg.webp
-- img/susu-dan-pencernaan-sm.webp
-- img/susu-dan-pencernaan.webp
-- img/ubahpotong-sm.webp
-- img/ubahpotong.webp
+- img/synaptic-shortcuts-md.webp
+- img/synaptic-shortcuts-sm.webp
+- img/synaptic-shortcuts.webp
+- img/target-blank-vs-empty-sm.webp
+- img/target-blank-vs-empty.webp
+- img/usb-bootable-ubuntu-md.webp
+- img/usb-bootable-ubuntu-sm.webp
+- img/usb-bootable-ubuntu.webp
+- img/windows-vs-linux-kebiasaan-sm.webp
+- img/windows-vs-linux-kebiasaan.webp
 - img/www.fsfla.org/e8000134c5ba8d79-rg.webp
 - img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix-Template-rg.webp
-- img/zsync-blankon-md.webp
-- img/zsync-blankon-sm.webp
-- img/zsync-blankon.webp
+- img/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah-sm.webp
+- img/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp
 
 ## File Baru
 
