@@ -2,8 +2,19 @@ name: 🔆 Pengecekan & Laporan Konten Harian
 
 on:
   schedule:
-    - cron: 0 13 * * *
+    - cron: "0 13 * * *"
+
   workflow_dispatch:
+    inputs:
+      run_mode:
+        description: "Pilih proses yang ingin dijalankan"
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - direct_maintenance
+          - scan_unused_images_pr
 
 concurrency:
   group: daily-content-maintenance-${{ github.ref }}
@@ -16,6 +27,7 @@ jobs:
   # ============================================================
   direct_maintenance:
     name: 🔆 Direct Maintenance to Main
+    if: ${{ github.event_name == 'schedule' || inputs.run_mode == 'all' || inputs.run_mode == 'direct_maintenance' }}
     runs-on: ubuntu-latest
 
     permissions:
@@ -38,14 +50,14 @@ jobs:
         run: bun install
 
       # ========== INDEXNOW LANGSUNG ==========
-  #    - name: 🔍 IndexNow Sync
-  #      continue-on-error: true
-  #      env:
-  #        INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-  #      run: |
-  #        mkdir -p mini
-  #        touch mini/indexnow-cache.txt
-  #        bun run dapur/indexnow.ts
+      # - name: 🔍 IndexNow Sync
+      #   continue-on-error: true
+      #   env:
+      #     INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+      #   run: |
+      #     mkdir -p mini
+      #     touch mini/indexnow-cache.txt
+      #     bun run dapur/indexnow.ts
 
       # ========== DASHBOARD & METADATA ==========
       - name: 🕵️ Update Dashboard Jadwal
@@ -66,7 +78,9 @@ jobs:
           echo "REPORT_DATE=$DATE" >> "$GITHUB_ENV"
           echo "report_date=$DATE" >> "$GITHUB_OUTPUT"
           echo "report_path=$REPORT_PATH" >> "$GITHUB_OUTPUT"
+
           echo "📊 Membuat laporan ringkas..."
+
           declare -A ext_count
           declare -A ext_folders
           total_files=0
@@ -182,7 +196,6 @@ jobs:
             echo "✅ Tidak ada perubahan direct maintenance."
           fi
 
-
   # ============================================================
   # SCAN UNUSED IMAGES VIA PR
   # Hanya step ini yang masuk Pull Request.
@@ -192,6 +205,19 @@ jobs:
     name: 📸 Scan Unused Images PR
     runs-on: ubuntu-latest
     needs: direct_maintenance
+    if: >-
+      ${{
+        always() &&
+        (
+          github.event_name == 'schedule' ||
+          inputs.run_mode == 'all' ||
+          inputs.run_mode == 'scan_unused_images_pr'
+        ) &&
+        (
+          inputs.run_mode == 'scan_unused_images_pr' ||
+          needs.direct_maintenance.result == 'success'
+        )
+      }}
 
     permissions:
       contents: write
