@@ -46,7 +46,7 @@
             twikoo.init({
                 envId: TWIKOO_ENV_ID,
                 el: TWIKOO_CONTAINER_ID,
-                lang: 'id', // KUNCI UTAMA: Memaksa UX ke Bahasa Inggris agar bebas dari Bahasa Mandarin bawaan pabrik!
+                lang: 'en', // KUNCI UTAMA: Memaksa UX ke Bahasa Inggris agar bebas dari Bahasa Mandarin bawaan pabrik!
             });
             
             console.log('Twikoo 1.7.13 berhasil dimuat di #response dengan konfigurasi Bahasa Inggris.');
