@@ -141,8 +141,8 @@ function loadSrcsetCache() {
 }
 
 /**
- * 🔥 BARU: Proteksi khusus untuk thumbnail -rg berbasis artikel-lite.json
- * Fungsi ini membaca JSON dan HANYA melindungi varian -rg untuk gambar yang terdaftar.
+ * 🔥 DIPERBAIKI: Proteksi khusus untuk thumbnail -rg berbasis artikel-lite.json
+ * Fungsi ini membaca array artikel dan HANYA melindungi varian -rg untuk gambar yang terdaftar di indeks [2].
  */
 function loadArtikelLite() {
   if (!fs.existsSync(ARTIKEL_LITE_FILE)) {
@@ -154,25 +154,31 @@ function loadArtikelLite() {
     const data = JSON.parse(fs.readFileSync(ARTIKEL_LITE_FILE, "utf-8"));
     let protectedCount = 0;
 
-    const extractImages = (obj: any) => {
-      if (Array.isArray(obj)) {
-        obj.forEach(extractImages);
-      } else if (obj !== null && typeof obj === "object") {
-        if (obj.image && typeof obj.image === "string") {
-          const cleanRef = obj.image.split("?")[0].split("#")[0];
-          const baseName = path.basename(cleanRef);
-          const rawName = path.basename(baseName, path.extname(baseName));
-          const nameSafe = rawName.replace(FORBIDDEN_CHARS, "-");
+    // Iterasi setiap kategori (keys) di dalam objek JSON
+    for (const kategori in data) {
+      const daftarArtikel = data[kategori];
 
-          // KHUSUS meloloskan file -rg.webp
-          usedBasenames.add(`${nameSafe}-rg.webp`);
-          protectedCount++;
+      // Pastikan valuenya adalah array
+      if (Array.isArray(daftarArtikel)) {
+        for (const artikel of daftarArtikel) {
+          // Cek apakah item ini array dan minimal punya 3 elemen (karena indeks [2] adalah URL gambar)
+          if (Array.isArray(artikel) && artikel.length > 2 && typeof artikel[2] === "string") {
+            const imageUrl = artikel[2];
+            
+            // Bersihkan URL dan ambil nama filenya
+            const cleanRef = imageUrl.split("?")[0].split("#")[0];
+            const baseName = path.basename(cleanRef);
+            const rawName = path.basename(baseName, path.extname(baseName));
+            const nameSafe = rawName.replace(FORBIDDEN_CHARS, "-");
+
+            // KHUSUS meloloskan file -rg.webp ke dalam whitelist
+            usedBasenames.add(`${nameSafe}-rg.webp`);
+            protectedCount++;
+          }
         }
-        Object.values(obj).forEach(extractImages);
       }
-    };
+    }
 
-    extractImages(data);
     console.log(`🛡️  Whitelist Related Grid: ${protectedCount} varian -rg.webp dilindungi dari artikel-lite.json.`);
   } catch (e) {
     console.error(`❌ Gagal membaca ${ARTIKEL_LITE_FILE}:`, e);
@@ -296,7 +302,7 @@ function findOrphanWebpVariants(allImages: ImageFile[]): string[] {
 }
 
 async function runCleaner() {
-  console.log("🚀 Memulai Pembersih Gambar V12.0 (Integrasi artikel-lite.json)...");
+  console.log("🚀 Memulai Pembersih Gambar V12.1 (Integrasi Array artikel-lite.json)...");
 
   const allImages = getAllPhysicalImages(IMG_FOLDER);
 
