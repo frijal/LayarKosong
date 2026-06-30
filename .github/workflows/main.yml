@@ -1,0 +1,53 @@
+name: 🕵️ Operasi Pencurian ID Mastodon
+
+# Workflow ini disetel agar bisa dijalankan manual via tombol "Run workflow" di tab Actions
+on:
+  workflow_dispatch:
+
+jobs:
+  curi-id-job:
+    runs-on: ubuntu-latest
+
+    # Wajib ditambahkan agar GitHub Actions punya izin untuk nge-push file yang berubah
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ambil seluruh riwayat agar git tidak bingung saat nge-push
+
+      - name: 🥟 Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 📦 Install Dependencies (Jika Ada)
+        run: bun install
+
+      - name: 🕵️ Eksekusi Script Pencuri ID
+        # Ganti id-mast.ts dan argumennya jika ada penyesuaian nama file
+        run: bun run id-mast.ts --once
+        env:
+          # Suntikkan rahasia dari GitHub Secrets langsung ke environment Bun
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+
+      - name: 💾 Commit dan Push Hasil ke Repositori
+        run: |
+          # Set identitas bot git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Daftarkan file yang diubah
+          git add mini/posted-mastodon.txt
+          
+          # Cek apakah ada perubahan. Kalau ada, commit dan push!
+          if git diff --staged --quiet; then
+            echo "🤷‍♂️ Tidak ada perubahan. Semua ID sudah terisi atau tidak ditemukan ID baru."
+          else
+            git commit -m "chore: 🐘 update toot_id mastodon via automation"
+            git push
+            echo "🎉 Sukses menyamankan hasil operasi ke repositori!"
+          fi
