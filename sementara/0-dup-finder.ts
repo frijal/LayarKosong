@@ -57,7 +57,7 @@ async function kumpulkanSemuaBackup() {
     return semuaBackup;
 }
 
-// TEMPLATE UI UTAMA DASHBOARD DYNAMIC CLEANER (BATCH EDITION - FILTER DUPLIKAT ONLY)
+// TEMPLATE UI (tidak berubah)
 const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="id">
@@ -108,52 +108,51 @@ h3 { margin-top: 30px; color: #3b82f6; border-bottom: 1px solid #29292e; padding
 </head>
 <body>
 <div class="container">
-    <h2>Mass HTML Duplicate Cleaner (Batch Edition)</h2>
-    <p style="color: #a4a4a8; font-size: 13px; margin-top: -5px;">Scan duplikasi di banyak file sekaligus. <strong>Hanya menampilkan file yang terjangkit duplikasi.</strong></p>
+<h2>Mass HTML Duplicate Cleaner (Batch Edition)</h2>
+<p style="color: #a4a4a8; font-size: 13px; margin-top: -5px;">Scan duplikasi di banyak file sekaligus. <strong>Hanya menampilkan file yang terjangkit duplikasi.</strong></p>
 
-    <div class="input-box">
-        <div class="input-group">
-            <label for="file-path">1. Absolute Path (Bisa Folder, File Spesifik, atau *.html):</label>
-            <input type="text" id="file-path" placeholder="Contoh: D:/projects/site/ atau D:/projects/site/*.html">
-        </div>
-        <div class="input-group">
-            <label for="search-snippet">2. Potongan Kode / Teks yang Ingin Dicari:</label>
-            <textarea id="search-snippet" placeholder="Paste kode HTML, script, atau teks di sini...&#10;Contoh: if('modelContext' in navigator)"></textarea>
-        </div>
-        <button class="btn btn-primary" onclick="scanFileHTML()">🔍 Scan Massal Sekarang</button>
-    </div>
+<div class="input-box">
+<div class="input-group">
+<label for="file-path">1. Absolute Path (Bisa Folder, File Spesifik, atau *.html):</label>
+<input type="text" id="file-path" placeholder="Contoh: ../artikel/ atau ../artikel/*.html">
+</div>
+<div class="input-group">
+<label for="search-snippet">2. Potongan Kode / Teks yang Ingin Dicari:</label>
+<textarea id="search-snippet" placeholder="Paste kode HTML, script, atau teks di sini...&#10;Contoh: if('modelContext' in navigator)"></textarea>
+</div>
+<button class="btn btn-primary" onclick="scanFileHTML()">🔍 Scan Massal Sekarang</button>
+</div>
 
-    <div id="editor-section" style="display: none;">
-        <h3>Hasil File yang Terdampak Duplikasi</h3>
-        <p style="font-size: 12px; color: #a6adc8; margin-top: -5px;">Hanya menampilkan file dengan temuan &gt; 1. Sistem mencentang <strong>instansi pertama tiap file</strong> (dipertahankan) dan mengosongkan duplikatnya (akan dihapus).</p>
-        
-        <div class="component-list" id="list-target"></div>
+<div id="editor-section" style="display: none;">
+<h3>Hasil File yang Terdampak Duplikasi</h3>
+<p style="font-size: 12px; color: #a6adc8; margin-top: -5px;">Hanya menampilkan file dengan temuan &gt; 1. Sistem mencentang <strong>instansi pertama tiap file</strong> (dipertahankan) dan mengosongkan duplikatnya (akan dihapus).</p>
 
-        <div class="action-area" id="action-area" style="display: none;">
-            <button class="btn btn-success" onclick="eksekusiPembersihan()">🚀 Eksekusi Penghapusan Massal</button>
-            <div id="status">Status: Menunggu eksekusi seleksi...</div>
-        </div>
-    </div>
+<div class="component-list" id="list-target"></div>
 
-    <div class="restore-box">
-        <h4 style="margin-top: 0; color: #fbbf24; font-size: 16px;">🔄 Automated Restore Manager</h4>
-        <p style="font-size: 12px; color: #a6adc8; margin-top: -5px;">Menampilkan semua file <code>.html-bak</code> dari riwayat folder yang discan.</p>
-        <div id="backup-list">Belum ada riwayat folder yang dikunjungi.</div>
-        <div class="restore-actions">
-            <button class="btn btn-secondary" onclick="muatUlangBackup()">🔄 Refresh Daftar Backup</button>
-            <button class="btn btn-danger" onclick="restoreBackupTerpilih()">↩️ Restore File Terpilih</button>
-        </div>
-    </div>
+<div class="action-area" id="action-area" style="display: none;">
+<button class="btn btn-success" onclick="eksekusiPembersihan()">🚀 Eksekusi Penghapusan Massal</button>
+<div id="status">Status: Menunggu eksekusi seleksi...</div>
+</div>
+</div>
+
+<div class="restore-box">
+<h4 style="margin-top: 0; color: #fbbf24; font-size: 16px;">🔄 Automated Restore Manager</h4>
+<p style="font-size: 12px; color: #a6adc8; margin-top: -5px;">Menampilkan semua file <code>.html-bak</code> dari riwayat folder yang discan.</p>
+<div id="backup-list">Belum ada riwayat folder yang dikunjungi.</div>
+<div class="restore-actions">
+<button class="btn btn-secondary" onclick="muatUlangBackup()">🔄 Refresh Daftar Backup</button>
+<button class="btn btn-danger" onclick="restoreBackupTerpilih()">↩️ Restore File Terpilih</button>
+</div>
+</div>
 </div>
 
 <script>
-// Array global untuk menyimpan data hasil scan dari berbagai file
 let komponenTerdata = [];
 
 async function scanFileHTML() {
     const pathValue = document.getElementById('file-path').value.trim();
     const snippetValue = document.getElementById('search-snippet').value.trim();
-    
+
     if (!pathValue || !snippetValue) {
         alert("Path file/folder dan potongan kode wajib diisi, Jal!");
         return;
@@ -163,7 +162,7 @@ async function scanFileHTML() {
     const editorSection = document.getElementById('editor-section');
     const actionArea = document.getElementById('action-area');
     const statusDiv = document.getElementById('status');
-    
+
     listContainer.innerHTML = "Menyisir DOM Tree secara massal... Mohon tunggu.";
     editorSection.style.display = "block";
     actionArea.style.display = "none";
@@ -176,43 +175,41 @@ async function scanFileHTML() {
         });
 
         const data = await response.json();
-        
+
         if (data.error) {
             listContainer.innerHTML = \`<p style="color:#ef4444; padding:10px;">[ERROR] \${data.error}</p>\`;
             return;
         }
 
         komponenTerdata = data.components;
-        
-        // JIKA KOSONG (Artinya aman, nggak ada yang dobel)
+
         if (komponenTerdata.length === 0) {
             listContainer.innerHTML = '<p style="color:#a6e3a1; padding:20px; text-align:center; font-weight:bold; font-size:16px;">✨ Konten Aman! Tidak ditemukan file yang mengalami duplikasi elemen tersebut.</p>';
             return;
         }
 
-        // Tampilkan daftar jika ada
         listContainer.innerHTML = komponenTerdata.map(item => \`
-            <div class="component-item" style="\${item.isFirst ? 'border-left: 4px solid #00e676;' : 'border-left: 4px solid #ef4444;'}">
-                <input type="checkbox" id="chk-\${item.globalId}" \${item.isFirst ? 'checked' : ''}>
-                <div class="component-details">
-                    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                        <span class="badge file-badge">📄 \${item.fileName}</span>
-                        <span class="badge" style="\${item.isFirst ? 'background: #a6e3a1; color: #121214;' : 'background: #f38ba8; color: #121214;'}">
-                            \${item.isFirst ? '🎯 Instansi Pertama' : '⚠️ Duplikat (Hapus)'}
-                        </span>
-                        <span style="font-size: 11px; color: #a4a4a8;">Pembungkus: &lt;\${item.tag}&gt;</span>
-                    </div>
-                    <div class="component-code">\${escapeHtml(item.html)}</div>
-                </div>
-            </div>
+        <div class="component-item" style="\${item.isFirst ? 'border-left: 4px solid #00e676;' : 'border-left: 4px solid #ef4444;'}">
+        <input type="checkbox" id="chk-\${item.globalId}" \${item.isFirst ? 'checked' : ''}>
+        <div class="component-details">
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <span class="badge file-badge">📄 \${item.fileName}</span>
+        <span class="badge" style="\${item.isFirst ? 'background: #a6e3a1; color: #121214;' : 'background: #f38ba8; color: #121214;'}">
+        \${item.isFirst ? '🎯 Instansi Pertama' : '⚠️ Duplikat (Hapus)'}
+        </span>
+        <span style="font-size: 11px; color: #a4a4a8;">Pembungkus: &lt;\${item.tag}&gt;</span>
+        </div>
+        <div class="component-code">\${escapeHtml(item.html)}</div>
+        </div>
+        </div>
         \`).join('');
 
         const jumlahFileTerdampak = new Set(komponenTerdata.map(i => i.absolutePath)).size;
         const jumlahDuplikat = komponenTerdata.filter(i => !i.isFirst).length;
-        
+
         actionArea.style.display = "flex";
         statusDiv.innerText = \`Status: \${jumlahDuplikat} duplikat terdeteksi di dalam \${jumlahFileTerdampak} file.\`;
-        muatUlangBackup(); 
+        muatUlangBackup();
 
     } catch (err) {
         listContainer.innerHTML = '<p style="color:#ef4444; padding:10px;">Gagal terhubung ke server Bun lokal.</p>';
@@ -256,7 +253,7 @@ async function eksekusiPembersihan() {
         } else {
             alert(data.message);
             statusDiv.innerText = "Status: Eksekusi massal selesai & disimpan!";
-            scanFileHTML(); // Refresh UI setelah dihapus
+            scanFileHTML();
         }
     } catch (err) {
         alert("Koneksi bermasalah: " + err);
@@ -268,19 +265,19 @@ async function muatUlangBackup() {
     try {
         const res = await fetch('/backups');
         const data = await res.json();
-        
+
         if (!data.backups || data.backups.length === 0) {
             el.innerHTML = '<p style="color:#888; font-size:13px; margin: 0;">Tidak ada backup .html-bak di riwayat folder.</p>';
             return;
         }
 
         el.innerHTML = data.backups.map(b => \`
-            <div class="backup-item">
-                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; width:100%;">
-                    <input type="checkbox" value="\${b}">
-                    <code>\${b}</code>
-                </label>
-            </div>
+        <div class="backup-item">
+        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; width:100%;">
+        <input type="checkbox" value="\${b}">
+        <code>\${b}</code>
+        </label>
+        </div>
         \`).join('');
     } catch (err) {
         el.innerHTML = '<p style="color:#ef4444; font-size:13px;">Gagal memuat daftar backup.</p>';
@@ -317,7 +314,7 @@ function escapeHtml(text) {
 </html>
 `;
 
-// ALUR BACKEND ENGINE BUN
+// ALUR BACKEND (tidak berubah, karena menerima input user yang bisa berupa path relatif/absolut)
 Bun.serve({
     port: 5000,
     async fetch(request) {
@@ -327,11 +324,10 @@ Bun.serve({
             return new Response(htmlTemplate, { headers: { "Content-Type": "text/html; charset=utf-8" } });
         }
 
-        // ENDPOINT SCAN MASSAL (Menampilkan HANYA File dengan Duplikasi)
         if (url.pathname === "/scan" && request.method === "POST") {
             try {
                 const { targetPath, searchSnippet } = await request.json();
-                
+
                 let cleanPath = resolve(targetPath);
                 let targetFiles = [];
 
@@ -358,14 +354,13 @@ Bun.serve({
 
                 const searchNormalized = searchSnippet.replace(/\s+/g, '');
                 let allFinalMatches = [];
-                let globalCounter = 0; 
+                let globalCounter = 0;
 
-                // LOOPING KE SEMUA FILE HTML YANG DITEMUKAN
                 for (const filePath of targetFiles) {
                     const fileTarget = Bun.file(filePath);
                     const htmlContent = await fileTarget.text();
                     const $ = cheerio.load(htmlContent);
-                    
+
                     let mentahMatches = [];
 
                     $('*').each((index, element) => {
@@ -376,7 +371,6 @@ Bun.serve({
                         }
                     });
 
-                    // Array sementara buat nampung instansi milik HANYA 1 file spesifik ini
                     let tempFileMatches = [];
                     let fileKemunculanCounter = 0;
 
@@ -384,13 +378,13 @@ Bun.serve({
                         let isParent = false;
                         for (let j = 0; j < mentahMatches.length; j++) {
                             if (i === j) continue;
-                            if (mentahMatches[i].html.length > mentahMatches[j].html.length && 
+                            if (mentahMatches[i].html.length > mentahMatches[j].html.length &&
                                 mentahMatches[i].html.includes(mentahMatches[j].html)) {
                                 isParent = true;
-                                break;
-                            }
+                            break;
+                                }
                         }
-                        
+
                         if (!isParent) {
                             fileKemunculanCounter++;
                             globalCounter++;
@@ -398,15 +392,14 @@ Bun.serve({
                                 globalId: globalCounter,
                                 absolutePath: filePath,
                                 fileName: basename(filePath),
-                                domIndex: mentahMatches[i].index, 
-                                tag: mentahMatches[i].tag,
-                                html: mentahMatches[i].html,
-                                isFirst: fileKemunculanCounter === 1 
+                                                 domIndex: mentahMatches[i].index,
+                                                 tag: mentahMatches[i].tag,
+                                                 html: mentahMatches[i].html,
+                                                 isFirst: fileKemunculanCounter === 1
                             });
                         }
                     }
 
-                    // TAMPILKAN HANYA JIKA ADA DUPLIKASI (Lebih dari 1)
                     if (fileKemunculanCounter > 1) {
                         allFinalMatches.push(...tempFileMatches);
                     }
@@ -418,7 +411,6 @@ Bun.serve({
             }
         }
 
-        // ENDPOINT PROSES DELETE MASSAL
         if (url.pathname === "/process" && request.method === "POST") {
             try {
                 const { batches } = await request.json();
@@ -452,15 +444,14 @@ Bun.serve({
                     fileDiedit++;
                 }
 
-                return Response.json({ 
-                    message: `Berhasil mengeksekusi! ${elemenDihapus} elemen duplikat telah dibasmi dari ${fileDiedit} file.\n\n💾 Backup aman tersedia.` 
+                return Response.json({
+                    message: `Berhasil mengeksekusi! ${elemenDihapus} elemen duplikat telah dibasmi dari ${fileDiedit} file.\n\n💾 Backup aman tersedia.`
                 });
             } catch (e) {
                 return Response.json({ error: `Gagal menyimpan pembersihan massal: ${e.message}` }, { status: 400 });
             }
         }
 
-        // ENDPOINT GET BACKUPS
         if (url.pathname === "/backups" && request.method === "GET") {
             try {
                 const listBackup = await kumpulkanSemuaBackup();
@@ -470,7 +461,6 @@ Bun.serve({
             }
         }
 
-        // ENDPOINT RESTORE
         if (url.pathname === "/restore" && request.method === "POST") {
             try {
                 const { files } = await request.json();

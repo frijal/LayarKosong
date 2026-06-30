@@ -1,8 +1,8 @@
 import { readdir, unlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
 
-// Folder induk tempat script ini dieksekusi
-const ROOT_DIR = process.cwd();
+// === MODIFIKASI: ROOT_DIR diarahkan ke folder induk (root proyek) ===
+const ROOT_DIR = resolve(import.meta.dir, "..");
 
 /**
  * Fungsi Rekursif untuk menyisir seluruh folder dan subfolder
@@ -10,10 +10,10 @@ const ROOT_DIR = process.cwd();
 async function sisirSemuaFolder(dirPath: string, targetKeyword: string, hasil: any[] = []) {
     try {
         const list = await readdir(dirPath, { withFileTypes: true });
-        
+
         for (const item of list) {
             const fullPath = join(dirPath, item.name);
-            
+
             if (item.isDirectory()) {
                 if (item.name === "node_modules" || item.name === ".git") continue;
                 await sisirSemuaFolder(fullPath, targetKeyword, hasil);
@@ -32,7 +32,7 @@ async function sisirSemuaFolder(dirPath: string, targetKeyword: string, hasil: a
     return hasil;
 }
 
-// TEMPLATE UI UTAMA DASHBOARD
+// TEMPLATE UI (tidak berubah)
 const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="id">
@@ -137,15 +137,14 @@ async function mulaiPenyisiran() {
             return;
         }
 
-        // DI SINI SUDAH DI-ESCAPE AMAN VIA BACKSLASH (\` dan \${)
         listContainer.innerHTML = fileTerdata.map((file, idx) => \`
-            <div class="file-item">
-                <input type="checkbox" class="file-chk" data-path="\${encodeURIComponent(file.path)}">
-                <div class="file-details">
-                    <div class="file-name">📄 \${escapeHtml(file.nama)}</div>
-                    <div class="file-path">\${escapeHtml(file.path)}</div>
-                </div>
-            </div>
+        <div class="file-item">
+        <input type="checkbox" class="file-chk" data-path="\${encodeURIComponent(file.path)}">
+        <div class="file-details">
+        <div class="file-name">📄 \${escapeHtml(file.nama)}</div>
+        <div class="file-path">\${escapeHtml(file.path)}</div>
+        </div>
+        </div>
         \`).join('');
 
         statusDiv.innerText = \`Status: Ditemukan \${fileTerdata.length} file.\`;
@@ -185,14 +184,14 @@ async function eksekusiPenghapusan() {
         });
 
         const data = await response.json();
-        
+
         if (data.error) {
             alert("Ada kendala: " + data.error);
             statusDiv.innerText = "Status: Gagal menghapus.";
         } else {
             alert(data.message);
             statusDiv.innerText = "Status: Pembersihan sukses!";
-            mulaiPenyisiran(); 
+            mulaiPenyisiran();
         }
     } catch (err) {
         alert("Koneksi ke backend terputus: " + err);

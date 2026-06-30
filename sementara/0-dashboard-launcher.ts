@@ -30,49 +30,50 @@ const LAUNCHER_PORT = 4999;
 const SCRIPT_HOST = "localhost";
 const SCRIPT_PORT = 5000;
 
-const SCRIPT_DIR = import.meta.dir;
+// === MODIFIKASI: SCRIPT_DIR diarahkan ke folder induk (root proyek) ===
+const SCRIPT_DIR = resolve(import.meta.dir, "..");
 
 const scripts: ScriptItem[] = [
     {
         id: "adsense-safety-audit",
         title: "AdSense Safety Audit",
         description: "Dashboard cari/ganti teks HTML berbasis Cheerio, lengkap dengan impor CSV dan restore backup.",
-        file: "0-audit-txt.ts",
+        file: "sementara/0-audit-txt.ts",  // path relatif dari root
         dangerLevel: "warning"
     },
 {
     id: "file-hunter-destroyer",
     title: "File Hunter & Destroyer",
     description: "Mencari file berdasarkan kata kunci lalu menghapus file terpilih secara permanen.",
-    file: "0-cari-hapus.ts",
+    file: "sementara/0-cari-hapus.ts",
     dangerLevel: "danger"
 },
 {
     id: "repair-tanggal",
     title: "samakan tanggal html dengan Artikel.json",
     description: "pastikan tanggal sudah sama.",
-    file: "0-tanggal-repair.ts",
+    file: "sementara/0-tanggal-repair.ts",
     dangerLevel: "danger"
 },
 {
     id: "mass-html-duplicate-cleaner",
     title: "Mass HTML Duplicate Cleaner",
     description: "Scan duplikasi potongan HTML di banyak file, lalu hapus duplikat yang tidak dipilih.",
-    file: "0-dup-finder.ts",
+    file: "sementara/0-dup-finder.ts",
     dangerLevel: "warning"
 },
 {
-    id: "ganti teks dalam file",
+    id: "ganti-teks-dalam-file",
     title: "File Text Replacement",
     description: "ganti text dalam file.",
-    file: "0-ganti-text.ts",
+    file: "sementara/0-ganti-text.ts",
     dangerLevel: "warning"
 },
 {
     id: "dynamic-html-cleaner",
     title: "Dynamic HTML Cleaner",
     description: "Scan komponen HTML dalam satu file, lalu hapus elemen yang checkbox-nya dinonaktifkan.",
-    file: "0-komp-editor.ts",
+    file: "sementara/0-komp-editor.ts",
     dangerLevel: "warning"
 }
 ];
@@ -326,6 +327,7 @@ async function startScript(script: ScriptItem): Promise<{ ok: boolean; message: 
 
     await stopPortProcess(SCRIPT_PORT);
 
+    // === MODIFIKASI: cwd diatur ke SCRIPT_DIR (root proyek) agar script berjalan di root ===
     activeProcess = Bun.spawn(["bun", "run", scriptPath], {
         cwd: SCRIPT_DIR,
         stdout: "inherit",

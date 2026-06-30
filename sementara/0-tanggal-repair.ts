@@ -3,8 +3,8 @@ import path from 'node:path';
 import * as cheerio from 'cheerio';
 import { Glob } from 'bun';
 
-// Folder induk tempat script dieksekusi
-const ROOT_DIR = process.cwd();
+// === MODIFIKASI: ROOT_DIR diarahkan ke folder induk (root proyek) ===
+const ROOT_DIR = path.resolve(import.meta.dir, "..");
 
 // ============================================================================
 // 1. TEMPLATE UI DASHBOARD (TANGGAL REPAIR + RUQYAH + GENERATOR PRO)
@@ -19,18 +19,15 @@ const htmlTemplate = `
 <style>
 * { box-sizing: border-box; }
 body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 24px; background: #121214; color: #e1e1e6; }
-/* Lebar dashboard diperbesar hampir 100% dari layar untuk kenyamanan baca log */
 .container { width: 96%; max-width: 1600px; margin: 0 auto; background: #202024; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
 h2 { color: #facc15; border-bottom: 2px solid #29292e; padding-bottom: 10px; margin-top: 0; display: flex; align-items: center; gap: 10px; }
 
-/* Panel Input Folder */
 .folder-panel { background: #18181c; padding: 20px; border-radius: 6px; border: 1px solid #29292e; margin-bottom: 25px; }
 .folder-panel label { display: block; font-size: 14px; color: #a4a4a8; font-weight: bold; margin-bottom: 10px; }
 .input-group { display: flex; gap: 10px; margin-bottom: 15px; }
 input[type="text"] { flex: 1; padding: 12px; background: #121214; border: 1px solid #45475a; color: #e1e1e6; border-radius: 4px; font-family: monospace; font-size: 14px; outline: none; }
 input[type="text"]:focus { border-color: #facc15; }
 
-/* Tombol Global */
 .btn { padding: 12px 20px; font-size: 14px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 .btn-add { background: #4b5563; color: white; }
 .btn-add:hover { background: #6b7280; }
@@ -47,14 +44,12 @@ input[type="text"]:focus { border-color: #facc15; }
 .btn-gen:hover { background: #059669; transform: translateY(-2px); }
 .btn-gen:disabled { background: #374151; color: #9ca3af; cursor: not-allowed; transform: none; border-color: #374151; }
 
-/* Daftar Folder (Tags) */
 .folder-list { display: flex; flex-wrap: wrap; gap: 10px; min-height: 40px; padding: 10px; background: #121214; border: 1px dashed #45475a; border-radius: 4px; }
 .folder-tag { background: #29292e; color: #e1e1e6; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 8px; font-family: monospace; border: 1px solid #45475a; }
 .folder-tag span { cursor: pointer; color: #ef4444; font-weight: bold; font-size: 16px; line-height: 1; }
 .folder-tag span:hover { color: #f87171; }
 .empty-msg { color: #888; font-size: 13px; font-style: italic; margin: auto; }
 
-/* Statistik */
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
 .stat-box { background: #18181c; border: 1px solid #29292e; border-radius: 6px; padding: 15px; text-align: center; }
 .stat-box h3 { margin: 0 0 5px 0; font-size: 28px; }
@@ -63,7 +58,6 @@ input[type="text"]:focus { border-color: #facc15; }
 .color-skip { color: #3b82f6; }
 .color-error { color: #ef4444; }
 
-/* Terminal Log */
 .terminal { background: #0d0d10; color: #34d399; padding: 15px; border-radius: 6px; border: 1px solid #29292e; font-family: 'Fira Code', monospace; font-size: 14px; max-height: 400px; overflow-y: auto; margin-top: 15px; display: none; white-space: pre-wrap; line-height: 1.5; }
 
 .action-area { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; background: #18181c; padding: 15px 20px; border-radius: 6px; border: 1px solid #29292e; }
@@ -75,7 +69,7 @@ input[type="text"]:focus { border-color: #facc15; }
 <body>
 <div class="container">
 <h2>🛠️ Pusat Komando Layar Kosong</h2>
-<p style="color: #a4a4a8; font-size: 13px; margin-top: -5px;">Lokasi Akar: <code style="color: #facc15;">\${ROOT_DIR}</code></p>
+<p style="color: #a4a4a8; font-size: 13px; margin-top: -5px;">Lokasi Akar: <code style="color: #facc15;">${ROOT_DIR}</code></p>
 
 <div class="folder-panel">
 <label>Tentukan target folder (bisa dipisah koma, contoh: artikel, artikelx):</label>
@@ -141,11 +135,10 @@ function renderFolders() {
     \`).join('');
 }
 
-// Mendukung pemisahan tag berbasis koma (,)
 function tambahFolder() {
     let rawVal = folderInput.value;
     let parts = rawVal.split(',').map(s => s.trim().replace(/^\\/+/, '').replace(/\\/+$/, '')).filter(s => s);
-    
+
     let added = false;
     parts.forEach(val => {
         if (!folderArray.includes(val)) {
@@ -175,7 +168,6 @@ function periksaFolderKosong() {
     return false;
 }
 
-// ================= ACTION: SINKRONISASI =================
 async function mulaiSinkronisasi() {
     if (periksaFolderKosong()) return;
 
@@ -212,7 +204,7 @@ async function mulaiSinkronisasi() {
 
             statusDiv.innerText = data.message;
             statusDiv.style.color = "#00e676";
-            
+
             if (data.adaLog) logLink.style.display = 'block';
         }
     } catch (err) {
@@ -224,7 +216,6 @@ async function mulaiSinkronisasi() {
     }
 }
 
-// ================= ACTION: RUQYAH HTML =================
 async function jalankanRuqyahFront() {
     if (periksaFolderKosong()) return;
 
@@ -233,7 +224,7 @@ async function jalankanRuqyahFront() {
     btnRuqyah.innerHTML = "⏳ Sedang Meruqyah File HTML...";
     statusDiv.innerText = "Status: Mencabut elemen injeksi dari DOM...";
     statusDiv.style.color = "#a855f7";
-    
+
     terminalBox.style.display = 'block';
     terminalBox.style.color = "#e1e1e6";
     terminalBox.innerText = "Memulai proses pembersihan masal...";
@@ -249,8 +240,8 @@ async function jalankanRuqyahFront() {
         terminalBox.innerText = "📢 [OUTPUT RUQYAH HTML]:\\n" + data.output;
         statusDiv.innerText = "Status: Ruqyah Selesai!";
         statusDiv.style.color = "#00e676";
-        btnGen.disabled = false; // Buka kunci generator setelah ruqyah
-        
+        btnGen.disabled = false;
+
     } catch (err) {
         statusDiv.innerText = "Gagal memanggil fungsi Ruqyah: " + err;
         statusDiv.style.color = "#ef4444";
@@ -260,12 +251,11 @@ async function jalankanRuqyahFront() {
     }
 }
 
-// ================= ACTION: GENERATOR PRO =================
 async function jalankanGeneratorPro() {
     const statusDiv = document.getElementById('status');
     btnGen.disabled = true;
     btnGen.innerHTML = "⚡ Mengompilasi Sitemap & Feed...";
-    statusDiv.innerText = "Status: Menjalankan bun dapur/generator-pro.ts...";
+    statusDiv.innerText = "Status: Menjalankan bun sementara/generator-pro.ts...";
     statusDiv.style.color = "#ffb300";
 
     try {
@@ -306,17 +296,17 @@ renderFolders();
 
 const INJECTED_SELECTORS = [
     'link[href*="pemandu.css"]',
-    '#iposbrowser',
-    '#progress',
-    '#layar-kosong-header',
-    '.search-floating-container',
-    '#internal-nav',
-    'script[src*="/ext/pemandu.js"]',
-    'script[src*="/ext/iposbrowser.js"]',
-    'script[src*="/ext/lightbox.js"]',
-    'script[src*="/ext/response.js"]',
-    'script[src*="/ext/balon-cf.js"]',
-    'script[src*="/ext/highlight.js"]'
+'#iposbrowser',
+'#progress',
+'#layar-kosong-header',
+'.search-floating-container',
+'#internal-nav',
+'script[src*="/ext/pemandu.js"]',
+'script[src*="/ext/iposbrowser.js"]',
+'script[src*="/ext/lightbox.js"]',
+'script[src*="/ext/response.js"]',
+'script[src*="/ext/balon-cf.js"]',
+'script[src*="/ext/highlight.js"]'
 ];
 
 const FOOTER_EMOJIS = ["☕", "🛡️", "⚠️", "📝", "📚", "🔰", "⚔️"];
@@ -376,7 +366,7 @@ async function jalankanProsesRuqyah(targetFolders: string[]) {
             for await (const file of glob.scan({ cwd: fullFolderPath, absolute: true })) {
                 const htmlContent = await fs.readFile(file, 'utf-8');
                 const { html, changes } = ruqyahHtmlCore(htmlContent);
-                
+
                 if (changes > 0) {
                     await fs.writeFile(file, html, 'utf-8');
                     totalFileBerubah++;
@@ -389,7 +379,7 @@ async function jalankanProsesRuqyah(targetFolders: string[]) {
             logOutput += `❌ Lewati folder ${folder} (tidak ditemukan atau error memindai)\n`;
         }
     }
-    
+
     if (totalFileBerubah === 0) {
         logOutput += `\n✨ Mantap! Semua file di folder terpilih sudah suci dari injeksi.\n`;
     } else {
@@ -400,7 +390,7 @@ async function jalankanProsesRuqyah(targetFolders: string[]) {
 }
 
 // ============================================================================
-// 2B. LOGIKA SINKRONISASI TANGGAL (TETAP SAMA SEPERTI SEBELUMNYA)
+// 2B. LOGIKA SINKRONISASI TANGGAL
 // ============================================================================
 type ArtikelData = [string, string, string, string, string];
 
@@ -409,6 +399,7 @@ function getRandomDate(start: Date, end: Date): Date {
 }
 
 async function jalankanSinkronisasi(targetFolders: string[]) {
+    // === MODIFIKASI: Semua path file diarahkan ke ROOT_DIR (root proyek) ===
     const jsonPath = path.join(ROOT_DIR, 'artikel.json');
     const logPath = path.join(ROOT_DIR, 'laporan-gagal.txt');
     const sitemapPath = path.join(ROOT_DIR, 'sitemap.txt');
@@ -507,7 +498,7 @@ async function jalankanSinkronisasi(targetFolders: string[]) {
 }
 
 // ============================================================================
-// 3. RUNTIME SERVER (BUN.SERVE)
+// 3. RUNTIME SERVER
 // ============================================================================
 Bun.serve({
     port: 5000,
@@ -525,7 +516,6 @@ Bun.serve({
             } catch (e) { return Response.json({ error: "Gagal memproses data sinkronisasi." }); }
         }
 
-        // ENDPOINT BARU: RUQYAH HTML
         if (url.pathname === "/run-ruqyah" && request.method === "POST") {
             try {
                 const body = await request.json();
@@ -535,6 +525,7 @@ Bun.serve({
 
         if (url.pathname === "/run-generator" && request.method === "POST") {
             try {
+                // === MODIFIKASI: Path generator-pro.ts tetap di dalam folder dapur ===
                 const scriptPath = path.join(ROOT_DIR, "dapur", "generator-pro.ts");
                 const proc = Bun.spawn(["bun", scriptPath], { stdout: "pipe", stderr: "pipe" });
                 const stdoutText = await new Response(proc.stdout).text();

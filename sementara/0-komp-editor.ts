@@ -35,7 +35,7 @@ async function kumpulkanSemuaBackup() {
     return semuaBackup;
 }
 
-// TEMPLATE UI UTAMA DASHBOARD DYNAMIC CLEANER
+// TEMPLATE UI (tidak berubah)
 const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="id">
@@ -94,7 +94,7 @@ h3 { margin-top: 30px; color: #3b82f6; border-bottom: 1px solid #29292e; padding
 <div class="path-input-box">
 <label for="file-path">Absolute Path File HTML Target:</label>
 <div class="path-row">
-<input type="text" id="file-path" placeholder="Contoh: D:/projects/site/index.html atau ../folder-lain/artikel.html">
+<input type="text" id="file-path" placeholder="Contoh: ../index.html atau ../../folder-lain/artikel.html">
 <button class="btn btn-primary" onclick="scanFileHTML()">🔍 Scan Komponen</button>
 </div>
 <span style="font-size: 11px; color: #89block; color:#a6adc8;">💡 Tip: Salin alamat path lengkap file dari File Explorer lalu paste di atas untuk beroperasi antar folder.</span>
@@ -177,7 +177,7 @@ async function scanFileHTML() {
         \`).join('');
 
         statusDiv.innerText = \`Status: Ditemukan \${komponenTerdata.length} komponen siap difilter.\`;
-        muatUlangBackup(); // Auto refresh bagian restore karena folder terdaftar bertambah
+        muatUlangBackup();
 
     } catch (err) {
         listContainer.innerHTML = '<p style="color:#ef4444; padding:10px;">Gagal terhubung ke server Bun lokal.</p>';
@@ -188,7 +188,6 @@ async function eksekusiPembersihan() {
     const pathValue = document.getElementById('file-path').value.trim();
     const statusDiv = document.getElementById('status');
 
-    // Cari index mana saja yang checkbox-nya DILEPAS (artinya mau dibuang)
     const indexDibuang = [];
     komponenTerdata.forEach(item => {
         const chk = document.getElementById(\`chk-\${item.index}\`);
@@ -213,7 +212,7 @@ async function eksekusiPembersihan() {
         } else {
             alert(data.message);
             statusDiv.innerText = "Status: File berhasil diperbarui dengan aman!";
-            scanFileHTML(); // Muat ulang visual komponen setelah pembersihan sukses
+            scanFileHTML();
         }
     } catch (err) {
         alert("Koneksi bermasalah: " + err);
@@ -267,7 +266,6 @@ async function restoreBackupTerpilih() {
         alert(data.message);
         muatUlangBackup();
 
-        // Opsional: Muat ulang panel editor atas jika file yang di-restore kebetulan sedang dibuka
         const currentPath = document.getElementById('file-path').value.trim();
         if (currentPath) scanFileHTML();
     } catch (err) {
@@ -289,126 +287,114 @@ Bun.serve({
     async fetch(request) {
         const url = new URL(request.url);
 
-        // ✨ INI DIA VARIABEL AJAIBNYA: Taruh semua target di sini agar mudah ditambah/dikurangi
         const TARGET_SELECTOR = 'div[id], script[defer][src], link[href], a#layar-kosong-header, div.search-floating-container, section#related-marquee-section';
 
-        // Halaman Utama UI Dashboard
-        if (url.pathname === "/" && request.method === "GET") {
-            return new Response(htmlTemplate, {
-                headers: { "Content-Type": "text/html; charset=utf-8" },
+if (url.pathname === "/" && request.method === "GET") {
+    return new Response(htmlTemplate, {
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+    });
+}
+
+if (url.pathname === "/scan" && request.method === "POST") {
+    try {
+        const { filePath } = await request.json();
+        const absolutePath = resolve(filePath);
+        const fileTarget = Bun.file(absolutePath);
+
+        if (!(await fileTarget.exists())) {
+            return Response.json({ error: "File tidak ditemukan! Periksa kembali penulisan path filenya." }, { status: 404 });
+        }
+
+        riwayatFolder.add(dirname(absolutePath));
+
+        const htmlContent = await fileTarget.text();
+        const $ = cheerio.load(htmlContent);
+        const components = [];
+
+        $(TARGET_SELECTOR).each((index, element) => {
+            components.push({
+                index: index,
+                tag: element.name,
+                html: $.html(element)
             });
+        });
+
+        return Response.json({ components });
+    } catch (e) {
+        return Response.json({ error: `Gagal membedah dokumen: ${e.message}` }, { status: 400 });
+    }
+}
+
+if (url.pathname === "/process" && request.method === "POST") {
+    try {
+        const { filePath, removeIndices } = await request.json();
+        const absolutePath = resolve(filePath);
+        const fileTarget = Bun.file(absolutePath);
+
+        if (!(await fileTarget.exists())) {
+            return Response.json({ error: "File target mendadak hilang sebelum diproses." }, { status: 404 });
         }
 
-        // Endpoint SCAN Komponen Target HTML
-        if (url.pathname === "/scan" && request.method === "POST") {
-            try {
-                const { filePath } = await request.json();
-                const absolutePath = resolve(filePath);
-                const fileTarget = Bun.file(absolutePath);
+        const originalHtml = await fileTarget.text();
+        const $ = cheerio.load(originalHtml);
 
-                if (!(await fileTarget.exists())) {
-                    return Response.json({ error: "File tidak ditemukan! Periksa kembali penulisan path filenya." }, { status: 404 });
-                }
+        $(TARGET_SELECTOR).each((index, element) => {
+            if (removeIndices.includes(index)) {
+                $(element).remove();
+            }
+        });
 
-                // Catat direktori induk file ini ke riwayat tracking untuk manajemen Restore
-                riwayatFolder.add(dirname(absolutePath));
+        const backupPath = `${absolutePath}-bak`;
+        const fileBackup = Bun.file(backupPath);
+        if (!(await fileBackup.exists())) {
+            await Bun.write(backupPath, originalHtml);
+        }
 
-                const htmlContent = await fileTarget.text();
-                const $ = cheerio.load(htmlContent);
-                const components = [];
+        const hasilHtmlBersih = $.html();
+        await Bun.write(absolutePath, hasilHtmlBersih);
 
-                // ✨ Panggil variabel TARGET_SELECTOR di sini
-                $(TARGET_SELECTOR).each((index, element) => {
-                    components.push({
-                        index: index,
-                        tag: element.name,
-                        html: $.html(element) // Ambil markup tag utuhnya untuk visualisasi frontend
-                    });
-                });
+        return Response.json({
+            message: `Sukses memotong ${removeIndices.length} komponen! File asli telah diperbarui.\n\n💾 Backup aman tersedia di lokasi yang sama.`
+        });
+    } catch (e) {
+        return Response.json({ error: `Gagal mengedit kode file: ${e.message}` }, { status: 400 });
+    }
+}
 
-                return Response.json({ components });
-            } catch (e) {
-                return Response.json({ error: `Gagal membedah dokumen: ${e.message}` }, { status: 400 });
+if (url.pathname === "/backups" && request.method === "GET") {
+    try {
+        const listBackup = await kumpulkanSemuaBackup();
+        return Response.json({ backups: listBackup });
+    } catch (e) {
+        return Response.json({ error: e.message }, { status: 500 });
+    }
+}
+
+if (url.pathname === "/restore" && request.method === "POST") {
+    try {
+        const { files } = await request.json();
+        let suksesCount = 0;
+
+        for (const bPath of files) {
+            if (!bPath.endsWith("-bak")) continue;
+
+            const fileBackup = Bun.file(bPath);
+            if (await fileBackup.exists()) {
+                const originalPath = bPath.slice(0, -"-bak".length);
+                const dataAsli = await fileBackup.text();
+
+                await Bun.write(originalPath, dataAsli);
+                suksesCount++;
             }
         }
 
-        // Endpoint PROSES & SIMPAN (Hapus baris yang di-uncheck)
-        if (url.pathname === "/process" && request.method === "POST") {
-            try {
-                const { filePath, removeIndices } = await request.json();
-                const absolutePath = resolve(filePath);
-                const fileTarget = Bun.file(absolutePath);
+        return Response.json({ message: `Berhasil mengembalikan ${suksesCount} file ke kondisi original awal!` });
+    } catch (e) {
+        return Response.json({ error: `Proses restore gagal: ${e.message}` }, { status: 400 });
+    }
+}
 
-                if (!(await fileTarget.exists())) {
-                    return Response.json({ error: "File target mendadak hilang sebelum diproses." }, { status: 404 });
-                }
-
-                const originalHtml = await fileTarget.text();
-                const $ = cheerio.load(originalHtml);
-
-                // ✨ Panggil variabel TARGET_SELECTOR yang sama persis di sini untuk menjaga urutan Index
-                $(TARGET_SELECTOR).each((index, element) => {
-                    if (removeIndices.includes(index)) {
-                        $(element).remove();
-                    }
-                });
-
-                // Otomatis bikin backup .html-bak di folder asal & nama file yang sama (Hanya jika file backup belum ada)
-                const backupPath = `${absolutePath}-bak`;
-                const fileBackup = Bun.file(backupPath);
-                if (!(await fileBackup.exists())) {
-                    await Bun.write(backupPath, originalHtml);
-                }
-
-                // Tulis konten baru yang bersih dari komponen yang di-uncheck
-                const hasilHtmlBersih = $.html();
-                await Bun.write(absolutePath, hasilHtmlBersih);
-
-                return Response.json({
-                    message: `Sukses memotong ${removeIndices.length} komponen! File asli telah diperbarui.\n\n💾 Backup aman tersedia di lokasi yang sama.`
-                });
-            } catch (e) {
-                return Response.json({ error: `Gagal mengedit kode file: ${e.message}` }, { status: 400 });
-            }
-        }
-
-        // Endpoint GET BACKUPS dari kumpulan riwayat folder dikunjungi
-        if (url.pathname === "/backups" && request.method === "GET") {
-            try {
-                const listBackup = await kumpulkanSemuaBackup();
-                return Response.json({ backups: listBackup });
-            } catch (e) {
-                return Response.json({ error: e.message }, { status: 500 });
-            }
-        }
-
-        // Endpoint RESTORE untuk file terpilih
-        if (url.pathname === "/restore" && request.method === "POST") {
-            try {
-                const { files } = await request.json();
-                let suksesCount = 0;
-
-                for (const bPath of files) {
-                    if (!bPath.endsWith("-bak")) continue;
-
-                    const fileBackup = Bun.file(bPath);
-                    if (await fileBackup.exists()) {
-                        // Kembalikan nama ke ekstensi file aslinya (.html)
-                        const originalPath = bPath.slice(0, -"-bak".length);
-                        const dataAsli = await fileBackup.text();
-
-                        await Bun.write(originalPath, dataAsli);
-                        suksesCount++;
-                    }
-                }
-
-                return Response.json({ message: `Berhasil mengembalikan ${suksesCount} file ke kondisi original awal!` });
-            } catch (e) {
-                return Response.json({ error: `Proses restore gagal: ${e.message}` }, { status: 400 });
-            }
-        }
-
-        return new Response("Not Found", { status: 404 });
+return new Response("Not Found", { status: 404 });
     },
 });
 

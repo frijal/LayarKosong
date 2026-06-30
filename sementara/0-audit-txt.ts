@@ -1,8 +1,9 @@
 import { readdir, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import * as cheerio from "cheerio"; // ➔ Integrasi Cheerio
+import * as cheerio from "cheerio";
 
-const TARGET_DIR = ".";
+// === MODIFIKASI: TARGET_DIR diarahkan ke folder induk (root proyek) ===
+const TARGET_DIR = resolve(import.meta.dir, "..");
 
 /**
  * Fungsi pembantu buat nge-escape karakter khusus regex.
@@ -57,36 +58,28 @@ async function dapatkanFileBackup(dir) {
 
 /**
  * Memproses file menggunakan CHEERIO & DOM Traversal.
- * Super aman karena tidak akan merusak struktur tag, atribut, class, id, atau script HTML.
  */
 async function prosesFile(filePath, kamusKustom) {
     try {
         const file = Bun.file(filePath);
         const original = await file.text();
 
-        // Load HTML ke Cheerio
         const $ = cheerio.load(original);
         let adaPerubahan = false;
-
-        // Pakai Set biar log tidak banjir duplikat jika 1 kata ditemukan 50 kali di 1 file
         let rincianPerubahan = new Set();
 
-        // Compile regex di awal biar performa looping lebih kencang
         const aturanAktif = kamusKustom
         .filter(item => item.cari)
         .map(item => ({
-            pola: new RegExp(escapeRegExp(item.cari), "gi"), // Case-Insensitive
+            pola: new RegExp(escapeRegExp(item.cari), "gi"),
                       ganti: item.ganti || "",
                       asli: item.cari
         }));
 
         if (aturanAktif.length === 0) return null;
 
-        // Sisir SEMUA elemen KECUALI tag yang sensitif secara fungsional
         $('*').not('script, style, noscript, head, meta, link').each(function() {
-            // Loop ke setiap child node dari elemen spesifik ini
             $(this).contents().each(function() {
-                // nodeType === 3 artinya kita cuma nargetin "Text Node" (teks murni yang dibaca user)
                 if (this.nodeType === 3) {
                     let textTampung = this.data;
                     let textBerubah = false;
@@ -100,7 +93,6 @@ async function prosesFile(filePath, kamusKustom) {
                         }
                     }
 
-                    // Kalau teksnya emang kena operasi replace, update node-nya
                     if (textBerubah) {
                         this.data = textTampung;
                     }
@@ -109,17 +101,15 @@ async function prosesFile(filePath, kamusKustom) {
         });
 
         if (adaPerubahan) {
-            const content = $.html(); // Generate balik DOM ke string HTML
+            const content = $.html();
             const backupPath = `${filePath}-bak`;
             const fileBackup = Bun.file(backupPath);
 
-            // Cek dulu, jangan overwrite versi perawan (backup asli)
             if (!(await fileBackup.exists())) {
                 await Bun.write(backupPath, original);
             }
 
             await Bun.write(filePath, content);
-            // Array.from biar Set bisa di-join
             return `[BERHASIL] ${filePath}\n   ➔ Perubahan: ${Array.from(rincianPerubahan).join(", ")}\n   💾 Backup: ${backupPath}`;
         }
 
@@ -129,7 +119,7 @@ async function prosesFile(filePath, kamusKustom) {
     }
 }
 
-// TEMPLATE UI BROWSER DENGAN INTEGRASI CSV, LAYOUT STACKED, & RESTORE MANAGER
+// TEMPLATE UI BROWSER (sama seperti sebelumnya)
 const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="id">
@@ -152,7 +142,6 @@ th, td { border: 1px solid #29292e; padding: 15px; text-align: left; vertical-al
 th { background: #29292e; color: #00e676; }
 tr:nth-child(even) { background: #18181c; }
 
-/* CSS layout bersusun (stacked) */
 .aturan-box { display: flex; flex-direction: column; gap: 8px; }
 .label-cari { color: #f38ba8; font-size: 13px; font-weight: bold; }
 .label-ganti { color: #a6e3a1; font-size: 13px; font-weight: bold; margin-top: 8px; }
@@ -176,11 +165,9 @@ input[type="number"] { width: 60px; padding: 8px; background: #121214; border: 1
 #status { font-style: italic; color: #ffb300; font-weight: bold; font-size: 15px; }
 #logs { background: #121214; color: #00e676; padding: 20px; margin-top: 20px; height: 300px; overflow-y: auto; font-family: 'Fira Code', monospace; border-radius: 5px; border: 1px solid #29292e; white-space: pre-wrap; font-size: 13px; }
 
-/* CSV Box CSS */
 .csv-box { background: #18181c; padding: 20px; border-radius: 6px; border: 1px solid #29292e; margin-top: 40px; }
 #csv-input { width: 100%; height: 120px; background: #121214; color: #a6e3a1; border: 1px solid #45475a; border-radius: 4px; padding: 10px; font-family: monospace; font-size: 12px; resize: vertical; }
 
-/* Restore Manager CSS */
 .restore-box { background: #18181c; padding: 20px; border-radius: 6px; border: 1px solid #29292e; margin-top: 24px; }
 .backup-item { background: #202024; padding: 8px 12px; margin: 6px 0; border-radius: 4px; font-size: 12px; }
 .backup-item label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
@@ -244,7 +231,6 @@ input[type="number"] { width: 60px; padding: 8px; background: #121214; border: 1
 <script>
 const tbody = document.getElementById('kamus-body');
 
-// FUNGSI MENAMBAH BARIS DENGAN FORMAT STACKED (ATAS BAWAH)
 function tambahBaris(cariText = "", gantiText = "") {
     const tr = document.createElement('tr');
     tr.innerHTML = \`
@@ -293,7 +279,6 @@ function updateStatusText() {
     document.getElementById('status').innerText = \`Status: Standby. \${total} data pemicu siap dieksekusi.\`;
 }
 
-// ENGINE PENGURAI TEXT CSV MENTAH SECARA AKURAT
 function imporDataCSV() {
     const rawCSV = document.getElementById('csv-input').value.trim();
     if(!rawCSV) {
@@ -389,7 +374,6 @@ async function jalankanProses() {
     }
 }
 
-// ====== RESTORE MANAGER ======
 async function muatDaftarBackup() {
     const el = document.getElementById('backup-list');
     el.innerHTML = "Memuat daftar backup...";
@@ -439,7 +423,7 @@ muatDaftarBackup();
 </html>
 `;
 
-// LIVE SERVER BUN
+// === MODIFIKASI: SERVER tetap sama, menggunakan TARGET_DIR yang sudah diarahkan ke root ===
 Bun.serve({
     port: 5000,
     async fetch(request) {
