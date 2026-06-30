@@ -298,7 +298,7 @@
           @page { size: A4; margin: 10mm; }
         }
     </style>
-</head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <header class="toolbar no-print" id="toolbar">
         <div class="toolbar-left">
@@ -306,7 +306,7 @@
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
             </svg>
-            <h1 class="toolbar-title"><a href="/" style="text-decoration: none; color: inherit;">Invoices Penyewaan bisa di Ubah Sesukanya.</a></h1>
+            <div id="iposbrowser"></div><h1 class="toolbar-title"><a href="/" style="text-decoration: none; color: inherit;">Invoices Penyewaan bisa di Ubah Sesukanya.</a></h1>
         </div>
         <div class="toolbar-center">
             <div class="template-selector" id="templateSelector">
@@ -937,5 +937,5 @@ No KTP: 6471...
     })();
     </script>
 <noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
-
-<script defer="" src="/ext/pemandu.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<section id="related-marquee-section"></section>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
