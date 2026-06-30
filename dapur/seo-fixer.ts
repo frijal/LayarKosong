@@ -9,6 +9,14 @@ const BASE_URL      = "https://dalam.web.id";
 const TARGET_FOLDER = process.argv[2] || "artikel";
 const CHUNK_SIZE    = 10;
 
+// 🔧 FIX: User-Agent identitas jelas + kontak, BUKAN spoof browser Chrome.
+// Wikimedia (dan situs lain) sejak 2025-2026 mulai rate-limit/blokir UA generik
+// atau UA browser palsu tanpa identitas. UA yang jujur dengan kontak justru
+// diperlakukan lebih baik karena dikenali sebagai "compliant client".
+// Ganti bagian kontak sesuai kebutuhan (email/halaman about kamu).
+const MIRROR_USER_AGENT =
+  "LayarKosongImageMirror/1.0 (+https://dalam.web.id/about; kontak via halaman /about) Bun-fetch";
+
 // Set Lock untuk mencegah Race Condition (TOCTOU) saat parallel download
 const downloadingUrls = new Set<string>();
 
@@ -156,16 +164,21 @@ if (await fileTarget.exists()) {
 return `/${localPath.replace(/\\/g, "/")}`;
 }
 
-// Fix Fetch Timeout (15 detik)
+// Fix Fetch Timeout (20 detik — sedikit dilonggarkan dari 15 detik,
+// beberapa CDN pihak ketiga butuh waktu lebih untuk merespons)
 const response = await fetch(externalUrl, {
-signal: AbortSignal.timeout(15_000),
+signal: AbortSignal.timeout(20_000),
 headers: {
-"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+"User-Agent": MIRROR_USER_AGENT
 }
 });
 
 if (!response.ok) {
-throw new Error(`Download Gagal: ${response.status}`);
+// 🔧 FIX: log status + URL biar kegagalan KELIHATAN, bukan ditelan diam-diam.
+// Status 403 dari domain seperti upload.wikimedia.org biasanya menandakan
+// User-Agent ditolak / rate-limited, bukan masalah jaringan biasa.
+console.warn(`⚠️  Mirror gagal [${response.status} ${response.statusText}]: ${externalUrl}`);
+throw new Error(`Download Gagal: ${response.status} ${response.statusText}`);
 }
 
 const buffer = Buffer.from(await response.arrayBuffer());
@@ -192,7 +205,12 @@ return `/${localPath.replace(/\\/g, "/")}`;
 } finally {
 downloadingUrls.delete(cleanUrl);
 }
-} catch (e) {
+} catch (e: any) {
+// 🔧 FIX: log alasan kegagalan SEBELUM fallback diam-diam ke URL asli.
+// Tanpa ini, mustahil membedakan timeout, 403 dari Wikimedia, DNS gagal,
+// atau sharp gagal decode buffer — semuanya akan terlihat "baik-baik saja"
+// padahal gambar tidak pernah ter-mirror.
+console.error(`❌ mirrorAndConvert gagal untuk ${externalUrl}: ${e?.message || e}`);
 return externalUrl; // Fallback ke URL asli jika error/timeout
 }
 }
@@ -219,6 +237,10 @@ if (src && src.startsWith("http")) {
 const localPath = await mirrorAndConvert(src, baseUrl);
 if (localPath.startsWith("/img")) {
 $(el).attr("src", `${baseUrl}${localPath}`);
+} else {
+// 🔧 FIX: tandai eksplisit di log kalau sebuah <img> gagal di-mirror
+// dan tetap memakai URL eksternal asli — biar kelihatan di ringkasan run.
+console.warn(`   ↳ <img> tetap memakai URL eksternal (mirror gagal): ${src}`);
 }
 }
 }));
@@ -489,7 +511,8 @@ await Bun.write(file, finalHtml);
 async function fixSEO() {
 const baseUrl = BASE_URL;
 console.log("🧼 Memulai SEO Fixer v2 (Bun Turbo TS Mode)");
-console.log("🔒 SEO Timestamp: published_time ≤ modified_time GUARANTEED\n");
+console.log("🔒 SEO Timestamp: published_time ≤ modified_time GUARANTEED");
+console.log(`🪪 Mirror User-Agent: ${MIRROR_USER_AGENT}\n`);
 
 const startTime = performance.now();
 const glob = new Glob(`${TARGET_FOLDER}/*.html`);
