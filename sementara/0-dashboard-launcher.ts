@@ -784,7 +784,7 @@ async function renderHome(): Promise<Response> {
     <main>
     <header>
     <h1>Bun Multi Dashboard Launcher</h1>
-    <p>Satu halaman pemicu untuk menjalankan 4 dashboard Bun. Setiap tombol membuka tab baru. Karena semua script memakai port <code>${SCRIPT_PORT}</code>, launcher akan mematikan proses di port tersebut sebelum menjalankan script lain.</p>
+    <p>Satu halaman pemicu untuk menjalankan beragam dashboard Bun. Setiap tombol membuka tab baru. Karena semua script memakai port <code>${SCRIPT_PORT}</code>, launcher akan mematikan proses di port tersebut sebelum menjalankan script lain.</p>
     </header>
 
     <section class="notice">
