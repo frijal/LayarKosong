@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * pemandu.ts v7.6 (Clean Core - Related Grid 6 Items Random & Excluded)
+ * pemandu.ts v7.7 (Clean Core - Related Grid + Anti-404 Image Fallback Chain)
  * =================================================================================
  */
 
@@ -67,6 +67,63 @@ function getCategoryInfo(fileName: string, allData: any) {
   }
 
   return null;
+}
+
+// ---------------------------
+// 1b. IMAGE FALLBACK CHAIN (Anti-404)
+// ---------------------------
+
+const BROKEN_IMG_CLASS = 'img-broken-placeholder';
+let fallbackStyleInjected = false;
+
+/**
+ * Suntik style sekali aja untuk placeholder visual kalau semua sumber gambar gagal.
+ * Pakai inline SVG sebagai background-image, jadi NOL request tambahan ke server.
+ */
+function ensureFallbackStyleInjected(): void {
+  if (fallbackStyleInjected) return;
+  fallbackStyleInjected = true;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .${BROKEN_IMG_CLASS} {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      background-color: #1a1a1c;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='1.5'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='M21 15l-5-5L5 21'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 32%;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+/**
+ * Pasang fallback chain ke satu elemen <img>.
+ * Urutan: src saat ini gagal -> coba list fallback satu-satu -> kalau semua gagal, ganti jadi placeholder visual.
+ * Counter per-elemen mencegah infinite loop walau seluruh chain ternyata 404 semua.
+ */
+function attachImageFallback(img: HTMLImageElement, fallbackChain: string[]): void {
+  // Buang duplikat & entry kosong, jaga-jaga kalau src awal kebetulan sama dgn salah satu fallback
+  const chain = [...new Set(fallbackChain.filter(Boolean))];
+  let step = 0;
+
+  function handleError(): void {
+    if (step < chain.length) {
+      img.src = chain[step];
+      step++;
+    } else {
+      img.removeEventListener('error', handleError);
+      ensureFallbackStyleInjected();
+      img.classList.add(BROKEN_IMG_CLASS);
+      img.removeAttribute('src'); // stop browser dari nyoba re-fetch src lama
+      img.alt = img.alt || 'Gambar tidak tersedia';
+    }
+  }
+
+  img.addEventListener('error', handleError);
 }
 
 // ---------------------------
@@ -269,8 +326,10 @@ function initRelatedGrid(allData: any, currentFile: string): void {
   const catInfo = getCategoryInfo(currentFile, allData);
   if (!catInfo) {
     grid.style.display = 'none';
-return;
+    return;
   }
+
+  const STATIC_FALLBACK = '/thumbnail-sm.webp';
 
   // 1. Filter: Cegah currentFile muncul di daftar
   // 2. Sort: Acak posisi secara dinamis (Math.random)
@@ -285,29 +344,42 @@ return;
     return;
   }
 
-  grid.innerHTML = related.map((item: any) => {
-    const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : '/thumbnail-sm.webp';
+  grid.innerHTML = related.map((item: any, idx: number) => {
+    const original = item.image || STATIC_FALLBACK;
+    const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
 
-  return `
-  <div class="rel-card-mini">
-  <a href="${getFullUrl(item.id, allData)}">
-  <div class="rel-img-mini">
-  <img
-  class="lk-related-thumb"
-  src="${rg}"
-  alt="${item.title}"
-  width="120"
-  height="100"
-  loading="lazy"
-  decoding="async">
-  </div>
-  <div class="rel-info-mini">
-  <h4>${item.title}</h4>
-  </div>
-  </a>
-  </div>
-  `;
+    return `
+    <div class="rel-card-mini">
+    <a href="${getFullUrl(item.id, allData)}">
+    <div class="rel-img-mini">
+    <img
+    class="lk-related-thumb"
+    data-fallback-idx="${idx}"
+    src="${rg}"
+    alt="${item.title}"
+    width="120"
+    height="100"
+    loading="lazy"
+    decoding="async">
+    </div>
+    <div class="rel-info-mini">
+    <h4>${item.title}</h4>
+    </div>
+    </a>
+    </div>
+    `;
   }).join('');
+
+  // Pasang fallback chain per gambar: -rg.webp gagal -> gambar asli -> placeholder statis -> placeholder visual
+  const imgs = grid.querySelectorAll<HTMLImageElement>('.lk-related-thumb[data-fallback-idx]');
+  imgs.forEach((img) => {
+    const idx = Number(img.dataset.fallbackIdx);
+    const item = related[idx];
+    if (!item) return;
+
+    const original = item.image || STATIC_FALLBACK;
+    attachImageFallback(img, [original, STATIC_FALLBACK]);
+  });
 }
 
 function initKeyboardNav(allData: any, currentFile: string): void {
