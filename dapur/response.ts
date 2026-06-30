@@ -1,10 +1,11 @@
 /**
  * Twikoo Loader for Layar Kosong
  * Versi: 1.7.13
+ * Target: #response
  */
 (function() {
     const TWIKOO_ENV_ID = 'https://kom.dalam.web.id';
-    const TWIKOO_CONTAINER_ID = '#tcomment';
+    const TWIKOO_CONTAINER_ID = '#response';
     const TWIKOO_CDN = 'https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js';
 
     // Fungsi untuk memuat script
@@ -23,7 +24,7 @@
                 envId: TWIKOO_ENV_ID,
                 el: TWIKOO_CONTAINER_ID,
             });
-            console.log('Twikoo 1.7.13 initialized successfully!');
+            console.log('Twikoo 1.7.13 muncul di #response!');
         }
     }
 
