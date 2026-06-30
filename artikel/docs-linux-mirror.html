@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Mirror">
     <meta property="article:tag" content="Sysadmin">
@@ -61,7 +61,7 @@
     <meta property="article:tag" content="Arch Linux">
     <meta property="article:tag" content="Fedora">
     <meta property="article:published_time" content="2025-09-25T08:00:00.000Z">
-    <meta property="article:modified_time" content="2025-09-25T08:00:00.000Z">
+    <meta property="article:modified_time" content="2026-05-04T05:21:12.277Z">
     <style>
         /* ── Reset & Base ── */
         *,
@@ -552,11 +552,11 @@
         <article>
             <!-- ═══ HEADER ═══ -->
             <header>
-                <div id="iposbrowser"></div><h1>&#x1f310; Panduan Lengkap Memilih Mirror Tercepat untuk Semua Distro Linux</h1>
-                <p class="lead">Optimalkan kecepatan unduh paket dan pembaruan sistem dengan memilih mirror terbaik &#x2014; panduan praktis untuk Debian, Ubuntu, Arch, Fedora, openSUSE, Slackware, dan NixOS.</p>
+                <div id="iposbrowser"></div><h1>🌐 Panduan Lengkap Memilih Mirror Tercepat untuk Semua Distro Linux</h1>
+                <p class="lead">Optimalkan kecepatan unduh paket dan pembaruan sistem dengan memilih mirror terbaik — panduan praktis untuk Debian, Ubuntu, Arch, Fedora, openSUSE, Slackware, dan NixOS.</p>
             </header>
             <!-- ═══ PEMBUKA ═══ -->
-            <p>Salah satu faktor yang paling memengaruhi kenyamanan menggunakan Linux adalah kecepatan saat mengunduh paket atau melakukan pembaruan sistem. Di balik layar, setiap distribusi Linux mengandalkan jaringan <b>mirror</b> &#x2014; server yang menyimpan salinan repositori perangkat lunak. Semakin dekat dan cepat mirror yang Anda gunakan, semakin cepat pula proses instalasi dan pembaruan berjalan.</p>
+            <p>Salah satu faktor yang paling memengaruhi kenyamanan menggunakan Linux adalah kecepatan saat mengunduh paket atau melakukan pembaruan sistem. Di balik layar, setiap distribusi Linux mengandalkan jaringan <b>mirror</b> — server yang menyimpan salinan repositori perangkat lunak. Semakin dekat dan cepat mirror yang Anda gunakan, semakin cepat pula proses instalasi dan pembaruan berjalan.</p>
             <p>Namun, tidak semua mirror diciptakan sama. Letak geografis, beban server, dan kebijakan bandwidth membuat kecepatan antar-mirror bisa sangat bervariasi. Inilah sebabnya mengapa setiap distro menyediakan tool khusus untuk membantu pengguna memilih mirror tercepat. Artikel ini akan memandu Anda lintas distro, dari Debian hingga NixOS, dengan skrip siap pakai yang langsung bisa dijalankan.</p>
             <!-- ═══ GAMBAR PERTAMA (LCP) ═══ -->
             <img src="https://dalam.web.id/img/raw.githubusercontent.com/157109ca704fa3cb.webp" alt="Ilustrasi pemilihan mirror Linux tercepat untuk berbagai distro" width="1200" height="630" fetchpriority="high" decoding="async" loading="eager">
@@ -564,7 +564,7 @@
             <p>Memilih mirror yang tepat bukan hanya soal kecepatan unduh, tetapi juga stabilitas dan keandalan. Mirror resmi biasanya lebih stabil, sementara mirror komunitas atau regional bisa menawarkan kecepatan lebih tinggi namun dengan ketersediaan yang bervariasi. Di sisi lain, menggunakan mirror yang tidak resmi atau usang bisa menyebabkan kegagalan verifikasi tanda tangan GPG atau paket yang tidak cocok dengan versi sistem Anda.</p>
             <p>Untuk membantu Anda menavigasi pilihan ini, setiap distribusi Linux memiliki pendekatan yang sedikit berbeda. Ada yang menggunakan tool otomatis berbasis pengukuran latensi, ada pula yang mengandalkan konfigurasi manual. Di bawah ini, kami sajikan ringkasan perbandingan tool mirror untuk enam distro populer, dilanjutkan dengan panduan langkah demi langkah untuk masing-masing.</p>
             <!-- ═══ TABEL PERBANDINGAN ═══ -->
-            <h2>&#x1f4ca; Ringkasan Perbandingan Tool Mirror</h2>
+            <h2>📊 Ringkasan Perbandingan Tool Mirror</h2>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -608,16 +608,16 @@
                     </tbody>
                 </table>
             </div>
-            <p>Setiap tool memiliki karakteristik unik. Ada yang bekerja otomatis di latar belakang, ada pula yang memerlukan intervensi manual. Namun, satu kesamaan yang menonjol: <b>semua proses ini tidak memerlukan reboot</b> &#x2014; setelah konfigurasi diperbarui, Anda hanya perlu menjalankan perintah refresh repositori seperti <code>apt update</code>, <code>pacman -Syy</code>, atau <code>zypper ref</code>.</p>
+            <p>Setiap tool memiliki karakteristik unik. Ada yang bekerja otomatis di latar belakang, ada pula yang memerlukan intervensi manual. Namun, satu kesamaan yang menonjol: <b>semua proses ini tidak memerlukan reboot</b> — setelah konfigurasi diperbarui, Anda hanya perlu menjalankan perintah refresh repositori seperti <code>apt update</code>, <code>pacman -Syy</code>, atau <code>zypper ref</code>.</p>
             <p>Berikut adalah panduan lengkap untuk setiap distro, lengkap dengan skrip yang bisa Anda unduh dan jalankan langsung di terminal.</p>
             <!-- ═══ DEBIAN / UBUNTU ═══ -->
             <details>
-                <summary><h2>&#x1f427; Debian / Ubuntu</h2></summary>
+                <summary><h2>🐧 Debian / Ubuntu</h2></summary>
                 <div class="panel">
                     <p><b>netselect-apt</b> adalah tool andalan untuk pengguna Debian dan Ubuntu. Ia bekerja dengan mengukur latensi ke berbagai mirror yang tersedia, lalu secara otomatis menghasilkan file <code>sources.list</code> baru yang berisi mirror tercepat untuk rilis stabil (<i>stable</i>) atau rilis lain yang Anda tentukan.</p>
                     <p>Tool ini sangat berguna saat Anda baru pertama kali menginstal sistem, atau ketika mirror default terasa lambat karena lokasi geografis. Cukup jalankan satu perintah, dan <code>netselect-apt</code> akan menguji puluhan mirror sekaligus.</p>
                     <div class="code-actions">
-                        <button onclick="downloadFile(&apos;debian-mirror.sh&apos;, debianScript)">&#x2b07; Download</button>
+                        <button onclick="downloadFile('debian-mirror.sh', debianScript)">⬇ Download</button>
                         <button onclick="copyCode(this)">Copy</button>
                     </div>
                     <pre><code class="language-bash">#!/bin/bash
@@ -625,19 +625,19 @@
                         sudo netselect-apt stable
                     </code></pre>
                     <div class="note">
-                        &#x1f4a1; <b>Petunjuk:</b> Jalankan skrip, lalu file <code>sources.list</code> baru akan dibuat di direktori saat ini. Pindahkan ke <code>/etc/apt/sources.list</code> atau gabungkan dengan file di <code>/etc/apt/sources.list.d/</code>. Reboot tidak wajib, cukup jalankan <code>sudo apt update</code>.
+                        💡 <b>Petunjuk:</b> Jalankan skrip, lalu file <code>sources.list</code> baru akan dibuat di direktori saat ini. Pindahkan ke <code>/etc/apt/sources.list</code> atau gabungkan dengan file di <code>/etc/apt/sources.list.d/</code>. Reboot tidak wajib, cukup jalankan <code>sudo apt update</code>.
                     </div>
                     <p>Untuk pengguna Ubuntu, Anda juga bisa mengganti <code>stable</code> dengan <code>jammy</code>, <code>focal</code>, atau kode nama rilis lainnya sesuai versi Ubuntu yang digunakan.</p>
                 </div>
             </details>
             <!-- ═══ ARCH LINUX ═══ -->
             <details>
-                <summary><h2>&#x1f7e6; Arch Linux</h2></summary>
+                <summary><h2>🟦 Arch Linux</h2></summary>
                 <div class="panel">
                     <p><b>reflector</b> adalah tool wajib bagi pengguna Arch Linux. Ia tidak hanya mengurutkan mirror berdasarkan kecepatan, tetapi juga menyaring berdasarkan kriteria seperti protokol (HTTPS), status terbaru, dan lokasi geografis. Hasilnya adalah file <code>/etc/pacman.d/mirrorlist</code> yang teroptimasi.</p>
                     <p>Reflector sangat berguna karena Arch menggunakan model <i>rolling release</i> yang memerlukan sinkronisasi repositori secara sering. Dengan mirror yang cepat, proses <code>pacman -Syu</code> terasa jauh lebih ringan.</p>
                     <div class="code-actions">
-                        <button onclick="downloadFile(&apos;arch-mirror.sh&apos;, archScript)">&#x2b07; Download</button>
+                        <button onclick="downloadFile('arch-mirror.sh', archScript)">⬇ Download</button>
                         <button onclick="copyCode(this)">Copy</button>
                     </div>
                     <pre><code class="language-bash">#!/bin/bash
@@ -645,39 +645,39 @@
                         sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
                     </code></pre>
                     <div class="note">
-                        &#x1f4a1; <b>Petunjuk:</b> Skrip di atas mengambil 10 mirror terbaru dan mengurutkannya berdasarkan kecepatan unduh. Setelah mirrorlist diperbarui, jalankan <code>sudo pacman -Syy</code> untuk menyegarkan cache. Tidak perlu reboot.
+                        💡 <b>Petunjuk:</b> Skrip di atas mengambil 10 mirror terbaru dan mengurutkannya berdasarkan kecepatan unduh. Setelah mirrorlist diperbarui, jalankan <code>sudo pacman -Syy</code> untuk menyegarkan cache. Tidak perlu reboot.
                     </div>
                     <p>Anda juga bisa menambahkan opsi <code>--country</code> untuk membatasi mirror hanya dari negara tertentu, misalnya <code>--country Indonesia</code> atau <code>--country SG</code> untuk Singapura.</p>
                 </div>
             </details>
             <!-- ═══ FEDORA ═══ -->
             <details>
-                <summary><h2>&#x1f7e0; Fedora</h2></summary>
+                <summary><h2>🟠 Fedora</h2></summary>
                 <div class="panel">
                     <p>Fedora menggunakan <b>dnf-fastestmirror</b>, sebuah plugin bawaan yang secara otomatis memilih mirror tercepat setiap kali Anda menjalankan perintah <code>dnf</code>. Plugin ini bekerja di latar belakang tanpa perlu intervensi manual setelah diaktifkan.</p>
-                    <p>Keunggulan pendekatan ini adalah kesederhanaan &#x2014; Anda tidak perlu memikirkan mirror lagi setelah mengaktifkan plugin. DNF akan menguji dan memilih mirror terbaik secara dinamis berdasarkan kondisi jaringan saat itu.</p>
+                    <p>Keunggulan pendekatan ini adalah kesederhanaan — Anda tidak perlu memikirkan mirror lagi setelah mengaktifkan plugin. DNF akan menguji dan memilih mirror terbaik secara dinamis berdasarkan kondisi jaringan saat itu.</p>
                     <div class="code-actions">
-                        <button onclick="downloadFile(&apos;fedora-mirror.sh&apos;, fedoraScript)">&#x2b07; Download</button>
+                        <button onclick="downloadFile('fedora-mirror.sh', fedoraScript)">⬇ Download</button>
                         <button onclick="copyCode(this)">Copy</button>
                     </div>
                     <pre><code class="language-bash">#!/bin/bash
                         sudo dnf install -y dnf-plugins-core
-                        echo &quot;fastestmirror=True&quot; | sudo tee -a /etc/dnf/dnf.conf
+                        echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
                     </code></pre>
                     <div class="note">
-                        &#x1f4a1; <b>Petunjuk:</b> Jalankan skrip sekali saja. Plugin akan aktif secara permanen. Mirror tercepat otomatis digunakan setiap kali Anda menjalankan <code>dnf</code>. Tidak perlu reboot.
+                        💡 <b>Petunjuk:</b> Jalankan skrip sekali saja. Plugin akan aktif secara permanen. Mirror tercepat otomatis digunakan setiap kali Anda menjalankan <code>dnf</code>. Tidak perlu reboot.
                     </div>
                     <p>Jika suatu saat ingin menonaktifkan fitur ini, cukup hapus baris <code>fastestmirror=True</code> dari <code>/etc/dnf/dnf.conf</code> atau ubah menjadi <code>False</code>.</p>
                 </div>
             </details>
             <!-- ═══ OPENSUSE ═══ -->
             <details>
-                <summary><h2>&#x1f7e2; openSUSE</h2></summary>
+                <summary><h2>🟢 openSUSE</h2></summary>
                 <div class="panel">
                     <p>openSUSE menggunakan <b>zypper</b> sebagai manajer paket utama. Meskipun tidak memiliki plugin otomatis khusus untuk memilih mirror tercepat, zypper menyediakan perintah <code>zypper ar</code> (add repo) dan <code>zypper mr</code> (modify repo) untuk mengelola mirror secara manual.</p>
                     <p>Pendekatan ini memberi Anda kendali penuh atas mirror mana yang digunakan, namun memerlukan sedikit riset awal untuk menemukan mirror terbaik. Berikut adalah contoh skrip untuk mengganti mirror dengan mirror resmi dari openSUSE.</p>
                     <div class="code-actions">
-                        <button onclick="downloadFile(&apos;opensuse-mirror.sh&apos;, opensuseScript)">&#x2b07; Download</button>
+                        <button onclick="downloadFile('opensuse-mirror.sh', opensuseScript)">⬇ Download</button>
                         <button onclick="copyCode(this)">Copy</button>
                     </div>
                     <pre><code class="language-bash">#!/bin/bash
@@ -685,19 +685,19 @@
                         sudo zypper ar -f https://download.opensuse.org/distribution/leap/15.5/repo/oss/ repo-oss
                     </code></pre>
                     <div class="note">
-                        &#x1f4a1; <b>Petunjuk:</b> Perintah pertama menonaktifkan semua repositori yang ada, perintah kedua menambahkan mirror resmi openSUSE Leap 15.5. Ganti versi sesuai kebutuhan. Gunakan <code>zypper ref</code> untuk refresh setelah mengganti mirror. Tidak perlu reboot.
+                        💡 <b>Petunjuk:</b> Perintah pertama menonaktifkan semua repositori yang ada, perintah kedua menambahkan mirror resmi openSUSE Leap 15.5. Ganti versi sesuai kebutuhan. Gunakan <code>zypper ref</code> untuk refresh setelah mengganti mirror. Tidak perlu reboot.
                     </div>
                     <p>Untuk pengguna Tumbleweed (rolling release), ganti URL dengan <code>https://download.opensuse.org/tumbleweed/repo/oss/</code>. Anda juga bisa mencari mirror regional dari komunitas untuk kecepatan lebih baik.</p>
                 </div>
             </details>
             <!-- ═══ SLACKWARE ═══ -->
             <details>
-                <summary><h2>&#x1f535; Slackware</h2></summary>
+                <summary><h2>🔵 Slackware</h2></summary>
                 <div class="panel">
                     <p>Slackware mengambil pendekatan paling tradisional: <b>pemilihan mirror manual</b> melalui file konfigurasi <code>/etc/slackpkg/mirrors</code>. Anda harus memilih sendiri mirror yang diinginkan, lalu menjalankan <code>slackpkg update</code> untuk menyegarkan daftar paket.</p>
                     <p>Meskipun terkesan kuno, pendekatan ini memberikan transparansi penuh dan cocok untuk pengguna yang ingin mengerti persis apa yang terjadi di sistem mereka. Slackware juga mengharuskan verifikasi GPG sebelum pembaruan, menambah lapisan keamanan.</p>
                     <div class="code-actions">
-                        <button onclick="downloadFile(&apos;slackware-mirror.sh&apos;, slackwareScript)">&#x2b07; Download</button>
+                        <button onclick="downloadFile('slackware-mirror.sh', slackwareScript)">⬇ Download</button>
                         <button onclick="copyCode(this)">Copy</button>
                     </div>
                     <pre><code class="language-bash">#!/bin/bash
@@ -707,36 +707,36 @@
                         sudo slackpkg update
                     </code></pre>
                     <div class="note">
-                        &#x1f4a1; <b>Petunjuk:</b> Buka file <code>/etc/slackpkg/mirrors</code>, cari mirror yang dekat dengan lokasi Anda, hapus tanda komentar (#) di awal baris, dan komentari yang lain. Setelah itu jalankan <code>slackpkg update gpg</code> untuk memperbarui kunci GPG, lalu <code>slackpkg update</code>. Reboot tidak diperlukan.
+                        💡 <b>Petunjuk:</b> Buka file <code>/etc/slackpkg/mirrors</code>, cari mirror yang dekat dengan lokasi Anda, hapus tanda komentar (#) di awal baris, dan komentari yang lain. Setelah itu jalankan <code>slackpkg update gpg</code> untuk memperbarui kunci GPG, lalu <code>slackpkg update</code>. Reboot tidak diperlukan.
                     </div>
                     <p>Slackware menyediakan daftar mirror resmi di <code>https://mirrors.slackware.com/mirrors/</code>. Pilih yang terdekat secara geografis untuk hasil terbaik.</p>
                 </div>
             </details>
             <!-- ═══ NIXOS ═══ -->
             <details>
-                <summary><h2>&#x2744;&#xfe0f; NixOS</h2></summary>
+                <summary><h2>❄️ NixOS</h2></summary>
                 <div class="panel">
-                    <p>NixOS memiliki pendekatan unik dengan konsep <i>substituters</i> &#x2014; server cache yang menyimpan artefak build. Alih-alih membangun semua paket dari sumber, NixOS dapat mengunduh biner yang sudah jadi dari substituters. Menambahkan substituter yang cepat akan mempercepat proses instalasi dan pembaruan secara signifikan.</p>
+                    <p>NixOS memiliki pendekatan unik dengan konsep <i>substituters</i> — server cache yang menyimpan artefak build. Alih-alih membangun semua paket dari sumber, NixOS dapat mengunduh biner yang sudah jadi dari substituters. Menambahkan substituter yang cepat akan mempercepat proses instalasi dan pembaruan secara signifikan.</p>
                     <p>Substituter utama adalah <code>cache.nixos.org</code>, tetapi Anda juga bisa menambahkan mirror komunitas atau cache lokal. Konfigurasi dilakukan melalui <code>/etc/nix/nix.conf</code>.</p>
                     <div class="code-actions">
-                        <button onclick="downloadFile(&apos;nixos-mirror.sh&apos;, nixosScript)">&#x2b07; Download</button>
+                        <button onclick="downloadFile('nixos-mirror.sh', nixosScript)">⬇ Download</button>
                         <button onclick="copyCode(this)">Copy</button>
                     </div>
                     <pre><code class="language-bash">#!/bin/bash
-                        echo &apos;substituters = https://cache.nixos.org https://mirror.example.org&apos; | sudo tee -a /etc/nix/nix.conf
+                        echo 'substituters = https://cache.nixos.org https://mirror.example.org' | sudo tee -a /etc/nix/nix.conf
                         sudo systemctl restart nix-daemon
                     </code></pre>
                     <div class="note">
-                        &#x1f4a1; <b>Petunjuk:</b> Tambahkan URL substituter tambahan ke <code>/etc/nix/nix.conf</code>. Pastikan URL tersebut terpercaya. Setelah itu, restart daemon Nix dengan <code>sudo systemctl restart nix-daemon</code>. Reboot tidak wajib.
+                        💡 <b>Petunjuk:</b> Tambahkan URL substituter tambahan ke <code>/etc/nix/nix.conf</code>. Pastikan URL tersebut terpercaya. Setelah itu, restart daemon Nix dengan <code>sudo systemctl restart nix-daemon</code>. Reboot tidak wajib.
                     </div>
                     <p>Untuk pengguna yang sering menggunakan <code>nix-shell</code> atau <code>nix build</code>, substituter yang cepat sangat terasa manfaatnya. Anda juga bisa mengatur substituter per-proyek melalui file <code>nix.conf</code> lokal.</p>
                 </div>
             </details>
             <!-- ═══ PENUTUP ═══ -->
-            <h2>&#x1f4cc; Memilih Mirror yang Tepat untuk Kebutuhan Anda</h2>
+            <h2>📌 Memilih Mirror yang Tepat untuk Kebutuhan Anda</h2>
             <p>Setiap distro Linux memiliki filosofi dan tool yang berbeda dalam menangani pemilihan mirror. Namun, ada beberapa prinsip universal yang bisa Anda pegang:</p>
-            <p>Pertama, <b>prioritaskan mirror resmi atau yang terpercaya</b>. Meskipun mirror komunitas bisa lebih cepat, pastikan Anda mengenal pemiliknya dan yakin bahwa repositori tersebut sinkron dengan baik. Kedua, <b>perhatikan protokol</b> &#x2014; HTTPS lebih aman daripada HTTP, meskipun sedikit lebih lambat.</p>
-            <p>Ketiga, <b>lakukan pengecekan secara berkala</b>. Kondisi jaringan dan beban server berubah seiring waktu. Mirror yang cepat hari ini mungkin lambat besok. Oleh karena itu, jalankan tool seperti <code>reflector</code> atau <code>netselect-apt</code> secara periodik &#x2014; misalnya setiap beberapa bulan sekali &#x2014; untuk memastikan Anda selalu menggunakan mirror terbaik.</p>
+            <p>Pertama, <b>prioritaskan mirror resmi atau yang terpercaya</b>. Meskipun mirror komunitas bisa lebih cepat, pastikan Anda mengenal pemiliknya dan yakin bahwa repositori tersebut sinkron dengan baik. Kedua, <b>perhatikan protokol</b> — HTTPS lebih aman daripada HTTP, meskipun sedikit lebih lambat.</p>
+            <p>Ketiga, <b>lakukan pengecekan secara berkala</b>. Kondisi jaringan dan beban server berubah seiring waktu. Mirror yang cepat hari ini mungkin lambat besok. Oleh karena itu, jalankan tool seperti <code>reflector</code> atau <code>netselect-apt</code> secara periodik — misalnya setiap beberapa bulan sekali — untuk memastikan Anda selalu menggunakan mirror terbaik.</p>
             <p>Keempat, <b>jangan takut untuk bereksperimen</b>. Sebagian besar tool mirror bersifat non-destruktif dan tidak memerlukan reboot. Anda bisa mencoba beberapa konfigurasi, mengukur kecepatan unduh, dan memilih yang paling sesuai. Dengan panduan di atas, Anda kini memiliki bekal lengkap untuk mengoptimalkan pengalaman Linux dari sisi infrastruktur repositori.</p>
             <!-- ═══ ELEMEN WAJIB ═══ -->
             <div id="related-articles-grid"></div>
@@ -744,13 +744,13 @@
         </article>
         <!-- ═══ FOOTER ═══ -->
         <footer>
-            <span>&#x270d;&#xfe0f; Disusun oleh Tim Panduan Linux</span>
-            <span>&#x1f4c5; Dipublikasikan 23 Juni 2026</span>
-            <span>&#x1f4da; Referensi: Dokumentasi resmi masing-masing distro</span>
-                <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <span>✍️ Disusun oleh Tim Panduan Linux</span>
+            <span>📅 Dipublikasikan 23 Juni 2026</span>
+            <span>📚 Referensi: Dokumentasi resmi masing-masing distro</span>
+                <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
     <!-- ═══ SCRIPTS ── highlight.js & utilities ═══ -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

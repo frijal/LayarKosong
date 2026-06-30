@@ -53,10 +53,10 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="systemd">
     <meta property="article:published_time" content="2026-02-25T12:00:00.000Z">
-    <meta property="article:modified_time" content="2026-02-25T12:00:00.000Z">
+    <meta property="article:modified_time" content="2026-04-25T20:58:21.845Z">
   <!-- Metadata SEO -->
 <meta name="keywords" content="systemd manager, tui, systemd, terminal ui, systemctl, journalctl, manajemen service linux, ratatui, zbus, rust, systemd manager tui">
 <!-- Open Graph -->
@@ -282,16 +282,16 @@
 <div class="container">
   <article>
     <header>
-      <div id="iposbrowser"></div><h1>&#x1f5a5;&#xfe0f; Systemd Manager TUI: Aplikasi Terminal untuk Mengelola Service systemd dengan Mudah</h1>
+      <div id="iposbrowser"></div><h1>🖥️ Systemd Manager TUI: Aplikasi Terminal untuk Mengelola Service systemd dengan Mudah</h1>
       <div class="article-meta">
         <span><i class="fa-solid fa-calendar-alt"></i> 28 Februari 2026</span>
         <span><i class="fa-solid fa-tags"></i> #systemd #TUI #Linux #Rust</span>
       </div>
-      <p><em>Bagi pengguna Linux yang sering berurusan dengan systemd, terutama admin server atau pengguna tingkat lanjut, mengelola service (unit) bisa jadi tugas sehari-hari. Biasanya kita menggunakan perintah seperti <code>systemctl</code>, <code>journalctl</code>, dan lain-lain. Namun, bagaimana jika ada antarmuka terminal yang interaktif, dengan navigasi ala Vim, yang memudahkan kita melihat log, properti, dan mengontrol service? Kenalkan <strong>Systemd Manager TUI</strong> &#x2013; tools berbasis Rust yang akan mengubah cara kita berinteraksi dengan systemd.</em></p>
+      <p><em>Bagi pengguna Linux yang sering berurusan dengan systemd, terutama admin server atau pengguna tingkat lanjut, mengelola service (unit) bisa jadi tugas sehari-hari. Biasanya kita menggunakan perintah seperti <code>systemctl</code>, <code>journalctl</code>, dan lain-lain. Namun, bagaimana jika ada antarmuka terminal yang interaktif, dengan navigasi ala Vim, yang memudahkan kita melihat log, properti, dan mengontrol service? Kenalkan <strong>Systemd Manager TUI</strong> – tools berbasis Rust yang akan mengubah cara kita berinteraksi dengan systemd.</em></p>
     </header>
     <!-- 5W+1H PENJELASAN -->
     <section>
-      <h2>&#x1f50e; Apa, Siapa, Kapan, Di Mana, Mengapa, Bagaimana? (5W+1H)</h2>
+      <h2>🔎 Apa, Siapa, Kapan, Di Mana, Mengapa, Bagaimana? (5W+1H)</h2>
       <p><i class="fa-solid fa-question-circle emoji-icon"></i> <strong>Apa itu Systemd Manager TUI?</strong> Ini adalah aplikasi <em>Text-based User Interface</em> (TUI) yang ditulis dalam bahasa Rust. Fungsinya untuk mengelola service (unit) systemd dengan tampilan interaktif di terminal. Kamu bisa melihat daftar service, melihat log, melihat properti, mengedit file unit, serta melakukan operasi seperti start, stop, restart, mask, unmask, enable, dan disable. Semua melalui antarmuka yang nyaman dengan dukungan navigasi ala Vim (hjkl).</p>
       <p><i class="fa-solid fa-users emoji-icon"></i> <strong>Siapa target penggunanya?</strong> Tools ini ditujukan untuk administrator sistem, pengembang, penggemar Linux (power users), dan siapa saja yang sering berinteraksi dengan systemd dan ingin cara yang lebih cepat dan interaktif dibandingkan mengetik perintah <code>systemctl</code> berulang-ulang. Cocok untuk pengguna server maupun desktop yang menggunakan systemd.</p>
       <p><i class="fa-solid fa-clock emoji-icon"></i> <strong>Kapan tools ini digunakan?</strong> Setiap kali kamu perlu memeriksa status service, melihat log terkini, mengaktifkan atau menonaktifkan service, atau mengedit unit file. Sangat membantu saat troubleshooting atau saat melakukan maintenance sistem.</p>
@@ -301,108 +301,108 @@
     </section>
     <!-- PREVIEW DAN FITUR -->
     <section>
-      <h2>&#x1f4f8; Preview dan Fitur Unggulan</h2>
+      <h2>📸 Preview dan Fitur Unggulan</h2>
       <figure>
         <img src="https://dalam.web.id/img/raw.githubusercontent.com/matheus-git/systemd-manager-tui/main/assets/systemd-manager-tui.gif" alt="Systemd Manager TUI demo GIF" loading="lazy">
         <figcaption>Demo interaktif Systemd Manager TUI (sumber: repositori GitHub)</figcaption>
       </figure>
       <p>Fitur utama yang ditawarkan oleh Systemd Manager TUI:</p>
       <ul>
-        <li><i class="fa-solid fa-list"></i> <strong>Daftar unit systemd</strong> &#x2013; lihat semua unit atau hanya yang running, dengan warna status (active, inactive, failed).</li>
-        <li><i class="fa-solid fa-file-alt"></i> <strong>Lihat properti unit</strong> &#x2013; tampilkan detail seperti deskripsi, load state, active state, PID, dsb.</li>
-        <li><i class="fa-solid fa-scroll"></i> <strong>Lihat log (journal)</strong> &#x2013; akses log unit terkini langsung dari TUI.</li>
-        <li><i class="fa-solid fa-edit"></i> <strong>Edit file unit</strong> &#x2013; buka file unit di editor default untuk modifikasi.</li>
-        <li><i class="fa-solid fa-play-circle"></i> <strong>Kontrol life-cycle</strong> &#x2013; start, stop, restart, reload, enable, disable, mask, unmask.</li>
-        <li><i class="fa-solid fa-exchange-alt"></i> <strong>Navigasi ala Vim</strong> &#x2013; gunakan <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd> untuk bergerak, cocok bagi penggemar Vim.</li>
-        <li><i class="fa-solid fa-user"></i> <strong>Unit sistem dan user</strong> &#x2013; bisa beralih antara unit system (global) dan unit user (milik user saat ini).</li>
-        <li><i class="fa-solid fa-filter"></i> <strong>Filter unit</strong> &#x2013; tampilkan hanya unit yang sedang running, atau semua unit.</li>
+        <li><i class="fa-solid fa-list"></i> <strong>Daftar unit systemd</strong> – lihat semua unit atau hanya yang running, dengan warna status (active, inactive, failed).</li>
+        <li><i class="fa-solid fa-file-alt"></i> <strong>Lihat properti unit</strong> – tampilkan detail seperti deskripsi, load state, active state, PID, dsb.</li>
+        <li><i class="fa-solid fa-scroll"></i> <strong>Lihat log (journal)</strong> – akses log unit terkini langsung dari TUI.</li>
+        <li><i class="fa-solid fa-edit"></i> <strong>Edit file unit</strong> – buka file unit di editor default untuk modifikasi.</li>
+        <li><i class="fa-solid fa-play-circle"></i> <strong>Kontrol life-cycle</strong> – start, stop, restart, reload, enable, disable, mask, unmask.</li>
+        <li><i class="fa-solid fa-exchange-alt"></i> <strong>Navigasi ala Vim</strong> – gunakan <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd> untuk bergerak, cocok bagi penggemar Vim.</li>
+        <li><i class="fa-solid fa-user"></i> <strong>Unit sistem dan user</strong> – bisa beralih antara unit system (global) dan unit user (milik user saat ini).</li>
+        <li><i class="fa-solid fa-filter"></i> <strong>Filter unit</strong> – tampilkan hanya unit yang sedang running, atau semua unit.</li>
       </ul>
       <p>Untuk melihat tangkapan layar lebih lengkap, kunjungi <a href="https://github.com/matheus-git/systemd-manager-tui/blob/main/docs/screenshots.md" target="_blank" rel="noopener">halaman screenshots</a> di repositori.</p>
     </section>
     <!-- INSTALASI LENGKAP -->
     <section>
-      <h2>&#x1f4e6; Cara Install Systemd Manager TUI di Berbagai Distribusi</h2>
+      <h2>📦 Cara Install Systemd Manager TUI di Berbagai Distribusi</h2>
       <p>Instalasi tools ini sangat mudah. Berikut langkah-langkahnya untuk setiap platform:</p>
-      <h3>&#x1f427; Ubuntu / Debian (via .deb)</h3>
+      <h3>🐧 Ubuntu / Debian (via .deb)</h3>
       <p>Unduh file .deb dari <a href="https://github.com/matheus-git/systemd-manager-tui/releases" target="_blank">halaman Releases</a>, lalu install dengan:</p>
       <pre><code>sudo dpkg -i ./systemd-manager-tui_x.x.x-x_amd64.deb</code></pre>
       <p>Ganti <code>x.x.x-x</code> dengan versi terbaru. Jika ada dependensi yang kurang, jalankan <code>sudo apt install -f</code>.</p>
-      <h3>&#x1f5a5;&#xfe0f; Fedora (via .rpm)</h3>
+      <h3>🖥️ Fedora (via .rpm)</h3>
       <pre><code>sudo dnf install ./systemd-manager-tui_x.x.x-x_x86_64.rpm</code></pre>
-      <h3>&#x1f4c0; Arch Linux (via AUR)</h3>
+      <h3>📀 Arch Linux (via AUR)</h3>
       <p>Package tersedia di AUR dengan nama <code>systemd-manager-tui</code>. Jika menggunakan yay:</p>
       <pre><code>yay -S systemd-manager-tui</code></pre>
       <p>Atau dengan paru, pamac, dll. Lihat di <a href="https://aur.archlinux.org/packages/systemd-manager-tui" target="_blank">AUR</a>.</p>
-      <h3>&#x2744;&#xfe0f; NixOS (dengan flakes)</h3>
+      <h3>❄️ NixOS (dengan flakes)</h3>
       <p>Jalankan langsung tanpa install:</p>
       <pre><code>nix run github:matheus-git/systemd-manager-tui</code></pre>
       <p>Untuk konfigurasi lebih lanjut, baca <a href="https://github.com/matheus-git/systemd-manager-tui/blob/main/docs/flakes.md" target="_blank">dokumentasi flakes</a>.</p>
-      <h3>&#x2699;&#xfe0f; Binary langsung</h3>
+      <h3>⚙️ Binary langsung</h3>
       <p>Unduh binary dari <a href="https://github.com/matheus-git/systemd-manager-tui/releases" target="_blank">Releases</a>, beri izin eksekusi, dan jalankan:</p>
       <pre><code>chmod +x systemd-manager-tui
 ./systemd-manager-tui</code></pre>
-      <h3>&#x1f980; Instalasi via Cargo (Rust)</h3>
+      <h3>🦀 Instalasi via Cargo (Rust)</h3>
       <p>Pastikan Rust dan Cargo sudah terinstall. Lalu jalankan:</p>
       <pre><code>cargo install --locked systemd-manager-tui</code></pre>
       <p>Binary akan ditempatkan di <code>~/.cargo/bin</code>, pastikan folder tersebut ada di PATH.</p>
-      <p><i class="fa-solid fa-info-circle"></i> <strong>Tips:</strong> Setelah instalasi, kamu bisa membuat <em>alias</em> agar lebih mudah, misalnya <code>alias sdt=&apos;systemd-manager-tui&apos;</code> di file <code>.bashrc</code> atau <code>.zshrc</code>.</p>
+      <p><i class="fa-solid fa-info-circle"></i> <strong>Tips:</strong> Setelah instalasi, kamu bisa membuat <em>alias</em> agar lebih mudah, misalnya <code>alias sdt='systemd-manager-tui'</code> di file <code>.bashrc</code> atau <code>.zshrc</code>.</p>
     </section>
     <!-- LIBRARY UTAMA DAN TEKNOLOGI -->
     <section>
-      <h2>&#x1f4da; Teknologi di Balik Systemd Manager TUI</h2>
+      <h2>📚 Teknologi di Balik Systemd Manager TUI</h2>
       <p>Tools ini dibangun dengan bahasa Rust yang menjamin keamanan memori dan performa tinggi. Dua library utama yang digunakan:</p>
       <ul>
-        <li><a href="https://crates.io/crates/ratatui" target="_blank"><strong>ratatui</strong> (versi 0.29.0)</a> &#x2013; library untuk membuat antarmuka terminal yang kaya dan fleksibel. Ratatui adalah penerus dari tui-rs yang populer.</li>
-        <li><a href="https://crates.io/crates/zbus" target="_blank"><strong>zbus</strong> (versi 5.5.0)</a> &#x2013; library untuk berkomunikasi dengan D-Bus, yang digunakan untuk berinteraksi dengan systemd. zbus murni Rust, aman dan cepat.</li>
+        <li><a href="https://crates.io/crates/ratatui" target="_blank"><strong>ratatui</strong> (versi 0.29.0)</a> – library untuk membuat antarmuka terminal yang kaya dan fleksibel. Ratatui adalah penerus dari tui-rs yang populer.</li>
+        <li><a href="https://crates.io/crates/zbus" target="_blank"><strong>zbus</strong> (versi 5.5.0)</a> – library untuk berkomunikasi dengan D-Bus, yang digunakan untuk berinteraksi dengan systemd. zbus murni Rust, aman dan cepat.</li>
       </ul>
       <p>Dengan kombinasi ini, Systemd Manager TUI mampu berkomunikasi langsung dengan systemd melalui D-Bus, tanpa perlu menjalankan perintah <code>systemctl</code> sebagai subproses. Hasilnya lebih responsif dan terintegrasi.</p>
     </section>
     <!-- CARA PENGGUNAAN DASAR -->
     <section>
-      <h2>&#x1f579;&#xfe0f; Panduan Singkat Penggunaan</h2>
+      <h2>🕹️ Panduan Singkat Penggunaan</h2>
       <p>Setelah menjalankan <code>systemd-manager-tui</code>, kamu akan melihat tampilan utama berisi daftar unit. Berikut beberapa shortcut penting:</p>
       <ul>
-        <li><kbd>j</kbd> / <kbd>&#x2193;</kbd> &#x2013; bergerak ke bawah</li>
-        <li><kbd>k</kbd> / <kbd>&#x2191;</kbd> &#x2013; bergerak ke atas</li>
-        <li><kbd>Enter</kbd> &#x2013; buka detail unit (properti, log, dll)</li>
-        <li><kbd>s</kbd> &#x2013; start unit</li>
-        <li><kbd>t</kbd> &#x2013; stop unit</li>
-        <li><kbd>r</kbd> &#x2013; restart unit</li>
-        <li><kbd>e</kbd> &#x2013; enable unit (aktifkan saat boot)</li>
-        <li><kbd>d</kbd> &#x2013; disable unit</li>
-        <li><kbd>m</kbd> &#x2013; mask unit (cegah agar tidak bisa dijalankan)</li>
-        <li><kbd>u</kbd> &#x2013; unmask unit</li>
-        <li><kbd>l</kbd> &#x2013; lihat log unit (journal)</li>
-        <li><kbd>p</kbd> &#x2013; lihat properti unit</li>
-        <li><kbd>E</kbd> &#x2013; edit unit file (dengan editor default)</li>
-        <li><kbd>F1</kbd> atau <kbd>?</kbd> &#x2013; bantuan</li>
-        <li><kbd>q</kbd> &#x2013; keluar</li>
+        <li><kbd>j</kbd> / <kbd>↓</kbd> – bergerak ke bawah</li>
+        <li><kbd>k</kbd> / <kbd>↑</kbd> – bergerak ke atas</li>
+        <li><kbd>Enter</kbd> – buka detail unit (properti, log, dll)</li>
+        <li><kbd>s</kbd> – start unit</li>
+        <li><kbd>t</kbd> – stop unit</li>
+        <li><kbd>r</kbd> – restart unit</li>
+        <li><kbd>e</kbd> – enable unit (aktifkan saat boot)</li>
+        <li><kbd>d</kbd> – disable unit</li>
+        <li><kbd>m</kbd> – mask unit (cegah agar tidak bisa dijalankan)</li>
+        <li><kbd>u</kbd> – unmask unit</li>
+        <li><kbd>l</kbd> – lihat log unit (journal)</li>
+        <li><kbd>p</kbd> – lihat properti unit</li>
+        <li><kbd>E</kbd> – edit unit file (dengan editor default)</li>
+        <li><kbd>F1</kbd> atau <kbd>?</kbd> – bantuan</li>
+        <li><kbd>q</kbd> – keluar</li>
       </ul>
       <p>Kamu juga bisa berpindah mode antara unit system (global) dan unit user dengan menekan <kbd>u</kbd> (user) atau <kbd>U</kbd> (system). Filter hanya unit yang running dengan menekan <kbd>f</kbd>.</p>
       <p>Semua shortcut ditampilkan di bagian bawah layar, jadi kamu tidak perlu menghafal.</p>
     </section>
     <!-- KELEBIHAN DIBANDING SYSTEMCTL BIASA -->
     <section>
-      <h2>&#x2b50; Mengapa Systemd Manager TUI Lebih Unggul daripada systemctl?</h2>
+      <h2>⭐ Mengapa Systemd Manager TUI Lebih Unggul daripada systemctl?</h2>
       <p>Tentu saja <code>systemctl</code> adalah alat yang sangat kuat. Namun, TUI ini menawarkan beberapa kelebihan:</p>
       <ul>
-        <li><strong>Interaktif dan visual</strong> &#x2013; kamu bisa melihat daftar unit sekaligus dengan status warna, tanpa perlu mengetik <code>systemctl list-units</code> berulang kali.</li>
-        <li><strong>Navigasi cepat</strong> &#x2013; dengan sekali tekan tombol, kamu bisa restart service atau lihat log, tanpa harus mengingat nama unit dan mengetik perintah panjang.</li>
-        <li><strong>Integrasi log</strong> &#x2013; lihat log unit langsung di dalam TUI, tanpa harus membuka journalctl terpisah.</li>
-        <li><strong>Edit unit file</strong> &#x2013; buka file unit langsung dari TUI, edit, dan simpan &#x2013; semua dalam satu alur.</li>
-        <li><strong>Mode user dan system</strong> &#x2013; mudah beralih antara layanan system dan user, yang biasanya memerlukan opsi <code>--user</code> pada systemctl.</li>
-        <li><strong>Ramah Vim</strong> &#x2013; bagi pengguna Vim, navigasi dengan hjkl terasa alami dan cepat.</li>
+        <li><strong>Interaktif dan visual</strong> – kamu bisa melihat daftar unit sekaligus dengan status warna, tanpa perlu mengetik <code>systemctl list-units</code> berulang kali.</li>
+        <li><strong>Navigasi cepat</strong> – dengan sekali tekan tombol, kamu bisa restart service atau lihat log, tanpa harus mengingat nama unit dan mengetik perintah panjang.</li>
+        <li><strong>Integrasi log</strong> – lihat log unit langsung di dalam TUI, tanpa harus membuka journalctl terpisah.</li>
+        <li><strong>Edit unit file</strong> – buka file unit langsung dari TUI, edit, dan simpan – semua dalam satu alur.</li>
+        <li><strong>Mode user dan system</strong> – mudah beralih antara layanan system dan user, yang biasanya memerlukan opsi <code>--user</code> pada systemctl.</li>
+        <li><strong>Ramah Vim</strong> – bagi pengguna Vim, navigasi dengan hjkl terasa alami dan cepat.</li>
       </ul>
     </section>
     <!-- KONTRIBUSI DAN LISENSI -->
     <section>
-      <h2>&#x1f91d; Kontribusi dan Lisensi</h2>
+      <h2>🤝 Kontribusi dan Lisensi</h2>
       <p>Systemd Manager TUI adalah proyek open source yang dikelola oleh <a href="https://github.com/matheus-git" target="_blank">matheus-git</a> di GitHub. Kontribusi sangat terbuka! Jika kamu menemukan bug, punya ide fitur baru, atau ingin memperbaiki dokumentasi, silakan buka <em>issue</em> atau <em>pull request</em> di <a href="https://github.com/matheus-git/systemd-manager-tui" target="_blank">repositori utama</a>.</p>
       <p><i class="fa-solid fa-file-contract"></i> Lisensi: proyek ini menggunakan lisensi <strong>MIT License</strong>, yang berarti kamu bebas menggunakan, memodifikasi, dan mendistribusikannya, selama menyertakan pemberitahuan hak cipta asli.</p>
     </section>
     <!-- KESIMPULAN -->
     <section>
-      <h2>&#x1f680; Kesimpulan: Waktunya Beralih ke TUI?</h2>
+      <h2>🚀 Kesimpulan: Waktunya Beralih ke TUI?</h2>
       <p>Systemd Manager TUI adalah alat yang sangat berguna bagi siapa saja yang sering berinteraksi dengan systemd. Dengan antarmuka yang bersih, navigasi cepat, dan fitur lengkap, tools ini bisa meningkatkan produktivitas dan membuat pengelolaan service menjadi lebih menyenangkan. Apalagi didukung oleh teknologi modern Rust dan library ratatui/zbus, performanya cepat dan stabil.</p>
       <p>Jadi, tunggu apa lagi? Coba install sekarang dan rasakan kemudahan mengelola systemd langsung dari terminal favoritmu. Jangan lupa bagikan pengalamanmu di kolom komentar atau diskusi GitHub!</p>
     </section>
@@ -414,11 +414,11 @@
         </div>
     <!-- Footer -->
     <footer>
-      <p>&#x1f12f; 2026 Jaga Data Pribadi Tetap Aman &#x2013; Informasi dari repositori resmi Systemd Manager TUI, dan dokumentasi teknis. Semua merek dagang adalah milik pemiliknya masing-masing. &#xb7; <i class="fa-solid fa-globe"></i> <a href="https://dalam.web.id/artikel/">Indeks Artikel</a> <small>Dibuat dengan E&#x2011;E&#x2011;A&#x2011;T, prinsip 5W+1H, dan semangat open source. Font Awesome oleh Fonticons, Inc.</small></p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+      <p>🄯 2026 Jaga Data Pribadi Tetap Aman – Informasi dari repositori resmi Systemd Manager TUI, dan dokumentasi teknis. Semua merek dagang adalah milik pemiliknya masing-masing. · <i class="fa-solid fa-globe"></i> <a href="https://dalam.web.id/artikel/">Indeks Artikel</a> <small>Dibuat dengan E‑E‑A‑T, prinsip 5W+1H, dan semangat open source. Font Awesome oleh Fonticons, Inc.</small></p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </article>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

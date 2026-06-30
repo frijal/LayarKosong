@@ -53,13 +53,13 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Debian">
     <meta property="article:tag" content="Keamanan">
     <meta property="article:tag" content="GitHub">
     <meta property="article:published_time" content="2026-06-22T07:30:27.000Z">
-    <meta property="article:modified_time" content="2026-06-22T07:30:27.000Z">
+    <meta property="article:modified_time" content="2026-06-25T17:55:40.223Z">
     <style>
         /* ===== RESET & VARIABLES ===== */
         :root {
@@ -318,8 +318,8 @@
             pre { break-inside: avoid; }
         }
     </style>
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
-    <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media=&apos;all&apos;">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <div class="container" role="main">
@@ -332,10 +332,10 @@
     </header>
     <!-- ===== LEAD PARAGRAPHS ===== -->
     <p>
-        Pernahkah Anda merasa perlu untuk <b>menghapus jejak digital</b> secara total dari laptop Debian? Entah karena akan menjual perangkat, memberi kepada orang lain, atau sekadar ingin memulai dari awal dengan akun yang benar-benar bersih. Menghapus file satu per satu tidak cukup&#x2014;kata sandi, cookie, riwayat browser, token GitHub, dan kunci SSH masih tersembunyi di berbagai sudut sistem.
+        Pernahkah Anda merasa perlu untuk <b>menghapus jejak digital</b> secara total dari laptop Debian? Entah karena akan menjual perangkat, memberi kepada orang lain, atau sekadar ingin memulai dari awal dengan akun yang benar-benar bersih. Menghapus file satu per satu tidak cukup—kata sandi, cookie, riwayat browser, token GitHub, dan kunci SSH masih tersembunyi di berbagai sudut sistem.
     </p>
     <p>
-        Artikel ini menyajikan <b>panduan lengkap</b> untuk mereset akun Debian Anda secara aman dan permanen. Dilengkapi dengan skrip otomatisasi Bash (<code>.sh</code>) yang akan menjalankan semua perintah Terminal secara berurutan&#x2014;Anda tidak perlu menyalin satu per satu. Kami juga membahas langkah <b>pengamanan akun GitHub</b> dari sisi server, karena mencabut akses dari perangkat yang sudah tidak digunakan adalah bagian penting dari keamanan digital.
+        Artikel ini menyajikan <b>panduan lengkap</b> untuk mereset akun Debian Anda secara aman dan permanen. Dilengkapi dengan skrip otomatisasi Bash (<code>.sh</code>) yang akan menjalankan semua perintah Terminal secara berurutan—Anda tidak perlu menyalin satu per satu. Kami juga membahas langkah <b>pengamanan akun GitHub</b> dari sisi server, karena mencabut akses dari perangkat yang sudah tidak digunakan adalah bagian penting dari keamanan digital.
     </p>
     <!-- ===== HERO IMAGE ===== -->
     <figure class="hero-image-wrap">
@@ -350,12 +350,12 @@
     <!-- ===== SECTION: SKRIP OTOMATISASI ===== -->
     <div class="section-accordion">
         <details>
-            <summary><span class="icon-shrink"><i class="fa-solid fa-robot" style="color: var(--accent);"></i></span> &#x1f916; Skrip Otomatisasi (<code>bersih_akun.sh</code>)</summary>
+            <summary><span class="icon-shrink"><i class="fa-solid fa-robot" style="color: var(--accent);"></i></span> 🤖 Skrip Otomatisasi (<code>bersih_akun.sh</code>)</summary>
             <div class="accordion-content">
                 <p>
                     Anda bisa menyimpan skrip di bawah ini ke dalam sebuah file bernama <code>bersih_akun.sh</code>. Skrip ini dibagi menjadi dua bagian otomatis demi keamanan pergantian akun.
                 </p>
-                <h3>&#x1f4dd; Cara Membuat dan Menjalankan Skrip:</h3>
+                <h3>📝 Cara Membuat dan Menjalankan Skrip:</h3>
                 <ol>
                     <li>Buka Terminal di akun Anda saat ini.</li>
                     <li>Buat file baru: <code>nano bersih_akun.sh</code></li>
@@ -366,38 +366,38 @@
                 </ol>
                 <pre><code class="language-bash">#!/bin/bash
 # Pastikan teks berwarna hijau untuk panduan petunjuk
-HIJAU=&apos;\033[0;32m&apos;
-MERAH=&apos;\033[0;31m&apos;
-NORMAL=&apos;\033[0m&apos;
+HIJAU='\033[0;32m'
+MERAH='\033[0;31m'
+NORMAL='\033[0m'
 # Deteksi nama pengguna yang sedang aktif saat ini
-USER_LAMA=&#x24;(whoami)
-echo -e &quot;&#x24;{HIJAU}[1/3] Memulai pembersihan Flatpak...&#x24;{NORMAL}&quot;
+USER_LAMA=$(whoami)
+echo -e "${HIJAU}[1/3] Memulai pembersihan Flatpak...${NORMAL}"
 # Hapus semua aplikasi Flatpak dan data personal di dalamnya
 if command -v flatpak &amp;&gt; /dev/null; then
     flatpak uninstall --all --delete-data -y
     flatpak uninstall --unused -y
 else
-    echo &quot;Flatpak tidak ditemukan, melewati langkah ini.&quot;
+    echo "Flatpak tidak ditemukan, melewati langkah ini."
 fi
-echo -e &quot;&#x24;{HIJAU}[2/3] Membuat akun administrator baru untuk pemilik laptop...&#x24;{NORMAL}&quot;
-echo &quot;Silakan masukkan password sudo Anda jika diminta.&quot;
+echo -e "${HIJAU}[2/3] Membuat akun administrator baru untuk pemilik laptop...${NORMAL}"
+echo "Silakan masukkan password sudo Anda jika diminta."
 # Meminta input nama akun baru dan password dari user
-echo -n &quot;Masukkan nama akun baru untuk pemilik laptop: &quot;
+echo -n "Masukkan nama akun baru untuk pemilik laptop: "
 read USER_BARU
 # Proses pembuatan user baru tingkat sistem
-sudo adduser &quot;&#x24;USER_BARU&quot;
-sudo usermod -aG sudo &quot;&#x24;USER_BARU&quot;
-echo -e &quot;&#x24;{HIJAU}[3/3] LANGKAH PENTING SELANJUTNYA:&#x24;{NORMAL}&quot;
-echo -e &quot;1. &#x24;{MERAH}Silakan LOGOUT dari akun Anda sekarang.&#x24;{NORMAL}&quot;
-echo -e &quot;2. Masuk (Login) ke akun baru: &#x24;{HIJAU}&#x24;USER_BARU&#x24;{NORMAL}&quot;
-echo -e &quot;3. Buka Terminal di akun baru tersebut, lalu jalankan perintah pemungkas berikut:&quot;
-echo -e &quot;&#x24;{MERAH}sudo deluser --remove-home &#x24;USER_LAMA&#x24;{NORMAL}&quot;
-echo &quot;&quot;
-echo -e &quot;&#x24;{HIJAU}Menjalankan pembersihan akhir sistem...&#x24;{NORMAL}&quot;
+sudo adduser "$USER_BARU"
+sudo usermod -aG sudo "$USER_BARU"
+echo -e "${HIJAU}[3/3] LANGKAH PENTING SELANJUTNYA:${NORMAL}"
+echo -e "1. ${MERAH}Silakan LOGOUT dari akun Anda sekarang.${NORMAL}"
+echo -e "2. Masuk (Login) ke akun baru: ${HIJAU}$USER_BARU${NORMAL}"
+echo -e "3. Buka Terminal di akun baru tersebut, lalu jalankan perintah pemungkas berikut:"
+echo -e "${MERAH}sudo deluser --remove-home $USER_LAMA${NORMAL}"
+echo ""
+echo -e "${HIJAU}Menjalankan pembersihan akhir sistem...${NORMAL}"
 sudo rm -rf /var/lib/flatpak/app/*
 sudo apt-get clean
 history -c
-echo &quot;Sesi pertama selesai. Silakan logout sekarang.&quot;</code></pre>
+echo "Sesi pertama selesai. Silakan logout sekarang."</code></pre>
                 <div class="info-box">
                     <strong><i class="fa-regular fa-circle-check"></i> Catatan:</strong>
                     <p style="margin-bottom: 0; font-size: 0.95rem;">
@@ -410,7 +410,7 @@ echo &quot;Sesi pertama selesai. Silakan logout sekarang.&quot;</code></pre>
     <!-- ===== SECTION: LANGKAH MANUAL ===== -->
     <div class="section-accordion">
         <details>
-            <summary><span class="icon-shrink"><i class="fa-solid fa-list" style="color: var(--accent);"></i></span> &#x1f6e0;&#xfe0f; Langkah Manual (Detail Alur Kerja Skrip)</summary>
+            <summary><span class="icon-shrink"><i class="fa-solid fa-list" style="color: var(--accent);"></i></span> 🛠️ Langkah Manual (Detail Alur Kerja Skrip)</summary>
             <div class="accordion-content">
                 <p>
                     Jika Anda lebih memilih melakukan eksekusi perintah satu per satu secara manual tanpa skrip, berikut adalah rincian runtunan perintahnya:
@@ -423,7 +423,7 @@ flatpak uninstall --unused</code></pre>
                 <h3>Langkah 2: Buat Akun Baru untuk Pemilik Laptop</h3>
                 <pre><code class="language-bash"># Masuk sebagai root / akses administratif
 sudo su
-# Tambahkan pengguna baru (misal diberi nama &apos;pemilik&apos;)
+# Tambahkan pengguna baru (misal diberi nama 'pemilik')
 adduser pemilik
 # Berikan hak akses administrator (sudo) ke akun baru tersebut
 usermod -aG sudo pemilik</code></pre>
@@ -437,7 +437,7 @@ usermod -aG sudo pemilik</code></pre>
                 <p>
                     Setelah masuk ke dalam akun pemilik, buka Terminal baru dan jalankan perintah ini untuk memusnahkan akun Anda yang lama:
                 </p>
-                <pre><code class="language-bash"># Hapus akun Anda (Ganti &apos;nama_akun_anda&apos; dengan username Anda yang lama)
+                <pre><code class="language-bash"># Hapus akun Anda (Ganti 'nama_akun_anda' dengan username Anda yang lama)
 sudo deluser --remove-home nama_akun_anda
 # Pastikan folder home akun lama Anda sudah benar-benar terhapus
 ls /home</code></pre>
@@ -457,21 +457,21 @@ history -c &amp;&amp; rm -f ~/.bash_history</code></pre>
     <!-- ===== SECTION: GITHUB SECURITY ===== -->
     <div class="section-accordion">
         <details>
-            <summary><span class="icon-shrink"><i class="fa-brands fa-github" style="color: var(--warning);"></i></span> &#x1f510; Langkah 6: Pengamanan Akun GitHub dari Sisi Server</summary>
+            <summary><span class="icon-shrink"><i class="fa-brands fa-github" style="color: var(--warning);"></i></span> 🔐 Langkah 6: Pengamanan Akun GitHub dari Sisi Server</summary>
             <div class="accordion-content">
                 <p>
                     Anda wajib memutus izin akses perangkat secara online langsung dari situs web GitHub demi keamanan mutlak.
                 </p>
                 <h3>A. Jika Anda Menggunakan SSH Key</h3>
                 <ol>
-                    <li>Buka browser dan masuk ke <a href="https://github.com/settings/keys" target="_blank" rel="noopener noreferrer">github.com &#x2192; Settings &#x2192; SSH and GPG keys</a>.</li>
+                    <li>Buka browser dan masuk ke <a href="https://github.com/settings/keys" target="_blank" rel="noopener noreferrer">github.com → Settings → SSH and GPG keys</a>.</li>
                     <li>Cari nama SSH Key laptop tersebut, lalu klik <b>Delete</b>.</li>
                 </ol>
                 <h3>B. Jika Login Melalui Terminal (HTTPS / GitHub CLI)</h3>
                 <ol>
-                    <li>Buka halaman <a href="https://github.com/settings/sessions" target="_blank" rel="noopener noreferrer">Settings &#x2192; Sessions</a>.</li>
+                    <li>Buka halaman <a href="https://github.com/settings/sessions" target="_blank" rel="noopener noreferrer">Settings → Sessions</a>.</li>
                     <li>Cari perangkat Linux/Debian Anda pada daftar sesi aktif, lalu klik <b>Revoke</b> atau <b>Sign out</b>.</li>
-                    <li>Klik menu <b>Applications</b> di sebelah kiri &#x2192; pilih tab <b>Authorized OAuth Apps</b>.</li>
+                    <li>Klik menu <b>Applications</b> di sebelah kiri → pilih tab <b>Authorized OAuth Apps</b>.</li>
                     <li>Cari GitHub CLI atau aplikasi editor teks terkait, klik titik tiga (...), lalu pilih <b>Revoke</b>.</li>
                 </ol>
                 <div class="info-box">
@@ -487,7 +487,7 @@ history -c &amp;&amp; rm -f ~/.bash_history</code></pre>
     <hr>
     <div style="text-align: center; padding: 1rem 0;">
         <p style="font-style: italic; font-size: var(--h3-size); color: var(--text-secondary);">
-            <i class="fa-solid fa-shield-halved" style="color: var(--danger);"></i> Reset akun, hapus jejak, amankan GitHub&#x2014;semua dalam satu panduan.
+            <i class="fa-solid fa-shield-halved" style="color: var(--danger);"></i> Reset akun, hapus jejak, amankan GitHub—semua dalam satu panduan.
         </p>
         <p style="font-size: var(--small-size); color: var(--text-muted); margin-top: 0.5rem;">
             Skrip otomatisasi di atas sudah siap digunakan.
@@ -498,12 +498,12 @@ history -c &amp;&amp; rm -f ~/.bash_history</code></pre>
     <div id="response"></div>
     <!-- ===== FOOTER ===== -->
     <footer class="article-footer">
-        <span class="footer-item">&#x270d;&#xfe0f; <b>Jaga Data Pribadi Tetap Aman</b></span>
-        <span class="footer-item"><span class="sep">|</span> &#x1f4c5; 23 September 2025</span>
-        <span class="footer-item"><span class="sep">|</span> &#x1f517; Referensi: <a href="https://www.debian.org/" target="_blank" rel="noopener noreferrer">Debian</a> &amp; <a href="https://docs.github.com/en/authentication" target="_blank" rel="noopener noreferrer">GitHub Docs</a></span>
-            <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <span class="footer-item">✍️ <b>Jaga Data Pribadi Tetap Aman</b></span>
+        <span class="footer-item"><span class="sep">|</span> 📅 23 September 2025</span>
+        <span class="footer-item"><span class="sep">|</span> 🔗 Referensi: <a href="https://www.debian.org/" target="_blank" rel="noopener noreferrer">Debian</a> &amp; <a href="https://docs.github.com/en/authentication" target="_blank" rel="noopener noreferrer">GitHub Docs</a></span>
+            <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

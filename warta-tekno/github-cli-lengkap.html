@@ -1,14 +1,244 @@
-<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Panduan GitHub CLI Lengkap - Layar Kosong</title><meta content="Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!" name="description"><link href="https://dalam.web.id/warta-tekno/github-cli-lengkap" rel="canonical"><link title="JSON Batch Editor article:published_time" href="https://dalam.web.id/warta-tekno/json-published-time-artikel-editor" rel="prev"><link title="Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete" href="https://dalam.web.id/warta-tekno/github-pr-workflow-settings" rel="next"><meta content="https://dalam.web.id/warta-tekno/github-cli-lengkap" property="og:url"><meta content="https://dalam.web.id/warta-tekno/github-cli-lengkap" name="twitter:url"><meta content="Windows, Teknologi Umum" property="article:section"><meta content="Windows" property="article:tag"><meta content="Teknologi Umum" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="GitHub CLI, tutorial gh, command line GitHub, workflow developer, pull request CLI" name="news_keywords"><meta content="Panduan GitHub CLI Lengkap | GitHub CLI (gh) itu tool resmi dari GitHub buat ngelola repo, PR, issue, dll langsung dari terminal. Lebih cepet daripada buka web terus. Aku rangkum command-co" name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Panduan GitHub CLI Lengkap" property="og:title"><meta content="Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!" property="og:description"><meta content="2025-12-27T15:52:34.881Z" property="og:updated_time"><meta content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" property="og:image"><meta content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" property="og:image:url"><meta content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" property="og:image:secure_url"><meta content="Panduan GitHub CLI Lengkap" property="og:image:alt"><meta content="1000" property="og:image:width"><meta content="525" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Panduan GitHub CLI Lengkap" name="twitter:title"><meta content="Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!" name="twitter:description"><meta content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" name="twitter:image"><meta content="Panduan GitHub CLI Lengkap" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2025-12-27T15:46:39.792Z" property="article:published_time"><meta content="2025-12-27T15:46:39.792Z" property="article:modified_time"><meta content="GitHub CLI, gh, command line, tutorial, commit, push, branch, pull request, fork, merge, release, issue, repo" name="keywords"><script crossorigin="" src="https://kit.fontawesome.com/a076d05399.js"></script><style>:root{--bg:#f8fafc;--text:#1e293b;--accent:#238636;--muted:#64748b;--card-bg:#fff;--border:#e2e8f0;--code-bg:#1e293b;--code-text:#e2e8f0;--maxw:900px;font-family:system-ui,-apple-system,sans-serif}@media (prefers-color-scheme:dark){:root{--bg:#0f172a;--text:#e2e8f0;--accent:#58a6ff;--muted:#94a3b8;--card-bg:#1e293b;--border:#334155;--code-bg:#0f172a;--code-text:#cbd5e1}}*{box-sizing:border-box;margin:0;padding:0}html,body{background:var(--bg);height:100%;color:var(--text)}body{flex-direction:column;padding:2rem 1rem;line-height:1.7;display:flex}.container{max-width:var(--maxw);flex-direction:column;flex:1;margin:0 auto;display:flex}header{text-align:center;margin-bottom:3rem}h1 a{color:inherit;font-size:2.5rem;text-decoration:none}h2{color:var(--accent);align-items:center;gap:.7rem;margin:3rem 0 1.5rem;font-size:1.8rem;display:flex}.nav-accordion{margin-bottom:3rem}details{margin-bottom:.5rem}summary{cursor:pointer;background:var(--card-bg);border:1px solid var(--border);border-radius:.5rem;padding:1rem;font-weight:700}.nav-list{padding:1rem 0 0 1.5rem}.nav-list a{color:var(--text);padding:.5rem 0;text-decoration:none;display:block}.nav-list a:hover{color:var(--accent)}.code-block{background:var(--code-bg);color:var(--code-text);border-radius:1rem;margin:1.5rem 0;padding:1.5rem;position:relative;overflow-x:auto}.copy-btn{background:var(--accent);color:#fff;cursor:pointer;border:none;border-radius:.5rem;padding:.5rem 1rem;position:absolute;top:.8rem;right:.8rem}.share-buttons{justify-content:center;gap:1.5rem;margin:4rem 0;display:flex}.share-buttons a{color:var(--text);font-size:2rem;transition:transform .2s}.share-buttons a:hover{transform:scale(1.3)}footer{border-top:1px solid var(--border);text-align:center;color:var(--muted);margin-top:5rem;padding-top:2rem}img.illus{border-radius:1rem;max-width:100%;margin:2rem 0;box-shadow:0 4px 20px #0000001a}@media (width<=768px){h1 a{font-size:2rem}body{padding:1rem}}</style><link href="/ext/pemandu.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Panduan GitHub CLI Lengkap","description":"Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch\/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!","datePublished":"2025-12-27T15:46:39.792Z","dateModified":"2025-12-27T15:46:39.792Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap"},"wordCount":323,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/cli.github.com\/assets\/images\/social-card.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/cli.github.com\/assets\/images\/social-card.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/cli.github.com\/assets\/images\/social-card.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/cli.github.com\/assets\/images\/social-card.webp","keywords":["Windows","Teknologi Umum","GitHub CLI","tutorial gh","command line GitHub","workflow developer","pull request CLI","panduan","github","cli","lengkap","Warta Tekno","Layar Kosong"],"articleSection":["Warta Tekno"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap","url":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap","name":"Panduan GitHub CLI Lengkap - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/cli.github.com\/assets\/images\/social-card.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/cli.github.com\/assets\/images\/social-card.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/cli.github.com\/assets\/images\/social-card.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/cli.github.com\/assets\/images\/social-card.webp","datePublished":"2025-12-27T15:46:39.792Z","dateModified":"2025-12-27T15:46:39.792Z","description":"Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch\/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!","breadcrumb":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap#primaryimage","url":"https:\/\/dalam.web.id\/img\/cli.github.com\/assets\/images\/social-card.webp","contentUrl":"https:\/\/dalam.web.id\/img\/cli.github.com\/assets\/images\/social-card.webp","width":1000,"height":525,"caption":"Panduan GitHub CLI Lengkap","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https:\/\/dalam.web.id\/warta-tekno"},{"@type":"ListItem","position":3,"name":"Panduan GitHub CLI Lengkap","item":"https:\/\/dalam.web.id\/warta-tekno\/github-cli-lengkap"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><div class="container"><header><div id="iposbrowser"></div><h1>Panduan GitHub CLI Lengkap</h1><p style="color:var(--muted);margin-top:1.5rem;font-size:1.2rem">GitHub CLI (gh) itu tool resmi dari GitHub buat ngelola repo, PR, issue, dll langsung dari terminal. Lebih cepet daripada buka web terus. Aku rangkum command-command esensial plus visualnya. Navigasi di bawah buat lompat section, tekan Salin buat copy command. Yuk level up workflow kamu! 🚀</p><img alt="Social card GitHub CLI dengan terminal" sizes="(max-width: 1040px) calc(100vw - 40px), 1000px" srcset="https://dalam.web.id/img/cli.github.com/assets/images/social-card-sm.webp 720w, https://dalam.web.id/img/cli.github.com/assets/images/social-card-md.webp 960w, https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp 1000w" class="illus" height="525" src="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" width="1000"></header><nav class="nav-accordion"><details open=""><summary>🔧 Navigasi Panduan GitHub CLI</summary> <div class="nav-list"><details open=""><summary>🌱 Dasar</summary> <a href="#login">Login ke GitHub</a> <a href="#clone">Clone Repository</a> <a href="#commit">Commit &amp; Push</a></details><details><summary>⚡ Lanjutan</summary> <a href="#pr">Pull Request</a> <a href="#branch">Branch</a> <a href="#issue">Issue</a> <a href="#fork">Fork Repository</a> <a href="#merge">Merge Branch</a> <a href="#release">Release</a> <a href="#watch-star">Watch &amp; Star</a></details></div></details></nav><main><h2 id="login">🔑 Login ke GitHub</h2><p>Langkah pertama: autentikasi akun GitHub kamu via CLI. Bakal buka browser dapat buat approve.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>gh auth login</code></pre></div><img alt="Diagram alur login GitHub CLI" sizes="(max-width: 1040px) calc(100vw - 40px), 1000px" srcset="https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72-sm.webp 720w, https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72-md.webp 960w, https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.webp 1000w" class="illus" height="648" src="https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.webp" width="1000"><h2 id="clone">📥 Clone Repository</h2><p>Unduh repo orang lain atau punya sendiri ke lokal dengan cepat.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>gh repo clone username/repo</code></pre></div><h2 id="commit">📝 Commit &amp; Push</h2><p>Workflow dasar Git tetep dipake, tapi gh bisa bantu shortcut.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>git add .
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan GitHub CLI Lengkap - Layar Kosong</title>
+    <meta name="description" content="Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/github-cli-lengkap">
+    <link rel="prev" href="https://dalam.web.id/warta-tekno/json-published-time-artikel-editor" title="JSON Batch Editor article:published_time">
+    <link rel="next" href="https://dalam.web.id/warta-tekno/github-pr-workflow-settings" title="Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge & Delete">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/github-cli-lengkap">
+    <meta name="twitter:url" content="https://dalam.web.id/warta-tekno/github-cli-lengkap">
+    <meta property="article:section" content="Windows, Teknologi Umum">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Teknologi Umum">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="GitHub CLI, tutorial gh, command line GitHub, workflow developer, pull request CLI">
+    <meta name="promphint" content="Panduan GitHub CLI Lengkap | GitHub CLI (gh) itu tool resmi dari GitHub buat ngelola repo, PR, issue, dll langsung dari terminal. Lebih cepet daripada buka web terus. Aku rangkum command-co">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Panduan GitHub CLI Lengkap">
+    <meta property="og:description" content="Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!">
+    <meta property="og:updated_time" content="2025-12-27T15:52:34.881Z">
+    <meta property="og:image" content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp">
+    <meta property="og:image:alt" content="Panduan GitHub CLI Lengkap">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="525">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:title" content="Panduan GitHub CLI Lengkap">
+    <meta name="twitter:description" content="Panduan interaktif GitHub CLI (gh) lengkap untuk developer: login, clone repo, commit push, pull request, branch, issue, fork, merge, release, watch/star, dan workflow harian. Dilengkapi command praktis, tombol salin, dan diagram visual. Cocok buat pemula yang mau efisien tanpa buka browser!">
+    <meta name="twitter:image" content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp">
+    <meta name="twitter:image:alt" content="Panduan GitHub CLI Lengkap">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2025-12-27T15:46:39.792Z">
+    <meta property="article:modified_time" content="2025-12-27T15:46:39.792Z">
+<meta name="keywords" content="GitHub CLI, gh, command line, tutorial, commit, push, branch, pull request, fork, merge, release, issue, repo">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --accent: #238636; /* GitHub green */
+            --muted: #64748b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --maxw: 900px;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --text: #e2e8f0;
+                --accent: #58a6ff;
+                --muted: #94a3b8;
+                --card-bg: #1e293b;
+                --border: #334155;
+                --code-bg: #0f172a;
+                --code-text: #cbd5e1;
+            }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; background: var(--bg); color: var(--text); }
+        body { display: flex; flex-direction: column; padding: 2rem 1rem; line-height: 1.7; }
+        .container { max-width: var(--maxw); margin: 0 auto; flex: 1; display: flex; flex-direction: column; }
+        header { text-align: center; margin-bottom: 3rem; }
+        h1 a { text-decoration: none; color: inherit; font-size: 2.5rem; }
+        h2 { margin: 3rem 0 1.5rem; font-size: 1.8rem; display: flex; align-items: center; gap: 0.7rem; color: var(--accent); }
+        .nav-accordion { margin-bottom: 3rem; }
+        details { margin-bottom: 0.5rem; }
+        summary { cursor: pointer; padding: 1rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; font-weight: bold; }
+        .nav-list { padding: 1rem 0 0 1.5rem; }
+        .nav-list a { display: block; padding: 0.5rem 0; color: var(--text); text-decoration: none; }
+        .nav-list a:hover { color: var(--accent); }
+        .code-block { background: var(--code-bg); color: var(--code-text); padding: 1.5rem; border-radius: 1rem; position: relative; margin: 1.5rem 0; overflow-x: auto; }
+        .copy-btn { position: absolute; top: 0.8rem; right: 0.8rem; background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; }
+        .share-buttons { display: flex; justify-content: center; gap: 1.5rem; margin: 4rem 0; }
+        .share-buttons a { color: var(--text); font-size: 2rem; transition: transform 0.2s; }
+        .share-buttons a:hover { transform: scale(1.3); }
+        footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
+        img.illus { max-width: 100%; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        @media (max-width: 768px) { h1 a { font-size: 2rem; } body { padding: 1rem; } }
+    </style>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+    <div class="container">
+        <header>
+            <div id="iposbrowser"></div><h1>Panduan GitHub CLI Lengkap</h1>
+            <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.2rem;">GitHub CLI (gh) itu tool resmi dari GitHub buat ngelola repo, PR, issue, dll langsung dari terminal. Lebih cepet daripada buka web terus. Aku rangkum command-command esensial plus visualnya. Navigasi di bawah buat lompat section, tekan Salin buat copy command. Yuk level up workflow kamu! 🚀</p>
+            <img src="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" alt="Social card GitHub CLI dengan terminal" class="illus">
+        </header>
+        <nav class="nav-accordion">
+            <details open="">
+                <summary>🔧 Navigasi Panduan GitHub CLI</summary>
+                <div class="nav-list">
+                    <details open=""><summary>🌱 Dasar</summary>
+                        <a href="#login">Login ke GitHub</a>
+                        <a href="#clone">Clone Repository</a>
+                        <a href="#commit">Commit &amp; Push</a>
+                    </details>
+                    <details><summary>⚡ Lanjutan</summary>
+                        <a href="#pr">Pull Request</a>
+                        <a href="#branch">Branch</a>
+                        <a href="#issue">Issue</a>
+                        <a href="#fork">Fork Repository</a>
+                        <a href="#merge">Merge Branch</a>
+                        <a href="#release">Release</a>
+                        <a href="#watch-star">Watch &amp; Star</a>
+                    </details>
+                </div>
+            </details>
+        </nav>
+        <main>
+            <h2 id="login">🔑 Login ke GitHub</h2>
+            <p>Langkah pertama: autentikasi akun GitHub kamu via CLI. Bakal buka browser dapat buat approve. </p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>gh auth login</code></pre>
+            </div>
+            <img src="https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.webp" alt="Diagram alur login GitHub CLI" class="illus">
+            <h2 id="clone">📥 Clone Repository</h2>
+            <p>Unduh repo orang lain atau punya sendiri ke lokal dengan cepat.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>gh repo clone username/repo</code></pre>
+            </div>
+            <h2 id="commit">📝 Commit &amp; Push</h2>
+            <p>Workflow dasar Git tetep dipake, tapi gh bisa bantu shortcut.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>git add .
 git commit -m "Pesan commit"
-git push</code></pre></div><h2 id="pr">🔀 Pull Request</h2><p>Bikin PR langsung dari branch kamu tanpa buka web.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>gh pr create --title "Judul PR" --body "Deskripsi detail"</code></pre></div><img alt="Diagram workflow pull request GitHub" sizes="(max-width: 840px) calc(100vw - 40px), 800px" srcset="https://dalam.web.id/img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01-sm.webp 720w, https://dalam.web.id/img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01.webp 800w" class="illus" height="522" src="https://dalam.web.id/img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01.webp" width="800"><h2 id="branch">🌿 Branch</h2><p>Bikin branch baru buat fitur tanpa ganggu main.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>git checkout -b nama-branch-baru</code></pre></div><h2 id="issue">🐛 Issue</h2><p>Lapor bug atau request fitur langsung dari terminal.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>gh issue create --title "Judul Issue" --body "Deskripsi lengkap"</code></pre></div><h2 id="fork">🔱 Fork Repository</h2><p>Fork repo orang lain sekaligus clone ke lokal.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>gh repo fork username/repo --clone=true</code></pre></div><h2 id="merge">🔄 Merge Branch</h2><p>Gabung branch fitur ke main setelah review.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>git checkout main
-git merge nama-branch</code></pre></div><img alt="Diagram branch dan merge GitHub" sizes="(max-width: 1040px) calc(100vw - 40px), 1000px" srcset="https://dalam.web.id/img/kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example-sm.webp 720w, https://dalam.web.id/img/kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example-md.webp 960w, https://dalam.web.id/img/kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example.webp 1000w" class="illus" height="580" src="https://dalam.web.id/img/kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example.webp" width="1000"><h2 id="release">📦 Release</h2><p>Bikin tag release baru plus upload asset.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>gh release create v1.0.0 file.zip --title "Version 1.0.0"</code></pre></div><h2 id="watch-star">⭐ Watch &amp; Star</h2><p>Pantau update repo dan beri star biar support author.</p><div class="code-block"><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><pre><code>gh repo watch username/repo
-gh repo star username/repo</code></pre></div><h2>🎁 Tips Bonus GitHub CLI</h2><ul><li><strong>Install dulu:</strong> <code>brew install gh</code> (Mac) atau cek docs resmi.</li><li><strong>List PR:</strong> <code>gh pr list</code> – Lihat semua PR di repo.</li><li><strong>Checkout PR:</strong> <code>gh pr checkout 123</code> – Langsung switch ke branch PR orang.</li><li><strong>View repo di browser:</strong> <code>gh repo view --web</code> 🔥</li></ul><p>Selesai panduannya bro! Sekarang coba install gh kalau belum, lalu praktekkin command-command ini di project kamu. Workflow bakal jauh lebih cepat. Kalau ada command favorit kamu yang kurang, komentar di bawah . Happy coding, may the forks be with you! 🐙✨</p></main><div id="related-articles-grid"><p style="text-align:center;color:var(--muted)">Komentar bakal muncul di sini...</p></div><div id="response"><p style="color:var(--muted);margin-top:2rem">Artikel terkait segera hadir...</p></div><footer><p>Artikel ini informatif, selalu cek docs resmi GitHub CLI untuk update terbaru ya!</p><p>🄯 Layar Kosong • 2025</p><a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer></div><script>// Copy button dengan feedback
- document.querySelectorAll('.copy-btn').forEach(btn => {
- btn.addEventListener('click', () => {
- const code = btn.nextElementSibling.querySelector('code').innerText;
- navigator.clipboard.writeText(code).then(() => {
- btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
- setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> Salin', 2000);
- });
- });
- });</script><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script defer="" src="/ext/highlight.js"></script><script>hljs.highlightAll();</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-30</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
+git push</code></pre>
+            </div>
+            <h2 id="pr">🔀 Pull Request</h2>
+            <p>Bikin PR langsung dari branch kamu tanpa buka web.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>gh pr create --title "Judul PR" --body "Deskripsi detail"</code></pre>
+            </div>
+            <img src="https://dalam.web.id/img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01.webp" alt="Diagram workflow pull request GitHub" class="illus">
+            <h2 id="branch">🌿 Branch</h2>
+            <p>Bikin branch baru buat fitur tanpa ganggu main.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>git checkout -b nama-branch-baru</code></pre>
+            </div>
+            <h2 id="issue">🐛 Issue</h2>
+            <p>Lapor bug atau request fitur langsung dari terminal.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>gh issue create --title "Judul Issue" --body "Deskripsi lengkap"</code></pre>
+            </div>
+            <h2 id="fork">🔱 Fork Repository</h2>
+            <p>Fork repo orang lain sekaligus clone ke lokal.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>gh repo fork username/repo --clone=true</code></pre>
+            </div>
+            <h2 id="merge">🔄 Merge Branch</h2>
+            <p>Gabung branch fitur ke main setelah review.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>git checkout main
+git merge nama-branch</code></pre>
+            </div>
+            <img src="https://dalam.web.id/img/kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example.webp" alt="Diagram branch dan merge GitHub" class="illus">
+            <h2 id="release">📦 Release</h2>
+            <p>Bikin tag release baru plus upload asset.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>gh release create v1.0.0 file.zip --title "Version 1.0.0"</code></pre>
+            </div>
+            <h2 id="watch-star">⭐ Watch &amp; Star</h2>
+            <p>Pantau update repo dan beri star biar support author.</p>
+            <div class="code-block">
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
+                <pre><code>gh repo watch username/repo
+gh repo star username/repo</code></pre>
+            </div>
+            <h2>🎁 Tips Bonus GitHub CLI</h2>
+            <ul>
+                <li><strong>Install dulu:</strong> <code>brew install gh</code> (Mac) atau cek docs resmi.</li>
+                <li><strong>List PR:</strong> <code>gh pr list</code> – Lihat semua PR di repo.</li>
+                <li><strong>Checkout PR:</strong> <code>gh pr checkout 123</code> – Langsung switch ke branch PR orang.</li>
+                <li><strong>View repo di browser:</strong> <code>gh repo view --web</code> 🔥</li>
+            </ul>
+            <p>Selesai panduannya bro! Sekarang coba install gh kalau belum, lalu praktekkin command-command ini di project kamu. Workflow bakal jauh lebih cepat. Kalau ada command favorit kamu yang kurang, komentar di bawah . Happy coding, may the forks be with you! 🐙✨</p>
+        </main>
+        <div id="related-articles-grid">
+            <p style="text-align:center; color:var(--muted);">Komentar bakal muncul di sini...</p>
+        </div>   <div id="response">
+                <p style="margin-top:2rem; color:var(--muted);">Artikel terkait segera hadir...</p>
+            </div>
+        <footer>
+            <p>Artikel ini informatif, selalu cek docs resmi GitHub CLI untuk update terbaru ya!</p>
+            <p>🄯 Layar Kosong • 2025</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    </div>
+    <script>
+        // Copy button dengan feedback
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const code = btn.nextElementSibling.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
+                    setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> Salin', 2000);
+                });
+            });
+        });
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

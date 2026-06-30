@@ -53,14 +53,14 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Bun">
     <meta property="article:tag" content="Automasi">
     <meta property="article:tag" content="Video">
     <meta property="article:tag" content="Produktivitas">
     <meta property="article:published_time" content="2026-04-03T17:15:19.470Z">
-    <meta property="article:modified_time" content="2026-04-21T13:44:26.787Z">
+    <meta property="article:modified_time" content="2026-04-03T17:15:19.470Z">
     <style>
         /* ===== RESET & VARIABLES ===== */
         :root {
@@ -314,9 +314,9 @@
         /* ===== HIGHLIGHT.JS FALLBACK ===== */
         .hljs { background: var(--code-bg); color: var(--code-text); }
     </style>
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <!-- Highlight.js CSS & JS -->
-    <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media=&apos;all&apos;">
+    <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <div class="container" role="main">
@@ -329,7 +329,7 @@
         </header>
         <!-- ===== LEAD ===== -->
         <p>
-            Pernahkah kamu mendapati folder proyekmu berantakan dengan file video yang tersebar di belasan subfolder? Mungkin hasil rekaman dari berbagai kamera, video klip dari internet, atau arsip proyek lama yang menumpuk. Alih-alih memindahkannya secara manual satu per satu&#x2014;yang melelahkan dan berisiko salah klik&#x2014;kita bisa memanfaatkan <b>Bun Glob</b> untuk merapikannya dalam hitungan detik.
+            Pernahkah kamu mendapati folder proyekmu berantakan dengan file video yang tersebar di belasan subfolder? Mungkin hasil rekaman dari berbagai kamera, video klip dari internet, atau arsip proyek lama yang menumpuk. Alih-alih memindahkannya secara manual satu per satu—yang melelahkan dan berisiko salah klik—kita bisa memanfaatkan <b>Bun Glob</b> untuk merapikannya dalam hitungan detik.
         </p>
         <p>
             Artikel ini akan memandu Anda membuat skrip sederhana namun cerdas untuk <u>memindai semua file video secara rekursif</u> dari sebuah direktori dan memindahkannya ke satu folder pusat. Metode ini tidak hanya menghemat waktu, tetapi juga <b>mencegah kesalahan manusia</b> dan menjaga struktur folder tetap rapi untuk proses selanjutnya, seperti konversi atau pengarsipan.
@@ -339,7 +339,7 @@
             <img src="https://dalam.web.id/img/pbs.twimg.com/ea29d6346aa6cab9.webp" alt="Tampilan terminal Linux dengan proses automasi folder menggunakan Bun dan Glob untuk memindahkan file video" width="1000" height="562" loading="eager" fetchpriority="high" decoding="async">
         </figure>
         <p>
-            Di balik layar, skrip ini memanfaatkan kemampuan <b>scanning rekursif</b> dari <code>Glob</code> yang disediakan oleh Bun&#x2014;sebuah runtime JavaScript modern yang sangat cepat. Dengan hanya beberapa baris kode, kita bisa menangani ratusan bahkan ribuan file video tanpa membebani sistem. Mari kita bedah skripnya secara mendalam.
+            Di balik layar, skrip ini memanfaatkan kemampuan <b>scanning rekursif</b> dari <code>Glob</code> yang disediakan oleh Bun—sebuah runtime JavaScript modern yang sangat cepat. Dengan hanya beberapa baris kode, kita bisa menangani ratusan bahkan ribuan file video tanpa membebani sistem. Mari kita bedah skripnya secara mendalam.
         </p>
         <!-- ===== SECTION 1: SKRIP ===== -->
         <div class="section-accordion">
@@ -352,21 +352,21 @@
                     <p>
                         Berikut adalah kode lengkapnya. Anda bisa menyimpannya sebagai <code>pindah-video.ts</code> dan menjalankannya dengan Bun.
                     </p>
-                    <pre><code class="language-typescript">import { Glob } from &quot;bun&quot;;
-import { renameSync, mkdirSync, existsSync } from &quot;node:fs&quot;;
-import path from &quot;node:path&quot;;
+                    <pre><code class="language-typescript">import { Glob } from "bun";
+import { renameSync, mkdirSync, existsSync } from "node:fs";
+import path from "node:path";
 // Konfigurasi folder spesifik
-const sourceDir = &quot;bakxoje&quot;;
-const targetDir = &quot;bakxoje/pidio&quot;;
-const videoExtensions = [&quot;mp4&quot;, &quot;mkv&quot;, &quot;avi&quot;, &quot;mov&quot;, &quot;flv&quot;, &quot;wmv&quot;, &quot;webm&quot;];
+const sourceDir = "bakxoje";
+const targetDir = "bakxoje/pidio";
+const videoExtensions = ["mp4", "mkv", "avi", "mov", "flv", "wmv", "webm"];
 // 1. Buat folder tujuan jika belum ada
 if (!existsSync(targetDir)) {
   mkdirSync(targetDir, { recursive: true });
 }
 // 2. Scan semua video secara rekursif
-const glob = new Glob(`**/*.{&#x24;{videoExtensions.join(&quot;,&quot;)}}`);
+const glob = new Glob(`**/*.{${videoExtensions.join(",")}}`);
 const absoluteTargetDir = path.resolve(targetDir);
-console.log(`&#x1f680; Mencari video di dalam /&#x24;{sourceDir}...`);
+console.log(`🚀 Mencari video di dalam /${sourceDir}...`);
 let count = 0;
 for (const file of glob.scanSync(sourceDir)) {
   const fullPath = path.resolve(sourceDir, file);
@@ -376,13 +376,13 @@ for (const file of glob.scanSync(sourceDir)) {
   if (fullPath.startsWith(absoluteTargetDir)) continue;
   try {
     renameSync(fullPath, destination);
-    console.log(`[OK] Dipindah: &#x24;{fileName}`);
+    console.log(`[OK] Dipindah: ${fileName}`);
     count++;
   } catch (err) {
-    console.error(`[Gagal] &#x24;{fileName}: &#x24;{err.message}`);
+    console.error(`[Gagal] ${fileName}: ${err.message}`);
   }
 }
-console.log(`\n&#x2728; Selesai! &#x24;{count} video dipindahkan ke &#x24;{targetDir}`);</code></pre>
+console.log(`\n✨ Selesai! ${count} video dipindahkan ke ${targetDir}`);</code></pre>
                     <p>
                         <b>Penjelasan Kode:</b>
                     </p>
@@ -395,7 +395,7 @@ console.log(`\n&#x2728; Selesai! &#x24;{count} video dipindahkan ke &#x24;{targe
                         <li><b>Logging</b>: Menampilkan progres pemindahan dan jumlah total file yang berhasil dipindahkan.</li>
                     </ul>
                     <p>
-                        Perhatikan bahwa <code>renameSync</code> bekerja secara <b>instan</b> jika sumber dan tujuan berada di partisi yang sama, karena hanya mengubah <i>pointer</i> file di sistem berkas&#x2014;tanpa menyalin data secara fisik. Ini membuat proses sangat cepat dan efisien.
+                        Perhatikan bahwa <code>renameSync</code> bekerja secara <b>instan</b> jika sumber dan tujuan berada di partisi yang sama, karena hanya mengubah <i>pointer</i> file di sistem berkas—tanpa menyalin data secara fisik. Ini membuat proses sangat cepat dan efisien.
                     </p>
                 </div>
             </details>
@@ -415,11 +415,11 @@ console.log(`\n&#x2728; Selesai! &#x24;{count} video dipindahkan ke &#x24;{targe
                     <p>
                         Skrip akan mulai memindai folder <code>bakxoje</code> dan memindahkan semua file video ke <code>bakxoje/pidio</code>. Anda akan melihat log progres di terminal seperti ini:
                     </p>
-                    <pre><code>&#x1f680; Mencari video di dalam /bakxoje...
+                    <pre><code>🚀 Mencari video di dalam /bakxoje...
 [OK] Dipindah: video-1.mp4
 [OK] Dipindah: clip_02.mkv
 [OK] Dipindah: project_final.mov
-&#x2728; Selesai! 64 video dipindahkan ke bakxoje/pidio</code></pre>
+✨ Selesai! 64 video dipindahkan ke bakxoje/pidio</code></pre>
                     <p>
                         Jika ada file dengan nama yang sama di folder tujuan, skrip akan <b>menimpa</b> file tersebut karena menggunakan <code>renameSync</code> tanpa pengecekan nama duplikat. Untuk menghindari hal ini, Anda bisa menambahkan logika penamaan ulang (misalnya menambahkan timestamp) sebelum memindahkan.
                     </p>
@@ -478,11 +478,11 @@ console.log(`\n&#x2728; Selesai! &#x24;{count} video dipindahkan ke &#x24;{targe
                         Skrip dasar di atas bisa dimodifikasi untuk berbagai kebutuhan. Berikut beberapa ide pengembangan:
                     </p>
                     <ul>
-                        <li><b>Filter berdasarkan ukuran file</b> &#x2013; Tambahkan pengecekan <code>statSync</code> untuk memindahkan hanya file di atas atau di bawah ukuran tertentu.</li>
-                        <li><b>Penamaan ulang otomatis</b> &#x2013; Jika ada konflik nama, tambahkan timestamp atau angka increment ke nama file tujuan.</li>
-                        <li><b>Log file</b> &#x2013; Simpan daftar file yang dipindahkan ke file <code>.log</code> untuk referensi di masa mendatang.</li>
-                        <li><b>Pengecualian folder</b> &#x2013; Tambahkan daftar folder yang tidak ingin dipindai (misalnya <code>node_modules</code> atau <code>.git</code>).</li>
-                        <li><b>Integrasi dengan ffmpeg</b> &#x2013; Setelah file terkumpul, jalankan konversi otomatis ke format yang diinginkan.</li>
+                        <li><b>Filter berdasarkan ukuran file</b> – Tambahkan pengecekan <code>statSync</code> untuk memindahkan hanya file di atas atau di bawah ukuran tertentu.</li>
+                        <li><b>Penamaan ulang otomatis</b> – Jika ada konflik nama, tambahkan timestamp atau angka increment ke nama file tujuan.</li>
+                        <li><b>Log file</b> – Simpan daftar file yang dipindahkan ke file <code>.log</code> untuk referensi di masa mendatang.</li>
+                        <li><b>Pengecualian folder</b> – Tambahkan daftar folder yang tidak ingin dipindai (misalnya <code>node_modules</code> atau <code>.git</code>).</li>
+                        <li><b>Integrasi dengan ffmpeg</b> – Setelah file terkumpul, jalankan konversi otomatis ke format yang diinginkan.</li>
                     </ul>
                     <p>
                         Dengan sedikit kreativitas, skrip ini bisa menjadi <b>alat andalan</b> untuk mengelola arsip video Anda. Jangan ragu untuk bereksperimen!
@@ -500,12 +500,12 @@ console.log(`\n&#x2728; Selesai! &#x24;{count} video dipindahkan ke &#x24;{targe
         <div id="response"></div>
         <!-- ===== FOOTER ===== -->
         <footer class="article-footer">
-            <span class="footer-item">&#x270d;&#xfe0f; <b>Jaga Data Pribadi Tetap Aman</b></span>
-            <span class="footer-item"><span class="sep">|</span> &#x1f4c5; 22 Juni 2026</span>
-            <span class="footer-item"><span class="sep">|</span> &#x1f517; Referensi: <a href="https://bun.sh/" target="_blank" rel="noopener noreferrer">Bun</a> &amp; <a href="https://nodejs.org/api/fs.html" target="_blank" rel="noopener noreferrer">Node.js FS</a></span>
-                <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <span class="footer-item">✍️ <b>Jaga Data Pribadi Tetap Aman</b></span>
+            <span class="footer-item"><span class="sep">|</span> 📅 22 Juni 2026</span>
+            <span class="footer-item"><span class="sep">|</span> 🔗 Referensi: <a href="https://bun.sh/" target="_blank" rel="noopener noreferrer">Bun</a> &amp; <a href="https://nodejs.org/api/fs.html" target="_blank" rel="noopener noreferrer">Node.js FS</a></span>
+                <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

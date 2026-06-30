@@ -1,8 +1,303 @@
-<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling - Layar Kosong</title><meta content="panduan lengkap robots.txt untuk SEO. Ketahui cara mengontrol Googlebot, optimasi crawl budget, dan hindari kesalahan fatal penulisan kode file ini." name="description"><link href="https://dalam.web.id/warta-tekno/panduan-robots-txt" rel="canonical"><link title="Perangkat AI Canggih Buat UMKM dan Pelajar Naik Kelas" href="https://dalam.web.id/warta-tekno/tools-ai-untuk-umkm" rel="prev"><link title="Gemini - Jagoan Terbaik Buat Belajar dan Eksplorasi" href="https://dalam.web.id/warta-tekno/gemini-ai-terbaik" rel="next"><meta content="https://dalam.web.id/warta-tekno/panduan-robots-txt" property="og:url"><meta content="https://dalam.web.id/warta-tekno/panduan-robots-txt" name="twitter:url"><meta content="Windows, Teknologi Umum" property="article:section"><meta content="Windows" property="article:tag"><meta content="Teknologi Umum" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="robots.txt, SEO teknis, panduan robots.txt, cara membuat robots.txt, optimasi crawl budget, Googlebot" name="news_keywords"><meta content="Apa fungsi file robots.txt untuk SEO? | Menginstruksikan bot mesin pencari mengenai halaman web mana yang boleh dan dilarang untuk ditelusuri (crawling)." name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling" property="og:title"><meta content="Tingkatkan performa SEO website Anda dengan konfigurasi robots.txt yang tepat. Panduan teknis ini membahas cara blokir halaman tidak penting untuk Googlebot." property="og:description"><meta content="2025-05-31T07:01:09.069Z" property="og:updated_time"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp" property="og:image"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp" property="og:image:url"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp" property="og:image:secure_url"><meta content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling" property="og:image:alt"><meta content="1024" property="og:image:width"><meta content="576" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling" name="twitter:title"><meta content="Jangan biarkan trafik website hancur karena salah pengaturan file robots.txt! Pahami fungsi, struktur kode, dan penempatan sitemap yang benar di artikel ini." name="twitter:description"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp" name="twitter:image"><meta content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2025-05-31T06:53:44.431Z" property="article:published_time"><meta content="2025-05-31T06:53:44.431Z" property="article:modified_time"><style>:root{--bg-page:#f8f9fa;--bg-content:#fff;--text-main:#212529;--text-muted:#495057;--heading-color:#111;--accent-color:#0d6efd;--border-color:#dee2e6;--code-bg:#1e1e1e;--accordion-bg:#f8f9fa}@media (prefers-color-scheme:dark){:root{--bg-page:#121212;--bg-content:#1e1e1e;--text-main:#e9ecef;--text-muted:#adb5bd;--heading-color:#f8f9fa;--accent-color:#6ea8fe;--border-color:#343a40;--code-bg:#121212;--accordion-bg:#2b2b2b}}*{box-sizing:border-box;margin:0;padding:0}body{color:var(--text-main);background-color:var(--bg-page);font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Helvetica Neue,sans-serif;font-size:1.125rem;line-height:1.75;transition:background-color .3s,color .3s}.container{width:min(100%,64rem);margin:0 auto;padding:2.5rem 1.5rem}article{background-color:var(--bg-content);border:.0625rem solid var(--border-color);border-radius:.75rem;padding:2.5rem;box-shadow:0 .25rem .5rem #0000000d}h1,h2,h3{color:var(--heading-color);margin-bottom:1.25rem;line-height:1.3}h1{border-bottom:.125rem solid var(--border-color);margin-bottom:1.5rem;padding-bottom:1rem;font-size:2.25rem}h2{margin-top:2.5rem;font-size:1.6rem}h3{margin-top:1.5rem;font-size:1.35rem}p,ul,ol,blockquote{margin-bottom:1.25rem}ul,ol{padding-left:1.5rem}li{margin-bottom:.5rem}a{color:var(--accent-color);text-underline-offset:.2rem;text-decoration:underline .0625rem}a:hover{text-decoration:none}img{aspect-ratio:16/9;object-fit:cover;border:.0625rem solid var(--border-color);border-radius:.5rem;width:100%;height:auto;margin:2rem 0;display:block}pre{background-color:var(--code-bg);border-radius:.5rem;margin-bottom:1.5rem;padding:1.25rem;overflow-x:auto}code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:.95rem}p code,li code{background-color:var(--accordion-bg);border:.0625rem solid var(--border-color);border-radius:.25rem;padding:.2rem .4rem}blockquote{border-left:.25rem solid var(--accent-color);background-color:var(--accordion-bg);color:var(--text-muted);border-radius:0 .5rem .5rem 0;padding:1rem 1.5rem;font-style:italic}details{background-color:var(--accordion-bg);border:.0625rem solid var(--border-color);border-radius:.5rem;margin-bottom:1.5rem;padding:.5rem 1.5rem;transition:background-color .3s}summary{color:var(--heading-color);cursor:pointer;outline:none;align-items:center;padding:1rem 0;font-size:1.6rem;font-weight:700;list-style:none;transition:color .2s;display:flex}summary:hover{color:var(--accent-color)}summary::-webkit-details-marker{display:none}summary:before{content:"▶";color:var(--accent-color);margin-right:1rem;font-size:1.2rem;transition:transform .3s}details[open] summary:before{transform:rotate(90deg)}details[open] summary{border-bottom:.0625rem solid var(--border-color);margin-bottom:1.5rem}summary h2{font-size:inherit;margin:0;display:inline-block}footer{border-top:.0625rem solid var(--border-color);text-align:center;color:var(--text-muted);flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;font-size:.9rem;display:flex}@media (width<=48rem){article{padding:1.5rem 1rem}h1{font-size:1.8rem}h2,summary h2{font-size:1.4rem}.container{padding:1rem .5rem}}</style><link href="/ext/github-dark-dimmed.min.css" rel="stylesheet"><link href="/ext/pemandu.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling","description":"panduan lengkap robots.txt untuk SEO. Ketahui cara mengontrol Googlebot, optimasi crawl budget, dan hindari kesalahan fatal penulisan kode file ini.","datePublished":"2025-05-31T06:53:44.431Z","dateModified":"2025-05-31T06:53:44.431Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt"},"wordCount":824,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","keywords":["Windows","Teknologi Umum","robots.txt","SEO teknis","panduan robots.txt","cara membuat robots.txt","optimasi crawl budget","Googlebot","panduan","lengkap","robots","txt","rahasia","seo","mengontrol","crawling","Warta Tekno","Layar Kosong"],"articleSection":["Warta Tekno"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt","url":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt","name":"Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","datePublished":"2025-05-31T06:53:44.431Z","dateModified":"2025-05-31T06:53:44.431Z","description":"panduan lengkap robots.txt untuk SEO. Ketahui cara mengontrol Googlebot, optimasi crawl budget, dan hindari kesalahan fatal penulisan kode file ini.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt#primaryimage","url":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","contentUrl":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/8c0fb81443198f90.webp","width":1024,"height":576,"caption":"Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https:\/\/dalam.web.id\/warta-tekno"},{"@type":"ListItem","position":3,"name":"Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling","item":"https:\/\/dalam.web.id\/warta-tekno\/panduan-robots-txt"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><main class="container"><article><header><div id="iposbrowser"></div><h1>Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling</h1><p>Halo, para pengelola blog dan <i>webmaster</i>! Jika kamu serius ingin situsmu tampil prima dan mendominasi hasil pencarian Google, ada satu berkas kecil yang kerap disalahpahami, namun mengemban peran yang luar biasa vital. Berkas tersebut adalah <code>robots.txt</code>.</p></header><p>Banyak pemula di dunia SEO (<i>Search Engine Optimization</i>) yang mengira bahwa berkas ini adalah semacam "surat undangan" karpet merah untuk mesin pencari. Padahal, realitas teknisnya justru berbanding terbalik. Mari kita bedah tuntas apa sebenarnya fungsi komponen ini, bagaimana cara meraciknya dengan presisi, serta kesalahan-kesalahan fatal yang wajib kamu hindari agar tidak menghancurkan trafik situsmu dalam semalam.</p><img alt="Ilustrasi file robots.txt yang berfungsi sebagai pengatur lalu lintas bot mesin pencari di dalam server website" sizes="(max-width: 1064px) calc(100vw - 40px), 1024px" srcset="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90-sm.webp 720w, https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90-md.webp 960w, https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp 1024w" decoding="async" fetchpriority="high" height="576" src="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp" width="1024"><h2>Fungsi Sebenarnya dari File Robots.txt di Mata Mesin Pencari</h2><p>Ibarat sebuah bangunan fisik, <code>robots.txt</code> bertindak layaknya satpam digital yang berjaga 24 jam di gerbang depan peladen (<i>server</i>) situsmu. Tugas utamanya adalah memberikan instruksi yang sangat jelas kepada <i>spider</i> atau robot mesin pencari (seperti Googlebot, Bingbot, maupun bot analitik lainnya) mengenai area atau direktori mana saja dari situsmu yang <b>TIDAK BOLEH</b> mereka ramban (<i>crawl</i>).</p><blockquote>Perlu diingat: Berkas ini bukanlah sebuah undangan resmi, melainkan sebuah denah area terlarang. Apabila kamu tidak menetapkan larangan apa pun di dalamnya, robot otomatis akan berasumsi bahwa seluruh area situsmu adalah ruang publik yang sah untuk dijelajahi tanpa batas.</blockquote><p>Lalu, apa keuntungannya bagi kita? Di sinilah konsep <i>Crawl Budget</i> (anggaran perambanan) bermain. Google memiliki batasan waktu dan sumber daya saat mengindeks jutaan situs web setiap harinya. Dengan memblokir akses ke halaman-halaman yang tidak memiliki nilai SEO—seperti halaman <em>login</em> administrator, folder skrip tema, berkas gaya CSS internal, atau hasil pencarian internal (<em>search queries</em>)—kita secara efektif mengarahkan Googlebot untuk fokus meramban artikel-artikel pilar kita yang benar-benar penting dan menghasilkan uang.</p><details><summary><h2>Konfigurasi Paling Direkomendasikan untuk Mayoritas Website</h2></summary> <p>Setiap situs web terlahir dengan kebutuhan yang berbeda. Namun, untuk 99% blog konvensional, portal berita, atau situs web bisnis profil perusahaan, tujuan utamanya selalu sama: memastikan seluruh konten pemasaran dan artikel informasional dapat ditemukan oleh audiens di Google.</p> <h3>Versi Fundamental: Izinkan Semua + Pemetaan Situs</h3> <p>Oleh karena itu, konfigurasi yang paling optimal justru adalah yang paling sederhana. Pendekatan ini membiarkan pintu terbuka lebar untuk seluruh konten yang bermanfaat, sembari menyerahkan "peta navigasi" resmi agar bot tidak tersesat.</p> <pre><code class="language-plaintext">User-agent: *
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling - Layar Kosong</title>
+    <meta name="description" content="panduan lengkap robots.txt untuk SEO. Ketahui cara mengontrol Googlebot, optimasi crawl budget, dan hindari kesalahan fatal penulisan kode file ini.">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/panduan-robots-txt">
+    <link rel="prev" href="https://dalam.web.id/warta-tekno/tools-ai-untuk-umkm" title="Perangkat AI Canggih Buat UMKM dan Pelajar Naik Kelas">
+    <link rel="next" href="https://dalam.web.id/warta-tekno/gemini-ai-terbaik" title="Gemini - Jagoan Terbaik Buat Belajar dan Eksplorasi">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/panduan-robots-txt">
+    <meta name="twitter:url" content="https://dalam.web.id/warta-tekno/panduan-robots-txt">
+    <meta property="article:section" content="Windows, Teknologi Umum">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Teknologi Umum">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="robots.txt, SEO teknis, panduan robots.txt, cara membuat robots.txt, optimasi crawl budget, Googlebot">
+    <meta name="promphint" content="Apa fungsi file robots.txt untuk SEO? | Menginstruksikan bot mesin pencari mengenai halaman web mana yang boleh dan dilarang untuk ditelusuri (crawling).">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling">
+    <meta property="og:description" content="Tingkatkan performa SEO website Anda dengan konfigurasi robots.txt yang tepat. Panduan teknis ini membahas cara blokir halaman tidak penting untuk Googlebot.">
+    <meta property="og:updated_time" content="2025-05-31T07:01:09.069Z">
+    <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp">
+    <meta property="og:image:alt" content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="576">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:title" content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling">
+    <meta name="twitter:description" content="Jangan biarkan trafik website hancur karena salah pengaturan file robots.txt! Pahami fungsi, struktur kode, dan penempatan sitemap yang benar di artikel ini.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp">
+    <meta name="twitter:image:alt" content="Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2025-05-31T06:53:44.431Z">
+    <meta property="article:modified_time" content="2026-04-29T12:35:43.681Z">
+    <style>
+        :root {
+            --bg-page: #f8f9fa;
+            --bg-content: #ffffff;
+            --text-main: #212529; /* Contrast 12.6:1 against white */
+            --text-muted: #495057; /* Contrast 7.3:1 against white */
+            --heading-color: #111111; /* Contrast 18.6:1 against white */
+            --accent-color: #0d6efd; /* Contrast 4.5:1 against white */
+            --border-color: #dee2e6;
+            --code-bg: #1e1e1e;
+            --accordion-bg: #f8f9fa;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-page: #121212;
+                --bg-content: #1e1e1e;
+                --text-main: #e9ecef; /* Contrast 12.8:1 against #1e1e1e */
+                --text-muted: #adb5bd; /* Contrast 7.4:1 against #1e1e1e */
+                --heading-color: #f8f9fa; /* Contrast 15.3:1 against #1e1e1e */
+                --accent-color: #6ea8fe; /* Contrast 5.3:1 against #1e1e1e */
+                --border-color: #343a40;
+                --code-bg: #121212;
+                --accordion-bg: #2b2b2b;
+            }
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.75;
+            color: var(--text-main);
+            background-color: var(--bg-page);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        article {
+            background-color: var(--bg-content);
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+            border: 0.0625rem solid var(--border-color);
+        }
+        h1, h2, h3 {
+            color: var(--heading-color);
+            line-height: 1.3;
+            margin-bottom: 1.25rem;
+        }
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 0.125rem solid var(--border-color);
+        }
+        h2 { font-size: 1.6rem; margin-top: 2.5rem; }
+        h3 { font-size: 1.35rem; margin-top: 1.5rem; }
+        p, ul, ol, blockquote { margin-bottom: 1.25rem; }
+        ul, ol { padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 0.2rem;
+            text-decoration-thickness: 0.0625rem;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            display: block;
+            border: 0.0625rem solid var(--border-color);
+        }
+        pre {
+            background-color: var(--code-bg);
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.95rem;
+        }
+        p code, li code {
+            background-color: var(--accordion-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            border: 0.0625rem solid var(--border-color);
+        }
+        blockquote {
+            border-left: 0.25rem solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            background-color: var(--accordion-bg);
+            color: var(--text-muted);
+            font-style: italic;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        details {
+            background-color: var(--accordion-bg);
+            border: 0.0625rem solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        summary {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            outline: none;
+            padding: 1rem 0;
+            transition: color 0.2s ease;
+        }
+        summary:hover {
+            color: var(--accent-color);
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::before {
+            content: "▶";
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+            transition: transform 0.3s ease;
+        }
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        details[open] summary {
+            border-bottom: 0.0625rem solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+        summary h2 {
+            margin: 0;
+            font-size: inherit;
+            display: inline-block;
+        }
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 0.0625rem solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        @media (max-width: 48rem) {
+            article { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.8rem; }
+            h2, summary h2 { font-size: 1.4rem; }
+            .container { padding: 1rem 0.5rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="/ext/github-dark-dimmed.min.css">
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+    <main class="container">
+        <article>
+            <header>
+                <div id="iposbrowser"></div><h1>Panduan Lengkap Robots.txt: Rahasia SEO Mengontrol Crawling</h1>
+                <p>Halo, para pengelola blog dan <i>webmaster</i>! Jika kamu serius ingin situsmu tampil prima dan mendominasi hasil pencarian Google, ada satu berkas kecil yang kerap disalahpahami, namun mengemban peran yang luar biasa vital. Berkas tersebut adalah <code>robots.txt</code>.</p>
+            </header>
+            <p>Banyak pemula di dunia SEO (<i>Search Engine Optimization</i>) yang mengira bahwa berkas ini adalah semacam "surat undangan" karpet merah untuk mesin pencari. Padahal, realitas teknisnya justru berbanding terbalik. Mari kita bedah tuntas apa sebenarnya fungsi komponen ini, bagaimana cara meraciknya dengan presisi, serta kesalahan-kesalahan fatal yang wajib kamu hindari agar tidak menghancurkan trafik situsmu dalam semalam.</p>
+            <img src="https://dalam.web.id/img/raw.githubusercontent.com/8c0fb81443198f90.webp" alt="Ilustrasi file robots.txt yang berfungsi sebagai pengatur lalu lintas bot mesin pencari di dalam server website" fetchpriority="high" decoding="async">
+            <h2>Fungsi Sebenarnya dari File Robots.txt di Mata Mesin Pencari</h2>
+            <p>Ibarat sebuah bangunan fisik, <code>robots.txt</code> bertindak layaknya satpam digital yang berjaga 24 jam di gerbang depan peladen (<i>server</i>) situsmu. Tugas utamanya adalah memberikan instruksi yang sangat jelas kepada <i>spider</i> atau robot mesin pencari (seperti Googlebot, Bingbot, maupun bot analitik lainnya) mengenai area atau direktori mana saja dari situsmu yang <b>TIDAK BOLEH</b> mereka ramban (<i>crawl</i>).</p>
+            <blockquote>Perlu diingat: Berkas ini bukanlah sebuah undangan resmi, melainkan sebuah denah area terlarang. Apabila kamu tidak menetapkan larangan apa pun di dalamnya, robot otomatis akan berasumsi bahwa seluruh area situsmu adalah ruang publik yang sah untuk dijelajahi tanpa batas.</blockquote>
+            <p>Lalu, apa keuntungannya bagi kita? Di sinilah konsep <i>Crawl Budget</i> (anggaran perambanan) bermain. Google memiliki batasan waktu dan sumber daya saat mengindeks jutaan situs web setiap harinya. Dengan memblokir akses ke halaman-halaman yang tidak memiliki nilai SEO—seperti halaman <em>login</em> administrator, folder skrip tema, berkas gaya CSS internal, atau hasil pencarian internal (<em>search queries</em>)—kita secara efektif mengarahkan Googlebot untuk fokus meramban artikel-artikel pilar kita yang benar-benar penting dan menghasilkan uang.</p>
+            <details>
+                <summary><h2>Konfigurasi Paling Direkomendasikan untuk Mayoritas Website</h2></summary>
+                <p>Setiap situs web terlahir dengan kebutuhan yang berbeda. Namun, untuk 99% blog konvensional, portal berita, atau situs web bisnis profil perusahaan, tujuan utamanya selalu sama: memastikan seluruh konten pemasaran dan artikel informasional dapat ditemukan oleh audiens di Google.</p>
+                <h3>Versi Fundamental: Izinkan Semua + Pemetaan Situs</h3>
+                <p>Oleh karena itu, konfigurasi yang paling optimal justru adalah yang paling sederhana. Pendekatan ini membiarkan pintu terbuka lebar untuk seluruh konten yang bermanfaat, sembari menyerahkan "peta navigasi" resmi agar bot tidak tersesat.</p>
+<pre><code class="language-plaintext">User-agent: *
 Disallow:
-Sitemap: https://www.domainbloganda.com/sitemap.xml</code></pre> <h3>Anatomi dan Penjelasan Kode:</h3> <ul><li><b><code>User-agent: *</code></b> <i>(Agen Pengguna)</i>: Tanda bintang (<em>) berfungsi sebagai karakter *wildcard</em>. Ini berarti instruksi di bawahnya berlaku mutlak untuk <b>SEMUA</b> robot mesin pencari yang singgah, tanpa terkecuali.</li><li><b><code>Disallow:</code></b> <i>(Jangan Izinkan)</i>: Dengan sengaja mengosongkan nilai di samping perintah ini, kamu pada dasarnya sedang mendeklarasikan, <i>"Tidak ada ruang yang terlarang, silakan telusuri seluruh isi rumah ini!"</i></li><li><b><code>Sitemap: [URL]</code></b> <i>(Peta Situs)</i>: Ini adalah bagian yang sangat esensial. Baris ini memberitahukan mesin pencari secara eksplisit, <i>"Hei Googlebot, jika kamu ingin melihat daftar inventaris lengkap dari seluruh halamanku yang paling berharga, silakan merujuk pada berkas <code>sitemap.xml</code> ini."</i></li></ul> <p>Dengan melampirkan peta situs langsung di dalam berkas ini, proses penemuan (<i>discovery</i>) dan indeksasi artikel terbarumu akan berlangsung jauh lebih akseleratif.</p></details><details><summary><h2>Pengaturan Tingkat Lanjut untuk Keamanan Area Sensitif</h2></summary> <p>Seiring berkembangnya usia dan kompleksitas situs web, kamu mungkin mulai menyadari bahwa ada beberapa direktori belakang layar yang sama sekali tidak pantas untuk dipertontonkan di halaman hasil pencarian. Sebagai contoh nyata, mari kita ambil kasus penggunaan <em>Content Management System</em> (CMS) paling populer di dunia, yakni WordPress.</p> <h3>Contoh Isolasi Direktori WordPress</h3> <p>Kamu tentu tidak ingin halaman <i>dashboard</i> tempat kamu menulis draf artikel (<code>/wp-admin/</code>) atau halaman tempat memasukkan kata sandi (<code>/wp-login.php</code>) ikut diindeks dan muncul saat orang mencari nama domainmu di Google. Berikut adalah cara meracik kodenya:</p> <pre><code class="language-plaintext">User-agent: *
+Sitemap: https://www.domainbloganda.com/sitemap.xml</code></pre>
+                <h3>Anatomi dan Penjelasan Kode:</h3>
+                <ul>
+                    <li><b><code>User-agent: *</code></b> <i>(Agen Pengguna)</i>: Tanda bintang (<em>) berfungsi sebagai karakter *wildcard</em>. Ini berarti instruksi di bawahnya berlaku mutlak untuk <b>SEMUA</b> robot mesin pencari yang singgah, tanpa terkecuali.</li>
+                    <li><b><code>Disallow:</code></b> <i>(Jangan Izinkan)</i>: Dengan sengaja mengosongkan nilai di samping perintah ini, kamu pada dasarnya sedang mendeklarasikan, <i>"Tidak ada ruang yang terlarang, silakan telusuri seluruh isi rumah ini!"</i></li>
+                    <li><b><code>Sitemap: [URL]</code></b> <i>(Peta Situs)</i>: Ini adalah bagian yang sangat esensial. Baris ini memberitahukan mesin pencari secara eksplisit, <i>"Hei Googlebot, jika kamu ingin melihat daftar inventaris lengkap dari seluruh halamanku yang paling berharga, silakan merujuk pada berkas <code>sitemap.xml</code> ini."</i></li>
+                </ul>
+                <p>Dengan melampirkan peta situs langsung di dalam berkas ini, proses penemuan (<i>discovery</i>) dan indeksasi artikel terbarumu akan berlangsung jauh lebih akseleratif.</p>
+            </details>
+            <details>
+                <summary><h2>Pengaturan Tingkat Lanjut untuk Keamanan Area Sensitif</h2></summary>
+                <p>Seiring berkembangnya usia dan kompleksitas situs web, kamu mungkin mulai menyadari bahwa ada beberapa direktori belakang layar yang sama sekali tidak pantas untuk dipertontonkan di halaman hasil pencarian. Sebagai contoh nyata, mari kita ambil kasus penggunaan <em>Content Management System</em> (CMS) paling populer di dunia, yakni WordPress.</p>
+                <h3>Contoh Isolasi Direktori WordPress</h3>
+                <p>Kamu tentu tidak ingin halaman <i>dashboard</i> tempat kamu menulis draf artikel (<code>/wp-admin/</code>) atau halaman tempat memasukkan kata sandi (<code>/wp-login.php</code>) ikut diindeks dan muncul saat orang mencari nama domainmu di Google. Berikut adalah cara meracik kodenya:</p>
+<pre><code class="language-plaintext">User-agent: *
 Disallow: /wp-admin/
 Disallow: /wp-login.php
 Allow: /wp-admin/admin-ajax.php
-Sitemap: https://www.domainbloganda.com/sitemap.xml</code></pre> <h3>Mengapa Baris <code>Allow</code> Ditambahkan?</h3> <p>Kamu mungkin menyadari ada baris baru di sana. Kita secara spesifik melarang masuk ke <code>/wp-admin/</code> demi menegakkan postur keamanan dan praktik SEO teknis yang baik. Namun, ada satu berkas di dalam folder terlarang tersebut, yaitu <code>admin-ajax.php</code>, yang sering kali dibutuhkan oleh bagian depan situs (<i>front-end</i>) untuk merender elemen dinamis. Oleh karena itu, kita memberikan pengecualian izin (<code>Allow</code>) khusus untuk satu berkas tersebut agar tampilan situs di mata Google tidak berantakan.</p></details><h2>Kesalahan Fatal Konfigurasi yang Menghancurkan SEO ❌</h2><p>Mengonfigurasi berkas ini gampang-gampang susah. Karena letaknya yang berada di tingkat paling atas hierarki <i>root</i> peladen (misalnya: <code>https://domainanda.com/robots.txt</code>), satu kesalahan ketik kecil bisa berujung pada bencana disindeksasi massal.</p><p>Jangan pernah, dalam skenario atau kondisi kewarasan apa pun, menggunakan konfigurasi mematikan di bawah ini, kecuali kamu benar-benar berniat untuk menghapus jejak digital situs webmu dari peredaran internet secara permanen.</p><pre><code class="language-plaintext">User-agent: *
-Disallow: /</code></pre><p>Tahukah kamu apa dampak dari satu karakter garis miring (<i>slash</i>) kecil di atas? Perintah <code>Disallow: /</code> akan dibaca secara harfiah oleh mesin sebagai: <b>"Larang akses ke <u>akar</u> seluruh situs"</b>. Mengeksekusi baris kode ini sama persis efeknya dengan kamu memasang gembok besar berpapan "TUTUP SELAMANYA" di pintu utama situsmu. Google akan berhenti meramban, dan secara perlahan, seluruh artikel yang sudah susah payah kamu tulis akan lenyap dari peringkat pencarian.</p><p>Oleh sebab itu, selalulah berhati-hati. Uji coba sintaks berkasmu menggunakan fitur <i>Robots.txt Tester</i> yang tersedia gratis di dalam <i>Google Search Console</i> sebelum menerapkannya di peladen produksi utama.</p><div id="related-articles-grid"></div><div id="response"></div></article></main><footer><b>Frijal</b><span>|</span><i>Oktober 2023</i><span>|</span><span>Referensi: Dokumentasi Resmi Google Search Central</span><a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script defer="" src="/ext/highlight.js"></script><script>hljs.highlightAll();</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-30</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
+Sitemap: https://www.domainbloganda.com/sitemap.xml</code></pre>
+                <h3>Mengapa Baris <code>Allow</code> Ditambahkan?</h3>
+                <p>Kamu mungkin menyadari ada baris baru di sana. Kita secara spesifik melarang masuk ke <code>/wp-admin/</code> demi menegakkan postur keamanan dan praktik SEO teknis yang baik. Namun, ada satu berkas di dalam folder terlarang tersebut, yaitu <code>admin-ajax.php</code>, yang sering kali dibutuhkan oleh bagian depan situs (<i>front-end</i>) untuk merender elemen dinamis. Oleh karena itu, kita memberikan pengecualian izin (<code>Allow</code>) khusus untuk satu berkas tersebut agar tampilan situs di mata Google tidak berantakan.</p>
+            </details>
+            <h2>Kesalahan Fatal Konfigurasi yang Menghancurkan SEO ❌</h2>
+            <p>Mengonfigurasi berkas ini gampang-gampang susah. Karena letaknya yang berada di tingkat paling atas hierarki <i>root</i> peladen (misalnya: <code>https://domainanda.com/robots.txt</code>), satu kesalahan ketik kecil bisa berujung pada bencana disindeksasi massal.</p>
+            <p>Jangan pernah, dalam skenario atau kondisi kewarasan apa pun, menggunakan konfigurasi mematikan di bawah ini, kecuali kamu benar-benar berniat untuk menghapus jejak digital situs webmu dari peredaran internet secara permanen.</p>
+<pre><code class="language-plaintext">User-agent: *
+Disallow: /</code></pre>
+            <p>Tahukah kamu apa dampak dari satu karakter garis miring (<i>slash</i>) kecil di atas? Perintah <code>Disallow: /</code> akan dibaca secara harfiah oleh mesin sebagai: <b>"Larang akses ke <u>akar</u> seluruh situs"</b>. Mengeksekusi baris kode ini sama persis efeknya dengan kamu memasang gembok besar berpapan "TUTUP SELAMANYA" di pintu utama situsmu. Google akan berhenti meramban, dan secara perlahan, seluruh artikel yang sudah susah payah kamu tulis akan lenyap dari peringkat pencarian.</p>
+            <p>Oleh sebab itu, selalulah berhati-hati. Uji coba sintaks berkasmu menggunakan fitur <i>Robots.txt Tester</i> yang tersedia gratis di dalam <i>Google Search Console</i> sebelum menerapkannya di peladen produksi utama.</p>
+            <div id="related-articles-grid"></div><div id="response"></div>
+        </article>
+    </main>
+    <footer>
+        <b>Frijal</b>
+        <span>|</span>
+        <i>Oktober 2023</i>
+        <span>|</span>
+        <span>Referensi: Dokumentasi Resmi Google Search Central</span>
+            <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

@@ -53,11 +53,11 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="OpenSUSE">
     <meta property="article:published_time" content="2025-09-13T10:55:55.701Z">
-    <meta property="article:modified_time" content="2025-12-03T19:43:41.399Z">
+    <meta property="article:modified_time" content="2026-01-01T21:00:33.686Z">
     <style>
         /* Modern Reset & Variabel Tema */
         *, *::before, *::after {
@@ -248,10 +248,10 @@
     <main class="container">
         <article>
             <header>
-                <div id="iposbrowser"></div><h1>&#x26a1; Skrip opensuse-mirror.sh: Solusi Otomatisasi Repo Tercepat</h1>
+                <div id="iposbrowser"></div><h1>⚡ Skrip opensuse-mirror.sh: Solusi Otomatisasi Repo Tercepat</h1>
                 <div class="meta-info">
                     <span>Pengembangan Sistem</span>
-                    <span>&#x2022;</span>
+                    <span>•</span>
                     <span>Terakhir Diperbarui: Juni 2026</span>
                 </div>
             </header>
@@ -264,29 +264,29 @@
             <p>Secara default, instalasi baru openSUSE menyematkan alamat server utama yang bersifat statis. Ketika ribuan pengguna mengakses server tersebut secara bersamaan, antrean bandwidth memicu penurunan performa kecepatan unduhan. Melalui skrip <code>opensuse-mirror.sh</code>, paradigma manajemen repositori diubah sepenuhnya menjadi dinamis.</p>
             <p>Skrip cerdas ini dirancang untuk bekerja secara berurutan guna meminimalkan risiko kerusakan sistem. Mekanismenya dimulai dari mengamankan data lama melalui proses pencadangan (<em>backup</em>), mendeteksi varian versi distribusi Leap yang sedang berjalan secara akurat via berkas sistem, menghapus daftar repositori lawas yang lambat, hingga menginjeksikan parameter berbasis pelacak geografis (<em>geo-location tracker</em>) secara otomatis ke dalam konfigurasi package manager.</p>
             <blockquote>
-                <p>&#x26a0;&#xfe0f; Peringatan Keamanan: Karena proses ini memodifikasi berkas konfigurasi sistem yang bersifat vital di dalam direktori <code>/etc/zypp/repos.d</code>, Anda diwajibkan untuk menjalankan skrip ini dengan hak akses administrator penuh menggunakan perintah <code>sudo</code>.</p>
+                <p>⚠️ Peringatan Keamanan: Karena proses ini memodifikasi berkas konfigurasi sistem yang bersifat vital di dalam direktori <code>/etc/zypp/repos.d</code>, Anda diwajibkan untuk menjalankan skrip ini dengan hak akses administrator penuh menggunakan perintah <code>sudo</code>.</p>
             </blockquote>
             <h2>Kode Skrip Eksekusi</h2>
             <p>Berikut adalah baris kode otomasi shell bash utuh yang dapat Anda salin dan gunakan langsung pada mesin openSUSE Anda:</p>
 <pre><code><span class="syn-cmt">#!/bin/bash</span>
 <span class="syn-cmt"># opensuse-mirror.sh (gunakan mirror list openSUSE otomatis)</span>
 <span class="syn-kw">set</span> -e
-<span class="syn-kw">echo</span> <span class="syn-str">&quot;[INFO] Backup repo lama...&quot;</span>
+<span class="syn-kw">echo</span> <span class="syn-str">"[INFO] Backup repo lama..."</span>
 <span class="syn-kw">sudo</span> mkdir -p /etc/zypp/repos.d/backup
 <span class="syn-kw">sudo</span> cp /etc/zypp/repos.d/*.repo /etc/zypp/repos.d/backup/ 2&gt;/dev/null || <span class="syn-kw">true</span>
-<span class="syn-kw">echo</span> <span class="syn-str">&quot;[INFO] Mengatur repo menggunakan mirrorlist...&quot;</span>
-OS_VERSION=&#x24;(grep VERSION_ID /etc/os-release | cut -d <span class="syn-str">&apos;&quot;&apos;</span> -f2)
+<span class="syn-kw">echo</span> <span class="syn-str">"[INFO] Mengatur repo menggunakan mirrorlist..."</span>
+OS_VERSION=$(grep VERSION_ID /etc/os-release | cut -d <span class="syn-str">'"'</span> -f2)
 <span class="syn-kw">sudo</span> zypper rr -a
 <span class="syn-cmt"># Tambahkan repo utama (OSS dan Non-OSS) dengan mirrorlist</span>
 <span class="syn-kw">sudo</span> zypper ar -f \
-  <span class="syn-str">&quot;http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/&#x24;OS_VERSION/repo/oss&quot; \</span>
-  <span class="syn-str">&quot;openSUSE-OSS&quot;</span>
+  <span class="syn-str">"http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/$OS_VERSION/repo/oss" \</span>
+  <span class="syn-str">"openSUSE-OSS"</span>
 <span class="syn-kw">sudo</span> zypper ar -f \
-  <span class="syn-str">&quot;http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/&#x24;OS_VERSION/repo/non-oss&quot; \</span>
-  <span class="syn-str">&quot;openSUSE-Non-OSS&quot;</span>
-<span class="syn-kw">echo</span> <span class="syn-str">&quot;[INFO] Refresh repo...&quot;</span>
+  <span class="syn-str">"http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/$OS_VERSION/repo/non-oss" \</span>
+  <span class="syn-str">"openSUSE-Non-OSS"</span>
+<span class="syn-kw">echo</span> <span class="syn-str">"[INFO] Refresh repo..."</span>
 <span class="syn-kw">sudo</span> zypper ref
-<span class="syn-kw">echo</span> <span class="syn-str">&quot;[DONE] Repo openSUSE sekarang menggunakan mirror tercepat!&quot;</span></code></pre>
+<span class="syn-kw">echo</span> <span class="syn-str">"[DONE] Repo openSUSE sekarang menggunakan mirror tercepat!"</span></code></pre>
             <h2>Langkah Menjalankan Skrip di Terminal</h2>
             <p>Untuk mengimplementasikan solusi performa tinggi ini, simpan baris kode di atas ke dalam sebuah berkas bernama <code>opensuse-mirror.sh</code>. Berikan izin eksekusi berkas biner ke dalam skrip tersebut dengan menjalankan perintah <code>chmod +x opensuse-mirror.sh</code> melalui aplikasi emulator terminal pilihan Anda. Setelah itu, eksekusi skrip menggunakan komando <code>sudo ./opensuse-mirror.sh</code>.</p>
             <p>Setelah skrip berhasil menuntaskan seluruh instruksinya, Anda akan langsung merasakan perbedaan kecepatan respons saat mengunduh pustaka perangkat lunak baru maupun ketika melakukan pembaruan rutin berkala patch keamanan sistem. Hal ini dapat dibuktikan melalui eksekusi pembacaan daftar repositori aktif lewat pemanggilan fungsi <code>zypper lr -d</code> yang akan menampilkan skema URL dinamis baru Anda.</p>
@@ -298,9 +298,9 @@ OS_VERSION=&#x24;(grep VERSION_ID /etc/os-release | cut -d <span class="syn-str"
                 <span>Rilis Konten: 14 Juni 2026</span>
                 <span>Referensi Pengembang: <a href="https://en.opensuse.org/Portal:Zypper" target="_blank" rel="noopener noreferrer">Panduan Resmi Komunitas Jaringan openSUSE</a></span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

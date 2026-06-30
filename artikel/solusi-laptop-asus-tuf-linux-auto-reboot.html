@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-05-31T16:08:00.000Z">
-    <meta property="article:modified_time" content="2026-06-10T19:47:18.698Z">
+    <meta property="article:modified_time" content="2026-05-31T16:08:00.000Z">
     <meta name="article:tag" content="Linux, ASUS TUF, ACPI, Kernel, Ubuntu, Troubleshooting">
     <style>
         :root {
@@ -230,28 +230,28 @@
             <h3>1. Modifikasi Parameter Kernel ACPI Klasik</h3>
             <p>Langkah paling awal dan paling krusial yang dapat ditempuh adalah memaksa kernel Linux menggunakan rute instruksi manajemen daya tertentu yang lebih patuh terhadap instruksi perangkat keras. Anda dapat mencoba tiga variasi parameter utama secara bergantian di dalam konfigurasi GRUB:</p>
             <ul>
-                <li><code>acpi=force</code> &#x2014; Memaksa sistem untuk mengaktifkan seluruh fungsi ACPI secara penuh, mengabaikan segala bentuk peringatan restriksi dari BIOS bawaan.</li>
-                <li><code>reboot=bios</code> &#x2014; Menginstruksikan kernel untuk melempar kembali mekanisme pemutusan atau pemuatan ulang daya secara langsung ke level BIOS, menghindari kegagalan interupsi di level OS.</li>
-                <li><code>reboot=acpi</code> &#x2014; Menetapkan jalur ACPI sebagai metode utama interupsi <em>power-off</em> agar tidak terjadi tumpang tindih dengan pengontrol lainnya.</li>
+                <li><code>acpi=force</code> — Memaksa sistem untuk mengaktifkan seluruh fungsi ACPI secara penuh, mengabaikan segala bentuk peringatan restriksi dari BIOS bawaan.</li>
+                <li><code>reboot=bios</code> — Menginstruksikan kernel untuk melempar kembali mekanisme pemutusan atau pemuatan ulang daya secara langsung ke level BIOS, menghindari kegagalan interupsi di level OS.</li>
+                <li><code>reboot=acpi</code> — Menetapkan jalur ACPI sebagai metode utama interupsi <em>power-off</em> agar tidak terjadi tumpang tindih dengan pengontrol lainnya.</li>
             </ul>
             <p>Untuk menerapkannya, buka berkas konfigurasi GRUB utama melalui terminal:</p>
             <pre><code>sudo nano /etc/default/grub</code></pre>
             <p>Sisipkan salah satu parameter terpilih di dalam baris <code>GRUB_CMDLINE_LINUX_DEFAULT</code>, sebagai contoh:</p>
-            <pre><code>GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash acpi=force&quot;</code></pre>
+            <pre><code>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi=force"</code></pre>
             <p>Simpan perubahan tersebut, lalu lakukan pembaruan konfigurasi sistem dengan mengeksekusi perintah:</p>
             <pre><code>sudo update-grub</code></pre>
             <h3>2. Teknik Manipulasi Identitas Sistem (acpi_osi)</h3>
-            <p>Jika parameter standar di atas belum membuahkan hasil, trik berikutnya adalah memanipulasi kernel agar &quot;menyamar&quot; sebagai sistem operasi Windows saat berkomunikasi dengan <em>firmware</em> motherboard. Tambahkan baris parameter berikut pada konfigurasi GRUB Anda:</p>
-            <pre><code>acpi_osi=&apos;Windows 2020&apos; acpi_enforce_resources=lax</code></pre>
+            <p>Jika parameter standar di atas belum membuahkan hasil, trik berikutnya adalah memanipulasi kernel agar "menyamar" sebagai sistem operasi Windows saat berkomunikasi dengan <em>firmware</em> motherboard. Tambahkan baris parameter berikut pada konfigurasi GRUB Anda:</p>
+            <pre><code>acpi_osi='Windows 2020' acpi_enforce_resources=lax</code></pre>
             <p>Opsi ini efektif untuk melewati batasan logika <em>hardcoded</em> pada BIOS laptop ASUS yang hanya mau mengeksekusi instruksi pemutusan daya dengan benar jika mendeteksi sistem operasi Windows modern.</p>
             <h3>3. Isolasi Driver Kartu Grafis Nouveau</h3>
             <p>Apabila Anda hanya memanfaatkan kartu grafis terintegrasi (iGPU AMD) untuk kebutuhan operasional harian dan tidak memuat driver proprietary resmi dari NVIDIA, maka driver bawaan <em>Nouveau</em> wajib dinonaktifkan agar tidak mengganggu transisi daya. Lakukan <em>blacklist</em> secara permanen dengan membuat berkas konfigurasi baru:</p>
-            <pre><code>sudo bash -c &quot;echo &apos;blacklist nouveau&apos; &gt; /etc/modprobe.d/blacklist-nouveau.conf&quot;
-sudo bash -c &quot;echo &apos;options nouveau modeset=0&apos; &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf&quot;
+            <pre><code>sudo bash -c "echo 'blacklist nouveau' &gt; /etc/modprobe.d/blacklist-nouveau.conf"
+sudo bash -c "echo 'options nouveau modeset=0' &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf"
 sudo update-initramfs -u</code></pre>
             <h3>4. Penjinakan Interupsi USB dan Latensi NVMe</h3>
             <p>Faktor minor lain yang sering terlewat adalah gangguan dari pengontrol USB (<em>XHC</em>) serta fitur hemat daya agresif dari NVMe SSD (APST). Jalankan perintah <code>cat /proc/acpi/wakeup</code> untuk melihat daftar perangkat yang aktif. Anda dapat menonaktifkan pengontrol USB yang terlalu sensitif secara temporer lewat instruksi:</p>
-            <pre><code>sudo sh -c &quot;echo XHC0 &gt; /proc/acpi/wakeup&quot;</code></pre>
+            <pre><code>sudo sh -c "echo XHC0 &gt; /proc/acpi/wakeup"</code></pre>
             <p>Sementara untuk mematikan fitur manajemen daya agresif pada SSD NVMe yang kerap memicu kegagalan pemutusan daya di detik terakhir, tambahkan parameter berikut pada GRUB Anda:</p>
             <pre><code>nvme_core.default_ps_max_latency_us=0</code></pre>
             <h3>5. Implementasi Peningkatan Versi Kernel Utama (Mainline)</h3>
@@ -265,14 +265,14 @@ sudo apt install mainline</code></pre>
                 <div class="author-title">Tentang Penulis &amp; Sumber Informasi</div>
                               <p>Artikel troubleshooting ini disusun secara mendalam oleh praktisi sistem operasi Linux yang aktif mengelola repositori open-source dan dokumentasi penanganan perangkat keras di lingkungan komputasi portabel. Seluruh solusi yang disajikan di atas merupakan hasil kompilasi berbasis kasus nyata yang berhasil diselesaikan di dalam ekosistem komunitas pengguna laptop gaming ASUS berbasis kernel Linux.</p>
                 <div class="author-links">
-                    <a href="https://github.com/frijal" rel="author nofollow" target="_blank">&#x1f431; GitHub</a>
-                    <a href="https://linkedin.com/in/frijal" rel="author nofollow" target="_blank">&#x1f4bc; LinkedIn</a>
-                    <a href="https://threads.net/frijal" rel="author nofollow" target="_blank">&#x1f9f5; Threads</a>
-                    <a href="https://x.com/responaja" rel="author nofollow" target="_blank">&#x1f426; Twitter</a>
+                    <a href="https://github.com/frijal" rel="author nofollow" target="_blank">🐱 GitHub</a>
+                    <a href="https://linkedin.com/in/frijal" rel="author nofollow" target="_blank">💼 LinkedIn</a>
+                    <a href="https://threads.net/frijal" rel="author nofollow" target="_blank">🧵 Threads</a>
+                    <a href="https://x.com/responaja" rel="author nofollow" target="_blank">🐦 Twitter</a>
                 </div>    <div class="meta-container">
-                <span class="meta-item">&#x1f4c5; 31 Mei 2026</span>
-                <span class="meta-item">&#x270d;&#xfe0f; Oleh: frijal</span>
-                <span class="meta-item">&#x1f3f7;&#xfe0f; Kategori: Linux Troubleshooting</span>
+                <span class="meta-item">📅 31 Mei 2026</span>
+                <span class="meta-item">✍️ Oleh: frijal</span>
+                <span class="meta-item">🏷️ Kategori: Linux Troubleshooting</span>
             </div>
             </div>
         </article>
@@ -280,10 +280,10 @@ sudo apt install mainline</code></pre>
         <div id="response"></div>
     </main>
     <footer>
-        <p>&#x1f12f; 2026 Layar Kosong. Dibuat untuk pemulihan ekosistem Linux Indonesia.</p>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <p>🄯 2026 Layar Kosong. Dibuat untuk pemulihan ekosistem Linux Indonesia.</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

@@ -53,14 +53,14 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Fedora">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Multimedia">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:published_time" content="2025-05-07T07:14:07.726Z">
-    <meta property="article:modified_time" content="2025-07-13T02:37:25.471Z">
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
+    <meta property="article:modified_time" content="2025-05-07T07:14:07.726Z">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
         /* CSS Kritis & Mobile-First
            Menghindari layout shift (CLS) dengan mendefinisikan margin, padding, dan struktur dasar secara eksplisit.
@@ -181,14 +181,14 @@
                              https://dalam.web.id/img/AAAAAA/fedoralgoggo.webp?w=800 800w,
                              https://dalam.web.id/img/AAAAAA/fedoralgoggo.webp?w=1000 1000w" sizes="(max-width: 600px) 100vw, 1000px">
                 <p>Namun, jangan panik! Sistem kamu tidak rusak kok. Anda dapat dengan mudah menambahkan dukungan untuk berbagai format audio dan video dengan beberapa langkah sederhana melalui terminal. Mari kita bahas bagaimana cara mengatasi limitasi ini dengan aman.</p>
-                <h2>Langkah 1: Aktifkan Repositori RPM Fusion &#x1f680;</h2>
+                <h2>Langkah 1: Aktifkan Repositori RPM Fusion 🚀</h2>
                 <p>Paket-paket multimedia yang kita butuhkan (seperti codec H.264 untuk video atau AAC untuk audio) sayangnya tidak tersedia di repositori resmi Fedora. Oleh karena itu, langkah pertama yang mutlak harus dilakukan adalah menambahkan repositori pihak ketiga yang sangat dipercaya oleh komunitas, yaitu RPM Fusion.</p>
                 <p>Jalankan perintah berikut di aplikasi Terminal Anda untuk mengunduh dan memasang rilis RPM Fusion untuk paket <em>free</em> maupun <em>non-free</em>:</p>
-<pre><code>sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-&#x24;(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-&#x24;(rpm -E %fedora).noarch.rpm</code></pre>
+<pre><code>sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm</code></pre>
                 <p>Setelah menekan <code>Enter</code> dan memasukkan <em>password root</em>, tunggu beberapa saat hingga proses <em>download</em> repositori selesai.</p>
-                <h2>Langkah 2: Instal Codec Multimedia &#x1f4e6;</h2>
+                <h2>Langkah 2: Instal Codec Multimedia 📦</h2>
                 <p>Setelah repositori RPM Fusion dipastikan aktif, Anda dapat menginstal grup paket multimedia dan <em>sound-and-video</em> untuk mendapatkan semua codec esensial secara serentak. Pendekatan komprehensif ini sangat disarankan agar seluruh ekstensi berkas dapat terakomodasi.</p>
-<pre><code>sudo dnf groupupdate multimedia --setop=&quot;install_weak_deps=False&quot; --exclude=PackageKit-gstreamer-plugin
+<pre><code>sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate sound-and-video</code></pre>
                 <h3>Alternatif: Instalasi Secara Individual</h3>
                 <p>Jika Anda tipikal pengguna Linux yang lebih suka meracik sistem seminimalis mungkin dan ingin menginstal paket secara individual tanpa <em>bloatware</em>, Anda dapat menggunakan deretan perintah berikut:</p>
@@ -203,10 +203,10 @@ sudo dnf group upgrade --with-optional Multimedia</code></pre>
             </article>
             <div id="related-articles-grid"></div>
             <div id="response"></div>
-<footer>       <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+<footer>       <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
         </main>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

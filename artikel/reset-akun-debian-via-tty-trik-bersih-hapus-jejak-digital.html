@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Debian">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Privasi">
@@ -375,17 +375,17 @@
                     <p class="lead">Ketika laptop atau server Debian hendak dijual atau diserahkan, menghapus file di folder <i>Dokumen</i> saja tidak cukup. Jejak digital berupa riwayat browser, token otentikasi, kunci SSH, dan berkas tersembunyi lainnya tetap mengendap di direktori <code>/home</code>. Inilah mengapa reset akun melalui TTY menjadi solusi paling efektif dan permanen.</p>
                 </header>
                 <p>Bayangkan Anda menjual laptop bekas dengan keyakinan bahwa semua data pribadi sudah terhapus. Namun, pembeli yang cukup paham teknologi bisa dengan mudah memulihkan berkas-berkas yang hanya dipindahkan ke tempat sampah, bukan dimusnahkan secara total. Di sistem operasi berbasis Linux, terutama Debian, setiap pengguna memiliki <b>home directory</b> yang menyimpan segalanya: mulai dari konfigurasi aplikasi, <i>cache</i>, hingga kunci kriptografi yang bisa membuka pintu ke akun-akun daring Anda.</p>
-                <p>Menghapus akun pengguna dari dalam lingkungan desktop grafis (GUI) sering kali gagal karena sistem melaporkan bahwa proses tertentu masih menggunakan berkas-berkas milik pengguna tersebut. Bahkan ketika Anda sudah <i>logout</i>, masih ada proses latar belakang yang mengunci akses ke <code>/home</code>. Untuk memotong semua hambatan itu, kita perlu masuk ke <b>TTY</b> &#x2014; konsol teks murni yang berjalan di luar layar grafis &#x2014; dan menjalankan perintah penghapusan dari sana.</p>
+                <p>Menghapus akun pengguna dari dalam lingkungan desktop grafis (GUI) sering kali gagal karena sistem melaporkan bahwa proses tertentu masih menggunakan berkas-berkas milik pengguna tersebut. Bahkan ketika Anda sudah <i>logout</i>, masih ada proses latar belakang yang mengunci akses ke <code>/home</code>. Untuk memotong semua hambatan itu, kita perlu masuk ke <b>TTY</b> — konsol teks murni yang berjalan di luar layar grafis — dan menjalankan perintah penghapusan dari sana.</p>
                 <!-- Gambar pertama (LCP) -->
                 <div class="img-wrapper">
                     <img src="https://dalam.web.id/img/raw.githubusercontent.com/d3594b5cb1cd84d7.webp" alt="Tampilan terminal Debian Linux dengan prompt perintah untuk reset akun" width="1200" height="630" fetchpriority="high" decoding="async">
                 </div>
-                <p>TTY, singkatan dari <i>Teletypewriter</i>, adalah antarmuka teks yang sudah tersedia sejak kernel Linux pertama kali dijalankan. Saat komputer masih menampilkan layar <i>login</i> grafis, Anda bisa berpindah ke TTY dengan menekan kombinasi tombol tertentu. Di dalam TTY, tidak ada <i>window manager</i>, tidak ada <i>file manager</i>, dan tidak ada aplikasi desktop yang berjalan. Anda berdiri langsung di hadapan <b>shell</b> dengan akses root penuh &#x2014; kondisi ideal untuk melakukan operasi pembersihan tanpa gangguan.</p>
+                <p>TTY, singkatan dari <i>Teletypewriter</i>, adalah antarmuka teks yang sudah tersedia sejak kernel Linux pertama kali dijalankan. Saat komputer masih menampilkan layar <i>login</i> grafis, Anda bisa berpindah ke TTY dengan menekan kombinasi tombol tertentu. Di dalam TTY, tidak ada <i>window manager</i>, tidak ada <i>file manager</i>, dan tidak ada aplikasi desktop yang berjalan. Anda berdiri langsung di hadapan <b>shell</b> dengan akses root penuh — kondisi ideal untuk melakukan operasi pembersihan tanpa gangguan.</p>
                 <p>Berikut adalah alasan utama mengapa jalur TTY lebih unggul untuk reset akun:</p>
                 <ul style="margin-bottom:1.25rem;padding-left:1.5rem;">
-                    <li><b>Tanpa proses terikat</b> &#x2014; Tidak ada sesi pengguna yang aktif, sehingga tidak ada berkas yang terkunci.</li>
-                    <li><b>Hak akses absolut</b> &#x2014; Dengan login sebagai <i>root</i>, Anda memiliki kuasa penuh untuk menghapus apa pun, termasuk direktori yang biasanya dilindungi.</li>
-                    <li><b>Efisiensi tinggi</b> &#x2014; Perintah berjalan di latar belakang tanpa beban grafis, sehingga proses penghapusan lebih cepat.</li>
+                    <li><b>Tanpa proses terikat</b> — Tidak ada sesi pengguna yang aktif, sehingga tidak ada berkas yang terkunci.</li>
+                    <li><b>Hak akses absolut</b> — Dengan login sebagai <i>root</i>, Anda memiliki kuasa penuh untuk menghapus apa pun, termasuk direktori yang biasanya dilindungi.</li>
+                    <li><b>Efisiensi tinggi</b> — Perintah berjalan di latar belakang tanpa beban grafis, sehingga proses penghapusan lebih cepat.</li>
                 </ul>
                 <!-- Bagian panjang: Panduan Praktis (dibungkus details) -->
                 <details>
@@ -419,7 +419,7 @@
                 <h2>Pengamanan Tambahan pada Sisi Server Cloud</h2>
                 <p>Meskipun semua jejak di perangkat fisik telah musnah, langkah pembersihan belum usai. Token otentikasi seperti <b>SSH keys</b>, <i>access tokens</i> GitHub, atau kunci API yang pernah Anda gunakan dari laptop tersebut bisa saja masih terdaftar di layanan cloud. Untuk itu, lakukan langkah berikut dari perangkat lain:</p>
                 <ul style="margin-bottom:1.25rem;padding-left:1.5rem;">
-                    <li>Masuk ke akun GitHub atau GitLab, lalu buka halaman <i>Settings</i> &#x2192; <i>SSH and GPG keys</i>, dan cabut (<i>revoke</i>) semua kunci yang terkait dengan perangkat lama.</li>
+                    <li>Masuk ke akun GitHub atau GitLab, lalu buka halaman <i>Settings</i> → <i>SSH and GPG keys</i>, dan cabut (<i>revoke</i>) semua kunci yang terkait dengan perangkat lama.</li>
                     <li>Periksa manajemen sesi aktif di layanan seperti Google, Microsoft, atau platform lain yang Anda gunakan. Akhiri semua sesi yang berasal dari perangkat yang sudah dijual.</li>
                     <li>Jika Anda menggunakan <i>password manager</i> dengan penyimpanan lokal, pastikan juga untuk menghapus database kredensial dari folder <code>/home</code> yang telah dihapus.</li>
                 </ul>
@@ -433,10 +433,10 @@
             <span>Oleh: <a href="https://dalam.web.id/">Frijal</a></span>
             <span>Diterbitkan: 24 Juni 2026</span>
             <span>Referensi: <a href="https://www.debian.org/" target="_blank" rel="noopener">Debian Documentation</a></span>
-                <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+                <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </div>
     <!-- Inisialisasi highlight.js -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

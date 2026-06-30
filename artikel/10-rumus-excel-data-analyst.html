@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Data Analyst">
     <meta property="article:tag" content="Tutorial Excel">
     <meta property="article:tag" content="Produktivitas">
@@ -162,7 +162,7 @@
 <main>
     <article>
         <div id="iposbrowser"></div><h1><i class="fa-solid fa-file-excel"></i> 10 Rumus Excel Dasar untuk Data Analyst Biar Tidak Ribet</h1>
-        <p>Jujur aja, awal mula terjun ke dunia pengolahan data, rasanya pengen nyerah. Menjadi Data Analyst itu ribet banget &#x1f92f;! Bayangin, kamu harus buka ratusan ribu baris data, nyocokin satu-satu, dan kalau salah geser kolom dikit aja pas pakai VLOOKUP... <em>boom</em>, semua laporan langsung berantakan.</p>
+        <p>Jujur aja, awal mula terjun ke dunia pengolahan data, rasanya pengen nyerah. Menjadi Data Analyst itu ribet banget 🤯! Bayangin, kamu harus buka ratusan ribu baris data, nyocokin satu-satu, dan kalau salah geser kolom dikit aja pas pakai VLOOKUP... <em>boom</em>, semua laporan langsung berantakan.</p>
         <img src="https://dalam.web.id/img/pbs.twimg.com/2d6e362bb04e948a.webp" width="1000" height="562" alt="Ilustrasi Data Analyst Menggunakan Excel" fetchpriority="high">
         <p>Berdasarkan pengalaman jatuh bangun ngurusin data <em>raw</em> yang bikin pusing, sampai akhirnya aku menemukan jalannya. 10 fungsi di Excel inilah jawabannya. Yuk kita kupas satu-satu!</p>
         <hr style="border:0; border-top:1px solid var(--border-color); margin:40px 0;">
@@ -170,23 +170,23 @@
         <p>Selamat tinggal VLOOKUP dan HLOOKUP! Ini adalah penerus VLOOKUP yang jauh lebih fleksibel. Kamu bisa mencari data ke arah mana pun (kiri atau kanan) tanpa perlu repot menghitung indeks kolom. Kalau dulu posisi kolom acuan harus di paling kiri, dengan XLOOKUP bebas mau taruh di mana aja.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=XLOOKUP(nilai_dicari, kolom_pencarian, kolom_hasil)</code></li>
-            <li><strong>Contoh Kasus:</strong> Kamu punya daftar ID di kolom A dan Nama di kolom B. Ingin cari nama untuk ID &quot;A01&quot;.</li>
+            <li><strong>Contoh Kasus:</strong> Kamu punya daftar ID di kolom A dan Nama di kolom B. Ingin cari nama untuk ID "A01".</li>
         </ul>
-        <pre><code>=XLOOKUP(&quot;A01&quot;, A:A, B:B)</code></pre>
+        <pre><code>=XLOOKUP("A01", A:A, B:B)</code></pre>
         <h2>2. FILTER <i class="fa-solid fa-filter"></i></h2>
         <p>Kalau biasanya kamu pakai fitur klik ikon corong (filter) di atas tabel, sekarang kamu bisa memanggil datanya di tempat lain pakai rumus! Ini berguna banget untuk bikin laporan dinamis. Fungsi ini menampilkan sekumpulan data berdasarkan kriteria tertentu secara otomatis.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=FILTER(rentang_data, kondisi)</code></li>
-            <li><strong>Contoh Kasus:</strong> Menampilkan semua baris data secara lengkap yang kategorinya adalah &quot;Elektronik&quot;.</li>
+            <li><strong>Contoh Kasus:</strong> Menampilkan semua baris data secara lengkap yang kategorinya adalah "Elektronik".</li>
         </ul>
-        <pre><code>=FILTER(A2:C10, B2:B10=&quot;Elektronik&quot;)</code></pre>
+        <pre><code>=FILTER(A2:C10, B2:B10="Elektronik")</code></pre>
         <h2>3. SUMIFS <i class="fa-solid fa-calculator"></i></h2>
-        <p>Satu kriteria buat jumlahan aja kadang tidak cukup. Gimana kalau bos minta, &quot;Coba hitung total penjualan Si A, tapi khusus bulan Januari aja ya?&quot; Nah, di sinilah SUMIFS jadi pahlawan. Fungsi ini menjumlahkan angka berdasarkan satu atau lebih kriteria.</p>
+        <p>Satu kriteria buat jumlahan aja kadang tidak cukup. Gimana kalau bos minta, "Coba hitung total penjualan Si A, tapi khusus bulan Januari aja ya?" Nah, di sinilah SUMIFS jadi pahlawan. Fungsi ini menjumlahkan angka berdasarkan satu atau lebih kriteria.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=SUMIFS(rentang_jumlah, rentang_kriteria1, kriteria1, ...)</code></li>
-            <li><strong>Contoh Kasus:</strong> Total penjualan untuk sales bernama &quot;Andi&quot; di bulan &quot;Januari&quot;.</li>
+            <li><strong>Contoh Kasus:</strong> Total penjualan untuk sales bernama "Andi" di bulan "Januari".</li>
         </ul>
-        <pre><code>=SUMIFS(C2:C10, A2:A10, &quot;Andi&quot;, B2:B10, &quot;Januari&quot;)</code></pre>
+        <pre><code>=SUMIFS(C2:C10, A2:A10, "Andi", B2:B10, "Januari")</code></pre>
         <h2>4. UNIQUE <i class="fa-solid fa-fingerprint"></i></h2>
         <p>Dapet data kotor hasil <em>dump</em> dari sistem? Banyak nama pelanggan yang di-input dobel? Jangan dihapus manual! UNIQUE akan mengambil nilai unik dari sebuah daftar (menghapus duplikat secara otomatis dan instan).</p>
         <ul>
@@ -203,26 +203,26 @@
         <pre><code>=SORT(A2:B10, 1, 1)</code></pre>
         <p><em>(Catatan: Angka 1 terakhir berarti Ascending/dari A ke Z).</em></p>
         <h2>6. COUNTIFS <i class="fa-solid fa-hashtag"></i></h2>
-        <p>Beda sama SUMIFS yang menghitung &quot;total nilai rupiah/angka&quot;, COUNTIFS ini buat menghitung &quot;ada berapa banyak jumlah transaksinya&quot;. Menghitung jumlah sel yang memenuhi beberapa kriteria sekaligus.</p>
+        <p>Beda sama SUMIFS yang menghitung "total nilai rupiah/angka", COUNTIFS ini buat menghitung "ada berapa banyak jumlah transaksinya". Menghitung jumlah sel yang memenuhi beberapa kriteria sekaligus.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=COUNTIFS(rentang_kriteria1, kriteria1, ...)</code></li>
-            <li><strong>Contoh Kasus:</strong> Menghitung berapa kali produk &quot;Apel&quot; terjual dengan status pembayaran &quot;Lunas&quot;.</li>
+            <li><strong>Contoh Kasus:</strong> Menghitung berapa kali produk "Apel" terjual dengan status pembayaran "Lunas".</li>
         </ul>
-        <pre><code>=COUNTIFS(A2:A10, &quot;Apel&quot;, B2:B10, &quot;Lunas&quot;)</code></pre>
+        <pre><code>=COUNTIFS(A2:A10, "Apel", B2:B10, "Lunas")</code></pre>
         <h2>7. IFS <i class="fa-solid fa-code-branch"></i></h2>
         <p>Pernah bikin Nested IF (IF bertingkat) yang kurung tutupnya <code>))))))</code> sampai bikin mata siwer? Lupakan itu. IFS adalah pengganti IF bertingkat agar rumusnya tidak kepanjangan, gampang dilacak, dan jauh lebih mudah dibaca.</p>
         <ul>
             <li><strong>Rumus:</strong> <code>=IFS(kondisi1, hasil1, kondisi2, hasil2, ...)</code></li>
             <li><strong>Contoh Kasus:</strong> Menentukan Grade nilai siswa/karyawan.</li>
         </ul>
-        <pre><code>=IFS(A1&gt;=90, &quot;A&quot;, A1&gt;=80, &quot;B&quot;, A1&gt;=70, &quot;C&quot;)</code></pre>
+        <pre><code>=IFS(A1&gt;=90, "A", A1&gt;=80, "B", A1&gt;=70, "C")</code></pre>
         <h2>8. TEXTJOIN <i class="fa-solid fa-link"></i></h2>
         <p>Dulu kita pakai <code>CONCATENATE</code> atau simbol <code>&amp;</code> buat gabungin kata, tapi ribet kalau banyak sel kosong. TEXTJOIN menggabungkan teks dari beberapa sel dengan pembatas (delimiter) tertentu dan hebatnya: <strong>bisa mengabaikan sel kosong!</strong></p>
         <ul>
             <li><strong>Rumus:</strong> <code>=TEXTJOIN(pembatas, abaikan_kosong, rentang_teks)</code></li>
             <li><strong>Contoh Kasus:</strong> Menggabungkan kata di sel A1, B1, dan C1 dengan pemisah tanda koma.</li>
         </ul>
-        <pre><code>=TEXTJOIN(&quot;, &quot;, TRUE, A1:C1)</code></pre>
+        <pre><code>=TEXTJOIN(", ", TRUE, A1:C1)</code></pre>
         <p><em>Hasilnya kalau dibaca: Apel, Jeruk, Mangga</em></p>
         <h2>9. SEQUENCE <i class="fa-solid fa-list-ol"></i></h2>
         <p>Suka males kan ngetik angka 1, 2, 3 lalu di-<em>drag</em> ke bawah untuk bikin nomor urut? Kalau datanya ribuan gimana? Pakai SEQUENCE aja. Fungsi ini membuat daftar angka berurutan secara dinamis dalam sekejap.</p>
@@ -250,16 +250,16 @@
                 <li><strong>How (Bagaimana):</strong> Baca pelan-pelan ke bawah, aku sertakan rumus dan contoh kasus aslinya biar gampang dicerna.</li>
             </ul>
         </div>
-        <h3>Kesimpulan &#x2728;</h3>
+        <h3>Kesimpulan ✨</h3>
         <p>Itu dia 10 jalan buat ngakalin data berantakan. Percaya deh, kalau kamu udah terbiasa pakai 10 fungsi Excel ini, urusan bersih-bersih data sampai bikin report kelar lebih cepat. Sehingga Anda dapat mengalokasikan waktu untuk peninjauan strategis sementara sistem menyelesaikan kompilasi laporan secara otomatis. Utamakan efisiensi metode pengerjaan.</p>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
     </article>
 </main>
 <footer>
-    <p>&#x1f12f; 2026 Layar Kosong | Ditulis dengan &#x2615; untuk efisiensi harimu.</p>
-       <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+    <p>🄯 2026 Layar Kosong | Ditulis dengan ☕ untuk efisiensi harimu.</p>
+       <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

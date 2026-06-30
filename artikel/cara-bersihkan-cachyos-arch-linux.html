@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="ArchLinux">
     <meta property="article:tag" content="Optimization">
     <meta property="article:published_time" content="2026-03-06T07:17:38.000Z">
-    <meta property="article:modified_time" content="2026-05-03T22:10:04.790Z">
+    <meta property="article:modified_time" content="2026-06-29T09:46:26.018Z">
 <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
 <!-- Highlight.js CSS (tema github dark agar cocok dengan mode gelap/terang) -->
@@ -88,7 +88,7 @@
         <p>Pembersihan sistem adalah proses menghapus file sementara, <em>cache</em> yang tidak lagi digunakan, serta sisa <em>build</em> yang menumpuk. Tanpa perawatan, sistem bisa menjadi lambat karena fragmentasi dan <em>storage</em> yang penuh.</p>
         <h2>2. Siapa yang Perlu Melakukan Ini?</h2>
         <p>Setiap pengguna Arch Linux atau CachyOS, terutama <em>user</em> yang sering melakukan <em>compiling</em> aplikasi atau sering mencoba <em>package</em> baru dari AUR.</p>
-        <h2>3. Dimana Lokasi &quot;Sampah&quot; Sistem Berada?</h2>
+        <h2>3. Dimana Lokasi "Sampah" Sistem Berada?</h2>
         <p>Biasanya bersembunyi di <code>/var/cache/pacman/pkg/</code>, <code>~/.cache/</code>, serta folder sementara seperti <code>/tmp/</code> atau folder <em>build</em> custom kamu.</p>
         <h2>4. Mengapa Menggunakan Script Otomatisasi?</h2>
         <p>Otomatisasi memastikan semua langkah pembersihan dilakukan secara konsisten, aman, dan meminimalkan kesalahan manusia (<em>human error</em>).</p>
@@ -98,39 +98,39 @@
         <pre><code class="language-bash">#!/bin/bash
 # --- KONFIGURASI ---
 # Sesuaikan path ini dengan folder tempat kamu menyimpan build AUR (misal: ~/build atau ~/src)
-AUR_BUILD_DIR=&quot;&#x24;HOME/build&quot;
+AUR_BUILD_DIR="$HOME/build"
 # --- PROSES ANALISA ---
-echo &quot;&#x1f50d; Menganalisa 5 folder teratas yang memakan ruang di Home:&quot;
-du -ah --max-depth=1 /home/&#x24;USER | sort -rh | head -n 5
-echo -e &quot;\n--- Memulai proses pembersihan total ---\n&quot;
+echo "🔍 Menganalisa 5 folder teratas yang memakan ruang di Home:"
+du -ah --max-depth=1 /home/$USER | sort -rh | head -n 5
+echo -e "\n--- Memulai proses pembersihan total ---\n"
 # 1. Bersihkan Cache Pacman (Menyisakan 1 versi terakhir agar aman)
-echo &quot;&#x1f9f9; Membersihkan cache paket...&quot;
+echo "🧹 Membersihkan cache paket..."
 sudo paccache -rk1
 # 2. Hapus Paket Orphan (Dependency yang tidak lagi dipakai)
-echo &quot;&#x1f4e6; Menghapus paket orphan...&quot;
-orphans=&#x24;(pacman -Qtdq 2&gt;/dev/null)
-if [ -n &quot;&#x24;orphans&quot; ]; then
-  sudo pacman -Rns &#x24;orphans
+echo "📦 Menghapus paket orphan..."
+orphans=$(pacman -Qtdq 2&gt;/dev/null)
+if [ -n "$orphans" ]; then
+  sudo pacman -Rns $orphans
 else
-  echo &quot;Tidak ada orphan package.&quot;
+  echo "Tidak ada orphan package."
 fi
 # 3. Bersihkan Log System (Batasi hingga 7 hari terakhir)
-echo &quot;&#x1f5de; Membersihkan log system...&quot;
+echo "🗞 Membersihkan log system..."
 sudo journalctl --vacuum-time=7d
 # 4. Bersihkan Cache User
-echo &quot;&#x1f9fc; Membersihkan cache user...&quot;
+echo "🧼 Membersihkan cache user..."
 find ~/.cache/ -mindepth 1 -delete
 # 5. Bersihkan Sisa Build AUR di /tmp
-echo &quot;&#x1f3d7; Membersihkan sisa build di /tmp...&quot;
-sudo find /tmp -maxdepth 1 -type d \( -name &quot;pamac-build-*&quot; -o -name &quot;yay-*&quot; -o -name &quot;paru-*&quot; \) -exec rm -rf {} +
+echo "🏗 Membersihkan sisa build di /tmp..."
+sudo find /tmp -maxdepth 1 -type d \( -name "pamac-build-*" -o -name "yay-*" -o -name "paru-*" \) -exec rm -rf {} +
 # 6. Bersihkan Folder Build Custom (Opsional)
-if [ -d &quot;&#x24;AUR_BUILD_DIR&quot; ]; then
-    echo &quot;&#x1f4c2; Membersihkan folder &#x24;AUR_BUILD_DIR...&quot;
-    find &quot;&#x24;AUR_BUILD_DIR&quot; -mindepth 1 -delete
+if [ -d "$AUR_BUILD_DIR" ]; then
+    echo "📂 Membersihkan folder $AUR_BUILD_DIR..."
+    find "$AUR_BUILD_DIR" -mindepth 1 -delete
 else
-    echo &quot;Folder &#x24;AUR_BUILD_DIR tidak ditemukan, skip.&quot;
+    echo "Folder $AUR_BUILD_DIR tidak ditemukan, skip."
 fi
-echo -e &quot;\n&#x1f680; Selesai! Sistem sudah bersih dan siap diajak ngebut.&quot;</code></pre>
+echo -e "\n🚀 Selesai! Sistem sudah bersih dan siap diajak ngebut."</code></pre>
  <h2>6. Kapan Harus Melakukan Pembersihan?</h2>
         <p>Idealnya dilakukan secara rutin, misalnya seminggu sekali, atau ketika indikator penggunaan disk sudah mencapai angka di atas 80%.</p>
     </article>
@@ -138,11 +138,11 @@ echo -e &quot;\n&#x1f680; Selesai! Sistem sudah bersih dan siap diajak ngebut.&q
     <div id="related-articles-grid"></div>
     <div id="response"></div>
     <footer>
-        <p>&#x1f12f; 2026 Layar Kosong. Dibuat dengan semangat open source.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <p>🄯 2026 Layar Kosong. Dibuat dengan semangat open source.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
 <!-- Highlight.js -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

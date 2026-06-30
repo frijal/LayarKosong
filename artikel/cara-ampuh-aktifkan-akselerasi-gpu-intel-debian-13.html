@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Teknologi">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Debian">
     <meta property="article:published_time" content="2026-06-16T05:43:01.000Z">
-    <meta property="article:modified_time" content="2026-06-25T17:16:28.219Z">
+    <meta property="article:modified_time" content="2026-06-28T07:54:52.016Z">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         /* CSS Variables untuk Tema Terang dan Gelap */
@@ -286,7 +286,7 @@
 <body>
 <div class="container">
     <header>
-        <div id="iposbrowser"></div><h1>Niat Hati Bikin Debian Ngebut, Malah Nemu &quot;Penyakit&quot; Tersembunyi</h1>
+        <div id="iposbrowser"></div><h1>Niat Hati Bikin Debian Ngebut, Malah Nemu "Penyakit" Tersembunyi</h1>
            </header>
     <main>
         <article>
@@ -304,19 +304,19 @@
                     <div class="terminal-dot dot-yellow"></div>
                     <div class="terminal-dot dot-green"></div>
                 </div>
-                <pre><code><span class="zdummy">&#x24;</span>glxinfo | grep -i &quot;OpenGL renderer&quot;
+                <pre><code><span class="zdummy">$</span>glxinfo | grep -i "OpenGL renderer"
 <span class="cmd-output">OpenGL renderer string: llvmpipe (LLVM 15.0.6, 256 bits)</span></code></pre>
             </div>
             <p>Buat kamu yang belum tahu, <code>llvmpipe</code> adalah indikator maut bahwa sistem komputermu mengalami <em>fallback</em> ke <strong>software rendering</strong>. Artinya secara harfiah: selama ini GPU pintarku cuma nongkrong nganggur, sementara sang CPU disuruh kerja rodi untuk merender semua animasi desktop, pemutaran video, hingga efek bayangan jendela aplikasi. Pantesan aja belakangan ini <em>touchpad</em> kadang terasa sedikit <em>ngelag</em> dan sasis bawah laptop lumayan anget biarpun cuma buka <em>browser</em>.</p>
             <h2>Bongkar Log, Temukan Biang Keroknya!</h2>
             <p>Dipersenjatai panduan investigasi, pelacakan pun dimulai. Cek log kernel lewat <code>dmesg</code>, hasilnya bersih tanpa peringatan berarti. Lanjut bongkar catatan aktivitas <em>display server</em> di log Xorg. Nah, di situlah ketahuan siapa biang kerok aslinya.</p>
-            <p>Ternyata, terjadi miskomunikasi fatal antara paket <em>driver</em> Xorg lawas dengan arsitektur Mesa versi terbaru (25.x) yang aku pakai di Debian 13. Paket jadul bernama <code>xserver-xorg-video-intel</code> ini dengan ngotot terus mencari berkas <code>i965_dri.so</code>. Padahal faktanya, di arsitektur Mesa modern (terutama untuk prosesor Intel Generasi ke-8 ke atas), <em>driver</em> lawas itu sudah &quot;almarhum&quot; dan posisinya digantikan oleh <em>driver</em> <code>iris</code>.</p>
+            <p>Ternyata, terjadi miskomunikasi fatal antara paket <em>driver</em> Xorg lawas dengan arsitektur Mesa versi terbaru (25.x) yang aku pakai di Debian 13. Paket jadul bernama <code>xserver-xorg-video-intel</code> ini dengan ngotot terus mencari berkas <code>i965_dri.so</code>. Padahal faktanya, di arsitektur Mesa modern (terutama untuk prosesor Intel Generasi ke-8 ke atas), <em>driver</em> lawas itu sudah "almarhum" dan posisinya digantikan oleh <em>driver</em> <code>iris</code>.</p>
             <p>Karena berkas yang dicari tidak pernah ketemu, Xorg akhirnya mengibarkan bendera putih, menyerah, dan melempar seluruh beban pemrosesan grafis ke CPU lewat jalur <code>llvmpipe</code>.</p>
-            <h2>Solusi Mind-Blowing: &quot;Delete&quot; untuk Memperbaiki</h2>
+            <h2>Solusi Mind-Blowing: "Delete" untuk Memperbaiki</h2>
             <p>Solusi dari drama panjang ini ternyata sangat simpel dan sukses bikin <em>mind-blowing</em>. Alih-alih menginstal <em>driver</em> baru, yang perlu aku lakukan hanyalah membuang <em>driver</em> lamanya.</p>
             <p>Begitu paket usang tersebut didepak dan sistem di-<em>reboot</em>, Xorg secara cerdas langsung menggunakan fitur <em>modesetting</em> bawaan kernel untuk melakukan <em>binding</em> otomatis ke Mesa Iris. Cek lagi pakai <code>glxinfo</code>, dan akhirnya muncul output indah <code>Mesa Intel(R) UHD Graphics (ICL GT1)</code>. Akselerasi <em>hardware</em> aktif, beban CPU terjun bebas, suhu mesin kembali adem, dan performa multimedia langsung ngebut tanpa kompromi.</p>
             <blockquote>
-                &quot;Pelajaran mahal yang bisa diambil: Kalau kamu pakai Linux modern dengan <em>hardware</em> Intel keluaran lumayan baru (Gen 8 ke atas), lupakan paket <code>xserver-xorg-video-intel</code>. Terkadang di dunia <em>open-source</em>, menghapus justru menyelesaikan masalah jauh lebih baik daripada menginstal.&quot;
+                "Pelajaran mahal yang bisa diambil: Kalau kamu pakai Linux modern dengan <em>hardware</em> Intel keluaran lumayan baru (Gen 8 ke atas), lupakan paket <code>xserver-xorg-video-intel</code>. Terkadang di dunia <em>open-source</em>, menghapus justru menyelesaikan masalah jauh lebih baik daripada menginstal."
             </blockquote>
             <h2>Rangkuman Eksekusi (Cheat Sheet)</h2>
             <p>Buat teman-teman yang penasaran ingin mengecek kesehatan laptopnya, atau kebetulan mengalami gejala lag yang sama di Debian/Ubuntu, berikut adalah rangkuman perintah terminal dari awal investigasi sampai <em>solved</em>:</p>
@@ -327,15 +327,15 @@
                     <div class="terminal-dot dot-green"></div>
                 </div>
                 <pre><code><span class="cmd-output"># 1. Cek status renderer grafis saat ini.
-# Waspada jika outputnya memunculkan kata &quot;llvmpipe&quot;!</span>
-<span class="zdummy">&#x24;</span>glxinfo -B | grep -i &quot;OpenGL renderer&quot;
+# Waspada jika outputnya memunculkan kata "llvmpipe"!</span>
+<span class="zdummy">$</span>glxinfo -B | grep -i "OpenGL renderer"
 <span class="cmd-output"># 2. Hapus driver DDX Intel jadul yang memicu konflik</span>
-<span class="zdummy">&#x24;</span>sudo apt purge xserver-xorg-video-intel
+<span class="zdummy">$</span>sudo apt purge xserver-xorg-video-intel
 <span class="cmd-output"># 3. Reboot sistem agar Xorg/Wayland menggunakan modesetting bawaan</span>
-<span class="zdummy">&#x24;</span>sudo reboot
+<span class="zdummy">$</span>sudo reboot
 <span class="cmd-output"># 4. Verifikasi ulang setelah laptop menyala.
 # Seharusnya nama Intel UHD/Iris sudah muncul di sini.</span>
-<span class="zdummy">&#x24;</span>glxinfo -B | grep -i &quot;OpenGL renderer&quot;</code></pre>
+<span class="zdummy">$</span>glxinfo -B | grep -i "OpenGL renderer"</code></pre>
             </div>
             <p>Selesai! Kamu sekarang punya sistem operasi yang benar-benar memanfaatkan tenaga grafisnya secara optimal. Bagaimana denganmu, ada yang pernah ngalamin kejutan <em>software rendering</em> konyol kayak gini juga di distro favorit kalian?</p>
         </article>
@@ -345,9 +345,9 @@
         <div class="footer-content">
             Ditulis dan dieksplorasi oleh <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">Frijal</a> di <a href="https://dalam.web.id/" target="_blank" rel="noopener noreferrer">Layar Kosong</a> pada 16 Juni 2026. Analisis *troubleshooting* arsitektur grafis Linux ini disusun berdasarkan uji coba empiris pada kernel Linux modern dan dokumentasi repositori Debian 13.
         </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

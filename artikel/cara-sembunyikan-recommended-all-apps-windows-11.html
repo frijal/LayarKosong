@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Windows 11">
     <meta property="article:tag" content="Start Menu">
     <meta property="article:tag" content="Tweak Sistem">
@@ -230,10 +230,10 @@
             </div>
         </header>
         <section id="introduction">
-            <p>Sebagai orang yang sering berkutat dengan efisiensi sistem, kita tahu betul betapa krusialnya tampilan antarmuka (UI) bagi produktivitas. Microsoft akhirnya memberikan desain Start Menu yang lebih bersih dan terpusat di Windows 11. Namun, mari jujur: bagian <b>Recommended</b> dan daftar <b>All Apps</b> seringkali menjadi dua keluhan yang paling awet di kalangan pengguna power user seperti kita. &#x1f680;</p>
+            <p>Sebagai orang yang sering berkutat dengan efisiensi sistem, kita tahu betul betapa krusialnya tampilan antarmuka (UI) bagi produktivitas. Microsoft akhirnya memberikan desain Start Menu yang lebih bersih dan terpusat di Windows 11. Namun, mari jujur: bagian <b>Recommended</b> dan daftar <b>All Apps</b> seringkali menjadi dua keluhan yang paling awet di kalangan pengguna power user seperti kita. 🚀</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBicm-UaQAA2y4S.webp" alt="Ilustrasi Start Menu Windows 11 Minimalis yang Bersih dan Terorganisir" width="1200" height="675">
             <p>Jika kamu ingin Start Menu yang minimalis, hanya menampilkan ikon aplikasi yang kamu sematkan (pinned apps) tanpa gangguan file yang baru dibuka atau saran aplikasi yang tidak relevan, ada beberapa cara handal untuk menghapus atau menyembunyikan kedua bagian tersebut. Namun, perlu diingat bahwa metode yang berhasil untuk kamu akan sangat bergantung pada edisi Windows yang digunakan (Home, Pro, atau Enterprise), build sistem yang berjalan, dan apakah Microsoft telah menerapkan pembaruan <i>cumulative</i> terbaru pada Start Menu kamu.</p>
-            <p>Dalam panduan mendalam ini, kita akan membedah setiap metode yang didukung secara praktis&#x2014;mulai dari menu Settings yang mudah hingga modifikasi Group Policy, Registry, PowerShell, bahkan MDM untuk skala perusahaan. Aku juga akan menjelaskan mengapa perilaku opsi ini berbeda-beda di setiap SKU Windows dan memberikan langkah pemulihan (rollback) agar sistem kamu tetap aman jika terjadi kesalahan.</p>
+            <p>Dalam panduan mendalam ini, kita akan membedah setiap metode yang didukung secara praktis—mulai dari menu Settings yang mudah hingga modifikasi Group Policy, Registry, PowerShell, bahkan MDM untuk skala perusahaan. Aku juga akan menjelaskan mengapa perilaku opsi ini berbeda-beda di setiap SKU Windows dan memberikan langkah pemulihan (rollback) agar sistem kamu tetap aman jika terjadi kesalahan.</p>
         </section>
         <section id="strategic-analysis">
             <h2><i class="fa-solid fa-compass"></i> Tinjauan Strategis Penataan Antarmuka Windows 11</h2>
@@ -246,7 +246,7 @@
             <h2><i class="fa-solid fa-clock-rotate-left"></i> Latar Belakang dan Evolusi Start Menu</h2>
             <p>Ketika Windows 11 diluncurkan, Microsoft membagi Start Menu menjadi area tersemat dan area Recommended. Area Recommended ini secara bawaan menampilkan file yang baru saja dibuka, aplikasi baru, dan saran dari Microsoft. Meskipun tujuannya adalah memudahkan akses, bagi banyak orang, ini justru memakan ruang vertikal yang signifikan dan merusak estetika rapi yang didambakan pengguna.</p>
             <p>Administrator dan pengguna berpengalaman segera menemukan bahwa kebijakan Group Policy dan kunci registri tertentu dapat menyembunyikan blok Recommended ini sepenuhnya. Microsoft sendiri mendokumentasikan kebijakan <code>HideRecommendedSection</code> yang ditujukan untuk perangkat yang dikelola. Namun, seiring berjalannya waktu dan berbagai pembaruan Windows, perilaku kebijakan ini terus berevolusi demi membatasi akses pengguna kasual dalam mengubah UI inti.</p>
-            <p><b>Kenapa ini penting sekarang?</b> Karena Microsoft terus melakukan iterasi pada pengalaman Start Menu. Pada build terbaru, Microsoft mengerjakan ulang tata letak Start&#x2014;termasuk tata letak satu kolom yang dapat digulir secara vertikal&#x2014;yang mungkin mengubah cara kerja tweak registri lama. Oleh karena itu, kamu perlu memperlakukan setiap modifikasi ini sebagai hal yang sensitif terhadap versi sistem operasi yang kamu gunakan saat ini.</p>
+            <p><b>Kenapa ini penting sekarang?</b> Karena Microsoft terus melakukan iterasi pada pengalaman Start Menu. Pada build terbaru, Microsoft mengerjakan ulang tata letak Start—termasuk tata letak satu kolom yang dapat digulir secara vertikal—yang mungkin mengubah cara kerja tweak registri lama. Oleh karena itu, kamu perlu memperlakukan setiap modifikasi ini sebagai hal yang sensitif terhadap versi sistem operasi yang kamu gunakan saat ini.</p>
         </section>
         <section id="quick-choices">
             <h2><i class="fa-solid fa-bolt"></i> Pilihan Cepat Sekilas Mata</h2>
@@ -264,26 +264,26 @@
             <div class="accordion-content">
                 <p>Jika kamu lebih suka pendekatan grafis dan ingin mencoba kontrol resmi terlebih dahulu, ini adalah langkah awal yang tepat. Meskipun cara ini tidak selalu menghapus <i>ruang</i> fisik yang digunakan oleh Recommended, ia akan menjamin konten sensitif kamu tidak muncul ke permukaan.</p>
                 <h3>Langkah-langkah Penyesuaian:</h3>
-                <p>Buka menu <b>Settings</b> dengan menekan tombol <code>Win + I</code>, lalu arahkan navigasi ke panel <b>Personalization</b> &#x2192; <b>Start</b>. Setelah berada di halaman tersebut, matikan opsi-opsi berikut:</p>
+                <p>Buka menu <b>Settings</b> dengan menekan tombol <code>Win + I</code>, lalu arahkan navigasi ke panel <b>Personalization</b> → <b>Start</b>. Setelah berada di halaman tersebut, matikan opsi-opsi berikut:</p>
                 <ul>
                     <li>Show recently added apps</li>
                     <li>Show recommended files in Start</li>
                     <li>Show suggestions for tips, shortcuts, new apps, and more</li>
                     <li>Show websites from your browser history</li>
                 </ul>
-                <p>Melakukan hal ini akan menghapus semua file terbaru dan saran yang memenuhi daftar utama. Di banyak build terbaru, bagian Recommended akan menciut, namun judul (header) &quot;Recommended&quot; mungkin masih terlihat kosong. Ini adalah opsi yang paling aman karena sama sekali tidak berisiko merusak stabilitas sistem operasi.</p>
+                <p>Melakukan hal ini akan menghapus semua file terbaru dan saran yang memenuhi daftar utama. Di banyak build terbaru, bagian Recommended akan menciut, namun judul (header) "Recommended" mungkin masih terlihat kosong. Ini adalah opsi yang paling aman karena sama sekali tidak berisiko merusak stabilitas sistem operasi.</p>
             </div>
         </details>
         <details class="article-accordion">
             <summary><h2><i class="fa-solid fa-user-shield"></i> Metode 2: Group Policy Editor (Untuk Pro, Enterprise, dan Education)</h2></summary>
             <div class="accordion-content">
-                <p>Group Policy (GP) menyediakan kontrol &quot;resmi&quot; yang paling jelas dari Microsoft untuk skala manajemen tingkat lanjut, namun memiliki beberapa catatan penting (caveat) yang wajib dipahami oleh administrator sistem.</p>
+                <p>Group Policy (GP) menyediakan kontrol "resmi" yang paling jelas dari Microsoft untuk skala manajemen tingkat lanjut, namun memiliki beberapa catatan penting (caveat) yang wajib dipahami oleh administrator sistem.</p>
                 <h3>Cara Menggunakan Konsol Kebijakan:</h3>
                 <ol>
                     <li>Tekan kombinasi tombol <code>Win + R</code> di keyboard, ketik perintah <code>gpedit.msc</code>, dan tekan tombol Enter.</li>
-                    <li>Pada panel kiri, lakukan navigasi ke direktori berikut: <b>Computer Configuration</b> (atau User Configuration) &#x2192; <b>Administrative Templates</b> &#x2192; <b>Start Menu and Taskbar</b>.</li>
-                    <li>Untuk menghapus Recommended: Cari kebijakan bernama <b>&quot;Remove Recommended section from Start Menu&quot;</b>, klik dua kali, lalu ubah statusnya menjadi Enabled.</li>
-                    <li>Untuk menghapus daftar All Apps: Cari kebijakan bernama <b>&quot;Remove All Programs list from the Start menu&quot;</b>, lalu ubah menjadi Enabled.</li>
+                    <li>Pada panel kiri, lakukan navigasi ke direktori berikut: <b>Computer Configuration</b> (atau User Configuration) → <b>Administrative Templates</b> → <b>Start Menu and Taskbar</b>.</li>
+                    <li>Untuk menghapus Recommended: Cari kebijakan bernama <b>"Remove Recommended section from Start Menu"</b>, klik dua kali, lalu ubah statusnya menjadi Enabled.</li>
+                    <li>Untuk menghapus daftar All Apps: Cari kebijakan bernama <b>"Remove All Programs list from the Start menu"</b>, lalu ubah menjadi Enabled.</li>
                 </ol>
                 <p>Setelah aktif, jalankan perintah perintah <code>gpupdate /force</code> di Command Prompt yang memiliki hak akses administrator atau lakukan <i>restart</i> pada proses explorer.exe untuk melihat hasilnya secara instan.</p>
                 <p><b>Catatan Praktis:</b> Group Policy tidak tersedia secara bawaan di Windows 11 Home. Selain itu, Microsoft terkadang membatasi perilaku kebijakan khusus ini hanya untuk SKU tertentu seperti edisi SE atau edisi Education di versi build retail tertentu.</p>
@@ -304,9 +304,9 @@ Data: 1 (untuk menghapus), 0 (untuk memulihkan)</code></pre>
                 <p>Setelah mengatur nilai ini, kamu perlu keluar (sign out) dan masuk kembali, atau me-restart proses Windows Explorer melalui Task Manager agar perubahan konfigurasi tersebut dapat langsung diterapkan oleh sistem.</p>
                 <h3>Skrip PowerShell (Jalankan sebagai Administrator):</h3>
                 <pre><code class="language-powershell"># Set HideRecommendedSection untuk menghapus bagian rekomendasi berkas
-New-ItemProperty -Path &quot;HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer&quot; -Name &quot;HideRecommendedSection&quot; -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "HideRecommendedSection" -PropertyType DWord -Value 1 -Force
 # Set NoStartMenuMorePrograms untuk menyembunyikan daftar aplikasi global
-New-ItemProperty -Path &quot;HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer&quot; -Name &quot;NoStartMenuMorePrograms&quot; -PropertyType DWord -Value 1 -Force</code></pre>
+New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "NoStartMenuMorePrograms" -PropertyType DWord -Value 1 -Force</code></pre>
             </div>
         </details>
         <section id="behavior-expectations">
@@ -343,9 +343,9 @@ New-ItemProperty -Path &quot;HKCU:\Software\Microsoft\Windows\CurrentVersion\Pol
         <span><i class="fa-solid fa-user"></i> Oleh: Rijal</span> |
         <span><i class="fa-solid fa-calendar"></i> 20 Februari 2026</span> |
         <span><i class="fa-solid fa-clock"></i> Waktu Baca: 15 Menit</span>
-            <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

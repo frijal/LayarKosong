@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="GRUB, GRUB Bootloader, Debian, Ubuntu, Linux Mint, Bootloader Rusak, Perbaikan Linux, Dual Boot">
-    <meta name="promphint" content="Memperbaiki GRUB Bootloader (Debian &amp; Turunannya) | Panduan step-by-step, mudah dipahami &#x2014; termasuk metode chroot lewat Live USB (jika sistem tidak bisa boot)">
+    <meta name="promphint" content="Memperbaiki GRUB Bootloader (Debian &amp; Turunannya) | Panduan step-by-step, mudah dipahami — termasuk metode chroot lewat Live USB (jika sistem tidak bisa boot)">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2016-06-24T03:00:00.000Z">
-    <meta property="article:modified_time" content="2016-06-24T03:00:00.000Z">
+    <meta property="article:modified_time" content="2023-12-23T01:34:23.090Z">
 <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
 <link href="/ext/prism-tomorrow.min.css" rel="stylesheet"><style>
     :root {
@@ -455,7 +455,7 @@ pre code[class*="language-"] {
 <header>
   <div id="iposbrowser"></div><h1>Memperbaiki GRUB Bootloader (Debian &amp; Turunannya)</h1>
   <p>
-Panduan step-by-step, mudah dipahami &#x2014; termasuk metode chroot lewat Live
+Panduan step-by-step, mudah dipahami — termasuk metode chroot lewat Live
 USB (jika sistem tidak bisa boot)
   </p>
 </header>
@@ -483,12 +483,12 @@ USB (jika sistem tidak bisa boot)
 Cek apakah sistem masih bisa boot.
 <ul>
   <li>
-Jika ya &#x2192; lakukan perbaikan langsung di sistem (metode A).
+Jika ya → lakukan perbaikan langsung di sistem (metode A).
   </li>
 </ul>
   </li>
   <li>
-Jika tidak bisa boot &#x2192; pakai Live USB/Live CD dan chroot ke sistem
+Jika tidak bisa boot → pakai Live USB/Live CD dan chroot ke sistem
 terpasang (metode B).
   </li>
   <li>Tentukan apakah sistem memakai BIOS (Legacy) atau UEFI/GPT.</li>
@@ -500,14 +500,14 @@ Jalankan <code>grub-install</code> lalu perbarui konfigurasi GRUB
 </ol>
   </section>
   <section>
-<h2>Metode A &#x2014; Jika sistem masih bisa boot (perbaikan langsung)</h2>
+<h2>Metode A — Jika sistem masih bisa boot (perbaikan langsung)</h2>
 <p>
   Jika kamu bisa masuk ke Debian/Ubuntu, jalankan perintah ini sesuai
   jenis firmware:
 </p>
 <h3>1) Cek apakah sistem menggunakan UEFI atau BIOS</h3>
 <pre><code class="language-bash"># jika ada folder /sys/firmware/efi maka sistem boot via UEFI
-[ -d /sys/firmware/efi ] &amp;&amp; echo &quot;UEFI&quot; || echo &quot;BIOS (legacy)&quot;</code></pre>
+[ -d /sys/firmware/efi ] &amp;&amp; echo "UEFI" || echo "BIOS (legacy)"</code></pre>
 <h3>2) Perbaiki untuk BIOS (Legacy)</h3>
 <p>
   Ganti <code>/dev/sdX</code> dengan device disk (bukan partisi), contoh
@@ -533,11 +533,11 @@ sudo update-grub</code></pre>
   </section>
   <section>
 <h2>
-  Metode B &#x2014; Jika sistem tidak bisa boot (gunakan Live USB + chroot)
+  Metode B — Jika sistem tidak bisa boot (gunakan Live USB + chroot)
 </h2>
 <p>
   Gunakan Live USB Debian/Ubuntu (pilih arsitektur yang sama:
-  amd64/arm64...). Boot ke &quot;Try&quot; atau &quot;Live&quot; mode lalu buka terminal.
+  amd64/arm64...). Boot ke "Try" atau "Live" mode lalu buka terminal.
   Berikut langkah lengkapnya.
 </p>
 <h3>1) Identifikasi partisi</h3>
@@ -571,7 +571,7 @@ sudo cp /etc/resolv.conf /mnt/etc/</code></pre>
 <h3>5) Di dalam chroot: instal ulang GRUB</h3>
 <p>Di dalam chroot, jalankan langkah sesuai firmware:</p>
 <pre><code class="language-bash"># Cek UEFI?
-[ -d /sys/firmware/efi ] &amp;&amp; echo &quot;UEFI&quot; || echo &quot;BIOS&quot;
+[ -d /sys/firmware/efi ] &amp;&amp; echo "UEFI" || echo "BIOS"
 # Jika BIOS:
 grub-install --recheck /dev/sdX
 update-grub
@@ -643,7 +643,7 @@ Coba boot; kalau bisa, jalankan <code>grub-install</code> dan
 <code>update-grub</code> di sistem (Metode A).
   </li>
   <li>
-Kalau tidak bisa boot, gunakan Live USB &#x2192; chroot &#x2192; reinstall GRUB
+Kalau tidak bisa boot, gunakan Live USB → chroot → reinstall GRUB
 (Metode B).
   </li>
   <li>
@@ -657,7 +657,7 @@ Jika masih gagal, periksa partisi, LVM/LUKS, dan gunakan
 </ol>
 <p class="tip">
   Butuh bantuan lebih lanjut? Simpan output perintah penting (<code>lsblk -f</code>, <code>efibootmgr -v</code>, dan error dari
-  <code>grub-install</code>) &#x2014; itu membantu diagnosa.
+  <code>grub-install</code>) — itu membantu diagnosa.
 </p>
   </section>
   <section>
@@ -678,12 +678,12 @@ sudo update-grub</code></pre>
   </div>
     </main>
 <footer>
-  &#x1f12f; 2025 &#x2022; Panduan Memperbaiki GRUB &#x2014; Ikuti dengan hati-hati &amp;
+  🄯 2025 • Panduan Memperbaiki GRUB — Ikuti dengan hati-hati &amp;
   cadangkan data penting
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js"></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js"></script>
+<script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

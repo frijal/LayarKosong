@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="MX Linux">
     <meta property="article:tag" content="Troubleshooting">
     <meta property="article:tag" content="Boot Repair">
     <meta property="article:published_time" content="2026-05-28T14:36:43.000Z">
-    <meta property="article:modified_time" content="2026-06-28T09:51:21.687Z">
+    <meta property="article:modified_time" content="2026-05-31T00:08:50.991Z">
     <!-- SEO & Metadata -->
     <meta name="keywords" content="MX Linux 25.1, Boot Error, BusyBox, initramfs, Linux tutorial, CLI, GUI, ext4">
     <!-- Open Graph (Facebook/LinkedIn) -->
@@ -235,10 +235,10 @@
         <main role="main">
             <article>
                 <header>
-                    <div id="iposbrowser"></div><h1>Mengatasi Boot Failure &quot;/dev/mapper/root does not exist&quot; di MX Linux</h1>
+                    <div id="iposbrowser"></div><h1>Mengatasi Boot Failure "/dev/mapper/root does not exist" di MX Linux</h1>
                     <div class="article-meta">
-                        <span>&#x1f5d3;&#xfe0f; Diperbarui: 28 Mei 2026</span>
-                        <span>&#x1f4c2; Kategori: Tutorial Linux</span>
+                        <span>🗓️ Diperbarui: 28 Mei 2026</span>
+                        <span>📂 Kategori: Tutorial Linux</span>
                     </div>
                     <!-- Author E-E-A-T Info -->
                 </header>
@@ -251,8 +251,8 @@
                 <h2>Gejala dan Akar Masalah (The 5W+1H)</h2>
                 <p>Alih-alih masuk ke <em>login screen</em> KDE yang elegan, sistem malah terlempar (<em>dropped</em>) ke cangkang BusyBox/initramfs dengan pesan peringatan merah yang mengerikan:</p>
                 <blockquote>
-                    &quot;ALERT! /dev/mapper/root-xxxxxxxx does not exist&quot; <br>
-                    &quot;mdadm: No arrays found in config file or automatically&quot;
+                    "ALERT! /dev/mapper/root-xxxxxxxx does not exist" <br>
+                    "mdadm: No arrays found in config file or automatically"
                 </blockquote>
                 <p><strong>Apa yang salah?</strong> Detail krusial di sini adalah sistem aku <strong>tidak menggunakan LVM (Logical Volume Manager)</strong> ataupun enkripsi <em>disk</em>. Sistem <em>root</em> aku murni berada di partisi <code>ext4</code> biasa, tepatnya di <code>/dev/sda2</code>. File sistemnya sendiri sangat sehat, terbukti saat aku mengeceknya dengan perintah <code>fsck -f /dev/sda2</code>.</p>
                 <p>Kesimpulannya: Proses pembaruan malam sebelumnya meninggalkan konfigurasi <em>boot</em> atau <em>initramfs</em> dalam kondisi kacau. Konfigurasi <em>kernel command line</em> mendadak berhalusinasi dan mencoba melakukan <em>booting</em> dari perangkat <code>/dev/mapper/root-...</code> (yang notabene tidak ada) alih-alih membaca UUID asli dari sistem file <em>root</em> aku.</p>
@@ -288,7 +288,7 @@ sudo reboot</code></pre>
                 <p>Setelah melakukan ritual <em>rebuilding initramfs</em> dan pembaruan GRUB, sistem aku kembali menyala dengan sempurna layaknya tak pernah terjadi apa-apa.</p>
                 <!-- Secondary Image -->
                 <h3>Metode 2: Cara Instan via GUI (MX Boot Repair)</h3>
-                <p>Nah, jika Anda kurang menyukai CLI, ternyata MX Linux sudah menyiapkan &quot;karpet merah&quot; untuk mengatasi isu semacam ini. Teman aku di forum komunitas menyadarkan aku bahwa ada aplikasi berbasis GUI yang bisa menyelesaikan masalah ini dalam 3 klik saja.</p>
+                <p>Nah, jika Anda kurang menyukai CLI, ternyata MX Linux sudah menyiapkan "karpet merah" untuk mengatasi isu semacam ini. Teman aku di forum komunitas menyadarkan aku bahwa ada aplikasi berbasis GUI yang bisa menyelesaikan masalah ini dalam 3 klik saja.</p>
     <div class="img-wrapper">
                     <img src="https://dalam.web.id/img/scontent_sin2_1.xx.fbcdn.net/2012a70da4d8539c.webp" alt="Tampilan menu aplikasi MX Boot Repair di dalam Live USB" width="800" height="450" loading="lazy" decoding="async">
                     <div class="img-caption">Gambar 2: MX Boot Repair menyelamatkan waktu dan tenaga.</div>
@@ -298,15 +298,15 @@ sudo reboot</code></pre>
                     <li>Lakukan <em>booting</em> ke <strong>Live USB MX Linux</strong>.</li>
                     <li>Buka menu utama sistem, cari <strong>MX Tools</strong>, lalu pilih aplikasi <strong>MX Boot Repair</strong>.</li>
                     <li>Di dalam aplikasi, pilih opsi konfigurasi untuk <em>Installed system</em>.</li>
-                    <li>Beri centang pada opsi <strong>&quot;Regenerate initramfs&quot;</strong>.</li>
-                    <li><strong>&quot;Repair grub &amp; update&quot;</strong>.</li>
+                    <li>Beri centang pada opsi <strong>"Regenerate initramfs"</strong>.</li>
+                    <li><strong>"Repair grub &amp; update"</strong>.</li>
                     <li>Klik <em>Apply/OK</em>, tunggu prosesnya selesai, lalu <em>Reboot</em>.</li>
                 </ol>
                 <p>Aku sangat setuju bahwa metode GUI ini jauh lebih cepat dan mudah. Jika saja aku menyadari opsi ini sejak awal, aku cenderung tidak menelusuri lorong panjang terminal karena arahan ChatGPT. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Namun setidaknya, mencoba metode manual memberikan pemahaman teknis yang lebih dalam tentang bagaimana struktur sistem Linux bekerja di balik layar.</p>
                 <p>Aku sengaja mendokumentasikan ini, siapa tahu ada rekan-rekan <em>Linuxer</em> lain yang terbentur isu serupa pasca-update <em>packages</em> terbaru. Semoga membantu!</p>
                 <!-- Referensi & Keandalan Info (E-E-A-T) -->
                 <section style="margin-top: 40px; padding: 20px; background-color: var(--code-bg); border-radius: 8px;">
-                    <h3>&#x1f4da; Referensi Pemecahan Masalah</h3>
+                    <h3>📚 Referensi Pemecahan Masalah</h3>
                     <ul style="margin-bottom: 0;">
                         <li>Dokumentasi Resmi <em>MX Linux User Manual: System Rescue and Boot Repair</em>.</li>
                         <li>Pengalaman <em>(Field Troubleshooting)</em> dari kegagalan <em>kernel image update</em> pada distro turunan Debian.</li>
@@ -314,7 +314,7 @@ sudo reboot</code></pre>
                     </ul>
                 </section><br>
                  <div class="author-box">
-                        <h3>&#x1f468;&#x1f4bb; Artikel oleh: Fakhrul Rijal</h3>
+                        <h3>👨💻 Artikel oleh: Fakhrul Rijal</h3>
                         <p>Web Developer &amp; Penggiat Open Source. Aktif menulis seputar optimasi server, automasi, dan troubleshooting distro berbasis Arch maupun Debian.</p>
                     </div>
             </article>
@@ -323,10 +323,10 @@ sudo reboot</code></pre>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>&#x1f12f; 2026 Layar Kosong. Dibuat dengan &#x1f4bb; dan &#x2615; dari Indonesia.</p>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <p>🄯 2026 Layar Kosong. Dibuat dengan 💻 dan ☕ dari Indonesia.</p>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

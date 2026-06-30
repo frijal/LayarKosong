@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2014-12-15T07:20:38.000Z">
     <meta property="article:modified_time" content="2014-12-15T07:20:38.000Z">
 <!-- Open Graph / Facebook -->
@@ -168,22 +168,22 @@
     <pre><button class="download-btn" onclick="downloadScript()">Download</button><button class="copy-btn" onclick="copyCode()">Copy</button><code class="language-bash">#!/bin/bash
 # resize-images.sh
 # Gunakan: ./resize-images.sh /path/folder_asal /path/folder_tujuan 800
-SOURCE_DIR=&quot;&#x24;1&quot;
-DEST_DIR=&quot;&#x24;2&quot;
-SIZE=&quot;&#x24;3&quot;
-if [ -z &quot;&#x24;SOURCE_DIR&quot; ] || [ -z &quot;&#x24;DEST_DIR&quot; ] || [ -z &quot;&#x24;SIZE&quot; ]; then
-  echo &quot;Usage: &#x24;0 /folder_asal /folder_tujuan ukuran_px&quot;
+SOURCE_DIR="$1"
+DEST_DIR="$2"
+SIZE="$3"
+if [ -z "$SOURCE_DIR" ] || [ -z "$DEST_DIR" ] || [ -z "$SIZE" ]; then
+  echo "Usage: $0 /folder_asal /folder_tujuan ukuran_px"
   exit 1
 fi
-mkdir -p &quot;&#x24;DEST_DIR&quot;
-for img in &quot;&#x24;SOURCE_DIR&quot;/*.{jpg,jpeg,png}; do
-  if [ -f &quot;&#x24;img&quot; ]; then
-    filename=&#x24;(basename &quot;&#x24;img&quot;)
-    convert &quot;&#x24;img&quot; -resize &quot;&#x24;{SIZE}&quot; &quot;&#x24;DEST_DIR/&#x24;filename&quot;
-    echo &quot;&#x2714; &#x24;filename -&gt; resized to &#x24;SIZE px&quot;
+mkdir -p "$DEST_DIR"
+for img in "$SOURCE_DIR"/*.{jpg,jpeg,png}; do
+  if [ -f "$img" ]; then
+    filename=$(basename "$img")
+    convert "$img" -resize "${SIZE}" "$DEST_DIR/$filename"
+    echo "✔ $filename -&gt; resized to $SIZE px"
   fi
 done
-echo &quot;Semua gambar sudah diresize dan disimpan di &#x24;DEST_DIR&quot;
+echo "Semua gambar sudah diresize dan disimpan di $DEST_DIR"
 </code></pre>
     <h2>Cara Menggunakan</h2>
     <ol>
@@ -198,8 +198,8 @@ echo &quot;Semua gambar sudah diresize dan disimpan di &#x24;DEST_DIR&quot;
       </li>
     </ol>
     <div id="related-articles-grid"></div><div id="response"></div>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js" defer=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-bash.min.js" defer=""></script>
     <script>
       function copyCode() {
         const code = document.querySelector("code.language-bash").innerText;
@@ -218,7 +218,7 @@ echo &quot;Semua gambar sudah diresize dan disimpan di &#x24;DEST_DIR&quot;
         URL.revokeObjectURL(url);
       }
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

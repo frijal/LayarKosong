@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="ImageMagick, batch resize foto, resize gambar massal, tutorial ImageMagick Linux, ImageMagick PowerShell, optimasi gambar web">
-    <meta name="promphint" content="Gunakan perintah &apos;magick mogrify&apos; untuk memproses banyak gambar sekaligus ke folder tujuan tanpa menimpa file asli. Tutorial ini mencakup Linux Bash dan Windows PowerShell.">
+    <meta name="promphint" content="Gunakan perintah 'magick mogrify' untuk memproses banyak gambar sekaligus ke folder tujuan tanpa menimpa file asli. Tutorial ini mencakup Linux Bash dan Windows PowerShell.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-27T15:52:45.398Z">
-    <meta property="article:modified_time" content="2026-02-15T20:48:46.854Z">
+    <meta property="article:modified_time" content="2025-12-27T15:52:45.398Z">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -191,15 +191,15 @@
 <body>
     <div class="container">
         <header>
-            <div id="iposbrowser"></div><h1>&#x1f5bc;&#xfe0f; Batch Resize Foto dengan ImageMagick &#x2014; Simpan ke Folder Terpisah</h1>
+            <div id="iposbrowser"></div><h1>🖼️ Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah</h1>
         </header>
         <main>
             <article>
                 <section>
                     <h2><i class="fa-solid fa-rocket"></i> Pendahuluan</h2>
-                    <p>Halo! Kalau kamu punya ratusan foto dalam satu folder dan ingin mengecilkan ukurannya sekaligus (misal buat kebutuhan web selebar 800px) tapi tidak mau ngerusak foto aslinya, <strong>ImageMagick</strong> adalah solusinya. &#x1f680;</p>
+                    <p>Halo! Kalau kamu punya ratusan foto dalam satu folder dan ingin mengecilkan ukurannya sekaligus (misal buat kebutuhan web selebar 800px) tapi tidak mau ngerusak foto aslinya, <strong>ImageMagick</strong> adalah solusinya. 🚀</p>
                     <div class="note">
-                        <strong>&#x1f6a8; Catatan Penting:</strong><br>
+                        <strong>🚨 Catatan Penting:</strong><br>
                         Jangan asal pakai perintah <code>mogrify</code> tanpa opsi <code>-path</code> ya, karena secara default dia bakal <em>menimpa</em> file asli kamu. Selalu gunakan <code>-path</code> atau gunakan loop manual biar aman.
                     </div>
                 </section>
@@ -212,7 +212,7 @@
                     </ul>
                 </section>
                 <section>
-                    <h2><i class="fa-solid fa-terminal"></i> Metode 1 &#x2014; Cepat (Linux/macOS)</h2>
+                    <h2><i class="fa-solid fa-terminal"></i> Metode 1 — Cepat (Linux/macOS)</h2>
                     <p>Paling praktis buat file yang numpuk di satu folder. Kita pakai <code>mogrify</code> dengan folder tujuan.</p>
                     <pre><button class="copy-btn">Copy</button><code class="language-bash"># Buat folder tujuan
 mkdir -p ../resized
@@ -221,37 +221,37 @@ magick mogrify -path ../resized -resize 800x -strip -quality 85 *.jpg</code></pr
                     <p class="small-desc">Hasilnya bakal masuk ke folder <code>../resized</code>, file asli kamu tetap aman di tempatnya.</p>
                 </section>
                 <section>
-                    <h2><i class="fa-solid fa-rotate"></i> Metode 2 &#x2014; Loop Manual (Fleksibel)</h2>
+                    <h2><i class="fa-solid fa-rotate"></i> Metode 2 — Loop Manual (Fleksibel)</h2>
                     <p>Kalau kamu ingin lebih teliti, misalnya sambil ganti format ke PNG, pakai cara loop ini:</p>
                     <pre><button class="copy-btn">Copy</button><code class="language-bash">mkdir -p ../resized
 for f in *.jpg; do
-  magick &quot;&#x24;f&quot; -resize 800x -strip -quality 85 &quot;../resized/&#x24;{f%.*}.jpg&quot;
+  magick "$f" -resize 800x -strip -quality 85 "../resized/${f%.*}.jpg"
 done</code></pre>
                 </section>
                 <section>
-                    <h2><i class="fa-solid fa-folder-tree"></i> Metode 3 &#x2014; Rekursif (Masuk ke Subfolder)</h2>
+                    <h2><i class="fa-solid fa-folder-tree"></i> Metode 3 — Rekursif (Masuk ke Subfolder)</h2>
                     <p>Apabila struktur direktori memiliki beberapa subfolder di dalamnya, konfigurasi skrip ini dirancang untuk memproses penyesuaian ukuran gambar tanpa mengubah susunan folder asal.</p>
                     <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
-OUTDIR=&quot;resized&quot;
-mkdir -p &quot;&#x24;OUTDIR&quot;
-find . -type f \( -iname &apos;*.jpg&apos; -o -iname &apos;*.jpeg&apos; -o -iname &apos;*.png&apos; \) -print0 |
-while IFS= read -r -d &apos;&apos; file; do
-  rel=&quot;&#x24;{file#./}&quot;
-  dst=&quot;&#x24;OUTDIR/&#x24;(dirname &quot;&#x24;rel&quot;)&quot;
-  mkdir -p &quot;&#x24;dst&quot;
-  magick &quot;&#x24;file&quot; -resize 800x -strip -quality 85 &quot;&#x24;dst/&#x24;(basename &quot;&#x24;rel&quot;)&quot;
+OUTDIR="resized"
+mkdir -p "$OUTDIR"
+find . -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0 |
+while IFS= read -r -d '' file; do
+  rel="${file#./}"
+  dst="$OUTDIR/$(dirname "$rel")"
+  mkdir -p "$dst"
+  magick "$file" -resize 800x -strip -quality 85 "$dst/$(basename "$rel")"
 done</code></pre>
                 </section>
                 <section>
-                    <h2><i class="fa-solid fa-window-maximize"></i> Metode 4 &#x2014; Windows PowerShell</h2>
+                    <h2><i class="fa-solid fa-window-maximize"></i> Metode 4 — Windows PowerShell</h2>
                     <p>Buat pengguna Windows, kamu bisa pakai perintah PowerShell yang keren ini:</p>
-                    <pre><button class="copy-btn">Copy</button><code class="language-powershell">&#x24;src = &quot;C:\Folder\FotoAsli&quot;
-&#x24;dst = &quot;C:\Folder\FotoHasil&quot;
-Get-ChildItem -Path &#x24;src -Recurse -File -Include *.jpg,*.png | ForEach-Object {
-  &#x24;rel = &#x24;_.FullName.Substring(&#x24;src.Length).TrimStart(&apos;\&apos;)
-  &#x24;outDir = Join-Path &#x24;dst (Split-Path &#x24;rel -Parent)
-  New-Item -ItemType Directory -Path &#x24;outDir -Force | Out-Null
-  magick &#x24;_.FullName -resize 800x -strip -quality 85 (Join-Path &#x24;outDir &#x24;_.Name)
+                    <pre><button class="copy-btn">Copy</button><code class="language-powershell">$src = "C:\Folder\FotoAsli"
+$dst = "C:\Folder\FotoHasil"
+Get-ChildItem -Path $src -Recurse -File -Include *.jpg,*.png | ForEach-Object {
+  $rel = $_.FullName.Substring($src.Length).TrimStart('\')
+  $outDir = Join-Path $dst (Split-Path $rel -Parent)
+  New-Item -ItemType Directory -Path $outDir -Force | Out-Null
+  magick $_.FullName -resize 800x -strip -quality 85 (Join-Path $outDir $_.Name)
 }</code></pre>
                 </section>
                 <section>
@@ -259,7 +259,7 @@ Get-ChildItem -Path &#x24;src -Recurse -File -Include *.jpg,*.png | ForEach-Obje
                     <ul>
                         <li>Gunakan <code>-strip</code> untuk membuang data EXIF biar file makin ringan.</li>
                         <li>Kualitas <code>-quality 85</code> biasanya sudah sangat cukup buat web.</li>
-                        <li>Bungkus nama file dengan tanda kutip <code>&quot;&#x24;file&quot;</code> kalau nama fotonya ada spasinya.</li>
+                        <li>Bungkus nama file dengan tanda kutip <code>"$file"</code> kalau nama fotonya ada spasinya.</li>
                     </ul>
                 </section>
                 <div id="related-articles-grid"></div><div id="response"></div>
@@ -268,13 +268,13 @@ Get-ChildItem -Path &#x24;src -Recurse -File -Include *.jpg,*.png | ForEach-Obje
     </div>
     <footer>
         <div class="container">
-            <p>&#x1f12f; 2025 Tutorial Batch Resize &#x2022; <a href="https://dalam.web.id" style="color:inherit;">Layar Kosong</a></p>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Dibuat dengan &#x2764;&#xfe0f; di Balikpapan. Jangan lupa backup sebelum beraksi!</p>
+            <p>🄯 2025 Tutorial Batch Resize • <a href="https://dalam.web.id" style="color:inherit;">Layar Kosong</a></p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Dibuat dengan ❤️ di Balikpapan. Jangan lupa backup sebelum beraksi!</p>
         </div>
-        <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-powershell.min.js" defer></script>
+        <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js" defer=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-powershell.min.js" defer=""></script>
     <script>
         // Copy to Clipboard Functionality
         document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -295,7 +295,7 @@ Get-ChildItem -Path &#x24;src -Recurse -File -Include *.jpg,*.png | ForEach-Obje
             });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

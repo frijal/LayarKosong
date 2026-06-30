@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Troubleshooting">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:published_time" content="2025-08-22T20:28:39.000Z">
-    <meta property="article:modified_time" content="2025-10-31T13:16:11.950Z">
+    <meta property="article:modified_time" content="2026-02-14T23:02:16.940Z">
     <!-- Meta Tags Utama (Ketat: 50-60 Karakter) -->
     <!-- Meta Description Berbeda (Ketat: 150-160 Karakter) -->
     <!-- Meta Title Social Media (Ketat: 50-60 Karakter) -->
@@ -272,7 +272,7 @@
 <body>
     <div class="container">
         <header>
-            <div id="iposbrowser"></div><h1>Muncul Peringatan &apos;Policy will reject signature&apos; di Linux? Tenang, Ini Artinya!</h1>
+            <div id="iposbrowser"></div><h1>Muncul Peringatan 'Policy will reject signature' di Linux? Tenang, Ini Artinya!</h1>
             <p style="font-size: 1.25rem; color: var(--text-muted); margin-top: 0.5rem;">Buat kamu para pengguna Debian, Ubuntu, atau distro turunannya, jangan panik dulu kalau melihat pesan aneh berwarna kuning yang mendadak menghiasi terminalmu.</p>
         </header>
         <main>
@@ -287,30 +287,30 @@
 <pre><code>/usr/lib/python3/dist-packages/apt/cache.py:565: Warning:
 W:http://download.opensuse.org/.../InRelease: Policy will reject signature within a year
 res = self._cache.update(fetch_progress, slist, pulse_interval)</code></pre>
-                <p>Kalau kamu pertama kali melihat pesan itu, wajar banget kalau reaksi pertamamu adalah panik. Isi kepalamu mungkin langsung dihujani pertanyaan: <em>&quot;Waduh, sistemku rusak?&quot;, &quot;Jangan-jangan kena hack nih?&quot;,</em> atau <em>&quot;Loh, aku kan pakai Debian, kok ada tulisan OpenSuse nyasar di sini?&quot;.</em></p>
+                <p>Kalau kamu pertama kali melihat pesan itu, wajar banget kalau reaksi pertamamu adalah panik. Isi kepalamu mungkin langsung dihujani pertanyaan: <em>"Waduh, sistemku rusak?", "Jangan-jangan kena hack nih?",</em> atau <em>"Loh, aku kan pakai Debian, kok ada tulisan OpenSuse nyasar di sini?".</em></p>
                 <p>Tenang, tarik napas dalam-dalam. Pesan ini sebenarnya tidak seseram kelihatannya kok. Mari kita bedah bersama-sama secara perlahan!</p>
                 <h2><i class="fa-solid fa-shield-halved icon"></i> Memahami Maknanya Secara Sederhana</h2>
                 <p>Kunci pertama yang harus kamu pahami adalah huruf <code>W:</code> di awal kalimat. Itu adalah singkatan dari <strong>Warning (Peringatan)</strong>, bukan sebuah kesalahan fatal (<em>Error</em>). Artinya, sistem Linux kamu saat ini masih sehat walafiat, ia hanya sedang menunaikan tugasnya untuk memberitahumu tentang potensi kendala di masa depan.</p>
                 <div class="alert">
                     <i class="fa-solid fa-lightbulb" style="font-size: 1.5rem;"></i>
                     <div>
-                        Anggap saja sistem manajemen paket kamu (APT) itu seperti satpam kompleks yang sangat teliti. Dia bilang, <em>&quot;Bos, KTP tamu dari repositori pihak ketiga ini masih aman kok untuk sekarang. Cuma mau ngasih tau aja, masa berlakunya tinggal kurang dari setahun. Biar bos tidak kaget kalau tiba-tiba besok-besok KTP-nya ditolak.&quot;</em>
+                        Anggap saja sistem manajemen paket kamu (APT) itu seperti satpam kompleks yang sangat teliti. Dia bilang, <em>"Bos, KTP tamu dari repositori pihak ketiga ini masih aman kok untuk sekarang. Cuma mau ngasih tau aja, masa berlakunya tinggal kurang dari setahun. Biar bos tidak kaget kalau tiba-tiba besok-besok KTP-nya ditolak."</em>
                     </div>
                 </div>
-                <p>Secara teknis, setiap sumber perangkat lunak (repositori) dibekali &quot;segel keamanan&quot; berupa sertifikat digital atau GPG <em>key</em> untuk membuktikan bahwa isinya autentik dan belum dimanipulasi oleh peretas. Sertifikat ini memiliki masa berlaku. Nah, pesan peringatan tadi muncul karena sertifikat dari salah satu repositori yang pernah kamu tambahkan akan segera kedaluwarsa dalam kurun waktu kurang dari 365 hari. Saat ini semuanya masih aman, namun jika si pemilik repositori lupa memperbaruinya nanti, sistem Debian atau Ubuntu kamu akan berhenti memercayai sumber tersebut.</p>
+                <p>Secara teknis, setiap sumber perangkat lunak (repositori) dibekali "segel keamanan" berupa sertifikat digital atau GPG <em>key</em> untuk membuktikan bahwa isinya autentik dan belum dimanipulasi oleh peretas. Sertifikat ini memiliki masa berlaku. Nah, pesan peringatan tadi muncul karena sertifikat dari salah satu repositori yang pernah kamu tambahkan akan segera kedaluwarsa dalam kurun waktu kurang dari 365 hari. Saat ini semuanya masih aman, namun jika si pemilik repositori lupa memperbaruinya nanti, sistem Debian atau Ubuntu kamu akan berhenti memercayai sumber tersebut.</p>
                 <h2><i class="fa-solid fa-magnifying-glass icon"></i> Kalimat Peringatan Satu per Satu</h2>
                 <p>Agar lebih nyenyak tidurnya, mari kita urai pesan tersebut menjadi tiga bagian utama:</p>
                 <ul>
-                    <li><strong>Sumber Masalah:</strong> Bagian <code>W:http://download.opensuse.org/.../InRelease:</code> menunjukkan biang keladinya. Ini adalah alamat repositori pihak ketiga yang pernah kamu pasang secara manual. Misalnya, kamu pernah menginstal aplikasi eksternal (seperti OBS Studio atau klien spesifik lainnya) yang kebetulan <em>hosting</em> paketnya dikelola melalui layanan OpenSuse Build Service (OBS). Itulah mengapa ada kata &quot;OpenSuse&quot; di sana.</li>
-                    <li><strong>Inti Peringatan:</strong> Kalimat <code>Policy will reject signature within a year</code> adalah esensinya. Linux punya kebijakan keamanan ketat. Ia memperingatkan bahwa &quot;tanda tangan&quot; dari repositori tersebut akan kedaluwarsa tahun depan.</li>
+                    <li><strong>Sumber Masalah:</strong> Bagian <code>W:http://download.opensuse.org/.../InRelease:</code> menunjukkan biang keladinya. Ini adalah alamat repositori pihak ketiga yang pernah kamu pasang secara manual. Misalnya, kamu pernah menginstal aplikasi eksternal (seperti OBS Studio atau klien spesifik lainnya) yang kebetulan <em>hosting</em> paketnya dikelola melalui layanan OpenSuse Build Service (OBS). Itulah mengapa ada kata "OpenSuse" di sana.</li>
+                    <li><strong>Inti Peringatan:</strong> Kalimat <code>Policy will reject signature within a year</code> adalah esensinya. Linux punya kebijakan keamanan ketat. Ia memperingatkan bahwa "tanda tangan" dari repositori tersebut akan kedaluwarsa tahun depan.</li>
                     <li><strong>Saran Sistem:</strong> Sering kali, peringatan ini diikuti dengan kalimat <code>see --audit for details</code>. Ini adalah saran bawaan sistem jika kamu ingin menginvestigasi lebih lanjut.</li>
                 </ul>
                 <h2><i class="fa-solid fa-screwdriver-wrench icon"></i> Terus, Aku Harus Ngapain Sekarang?</h2>
                 <p>Kamu dihadapkan pada beberapa pilihan solusi, mulai dari yang paling gampang sambil rebahan, sampai yang butuh sedikit modifikasi di balik layar.</p>
                 <h3>Pilihan 1: Santai dan Abaikan Dulu (Sangat Direkomendasikan)</h3>
-                <p>Serius, ini adalah opsi terbaik untuk saat ini. Selama itu hanya <em>Warning</em>, kamu tidak perlu memperbaiki apa-apa. Para pengelola repositori tersebut umumnya sangat profesional; mereka sadar akan tenggat waktu ini dan pasti akan memperbarui &quot;segel&quot; GPG <em>key</em> mereka jauh hari sebelum kedaluwarsa. Nantinya, saat mereka sudah <em>update</em>, peringatan ini akan otomatis lenyap saat kamu menjalankan <code>sudo apt update</code> di bulan-bulan berikutnya.</p>
+                <p>Serius, ini adalah opsi terbaik untuk saat ini. Selama itu hanya <em>Warning</em>, kamu tidak perlu memperbaiki apa-apa. Para pengelola repositori tersebut umumnya sangat profesional; mereka sadar akan tenggat waktu ini dan pasti akan memperbarui "segel" GPG <em>key</em> mereka jauh hari sebelum kedaluwarsa. Nantinya, saat mereka sudah <em>update</em>, peringatan ini akan otomatis lenyap saat kamu menjalankan <code>sudo apt update</code> di bulan-bulan berikutnya.</p>
                 <h3>Pilihan 2: Jadi Detektif Dadakan (Buat yang Penasaran)</h3>
-                <p>Kalau kamu tipe pengguna Linux yang haus akan informasi dan ingin tahu kapan tepatnya hari &quot;kiamat&quot; sertifikat tersebut, jalankan saja perintah audit yang disarankan oleh terminal:</p>
+                <p>Kalau kamu tipe pengguna Linux yang haus akan informasi dan ingin tahu kapan tepatnya hari "kiamat" sertifikat tersebut, jalankan saja perintah audit yang disarankan oleh terminal:</p>
 <pre><code>sudo apt update --audit</code></pre>
                 <p>Perintah ini tidak akan memodifikasi file apa pun, ia murni hanya mengekstraksi tanggal kedaluwarsa secara spesifik untuk memuaskan rasa ingin tahumu.</p>
                 <h3>Pilihan 3: Putus Hubungan Repositori (Jika Aplikasi Sudah Dihapus)</h3>
@@ -323,7 +323,7 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</code></pre>
                     <li>Terakhir, jalankan <code>sudo apt update</code>. Voila! Terminalmu kembali bersih tanpa peringatan.</li>
                 </ol>
                 <blockquote>
-                    &quot;Mengelola sistem Linux itu seperti merawat mesin kendaraan. Selama lampu indikator hanya menyala kuning (Warning) dan kamu tahu penyebabnya, mesin masih sangat aman diajak melaju.&quot;
+                    "Mengelola sistem Linux itu seperti merawat mesin kendaraan. Selama lampu indikator hanya menyala kuning (Warning) dan kamu tahu penyebabnya, mesin masih sangat aman diajak melaju."
                 </blockquote>
                 <p>Jadi, sekarang sudah paham kan? Tidak perlu panik berlebihan. Peringatan <em>Policy will reject signature</em> ini murni bentuk kasih sayang dari sistem operasi Linux-mu agar kamu selalu terjaga dan waspada. Anggap saja ini notifikasi perpanjangan STNK biar komputer kesayanganmu umumnya melaju di jalur yang aman! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.</p>
             </article>
@@ -337,9 +337,9 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</code></pre>
                 <span>14 Juni 2026</span>
                 <span>Referensi: Dokumentasi Resmi Debian &amp; Komunitas Ubuntu</span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

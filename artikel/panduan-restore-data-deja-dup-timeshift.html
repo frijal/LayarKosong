@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Debian">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:published_time" content="2026-06-07T00:26:36.798Z">
-    <meta property="article:modified_time" content="2026-06-17T16:45:54.141Z">
+    <meta property="article:modified_time" content="2026-06-23T14:14:42.334Z">
     <style>
         /* Mobile-first variables & Tema Gelap/Terang via prefers-color-scheme */
         :root {
@@ -219,7 +219,7 @@
             <p>Buat kamu yang pasti paham rasanya deg-degan habis <em>install</em> ulang <em>server</em> atau laptop Debian kesayangan. <strong>Install ulang</strong> itu memang bikin sistem jadi segar, tapi urusan mengembalikan <em>(restore)</em> data kadang bikin pusing. Apalagi kalau disuruh melototin layar hitam terminal sambil mengetik kode yang panjang-panjang. <em>Hadeh</em>, bikin lelah mata!</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/c067cc592fe887fa.webp" srcset="https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 480w, https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 800w, https://pbs.twimg.com/media/HKK8nAna8AA2Tao?format=jpg&amp;name=large 1200w" sizes="(max-width: 64rem) 100vw, 64rem" fetchpriority="high" decoding="async" class="lcp-image" alt="Ilustrasi pemulihan data menggunakan antarmuka grafis Linux">
             <p>Tenang saja, kawan. Kita tidak perlu umumnya menjadi pelaku ancaman siber yang kaku. Pastikan seluruh langkah dilakukan hanya pada perangkat sendiri atau lingkungan yang memiliki izin resmi. Berikut adalah panduan menggunakan dua aplikasi <em>Graphical User Interface</em> (GUI) yang sangat memanjakan mata untuk mengembalikan data kamu: <strong>Deja Dup</strong> dan <strong>Timeshift</strong>. Keduanya punya fungsi yang sedikit berbeda, mari kita bedah satu per satu!</p>
-            <h2>1. Restore Menggunakan Deja Dup (GUI) &#x2014; <em>Paling Direkomendasikan</em></h2>
+            <h2>1. Restore Menggunakan Deja Dup (GUI) — <em>Paling Direkomendasikan</em></h2>
             <p>Jika tujuan utamamu murni ingin menyelamatkan dokumen pribadi, tugas kuliah, koleksi foto <em>meme*, dan *file</em> unduhan, maka <strong>Deja Dup</strong> adalah sang juru selamat. Aplikasi ini sering kali sudah terpasang bawaan di banyak distro berbasis Debian atau Ubuntu. Antarmukanya sangat sederhana sehingga ramah bagi pemula.</p>
             <h3>Langkah-langkah Eksekusi Deja Dup</h3>
             <p><strong>Langkah 1: Install Deja Dup</strong><br>
@@ -227,13 +227,13 @@
 <pre><code><span class="keyword">sudo apt</span> update
 <span class="keyword">sudo apt</span> install deja-dup -y</code></pre>
             <p><strong>Langkah 2: Buka Aplikasinya</strong><br>
-            Cari ikon aplikasi bernama <strong>&quot;Backups&quot;</strong> di menu deretan aplikasi kamu, atau cukup panggil lewat terminal dengan mengetik <code>deja-dup</code>.</p>
+            Cari ikon aplikasi bernama <strong>"Backups"</strong> di menu deretan aplikasi kamu, atau cukup panggil lewat terminal dengan mengetik <code>deja-dup</code>.</p>
             <p><strong>Langkah 3: Tentukan Lokasi Harta Karunmu</strong><br>
-            Di jendela aplikasi, klik <em>tab<strong>*Restore</strong>. Setelah itu, tekan tombol tebal bertuliskan *&quot;Restore from a previous backup&quot;*. Arahkan ke *flashdisk</em> atau HDD eksternal tempat kamu menyimpan data lamamu, lalu klik <strong>Forward</strong>.</p>
+            Di jendela aplikasi, klik <em>tab<strong>*Restore</strong>. Setelah itu, tekan tombol tebal bertuliskan *"Restore from a previous backup"*. Arahkan ke *flashdisk</em> atau HDD eksternal tempat kamu menyimpan data lamamu, lalu klik <strong>Forward</strong>.</p>
             <p><strong>Langkah 4: Pilih Data yang Ingin Dikembalikan</strong><br>
             Aplikasi canggih ini akan membaca arsipmu dan menampilkan struktur folder layaknya <em>file manager</em> biasa. Centang folder-folder krusial seperti <code>Documents</code>, <code>Pictures</code>, <code>Downloads</code>, atau <code>.config</code> (jika kamu juga menyimpan pengaturan *dotfiles). Setelah yakin, klik <strong>Forward</strong> lagi.</p>
             <p><strong>Langkah 5: Tentukan Lokasi Pendaratan</strong><br>
-            Sistem akan bertanya di mana data ini mau diletakkan. Sangat disarankan untuk memilih opsi <em>&quot;Restore files to original locations&quot;</em> agar sistem secara otomatis meletakkannya kembali ke <code>/home</code> milikmu. Klik <strong>Restore</strong>.</p>
+            Sistem akan bertanya di mana data ini mau diletakkan. Sangat disarankan untuk memilih opsi <em>"Restore files to original locations"</em> agar sistem secara otomatis meletakkannya kembali ke <code>/home</code> milikmu. Klik <strong>Restore</strong>.</p>
             <p><strong>Langkah 6: Tunggu Sambil Ngopi</strong><br>
             Biarkan sistem memindahkan data. Proses ini bisa berjalan beberapa menit hingga hitungan jam tergantung ukuran datamu. Jika sudah selesai, <em>reboot</em> komputermu biar afdal.</p>
             <h3>Kelebihan &amp; Kekurangan Deja Dup</h3>
@@ -324,21 +324,21 @@
 <span class="keyword">sudo chown</span> -R namauser:namauser /home/namauser
 <span class="comment"># 3. Update dan bersihkan sistem</span>
 <span class="keyword">sudo apt</span> update &amp;&amp; <span class="keyword">sudo apt</span> full-upgrade -y</code></pre>
-            <p>Nah, selesai sudah! Tidak perlu pusing lagi kan? Semoga Debian barumu awet dan performanya sekencang roket! &#x1f680;</p>
+            <p>Nah, selesai sudah! Tidak perlu pusing lagi kan? Semoga Debian barumu awet dan performanya sekencang roket! 🚀</p>
         </article>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
             <div class="footer-meta">
                 <span><i class="fa-solid fa-pen-nib"></i> Artikel oleh: <a href="https://github.com/frijal" rel="author">Frijal</a></span>
-                <span>&#x2022;</span>
+                <span>•</span>
                 <span><i class="fa-regular fa-calendar-check"></i> 7 Juni 2026</span>
-                <span>&#x2022;</span>
+                <span>•</span>
                 <span><i class="fa-solid fa-book"></i> Referensi: <a href="https://wiki.gnome.org/Apps/DejaDup" target="_blank" rel="noopener noreferrer">GNOME Deja Dup Docs</a></span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

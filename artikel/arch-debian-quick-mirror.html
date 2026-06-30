@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Debian">
     <meta property="article:tag" content="Arch Linux">
@@ -257,7 +257,7 @@
             </p>
             <div class="callout">
                 <p>
-                    &#x26a0;&#xfe0f; <strong>Peringatan Akses:</strong> Skrip ini wajib dijalankan dengan memberikan kekuasaan superuser (<code>sudo</code>). Skrip akan melakukan pencadangan otomatis (<em>backup</em>) dan menimpa file krusial sistem di dalam direktori <code>/etc/apt/</code> maupun <code>/etc/pacman.d/</code>.
+                    ⚠️ <strong>Peringatan Akses:</strong> Skrip ini wajib dijalankan dengan memberikan kekuasaan superuser (<code>sudo</code>). Skrip akan melakukan pencadangan otomatis (<em>backup</em>) dan menimpa file krusial sistem di dalam direktori <code>/etc/apt/</code> maupun <code>/etc/pacman.d/</code>.
                 </p>
             </div>
             <h2>Kode Skrip Inti</h2>
@@ -267,24 +267,24 @@
 <pre><code><span class="token comment">#!/bin/bash</span>
 <span class="token comment"># quick-mirror.sh - Pilih mirror tercepat untuk Debian/Ubuntu atau Arch</span>
 <span class="token comment"># Penggunaan: sudo ./quick-mirror.sh [debian|arch]</span>
-<span class="token variable">MODE</span><span class="token operator">=</span><span class="token string">&quot;<span class="token variable">&#x24;1</span>&quot;</span>
-<span class="token keyword">if</span> <span class="token operator">[</span> <span class="token string">&quot;<span class="token variable">&#x24;MODE</span>&quot;</span> <span class="token operator">=</span> <span class="token string">&quot;debian&quot;</span> <span class="token operator">]</span><span class="token keyword">;</span> <span class="token keyword">then</span>
-    <span class="token command">echo</span> <span class="token string">&quot;Mode Debian/Ubuntu dipilih...&quot;</span>
+<span class="token variable">MODE</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
+<span class="token keyword">if</span> <span class="token operator">[</span> <span class="token string">"<span class="token variable">$MODE</span>"</span> <span class="token operator">=</span> <span class="token string">"debian"</span> <span class="token operator">]</span><span class="token keyword">;</span> <span class="token keyword">then</span>
+    <span class="token command">echo</span> <span class="token string">"Mode Debian/Ubuntu dipilih..."</span>
     <span class="token keyword">sudo</span> <span class="token command">apt</span> update
     <span class="token keyword">sudo</span> <span class="token command">apt</span> install <span class="token operator">-y</span> netselect-apt
     <span class="token keyword">sudo</span> <span class="token command">netselect-apt</span> stable
     <span class="token keyword">sudo</span> <span class="token command">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak
     <span class="token keyword">sudo</span> <span class="token command">mv</span> sources.list /etc/apt/sources.list
     <span class="token keyword">sudo</span> <span class="token command">apt</span> update
-<span class="token keyword">elif</span> <span class="token operator">[</span> <span class="token string">&quot;<span class="token variable">&#x24;MODE</span>&quot;</span> <span class="token operator">=</span> <span class="token string">&quot;arch&quot;</span> <span class="token operator">]</span><span class="token keyword">;</span> <span class="token keyword">then</span>
-    <span class="token command">echo</span> <span class="token string">&quot;Mode Arch Linux dipilih...&quot;</span>
+<span class="token keyword">elif</span> <span class="token operator">[</span> <span class="token string">"<span class="token variable">$MODE</span>"</span> <span class="token operator">=</span> <span class="token string">"arch"</span> <span class="token operator">]</span><span class="token keyword">;</span> <span class="token keyword">then</span>
+    <span class="token command">echo</span> <span class="token string">"Mode Arch Linux dipilih..."</span>
     <span class="token keyword">sudo</span> <span class="token command">pacman</span> <span class="token operator">-S</span> <span class="token operator">--</span>noconfirm reflector
-    <span class="token keyword">sudo</span> <span class="token command">reflector</span> <span class="token operator">--</span>country <span class="token string">&quot;Indonesia&quot;</span> <span class="token operator">--</span>latest 10 <span class="token operator">--</span>sort rate <span class="token operator">--</span>save /etc/pacman.d/mirrorlist
+    <span class="token keyword">sudo</span> <span class="token command">reflector</span> <span class="token operator">--</span>country <span class="token string">"Indonesia"</span> <span class="token operator">--</span>latest 10 <span class="token operator">--</span>sort rate <span class="token operator">--</span>save /etc/pacman.d/mirrorlist
     <span class="token keyword">sudo</span> <span class="token command">pacman</span> <span class="token operator">-Syyu</span>
 <span class="token keyword">else</span>
-    <span class="token command">echo</span> <span class="token string">&quot;Penggunaan tidak valid.&quot;</span>
-    <span class="token command">echo</span> <span class="token string">&quot;Contoh: <span class="token variable">&#x24;0</span> debian&quot;</span>
-    <span class="token command">echo</span> <span class="token string">&quot;atau: <span class="token variable">&#x24;0</span> arch&quot;</span>
+    <span class="token command">echo</span> <span class="token string">"Penggunaan tidak valid."</span>
+    <span class="token command">echo</span> <span class="token string">"Contoh: <span class="token variable">$0</span> debian"</span>
+    <span class="token command">echo</span> <span class="token string">"atau: <span class="token variable">$0</span> arch"</span>
 <span class="token keyword">fi</span></code></pre>
             <p>
                 Setelah menjalankan skrip tersebut (contoh: <code>sudo ./quick-mirror.sh debian</code>), kamu bisa langsung menikmati aliran <em>bandwidth</em> maksimal. Kini, memelihara dan merawat kesehatan repositori sistem kamu bukan lagi beban, melainkan hiburan ringan yang bisa diselesaikan dalam hitungan detik. Informasi ini bersifat edukatif dan tidak menggantikan saran tenaga kesehatan.
@@ -293,15 +293,15 @@
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <div class="author-meta">
-                <span>&#x270d;&#xfe0f; Pengarang: <strong><a href="https://dalam.web.id" rel="author">Fakhrul Rijal</a></strong></span>
-                <span>&#x2022;</span>
-                <span>&#x1f4c5; Terakhir Diperbarui: 14 Juni 2026</span>
-                <span>&#x2022;</span>
-                <span>&#x1f4d6; Sumber Ekstra: <a href="https://wiki.debian.org/SourcesList" target="_blank" rel="noopener noreferrer">Debian Wiki</a> &amp; <a href="https://wiki.archlinux.org/title/Mirrors" target="_blank" rel="noopener noreferrer">ArchWiki Mirrors</a></span>
+                <span>✍️ Pengarang: <strong><a href="https://dalam.web.id" rel="author">Fakhrul Rijal</a></strong></span>
+                <span>•</span>
+                <span>📅 Terakhir Diperbarui: 14 Juni 2026</span>
+                <span>•</span>
+                <span>📖 Sumber Ekstra: <a href="https://wiki.debian.org/SourcesList" target="_blank" rel="noopener noreferrer">Debian Wiki</a> &amp; <a href="https://wiki.archlinux.org/title/Mirrors" target="_blank" rel="noopener noreferrer">ArchWiki Mirrors</a></span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

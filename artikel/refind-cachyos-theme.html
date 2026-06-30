@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-12-07T19:36:03.000Z">
-    <meta property="article:modified_time" content="2025-12-07T19:36:03.000Z">
+    <meta property="article:modified_time" content="2026-05-27T19:27:28.077Z">
 <meta name="keywords" content="rEFInd, CachyOS, Arch Linux, Bootloader Theme, Linux Rice, Fakhrul Rijal">
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&amp;family=Nunito:wght@400;700;900&amp;display=swap" rel="stylesheet">
@@ -186,13 +186,13 @@
     </header>
     <section>
         <p>
-            Assalamu&apos; alaikum... &#x1f44b; Apa kabar hari ini? Semoga kopi susunya udah diseduh ya.
+            Assalamu' alaikum... 👋 Apa kabar hari ini? Semoga kopi susunya udah diseduh ya.
             Buat kamu pengguna Arch Linux yang ngerasa tampilan bootloader bawaan tuh <em>boring</em> banget, datar kayak jalan tol sepi,
             saya punya racikan baru nih.
         </p>
         <p>
             Ini adalah tema <strong>rEFInd</strong> dengan cita rasa <strong>CachyOS</strong>.
-            Desainnya clean, modern, dan pastinya bikin laptop kamu kelihatan lebih &quot;mahal&quot; pas baru dinyalain.
+            Desainnya clean, modern, dan pastinya bikin laptop kamu kelihatan lebih "mahal" pas baru dinyalain.
             Yah, itung-itung naikin mood sebelum pusing ngoding atau sekadar <em>scrolling</em> medsos.
         </p>
     </section>
@@ -203,7 +203,7 @@
             Kalau belum ada, jangan panik. Buka terminal kesayangan kamu, terus ketik mantra sakti ini:
         </p>
         <pre><code class="language-bash">sudo pacman -S refind</code></pre>
-        <p><em>Pastikan koneksi internet aman, jangan numpang Wi-Fi tetangga yang putus-nyambung ya.</em> &#x1f605;</p>
+        <p><em>Pastikan koneksi internet aman, jangan numpang Wi-Fi tetangga yang putus-nyambung ya.</em> 😅</p>
         <h2><i class="fa-solid fa-terminal"></i> Langkah 2: Eksekusi Tema</h2>
         <p>
             Oke, setelah file-file tema ini udah kamu download (clone dari repo GitHub di atas),
@@ -222,7 +222,7 @@
     <section>
         <h2><i class="fa-solid fa-file-code"></i> Isi Jeroan Script</h2>
         <p>
-            Buat kamu yang penasaran atau paranoid &quot;<em>Ini script isinya apaan sih? Aman gak?</em>&quot;, tenang aja.
+            Buat kamu yang penasaran atau paranoid "<em>Ini script isinya apaan sih? Aman gak?</em>", tenang aja.
             Saya transparan kok, setransparan gelas kopi yang udah abis. Nih, silakan diintip kodenya:
         </p>
         <details>
@@ -232,42 +232,42 @@ sudo refind-install
 sudo refind-mkdefault
 set -euo pipefail
 # Colors and formatting
-bold=&#x24;(tput bold)
-normal=&#x24;(tput sgr0)
-GREEN=&quot;\e[32;1m&quot;
-RED=&quot;\e[31;1m&quot;
-YELLOW=&quot;\e[33;1m&quot;
-CYAN=&quot;\e[36;1m&quot;
-RESET=&quot;\e[0m&quot;
+bold=$(tput bold)
+normal=$(tput sgr0)
+GREEN="\e[32;1m"
+RED="\e[31;1m"
+YELLOW="\e[33;1m"
+CYAN="\e[36;1m"
+RESET="\e[0m"
 # Check root
-if [[ &#x24;EUID -ne 0 ]]; then
-    echo -e &quot;&#x24;{RED}&#x24;{bold}This script must be run as root.&#x24;{RESET}&quot;
+if [[ $EUID -ne 0 ]]; then
+    echo -e "${RED}${bold}This script must be run as root.${RESET}"
     exit 1
 fi
 # Set theme source directory
-THEME_DIR=&#x24;(dirname &quot;&#x24;(realpath &quot;&#x24;0&quot;)&quot;)
+THEME_DIR=$(dirname "$(realpath "$0")")
 # Function to find refind.conf
 function find_refind_conf {
-    echo -e &quot;&#x24;{YELLOW}Searching for refind.conf inside /boot (this may take a few seconds)...&#x24;{RESET}&quot;
+    echo -e "${YELLOW}Searching for refind.conf inside /boot (this may take a few seconds)...${RESET}"
     local found_path
-    found_path=&#x24;(find /boot -type f -name refind.conf 2&gt;/dev/null | head -n 1 || true)
-    if [ -z &quot;&#x24;found_path&quot; ]; then
-        echo -e &quot;&#x24;{RED}No refind.conf found under /boot.&#x24;{RESET}&quot;
+    found_path=$(find /boot -type f -name refind.conf 2&gt;/dev/null | head -n 1 || true)
+    if [ -z "$found_path" ]; then
+        echo -e "${RED}No refind.conf found under /boot.${RESET}"
         return 1
     else
-        echo -e &quot;&#x24;{GREEN}refind.conf found at: &#x24;{found_path}&#x24;{RESET}&quot;
+        echo -e "${GREEN}refind.conf found at: ${found_path}${RESET}"
         while true; do
-            read -rp &quot;&#x24;(echo -e &#x24;{bold}Do you want to continue with this file? [Y/n]: &#x24;{normal})&quot; answer
-            case &quot;&#x24;answer&quot; in
-                [Yy]*|&quot;&quot;)
-                    REFOUND_CONF_PATH=&quot;&#x24;found_path&quot;
+            read -rp "$(echo -e ${bold}Do you want to continue with this file? [Y/n]: ${normal})" answer
+            case "$answer" in
+                [Yy]*|"")
+                    REFOUND_CONF_PATH="$found_path"
                     return 0
                     ;;
                 [Nn])
                     return 2
                     ;;
                 )
-                    echo -e &quot;&#x24;{RED}Please answer yes or no.&#x24;{RESET}&quot;
+                    echo -e "${RED}Please answer yes or no.${RESET}"
                     ;;
             esac
         done
@@ -275,213 +275,213 @@ function find_refind_conf {
 }
 # Function to ask for refind.conf path if needed
 function ask_for_refind_conf {
-    if ! find_refind_conf || [ &quot;&#x24;?&quot; -eq 2 ]; then
-        echo -e &quot;&#x24;{YELLOW}Please enter the full path to your refind.conf file:&#x24;{RESET}&quot;
-        read -rp &quot;&gt; &quot; REFOUND_CONF_PATH
+    if ! find_refind_conf || [ "$?" -eq 2 ]; then
+        echo -e "${YELLOW}Please enter the full path to your refind.conf file:${RESET}"
+        read -rp "&gt; " REFOUND_CONF_PATH
     fi
-    while [[ ! -f &quot;&#x24;REFOUND_CONF_PATH&quot; ]]; do
-        echo -e &quot;&#x24;{RED}&#x24;{bold}File not found. Please enter a valid path to refind.conf:&#x24;{RESET}&quot;
-        read -rp &quot;&gt; &quot; REFOUND_CONF_PATH
+    while [[ ! -f "$REFOUND_CONF_PATH" ]]; do
+        echo -e "${RED}${bold}File not found. Please enter a valid path to refind.conf:${RESET}"
+        read -rp "&gt; " REFOUND_CONF_PATH
     done
-    if [[ ! -w &quot;&#x24;REFOUND_CONF_PATH&quot; ]]; then
-        echo -e &quot;&#x24;{RED}&#x24;{bold}You do not have write permission for &#x24;REFOUND_CONF_PATH&#x24;{RESET}&quot;
+    if [[ ! -w "$REFOUND_CONF_PATH" ]]; then
+        echo -e "${RED}${bold}You do not have write permission for $REFOUND_CONF_PATH${RESET}"
         exit 1
     fi
 }
 function install_theme {
     clear
     ask_for_refind_conf
-    REFIND_DIR=&#x24;(dirname &quot;&#x24;REFOUND_CONF_PATH&quot;)
-    INSTALL_DIR=&quot;&#x24;REFIND_DIR/themes/cachy&quot;
+    REFIND_DIR=$(dirname "$REFOUND_CONF_PATH")
+    INSTALL_DIR="$REFIND_DIR/themes/cachy"
     # Remove old installation if exists
-    if [ -d &quot;&#x24;INSTALL_DIR&quot; ]; then
-        echo -e &quot;&#x24;{YELLOW}A previous installation was found at:&#x24;{RESET} &#x24;{bold}&#x24;INSTALL_DIR&#x24;{normal}&quot;
-        read -rp &quot;&#x24;(echo -e &#x24;{bold}Remove it before continuing? [Y/n]: &#x24;{normal})&quot; clean_ans
-        case &quot;&#x24;clean_ans&quot; in
-            [Yy]*|&quot;&quot;)
-                echo -e &quot;&#x24;{YELLOW}Removing...&#x24;{RESET}&quot;
-                rm -rf &quot;&#x24;INSTALL_DIR&quot;
+    if [ -d "$INSTALL_DIR" ]; then
+        echo -e "${YELLOW}A previous installation was found at:${RESET} ${bold}$INSTALL_DIR${normal}"
+        read -rp "$(echo -e ${bold}Remove it before continuing? [Y/n]: ${normal})" clean_ans
+        case "$clean_ans" in
+            [Yy]*|"")
+                echo -e "${YELLOW}Removing...${RESET}"
+                rm -rf "$INSTALL_DIR"
                 ;;
             )
-                echo -e &quot;&#x24;{RED}Aborting to avoid overwriting files.&#x24;{RESET}&quot;
+                echo -e "${RED}Aborting to avoid overwriting files.${RESET}"
                 exit 1
                 ;;
         esac
     fi
     # Icon size
-    echo -e &quot;&#x24;{CYAN}Pick an icon size:&#x24;{RESET}&quot;
-    echo -e &quot;&#x24;{bold}1) Small       (128px - 80px)&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}2) Medium      (256px - 160px)&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}3) Large       (384px - 240px)&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}4) Extra-large (512px - 320px)&#x24;{normal}&quot;
-    read -rp &quot;&#x24;(echo -e &#x24;{bold}Enter choice [1-4]: &#x24;{normal})&quot; size_select
-    size_select=&#x24;{size_select:-1}
-    case &quot;&#x24;size_select&quot; in
-        1) size_big=&quot;128&quot;; size_small=&quot;80&quot; ;;
-        2) size_big=&quot;256&quot;; size_small=&quot;160&quot; ;;
-        3) size_big=&quot;384&quot;; size_small=&quot;240&quot; ;;
-        4) size_big=&quot;512&quot;; size_small=&quot;320&quot; ;;
-        ) echo -e &quot;&#x24;{RED}&#x24;{bold}Invalid choice. Exiting.&#x24;{RESET}&quot;; exit 1 ;;
+    echo -e "${CYAN}Pick an icon size:${RESET}"
+    echo -e "${bold}1) Small       (128px - 80px)${normal}"
+    echo -e "${bold}2) Medium      (256px - 160px)${normal}"
+    echo -e "${bold}3) Large       (384px - 240px)${normal}"
+    echo -e "${bold}4) Extra-large (512px - 320px)${normal}"
+    read -rp "$(echo -e ${bold}Enter choice [1-4]: ${normal})" size_select
+    size_select=${size_select:-1}
+    case "$size_select" in
+        1) size_big="128"; size_small="80" ;;
+        2) size_big="256"; size_small="160" ;;
+        3) size_big="384"; size_small="240" ;;
+        4) size_big="512"; size_small="320" ;;
+        ) echo -e "${RED}${bold}Invalid choice. Exiting.${RESET}"; exit 1 ;;
     esac
-    echo -e &quot;\nSelected size: &#x24;{GREEN}Big &#x24;size_big px, Small &#x24;size_small px&#x24;{RESET}\n&quot;
+    echo -e "\nSelected size: ${GREEN}Big $size_big px, Small $size_small px${RESET}\n"
     # Resolution
-    echo -e &quot;&#x24;{CYAN}Select monitor screen resolution:&#x24;{RESET}&quot;
-    echo -e &quot;&#x24;{bold}1) 1280x720 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}2) 1920x1080 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}3) 2560x1440 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}4) 3840x2160 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}5) 3440x1440 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}6) 5120x2160 pixel&#x24;{normal}&quot;
-    read -rp &quot;&#x24;(echo -e &#x24;{bold}Enter choice [1-6]: &#x24;{normal})&quot; res_select
-    res_select=&#x24;{res_select:-2}
-    case &quot;&#x24;res_select&quot; in
-        1) res=&quot;1280x720&quot; ;;
-        2) res=&quot;1920x1080&quot; ;;
-        3) res=&quot;2560x1440&quot; ;;
-        4) res=&quot;3840x2160&quot; ;;
-        5) res=&quot;3440x1440&quot; ;;
-        6) res=&quot;5120x2160&quot; ;;
-        ) echo -e &quot;&#x24;{RED}&#x24;{bold}Invalid resolution. Exiting.&#x24;{RESET}&quot;; exit 1 ;;
+    echo -e "${CYAN}Select monitor screen resolution:${RESET}"
+    echo -e "${bold}1) 1280x720 pixel${normal}"
+    echo -e "${bold}2) 1920x1080 pixel${normal}"
+    echo -e "${bold}3) 2560x1440 pixel${normal}"
+    echo -e "${bold}4) 3840x2160 pixel${normal}"
+    echo -e "${bold}5) 3440x1440 pixel${normal}"
+    echo -e "${bold}6) 5120x2160 pixel${normal}"
+    read -rp "$(echo -e ${bold}Enter choice [1-6]: ${normal})" res_select
+    res_select=${res_select:-2}
+    case "$res_select" in
+        1) res="1280x720" ;;
+        2) res="1920x1080" ;;
+        3) res="2560x1440" ;;
+        4) res="3840x2160" ;;
+        5) res="3440x1440" ;;
+        6) res="5120x2160" ;;
+        ) echo -e "${RED}${bold}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
     esac
-    res_width=&quot;&#x24;{res%x*}&quot;
-    res_height=&quot;&#x24;{res#*x}&quot;
-    echo -e &quot;\nSelected resolution: &#x24;{GREEN}&#x24;{res}&#x24;{RESET}\n&quot;
-    echo -e &quot;&#x24;{CYAN}Installing theme...&#x24;{RESET}&quot;
-    mkdir -p &quot;&#x24;INSTALL_DIR/icons&quot; &quot;&#x24;INSTALL_DIR/background&quot;
-    cp -r &quot;&#x24;{THEME_DIR}/icons/&quot;* &quot;&#x24;INSTALL_DIR/icons/&quot;
-    bg_source=&quot;&#x24;{THEME_DIR}/background/background-&#x24;{res}.png&quot;
-    bg_target=&quot;&#x24;{INSTALL_DIR}/background/background.png&quot;
-    [[ ! -f &quot;&#x24;bg_source&quot; ]] &amp;&amp; echo -e &quot;&#x24;{RED}Background not found: &#x24;bg_source&#x24;{RESET}&quot; &amp;&amp; exit 1
-    cp &quot;&#x24;bg_source&quot; &quot;&#x24;bg_target&quot;
+    res_width="${res%x*}"
+    res_height="${res#*x}"
+    echo -e "\nSelected resolution: ${GREEN}${res}${RESET}\n"
+    echo -e "${CYAN}Installing theme...${RESET}"
+    mkdir -p "$INSTALL_DIR/icons" "$INSTALL_DIR/background"
+    cp -r "${THEME_DIR}/icons/"* "$INSTALL_DIR/icons/"
+    bg_source="${THEME_DIR}/background/background-${res}.png"
+    bg_target="${INSTALL_DIR}/background/background.png"
+    [[ ! -f "$bg_source" ]] &amp;&amp; echo -e "${RED}Background not found: $bg_source${RESET}" &amp;&amp; exit 1
+    cp "$bg_source" "$bg_target"
     # Generate config
-    cat &gt; &quot;&#x24;{INSTALL_DIR}/cachy.conf&quot; &lt;&lt; EOF
+    cat &gt; "${INSTALL_DIR}/cachy.conf" &lt;&lt; EOF
 # Theme by diegons490
-big_icon_size &#x24;size_big
-small_icon_size &#x24;size_small
+big_icon_size $size_big
+small_icon_size $size_small
 icons_dir themes/cachy/icons
 selection_big themes/cachy/icons/selection-big.png
 selection_small themes/cachy/icons/selection-small.png
 banner themes/cachy/background/background.png
-resolution &#x24;res_width &#x24;res_height
+resolution $res_width $res_height
 use_graphics_for linux,grub,osx,windows
 timeout 10
 EOF
     # Backup + edit refind.conf
-    backup_path=&quot;&#x24;{REFOUND_CONF_PATH}.bak.cachy-theme.&#x24;(date +%Y%m%d%H%M%S)&quot;
-    echo -e &quot;&#x24;{YELLOW}Backup: &#x24;backup_path&#x24;{RESET}&quot;
-    cp &quot;&#x24;REFOUND_CONF_PATH&quot; &quot;&#x24;backup_path&quot;
-    sed -i &apos;/include themes\/cachy\/cachy.conf/d&apos; &quot;&#x24;REFOUND_CONF_PATH&quot;
-    echo -e &quot;\n# Load rEFInd theme Cachy\ninclude themes/cachy/cachy.conf\n&quot; &gt;&gt; &quot;&#x24;REFOUND_CONF_PATH&quot;
-    echo -e &quot;\n&#x24;{GREEN}&#x24;{bold}Installation complete!&#x24;{RESET}&quot;
-    echo -e &quot;Theme: &#x24;{bold}&#x24;INSTALL_DIR&#x24;{normal}&quot;
-    echo -e &quot;Modified: &#x24;{bold}&#x24;REFOUND_CONF_PATH&#x24;{normal}&quot;
-    echo -e &quot;Backup: &#x24;{bold}&#x24;backup_path&#x24;{normal}\n&quot;
+    backup_path="${REFOUND_CONF_PATH}.bak.cachy-theme.$(date +%Y%m%d%H%M%S)"
+    echo -e "${YELLOW}Backup: $backup_path${RESET}"
+    cp "$REFOUND_CONF_PATH" "$backup_path"
+    sed -i '/include themes\/cachy\/cachy.conf/d' "$REFOUND_CONF_PATH"
+    echo -e "\n# Load rEFInd theme Cachy\ninclude themes/cachy/cachy.conf\n" &gt;&gt; "$REFOUND_CONF_PATH"
+    echo -e "\n${GREEN}${bold}Installation complete!${RESET}"
+    echo -e "Theme: ${bold}$INSTALL_DIR${normal}"
+    echo -e "Modified: ${bold}$REFOUND_CONF_PATH${normal}"
+    echo -e "Backup: ${bold}$backup_path${normal}\n"
 }
 function uninstall_theme {
     clear
     ask_for_refind_conf
-    REFIND_DIR=&#x24;(dirname &quot;&#x24;REFOUND_CONF_PATH&quot;)
-    INSTALL_DIR=&quot;&#x24;REFIND_DIR/themes/cachy&quot;
+    REFIND_DIR=$(dirname "$REFOUND_CONF_PATH")
+    INSTALL_DIR="$REFIND_DIR/themes/cachy"
     local backup_file
-    backup_file=&#x24;(ls -t &quot;&#x24;{REFOUND_CONF_PATH}&quot;.bak.cachy-theme.* 2&gt;/dev/null | head -n 1 || true)
-    if [[ ! -f &quot;&#x24;backup_file&quot; ]]; then
-        echo -e &quot;&#x24;{RED}&#x24;{bold}No backup found (&#x24;{REFOUND_CONF_PATH}.bak.cachy-theme.). Cannot proceed.&#x24;{RESET}&quot;
+    backup_file=$(ls -t "${REFOUND_CONF_PATH}".bak.cachy-theme.* 2&gt;/dev/null | head -n 1 || true)
+    if [[ ! -f "$backup_file" ]]; then
+        echo -e "${RED}${bold}No backup found (${REFOUND_CONF_PATH}.bak.cachy-theme.). Cannot proceed.${RESET}"
         exit 1
     fi
-    echo -e &quot;&#x24;{YELLOW}Restoring backup: &#x24;{bold}&#x24;backup_file&#x24;{normal}&#x24;{RESET}&quot;
-    cp &quot;&#x24;backup_file&quot; &quot;&#x24;REFOUND_CONF_PATH&quot;
-    echo -e &quot;&#x24;{YELLOW}Removing theme folder: &#x24;{bold}&#x24;INSTALL_DIR&#x24;{normal}&#x24;{RESET}&quot;
-    rm -rf &quot;&#x24;INSTALL_DIR&quot;
-    echo -e &quot;&#x24;{YELLOW}Removing all backups created by this theme: &#x24;{REFOUND_CONF_PATH}.bak.cachy-theme.*&#x24;{RESET}&quot;
-    rm -f &quot;&#x24;{REFOUND_CONF_PATH}&quot;.bak.cachy-theme.*
-    echo -e &quot;\n&#x24;{GREEN}&#x24;{bold}Theme removed and backups deleted!&#x24;{RESET}&quot;
+    echo -e "${YELLOW}Restoring backup: ${bold}$backup_file${normal}${RESET}"
+    cp "$backup_file" "$REFOUND_CONF_PATH"
+    echo -e "${YELLOW}Removing theme folder: ${bold}$INSTALL_DIR${normal}${RESET}"
+    rm -rf "$INSTALL_DIR"
+    echo -e "${YELLOW}Removing all backups created by this theme: ${REFOUND_CONF_PATH}.bak.cachy-theme.*${RESET}"
+    rm -f "${REFOUND_CONF_PATH}".bak.cachy-theme.*
+    echo -e "\n${GREEN}${bold}Theme removed and backups deleted!${RESET}"
 }
 function reconfigure_theme {
     clear
     ask_for_refind_conf
-    REFIND_DIR=&#x24;(dirname &quot;&#x24;REFOUND_CONF_PATH&quot;)
-    INSTALL_DIR=&quot;&#x24;REFIND_DIR/themes/cachy&quot;
-    if [[ ! -f &quot;&#x24;INSTALL_DIR/cachy.conf&quot; ]]; then
-        echo -e &quot;&#x24;{RED}&#x24;{bold}No Cachy theme installation found at: &#x24;INSTALL_DIR&#x24;{RESET}&quot;
+    REFIND_DIR=$(dirname "$REFOUND_CONF_PATH")
+    INSTALL_DIR="$REFIND_DIR/themes/cachy"
+    if [[ ! -f "$INSTALL_DIR/cachy.conf" ]]; then
+        echo -e "${RED}${bold}No Cachy theme installation found at: $INSTALL_DIR${RESET}"
         exit 1
     fi
-    echo -e &quot;&#x24;{CYAN}Cachy theme detected at: &#x24;{bold}&#x24;INSTALL_DIR&#x24;{normal}&#x24;{RESET}&quot;
-    echo -e &quot;\n&#x24;{CYAN}Pick a new icon size:&#x24;{RESET}&quot;
-    echo -e &quot;&#x24;{bold}1) Small       (128px - 80px)&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}2) Medium      (256px - 160px)&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}3) Large       (384px - 240px)&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}4) Extra-large (512px - 320px)&#x24;{normal}&quot;
-    read -rp &quot;&#x24;(echo -e &#x24;{bold}Enter choice [1-4]: &#x24;{normal})&quot; size_select
-    size_select=&#x24;{size_select:-1}
-    case &quot;&#x24;size_select&quot; in
-        1) size_big=&quot;128&quot;; size_small=&quot;80&quot; ;;
-        2) size_big=&quot;256&quot;; size_small=&quot;160&quot; ;;
-        3) size_big=&quot;384&quot;; size_small=&quot;240&quot; ;;
-        4) size_big=&quot;512&quot;; size_small=&quot;320&quot; ;;
-        ) echo -e &quot;&#x24;{RED}Invalid choice. Exiting.&#x24;{RESET}&quot;; exit 1 ;;
+    echo -e "${CYAN}Cachy theme detected at: ${bold}$INSTALL_DIR${normal}${RESET}"
+    echo -e "\n${CYAN}Pick a new icon size:${RESET}"
+    echo -e "${bold}1) Small       (128px - 80px)${normal}"
+    echo -e "${bold}2) Medium      (256px - 160px)${normal}"
+    echo -e "${bold}3) Large       (384px - 240px)${normal}"
+    echo -e "${bold}4) Extra-large (512px - 320px)${normal}"
+    read -rp "$(echo -e ${bold}Enter choice [1-4]: ${normal})" size_select
+    size_select=${size_select:-1}
+    case "$size_select" in
+        1) size_big="128"; size_small="80" ;;
+        2) size_big="256"; size_small="160" ;;
+        3) size_big="384"; size_small="240" ;;
+        4) size_big="512"; size_small="320" ;;
+        ) echo -e "${RED}Invalid choice. Exiting.${RESET}"; exit 1 ;;
     esac
-    echo -e &quot;\n&#x24;{CYAN}Select new monitor resolution for background:&#x24;{RESET}&quot;
-    echo -e &quot;&#x24;{bold}1) 1280x720 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}2) 1920x1080 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}3) 2560x1440 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}4) 3840x2160 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}5) 3440x1440 pixel&#x24;{normal}&quot;
-    echo -e &quot;&#x24;{bold}6) 5120x2160 pixel&#x24;{normal}&quot;
-    read -rp &quot;&#x24;(echo -e &#x24;{bold}Enter choice [1-6]: &#x24;{normal})&quot; res_select
-    res_select=&#x24;{res_select:-2}
-    case &quot;&#x24;res_select&quot; in
-        1) res=&quot;1280x720&quot; ;;
-        2) res=&quot;1920x1080&quot; ;;
-        3) res=&quot;2560x1440&quot; ;;
-        4) res=&quot;3840x2160&quot; ;;
-        5) res=&quot;3440x1440&quot; ;;
-        6) res=&quot;5120x2160&quot; ;;
-        ) echo -e &quot;&#x24;{RED}Invalid resolution. Exiting.&#x24;{RESET}&quot;; exit 1 ;;
+    echo -e "\n${CYAN}Select new monitor resolution for background:${RESET}"
+    echo -e "${bold}1) 1280x720 pixel${normal}"
+    echo -e "${bold}2) 1920x1080 pixel${normal}"
+    echo -e "${bold}3) 2560x1440 pixel${normal}"
+    echo -e "${bold}4) 3840x2160 pixel${normal}"
+    echo -e "${bold}5) 3440x1440 pixel${normal}"
+    echo -e "${bold}6) 5120x2160 pixel${normal}"
+    read -rp "$(echo -e ${bold}Enter choice [1-6]: ${normal})" res_select
+    res_select=${res_select:-2}
+    case "$res_select" in
+        1) res="1280x720" ;;
+        2) res="1920x1080" ;;
+        3) res="2560x1440" ;;
+        4) res="3840x2160" ;;
+        5) res="3440x1440" ;;
+        6) res="5120x2160" ;;
+        ) echo -e "${RED}Invalid resolution. Exiting.${RESET}"; exit 1 ;;
     esac
-    res_width=&quot;&#x24;{res%x*}&quot;
-    res_height=&quot;&#x24;{res#*x}&quot;
-    bg_source=&quot;&#x24;{THEME_DIR}/background/background-&#x24;{res}.png&quot;
-    bg_target=&quot;&#x24;{INSTALL_DIR}/background/background.png&quot;
-    if [[ ! -f &quot;&#x24;bg_source&quot; ]]; then
-        echo -e &quot;&#x24;{RED}Background not found: &#x24;bg_source&#x24;{RESET}&quot;
+    res_width="${res%x*}"
+    res_height="${res#*x}"
+    bg_source="${THEME_DIR}/background/background-${res}.png"
+    bg_target="${INSTALL_DIR}/background/background.png"
+    if [[ ! -f "$bg_source" ]]; then
+        echo -e "${RED}Background not found: $bg_source${RESET}"
         exit 1
     fi
-    cp &quot;&#x24;bg_source&quot; &quot;&#x24;bg_target&quot;
-    echo -e &quot;&#x24;{YELLOW}Updating cachy.conf...&#x24;{RESET}&quot;
-    cat &gt; &quot;&#x24;{INSTALL_DIR}/cachy.conf&quot; &lt;&lt; EOF
+    cp "$bg_source" "$bg_target"
+    echo -e "${YELLOW}Updating cachy.conf...${RESET}"
+    cat &gt; "${INSTALL_DIR}/cachy.conf" &lt;&lt; EOF
 # Theme by diegons490
-big_icon_size &#x24;size_big
-small_icon_size &#x24;size_small
+big_icon_size $size_big
+small_icon_size $size_small
 icons_dir themes/cachy/icons
 selection_big themes/cachy/icons/selection-big.png
 selection_small themes/cachy/icons/selection-small.png
 banner themes/cachy/background/background.png
-resolution &#x24;res_width &#x24;res_height
+resolution $res_width $res_height
 use_graphics_for linux,grub,osx,windows
 timeout 10
 EOF
-    echo -e &quot;\n&#x24;{GREEN}&#x24;{bold}Reconfiguration complete!&#x24;{RESET}&quot;
-    echo -e &quot;Updated resolution: &#x24;{bold}&#x24;{res}&#x24;{normal}&quot;
-    echo -e &quot;Icon sizes: &#x24;{bold}Big &#x24;size_big px, Small &#x24;size_small px&#x24;{normal}\n&quot;
+    echo -e "\n${GREEN}${bold}Reconfiguration complete!${RESET}"
+    echo -e "Updated resolution: ${bold}${res}${normal}"
+    echo -e "Icon sizes: ${bold}Big $size_big px, Small $size_small px${normal}\n"
 }
 # Main menu
 clear
-echo -e &quot;&#x24;{bold}&#x24;{CYAN}######################################&#x24;{RESET}&quot;
-echo -e &quot;&#x24;{bold}&#x24;{CYAN}### rEFInd CachyOS Theme Installer ###&#x24;{RESET}&quot;
-echo -e &quot;&#x24;{bold}&#x24;{CYAN}######################################&#x24;{RESET}&quot;
+echo -e "${bold}${CYAN}######################################${RESET}"
+echo -e "${bold}${CYAN}### rEFInd CachyOS Theme Installer ###${RESET}"
+echo -e "${bold}${CYAN}######################################${RESET}"
 echo
-echo -e &quot;&#x24;{bold}1) Install theme&quot;
-echo -e &quot;2) Remove theme and restore backup&quot;
-echo -e &quot;3) Reconfigure resolution and icon size&quot;
-echo -e &quot;0) Cancel&#x24;{normal}&quot;
+echo -e "${bold}1) Install theme"
+echo -e "2) Remove theme and restore backup"
+echo -e "3) Reconfigure resolution and icon size"
+echo -e "0) Cancel${normal}"
 echo
-read -rp &quot;&#x24;(echo -e &#x24;{bold}Choose an option [0-3]: &#x24;{normal})&quot; menu_choice
-case &quot;&#x24;menu_choice&quot; in
+read -rp "$(echo -e ${bold}Choose an option [0-3]: ${normal})" menu_choice
+case "$menu_choice" in
     1) install_theme ;;
     2) uninstall_theme ;;
     3) reconfigure_theme ;;
-    0) echo -e &quot;&#x24;{YELLOW}Cancelled by user.&#x24;{RESET}&quot; &amp;&amp; exit 0 ;;
-    ) echo -e &quot;&#x24;{RED}Invalid option. Exiting.&#x24;{RESET}&quot; &amp;&amp; exit 1 ;;
+    0) echo -e "${YELLOW}Cancelled by user.${RESET}" &amp;&amp; exit 0 ;;
+    ) echo -e "${RED}Invalid option. Exiting.${RESET}" &amp;&amp; exit 1 ;;
 esac</code></pre>
         </details>
     </section>
@@ -505,10 +505,10 @@ esac</code></pre>
             <a href="https://mastodon.social/@frijal" target="_blank" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
             <a href="https://t.me/frijal" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
         </div>
-        <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">&#x1f12f; 2025 Balikpapan. Hati-hati menyebabkan kantuk.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">🄯 2025 Balikpapan. Hati-hati menyebabkan kantuk.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Fedora Linux">
     <meta property="article:tag" content="Anaconda Web UI">
     <meta property="article:tag" content="Remote Installer">
@@ -61,7 +61,7 @@
     <meta property="article:tag" content="ARM">
     <meta property="article:tag" content="Open Source">
     <meta property="article:published_time" content="2026-06-18T23:54:48.252Z">
-    <meta property="article:modified_time" content="2026-06-20T02:10:38.323Z">
+    <meta property="article:modified_time" content="2026-06-20T22:04:18.462Z">
   <style>
     :root {
       color-scheme: light;
@@ -383,7 +383,7 @@
   <main>
     <article>
       <header>
-        <p class="kicker">&#x1f310; Fedora Linux &amp; instalasi jarak jauh</p>
+        <p class="kicker">🌐 Fedora Linux &amp; instalasi jarak jauh</p>
         <div id="iposbrowser"></div><h1>Fedora Siapkan Remote Installer Berbasis Browser: Instal Server Tanpa Ribet VNC</h1>
         <p class="lead">Fedora sedang menyiapkan cara instalasi jarak jauh yang lebih modern lewat Anaconda Web UI. Gagasannya sederhana tapi menarik: mesin target cukup menjalankan backend installer, sementara antarmuka instalasinya dibuka dari browser di komputer lain. Untuk server headless, mesin rack, atau perangkat ARM ringan, ini jelas kabar yang bikin admin sistem sedikit lebih bisa bernapas.</p>
       </header>
@@ -396,7 +396,7 @@
       <div class="warning">
         <p><b>Statusnya masih developer preview.</b> Fitur ini sedang dipakai untuk membuktikan alur kerja, menguji desain, dan mengumpulkan masukan komunitas. Jadi jangan dibayangkan sudah menjadi tombol ajaib yang langsung matang untuk semua skenario produksi. Ini masih dapur pengembangan, bukan prasmanan final.</p>
       </div>
-      <details open>
+      <details open="">
         <summary><h2>Kenapa Fedora butuh installer remote berbasis browser?</h2></summary>
         <div class="details-body">
           <p>Kebutuhan instalasi jarak jauh bukan hal baru. Server di rak data center sering tidak punya monitor terpasang. Mini PC dan board ARM seperti Raspberry Pi kadang dipasang di sudut ruangan, lemari jaringan, atau lokasi yang tidak nyaman untuk ditancapi layar dan keyboard. Dalam banyak kasus, pengguna hanya ingin menyalakan mesin, mengaksesnya dari laptop, lalu menyelesaikan instalasi dari jarak aman tanpa ritual bongkar-pasang kabel.</p>
@@ -420,7 +420,7 @@
           <p>Dengan remote Web UI, alurnya bergeser. Mesin target tetap menjalankan proses instalasi, tetapi pengguna membuka antarmuka dari browser perangkat lain. Secara konsep, ini mirip mengakses panel admin jaringan: alamat IP menjadi pintu masuk, browser menjadi kontrol utama, dan mesin target tetap fokus menjalankan tugas instalasi.</p>
           <h3>Lebih ringan daripada streaming tampilan penuh</h3>
           <p>Karena yang dikirim bukan seluruh gambar desktop seperti pada model screen sharing, pendekatan berbasis browser berpotensi lebih hemat data dan lebih responsif. Browser klien merender UI, sementara mesin target hanya menyediakan layanan dan status instalasi. Untuk perangkat dengan sumber daya terbatas, pemisahan peran ini sangat masuk akal.</p>
-          <p>Bayangkan Raspberry Pi atau board ARM kecil yang tidak perlu lagi menjalankan browser lokal hanya untuk menampilkan layar partisi. Ia cukup menjalankan backend installer. Laptop pengguna yang lebih kuat menangani tampilan webnya. Ini bukan hanya soal &#x201c;lebih keren&#x201d;, tetapi juga soal pembagian beban yang lebih waras.</p>
+          <p>Bayangkan Raspberry Pi atau board ARM kecil yang tidak perlu lagi menjalankan browser lokal hanya untuk menampilkan layar partisi. Ia cukup menjalankan backend installer. Laptop pengguna yang lebih kuat menangani tampilan webnya. Ini bukan hanya soal “lebih keren”, tetapi juga soal pembagian beban yang lebih waras.</p>
         </div>
       </details>
       <details>
@@ -431,9 +431,9 @@
           <pre><code><span class="comment"># Mesin target di-boot ke installer Fedora</span>
 <span class="cmd">boot Fedora installer dengan opsi remote Web UI</span>
 <span class="comment"># Dari komputer lain di jaringan yang sama</span>
-<span class="cmd">buka browser &#x2192; https://alamat-ip-mesin-target</span>
+<span class="cmd">buka browser → https://alamat-ip-mesin-target</span>
 <span class="comment"># Autentikasi</span>
-<span class="cmd">masukkan PIN &#x2192; lanjutkan instalasi via Anaconda Web UI</span></code></pre>
+<span class="cmd">masukkan PIN → lanjutkan instalasi via Anaconda Web UI</span></code></pre>
           <p>Detail perintah final dapat berubah mengikuti desain Fedora, karena fiturnya masih tahap preview pengembang. Namun ide besarnya sudah jelas: antarmuka installer disajikan lewat HTTPS, pengguna mengautentikasi dengan PIN, lalu satu sesi browser aktif mengendalikan proses instalasi.</p>
           <h3>Anaconda Web UI sebagai pusat pengalaman baru</h3>
           <p>Anaconda adalah installer Fedora yang sudah lama menjadi bagian penting dari proses instalasi. Versi Web UI-nya membawa pendekatan baru: antarmuka dibangun dengan teknologi web, didukung Cockpit, dan dirancang agar lebih fleksibel untuk skenario lokal maupun remote.</p>
@@ -454,7 +454,7 @@
           <h3>Satu koneksi browser untuk mencegah konflik</h3>
           <p>Fedora juga menerapkan batasan <b>satu koneksi browser aktif</b> pada satu waktu. Ini terdengar sederhana, tetapi penting. Bayangkan dua orang membuka installer yang sama, lalu satu orang mengubah partisi sementara yang lain memilih disk berbeda. Kalau dibiarkan, hasilnya bisa menjadi lomba panik berjamaah.</p>
           <blockquote>
-            <p>Dalam installer, konflik konfigurasi bukan sekadar &#x201c;setting berubah&#x201d;. Pada tahap storage, konflik bisa berarti data hilang. Membatasi sesi aktif adalah keputusan kecil yang menyelamatkan banyak potensi drama.</p>
+            <p>Dalam installer, konflik konfigurasi bukan sekadar “setting berubah”. Pada tahap storage, konflik bisa berarti data hilang. Membatasi sesi aktif adalah keputusan kecil yang menyelamatkan banyak potensi drama.</p>
           </blockquote>
           <h3>Kenapa sertifikat self-signed tetap masuk akal?</h3>
           <p>Dalam instalasi remote, mesin target baru saja boot dari media installer. Ia belum punya identitas permanen, belum tentu punya nama domain, dan alamat IP bisa berubah tergantung jaringan. Membawa private key tetap di media instalasi justru bisa menjadi risiko keamanan. Karena itu, sertifikat yang dibuat saat boot menjadi kompromi yang lebih masuk akal.</p>
@@ -528,8 +528,8 @@
       <span>Dipublikasikan <time datetime="2026-06-19">19 Juni 2026</time></span>
       <span>Referensi: <a href="https://fedoramagazine.org/web-based-remote-installation-for-fedora-linux-heres-what-were-building/" rel="nofollow noopener">Fedora Magazine</a>, <a href="https://fedoraproject.org/wiki/Changes/Anaconda_Web_UI_preview_image" rel="nofollow noopener">Fedora Project Wiki</a></span>
     </div>
-          <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+          <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

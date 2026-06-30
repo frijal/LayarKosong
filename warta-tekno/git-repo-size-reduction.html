@@ -1,39 +1,379 @@
-<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!) - Layar Kosong</title><meta content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit." name="description"><link href="https://dalam.web.id/warta-tekno/git-repo-size-reduction" rel="canonical"><link title="Pengecekan &amp; Laporan Konten Harian - Otomasi GitHub Actions 🔆" href="https://dalam.web.id/warta-tekno/pengecekan-dan-laporan-konten-harian" rel="prev"><link title="Cara Agar Branch Tidak Minta Merge dapat ke Main" href="https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request" rel="next"><meta content="https://dalam.web.id/warta-tekno/git-repo-size-reduction" property="og:url"><meta content="https://dalam.web.id/warta-tekno/git-repo-size-reduction" name="twitter:url"><meta content="Windows, Teknologi Umum" property="article:section"><meta content="Windows" property="article:tag"><meta content="Teknologi Umum" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!), Layar Kosong" name="news_keywords"><meta content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!) | Karena build di GitHub, kita gak perlu menarik node_modules ke komputer. Yuk, pelajari cara mencegah dan membersihkannya dari repositori Git." name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)" property="og:title"><meta content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit." property="og:description"><meta content="2025-10-19T19:48:19.371Z" property="og:updated_time"><meta content="https://dalam.web.id/img/git-repo-size-reduction.webp" property="og:image"><meta content="https://dalam.web.id/img/git-repo-size-reduction.webp" property="og:image:url"><meta content="https://dalam.web.id/img/git-repo-size-reduction.webp" property="og:image:secure_url"><meta content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)" property="og:image:alt"><meta content="1000" property="og:image:width"><meta content="562" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)" name="twitter:title"><meta content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit." name="twitter:description"><meta content="https://dalam.web.id/img/git-repo-size-reduction.webp" name="twitter:image"><meta content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2025-10-19T19:44:56.753Z" property="article:published_time"><meta content="2025-10-19T19:44:56.753Z" property="article:modified_time"><meta content="git, github, node_modules, .gitignore, git filter-repo, ukuran repo, git pull, frijal pages" name="keywords"><link href="apple-touch-icon.png" rel="apple-touch-icon"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="/ext/fontawesome.css" rel="stylesheet"><style>:root{--bg-color:#1a1a2e;--primary-color:#16213e;--secondary-color:#0f3460;--accent-prevention:#3498db;--accent-treatment:#f1c40f;--accent-danger:#e74c3c;--text-color:#dcdcdc;--header-color:#fff;--code-bg:#2d2d44;--border-color:#3a3a5a}body{background-color:var(--bg-color);color:var(--text-color);margin:0;padding:20px;font-family:Poppins,sans-serif;line-height:1.8}.container{background-color:var(--primary-color);border-radius:15px;max-width:900px;margin:40px auto;overflow:hidden;box-shadow:0 10px 30px #0006}header{text-align:center;border-bottom:5px solid var(--border-color);background:linear-gradient(45deg,#16213e,#0f3460);padding:40px}header h1{color:var(--header-color);margin:0;font-size:2.5rem;font-weight:700}header .subtitle{color:var(--text-color);max-width:700px;margin-top:10px;margin-left:auto;margin-right:auto;font-size:1.1rem}main{padding:30px 40px}article p,article li{margin-bottom:20px;font-size:1rem}.scenario-card{border:1px solid var(--border-color);border-radius:10px;margin-top:40px;overflow:hidden}.scenario-header{color:#fff;align-items:center;gap:15px;padding:20px;display:flex}.scenario-header.prevention{background-color:var(--accent-prevention)}.scenario-header.treatment{background-color:var(--accent-treatment)}.scenario-header i{font-size:1.8rem}.scenario-header h2{margin:0;font-size:1.6rem}.scenario-body{background-color:#0f346033;padding:20px 25px 5px}.scenario-body h4{color:var(--header-color);margin:25px 0 10px;font-size:1.2rem}.code-block{background-color:var(--code-bg);border:1px solid var(--border-color);border-radius:8px;margin:20px 0;padding:15px;position:relative;overflow-x:auto}.code-block pre{margin:0;padding:0}.code-block code{color:#a6e22e;font-family:Courier New,Courier,monospace;font-size:.95rem}.copy-btn{color:#fff;cursor:pointer;opacity:.8;background-color:#555;border:none;border-radius:5px;padding:8px 12px;transition:opacity .2s,transform .2s;position:absolute;top:10px;right:10px}.copy-btn:hover{opacity:1;transform:scale(1.05)}.tip,.warning-box{border-left:5px solid;border-radius:5px;margin:25px 0;padding:15px;font-size:.9rem}.tip{border-color:var(--accent-prevention);background-color:#3498db1a}.warning-box{border-color:var(--accent-danger);background-color:#e74c3c1a}.warning-box ul{margin:10px 0 0;padding-left:20px}.share-section{text-align:center;border-top:2px solid var(--border-color);margin-top:50px;padding-top:30px}.share-section h3{color:var(--header-color);margin-bottom:20px}.social-icons{justify-content:center;gap:15px;display:flex}.social-icon,.copy-link{color:#fff;border-radius:50%;justify-content:center;align-items:center;width:45px;height:45px;font-size:1.2rem;text-decoration:none;transition:transform .3s,background-color .3s;display:inline-flex}.social-icon:hover,.copy-link:hover{transform:translateY(-5px)}.twitter{background:#1da1f2}.facebook{background:#1877f2}.whatsapp{background:#25d366}.linkedin{background:#0a66c2}.copy-link{cursor:pointer;background:#6c757d;border:none}footer{text-align:center;background-color:var(--secondary-color);color:var(--text-color);margin-top:40px;padding:20px;font-size:.9rem}footer a{color:var(--header-color);text-decoration:none}@media (width<=768px){body{padding:0}.container{border-radius:0;margin:0}header h1{font-size:1.8rem}header .subtitle{font-size:1rem}main{padding:20px}}</style><meta content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit." name="ai:summary"><meta content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit." name="ai:prompt_hint"><link href="/ext/pemandu.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)","description":"Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit.","datePublished":"2025-10-19T19:44:56.753Z","dateModified":"2025-10-19T19:44:56.753Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction"},"wordCount":415,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/git-repo-size-reduction.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/git-repo-size-reduction.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/git-repo-size-reduction.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/git-repo-size-reduction.webp","keywords":["Windows","Teknologi Umum","Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)","Layar Kosong","cara","mengecilkan","ukuran","repo","git","lokal","bye","node_modules","size","reduction","Warta Tekno"],"articleSection":["Warta Tekno"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction","url":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction","name":"Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!) - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/git-repo-size-reduction.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/git-repo-size-reduction.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/git-repo-size-reduction.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/git-repo-size-reduction.webp","datePublished":"2025-10-19T19:44:56.753Z","dateModified":"2025-10-19T19:44:56.753Z","description":"Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction#primaryimage","url":"https:\/\/dalam.web.id\/img\/git-repo-size-reduction.webp","contentUrl":"https:\/\/dalam.web.id\/img\/git-repo-size-reduction.webp","width":1000,"height":562,"caption":"Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https:\/\/dalam.web.id\/warta-tekno"},{"@type":"ListItem","position":3,"name":"Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)","item":"https:\/\/dalam.web.id\/warta-tekno\/git-repo-size-reduction"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><div class="container"><header><div id="iposbrowser"></div><h1>Repo Lokal Gendut? Waktunya Diet <code>node_modules</code>! 🏋️♂️</h1><p class="subtitle">Karena build di GitHub, kita gak perlu menarik <code>node_modules</code> ke komputer. Yuk, pelajari cara mencegah dan membersihkannya dari repositori Git.</p></header><main><article><p>Kita semua tahu, folder <code>node_modules</code> itu bisa segede gaban. Kalau folder ini sampai masuk ke repositori Git, proses <code>clone</code> dan <code>pull</code> bisa jadi lemot banget. Padahal, kita cuma butuh kodenya, bukan dependensinya. Mari kita atasi masalah ini dalam dua skenario!</p><div class="scenario-card"><div class="scenario-header prevention"><i class="fa-solid fa-umbrella"></i><h2>Skenario 1: Pencegahan (Wajib Dilakukan!)</h2></div><div class="scenario-body"><p>Ini adalah langkah paling krusial. Kita akan "mengajari" Git untuk selamanya mengabaikan <code>node_modules</code> menggunakan file ajaib bernama <code>.gitignore</code>.</p><h4>Langkah 1: Buat dan Isi <code>.gitignore</code></h4><p>Di folder utama proyekmu, buat file baru bernama <strong>.gitignore</strong> (pakai titik di depan). Lalu, isi dengan daftar file/folder yang mau diabaikan.</p><div class="code-block"><pre><code># Abaikan folder dependensi (Paling Penting!)
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!) - Layar Kosong</title>
+    <meta name="description" content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit.">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/git-repo-size-reduction">
+    <link rel="prev" href="https://dalam.web.id/warta-tekno/pengecekan-dan-laporan-konten-harian" title="Pengecekan & Laporan Konten Harian - Otomasi GitHub Actions 🔆">
+    <link rel="next" href="https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request" title="Cara Agar Branch Tidak Minta Merge dapat ke Main">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/git-repo-size-reduction">
+    <meta name="twitter:url" content="https://dalam.web.id/warta-tekno/git-repo-size-reduction">
+    <meta property="article:section" content="Windows, Teknologi Umum">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Teknologi Umum">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!), Layar Kosong">
+    <meta name="promphint" content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!) | Karena build di GitHub, kita gak perlu menarik node_modules ke komputer. Yuk, pelajari cara mencegah dan membersihkannya dari repositori Git.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)">
+    <meta property="og:description" content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit.">
+    <meta property="og:updated_time" content="2025-10-19T19:48:19.371Z">
+    <meta property="og:image" content="https://dalam.web.id/img/git-repo-size-reduction.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/git-repo-size-reduction.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/git-repo-size-reduction.webp">
+    <meta property="og:image:alt" content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="562">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:title" content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)">
+    <meta name="twitter:description" content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/git-repo-size-reduction.webp">
+    <meta name="twitter:image:alt" content="Cara Mengecilkan Ukuran Repo Git Lokal (Bye Bye node_modules!)">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2025-10-19T19:44:56.753Z">
+    <meta property="article:modified_time" content="2025-10-19T19:44:56.753Z">
+<!-- Metadata Dasar -->
+    <!-- SEO Meta Tags -->
+<meta name="keywords" content="git, github, node_modules, .gitignore, git filter-repo, ukuran repo, git pull, frijal pages">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Open Graph (untuk Facebook, LinkedIn, dll) -->
+     <!-- GANTI DENGAN URL GAMBAR KAMU -->
+     <!-- GANTI DENGAN URL GAMBAR KAMU -->
+     <!-- GANTI DENGAN USERNAME TWITTER KAMU -->
+    <!-- CSS & Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+    :root {
+    --bg-color: #1a1a2e;
+    --primary-color: #16213e;
+    --secondary-color: #0f3460;
+    --accent-prevention: #3498db;
+    --accent-treatment: #f1c40f;
+    --accent-danger: #e74c3c;
+    --text-color: #dcdcdc;
+    --header-color: #ffffff;
+    --code-bg: #2d2d44;
+    --border-color: #3a3a5a;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+header {
+    background: linear-gradient(45deg, #16213e, #0f3460);
+    padding: 40px;
+    text-align: center;
+    border-bottom: 5px solid var(--border-color);
+}
+header h1 {
+    color: var(--header-color);
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 700;
+}
+header .subtitle {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-top: 10px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+main {
+    padding: 30px 40px;
+}
+article p, article li {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+.scenario-card {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-top: 40px;
+    overflow: hidden;
+}
+.scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    color: white;
+}
+.scenario-header.prevention { background-color: var(--accent-prevention); }
+.scenario-header.treatment { background-color: var(--accent-treatment); }
+.scenario-header i {
+    font-size: 1.8rem;
+}
+.scenario-header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+.scenario-body {
+    padding: 20px 25px 5px 25px;
+    background-color: rgba(15, 52, 96, 0.2);
+}
+.scenario-body h4 {
+    font-size: 1.2rem;
+    color: var(--header-color);
+    margin: 25px 0 10px 0;
+}
+.code-block {
+    position: relative;
+    background-color: var(--code-bg);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+}
+.code-block pre { margin: 0; padding: 0; }
+.code-block code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    color: #a6e22e; /* Green for code */
+}
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.copy-btn:hover { opacity: 1; transform: scale(1.05); }
+.tip, .warning-box {
+    padding: 15px;
+    margin: 25px 0;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border-left: 5px solid;
+}
+.tip {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-color: var(--accent-prevention);
+}
+.warning-box {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-color: var(--accent-danger);
+}
+.warning-box ul {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+}
+.share-section {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid var(--border-color);
+}
+.share-section h3 { color: var(--header-color); margin-bottom: 20px; }
+.social-icons { display: flex; justify-content: center; gap: 15px; }
+.social-icon, .copy-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.3s, background-color 0.3s;
+}
+.social-icon:hover, .copy-link:hover { transform: translateY(-5px); }
+.twitter { background: #1DA1F2; }
+.facebook { background: #1877F2; }
+.whatsapp { background: #25D366; }
+.linkedin { background: #0A66C2; }
+.copy-link { background: #6c757d; border: none; cursor: pointer; }
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+footer a { color: var(--header-color); text-decoration: none; }
+@media (max-width: 768px) {
+    body { padding: 0; }
+    .container { border-radius: 0; margin: 0; }
+    header h1 { font-size: 1.8rem; }
+    header .subtitle { font-size: 1rem; }
+    main { padding: 20px; }
+}
+</style>
+<meta name="ai:summary" content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit.">
+<meta name="ai:prompt_hint" content="Tutorial lengkap dan santai cara membuat ukuran repositori Git lokal menjadi kecil dengan mengabaikan dan membersihkan folder node_modules dari riwayat commit.">
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+    <div class="container">
+        <header>
+            <div id="iposbrowser"></div><h1>Repo Lokal Gendut? Waktunya Diet <code>node_modules</code>! 🏋️♂️</h1>
+            <p class="subtitle">Karena build di GitHub, kita gak perlu menarik <code>node_modules</code> ke komputer. Yuk, pelajari cara mencegah dan membersihkannya dari repositori Git.</p>
+        </header>
+        <main>
+            <article>
+                <p>Kita semua tahu, folder <code>node_modules</code> itu bisa segede gaban. Kalau folder ini sampai masuk ke repositori Git, proses <code>clone</code> dan <code>pull</code> bisa jadi lemot banget. Padahal, kita cuma butuh kodenya, bukan dependensinya. Mari kita atasi masalah ini dalam dua skenario!</p>
+                <div class="scenario-card">
+                    <div class="scenario-header prevention">
+                        <i class="fa-solid fa-umbrella"></i>
+                        <h2>Skenario 1: Pencegahan (Wajib Dilakukan!)</h2>
+                    </div>
+                    <div class="scenario-body">
+                        <p>Ini adalah langkah paling krusial. Kita akan "mengajari" Git untuk selamanya mengabaikan <code>node_modules</code> menggunakan file ajaib bernama <code>.gitignore</code>.</p>
+                        <h4>Langkah 1: Buat dan Isi <code>.gitignore</code></h4>
+                        <p>Di folder utama proyekmu, buat file baru bernama <strong>.gitignore</strong> (pakai titik di depan). Lalu, isi dengan daftar file/folder yang mau diabaikan.</p>
+                        <div class="code-block">
+                            <pre><code># Abaikan folder dependensi (Paling Penting!)
 /node_modules
 # Abaikan file environment &amp; log
 .env
 npm-debug.log
 # Abaikan folder hasil build
 /dist
-/build</code></pre><button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button></div><h4>Langkah 2: "Un-track" <code>node_modules</code> (Jika Terlanjur di-<code>add</code>)</h4><p>Kalau kamu pernah tidak sengaja menjalankan <code>git add .</code> dan <code>node_modules</code> ikut masuk, kita perlu mengeluarkannya dari pelacakan Git.</p><div class="code-block"><pre><code># Perintah ini HANYA menghapus dari Git, BUKAN dari komputermu
-git rm -r --cached node_modules</code></pre><button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button></div><h4>Langkah 3: Simpan Perubahanmu</h4><p>Terakhir, commit <code>.gitignore</code> dan perubahan "untracking" tadi agar aturan ini berlaku selamanya.</p><div class="code-block"><pre><code>git add .gitignore
+/build</code></pre>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
+                        </div>
+                        <h4>Langkah 2: "Un-track" <code>node_modules</code> (Jika Terlanjur di-<code>add</code>)</h4>
+                        <p>Kalau kamu pernah tidak sengaja menjalankan <code>git add .</code> dan <code>node_modules</code> ikut masuk, kita perlu mengeluarkannya dari pelacakan Git.</p>
+                        <div class="code-block">
+                            <pre><code># Perintah ini HANYA menghapus dari Git, BUKAN dari komputermu
+git rm -r --cached node_modules</code></pre>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
+                        </div>
+                        <h4>Langkah 3: Simpan Perubahanmu</h4>
+                        <p>Terakhir, commit <code>.gitignore</code> dan perubahan "untracking" tadi agar aturan ini berlaku selamanya.</p>
+                        <div class="code-block">
+                            <pre><code>git add .gitignore
 git commit -m "feat: Add .gitignore and untrack node_modules"
-git push</code></pre><button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button></div></div></div><div class="scenario-card"><div class="scenario-header treatment"><i class="fa-solid fa-briefcase-medical"></i><h2>Skenario 2: Pengobatan (Jika Repo Sudah Terlanjur Gendut)</h2></div><div class="scenario-body"><p>Jika <code>node_modules</code> sudah terlanjur masuk ke riwayat commit-commit lama, repo kamu akan tetap besar. Ada dua cara untuk menyembuhkannya.</p><h4>Opsi A: Cara Cepat &amp; Gampang (<code>Shallow Clone</code>)</h4><p>Kalau kamu cuma butuh kode versi terbaru dan gak peduli riwayat lama, <code>clone</code> ulang saja repo-mu dengan mode "dangkal".</p><div class="code-block"><pre><code># Hanya akan menarik 1 commit terakhir, ukurannya jadi super kecil!
-git clone --depth 1 https://github.com/user/repo.git</code></pre><button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button></div><div class="tip"><i class="fa-solid fa-info-circle"></i><strong>Kelemahan:</strong> Kamu tidak bisa melihat atau kembali ke commit-commit lama di komputermu.</div><h4>Opsi B: Cara "Pembersihan Total" (Menulis Ulang Sejarah)</h4><p>Ini adalah operasi tingkat lanjut untuk menghapus <code>node_modules</code> dari <strong>seluruh</strong> riwayat Git secara permanen. Lakukan dengan hati-hati!</p><div class="warning-box"><i class="fa-solid fa-exclamation-triangle"></i><strong>PERINGATAN KERAS:</strong><ul><li><strong>Wajib Backup!</strong> Buat salinan folder proyekmu dulu.</li><li>Operasi ini akan mengubah riwayat commit. Semua anggota tim harus <code>clone</code> ulang.</li><li>Ini adalah operasi yang "merusak" (<em>destructive</em>).</li></ul></div><p>Cara modern untuk ini adalah menggunakan <code>git-filter-repo</code>.</p><div class="code-block"><pre><code># 1. Install tool-nya (jika belum ada)
+git push</code></pre>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-header treatment">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                        <h2>Skenario 2: Pengobatan (Jika Repo Sudah Terlanjur Gendut)</h2>
+                    </div>
+                    <div class="scenario-body">
+                        <p>Jika <code>node_modules</code> sudah terlanjur masuk ke riwayat commit-commit lama, repo kamu akan tetap besar. Ada dua cara untuk menyembuhkannya.</p>
+                        <h4>Opsi A: Cara Cepat &amp; Gampang (<code>Shallow Clone</code>)</h4>
+                        <p>Kalau kamu cuma butuh kode versi terbaru dan gak peduli riwayat lama, <code>clone</code> ulang saja repo-mu dengan mode "dangkal".</p>
+                        <div class="code-block">
+                            <pre><code># Hanya akan menarik 1 commit terakhir, ukurannya jadi super kecil!
+git clone --depth 1 https://github.com/user/repo.git</code></pre>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
+                        </div>
+                        <div class="tip"><i class="fa-solid fa-info-circle"></i> <strong>Kelemahan:</strong> Kamu tidak bisa melihat atau kembali ke commit-commit lama di komputermu.</div>
+                        <h4>Opsi B: Cara "Pembersihan Total" (Menulis Ulang Sejarah)</h4>
+                        <p>Ini adalah operasi tingkat lanjut untuk menghapus <code>node_modules</code> dari <strong>seluruh</strong> riwayat Git secara permanen. Lakukan dengan hati-hati!</p>
+                        <div class="warning-box">
+                            <i class="fa-solid fa-exclamation-triangle"></i>
+                            <strong>PERINGATAN KERAS:</strong>
+                            <ul>
+                                <li><strong>Wajib Backup!</strong> Buat salinan folder proyekmu dulu.</li>
+                                <li>Operasi ini akan mengubah riwayat commit. Semua anggota tim harus <code>clone</code> ulang.</li>
+                                <li>Ini adalah operasi yang "merusak" (<em>destructive</em>).</li>
+                            </ul>
+                        </div>
+                        <p>Cara modern untuk ini adalah menggunakan <code>git-filter-repo</code>.</p>
+                        <div class="code-block">
+                            <pre><code># 1. Install tool-nya (jika belum ada)
 pip3 install git-filter-repo
 # 2. Jalankan perintah pembersih di dalam folder repo-mu
 git filter-repo --path node_modules --invert-paths
 # 3. Dorong paksa riwayat baru ke GitHub
-git push origin --force --all</code></pre><button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button></div><p>Setelah ini, repositorimu akan "sembuh" dan ukurannya menyusut drastis. Semua anggota tim harus menghapus folder lama mereka dan melakukan <code>git clone</code> yang baru.</p></div></div></article><div><div id="related-articles-grid"></div><div id="response"></div></div></main><footer><p>🄯 2025 -</p><a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer></div><script>document.addEventListener('DOMContentLoaded', () => {
- // --- Fungsi Tombol Salin Kode ---
- const allCopyButtons = document.querySelectorAll('.copy-btn');
- allCopyButtons.forEach(button => {
- button.addEventListener('click', (e) => {
- const codeBlock = e.currentTarget.previousElementSibling;
- const code = codeBlock.querySelector('code').innerText;
- navigator.clipboard.writeText(code).then(() => {
- const originalHTML = e.currentTarget.innerHTML;
- e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
- e.currentTarget.disabled = true;
- e.currentTarget.style.backgroundColor = '#27ae60';
- setTimeout(() => {
- e.currentTarget.innerHTML = originalHTML;
- e.currentTarget.disabled = false;
- e.currentTarget.style.backgroundColor = '#555';
- }, 2000);
- }).catch(err => {
- console.error('Gagal menyalin teks: ', err);
- });
- });
- });
-});</script><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script defer="" src="/ext/highlight.js"></script><script>hljs.highlightAll();</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-30</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
+git push origin --force --all</code></pre>
+                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
+                        </div>
+                        <p>Setelah ini, repositorimu akan "sembuh" dan ukurannya menyusut drastis. Semua anggota tim harus menghapus folder lama mereka dan melakukan <code>git clone</code> yang baru.</p>
+                    </div>
+                </div>
+    </article>
+            <div>
+<div id="related-articles-grid"></div><div id="response"></div>
+            </div>
+        </main>
+        <footer>
+            <p>🄯 2025 - </p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+    </div>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+    // --- Fungsi Tombol Salin Kode ---
+    const allCopyButtons = document.querySelectorAll('.copy-btn');
+    allCopyButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const codeBlock = e.currentTarget.previousElementSibling;
+            const code = codeBlock.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHTML = e.currentTarget.innerHTML;
+                e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
+                e.currentTarget.disabled = true;
+                e.currentTarget.style.backgroundColor = '#27ae60';
+                setTimeout(() => {
+                    e.currentTarget.innerHTML = originalHTML;
+                    e.currentTarget.disabled = false;
+                    e.currentTarget.style.backgroundColor = '#555';
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+            });
+        });
+    });
+});
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>

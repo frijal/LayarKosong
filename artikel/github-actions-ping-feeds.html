@@ -53,14 +53,14 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="GitHub Actions">
     <meta property="article:tag" content="Sitemap">
     <meta property="article:tag" content="RSS Feed">
     <meta property="article:tag" content="Technical SEO">
     <meta property="article:tag" content="IndexNow">
     <meta property="article:published_time" content="2025-12-27T17:38:53.074Z">
-    <meta property="article:modified_time" content="2026-04-20T23:41:19.286Z">
+    <meta property="article:modified_time" content="2026-04-28T20:22:32.893Z">
   <link rel="stylesheet" href="/ext/github-dark-dimmed.min.css">
   <style>
     :root {
@@ -338,7 +338,7 @@ pre code {
       </header>
   <p>Untuk situs statis seperti blog HTML murni, Cloudflare Pages, GitHub Pages, atau pipeline deploy mandiri, proses memberi tahu mesin pencari sering terasa seperti kerja kecil yang mudah dilupakan. Padahal, ritmenya penting: artikel sudah rapi, metadata sudah lengkap, sitemap sudah dibuat, lalu crawler perlu diberi jalan masuk yang jelas.</p>
   <p>Solusinya bukan menekan tombol manual setiap selesai deploy, apalagi membuka banyak dashboard satu per satu seperti sedang mengurus loket administrasi antardimensi. Kita bisa membuat workflow otomatis dengan <b>GitHub Actions</b> agar pemeriksaan feed, ping sitemap, dan sinyal pembaruan berjalan terjadwal.</p>
-  <p>Namun ada catatan penting. Endpoint ping sitemap Google lama sudah tidak menjadi jalur andalan. Google kini lebih menekankan sitemap yang tersedia, tercantum di <code>robots.txt</code>, dan dikirim melalui Search Console atau API. Jadi workflow yang sehat bukan sekadar &#x201c;menembak URL ping&#x201d;, melainkan memastikan sinyal discovery tetap bersih, valid, dan tidak berlebihan.</p>
+  <p>Namun ada catatan penting. Endpoint ping sitemap Google lama sudah tidak menjadi jalur andalan. Google kini lebih menekankan sitemap yang tersedia, tercantum di <code>robots.txt</code>, dan dikirim melalui Search Console atau API. Jadi workflow yang sehat bukan sekadar “menembak URL ping”, melainkan memastikan sinyal discovery tetap bersih, valid, dan tidak berlebihan.</p>
   <figure>
     <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUx4Hu6TFmflSh4hNb7bIoZ63wUvgKFms1XM7zGa3w4lYh9y92mLrclVDP7JavG4zlPdvqxvUNYLIqD67sQvTtwJBVjF1h6OjR2WxHYWoBxEGEkWeGzCjlJ03QftoBAhQ7n2hxm5-Q71SExUTS9HT8kfK4uozktRpc8axJWuTQA4UaZM4SRQtUrisDnug/s1600/github-actions-ping-feeds.webp" width="1600" height="900" alt="Log sukses workflow GitHub Actions untuk ping sitemap dan feed website" fetchpriority="high" decoding="async">
     <figcaption>Contoh log GitHub Actions saat workflow berjalan sukses. Dari sini kita bisa memantau feed mana yang diproses, sitemap mana yang dicek, dan apakah request keluar berhasil.</figcaption>
@@ -352,90 +352,90 @@ pre code {
 on:
 workflow_dispatch:
 schedule:
-- cron: &quot;0 6 * * *&quot;
+- cron: "0 6 * * *"
 env:
-BASE_URL: &quot;[https://dalam.web.id](https://dalam.web.id)&quot;
-BLOG_TITLE: &quot;Layar Kosong&quot;
-INDEXNOW_KEY: &#x24;{{ secrets.INDEXNOW_KEY }}
+BASE_URL: "[https://dalam.web.id](https://dalam.web.id)"
+BLOG_TITLE: "Layar Kosong"
+INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
 jobs:
 ping:
 runs-on: ubuntu-latest
 steps:
-  - name: &#x1f514; Ping feeds ke Ping-o-Matic
+  - name: 🔔 Ping feeds ke Ping-o-Matic
     shell: bash
     run: |
       FEEDS=(
-        &quot;feed-catatan-and-opini-sosial.xml&quot;
-        &quot;feed-kuliner-gaya-hidup-and-kesehatan.xml&quot;
-        &quot;feed-lainnya.xml&quot;
-        &quot;feed-linux-and-open-source.xml&quot;
-        &quot;feed-multimedia-and-editing.xml&quot;
-        &quot;feed-sejarah-and-religi.xml&quot;
-        &quot;feed-teknologi-web-ai-and-umum.xml&quot;
-        &quot;rss.xml&quot;
+        "feed-catatan-and-opini-sosial.xml"
+        "feed-kuliner-gaya-hidup-and-kesehatan.xml"
+        "feed-lainnya.xml"
+        "feed-linux-and-open-source.xml"
+        "feed-multimedia-and-editing.xml"
+        "feed-sejarah-and-religi.xml"
+        "feed-teknologi-web-ai-and-umum.xml"
+        "rss.xml"
       )
-      echo &quot;--- Pinging Ping-o-Matic untuk &#x24;{#FEEDS[@]} feed ---&quot;
-      for feed_file in &quot;&#x24;{FEEDS[@]}&quot;; do
-        FEED_URL=&quot;&#x24;BASE_URL/&#x24;feed_file&quot;
-        echo &quot;Pinging: &#x24;FEED_URL&quot;
+      echo "--- Pinging Ping-o-Matic untuk ${#FEEDS[@]} feed ---"
+      for feed_file in "${FEEDS[@]}"; do
+        FEED_URL="$BASE_URL/$feed_file"
+        echo "Pinging: $FEED_URL"
         curl -fsSL -o /dev/null -X POST \
-          --data-urlencode &quot;title=&#x24;BLOG_TITLE&quot; \
-          --data-urlencode &quot;blogurl=&#x24;BASE_URL/&quot; \
-          --data-urlencode &quot;rssurl=&#x24;FEED_URL&quot; \
-          &quot;https://pingomatic.com/ping/&quot;
+          --data-urlencode "title=$BLOG_TITLE" \
+          --data-urlencode "blogurl=$BASE_URL/" \
+          --data-urlencode "rssurl=$FEED_URL" \
+          "https://pingomatic.com/ping/"
       done
-      echo &quot;--- Ping-o-Matic pings sent ---&quot;
-  - name: &#x2705; Validasi sitemap dan RSS utama
+      echo "--- Ping-o-Matic pings sent ---"
+  - name: ✅ Validasi sitemap dan RSS utama
     shell: bash
     run: |
-      SITEMAP_URL=&quot;&#x24;BASE_URL/sitemap.xml&quot;
-      RSS_URL=&quot;&#x24;BASE_URL/rss.xml&quot;
-      echo &quot;--- Validasi file discovery utama ---&quot;
-      for url in &quot;&#x24;SITEMAP_URL&quot; &quot;&#x24;RSS_URL&quot;; do
-        echo &quot;Checking: &#x24;url&quot;
-        curl -fsSL -o /dev/null &quot;&#x24;url&quot;
+      SITEMAP_URL="$BASE_URL/sitemap.xml"
+      RSS_URL="$BASE_URL/rss.xml"
+      echo "--- Validasi file discovery utama ---"
+      for url in "$SITEMAP_URL" "$RSS_URL"; do
+        echo "Checking: $url"
+        curl -fsSL -o /dev/null "$url"
       done
-      echo &quot;--- Sitemap dan RSS dapat diakses ---&quot;
-  - name: &#x1f4cd; Ping sitemap dan RSS ke Bing
+      echo "--- Sitemap dan RSS dapat diakses ---"
+  - name: 📍 Ping sitemap dan RSS ke Bing
     shell: bash
     run: |
-      SITEMAP_URL=&quot;&#x24;BASE_URL/sitemap.xml&quot;
-      RSS_URL=&quot;&#x24;BASE_URL/rss.xml&quot;
-      echo &quot;--- Pinging Bing ---&quot;
-      echo &quot;Pinging Sitemap: &#x24;SITEMAP_URL&quot;
-      curl -fsSLG &quot;https://www.bing.com/ping&quot; \
-        --data-urlencode &quot;sitemap=&#x24;SITEMAP_URL&quot; \
+      SITEMAP_URL="$BASE_URL/sitemap.xml"
+      RSS_URL="$BASE_URL/rss.xml"
+      echo "--- Pinging Bing ---"
+      echo "Pinging Sitemap: $SITEMAP_URL"
+      curl -fsSLG "https://www.bing.com/ping" \
+        --data-urlencode "sitemap=$SITEMAP_URL" \
         -o /dev/null
-      echo &quot;Pinging RSS Feed: &#x24;RSS_URL&quot;
-      curl -fsSLG &quot;https://www.bing.com/ping&quot; \
-        --data-urlencode &quot;sitemap=&#x24;RSS_URL&quot; \
+      echo "Pinging RSS Feed: $RSS_URL"
+      curl -fsSLG "https://www.bing.com/ping" \
+        --data-urlencode "sitemap=$RSS_URL" \
         -o /dev/null
-      echo &quot;--- Bing pings sent ---&quot;
-  - name: &#x26a1; Submit URL penting via IndexNow
-    if: env.INDEXNOW_KEY != &apos;&apos;
+      echo "--- Bing pings sent ---"
+  - name: ⚡ Submit URL penting via IndexNow
+    if: env.INDEXNOW_KEY != ''
     shell: bash
     run: |
       cat &gt; payload.json &lt;&lt;JSON
       {
-        &quot;host&quot;: &quot;dalam.web.id&quot;,
-        &quot;key&quot;: &quot;&#x24;INDEXNOW_KEY&quot;,
-        &quot;keyLocation&quot;: &quot;&#x24;BASE_URL/&#x24;INDEXNOW_KEY.txt&quot;,
-        &quot;urlList&quot;: [
-          &quot;&#x24;BASE_URL/&quot;,
-          &quot;&#x24;BASE_URL/sitemap.xml&quot;,
-          &quot;&#x24;BASE_URL/rss.xml&quot;
+        "host": "dalam.web.id",
+        "key": "$INDEXNOW_KEY",
+        "keyLocation": "$BASE_URL/$INDEXNOW_KEY.txt",
+        "urlList": [
+          "$BASE_URL/",
+          "$BASE_URL/sitemap.xml",
+          "$BASE_URL/rss.xml"
         ]
       }
       JSON
-      echo &quot;--- Sending IndexNow payload ---&quot;
-      curl -fsSL -X POST &quot;https://api.indexnow.org/IndexNow&quot; \
-        -H &quot;Content-Type: application/json; charset=utf-8&quot; \
+      echo "--- Sending IndexNow payload ---"
+      curl -fsSL -X POST "https://api.indexnow.org/IndexNow" \
+        -H "Content-Type: application/json; charset=utf-8" \
         --data @payload.json
-      echo &quot;--- IndexNow request sent ---&quot;
-  - name: &#x1f4dd; Catatan Google
+      echo "--- IndexNow request sent ---"
+  - name: 📝 Catatan Google
     run: |
-      echo &quot;Google sitemap ping endpoint lama tidak dipakai.&quot;
-      echo &quot;Pastikan sitemap tercantum di robots.txt dan sudah dikirim melalui Google Search Console.&quot;</code></pre>
+      echo "Google sitemap ping endpoint lama tidak dipakai."
+      echo "Pastikan sitemap tercantum di robots.txt dan sudah dikirim melalui Google Search Console."</code></pre>
       <div class="note">
         <p><b>Catatan kecil tapi penting:</b> langkah IndexNow hanya berjalan jika kamu sudah membuat secret bernama <code>INDEXNOW_KEY</code> di repositori GitHub dan file kunci <code>https://dalam.web.id/{KEY}.txt</code> tersedia di root website.</p>
       </div>
@@ -452,7 +452,7 @@ steps:
       <p>Langkah pertama mengirim daftar feed ke <a href="https://pingomatic.com/" target="_blank" rel="noopener">Ping-o-Matic</a>. Layanan ini dirancang untuk memberi tahu berbagai layanan pembaca feed bahwa sebuah blog diperbarui. Nilainya bukan untuk ranking instan, melainkan untuk distribusi sinyal pembaruan.</p>
       <p>Di dalam script, daftar <code>FEEDS</code> berisi feed kategori dan <code>rss.xml</code>. Setiap item diproses dengan loop Bash, lalu dikirim sebagai request <code>POST</code> menggunakan <code>curl</code>. Ini lebih rapi dibanding menulis delapan perintah curl berulang-ulang.</p>
       <h3>Validasi sitemap dan RSS sebelum bicara indeks</h3>
-      <p>Sebelum menyalahkan crawler, plugin, tema, planet Merkurius, atau &#x201c;algoritma yang katanya lagi sensitif&#x201d;, cek dulu sumber utamanya. Langkah validasi memastikan <code>sitemap.xml</code> dan <code>rss.xml</code> benar-benar bisa diakses dari internet.</p>
+      <p>Sebelum menyalahkan crawler, plugin, tema, planet Merkurius, atau “algoritma yang katanya lagi sensitif”, cek dulu sumber utamanya. Langkah validasi memastikan <code>sitemap.xml</code> dan <code>rss.xml</code> benar-benar bisa diakses dari internet.</p>
       <p>Perintah <code>curl -fsSL -o /dev/null</code> akan gagal jika URL tidak bisa diambil dengan baik. Artinya, workflow bukan hanya mengirim ping, tetapi juga menjadi alarm sederhana ketika file discovery rusak setelah deploy.</p>
       <h3>Bing ping dan IndexNow</h3>
       <p>Untuk Bing, ping sitemap masih bisa dipakai sebagai sinyal ringan. Namun untuk pengiriman URL yang lebih eksplisit, <a href="https://www.bing.com/indexnow/getstarted" target="_blank" rel="noopener">IndexNow</a> lebih relevan karena memang dirancang sebagai protokol notifikasi perubahan URL.</p>
@@ -503,13 +503,13 @@ steps:
   <footer class="site-footer">
     <p>
       <span>Artikel dari Fakhrul Rijal</span>
-      <span>&#x2022;</span>
+      <span>•</span>
       <span>Dipublikasikan <time datetime="2026-06-23">23 Juni 2026</time></span>
-      <span>&#x2022;</span>
+      <span>•</span>
       <span>Referensi: <a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" target="_blank" rel="noopener">Google Search Central</a>, <a href="https://docs.github.com/actions/using-workflows/events-that-trigger-workflows" target="_blank" rel="noopener">GitHub Docs</a>, <a href="https://www.bing.com/indexnow/getstarted" target="_blank" rel="noopener">Bing IndexNow</a>, <a href="https://pingomatic.com/" target="_blank" rel="noopener">Ping-o-Matic</a></span>
     </p>
-          <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+          <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

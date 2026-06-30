@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2016-07-20T11:00:00.000Z">
-    <meta property="article:modified_time" content="2019-10-09T20:54:54.800Z">
+    <meta property="article:modified_time" content="2025-08-27T05:35:43.725Z">
 <meta name="keywords" content="chroot, linux, bash script, shell script, devops, tutorial linux, sistem admin, mount, umount, frijal">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;family=Fira+Code:wght@500&amp;display=swap" rel="stylesheet">
     <style>
         :root {
@@ -211,7 +211,7 @@
             <div class="meta-info"><span>Artikel oleh Frijal</span> | <span>Diperbarui: 2 Oktober 2025</span></div>
         </header>
         <article>
-            <p>Buat kamu yang sering ngoprek sistem Linux, <code>chroot</code> itu ibarat punya &quot;penjara&quot; pribadi buat sebuah proses. Kerennya, proses di dalam <code>chroot</code> cuma bisa lihat direktori yang kita tentukan, jadi lebih aman dan terisolasi. Tapi, ada satu hal yang kadang bikin repot: proses setup-nya.</p>
+            <p>Buat kamu yang sering ngoprek sistem Linux, <code>chroot</code> itu ibarat punya "penjara" pribadi buat sebuah proses. Kerennya, proses di dalam <code>chroot</code> cuma bisa lihat direktori yang kita tentukan, jadi lebih aman dan terisolasi. Tapi, ada satu hal yang kadang bikin repot: proses setup-nya.</p>
             <p>Setiap kali mau masuk <code>chroot</code>, kita harus <code>mount</code> beberapa filesystem virtual penting seperti <code>/dev</code>, <code>/proc</code>, dan <code>/sys</code>. Terus, setelah selesai, harus di-<code>umount</code> lagi satu per satu. Lupa satu langkah aja bisa bikin sistem jadi aneh. Nah, biar hidup lebih santai, kita bisa otomatisasi semua itu pakai skrip Bash!</p>
             <section>
                 <h2>Skrip Otomatis: Setup &amp; Cleanup chroot</h2>
@@ -220,39 +220,39 @@
                 <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # enter-chroot.sh
 # Gunakan: sudo ./enter-chroot.sh /srv/chroot/debian
-CHROOT_DIR=&quot;&#x24;1&quot;
-if [ -z &quot;&#x24;CHROOT_DIR&quot; ]; then
-  echo &quot;Usage: &#x24;0 /path/to/chroot&quot;
+CHROOT_DIR="$1"
+if [ -z "$CHROOT_DIR" ]; then
+  echo "Usage: $0 /path/to/chroot"
   exit 1
 fi
 # Mount filesystem penting
-echo &quot;Mounting virtual filesystems...&quot;
-mount --bind /dev &quot;&#x24;CHROOT_DIR/dev&quot;
-mount --bind /dev/pts &quot;&#x24;CHROOT_DIR/dev/pts&quot;
-mount -t proc /proc &quot;&#x24;CHROOT_DIR/proc&quot;
-mount -t sysfs /sys &quot;&#x24;CHROOT_DIR/sys&quot;
+echo "Mounting virtual filesystems..."
+mount --bind /dev "$CHROOT_DIR/dev"
+mount --bind /dev/pts "$CHROOT_DIR/dev/pts"
+mount -t proc /proc "$CHROOT_DIR/proc"
+mount -t sysfs /sys "$CHROOT_DIR/sys"
 # Copy resolv.conf untuk DNS
-echo &quot;Copying DNS configuration...&quot;
-cp /etc/resolv.conf &quot;&#x24;CHROOT_DIR/etc/&quot;
+echo "Copying DNS configuration..."
+cp /etc/resolv.conf "$CHROOT_DIR/etc/"
 # Masuk ke chroot
-echo &quot;Entering chroot. Ketik &apos;exit&apos; untuk keluar.&quot;
-chroot &quot;&#x24;CHROOT_DIR&quot; /bin/bash
-echo &quot;Keluar dari chroot.&quot;</code></pre>
+echo "Entering chroot. Ketik 'exit' untuk keluar."
+chroot "$CHROOT_DIR" /bin/bash
+echo "Keluar dari chroot."</code></pre>
                 <h3>2. Cleanup (buat file <code>exit-chroot.sh</code>)</h3>
                 <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # exit-chroot.sh
 # Gunakan: sudo ./exit-chroot.sh /srv/chroot/debian
-CHROOT_DIR=&quot;&#x24;1&quot;
-if [ -z &quot;&#x24;CHROOT_DIR&quot; ]; then
-  echo &quot;Usage: &#x24;0 /path/to/chroot&quot;
+CHROOT_DIR="$1"
+if [ -z "$CHROOT_DIR" ]; then
+  echo "Usage: $0 /path/to/chroot"
   exit 1
 fi
-echo &quot;Unmounting virtual filesystems...&quot;
-umount &quot;&#x24;CHROOT_DIR/dev/pts&quot;
-umount &quot;&#x24;CHROOT_DIR/dev&quot;
-umount &quot;&#x24;CHROOT_DIR/proc&quot;
-umount &quot;&#x24;CHROOT_DIR/sys&quot;
-echo &quot;Cleanup selesai!&quot;</code></pre>
+echo "Unmounting virtual filesystems..."
+umount "$CHROOT_DIR/dev/pts"
+umount "$CHROOT_DIR/dev"
+umount "$CHROOT_DIR/proc"
+umount "$CHROOT_DIR/sys"
+echo "Cleanup selesai!"</code></pre>
                 <h3>3. Cara Pakainya Gimana?</h3>
                 <p>Pertama, pastikan kamu memberi izin eksekusi pada kedua file skrip yang baru dibuat:</p>
                 <pre><button class="copy-btn">Copy</button><code class="language-bash">chmod +x enter-chroot.sh exit-chroot.sh</code></pre>
@@ -268,8 +268,8 @@ echo &quot;Cleanup selesai!&quot;</code></pre>
     </article>
     </main>
     <footer>
-        <p>&#x1f12f; 2025 Frijal. Dibuat dengan penuh &#x2615; di Balikpapan.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <p>🄯 2025 Frijal. Dibuat dengan penuh ☕ di Balikpapan.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- Copy Button Logic ---
@@ -292,7 +292,7 @@ echo &quot;Cleanup selesai!&quot;</code></pre>
             });
                    });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

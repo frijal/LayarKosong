@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-24T22:34:09.000Z">
-    <meta property="article:modified_time" content="2025-10-24T22:34:09.000Z">
+    <meta property="article:modified_time" content="2025-11-11T15:36:56.390Z">
     <meta name="keywords" content="npm, node.js, list global packages, cek paket npm, npm list, yarn global, pnpm list, tutorial, cli, developer">
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
  <style>
@@ -346,8 +346,8 @@
       <nav class="nav">
         <a class="logo" href="https://dalam.web.id" title="Frijal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="12" cy="12" r="9" stroke-width="2"/>
-            <path d="M6 12h12M12 6v12" stroke-width="2"/>
+            <circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+            <path d="M6 12h12M12 6v12" stroke-width="2"></path>
           </svg>
           <span>Frijal</span>
         </a>
@@ -356,7 +356,7 @@
     </header>
     <section class="hero">
       <div>
-        <div id="iposbrowser"></div><h1 class="title">&#x1f4bb; Cara Gampang Cek Semua Aplikasi Node.js yang Terpasang di Laptop</h1>
+        <div id="iposbrowser"></div><h1 class="title">💻 Cara Gampang Cek Semua Aplikasi Node.js yang Terpasang di Laptop</h1>
         <p class="subtitle">Panduan cepat pake <span class="kbd">npm list</span> buat lihat paket global kamu. Tidak pake ribet, langsung kelihatan semua tool CLI yang kamu install.</p>
         <div class="meta">
           <span>Dipublikasikan: <span class="kbd">27 Okt 2025</span></span>
@@ -373,13 +373,13 @@
     </section>
     <main>
       <article>
-        <p class="lead">Seringkali kita install banyak &quot;aplikasi Node.js&quot; tapi lupa apa saja yang udah terpasang. Yang dimaksud &quot;aplikasi&quot; di sini biasanya adalah <strong>paket global (global packages)</strong>, yaitu alat-alat command-line (CLI) yang bisa kamu panggil dari mana aja di terminal.</p>
+        <p class="lead">Seringkali kita install banyak "aplikasi Node.js" tapi lupa apa saja yang udah terpasang. Yang dimaksud "aplikasi" di sini biasanya adalah <strong>paket global (global packages)</strong>, yaitu alat-alat command-line (CLI) yang bisa kamu panggil dari mana aja di terminal.</p>
         <p>Contohnya kayak <span class="kbd">nodemon</span>, <span class="kbd">pm2</span>, <span class="kbd">create-react-app</span>, <span class="kbd">yarn</span>, atau <span class="kbd">netlify-cli</span>. Nah, cara termudah buat ngeceknya adalah pake perintah bawaan dari NPM sendiri.</p>
         <h2>1. Mengecek Paket Global (CLI)</h2>
         <p>Ini cara yang paling umum dan kemungkinan besar yang kamu cari. Buka terminal atau Command Prompt kamu dan ketikkan perintah sakti ini:</p>
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
           </button>
           <pre><code>npm list -g --depth=0</code></pre>
         </div>
@@ -387,15 +387,15 @@
         <ul>
           <li><span class="kbd">npm list</span>: Ini adalah perintah dasarnya untuk melihat daftar paket.</li>
           <li><span class="kbd">-g</span>: Ini singkatan dari <span class="kbd">--global</span>. Artinya, kamu spesifik cuma mau cari paket yang terpasang secara global, bukan yang ada di dalam satu folder proyek aja.</li>
-          <li><span class="kbd">--depth=0</span>: Nah, ini bagian pentingnya. Perintah ini bilang ke NPM, &quot;Tolong tampilkan paket utamanya aja (<span class="accent">depth=0</span>), tidak usah sama semua dependensi-dependensinya.&quot;</li>
+          <li><span class="kbd">--depth=0</span>: Nah, ini bagian pentingnya. Perintah ini bilang ke NPM, "Tolong tampilkan paket utamanya aja (<span class="accent">depth=0</span>), tidak usah sama semua dependensi-dependensinya."</li>
         </ul>
         <p class="note">Kalau kamu nekat menjalankan <span class="kbd">npm list -g</span> tanpa <span class="kbd">--depth=0</span>, siap-siap aja terminal kamu banjir teks. Kamu bakal lihat daftar yang super panjang karena semua paket kecil yang dibutuhkan oleh paket utamamu bakal ikut ditampilin.</p>
-        <h2>2. Gimana Kalo Pake Yarn atau PNPM? &#x1f9f6;</h2>
+        <h2>2. Gimana Kalo Pake Yarn atau PNPM? 🧶</h2>
         <p>Kalau kamu lebih suka pake package manager lain, perintahnya sedikit beda tapi tujuannya sama.</p>
         <div class="grid-2">
           <div class="card">
             <button class="btn copy-btn" title="Salin kode">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
             </button>
             <strong>Untuk Yarn:</strong>
             <pre><code>yarn global list</code></pre>
@@ -403,30 +403,30 @@
           </div>
           <div class="card">
             <button class="btn copy-btn" title="Salin kode">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
             </button>
             <strong>Untuk PNPM:</strong>
             <pre><code>pnpm list -g --depth=0</code></pre>
             <p class="note">Mirip banget sama NPM, pake <span class="kbd">--depth=0</span> juga.</p>
           </div>
         </div>
-        <h2>3. Penasaran Filenya Disimpen di Mana? &#x1f4c1;</h2>
+        <h2>3. Penasaran Filenya Disimpen di Mana? 📁</h2>
         <p>Kalau kamu kepo di mana sebenernya lokasi folder <span class="kbd">node_modules</span> global kamu disimpen, pake perintah ini:</p>
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
           </button>
           <strong>Lokasi root NPM Global:</strong>
           <pre><code>npm root -g</code></pre>
         </div>
         <h2>Bonus: Kalo Maksudmu Paket di Dalam Proyek (Lokal)</h2>
-        <p>Ini beda kasus ya. Kalau yang kamu maksud adalah &quot;aplikasi&quot; atau paket yang terpasang <em>di dalam</em> satu folder proyek spesifik (yang ada di <span class="kbd">package.json</span>), caranya gampang:</p>
+        <p>Ini beda kasus ya. Kalau yang kamu maksud adalah "aplikasi" atau paket yang terpasang <em>di dalam</em> satu folder proyek spesifik (yang ada di <span class="kbd">package.json</span>), caranya gampang:</p>
         <ol>
           <li>Masuk dulu ke folder proyeknya:</li>
         </ol>
         <div class="card" style="margin-top: -16px;">
             <button class="btn copy-btn" title="Salin kode">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
             </button>
             <pre><code>cd /path/ke/proyek-kamu</code></pre>
         </div>
@@ -435,7 +435,7 @@
         </ol>
         <div class="card" style="margin-top: -16px;">
             <button class="btn copy-btn" title="Salin kode">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
             </button>
             <pre><code>npm list</code></pre>
         </div>
@@ -460,10 +460,10 @@
     </main>
     <footer class="footer">
       <div class="footer-inner">
-        <div>&#x1f12f; 2025 Frijal &#x2014; Artikel oleh Fakhrul</div>
+        <div>🄯 2025 Frijal — Artikel oleh Fakhrul</div>
         <div class="note">Halaman otomatis menyesuaikan tema Dark/Light sesuai pengaturan sistem kamu.</div>
       </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </div>
     <script>
     // --- Fitur Fullscreen ---
@@ -522,7 +522,7 @@
       });
     });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

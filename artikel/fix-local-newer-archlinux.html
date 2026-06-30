@@ -53,10 +53,10 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Arch Linux, CachyOS, Pacman, Linux Tutorial">
     <meta property="article:published_time" content="2025-10-11T03:52:17.984Z">
-    <meta property="article:modified_time" content="2026-03-24T23:52:16.370Z">
+    <meta property="article:modified_time" content="2025-10-18T13:40:15.415Z">
     <style>
         /* CSS Variabel & Tema (Mode Terang/Gelap) */
         :root {
@@ -221,12 +221,12 @@
     <main class="container">
         <article>
             <header>
-                <div id="iposbrowser"></div><h1>&#x1f9e0; Mengatasi Peringatan &#x201c;Local is Newer&#x201d; di Arch Linux / CachyOS</h1>
+                <div id="iposbrowser"></div><h1>🧠 Mengatasi Peringatan “Local is Newer” di Arch Linux / CachyOS</h1>
             </header>
             <p>Halo, sesama penjelajah ekosistem Linux! Pernahkah kamu sedang asyik memperbarui sistem menggunakan terminal kesayanganmu, lalu tiba-tiba Pacman menyuguhkan sebuah pesan berwarna kuning yang membuat kening berkerut seperti <code>warning: local is newer than repo</code>? Jangan keburu panik dan mengira sistemmu rusak. Ini adalah kejadian yang sangat lumrah, khususnya bagi para pengguna distro <em>rolling release</em>.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/7e914c6fa517fe9c.webp" alt="Ilustrasi terminal Linux yang menampilkan log update sistem operasi dan manajemen paket Pacman" fetchpriority="high">
             <p>Fenomena ini pada dasarnya adalah bentuk komunikasi dari manajer paket kita. Pacman memberitahumu bahwa ada ketidakselarasan versi antara perangkatmu dengan server. Mari kita bedah bersama apa sebenarnya yang sedang terjadi di balik layar dan bagaimana cara elegan merespons peringatan ini agar sistemmu tetap sehat dan optimal.</p>
-            <h2>&#x1f50d; Apa Maksud Sebenarnya dari Pesan Ini?</h2>
+            <h2>🔍 Apa Maksud Sebenarnya dari Pesan Ini?</h2>
             <p>Sering kali, peringatan ini muncul dengan format yang cukup spesifik di layar terminalmu, contohnya seperti ini:</p>
 <pre><code>warning: http-parser: local (2.9.4-2.1) is newer than cachyos (2.9.4-2)</code></pre>
             <p>Mari kita terjemahkan bahasa mesin ini. Pesan tersebut secara harfiah menandakan bahwa versi paket (dalam contoh ini <code>http-parser</code>) yang terpasang di komputer lokalmu saat ini <strong>lebih baru</strong> (versi 2.9.4-2.1) daripada versi stabil yang tersedia di repositori resmi (versi 2.9.4-2). </p>
@@ -236,33 +236,33 @@
                 <li><strong>Menggunakan AUR (Arch User Repository):</strong> Kadang-kadang paket yang dikompilasi dari AUR memiliki penomoran versi yang lebih agresif mendahului repo resmi.</li>
                 <li><strong>Keterlambatan Sinkronisasi Mirror:</strong> Repositori khusus seperti CachyOS kadang membutuhkan sedikit waktu ekstra untuk menyelaraskan (<em>sync</em>) paket terbaru yang baru saja di-<em>push</em> oleh tim Arch Linux pusat.</li>
             </ul>
-            <h2>&#x1f9ed; Cara Aman dan Tepat Menanganinya</h2>
+            <h2>🧭 Cara Aman dan Tepat Menanganinya</h2>
             <p>Kabar baiknya, peringatan ini hanyalah sebuah notifikasi, bukan kerusakan (<em>error</em>). Berikut adalah beberapa pendekatan yang bisa kamu pilih sesuai dengan kebutuhan dan kenyamananmu.</p>
-            <h3>&#x1f947; 1. Biarkan Saja (Paling Disarankan)</h3>
-            <p>Jika semboyanmu adalah <em>&quot;If it ain&apos;t broke, don&apos;t fix it&quot;</em>, maka ini adalah jalan ninja terbaik. Selama sistem Arch Linux atau CachyOS-mu berjalan dengan lancar tanpa ada aplikasi yang tiba-tiba tertutup paksa (<em>crash</em>) karena konflik dependensi, kamu bisa mengabaikan peringatan itu sepenuhnya. Pesan ini murni informasi perbandingan versi semata.</p>
-            <h3>&#x1f9e9; 2. Sinkronkan Ulang Versi dengan Repo (Downgrade Spesifik)</h3>
+            <h3>🥇 1. Biarkan Saja (Paling Disarankan)</h3>
+            <p>Jika semboyanmu adalah <em>"If it ain't broke, don't fix it"</em>, maka ini adalah jalan ninja terbaik. Selama sistem Arch Linux atau CachyOS-mu berjalan dengan lancar tanpa ada aplikasi yang tiba-tiba tertutup paksa (<em>crash</em>) karena konflik dependensi, kamu bisa mengabaikan peringatan itu sepenuhnya. Pesan ini murni informasi perbandingan versi semata.</p>
+            <h3>🧩 2. Sinkronkan Ulang Versi dengan Repo (Downgrade Spesifik)</h3>
             <p>Apabila kamu adalah tipe perfeksionis yang ingin terminalnya bersih dari teks berwarna kuning dan memastikan kesesuaian mutlak dengan repositori resmi, kamu bisa memaksa instalasi ulang paket ke versi repo:</p>
 <pre><code>sudo pacman -Syyu
 sudo pacman -S http-parser zstd-debug power-profiles-daemon</code></pre>
-            <p>Ganti nama paket sesuai dengan yang muncul di peringatanmu. Nantinya, Pacman akan menyadari bahwa kamu mencoba memasang versi yang lebih lama dan akan menanyakan konfirmasi, <em>&quot;Downgrade package?&quot;</em> Cukup tekan <strong>Y</strong> lalu Enter.</p>
-            <h3>&#x1f9e0; 3. Identifikasi Semua Paket yang &quot;Lebih Baru&quot;</h3>
+            <p>Ganti nama paket sesuai dengan yang muncul di peringatanmu. Nantinya, Pacman akan menyadari bahwa kamu mencoba memasang versi yang lebih lama dan akan menanyakan konfirmasi, <em>"Downgrade package?"</em> Cukup tekan <strong>Y</strong> lalu Enter.</p>
+            <h3>🧠 3. Identifikasi Semua Paket yang "Lebih Baru"</h3>
             <p>Penasaran ada berapa banyak paket pemberontak di sistemmu? Kamu tidak perlu mencarinya satu per satu secara manual. Gunakan <em>script</em> singkat berbasis bash di bawah ini untuk memindai seluruh sistem:</p>
 <pre><code>pacman -Q | while read pkg ver; do
-  repo_ver=&#x24;(pacman -Si &quot;&#x24;pkg&quot; 2&gt;/dev/null | awk &apos;/Version/{print &#x24;3; exit}&apos;)
-  [[ -n &quot;&#x24;repo_ver&quot; &amp;&amp; &quot;&#x24;ver&quot; != &quot;&#x24;repo_ver&quot; ]] &amp;&amp; echo &quot;&#x24;pkg: local=&#x24;ver repo=&#x24;repo_ver&quot;
+  repo_ver=$(pacman -Si "$pkg" 2&gt;/dev/null | awk '/Version/{print $3; exit}')
+  [[ -n "$repo_ver" &amp;&amp; "$ver" != "$repo_ver" ]] &amp;&amp; echo "$pkg: local=$ver repo=$repo_ver"
 done</code></pre>
             <p>Perintah cerdas ini akan melakukan iterasi pada semua paket lokalmu, membandingkannya dengan database repo secara <em>real-time</em>, dan mencetak daftar eksklusif paket-paket yang versinya melenceng dari repositori standar.</p>
-            <h3>&#x1f9f0; 4. Cegah Helper AUR Melakukan Downgrade Otomatis</h3>
-            <p>Bagi kamu yang sering <em>build</em> paket langsung dari AUR menggunakan <em>helper</em> seperti Paru, terkadang alat tersebut mencoba terlalu pintar dengan ingin &quot;memperbaiki&quot; versi agar sama dengan repo. Untuk mencegah Paru menurunkan versi paket secara sepihak, kamu bisa menggunakan perintah ini saat <em>update</em>:</p>
+            <h3>🧰 4. Cegah Helper AUR Melakukan Downgrade Otomatis</h3>
+            <p>Bagi kamu yang sering <em>build</em> paket langsung dari AUR menggunakan <em>helper</em> seperti Paru, terkadang alat tersebut mencoba terlalu pintar dengan ingin "memperbaiki" versi agar sama dengan repo. Untuk mencegah Paru menurunkan versi paket secara sepihak, kamu bisa menggunakan perintah ini saat <em>update</em>:</p>
 <pre><code>paru --skipreview --removemake --nocleanmenu</code></pre>
             <p>Atau solusi yang lebih permanen, modifikasi berkas konfigurasi Paru di <code>~/.config/paru/paru.conf</code> dan pastikan baris berikut aktif:</p>
 <pre><code>BottomUp
 Devel</code></pre>
-            <h3>&#x1fa7a; 5. Reset Bersih (<em>Full System Downgrade</em>)</h3>
+            <h3>🩺 5. Reset Bersih (<em>Full System Downgrade</em>)</h3>
             <p>Jika kamu baru saja menonaktifkan repositori <em>testing</em> dan ingin mengembalikan <strong>seluruh</strong> sistemmu ke kondisi stabil repositori utama secara massal, Arch menyediakan bendera khusus yang sangat kuat:</p>
 <pre><code>sudo pacman -Syyuu</code></pre>
-            <p>Perhatikan baik-baik adanya dua huruf <strong>u</strong> (<em>uu</em>) di akhir perintah. Ini adalah instruksi eksplisit kepada Pacman yang berarti: <em>&quot;Tolong perbarui sistem, dan izinkan proses penurunan versi (<em>downgrade</em>) jika memang paket di repo resmi lebih lawas.&quot;</em></p>
-            <h2>&#x2705; Rangkuman Cepat Solusi</h2>
+            <p>Perhatikan baik-baik adanya dua huruf <strong>u</strong> (<em>uu</em>) di akhir perintah. Ini adalah instruksi eksplisit kepada Pacman yang berarti: <em>"Tolong perbarui sistem, dan izinkan proses penurunan versi (<em>downgrade</em>) jika memang paket di repo resmi lebih lawas."</em></p>
+            <h2>✅ Rangkuman Cepat Solusi</h2>
             <p>Untuk memudahkanmu mengambil keputusan saat bertemu situasi serupa di masa depan, simpan tabel referensi cepat ini:</p>
             <table>
                 <thead>
@@ -295,9 +295,9 @@ Devel</code></pre>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <span>Penulis: Jaga Data Pribadi Tetap Aman | Diterbitkan: 14 Juni 2026 | Referensi: Arch Linux Wiki Official &amp; Dokumentasi Pacman</span>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

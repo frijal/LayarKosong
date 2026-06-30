@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="Memperbaiki Error Signature Unknown Trust Bad Signature di Arch Linux, Layar Kosong">
-    <meta name="promphint" content="Memperbaiki Error Signature Unknown Trust Bad Signature di Arch Linux | Error ini terjadi ketika pacman gagal memverifikasi tanda tangan digital suatu paket &#x2014; biasanya karena keyring belum diperbarui atau key server bermasalah.">
+    <meta name="promphint" content="Memperbaiki Error Signature Unknown Trust Bad Signature di Arch Linux | Error ini terjadi ketika pacman gagal memverifikasi tanda tangan digital suatu paket — biasanya karena keyring belum diperbarui atau key server bermasalah.">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-11T04:00:27.678Z">
-    <meta property="article:modified_time" content="2026-03-01T08:50:50.519Z">
+    <meta property="article:modified_time" content="2025-10-11T04:00:27.678Z">
 <!-- 🔎 Open Graph -->
 <!-- 🐦 Twitter Card -->
 <style>
@@ -131,17 +131,17 @@ footer {
 <body>
 <header>
   <img src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo">
-  <div id="iposbrowser"></div><h1>&#x1f9e0; Memperbaiki Error &#x201c;Signature Unknown Trust / Bad Signature&#x201d;</h1>
-  <p>Error ini terjadi ketika pacman gagal memverifikasi tanda tangan digital suatu paket &#x2014; biasanya karena keyring belum diperbarui atau key server bermasalah.</p>
+  <div id="iposbrowser"></div><h1>🧠 Memperbaiki Error “Signature Unknown Trust / Bad Signature”</h1>
+  <p>Error ini terjadi ketika pacman gagal memverifikasi tanda tangan digital suatu paket — biasanya karena keyring belum diperbarui atau key server bermasalah.</p>
 </header>
 <main>
 <section>
-  <h2>&#x26a0;&#xfe0f; Contoh Pesan Error</h2>
-  <pre><code>error: archlinux-keyring: signature from &quot;Developer Name &lt;email&gt;&quot; is unknown trust
+  <h2>⚠️ Contoh Pesan Error</h2>
+  <pre><code>error: archlinux-keyring: signature from "Developer Name &lt;email&gt;" is unknown trust
 error: failed to commit transaction (invalid or corrupted package)</code></pre>
 </section>
 <section>
-  <h2>&#x1f50d; Penyebab Umum</h2>
+  <h2>🔍 Penyebab Umum</h2>
   <ul>
     <li>Keyring lokal belum diperbarui.</li>
     <li>PGP key baru belum diimpor dari keyserver.</li>
@@ -150,30 +150,30 @@ error: failed to commit transaction (invalid or corrupted package)</code></pre>
   </ul>
 </section>
 <section>
-  <h2>&#x1f9ed; Langkah-Langkah Memperbaiki</h2>
-  <h3>1&#xfe0f;&#x20e3; Perbarui Keyring Resmi Arch</h3>
+  <h2>🧭 Langkah-Langkah Memperbaiki</h2>
+  <h3>1️⃣ Perbarui Keyring Resmi Arch</h3>
   <pre><code>sudo pacman -Sy archlinux-keyring</code></pre>
   <p>Langkah pertama yang paling aman. Ini akan memperbarui daftar kunci resmi Arch Linux yang digunakan untuk memverifikasi paket.</p>
-  <h3>2&#xfe0f;&#x20e3; Sinkronkan Seluruh Sistem</h3>
+  <h3>2️⃣ Sinkronkan Seluruh Sistem</h3>
   <pre><code>sudo pacman -Syyu</code></pre>
   <p>Pastikan semua paket dan kunci berada dalam versi terbaru.</p>
-  <h3>3&#xfe0f;&#x20e3; Jika Masih Error, Hapus &amp; Inisialisasi Ulang Keyring</h3>
+  <h3>3️⃣ Jika Masih Error, Hapus &amp; Inisialisasi Ulang Keyring</h3>
   <pre><code>sudo rm -r /etc/pacman.d/gnupg
 sudo pacman-key --init
 sudo pacman-key --populate archlinux</code></pre>
   <p>Ini akan menghapus database keyring lama dan membuat ulang dari awal.</p>
-  <h3>4&#xfe0f;&#x20e3; Tambahan (Jika Menggunakan Distro Turunan)</h3>
+  <h3>4️⃣ Tambahan (Jika Menggunakan Distro Turunan)</h3>
   <ul>
     <li><strong>Manjaro:</strong> <code>sudo pacman-key --populate manjaro</code></li>
     <li><strong>EndeavourOS:</strong> <code>sudo pacman-key --populate endeavouros</code></li>
     <li><strong>CachyOS:</strong> <code>sudo pacman-key --populate cachyos</code></li>
   </ul>
-  <h3>5&#xfe0f;&#x20e3; Coba Keyserver Alternatif (Jika Masih Gagal)</h3>
+  <h3>5️⃣ Coba Keyserver Alternatif (Jika Masih Gagal)</h3>
   <pre><code>sudo pacman-key --refresh-keys --keyserver hkps://keyserver.ubuntu.com</code></pre>
   <p>Server alternatif kadang lebih cepat dan stabil dibanding server default.</p>
 </section>
 <section>
-  <h2>&#x1f4a1; Tips Tambahan</h2>
+  <h2>💡 Tips Tambahan</h2>
   <ul>
     <li>Pastikan waktu sistem benar: <code>timedatectl status</code></li>
     <li>Gunakan <code>reflector</code> untuk memperbarui mirror sekaligus.</li>
@@ -181,8 +181,8 @@ sudo pacman-key --populate archlinux</code></pre>
   </ul>
 </section>
 <section>
-  <h2>&#x2705; Kesimpulan</h2>
-  <p>Error &#x201c;Unknown Trust&#x201d; dan &#x201c;Bad Signature&#x201d; disebabkan oleh kunci PGP yang belum sinkron atau rusak.
+  <h2>✅ Kesimpulan</h2>
+  <p>Error “Unknown Trust” dan “Bad Signature” disebabkan oleh kunci PGP yang belum sinkron atau rusak.
   Solusinya cukup dengan memperbarui atau memulihkan keyring secara manual.
   Setelah itu, sistem akan kembali bisa memverifikasi paket dengan benar.</p>
 </section>
@@ -191,13 +191,13 @@ sudo pacman-key --populate archlinux</code></pre>
 </section>
     </main>
 <footer>
-  &#x1f12f; 2025 Jaga Data Pribadi Tetap Aman &#x2014; Seri &#x201c;Masalah Umum Arch Linux&#x201d; &#xb7; dibuat dengan &#x2764;
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+  🄯 2025 Jaga Data Pribadi Tetap Aman — Seri “Masalah Umum Arch Linux” · dibuat dengan ❤
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 <!-- Facebook SDK -->
 <script>
 window.onload = () => window.scrollTo({ top: 0, behavior: "smooth" });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

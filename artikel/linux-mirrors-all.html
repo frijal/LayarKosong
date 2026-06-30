@@ -13,7 +13,7 @@
     <meta name="application-name" content="Layar Kosong">
     <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="mirror selector Linux, mirror Linux tercepat, repository Linux, semua distro Linux, pacman mirrorlist, apt mirror, yum dnf mirror">
-    <meta name="promphint" content="Mirror Selector Toolkit - Semua Distro | Debian/Ubuntu &#x2022; Arch/Manjaro &#x2022; Fedora &#x2022; openSUSE &#x2022; Slackware &#x2022; NixOS &#x2014; skrip &amp; panduan otomatis">
+    <meta name="promphint" content="Mirror Selector Toolkit - Semua Distro | Debian/Ubuntu • Arch/Manjaro • Fedora • openSUSE • Slackware • NixOS — skrip &amp; panduan otomatis">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-07-29T10:57:43.445Z">
     <meta property="article:modified_time" content="2025-07-29T10:57:43.445Z">
 <!-- ===== Basic Meta ===== -->
@@ -153,11 +153,11 @@ background:var(--bg);color:var(--text);
 <body>
   <header>
 <div class="title">
-  <div id="iposbrowser"></div><h1>Mirror Selector Toolkit &#x2014; Semua Distro</h1>
-  <p>Debian/Ubuntu &#x2022; Arch/Manjaro &#x2022; Fedora &#x2022; openSUSE &#x2022; Slackware &#x2022; NixOS &#x2014; skrip &amp; panduan otomatis</p>
+  <div id="iposbrowser"></div><h1>Mirror Selector Toolkit — Semua Distro</h1>
+  <p>Debian/Ubuntu • Arch/Manjaro • Fedora • openSUSE • Slackware • NixOS — skrip &amp; panduan otomatis</p>
 </div>
 <div class="controls">
-  <button class="dark-toggle" id="darkToggle">&#x1f319; Dark Mode</button>
+  <button class="dark-toggle" id="darkToggle">🌙 Dark Mode</button>
 </div>
   </header>
   <main>
@@ -171,7 +171,7 @@ background:var(--bg);color:var(--text);
 </div>
 <!-- DEBIAN -->
 <section id="debian" class="panel active" role="tabpanel">
-  <h2>Debian / Ubuntu &#x2014; netselect-apt</h2>
+  <h2>Debian / Ubuntu — netselect-apt</h2>
   <p>Gunakan <code>netselect-apt</code> untuk menemukan mirror APT tercepat secara otomatis. Script ini akan backup <code>/etc/apt/sources.list</code> lalu menggantinya.</p>
   <div class="note">Jalankan dengan <code>sudo</code>. Pilih release sesuai (mis. <code>bookworm</code>, <code>bullseye</code>, <code>jammy</code>).</div>
   <div class="grid">
@@ -179,23 +179,23 @@ background:var(--bg);color:var(--text);
   <h3>Skrip: debian-mirror.sh</h3>
   <pre><div class="code-actions">
 <button class="btn" onclick="copyCode(this)">Copy</button>
-<button class="btn secondary" onclick="downloadCode(&apos;debian-mirror.sh&apos;, debianScript)">Download</button>
+<button class="btn secondary" onclick="downloadCode('debian-mirror.sh', debianScript)">Download</button>
   </div><code class="language-bash" id="debianCode">#!/bin/bash
-# debian-mirror.sh &#x2014; otomatis pilih mirror tercepat untuk Debian/Ubuntu
+# debian-mirror.sh — otomatis pilih mirror tercepat untuk Debian/Ubuntu
 set -e
-RELEASE=&quot;&#x24;{1:-stable}&quot;   # opsional: stable/bookworm/jammy/dll
-echo &quot;[INFO] update &amp; install netselect-apt...&quot;
+RELEASE="${1:-stable}"   # opsional: stable/bookworm/jammy/dll
+echo "[INFO] update &amp; install netselect-apt..."
 sudo apt update
 sudo apt install -y netselect-apt
-echo &quot;[INFO] menjalankan netselect-apt untuk rilis: &#x24;RELEASE ...&quot;
-sudo netselect-apt &quot;&#x24;RELEASE&quot; -n
-echo &quot;[INFO] backup sources.list lama...&quot;
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak.&#x24;(date +%F_%T)
-echo &quot;[INFO] mengganti sources.list...&quot;
+echo "[INFO] menjalankan netselect-apt untuk rilis: $RELEASE ..."
+sudo netselect-apt "$RELEASE" -n
+echo "[INFO] backup sources.list lama..."
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak.$(date +%F_%T)
+echo "[INFO] mengganti sources.list..."
 sudo mv sources.list /etc/apt/sources.list
-echo &quot;[INFO] apt update...&quot;
+echo "[INFO] apt update..."
 sudo apt update
-echo &quot;[DONE] Mirror APT telah diperbarui. &quot;</code></pre>
+echo "[DONE] Mirror APT telah diperbarui. "</code></pre>
 </div>
 <div>
   <h3>Petunjuk singkat</h3>
@@ -209,7 +209,7 @@ echo &quot;[DONE] Mirror APT telah diperbarui. &quot;</code></pre>
 </section>
 <!-- ARCH -->
 <section id="arch" class="panel" role="tabpanel" aria-hidden="true">
-  <h2>Arch / Manjaro &#x2014; reflector / pacman-mirrors</h2>
+  <h2>Arch / Manjaro — reflector / pacman-mirrors</h2>
   <p>Arch pakai <code>reflector</code> untuk memilih mirror cepat; Manjaro punya <code>pacman-mirrors</code>.</p>
   <div class="note">Jalankan perintah dengan <code>sudo</code>. Pilih negara sesuai lokasi untuk hasil terbaik.</div>
   <div class="grid">
@@ -217,20 +217,20 @@ echo &quot;[DONE] Mirror APT telah diperbarui. &quot;</code></pre>
   <h3>Skrip: arch-mirror.sh</h3>
   <pre><div class="code-actions">
 <button class="btn" onclick="copyCode(this)">Copy</button>
-<button class="btn secondary" onclick="downloadCode(&apos;arch-mirror.sh&apos;, archScript)">Download</button>
+<button class="btn secondary" onclick="downloadCode('arch-mirror.sh', archScript)">Download</button>
   </div><code class="language-bash" id="archCode">#!/bin/bash
-# arch-mirror.sh &#x2014; pilih mirror tercepat Arch Linux dengan reflector
+# arch-mirror.sh — pilih mirror tercepat Arch Linux dengan reflector
 set -e
-COUNTRY=&quot;&#x24;{1:-Indonesia}&quot;
-echo &quot;[INFO] install reflector jika belum ada...&quot;
+COUNTRY="${1:-Indonesia}"
+echo "[INFO] install reflector jika belum ada..."
 sudo pacman -Sy --noconfirm reflector
-echo &quot;[INFO] backup mirrorlist...&quot;
-sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak.&#x24;(date +%F_%T)
-echo &quot;[INFO] menjalankan reflector (country=&#x24;COUNTRY)...&quot;
-sudo reflector --country &quot;&#x24;COUNTRY&quot; --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
-echo &quot;[INFO] sync &amp; refresh database...&quot;
+echo "[INFO] backup mirrorlist..."
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak.$(date +%F_%T)
+echo "[INFO] menjalankan reflector (country=$COUNTRY)..."
+sudo reflector --country "$COUNTRY" --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+echo "[INFO] sync &amp; refresh database..."
 sudo pacman -Syy
-echo &quot;[DONE] Mirrorlist Arch telah diperbarui.&quot;</code></pre>
+echo "[DONE] Mirrorlist Arch telah diperbarui."</code></pre>
 </div>
 <div>
   <h3>Petunjuk singkat</h3>
@@ -243,7 +243,7 @@ echo &quot;[DONE] Mirrorlist Arch telah diperbarui.&quot;</code></pre>
 </section>
 <!-- FEDORA -->
 <section id="fedora" class="panel" role="tabpanel" aria-hidden="true">
-  <h2>Fedora &#x2014; dnf &amp; fastestmirror</h2>
+  <h2>Fedora — dnf &amp; fastestmirror</h2>
   <p>Fedora menggunakan MirrorManager. Aktifkan plugin &amp; refresh cache untuk memastikan Anda menggunakan mirror tercepat.</p>
   <div class="note">Skrip mengaktifkan fastestmirror dan membersihkan cache.</div>
   <div class="grid">
@@ -251,22 +251,22 @@ echo &quot;[DONE] Mirrorlist Arch telah diperbarui.&quot;</code></pre>
   <h3>Skrip: fedora-mirror.sh</h3>
   <pre><div class="code-actions">
 <button class="btn" onclick="copyCode(this)">Copy</button>
-<button class="btn secondary" onclick="downloadCode(&apos;fedora-mirror.sh&apos;, fedoraScript)">Download</button>
+<button class="btn secondary" onclick="downloadCode('fedora-mirror.sh', fedoraScript)">Download</button>
   </div><code class="language-bash" id="fedoraCode">#!/bin/bash
-# fedora-mirror.sh &#x2014; aktifkan fastestmirror pada DNF (Fedora)
+# fedora-mirror.sh — aktifkan fastestmirror pada DNF (Fedora)
 set -e
-echo &quot;[INFO] pastikan plugin tersedia...&quot;
+echo "[INFO] pastikan plugin tersedia..."
 sudo dnf install -y dnf-plugins-core
-echo &quot;[INFO] backup dnf.conf...&quot;
-sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak.&#x24;(date +%F_%T)
-echo &quot;[INFO] mengaktifkan fastestmirror...&quot;
-if ! grep -q &quot;^fastestmirror&quot; /etc/dnf/dnf.conf 2&gt;/dev/null; then
-  echo &quot;fastestmirror=True&quot; | sudo tee -a /etc/dnf/dnf.conf
+echo "[INFO] backup dnf.conf..."
+sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak.$(date +%F_%T)
+echo "[INFO] mengaktifkan fastestmirror..."
+if ! grep -q "^fastestmirror" /etc/dnf/dnf.conf 2&gt;/dev/null; then
+  echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
 fi
-echo &quot;[INFO] membersihkan cache...&quot;
+echo "[INFO] membersihkan cache..."
 sudo dnf clean all
 sudo dnf makecache --refresh
-echo &quot;[DONE] fastestmirror aktif. Jalankan &apos;sudo dnf upgrade --refresh&apos; untuk memperbarui.&quot;</code></pre>
+echo "[DONE] fastestmirror aktif. Jalankan 'sudo dnf upgrade --refresh' untuk memperbarui."</code></pre>
 </div>
 <div>
   <h3>Petunjuk singkat</h3>
@@ -279,7 +279,7 @@ echo &quot;[DONE] fastestmirror aktif. Jalankan &apos;sudo dnf upgrade --refresh
 </section>
 <!-- OPENSUSE -->
 <section id="opensuse" class="panel" role="tabpanel" aria-hidden="true">
-  <h2>openSUSE &#x2014; zypper + mirrorlist.opensuse.org</h2>
+  <h2>openSUSE — zypper + mirrorlist.opensuse.org</h2>
   <p>openSUSE menyediakan mirrorlist service; script ini mengganti repo agar menggunakan mirrorlist otomatis lalu refresh.</p>
   <div class="note">Skrip menghapus repo lama (backup) dan menambahkan OSS &amp; Non-OSS via mirrorlist.</div>
   <div class="grid">
@@ -287,22 +287,22 @@ echo &quot;[DONE] fastestmirror aktif. Jalankan &apos;sudo dnf upgrade --refresh
   <h3>Skrip: opensuse-mirror.sh</h3>
   <pre><div class="code-actions">
 <button class="btn" onclick="copyCode(this)">Copy</button>
-<button class="btn secondary" onclick="downloadCode(&apos;opensuse-mirror.sh&apos;, opensuseScript)">Download</button>
+<button class="btn secondary" onclick="downloadCode('opensuse-mirror.sh', opensuseScript)">Download</button>
   </div><code class="language-bash" id="opensuseCode">#!/bin/bash
-# opensuse-mirror.sh &#x2014; gunakan mirrorlist.opensuse.org untuk repo openSUSE
+# opensuse-mirror.sh — gunakan mirrorlist.opensuse.org untuk repo openSUSE
 set -e
-echo &quot;[INFO] backup repo .repo...&quot;
+echo "[INFO] backup repo .repo..."
 sudo mkdir -p /etc/zypp/repos.d/backup
 sudo cp /etc/zypp/repos.d/*.repo /etc/zypp/repos.d/backup/ 2&gt;/dev/null || true
-OS_VERSION=&#x24;(grep VERSION_ID /etc/os-release | cut -d &apos;&quot;&apos; -f2)
-echo &quot;[INFO] menghapus repo lama...&quot;
+OS_VERSION=$(grep VERSION_ID /etc/os-release | cut -d '"' -f2)
+echo "[INFO] menghapus repo lama..."
 sudo zypper rr -a || true
-echo &quot;[INFO] menambahkan repo OSS &amp; Non-OSS via mirrorlist...&quot;
-sudo zypper ar -f &quot;http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/&#x24;OS_VERSION/repo/oss&quot; &quot;openSUSE-OSS&quot;
-sudo zypper ar -f &quot;http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/&#x24;OS_VERSION/repo/non-oss&quot; &quot;openSUSE-Non-OSS&quot;
-echo &quot;[INFO] refresh repo...&quot;
+echo "[INFO] menambahkan repo OSS &amp; Non-OSS via mirrorlist..."
+sudo zypper ar -f "http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/$OS_VERSION/repo/oss" "openSUSE-OSS"
+sudo zypper ar -f "http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/$OS_VERSION/repo/non-oss" "openSUSE-Non-OSS"
+echo "[INFO] refresh repo..."
 sudo zypper ref
-echo &quot;[DONE] openSUSE kini menggunakan mirrorlist.opensuse.org&quot;</code></pre>
+echo "[DONE] openSUSE kini menggunakan mirrorlist.opensuse.org"</code></pre>
 </div>
 <div>
   <h3>Petunjuk singkat</h3>
@@ -315,7 +315,7 @@ echo &quot;[DONE] openSUSE kini menggunakan mirrorlist.opensuse.org&quot;</code>
 </section>
 <!-- SLACKWARE -->
 <section id="slackware" class="panel" role="tabpanel" aria-hidden="true">
-  <h2>Slackware &#x2014; slackpkg mirrors</h2>
+  <h2>Slackware — slackpkg mirrors</h2>
   <p>Slackware memakai <code>/etc/slackpkg/mirrors</code>. Skrip ini backup lalu meminta user memasukkan URL mirror pilihan.</p>
   <div class="note">Saran: pilih mirror resmi Slackware (mirrors.slackware.com) atau mirror lokal terpercaya.</div>
   <div class="grid">
@@ -323,28 +323,28 @@ echo &quot;[DONE] openSUSE kini menggunakan mirrorlist.opensuse.org&quot;</code>
   <h3>Skrip: slackware-mirror.sh</h3>
   <pre><div class="code-actions">
 <button class="btn" onclick="copyCode(this)">Copy</button>
-<button class="btn secondary" onclick="downloadCode(&apos;slackware-mirror.sh&apos;, slackwareScript)">Download</button>
+<button class="btn secondary" onclick="downloadCode('slackware-mirror.sh', slackwareScript)">Download</button>
   </div><code class="language-bash" id="slackwareCode">#!/bin/bash
-# slackware-mirror.sh &#x2014; atur mirror untuk slackpkg
+# slackware-mirror.sh — atur mirror untuk slackpkg
 set -e
-MIRROR_FILE=&quot;/etc/slackpkg/mirrors&quot;
-BACKUP=&quot;/etc/slackpkg/mirrors.backup.&#x24;(date +%F_%T)&quot;
-echo &quot;[INFO] backup mirror lama ke &#x24;BACKUP ...&quot;
-sudo cp &quot;&#x24;MIRROR_FILE&quot; &quot;&#x24;BACKUP&quot;
-echo &quot;[INFO] menampilkan daftar mirror yang tidak dikomentari:&quot;
-grep -v &apos;^#&apos; &quot;&#x24;MIRROR_FILE&quot; | grep -E &apos;http|ftp&apos; || true
-echo &quot;&quot;
-read -p &quot;Masukkan URL mirror pilihan (mis: http://mirrors.slackware.com/slackware64-15.0/): &quot; MIRROR_URL
-if [ -z &quot;&#x24;MIRROR_URL&quot; ]; then
-  echo &quot;[ERROR] Tidak ada input. Batal.&quot;
+MIRROR_FILE="/etc/slackpkg/mirrors"
+BACKUP="/etc/slackpkg/mirrors.backup.$(date +%F_%T)"
+echo "[INFO] backup mirror lama ke $BACKUP ..."
+sudo cp "$MIRROR_FILE" "$BACKUP"
+echo "[INFO] menampilkan daftar mirror yang tidak dikomentari:"
+grep -v '^#' "$MIRROR_FILE" | grep -E 'http|ftp' || true
+echo ""
+read -p "Masukkan URL mirror pilihan (mis: http://mirrors.slackware.com/slackware64-15.0/): " MIRROR_URL
+if [ -z "$MIRROR_URL" ]; then
+  echo "[ERROR] Tidak ada input. Batal."
   exit 1
 fi
-echo &quot;[INFO] menulis &#x24;MIRROR_URL ke &#x24;MIRROR_FILE ...&quot;
-echo &quot;&#x24;MIRROR_URL&quot; | sudo tee &quot;&#x24;MIRROR_FILE&quot; &gt; /dev/null
-echo &quot;[INFO] update slackpkg...&quot;
+echo "[INFO] menulis $MIRROR_URL ke $MIRROR_FILE ..."
+echo "$MIRROR_URL" | sudo tee "$MIRROR_FILE" &gt; /dev/null
+echo "[INFO] update slackpkg..."
 sudo slackpkg update gpg
 sudo slackpkg update
-echo &quot;[DONE] Mirror slackpkg diset ke &#x24;MIRROR_URL&quot;</code></pre>
+echo "[DONE] Mirror slackpkg diset ke $MIRROR_URL"</code></pre>
 </div>
 <div>
   <h3>Petunjuk singkat</h3>
@@ -357,31 +357,31 @@ echo &quot;[DONE] Mirror slackpkg diset ke &#x24;MIRROR_URL&quot;</code></pre>
 </section>
 <!-- NIXOS -->
 <section id="nixos" class="panel" role="tabpanel" aria-hidden="true">
-  <h2>NixOS &#x2014; /etc/nix/nix.conf substituters</h2>
+  <h2>NixOS — /etc/nix/nix.conf substituters</h2>
   <p>Nix mengandalkan substituters (cache) untuk mempercepat pengunduhan store. Skrip ini backup <code>/etc/nix/nix.conf</code> dan menambahkan substituter serta trusted key contoh.</p>
-  <div class="note">Pastikan public key substituter benar &#x2014; contoh key disertakan sebagai placeholder, ganti sesuai mirror Anda.</div>
+  <div class="note">Pastikan public key substituter benar — contoh key disertakan sebagai placeholder, ganti sesuai mirror Anda.</div>
   <div class="grid">
 <div>
   <h3>Skrip: nixos-mirror.sh</h3>
   <pre><div class="code-actions">
 <button class="btn" onclick="copyCode(this)">Copy</button>
-<button class="btn secondary" onclick="downloadCode(&apos;nixos-mirror.sh&apos;, nixosScript)">Download</button>
+<button class="btn secondary" onclick="downloadCode('nixos-mirror.sh', nixosScript)">Download</button>
   </div><code class="language-bash" id="nixosCode">#!/bin/bash
-# nixos-mirror.sh &#x2014; tambahkan substituter mirror NixOS
+# nixos-mirror.sh — tambahkan substituter mirror NixOS
 set -e
-CONF=&quot;/etc/nix/nix.conf&quot;
-BACKUP=&quot;/etc/nix/nix.conf.backup.&#x24;(date +%F_%T)&quot;
-echo &quot;[INFO] backup &#x24;CONF ke &#x24;BACKUP ...&quot;
-sudo cp &quot;&#x24;CONF&quot; &quot;&#x24;BACKUP&quot; 2&gt;/dev/null || true
-echo &quot;[INFO] menambahkan substituter &amp; trusted key (contoh)...&quot;
-sudo tee -a /etc/nix/nix.conf &gt; /dev/null &lt;&lt;&apos;EOF&apos;
+CONF="/etc/nix/nix.conf"
+BACKUP="/etc/nix/nix.conf.backup.$(date +%F_%T)"
+echo "[INFO] backup $CONF ke $BACKUP ..."
+sudo cp "$CONF" "$BACKUP" 2&gt;/dev/null || true
+echo "[INFO] menambahkan substituter &amp; trusted key (contoh)..."
+sudo tee -a /etc/nix/nix.conf &gt; /dev/null &lt;&lt;'EOF'
 # tambahan substituter cepat (contoh)
 substituters = https://cache.nixos.org https://mirror.sjtu.edu.cn/nix-channels/store
 trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= mirror.sjtu.edu.cn-1:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 EOF
-echo &quot;[INFO] update channel...&quot;
+echo "[INFO] update channel..."
 sudo nix-channel --update || true
-echo &quot;[DONE] substituter ditambahkan. Pastikan trusted key valid untuk mirror yang dipakai.&quot;</code></pre>
+echo "[DONE] substituter ditambahkan. Pastikan trusted key valid untuk mirror yang dipakai."</code></pre>
 </div>
 <div>
   <h3>Petunjuk singkat</h3>
@@ -404,12 +404,12 @@ echo &quot;[DONE] substituter ditambahkan. Pastikan trusted key valid untuk mirr
 </section>
 <section><div id="related-articles-grid"></div><div id="response"></div></section>
 <footer>
-  &#x1f12f; 2025 &#x2022; Mirror Selector Toolkit &#x2014; Gunakan dengan hati-hati. Semua skrip disediakan sebagai contoh; sesuaikan dengan kebutuhan.
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+  🄯 2025 • Mirror Selector Toolkit — Gunakan dengan hati-hati. Semua skrip disediakan sebagai contoh; sesuaikan dengan kebutuhan.
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
 <!-- Prism.js -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-bash.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js" defer=""></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-bash.min.js" defer=""></script>
 <script>
   // Tab handling
   document.querySelectorAll('.tab-btn').forEach(btn=>{
@@ -514,7 +514,7 @@ btn.addEventListener('keydown', (e)=>{
 });
   });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

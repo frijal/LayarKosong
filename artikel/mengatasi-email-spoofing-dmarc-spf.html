@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Tips IT">
     <meta property="article:tag" content="Cyber Security">
     <meta property="article:tag" content="Google Workspace">
@@ -210,41 +210,41 @@
 <body>
     <main>
         <header>
-            <div id="iposbrowser"></div><h1>Untuk Pemilik Domain &amp; Email Bisnis: Jangan Tunggu Inbox Jebol Baru Bertindak! &#x1f631;</h1>
+            <div id="iposbrowser"></div><h1>Untuk Pemilik Domain &amp; Email Bisnis: Jangan Tunggu Inbox Jebol Baru Bertindak! 😱</h1>
             <div class="author-meta">
-                <i class="fa-solid fa-pen-nib"></i> disadur dari ahyari.net &#xa0;|&#xa0; <i class="fa-regular fa-calendar-days"></i> publikasi di Layar Kosong
+                <i class="fa-solid fa-pen-nib"></i> disadur dari ahyari.net &nbsp;|&nbsp; <i class="fa-regular fa-calendar-days"></i> publikasi di Layar Kosong
             </div>
         </header>
         <article>
-            <p>Halo, kawan-kawan! Kali ini aku mau <em>share</em> pengalaman nyata sekaligus ngebahas <em>cyber security</em> santai tapi krusial banget. Beberapa hari lalu, inbox Google Workspace aku tiba-tiba kebanjiran ratusan email <strong>&quot;Delivery Status Notification&quot;</strong> alias notifikasi email gagal terkirim. Padahal, aku sama sekali tidak ada mengirim email apa pun!</p>
+            <p>Halo, kawan-kawan! Kali ini aku mau <em>share</em> pengalaman nyata sekaligus ngebahas <em>cyber security</em> santai tapi krusial banget. Beberapa hari lalu, inbox Google Workspace aku tiba-tiba kebanjiran ratusan email <strong>"Delivery Status Notification"</strong> alias notifikasi email gagal terkirim. Padahal, aku sama sekali tidak ada mengirim email apa pun!</p>
 <img src="https://dalam.web.id/img/scontent_sin2_1.xx.fbcdn.net/59935fcaf31771bb.webp" alt="Ilustrasi Keamanan Email dan DNS" class="featured-image" width="1000" height="562" loading="eager" decoding="async">
-            <h2>Apa yang Terjadi? (What &amp; When) &#x1f575;&#xfe0f;&#x2642;&#xfe0f;</h2>
-            <p>Kejadiannya mendadak banget. Tiap detik dan menit masuk terus sampai penuh! Sehari bisa sampai 6.000-an email gagal masuk ke inbox. Ya, ga penuh sih sebenarnya, kapasitas Google Workspace aku masih sisa 100GB &#x1f923;. Tapi tetap aja, ini bikin risih dan notifikasi HP bunyi terus-terusan.</p>
-            <p>Sempat mikir, <em>&quot;Wah, akun aku kena hack ya?&quot;</em> &#x1f914;</p>
-            <h2>Siapa Pelakunya dan Kenapa Bisa Gini? (Who &amp; Why) &#x1f9d0;</h2>
+            <h2>Apa yang Terjadi? (What &amp; When) 🕵️♂️</h2>
+            <p>Kejadiannya mendadak banget. Tiap detik dan menit masuk terus sampai penuh! Sehari bisa sampai 6.000-an email gagal masuk ke inbox. Ya, ga penuh sih sebenarnya, kapasitas Google Workspace aku masih sisa 100GB 🤣. Tapi tetap aja, ini bikin risih dan notifikasi HP bunyi terus-terusan.</p>
+            <p>Sempat mikir, <em>"Wah, akun aku kena hack ya?"</em> 🤔</p>
+            <h2>Siapa Pelakunya dan Kenapa Bisa Gini? (Who &amp; Why) 🧐</h2>
             <p>Setelah dicek di bagian Login Details Gmail, ternyata aman sentosa. Hanya perangkat aku saja yang masuk. Jadi, <strong>JELAS TIDAK ADA PERETASAN AKUN</strong>.</p>
             <p>Lalu kenapa bisa penuh email mental? Ternyata, domain aku terkena yang namanya <strong>Email Spoofing</strong>. Ada orang jahat atau <em>spammer</em> di luar sana yang memalsukan alamat email aku (seolah-olah pakai <code>xyz@nama-domain-kamu.com</code>) untuk mengirim spam massal lewat server mereka sendiri. Begitu email mereka mental atau ditolak di server tujuan (karena emang spam), <em>bounce-back error</em>-nya dikirim balik ke alamat pengirim yang tertera... alias inbox asli aku!</p>
-            <h2>Bagaimana Cara Mengatasinya? (How) &#x1f6e0;&#xfe0f;</h2>
+            <h2>Bagaimana Cara Mengatasinya? (How) 🛠️</h2>
             <p>Beruntung, masalah nyebelin ini bisa langsung <strong>BERHENTI TOTAL</strong> dalam sekejap tanpa perlu pusing cek ribuan log. Ini dia 2 langkah kunci yang aku lakukan di Cloudflare DNS (kamu juga bisa terapkan di panel DNS lain):</p>
-            <h3>1&#xfe0f;&#x20e3; Kunci DMARC ke <code>&quot;p=reject&quot;</code></h3>
+            <h3>1️⃣ Kunci DMARC ke <code>"p=reject"</code></h3>
             <p>Sebelumnya, setelan DMARC aku cuma <code>p=none</code> (cuma memantau doang, pasif). Berdasarkan pengalaman (E-E-A-T banget nih!), aku langsung ubah catatannya jadi tegas di DNS Zone:</p>
             <pre><code>v=DMARC1; p=reject; sp=reject; pct=100</code></pre>
             <p><strong>Artinya:</strong> Aku perintahkan semua server email di dunia (Gmail, Yahoo, Outlook, dkk) untuk <strong>LANGSUNG MENOLAK &amp; MENGHANCURKAN</strong> email palsu yang pakai nama domain aku. Hasilnya? Inbox langsung bersih seketika, email gagal terkirim dari spammer stop saat itu juga!</p>
             <p>Jika ingin perlindungan yang jauh lebih ketat lagi, bisa menggunakan format ini:</p>
             <pre><code>v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; pct=100;</code></pre>
-            <h3>2&#xfe0f;&#x20e3; Gabungkan IP Hosting WordPress ke SPF</h3>
+            <h3>2️⃣ Gabungkan IP Hosting WordPress ke SPF</h3>
             <p>Nah, karena _dmarc di-set <code>p=reject</code>, bakal ada efek sampingnya: notifikasi otomatis dari blog-blog WordPress aku yang tidak pakai SMTP bisa ikut terblokir (dianggap email palsu oleh server penerima).</p>
             <p>Solusi praktisnya? Tinggal tambahkan IP Server Hosting tempat blog kita berada ke dalam catatan <strong>TXT SPF</strong> di DNS. Contohnya seperti ini:</p>
             <pre><code>v=spf1 include:_spf.google.com ip4:IP_HOSTING_1 ip4:IP_HOSTING_2 include:spf.nama-domain-kamu.com ~all</code></pre>
             <p><em>(Catatan: IP dan spf nama-domain-kamu cek di DNS ZONE penyedia layanan masing-masing ya).</em></p>
             <p>Dengan begini, Google Workspace tetap aman, spammer gigit jari karena email palsunya otomatis mental di luar sana, dan notifikasi dari semua blog WordPress kita tetap lancar masuk karena IP hostingnya sudah divalidasi resmi di sistem.</p>
-            <h2>Dimana Sabarnya? Tunggu Masa Propagasi DNS (Where &amp; The Aftermath) &#x23f3;</h2>
+            <h2>Dimana Sabarnya? Tunggu Masa Propagasi DNS (Where &amp; The Aftermath) ⏳</h2>
             <p>Setelah mengubah SPF dan DMARC, akan ada yang namanya masa propagasi DNS. Meskipun perubahan di sisi panel penyedia domain (aku menggunakan Cloudflare) terasa instan, internet membutuhkan waktu untuk menyebarkan (propagasi) informasi record SPF dan DMARC baru tersebut ke seluruh server DNS dan penyedia email di seluruh dunia.</p>
             <p>Jadi, dalam kasusku, setelah 5 jam mengganti record SPF dan DMARC, masih ada beberapa email <em>bounce</em> yang lolos masuk. Tapi tenang, jumlahnya sudah sangat sedikit (sebelumnya tembus 6.000, sekarang cuma 12 nyasar saja).</p>
             <h3>Mengapa Masih Ada yang Lolos di Awal?</h3>
             <p>Pembaruan DNS untuk record SPF dan DMARC biasanya memakan waktu antara 24 hingga 48 jam (maksimal 72 jam) untuk benar-benar berlaku secara global.</p>
             <p>Lalu ada juga faktor <strong>TTL (Time to Live)</strong>. Kecepatan server penerima menyadari perubahan ini sangat bergantung pada nilai TTL pada record DNS lama kita. Jika TTL lama diatur ke 24 jam (86400 detik), maka server-server penerima baru akan meminta data DNS terbaru kita setelah 24 jam berlalu. Di Cloudflare sendiri, aku cukup set menggunakan <strong>AUTO</strong> untuk TTL agar lebih fleksibel.</p>
-            <p>Untuk kawan-kawan yang punya domain sendiri, coba cek deh setelan DMARC dan SPF-nya sekarang sebelum kejadian seperti aku. Lebih baik sedia payung sebelum hujan email spam! Semoga pengalaman ini bermanfaat ya. &#x1f6e1;&#xfe0f;&#x1f4bb;</p>
+            <p>Untuk kawan-kawan yang punya domain sendiri, coba cek deh setelan DMARC dan SPF-nya sekarang sebelum kejadian seperti aku. Lebih baik sedia payung sebelum hujan email spam! Semoga pengalaman ini bermanfaat ya. 🛡️💻</p>
             <div class="tags-container">
                 <span class="tag-badge">#TipsIT</span>
                 <span class="tag-badge">#CyberSecurity</span>
@@ -256,10 +256,10 @@
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>&#x1f12f; 2026 Layar Kosong. Tetap Aman dan Waspada di Dunia Digital.</p>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <p>🄯 2026 Layar Kosong. Tetap Aman dan Waspada di Dunia Digital.</p>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

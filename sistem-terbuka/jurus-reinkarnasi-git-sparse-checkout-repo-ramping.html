@@ -1,25 +1,267 @@
-<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping - Layar Kosong</title><meta content="Cara ekstrem mengurangi ukuran repositori Git dari 1.7 GB menjadi di bawah 500 MB menggunakan teknik reinkarnasi dan Git Sparse Checkout di Codespaces." name="description"><link href="https://dalam.web.id/sistem-terbuka/jurus-reinkarnasi-git-sparse-checkout-repo-ramping" rel="canonical"><link title="Pedit Cow (CVE-2026-46331): Bahaya Eksploitasi Kernel Linux" href="https://dalam.web.id/sistem-terbuka/pedit-cow-cve-bahaya-eksploitasi-kernel-linux" rel="prev"><meta content="https://dalam.web.id/sistem-terbuka/jurus-reinkarnasi-git-sparse-checkout-repo-ramping" property="og:url"><meta content="https://dalam.web.id/sistem-terbuka/jurus-reinkarnasi-git-sparse-checkout-repo-ramping" name="twitter:url"><meta content="Linux, Open Source" property="article:section"><meta content="Linux" property="article:tag"><meta content="Open Source" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="Git Sparse Checkout, Optimasi Repositori Git, GitHub Codespaces, Web Statis" name="news_keywords"><meta content="Bagaimana cara mengecilkan ukuran repo Git? | Hapus history .git secara paksa dan gunakan fitur git sparse-checkout." name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping" property="og:title"><meta content="Panduan teknis merampingkan repository lokal yang membengkak. Manfaatkan GitHub Codespaces dan filter blob untuk performa maksimal web statis." property="og:description"><meta content="2026-06-29T13:07:31.807Z" property="og:updated_time"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp" property="og:image"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp" property="og:image:url"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp" property="og:image:secure_url"><meta content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping" property="og:image:alt"><meta content="1672" property="og:image:width"><meta content="941" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping" name="twitter:title"><meta content="Jangan biarkan folder .git memenuhi hardisk. Pelajari trik force push dan sparse checkout untuk membersihkan history tanpa merusak file utama." name="twitter:description"><meta content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp" name="twitter:image"><meta content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2026-06-29T12:58:32.266Z" property="article:published_time"><meta content="2026-06-29T12:58:32.266Z" property="article:modified_time"><link href="/ext/github-dark.min.css" rel="stylesheet"><style>:root{--bg-color:#fdfdfd;--text-main:#1f1f1f;--text-muted:#555;--accent:#06c;--accent-hover:#004c99;--border:#e0e0e0;--code-bg:#1e1e1e;--code-text:#d4d4d4;--surface:#fff}@media (prefers-color-scheme:dark){:root{--bg-color:#121212;--text-main:#e4e4e4;--text-muted:#a0a0a0;--accent:#4da3ff;--accent-hover:#80bfff;--border:#333;--surface:#1e1e1e}}*{box-sizing:border-box}body{background-color:var(--bg-color);color:var(--text-main);margin:0;font-family:system-ui,-apple-system,sans-serif;font-size:1.125rem;line-height:1.7}.container{width:min(100%,64rem);margin:0 auto;padding:2rem 1.5rem}header{text-align:center;margin-bottom:2.5rem}h1{color:var(--text-main);margin-bottom:1rem;font-size:2.25rem;line-height:1.3}.lead{color:var(--text-muted);margin-bottom:2rem;font-size:1.2rem}h2{border-bottom:.1rem solid var(--border);margin-top:3rem;margin-bottom:1.25rem;padding-bottom:.5rem;font-size:1.6rem}h3{margin-top:2rem;margin-bottom:1rem;font-size:1.35rem}p{margin-bottom:1.5rem}a{color:var(--accent);text-decoration:none}a:hover{color:var(--accent-hover);text-decoration:underline}img{aspect-ratio:16/9;object-fit:cover;border:.1rem solid var(--border);border-radius:.5rem;width:100%;height:auto;margin:2rem 0}pre{background-color:var(--code-bg);color:var(--code-text);border-radius:.5rem;margin:1.5rem 0;padding:1.5rem;font-size:.95rem;line-height:1.5;overflow-x:auto}code{font-family:ui-monospace,Fira Code,monospace}details{background-color:var(--surface);border:.1rem solid var(--border);border-radius:.5rem;margin:2.5rem 0;padding:1.5rem;transition:background-color .3s}summary{cursor:pointer;outline:none;align-items:center;list-style:none;display:flex}summary h2{border:none;flex-grow:1;margin:0;padding:0;font-size:1.6rem}summary::-webkit-details-marker{display:none}summary:before{content:"▶";color:var(--accent);margin-right:1rem;font-size:1.2rem;transition:transform .3s}details[open] summary:before{transform:rotate(90deg)}details[open] summary{border-bottom:.1rem solid var(--border);margin-bottom:1.5rem;padding-bottom:1rem}footer{border-top:.1rem solid var(--border);text-align:center;color:var(--text-muted);margin-top:5rem;padding-top:2rem;font-size:.9rem}.footer-meta{flex-wrap:wrap;justify-content:center;align-items:center;gap:1.5rem;display:flex}.footer-meta span{align-items:center;display:inline-flex}</style><link href="/ext/pemandu.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Jurus Reinkarnasi Git & Sparse Checkout untuk Repo Ramping","description":"Cara ekstrem mengurangi ukuran repositori Git dari 1.7 GB menjadi di bawah 500 MB menggunakan teknik reinkarnasi dan Git Sparse Checkout di Codespaces.","datePublished":"2026-06-29T12:58:32.266Z","dateModified":"2026-06-29T12:58:32.266Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping"},"wordCount":999,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","keywords":["Linux","Open Source","Git Sparse Checkout","Optimasi Repositori Git","GitHub Codespaces","Web Statis","jurus","reinkarnasi","git","sparse","checkout","repo","ramping","Sistem Terbuka","Layar Kosong"],"articleSection":["Sistem Terbuka"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping","url":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping","name":"Jurus Reinkarnasi Git & Sparse Checkout untuk Repo Ramping - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","datePublished":"2026-06-29T12:58:32.266Z","dateModified":"2026-06-29T12:58:32.266Z","description":"Cara ekstrem mengurangi ukuran repositori Git dari 1.7 GB menjadi di bawah 500 MB menggunakan teknik reinkarnasi dan Git Sparse Checkout di Codespaces.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping#primaryimage","url":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","contentUrl":"https:\/\/dalam.web.id\/img\/raw.githubusercontent.com\/438b5926a9dd6497.webp","width":1672,"height":941,"caption":"Jurus Reinkarnasi Git & Sparse Checkout untuk Repo Ramping","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https:\/\/dalam.web.id\/sistem-terbuka"},{"@type":"ListItem","position":3,"name":"Jurus Reinkarnasi Git & Sparse Checkout untuk Repo Ramping","item":"https:\/\/dalam.web.id\/sistem-terbuka\/jurus-reinkarnasi-git-sparse-checkout-repo-ramping"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><div class="container"><main><article><header><div id="iposbrowser"></div><h1>Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping</h1><p class="lead">Mengatasi obesitas repositori web statis dari 1.7 GB menjadi kurang dari 500 MB menggunakan kombinasi trik nuklir di Codespaces dan filter cerdas di lokal.</p></header><p>Pernahkah kamu mengecek ukuran folder proyek web statismu dan mendadak terkejut karena ukurannya sudah menyaingi <i>installer game</i> PC zaman dulu? Hal ini sering kali menjadi mimpi buruk bagi para pengembang yang rutin memperbarui konten situs mereka. Beberapa waktu lalu, saat melakukan audit penyimpanan untuk blog statis, aku menemukan fakta mengejutkan: repositori utama membengkak hingga menyentuh angka <b>1.7 GB</b>.</p><p>Setelah diinvestigasi lebih dalam menggunakan perintah terminal, tersangka utamanya langsung terlihat jelas. Berikut adalah hasil audit ukuran folder yang aku jalankan:</p><pre><code class="language-bash">◎ du -h --max-depth=1 | sort -hr
-1,7G .
-1,2G ./.git
-344M ./node_modules
-36M ./artikel
-11M ./sistem-terbuka
-8,2M ./warta-tekno
-7,8M ./.well-known
-6,0M ./jejak-sejarah
-5,7M ./opini-sosial
-4,1M ./lainnya
-3,7M ./dapur
-3,1M ./ext
-2,9M ./gaya-hidup
-2,4M ./mini
-2,3M ./olah-media
-980K ./.github
-928K ./sementara
-100K ./artikelx
-24K ./functions
-20K ./search
-16K ./.devcontainer</code></pre><p>Folder <i>.git</i> mendominasi dengan ukuran 1.2 GB, sementara <i>node_modules</i> memakan sekitar 344 MB. Git pada dasarnya beroperasi seperti seorang "tukang nimbun" data. Setiap kali kita mengubah baris kode, membuat HTML baru, atau menukar gambar resolusi tinggi dengan versi terkompresi, Git menyimpan <i>snapshot</i> riwayat tersebut secara abadi.</p><img alt="Ilustrasi terminal Git saat melakukan sparse checkout dan kompresi data" sizes="(max-width: 1032px) calc(100vw - 40px), 992px" srcset="https://dalam.web.id/img/raw.githubusercontent.com/9c7710c1ac52170b-sm.webp 720w, https://dalam.web.id/img/raw.githubusercontent.com/9c7710c1ac52170b-md.webp 960w, https://dalam.web.id/img/raw.githubusercontent.com/9c7710c1ac52170b.webp 992w" decoding="async" fetchpriority="high" height="608" src="https://dalam.web.id/img/raw.githubusercontent.com/9c7710c1ac52170b.webp" width="992"><p>Meskipun file berukuran besar sudah lama kita hapus dari folder proyek, file tersebut secara fisik masih tersimpan di dalam perut folder <i>.git</i>. Hal ini dirancang agar kita bisa membatalkan perubahan ke masa lalu. Namun, untuk sebuah blog di mana kita hanya peduli pada hasil akhir artikel, menimbun riwayat <i>commit</i> selama bertahun-tahun hanyalah beban yang menghabiskan ruang penyimpanan dan memperlambat proses otomasi.</p><p>Sebelum mengambil langkah ekstrem, aku mencoba melakukan terapi pijat refleksi menggunakan perintah <code>git gc --prune=now --aggressive</code>. Perintah ini memaksa Git untuk memampatkan riwayat, membuang perubahan menggantung yang tidak terpakai, dan merapikan struktur data secara menyeluruh. Bagi repositori yang sudah bertahun-tahun bereksperimen, pembersihan ini ibarat membuang tumpukan sampah sejarah yang tidak pernah lagi kita kunjungi.</p><h2>Operasi Sedot Lemak Repositori (Jalur Nuklir)</h2><p>Ada kalanya perintah pembersihan standar tidak cukup efektif. Jika riwayat masa lalu benar-benar tidak lagi relevan, kita bisa mengambil jalur reinkarnasi total. Namun, menghapus dan memaksa unggah ulang (<i>force push</i>) data bergiga-giga menggunakan koneksi internet lokal bisa membuat kipas laptop berputar kencang dan memakan waktu berjam-jam.</p><p>Solusi paling cerdas adalah meminjam tenaga mesin <i>cloud</i> seperti GitHub Codespaces. Dengan kecepatan internet <i>cloud</i> yang menembus hitungan Gigabit, operasi seberat apa pun dapat selesai dalam hitungan detik. Biarkan server raksasa yang bekerja keras, sementara kita tetap bersantai.</p><p>Di dalam terminal Codespaces, jalankan rangkaian eksekusi pemungkas ini untuk menghancurkan riwayat lama dan melahirkan kembali repositori yang segar:</p><pre><code class="language-bash"># 1. Hapus folder .git lama sampai ke akar-akarnya
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping - Layar Kosong</title>
+    <meta name="description" content="Cara ekstrem mengurangi ukuran repositori Git dari 1.7 GB menjadi di bawah 500 MB menggunakan teknik reinkarnasi dan Git Sparse Checkout di Codespaces.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/jurus-reinkarnasi-git-sparse-checkout-repo-ramping">
+    <link rel="prev" href="https://dalam.web.id/sistem-terbuka/pedit-cow-cve-bahaya-eksploitasi-kernel-linux" title="Pedit Cow (CVE-2026-46331): Bahaya Eksploitasi Kernel Linux">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/jurus-reinkarnasi-git-sparse-checkout-repo-ramping">
+    <meta name="twitter:url" content="https://dalam.web.id/sistem-terbuka/jurus-reinkarnasi-git-sparse-checkout-repo-ramping">
+    <meta property="article:section" content="Linux, Open Source">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Open Source">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Git Sparse Checkout, Optimasi Repositori Git, GitHub Codespaces, Web Statis">
+    <meta name="promphint" content="Bagaimana cara mengecilkan ukuran repo Git? | Hapus history .git secara paksa dan gunakan fitur git sparse-checkout.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping">
+    <meta property="og:description" content="Panduan teknis merampingkan repository lokal yang membengkak. Manfaatkan GitHub Codespaces dan filter blob untuk performa maksimal web statis.">
+    <meta property="og:updated_time" content="2026-06-29T13:07:31.807Z">
+    <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp">
+    <meta property="og:image:alt" content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping">
+    <meta property="og:image:width" content="1672">
+    <meta property="og:image:height" content="941">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:title" content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping">
+    <meta name="twitter:description" content="Jangan biarkan folder .git memenuhi hardisk. Pelajari trik force push dan sparse checkout untuk membersihkan history tanpa merusak file utama.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/438b5926a9dd6497.webp">
+    <meta name="twitter:image:alt" content="Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-06-29T12:58:32.266Z">
+    <meta property="article:modified_time" content="2026-06-29T20:10:13.729Z">
+  <link rel="stylesheet" href="/ext/github-dark.min.css">
+  <style>
+    :root {
+      --bg-color: #fdfdfd;
+      --text-main: #1f1f1f;
+      --text-muted: #555555;
+      --accent: #0066cc;
+      --accent-hover: #004c99;
+      --border: #e0e0e0;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --surface: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #121212;
+        --text-main: #e4e4e4;
+        --text-muted: #a0a0a0;
+        --accent: #4da3ff;
+        --accent-hover: #80bfff;
+        --border: #333333;
+        --surface: #1e1e1e;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      font-size: 1.125rem;
+    }
+    .container {
+      width: min(100%, 64rem);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.25rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+    .lead {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 3rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.1rem solid var(--border);
+    }
+    h3 {
+      font-size: 1.35rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1.5rem;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: var(--accent-hover);
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      margin: 2rem 0;
+      border: 0.1rem solid var(--border);
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 1.5rem;
+      overflow-x: auto;
+      border-radius: 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 1.5rem 0;
+    }
+    code {
+      font-family: ui-monospace, "Fira Code", monospace;
+    }
+    details {
+      background-color: var(--surface);
+      border: 0.1rem solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 2.5rem 0;
+      transition: background-color 0.3s ease;
+    }
+    summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      outline: none;
+    }
+    summary h2 {
+      margin: 0;
+      border: none;
+      padding: 0;
+      font-size: 1.6rem;
+      flex-grow: 1;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary::before {
+      content: "▶";
+      margin-right: 1rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+    details[open] summary {
+      border-bottom: 0.1rem solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 0.1rem solid var(--border);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .footer-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-meta span {
+      display: inline-flex;
+      align-items: center;
+    }
+  </style>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+  <div class="container">
+    <main>
+      <article>
+        <header>
+          <div id="iposbrowser"></div><h1>Jurus Reinkarnasi Git &amp; Sparse Checkout untuk Repo Ramping</h1>
+          <p class="lead">Mengatasi obesitas repositori web statis dari 1.7 GB menjadi kurang dari 500 MB menggunakan kombinasi trik nuklir di Codespaces dan filter cerdas di lokal.</p>
+        </header>
+        <p>Pernahkah kamu mengecek ukuran folder proyek web statismu dan mendadak terkejut karena ukurannya sudah menyaingi <i>installer game</i> PC zaman dulu? Hal ini sering kali menjadi mimpi buruk bagi para pengembang yang rutin memperbarui konten situs mereka. Beberapa waktu lalu, saat melakukan audit penyimpanan untuk blog statis, aku menemukan fakta mengejutkan: repositori utama membengkak hingga menyentuh angka <b>1.7 GB</b>.</p>
+        <p>Setelah diinvestigasi lebih dalam menggunakan perintah terminal, tersangka utamanya langsung terlihat jelas. Berikut adalah hasil audit ukuran folder yang aku jalankan:</p>
+        <pre><code class="language-bash">◎ du -h --max-depth=1 | sort -hr
+1,7G    .
+1,2G    ./.git
+344M    ./node_modules
+36M     ./artikel
+11M     ./sistem-terbuka
+8,2M    ./warta-tekno
+7,8M    ./.well-known
+6,0M    ./jejak-sejarah
+5,7M    ./opini-sosial
+4,1M    ./lainnya
+3,7M    ./dapur
+3,1M    ./ext
+2,9M    ./gaya-hidup
+2,4M    ./mini
+2,3M    ./olah-media
+980K    ./.github
+928K    ./sementara
+100K    ./artikelx
+24K     ./functions
+20K     ./search
+16K     ./.devcontainer</code></pre>
+        <p>Folder <i>.git</i> mendominasi dengan ukuran 1.2 GB, sementara <i>node_modules</i> memakan sekitar 344 MB. Git pada dasarnya beroperasi seperti seorang "tukang nimbun" data. Setiap kali kita mengubah baris kode, membuat HTML baru, atau menukar gambar resolusi tinggi dengan versi terkompresi, Git menyimpan <i>snapshot</i> riwayat tersebut secara abadi.</p>
+        <img src="https://dalam.web.id/img/raw.githubusercontent.com/9c7710c1ac52170b.webp" alt="Ilustrasi terminal Git saat melakukan sparse checkout dan kompresi data" width="1200" height="675" fetchpriority="high" decoding="async">
+        <p>Meskipun file berukuran besar sudah lama kita hapus dari folder proyek, file tersebut secara fisik masih tersimpan di dalam perut folder <i>.git</i>. Hal ini dirancang agar kita bisa membatalkan perubahan ke masa lalu. Namun, untuk sebuah blog di mana kita hanya peduli pada hasil akhir artikel, menimbun riwayat <i>commit</i> selama bertahun-tahun hanyalah beban yang menghabiskan ruang penyimpanan dan memperlambat proses otomasi.</p>
+        <p>Sebelum mengambil langkah ekstrem, aku mencoba melakukan terapi pijat refleksi menggunakan perintah <code>git gc --prune=now --aggressive</code>. Perintah ini memaksa Git untuk memampatkan riwayat, membuang perubahan menggantung yang tidak terpakai, dan merapikan struktur data secara menyeluruh. Bagi repositori yang sudah bertahun-tahun bereksperimen, pembersihan ini ibarat membuang tumpukan sampah sejarah yang tidak pernah lagi kita kunjungi.</p>
+        <h2>Operasi Sedot Lemak Repositori (Jalur Nuklir)</h2>
+        <p>Ada kalanya perintah pembersihan standar tidak cukup efektif. Jika riwayat masa lalu benar-benar tidak lagi relevan, kita bisa mengambil jalur reinkarnasi total. Namun, menghapus dan memaksa unggah ulang (<i>force push</i>) data bergiga-giga menggunakan koneksi internet lokal bisa membuat kipas laptop berputar kencang dan memakan waktu berjam-jam.</p>
+        <p>Solusi paling cerdas adalah meminjam tenaga mesin <i>cloud</i> seperti GitHub Codespaces. Dengan kecepatan internet <i>cloud</i> yang menembus hitungan Gigabit, operasi seberat apa pun dapat selesai dalam hitungan detik. Biarkan server raksasa yang bekerja keras, sementara kita tetap bersantai.</p>
+        <p>Di dalam terminal Codespaces, jalankan rangkaian eksekusi pemungkas ini untuk menghancurkan riwayat lama dan melahirkan kembali repositori yang segar:</p>
+<pre><code class="language-bash"># 1. Hapus folder .git lama sampai ke akar-akarnya
 rm -rf .git
 # 2. Inisialisasi ulang Git dari nol (Fresh Start)
 git init
@@ -29,12 +271,28 @@ git commit -m "feat: Reinkarnasi repositori (Fresh Start)"
 # 4. Sambungkan lagi ke repo jarak jauh
 git remote add origin https://github.com/frijal/LayarKosong.git
 # 5. Paksa Push (Timpa repo lama dengan yang baru)
-git push -u --force origin main</code></pre><p>Begitu rangkaian perintah di atas selesai, repositori yang tadinya raksasa akan langsung menyusut drastis. Berdasarkan uji coba, proses ini berhasil memangkas ukuran dari 1.7 GB menjadi kurang dari 500 MB. Alur kerja GitHub Actions pun dipastikan akan memuat repositori dengan jauh lebih gesit.</p><details><summary><h2>Strategi Diet Lokal dengan Git Sparse Checkout</h2></summary> <p>Setelah repositori di server kembali sehat, langkah selanjutnya adalah mengamankan laptop lokal kita. Web statis umumnya memiliki ribuan aset visual di dalam folder khusus gambar dan banyak modul di dalam folder dependensi. Mengunduh semua itu saat koneksi internet sedang labil tentu sangat menyiksa.</p> <p>Di sinilah teknik <b>Sparse Checkout</b> hadir sebagai solusi elegan. Secara harfiah, teknik ini memungkinkan kita untuk melakukan ekstraksi hanya pada subset file tertentu. Kita bisa memilih folder mana saja yang boleh muncul di layar laptop kita, tanpa perlu menghapusnya dari repositori utama di GitHub.</p> <h3>Langkah 1: Clone Tanpa Beban</h3> <p>Proses dimulai saat kita mengunduh repositori menggunakan GitHub CLI. Kita menambahkan filter <i>blob:none</i> agar Git menunda pengunduhan isi file besar sampai kita benar-benar membutuhkannya di masa depan.</p> <pre><code class="language-bash"># Login dan clone dengan filter khusus
+git push -u --force origin main</code></pre>
+        <p>Begitu rangkaian perintah di atas selesai, repositori yang tadinya raksasa akan langsung menyusut drastis. Berdasarkan uji coba, proses ini berhasil memangkas ukuran dari 1.7 GB menjadi kurang dari 500 MB. Alur kerja GitHub Actions pun dipastikan akan memuat repositori dengan jauh lebih gesit.</p>
+        <details>
+          <summary><h2>Strategi Diet Lokal dengan Git Sparse Checkout</h2></summary>
+          <p>Setelah repositori di server kembali sehat, langkah selanjutnya adalah mengamankan laptop lokal kita. Web statis umumnya memiliki ribuan aset visual di dalam folder khusus gambar dan banyak modul di dalam folder dependensi. Mengunduh semua itu saat koneksi internet sedang labil tentu sangat menyiksa.</p>
+          <p>Di sinilah teknik <b>Sparse Checkout</b> hadir sebagai solusi elegan. Secara harfiah, teknik ini memungkinkan kita untuk melakukan ekstraksi hanya pada subset file tertentu. Kita bisa memilih folder mana saja yang boleh muncul di layar laptop kita, tanpa perlu menghapusnya dari repositori utama di GitHub.</p>
+          <h3>Langkah 1: Clone Tanpa Beban</h3>
+          <p>Proses dimulai saat kita mengunduh repositori menggunakan GitHub CLI. Kita menambahkan filter <i>blob:none</i> agar Git menunda pengunduhan isi file besar sampai kita benar-benar membutuhkannya di masa depan.</p>
+<pre><code class="language-bash"># Login dan clone dengan filter khusus
 gh auth login
 gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1
 # Masuk ke direktori
-cd LayarKosong/</code></pre> <h3>Langkah 2: Mematikan Mode Cone</h3> <p>Git modern menggunakan mode <i>Cone</i> secara bawaan, yang dirancang hanya untuk mencakup folder secara utuh. Karena kita ingin menggunakan pola pengecualian yang spesifik (menggunakan tanda seru), kita wajib mematikan mode tersebut dan menginisialisasi ulang aturannya.</p> <pre><code class="language-bash">git config core.sparseCheckoutCone false
-git sparse-checkout init</code></pre> <h3>Langkah 3: Menetapkan Aturan Gaib</h3> <p>Bagian inti dari teknik ini adalah memberitahu Git untuk mengambil semua dokumen, tetapi mengabaikan folder raksasa seperti gambar, alur kerja, dan modul <i>node</i> secara mutlak.</p> <pre><code class="language-bash">git sparse-checkout set --no-cone "/*" "!/img/" "!/.github/workflows/" "!/node_modules/"</code></pre> <p>Seketika, folder raksasa tersebut akan lenyap dari penjelajah berkas di komputer kita. Namun jangan panik, mereka tetap bersandar dengan aman di dalam server GitHub, dan status Git di komputer lokal akan selalu terbaca bersih. Sebagai bukti nyata, berikut adalah log terminal asli saat seluruh rangkaian proses ini dieksekusi dalam satu tarikan napas:</p> <pre><code class="language-bash">◎ gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1
+cd LayarKosong/</code></pre>
+          <h3>Langkah 2: Mematikan Mode Cone</h3>
+          <p>Git modern menggunakan mode <i>Cone</i> secara bawaan, yang dirancang hanya untuk mencakup folder secara utuh. Karena kita ingin menggunakan pola pengecualian yang spesifik (menggunakan tanda seru), kita wajib mematikan mode tersebut dan menginisialisasi ulang aturannya.</p>
+<pre><code class="language-bash">git config core.sparseCheckoutCone false
+git sparse-checkout init</code></pre>
+          <h3>Langkah 3: Menetapkan Aturan Gaib</h3>
+          <p>Bagian inti dari teknik ini adalah memberitahu Git untuk mengambil semua dokumen, tetapi mengabaikan folder raksasa seperti gambar, alur kerja, dan modul <i>node</i> secara mutlak.</p>
+<pre><code class="language-bash">git sparse-checkout set --no-cone "/*" "!/img/" "!/.github/workflows/" "!/node_modules/"</code></pre>
+          <p>Seketika, folder raksasa tersebut akan lenyap dari penjelajah berkas di komputer kita. Namun jangan panik, mereka tetap bersandar dengan aman di dalam server GitHub, dan status Git di komputer lokal akan selalu terbaca bersih. Sebagai bukti nyata, berikut adalah log terminal asli saat seluruh rangkaian proses ini dieksekusi dalam satu tarikan napas:</p>
+<pre><code class="language-bash">◎ gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1
 Cloning into 'LayarKosong'...
 remote: Enumerating objects: 2773, done.
 remote: Counting objects: 100% (2773/2773), done.
@@ -50,4 +308,23 @@ Receiving objects: 100% (3317/3317), 18.88 MiB | 5.95 MiB/s, done.
 Resolving deltas: 100% (1540/1540), done.
 Updating files: 100% (3471/3471), done.
 ◎ git pull
-Already up to date.</code></pre> <p>Dapat dilihat dengan jelas bahwa proses penerimaan objek berjalan super ringan, hanya memakan belasan Megabyte data yang benar-benar esensial untuk kegiatan menulis kode dan artikel.</p></details><h2>Menuju Ekosistem yang Lebih Sehat</h2><p>Aturan pengecualian yang baru saja kita tetapkan tersimpan secara permanen di dalam folder tersembunyi <i>.git/info/sparse-checkout</i>. Keuntungannya adalah konfigurasi diet ini akan terus berlanjut dan berlaku secara otomatis ke mana pun repositori ini disalin atau dipindahkan. Tidak perlu lagi melakukan pengaturan ulang berkali-kali.</p><p>Teknik gabungan ini terbukti sangat krusial bagi arsitektur web yang mengandalkan integrasi berkesinambungan. Dengan membersihkan jejak masa lalu dan menyaring aset yang berbobot mati di mesin lokal, operasi harian menjadi secepat kilat. Perangkat keras kita akhirnya bisa bernapas lega, menghemat ruang penyimpanan, sekaligus memberikan pengalaman kerja yang jauh lebih produktif.</p><div id="related-articles-grid"></div><div id="response"></div></article></main><footer><div class="footer-meta"><span>Oleh: Fakhrul Rijal</span><span>Diterbitkan: 30 Juni 2026</span><span>Referensi: Terminal Output &amp; Dokumentasi Git Resmi</span></div><a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer></div><script defer="" onload="hljs.highlightAll()" src="/ext/highlight.js"></script><script>hljs.highlightAll();</script><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-30</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
+Already up to date.</code></pre>
+          <p>Dapat dilihat dengan jelas bahwa proses penerimaan objek berjalan super ringan, hanya memakan belasan Megabyte data yang benar-benar esensial untuk kegiatan menulis kode dan artikel.</p>
+        </details>
+        <h2>Menuju Ekosistem yang Lebih Sehat</h2>
+        <p>Aturan pengecualian yang baru saja kita tetapkan tersimpan secara permanen di dalam folder tersembunyi <i>.git/info/sparse-checkout</i>. Keuntungannya adalah konfigurasi diet ini akan terus berlanjut dan berlaku secara otomatis ke mana pun repositori ini disalin atau dipindahkan. Tidak perlu lagi melakukan pengaturan ulang berkali-kali.</p>
+        <p>Teknik gabungan ini terbukti sangat krusial bagi arsitektur web yang mengandalkan integrasi berkesinambungan. Dengan membersihkan jejak masa lalu dan menyaring aset yang berbobot mati di mesin lokal, operasi harian menjadi secepat kilat. Perangkat keras kita akhirnya bisa bernapas lega, menghemat ruang penyimpanan, sekaligus memberikan pengalaman kerja yang jauh lebih produktif.</p>
+        <div id="related-articles-grid"></div><div id="response"></div>
+      </article>
+    </main>
+    <footer>
+      <div class="footer-meta">
+        <span>Oleh: Fakhrul Rijal</span>
+        <span>Diterbitkan: 30 Juni 2026</span>
+        <span>Referensi: Terminal Output &amp; Dokumentasi Git Resmi</span>
+      </div>
+     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+  </div>
+  <script src="/ext/highlight.js" defer="" onload="hljs.highlightAll()"></script>
+<script>hljs.highlightAll();</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>

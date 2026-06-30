@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Teknologi">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Ubuntu">
     <meta property="article:published_time" content="2026-06-16T16:31:51.000Z">
-    <meta property="article:modified_time" content="2026-06-29T10:41:23.949Z">
+    <meta property="article:modified_time" content="2026-06-16T16:31:51.000Z">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         /* CSS Variables untuk Tema Terang dan Gelap */
@@ -256,22 +256,22 @@
           </header>
     <main>
         <article>
-            <p>Selamat datang di sisi Linux! Hijrah ke ekosistem <em>open-source</em> memang sering kali membawa pengalaman komputasi yang jauh lebih ringan dan gegas dibandingkan Windows. Namun, menyadari laptop kesayanganmu tiba-tiba mendengung kencang layaknya mesin <em>hovercraft</em> saat sedang &quot;tidur&quot; jelas merupakan pengalaman orientasi yang membuat frustrasi.</p>
+            <p>Selamat datang di sisi Linux! Hijrah ke ekosistem <em>open-source</em> memang sering kali membawa pengalaman komputasi yang jauh lebih ringan dan gegas dibandingkan Windows. Namun, menyadari laptop kesayanganmu tiba-tiba mendengung kencang layaknya mesin <em>hovercraft</em> saat sedang "tidur" jelas merupakan pengalaman orientasi yang membuat frustrasi.</p>
             <figure>
                 <img src="https://dalam.web.id/img/raw.githubusercontent.com/cc330cd93a133ec4.webp" alt="Ilustrasi kipas pendingin laptop dan antarmuka sistem operasi Ubuntu" fetchpriority="high" loading="eager">
                 <figcaption>Menyelaraskan manajemen daya antara perangkat keras ThinkPad dan sistem operasi Ubuntu membutuhkan sedikit penyesuaian khusus.</figcaption>
             </figure>
-            <p>Banyak pengguna, khususnya pemilik seri <strong>ThinkPad L14 Gen 2</strong> (bertenaga Intel Core i5-1135G7 dengan RAM 16GB) yang menjalankan <strong>Ubuntu 24.04.4 LTS</strong>, melaporkan dua anomali menyebalkan: kipas yang meraung kencang di angka ~3424 RPM padahal suhu CPU sangat sejuk di kisaran 39&#xb0;C, dan kipas yang menolak mati saat laptop ditutup alias masuk mode <em>sleep/suspend</em>.</p>
-            <p>Meski kamu sudah melakukan langkah <em>troubleshooting</em> dasar yang sangat baik&#x2014;seperti memperbarui paket sistem, menginstal TLP, memasang <em>thermald</em> dan <em>lm-sensors</em>, hingga melakukan <em>update firmware Embedded Controller (EC)</em> via fwupdmgr&#x2014;nyatanya masalah ini masih membandel. Mengapa demikian? Jawabannya terletak pada &quot;konflik kepentingan&quot; di dalam mesinmu.</p>
+            <p>Banyak pengguna, khususnya pemilik seri <strong>ThinkPad L14 Gen 2</strong> (bertenaga Intel Core i5-1135G7 dengan RAM 16GB) yang menjalankan <strong>Ubuntu 24.04.4 LTS</strong>, melaporkan dua anomali menyebalkan: kipas yang meraung kencang di angka ~3424 RPM padahal suhu CPU sangat sejuk di kisaran 39°C, dan kipas yang menolak mati saat laptop ditutup alias masuk mode <em>sleep/suspend</em>.</p>
+            <p>Meski kamu sudah melakukan langkah <em>troubleshooting</em> dasar yang sangat baik—seperti memperbarui paket sistem, menginstal TLP, memasang <em>thermald</em> dan <em>lm-sensors</em>, hingga melakukan <em>update firmware Embedded Controller (EC)</em> via fwupdmgr—nyatanya masalah ini masih membandel. Mengapa demikian? Jawabannya terletak pada "konflik kepentingan" di dalam mesinmu.</p>
             <h2>Akar Masalah: Perang Dingin Manajemen Daya</h2>
             <p>Berdasarkan keluhan yang lazim ditemui, masalah ini sebenarnya bersumber dari dua konflik internal antara sistem operasi dan <em>firmware</em> bawaan laptop Lenovo:</p>
             <ol>
-                <li><strong>Konflik Mode Tidur (S2idle vs S3):</strong> Saat kamu memeriksa status tidur sistem dengan menjalankan perintah <code>cat /sys/power/mem_sleep</code> dan mendapatkan <em>output</em> <code>[s2idle]</code>, ini adalah pelakunya. Ini dikenal sebagai <em>Modern Standby</em>. Dalam mode ini, laptop tidak benar-benar tertidur; ia hanya &quot;terpejam ringan&quot; agar bisa menyala instan. Akibatnya, <em>Embedded Controller</em> (EC) kebingungan dan berjaga-jaga dengan membiarkan kipas tetap menyala.</li>
+                <li><strong>Konflik Mode Tidur (S2idle vs S3):</strong> Saat kamu memeriksa status tidur sistem dengan menjalankan perintah <code>cat /sys/power/mem_sleep</code> dan mendapatkan <em>output</em> <code>[s2idle]</code>, ini adalah pelakunya. Ini dikenal sebagai <em>Modern Standby</em>. Dalam mode ini, laptop tidak benar-benar tertidur; ia hanya "terpejam ringan" agar bisa menyala instan. Akibatnya, <em>Embedded Controller</em> (EC) kebingungan dan berjaga-jaga dengan membiarkan kipas tetap menyala.</li>
                 <li><strong>Perang Fitur Manajemen Daya:</strong> Menginstal <strong>TLP</strong> bersamaan dengan menggunakan profil daya bawaan Ubuntu (<em>Balanced power profile</em> via <code>power-profiles-daemon</code>) adalah sebuah kesalahan taktis. Keduanya saling bertabrakan, tarik-menarik untuk mengontrol frekuensi CPU dan ambang batas termal. Kepanikan sistem inilah yang memicu EC memutar kipas secara agresif meski suhu sangat dingin.</li>
             </ol>
             <h2>Langkah Eksekusi: Mengembalikan Ketenangan ThinkPad</h2>
             <p>Kita bisa mengakhiri drama ini dengan melakukan beberapa penyesuaian spesifik yang menargetkan langsung ke akar masalahnya.</p>
-            <h3>1. Mengaktifkan &quot;Deep Sleep&quot; via BIOS</h3>
+            <h3>1. Mengaktifkan "Deep Sleep" via BIOS</h3>
             <p>Tujuan utama dari langkah ini adalah memaksa mesin dan kipas untuk benar-benar mati total saat tutup laptop ditutup, mengabaikan mode <em>Modern Standby</em> yang tidak bersahabat dengan Linux.</p>
             <ul>
                 <li><strong>Langkah 1:</strong> <em>Restart</em> laptopmu dan tekan <strong>F1</strong> berulang kali (atau Enter) untuk menyela proses <em>booting</em> dan masuk ke pengaturan BIOS/UEFI.</li>
@@ -280,10 +280,10 @@
                 <li><strong>Langkah 4:</strong> Simpan perubahan dengan menekan <strong>F10</strong> lalu <em>restart</em>.</li>
             </ul>
             <blockquote>
-                &quot;Untuk memverifikasi keberhasilannya, buka terminal di Ubuntu dan jalankan kembali perintah <code>cat /sys/power/mem_sleep</code>. Jika konfigurasi berhasil, <em>output</em>-nya sekarang akan menampilkan <code>s2idle [deep]</code>. Ini memberi sinyal ke kernel untuk melakukan <em>true suspend</em>.&quot;
+                "Untuk memverifikasi keberhasilannya, buka terminal di Ubuntu dan jalankan kembali perintah <code>cat /sys/power/mem_sleep</code>. Jika konfigurasi berhasil, <em>output</em>-nya sekarang akan menampilkan <code>s2idle [deep]</code>. Ini memberi sinyal ke kernel untuk melakukan <em>true suspend</em>."
             </blockquote>
             <h3>2. Menyelesaikan Konflik Manajemen Daya (TLP vs PPD)</h3>
-            <p>Setelah urusan tidur terselesaikan, kita harus mendamaikan sistem manajemen daya. Kamu perlu memilih satu &quot;jenderal&quot; saja. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Karena kamu menggunakan ThinkPad, mempertahankan <strong>TLP</strong> adalah opsi yang jauh lebih direkomendasikan untuk optimalisasi baterai dan suhu.</p>
+            <p>Setelah urusan tidur terselesaikan, kita harus mendamaikan sistem manajemen daya. Kamu perlu memilih satu "jenderal" saja. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Karena kamu menggunakan ThinkPad, mempertahankan <strong>TLP</strong> adalah opsi yang jauh lebih direkomendasikan untuk optimalisasi baterai dan suhu.</p>
             <p>Untuk mempertahankan TLP dan mematikan daemon bawaan Ubuntu secara permanen, jalankan rangkaian perintah ini di terminal:</p>
 <pre><code>sudo systemctl mask power-profiles-daemon
 sudo systemctl enable tlp
@@ -294,7 +294,7 @@ sudo systemctl start tlp</code></pre>
 sudo systemctl unmask power-profiles-daemon
 sudo systemctl start power-profiles-daemon</code></pre>
             <h3>3. Alternatif Terakhir: Kontrol Kipas Manual</h3>
-            <p>Pada sebagian besar kasus, mengubah <em>Sleep State</em> ke Linux dan menyelesaikan konflik TLP sudah cukup untuk membuat <em>Embedded Controller</em> tenang dan membiarkan laptop bekerja dalam diam di suhu 39&#xb0;C.</p>
+            <p>Pada sebagian besar kasus, mengubah <em>Sleep State</em> ke Linux dan menyelesaikan konflik TLP sudah cukup untuk membuat <em>Embedded Controller</em> tenang dan membiarkan laptop bekerja dalam diam di suhu 39°C.</p>
             <p>Akan tetapi, jika kurva kipas bawaan Lenovo di BIOS dirasa masih terlalu sensitif, kamu bisa memasang <code>thinkfan</code>. Ini adalah utilitas legendaris di kalangan pengguna ThinkPad Linux yang memungkinkanmu untuk mendikte secara presisi di angka RPM berapa kipas harus berputar, murni berdasarkan deteksi suhu CPU aktual.</p>
             <p>Lakukan perbaikan BIOS dan manajemen daya terlebih dahulu, lalu pantau selama 24 jam. Ketenangan ruang kerjamu seharusnya sudah kembali seperti sedia kala.</p>
         </article>
@@ -304,9 +304,9 @@ sudo systemctl start power-profiles-daemon</code></pre>
         <div class="footer-content">
             Ditulis dan dianalisis oleh <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">Frijal</a> pada 16 Juni 2026. Solusi *troubleshooting* arsitektur <em>firmware</em> dalam artikel ini dirumuskan berdasarkan dokumentasi komunitas teknis Ubuntu dan forum pengembang daya Linux.
         </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

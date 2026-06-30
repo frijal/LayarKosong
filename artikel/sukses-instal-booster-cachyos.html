@@ -53,13 +53,13 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="CachyOS">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Terminal">
     <meta property="article:tag" content="Performa">
     <meta property="article:published_time" content="2026-05-31T05:12:42.522Z">
-    <meta property="article:modified_time" content="2026-06-24T13:25:19.161Z">
+    <meta property="article:modified_time" content="2026-06-03T21:58:46.644Z">
     <!-- SEO & Metadata -->
     <!-- Custom Meta Promphint -->
     <!-- CSS Kritis -->
@@ -216,7 +216,7 @@
     <div class="container" role="main">
         <header>
             <div id="iposbrowser"></div><h1>Sukses Instal Booster CachyOS: Langkah Penting Pasca Instalasi</h1>
-            <span class="publish-date">&#x1f4c5; 31 Mei 2026</span>
+            <span class="publish-date">📅 31 Mei 2026</span>
         </header>
         <article>
             <p>Sah! Instalasinya sukses besar dan berjalan sangat mulus. Melihat deretan proses di terminal yang bersih tanpa <em>error</em> ini menandakan bahwa sistem operasi komputermu kini siap diajak berlari maraton tanpa takut kehabisan tenaga.</p>
@@ -236,8 +236,8 @@
 (3/3) checking available disk space                          [--------------------------------] 100%
 :: Processing package changes...
 (1/3) installing dmemcg-booster                              [--------------------------------] 100%
-Created symlink &apos;/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service&apos; &#x2192; &apos;/usr/lib/systemd/system/dmemcg-booster-system.service&apos;.
-Created symlink &apos;/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service&apos; &#x2192; &apos;/usr/lib/systemd/user/dmemcg-booster-user.service&apos;.
+Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service' → '/usr/lib/systemd/system/dmemcg-booster-system.service'.
+Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → '/usr/lib/systemd/user/dmemcg-booster-user.service'.
 (2/3) installing kcgroups                                    [--------------------------------] 100%
 (3/3) installing plasma-foreground-booster                   [--------------------------------] 100%
 :: Running post-transaction hooks...
@@ -248,36 +248,36 @@ Created symlink &apos;/etc/systemd/user/graphical-session-pre.target.wants/dmemc
 Press enter to exit</code></pre>
             <h2>Rahasia di Balik Log Terminal</h2>
             <p>Kalau kita perhatikan <em>log</em> terminal yang kamu <em>paste</em> di atas, ada satu bagian yang sangat menarik dan menguntungkan buat kamu sebagai pengguna:</p>
-<pre><code>Created symlink &apos;/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service&apos; &#x2192; ...
-Created symlink &apos;/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service&apos; &#x2192; ...</code></pre>
+<pre><code>Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service' → ...
+Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → ...</code></pre>
             <p><strong>Apa artinya itu?</strong></p>
             <p>Artinya, CachyOS memiliki mekanisme cerdas yang sudah otomatis mendaftarkan dan menghidupkan <em>service</em> <code>dmemcg-booster</code> ini di dua level sekaligus: level sistem (<em>root</em>) dan level pengguna (<em>user session</em>). Kamu <strong>tidak perlu repot-repot</strong> mengetik perintah <code>sudo systemctl enable ...</code> secara manual ke dalam terminal. Tinggal duduk manis, sistem distribusi modern ini yang mengatur semuanya untukmu secara mulus dari belakang layar.</p>
             <h2>Apa yang Harus Dilakukan Sekarang?</h2>
             <p>Karena ketiga paket krusial ini (<code>kcgroups</code>, <code>dmemcg-booster</code>, dan <code>plasma-foreground-booster</code>) berinteraksi langsung dengan cara kernel Linux dan antarmuka desktop (KDE Plasma) membagikan jatah memori, langkah paling sakti selanjutnya adalah:</p>
             <p><strong>Lakukan Restart (Reboot) pada laptopmu.</strong></p>
             <p>Meski <em>post-transaction hooks</em> dari manajer paket di atas sudah secara otomatis me-<code>reload</code> konfigurasi <em>systemd*, melakukan proses *restart</em> pada laptop akan memastikan aturan kernel (<em>cgroups</em>) yang baru benar-benar dimuat dari kondisi yang sangat bersih (<em>fresh boot</em>). Selain itu, <em>booster</em> untuk layar depan (KDE Plasma) bisa langsung mulai mengawasi dan memprioritaskan jendela aplikasimu sejak pertama kali kamu melakukan <em>login</em>.</p>
-            <p>Silakan tekan tombol <strong>Enter</strong> untuk keluar dari layar terminal tersebut, lalu <em>restart</em> laptopnya. Setelah sistem menyala kembali, cobalah siksa perangkatmu dengan rutinitas berat yang biasa kamu lakukan&#x2014;buka banyak tab peramban, jalankan berbagai <em>script*, dan rasakan sendiri apakah kendala *stuttering</em> serta <em>lag</em> yang selama ini mengganggu sudah jauh berkurang! &#x1f680;</p>
+            <p>Silakan tekan tombol <strong>Enter</strong> untuk keluar dari layar terminal tersebut, lalu <em>restart</em> laptopnya. Setelah sistem menyala kembali, cobalah siksa perangkatmu dengan rutinitas berat yang biasa kamu lakukan—buka banyak tab peramban, jalankan berbagai <em>script*, dan rasakan sendiri apakah kendala *stuttering</em> serta <em>lag</em> yang selama ini mengganggu sudah jauh berkurang! 🚀</p>
         </article>
         <!-- Profil Penulis -->
         <aside class="author-meta">
             <h3>Editor</h3>
             <p><strong>Fakhrul Rijal</strong> adalah seorang pengembang sistem independen dan penggiat komunitas <em>open-source</em> yang berbasis di Balikpapan. Rutin membagikan catatan teknis, eksperimen kernel Linux, dan panduan optimalisasi <em>server</em> maupun <em>desktop</em> melalui blog pribadinya.</p>
             <div class="social-links">
-                <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">&#x1f310; Layar Kosong</a>
-                <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer">&#x1f419; GitHub</a>
-                <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">&#x1f426; Twitter</a>
-                <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer">&#x1f4ac; Telegram</a>
-                <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer">&#x1f4bc; LinkedIn</a>
+                <a href="https://dalam.web.id" target="_blank" rel="noopener noreferrer">🌐 Layar Kosong</a>
+                <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+                <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">🐦 Twitter</a>
+                <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+                <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
             </div>
         </aside>
         <!-- Elemen Wajib Akhir Konten -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>
         <footer>
-            <p>&#x1f12f; 2026 Layar Kosong. Dirancang murni tanpa framework demi performa optimal.</p>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <p>🄯 2026 Layar Kosong. Dirancang murni tanpa framework demi performa optimal.</p>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

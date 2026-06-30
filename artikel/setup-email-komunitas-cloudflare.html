@@ -53,13 +53,13 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Cloudflare">
     <meta property="article:tag" content="Email Routing">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Komunitas">
     <meta property="article:published_time" content="2026-03-02T10:53:48.598Z">
-    <meta property="article:modified_time" content="2026-03-02T10:53:48.598Z">
+    <meta property="article:modified_time" content="2026-04-09T15:56:41.194Z">
 <link rel="preload" as="image" href="https://pbs.twimg.com/media/HCnas0Ub0AAIbua.jpg">
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <style>
@@ -177,20 +177,20 @@
         </div>
     </header>
     <article>
-        <p>Mengelola komunitas&#x2014;baik itu klub motor yang solid, pegiat Linux yang hobi melakukan penyesuaian teknis, atau organisasi kampus&#x2014;umumnya butuh sistem komunikasi yang profesional. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Salah satu tandanya adalah punya alamat email pakai domain sendiri. Daripada pusing ngurusin server email yang rawan <em>down</em> atau makan biaya bulanan gede, mending kita pakai cara cerdas: <strong>Cloudflare Email Routing</strong>.</p>
-        <p>Konsep utamanya gampang: <strong>Cloudflare cuma jadi tukang pos (DNS manager dan MX record)</strong>. Email tidak akan disimpan di Cloudflare, tapi langsung diteruskan secara otomatis ke <em>inbox</em> tujuan kamu, entah itu Gmail pribadi atau Proton Mail. Gratis, ringan, dan tidak bikin pusing mikirin <em>storage</em>! &#x1f680;</p>
+        <p>Mengelola komunitas—baik itu klub motor yang solid, pegiat Linux yang hobi melakukan penyesuaian teknis, atau organisasi kampus—umumnya butuh sistem komunikasi yang profesional. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Salah satu tandanya adalah punya alamat email pakai domain sendiri. Daripada pusing ngurusin server email yang rawan <em>down</em> atau makan biaya bulanan gede, mending kita pakai cara cerdas: <strong>Cloudflare Email Routing</strong>.</p>
+        <p>Konsep utamanya gampang: <strong>Cloudflare cuma jadi tukang pos (DNS manager dan MX record)</strong>. Email tidak akan disimpan di Cloudflare, tapi langsung diteruskan secara otomatis ke <em>inbox</em> tujuan kamu, entah itu Gmail pribadi atau Proton Mail. Gratis, ringan, dan tidak bikin pusing mikirin <em>storage</em>! 🚀</p>
         <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCnas0Ub0AAIbua.webp" alt="Ilustrasi arsitektur Cloudflare Email Routing untuk domain custom">
         <h2><i class="fa-solid fa-rocket"></i> Arsitektur Ideal untuk Komunitas</h2>
         <p>Buat komunitas, biasanya kita tidak bikin email per orang, tapi <em>role-based</em> (berdasarkan fungsi). Alurnya nanti kira-kira begini:</p>
-        <pre>Email masuk &#x2192; MX Cloudflare &#x2192; Diteruskan (Forward) &#x2192; Inbox utama (Gmail / Proton pengurus)</pre>
+        <pre>Email masuk → MX Cloudflare → Diteruskan (Forward) → Inbox utama (Gmail / Proton pengurus)</pre>
         <p>Contohnya, email <code>ketua@domainkamu.com</code> bisa langsung di-forward ke email pribadi ketua. Cloudflare bahkan mendukung multiple forward: satu email <code>media@domainkamu.com</code> bisa masuk ke 2 atau 3 email anggota tim media sekaligus.</p>
         <h2><i class="fa-solid fa-gears"></i> Cara Setup MX &amp; Forward Email (Gratis)</h2>
         <h3>1. Setup Dasar di Cloudflare</h3>
-        <p>Pastikan domain kamu sudah masuk ke <em>Free Plan</em> Cloudflare dan <em>nameserver</em> sudah diarahkan ke sana. Setelah propagasi selesai, masuk ke: <strong>Dashboard &#x2192; Domain &#x2192; Email &#x2192; Email Routing</strong>.</p>
+        <p>Pastikan domain kamu sudah masuk ke <em>Free Plan</em> Cloudflare dan <em>nameserver</em> sudah diarahkan ke sana. Setelah propagasi selesai, masuk ke: <strong>Dashboard → Domain → Email → Email Routing</strong>.</p>
         <p>Klik <strong>Enable Email Routing</strong>. Bikin <em>rule</em> gampang, misalnya:</p>
         <ul>
-            <li><code>admin@domainkamu.com</code> &#x2192; <code>emailpribadi@gmail.com</code></li>
-            <li><code>info@domainkamu.com</code> &#x2192; <code>emailkedua@proton.me</code></li>
+            <li><code>admin@domainkamu.com</code> → <code>emailpribadi@gmail.com</code></li>
+            <li><code>info@domainkamu.com</code> → <code>emailkedua@proton.me</code></li>
         </ul>
         <p>Cloudflare akan otomatis menambahkan DNS record ini (jangan dihapus ya!):</p>
         <pre><code>MX 10 mx1.cloudflare.net
@@ -208,16 +208,16 @@ MX 20 mx2.cloudflare.net</code></pre>
         <p>Kalau sistem udah jalan stabil sebulan dua bulan, status <code>p=quarantine</code> bisa dinaikkan jadi <code>p=reject</code>.</p>
         <h2><i class="fa-solid fa-paper-plane"></i> Setup Kirim Email (Outbound)</h2>
         <p>Ingat, Cloudflare itu cuma jago nerima dan nerusin. Dia <strong>TIDAK BISA</strong> kirim email. Untuk membalas pesan pakai nama domain kamu, ini 3 opsinya:</p>
-        <h3>&#x1f535; Opsi A: Kirim via Gmail SMTP (Paling Gampang buat Pemula)</h3>
-        <p>Buka Gmail pribadi yang jadi tempat terima <em>forward</em> tadi. Masuk ke <strong>Settings &#x2192; Accounts and Import &#x2192; &quot;Send mail as&quot;</strong>. Tambahkan alamat <code>admin@domainkamu.com</code>. Gunakan settingan ini:</p>
+        <h3>🔵 Opsi A: Kirim via Gmail SMTP (Paling Gampang buat Pemula)</h3>
+        <p>Buka Gmail pribadi yang jadi tempat terima <em>forward</em> tadi. Masuk ke <strong>Settings → Accounts and Import → "Send mail as"</strong>. Tambahkan alamat <code>admin@domainkamu.com</code>. Gunakan settingan ini:</p>
         <ul>
             <li><strong>SMTP Server:</strong> <code>smtp.gmail.com</code></li>
             <li><strong>Port:</strong> <code>587</code> (Pilih TLS)</li>
             <li><em>Catatan:</em> Wajib pakai <strong>App Passwords</strong> dari akun Google kamu kalau 2FA aktif (jangan pakai password login biasa).</li>
         </ul>
-        <h3>&#x1f7e3; Opsi B: Kirim via Proton Mail</h3>
+        <h3>🟣 Opsi B: Kirim via Proton Mail</h3>
         <p>Kalau pengurus komunitasmu mengutamakan privasi dan pakai Proton Mail Plus, kamu bisa langsung <em>add custom domain</em> di sana. Nanti otomatis dapat DKIM yang bikin reputasi email makin ganteng.</p>
-        <h3>&#x1f7e2; Opsi C: Pakai Custom SMTP (Buat Skala Besar)</h3>
+        <h3>🟢 Opsi C: Pakai Custom SMTP (Buat Skala Besar)</h3>
         <p>Kalau komunitas kamu sering kirim <em>broadcast</em> pengumuman massal, mending pakai layanan terdedikasi seperti <strong>Mailgun, Resend, atau SendGrid</strong>. Nanti tinggal tambahkan <em>include</em> mereka di baris SPF tadi.</p>
         <h2><i class="fa-solid fa-envelope"></i> Gimana dengan Mozilla Thunderbird?</h2>
         <p>Thunderbird posisinya cuma sebagai <em>client</em> untuk membaca. Jadi untuk <em>Incoming</em> (IMAP), hubungkan langsung ke akun Gmail/Proton kamu. Dan untuk <em>Outgoing</em> (SMTP), pilih SMTP sesuai layanan yang kamu pakai buat kirim (opsi A/B/C di atas).</p>
@@ -235,21 +235,21 @@ MX 20 mx2.cloudflare.net</code></pre>
             <tbody>
                 <tr>
                     <td><strong>Terima &amp; Forward Email</strong></td>
-                    <td>&#x2705; Gratis &amp; Otomatis</td>
-                    <td>&#x2014;</td>
-                    <td>&#x2014;</td>
+                    <td>✅ Gratis &amp; Otomatis</td>
+                    <td>—</td>
+                    <td>—</td>
                 </tr>
                 <tr>
                     <td><strong>Simpan Inbox (Storage)</strong></td>
-                    <td>&#x274c; Tidak Menyimpan</td>
-                    <td>&#x2705; Iya (di akun personal)</td>
-                    <td>&#x274c; Tidak Menyimpan</td>
+                    <td>❌ Tidak Menyimpan</td>
+                    <td>✅ Iya (di akun personal)</td>
+                    <td>❌ Tidak Menyimpan</td>
                 </tr>
                 <tr>
                     <td><strong>Kirim Email (Outbound)</strong></td>
-                    <td>&#x274c; Tidak Bisa</td>
-                    <td>&#x2705; Bisa (Gratis, skala kecil)</td>
-                    <td>&#x2705; Bisa (Skala besar, rep lebih bersih)</td>
+                    <td>❌ Tidak Bisa</td>
+                    <td>✅ Bisa (Gratis, skala kecil)</td>
+                    <td>✅ Bisa (Skala besar, rep lebih bersih)</td>
                 </tr>
             </tbody>
         </table>
@@ -260,7 +260,7 @@ MX 20 mx2.cloudflare.net</code></pre>
             <li><strong>Why (Mengapa):</strong> Menghemat biaya server (tanpa perlu langganan Google Workspace/Zoho yang berbayar) dan email tidak disimpan di <em>server third-party</em> sembarangan, langsung masuk ke <em>inbox</em> terpercaya kamu.</li>
             <li><strong>Where (Di mana):</strong> Semua konfigurasi dilakukan murni di <em>dashboard</em> Cloudflare dan pengaturan klien email (Gmail/Proton).</li>
             <li><strong>When (Kapan):</strong> Waktu paling tepat adalah saat komunitas baru dibentuk atau saat ingin migrasi dari email gratisan standar <code>@gmail.com</code> ke domain organisasi resmi.</li>
-            <li><strong>How (Bagaimana):</strong> Ikuti langkah-langkah teknis super santai di bawah ini. &#x1f60e;</li>
+            <li><strong>How (Bagaimana):</strong> Ikuti langkah-langkah teknis super santai di bawah ini. 😎</li>
         </ul>
         <blockquote>
             <strong>Saran Teknis:</strong> Untuk komunitas baru, cukup pakai kombinasi Cloudflare (Inbound) + Gmail SMTP (Outbound). Mudah dikelola dan yang terpenting: Rp 0 alias gratis sepenuhnya! Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
@@ -269,10 +269,10 @@ MX 20 mx2.cloudflare.net</code></pre>
     <div id="response"></div>
     <div id="related-articles-grid"></div>
     <footer>
-        <p>&#x1f12f; 2026 Layar Kosong - Ditulis secara independen dengan optimasi Zero-JS dan Mobile-First.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <p>🄯 2026 Layar Kosong - Ditulis secara independen dengan optimasi Zero-JS dan Mobile-First.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

@@ -53,10 +53,10 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Slackware Linux">
     <meta property="article:published_time" content="2025-10-12T02:08:33.248Z">
-    <meta property="article:modified_time" content="2025-10-12T02:08:33.248Z">
+    <meta property="article:modified_time" content="2025-12-28T10:24:57.032Z">
     <style>
         /* CSS Reset & Variabel Global */
         *, *::before, *::after {
@@ -264,7 +264,7 @@
     <main class="container">
         <article>
             <header>
-                <div id="iposbrowser"></div><h1>&#x26a1; Skrip slackware-mirror.sh</h1>
+                <div id="iposbrowser"></div><h1>⚡ Skrip slackware-mirror.sh</h1>
                 <div class="meta-info">
                     <span><span class="badge">Otomasi Bash</span></span>
                     <span>Oleh: Tim Sysadmin</span>
@@ -280,33 +280,33 @@
             <p>Secara arsitektural, Slackware memanfaatkan utilitas bawaan bernama <code>slackpkg</code> sebagai manajer paket tingkat lanjut untuk memasang, memperbarui, ataupun menghapus perangkat lunak. Seluruh daftar alamat server mirror di dunia disimpan di dalam satu berkas konfigurasi statis, tepatnya pada jalur file <code>/etc/slackpkg/mirrors</code>.</p>
             <p>Secara teknis, skrip <code>slackware-mirror.sh</code> bekerja dengan urutan logika yang terstruktur. Pertama, sistem akan <strong>membackup</strong> atau mencadangkan berkas konfigurasi lama Anda demi menghindari risiko kerusakan data. Selanjutnya, skrip akan memilah dan <strong>mengaktifkan mirror</strong> baru pilihan Anda secara otomatis, menghapus baris komentar tidak perlu, lalu mengeksekusi sinkronisasi ulang database paket secara langsung tanpa intervensi manual yang rumit.</p>
             <div class="alert-box">
-                <p>&#x26a0;&#xfe0f; <strong>Pemberitahuan Keamanan:</strong> Mengingat berkas konfigurasi <code>slackpkg</code> berada di direktori sistem utama, Anda wajib menjalankan skrip ini menggunakan hak akses administratif <code>sudo</code> atau sebagai pengguna <code>root</code> agar proses modifikasi file tidak ditolak oleh sistem.</p>
+                <p>⚠️ <strong>Pemberitahuan Keamanan:</strong> Mengingat berkas konfigurasi <code>slackpkg</code> berada di direktori sistem utama, Anda wajib menjalankan skrip ini menggunakan hak akses administratif <code>sudo</code> atau sebagai pengguna <code>root</code> agar proses modifikasi file tidak ditolak oleh sistem.</p>
             </div>
             <h2>Kode Skrip</h2>
             <p>Di bawah ini adalah kode sumber lengkap dari berkas <code>slackware-mirror.sh</code>. Anda dapat menyalin baris perintah ini ke dalam mesin lokal Anda, memberikan izin eksekusi (<code>chmod +x</code>), dan menjalankannya kapan saja ketika Anda membutuhkan koneksi server repositori baru yang lebih responsif.</p>
 <pre><code><span class="c-comment">#!/bin/bash</span>
-<span class="c-comment"># slackware-mirror.sh &#x2014; pilih mirror slackpkg otomatis</span>
+<span class="c-comment"># slackware-mirror.sh — pilih mirror slackpkg otomatis</span>
 <span class="c-kw">set</span> -e
-<span class="c-var">MIRROR_FILE</span>=<span class="c-str">&quot;/etc/slackpkg/mirrors&quot;</span>
-<span class="c-var">BACKUP</span>=<span class="c-str">&quot;/etc/slackpkg/mirrors.backup&quot;</span>
-<span class="c-kw">echo</span> <span class="c-str">&quot;[INFO] Membackup mirror lama ke &#x24;BACKUP ...&quot;</span>
-<span class="c-kw">sudo</span> cp <span class="c-var">&quot;&#x24;MIRROR_FILE&quot;</span> <span class="c-var">&quot;&#x24;BACKUP&quot;</span>
-<span class="c-kw">echo</span> <span class="c-str">&quot;[INFO] Menampilkan daftar mirror (resmi Slackware):&quot;</span>
-grep -v <span class="c-str">&apos;^#&apos;</span> <span class="c-var">&quot;&#x24;MIRROR_FILE&quot;</span> | grep -E <span class="c-str">&apos;http|ftp&apos;</span> || <span class="c-kw">true</span>
-<span class="c-kw">echo</span> <span class="c-str">&quot;&quot;</span>
-<span class="c-kw">echo</span> <span class="c-str">&quot;Masukkan URL mirror pilihan (contoh: http://mirrors.slackware.com/slackware64-15.0/):&quot;</span>
+<span class="c-var">MIRROR_FILE</span>=<span class="c-str">"/etc/slackpkg/mirrors"</span>
+<span class="c-var">BACKUP</span>=<span class="c-str">"/etc/slackpkg/mirrors.backup"</span>
+<span class="c-kw">echo</span> <span class="c-str">"[INFO] Membackup mirror lama ke $BACKUP ..."</span>
+<span class="c-kw">sudo</span> cp <span class="c-var">"$MIRROR_FILE"</span> <span class="c-var">"$BACKUP"</span>
+<span class="c-kw">echo</span> <span class="c-str">"[INFO] Menampilkan daftar mirror (resmi Slackware):"</span>
+grep -v <span class="c-str">'^#'</span> <span class="c-var">"$MIRROR_FILE"</span> | grep -E <span class="c-str">'http|ftp'</span> || <span class="c-kw">true</span>
+<span class="c-kw">echo</span> <span class="c-str">""</span>
+<span class="c-kw">echo</span> <span class="c-str">"Masukkan URL mirror pilihan (contoh: http://mirrors.slackware.com/slackware64-15.0/):"</span>
 <span class="c-kw">read</span> -r <span class="c-var">MIRROR_URL</span>
-<span class="c-kw">if</span> [ -z <span class="c-var">&quot;&#x24;MIRROR_URL&quot;</span> ]; <span class="c-kw">then</span>
-    <span class="c-kw">echo</span> <span class="c-str">&quot;[ERROR] Tidak ada mirror yang dipilih. Keluar.&quot;</span>
+<span class="c-kw">if</span> [ -z <span class="c-var">"$MIRROR_URL"</span> ]; <span class="c-kw">then</span>
+    <span class="c-kw">echo</span> <span class="c-str">"[ERROR] Tidak ada mirror yang dipilih. Keluar."</span>
     <span class="c-kw">exit</span> 1
 <span class="c-kw">fi</span>
-<span class="c-kw">echo</span> <span class="c-str">&quot;[INFO] Mengatur mirror ke &#x24;MIRROR_URL ...&quot;</span>
-<span class="c-kw">echo</span> <span class="c-var">&quot;&#x24;MIRROR_URL&quot;</span> | <span class="c-kw">sudo</span> tee <span class="c-var">&quot;&#x24;MIRROR_FILE&quot;</span> &gt; /dev/null
-<span class="c-kw">echo</span> <span class="c-str">&quot;[INFO] Update database slackpkg...&quot;</span>
+<span class="c-kw">echo</span> <span class="c-str">"[INFO] Mengatur mirror ke $MIRROR_URL ..."</span>
+<span class="c-kw">echo</span> <span class="c-var">"$MIRROR_URL"</span> | <span class="c-kw">sudo</span> tee <span class="c-var">"$MIRROR_FILE"</span> &gt; /dev/null
+<span class="c-kw">echo</span> <span class="c-str">"[INFO] Update database slackpkg..."</span>
 <span class="c-kw">sudo</span> slackpkg update gpg
 <span class="c-kw">sudo</span> slackpkg update
-<span class="c-kw">echo</span> <span class="c-str">&quot;[DONE] Mirror slackpkg berhasil diatur ke &#x24;MIRROR_URL&quot;</span></code></pre>
-            <p>Skrip di atas juga mengimplementasikan parameter <code>set -e</code> yang memastikan bahwa jika terjadi galat (error) di tengah jalan&#x2014;misalnya kegagalan koneksi internet saat memperbarui database GPG&#x2014;maka skrip akan langsung berhenti secara aman guna mencegah terjadinya kerusakan status repositori yang setengah terkonfigurasi.</p>
+<span class="c-kw">echo</span> <span class="c-str">"[DONE] Mirror slackpkg berhasil diatur ke $MIRROR_URL"</span></code></pre>
+            <p>Skrip di atas juga mengimplementasikan parameter <code>set -e</code> yang memastikan bahwa jika terjadi galat (error) di tengah jalan—misalnya kegagalan koneksi internet saat memperbarui database GPG—maka skrip akan langsung berhenti secara aman guna mencegah terjadinya kerusakan status repositori yang setengah terkonfigurasi.</p>
         </article>
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
@@ -315,9 +315,9 @@ grep -v <span class="c-str">&apos;^#&apos;</span> <span class="c-var">&quot;&#x2
                 <span>Diperbarui pada: 14 Juni 2026</span>
                 <span>Dokumentasi Manual: <a href="https://dalam.web.id/artikel/panduan-man-pages-slackpkg.html">Buku Panduan Utilitas slackpkg Slackware</a></span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

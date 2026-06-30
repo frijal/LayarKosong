@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-09-11T10:54:08.248Z">
-    <meta property="article:modified_time" content="2026-01-15T07:50:18.021Z">
+    <meta property="article:modified_time" content="2025-09-11T10:54:08.248Z">
 <meta name="keywords" content="git, git fetch, git pull, git stash, git merge, tutorial git, version control, frijal, pemula">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;family=Fira+Code:wght@500&amp;display=swap" rel="stylesheet">
     <style>
         :root {
@@ -225,34 +225,34 @@ git fetch
 # 1. Mengunduh perubahan dari server
 git merge
 # 2. Langsung mencoba menggabungkannya</code></pre>
-            <blockquote>Analogi <code>git pull</code>: Ini seperti menekan tombol &quot;Sinkronkan Sekarang&quot; di Dropbox. Aplikasi akan langsung mengunduh file baru dari server dan mencoba menggabungkannya dengan file lokal. Cepat, tapi otomatis dan kadang hasilnya tidak terduga.</blockquote>
+            <blockquote>Analogi <code>git pull</code>: Ini seperti menekan tombol "Sinkronkan Sekarang" di Dropbox. Aplikasi akan langsung mengunduh file baru dari server dan mencoba menggabungkannya dengan file lokal. Cepat, tapi otomatis dan kadang hasilnya tidak terduga.</blockquote>
             <p>Masalahnya muncul saat kamu punya perubahan lokal yang belum di-commit. <code>git pull</code> bisa gagal total, atau memaksamu masuk ke dalam proses penggabungan yang belum siap kamu hadapi.</p>
             <h2>Solusi Cerdas: <code>git fetch</code>, Sang Notifikasi Update</h2>
             <p>Di sinilah <code>git fetch</code> bersinar. Berbeda dengan <code>git pull</code>, <code>git fetch</code> hanya melakukan langkah pertama: mengunduh semua data baru dari server. Ia <strong>tidak akan pernah</strong> menyentuh atau mengubah file di folder kerjamu.</p>
-            <blockquote>Analogi <code>git fetch</code>: Ini seperti menerima notifikasi di ponselmu, &quot;Ada update baru tersedia. Lihat detailnya?&quot;. Kamu bisa melihat dulu apa saja yang baru, lalu memutuskan sendiri kapan waktu yang tepat untuk menginstal update tersebut. Penuh kontrol, tanpa kejutan.</blockquote>
-            <p>Setelah <code>fetch</code>, Git di komputermu sudah tahu semua riwayat baru dari server, tapi menyimpannya di &quot;ruang karantina&quot; (seperti <code>origin/main</code>), terpisah dari branch kerjamu (<code>main</code>).</p>
+            <blockquote>Analogi <code>git fetch</code>: Ini seperti menerima notifikasi di ponselmu, "Ada update baru tersedia. Lihat detailnya?". Kamu bisa melihat dulu apa saja yang baru, lalu memutuskan sendiri kapan waktu yang tepat untuk menginstal update tersebut. Penuh kontrol, tanpa kejutan.</blockquote>
+            <p>Setelah <code>fetch</code>, Git di komputermu sudah tahu semua riwayat baru dari server, tapi menyimpannya di "ruang karantina" (seperti <code>origin/main</code>), terpisah dari branch kerjamu (<code>main</code>).</p>
             <h2>Alur Kerja Paling Aman (Langkah demi Langkah)</h2>
             <p>Mari kita simulasikan skenario paling umum: kamu sedang mengerjakan file <code>A</code>, tapi belum siap di-commit. Tiba-tiba, kamu perlu mengambil update terbaru dari GitHub untuk mengerjakan file <code>B</code>.</p>
             <h3>Langkah 1: Amankan Pekerjaanmu dengan <code>git stash</code> (Si Laci Ajaib)</h3>
-            <p>Karena file <code>A</code> masih &quot;setengah jadi&quot;, kita tidak mau perubahannya tercampur. Kita akan menyimpannya sementara di &quot;laci ajaib&quot; Git.</p>
+            <p>Karena file <code>A</code> masih "setengah jadi", kita tidak mau perubahannya tercampur. Kita akan menyimpannya sementara di "laci ajaib" Git.</p>
             <pre><button class="copy-btn">Copy</button><code class="language-bash"># Simpan semua perubahan yang belum di-commit ke laci sementara
 git stash</code></pre>
             <p>Setelah perintah ini, folder kerjamu akan kembali bersih, seolah-olah kamu belum mengubah apa-apa. Pekerjaanmu aman tersimpan.</p>
             <h3>Langkah 2: Unduh Riwayat Baru dengan <code>git fetch</code></h3>
             <p>Sekarang, unduh semua pembaruan dari server dengan aman.</p>
-            <pre><button class="copy-btn">Copy</button><code class="language-bash"># Unduh semua info baru dari remote &apos;origin&apos;
+            <pre><button class="copy-btn">Copy</button><code class="language-bash"># Unduh semua info baru dari remote 'origin'
 git fetch origin</code></pre>
             <h3>Langkah 3: Gabungkan Perubahan dengan <code>git merge</code></h3>
-            <p>Setelah &quot;meja kerja&quot; bersih dan info update sudah di tangan, saatnya menggabungkan perubahan itu ke branch lokalmu.</p>
+            <p>Setelah "meja kerja" bersih dan info update sudah di tangan, saatnya menggabungkan perubahan itu ke branch lokalmu.</p>
             <pre><button class="copy-btn">Copy</button><code class="language-bash"># Pastikan kamu di branch yang benar (misalnya, main)
 git checkout main
-# Gabungkan perubahan dari &apos;origin/main&apos; ke &apos;main&apos; lokalmu
+# Gabungkan perubahan dari 'origin/main' ke 'main' lokalmu
 git merge origin/main</code></pre>
             <h3>Langkah 4: Kembalikan Simpananmu dengan <code>git stash pop</code></h3>
-            <p>Branch lokalmu kini sudah ter-update. Saatnya membuka kembali &quot;laci ajaib&quot; dan melanjutkan pekerjaanmu di file <code>A</code>.</p>
+            <p>Branch lokalmu kini sudah ter-update. Saatnya membuka kembali "laci ajaib" dan melanjutkan pekerjaanmu di file <code>A</code>.</p>
             <pre><button class="copy-btn">Copy</button><code class="language-bash"># Ambil kembali perubahan terakhir dari stash dan terapkan
 git stash pop</code></pre>
-            <p>Pekerjaan &quot;setengah jadi&quot; milikmu sekarang diterapkan di atas kode yang sudah diperbarui dari server.</p>
+            <p>Pekerjaan "setengah jadi" milikmu sekarang diterapkan di atas kode yang sudah diperbarui dari server.</p>
             <h2>Kesimpulan</h2>
             <p>Meskipun <code>git pull</code> terasa lebih praktis, membiasakan diri dengan alur kerja <code>fetch</code> + <code>merge</code> akan memberimu kontrol lebih besar dan menghindarkanmu dari banyak masalah di masa depan. Terutama saat kamu punya perubahan lokal yang belum disimpan, <code>git stash</code> adalah teman terbaikmu.</p>
             <p>Jadi, kapan harus menggunakan <code>git pull</code>? Gunakan saat kamu yakin 100% bahwa folder kerjamu bersih dan tidak ada perubahan yang belum di-commit. Untuk semua situasi lain, alur kerja <code>fetch</code> adalah pilihan yang lebih aman dan profesional.</p>
@@ -262,8 +262,8 @@ git stash pop</code></pre>
         </section>
     </main>
     <footer>
-        <p>&#x1f12f; 2025 Frijal. Dibuat dengan penuh &#x2615; di Balikpapan.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <p>🄯 2025 Frijal. Dibuat dengan penuh ☕ di Balikpapan.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const copyButtons = document.querySelectorAll('.copy-btn');
@@ -283,7 +283,7 @@ git stash pop</code></pre>
             });
         });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

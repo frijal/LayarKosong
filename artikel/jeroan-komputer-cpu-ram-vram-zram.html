@@ -53,11 +53,11 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Hardware, Linux, Optimasi Sistem, Tutorial">
     <meta property="article:published_time" content="2026-05-31T05:18:46.000Z">
-    <meta property="article:modified_time" content="2026-06-06T17:32:38.360Z">
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
+    <meta property="article:modified_time" content="2026-06-27T09:34:41.816Z">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
         :root {
             --bg-color: #fdfdfd;
@@ -182,41 +182,41 @@
 <body>
     <main role="main">
         <article>
-            <div id="iposbrowser"></div><h1>Bongkar Jeroan Komputer: Memahami Hubungan Rahasia Antara CPU, RAM, VRAM, dan zRAM &#x1f4bb;</h1>
-            <p class="intro">Pernahkah kamu merasa laptop mendadak freeze atau mouse patah-patah saat sedang sibuk-sibuknya membuka puluhan tab browser, menjalankan script otomasi, dan memproses gambar secara bersamaan? Sebelum buru-buru menyalahkan sistem operasi, kita perlu berkenalan dengan para &quot;pekerja&quot; di dalam mesinmu.</p>
+            <div id="iposbrowser"></div><h1>Bongkar Jeroan Komputer: Memahami Hubungan Rahasia Antara CPU, RAM, VRAM, dan zRAM 💻</h1>
+            <p class="intro">Pernahkah kamu merasa laptop mendadak freeze atau mouse patah-patah saat sedang sibuk-sibuknya membuka puluhan tab browser, menjalankan script otomasi, dan memproses gambar secara bersamaan? Sebelum buru-buru menyalahkan sistem operasi, kita perlu berkenalan dengan para "pekerja" di dalam mesinmu.</p>
             <img src="https://dalam.web.id/img/pbs.twimg.com/1afc093faf6cda05.webp" alt="Ilustrasi komponen internal komputer yang saling terhubung mengelola data" fetchpriority="high" decoding="async">
             <p>Sistem operasi bertindak sebagai pengatur lalu lintas dari komponen-komponen perangkat keras komputermu. Ketika beban kerja melonjak drastis, manajemen memori yang buruk sering kali menjadi biang kerok terjadinya <em>stuttering</em>. Mari kita bedah satu per satu anatominya agar kamu tahu siapa yang sedang bekerja, dan siapa yang jadi beban.</p>
-            <h2>1. Prosesor (CPU): Sang Mandor Proyek &#x1f9e0;</h2>
+            <h2>1. Prosesor (CPU): Sang Mandor Proyek 🧠</h2>
             <p><em>Central Processing Unit</em> (CPU) adalah otak atau mandor dari seluruh operasi komputermu. Bagian inilah yang pertama kali menerima beban kerja dari setiap perintah yang kamu ketikkan.</p>
             <ul>
                 <li><strong>Fungsi Utama:</strong> Menerima instruksi, melakukan kalkulasi logika, dan mengeksekusi aplikasi.</li>
                 <li><strong>Analogi:</strong> Bayangkan CPU seperti seorang mandor di pabrik. Jika disuruh mengawasi kompilasi kode, menjalankan server lokal, dan merender antarmuka grafis sekaligus, sang mandor pasti kewalahan dan menyebabkan <em>bottleneck</em>.</li>
             </ul>
-            <h2>2. RAM (Random Access Memory): Meja Kerja Utama &#x1f5c4;&#xfe0f;</h2>
+            <h2>2. RAM (Random Access Memory): Meja Kerja Utama 🗄️</h2>
             <p>Kalau prosesor adalah mandornya, RAM adalah <strong>meja kerjanya</strong>.</p>
             <ul>
                 <li><strong>Fungsi Utama:</strong> Menyimpan data dari aplikasi yang sedang berjalan saat ini agar bisa diakses secepat kilat oleh sang mandor.</li>
                 <li><strong>Analogi:</strong> Kapasitas RAM 16GB itu ibarat meja kerja yang sangat luas. Kamu bisa menggelar puluhan buku referensi (tab browser) dan kalkulator (terminal) sekaligus tanpa harus bolak-balik mengambilnya dari lemari arsip (SSD/Hardisk).</li>
             </ul>
-            <h2>3. VGA (GPU) &amp; VRAM: Si Pelukis dan Kanvasnya &#x1f3a8;</h2>
+            <h2>3. VGA (GPU) &amp; VRAM: Si Pelukis dan Kanvasnya 🎨</h2>
             <p>Di sinilah letak kemacetan lalu lintas data sering terjadi bagi pengguna laptop produktivitas. Ada dua jenis GPU:</p>
             <ul>
                 <li><strong>GPU Diskrit (Dedicated):</strong> Kartu grafis kelas berat yang memiliki kepingan memori VRAM sendiri secara fisik. Ia mandiri dan tidak mengganggu performa memori utama.</li>
                 <li><strong>Integrated GPU (iGPU):</strong> Kartu grafis yang menyatu di dalam prosesor utama (seperti Intel HD Graphics). Ia tidak memiliki VRAM fisik, sehingga ia perlu meminta jatah dari meja kerja utama (RAM sistem).  Sistem ini disebut <em>Shared Memory</em>. Saat grafis meninggi, sebagian RAM akan dipotong paksa.</li>
             </ul>
-            <h2>4. SWAP: Gudang Penyimpanan Darurat &#x1f6de;</h2>
+            <h2>4. SWAP: Gudang Penyimpanan Darurat 🛞</h2>
             <p>Apa yang terjadi jika RAM sudah penuh sesak, lalu kamu membuka aplikasi baru yang berat? Sistem akan menggunakan <strong>SWAP</strong>.</p>
             <p>Sistem akan mencari data di atas RAM yang sedang tidak aktif, lalu membuangnya sementara ke dalam <em>drive</em> penyimpanan utama (SSD/HDD). Kecepatan akses SSD jauh berada di bawah RAM. Proses bongkar-muat data inilah yang membuat laptopmu mendadak <em>freeze</em>.</p>
-            <h2>5. zRAM: Kompresi Memori Modern &#x1fa84;</h2>
+            <h2>5. zRAM: Kompresi Memori Modern 🪄</h2>
             <p>Untuk mengatasi kelambatan ekstrem dari metode SWAP konvensional, distribusi Linux modern menerapkan teknologi yang disebut <strong>zRAM</strong>.</p>
             <p>zRAM menggantikan peran SWAP fisik di <em>storage</em> dengan membuat blok terkompresi langsung di dalam RAM itu sendiri. Saat RAM penuh, data dipampatkan menggunakan algoritma super cepat. Berikut adalah bukti nyata sistem yang menggunakan zRAM (berjalan dengan algoritma zstd):</p>
-<pre class="terminal"><code>&#x24; zramctl
+<pre class="terminal"><code>$ zramctl
 NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 zstd         15,5G    4K   64B   20K         [SWAP]</code></pre>
             <p>Pada output di atas, kamu bisa melihat bagaimana data sebesar 4K berhasil dikompresi hingga menjadi 64 Bytes saja di dalam ruang memori! Sangat efisien, bukan?</p>
-            <h2>6. Praktik Langsung: Mengamankan Memori dengan Cgroups &#x1f6e0;&#xfe0f;</h2>
+            <h2>6. Praktik Langsung: Mengamankan Memori dengan Cgroups 🛠️</h2>
             <p>Memiliki zRAM dan RAM besar (seperti 16GB) sering kali belum cukup jika lalu lintasnya tidak diatur. Di distribusi berbasis performa seperti CachyOS, kita bisa menggunakan <em>Kernel Control Groups</em> (<em>cgroups</em>) untuk memastikan aplikasi yang sedang kita lihat di layar mendapat prioritas tertinggi.</p>
-            <p>Berikut adalah proses instalasi paket optimasi memori eksperimental (seperti <em>dmemcg-booster</em> dan *plasma-foreground-booster) yang bertindak sebagai &quot;polisi lalu lintas&quot; untuk memori sistem:</p>
+            <p>Berikut adalah proses instalasi paket optimasi memori eksperimental (seperti <em>dmemcg-booster</em> dan *plasma-foreground-booster) yang bertindak sebagai "polisi lalu lintas" untuk memori sistem:</p>
 <pre class="terminal"><code>bagaimana dengan ini? Package (3)                        New Version                Net Change  Download Size
 cachyos/kcgroups                   0.0.dmemcg.experimental-3    0,32 MiB       0,10 MiB
 cachyos/dmemcg-booster             0.1.2-1                      0,45 MiB       0,20 MiB
@@ -236,8 +236,8 @@ Total Installed Size:  0,82 MiB
 (3/3) checking available disk space                          [--------------------------------] 100%
 :: Processing package changes...
 (1/3) installing dmemcg-booster                              [--------------------------------] 100%
-Created symlink &apos;/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service&apos; &#x2192; &apos;/usr/lib/systemd/system/dmemcg-booster-system.service&apos;.
-Created symlink &apos;/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service&apos; &#x2192; &apos;/usr/lib/systemd/user/dmemcg-booster-user.service&apos;.
+Created symlink '/etc/systemd/system/multi-user.target.wants/dmemcg-booster-system.service' → '/usr/lib/systemd/system/dmemcg-booster-system.service'.
+Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/dmemcg-booster-user.service' → '/usr/lib/systemd/user/dmemcg-booster-user.service'.
 (2/3) installing kcgroups                                    [--------------------------------] 100%
 (3/3) installing plasma-foreground-booster                   [--------------------------------] 100%</code></pre>
             <p>Perhatikan baris pembuatan <em>symlink</em> di log instalasi di atas. Sistem Linux modern langsung mengaktifkan <em>service booster</em> tersebut baik di level <em>root</em> (<em>system</em>) maupun di level sesi pengguna (<em>user session</em>). Hasilnya? <em>Stuttering</em> hilang, perpindahan antar jendela jadi lebih <em>snappy*, dan iGPU tidak lagi rakus membajak seluruh kapasitas *shared memory</em> saat sedang terbebani.</p>
@@ -253,9 +253,9 @@ Created symlink &apos;/etc/systemd/user/graphical-session-pre.target.wants/dmemc
         </article>
     </main>
     <footer>
-        <p>&#x1f12f; 2026 Layar Kosong. Didistribusikan di bawah lisensi The Unlicense.</p>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+        <p>🄯 2026 Layar Kosong. Didistribusikan di bawah lisensi The Unlicense.</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

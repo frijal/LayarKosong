@@ -53,14 +53,14 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="PDF Mobile">
     <meta property="article:tag" content="Optimasi Dokumen">
     <meta property="article:tag" content="ImageMagick">
     <meta property="article:tag" content="Ghostscript">
     <meta property="article:tag" content="Bash Scripting">
     <meta property="article:published_time" content="2026-05-26T16:47:38.000Z">
-    <meta property="article:modified_time" content="2026-05-26T16:47:38.000Z">
+    <meta property="article:modified_time" content="2026-06-01T20:35:33.143Z">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
@@ -265,7 +265,7 @@
     </header>
     <img src="https://dalam.web.id/img/pbs.twimg.com/2f9d26c9d2bac7af.webp" alt="Ilustrasi optimasi dokumen PDF untuk layar ponsel" class="featured-img" width="1000" height="562" loading="eager" fetchpriority="high">
     <article>
-        <p>Halo, Bos! Apakah kamu merasa bingung kenapa file PDF e-book atau komik yang baru saja kamu <em>convert</em> ukurannya malah bengkak tak masuk akal? Padahal, niat awalnya ingin membuat dokumen yang super tajam dengan mematok lebar gambar di <strong>1920px</strong>. &#x1f937;&#x2642;&#xfe0f;</p>
+        <p>Halo, Bos! Apakah kamu merasa bingung kenapa file PDF e-book atau komik yang baru saja kamu <em>convert</em> ukurannya malah bengkak tak masuk akal? Padahal, niat awalnya ingin membuat dokumen yang super tajam dengan mematok lebar gambar di <strong>1920px</strong>. 🤷♂️</p>
         <p>Berdasarkan pengalaman aku ngoprek <em>script</em> otomatis pakai duet maut <strong>ImageMagick</strong> dan <strong>Ghostscript</strong>, mengandalkan resolusi tinggi secara tidak terkendali bukanlah jalan keluar. Kalau target pembacamu adalah pengguna <em>smartphone</em>, lebar 1920px itu sangat <em>overkill</em>. Mari kita bedah tuntas kasus ini pakai kerangka 5W+1H biar makin asyik!</p>
         <h2><i class="fa-solid fa-circle-question"></i> Apa Sebenarnya Masalahnya? (What)</h2>
         <p>Masalah utamanya adalah <strong>mubazir resolusi</strong>. Resolusi 1920px (Full HD) adalah standar ideal untuk layar monitor komputer atau televisi yang posisinya <em>landscape</em> (mendatar). Ketika kamu memaksakan gambar selebar itu ke dalam PDF, kualitasnya memang jernih, tapi mata pembaca di layar Ponsel yang kecil tidak akan bisa menangkap detail ekstra tersebut.</p>
@@ -279,14 +279,14 @@
         <p>Pakai analogi sederhana: Memasukkan gambar selebar 1920px ke dalam layar <em>smartphone</em> (yang mentok di ukuran fisik 1080px) itu ibarat menuangkan air galon ke dalam botol minum 600ml. Airnya masuk, tapi sisanya meluber tak berguna. Selain itu, sistem kompresi PDF tidak secanggih format gambar modern, sehingga gambar besar akan diekstrak menjadi data statis yang sangat berat.</p>
         <h2><i class="fa-solid fa-screwdriver-wrench"></i> Bagaimana Menemukan <em>Sweet Spot</em>-nya? (How)</h2>
         <p>Jangan panik! Untuk hasil yang tajam tapi ramah <em>storage</em>, ukuran emasnya adalah <strong>lebar 1080px</strong> (Rekomendasi Utama) atau <strong>lebar 720px - 800px</strong> (Mode Hemat). Ukuran ini membuat teks kecil tetap terbaca saat di-<em>zoom</em>, tapi <em>file</em> PDF tetap ringan meluncur.</p>
-        <p>Nah, biar kamu tidak pusing mengedit kode di terminal secara manual, aku sudah buatkan <strong>Generator Script Otomatis</strong> di bawah ini. Tinggal pilih apakah kamu mau mengunci berdasarkan ukuran &quot;Lebar&quot; atau &quot;Tinggi&quot;, ketik angkanya, lalu <em>copy-paste</em> <em>script</em> yang muncul ke sistem Linux/macOS kamu!</p>
+        <p>Nah, biar kamu tidak pusing mengedit kode di terminal secara manual, aku sudah buatkan <strong>Generator Script Otomatis</strong> di bawah ini. Tinggal pilih apakah kamu mau mengunci berdasarkan ukuran "Lebar" atau "Tinggi", ketik angkanya, lalu <em>copy-paste</em> <em>script</em> yang muncul ke sistem Linux/macOS kamu!</p>
         <div class="generator-box">
             <h3><i class="fa-solid fa-code"></i> Generator Script Konversi PNG ke PDF</h3>
             <p style="font-size: 0.9rem; margin-bottom: 20px;">Silakan atur parameter resolusinya. <em>Script</em> di bawah ini akan merajut semua file PNG di folder aktif menjadi satu PDF ramping.</p>
             <div class="form-group">
                 <div class="radio-group">
                     <label>
-                        <input type="radio" name="dimType" value="width" checked> Lebar Maksimal
+                        <input type="radio" name="dimType" value="width" checked=""> Lebar Maksimal
                     </label>
                     <label>
                         <input type="radio" name="dimType" value="height"> Tinggi Maksimal
@@ -312,8 +312,8 @@
             <a href="https://x.com/responaja" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://www.linkedin.com/in/frijal" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
         </div>
-        <p>&#x1f12f; 2026 <strong>Layar Kosong</strong>. Ditulis dengan santai bersama secangkir kopi.</p>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+        <p>🄯 2026 <strong>Layar Kosong</strong>. Ditulis dengan santai bersama secangkir kopi.</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -405,7 +405,7 @@ echo "✅ Sukses beres, Bos! File PDF kamu siap di: \$OUTPUT"
         generateScript();
     });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

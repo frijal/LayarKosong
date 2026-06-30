@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Bash Script">
     <meta property="article:published_time" content="2025-09-11T11:00:00.000Z">
-    <meta property="article:modified_time" content="2026-01-24T11:06:23.866Z">
+    <meta property="article:modified_time" content="2025-09-11T11:00:00.000Z">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
     /* Variabel Tema Terang & Gelap */
@@ -250,7 +250,7 @@
     </header>
     <main>
       <article>
-           <p>Pernahkah kamu menyalakan laptop dengan penuh semangat, namun alih-alih disuguhi logo sistem operasi yang familiar, kamu justru diadang oleh layar hitam dengan tulisan peringatan <em>&quot;grub rescue&gt;&quot;</em>? Rasanya umumnya seperti ditinggal pas lagi sayang-sayangnya, jengkel dan membuat panik. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah gejala klasik dari GRUB Bootloader yang rusak, sebuah masalah yang sering kali menimpa pengguna sistem operasi Debian, Ubuntu, maupun para penggiat sistem operasi <em>dual boot</em>.</p>
+           <p>Pernahkah kamu menyalakan laptop dengan penuh semangat, namun alih-alih disuguhi logo sistem operasi yang familiar, kamu justru diadang oleh layar hitam dengan tulisan peringatan <em>"grub rescue&gt;"</em>? Rasanya umumnya seperti ditinggal pas lagi sayang-sayangnya, jengkel dan membuat panik. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Ini adalah gejala klasik dari GRUB Bootloader yang rusak, sebuah masalah yang sering kali menimpa pengguna sistem operasi Debian, Ubuntu, maupun para penggiat sistem operasi <em>dual boot</em>.</p>
         <figure class="hero-wrapper">
           <img src="https://dalam.web.id/img/pbs.twimg.com/117157d1b4a0712b.webp" alt="Tangkapan layar terminal Linux yang sedang menjalankan proses eksekusi skrip perbaikan GRUB secara otomatis" class="hero-img" fetchpriority="high">
         </figure>
@@ -258,32 +258,32 @@
         <p>Akar masalah ini bisa bermacam-macam. Kadang-kadang pembaruan sistem operasi raksasa di sebelah yang secara tidak sopan menimpa partisi EFI, atau mungkin ada pembaruan <em>kernel</em> Linux yang gagal tuntas. Apa pun alasannya, ketika <em>bootloader</em> mogok kerja, sistem Debian kesayanganmu tidak akan pernah bisa <em>booting</em> memasuki layar <em>desktop</em>.</p>
         <p>Bagi teknisi atau pengguna Linux berpengalaman, solusi standarnya adalah masuk melalui <em>Live USB*, melakukan rentetan proses *mount*, lalu masuk ke dalam sistem dengan mode *chroot*, dan akhirnya menjalankan *reinstall</em> GRUB. Kedengarannya heroik, namun mengetikkan sepuluh hingga lima belas baris perintah secara manual itu sungguh melelahkan dan sangat rentan terjadi <em>typo</em>. Oleh karena itu, kita akan menyederhanakannya menjadi satu langkah praktis dengan skrip otomatis.</p>
         <h2><i class="fa-solid fa-code icon"></i> Skrip Otomatis (<code>fix-grub.sh</code>)</h2>
-        <p>Di bawah ini adalah sebuah mahakarya kecil&#x2014;skrip Bash yang akan merangkum semua penderitaan proses <strong>mount &#x2192; chroot &#x2192; reinstall GRUB</strong> menjadi eksekusi dalam sekali napas. Skrip ini secara otomatis memetakan partisi virtual (seperti <code>/proc</code>, <code>/sys</code>, dan <code>/dev</code>) ke dalam partisi root sistemmu yang rusak, lalu memerintahkan GRUB untuk menanamkan dirinya kembali.</p>
+        <p>Di bawah ini adalah sebuah mahakarya kecil—skrip Bash yang akan merangkum semua penderitaan proses <strong>mount → chroot → reinstall GRUB</strong> menjadi eksekusi dalam sekali napas. Skrip ini secara otomatis memetakan partisi virtual (seperti <code>/proc</code>, <code>/sys</code>, dan <code>/dev</code>) ke dalam partisi root sistemmu yang rusak, lalu memerintahkan GRUB untuk menanamkan dirinya kembali.</p>
         <blockquote>
-          &#x26a0;&#xfe0f; <strong>Peringatan Penting:</strong> Sebelum mengeksekusi skrip ini, pastikan kamu benar-benar tahu posisi <em>disk target</em> utama kamu (misalnya <code>/dev/sda</code> atau <code>/dev/nvme0n1</code>). Memilih <em>disk</em> yang salah bisa membuat partisi lain ikut bermasalah.
+          ⚠️ <strong>Peringatan Penting:</strong> Sebelum mengeksekusi skrip ini, pastikan kamu benar-benar tahu posisi <em>disk target</em> utama kamu (misalnya <code>/dev/sda</code> atau <code>/dev/nvme0n1</code>). Memilih <em>disk</em> yang salah bisa membuat partisi lain ikut bermasalah.
         </blockquote>
 <pre><code>#!/bin/bash
 # fix-grub.sh - Skrip perbaikan GRUB otomatis
 # Peringatan: Pastikan disk target sudah benar!
-DISK=&quot;&#x24;1&quot;
-if [ -z &quot;&#x24;DISK&quot; ]; then
-  echo &quot;Penggunaan: sudo &#x24;0 /dev/sdX&quot;
+DISK="$1"
+if [ -z "$DISK" ]; then
+  echo "Penggunaan: sudo $0 /dev/sdX"
   exit 1
 fi
 # Melakukan mount pada partisi utama
-mount &quot;&#x24;{DISK}1&quot; /mnt
+mount "${DISK}1" /mnt
 # Melakukan binding pada direktori sistem virtual
-for i in /dev /proc /sys; do mount --bind &quot;&#x24;i&quot; &quot;/mnt&#x24;i&quot;; done
+for i in /dev /proc /sys; do mount --bind "$i" "/mnt$i"; done
 # Masuk ke environment chroot dan menginstal ulang GRUB
-chroot /mnt grub-install &quot;&#x24;DISK&quot;
+chroot /mnt grub-install "$DISK"
 chroot /mnt update-grub
 # Melakukan unmount setelah proses selesai untuk keamanan data
-for i in /sys /proc /dev; do umount &quot;/mnt&#x24;i&quot;; done
+for i in /sys /proc /dev; do umount "/mnt$i"; done
 umount /mnt
-echo &quot;&#x2705; GRUB berhasil diperbaiki. Silakan reboot komputer Anda.&quot;
+echo "✅ GRUB berhasil diperbaiki. Silakan reboot komputer Anda."
 </code></pre>
         <h2><i class="fa-solid fa-wrench icon"></i> Cara Menggunakan Skrip</h2>
-        <p>Sekarang kamu mungkin bertanya, bagaimana cara mengeksekusi skrip ini saat komputermu sendiri sedang pingsan? Tenang, siapkan sebuah <em>flashdisk</em> berisi <em>Live USB</em> Debian atau Ubuntu. Kita akan menggunakan sistem operasi sementara tersebut sebagai &quot;ruang operasi&quot;. Berikut langkah-langkah detailnya:</p>
+        <p>Sekarang kamu mungkin bertanya, bagaimana cara mengeksekusi skrip ini saat komputermu sendiri sedang pingsan? Tenang, siapkan sebuah <em>flashdisk</em> berisi <em>Live USB</em> Debian atau Ubuntu. Kita akan menggunakan sistem operasi sementara tersebut sebagai "ruang operasi". Berikut langkah-langkah detailnya:</p>
         <ol>
           <li>Nyalakan komputer dan lakukan <em>booting</em> masuk menggunakan <strong>Live USB Debian/Ubuntu</strong> pilihanmu. Buka aplikasi terminal.</li>
           <li>Buka <em>text editor</em> favoritmu (misal: <code>nano fix-grub.sh</code>) lalu salin dan simpan skrip di atas dengan nama <code>fix-grub.sh</code>.</li>
@@ -291,7 +291,7 @@ echo &quot;&#x2705; GRUB berhasil diperbaiki. Silakan reboot komputer Anda.&quot
           <li>Identifikasi nama <em>disk</em> utama Linux kamu menggunakan perintah <code>lsblk</code> atau <code>sudo fdisk -l</code>. Jika sistem Linux kamu ada di <code>/dev/sda1</code>, maka nama <em>disk</em> induknya adalah <code>/dev/sda</code>.</li>
           <li>Terakhir, jalankan skripnya dengan memasukkan nama <em>disk</em> kamu sebagai argumen: <code>sudo ./fix-grub.sh /dev/sda</code></li>
         </ol>
-        <p>Biarkan skrip bekerja selama beberapa detik. Jika terminal menampilkan pesan <em>&quot;GRUB berhasil diperbaiki&quot;</em>, kamu boleh bernapas lega. Lepaskan <em>Live USB</em>, lalu lakukan <em>reboot*. Sambut kembali layar GRUB yang akan mengantarkanmu ke *desktop</em> tercinta!</p>
+        <p>Biarkan skrip bekerja selama beberapa detik. Jika terminal menampilkan pesan <em>"GRUB berhasil diperbaiki"</em>, kamu boleh bernapas lega. Lepaskan <em>Live USB</em>, lalu lakukan <em>reboot*. Sambut kembali layar GRUB yang akan mengantarkanmu ke *desktop</em> tercinta!</p>
       </article>
     </main>
     <div id="related-articles-grid"></div><div id="response"></div>
@@ -302,9 +302,9 @@ echo &quot;&#x2705; GRUB berhasil diperbaiki. Silakan reboot komputer Anda.&quot
         <span>14 Juni 2026</span>
         <span>Referensi: Dokumentasi Pemulihan Sistem GNU/Linux Debian</span>
       </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

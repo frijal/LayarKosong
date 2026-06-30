@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Node.js">
     <meta property="article:tag" content="NPM">
     <meta property="article:tag" content="Web Development">
@@ -155,7 +155,7 @@
 <body>
     <main role="main">
         <article>
-            <div id="iposbrowser"></div><h1>&#x1f4e6; semver 7.8.5 &#x2014; Kalkulator Versi untuk Node.js</h1>
+            <div id="iposbrowser"></div><h1>📦 semver 7.8.5 — Kalkulator Versi untuk Node.js</h1>
             <img src="https://dalam.web.id/img/pbs.twimg.com/2e7a5c90cc6746b8.webp" alt="Ilustrasi manajemen versi dependensi Node.js" fetchpriority="high" decoding="async">
             <p>Halo rekan-rekan <em>developer*! Pernah merasa pusing saat *project</em> tiba-tiba <em>error</em> parah akibat ada versi <em>library</em> pendukung yang saling bentrok? Di momen krusial inilah <strong>semver</strong> hadir sebagai penyelamat kode kita.</p>
             <p>Secara sederhana, semver adalah paket bawaan ekosistem npm yang dipakai sangat luas untuk tugas <em>parsing*, membandingkan, dan mengelola nomor versi *software</em> agar tertib sesuai pedoman <em>Semantic Versioning</em>. Alat ini sangat ideal untuk menangani <em>dependency management</em>, sistem integrasi CI/CD, arsitektur <em>plugin</em>, dan segala skenario lain yang menuntut akurasi versi mutlak.</p>
@@ -182,38 +182,38 @@
                     <tbody>
                         <tr>
                             <td><strong>Parse versi utuh</strong></td>
-                            <td><code>semver.parse(&apos;1.2.3&apos;)</code></td>
+                            <td><code>semver.parse('1.2.3')</code></td>
                             <td>Objek rinci <code>{ major:1, minor:2, patch:3 }</code></td>
                         </tr>
                         <tr>
                             <td><strong>Bandingkan (Lebih Besar)</strong></td>
-                            <td><code>semver.gt(&apos;1.2.3&apos;, &apos;1.2.2&apos;)</code></td>
-                            <td><code>true</code> &#x2192; verifikasi apakah versi pertama lebih mutakhir</td>
+                            <td><code>semver.gt('1.2.3', '1.2.2')</code></td>
+                            <td><code>true</code> → verifikasi apakah versi pertama lebih mutakhir</td>
                         </tr>
                         <tr>
                             <td><strong>Cek kesesuaian range</strong></td>
-                            <td><code>semver.satisfies(&apos;1.5.0&apos;, &apos;^1.4.0&apos;)</code></td>
-                            <td><code>true</code> &#x2192; konfirmasi bahwa versi tersebut aman masuk <em>range</em> <code>^1.4.0</code></td>
+                            <td><code>semver.satisfies('1.5.0', '^1.4.0')</code></td>
+                            <td><code>true</code> → konfirmasi bahwa versi tersebut aman masuk <em>range</em> <code>^1.4.0</code></td>
                         </tr>
                         <tr>
                             <td><strong>Increment tingkat versi</strong></td>
-                            <td><code>semver.inc(&apos;2.3.4&apos;, &apos;minor&apos;)</code></td>
-                            <td><code>2.4.0</code> &#x2192; otomatis menaikkan digit versi kelas minor</td>
+                            <td><code>semver.inc('2.3.4', 'minor')</code></td>
+                            <td><code>2.4.0</code> → otomatis menaikkan digit versi kelas minor</td>
                         </tr>
                         <tr>
                             <td><strong>Validasi string manual</strong></td>
-                            <td><code>semver.valid(&apos;1.2.3&apos;)</code></td>
+                            <td><code>semver.valid('1.2.3')</code></td>
                             <td>Mengembalikan <code>1.2.3</code> (jika valid) atau <code>null</code> jika teks kacau</td>
                         </tr>
                         <tr>
                             <td><strong>Maksimum dari kumpulan</strong></td>
-                            <td><code>semver.maxSatisfying([&apos;1.2.3&apos;,&apos;1.5.0&apos;], &apos;^1.0.0&apos;)</code></td>
-                            <td><code>1.5.0</code> &#x2192; pintar menyeleksi versi tertinggi yang tetap aman</td>
+                            <td><code>semver.maxSatisfying(['1.2.3','1.5.0'], '^1.0.0')</code></td>
+                            <td><code>1.5.0</code> → pintar menyeleksi versi tertinggi yang tetap aman</td>
                         </tr>
                         <tr>
                             <td><strong>Deteksi rilis awal</strong></td>
-                            <td><code>semver.prerelease(&apos;1.2.3-beta.2&apos;)</code></td>
-                            <td><code>[&apos;beta&apos;, 2]</code> &#x2192; memisahkan informasi label uji coba dan nomornya</td>
+                            <td><code>semver.prerelease('1.2.3-beta.2')</code></td>
+                            <td><code>['beta', 2]</code> → memisahkan informasi label uji coba dan nomornya</td>
                         </tr>
                     </tbody>
                 </table>
@@ -222,20 +222,20 @@
             <pre><code>// 1. Tahap Instalasi (jalankan di terminal)
 // npm install semver 7.8.5
 // 2. Panggil paket di kode program
-const semver = require(&apos;semver&apos;);
+const semver = require('semver');
 // 3. Mari bandingkan versi
-console.log(semver.gt(&apos;1.2.3&apos;, &apos;1.2.2&apos;));  // Output: true
+console.log(semver.gt('1.2.3', '1.2.2'));  // Output: true
 // 4. Cek apakah versi aktual cocok dengan target range
-console.log(semver.satisfies(&apos;1.5.0&apos;, &apos;^1.4.0&apos;));  // Output: true
+console.log(semver.satisfies('1.5.0', '^1.4.0'));  // Output: true
 // 5. Naikkan versi secara dinamis (patch/minor/major)
-console.log(semver.inc(&apos;2.3.4&apos;, &apos;patch&apos;)); // Output: 2.3.5
-console.log(semver.inc(&apos;2.3.4&apos;, &apos;minor&apos;)); // Output: 2.4.0
-console.log(semver.inc(&apos;2.3.4&apos;, &apos;major&apos;)); // Output: 3.0.0
+console.log(semver.inc('2.3.4', 'patch')); // Output: 2.3.5
+console.log(semver.inc('2.3.4', 'minor')); // Output: 2.4.0
+console.log(semver.inc('2.3.4', 'major')); // Output: 3.0.0
 // 6. Evaluasi keabsahan struktur versi
-console.log(semver.valid(&apos;1.2.3&apos;)); // Output: &apos;1.2.3&apos;
-console.log(semver.valid(&apos;1.2&apos;));   // Output: null
+console.log(semver.valid('1.2.3')); // Output: '1.2.3'
+console.log(semver.valid('1.2'));   // Output: null
 // 7. Sortir versi teringgi yang mematuhi batasan
-console.log(semver.maxSatisfying([&apos;1.0.0&apos;,&apos;1.5.1&apos;,&apos;1.5.0&apos;], &apos;^1.5.0&apos;)); // Output: &apos;1.5.1&apos;</code></pre>
+console.log(semver.maxSatisfying(['1.0.0','1.5.1','1.5.0'], '^1.5.0')); // Output: '1.5.1'</code></pre>
             <h2>Di skenario mana saja semver wajib diaplikasikan?</h2>
             <ul>
                 <li><strong>Pengembangan Library npm:</strong> Menentukan <em>range</em> <em>peer dependencies</em> secara cerdas di dalam <em>file</em> <code>package.json</code> agar <em>package</em> buatanmu tetap toleran saat pengguna memakai modul pendukung versi lain.</li>
@@ -249,7 +249,7 @@ console.log(semver.maxSatisfying([&apos;1.0.0&apos;,&apos;1.5.1&apos;,&apos;1.5.
                 <li><strong>Keluarga Versi:</strong> Pembahasan ini mencakup rilis seri mutakhir <code>7.8.1</code> (termasuk stabilitas di retro-versi <code>7.7.3</code>).</li>
                 <li><strong>Sistem Lisensi:</strong> Dilindungi di bawah lisensi terbuka ISC.</li>
                 <li><strong>Beban Dependensi:</strong> Nol (sama sekali tidak ada sub-dependensi), yang menjadikannya sangat ringan saat proses unduh maupun komputasi.</li>
-                <li><strong>Peta Kompatibilitas:</strong> Siap jalan (<em>native</em>) di Node.js pola lama (CommonJS). Bagi kamu yang sudah migrasi ke arsitektur ESM, cukup ubah sintaks pemanggilannya menjadi <code>import semver from &apos;semver&apos;</code> didukung pengaturan <em>bundler</em> yang tepat.</li>
+                <li><strong>Peta Kompatibilitas:</strong> Siap jalan (<em>native</em>) di Node.js pola lama (CommonJS). Bagi kamu yang sudah migrasi ke arsitektur ESM, cukup ubah sintaks pemanggilannya menjadi <code>import semver from 'semver'</code> didukung pengaturan <em>bundler</em> yang tepat.</li>
             </ul>
             <h3>Saran taktis lapangan (<em>Best Practices</em>)</h3>
             <ul>
@@ -269,9 +269,9 @@ console.log(semver.maxSatisfying([&apos;1.0.0&apos;,&apos;1.5.1&apos;,&apos;1.5.
     </main>
     <footer>
         <hr>
-        <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Hak Cipta &#x1f12f; 2026 Layar Kosong. Dibuat dengan penuh ketelitian.</p>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Hak Cipta 🄯 2026 Layar Kosong. Dibuat dengan penuh ketelitian.</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

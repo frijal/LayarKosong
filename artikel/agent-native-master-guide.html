@@ -53,13 +53,13 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-06-06T15:03:54.000Z">
-    <meta property="article:modified_time" content="2026-06-10T22:57:04.637Z">
+    <meta property="article:modified_time" content="2026-06-06T15:03:54.000Z">
     <meta name="article:tag" content="Web Development">
     <meta name="article:tag" content="Artificial Intelligence">
     <meta name="article:tag" content="SEO">
-    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media=&apos;all&apos;">
+    <link rel="stylesheet" href="/ext/fontawesome.css" media="print" onload="this.media='all'">
     <style>
         /* System Font Stack & Native Variables */
         :root {
@@ -194,7 +194,7 @@
     </style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
-<input type="checkbox" id="lang-toggle" hidden aria-hidden="true">
+<input type="checkbox" id="lang-toggle" hidden="" aria-hidden="true">
 <div class="site-wrapper">
     <header role="banner">
         <div class="toggle-container">
@@ -231,10 +231,10 @@
             <h3>2. Suntikan HTTP Link Headers</h3>
             <p>Lewat file <code>_headers</code> statis di <em>Cloudflare Pages*, server menyuntikkan relasi *link</em> langsung ke dalam <em>HTTP Response Header</em> tanpa menunggu HTML selesai dimuat:</p>
 <pre><code class="language-plaintext">/*
-  Link: <!--.well-known/agent-skills/index.json-->; rel=&quot;agent-skills&quot;
-  Link: <!--.well-known/api-catalog-->; rel=&quot;api-catalog&quot;
-  Link: ; rel=&quot;alternate&quot;; type=&quot;text/markdown&quot;
-  Link: ; rel=&quot;alternate&quot;; type=&quot;text/markdown&quot;
+  Link: <!--.well-known/agent-skills/index.json-->; rel="agent-skills"
+  Link: <!--.well-known/api-catalog-->; rel="api-catalog"
+  Link: ; rel="alternate"; type="text/markdown"
+  Link: ; rel="alternate"; type="text/markdown"
 </code></pre>
             <h2>Bagian 2: Content Negotiation &amp; Dualitas File LLMS</h2>
             <p>Menyumpal ribuan halaman HTML utuh ke memori AI adalah pemborosan token. Layar Kosong merakit penambang artikel dinamis berbasis <strong>Bun</strong> yang memilah konten menjadi dua wujud, tanpa perlu berurusan dengan relasi <em>database creation</em> yang rumit:</p>
@@ -266,13 +266,13 @@
             <h3>2. HTTP Link Header Injection</h3>
             <p>Through a permanent <code>_headers</code> configuration file hosted on <em>Cloudflare Pages</em>, the server injects link relations directly into the <em>HTTP Response Header</em>:</p>
 <pre><code class="language-plaintext">/*
-  Link: <!--.well-known/agent-skills/index.json-->; rel=&quot;agent-skills&quot;
-  Link: <!--.well-known/api-catalog-->; rel=&quot;api-catalog&quot;
-  Link: ; rel=&quot;alternate&quot;; type=&quot;text/markdown&quot;
-  Link: ; rel=&quot;alternate&quot;; type=&quot;text/markdown&quot;
+  Link: <!--.well-known/agent-skills/index.json-->; rel="agent-skills"
+  Link: <!--.well-known/api-catalog-->; rel="api-catalog"
+  Link: ; rel="alternate"; type="text/markdown"
+  Link: ; rel="alternate"; type="text/markdown"
 </code></pre>
             <h2>Part 2: Content Negotiation &amp; Dual LLMS Files</h2>
-            <p>Stuffing full HTML pages into an AI&apos;s memory is a colossal waste of tokens. Layar Kosong built a dynamic harvesting system using <strong>Bun</strong> that categorizes content without the overhead of traditional <em>database creation</em>:</p>
+            <p>Stuffing full HTML pages into an AI's memory is a colossal waste of tokens. Layar Kosong built a dynamic harvesting system using <strong>Bun</strong> that categorizes content without the overhead of traditional <em>database creation</em>:</p>
             <ul>
                 <li><strong>llms.txt (The Menu):</strong> A super light file acting as a roadmap, featuring article titles, summaries, and URLs.</li>
                 <li><strong>llms.md (The Warehouse):</strong> Our <em>Bun</em> script parses HTML files during build, strips distracting elements, and converts core tags into clean <em>Markdown</em>.</li>
@@ -300,9 +300,9 @@
         <span class="eeat-block"><i class="fa-solid fa-location-dot"></i> Balikpapan, Indonesia</span>
         <span class="eeat-block">|</span>
         <span class="eeat-block"><i class="fa-brands fa-creative-commons"></i> Open Access</span>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Fedora">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Multimedia">
@@ -406,7 +406,7 @@
         }
     </style>
     <!-- Load highlight.js styles (conditional) -->
-    <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media=&apos;all&apos;">
+    <link rel="stylesheet" href="/ext/default.min.css" media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
     </noscript>
@@ -415,32 +415,32 @@
     <div class="container" role="main">
         <!-- ===== HEADER ===== -->
         <header>
-            <div id="iposbrowser"></div><h1>Fedora: Panduan Integrasi Codec Tambahan untuk Optimalisasi Output Audio &#x1f3b5;</h1>
+            <div id="iposbrowser"></div><h1>Fedora: Panduan Integrasi Codec Tambahan untuk Optimalisasi Output Audio 🎵</h1>
             <p style="font-size: var(--h3-size); color: var(--text-muted); margin-bottom: 0.25rem; font-weight: 400; font-style: italic;">
                 Nikmati pengalaman multimedia penuh di Fedora dengan codec tambahan
             </p>
         </header>
         <!-- ===== LEAD PARAGRAPHS ===== -->
         <p>
-            Jika Anda baru saja menginstal Fedora dan mencoba memutar file MP3 atau video MP4, Anda mungkin akan menemukan pesan error yang menjengkelkan. Ini bukanlah kekurangan dari sistem operasi, melainkan <b>konsekuensi dari kebijakan distro</b> yang hanya menyertakan codec bebas paten secara bawaan. Untuk menikmati berbagai format multimedia populer&#x2014;mulai dari MP3, AAC, hingga H.264&#x2014;Anda perlu menambahkan codec non-free dari repositori pihak ketiga.
+            Jika Anda baru saja menginstal Fedora dan mencoba memutar file MP3 atau video MP4, Anda mungkin akan menemukan pesan error yang menjengkelkan. Ini bukanlah kekurangan dari sistem operasi, melainkan <b>konsekuensi dari kebijakan distro</b> yang hanya menyertakan codec bebas paten secara bawaan. Untuk menikmati berbagai format multimedia populer—mulai dari MP3, AAC, hingga H.264—Anda perlu menambahkan codec non-free dari repositori pihak ketiga.
         </p>
         <p>
-            Di artikel ini, kita akan membahas secara komprehensif <u>mengapa</u> langkah ini diperlukan, <u>siapa</u> yang paling diuntungkan, <u>kapan</u> panduan ini berlaku, <u>di mana</u> mendapatkan paket yang aman, dan tentu saja <u>bagaimana</u> cara mengintegrasikannya dengan mudah. Semua disajikan dengan bahasa santai namun mendalam, agar Anda&#x2014;baik pengguna pemula maupun administrator sistem&#x2014;bisa langsung mempraktikannya tanpa kebingungan.
+            Di artikel ini, kita akan membahas secara komprehensif <u>mengapa</u> langkah ini diperlukan, <u>siapa</u> yang paling diuntungkan, <u>kapan</u> panduan ini berlaku, <u>di mana</u> mendapatkan paket yang aman, dan tentu saja <u>bagaimana</u> cara mengintegrasikannya dengan mudah. Semua disajikan dengan bahasa santai namun mendalam, agar Anda—baik pengguna pemula maupun administrator sistem—bisa langsung mempraktikannya tanpa kebingungan.
         </p>
         <!-- ===== HERO IMAGE (LCP) ===== -->
         <figure class="hero-image-wrap">
             <img src="https://dalam.web.id/img/AAAAAA/fedoralgoggo.webp" srcset="https://dalam.web.id/img/AAAAAA/fedoralgoggo.webp 1000w, https://dalam.web.id/img/AAAAAA/fedoralgoggo.webp 480w, https://dalam.web.id/img/AAAAAA/fedoralgoggo.webp 320w" sizes="(max-width:640px) 100vw, 1000px" alt="Logo resmi Fedora Project dengan latar belakang gelap, menggambarkan identitas distro Linux yang modern dan inovatif" width="1000" height="562" loading="eager" fetchpriority="high" decoding="async">
-            <figcaption>Logo Fedora Project &#x2014; simbol kebebasan dan inovasi di dunia Linux</figcaption>
+            <figcaption>Logo Fedora Project — simbol kebebasan dan inovasi di dunia Linux</figcaption>
         </figure>
         <!-- ===== SECTION 1: APA & MENGAPA ===== -->
         <div class="section-accordion">
             <details>
                 <summary>
-                    <span class="icon-shrink">&#x1f50d;</span> Memahami Kebutuhan Codec di Fedora
+                    <span class="icon-shrink">🔍</span> Memahami Kebutuhan Codec di Fedora
                 </summary>
                 <div class="accordion-content">
                     <p>
-                        Secara bawaan, Fedora hanya mendukung format media yang benar-benar bebas paten, seperti OGG, WebM, dan FLAC. Ini adalah keputusan yang diambil oleh proyek Fedora untuk mematuhi standar perangkat lunak bebas dan menghindari masalah hukum. Namun, realita di lapangan adalah sebagian besar konten multimedia&#x2014;entah itu lagu dari penyedia streaming, video dari kamera, atau film DVD&#x2014;menggunakan format yang dilindungi paten seperti MP3, H.264, atau AAC.
+                        Secara bawaan, Fedora hanya mendukung format media yang benar-benar bebas paten, seperti OGG, WebM, dan FLAC. Ini adalah keputusan yang diambil oleh proyek Fedora untuk mematuhi standar perangkat lunak bebas dan menghindari masalah hukum. Namun, realita di lapangan adalah sebagian besar konten multimedia—entah itu lagu dari penyedia streaming, video dari kamera, atau film DVD—menggunakan format yang dilindungi paten seperti MP3, H.264, atau AAC.
                     </p>
                     <p>
                         Tanpa codec yang sesuai, pemutar media bawaan seperti Totem atau Rhythmbox akan menolak memutar file-file tersebut, atau hanya menghasilkan suara tanpa gambar. Hal ini tentu sangat mengganggu, terutama bagi pengguna yang ingin menjadikan Fedora sebagai <b>sistem operasi utama</b> untuk kebutuhan hiburan dan pekerjaan kreatif. Oleh karena itu, menambahkan codec tambahan bukanlah sebuah kemewahan, melainkan <u>kebutuhan fungsional</u> untuk pengalaman desktop yang utuh.
@@ -455,11 +455,11 @@
         <div class="section-accordion">
             <details>
                 <summary>
-                    <span class="icon-shrink">&#x1f465;</span> Siapa yang Membutuhkan dan Kapan Panduan Ini Berlaku
+                    <span class="icon-shrink">👥</span> Siapa yang Membutuhkan dan Kapan Panduan Ini Berlaku
                 </summary>
                 <div class="accordion-content">
                     <p>
-                        Panduan ini ditujukan untuk <b>semua pengguna Fedora</b> yang ingin memutar format media populer di desktop atau laptop mereka. Baik Anda seorang desainer grafis yang sering menerima file referensi video, seorang musisi yang ingin memutar demo lagu dalam MP3, atau sekadar pengguna rumahan yang ingin menonton film koleksi pribadi&#x2014;semua akan merasakan manfaatnya.
+                        Panduan ini ditujukan untuk <b>semua pengguna Fedora</b> yang ingin memutar format media populer di desktop atau laptop mereka. Baik Anda seorang desainer grafis yang sering menerima file referensi video, seorang musisi yang ingin memutar demo lagu dalam MP3, atau sekadar pengguna rumahan yang ingin menonton film koleksi pribadi—semua akan merasakan manfaatnya.
                     </p>
                     <p>
                         Adapun cakupan versi, panduan ini mencakup dua era besar: <b>Fedora 16</b> (yang masih menggunakan <code>yum</code>) dan <b>Fedora 19 ke atas</b> (yang beralih ke <code>dnf</code>). Meskipun Fedora 16 sudah sangat lawas, kami tetap menyertakannya sebagai referensi bagi mereka yang mungkin masih menjalankan sistem lama atau menemukan dokumentasi usang di internet. Untuk pengguna modern, kami sangat merekomendasikan untuk mengikuti bagian yang ditujukan untuk Fedora 19 dan yang lebih baru, karena prosesnya jauh lebih ringkas dan terintegrasi dengan manajer paket terbaru.
@@ -474,7 +474,7 @@
         <div class="section-accordion">
             <details>
                 <summary>
-                    <span class="icon-shrink">&#x1f4e6;</span> Sumber Codec: RPM Fusion
+                    <span class="icon-shrink">📦</span> Sumber Codec: RPM Fusion
                 </summary>
                 <div class="accordion-content">
                     <p>
@@ -493,7 +493,7 @@
         <div class="section-accordion">
             <details>
                 <summary>
-                    <span class="icon-shrink">&#x1f6e0;&#xfe0f;</span> Panduan Langkah-demi-Langkah
+                    <span class="icon-shrink">🛠️</span> Panduan Langkah-demi-Langkah
                 </summary>
                 <div class="accordion-content">
                     <h3>Untuk Fedora 16 (Metode Lawas)</h3>
@@ -518,7 +518,7 @@
                     <p>
                         Mulai Fedora 19, proses integrasi codec menjadi jauh lebih sederhana berkat penggunaan <code>dnf</code> dan grup paket. Setelah menambahkan RPM Fusion (langkah yang sama seperti di atas, namun menggunakan <code>dnf</code>), Anda hanya perlu menjalankan dua perintah berikut:
                     </p>
-                    <pre><code class="language-bash">sudo dnf groupupdate multimedia --setop=&quot;install_weak_deps=False&quot; --exclude=PackageKit-gstreamer-plugin
+                    <pre><code class="language-bash">sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate sound-and-video</code></pre>
                     <p>
                         Perintah pertama memperbarui grup paket <i>multimedia</i> dan memastikan bahwa dependensi yang lemah (<i>weak dependencies</i>) tidak terinstal secara otomatis, yang dapat menyebabkan konflik. Opsi <code>--exclude</code> digunakan untuk menghindari pemasangan plugin GStreamer dari PackageKit yang sering menimbulkan masalah.
@@ -536,7 +536,7 @@ sudo dnf groupupdate sound-and-video</code></pre>
         <div class="section-accordion">
             <details>
                 <summary>
-                    <span class="icon-shrink">&#x1f4da;</span> Sumber Daya dan Tips Tambahan
+                    <span class="icon-shrink">📚</span> Sumber Daya dan Tips Tambahan
                 </summary>
                 <div class="accordion-content">
                     <p>
@@ -560,21 +560,21 @@ sudo dnf groupupdate sound-and-video</code></pre>
         <!-- ===== PENUTUP ===== -->
         <hr>
         <p class="text-center" style="font-style: italic; font-size: var(--h3-size); color: var(--text-secondary);">
-            Dengan codec tambahan, Fedora bukan hanya distro yang stabil dan aman&#x2014;tetapi juga pusat hiburan yang siap menemani aktivitas sehari-hari Anda.
+            Dengan codec tambahan, Fedora bukan hanya distro yang stabil dan aman—tetapi juga pusat hiburan yang siap menemani aktivitas sehari-hari Anda.
         </p>
         <!-- ===== FOOTER ===== -->
         <footer class="article-footer">
-            <span class="footer-item">&#x270d;&#xfe0f; <b>Jaga Data Pribadi Tetap Aman</b></span>
-            <span class="footer-item"><span class="sep">|</span> &#x1f4c5; 22 Juni 2026</span>
-            <span class="footer-item"><span class="sep">|</span> &#x1f517; Referensi: <a href="https://rpmfusion.org/" target="_blank" rel="noopener noreferrer">RPM Fusion</a></span>
-                <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <span class="footer-item">✍️ <b>Jaga Data Pribadi Tetap Aman</b></span>
+            <span class="footer-item"><span class="sep">|</span> 📅 22 Juni 2026</span>
+            <span class="footer-item"><span class="sep">|</span> 🔗 Referensi: <a href="https://rpmfusion.org/" target="_blank" rel="noopener noreferrer">RPM Fusion</a></span>
+                <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
         <!-- ===== REQUIRED PLACEHOLDERS ===== -->
         <div id="related-articles-grid"></div>
         <div id="response"></div>
     </div>
     <!-- end .container -->
     <!-- ===== HIGHLIGHT.JS LOADER ===== -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

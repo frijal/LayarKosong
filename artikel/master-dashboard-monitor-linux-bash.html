@@ -53,7 +53,7 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2026-01-24T04:23:56.888Z">
     <meta property="article:modified_time" content="2026-01-24T04:23:56.888Z">
     <meta name="prompt_hint" content="Panduan teknis mendalam tentang pembuatan dashboard monitoring terpusat di terminal Linux menggunakan shell scripting.">
@@ -157,14 +157,14 @@
             <span><i class="fa-solid fa-calendar-alt"></i> 27 Januari 2026</span>
             <span><i class="fa-solid fa-map-marker-alt"></i> Balikpapan, ID</span>
         </div>
-        <div id="iposbrowser"></div><h1>Master Dashboard Monitor Linux: Kendali Penuh Server dalam Satu Script! &#x1f6e0;&#xfe0f;</h1>
+        <div id="iposbrowser"></div><h1>Master Dashboard Monitor Linux: Kendali Penuh Server dalam Satu Script! 🛠️</h1>
         <p style="font-size: 1.4rem; opacity: 0.9; font-weight: 300;">Lupakan ribetnya cek satu-satu. Mari kita buat satu dashboard terminal yang menggabungkan Disk, RAM, dan Jaringan secara otomatis.</p>
     </header>
     <article class="article-body">
         <p>Halo sobat <strong>Layar Kosong</strong>! Kita sudah belajar banyak hal: cara diagnosa disk penuh, cara monitoring RAM agar gak OOM, dan cara awasin trafik jaringan biar gak kecolongan. Tapi jujur aja, sebagai sysadmin yang punya jadwal padat (atau mungkin lagi pengen santai ngopi di pinggir Pantai Kemala), kita butuh sesuatu yang lebih ringkas. </p>
-        <p>Kenapa harus ngetik tiga perintah berbeda kalau bisa satu kali tekan enter? Nah, di artikel kali ini, aku bakal kasih &quot;Master Key&quot; atau kunci utama: sebuah script dashboard gabungan yang bakal kasih kamu ringkasan kesehatan server kamu dalam satu tampilan bersih. Informasi ini bersifat edukatif dan tidak menggantikan saran tenaga kesehatan. tidak perlu lagi bolak-balik terminal!</p>
+        <p>Kenapa harus ngetik tiga perintah berbeda kalau bisa satu kali tekan enter? Nah, di artikel kali ini, aku bakal kasih "Master Key" atau kunci utama: sebuah script dashboard gabungan yang bakal kasih kamu ringkasan kesehatan server kamu dalam satu tampilan bersih. Informasi ini bersifat edukatif dan tidak menggantikan saran tenaga kesehatan. tidak perlu lagi bolak-balik terminal!</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nbQMwbAAEo_oa.webp" alt="Master Dashboard Linux Terminal Preview" class="featured-img" loading="eager">
-        <h2>Mengapa Butuh Dashboard Terpusat? (&quot;Why&quot;)</h2>
+        <h2>Mengapa Butuh Dashboard Terpusat? ("Why")</h2>
         <p>Bekerja reaktif itu melelahkan. Dashboard ini dirancang agar kamu bisa bekerja secara proaktif. Dengan melihat Disk, RAM, dan Jaringan dalam satu frame, kamu bisa melihat korelasi masalah. Misalnya, kalau RAM naik dibarengi dengan trafik jaringan yang melonjak, mungkin server kamu sedang mengalami lonjakan akses tidak wajar atau lonjakan pengunjung asli. Kalau disk penuh tapi trafik jaringan sepi, mungkin ada log file yang bocor. Gabungan data ini memberikan <strong>konteks</strong>, bukan sekadar angka.</p>
         <div class="info-box">
             <h3><i class="fa-solid fa-lightbulb"></i> Prinsip 5W+1H Master Monitoring:</h3>
@@ -177,8 +177,8 @@
                 <li><strong>How:</strong> Menggunakan teknik pengambilan data kernel <code>/proc</code> dan utilitas standar Linux.</li>
             </ul>
         </div>
-        <h2>Script Master Dashboard &quot;Server-Status.sh&quot; (&quot;How&quot;)</h2>
-        <p>Aku sudah perbaiki script ini agar lebih &quot;bandel&quot; (robust) dan gak bakal kena error syntax shell standar. Pastikan kamu menyimpannya dengan ekstensi <code>.sh</code> dan dijalankan menggunakan <code>bash</code>.</p>
+        <h2>Script Master Dashboard "Server-Status.sh" ("How")</h2>
+        <p>Aku sudah perbaiki script ini agar lebih "bandel" (robust) dan gak bakal kena error syntax shell standar. Pastikan kamu menyimpannya dengan ekstensi <code>.sh</code> dan dijalankan menggunakan <code>bash</code>.</p>
         <pre><code>#!/bin/bash
 # ======================================================
 # MASTER DASHBOARD MONITOR
@@ -186,52 +186,52 @@
 # Penulis: Fakhrul Rijal (Layar Kosong)
 # ======================================================
 # --- KONFIGURASI ---
-INTERFACE=&quot;eth0&quot;  # Ganti dengan interface kamu (cek: ip a)
-DISK_PART=&quot;/&quot;
+INTERFACE="eth0"  # Ganti dengan interface kamu (cek: ip a)
+DISK_PART="/"
 THRESHOLD=80
 # Warna untuk estetika terminal
-GREEN=&apos;\033[0;32m&apos;
-RED=&apos;\033[0;31m&apos;
-YELLOW=&apos;\033[1;33m&apos;
-BLUE=&apos;\033[0;34m&apos;
-NC=&apos;\033[0m&apos; # No Color
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
 clear
-echo -e &quot;&#x24;{BLUE}======================================================&#x24;{NC}&quot;
-echo -e &quot;&#x24;{BLUE}       SERVER MASTER DASHBOARD - &#x24;(hostname)          &#x24;{NC}&quot;
-echo -e &quot;&#x24;{BLUE}======================================================&#x24;{NC}&quot;
-echo -e &quot;Waktu: &#x24;(date)&quot;
-echo &quot;&quot;
+echo -e "${BLUE}======================================================${NC}"
+echo -e "${BLUE}       SERVER MASTER DASHBOARD - $(hostname)          ${NC}"
+echo -e "${BLUE}======================================================${NC}"
+echo -e "Waktu: $(date)"
+echo ""
 # 1. MONITOR DISK
-DISK_USAGE=&#x24;(df -h &quot;&#x24;DISK_PART&quot; | awk &apos;NR==2 {print &#x24;5}&apos; | sed &apos;s/%//&apos;)
-echo -e &quot;&#x24;{YELLOW}[1] STORAGE STATUS&#x24;{NC}&quot;
-if [ &quot;&#x24;DISK_USAGE&quot; -gt &quot;&#x24;THRESHOLD&quot; ]; then
-    echo -e &quot;Status: &#x24;{RED}KRITIS (&#x24;DISK_USAGE% used on &#x24;DISK_PART)&#x24;{NC}&quot;
+DISK_USAGE=$(df -h "$DISK_PART" | awk 'NR==2 {print $5}' | sed 's/%//')
+echo -e "${YELLOW}[1] STORAGE STATUS${NC}"
+if [ "$DISK_USAGE" -gt "$THRESHOLD" ]; then
+    echo -e "Status: ${RED}KRITIS ($DISK_USAGE% used on $DISK_PART)${NC}"
 else
-    echo -e &quot;Status: &#x24;{GREEN}AMAN (&#x24;DISK_USAGE% used on &#x24;DISK_PART)&#x24;{NC}&quot;
+    echo -e "Status: ${GREEN}AMAN ($DISK_USAGE% used on $DISK_PART)${NC}"
 fi
-echo &quot;&quot;
+echo ""
 # 2. MONITOR RAM
-TOTAL_RAM=&#x24;(free | grep Mem | awk &apos;{print &#x24;2}&apos;)
-AVAIL_RAM=&#x24;(free | grep Mem | awk &apos;{print &#x24;7}&apos;)
-PCT_AVAIL=&#x24;(( 100 * AVAIL_RAM / TOTAL_RAM ))
-echo -e &quot;&#x24;{YELLOW}[2] MEMORY STATUS&#x24;{NC}&quot;
-if [ &quot;&#x24;PCT_AVAIL&quot; -lt 15 ]; then
-    echo -e &quot;Status: &#x24;{RED}KRITIS (&#x24;PCT_AVAIL% Available)&#x24;{NC}&quot;
+TOTAL_RAM=$(free | grep Mem | awk '{print $2}')
+AVAIL_RAM=$(free | grep Mem | awk '{print $7}')
+PCT_AVAIL=$(( 100 * AVAIL_RAM / TOTAL_RAM ))
+echo -e "${YELLOW}[2] MEMORY STATUS${NC}"
+if [ "$PCT_AVAIL" -lt 15 ]; then
+    echo -e "Status: ${RED}KRITIS ($PCT_AVAIL% Available)${NC}"
 else
-    echo -e &quot;Status: &#x24;{GREEN}SEHAT (&#x24;PCT_AVAIL% Available)&#x24;{NC}&quot;
+    echo -e "Status: ${GREEN}SEHAT ($PCT_AVAIL% Available)${NC}"
 fi
-echo &quot;&quot;
+echo ""
 # 3. MONITOR JARINGAN (Ambil sampel 1 detik)
-DATA1=(&#x24;(cat /sys/class/net/&#x24;INTERFACE/statistics/rx_bytes /sys/class/net/&#x24;INTERFACE/statistics/tx_bytes))
+DATA1=($(cat /sys/class/net/$INTERFACE/statistics/rx_bytes /sys/class/net/$INTERFACE/statistics/tx_bytes))
 sleep 1
-DATA2=(&#x24;(cat /sys/class/net/&#x24;INTERFACE/statistics/rx_bytes /sys/class/net/&#x24;INTERFACE/statistics/tx_bytes))
-RX_MBPS=&#x24;(( (DATA2[0] - DATA1[0]) * 8 / 1024 / 1024 ))
-TX_MBPS=&#x24;(( (DATA2[1] - DATA1[1]) * 8 / 1024 / 1024 ))
-echo -e &quot;&#x24;{YELLOW}[3] NETWORK TRAFFIC (Interface: &#x24;INTERFACE)&#x24;{NC}&quot;
-echo -e &quot;Download: &#x24;{BLUE}&#x24;RX_MBPS Mbps&#x24;{NC} | Upload: &#x24;{BLUE}&#x24;TX_MBPS Mbps&#x24;{NC}&quot;
-echo -e &quot;&#x24;{BLUE}======================================================&#x24;{NC}&quot;
+DATA2=($(cat /sys/class/net/$INTERFACE/statistics/rx_bytes /sys/class/net/$INTERFACE/statistics/tx_bytes))
+RX_MBPS=$(( (DATA2[0] - DATA1[0]) * 8 / 1024 / 1024 ))
+TX_MBPS=$(( (DATA2[1] - DATA1[1]) * 8 / 1024 / 1024 ))
+echo -e "${YELLOW}[3] NETWORK TRAFFIC (Interface: $INTERFACE)${NC}"
+echo -e "Download: ${BLUE}$RX_MBPS Mbps${NC} | Upload: ${BLUE}$TX_MBPS Mbps${NC}"
+echo -e "${BLUE}======================================================${NC}"
 </code></pre>
-        <h2>Langkah Eksekusi (&quot;Where&quot; dan &quot;When&quot;)</h2>
+        <h2>Langkah Eksekusi ("Where" dan "When")</h2>
         <p>Jangan sampai kena error syntax lagi ya, sob! Ikuti prosedur ini biar lancar jaya:</p>
         <ol>
             <li><strong>Buat File:</strong> <code>nano server-status.sh</code></li>
@@ -239,15 +239,15 @@ echo -e &quot;&#x24;{BLUE}======================================================
             <li><strong>Izin Eksekusi:</strong> <code>chmod +x server-status.sh</code></li>
             <li><strong>Jalankan:</strong> Gunakan perintah <code>bash server-status.sh</code> atau <code>./server-status.sh</code>.</li>
         </ol>
-        <p>Kalau kamu mau dashboard ini muncul setiap kali kamu login ke server, kamu bisa tambahkan perintah eksekusi script ini di baris paling bawah file <code>~/.bashrc</code> lo. Begitu login, &quot;BAM!&quot;, status server langsung tampil!</p>
+        <p>Kalau kamu mau dashboard ini muncul setiap kali kamu login ke server, kamu bisa tambahkan perintah eksekusi script ini di baris paling bawah file <code>~/.bashrc</code> lo. Begitu login, "BAM!", status server langsung tampil!</p>
         <h2>Kesimpulan: Satu Dashboard, Berjuta Ketenangan</h2>
         <p>Monitoring itu gak harus rumit. Dengan Master Dashboard ini, kamu sudah punya sistem monitoring level pro yang efisien dan hemat sumber daya. tidak perlu install software monitoring berat yang malah makan RAM. Cukup script Bash ringan, dan kamu sudah jadi penguasa server sejati.</p>
-        <p>Punya ide buat nambahin fitur monitoring suhu CPU atau status database MySQL di dalam dashboard ini? Tulis di kolom komentar di bawah ya! Mari kita kembangkan script ini bareng-bareng biar makin praktis. Tetap semangat ngulik, salam dari Balikpapan! &#x2615;&#xfe0f;&#x1f525;</p>
+        <p>Punya ide buat nambahin fitur monitoring suhu CPU atau status database MySQL di dalam dashboard ini? Tulis di kolom komentar di bawah ya! Mari kita kembangkan script ini bareng-bareng biar makin praktis. Tetap semangat ngulik, salam dari Balikpapan! ☕️🔥</p>
         <div id="related-articles-grid"></div>
         <div id="response"></div>
     </article>
     <footer>
-        <p>&#x1f12f; 2026 <strong>Fakhrul Rijal</strong>. Seluruh konten dilindungi oleh semangat Open Source.</p>
+        <p>🄯 2026 <strong>Fakhrul Rijal</strong>. Seluruh konten dilindungi oleh semangat Open Source.</p>
         <p style="font-size: 0.8rem; opacity: 0.6;">Suka dengan script ini? Dukung saya di <a href="https://paypal.me/FakhrulRijal" style="color:var(--primary)">PayPal.me/FakhrulRijal</a></p>
             <div class="social-links">
             <a href="https://x.com/responaja" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -256,9 +256,9 @@ echo -e &quot;&#x24;{BLUE}======================================================
             <a href="https://github.com/frijal" title="GitHub"><i class="fa-brands fa-github"></i></a>
             <a href="https://linkedin.com/in/frijal" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         </div>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

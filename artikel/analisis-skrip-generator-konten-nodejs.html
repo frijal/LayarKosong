@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2025-10-19T20:23:43.000Z">
-    <meta property="article:modified_time" content="2025-10-19T20:23:43.000Z">
+    <meta property="article:modified_time" content="2026-05-26T03:40:50.796Z">
 <!-- Metadata Dasar -->
     <!-- SEO Meta Tags -->
 <meta name="keywords" content="nodejs, generator, static site generator, ssg, javascript, otomasi, ci/cd, frijal pages">
@@ -67,7 +67,7 @@
      <!-- GANTI DENGAN USERNAME TWITTER KAMU -->
     <!-- CSS & Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>:root {
@@ -240,7 +240,7 @@ footer a { color: var(--header-color); text-decoration: none; }
 <body>
     <div class="container">
         <header>
-            <div id="iposbrowser"></div><h1>Bedah Skrip Generator Konten Cerdas &#x1f9e0;</h1>
+            <div id="iposbrowser"></div><h1>Bedah Skrip Generator Konten Cerdas 🧠</h1>
             <p class="subtitle">Melihat lebih dalam cara kerja <code>generator.js</code>, sebuah skrip otomasi canggih yang menjadi tulang punggung pengelolaan konten situs ini.</p>
         </header>
         <main>
@@ -248,7 +248,7 @@ footer a { color: var(--header-color); text-decoration: none; }
                 <h2>Tujuan Utama: Sang Asisten Digital</h2>
                 <p>Pada dasarnya, skrip ini adalah asisten digital yang mengambil alih semua tugas membosankan. Tujuannya adalah membaca semua artikel <code>.html</code>, mengekstrak data penting, lalu menghasilkan tiga hal utama:</p>
                 <ol>
-                    <li>Sebuah &quot;database&quot; pusat dalam format JSON (<code>artikel.json</code>).</li>
+                    <li>Sebuah "database" pusat dalam format JSON (<code>artikel.json</code>).</li>
                     <li>Sebuah <code>sitemap.xml</code> yang selalu up-to-date untuk SEO.</li>
                     <li>Halaman-halaman kategori artikel yang dibuat secara otomatis.</li>
                 </ol>
@@ -260,25 +260,25 @@ footer a { color: var(--header-color); text-decoration: none; }
 <h3>Kode Lengkap: <code>generator.js</code></h3>
 <p>Berikut adalah kode lengkap dari skrip generator konten cerdas yang kita bedah di atas.</p>
 <div class="code-block">
-    <pre><code>import fs from &apos;fs/promises&apos;;
-import path from &apos;path&apos;;
-import { fileURLToPath } from &apos;url&apos;;
-import { titleToCategory } from &apos;./titleToCategory.js&apos;;
+    <pre><code>import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { titleToCategory } from './titleToCategory.js';
 // ==================================================================
 // KONFIGURASI TERPUSAT
 // ===================================================================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CONFIG = {
-  rootDir: path.join(__dirname, &apos;..&apos;),
-  artikelDir: path.join(__dirname, &apos;..&apos;, &apos;artikel&apos;),
-  masterJson: path.join(__dirname, &apos;..&apos;, &apos;artikel&apos;, &apos;artikel.json&apos;),
-  jsonOut: path.join(__dirname, &apos;..&apos;, &apos;artikel.json&apos;),
-  xmlOut: path.join(__dirname, &apos;..&apos;, &apos;sitemap.xml&apos;),
-  baseUrl: &apos;https://dalam.web.id&apos;,
-  defaultThumbnail: &apos;https://dalam.web.id/thumbnail.webp&apos;,
-  xmlPriority: &apos;0.6&apos;,
-  xmlChangeFreq: &apos;monthly&apos;,
+  rootDir: path.join(__dirname, '..'),
+  artikelDir: path.join(__dirname, '..', 'artikel'),
+  masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
+  jsonOut: path.join(__dirname, '..', 'artikel.json'),
+  xmlOut: path.join(__dirname, '..', 'sitemap.xml'),
+  baseUrl: 'https://dalam.web.id',
+  defaultThumbnail: 'https://dalam.web.id/thumbnail.webp',
+  xmlPriority: '0.6',
+  xmlChangeFreq: 'monthly',
 };
 // ===================================================================
 // FUNGSI-FUNGSI BANTUAN (HELPER FUNCTIONS)
@@ -286,100 +286,100 @@ const CONFIG = {
 function formatISO8601(date) {
   const d = new Date(date);
   if (isNaN(d)) {
-    console.warn(`&#x26a0;&#xfe0f; Tanggal tidak valid, fallback ke sekarang.`);
+    console.warn(`⚠️ Tanggal tidak valid, fallback ke sekarang.`);
     return new Date().toISOString();
   }
   const tzOffset = -d.getTimezoneOffset();
-  const diff = tzOffset &gt;= 0 ? &apos;+&apos; : &apos;-&apos;;
-  const pad = (n) =&gt; String(Math.floor(Math.abs(n))).padStart(2, &apos;0&apos;);
+  const diff = tzOffset &gt;= 0 ? '+' : '-';
+  const pad = (n) =&gt; String(Math.floor(Math.abs(n))).padStart(2, '0');
   const hours = pad(tzOffset / 60);
   const minutes = pad(tzOffset % 60);
-  return d.toISOString().replace(&apos;Z&apos;, `&#x24;{diff}&#x24;{hours}:&#x24;{minutes}`);
+  return d.toISOString().replace('Z', `${diff}${hours}:${minutes}`);
 }
 function extractPubDate(content) {
   const match = content.match(
-    /&lt;meta\s+property=[&quot;&apos;]article:published_time[&quot;&apos;][^&gt;]+content=[&quot;&apos;]([^&quot;&apos;]+)[&quot;&apos;]/i,
+    /&lt;meta\s+property=["']article:published_time["'][^&gt;]+content=["']([^"']+)["']/i,
   );
   return match ? match[1].trim() : null;
 }
 function extractTitle(content) {
   const match = content.match(/&lt;title&gt;([\s\S]*?)&lt;\/title&gt;/i);
-  return match ? match[1].trim() : &apos;Tanpa Judul&apos;;
+  return match ? match[1].trim() : 'Tanpa Judul';
 }
 function extractDescription(content) {
   const match = content.match(
-    /&lt;meta\s+name=[&quot;&apos;]description[&quot;&apos;][^&gt;]+content=[&quot;&apos;]([^&quot;&apos;]+)[&quot;&apos;]/i,
+    /&lt;meta\s+name=["']description["'][^&gt;]+content=["']([^"']+)["']/i,
   );
-  return match ? match[1].trim() : &apos;&apos;;
+  return match ? match[1].trim() : '';
 }
 function fixTitleOneLine(content) {
   return content.replace(
     /&lt;title&gt;([\s\S]*?)&lt;\/title&gt;/gi,
-    (m, p1) =&gt; `&lt;title&gt;&#x24;{p1.trim()}&lt;/title&gt;`,
+    (m, p1) =&gt; `&lt;title&gt;${p1.trim()}&lt;/title&gt;`,
   );
 }
 function extractImage(content) {
   const ogMatch = content.match(
-    /&lt;meta[^&gt;]+property=[&quot;&apos;]og:image[&quot;&apos;][^&gt;]+content=[&quot;&apos;](.*?)[&quot;&apos;]/i,
+    /&lt;meta[^&gt;]+property=["']og:image["'][^&gt;]+content=["'](.*?)["']/i,
   );
   if (ogMatch &amp;&amp; ogMatch[1]) {
     const src = ogMatch[1].trim();
-    const validExt = /\.(jpe?g|png|gif|webp|avif|svg)&#x24;/i;
-    if (validExt.test(src.split(&apos;?&apos;)[0])) return src;
+    const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
+    if (validExt.test(src.split('?')[0])) return src;
   }
-  const imgMatch = content.match(/&lt;img[^&gt;]+src=[&quot;&apos;](.*?)[&quot;&apos;]/i);
+  const imgMatch = content.match(/&lt;img[^&gt;]+src=["'](.*?)["']/i);
   if (imgMatch &amp;&amp; imgMatch[1]) {
     const src = imgMatch[1].trim();
-    const validExt = /\.(jpe?g|png|gif|webp|avif|svg)&#x24;/i;
-    if (validExt.test(src.split(&apos;?&apos;)[0])) return src;
+    const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
+    if (validExt.test(src.split('?')[0])) return src;
   }
   return CONFIG.defaultThumbnail;
 }
 function formatJsonOutput(obj) {
   return JSON.stringify(obj, null, 2)
-    .replace(/\[\s*\[/g, &apos;[\n      [&apos;)
-    .replace(/\]\s*\]/g, &apos;]\n    ]&apos;)
-    .replace(/(\],)\s*\[/g, &apos;&#x24;1\n      [&apos;);
+    .replace(/\[\s*\[/g, '[\n      [')
+    .replace(/\]\s*\]/g, ']\n    ]')
+    .replace(/(\],)\s*\[/g, '$1\n      [');
 }
 async function generateCategoryPages(groupedData) {
-  console.log(&apos;&#x1f504; Memulai pembuatan halaman kategori...&apos;);
-  const kategoriDir = path.join(CONFIG.artikelDir, &apos;-&apos;);
-  const templatePath = path.join(kategoriDir, &apos;template-kategori.html&apos;);
+  console.log('🔄 Memulai pembuatan halaman kategori...');
+  const kategoriDir = path.join(CONFIG.artikelDir, '-');
+  const templatePath = path.join(kategoriDir, 'template-kategori.html');
   try {
     await fs.access(templatePath);
-    const templateContent = await fs.readFile(templatePath, &apos;utf8&apos;);
+    const templateContent = await fs.readFile(templatePath, 'utf8');
     for (const categoryName in groupedData) {
       // Hilangkan emoji &amp; ubah ke slug
-      const noEmoji = categoryName.replace(/^[^\w\s]*/, &apos;&apos;).trim();
+      const noEmoji = categoryName.replace(/^[^\w\s]*/, '').trim();
       const slug = noEmoji
         .toLowerCase()
-        .replace(/ &amp; /g, &apos;-and-&apos;)
-        .replace(/[^a-z0-9\s-]/g, &apos;&apos;)
-        .replace(/\s+/g, &apos;-&apos;)
-        .replace(/-+/g, &apos;-&apos;);
+        .replace(/ &amp; /g, '-and-')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
       // RSS URL untuk kategori
-      const rssUrl = `&#x24;{CONFIG.baseUrl}/feed-&#x24;{slug}.xml`;
+      const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
       // URL halaman kategori
-      const fileName = `&#x24;{slug}.html`;
-      const canonicalUrl = `&#x24;{CONFIG.baseUrl}/artikel/-/&#x24;{fileName}`;
+      const fileName = `${slug}.html`;
+      const canonicalUrl = `${CONFIG.baseUrl}/artikel/-/${fileName}`;
       // Ambil emoji pertama (atau fallback)
-      const icon = categoryName.match(/(\p{Emoji})/u)?.[0] || &apos;&#x1f4c1;&apos;;
+      const icon = categoryName.match(/(\p{Emoji})/u)?.[0] || '📁';
       // Ganti placeholder di template
       let pageContent = templateContent
         .replace(/%%TITLE%%/g, noEmoji)
-        .replace(/%%DESCRIPTION%%/g, `topik &#x24;{noEmoji}`)
+        .replace(/%%DESCRIPTION%%/g, `topik ${noEmoji}`)
         .replace(/%%CANONICAL_URL%%/g, canonicalUrl)
         .replace(/%%CATEGORY_NAME%%/g, categoryName)
         .replace(/%%ICON%%/g, icon)
         .replace(/%%RSS_URL%%/g, rssUrl);
       // Tulis file HTML hasil render
-      await fs.writeFile(path.join(kategoriDir, fileName), pageContent, &apos;utf8&apos;);
-      console.log(`&#x2705; Halaman kategori dibuat: &#x24;{fileName}`);
+      await fs.writeFile(path.join(kategoriDir, fileName), pageContent, 'utf8');
+      console.log(`✅ Halaman kategori dibuat: ${fileName}`);
     }
-    console.log(&apos;&#x1f44d; Semua halaman kategori berhasil dibuat.&apos;);
+    console.log('👍 Semua halaman kategori berhasil dibuat.');
   } catch (error) {
     console.error(
-      &quot;&#x274c; Gagal membuat halaman kategori. Pastikan &apos;template-kategori.html&apos; ada di dalam folder &apos;artikel/-&apos;.&quot;,
+      "❌ Gagal membuat halaman kategori. Pastikan 'template-kategori.html' ada di dalam folder 'artikel/-'.",
       error.message,
     );
   }
@@ -388,25 +388,25 @@ async function generateCategoryPages(groupedData) {
 // FUNGSI UTAMA (MAIN GENERATOR)
 // ===================================================================
 const generate = async () =&gt; {
-  console.log(&apos;&#x1f680; Memulai proses generator...&apos;);
+  console.log('🚀 Memulai proses generator...');
   try {
     await fs.access(CONFIG.artikelDir);
   } catch {
-    console.error(&quot;&#x274c; Folder &apos;artikel&apos; tidak ditemukan. Proses dibatalkan.&quot;);
+    console.error("❌ Folder 'artikel' tidak ditemukan. Proses dibatalkan.");
     return;
   }
   const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter((f) =&gt;
-    f.endsWith(&apos;.html&apos;),
+    f.endsWith('.html'),
   );
   const existingFilesOnDisk = new Set(filesOnDisk);
   let grouped = {};
   try {
-    const masterContent = await fs.readFile(CONFIG.masterJson, &apos;utf8&apos;);
+    const masterContent = await fs.readFile(CONFIG.masterJson, 'utf8');
     grouped = JSON.parse(masterContent);
-    console.log(&apos;&#x1f4c2; Master JSON berhasil dimuat.&apos;);
+    console.log('📂 Master JSON berhasil dimuat.');
   } catch {
     console.warn(
-      &apos;&#x26a0;&#xfe0f; Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.&apos;,
+      '⚠️ Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.',
     );
   }
   const cleanedGrouped = {};
@@ -415,7 +415,7 @@ const generate = async () =&gt; {
     const survivingArticles = grouped[category].filter((item) =&gt; {
       if (!existingFilesOnDisk.has(item[1])) {
         console.log(
-          `&#x1f5d1;&#xfe0f; File terhapus terdeteksi, menghapus dari data: &#x24;{item[1]}`,
+          `🗑️ File terhapus terdeteksi, menghapus dari data: ${item[1]}`,
         );
         deletedCount++;
         return false;
@@ -437,13 +437,13 @@ const generate = async () =&gt; {
     try {
       if (existingFiles.has(file)) continue;
       const fullPath = path.join(CONFIG.artikelDir, file);
-      let content = await fs.readFile(fullPath, &apos;utf8&apos;);
+      let content = await fs.readFile(fullPath, 'utf8');
       let needsSave = false;
       const fixedTitleContent = fixTitleOneLine(content);
       if (fixedTitleContent !== content) {
         content = fixedTitleContent;
         needsSave = true;
-        console.log(`&#x1f527; Merapikan &lt;title&gt; di &#x24;{file}`);
+        console.log(`🔧 Merapikan &lt;title&gt; di ${file}`);
       }
       const title = extractTitle(content);
       const category = titleToCategory(title);
@@ -453,23 +453,23 @@ const generate = async () =&gt; {
       if (!pubDate) {
         const stats = await fs.stat(fullPath);
         pubDate = stats.mtime;
-        const newMetaTag = `      &lt;meta property=&quot;article:published_time&quot; content=&quot;&#x24;{formatISO8601(pubDate)}&quot;&gt;`;
-        if (content.includes(&apos;&lt;/head&gt;&apos;)) {
-          content = content.replace(&apos;&lt;/head&gt;&apos;, `&#x24;{newMetaTag}\n&lt;/head&gt;`);
+        const newMetaTag = `      &lt;meta property="article:published_time" content="${formatISO8601(pubDate)}"&gt;`;
+        if (content.includes('&lt;/head&gt;')) {
+          content = content.replace('&lt;/head&gt;', `${newMetaTag}\n&lt;/head&gt;`);
           needsSave = true;
-          console.log(`&#x2795; Menambahkan meta tanggal ke &apos;&#x24;{file}&apos;`);
+          console.log(`➕ Menambahkan meta tanggal ke '${file}'`);
         }
       }
       if (needsSave) {
-        await fs.writeFile(fullPath, content, &apos;utf8&apos;);
+        await fs.writeFile(fullPath, content, 'utf8');
       }
       const lastmod = formatISO8601(pubDate);
       if (!grouped[category]) grouped[category] = [];
       grouped[category].push([title, file, image, lastmod, description]);
       newArticlesCount++;
-      console.log(`&#x2795; Memproses artikel baru: &#x24;{file}`);
+      console.log(`➕ Memproses artikel baru: ${file}`);
     } catch (error) {
-      console.error(`&#x274c; Gagal memproses file &#x24;{file}:`, error.message);
+      console.error(`❌ Gagal memproses file ${file}:`, error.message);
     }
   }
   // Cek apakah file output (artikel.json di root) sudah ada
@@ -478,9 +478,9 @@ const generate = async () =&gt; {
     await fs.access(CONFIG.jsonOut);
   } catch {
     isJsonOutMissing = true;
-    console.log(&apos;&#x1f7e1; File output artikel.json tidak ditemukan, akan dibuat ulang.&apos;);
+    console.log('🟡 File output artikel.json tidak ditemukan, akan dibuat ulang.');
   }
-  // Tambahkan &apos;isJsonOutMissing&apos; sebagai kondisi untuk menulis file
+  // Tambahkan 'isJsonOutMissing' sebagai kondisi untuk menulis file
   if (newArticlesCount &gt; 0 || deletedCount &gt; 0 || isJsonOutMissing) {
     for (const category in grouped) {
       grouped[category].sort((a, b) =&gt; new Date(b[3]) - new Date(a[3]));
@@ -491,25 +491,25 @@ const generate = async () =&gt; {
       .forEach((item) =&gt; {
         const [, file, image, lastmod] = item;
         xmlUrls.push(
-          `  &lt;url&gt;\n    &lt;loc&gt;&#x24;{CONFIG.baseUrl}/artikel/&#x24;{file}&lt;/loc&gt;\n    &lt;lastmod&gt;&#x24;{lastmod}&lt;/lastmod&gt;\n    &lt;priority&gt;&#x24;{CONFIG.xmlPriority}&lt;/priority&gt;\n    &lt;changefreq&gt;&#x24;{CONFIG.xmlChangeFreq}&lt;/changefreq&gt;\n    &lt;image:image&gt;\n      &lt;image:loc&gt;&#x24;{image}&lt;/image:loc&gt;\n    &lt;/image:image&gt;\n  &lt;/url&gt;`,
+          `  &lt;url&gt;\n    &lt;loc&gt;${CONFIG.baseUrl}/artikel/${file}&lt;/loc&gt;\n    &lt;lastmod&gt;${lastmod}&lt;/lastmod&gt;\n    &lt;priority&gt;${CONFIG.xmlPriority}&lt;/priority&gt;\n    &lt;changefreq&gt;${CONFIG.xmlChangeFreq}&lt;/changefreq&gt;\n    &lt;image:image&gt;\n      &lt;image:loc&gt;${image}&lt;/image:loc&gt;\n    &lt;/image:image&gt;\n  &lt;/url&gt;`,
         );
       });
     const jsonString = formatJsonOutput(grouped);
-    await fs.writeFile(CONFIG.jsonOut, jsonString, &apos;utf8&apos;);
-    const xmlContent = `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n&lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:image=&quot;http://www.google.com/schemas/sitemap-image/1.1&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;\n&#x24;{xmlUrls.join(&apos;\n&apos;)}\n&lt;/urlset&gt;`;
-    await fs.writeFile(CONFIG.xmlOut, xmlContent, &apos;utf8&apos;);
+    await fs.writeFile(CONFIG.jsonOut, jsonString, 'utf8');
+    const xmlContent = `&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n&lt;urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;\n${xmlUrls.join('\n')}\n&lt;/urlset&gt;`;
+    await fs.writeFile(CONFIG.xmlOut, xmlContent, 'utf8');
     await generateCategoryPages(grouped);
     console.log(
-      `\n&#x2705; Ringkasan: &#x24;{newArticlesCount} artikel baru ditambahkan, &#x24;{deletedCount} artikel lama dihapus.`,
+      `\n✅ Ringkasan: ${newArticlesCount} artikel baru ditambahkan, ${deletedCount} artikel lama dihapus.`,
     );
     if (isJsonOutMissing &amp;&amp; newArticlesCount === 0 &amp;&amp; deletedCount === 0) {
-        console.log(&apos;&#x2705; File artikel.json di root dibuat ulang karena tidak ada.&apos;);
+        console.log('✅ File artikel.json di root dibuat ulang karena tidak ada.');
     }
     console.log(
-      &apos;&#x2705; artikel.json, sitemap.xml, dan halaman kategori berhasil diperbarui.&apos;,
+      '✅ artikel.json, sitemap.xml, dan halaman kategori berhasil diperbarui.',
     );
   } else {
-    console.log(&apos;\n&#x2705; Tidak ada perubahan. File tidak diubah.&apos;);
+    console.log('\n✅ Tidak ada perubahan. File tidak diubah.');
   }
 };
 // Menjalankan fungsi utama
@@ -522,21 +522,21 @@ generate();
                         <div class="timeline-icon init"><i class="fa-solid fa-memory"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah 1: Inisialisasi &amp; Memuat Ingatan</h3>
-                            <p>Skrip mulai dengan memuat <code>artikel/artikel.json</code>. File ini bertindak sebagai &quot;ingatan&quot; atau kondisi terakhir. Jika tidak ada, ia akan memulai dari nol.</p>
+                            <p>Skrip mulai dengan memuat <code>artikel/artikel.json</code>. File ini bertindak sebagai "ingatan" atau kondisi terakhir. Jika tidak ada, ia akan memulai dari nol.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-icon clean"><i class="fa-solid fa-sync-alt"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah 2: Pembersihan &amp; Sinkronisasi</h3>
-                            <p>Ini bagian cerdasnya. Skrip membandingkan &quot;ingatannya&quot; dengan file yang benar-benar ada. Jika ada artikel yang sudah dihapus, datanya akan dibersihkan dari JSON.</p>
+                            <p>Ini bagian cerdasnya. Skrip membandingkan "ingatannya" dengan file yang benar-benar ada. Jika ada artikel yang sudah dihapus, datanya akan dibersihkan dari JSON.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-icon process"><i class="fa-solid fa-cogs"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah 3: Memproses Artikel Baru</h3>
-                            <p>Skrip mencari file <code>.html</code> baru yang belum ada di &quot;ingatannya&quot;, lalu mengekstrak semua metadata penting: judul, deskripsi, gambar, dan tanggal.</p>
+                            <p>Skrip mencari file <code>.html</code> baru yang belum ada di "ingatannya", lalu mengekstrak semua metadata penting: judul, deskripsi, gambar, dan tanggal.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -576,8 +576,8 @@ generate();
 <div id="related-articles-grid"></div><div id="response"></div>
         </main>
         <footer>
-            <p>&#x1f12f; 2025 - </p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+            <p>🄯 2025 - </p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </div>
     <script>document.addEventListener('DOMContentLoaded', () => {
     // --- Fungsi Tombol Salin Kode ---
@@ -606,7 +606,7 @@ generate();
     });
 });
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

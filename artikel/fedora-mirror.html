@@ -53,13 +53,13 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Fedora">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Bash Script">
     <meta property="article:tag" content="Sysadmin">
     <meta property="article:published_time" content="2025-07-21T10:51:43.894Z">
-    <meta property="article:modified_time" content="2025-08-08T19:48:12.021Z">
+    <meta property="article:modified_time" content="2025-11-16T10:20:43.666Z">
     <style>
         /* CSS Reset & Tokens */
         *, *::before, *::after {
@@ -252,11 +252,11 @@
             </div>
             <h2>Mengapa Anda Membutuhkan fastestmirror?</h2>
             <p>
-                Plugin <em>fastestmirror</em> bekerja dengan cara yang elegan. Saat Anda menjalankan perintah pembaruan atau instalasi, plugin ini akan secara proaktif mengukur waktu respons koneksi dari daftar cermin publik Fedora. Ia kemudian menyeleksi dan otomatis memilih server dengan ping terendah, memastikan aliran data yang masuk ke komputer Anda berada pada kecepatan optimal. Ini adalah solusi &quot;sekali atur, lupakan&quot; yang disarankan diterapkan oleh setiap administrator maupun pengguna harian Fedora. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
+                Plugin <em>fastestmirror</em> bekerja dengan cara yang elegan. Saat Anda menjalankan perintah pembaruan atau instalasi, plugin ini akan secara proaktif mengukur waktu respons koneksi dari daftar cermin publik Fedora. Ia kemudian menyeleksi dan otomatis memilih server dengan ping terendah, memastikan aliran data yang masuk ke komputer Anda berada pada kecepatan optimal. Ini adalah solusi "sekali atur, lupakan" yang disarankan diterapkan oleh setiap administrator maupun pengguna harian Fedora. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem.
             </p>
             <div class="callout">
                 <p>
-                    &#x26a0;&#xfe0f; <strong>Peringatan Akses:</strong> Jalankan skrip di bawah ini dengan mode <code>sudo</code> (Superuser). Kita perlu merombak dan menulis ulang konfigurasi inti manajer paket yang bersarang di dalam direktori sistem <code>/etc/dnf/dnf.conf</code>.
+                    ⚠️ <strong>Peringatan Akses:</strong> Jalankan skrip di bawah ini dengan mode <code>sudo</code> (Superuser). Kita perlu merombak dan menulis ulang konfigurasi inti manajer paket yang bersarang di dalam direktori sistem <code>/etc/dnf/dnf.conf</code>.
                 </p>
             </div>
             <h2>Automasi Lewat Skrip Bash yang Rapi</h2>
@@ -269,15 +269,15 @@
             <pre><code><span class="token comment">#!/bin/bash</span>
 <span class="token comment"># fedora-mirror.sh - Mengaktifkan mirror DNF tercepat di Fedora</span>
 <span class="token keyword">set</span> -e
-<span class="token command">echo</span> <span class="token string">&quot;[INFO] Mem-backup konfigurasi DNF...&quot;</span>
+<span class="token command">echo</span> <span class="token string">"[INFO] Mem-backup konfigurasi DNF..."</span>
 <span class="token keyword">sudo</span> <span class="token command">cp</span> /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak
-<span class="token command">echo</span> <span class="token string">&quot;[INFO] Mengaktifkan &apos;fastestmirror&apos; di /etc/dnf/dnf.conf...&quot;</span>
-<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token command">grep</span> -q <span class="token string">&quot;fastestmirror=True&quot;</span> /etc/dnf/dnf.conf<span class="token operator">;</span> <span class="token keyword">then</span>
-    <span class="token command">echo</span> <span class="token string">&quot;fastestmirror=True&quot;</span> <span class="token operator">|</span> <span class="token keyword">sudo</span> <span class="token command">tee</span> -a /etc/dnf/dnf.conf
+<span class="token command">echo</span> <span class="token string">"[INFO] Mengaktifkan 'fastestmirror' di /etc/dnf/dnf.conf..."</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token command">grep</span> -q <span class="token string">"fastestmirror=True"</span> /etc/dnf/dnf.conf<span class="token operator">;</span> <span class="token keyword">then</span>
+    <span class="token command">echo</span> <span class="token string">"fastestmirror=True"</span> <span class="token operator">|</span> <span class="token keyword">sudo</span> <span class="token command">tee</span> -a /etc/dnf/dnf.conf
 <span class="token keyword">fi</span>
-<span class="token command">echo</span> <span class="token string">&quot;[INFO] Membersihkan cache DNF...&quot;</span>
+<span class="token command">echo</span> <span class="token string">"[INFO] Membersihkan cache DNF..."</span>
 <span class="token keyword">sudo</span> <span class="token command">dnf</span> clean all
-<span class="token command">echo</span> <span class="token string">&quot;[SELESAI] Plugin &apos;fastestmirror&apos; berhasil diaktifkan!&quot;</span></code></pre>
+<span class="token command">echo</span> <span class="token string">"[SELESAI] Plugin 'fastestmirror' berhasil diaktifkan!"</span></code></pre>
             <p>
                 Setelah skrip di atas menampilkan pesan sukses, cobalah lakukan <code>sudo dnf update</code>. Anda akan langsung merasakan perbedaan aliran data yang lebih gesit dari sebelumnya, karena sistem kini mengambil paket langsung dari server terdekat yang sehat. Hasil dapat berbeda tergantung perangkat, versi paket, dan konfigurasi sistem. Selamat tinggal unduhan lelet, dan selamat mengoprek!
             </p>
@@ -285,15 +285,15 @@
         <div id="related-articles-grid"></div><div id="response"></div>
         <footer>
             <div class="eeat-meta">
-                <span>&#x1f468;&#x1f4bb; Artikel oleh: <strong>Fakhrul Rijal</strong></span>
-                <span>&#x2022;</span>
-                <span>&#x1f4c5; Dipublikasikan: 14 Juni 2026</span>
-                <span>&#x2022;</span>
-                <span>&#x1f517; Sumber Eksternal: <a href="https://docs.fedoraproject.org/en-US/quick-docs/dnf/" target="_blank" rel="noopener noreferrer">Dokumentasi Resmi DNF Fedora</a></span>
+                <span>👨💻 Artikel oleh: <strong>Fakhrul Rijal</strong></span>
+                <span>•</span>
+                <span>📅 Dipublikasikan: 14 Juni 2026</span>
+                <span>•</span>
+                <span>🔗 Sumber Eksternal: <a href="https://docs.fedoraproject.org/en-US/quick-docs/dnf/" target="_blank" rel="noopener noreferrer">Dokumentasi Resmi DNF Fedora</a></span>
             </div>
-               <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+               <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
     </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

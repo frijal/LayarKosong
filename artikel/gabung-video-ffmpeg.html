@@ -53,9 +53,9 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2011-07-10T08:53:47.000Z">
-    <meta property="article:modified_time" content="2026-06-09T16:26:33.595Z">
+    <meta property="article:modified_time" content="2020-11-29T20:20:22.435Z">
 <meta name="keywords" content="ffmpeg, gabung video, shell script, linux, video tanpa-audio, mp4, command line">
   <!-- Open Graph -->
   <style>
@@ -207,117 +207,117 @@
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
   <header>
-    <div id="iposbrowser"></div><h1>&#x1f4bb; Menggabungkan Semua File MP4 di Linux dengan FFmpeg</h1>
+    <div id="iposbrowser"></div><h1>💻 Menggabungkan Semua File MP4 di Linux dengan FFmpeg</h1>
     <p>Berikut dua script shell praktis untuk menggabungkan video MP4 di Linux. Satunya versi standar, dan satunya lagi versi tanpa-audio (tanpa suara).</p>
   </header>
   <main>
     <section>
-      <h2>&#x1f9e9; Versi 1 &#x2014; Script Normal (gabung-video-ffmpeg.sh)</h2>
+      <h2>🧩 Versi 1 — Script Normal (gabung-video-ffmpeg.sh)</h2>
       <p>Script ini digunakan untuk menggabungkan semua file <code>.mp4</code> di folder menjadi satu video utuh.
       Script akan mendeteksi apakah semua file memiliki format sama (codec, resolusi, framerate).
       Jika berbeda, dia otomatis melakukan <em>re-encode</em> supaya hasilnya tetap mulus.</p>
-      <pre><button class="copy-btn">&#x1f4cb; Copy</button><code id="script1">#!/bin/bash
+      <pre><button class="copy-btn">📋 Copy</button><code id="script1">#!/bin/bash
 # =========================================
 # Script: gabung-video-ffmpeg.sh
 # Fungsi: Menggabungkan semua file .mp4 dalam folder ini menjadi satu video
-# Dibuat oleh: ChatGPT &#x1f60e;
+# Dibuat oleh: ChatGPT 😎
 # =========================================
 set -e
-OUTPUT=&quot;&#x24;{1:-hasil_gabungan.mp4}&quot;
+OUTPUT="${1:-hasil_gabungan.mp4}"
 rm -f daftar.txt temp_*.mp4
-echo &quot;&#x1f4c2; Membuat daftar file .mp4...&quot;
+echo "📂 Membuat daftar file .mp4..."
 FILES=( *.mp4 )
-if [ &#x24;{#FILES[@]} -eq 0 ]; then
-    echo &quot;&#x274c; Tidak ada file .mp4 ditemukan.&quot;
+if [ ${#FILES[@]} -eq 0 ]; then
+    echo "❌ Tidak ada file .mp4 ditemukan."
     exit 1
 fi
-REF=&quot;&#x24;{FILES[0]}&quot;
-REF_INFO=&#x24;(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 &quot;&#x24;REF&quot;)
+REF="${FILES[0]}"
+REF_INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$REF")
 REENCODE_NEEDED=false
-for f in &quot;&#x24;{FILES[@]}&quot;; do
-    INFO=&#x24;(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 &quot;&#x24;f&quot;)
-    if [ &quot;&#x24;INFO&quot; != &quot;&#x24;REF_INFO&quot; ]; then
-        echo &quot;&#x26a0;&#xfe0f; Format berbeda pada: &#x24;f&quot;
+for f in "${FILES[@]}"; do
+    INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$f")
+    if [ "$INFO" != "$REF_INFO" ]; then
+        echo "⚠️ Format berbeda pada: $f"
         REENCODE_NEEDED=true
     fi
 done
-if [ &quot;&#x24;REENCODE_NEEDED&quot; = true ]; then
-    echo &quot;&#x267b;&#xfe0f; Format tidak seragam &#x2014; re-encode ke H.264...&quot;
-    for f in &quot;&#x24;{FILES[@]}&quot;; do
-        ffmpeg -y -i &quot;&#x24;f&quot; -c:v libx264 -preset veryfast -crf 23 -c:a aac -ar 48000 -b:a 192k &quot;temp_&#x24;f&quot;
-        echo &quot;file &apos;temp_&#x24;f&apos;&quot; &gt;&gt; daftar.txt
+if [ "$REENCODE_NEEDED" = true ]; then
+    echo "♻️ Format tidak seragam — re-encode ke H.264..."
+    for f in "${FILES[@]}"; do
+        ffmpeg -y -i "$f" -c:v libx264 -preset veryfast -crf 23 -c:a aac -ar 48000 -b:a 192k "temp_$f"
+        echo "file 'temp_$f'" &gt;&gt; daftar.txt
     done
 else
-    echo &quot;&#x2705; Semua file seragam &#x2014; gabung langsung.&quot;
-    for f in &quot;&#x24;{FILES[@]}&quot;; do
-        echo &quot;file &apos;&#x24;PWD/&#x24;f&apos;&quot; &gt;&gt; daftar.txt
+    echo "✅ Semua file seragam — gabung langsung."
+    for f in "${FILES[@]}"; do
+        echo "file '$PWD/$f'" &gt;&gt; daftar.txt
     done
 fi
-ffmpeg -f concat -safe 0 -i daftar.txt -c copy &quot;&#x24;OUTPUT&quot;
+ffmpeg -f concat -safe 0 -i daftar.txt -c copy "$OUTPUT"
 rm -f daftar.txt temp_*.mp4 2&gt;/dev/null || true
-echo &quot;&#x2728; Selesai!&quot;
-echo &quot;&#x1f4fd;&#xfe0f; Video hasil: &#x24;OUTPUT&quot;</code></pre>
+echo "✨ Selesai!"
+echo "📽️ Video hasil: $OUTPUT"</code></pre>
     </section>
     <section>
-      <h2>&#x1f507; Versi 2 &#x2014; Script Tanpa Audio (gabung-video-ffmpeg_tanpa-audio.sh)</h2>
+      <h2>🔇 Versi 2 — Script Tanpa Audio (gabung-video-ffmpeg_tanpa-audio.sh)</h2>
       <p>Kalau kamu ingin hasil video tanpa suara, gunakan versi tanpa-audio ini.
       Ia akan otomatis menghapus semua track audio dari video dan tetap mendukung re-encode bila format beda.</p>
-      <pre><button class="copy-btn">&#x1f4cb; Copy</button><code id="script2">#!/bin/bash
+      <pre><button class="copy-btn">📋 Copy</button><code id="script2">#!/bin/bash
 # =========================================
 # Script: gabung-video-ffmpeg_tanpa-audio.sh
 # Fungsi: Menggabungkan semua file .mp4 menjadi satu video BISU (tanpa suara)
-# Fitur: Deteksi otomatis codec/resolusi &#x2014; re-encode jika tidak seragam
-# Dibuat oleh: ChatGPT &#x1f507;
+# Fitur: Deteksi otomatis codec/resolusi — re-encode jika tidak seragam
+# Dibuat oleh: ChatGPT 🔇
 # =========================================
 set -e
-OUTPUT=&quot;&#x24;{1:-hasil_gabungan_tanpa-audio.mp4}&quot;
+OUTPUT="${1:-hasil_gabungan_tanpa-audio.mp4}"
 rm -f daftar.txt temp_*.mp4
-echo &quot;&#x1f4c2; Membuat daftar file .mp4...&quot;
+echo "📂 Membuat daftar file .mp4..."
 FILES=( *.mp4 )
-if [ &#x24;{#FILES[@]} -eq 0 ]; then
-    echo &quot;&#x274c; Tidak ditemukan file .mp4.&quot;
+if [ ${#FILES[@]} -eq 0 ]; then
+    echo "❌ Tidak ditemukan file .mp4."
     exit 1
 fi
-REF=&quot;&#x24;{FILES[0]}&quot;
-REF_INFO=&#x24;(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 &quot;&#x24;REF&quot;)
+REF="${FILES[0]}"
+REF_INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$REF")
 REENCODE_NEEDED=false
-for f in &quot;&#x24;{FILES[@]}&quot;; do
-    INFO=&#x24;(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 &quot;&#x24;f&quot;)
-    if [ &quot;&#x24;INFO&quot; != &quot;&#x24;REF_INFO&quot; ]; then
-        echo &quot;&#x26a0;&#xfe0f; Format berbeda terdeteksi: &#x24;f&quot;
+for f in "${FILES[@]}"; do
+    INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$f")
+    if [ "$INFO" != "$REF_INFO" ]; then
+        echo "⚠️ Format berbeda terdeteksi: $f"
         REENCODE_NEEDED=true
     fi
 done
-if [ &quot;&#x24;REENCODE_NEEDED&quot; = true ]; then
-    echo &quot;&#x267b;&#xfe0f; Re-encode semua video tanpa audio...&quot;
-    for f in &quot;&#x24;{FILES[@]}&quot;; do
-        ffmpeg -y -i &quot;&#x24;f&quot; -an -c:v libx264 -preset veryfast -crf 23 &quot;temp_&#x24;f&quot;
-        echo &quot;file &apos;temp_&#x24;f&apos;&quot; &gt;&gt; daftar.txt
+if [ "$REENCODE_NEEDED" = true ]; then
+    echo "♻️ Re-encode semua video tanpa audio..."
+    for f in "${FILES[@]}"; do
+        ffmpeg -y -i "$f" -an -c:v libx264 -preset veryfast -crf 23 "temp_$f"
+        echo "file 'temp_$f'" &gt;&gt; daftar.txt
     done
 else
-    echo &quot;&#x2705; Format seragam &#x2014; gabung langsung tanpa suara.&quot;
-    for f in &quot;&#x24;{FILES[@]}&quot;; do
-        echo &quot;file &apos;&#x24;PWD/&#x24;f&apos;&quot; &gt;&gt; daftar.txt
+    echo "✅ Format seragam — gabung langsung tanpa suara."
+    for f in "${FILES[@]}"; do
+        echo "file '$PWD/$f'" &gt;&gt; daftar.txt
     done
 fi
-ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 &quot;&#x24;OUTPUT&quot;
+ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 "$OUTPUT"
 rm -f daftar.txt temp_*.mp4 2&gt;/dev/null || true
-echo &quot;&#x2728; Selesai!&quot;
-echo &quot;&#x1f4fd;&#xfe0f; Video tanpa-audio hasil: &#x24;OUTPUT&quot;</code></pre>
+echo "✨ Selesai!"
+echo "📽️ Video tanpa-audio hasil: $OUTPUT"</code></pre>
     </section>
     <section>
-      <h2>&#x1f4d8; Penutup</h2>
+      <h2>📘 Penutup</h2>
       <p>Dengan dua script di atas, kamu bisa menggabungkan semua file video di Linux secara otomatis, cepat, dan praktis.
       Mau ada suara atau tidak, semua bisa dikontrol cukup dengan menjalankan satu file <code>.sh</code>.
-      Cocok untuk proyek dokumentasi, video laporan, atau kompilasi hasil rekaman. &#x1f680;</p>
+      Cocok untuk proyek dokumentasi, video laporan, atau kompilasi hasil rekaman. 🚀</p>
     </section>
     <section>
 <div id="related-articles-grid"></div><div id="response"></div></section>
     </main>
   <footer>
-    <p>&#x1f12f; 2025 Fakhrul Rijal &#x2014; Dibuat dengan &#x2615; dan FFmpeg.</p>
- <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
-  <div class="toast" id="toast">&#x2705; Script disalin ke clipboard!</div>
+    <p>🄯 2025 Fakhrul Rijal — Dibuat dengan ☕ dan FFmpeg.</p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+  <div class="toast" id="toast">✅ Script disalin ke clipboard!</div>
   <script>
     const buttons = document.querySelectorAll('.copy-btn');
     const toast = document.getElementById('toast');
@@ -331,7 +331,7 @@ echo &quot;&#x1f4fd;&#xfe0f; Video tanpa-audio hasil: &#x24;OUTPUT&quot;</code><
       });
     });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Pemrograman">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:tag" content="Otomatisasi">
     <meta property="article:published_time" content="2025-12-27T17:56:06.000Z">
-    <meta property="article:modified_time" content="2026-06-29T05:06:23.474Z">
+    <meta property="article:modified_time" content="2026-03-28T19:28:35.341Z">
   <link rel="stylesheet" href="/ext/fontawesome.css">
   <style>
     /* Tema Terang (Default) */
@@ -233,22 +233,22 @@
 <body>
   <div class="container">
     <header>
-      <div id="iposbrowser"></div><h1>Workflow &apos;Cari &amp; Ganti&apos; Otomatis via GitHub Actions</h1>
+      <div id="iposbrowser"></div><h1>Workflow 'Cari &amp; Ganti' Otomatis via GitHub Actions</h1>
       <p style="font-size: 1.25rem; opacity: 0.85;">Alat canggih namun praktis untuk mengedit ratusan file secara massal di repositori Anda, tanpa perlu mengunduh apa pun.</p>
     </header>
     <main>
       <article>
         <p>Pernahkah kamu terjebak dalam rutinitas membosankan di mana kamu perlu mengganti satu kata atau kalimat yang sama persis di puluhan hingga ratusan file berbeda?  Pekerjaan yang tadinya terlihat sepele bisa menyedot waktu berjam-jam dan rentan terhadap <em>human error</em>. Tentu sangat melelahkan jika proses ini dilakukan secara manual satu per satu.</p>
-        <p>Namun, jika kodemu bersarang di GitHub, ada kabar baik untukmu. Dengan memanfaatkan fitur <strong>GitHub Actions</strong>, kita bisa membangun sebuah <em>workflow</em> mandiri yang berfungsi sebagai alat <strong>&quot;Cari dan Ganti&quot; (Find and Replace)</strong> massal yang berjalan otomatis untuk seluruh repositori kita. Hebatnya lagi, semua ini bisa dieksekusi hanya dengan beberapa klik langsung dari halaman repositori GitHub, tanpa harus membuka <em>code editor</em> di laptopmu!</p>
+        <p>Namun, jika kodemu bersarang di GitHub, ada kabar baik untukmu. Dengan memanfaatkan fitur <strong>GitHub Actions</strong>, kita bisa membangun sebuah <em>workflow</em> mandiri yang berfungsi sebagai alat <strong>"Cari dan Ganti" (Find and Replace)</strong> massal yang berjalan otomatis untuk seluruh repositori kita. Hebatnya lagi, semua ini bisa dieksekusi hanya dengan beberapa klik langsung dari halaman repositori GitHub, tanpa harus membuka <em>code editor</em> di laptopmu!</p>
         <figure class="media-container">
           <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH0UNMu-OgfI1BJy3p3d-k9J4WdQWtTvwVhtc85weigWI2mr2N9L4HuXK8sBoA9UkVxnbFXd8UhJ7-KGMOykTSTgQ0Li9dBUxi2MmQ6Wcmc8sYsPEOHspEsjQfoWKqLa6fGEUBFcZ0K2NqXI0Mm87ppuAE_AGRCxpTAFOc8FGtUx2ukq3Wd1Sf95WsQBc/s1600/github-actions-find-replace.webp" alt="Tangkapan layar dari antarmuka dialog Run workflow untuk alat pencarian dan penggantian teks di GitHub Actions" class="lcp-image" fetchpriority="high">
-          <figcaption class="img-caption">Dialog interaktif &apos;Run workflow&apos; yang akan muncul di repositorimu.</figcaption>
+          <figcaption class="img-caption">Dialog interaktif 'Run workflow' yang akan muncul di repositorimu.</figcaption>
         </figure>
-        <h2>Contoh Kasus Penggunaan &#x2699;&#xfe0f;</h2>
+        <h2>Contoh Kasus Penggunaan ⚙️</h2>
         <p>Sebelum kita terjun ke kode teknisnya, mari kita lihat beberapa skenario nyata di mana alat otomatisasi ini akan sangat menyelamatkan harimu:</p>
         <div class="info-box">
           <ul>
-            <li><i class="fa-regular fa-calendar icon-spacing"></i><strong>Update Tahun Copyright:</strong> Memasuki pergantian tahun, kamu tentu perlu mengganti teks &quot;&#x1f12f; 2024&quot; menjadi &quot;&#x1f12f; 2025&quot;. Daripada mencari satu per satu, skrip ini bisa mengubahnya secara serentak di seluruh file <code>.html</code> yang ada di dalam folder <code>docs</code>.</li>
+            <li><i class="fa-regular fa-calendar icon-spacing"></i><strong>Update Tahun Copyright:</strong> Memasuki pergantian tahun, kamu tentu perlu mengganti teks "🄯 2024" menjadi "🄯 2025". Daripada mencari satu per satu, skrip ini bisa mengubahnya secara serentak di seluruh file <code>.html</code> yang ada di dalam folder <code>docs</code>.</li>
             <li><i class="fa-solid fa-link icon-spacing"></i><strong>Perbarui Link yang Kedaluwarsa:</strong> Mengubah susunan struktur URL dari <code>/blog/lama/</code> menjadi direktori <code>/artikel/baru/</code> di dalam ratusan file Markdown (<code>.md</code>) hanya dalam hitungan detik.</li>
             <li><i class="fa-solid fa-code icon-spacing"></i><strong>Refactor Kode Secara Global:</strong> Mengganti penamaan fungsi atau variabel yang usang, misalnya mengubah <code>old_function_name</code> menjadi format camelCase <code>newFunctionName</code> di seluruh file berekstensi <code>.js</code>.</li>
           </ul>
@@ -256,9 +256,9 @@
         <h2>Bagaimana Cara Pakainya?</h2>
         <p>Setelah kamu menambahkan kode <em>workflow</em> ke dalam repositori (kodenya ada di bagian bawah artikel ini), begini cara mengeksekusinya:</p>
         <ol>
-          <li>Pergi ke tab <strong>&quot;Actions&quot;</strong> yang ada di bagian atas repositori GitHub kamu.</li>
-          <li>Di menu sebelah kiri, carilah dan klik pada nama workflow: <strong>&quot;ganti isi teks dalam file&quot;</strong>.</li>
-          <li>Di sisi kanan layar, kamu akan melihat tombol bertuliskan <strong>&quot;Run workflow&quot;</strong>. Klik tombol tersebut.</li>
+          <li>Pergi ke tab <strong>"Actions"</strong> yang ada di bagian atas repositori GitHub kamu.</li>
+          <li>Di menu sebelah kiri, carilah dan klik pada nama workflow: <strong>"ganti isi teks dalam file"</strong>.</li>
+          <li>Di sisi kanan layar, kamu akan melihat tombol bertuliskan <strong>"Run workflow"</strong>. Klik tombol tersebut.</li>
           <li>Sebuah formulir interaktif akan muncul. Isi parameter berikut sesuai kebutuhanmu:
             <ul>
               <li><strong>Teks yang mau diganti (search):</strong> Kata, frasa, atau kalimat spesifik yang ingin kamu cari. Ingat, sistem ini bersifat <em>case-sensitive</em>.</li>
@@ -267,7 +267,7 @@
               <li><strong>Polanya file (globs):</strong> Tipe ekstensi file yang akan diubah. Kamu bisa memisahkannya dengan koma (misal: <code><b>/*.html,<b>/*.md</b></b></code><b><b>).</b></b></li><b><b>
             </b></b></ul><b><b>
           </b></b></li><b><b>
-          <li>Klik tombol hijau <strong>&quot;Run workflow&quot;</strong> di bagian bawah form. Duduk manis, dan biarkan peladen GitHub yang bekerja!</li>
+          <li>Klik tombol hijau <strong>"Run workflow"</strong> di bagian bawah form. Duduk manis, dan biarkan peladen GitHub yang bekerja!</li>
         </b></b></ol><b><b>
         <h2>Kode Workflow Lengkap</h2>
         <p>Untuk mengaktifkan fitur ajaib ini, kamu hanya perlu menyalin blok kode YAML di bawah ini dan menyimpannya di dalam repositorimu tepatnya pada <em>path</em> direktori <code>.github/workflows/find-replace.yml</code>.</p>
@@ -276,21 +276,21 @@ on:
   workflow_dispatch:
     inputs:
       search:
-        description: &apos;Teks yang mau diganti (case-sensitive)&apos;
+        description: 'Teks yang mau diganti (case-sensitive)'
         required: true
-        default: &apos;makan siang bersama&apos;
+        default: 'makan siang bersama'
       replace:
-        description: &apos;Teks pengganti&apos;
+        description: 'Teks pengganti'
         required: true
-        default: &apos;mandi pagi sendirian&apos;
+        default: 'mandi pagi sendirian'
       folder:
-        description: &apos;Folder target (misal: content, src). Kosong = root repo&apos;
+        description: 'Folder target (misal: content, src). Kosong = root repo'
         required: false
-        default: &apos;.&apos;
+        default: '.'
       globs:
-        description: &apos;Polanya file (misal: <b>/*.txt,<b>/*.html)&apos;
+        description: 'Polanya file (misal: <b>/*.txt,<b>/*.html)'
         required: false
-        default: &apos;<b>/*.txt,<b>/*.html&apos;
+        default: '<b>/*.txt,<b>/*.html'
 jobs:
   replace:
     runs-on: ubuntu-latest
@@ -299,34 +299,34 @@ jobs:
         uses: actions/checkout@v4
       - name: Jalankan penggantian string di folder terpilih
         run: |
-          TARGET=&quot;&#x24;{{ github.event.inputs.folder }}&quot;
-          SEARCH_TERM=&quot;&#x24;{{ github.event.inputs.search }}&quot;
-          REPLACE_TERM=&quot;&#x24;{{ github.event.inputs.replace }}&quot;
+          TARGET="${{ github.event.inputs.folder }}"
+          SEARCH_TERM="${{ github.event.inputs.search }}"
+          REPLACE_TERM="${{ github.event.inputs.replace }}"
           # Ubah koma menjadi spasi untuk keperluan looping
-          read -ra GLOBS &lt;&lt;&lt; &quot;&#x24;{{ github.event.inputs.globs//,/ / }}&quot;
-          for g in &quot;&#x24;{GLOBS[@]}&quot;; do
-            echo &quot;&#x1f50e; Proses pola: &apos;&#x24;g&apos; di folder &apos;&#x24;TARGET&apos;&quot;
+          read -ra GLOBS &lt;&lt;&lt; "${{ github.event.inputs.globs//,/ / }}"
+          for g in "${GLOBS[@]}"; do
+            echo "🔎 Proses pola: '$g' di folder '$TARGET'"
             # Gunakan utilitas find -path untuk mencocokkan pola <b>/*
-            find &quot;&#x24;TARGET&quot; -path &quot;&#x24;g&quot; -type f -print0 | while IFS= read -r -d &apos;&apos; file; do
+            find "$TARGET" -path "$g" -type f -print0 | while IFS= read -r -d '' file; do
               # Gunakan bahasa perl untuk find &amp; replace yang aman dari karakter aneh
-              perl -pi -e &apos;s#\Q&#x24;ENV{SEARCH_TERM}\E#&#x24;ENV{REPLACE_TERM}#g&apos; &quot;&#x24;file&quot;
+              perl -pi -e 's#\Q$ENV{SEARCH_TERM}\E#$ENV{REPLACE_TERM}#g' "$file"
             done
           done
       - name: Commit &amp; push perubahan
         run: |
-          git config user.name &quot;&#x24;{{ github.actor }}&quot;
-          git config user.email &quot;&#x24;{{ github.actor }}@users.noreply.github.com&quot;
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
           git add -A
           # Gunakan perintah || true agar pipeline tidak terhenti (error) jika tidak ada teks yang berubah
-          git commit -m &quot;chore: ganti &apos;&#x24;{{ github.event.inputs.search }}&apos; -&gt; &apos;&#x24;{{ github.event.inputs.replace }}&apos;&quot; || true
+          git commit -m "chore: ganti '${{ github.event.inputs.search }}' -&gt; '${{ github.event.inputs.replace }}'" || true
           git push
 </b></b></b></b></b></code></pre><b><b><b>
         <h2>Bedah Singkat Anatomi Kode</h2>
         <p>Bagi kamu yang penasaran bagaimana sihir ini bekerja di belakang layar, berikut adalah penjelasan dari blok kode utama di atas:</p>
         <ul>
-          <li><code>on: workflow_dispatch: inputs:</code> &#x2192; Bagian krusial inilah yang menginstruksikan GitHub untuk tidak menjalankan skrip secara otomatis (misalnya saat <em>push</em>), melainkan menciptakan formulir input interaktif saat kita menekan tombol &quot;Run workflow&quot;.</li>
-          <li><strong>Jalankan penggantian...</strong> &#x2192; Pada langkah ini, kita mendayagunakan kombinasi perintah sistem operasi Linux. Kita memakai <code>find</code> untuk menyusuri dan mencari file berdasarkan pola (glob) yang kita masukkan. Setelah file terpetakan, kita tidak menggunakan <code>sed</code>, melainkan menggunakan <code>perl</code> untuk melakukan eksekusi penggantian teks. Mengapa? Karena <em>Perl</em> jauh lebih stabil, andal, dan aman dalam memproses karakter-karakter aneh atau <em>special characters</em> yang mungkin terkandung dalam teksmu.</li>
-          <li><strong>Commit &amp; push...</strong> &#x2192; Begitu proses modifikasi teks rampung, skrip bot ini akan mengambil alih fungsi Git dasar. Ia akan membungkus seluruh perubahan menjadi sebuah <em>commit</em> baru dengan pesan rekam jejak yang jelas, lalu mendorong (<em>push</em>) perubahannya langsung ke <em>branch</em> repositorimu.</li>
+          <li><code>on: workflow_dispatch: inputs:</code> → Bagian krusial inilah yang menginstruksikan GitHub untuk tidak menjalankan skrip secara otomatis (misalnya saat <em>push</em>), melainkan menciptakan formulir input interaktif saat kita menekan tombol "Run workflow".</li>
+          <li><strong>Jalankan penggantian...</strong> → Pada langkah ini, kita mendayagunakan kombinasi perintah sistem operasi Linux. Kita memakai <code>find</code> untuk menyusuri dan mencari file berdasarkan pola (glob) yang kita masukkan. Setelah file terpetakan, kita tidak menggunakan <code>sed</code>, melainkan menggunakan <code>perl</code> untuk melakukan eksekusi penggantian teks. Mengapa? Karena <em>Perl</em> jauh lebih stabil, andal, dan aman dalam memproses karakter-karakter aneh atau <em>special characters</em> yang mungkin terkandung dalam teksmu.</li>
+          <li><strong>Commit &amp; push...</strong> → Begitu proses modifikasi teks rampung, skrip bot ini akan mengambil alih fungsi Git dasar. Ia akan membungkus seluruh perubahan menjadi sebuah <em>commit</em> baru dengan pesan rekam jejak yang jelas, lalu mendorong (<em>push</em>) perubahannya langsung ke <em>branch</em> repositorimu.</li>
         </ul>
         <p>Dengan alat ini, manajemen aset kode di repositorimu kini jadi jauh lebih mudah, efisien, dan modern. Selamat mencoba dan tingkatkan produktivitas <em>coding</em> kamu!</p>
       </b></b></b></b></b></article><b><b><b>
@@ -334,11 +334,11 @@ jobs:
     <div id="related-articles-grid"></div><div id="response"></div>
     <footer>
       <div class="footer-content">
-        Artikel oleh Frijal (Balikpapan) &#x2022; Dipublikasikan pada 14 Juni 2026 &#x2022; Referensi: Dokumentasi Resmi GitHub Actions
+        Artikel oleh Frijal (Balikpapan) • Dipublikasikan pada 14 Juni 2026 • Referensi: Dokumentasi Resmi GitHub Actions
       </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </b></b></b></div><b><b><b>
-</b></b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+</b></b></b><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

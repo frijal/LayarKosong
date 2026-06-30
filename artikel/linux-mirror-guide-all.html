@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer src="/ext/data-provider.js"></script>
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Sistem Operasi">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Tutorial">
     <meta property="article:published_time" content="2025-09-24T08:00:00.000Z">
-    <meta property="article:modified_time" content="2026-03-19T19:57:37.058Z">
+    <meta property="article:modified_time" content="2025-09-24T08:00:00.000Z">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         /* CSS Variables for Light/Dark Mode and WCAG AA contrast */
@@ -244,7 +244,7 @@
 <body>
 <div class="container">
     <header>
-        <div id="iposbrowser"></div><h1>Panduan Mirror Linux Tercepat &#x2014; Semua Distro &#x1f680;</h1>
+        <div id="iposbrowser"></div><h1>Panduan Mirror Linux Tercepat — Semua Distro 🚀</h1>
     </header>
     <main>
         <article>
@@ -256,7 +256,7 @@
             <div class="alert-box">
                 <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Penting:</strong> Pastikan kamu selalu menambahkan <code>sudo</code> untuk perintah yang memerlukan akses *root*. Selain itu, selalu sempatkan untuk melakukan *backup* (cadangan) pada file konfigurasi repositori sebelum melakukan perubahan apa pun.
             </div>
-            <h2><i class="fa-brands fa-ubuntu icon"></i> 1. Debian &amp; Ubuntu (APT) &#x2014; Otomatisasi dengan netselect-apt</h2>
+            <h2><i class="fa-brands fa-ubuntu icon"></i> 1. Debian &amp; Ubuntu (APT) — Otomatisasi dengan netselect-apt</h2>
             <p>Bagi pengguna keluarga Debian dan Ubuntu, alat andalan yang bisa kamu gunakan adalah <code>netselect-apt</code>. Perkakas pintar ini akan melakukan pengujian waktu respons (<em>ping</em>) ke berbagai server cermin, lalu secara otomatis membangun file <code>sources.list</code> baru yang berisi tautan ke server tercepat untukmu.</p>
             <h3>Langkah Eksekusi Cepat</h3>
 <pre><code># Perbarui daftar paket saat ini
@@ -278,15 +278,15 @@ sudo mv sources.list /etc/apt/sources.list
 sudo apt update
 </code></pre>
             <blockquote>
-                <strong>Tips Ekstra:</strong> Jika <code>netselect-apt</code> bermasalah di sistemmu, alternatifnya adalah menggunakan <code>apt-fast</code> atau mengatur secara visual melalui GUI <strong>Software &amp; Updates &#x2192; Download from &#x2192; Other &#x2192; Select Best Server</strong> khusus untuk Ubuntu.
+                <strong>Tips Ekstra:</strong> Jika <code>netselect-apt</code> bermasalah di sistemmu, alternatifnya adalah menggunakan <code>apt-fast</code> atau mengatur secara visual melalui GUI <strong>Software &amp; Updates → Download from → Other → Select Best Server</strong> khusus untuk Ubuntu.
             </blockquote>
-            <h2><i class="fa-brands fa-arch-linux icon"></i> 2. Arch Linux &amp; Manjaro &#x2014; reflector / pacman-mirrors</h2>
+            <h2><i class="fa-brands fa-arch-linux icon"></i> 2. Arch Linux &amp; Manjaro — reflector / pacman-mirrors</h2>
             <p>Keluarga Arch dikenal akan pendekatannya yang lugas. Di Arch Linux murni, <code>reflector</code> adalah senjata utama, sementara Manjaro menyediakan alat bawaan bernama <code>pacman-mirrors</code>.</p>
             <h3>Solusi untuk Arch Linux</h3>
 <pre><code># Install reflector jika belum tersedia di sistem
 sudo pacman -S --noconfirm reflector
 # Mengambil 5 mirror terbaru dari server Indonesia, urutkan berdasarkan kecepatan (rate), lalu timpa ke mirrorlist
-sudo reflector --country &quot;Indonesia&quot; --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --country "Indonesia" --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 # Refresh dan lakukan upgrade sistem menyeluruh
 sudo pacman -Syyu
 </code></pre>
@@ -297,7 +297,7 @@ sudo pacman-mirrors --fasttrack
 sudo pacman -Syyu
 </code></pre>
             <p><em>Saran bijak:</em> Saat mengeksekusi <code>reflector</code>, gunakan koneksi jaringan yang biasa kamu pakai sehari-hari (misalnya Wi-Fi kantor atau kabel LAN rumah) agar kalkulasi kecepatannya akurat.</p>
-            <h2><i class="fa-brands fa-fedora icon"></i> 3. Fedora (dnf) &#x2014; Sihir MirrorManager</h2>
+            <h2><i class="fa-brands fa-fedora icon"></i> 3. Fedora (dnf) — Sihir MirrorManager</h2>
             <p>Berbeda dengan yang lain, Fedora sangat cerdas berkat teknologi <em>MirrorManager</em>. Kamu tidak perlu repot-repot memilih server secara manual karena <code>dnf</code> akan menentukan jalur paling optimal setiap kali dijalankan. Yang perlu kamu lakukan hanyalah memastikan <em>cache</em> metadatanya selalu segar.</p>
 <pre><code># Bersihkan sisa-sisa cache lama yang mungkin memperlambat
 sudo dnf clean all
@@ -307,15 +307,15 @@ sudo dnf makecache --refresh
 sudo dnf upgrade --refresh
 </code></pre>
             <p>Apabila kamu benar-benar terdesak dan butuh menunjuk server mirror lokal tertentu (seperti kambing.ui.ac.id), kamu bisa mengedit file <code>/etc/yum.repos.d/fedora.repo</code> dan menyesuaikan bagian <code>baseurl</code> secara berhati-hati.</p>
-            <h2><i class="fa-brands fa-suse icon"></i> 4. openSUSE (zypper) &#x2014; Keandalan MirrorBrain</h2>
+            <h2><i class="fa-brands fa-suse icon"></i> 4. openSUSE (zypper) — Keandalan MirrorBrain</h2>
             <p>Sistem openSUSE mengadopsi mekanisme bernama <em>MirrorBrain</em> yang mendeteksi lokasimu dan mengalihkan unduhan secara dinamis. Praktik standar untuk memastikan koneksi optimal adalah dengan melakukan penyegaran teratur.</p>
 <pre><code># Segarkan daftar repositori
 sudo zypper refresh
 # Eksekusi upgrade distribusi
 sudo zypper dup
 </code></pre>
-            <p>Jika ingin spesifik, kamu bisa mengaturnya lewat antarmuka grafis yang ramah pengguna di <strong>YaST &#x2192; Software Repositories</strong>.</p>
-            <h2><i class="fa-solid fa-code-commit icon"></i> 5. Slackware (slackpkg) &#x2014; Sederhana namun Bertenaga</h2>
+            <p>Jika ingin spesifik, kamu bisa mengaturnya lewat antarmuka grafis yang ramah pengguna di <strong>YaST → Software Repositories</strong>.</p>
+            <h2><i class="fa-solid fa-code-commit icon"></i> 5. Slackware (slackpkg) — Sederhana namun Bertenaga</h2>
             <p>Sesuai dengan filosofinya yang <em>Keep It Simple</em>, Slackware mengandalkan pengelolaan manual melalui sebuah file teks datar di <code>/etc/slackpkg/mirrors</code>. Kamu hanya perlu mencari mirror lokal yang terdekat lalu menghapus tanda pagar (<code>#</code>) untuk mengaktifkannya.</p>
 <pre><code># Buka daftar mirror menggunakan teks editor nano
 sudo nano /etc/slackpkg/mirrors
@@ -325,7 +325,7 @@ sudo nano /etc/slackpkg/mirrors
 sudo slackpkg update gpg
 sudo slackpkg update
 </code></pre>
-            <h2><i class="fa-solid fa-snowflake icon"></i> 6. NixOS &#x2014; Substituters dan Cache</h2>
+            <h2><i class="fa-solid fa-snowflake icon"></i> 6. NixOS — Substituters dan Cache</h2>
             <p>NixOS sangat bergantung pada <em>binary cache</em> atau substituters untuk mempercepat penyediaan paket di dalam Nix store. Menambahkan mirror terdekat pada <code>/etc/nix/nix.conf</code> akan sangat menghemat waktu kompilasi paket.</p>
 <pre><code># Buka konfigurasi Nix
 sudo nano /etc/nix/nix.conf
@@ -346,20 +346,20 @@ nix-env -u
             <p>Jika kamu tipe orang yang suka efisiensi, simpan skrip bash (<code>quick-mirror.sh</code>) di bawah ini. Skrip ini mendeteksi argumen yang diberikan dan langsung mengeksekusi optimalisasi otomatis.</p>
 <pre><code>#!/bin/bash
 # quick-mirror.sh (pilih salah satu mode dengan argumen: debian|arch)
-MODE=&quot;&#x24;1&quot;
-if [ &quot;&#x24;MODE&quot; = &quot;debian&quot; ]; then
+MODE="$1"
+if [ "$MODE" = "debian" ]; then
   sudo apt update
   sudo apt install -y netselect-apt
   sudo netselect-apt stable
   sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
   sudo mv sources.list /etc/apt/sources.list
   sudo apt update
-elif [ &quot;&#x24;MODE&quot; = &quot;arch&quot; ]; then
+elif [ "$MODE" = "arch" ]; then
   sudo pacman -S --noconfirm reflector
-  sudo reflector --country &quot;Indonesia&quot; --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+  sudo reflector --country "Indonesia" --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
   sudo pacman -Syyu
 else
-  echo &quot;Cara penggunaan: &#x24;0 debian|arch&quot;
+  echo "Cara penggunaan: $0 debian|arch"
 fi
 </code></pre>
             <p>Pada akhirnya, koneksi dan pengunduhan yang lelet bukan lagi alasan untuk malas memperbarui sistem operasi Linux-mu. Dengan meluangkan waktu beberapa menit untuk menata repositori dan mengarahkan targetnya pada server cermin yang tepat, pengalaman rutinitas teknismu akan jauh lebih nyaman dan produktif!</p>
@@ -368,13 +368,13 @@ fi
     <div id="related-articles-grid"></div><div id="response"></div>
     <footer>
         <div class="author-meta">
-            <span>Artikel oleh Ahli Sistem Linux</span> <span>&#x2022;</span>
-            <span>Terbit: 14 Juni 2026</span> <span>&#x2022;</span>
+            <span>Artikel oleh Ahli Sistem Linux</span> <span>•</span>
+            <span>Terbit: 14 Juni 2026</span> <span>•</span>
             <span>Referensi: Panduan Resmi Dokumentasi Distribusi Linux</span>
         </div>
-           <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
-<script defer src="/ext/highlight.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
 <script>hljs.highlightAll();</script>
 </body></html>

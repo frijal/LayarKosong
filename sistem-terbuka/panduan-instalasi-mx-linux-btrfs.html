@@ -1,5 +1,411 @@
-<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas - Layar Kosong</title><meta content="Cara lengkap instalasi MX Linux 25.1 XFCE di PC lawas. Panduan step by step konfigurasi Btrfs dan Snapper untuk fitur rollback sistem yang aman dan ringan." name="description"><link href="https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs" rel="canonical"><link title="Cara Ampuh Menghapus File Duplikat dengan FDupes di Linux dan Windows" href="https://dalam.web.id/sistem-terbuka/tutorial-fdupes-hapus-file-duplikat" rel="prev"><link title="MX Linux 25.1 XFCE Swiss Army Knife Debian Based Distros" href="https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce" rel="next"><meta content="https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs" property="og:url"><meta content="https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs" name="twitter:url"><meta content="Linux, Open Source" property="article:section"><meta content="Linux" property="article:tag"><meta content="Open Source" property="article:tag"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="MX Linux 25.1, Tutorial Linux, Btrfs, Snapper, XFCE, PC Lawas, Instalasi Linux, Rollback Sistem" name="news_keywords"><meta content="Bagaimana cara menginstal MX Linux agar sistem aman dari kerusakan update? Gunakan file system Btrfs dan install Snapper untuk membuat snapshot otomatis, sehingga kamu bisa melakukan rollback sistem kapan saja." name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas" property="og:title"><meta content="Punya PC lama yang lemot? Pasang MX Linux 25.1 XFCE! Artikel ini bahas tuntas cara install dengan kombinasi Btrfs dan Snapper biar sistem kamu kebal dari error." property="og:description"><meta content="2026-03-08T21:54:32.137Z" property="og:updated_time"><meta content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp" property="og:image"><meta content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp" property="og:image:url"><meta content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp" property="og:image:secure_url"><meta content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas" property="og:image:alt"><meta content="1000" property="og:image:width"><meta content="667" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas" name="twitter:title"><meta content="Tutorial paling detail buat nyulap PC jadul jadi super stabil pakai MX Linux 25.1. Dilengkapi setup Btrfs dan Snapper." name="twitter:description"><meta content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp" name="twitter:image"><meta content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="@dalam.web.id" name="bluesky:creator"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link href="/site.webmanifest" rel="manifest"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2026-03-08T21:46:05.339Z" property="article:published_time"><meta content="2026-03-08T21:46:05.339Z" property="article:modified_time"><link href="/ext/fontawesome.css" rel="stylesheet"><link href="/ext/github-dark-dimmed.min.css" rel="stylesheet"><style>:root{--bg-color:#fff;--text-color:#1a1a1a;--accent-color:#0ea5e9;--secondary-bg:#f1f5f9;--border-color:#cbd5e1;--code-bg:#0f172a;--code-text:#e2e8f0;--max-w:64rem}@media (prefers-color-scheme:dark){:root{--bg-color:#0f172a;--text-color:#f8fafc;--accent-color:#38bdf8;--secondary-bg:#1e293b;--border-color:#334155;--code-bg:#1e293b;--code-text:#e2e8f0}}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-color);justify-content:center;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:1.2rem;line-height:1.7;display:flex}article{width:100%;max-width:var(--max-w);box-sizing:border-box;padding:20px}h1{border-bottom:3px solid var(--accent-color);margin-bottom:1.2rem;padding-bottom:10px;font-size:2.2rem;line-height:1.3}h2{color:var(--accent-color);margin-top:2.5rem;font-size:1.6rem}img{content-visibility:auto;background-color:var(--secondary-bg);border-radius:8px;max-width:100%;height:auto;margin:25px auto;display:block}table{border-collapse:collapse;width:100%;margin:20px 0;display:block;overflow-x:auto}th,td{border:1px solid var(--border-color);text-align:left;padding:12px}th{background-color:var(--secondary-bg);font-weight:700}pre{background:var(--code-bg);border-radius:8px;margin:20px 0;padding:1rem;overflow:hidden}code{color:var(--code-text);font-family:ui-monospace,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:.9rem}footer{border-top:1px solid var(--border-color);text-align:center;opacity:.8;margin-top:60px;padding:30px 0;font-size:.9rem}@media (width<=600px){h1{font-size:1.8rem}article{padding:15px}table{font-size:.9rem}body{font-size:1rem}}</style><link href="/ext/pemandu.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas","description":"Cara lengkap instalasi MX Linux 25.1 XFCE di PC lawas. Panduan step by step konfigurasi Btrfs dan Snapper untuk fitur rollback sistem yang aman dan ringan.","datePublished":"2026-03-08T21:46:05.339Z","dateModified":"2026-03-08T21:46:05.339Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs"},"wordCount":1049,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/pbs.twimg.com\/eeb74b4966d9954.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","keywords":["Linux","Open Source","MX Linux 25.1","Tutorial Linux","Btrfs","Snapper","XFCE","PC Lawas","Instalasi Linux","Rollback Sistem","panduan","instalasi","lawas","Sistem Terbuka","Layar Kosong"],"articleSection":["Sistem Terbuka"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs","url":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs","name":"Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs#primaryimage"},"image":["https:\/\/dalam.web.id\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/img\/pbs.twimg.com\/eeb74b4966d9954.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","datePublished":"2026-03-08T21:46:05.339Z","dateModified":"2026-03-08T21:46:05.339Z","description":"Cara lengkap instalasi MX Linux 25.1 XFCE di PC lawas. Panduan step by step konfigurasi Btrfs dan Snapper untuk fitur rollback sistem yang aman dan ringan.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs#primaryimage","url":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","contentUrl":"https:\/\/dalam.web.id\/img\/pbs.twimg.com\/eeb74b4966d9954.webp","width":1000,"height":667,"caption":"Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https:\/\/dalam.web.id\/sistem-terbuka"},{"@type":"ListItem","position":3,"name":"Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas","item":"https:\/\/dalam.web.id\/sistem-terbuka\/panduan-instalasi-mx-linux-btrfs"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69","https:\/\/bsky.app\/profile\/dalam.web.id"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><article><div id="iposbrowser"></div><h1>Panduan Lengkap: Instalasi MX Linux 25.1 XFCE di PC Lawas dengan Btrfs + Snapper 🐧</h1><p>Punya PC jadul yang udah ngos-ngosan pakai OS bawaannya? Jangan buru-buru diloak! Kita bakal sulap PC tua kamu jadi super ngebut dan tahan banting. Berdasarkan pengalaman dan praktik terbaik (E-E-A-T), perpaduan <strong>MX Linux 25.1 XFCE</strong> dengan <em>file system</em> <strong>Btrfs</strong> dan <strong>Snapper</strong> adalah kombinasi keren buat stabilitas sistem. Yuk, kita bedah dulu konsepnya pakai prinsip 5W+1H biar makin paham!</p><img alt="Ilustrasi MX Linux dan PC Lawas" sizes="(max-width: 1040px) calc(100vw - 40px), 1000px" srcset="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954-sm.webp 720w, https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954-md.webp 960w, https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp 1000w" height="667" src="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp" width="1000"><hr><h2>Kenapa Memilih Btrfs + Snapper?</h2><p>Btrfs adalah <em>filesystem</em> modern yang memungkinkan fitur <strong>snapshots, subvolumes, dan manajemen disk yang efisien</strong>. Sementara itu, Snapper terintegrasi sempurna dengan MX Linux untuk memberikan:</p><ul><li><strong>System rollback</strong> jika terjadi update yang rusak/gagal.</li><li>Penggunaan kapasitas disk yang sangat efisien meski menyimpan banyak snapshot.</li><li>Kemampuan <em>booting</em> langsung ke snapshot lewat menu GRUB.</li></ul><p>Setup ini sangat ideal untuk PC lama, membuat sistem kamu tetap <strong>stabil, fleksibel, dan future-proof</strong>. 🚀</p><img alt="Tampilan Antarmuka MX Linux" sizes="(max-width: 1040px) calc(100vw - 40px), 1000px" srcset="https://dalam.web.id/img/assets.linuxhelp.com/cd84693740c95558-sm.webp 720w, https://dalam.web.id/img/assets.linuxhelp.com/cd84693740c95558-md.webp 960w, https://dalam.web.id/img/assets.linuxhelp.com/cd84693740c95558.webp 1000w" height="577" src="https://dalam.web.id/img/assets.linuxhelp.com/cd84693740c95558.webp" width="1000"><h2>1: Siapkan Hardware dan Backup Data</h2><p>Sebelum mulai ngoprek, wajib perhatikan hal ini:</p><ol><li>Backup semua file penting dari PC lama kamu ke hardisk eksternal.</li><li>Siapkan Flashdisk (USB drive) minimal <strong>4GB</strong> untuk installer MX Linux.</li><li>Pastikan PC kamu memenuhi syarat minimum: <ul><li>CPU: 32-bit atau 64-bit</li><li>RAM: Minimal 1 GB (Sangat disarankan 2 GB)</li><li>Penyimpanan: 20 GB atau lebih besar</li></ul></li></ol><h2>2: Download ISO MX Linux 25.1 XFCE</h2><ol><li>Kunjungi situs resmi MX Linux: <a rel="noopener noreferrer" href="https://mxlinux.org/download-links/" target="_blank">MX Linux Downloads</a>.</li><li>Pilih edisi <strong>XFCE</strong> (karena versi ini sangat ringan, cepat, dan sempurna buat PC lawas).</li><li>Download file ISO-nya dan jangan lupa verifikasi <em>checksum</em> untuk memastikan file tidak korup.</li></ol><h2>3: Buat Bootable USB Drive</h2><p>Gunakan aplikasi andalan seperti <strong>Rufus (Windows)</strong> atau <strong>Etcher (Linux/Windows/Mac)</strong>:</p><ol><li>Colokkan Flashdisk kamu.</li><li>Buka aplikasi Rufus/Etcher.</li><li>Pilih file ISO MX Linux yang sudah didownload.</li><li>Set skema partisi ke <strong>MBR</strong> untuk sistem BIOS lama, atau <strong>GPT</strong> kalau PC kamu sudah pakai UEFI.</li><li>Klik "Start" atau "Flash" untuk mulai menulis ISO ke dalam Flashdisk.</li></ol><h2>4: Boot dari USB dan Mulai Instalasi</h2><ol><li>Colok Flashdisk ke PC lama kamu.</li><li>Restart PC dan masuk ke pengaturan <strong>BIOS/UEFI</strong> (biasanya pencet F2, F12, atau DEL).</li><li>Ubah prioritas <em>boot order</em> supaya USB ada di urutan pertama.</li><li>Boot masuk ke <em>live environment</em> MX Linux.</li><li>Klik ikon <strong>Install MX Linux</strong> dari menu desktop.</li></ol><h2>5: Persiapan Partisi Btrfs</h2><p>Di bagian ini, kita perlu sedikit teliti agar pondasi sistemnya kuat.</p><img alt="Tampilan GParted untuk Partisi Disk" height="296" src="https://dalam.web.id/img/www.linux.com/93c5d969dd599e6e.webp" width="624"><ol><li>Pilih <strong>Manual Partitioning</strong> (Partisi Manual) saat instalasi.</li><li>Buat partisi <strong>Btrfs</strong> untuk root (<code>/</code>) dan opsional untuk data pengguna (<code>/home</code>).</li><li>Rekomendasi layout untuk PC lawas:</li></ol><table><thead><tr><th>Partisi</th><th>Mount Point</th><th>Ukuran</th><th>Tipe</th><th>Catatan</th></tr></thead><tbody><tr><td>/</td><td><code>/</code></td><td>15–20 GB</td><td>Btrfs</td><td>Sistem Root utama</td></tr><tr><td>/home</td><td><code>/home</code></td><td>Sisanya</td><td>Btrfs</td><td>Penyimpanan data user</td></tr><tr><td>swap</td><td>swap</td><td>1–2 GB</td><td>swap</td><td>Opsional kalau RAM minim</td></tr></tbody></table><p>Pastikan kamu mencentang opsi <strong>"Format"</strong> untuk partisi baru tersebut.</p><h2>6: Membuat Btrfs Subvolumes</h2><p>Subvolume ini fungsinya krusial banget buat memisahkan <em>snapshots</em> secara terisolasi:</p><ol><li>Mount partisi root kamu sebagai <code>/mnt</code>.</li><li>Buka terminal di <em>live environment</em> dan jalankan perintah pembuatan subvolume berikut:</li></ol><pre><code class="language-bash">sudo mount -o subvol=@ /dev/sdX1 /mnt
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas - Layar Kosong</title>
+    <meta name="description" content="Cara lengkap instalasi MX Linux 25.1 XFCE di PC lawas. Panduan step by step konfigurasi Btrfs dan Snapper untuk fitur rollback sistem yang aman dan ringan.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs">
+    <link rel="prev" href="https://dalam.web.id/sistem-terbuka/tutorial-fdupes-hapus-file-duplikat" title="Cara Ampuh Menghapus File Duplikat dengan FDupes di Linux dan Windows">
+    <link rel="next" href="https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce" title="MX Linux 25.1 XFCE Swiss Army Knife Debian Based Distros">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs">
+    <meta name="twitter:url" content="https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs">
+    <meta property="article:section" content="Linux, Open Source">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Open Source">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="MX Linux 25.1, Tutorial Linux, Btrfs, Snapper, XFCE, PC Lawas, Instalasi Linux, Rollback Sistem">
+    <meta name="promphint" content="Bagaimana cara menginstal MX Linux agar sistem aman dari kerusakan update? Gunakan file system Btrfs dan install Snapper untuk membuat snapshot otomatis, sehingga kamu bisa melakukan rollback sistem kapan saja.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas">
+    <meta property="og:description" content="Punya PC lama yang lemot? Pasang MX Linux 25.1 XFCE! Artikel ini bahas tuntas cara install dengan kombinasi Btrfs dan Snapper biar sistem kamu kebal dari error.">
+    <meta property="og:updated_time" content="2026-03-08T21:54:32.137Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp">
+    <meta property="og:image:alt" content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="667">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:title" content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas">
+    <meta name="twitter:description" content="Tutorial paling detail buat nyulap PC jadul jadi super stabil pakai MX Linux 25.1. Dilengkapi setup Btrfs dan Snapper.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp">
+    <meta name="twitter:image:alt" content="Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-03-08T21:46:05.339Z">
+    <meta property="article:modified_time" content="2026-03-08T21:46:05.339Z">
+<link rel="stylesheet" href="/ext/fontawesome.css">
+    <link rel="stylesheet" href="/ext/github-dark-dimmed.min.css">
+    <style>
+    /* ===== VARIABEL & RESET ===== */
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #1a1a1a;
+        --accent-color: #0ea5e9;
+        --secondary-bg: #f1f5f9;
+        --border-color: #cbd5e1;
+        --code-bg: #0f172a;
+        --code-text: #e2e8f0;
+        --max-w: 64rem; /* ← lebar diubah sesuai permintaan */
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --secondary-bg: #1e293b;
+            --border-color: #334155;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+        }
+    }
+    /* ===== RESET DASAR ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.7;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    /* ===== KONTEN UTAMA ===== */
+    article {
+        width: 100%;
+        max-width: var(--max-w);
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    /* ===== HEADING ===== */
+    h1 {
+        font-size: 2.2rem;
+        line-height: 1.3;
+        margin-bottom: 1.2rem;
+        border-bottom: 3px solid var(--accent-color);
+        padding-bottom: 10px;
+    }
+    h2 {
+        margin-top: 2.5rem;
+        color: var(--accent-color);
+        font-size: 1.6rem;
+    }
+    /* ===== GAMBAR ===== */
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+        margin: 25px auto;
+        content-visibility: auto; /* optimasi LCP/CLS */
+        background-color: var(--secondary-bg);
+    }
+    /* ===== TABEL ===== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        overflow-x: auto;
+        display: block;
+    }
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 12px;
+        text-align: left;
+    }
+    th {
+        background-color: var(--secondary-bg);
+        font-weight: bold;
+    }
+    /* ===== KODE ===== */
+    pre {
+        margin: 20px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--code-bg);
+        padding: 1rem;
+    }
+    code {
+        font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 0.9rem;
+        color: var(--code-text);
+    }
+    /* ===== FOOTER ===== */
+    footer {
+        margin-top: 60px;
+        padding: 30px 0;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+        h1 { font-size: 1.8rem; }
+        article { padding: 15px; }
+        table { font-size: 0.9rem; }
+        body { font-size: 1rem; }
+    }
+</style>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+<article>
+    <div id="iposbrowser"></div><h1>Panduan Lengkap: Instalasi MX Linux 25.1 XFCE di PC Lawas dengan Btrfs + Snapper 🐧</h1>
+    <p>Punya PC jadul yang udah ngos-ngosan pakai OS bawaannya? Jangan buru-buru diloak! Kita bakal sulap PC tua kamu jadi super ngebut dan tahan banting. Berdasarkan pengalaman dan praktik terbaik (E-E-A-T), perpaduan <strong>MX Linux 25.1 XFCE</strong> dengan <em>file system</em> <strong>Btrfs</strong> dan <strong>Snapper</strong> adalah kombinasi keren buat stabilitas sistem. Yuk, kita bedah dulu konsepnya pakai prinsip 5W+1H biar makin paham!</p>
+    <img src="https://dalam.web.id/img/pbs.twimg.com/eeb74b4966d9954.webp" alt="Ilustrasi MX Linux dan PC Lawas">
+    <hr>
+    <h2>Kenapa Memilih Btrfs + Snapper?</h2>
+    <p>Btrfs adalah <em>filesystem</em> modern yang memungkinkan fitur <strong>snapshots, subvolumes, dan manajemen disk yang efisien</strong>. Sementara itu, Snapper terintegrasi sempurna dengan MX Linux untuk memberikan:</p>
+    <ul>
+        <li><strong>System rollback</strong> jika terjadi update yang rusak/gagal.</li>
+        <li>Penggunaan kapasitas disk yang sangat efisien meski menyimpan banyak snapshot.</li>
+        <li>Kemampuan <em>booting</em> langsung ke snapshot lewat menu GRUB.</li>
+    </ul>
+    <p>Setup ini sangat ideal untuk PC lama, membuat sistem kamu tetap <strong>stabil, fleksibel, dan future-proof</strong>. 🚀</p>
+    <img src="https://dalam.web.id/img/assets.linuxhelp.com/cd84693740c95558.webp" alt="Tampilan Antarmuka MX Linux">
+    <h2>1: Siapkan Hardware dan Backup Data</h2>
+    <p>Sebelum mulai ngoprek, wajib perhatikan hal ini:</p>
+    <ol>
+        <li>Backup semua file penting dari PC lama kamu ke hardisk eksternal.</li>
+        <li>Siapkan Flashdisk (USB drive) minimal <strong>4GB</strong> untuk installer MX Linux.</li>
+        <li>Pastikan PC kamu memenuhi syarat minimum:
+            <ul>
+                <li>CPU: 32-bit atau 64-bit</li>
+                <li>RAM: Minimal 1 GB (Sangat disarankan 2 GB)</li>
+                <li>Penyimpanan: 20 GB atau lebih besar</li>
+            </ul>
+        </li>
+    </ol>
+    <h2>2: Download ISO MX Linux 25.1 XFCE</h2>
+    <ol>
+        <li>Kunjungi situs resmi MX Linux: <a href="https://mxlinux.org/download-links/" target="_blank" rel="noopener noreferrer">MX Linux Downloads</a>.</li>
+        <li>Pilih edisi <strong>XFCE</strong> (karena versi ini sangat ringan, cepat, dan sempurna buat PC lawas).</li>
+        <li>Download file ISO-nya dan jangan lupa verifikasi <em>checksum</em> untuk memastikan file tidak korup.</li>
+    </ol>
+    <h2>3: Buat Bootable USB Drive</h2>
+    <p>Gunakan aplikasi andalan seperti <strong>Rufus (Windows)</strong> atau <strong>Etcher (Linux/Windows/Mac)</strong>:</p>
+    <ol>
+        <li>Colokkan Flashdisk kamu.</li>
+        <li>Buka aplikasi Rufus/Etcher.</li>
+        <li>Pilih file ISO MX Linux yang sudah didownload.</li>
+        <li>Set skema partisi ke <strong>MBR</strong> untuk sistem BIOS lama, atau <strong>GPT</strong> kalau PC kamu sudah pakai UEFI.</li>
+        <li>Klik "Start" atau "Flash" untuk mulai menulis ISO ke dalam Flashdisk.</li>
+    </ol>
+    <h2>4: Boot dari USB dan Mulai Instalasi</h2>
+    <ol>
+        <li>Colok Flashdisk ke PC lama kamu.</li>
+        <li>Restart PC dan masuk ke pengaturan <strong>BIOS/UEFI</strong> (biasanya pencet F2, F12, atau DEL).</li>
+        <li>Ubah prioritas <em>boot order</em> supaya USB ada di urutan pertama.</li>
+        <li>Boot masuk ke <em>live environment</em> MX Linux.</li>
+        <li>Klik ikon <strong>Install MX Linux</strong> dari menu desktop.</li>
+    </ol>
+    <h2>5: Persiapan Partisi Btrfs</h2>
+    <p>Di bagian ini, kita perlu sedikit teliti agar pondasi sistemnya kuat.</p>
+    <img src="https://dalam.web.id/img/www.linux.com/93c5d969dd599e6e.webp" alt="Tampilan GParted untuk Partisi Disk">
+    <ol>
+        <li>Pilih <strong>Manual Partitioning</strong> (Partisi Manual) saat instalasi.</li>
+        <li>Buat partisi <strong>Btrfs</strong> untuk root (<code>/</code>) dan opsional untuk data pengguna (<code>/home</code>).</li>
+        <li>Rekomendasi layout untuk PC lawas:</li>
+    </ol>
+    <table>
+        <thead>
+            <tr>
+                <th>Partisi</th>
+                <th>Mount Point</th>
+                <th>Ukuran</th>
+                <th>Tipe</th>
+                <th>Catatan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>/</td>
+                <td><code>/</code></td>
+                <td>15–20 GB</td>
+                <td>Btrfs</td>
+                <td>Sistem Root utama</td>
+            </tr>
+            <tr>
+                <td>/home</td>
+                <td><code>/home</code></td>
+                <td>Sisanya</td>
+                <td>Btrfs</td>
+                <td>Penyimpanan data user</td>
+            </tr>
+            <tr>
+                <td>swap</td>
+                <td>swap</td>
+                <td>1–2 GB</td>
+                <td>swap</td>
+                <td>Opsional kalau RAM minim</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Pastikan kamu mencentang opsi <strong>"Format"</strong> untuk partisi baru tersebut.</p>
+    <h2>6: Membuat Btrfs Subvolumes</h2>
+    <p>Subvolume ini fungsinya krusial banget buat memisahkan <em>snapshots</em> secara terisolasi:</p>
+    <ol>
+        <li>Mount partisi root kamu sebagai <code>/mnt</code>.</li>
+        <li>Buka terminal di <em>live environment</em> dan jalankan perintah pembuatan subvolume berikut:</li>
+    </ol>
+<pre><code class="language-bash">sudo mount -o subvol=@ /dev/sdX1 /mnt
 sudo btrfs subvolume create /mnt/@home
-sudo btrfs subvolume create /mnt/@snapshots</code></pre><p><em>Keterangan: Ganti <code>sdX1</code> dengan identifier disk kamu (contoh: sda1).</em></p><ul><li><code>@</code> = Untuk sistem root</li><li><code>@home</code> = Untuk data user</li><li><code>@snapshots</code> = Tempat penyimpanan Snapper snapshots</li></ul><p>Setelah selesai, <em>unmount</em> partisinya:</p><pre><code class="language-bash">sudo umount /mnt</code></pre><h2>7: Melanjutkan Instalasi MX Linux di Subvolume Btrfs</h2><ol><li>Buka kembali jendelainstaller dan pilih Btrfs subvolumes sebagai titik mount:</li></ol><table><thead><tr><th>Subvolume</th><th>Mount Point</th></tr></thead><tbody><tr><td>@</td><td><code>/</code></td></tr><tr><td>@home</td><td><code>/home</code></td></tr><tr><td>@snapshots</td><td><code>/var/snapper</code> (atau <code>/var/lib/snapper</code>)</td></tr></tbody></table><ol start="2"><li>Pilih instalasi <strong>GRUB</strong> ke drive utamamu (biasanya MBR/sda).</li><li>Selesaikan instalasi dan restart masuk ke sistem MX Linux barumu.</li></ol><h2>8: Instalasi dan Konfigurasi Snapper</h2><p>Sekarang saatnya memasang "Mesin Waktu" kita.</p><img alt="Tampilan Antarmuka Snapper" src="https://snapper.io/images/snapper_yast2.png"><ol><li>Install Snapper via terminal:</li></ol><pre><code class="language-bash">sudo apt update
-sudo apt install snapper</code></pre><ol start="2"><li>Buat konfigurasi Snapper untuk partisi root:</li></ol><pre><code class="language-bash">sudo snapper -c root create-config /</code></pre><ol start="3"><li>Buat konfigurasi Snapper untuk partisi home:</li></ol><pre><code class="language-bash">sudo snapper -c home create-config /home</code></pre><ol start="4"><li>Cek apakah konfigurasi berhasil:</li></ol><pre><code class="language-bash">sudo snapper list-configs</code></pre><h2>9: Mengaktifkan Snapshot Otomatis</h2><p>Biar Snapper kerja sendiri di <em>background</em>:</p><ol><li>Edit konfigurasi Snapper untuk root:</li></ol><pre><code class="language-bash">sudo nano /etc/snapper/configs/root</code></pre><ul><li>Ubah <code>TIMELINE_CREATE="yes"</code></li><li>Ubah <code>NUMBER_LIMIT="10"</code> (maksimal jumlah snapshot harian/reguler)</li><li>Ubah <code>NUMBER_LIMIT_IMPORTANT="5"</code></li></ul><ol start="2"><li>Lakukan hal yang sama untuk <code>/home</code> jika diperlukan.</li><li>Aktifkan <em>timer</em> Snapper agar berjalan terjadwal:</li></ol><pre><code class="language-bash">sudo systemctl enable snapper-timeline.timer
-sudo systemctl start snapper-timeline.timer</code></pre><h2>10: Uji Coba Snapshot dan Rollback</h2><img alt="Proses Rollback Btrfs via Terminal" height="367" src="https://dalam.web.id/img/www.linux.com/452a9f09c2ccb387.webp" width="550"><ol><li>Buat snapshot manual sebelum melakukan perubahan besar:</li></ol><pre><code class="language-bash">sudo snapper -c root create -d "Before big update"</code></pre><ol start="2"><li>Lakukan perubahan (misalnya update sistem atau install aplikasi baru).</li><li>Kalau ada aplikasi yang bikin sistem error, langsung lakukan <em>rollback</em>:</li></ol><pre><code class="language-bash">sudo snapper -c root undochange 100..101</code></pre><p><em>Alternatif super gampang:</em> Saat baru menyalakan PC, pilih snapshot yang aman dari <strong>menu GRUB</strong>.</p><h2>11: Optimasi Ekstra untuk PC Lawas</h2><p>Agar makin ngebut terbang, lakukan sedikit <em>tweaking</em> ini:</p><ol><li>Gunakan aplikasi ringan bawaan XFCE (Thunar untuk file manager, Mousepad untuk teks, Firefox ESR untuk internetan).</li><li>Kustomisasi panel XFCE dan matikan <em>compositing effects</em> (efek bayangan/transparansi) agar RAM lebih lega.</li><li>Matikan <em>startup services</em> yang tidak kepakai lewat <strong>MX Tools → Services</strong>.</li><li>Rutin gunakan <strong>MX Cleanup</strong> untuk membersihkan <em>cache</em> dan file <em>temporary</em>.</li></ol><h2>12: Nikmati Sistem Stabil Bebas Stres!</h2><p>Selesai! Sekarang instalasi MX Linux kamu punya kelebihan berikut:</p><ul><li><i class="fa-solid fa-check-circle"></i> Berjalan <strong>sangat mulus di hardware jadul</strong>.</li><li><i class="fa-solid fa-check-circle"></i> Mendukung <strong>snapshot dan rollback</strong> layaknya server kelas enterprise.</li><li><i class="fa-solid fa-check-circle"></i> Memanfaatkan kemampuan <strong>Btrfs untuk integritas data</strong> tingkat tinggi.</li><li><i class="fa-solid fa-check-circle"></i> Sepenuhnya <strong>bisa dikustomisasi</strong> tanpa mengorbankan kecepatan PC.</li></ul><p>Kamu sekarang punya <strong>sistem yang future-proof</strong> yang menggabungkan <strong>kecepatan, keandalan, dan fitur pemulihan tingkat dewa</strong>.</p><blockquote><strong>💡 Pro Tips:</strong><br> Gunakan perintah <code>snapper list</code> untuk melihat daftar snapshot. Simpan snapshot yang benar-benar stabil dan hapus yang tidak penting biar disk tidak penuh. Kalau mau lebih aman, gabungkan juga dengan <strong>Timeshift</strong>. Kamu juga bisa mempertimbangkan untuk menggunakan <strong>SysVinit</strong> bawaan MX Linux jika butuh efisiensi <em>resource</em> ekstrem.</blockquote><p>Setup ini menjamin PC tua kamu akan terasa <strong>modern, stabil, dan punya ketahanan tinggi</strong> — sangat cocok buat <em>daily driver</em>, <em>coding</em> ringan, maupun menikmati hiburan multimedia tanpa nge-lag.</p><h2>Analisis 5W+1H: Mengapa Setup Ini Jadi "Cheat Code" Buat PC Lawas?</h2><ul><li><strong>Siapa (Who):</strong> Panduan ini dirancang buat kamu, dari pemula sampai <em>power user</em>, yang mau nyelamatin PC/Laptop lawasnya.</li><li><strong>Apa (What):</strong> Kita bakal melakukan instalasi MX Linux versi 25.1 XFCE, dikawinkan dengan arsitektur penyimpanan Btrfs dan alat manajemen snapshot bernama Snapper.</li><li><strong>Kapan (When):</strong> Sangat pas dieksekusi saat PC kamu mulai lambat, sering <em>crash</em>, atau saat kamu butuh sistem yang tidak gampang rusak sehabis update OS.</li><li><strong>Di Mana (Where):</strong> Konfigurasi ini dilakukan langsung dari <em>Live USB</em> MX Linux masuk ke dalam hardisk atau SSD PC jadul kamu.</li><li><strong>Mengapa (Why):</strong> Btrfs dan Snapper punya kemampuan ibarat "Mesin Waktu". Kalau sistem kamu rusak karena salah install atau gagal update, kamu bisa <em>rollback</em> ke kondisi normal hanya lewat GRUB saat <em>booting</em>. Bikin sistem jadi <em>future-proof</em>!</li><li><strong>Bagaimana (How):</strong> Caranya sangat terstruktur, mulai dari bikin <em>bootable</em> sampai menyetel subvolume.</li></ul><hr><div id="related-articles-grid"></div><div id="response"></div><footer><p>Diterbitkan di <strong>Layar Kosong</strong> Indonesia. Semua konten dalam situs ini dirilis di bawah lisensi <a rel="noopener noreferrer" href="https://unlicense.org/" target="_blank">The Unlicense (Public Domain)</a> / CC0.</p><a rel="noopener noreferrer" href="/about" target="_blank">☕</a><a rel="noopener noreferrer" href="/data-deletion" target="_blank">🛡️</a><a rel="noopener noreferrer" href="/disclaimer" target="_blank">⚠️</a><a rel="noopener noreferrer" href="/disclosure" target="_blank">📝</a><a rel="noopener noreferrer" href="/lisensi" target="_blank">📚</a><a rel="noopener noreferrer" href="/privacy" target="_blank">🔰</a><a rel="noopener noreferrer" href="/security-policy" target="_blank">⚔️</a></footer></article><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script defer="" src="/ext/highlight.js"></script><script>hljs.highlightAll();</script><noscript>schema_oleh_Fakhrul_Rijal_2026-06-30</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
+sudo btrfs subvolume create /mnt/@snapshots</code></pre>
+    <p><em>Keterangan: Ganti <code>sdX1</code> dengan identifier disk kamu (contoh: sda1).</em></p>
+    <ul>
+        <li><code>@</code> = Untuk sistem root</li>
+        <li><code>@home</code> = Untuk data user</li>
+        <li><code>@snapshots</code> = Tempat penyimpanan Snapper snapshots</li>
+    </ul>
+    <p>Setelah selesai, <em>unmount</em> partisinya:</p>
+<pre><code class="language-bash">sudo umount /mnt</code></pre>
+    <h2>7: Melanjutkan Instalasi MX Linux di Subvolume Btrfs</h2>
+    <ol>
+        <li>Buka kembali jendelainstaller dan pilih Btrfs subvolumes sebagai titik mount:</li>
+    </ol>
+    <table>
+        <thead>
+            <tr>
+                <th>Subvolume</th>
+                <th>Mount Point</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@</td>
+                <td><code>/</code></td>
+            </tr>
+            <tr>
+                <td>@home</td>
+                <td><code>/home</code></td>
+            </tr>
+            <tr>
+                <td>@snapshots</td>
+                <td><code>/var/snapper</code> (atau <code>/var/lib/snapper</code>)</td>
+            </tr>
+        </tbody>
+    </table>
+    <ol start="2">
+        <li>Pilih instalasi <strong>GRUB</strong> ke drive utamamu (biasanya MBR/sda).</li>
+        <li>Selesaikan instalasi dan restart masuk ke sistem MX Linux barumu.</li>
+    </ol>
+    <h2>8: Instalasi dan Konfigurasi Snapper</h2>
+    <p>Sekarang saatnya memasang "Mesin Waktu" kita.</p>
+    <img src="https://snapper.io/images/snapper_yast2.png" alt="Tampilan Antarmuka Snapper">
+    <ol>
+        <li>Install Snapper via terminal:</li>
+    </ol>
+<pre><code class="language-bash">sudo apt update
+sudo apt install snapper</code></pre>
+    <ol start="2">
+        <li>Buat konfigurasi Snapper untuk partisi root:</li>
+    </ol>
+<pre><code class="language-bash">sudo snapper -c root create-config /</code></pre>
+    <ol start="3">
+        <li>Buat konfigurasi Snapper untuk partisi home:</li>
+    </ol>
+<pre><code class="language-bash">sudo snapper -c home create-config /home</code></pre>
+    <ol start="4">
+        <li>Cek apakah konfigurasi berhasil:</li>
+    </ol>
+<pre><code class="language-bash">sudo snapper list-configs</code></pre>
+    <h2>9: Mengaktifkan Snapshot Otomatis</h2>
+    <p>Biar Snapper kerja sendiri di <em>background</em>:</p>
+    <ol>
+        <li>Edit konfigurasi Snapper untuk root:</li>
+    </ol>
+<pre><code class="language-bash">sudo nano /etc/snapper/configs/root</code></pre>
+    <ul>
+        <li>Ubah <code>TIMELINE_CREATE="yes"</code></li>
+        <li>Ubah <code>NUMBER_LIMIT="10"</code> (maksimal jumlah snapshot harian/reguler)</li>
+        <li>Ubah <code>NUMBER_LIMIT_IMPORTANT="5"</code></li>
+    </ul>
+    <ol start="2">
+        <li>Lakukan hal yang sama untuk <code>/home</code> jika diperlukan.</li>
+        <li>Aktifkan <em>timer</em> Snapper agar berjalan terjadwal:</li>
+    </ol>
+<pre><code class="language-bash">sudo systemctl enable snapper-timeline.timer
+sudo systemctl start snapper-timeline.timer</code></pre>
+    <h2>10: Uji Coba Snapshot dan Rollback</h2>
+    <img src="https://dalam.web.id/img/www.linux.com/452a9f09c2ccb387.webp" alt="Proses Rollback Btrfs via Terminal">
+    <ol>
+        <li>Buat snapshot manual sebelum melakukan perubahan besar:</li>
+    </ol>
+<pre><code class="language-bash">sudo snapper -c root create -d "Before big update"</code></pre>
+    <ol start="2">
+        <li>Lakukan perubahan (misalnya update sistem atau install aplikasi baru).</li>
+        <li>Kalau ada aplikasi yang bikin sistem error, langsung lakukan <em>rollback</em>:</li>
+    </ol>
+<pre><code class="language-bash">sudo snapper -c root undochange 100..101</code></pre>
+    <p><em>Alternatif super gampang:</em> Saat baru menyalakan PC, pilih snapshot yang aman dari <strong>menu GRUB</strong>.</p>
+    <h2>11: Optimasi Ekstra untuk PC Lawas</h2>
+    <p>Agar makin ngebut terbang, lakukan sedikit <em>tweaking</em> ini:</p>
+    <ol>
+        <li>Gunakan aplikasi ringan bawaan XFCE (Thunar untuk file manager, Mousepad untuk teks, Firefox ESR untuk internetan).</li>
+        <li>Kustomisasi panel XFCE dan matikan <em>compositing effects</em> (efek bayangan/transparansi) agar RAM lebih lega.</li>
+        <li>Matikan <em>startup services</em> yang tidak kepakai lewat <strong>MX Tools → Services</strong>.</li>
+        <li>Rutin gunakan <strong>MX Cleanup</strong> untuk membersihkan <em>cache</em> dan file <em>temporary</em>.</li>
+    </ol>
+    <h2>12: Nikmati Sistem Stabil Bebas Stres!</h2>
+    <p>Selesai! Sekarang instalasi MX Linux kamu punya kelebihan berikut:</p>
+    <ul>
+        <li><i class="fa-solid fa-check-circle"></i> Berjalan <strong>sangat mulus di hardware jadul</strong>.</li>
+        <li><i class="fa-solid fa-check-circle"></i> Mendukung <strong>snapshot dan rollback</strong> layaknya server kelas enterprise.</li>
+        <li><i class="fa-solid fa-check-circle"></i> Memanfaatkan kemampuan <strong>Btrfs untuk integritas data</strong> tingkat tinggi.</li>
+        <li><i class="fa-solid fa-check-circle"></i> Sepenuhnya <strong>bisa dikustomisasi</strong> tanpa mengorbankan kecepatan PC.</li>
+    </ul>
+    <p>Kamu sekarang punya <strong>sistem yang future-proof</strong> yang menggabungkan <strong>kecepatan, keandalan, dan fitur pemulihan tingkat dewa</strong>.</p>
+    <blockquote>
+        <strong>💡 Pro Tips:</strong><br>
+        Gunakan perintah <code>snapper list</code> untuk melihat daftar snapshot. Simpan snapshot yang benar-benar stabil dan hapus yang tidak penting biar disk tidak penuh. Kalau mau lebih aman, gabungkan juga dengan <strong>Timeshift</strong>. Kamu juga bisa mempertimbangkan untuk menggunakan <strong>SysVinit</strong> bawaan MX Linux jika butuh efisiensi <em>resource</em> ekstrem.
+    </blockquote>
+    <p>Setup ini menjamin PC tua kamu akan terasa <strong>modern, stabil, dan punya ketahanan tinggi</strong> — sangat cocok buat <em>daily driver</em>, <em>coding</em> ringan, maupun menikmati hiburan multimedia tanpa nge-lag.</p>
+<h2>Analisis 5W+1H: Mengapa Setup Ini Jadi "Cheat Code" Buat PC Lawas?</h2>
+    <ul>
+        <li><strong>Siapa (Who):</strong> Panduan ini dirancang buat kamu, dari pemula sampai <em>power user</em>, yang mau nyelamatin PC/Laptop lawasnya.</li>
+        <li><strong>Apa (What):</strong> Kita bakal melakukan instalasi MX Linux versi 25.1 XFCE, dikawinkan dengan arsitektur penyimpanan Btrfs dan alat manajemen snapshot bernama Snapper.</li>
+        <li><strong>Kapan (When):</strong> Sangat pas dieksekusi saat PC kamu mulai lambat, sering <em>crash</em>, atau saat kamu butuh sistem yang tidak gampang rusak sehabis update OS.</li>
+        <li><strong>Di Mana (Where):</strong> Konfigurasi ini dilakukan langsung dari <em>Live USB</em> MX Linux masuk ke dalam hardisk atau SSD PC jadul kamu.</li>
+        <li><strong>Mengapa (Why):</strong> Btrfs dan Snapper punya kemampuan ibarat "Mesin Waktu". Kalau sistem kamu rusak karena salah install atau gagal update, kamu bisa <em>rollback</em> ke kondisi normal hanya lewat GRUB saat <em>booting</em>. Bikin sistem jadi <em>future-proof</em>!</li>
+        <li><strong>Bagaimana (How):</strong> Caranya sangat terstruktur, mulai dari bikin <em>bootable</em> sampai menyetel subvolume.</li>
+    </ul>    <hr>
+    <div id="related-articles-grid">
+    </div>
+    <div id="response">
+    </div>
+    <footer>
+        <p>Diterbitkan di <strong>Layar Kosong</strong> Indonesia. Semua konten dalam situs ini dirilis di bawah lisensi <a href="https://unlicense.org/" target="_blank" rel="noopener noreferrer">The Unlicense (Public Domain)</a> / CC0.</p>
+     <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+</article>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>
