@@ -316,16 +316,17 @@ Aturannya:
    * library `highlight.min.js`
    * script inisialisasi `hljs.highlightAll()`
 4. Diperbolehkan memakai CDN terpercaya seperti cdnjs, jsDelivr, atau unpkg.
-5. Gunakan pemanggilan yang efisien, aman, dan tidak mengganggu rendering utama.
-6. Gunakan atribut berikut bila relevan:
+5. Jangan membuat css `hljs` secara internal di dalam html, biarkan rendering dari external.
+6. Gunakan pemanggilan yang efisien, aman, dan tidak mengganggu rendering utama.
+7. Gunakan atribut berikut bila relevan:
 
    * `defer`
    * `crossorigin`
    * `referrerpolicy`
-7. Jangan gunakan `<noscript>`.
-8. Berikan styling CSS tambahan untuk blok kode agar tetap elegan di mode terang dan gelap.
-9. Pastikan kontras kode tetap terbaca.
-10. Jangan menggunakan preload image untuk aset apa pun yang berkaitan dengan blok kode. Jika ada aset eksternal untuk syntax highlighting, panggil langsung dan standar sesuai urutan yang benar, bukan melalui preload image.
+8. Jangan gunakan `<noscript>`.
+9. Berikan styling CSS tambahan untuk blok kode agar tetap elegan di mode terang dan gelap.
+10. Pastikan kontras kode tetap terbaca.
+11. Jangan menggunakan preload image untuk aset apa pun yang berkaitan dengan blok kode. Jika ada aset eksternal untuk syntax highlighting, panggil langsung dan standar sesuai urutan yang benar, bukan melalui preload image.
 
 ---
 
