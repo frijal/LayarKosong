@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cara Merekam Sebagian Layar Desktop dengan FFmpeg - Layar Kosong</title>
+    <meta name="description" content="Pelajari cara merekam sebagian layar desktop Linux memakai FFmpeg, lengkap dengan koordinat area, parameter x11grab, dan tips praktis.">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+  <meta name="author" content="Fakhrul Rijal">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="canonical" href="https://dalam.web.id/artikel/rekam-layar-ffmpeg.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Merekam Layar Desktop dengan FFmpeg">
+  <meta property="og:description" content="Panduan ringkas merekam area tertentu di desktop Linux menggunakan FFmpeg, mulai dari alat bantu, koordinat, hingga perintah terminal.">
+  <meta property="og:url" content="https://dalam.web.id/artikel/rekam-layar-ffmpeg.html">
+  <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jun%2030%2C%202026%2C%2009_52_24%20AM.png">
+  <meta property="article:published_time" content="2026-06-30T00:00:00+08:00">
+  <meta property="article:author" content="Fakhrul Rijal">
+  <meta property="article:tag" content="FFmpeg, Linux, screen recording, x11grab, terminal, desktop recording">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Merekam Layar Desktop dengan FFmpeg">
+  <meta name="twitter:description" content="Ingin merekam hanya bagian tertentu dari layar Linux? Gunakan FFmpeg, ukur area dengan Screen Ruler, lalu rekam lewat terminal.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jun%2030%2C%202026%2C%2009_52_24%20AM.png">
+
+  <meta name="news_keywords" content="FFmpeg, Linux, rekam layar, screen recording, x11grab, tutorial terminal">
+  <meta name="promphint" content="Bagaimana merekam sebagian layar Linux? | Gunakan FFmpeg x11grab dengan ukuran area dan koordinat layar yang tepat.">
+<meta property="article:published_time" content="2010-12-20T17:42:21.844Z">
+    <meta property="article:modified_time" content="2010-12-20T17:42:21.844Z">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #eef6f5;
+      --text: #172033;
+      --muted: #4b5b70;
+      --heading: #0f172a;
+      --accent: #0f766e;
+      --accent-strong: #115e59;
+      --border: #cbd5e1;
+      --code-bg: #111827;
+      --code-text: #f8fafc;
+      --link: #0f766e;
+      --link-hover: #0b4f4a;
+      --mark: #ecfeff;
+      --radius: 1rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #071318;
+        --surface: #0f1f27;
+        --surface-soft: #132d34;
+        --text: #e5eef3;
+        --muted: #b9c7d1;
+        --heading: #f8fafc;
+        --accent: #5eead4;
+        --accent-strong: #99f6e4;
+        --border: #31515c;
+        --code-bg: #0b1120;
+        --code-text: #f8fafc;
+        --link: #7dd3fc;
+        --link-hover: #bae6fd;
+        --mark: #12343b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 24rem),
+        var(--bg);
+      color: var(--text);
+      text-rendering: optimizeLegibility;
+    }
+
+    main {
+      width: min(100%, 64rem);
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    article {
+      background: var(--surface);
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(1.25rem, 3vw, 2.5rem);
+    }
+
+    header.article-header {
+      margin-bottom: 1.5rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--heading);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin: 0 0 1rem;
+    }
+
+    h2 {
+      font-size: clamp(1.45rem, 3vw, 1.7rem);
+      margin: 2rem 0 1rem;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2.5vw, 1.45rem);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    p {
+      margin: 0 0 1.15rem;
+    }
+
+    a {
+      color: var(--link);
+      text-underline-offset: 0.2rem;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .meta-pill {
+      border: 0.0625rem solid var(--border);
+      border-radius: 999rem;
+      padding: 0.25rem 0.7rem;
+      background: var(--surface-soft);
+    }
+
+    figure {
+      margin: 1.75rem 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 0.9rem;
+      border: 0.0625rem solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    figcaption {
+      margin-top: 0.65rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .note {
+      margin: 1.5rem 0;
+      padding: 1rem 1.1rem;
+      border: 0.0625rem solid var(--border);
+      border-left: 0.35rem solid var(--accent);
+      border-radius: 0.85rem;
+      background: var(--surface-soft);
+    }
+
+    .step-list {
+      padding-left: 1.35rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .step-list li {
+      margin-bottom: 0.65rem;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.95em;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 0.0625rem solid var(--border);
+      border-radius: 0.35rem;
+      padding: 0.08rem 0.28rem;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      padding: 1rem;
+      border-radius: 0.85rem;
+      background: var(--code-bg);
+      border: 0.0625rem solid var(--border);
+    }
+
+    pre code {
+      display: block;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--code-text);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    details {
+      margin: 1.5rem 0;
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface-soft) 56%, var(--surface));
+      overflow: clip;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 1rem 1.15rem;
+      color: var(--heading);
+      background: var(--surface-soft);
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    summary:hover {
+      background: color-mix(in srgb, var(--accent) 14%, var(--surface-soft));
+      color: var(--heading);
+    }
+
+    summary::marker {
+      color: var(--accent);
+    }
+
+    summary h2 {
+      display: inline;
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.6rem);
+    }
+
+    details > :not(summary) {
+      margin-left: 1.15rem;
+      margin-right: 1.15rem;
+    }
+
+    details > :last-child {
+      margin-bottom: 1.2rem;
+    }
+
+    .parameter-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 1rem;
+    }
+
+    .parameter-table th,
+    .parameter-table td {
+      border: 0.0625rem solid var(--border);
+      padding: 0.75rem;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .parameter-table th {
+      background: var(--surface-soft);
+      color: var(--heading);
+    }
+
+    .article-footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 0.0625rem solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .footer-inline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      align-items: center;
+    }
+
+    .footer-inline span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    @media (max-width: 42rem) {
+      body {
+        font-size: 1.05rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+
+      article {
+        padding: 1rem;
+        border-radius: 0.85rem;
+      }
+
+      .parameter-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <main>
+    <article>
+      <header class="article-header">
+        <h1>Merekam Bagian Layar Desktop dengan FFmpeg</h1>
+        <p class="lead">Tutorial praktis untuk merekam area tertentu di desktop Linux menggunakan perintah terminal, tanpa harus menangkap seluruh layar.</p>
+        <div class="meta-row">
+          <span class="meta-pill">Linux</span>
+          <span class="meta-pill">FFmpeg</span>
+          <span class="meta-pill">Screen Recording</span>
+        </div>
+      </header>
+
+
+  <p>Merekam layar sudah menjadi kebutuhan sehari-hari bagi banyak pengguna Linux, terutama ketika membuat tutorial, dokumentasi bug, demo aplikasi, atau bahan presentasi singkat. Masalahnya, merekam seluruh desktop sering kali terasa berlebihan. Area yang penting hanya sepotong kecil, tetapi hasil videonya ikut membawa panel, wallpaper, notifikasi, dan jendela lain yang sebenarnya tidak perlu tampil.</p>
+
+  <p>Di sinilah <b>FFmpeg</b> menjadi alat yang menarik. Ia bukan sekadar konverter video, tetapi juga bisa dipakai sebagai perekam layar yang sangat fleksibel. Dengan beberapa parameter terminal, kita dapat menentukan ukuran area rekam, posisi awal, frame rate, hingga nama file keluaran. Ringkasnya, terminal memang terlihat seperti ruang mesin kapal selam, tetapi kalau sudah paham tuasnya, gerakannya presisi.</p>
+
+  <p>Panduan ini berfokus pada perekaman sebagian layar di lingkungan desktop Linux berbasis X11. Targetnya bukan membuat konfigurasi studio produksi yang rumit, melainkan memberi fondasi yang mudah dipakai saat ingin merekam area tertentu secara cepat dan terkontrol.</p>
+
+  <figure>
+    <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jun%2030%2C%202026%2C%2009_52_24%20AM.png" width="1200" height="675" alt="Logo FFmpeg sebagai ilustrasi perekaman layar desktop Linux" fetchpriority="high" decoding="async">
+    <figcaption>FFmpeg dapat dipakai untuk merekam layar, mengolah video, mengubah format, dan melakukan banyak pekerjaan multimedia lain lewat terminal.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Kenapa Merekam Sebagian Layar Lebih Efisien?</h2>
+    <p>Ketika membuat tutorial, penonton biasanya hanya perlu melihat area kerja utama. Misalnya jendela aplikasi, bagian tertentu dari browser, editor teks, atau panel pengaturan. Kalau seluruh layar ikut direkam, ukuran file bisa membesar, fokus visual melebar, dan proses penyuntingan menjadi lebih panjang.</p>
+
+    <p>Merekam sebagian layar membantu menjaga video tetap padat. File keluaran lebih ringan, area perhatian lebih jelas, dan risiko informasi pribadi ikut terekam juga lebih kecil. Ini penting, terutama saat desktop berisi notifikasi, tab browser, nama folder, atau dokumen yang tidak seharusnya masuk ke video.</p>
+
+    <div class="note">
+      <p><b>Catatan penting:</b> contoh pada artikel ini memakai <code>x11grab</code>, sehingga paling cocok untuk sesi desktop berbasis X11. Pada Wayland, pendekatannya bisa berbeda tergantung compositor, portal, dan izin screen capture yang tersedia.</p>
+    </div>
+  </section>
+
+  <details>
+    <summary><h2>Alat yang Perlu Disiapkan</h2></summary>
+    <p>Sebelum mulai merekam, ada dua hal utama yang perlu disiapkan: FFmpeg sebagai mesin perekam, dan alat bantu pengukur layar untuk menentukan koordinat area. Tanpa koordinat yang benar, hasil rekaman bisa meleset sedikit. Kadang yang ingin direkam jendela aplikasi, yang terekam malah pinggir desktop. Sakitnya memang tidak seberapa, tapi cukup membuat kita mengulang dari awal.</p>
+
+    <h3>FFmpeg sebagai mesin utama</h3>
+    <p>FFmpeg adalah alat multimedia serbaguna yang tersedia di hampir semua distribusi Linux. Untuk memasangnya di turunan Debian atau Ubuntu, gunakan perintah berikut:</p>
+
+    <pre><code class="language-bash">sudo apt install ffmpeg</code></pre>
+
+    <p>Setelah terpasang, cek versi FFmpeg untuk memastikan perintahnya bisa dipanggil dari terminal:</p>
+
+    <pre><code class="language-bash">ffmpeg -version</code></pre>
+
+    <h3>Screen Ruler untuk membaca posisi area</h3>
+    <p>Alat bantu penggaris seperti <i>Screen Ruler</i> berguna untuk mengetahui lebar, tinggi, dan titik koordinat area yang ingin direkam. Dalam perintah FFmpeg, area rekam tidak dipilih dengan menyeret mouse seperti aplikasi GUI biasa, tetapi ditentukan dengan angka.</p>
+
+    <figure>
+      <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/sdgsdgdg.png" width="800" height="600" alt="Ilustrasi penggunaan Screen Ruler untuk mengukur area rekam desktop" loading="lazy" decoding="async">
+      <figcaption>Screen Ruler membantu menentukan ukuran dan posisi area yang akan direkam agar hasil video tidak melenceng.</figcaption>
+    </figure>
+
+    <p>Secara sederhana, kamu perlu mengetahui dua informasi: ukuran area yang akan direkam dan titik awal area tersebut di layar. Ukuran area ditulis dalam format lebar kali tinggi, sedangkan titik awal ditulis sebagai koordinat horizontal dan vertikal.</p>
+  </details>
+
+  <details>
+    <summary><h2>Perintah Dasar FFmpeg untuk Rekam Area Desktop</h2></summary>
+    <p>Setelah FFmpeg siap dan koordinat area sudah diketahui, perekaman bisa dilakukan langsung dari terminal. Contoh perintah dasarnya seperti ini:</p>
+
+    <pre><code class="language-bash">ffmpeg -f x11grab -s 700x500 -r 25 -i :0.0+1,1 -sameq output.mpg</code></pre>
+
+    <p>Perintah tersebut meminta FFmpeg mengambil input dari layar X11, merekam area berukuran <code>700x500</code>, memakai frame rate <code>25</code> fps, lalu menyimpan hasilnya sebagai <code>output.mpg</code>.</p>
+
+    <h3>Membaca parameter satu per satu</h3>
+    <table class="parameter-table">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Fungsi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>-f x11grab</code></td>
+          <td>Menentukan format input perekaman dari layar X11 di Linux.</td>
+        </tr>
+        <tr>
+          <td><code>-s 700x500</code></td>
+          <td>Menentukan ukuran area rekam, yaitu lebar <code>700</code> dan tinggi <code>500</code>.</td>
+        </tr>
+        <tr>
+          <td><code>-r 25</code></td>
+          <td>Menentukan frame rate video. Nilai <code>25</code> fps sudah cukup untuk tutorial ringan.</td>
+        </tr>
+        <tr>
+          <td><code>-i :0.0+1,1</code></td>
+          <td>Menentukan display dan koordinat awal area rekam. Bagian <code>+1,1</code> berarti mulai dari posisi horizontal dan vertikal tersebut.</td>
+        </tr>
+        <tr>
+          <td><code>-sameq</code></td>
+          <td>Opsi lama untuk menjaga kualitas, tetapi pada FFmpeg modern lebih baik diganti dengan pengaturan codec dan kualitas yang eksplisit.</td>
+        </tr>
+        <tr>
+          <td><code>output.mpg</code></td>
+          <td>Nama file hasil rekaman yang akan dibuat.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Versi perintah yang lebih modern</h3>
+    <p>Pada banyak versi FFmpeg terbaru, opsi <code>-sameq</code> sudah tidak direkomendasikan. Sebagai alternatif yang lebih jelas, kamu bisa menggunakan codec H.264 dan preset cepat seperti berikut:</p>
+
+    <pre><code class="language-bash">ffmpeg -f x11grab -video_size 700x500 -framerate 25 -i :0.0+1,1 -c:v libx264 -preset veryfast -crf 23 output.mp4</code></pre>
+
+    <p>Format <code>mp4</code> biasanya lebih praktis untuk dibagikan, diunggah, atau disunting ulang. Parameter <code>-crf 23</code> memberi kualitas yang cukup baik untuk tutorial desktop. Angkanya bisa diperkecil jika ingin kualitas lebih tinggi, tetapi ukuran file akan ikut naik.</p>
+  </details>
+
+  <details>
+    <summary><h2>Menentukan Ukuran dan Koordinat Area Rekam</h2></summary>
+    <p>Bagian paling sering membuat bingung adalah koordinat. Dalam konteks perekaman layar, koordinat biasanya dihitung dari pojok kiri atas layar. Titik paling kiri atas adalah <code>0,0</code>. Semakin ke kanan, nilai horizontal bertambah. Semakin ke bawah, nilai vertikal bertambah.</p>
+
+    <h3>Contoh pola koordinat</h3>
+    <p>Misalnya kamu ingin merekam jendela aplikasi yang dimulai dari posisi <code>100</code> piksel dari kiri layar dan <code>80</code> piksel dari atas layar. Ukuran jendela tersebut kira-kira <code>900x600</code>. Maka bagian input FFmpeg dapat ditulis seperti ini:</p>
+
+    <pre><code class="language-bash">-video_size 900x600 -i :0.0+100,80</code></pre>
+
+    <p>Jika hasil video ternyata terlalu ke kiri, naikkan angka koordinat horizontal. Jika terlalu ke atas, naikkan angka koordinat vertikal. Prinsipnya sederhana: angka pertama menggeser area ke kanan, angka kedua menggeser area ke bawah.</p>
+
+    <h3>Uji singkat sebelum merekam panjang</h3>
+    <p>Sebelum merekam video panjang, lakukan uji rekam selama beberapa detik. Ini menghindari kejadian klasik: sudah menjelaskan panjang lebar seperti dosen tamu, ternyata area yang terekam cuma pojok aplikasi. Untuk membuat rekaman uji selama lima detik, tambahkan <code>-t 5</code>:</p>
+
+    <pre><code class="language-bash">ffmpeg -f x11grab -video_size 900x600 -framerate 25 -i :0.0+100,80 -t 5 -c:v libx264 -preset veryfast -crf 23 test.mp4</code></pre>
+  </details>
+
+  <section>
+    <h2>Menghentikan Perekaman</h2>
+    <p>Ketika perekaman berjalan, terminal akan menampilkan proses encoding secara langsung. Untuk menghentikan rekaman, tekan <b>Ctrl + C</b>. FFmpeg akan menutup proses dan menyimpan file keluaran dengan aman.</p>
+
+    <p>Jangan langsung menutup terminal secara paksa jika tidak terpaksa. Menghentikan dengan <b>Ctrl + C</b> memberi kesempatan kepada FFmpeg untuk menulis metadata akhir video. Tanpa metadata yang rapi, beberapa pemutar video bisa kesulitan membaca durasi atau struktur file.</p>
+  </section>
+
+  <details>
+    <summary><h2>Tips Praktis agar Hasil Rekaman Lebih Rapi</h2></summary>
+    <p>Setelah perintah dasar berjalan, kualitas hasil rekaman sangat bergantung pada kebiasaan kecil sebelum menekan Enter. Banyak video tutorial terasa kurang nyaman bukan karena alatnya buruk, tetapi karena area rekam terlalu luas, frame rate tidak sesuai, atau desktop terlalu ramai.</p>
+
+    <h3>Bersihkan area yang tidak perlu</h3>
+    <p>Sebelum merekam, tutup jendela yang tidak relevan dan matikan notifikasi sementara. Ini membantu menjaga fokus penonton sekaligus mengurangi risiko informasi pribadi ikut tampil.</p>
+
+    <h3>Pilih frame rate sesuai kebutuhan</h3>
+    <p>Untuk tutorial terminal, editor teks, atau demo aplikasi biasa, <code>25</code> sampai <code>30</code> fps sudah cukup. Untuk animasi yang sangat cepat, frame rate lebih tinggi bisa dipertimbangkan, tetapi ukuran file dan beban CPU akan ikut meningkat.</p>
+
+    <h3>Gunakan nama file yang jelas</h3>
+    <p>Daripada memakai nama generik seperti <code>output.mp4</code> terus-menerus, gunakan nama yang menjelaskan isi rekaman. Contohnya:</p>
+
+    <pre><code class="language-bash">ffmpeg -f x11grab -video_size 900x600 -framerate 30 -i :0.0+100,80 -c:v libx264 -preset veryfast -crf 23 demo-ffmpeg-area-desktop.mp4</code></pre>
+
+    <p>Nama file yang jelas membuat arsip rekaman lebih mudah dikelola. Saat jumlah video sudah banyak, kebiasaan ini menyelamatkan kita dari kegiatan arkeologi folder yang melelahkan.</p>
+  </details>
+
+  <section>
+    <h2>Penutup</h2>
+    <p>Merekam sebagian layar dengan FFmpeg adalah cara yang ringan, presisi, dan cocok untuk pengguna Linux yang nyaman bekerja lewat terminal. Kita hanya perlu menentukan ukuran area, membaca koordinat awal, lalu menjalankan perintah perekaman dengan parameter yang sesuai.</p>
+
+    <p>Untuk kebutuhan tutorial sederhana, kombinasi <code>x11grab</code>, <code>-video_size</code>, <code>-framerate</code>, dan codec <code>libx264</code> sudah cukup kuat. Setelah terbiasa, prosesnya terasa cepat: ukur area, jalankan perintah, rekam, hentikan dengan <b>Ctrl + C</b>, lalu video siap dipakai.</p>
+  </section>
+
+  <div id="related-articles-grid"></div><div id="response"></div>
+</article>
+
+<footer class="article-footer">
+  <div class="footer-inline">
+    <span>Oleh: <b>Fakhrul Rijal</b></span>
+    <span>Dipublikasikan: <time datetime="2026-06-30">30 Juni 2026</time></span>
+    <span>Referensi: Dokumentasi terminal dan praktik penggunaan FFmpeg</span>
+  </div>
+</footer>
+
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script defer>
+    window.addEventListener("DOMContentLoaded", function () {
+      if (window.hljs) {
+        window.hljs.highlightAll();
+      }
+    });
+  </script>
+
+</body>
+</html>
