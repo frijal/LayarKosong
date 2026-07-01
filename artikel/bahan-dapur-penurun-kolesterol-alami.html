@@ -61,6 +61,851 @@
     <meta property="article:tag" content="Herbal">
     <meta property="article:published_time" content="2026-03-27T13:18:19.405Z">
     <meta property="article:modified_time" content="2026-04-16T12:02:13.870Z">
+      <style>
+  /* ===== CSS Variables: Mobile First ===== */
+  :root {
+    color-scheme: light;
+
+    --bg-body: #f8f3ea;
+    --bg-card: #fffdf8;
+    --bg-soft: #fff0dc;
+    --bg-soft-hover: #f3dfc4;
+
+    --text-primary: #1f2933;
+    --text-secondary: #374151;
+    --text-muted: #4b5563;
+    --heading-color: #7a431d;
+
+    --accent: #9a4f12;
+    --accent-hover: #743a0b;
+    --accent-text: #ffffff;
+
+    --border-color: #d2c3ad;
+    --footer-bg: #f3e5d0;
+
+    --shadow-sm: 0 0.25rem 0.75rem rgba(17, 24, 39, 0.08);
+    --shadow-card: 0 0.75rem 2rem rgba(17, 24, 39, 0.08);
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    --max-width: 64rem;
+
+    --screen-padding: 1rem;
+    --nested-padding: 0rem;
+
+    --space-2xs: 0.25rem;
+    --space-xs: 0.35rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.25rem;
+    --space-2xl: 1.5rem;
+    --space-3xl: 2rem;
+    --space-4xl: 2.5rem;
+    --space-5xl: 3rem;
+
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+  }
+
+  @media (min-width: 64rem) {
+    :root {
+      --screen-padding: 2.5rem;
+      --nested-padding: 1.5rem;
+    }
+  }
+
+  /* ===== Dark Mode ===== */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+
+      --bg-body: #0f172a;
+      --bg-card: #172033;
+      --bg-soft: #2a2f24;
+      --bg-soft-hover: #373f30;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #d1d5db;
+      --text-muted: #cbd5e1;
+      --heading-color: #f0c48b;
+
+      --accent: #e0a158;
+      --accent-hover: #f4c37d;
+      --accent-text: #1f1307;
+
+      --border-color: #4b5563;
+      --footer-bg: #1f2a1f;
+
+      --shadow-sm: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.35);
+      --shadow-card: 0 1rem 2.5rem rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  /* ===== Reset & Base ===== */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (min-width: 64rem) {
+    body {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* ===== Container ===== */
+  .container {
+    width: min(100%, var(--max-width));
+    margin: 0 auto;
+    padding-inline: var(--screen-padding);
+    padding-block: var(--space-2xl) var(--space-5xl);
+  }
+
+  article,
+  .article-body,
+  .nested-card {
+    background: var(--bg-card);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    padding-block: var(--space-3xl);
+    padding-inline: var(--nested-padding);
+  }
+
+  /* ===== Typography ===== */
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--heading-color);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    border-inline-start: 0.375rem solid var(--accent);
+    padding-inline-start: var(--space-lg);
+    margin-block-end: var(--space-xl);
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 750;
+    border-block-end: 0.125rem solid var(--border-color);
+    padding-block-end: var(--space-sm);
+    margin-block: var(--space-3xl) var(--space-lg);
+  }
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-block: var(--space-2xl) var(--space-md);
+  }
+
+  h4 {
+    color: var(--heading-color);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-block: var(--space-xl) var(--space-sm);
+  }
+
+  @media (min-width: 64rem) {
+    h1 {
+      font-size: 2.35rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+    }
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-block-end: var(--space-lg);
+  }
+
+  strong,
+  b {
+    color: var(--text-primary);
+    font-weight: 750;
+  }
+
+  .arabic,
+  [lang="ar"] {
+    font-family: var(--font-arabic);
+    font-size: 1.35em;
+    line-height: 2;
+  }
+
+  /* ===== Links & Focus ===== */
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--accent-hover);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  .button:focus-visible,
+  .btn:focus-visible,
+  summary:focus-visible {
+    outline: 0.18rem solid var(--accent);
+    outline-offset: 0.2rem;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===== Buttons ===== */
+  button,
+  .button,
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: var(--accent);
+    color: var(--accent-text);
+    border: 0.0625rem solid transparent;
+    border-radius: var(--radius-md);
+    padding-block: var(--space-sm);
+    padding-inline: var(--space-lg);
+    font: inherit;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  button:hover,
+  .button:hover,
+  .btn:hover {
+    background: var(--accent-hover);
+    color: var(--accent-text);
+    text-decoration: none;
+  }
+
+  /* ===== Lists ===== */
+  ul,
+  ol {
+    color: var(--text-secondary);
+    margin-block: var(--space-md) var(--space-xl);
+    padding-inline-start: 1.5rem;
+  }
+
+  li {
+    margin-block: var(--space-xs);
+  }
+
+  li::marker {
+    color: var(--accent);
+  }
+
+  /* ===== Highlight Box ===== */
+  .highlight-box {
+    background: var(--bg-soft);
+    border: 0.0625rem solid var(--border-color);
+    border-inline-start: 0.3125rem solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding-block: var(--space-lg);
+    padding-inline: var(--space-xl);
+    margin-block: var(--space-2xl);
+  }
+
+  .highlight-box p:last-child {
+    margin-block-end: 0;
+  }
+
+  /* ===== Recipe Box ===== */
+  .recipe-box {
+    background: var(--bg-soft);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding-block: var(--space-xl);
+    padding-inline: var(--space-xl);
+    margin-block: var(--space-2xl);
+  }
+
+  .recipe-box p:last-child {
+    margin-block-end: 0;
+  }
+
+  /* ===== 5W + 1H Box ===== */
+  .five-wh {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    background: var(--bg-soft);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding-block: var(--space-xl);
+    padding-inline: var(--space-lg);
+    margin-block: var(--space-2xl);
+  }
+
+  .wh-item {
+    flex: 1 1 9.5rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    border-inline-end: 0.0625rem solid var(--border-color);
+    padding-inline: var(--space-md);
+  }
+
+  .wh-item:last-child {
+    border-inline-end: none;
+  }
+
+  /* ===== Images ===== */
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-block: var(--space-lg);
+    margin-inline: auto;
+  }
+
+  figure {
+    margin-block: var(--space-2xl);
+  }
+
+  figcaption,
+  .caption {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-block-start: var(--space-sm);
+  }
+
+  /* ===== Ingredient Gallery ===== */
+  .ingredient-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-block: var(--space-lg);
+  }
+
+  .ingredient-gallery img {
+    flex: 1 1 9.5rem;
+    max-width: 11.25rem;
+    margin: 0;
+  }
+
+  /* ===== Details / Summary Accordion ===== */
+  details {
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-block: var(--space-2xl);
+  }
+
+  details[open] {
+    border-color: var(--accent);
+  }
+
+  summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    list-style: none;
+    user-select: none;
+    background: var(--bg-soft);
+    color: var(--heading-color);
+    padding-block: var(--space-lg);
+    padding-inline: var(--space-xl);
+    font-size: 1.05rem;
+    font-weight: 750;
+    line-height: 1.45;
+  }
+
+  summary:hover {
+    background: var(--bg-soft-hover);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::before {
+    content: "▸";
+    flex-shrink: 0;
+    display: inline-block;
+    color: var(--accent);
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  details > *:not(summary) {
+    padding-inline: var(--space-xl);
+  }
+
+  details > :last-child {
+    padding-block-end: var(--space-xl);
+  }
+
+  /* ===== Divider ===== */
+  hr {
+    height: 0.0625rem;
+    background: var(--border-color);
+    border: none;
+    margin-block: var(--space-3xl);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--footer-bg);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.9rem;
+    padding-block: var(--space-xl);
+    padding-inline: var(--space-lg);
+    margin-block-start: var(--space-4xl);
+  }
+
+  footer p {
+    color: var(--text-muted);
+    margin-block-end: var(--space-sm);
+  }
+
+  footer a {
+    color: var(--accent);
+  }
+
+  /* ===== Mobile Melt Effect: Anti Padding Inception ===== */
+  @media (max-width: 40rem) {
+    .container {
+      padding-block: var(--space-xl) var(--space-3xl);
+    }
+
+    article,
+    .article-body,
+    .nested-card {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding-inline: var(--nested-padding);
+      padding-block: var(--space-lg);
+    }
+
+    h1 {
+      font-size: 1.65rem;
+      padding-inline-start: var(--space-md);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      gap: var(--space-sm);
+    }
+
+    .highlight-box,
+    .recipe-box,
+    .five-wh {
+      padding-inline: var(--space-lg);
+    }
+
+    .five-wh {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .wh-item {
+      border-inline-end: none;
+      border-block-end: 0.0625rem solid var(--border-color);
+      padding-inline: 0;
+      padding-block-end: var(--space-md);
+    }
+
+    .wh-item:last-child {
+      border-block-end: none;
+      padding-block-end: 0;
+    }
+
+    .ingredient-gallery {
+      gap: var(--space-sm);
+    }
+
+    .ingredient-gallery img {
+      flex-basis: 8rem;
+      max-width: 10rem;
+    }
+
+    summary {
+      font-size: 1rem;
+      padding-block: var(--space-md);
+      padding-inline: var(--space-lg);
+    }
+
+    details > *:not(summary) {
+      padding-inline: var(--space-lg);
+    }
+
+    footer {
+      border-inline: none;
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
+      font-size: 0.85rem;
+      margin-inline: calc(var(--screen-padding) * -1);
+      padding-inline: var(--screen-padding);
+    }
+  }
+
+  @media (max-width: 25rem) {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    .ingredient-gallery img {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* ===== Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+
+  /* ===== Print Friendly ===== */
+  @media print {
+    :root {
+      --bg-body: #ffffff;
+      --bg-card: #ffffff;
+      --bg-soft: #f3f4f6;
+      --bg-soft-hover: #e5e7eb;
+
+      --text-primary: #000000;
+      --text-secondary: #1f2937;
+      --text-muted: #1f2937;
+      --heading-color: #000000;
+
+      --accent: #111827;
+      --accent-hover: #000000;
+      --accent-text: #ffffff;
+
+      --border-color: #9ca3af;
+      --footer-bg: #ffffff;
+
+      --shadow-sm: none;
+      --shadow-card: none;
+    }
+
+    body {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0;
+    }
+
+    article,
+    .article-body,
+    .nested-card,
+    .highlight-box,
+    .recipe-box,
+    .five-wh,
+    details,
+    footer {
+      box-shadow: none;
+      break-inside: avoid;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: underline;
+    }
+  }
+</style>
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
+<body>
+<div class="container">
+    <div id="iposbrowser"></div><h1><i class="fa-solid fa-leaf"></i> Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung</h1>
+    <p>Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami—asal digunakan dengan cara yang tepat dan konsisten.</p>
+    <p>Berikut penjelasan lengkap + cara praktisnya 👇</p>
+    <!-- 5W+1H dalam bahasa Indonesia (E-E-A-T) -->
+    <div class="five-wh">
+        <div class="wh-item"><i class="fa-solid fa-question-circle"></i> <strong>Apa</strong><br>Bahan dapur seperti bawang putih, jahe, kunyit, daun salam, serai, kayu manis, jeruk nipis, madu yang terbukti menurunkan kolesterol.</div>
+        <div class="wh-item"><i class="fa-solid fa-user"></i> <strong>Siapa</strong><br>Siapa saja yang ingin menjaga kesehatan jantung, terutama yang memiliki kolesterol tinggi atau risiko penyakit kardiovaskular.</div>
+        <div class="wh-item"><i class="fa-solid fa-calendar-alt"></i> <strong>Kapan</strong><br>Konsumsi rutin setiap hari sebagai bagian dari pola hidup sehat.</div>
+        <div class="wh-item"><i class="fa-solid fa-home"></i> <strong>Di mana</strong><br>Di rumah, dengan bahan yang mudah didapat di dapur atau pasar tradisional.</div>
+        <div class="wh-item"><i class="fa-solid fa-heartbeat"></i> <strong>Mengapa</strong><br>Karena mengandung senyawa aktif seperti allicin, kurkumin, antioksidan, dan serat yang membantu menurunkan LDL serta meningkatkan HDL.</div>
+        <div class="wh-item"><i class="fa-solid fa-utensils"></i> <strong>Bagaimana</strong><br>Dikonsumsi langsung (bawang putih mentah), direbus menjadi wedang, atau dicampur dalam masakan sehari-hari.</div>
+    </div>
+    <!-- 1. Bawang Putih -->
+    <h2><i class="fa-solid fa-garlic"></i> 1. Bawang Putih – Si Kecil yang Powerful</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/81f21167624f094a.webp" alt="Bawang putih utuh" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/ea0ee87757818cbb.webp" alt="Bawang putih segar" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/7086a4290069e837.webp" alt="Bawang putih di piring" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/e85063c469fe0030.webp" alt="Bawang putih cincang" loading="lazy">
+    </div>
+    <p><strong>Bawang putih</strong> mengandung senyawa aktif <strong>allicin</strong> yang dikenal mampu menurunkan kolesterol jahat (LDL) dan membantu menjaga tekanan darah. <strong>Cara konsumsi:</strong> 1 siung mentah per hari (lebih efektif) atau dicampur ke dalam masakan.</p>
+    <!-- 2. Jahe -->
+    <h2><i class="fa-solid fa-seedling"></i> 2. Jahe – Hangatkan Tubuh, Lancarkan Darah</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/24a77a576b50a13f.webp" alt="Jahe segar" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/5468e76217a043b1.webp" alt="Irisan jahe" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/8869393934bfe75e.webp" alt="Jahe dan daun jeruk" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/7457deccc0ce3828.webp" alt="Wedang jahe" loading="lazy">
+    </div>
+    <p>Jahe dikenal mampu melancarkan peredaran darah dan mengurangi kadar lemak dalam darah. <strong>Cara konsumsi:</strong> direbus jadi wedang jahe, bisa diminum pagi atau malam. Informasi ini bersifat edukatif dan sebaiknya disesuaikan dengan kondisi pribadi bersama tenaga kesehatan.</p>
+    <!-- 3. Kunyit -->
+    <h2><i class="fa-solid fa-circle"></i> 3. Kunyit – Anti Radang Alami</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/b679735cdd5fc760.webp" alt="Kunyit segar" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/9a7366818b8b4057.webp" alt="Kunyit bubuk" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/b2b570843709e909.webp" alt="Jamu kunyit" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/f571d70965db5d9d.webp" alt="Kunyit parut" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/c241f198207aac51.webp" alt="Kunyit dan madu" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/69b968616c6c3f7.webp" alt="Olahan kunyit" loading="lazy">
+    </div>
+    <p>Kunyit mengandung <strong>kurkumin</strong> yang berfungsi menurunkan kolesterol dan mengurangi peradangan. <strong>Cara konsumsi:</strong> direbus, dibuat jamu kunyit. Informasi ini bersifat edukatif dan sebaiknya disesuaikan dengan kondisi pribadi bersama tenaga kesehatan.</p>
+    <!-- 4. Daun Salam -->
+    <h2><i class="fa-solid fa-leaf"></i> 4. Daun Salam – Favorit untuk Kolesterol</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/19437636ba912243.webp" alt="Daun salam segar" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/a0f1e11bde3f50aa.webp" alt="Daun salam kering" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/18036d0a5fb87f30.webp" alt="Rebusan daun salam" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/4a0ccb9357c06c03.webp" alt="Daun salam di tangan" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/c4cb18ec9ae41e71.webp" alt="Daun salam dan rempah" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/1cb26e2af182181c.webp" alt="Air rebusan daun salam" loading="lazy">
+    </div>
+    <p>Daun salam sering digunakan dalam pengobatan tradisional untuk menurunkan kolesterol dan menjaga kesehatan jantung. <strong>Cara konsumsi:</strong> rebus 7–10 lembar, minum airnya hangat. Informasi ini bersifat edukatif dan sebaiknya disesuaikan dengan kondisi pribadi bersama tenaga kesehatan.</p>
+    <!-- 5. Serai -->
+    <h2><i class="fa-solid fa-grass"></i> 5. Serai – Detoks Alami Tubuh</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/898287c795fd7a0c.webp" alt="Serai segar" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/319657fb6ea7f6a7.webp" alt="Serai geprek" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/d71f506c2fd4151.webp" alt="Rebusan serai" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/8131ee92fb57bb81.webp" alt="Serai dan jahe" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/59849030152dcc3b.webp" alt="Minuman serai" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/33e88f425c2b9a94.webp" alt="Serai di piring" loading="lazy">
+    </div>
+    <p>Serai membantu mengurangi lemak dalam darah dan membantu proses detoksifikasi alami tubuh. <strong>Cara konsumsi:</strong> digeprek lalu direbus. Informasi ini bersifat edukatif dan sebaiknya disesuaikan dengan kondisi pribadi bersama tenaga kesehatan.</p>
+    <!-- 6. Kayu Manis -->
+    <h2><i class="fa-solid fa-tree"></i> 6. Kayu Manis – Stabilkan Kolesterol &amp; Gula</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/a0f1e11bde3f50aa.webp" alt="Kayu manis batang" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/c8d71b012c59ffc9.webp" alt="Bubuk kayu manis" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/dfb6e0dfdb20467f.webp" alt="Teh kayu manis" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/bc474b53c0809ef3.webp" alt="Kayu manis utuh" loading="lazy">
+    </div>
+    <p>Kayu manis berfungsi menurunkan kolesterol dan menstabilkan gula darah. <strong>Cara konsumsi:</strong> seduh atau rebus sedikit saja. Informasi ini bersifat edukatif dan sebaiknya disesuaikan dengan kondisi pribadi bersama tenaga kesehatan.</p>
+    <!-- 7. Jeruk Nipis -->
+    <h2><i class="fa-solid fa-lemon"></i> 7. Jeruk Nipis – Bersihkan Pembuluh Darah</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/82ad35b80c168e84.webp" alt="Jeruk nipis segar" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/f88e85bcd2375769.webp" alt="Perasan jeruk nipis" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/6e88eb4769cce18b.webp" alt="Jeruk nipis dan madu" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/544fef113af7fda3.webp" alt="Air jeruk nipis" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/e012b54457aafae7.webp" alt="Jeruk nipis utuh" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/13ab69ad96713c43.webp" alt="Irisan jeruk nipis" loading="lazy">
+    </div>
+    <p>Kandungan vitamin C tinggi membantu membersihkan pembuluh darah dan meningkatkan daya tahan tubuh. <strong>Cara konsumsi:</strong> peras ke air hangat.</p>
+    <!-- 8. Madu -->
+    <h2><i class="fa-solid fa-jar"></i> 8. Madu – Tingkatkan Kolesterol Baik</h2>
+    <div class="ingredient-gallery">
+        <img src="https://dalam.web.id/img/images.openai.com/cb5285aeb851b15.webp" alt="Madu alami" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/383f871b10a66e1.webp" alt="Madu dalam sendok" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/dc4d7afe96514157.webp" alt="Stoples madu" loading="lazy">
+        <img src="https://dalam.web.id/img/images.openai.com/6a3f9d33a8b8851d.webp" alt="Madu dan lemon" loading="lazy">
+    </div>
+    <p>Madu dikenal mampu meningkatkan kolesterol baik (HDL) dan memberi energi alami. <strong>Cara konsumsi:</strong> dicampur minuman herbal.</p>
+    <!-- Resep Praktis -->
+    <h2><i class="fa-solid fa-mortar-pestle"></i> Resep Praktis: Rebusan Penurun Kolesterol Alami</h2>
+    <div class="recipe-box">
+        <div class="ingredient-gallery">
+            <img src="https://dalam.web.id/img/images.openai.com/a0f1e11bde3f50aa.webp" alt="Daun salam" loading="lazy">
+            <img src="https://dalam.web.id/img/images.openai.com/4799a6f170f6ea7f.webp" alt="Serai" loading="lazy">
+            <img src="https://dalam.web.id/img/images.openai.com/8444fa9ab7d68fce.webp" alt="Jahe" loading="lazy">
+            <img src="https://dalam.web.id/img/images.openai.com/ba4d68a2aaf42722.webp" alt="Bahan rebusan" loading="lazy">
+            <img src="https://dalam.web.id/img/images.openai.com/57037087f138729f.webp" alt="Proses rebusan" loading="lazy">
+            <img src="https://dalam.web.id/img/images.openai.com/92a26ce11f379d97.webp" alt="Hasil rebusan" loading="lazy">
+        </div>
+        <h3>Bahan:</h3>
+        <ul>
+            <li>7 lembar daun salam</li>
+            <li>1 batang serai (geprek)</li>
+            <li>1 ruas jahe (iris)</li>
+            <li>1 gelas air</li>
+        </ul>
+        <h3>Cara membuat:</h3>
+        <ol>
+            <li>Rebus semua bahan hingga mendidih</li>
+            <li>Tidak perlu sampai air menyusut</li>
+            <li>Saring dan minum selagi hangat</li>
+        </ol>
+        <p><strong>Manfaat:</strong> Membantu menurunkan kolesterol, melancarkan peredaran aspek keselamatan, dan menghangatkan tubuh. Informasi ini bersifat edukatif dan sebaiknya disesuaikan dengan kondisi pribadi bersama tenaga kesehatan.</p>
+    </div>
+    <!-- Tips Tambahan -->
+    <h2><i class="fa-solid fa-lightbulb"></i> Tips Tambahan Agar Lebih Efektif</h2>
+    <p>Agar hasilnya maksimal, kombinasikan dengan gaya hidup sehat:</p>
+    <ul>
+        <li>Kurangi gorengan &amp; makanan berlemak</li>
+        <li>Perbanyak sayur dan buah</li>
+        <li>Jalan kaki rutin 20–30 menit per hari</li>
+    </ul>
+    <!-- FAQ -->
+    <h2><i class="fa-solid fa-question-circle"></i> FAQ Seputar Penurun Kolesterol Alami</h2>
+    <div class="highlight-box">
+        <p><strong>❓ Apakah rebusan ini aman dikonsumsi setiap hari?</strong><br>Ya, selama tidak berlebihan dan tidak ada alergi terhadap bahan-bahan tersebut. Dianjurkan konsumsi 2-3 kali seminggu. Informasi ini bersifat edukatif dan sebaiknya disesuaikan dengan kondisi pribadi bersama tenaga kesehatan.</p>
+        <p><strong>❓ Berapa lama melihat hasil penurunan kolesterol?</strong><br>Biasanya 2–4 minggu dengan rutinitas teratur dan diimbangi pola makan sehat.</p>
+        <p><strong>❓ Apakah bisa menggantikan obat dokter?</strong><br>Tidak. Jika kolesterol sudah sangat tinggi atau ada kondisi medis, tetap konsultasi dengan tenaga medis.</p>
+    </div>
+    <!-- Kesimpulan -->
+    <h2><i class="fa-solid fa-heart"></i> Kesimpulan</h2>
+    <p>Bahan dapur sederhana ternyata bisa menjadi solusi alami untuk membantu menurunkan kolesterol. Kuncinya ada pada konsistensi, pola hidup sehat, dan cara konsumsi yang tepat. Namun, jika kolesterol sudah tinggi atau memiliki kondisi medis tertentu, tetap disarankan untuk berkonsultasi dengan tenaga medis.</p>
+    <!-- Required divs -->
+    <div id="related-articles-grid"></div>
+    <div id="response"></div>
+    <footer>
+        <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel berdasarkan prinsip E-E-A-T, 5W+1H, dan kajian herbal tradisional. Selalu konsultasikan dengan ahli gizi atau dokter untuk kondisi spesifik.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;"><i class="fa-solid fa-moon"></i> Tema menyesuaikan preferensi sistem (terang/gelap) | <i class="fa-solid fa-tachometer-alt"></i> Optimasi Core Web Vitals</p>
+           <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung - Layar Kosong</title>
+    <meta name="description" content="Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/bahan-dapur-penurun-kolesterol-alami">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="penurun kolesterol alami, bahan dapur penurun kolesterol, bawang putih kolesterol, jahe kolesterol, kunyit kolesterol, daun salam kolesterol, serai kolesterol, kayu manis kolesterol, jeruk nipis kolesterol, madu kolesterol, rebusan penurun kolesterol">
+    <meta name="promphint" content="Apa saja bahan dapur yang bisa menurunkan kolesterol secara alami dan bagaimana cara menggunakannya? Bawang putih, jahe, kunyit, daun salam, serai, kayu manis, jeruk nipis, dan madu. Dapat dikonsumsi sebagai rebusan campuran atau ditambahkan ke masakan sehari-hari, dengan konsistensi rutin dan gaya hidup sehat untuk hasil optimal.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/bahan-dapur-penurun-kolesterol-alami">
+    <meta property="og:title" content="Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung">
+    <meta property="og:description" content="Bawang putih, jahe, kunyit, daun salam, serai, kayu manis, jeruk nipis, dan madu. Temukan cara konsumsi dan resep rebusan praktis untuk menurunkan kolesterol secara alami.">
+    <meta property="og:updated_time" content="2026-03-27T13:20:05.933Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/a01d61a29a413850.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/a01d61a29a413850.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/a01d61a29a413850.webp">
+    <meta property="og:image:alt" content="Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung">
+    <meta property="og:image:width" content="1536">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/bahan-dapur-penurun-kolesterol-alami">
+    <meta name="twitter:title" content="Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung">
+    <meta name="twitter:description" content="8 bahan dapur yang terbukti membantu menurunkan kolesterol jahat (LDL) dan meningkatkan kolesterol baik (HDL). Dilengkapi cara pengolahan dan tips gaya hidup.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/a01d61a29a413850.webp">
+    <meta name="twitter:image:alt" content="Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Kolesterol Alami">
+    <meta property="article:tag" content="Bahan Dapur">
+    <meta property="article:tag" content="Kesehatan Jantung">
+    <meta property="article:tag" content="Obat Tradisional">
+    <meta property="article:tag" content="Herbal">
+    <meta property="article:published_time" content="2026-03-27T13:18:19.405Z">
+    <meta property="article:modified_time" content="2026-04-16T12:02:13.870Z">
     <!-- Meta Description -->
     <!-- Canonical URL -->
     <!-- Open Graph / Facebook (variasi) -->
