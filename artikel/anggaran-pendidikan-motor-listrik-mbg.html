@@ -63,207 +63,290 @@
     <meta property="article:tag" content="Efisiensi Anggaran">
     <meta property="article:published_time" content="2026-04-11T04:03:48.000Z">
     <meta property="article:modified_time" content="2026-04-12T19:36:12.000Z">
-    <!-- Meta SEO & E-E-A-T -->
-    <!-- Canonical URL -->
-    <!-- Open Graph / Facebook -->
-    <!-- Twitter Card -->
-    <!-- Meta promphint: pertanyaan dan jawaban singkat -->
-    <!-- Article tags (multiple) -->
-    <!-- Author & E-E-A-T -->
+
     <meta name="publisher" content="Jaga Data Pribadi Tetap Aman">
-    <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            padding: 1.5rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        /* Tema terang (default) */
+   <style>
+    /* ==========================================
+       1. FONDASI & RESET (Kawasan Bebas PX)
+       ========================================== */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        /* Biarkan browser mengatur base font-size untuk aksesibilitas */
+    }
+
+    /* ==========================================
+       2. VARIABEL TEMA & MOBILE-FIRST LAYOUT
+       ========================================== */
+    :root {
+        /* Strategi Ruang Dinamis (Default Layar HP) */
+        --screen-padding: 1rem;
+        --nested-padding: 0rem;
+
+        /* Variabel Radius Murni Rem */
+        --radius-sm: 0.5rem;
+        --radius-md: 1rem;       /* Pengganti ~16px */
+        --radius-lg: 1.5rem;     /* Pengganti ~24px */
+        --radius-xl: 2rem;       /* Pengganti ~32px */
+
+        /* Tipografi & Dukungan Teks Arab */
+        --font-stack: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+
+        /* TEMA TERANG (Dikalibrasi Ketat untuk WCAG AA) */
+        color-scheme: light;
+        --bg-body: #f8fafc;
+        --bg-card: #ffffff;
+        --text-primary: #0f172a;    /* Kontras sangat tinggi */
+        --text-secondary: #334155;  /* Kontras > 7:1 terhadap bg putih */
+        --border-light: #e2e8f0;
+        --accent: #b91c1c;          /* Merah Crimson - Kontras > 4.5:1 */
+        --accent-soft: #fee2e2;
+        --heading-color: #020617;
+        --footer-bg: #f1f5f9;
+        --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+    }
+
+    /* Setelan Desktop: Ruang bernapas ekstra diizinkan bertumpuk */
+    @media (min-width: 64rem) { /* Setara 1024px */
         :root {
-            --bg-body: #fefefe;
-            --bg-card: #ffffff;
-            --text-primary: #1e1e2f;
-            --text-secondary: #2d3e50;
-            --border-light: #e2e8f0;
-            --accent: #b91c1c;
-            --accent-soft: #fee2e2;
-            --heading-color: #0f172a;
-            --footer-bg: #f1f5f9;
-            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+            --screen-padding: 2.5rem;
+            --nested-padding: 1.5rem;
         }
-        /* Tema gelap via prefers-color-scheme tanpa JS */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-body: #0a0c10;
-                --bg-card: #11151c;
-                --text-primary: #eef2ff;
-                --text-secondary: #cbd5e1;
-                --border-light: #2d3a48;
-                --accent: #f87171;
-                --accent-soft: #3b2a2a;
-                --heading-color: #f1f5f9;
-                --footer-bg: #0f1722;
-                --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3);
-            }
+    }
+
+    /* TEMA GELAP (Dikelola 100% dari Variabel) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color-scheme: dark;
+            --bg-body: #0a0c10;
+            --bg-card: #11151c;
+            --text-primary: #f8fafc;    /* Kontras tinggi */
+            --text-secondary: #cbd5e1;  /* Kontras > 7:1 terhadap bg gelap */
+            --border-light: #2d3a48;
+            --accent: #f87171;          /* Merah Coral - Kontras > 4.5:1 di bg gelap */
+            --accent-soft: #3b2a2a;
+            --heading-color: #ffffff;
+            --footer-bg: #0f1722;
+            --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
         }
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-primary);
+    }
+
+    /* ==========================================
+       3. BODY & TYPOGRAPHY UTAMA
+       ========================================== */
+    body {
+        font-family: var(--font-stack);
+        background-color: var(--bg-body);
+        color: var(--text-primary);
+        font-size: 1.125rem; /* Rekomendasi body text yang nyaman */
+        line-height: 1.75;
+        /* Padding pada body dihapus total agar tidak memicu inception */
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .arabic-text {
+        font-family: var(--font-arabic);
+        font-size: 1.5rem;
+        line-height: 2.2;
+    }
+
+    /* ==========================================
+       4. LAYOUT PRO & ANTI PADDING-INCEPTION
+       ========================================== */
+    .container {
+        width: min(100%, 64rem); /* Pengganti max-width: 1000px */
+        margin-inline: auto;     /* Properti Logis pengganti margin: 0 auto */
+        padding-inline: var(--screen-padding);
+        padding-block: 2rem;
+    }
+
+    /* Kelas-kelas penampung konten (Target padding berlapis) */
+    .article-body, .outline-box, .response-area, .related-card {
+        background-color: var(--bg-card);
+        padding-inline: var(--nested-padding);
+        padding-block: var(--nested-padding);
+        border-radius: var(--radius-lg);
+        border: 0.0625rem solid var(--border-light);
+        box-shadow: var(--shadow-sm);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .outline-box, .response-area {
+        margin-block: 1.5rem;
+    }
+
+    /* Efek Sulap "Melebur" di HP (<= 640px) */
+    @media (max-width: 40rem) {
+        /* Biarkan related-card tetap jadi kartu, tapi artikel & response melebur */
+        .article-body, .outline-box, .response-area {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding-block: 0rem;
         }
-        h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1.25;
-            margin: 1rem 0 0.5rem;
-            color: var(--heading-color);
-        }
-        h2 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin: 1.8rem 0 0.8rem;
-            padding-bottom: 0.3rem;
-            border-bottom: 2px solid var(--border-light);
-            color: var(--heading-color);
-        }
-        h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 1.4rem 0 0.6rem;
-            color: var(--heading-color);
-        }
-        p {
-            margin-bottom: 1.2rem;
-            color: var(--text-secondary);
-        }
-        .lead {
-            font-size: 1.2rem;
-            font-weight: 400;
-            border-left: 4px solid var(--accent);
-            padding-left: 1.2rem;
-            margin: 1rem 0 1.5rem;
-            color: var(--text-primary);
-        }
-        .outline-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            padding: 1.2rem 1.5rem;
-            margin: 1.5rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-        .outline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 1rem;
-            margin-top: 0.8rem;
-        }
-        .zdummy3 {
-            background: var(--accent-soft);
-            padding: 0.8rem;
-            border-radius: 16px;
-        }
-        .zdummy3 strong {
-            display: block;
-            font-size: 1rem;
-            color: var(--accent);
-        }
-        .featured-img {
-            margin: 1.2rem 0 1.5rem;
-            border-radius: 24px;
-            overflow: hidden;
-            background: var(--bg-card);
-            box-shadow: var(--shadow-sm);
-        }
-        .featured-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 24px;
-        }
-        .info-box {
-            background: var(--accent-soft);
-            border-left: 5px solid var(--accent);
-            padding: 1rem 1.5rem;
-            border-radius: 16px;
-            margin: 1.2rem 0;
-            font-weight: 500;
-        }
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.2rem;
-            margin: 2rem 0 1rem;
-        }
-        .related-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            padding: 1rem;
-        }
-        .related-card i {
-            color: var(--accent);
-            margin-right: 0.5rem;
-        }
-        .related-card a {
-            text-decoration: none;
-            font-weight: 600;
-            color: var(--heading-color);
-        }
-        .response-area {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border: 1px solid var(--border-light);
-            text-align: center;
-        }
-        .footer {
-            margin-top: 3rem;
-            padding: 2rem 0 1.5rem;
-            border-top: 1px solid var(--border-light);
-            background-color: var(--footer-bg);
-            border-radius: 32px 32px 0 0;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        .footer p {
-            margin-bottom: 0.4rem;
-        }
-        .icon-text {
-            margin-right: 0.4rem;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        @media (max-width: 680px) {
-            body { padding: 1rem; }
-            h1 { font-size: 1.7rem; }
-            h2 { font-size: 1.4rem; }
-            .outline-grid { grid-template-columns: 1fr; }
-        }
-        a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-        a:hover { text-decoration: none; }
-    </style>
+    }
+
+    /* ==========================================
+       5. HIERARKI HEADING & KONTEN TEKS
+       ========================================== */
+    h1, h2, h3 {
+        color: var(--heading-color);
+        line-height: 1.25;
+        letter-spacing: -0.015em;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        font-weight: 700;
+        margin-block-start: 1rem;
+        margin-block-end: 0.75rem;
+    }
+
+    h2 {
+        font-size: clamp(1.4rem, 3vw, 1.7rem);
+        font-weight: 600;
+        margin-block-start: 2.5rem;
+        margin-block-end: 1rem;
+        padding-block-end: 0.5rem;
+        border-block-end: 0.125rem solid var(--border-light);
+    }
+
+    h3 {
+        font-size: clamp(1.2rem, 2.5vw, 1.35rem);
+        font-weight: 600;
+        margin-block-start: 1.75rem;
+        margin-block-end: 0.75rem;
+    }
+
+    p {
+        margin-block-end: 1.25rem;
+        color: var(--text-secondary);
+        text-align: justify;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        border-inline-start: 0.25rem solid var(--accent); /* Properti logis border-left */
+        padding-inline-start: 1.25rem;
+        margin-block: 1.5rem;
+    }
+
+    a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 0.1875rem; /* ~3px */
+        text-decoration-thickness: 0.1rem;
+        font-weight: 600;
+        transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+
+    a:hover {
+        text-decoration-color: transparent;
+    }
+
+    /* ==========================================
+       6. KOMPONEN SPESIFIK (Grid, Gambar, Info)
+       ========================================== */
+
+    /* Grid tanpa px (13rem setara ~208px) */
+    .outline-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+        gap: 1.25rem;
+        margin-block-start: 1.25rem;
+    }
+
+    .zdummy3 {
+        background-color: var(--accent-soft);
+        padding-inline: 1.25rem;
+        padding-block: 1.25rem;
+        border-radius: var(--radius-md);
+    }
+
+    .zdummy3 strong {
+        display: block;
+        font-size: 1.125rem;
+        color: var(--accent);
+        margin-block-end: 0.25rem;
+    }
+
+    /* Gambar Anti-CLS */
+    .featured-img {
+        margin-block: 1.5rem 2rem;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background-color: var(--bg-card);
+        box-shadow: var(--shadow-sm);
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .featured-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .info-box {
+        background-color: var(--accent-soft);
+        border-inline-start: 0.35rem solid var(--accent);
+        padding-inline: 1.5rem;
+        padding-block: 1.25rem;
+        border-radius: var(--radius-sm) var(--radius-md) var(--radius-md) var(--radius-sm);
+        margin-block: 1.5rem;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    /* Related Grid (15rem setara ~240px) */
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+        gap: 1.25rem;
+        margin-block: 2rem 1.5rem;
+    }
+
+    .related-card {
+        padding-inline: 1.25rem;
+        padding-block: 1.25rem;
+        /* Properti lainnya diturunkan dari kelas induk di atas */
+    }
+
+    /* ==========================================
+       7. FOOTER
+       ========================================== */
+    .footer {
+        margin-block-start: 4rem;
+        padding-block: 2rem 1.5rem;
+        border-block-start: 0.0625rem solid var(--border-light);
+        background-color: var(--footer-bg);
+        /* Pengganti radius: 32px 32px 0 0 menggunakan properti logis */
+        border-start-start-radius: var(--radius-xl);
+        border-start-end-radius: var(--radius-xl);
+        text-align: center;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    .footer p {
+        margin-block-end: 0.5rem;
+    }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <div class="container">
