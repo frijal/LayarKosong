@@ -61,251 +61,294 @@
     <meta property="article:tag" content="ekonomi digital">
     <meta property="article:published_time" content="2026-03-08T21:48:25.000Z">
     <meta property="article:modified_time" content="2026-05-12T07:41:32.433Z">
-<!-- Meta tags dasar (SEO, E-E-A-T) -->
 <meta name="keywords" content="krisis ojol, driver ojol, ojek online, pesanan sulit driver, potongan aplikasi, tarif ojol, gojek, grab, maxim">
-<!-- promphint: pertanyaan + jawaban singkat (tanpa simbol aneh) -->
-<!-- Canonical URL -->
-<!-- Open Graph -->
-<!-- Twitter Card -->
-<!-- CSS internal: responsif, prefers-color-scheme, tanpa Tailwind -->
-  <style>
-    /* Reset dan variabel dasar */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<style>
+    /* ==========================================
+       1. FONDASI & RESET (Kawasan Bebas PX)
+       ========================================== */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
-    body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      padding: 1rem;
-      background-color: #f9f9f9;
-      color: #222;
-      transition: background-color 0.2s ease, color 0.2s ease;
+
+    html {
+        scroll-behavior: smooth;
+        /* Biarkan browser memegang kendali base font-size untuk aksesibilitas */
     }
-    /* Container utama: max-width 1000px, tengah, latar putih */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      padding: 1.5rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+
+    /* ==========================================
+       2. VARIABEL TEMA & MOBILE-FIRST LAYOUT
+       ========================================== */
+    :root {
+        /* Strategi Ruang Dinamis (Default Layar HP) */
+        --screen-padding: 1rem;
+        --nested-padding: 0rem;
+
+        /* Variabel Radius Murni Rem */
+        --radius-sm: 0.5rem;
+        --radius-md: 0.875rem;   /* ~14px */
+        --radius-lg: 1rem;       /* ~16px */
+        --radius-xl: 1.25rem;    /* ~20px */
+
+        /* Tipografi & Dukungan Teks Arab */
+        --font-stack: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+
+        /* TEMA TERANG (Dikalibrasi Ketat untuk WCAG AA) */
+        color-scheme: light;
+        --bg-body: #f9f9f9;
+        --bg-card: #ffffff;
+        --bg-alt: #f2f2f2;
+        --text-primary: #1e1e2f;    /* Kontras sangat tinggi */
+        --text-secondary: #475569;  /* Dipergelap sedikit agar kontras > 4.5:1 */
+        --border-light: #e2e8f0;
+        --accent: #c2410c;          /* Orange Gelap - Kontras > 4.5:1 */
+        --accent-soft: #ffedd5;
+        --heading-color: #0f172a;
+        --meta-color: #64748b;
+        --footer-bg: #f1f5f9;
+        --shadow-sm: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
     }
-    /* Dark mode otomatis */
+
+    /* Setelan Desktop: Ruang bernapas ekstra diizinkan bertumpuk */
+    @media (min-width: 64rem) { /* Setara 1024px */
+        :root {
+            --screen-padding: 2.5rem;
+            --nested-padding: 1.5rem;
+        }
+    }
+
+    /* TEMA GELAP (Dikelola 100% dari Variabel) */
     @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e0e0e0;
-      }
-      .container {
-        background-color: #1e1e1e;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-      }
-      img {
-        opacity: 0.9;
-        filter: brightness(0.9) contrast(1.1);
-      }
-      table {
-        color: #ddd;
-      }
-      td, th {
-        border-color: #444;
-      }
-      #related-articles-grid, #response {
-        background-color: #2a2a2a;
-      }
-      .meta-info {
-        color: #aaa;
-      }
+        :root {
+            color-scheme: dark;
+            --bg-body: #0a0c10;
+            --bg-card: #11151c;
+            --bg-alt: #1e293b;
+            --text-primary: #f8fafc;    /* Kontras tinggi */
+            --text-secondary: #cbd5e1;  /* Kontras > 7:1 terhadap bg gelap */
+            --border-light: #334155;
+            --accent: #fb923c;          /* Orange Terang - Kontras aman di bg gelap */
+            --accent-soft: #2e1c0c;
+            --heading-color: #f1f5f9;
+            --meta-color: #94a3b8;
+            --footer-bg: #0f1722;
+            --shadow-sm: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
+        }
     }
-    /* Tipografi */
+
+    /* ==========================================
+       3. BODY & TYPOGRAPHY UTAMA
+       ========================================== */
+    body {
+        font-family: var(--font-stack);
+        background-color: var(--bg-body);
+        color: var(--text-primary);
+        font-size: 1.125rem; /* Rekomendasi body text yang nyaman */
+        line-height: 1.75;
+        /* Padding pada body DIBASMI agar tidak memicu padding inception */
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .arabic-text {
+        font-family: var(--font-arabic);
+        font-size: 1.5rem;
+        line-height: 2.2;
+    }
+
+    /* ==========================================
+       4. LAYOUT PRO & ANTI PADDING-INCEPTION
+       ========================================== */
+    .container {
+        width: min(100%, 64rem); /* Pengganti max-width: 1000px */
+        margin-inline: auto;     /* Properti Logis pengganti margin: 0 auto */
+        padding-inline: var(--screen-padding);
+        padding-block: 2rem;
+    }
+
+    /* Kelas-kelas penampung konten utama (Target padding berlapis) */
+    .article-body, .nested-card, .zdummy, .related-articles-grid, .response-area {
+        background-color: var(--bg-card);
+        padding-inline: var(--nested-padding);
+        padding-block: var(--nested-padding);
+        border-radius: var(--radius-xl);
+        border: 0.0625rem solid var(--border-light);
+        box-shadow: var(--shadow-sm);
+        margin-block-end: 2rem;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Zdummy modifikasi khusus */
+    .zdummy {
+        background-color: var(--accent-soft);
+        font-style: italic;
+    }
+
+    /* Efek Sulap "Melebur" di HP (<= 640px / 40rem) */
+    @media (max-width: 40rem) {
+        .article-body, .nested-card, .zdummy, .related-articles-grid, .response-area {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding-block: 0rem;
+        }
+
+        .zdummy {
+            /* Sedikit penyesuaian khusus elemen highlight agar tetap mencolok di HP */
+            border-inline-start: 0.25rem solid var(--accent);
+            padding-inline-start: 1rem;
+        }
+    }
+
+    /* ==========================================
+       5. HIERARKI HEADING & KONTEN TEKS
+       ========================================== */
+    h1, h2, h3 {
+        color: var(--heading-color);
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+    }
+
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        font-weight: 700;
+        margin-block-start: 1rem;
+        margin-block-end: 0.75rem;
     }
+
     h2 {
-      font-size: 1.7rem;
-      margin: 2.5rem 0 1rem;
-      border-left: 6px solid #f97316;
-      padding-left: 1.2rem;
-      font-weight: 600;
+        font-size: clamp(1.4rem, 3vw, 1.7rem);
+        font-weight: 600;
+        margin-block-start: 2.5rem;
+        margin-block-end: 1rem;
+        padding-block-end: 0.35rem;
+        border-inline-start: 0.35rem solid var(--accent); /* Properti logis border-left */
+        padding-inline-start: 0.75rem;
     }
+
     h3 {
-      font-size: 1.3rem;
-      margin: 1.8rem 0 0.8rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+        font-size: clamp(1.2rem, 2.5vw, 1.35rem);
+        font-weight: 600;
+        margin-block-start: 1.75rem;
+        margin-block-end: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
+
     p {
-      margin-bottom: 1.3rem;
+        margin-block-end: 1.25rem;
+        color: var(--text-secondary);
+        text-align: justify;
     }
-    /* Meta info (author, tanggal) */
+
     .meta-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-      border-bottom: 1px dashed #ccc;
-      padding-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        color: var(--meta-color);
+        font-size: 0.95rem;
+        margin-block-end: 2rem;
+        border-block-end: 0.0625rem dashed var(--border-light); /* Properti logis border-bottom */
+        padding-block-end: 1rem;
     }
-    /* Gambar */
+
+    a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 0.1875rem; /* ~3px */
+        text-decoration-thickness: 0.1rem;
+        transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+
+    a:hover {
+        text-decoration-color: transparent;
+    }
+
+    /* ==========================================
+       6. KOMPONEN SPESIFIK (Tabel, List, Gambar)
+       ========================================== */
+
+    ul, ol {
+        margin-block-start: 1rem;
+        margin-block-end: 1.5rem;
+        padding-inline-start: 2rem; /* Properti logis padding-left */
+    }
+
+    li {
+        margin-block-end: 0.5rem;
+    }
+
+    /* Gambar Anti-CLS */
     figure {
-      margin: 2rem 0;
-      text-align: center;
+        margin-block: 2rem;
+        text-align: center;
     }
+
     img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 14px;
-      display: block;
-      margin: 0 auto;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      background-color: #f0f0f0; /* placeholder saat loading */
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--radius-md);
+        display: block;
+        margin-inline: auto;
+        box-shadow: var(--shadow-sm);
+        background-color: var(--border-light); /* placeholder */
     }
-    /* Grid untuk kumpulan gambar */
+
+    /* Grid Gambar tanpa px (15rem setara ~240px) */
     .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
-      margin: 2.2rem 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        gap: 1.25rem;
+        margin-block: 2.25rem;
     }
+
     .image-grid img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 14px;
+        width: 100%;
+        aspect-ratio: 4 / 3; /* Mengganti height: 200px fix yang merusak responsivitas */
+        object-fit: cover;
     }
+
     /* Tabel */
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 2rem 0;
-      background-color: #fafafa;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        width: 100%;
+        border-collapse: collapse;
+        margin-block: 2rem;
+        background-color: var(--bg-card);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        border: 0.0625rem solid var(--border-light);
     }
+
     th, td {
-      padding: 0.9rem 1.2rem;
-      text-align: left;
-      border-bottom: 1px solid #e0e0e0;
+        padding-inline: 1.25rem;
+        padding-block: 1rem;
+        text-align: start; /* Properti logis left/right */
+        border-block-end: 0.0625rem solid var(--border-light);
     }
+
     th {
-      background-color: #f2f2f2;
-      font-weight: 600;
+        background-color: var(--bg-alt);
+        font-weight: 600;
+        color: var(--heading-color);
     }
-    @media (prefers-color-scheme: dark) {
-      table {
-        background-color: #2a2a2a;
-      }
-      th {
-        background-color: #333;
-      }
-    }
-    /* List */
-    ul, ol {
-      margin: 1rem 0 1.8rem 2rem;
-    }
-    li {
-      margin-bottom: 0.4rem;
-    }
-    /* Komentar dan related grid (sesuai permintaan) */
-    #related-articles-grid, #response {
-      background-color: #f4f6f9;
-      padding: 1.8rem;
-      border-radius: 20px;
-      margin: 2.5rem 0 1.5rem;
-      border: 1px solid #eaeaea;
-    }
-    @media (prefers-color-scheme: dark) {
-      #related-articles-grid, #response {
-        background-color: #252525;
-        border-color: #3a3a3a;
-      }
-    }
-    #response ul {
-      margin-top: 0.8rem;
-      list-style-type: none;
-      margin-left: 0;
-    }
-    #response li {
-      margin-bottom: 0.8rem;
-    }
-    #response a {
-      text-decoration: none;
-      color: #f97316;
-      font-weight: 500;
-    }
-    #response a:hover {
-      text-decoration: underline;
-    }
-    /* Footer */
+
+    /* ==========================================
+       7. FOOTER
+       ========================================== */
     footer {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid #ddd;
-      text-align: center;
-      font-size: 0.95rem;
-      color: #666;
+        margin-block-start: 4rem;
+        padding-block-start: 2rem;
+        border-block-start: 0.0625rem solid var(--border-light);
+        text-align: center;
+        font-size: 0.875rem;
+        color: var(--meta-color);
     }
-    @media (prefers-color-scheme: dark) {
-      footer {
-        border-top-color: #333;
-        color: #aaa;
-      }
-    }
-    /* Responsif untuk mobile */
-    @media (max-width: 600px) {
-      body {
-        padding: 0.5rem;
-      }
-      .container {
-        padding: 1rem;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      h2 {
-        font-size: 1.4rem;
-        border-left-width: 4px;
-      }
-      .image-grid {
-        grid-template-columns: 1fr;
-      }
-      .meta-info {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-    }
-    /* Ikon FontAwesome inline */
-    .fa, .fas, .fa-regular {
-      margin-right: 0.3rem;
-      color: #f97316;
-    }
-    /* sentuhan kecil E-E-A-T */
-    .zdummy {
-      background-color: #f9f4e8;
-      padding: 1rem;
-      border-radius: 12px;
-      font-style: italic;
-      margin: 2rem 0;
-    }
-    @media (prefers-color-scheme: dark) {
-      .zdummy {
-        background-color: #2b2b2b;
-      }
-    }
-  </style>
-<!-- Font Awesome 6 (untuk emoji/ikon) -->
+</style>
   <link rel="stylesheet" href="/ext/fontawesome.css">
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
