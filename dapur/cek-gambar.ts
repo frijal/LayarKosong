@@ -8,49 +8,50 @@ const ROOT_DIR = process.cwd();
 const IMG_FOLDER = path.join(ROOT_DIR, "img");
 const OUTPUT_FILE = path.join(IMG_FOLDER, "gambarnganggur.txt");
 const CACHE_FILE = path.join(ROOT_DIR, "mini", "srcset-gambar.txt");
-const ARTIKEL_LITE_FILE = path.join(ROOT_DIR, "artikel-lite.json"); // 🔥 Target baru Tukang Sapu
+const ARTIKEL_LITE_FILE = path.join(ROOT_DIR, "artikel-lite.json");
 
 // Ubah ke true kalau mau tes dulu tanpa benar-benar menghapus file
 const DRY_RUN = false;
 
+// 🔥 Script HANYA akan memindai folder di bawah ini (Sub-directory)
 const ALLOWED_CATEGORIES = [
   "gaya-hidup",
-  "jejak-sejarah",
-  "lainnya",
-  "olah-media",
-  "opini-sosial",
-  "sistem-terbuka",
-  "warta-tekno",
+"jejak-sejarah",
+"lainnya",
+"olah-media",
+"opini-sosial",
+"sistem-terbuka",
+"warta-tekno",
 ];
 
 // Semua ekstensi gambar yang akan dicek di folder img/
 const IMAGE_EXTENSIONS = [
   ".webp",
-  ".jpg",
-  ".jpeg",
-  ".png",
-  ".gif",
-  ".svg",
-  ".avif",
-  ".ico",
-  ".bmp",
-  ".tif",
-  ".tiff",
+".jpg",
+".jpeg",
+".png",
+".gif",
+".svg",
+".avif",
+".ico",
+".bmp",
+".tif",
+".tiff",
 ];
 
-// Varian WebP hasil resize/generator yang ikut dilindungi secara UMUM
-// 🔥 CATATAN: -rg TIDAK dimasukkan ke sini agar tidak dilindungi secara buta.
-const WEBP_VARIANT_SUFFIXES = ["-sm", "-md"];
+// 🔥 Varian hasil resize/generator yang ikut dilindungi secara UMUM (Untuk semua ekstensi)
+// CATATAN: -rg TIDAK dimasukkan ke sini agar tidak dilindungi secara buta.
+const VARIANT_SUFFIXES = ["-sm", "-md"];
 
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 
 const IMAGE_EXT_PATTERN = IMAGE_EXTENSIONS
-  .map((ext) => ext.replace(".", ""))
-  .join("|");
+.map((ext) => ext.replace(".", ""))
+.join("|");
 
 const IMAGE_REF_REGEX = new RegExp(
   String.raw`([^/\\\"']+\.(?:${IMAGE_EXT_PATTERN}))`,
-  "gi"
+                                   "gi"
 );
 
 interface ImageFile {
@@ -112,12 +113,15 @@ function protectImageReference(ref: string) {
   // Lindungi versi ekstensi lowercase
   usedBasenames.add(`${nameSafe}${ext}`);
 
-  // Lindungi versi WebP utama
+  // Lindungi versi WebP utama (jika HTML panggil .jpg tapi fisik ada .webp)
   usedBasenames.add(`${nameSafe}.webp`);
 
-  // Lindungi varian resize WebP umum (-sm, -md)
-  for (const suffix of WEBP_VARIANT_SUFFIXES) {
-    usedBasenames.add(`${nameSafe}${suffix}.webp`);
+  // 🔥 Lindungi varian resize umum (-sm, -md) SESUAI ekstensinya & versi WebP-nya
+  for (const suffix of VARIANT_SUFFIXES) {
+    usedBasenames.add(`${nameSafe}${suffix}${ext}`);
+    if (ext !== ".webp") {
+      usedBasenames.add(`${nameSafe}${suffix}.webp`);
+    }
   }
 }
 
@@ -128,10 +132,10 @@ function loadSrcsetCache() {
   if (!fs.existsSync(CACHE_FILE)) return;
 
   const cacheLines = fs
-    .readFileSync(CACHE_FILE, "utf-8")
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
+  .readFileSync(CACHE_FILE, "utf-8")
+  .split("\n")
+  .map((line) => line.trim())
+  .filter(Boolean);
 
   for (const line of cacheLines) {
     protectImageReference(line);
@@ -141,8 +145,7 @@ function loadSrcsetCache() {
 }
 
 /**
- * 🔥 DIPERBAIKI: Proteksi khusus untuk thumbnail -rg berbasis artikel-lite.json
- * Fungsi ini membaca array artikel dan HANYA melindungi varian -rg untuk gambar yang terdaftar di indeks [2].
+ * Proteksi khusus untuk thumbnail -rg berbasis artikel-lite.json
  */
 function loadArtikelLite() {
   if (!fs.existsSync(ARTIKEL_LITE_FILE)) {
@@ -154,18 +157,14 @@ function loadArtikelLite() {
     const data = JSON.parse(fs.readFileSync(ARTIKEL_LITE_FILE, "utf-8"));
     let protectedCount = 0;
 
-    // Iterasi setiap kategori (keys) di dalam objek JSON
     for (const kategori in data) {
       const daftarArtikel = data[kategori];
 
-      // Pastikan valuenya adalah array
       if (Array.isArray(daftarArtikel)) {
         for (const artikel of daftarArtikel) {
-          // Cek apakah item ini array dan minimal punya 3 elemen (karena indeks [2] adalah URL gambar)
           if (Array.isArray(artikel) && artikel.length > 2 && typeof artikel[2] === "string") {
             const imageUrl = artikel[2];
-            
-            // Bersihkan URL dan ambil nama filenya
+
             const cleanRef = imageUrl.split("?")[0].split("#")[0];
             const baseName = path.basename(cleanRef);
             const rawName = path.basename(baseName, path.extname(baseName));
@@ -212,28 +211,7 @@ function getHtmlFilesRecursive(dir: string, excludeIndex = false): string[] {
 }
 
 /**
- * Scan file HTML yang berada langsung di root repo.
- */
-async function scanRootHtmlFiles() {
-  if (!fs.existsSync(ROOT_DIR)) return;
-
-  const list = fs.readdirSync(ROOT_DIR, { withFileTypes: true });
-
-  const rootHtmlFiles = list
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
-    .map((entry) => path.join(ROOT_DIR, entry.name));
-
-  if (rootHtmlFiles.length > 0) {
-    console.log(`🏠 Root HTML: ${rootHtmlFiles.length} file akan dipindai.`);
-  }
-
-  for (const fullPath of rootHtmlFiles) {
-    await scanHtmlFile(fullPath);
-  }
-}
-
-/**
- * Scan HTML di folder kategori
+ * Scan HTML di folder kategori (Sub-directory)
  */
 async function scanCategoryFolders() {
   for (const category of ALLOWED_CATEGORIES) {
@@ -273,27 +251,44 @@ async function scanHtmlFile(fullPath: string) {
 }
 
 /**
- * Deteksi file -sm.webp dan -md.webp yang yatim.
+ * 🔥 DIPERBAIKI: Deteksi file varian (-sm, -md) yang yatim UNTUK SEMUA EKSTENSI.
  */
-function findOrphanWebpVariants(allImages: ImageFile[]): string[] {
+function findOrphanVariants(allImages: ImageFile[]): string[] {
   const orphanFiles: string[] = [];
-  const allBasenames = new Set(allImages.map((img) => img.basename));
+
+  // Ubah ke lowercase semua supaya pencocokan parent kebal case-sensitive
+  const allBasenamesLower = new Set(allImages.map((img) => img.basename.toLowerCase()));
 
   for (const img of allImages) {
     const lowerName = img.basename.toLowerCase();
+    const ext = path.extname(lowerName);
 
-    for (const suffix of WEBP_VARIANT_SUFFIXES) {
-      const variantEnding = `${suffix}.webp`;
+    // Filter awal: Pastikan ekstensinya kita pantau
+    if (!IMAGE_EXTENSIONS.includes(ext)) continue;
+
+    for (const suffix of VARIANT_SUFFIXES) {
+      const variantEnding = `${suffix}${ext}`;
 
       if (lowerName.endsWith(variantEnding)) {
-        const parentName = img.basename.replace(
-          new RegExp(`${suffix}\\.webp$`, "i"),
-          ".webp"
-        );
+        // Ambil nama dasar tanpa suffix dan ekstensi (misal: "gambar-sm.png" -> "gambar")
+        const lowerRawName = lowerName.slice(0, -variantEnding.length);
 
-        if (!allBasenames.has(parentName)) {
+        let hasParent = false;
+
+        // Cek apakah ada parent dengan ekstensi APAPUN (bisa jadi file.png, file.jpg, file.webp)
+        for (const parentExt of IMAGE_EXTENSIONS) {
+          if (allBasenamesLower.has(`${lowerRawName}${parentExt}`)) {
+            hasParent = true;
+            break;
+          }
+        }
+
+        if (!hasParent) {
           orphanFiles.push(img.fullPath);
         }
+
+        // Kalau sudah dipastikan yatim di satu suffix, nggak usah cek suffix lain untuk gambar ini
+        break;
       }
     }
   }
@@ -302,7 +297,7 @@ function findOrphanWebpVariants(allImages: ImageFile[]): string[] {
 }
 
 async function runCleaner() {
-  console.log("🚀 Memulai Pembersih Gambar V12.1 (Integrasi Array artikel-lite.json)...");
+  console.log("🚀 Memulai Pembersih Gambar (Sub-Folder Only & Multi-Extension Variants)...");
 
   const allImages = getAllPhysicalImages(IMG_FOLDER);
 
@@ -315,32 +310,29 @@ async function runCleaner() {
   // 1. Load perlindungan dari cache srcset
   loadSrcsetCache();
 
-  // 2. 🔥 Load perlindungan khusus -rg dari JSON
+  // 2. Load perlindungan khusus -rg dari JSON
   loadArtikelLite();
 
-  // 3. Scan HTML di Root
-  await scanRootHtmlFiles();
-
-  // 4. Scan HTML di Kategori
+  // 3. Scan HTML HANYA di dalam folder Kategori (Melewati Root)
   await scanCategoryFolders();
 
-  const orphanVariantFiles = findOrphanWebpVariants(allImages);
+  // 4. Deteksi gambar varian dari segala jenis format yang nggak punya parent
+  const orphanVariantFiles = findOrphanVariants(allImages);
 
   if (orphanVariantFiles.length > 0) {
     console.log(
-      `🕵️  Menemukan ${orphanVariantFiles.length} file varian WebP (-sm/-md) yatim.`
+      `🕵️  Menemukan ${orphanVariantFiles.length} file varian (-sm/-md) yatim dari berbagai format.`
     );
   }
 
   // Filter utama: Cek apakah basename gambar fisik ada di Set perlindungan (usedBasenames)
-  // File -rg.webp yang tidak terdaftar di artikel-lite.json akan otomatis terjaring di sini.
   const unusedFromHtml = allImages.filter(
     (img) => !usedBasenames.has(img.basename)
   );
 
   const toDeletePaths = new Set<string>([
     ...unusedFromHtml.map((img) => img.fullPath),
-    ...orphanVariantFiles,
+                                        ...orphanVariantFiles,
   ]);
 
   if (toDeletePaths.size > 0) {
