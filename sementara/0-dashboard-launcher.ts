@@ -70,6 +70,13 @@ const scripts: ScriptItem[] = [
     dangerLevel: "warning"
 },
 {
+    id: "scanner-div",
+    title: "Nyari Urutan Div",
+    description: "memeriksa urutan div",
+    file: "sementara/0-scanner-div.ts",
+    dangerLevel: "warning"
+},
+{
     id: "dynamic-html-cleaner",
     title: "Dynamic HTML Cleaner",
     description: "Scan komponen HTML dalam satu file, lalu hapus elemen yang checkbox-nya dinonaktifkan.",
