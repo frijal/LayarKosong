@@ -207,6 +207,12 @@ Terapkan optimasi berikut:
 
 ---
 
+Siap! Ini adalah draf revisi untuk panduan Anda. Bagian "Layout Container" sudah saya rombak dan kembangkan agar mencakup strategi CSS Variables dan taktik anti *"Padding Inception"* yang elegan.
+
+Anda bisa langsung menyalin seluruh blok di bawah ini untuk menimpa panduan lama Anda:
+
+---
+
 ## 6. DESAIN, CSS & RESPONSIVITAS
 
 Gunakan desain yang bersih, modern, ringan, dan nyaman dibaca.
@@ -215,10 +221,13 @@ Gunakan desain yang bersih, modern, ringan, dan nyaman dibaca.
 
 1. Gunakan CSS murni dengan variabel `:root`.
 2. Gunakan media query:
-
-`@media (prefers-color-scheme: dark) {
+```css
+@media (prefers-color-scheme: dark) {
   ...
-}`
+}
+
+```
+
 
 3. Jangan gunakan JavaScript untuk mengatur tema.
 4. Pastikan tampilan terang dan gelap sama-sama nyaman dibaca.
@@ -227,24 +236,60 @@ Gunakan desain yang bersih, modern, ringan, dan nyaman dibaca.
 
 1. WAJIB patuhi standar WCAG Level AA.
 2. Rasio kontras minimal:
+* 4.5:1 untuk teks utama
+* 3:1 untuk judul
 
-   * 4.5:1 untuk teks utama
-   * 3:1 untuk judul
-3. DILARANG menggunakan warna low-contrast seperti:
 
-   * abu-abu muda di atas putih
-   * abu-abu gelap di atas hitam
-   * warna pastel terlalu tipis untuk teks utama
-4. Pastikan link, tombol, summary accordion, caption, dan footer tetap terbaca jelas.
+3. DILARANG menggunakan warna *low-contrast* seperti:
+* abu-abu muda di atas putih
+* abu-abu gelap di atas hitam
+* warna pastel terlalu tipis untuk teks utama
 
-### Layout Container
 
-Gunakan kontainer utama dengan CSS modern berikut:
+4. Pastikan *link*, tombol, *summary accordion*, *caption*, dan *footer* tetap terbaca jelas.
 
-`width: min(100%, 64rem);
-margin: 0 auto;`
+### Layout Container & Jarak Aman Layar (Padding)
 
-Tambahkan padding responsif berbasis `rem` agar konten tidak menempel ke tepi layar pada perangkat mobile.
+1. Gunakan kontainer utama dengan pembatasan lebar CSS modern berikut:
+```css
+width: min(100%, 64rem);
+margin: 0 auto;
+
+```
+
+
+2. **Wajib terapkan strategi Anti "Padding Inception" (Padding Bertumpuk):** Hindari teks yang menjadi terlalu kurus/sempit di perangkat mobile karena *padding* berlapis (misalnya *padding* pada *container* ditambah *padding* lagi pada *body* artikel).
+3. Gunakan CSS Variables (`:root`) dengan pendekatan *Mobile-First* untuk mengontrol ruang baca secara dinamis dan tersentralisasi:
+```css
+/* Default Mobile: Jarak aman tepi layar (1rem), tanpa padding bertingkat (0rem) */
+:root {
+  --screen-padding: 1rem;
+  --nested-padding: 0rem; 
+}
+
+/* Desktop View: Ruang lebih lega, padding bertingkat diizinkan */
+@media (min-width: 1024px) {
+  :root {
+    --screen-padding: 2.5rem;
+    --nested-padding: 1.5rem; 
+  }
+}
+
+```
+
+
+4. Eksekusi pemanggilan variabel tersebut murni pada elemen kelas target:
+```css
+.container {
+  padding-inline: var(--screen-padding);
+}
+
+/* Otomatis 0 di HP, otomatis 1.5rem di desktop */
+.article-body, .nested-card {
+  padding-inline: var(--nested-padding); 
+}
+
+```
 
 ### Tipografi
 
