@@ -60,65 +60,600 @@
 <meta name="ai:topics" content="Sponsorship Lintas Merek, Dinamika Komunitas Motor, Strategi Event">
 <meta name="ai:prompt_hint" content="Menurut Anda, apakah langkah YVCI Balikpapan ini berani atau nekat? | Bagaimana pandangan Anda tentang sponsor lintas merek dalam acara komunitas? | Apakah fenomena seperti ini akan sering terulang di masa depan?">
 <meta name="ai:summary" content="Jambore Yamaha Vixion se-Kalimantan pada 7 Mei 2016 menjadi heboh karena disponsori oleh Honda, kompetitor utama Yamaha. Fenomena ini dianggap melawan tradisi &quot;adat permotoran&quot; namun juga menunjukkan pragmatisme komunitas dalam mencari dukungan untuk acara.">
-    <style>
-        :root {
-            color-scheme: light dark;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Segoe UI", system-ui, sans-serif;
-            line-height: 1.7;
-            background: light-dark(#ffffff, #111111);
-            color: light-dark(#222, #e5e5e5);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .container {
-            width: 100%;
-            max-width: 900px;
-            margin: auto;
-            padding: 2rem 1.5rem;
-            flex: 1;
-        }
-        h1, h2 {
-            font-weight: 700;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 3rem;
-        }
-        img.responsive {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin: 2rem 0;
-            display: block;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            loading: lazy;
-        }
-        p.date {
-            text-align: center;
-            font-style: italic;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        footer {
-            margin-top: auto;
-            padding: 2rem 0;
-            border-top: 1px solid light-dark(#ccc, #333);
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: .8;
-        }
-    </style>
+   <style>
+  /* ===== CSS Variables: Mobile First ===== */
+  :root {
+    color-scheme: light;
+
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-soft: #eef2f7;
+
+    --text-primary: #111827;
+    --text-secondary: #334155;
+    --text-muted: #475569;
+    --heading-color: #0f172a;
+
+    --accent: #1d4ed8;
+    --accent-hover: #1e40af;
+    --accent-text: #ffffff;
+
+    --border-color: #cbd5e1;
+
+    --footer-text: #475569;
+
+    --shadow-card: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
+    --shadow-image: 0 0.5rem 1.5rem rgba(15, 23, 42, 0.12);
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+
+    --max-width: 64rem;
+
+    --screen-padding: 1rem;
+    --nested-padding: 0rem;
+
+    --space-2xs: 0.25rem;
+    --space-xs: 0.35rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.25rem;
+    --space-2xl: 1.5rem;
+    --space-3xl: 2rem;
+    --space-4xl: 2.5rem;
+    --space-5xl: 3rem;
+
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+  }
+
+  @media (min-width: 64rem) {
+    :root {
+      --screen-padding: 2.5rem;
+      --nested-padding: 1.5rem;
+    }
+  }
+
+  /* ===== Dark Mode ===== */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+
+      --bg-body: #0f172a;
+      --bg-card: #172033;
+      --bg-soft: #1f2937;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #d1d5db;
+      --text-muted: #cbd5e1;
+      --heading-color: #ffffff;
+
+      --accent: #93c5fd;
+      --accent-hover: #dbeafe;
+      --accent-text: #0f172a;
+
+      --border-color: #475569;
+
+      --footer-text: #cbd5e1;
+
+      --shadow-card: 0 1rem 2.5rem rgba(0, 0, 0, 0.38);
+      --shadow-image: 0 0.75rem 2rem rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  /* ===== Reset & Base ===== */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    line-height: 1.75;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (min-width: 64rem) {
+    body {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* ===== Container ===== */
+  .container {
+    width: min(100%, var(--max-width));
+    margin: 0 auto;
+    padding-inline: var(--screen-padding);
+    padding-block: var(--space-2xl) var(--space-5xl);
+  }
+
+  article,
+  .article-body,
+  .nested-card {
+    background: var(--bg-card);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    padding-block: var(--space-3xl);
+    padding-inline: var(--nested-padding);
+  }
+
+  /* ===== Typography ===== */
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--heading-color);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+    font-weight: 800;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    margin-block-end: var(--space-lg);
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-block: var(--space-4xl) var(--space-lg);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 750;
+    margin-block: var(--space-2xl) var(--space-md);
+  }
+
+  h4 {
+    font-size: 1.05rem;
+    font-weight: 750;
+    margin-block: var(--space-xl) var(--space-sm);
+  }
+
+  @media (min-width: 64rem) {
+    h1 {
+      font-size: 2.35rem;
+    }
+
+    h2 {
+      font-size: 1.65rem;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+    }
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-block-end: var(--space-lg);
+  }
+
+  p.date {
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    font-size: 1rem;
+    margin-block-end: var(--space-3xl);
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+    font-weight: 800;
+  }
+
+  .arabic,
+  [lang="ar"] {
+    font-family: var(--font-arabic);
+    font-size: 1.35em;
+    line-height: 2;
+  }
+
+  /* ===== Links & Focus ===== */
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--accent-hover);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  .button:focus-visible,
+  .btn:focus-visible,
+  summary:focus-visible {
+    outline: 0.18rem solid var(--accent);
+    outline-offset: 0.2rem;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===== Buttons ===== */
+  button,
+  .button,
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: var(--accent);
+    color: var(--accent-text);
+    border: 0.0625rem solid transparent;
+    border-radius: var(--radius-md);
+    padding-block: var(--space-sm);
+    padding-inline: var(--space-lg);
+    font: inherit;
+    font-weight: 800;
+    line-height: 1.4;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  button:hover,
+  .button:hover,
+  .btn:hover {
+    background: var(--accent-hover);
+    color: var(--accent-text);
+    text-decoration: none;
+  }
+
+  /* ===== Images ===== */
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  img.responsive {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background: var(--bg-soft);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-image);
+    margin-block: var(--space-3xl);
+    margin-inline: auto;
+  }
+
+  figure {
+    margin-block: var(--space-3xl);
+  }
+
+  figcaption,
+  .caption {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-block-start: var(--space-sm);
+  }
+
+  /* ===== Lists ===== */
+  ul,
+  ol {
+    color: var(--text-secondary);
+    margin-block: var(--space-md) var(--space-xl);
+    padding-inline-start: 1.5rem;
+  }
+
+  li {
+    margin-block-end: var(--space-sm);
+  }
+
+  li::marker {
+    color: var(--accent);
+  }
+
+  /* ===== Blockquote ===== */
+  blockquote {
+    background: var(--bg-soft);
+    color: var(--text-secondary);
+    border-inline-start: 0.25rem solid var(--accent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding-block: var(--space-lg);
+    padding-inline: var(--space-xl);
+    margin-block: var(--space-2xl);
+  }
+
+  blockquote p:last-child {
+    margin-block-end: 0;
+  }
+
+  /* ===== Table Wrap ===== */
+  .table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg);
+    margin-block: var(--space-2xl);
+  }
+
+  table {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    font-size: 0.95rem;
+  }
+
+  th,
+  td {
+    color: var(--text-primary);
+    text-align: start;
+    border-block-end: 0.0625rem solid var(--border-color);
+    padding-block: var(--space-md);
+    padding-inline: var(--space-lg);
+  }
+
+  th {
+    background: var(--bg-soft);
+    color: var(--heading-color);
+    font-weight: 800;
+  }
+
+  tr:last-child td {
+    border-block-end: none;
+  }
+
+  /* ===== Details / Summary Accordion ===== */
+  details {
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    margin-block: var(--space-2xl);
+  }
+
+  details[open] {
+    border-color: var(--accent);
+  }
+
+  summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    list-style: none;
+    user-select: none;
+    background: var(--bg-soft);
+    color: var(--heading-color);
+    padding-block: var(--space-lg);
+    padding-inline: var(--space-xl);
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.45;
+  }
+
+  summary:hover {
+    color: var(--accent);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::before {
+    content: "▸";
+    flex-shrink: 0;
+    display: inline-block;
+    color: var(--accent);
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  details > *:not(summary) {
+    padding-inline: var(--space-xl);
+  }
+
+  details > :last-child {
+    padding-block-end: var(--space-xl);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    color: var(--footer-text);
+    border-block-start: 0.0625rem solid var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+    padding-block: var(--space-2xl);
+    margin-block-start: var(--space-5xl);
+  }
+
+  footer p {
+    color: var(--footer-text);
+    margin-block-end: var(--space-sm);
+  }
+
+  footer a {
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  /* ===== Mobile Melt Effect: Anti Padding Inception ===== */
+  @media (max-width: 40rem) {
+    .container {
+      padding-block: var(--space-xl) var(--space-3xl);
+    }
+
+    article,
+    .article-body,
+    .nested-card {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding-block: var(--space-lg);
+      padding-inline: var(--nested-padding);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p.date {
+      font-size: 0.95rem;
+      margin-block-end: var(--space-2xl);
+    }
+
+    img.responsive {
+      border-radius: var(--radius-md);
+      margin-block: var(--space-2xl);
+    }
+
+    blockquote {
+      padding-inline: var(--space-lg);
+    }
+
+    .table-wrap {
+      margin-inline: calc(var(--screen-padding) * -1);
+      border-inline: none;
+      border-radius: 0;
+    }
+
+    summary {
+      font-size: 1rem;
+      padding-block: var(--space-md);
+      padding-inline: var(--space-lg);
+    }
+
+    details > *:not(summary) {
+      padding-inline: var(--space-lg);
+    }
+
+    footer {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 25rem) {
+    h1 {
+      font-size: 1.55rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* ===== Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+
+  /* ===== Print Friendly ===== */
+  @media print {
+    :root {
+      --bg-body: #ffffff;
+      --bg-card: #ffffff;
+      --bg-soft: #f3f4f6;
+
+      --text-primary: #000000;
+      --text-secondary: #1f2937;
+      --text-muted: #1f2937;
+      --heading-color: #000000;
+
+      --accent: #111827;
+      --accent-hover: #000000;
+      --accent-text: #ffffff;
+
+      --border-color: #9ca3af;
+
+      --footer-text: #000000;
+
+      --shadow-card: none;
+      --shadow-image: none;
+    }
+
+    body {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: underline;
+    }
+
+    article,
+    .article-body,
+    .nested-card,
+    img.responsive,
+    figure,
+    blockquote,
+    details,
+    .table-wrap,
+    footer {
+      box-shadow: none;
+      break-inside: avoid;
+    }
+  }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <div class="container">
@@ -127,24 +662,24 @@
         <p>Yo bro bikers sekalian, inget tidak sama momen legendaris ini di Balikpapan? 🔥 Acara Jambore Yamaha Vixion se-Kalimantan (Jambore Borneo YVCI) yang digelar tahun 2016 mendadak jadi bahan omongan di seluruh komunitas motor Indonesia. Bayangin aja: acara komunitas Vixion yang identik sangat sama Yamaha, eh sponsor utamanya malah. Honda! 😱</p>
         <p>Fenomena ini bikin kaget banyak orang, karena biasanya komunitas motor tuh super loyal sama brand-nya. Acara berbasis Yamaha ya sponsor Yamaha, Honda ya Honda. Tapi kali ini beda — atribut Honda mendominasi area acara, dari banner besar sampai aktivasi khas Wing merah. Kondisi keunikan kemitraan tersebut memicu atensi luas di berbagai platform digital, serta mengundang analisis komparatif dari kalangan pengamat otomotif. 🤔😂</p>
 <div style="text-align: center; display: block; margin: 15px auto;">
-  <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh355dBg7-wMnvGFFqT0VtL3piI7d_-jxIFJOBq5qEXrvEe01uhpkHQvemthO095_TJDKDyGNzJ9C9McyITA5Ju_8g9yJ5f3oLejJTBeY3T0xskLobW7_iockisS1ZTwgL-AzLRCWd5s-NjU4NqNEK01qxKD6cksqg9SXjLSgZ6ZiEnkJlD1tnoKRu2vm8/s1600/vixionhonda.webp" alt="Banner dan atribut Honda mendominasi di Jambore Vixion Balikpapan 2016" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh355dBg7-wMnvGFFqT0VtL3piI7d_-jxIFJOBq5qEXrvEe01uhpkHQvemthO095_TJDKDyGNzJ9C9McyITA5Ju_8g9yJ5f3oLejJTBeY3T0xskLobW7_iockisS1ZTwgL-AzLRCWd5s-NjU4NqNEK01qxKD6cksqg9SXjLSgZ6ZiEnkJlD1tnoKRu2vm8/s1600/vixionhonda.webp" alt="Banner dan atribut Honda mendominasi di Jambore Vixion Balikpapan 2016" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
   <br><small style="color:#666; font-style:italic;">Banner dan atribut Honda mendominasi di Jambore Vixion Balikpapan 2016</small>
 </div>
         <p><em>Banner Honda gede-gedean di acara Vixion — klasik banget momen ini! 📸</em></p>
         <p>Acara berlangsung meriah di halaman Gedung Kesenian Balikpapan. Meskipun sponsor lintas brand, suasananya tetep heboh dan ramai bikers dari berbagai chapter YVCI. Ada yang bilang Panitia penyelenggara menginisiasi kolaborasi lintas brand guna memastikan ketersediaan alokasi anggaran operasional kegiatan., apalagi ngadain jambore butuh biaya besar: panggung, izin, konsumsi, doorprize, dll. Spekulasi ini masuk akal sih, daripada acara batal mending jalan terus kan? 💪</p>
 <div style="text-align: center; display: block; margin: 15px auto;">
-  <img src="/img/proud2ride.wordpress.com/wp-content/uploads/2016/05/img_4454.webp" alt="Suasana keramaian Jambore Vixion dengan sponsor Honda" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  <img src="https://dalam.web.id/img/proud2ride.wordpress.com/wp-content/uploads/2016/05/img_4454.webp" alt="Suasana keramaian Jambore Vixion dengan sponsor Honda" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
   <br><small style="color:#666; font-style:italic;">Suasana keramaian Jambore Vixion dengan sponsor Honda</small>
 </div>
         <p><em>Keramaian bikers Vixion di lokasi — meski sponsor Honda, tetep seru! 🏍️</em></p>
         <p>Honda sendiri keliatan santai. Mereka emang terkenal aktif dukung komunitas, bahkan yang bukan "keluarga" mereka. Contohnya di Honda Bikers Day, bikers Yamaha atau brand lain boleh sangat ikut meramaikan. Jadi ini kayak balasan gitu, haha. Di satu sisi bikin acara lebih megah, di sisi lain ya jadi bahan gunjingan lucu bagi penggemar yang sangat loyal Vixion. 😄</p>
 <div style="text-align: center; display: block; margin: 15px auto;">
-  <img src="/img/proud2ride.wordpress.com/wp-content/uploads/2016/05/img_4455.webp" alt="Foto lain suasana Jambore YVCI Borneo dengan sponsor Honda" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  <img src="https://dalam.web.id/img/proud2ride.wordpress.com/wp-content/uploads/2016/05/img_4455.webp" alt="Foto lain suasana Jambore YVCI Borneo dengan sponsor Honda" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
   <br><small style="color:#666; font-style:italic;">Foto lain suasana Jambore YVCI Borneo dengan sponsor Honda</small>
 </div>
         <p><em>Salah satu sudut acara yang nunjukin betapa ramainya! 🔥</em></p>
 <div style="text-align: center; display: block; margin: 15px auto;">
-  <img src="/img/proud2ride.wordpress.com/wp-content/uploads/2016/05/img_4456-0.webp" alt="Banner sponsor Honda jelas terlihat di Jambore Vixion" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  <img src="https://dalam.web.id/img/proud2ride.wordpress.com/wp-content/uploads/2016/05/img_4456-0.webp" alt="Banner sponsor Honda jelas terlihat di Jambore Vixion" style="width: 100%; height: auto; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
   <br><small style="color:#666; font-style:italic;">Banner sponsor Honda jelas terlihat di Jambore Vixion</small>
 </div>
         <p><em>Zoom in ke banner-nya — Honda banget kan? 😂</em></p>
