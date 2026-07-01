@@ -62,118 +62,240 @@
     <meta property="article:modified_time" content="2026-05-23T03:19:16.218Z">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
+    /* ==========================================
+       1. FONDASI & RESET (Kawasan Bebas PX)
+       ========================================== */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        /* Biarkan browser mengatur base font-size untuk aksesibilitas */
+    }
+
+    /* ==========================================
+       2. VARIABEL TEMA & MOBILE-FIRST LAYOUT
+       ========================================== */
+    :root {
+        /* Strategi Ruang Dinamis (Default Layar HP) */
+        --screen-padding: 1rem;
+        --nested-padding: 0rem;
+        --radius: 0.5rem;
+
+        /* Tipografi System Stack */
+        --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+
+        /* TEMA TERANG (Dikalibrasi Ketat untuk WCAG AA) */
+        color-scheme: light;
+        --bg-main: #eef2f6;
+        --bg-card: #ffffff;
+        --bg-alt: #f8f9fa;
+        --text-primary: #1e293b;    /* Kontras ~11:1 */
+        --text-secondary: #475569;  /* Kontras ~5.7:1 */
+        --accent-color: #026ada;    /* Biru ditebalkan - Kontras ~5.6:1 di atas putih */
+        --border-color: #e2e8f0;
+    }
+
+    /* Setelan Desktop: Ruang bernapas ekstra diizinkan bertumpuk */
+    @media (min-width: 64rem) { /* Setara 1024px */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #2c3e50;
-            --accent-color: #3498db;
-            --secondary-bg: #f8f9fa;
-            --border-color: #e0e0e0;
-            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --screen-padding: 2.5rem;
+            --nested-padding: 1.5rem;
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #1a1a1a;
-                --text-color: #e0e0e0;
-                --accent-color: #5dade2;
-                --secondary-bg: #2d2d2d;
-                --border-color: #404040;
-            }
+    }
+
+    /* TEMA GELAP (Dikelola 100% dari Variabel) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color-scheme: dark;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-alt: #27364b;
+            --text-primary: #f1f5f9;    /* Kontras ~13:1 */
+            --text-secondary: #cbd5e1;  /* Kontras ~6.8:1 */
+            --accent-color: #60a5fa;    /* Biru dicerahkan - Kontras ~4.9:1 di background gelap */
+            --border-color: #334155;
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+    }
+
+    /* ==========================================
+       3. BODY & TYPOGRAPHY UTAMA
+       ========================================== */
+    body {
+        font-family: var(--font-stack);
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        font-size: 1.125rem; /* Rekomendasi body text yang nyaman */
+        line-height: 1.78;
+        /* Padding pada body dihapus total agar tidak memicu inception */
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Kelas Khusus Teks Arab */
+    .arabic-text {
+        font-family: var(--font-arabic);
+        font-size: 1.5rem;
+        line-height: 2.2;
+    }
+
+    /* ==========================================
+       4. LAYOUT PRO & ANTI PADDING-INCEPTION
+       ========================================== */
+    .container {
+        width: min(100%, 64rem);
+        margin-inline: auto; /* Properti Logis pengganti margin: 0 auto */
+        padding-inline: var(--screen-padding);
+        padding-block: 2rem;
+    }
+
+    header {
+        border-block-end: 0.0625rem solid var(--border-color);
+        padding-block-end: 1.5rem;
+        margin-block-end: 2rem;
+        text-align: start; /* Properti logis untuk rata teks */
+    }
+
+    /* Target eksekusi padding berlapis */
+    .article-body, .nested-card {
+        background-color: var(--bg-card);
+        padding-inline: var(--nested-padding);
+        padding-block: var(--nested-padding);
+        border-radius: var(--radius);
+        border: 0.0625rem solid var(--border-color);
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.04);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Efek Sulap "Melebur" di HP (<= 640px) */
+    @media (max-width: 40rem) {
+        .article-body, .nested-card {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding-block: 0rem;
         }
-        body {
-            font-family: var(--font-main);
-            line-height: 1.8;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            padding: 0 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: var(--bg-color);
-        }
-        header {
-            padding: 40px 0;
-            border-bottom: 1px solid var(--border-color);
-            text-align: left;
-        }
-        h1 {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-        }
-        h2 {
-            font-size: 1.8rem;
-            margin: 40px 0 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent-color);
-        }
-        h3 {
-            font-size: 1.4rem;
-            margin: 30px 0 15px;
-            color: var(--accent-color);
-        }
-        p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        .main-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 20px 0;
-            display: block;
-            object-fit: cover;
-            background-color: var(--secondary-bg);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 1rem;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            text-align: left;
-        }
-        th {
-            background-color: var(--secondary-bg);
-        }
-        .faq-item {
-            background-color: var(--secondary-bg);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .faq-item strong {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--accent-color);
-        }
-        footer {
-            margin-top: 60px;
-            padding: 40px 0;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        /* Core Web Vitals Optimization: Content Visibility */
-        article section {
-            content-visibility: auto;
-            contain-intrinsic-size: 1px 500px;
-        }
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-            body { padding: 0 15px; }
-        }
-    </style>
+    }
+
+    /* ==========================================
+       5. HIERARKI HEADING & KONTEN TEKS
+       ========================================== */
+    h1, h2, h3 {
+        line-height: 1.25;
+        letter-spacing: -0.015em;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        margin-block-end: 1.25rem;
+        color: var(--accent-color);
+        font-weight: 800;
+    }
+
+    h2 {
+        font-size: clamp(1.4rem, 3vw, 1.8rem);
+        margin-block-start: 2.5rem;
+        margin-block-end: 1.25rem;
+        padding-block-end: 0.625rem;
+        border-block-end: 0.125rem solid var(--accent-color);
+        color: var(--text-primary);
+        font-weight: 700;
+    }
+
+    h3 {
+        font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+        margin-block-start: 1.875rem;
+        margin-block-end: 0.875rem;
+        color: var(--accent-color);
+        font-weight: 600;
+    }
+
+    p {
+        margin-block-end: 1.25rem;
+        color: var(--text-secondary);
+        text-align: justify;
+    }
+
+    a {
+        color: var(--accent-color);
+        text-decoration: underline;
+        text-underline-offset: 0.15rem;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    /* ==========================================
+       6. KOMPONEN SPESIFIK (Tabel, FAQ, Gambar)
+       ========================================== */
+    .main-image {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius);
+        margin-block: 1.25rem;
+        display: block;
+        object-fit: cover;
+        background-color: var(--bg-alt);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-block: 1.25rem;
+        font-size: 1rem;
+    }
+
+    th, td {
+        padding-inline: 0.75rem;
+        padding-block: 0.75rem;
+        border: 0.0625rem solid var(--border-color);
+        text-align: start; /* Properti logis untuk align-left */
+        color: var(--text-secondary);
+    }
+
+    th {
+        background-color: var(--bg-alt);
+        color: var(--text-primary);
+        font-weight: 700;
+    }
+
+    .faq-item {
+        background-color: var(--bg-alt);
+        padding-inline: 1.25rem;
+        padding-block: 1.25rem;
+        border-radius: var(--radius);
+        margin-block-end: 1rem;
+        border: 0.0625rem solid var(--border-color);
+    }
+
+    .faq-item strong {
+        display: block;
+        margin-block-end: 0.625rem;
+        color: var(--accent-color);
+    }
+
+    /* Optimasi Performa Rendering */
+    article section {
+        content-visibility: auto;
+        contain-intrinsic-size: 1rem 30rem; /* Pengganti nilai px absolut */
+    }
+
+    /* ==========================================
+       7. FOOTER
+       ========================================== */
+    footer {
+        margin-block-start: 3.75rem;
+        padding-block-start: 2.5rem;
+        border-block-start: 0.0625rem solid var(--border-color);
+        text-align: center;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <div class="container">
