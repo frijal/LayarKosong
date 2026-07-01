@@ -65,211 +65,261 @@
     <!-- Canonical & Other -->
     <!-- Critical CSS + Dark Mode Support -->
     <style>
-        /* Reset & base – minimal layout shift */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    /* ==========================================
+       1. FONDASI & RESET (BEBAS PX)
+       ========================================== */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        /* Biarkan browser mengatur base font-size untuk aksesibilitas maksimal */
+    }
+
+    /* ==========================================
+       2. VARIABEL TEMA & MOBILE-FIRST LAYOUT
+       ========================================== */
+    :root {
+        /* Strategi Ruang Dinamis (Default Layar HP) */
+        --screen-padding: 1rem;
+        --nested-padding: 0rem;
+        --radius: 0.75rem;
+
+        /* Tipografi System Stack & Teks Arab */
+        --font-base: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+        --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+
+        /* TEMA TERANG (Ketat WCAG AA) */
+        color-scheme: light;
+        --bg-body: #f8f9fa;
+        --bg-card: #ffffff;
+        --text-main: #1a1e24;       /* Kontras ~14:1 */
+        --text-heading: #000000;
+        --text-muted: #4b5563;      /* Kontras ~6.8:1 */
+        --accent: #b91c1c;          /* Merah Crimson - Kontras ~6.5:1 */
+        --accent-hover: #8b1a1a;
+        --border: #e2e8f0;
+
+        /* Komponen Spesifik */
+        --tip-bg: #fdf2f2;
+        --tip-border: #ef4444;
+        --tip-text: #7f1d1d;
+        --code-bg: #f1f5f9;
+        --code-text: #0f172a;
+    }
+
+    /* Setelan Desktop: Ruang bernapas diizinkan bertumpuk */
+    @media (min-width: 64rem) { /* ~1024px */
+        :root {
+            --screen-padding: 2.5rem;
+            --nested-padding: 1.5rem;
         }
-        /* System font stack, rem-based */
-        html {
-            font-size: 100%; /* 1rem = 16px base, scaling with browser */
-            scroll-behavior: smooth;
+    }
+
+    /* TEMA GELAP (Dikelola 100% dari Variabel) */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color-scheme: dark;
+            --bg-body: #0f1117;
+            --bg-card: #1e293b;
+            --text-main: #e2e8f0;       /* Kontras ~11:1 */
+            --text-heading: #f8fafc;
+            --text-muted: #94a3b8;      /* Kontras ~5.2:1 */
+            --accent: #f87171;          /* Merah Terang - Kontras ~5.1:1 di background gelap */
+            --accent-hover: #fca5a5;
+            --border: #334155;
+
+            /* Komponen Spesifik Gelap */
+            --tip-bg: #3f1616;
+            --tip-border: #ef4444;
+            --tip-text: #fee2e2;
+            --code-bg: #0f172a;
+            --code-text: #e2e8f0;
         }
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
-            line-height: 1.5;
-            background-color: #fefefe;
-            color: #1a1e24;
-            padding: 1rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* ==========================================
+       3. BODY & TYPOGRAPHY
+       ========================================== */
+    body {
+        font-family: var(--font-base);
+        font-size: 1.125rem; /* Rekomendasi ruang baca nyaman */
+        line-height: 1.75;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .arabic-text {
+        font-family: var(--font-arabic);
+        font-size: 1.5rem;
+        line-height: 2.2;
+    }
+
+    h1, h2, h3 {
+        color: var(--text-heading);
+        line-height: 1.25;
+        margin-block-start: 2rem;
+        margin-block-end: 1rem;
+        letter-spacing: -0.01em;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        margin-block-start: 1rem;
+        font-weight: 800;
+    }
+
+    h2 {
+        font-size: clamp(1.4rem, 3vw, 1.75rem);
+        margin-block-start: 2.5rem;
+        font-weight: 700;
+        border-inline-start: 0.35rem solid var(--accent);
+        padding-inline-start: 1rem;
+    }
+
+    h3 {
+        font-size: clamp(1.2rem, 2.5vw, 1.375rem);
+        margin-block-start: 1.5rem;
+        font-weight: 600;
+    }
+
+    p {
+        margin-block-end: 1.25rem;
+    }
+
+    a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 0.2rem;
+        text-decoration-thickness: 0.125rem;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    a:hover {
+        color: var(--accent-hover);
+    }
+
+    strong, b {
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    /* ==========================================
+       4. LAYOUT PRO & ANTI PADDING-INCEPTION
+       ========================================== */
+    .container {
+        width: min(100%, 64rem);
+        margin-inline: auto;
+        padding-inline: var(--screen-padding);
+        padding-block: 2rem;
+    }
+
+    .article-body, .nested-card {
+        background-color: var(--bg-card);
+        padding-inline: var(--nested-padding);
+        padding-block: var(--nested-padding);
+        border-radius: var(--radius);
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.04);
+        border: 0.0625rem solid var(--border);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Efek Sulap "Melebur" di HP (<= 640px) */
+    @media (max-width: 40rem) {
+        .article-body, .nested-card {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding-block: 0rem;
         }
-        /* Container dengan max-width 64rem (1024px) dan mobile-first */
-        .container {
-            max-width: 64rem;
-            width: 100%;
-            margin: 0 auto;
-        }
-        /* Typography pure rem */
-        h1 {
-            font-size: 2rem;
-            line-height: 1.2;
-            margin: 1rem 0 0.75rem 0;
-            font-weight: 800;
-            letter-spacing: -0.01em;
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin: 1.5rem 0 0.75rem 0;
-            font-weight: 700;
-            border-left: 0.25rem solid #c52828;
-            padding-left: 1rem;
-        }
-        h3 {
-            font-size: 1.25rem;
-            margin: 1.25rem 0 0.5rem 0;
-            font-weight: 600;
-        }
-        p {
-            margin-bottom: 1.25rem;
-            font-size: 1rem;
-        }
-        a {
-            color: #c52828;
-            text-decoration: underline;
-            text-underline-offset: 0.2rem;
-        }
-        a:hover {
-            color: #8b1a1a;
-        }
-        /* List styling natural */
-        ul, ol {
-            margin: 1rem 0 1.5rem 1.5rem;
-        }
-        li {
-            margin: 0.5rem 0;
-        }
-        strong {
-            font-weight: 700;
-            color: #b91c1c;
-        }
-        /* Gambar full container width tanpa crop asli, dengan CLS prevention */
-        .figure-wrapper {
-            margin: 2rem 0;
-            width: 100%;
-            background: #e9ecef;
-            border-radius: 0.75rem;
-            overflow: hidden;
-        }
-        .responsive-img {
-            display: block;
-            width: 100%;
-            height: auto;
-            /* Tidak memotong gambar, aspect ratio alami dari gambar dipertahankan */
-            background: #f1f3f5;
-        }
-        /* Untuk container gambar yang perlu rasio tetap supaya CLS minimal,
-           kita bungkus dengan div yang punya aspect-ratio berdasarkan gambar
-           (asumsi rasio 16/9 dari thumbnail.webp, tapi tidak memotong isi).
-           Agar tidak crop, img pakai contain dengan background netral */
-        .img-ratio-guard {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #f0f2f5;
-            border-radius: 0.75rem;
-            overflow: hidden;
-        }
-        .img-ratio-guard img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;  /* Menjaga rasio asli, tidak terpotong */
-            object-position: center;
-            background: #f8f9fa;
-        }
-        /* blockquote / kutipan */
-        .tip-box {
-            background: #f8f0e6;
-            border-left: 0.25rem solid #c52828;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0.5rem;
-        }
-        /* Footer inline E-E-A-T */
-        footer {
-            margin-top: 3rem;
-            padding: 1.5rem 0 2rem;
-            border-top: 0.0625rem solid #ddd;
-            text-align: center;
-            font-size: 0.875rem;
-        }
-        .footer-meta {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            align-items: baseline;
-            row-gap: 0.5rem;
-        }
-        .footer-meta span, .footer-meta time, .footer-meta address {
-            font-style: normal;
-            color: #4b5563;
-        }
-        /* Grid & response div (tanpa styling inline, biarkan kosong) */
-        #related-articles-grid, #response {
-            margin: 2rem 0;
-        }
-        /* Dark mode (prefers-color-scheme) */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #0f1117;
-                color: #e2e8f0;
-            }
-            .img-ratio-guard {
-                background-color: #1e293b;
-            }
-            .tip-box {
-                background-color: #1e293b;
-                border-left-color: #e05a5a;
-                color: #f1f5f9;
-            }
-            a {
-                color: #f97373;
-            }
-            a:hover {
-                color: #ffb4a2;
-            }
-            strong {
-                color: #ff8a8a;
-            }
-            footer {
-                border-top-color: #2d3748;
-            }
-            .footer-meta span, .footer-meta time, .footer-meta address {
-                color: #94a3b8;
-            }
-        }
-        /* Responsive touch */
-        @media (max-width: 48rem) {
-            body {
-                padding: 0.75rem;
-            }
-            h1 {
-                font-size: 1.75rem;
-            }
-            h2 {
-                font-size: 1.35rem;
-            }
-        }
-        /* code highlight jika ada */
-        pre {
-            background: #f1f3f5;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            font-size: 0.9rem;
-            margin: 1.5rem 0;
-        }
-        @media (prefers-color-scheme: dark) {
-            pre {
-                background: #1a1e2a;
-                color: #cbd5e6;
-            }
-        }
-        /* tombol dummy tidak diperlukan, tapi aksesibilitas */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-        }
-    </style>
+    }
+
+    /* ==========================================
+       5. KOMPONEN UI & MEDIA
+       ========================================== */
+    ul, ol {
+        margin-block-end: 1.5rem;
+        padding-inline-start: 1.5rem;
+    }
+
+    li {
+        margin-block: 0.5rem;
+    }
+
+    /* Pencegahan CLS untuk Gambar */
+    .img-ratio-guard {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-block-end: 2rem;
+    }
+
+    .img-ratio-guard img {
+        position: absolute;
+        inset: 0; /* Pengganti modern untuk top: 0, left: 0, dll */
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background-color: var(--bg-card);
+    }
+
+    .tip-box {
+        background-color: var(--tip-bg);
+        border-inline-start: 0.35rem solid var(--tip-border);
+        padding-inline: 1.5rem;
+        padding-block: 1.25rem;
+        margin-block: 1.5rem;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        color: var(--tip-text);
+    }
+
+    pre {
+        background-color: var(--code-bg);
+        color: var(--code-text);
+        padding-inline: 1.25rem;
+        padding-block: 1.25rem;
+        border-radius: var(--radius);
+        overflow-x: auto;
+        margin-block-end: 1.5rem;
+        font-family: ui-monospace, 'SF Mono', 'Fira Code', monospace;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* ==========================================
+       6. FOOTER E-E-A-T INLINE
+       ========================================== */
+    footer {
+        margin-block-start: 4rem;
+        padding-block-start: 2rem;
+        border-block-start: 0.0625rem solid var(--border);
+        text-align: center;
+        font-size: 0.875rem; /* Sesuai panduan 0.85rem - 0.9rem */
+        color: var(--text-muted);
+    }
+
+    .footer-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        align-items: baseline;
+    }
+
+    .footer-meta span, .footer-meta time, .footer-meta address {
+        font-style: normal;
+        color: var(--text-muted);
+    }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <main class="container">
