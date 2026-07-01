@@ -126,7 +126,7 @@ Gunakan aturan berikut untuk semua gambar:
 
 1. Gunakan semua URL gambar yang ada di dalam [OUTLINE].
 2. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini:
-   `https://dalam.web.id/thumbnail.webp`
+   `https://dalam.web.id/img/thumbnail.webp`
 3. Gambar pertama di artikel adalah elemen LCP.
 4. Gambar pertama WAJIB diletakkan setelah beberapa paragraf pembuka, bukan sebagai hero image raksasa di paling atas.
 5. Semua gambar harus tampil full container width dengan CSS:
@@ -135,7 +135,6 @@ Gunakan aturan berikut untuk semua gambar:
 7. Jangan membuat gambar melar, gepeng, atau terpotong secara tidak natural.
 8. Semua tag `<img>` WAJIB memiliki atribut `alt` yang deskriptif.
 9. Untuk mencegah CLS, setiap gambar WAJIB memiliki salah satu dari:
-
    * atribut `width` dan `height`, atau
    * styling `aspect-ratio` yang sesuai.
 10. Gunakan `loading="lazy"` untuk gambar selain gambar pertama.
