@@ -65,247 +65,693 @@
     <meta property="article:tag" content="Daun Sirsak">
     <meta property="article:published_time" content="2026-04-03T08:55:40.000Z">
     <meta property="article:modified_time" content="2026-04-03T08:55:40.000Z">
-    <!-- Meta SEO & E-E-A-T -->
     <meta name="keywords" content="herbal darah tinggi, tekanan darah tinggi alami, daun seledri, bawang putih, daun salam, belimbing wuluh, mentimun, pegagan, daun sirsak, hipertensi">
-    <!-- Canonical URL -->
-    <!-- Open Graph / Facebook -->
-    <!-- Twitter Card -->
-    <!-- Article Tags (variasi) -->
-    <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
-        /* RESET & GLOBAL - tanpa tailwind, tanpa hero, tanpa ARIA */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        /* Tema terang (default) */
-        :root {
-            --bg-body: #ffffff;
-            --text-primary: #1f2937;
-            --text-secondary: #374151;
-            --heading-color: #111827;
-            --card-bg: #f9fafb;
-            --border-light: #e5e7eb;
-            --link-color: #2563eb;
-            --link-hover: #1d4ed8;
-            --footer-bg: #f3f4f6;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --blockquote-border: #e5e7eb;
-        }
-        /* Tema gelap (prefers-color-scheme) - tanpa JavaScript */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-body: #121212;
-                --text-primary: #e5e7eb;
-                --text-secondary: #d1d5db;
-                --heading-color: #f9fafb;
-                --card-bg: #1e293b;
-                --border-light: #334155;
-                --link-color: #60a5fa;
-                --link-hover: #93c5fd;
-                --footer-bg: #0f172a;
-                --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-                --blockquote-border: #334155;
-            }
-        }
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-primary);
-        }
-        /* Layout 1 kolom, max-width 1000px, tengah */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 1.5rem 1.25rem;
-        }
-        /* Tipografi */
-        h1 {
-            font-size: 1.9rem;
-            line-height: 1.2;
-            margin-bottom: 0.75rem;
-            font-weight: 800;
-            color: var(--heading-color);
-            letter-spacing: -0.01em;
-        }
-        h2 {
-            font-size: 1.7rem;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-            color: var(--heading-color);
-            border-left: 5px solid var(--link-color);
-            padding-left: 1rem;
-        }
-        h3 {
-            font-size: 1.4rem;
-            margin: 1.5rem 0 0.5rem;
-            font-weight: 600;
-            color: var(--heading-color);
-        }
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        a:hover {
-            color: var(--link-hover);
-            text-decoration: underline;
-        }
-        /* Daftar herbal */
-        .herbal-list {
-            list-style: none;
-            margin: 1.5rem 0;
-            padding: 0;
-        }
-        .herbal-item {
-            background: var(--card-bg);
-            border-radius: 1rem;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 1.2rem;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.1s ease;
-        }
-        .herbal-item h3 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-        .herbal-item p {
-            margin-bottom: 0.3rem;
-        }
-        .inline-icon {
-            margin-right: 0.4rem;
-            color: var(--link-color);
-        }
-        /* Highlight box untuk 5W+1H */
-        .highlight-box {
-            background-color: var(--card-bg);
-            border-left: 4px solid var(--link-color);
-            padding: 1.2rem 1.5rem;
-            margin: 1.8rem 0;
-            border-radius: 1rem;
-            box-shadow: var(--shadow-sm);
-        }
-        .emoji-big {
-            font-size: 1.6rem;
-            margin-right: 0.5rem;
-            vertical-align: middle;
-        }
-        /* Gambar responsif, CLS aman */
-        .article-img {
-            margin: 1.8rem 0;
-            text-align: center;
-        }
-        .article-img picture,
-        .article-img img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            border-radius: 1rem;
-            box-shadow: var(--shadow-sm);
-            margin: 0 auto;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.75rem;
-        }
-        /* Grid artikel terkait */
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0 1rem;
-        }
-        .related-card {
-            background: var(--card-bg);
-            border-radius: 1rem;
-            padding: 1.2rem;
-            transition: box-shadow 0.2s;
-            border: 1px solid var(--border-light);
-        }
-        .related-card i {
-            color: var(--link-color);
-            margin-right: 0.5rem;
-        }
-        .related-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        .related-card p {
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-        }
-        /* Footer */
-        footer {
-            margin-top: 3rem;
-            padding: 1.8rem 0 1.5rem;
-            border-top: 1px solid var(--border-light);
-            background-color: var(--footer-bg);
-            border-radius: 1rem 1rem 0 0;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        hr {
-            margin: 2rem 0;
-            border: none;
-            height: 1px;
-            background: var(--border-light);
-        }
-        blockquote {
-            font-style: italic;
-            border-left: 3px solid var(--link-color);
-            padding-left: 1.2rem;
-            margin: 1.2rem 0;
-            color: var(--text-secondary);
-        }
-        @media (max-width: 640px) {
-            .container {
-                padding: 1rem;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            .related-grid {
-                gap: 1rem;
-            }
-            .herbal-item {
-                padding: 1rem;
-            }
-        }
-        /* core web vitals friendly */
-        .no-shift {
-            content-visibility: auto;
-        }
-        .warning {
-            background: rgba(245, 158, 11, 0.1);
-            border-left: 4px solid #f59e0b;
-            padding: 0.8rem 1rem;
-            border-radius: 0.75rem;
-            margin: 1rem 0;
-        }
-    </style>
+   <style>
+  /* ===== CSS Variables: Mobile First ===== */
+  :root {
+    color-scheme: light;
+
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-soft: #e8f5f7;
+    --bg-soft-hover: #d7eef2;
+    --bg-warning: #fff7ed;
+
+    --text-primary: #111827;
+    --text-secondary: #334155;
+    --text-muted: #475569;
+    --heading-color: #0f172a;
+
+    --accent: #0f5c6b;
+    --accent-hover: #083f4b;
+    --accent-text: #ffffff;
+
+    --warning: #b45309;
+    --warning-text: #7c2d12;
+
+    --border-color: #cbd5e1;
+    --footer-bg: #eef2f7;
+
+    --shadow-sm: 0 0.25rem 0.75rem rgba(15, 23, 42, 0.08);
+    --shadow-md: 0 0.75rem 2rem rgba(15, 23, 42, 0.1);
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+
+    --max-width: 64rem;
+
+    --screen-padding: 1rem;
+    --nested-padding: 0rem;
+
+    --space-2xs: 0.25rem;
+    --space-xs: 0.35rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.25rem;
+    --space-2xl: 1.5rem;
+    --space-3xl: 2rem;
+    --space-4xl: 2.5rem;
+    --space-5xl: 3rem;
+
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+  }
+
+  @media (min-width: 64rem) {
+    :root {
+      --screen-padding: 2.5rem;
+      --nested-padding: 1.5rem;
+    }
+  }
+
+  /* ===== Dark Mode ===== */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+
+      --bg-body: #0f172a;
+      --bg-card: #172033;
+      --bg-soft: #1f3340;
+      --bg-soft-hover: #29485a;
+      --bg-warning: #2b2117;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #d1d5db;
+      --text-muted: #cbd5e1;
+      --heading-color: #ffffff;
+
+      --accent: #67e8f9;
+      --accent-hover: #a5f3fc;
+      --accent-text: #083344;
+
+      --warning: #fbbf24;
+      --warning-text: #fde68a;
+
+      --border-color: #475569;
+      --footer-bg: #172033;
+
+      --shadow-sm: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 1rem 2.5rem rgba(0, 0, 0, 0.42);
+    }
+  }
+
+  /* ===== Reset & Base ===== */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (min-width: 64rem) {
+    body {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* ===== Container ===== */
+  .container {
+    width: min(100%, 64rem);
+    margin: 0 auto;
+    padding-inline: var(--screen-padding);
+    padding-block: var(--space-2xl) var(--space-5xl);
+  }
+
+  article,
+  .article-body,
+  .nested-card {
+    padding-inline: var(--nested-padding);
+  }
+
+  /* ===== Typography ===== */
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--heading-color);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin-block-end: var(--space-md);
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 750;
+    border-inline-start: 0.3125rem solid var(--accent);
+    padding-inline-start: var(--space-lg);
+    margin-block: var(--space-3xl) var(--space-lg);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-block: var(--space-2xl) var(--space-md);
+  }
+
+  h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-block: var(--space-xl) var(--space-sm);
+  }
+
+  @media (min-width: 64rem) {
+    h1 {
+      font-size: 2.35rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+    }
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-block-end: var(--space-lg);
+  }
+
+  .lead {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    font-weight: 450;
+    border-inline-start: 0.25rem solid var(--accent);
+    padding-inline-start: var(--space-lg);
+    margin-block: var(--space-lg) var(--space-2xl);
+  }
+
+  @media (min-width: 64rem) {
+    .lead {
+      font-size: 1.2rem;
+    }
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+    font-weight: 750;
+  }
+
+  .arabic,
+  [lang="ar"] {
+    font-family: var(--font-arabic);
+    font-size: 1.35em;
+    line-height: 2;
+  }
+
+  /* ===== Links & Focus ===== */
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+    transition: color 0.2s ease;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--accent-hover);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  .button:focus-visible,
+  .btn:focus-visible,
+  summary:focus-visible {
+    outline: 0.18rem solid var(--accent);
+    outline-offset: 0.2rem;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===== Buttons ===== */
+  button,
+  .button,
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: var(--accent);
+    color: var(--accent-text);
+    border: 0.0625rem solid transparent;
+    border-radius: var(--radius-md);
+    padding-block: var(--space-sm);
+    padding-inline: var(--space-lg);
+    font: inherit;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  button:hover,
+  .button:hover,
+  .btn:hover {
+    background: var(--accent-hover);
+    color: var(--accent-text);
+    text-decoration: none;
+  }
+
+  button:active,
+  .button:active,
+  .btn:active {
+    transform: translateY(0.0625rem);
+  }
+
+  /* ===== Lists ===== */
+  ul,
+  ol {
+    color: var(--text-secondary);
+    margin-block: var(--space-md) var(--space-xl);
+    padding-inline-start: 1.5rem;
+  }
+
+  li {
+    margin-block-end: var(--space-sm);
+  }
+
+  li::marker {
+    color: var(--accent);
+  }
+
+  /* ===== Daftar Herbal ===== */
+  .herbal-list {
+    list-style: none;
+    margin-block: var(--space-2xl);
+    padding-inline-start: 0;
+  }
+
+  .herbal-item {
+    background: var(--bg-card);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding-block: var(--space-xl);
+    padding-inline: var(--space-xl);
+    margin-block-end: var(--space-xl);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .herbal-item:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .herbal-item h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-block-start: 0;
+    margin-block-end: var(--space-sm);
+  }
+
+  .herbal-item p {
+    margin-block-end: var(--space-sm);
+  }
+
+  .inline-icon {
+    color: var(--accent);
+    margin-inline-end: var(--space-sm);
+  }
+
+  /* ===== Highlight Box ===== */
+  .highlight-box {
+    background: var(--bg-card);
+    border: 0.0625rem solid var(--border-color);
+    border-inline-start: 0.25rem solid var(--accent);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding-block: var(--space-xl);
+    padding-inline: var(--space-xl);
+    margin-block: var(--space-2xl);
+  }
+
+  .highlight-box p:last-child {
+    margin-block-end: 0;
+  }
+
+  .emoji-big {
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 1;
+    margin-inline-end: var(--space-sm);
+    vertical-align: middle;
+  }
+
+  /* ===== Warning Box ===== */
+  .warning {
+    background: var(--bg-warning);
+    color: var(--warning-text);
+    border: 0.0625rem solid var(--warning);
+    border-inline-start: 0.25rem solid var(--warning);
+    border-radius: var(--radius-md);
+    padding-block: var(--space-md);
+    padding-inline: var(--space-lg);
+    margin-block: var(--space-lg);
+  }
+
+  .warning p:last-child {
+    margin-block-end: 0;
+  }
+
+  /* ===== Images ===== */
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .article-img {
+    margin-block: var(--space-2xl);
+    text-align: center;
+  }
+
+  .article-img picture,
+  .article-img img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-inline: auto;
+  }
+
+  figure {
+    margin-block: var(--space-2xl);
+  }
+
+  figcaption,
+  .caption {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-block-start: var(--space-sm);
+  }
+
+  /* ===== Blockquote & Divider ===== */
+  blockquote {
+    color: var(--text-secondary);
+    background: var(--bg-soft);
+    border-inline-start: 0.25rem solid var(--accent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: italic;
+    padding-block: var(--space-md);
+    padding-inline: var(--space-lg);
+    margin-block: var(--space-xl);
+  }
+
+  blockquote p:last-child {
+    margin-block-end: 0;
+  }
+
+  hr {
+    height: 0.0625rem;
+    background: var(--border-color);
+    border: none;
+    margin-block: var(--space-3xl);
+  }
+
+  /* ===== Details / Summary Accordion ===== */
+  details {
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-block: var(--space-2xl);
+  }
+
+  details[open] {
+    border-color: var(--accent);
+  }
+
+  summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    list-style: none;
+    user-select: none;
+    background: var(--bg-soft);
+    color: var(--heading-color);
+    padding-block: var(--space-lg);
+    padding-inline: var(--space-xl);
+    font-size: 1.05rem;
+    font-weight: 750;
+    line-height: 1.45;
+  }
+
+  summary:hover {
+    background: var(--bg-soft-hover);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::before {
+    content: "▸";
+    flex-shrink: 0;
+    display: inline-block;
+    color: var(--accent);
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  details > *:not(summary) {
+    padding-inline: var(--space-xl);
+  }
+
+  details > :last-child {
+    padding-block-end: var(--space-xl);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--footer-bg);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.9rem;
+    padding-block: var(--space-2xl);
+    padding-inline: var(--space-lg);
+    margin-block-start: var(--space-5xl);
+  }
+
+  footer p {
+    color: var(--text-muted);
+    margin-block-end: var(--space-sm);
+  }
+
+  footer a {
+    color: var(--accent);
+  }
+
+  /* ===== Core Web Vitals Friendly ===== */
+  .no-shift {
+    content-visibility: auto;
+    contain-intrinsic-size: 1rem 40rem;
+  }
+
+  /* ===== Mobile Melt Effect: Anti Padding Inception ===== */
+  @media (max-width: 40rem) {
+    .container {
+      padding-block: var(--space-xl) var(--space-3xl);
+    }
+
+    article,
+    .article-body,
+    .nested-card {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding-inline: var(--nested-padding);
+    }
+
+    h1 {
+      font-size: 1.65rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      padding-inline-start: var(--space-md);
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      padding-inline-start: var(--space-md);
+    }
+
+    .herbal-item,
+    .highlight-box,
+    .warning {
+      padding-inline: var(--space-lg);
+    }
+
+    .article-img picture,
+    .article-img img,
+    img {
+      border-radius: var(--radius-md);
+    }
+
+    summary {
+      font-size: 1rem;
+      padding-block: var(--space-md);
+      padding-inline: var(--space-lg);
+    }
+
+    details > *:not(summary) {
+      padding-inline: var(--space-lg);
+    }
+
+    footer {
+      border-inline: none;
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
+      font-size: 0.85rem;
+      margin-inline: calc(var(--screen-padding) * -1);
+      padding-inline: var(--screen-padding);
+    }
+  }
+
+  @media (max-width: 25rem) {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+  }
+
+  /* ===== Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+
+  /* ===== Print Friendly ===== */
+  @media print {
+    :root {
+      --bg-body: #ffffff;
+      --bg-card: #ffffff;
+      --bg-soft: #f3f4f6;
+      --bg-soft-hover: #e5e7eb;
+      --bg-warning: #ffffff;
+
+      --text-primary: #000000;
+      --text-secondary: #1f2937;
+      --text-muted: #1f2937;
+      --heading-color: #000000;
+
+      --accent: #111827;
+      --accent-hover: #000000;
+      --accent-text: #ffffff;
+
+      --warning: #111827;
+      --warning-text: #000000;
+
+      --border-color: #9ca3af;
+      --footer-bg: #ffffff;
+
+      --shadow-sm: none;
+      --shadow-md: none;
+    }
+
+    body {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: underline;
+    }
+
+    .herbal-item,
+    .highlight-box,
+    .warning,
+    .article-img,
+    blockquote,
+    details,
+    footer {
+      box-shadow: none;
+      break-inside: avoid;
+    }
+  }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <div class="container">
