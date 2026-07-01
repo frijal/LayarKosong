@@ -15,7 +15,7 @@ Sebelum menghasilkan kode final, lakukan urutan kerja berikut secara internal:
    `https://dalam.web.id/artikel/{slug-judul-artikel}.html`
 5. Identifikasi semua URL gambar yang ada di [OUTLINE].
 6. Jika [OUTLINE] tidak memiliki gambar, gunakan fallback image:
-   `https://dalam.web.id/thumbnail.webp`
+   `https://dalam.web.id/img/thumbnail.webp`
 7. Susun artikel dengan alur pembuka, pembahasan utama, pendalaman konteks, dan penutup.
 8. Pastikan elemen 5W+1H hadir secara natural dalam narasi, tanpa menulis label “5W+1H”, “Apa”, “Siapa”, “Kapan”, “Di mana”, “Mengapa”, atau “Bagaimana” sebagai subjudul eksplisit.
 9. Tentukan apakah artikel membutuhkan blok kode.
