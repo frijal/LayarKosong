@@ -276,9 +276,11 @@ margin: 0 auto;
 }
 
 ```
-
-
-4. Eksekusi pemanggilan variabel tersebut murni pada elemen kelas target:
+4. **Menggunakan Properti Logis (`padding-inline` & `padding-block`)**:
+Alih-alih menulis `padding: 2.5rem;` yang langsung menembak empat sisi, sekarang dipisah. Sumbu vertikal (atas-bawah) dikontrol oleh `padding-block`, sedangkan sumbu horizontal (kanan-kiri) diserahkan ke `padding-inline` agar bisa dikontrol variabel dinamis.
+5. **Efek Melebur di Mobile (`@media (max-width: 640px)`)**:
+Karena di layar HP nilai `--nested-padding` adalah `0rem`, jika boks artikelnya tetap berwarna putih bersih dengan bayangan tebal, teks di dalamnya bakal kelihatan aneh karena mepet ke garis pinggir boks artikel. Di sinilah triknya: di layar HP boks artikel dibuat `background: transparent; border: none; box-shadow: none;`. Hasilnya? Desain bertingkat ala desktop langsung berubah wujud menjadi desain artikel blog minimalis yang super bersih dan lega di HP. Teks berbaris rapi mengikuti satu komando jarak aman `1rem` dari tepi layar.
+6. Eksekusi pemanggilan variabel tersebut murni pada elemen kelas target:
 ```css
 .container {
   padding-inline: var(--screen-padding);
