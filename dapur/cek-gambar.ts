@@ -1,4 +1,4 @@
-import { file as bunFile, write } from "bun";
+import { file as bunFile, write, Glob } from "bun";
 import * as fs from "node:fs";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
@@ -10,49 +10,75 @@ const OUTPUT_FILE = path.join(IMG_FOLDER, "gambarnganggur.txt");
 const CACHE_FILE = path.join(ROOT_DIR, "mini", "srcset-gambar.txt");
 const ARTIKEL_LITE_FILE = path.join(ROOT_DIR, "artikel-lite.json");
 
-// Ubah ke true kalau mau tes dulu tanpa benar-benar menghapus file
+// Ubah ke false kalau mau langsung eksekusi hapus file via Git
 const DRY_RUN = false;
 
-// 🔥 Script HANYA akan memindai folder di bawah ini (Sub-directory)
-const ALLOWED_CATEGORIES = [
+// 🔥 7 folder kategori — HANYA dipakai untuk mengecualikan index.html di dalamnya.
+const CATEGORY_FOLDERS_FOR_INDEX_EXCLUSION = [
   "gaya-hidup",
-"jejak-sejarah",
-"lainnya",
-"olah-media",
-"opini-sosial",
-"sistem-terbuka",
-"warta-tekno",
+  "jejak-sejarah",
+  "lainnya",
+  "olah-media",
+  "opini-sosial",
+  "sistem-terbuka",
+  "warta-tekno",
 ];
+
+// 🔥 Folder yang dikecualikan total dari scan HTML
+const EXCLUDED_DIR_NAMES = new Set([
+  ".cache",
+  ".git",
+  ".github",
+  ".wrangler",
+  "artikelx",
+  "build",
+  "dapur",
+  "dist",
+  "ext",
+  "functions",
+  "mini",
+  "node_modules",
+  "search",
+  "sementara",
+  path.basename(IMG_FOLDER), // "img" — folder gambar sendiri, gak ada HTML-nya
+]);
 
 // Semua ekstensi gambar yang akan dicek di folder img/
 const IMAGE_EXTENSIONS = [
   ".webp",
-".jpg",
-".jpeg",
-".png",
-".gif",
-".svg",
-".avif",
-".ico",
-".bmp",
-".tif",
-".tiff",
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".gif",
+  ".svg",
+  ".avif",
+  ".ico",
+  ".bmp",
+  ".tif",
+  ".tiff",
 ];
 
-// 🔥 Varian hasil resize/generator yang ikut dilindungi secara UMUM (Untuk semua ekstensi)
-// CATATAN: -rg TIDAK dimasukkan ke sini agar tidak dilindungi secara buta.
+// 🔥 Varian hasil resize/generator yang ikut dilindungi secara UMUM
 const VARIANT_SUFFIXES = ["-sm", "-md"];
 
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 
 const IMAGE_EXT_PATTERN = IMAGE_EXTENSIONS
-.map((ext) => ext.replace(".", ""))
-.join("|");
+  .map((ext) => ext.replace(".", ""))
+  .join("|");
 
+// 🔥 FIX #1: exclude \s dan , — biar srcset multi-entry
+//    "artikel-md.webp 720w, artikel-sm.webp 400w" gak ke-gado jadi 1 match sampah,
+//    tapi kepecah bersih jadi 2 match terpisah.
+// 🔥 FIX #2: exclude ( dan ) — biar CSS "url(foto.jpg)" tanpa quote gak nempelin
+//    prefix "url(" ke depan nama file pas di-capture.
 const IMAGE_REF_REGEX = new RegExp(
-  String.raw`([^/\\\"']+\.(?:${IMAGE_EXT_PATTERN}))`,
-                                   "gi"
+  String.raw`([^/\\\"'\s,()]+\.(?:${IMAGE_EXT_PATTERN}))`,
+  "gi"
 );
+
+const IMAGE_GLOB_PATTERN = `**/*.{${IMAGE_EXTENSIONS.map((ext) => ext.slice(1)).join(",")}}`;
+const HTML_GLOB_PATTERN = "**/*.html";
 
 interface ImageFile {
   fullPath: string;
@@ -62,33 +88,17 @@ interface ImageFile {
 const usedBasenames = new Set<string>();
 
 /**
- * Cek apakah file termasuk ekstensi gambar yang dipantau
+ * Mengambil semua file gambar dari folder img secara rekursif pakai Bun.Glob
  */
-function isImageFile(fileName: string): boolean {
-  return IMAGE_EXTENSIONS.includes(path.extname(fileName).toLowerCase());
-}
+async function getAllPhysicalImages(dir: string): Promise<ImageFile[]> {
+  if (!fs.existsSync(dir)) return [];
 
-/**
- * Ambil semua file gambar dari folder img secara rekursif
- */
-function getAllPhysicalImages(dir: string): ImageFile[] {
-  let results: ImageFile[] = [];
+  const glob = new Glob(IMAGE_GLOB_PATTERN);
+  const results: ImageFile[] = [];
 
-  if (!fs.existsSync(dir)) return results;
-
-  const list = fs.readdirSync(dir, { withFileTypes: true });
-
-  for (const entry of list) {
-    const fullPath = path.join(dir, entry.name);
-
-    if (entry.isDirectory()) {
-      results = results.concat(getAllPhysicalImages(fullPath));
-    } else if (isImageFile(entry.name)) {
-      results.push({
-        fullPath,
-        basename: entry.name,
-      });
-    }
+  for await (const relativePath of glob.scan({ cwd: dir, onlyFiles: true, dot: false })) {
+    const fullPath = path.join(dir, relativePath);
+    results.push({ fullPath, basename: path.basename(fullPath) });
   }
 
   return results;
@@ -113,10 +123,10 @@ function protectImageReference(ref: string) {
   // Lindungi versi ekstensi lowercase
   usedBasenames.add(`${nameSafe}${ext}`);
 
-  // Lindungi versi WebP utama (jika HTML panggil .jpg tapi fisik ada .webp)
+  // Lindungi versi WebP utama
   usedBasenames.add(`${nameSafe}.webp`);
 
-  // 🔥 Lindungi varian resize umum (-sm, -md) SESUAI ekstensinya & versi WebP-nya
+  // 🔥 Lindungi varian resize umum (-sm, -md)
   for (const suffix of VARIANT_SUFFIXES) {
     usedBasenames.add(`${nameSafe}${suffix}${ext}`);
     if (ext !== ".webp") {
@@ -132,10 +142,10 @@ function loadSrcsetCache() {
   if (!fs.existsSync(CACHE_FILE)) return;
 
   const cacheLines = fs
-  .readFileSync(CACHE_FILE, "utf-8")
-  .split("\n")
-  .map((line) => line.trim())
-  .filter(Boolean);
+    .readFileSync(CACHE_FILE, "utf-8")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
 
   for (const line of cacheLines) {
     protectImageReference(line);
@@ -185,25 +195,49 @@ function loadArtikelLite() {
 }
 
 /**
- * Ambil semua HTML secara rekursif dari folder tertentu
+ * Cek apakah sebuah file HTML adalah index.html yang berada
+ * DI DALAM salah satu folder kategori.
  */
-function getHtmlFilesRecursive(dir: string, excludeIndex = false): string[] {
-  let results: string[] = [];
+function isExcludedCategoryIndex(fullPath: string): boolean {
+  if (path.basename(fullPath) !== "index.html") return false;
 
-  if (!fs.existsSync(dir)) return results;
+  const relativePath = path.relative(ROOT_DIR, fullPath);
+  const segments = relativePath.split(path.sep);
 
-  const list = fs.readdirSync(dir, { withFileTypes: true });
+  return CATEGORY_FOLDERS_FOR_INDEX_EXCLUSION.includes(segments[0]);
+}
 
-  for (const entry of list) {
-    const fullPath = path.join(dir, entry.name);
+/**
+ * Kumpulkan semua .html di seluruh repo pakai Bun.Glob.
+ */
+async function getAllHtmlFilesInRepo(dir: string): Promise<string[]> {
+  if (!fs.existsSync(dir)) return [];
+
+  const results: string[] = [];
+  const htmlGlob = new Glob(HTML_GLOB_PATTERN);
+  const topLevelEntries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of topLevelEntries) {
+    if (entry.isFile() && entry.name.endsWith(".html")) {
+      const fullPath = path.join(dir, entry.name);
+      if (!isExcludedCategoryIndex(fullPath)) results.push(fullPath);
+      continue;
+    }
 
     if (entry.isDirectory()) {
-      results = results.concat(getHtmlFilesRecursive(fullPath, excludeIndex));
-    } else if (
-      entry.name.endsWith(".html") &&
-      !(excludeIndex && entry.name === "index.html")
-    ) {
-      results.push(fullPath);
+      if (EXCLUDED_DIR_NAMES.has(entry.name)) continue;
+
+      const subDir = path.join(dir, entry.name);
+
+      for await (const relativePath of htmlGlob.scan({ cwd: subDir, onlyFiles: true, dot: false })) {
+        const segments = relativePath.split("/");
+        if (segments.some((seg) => EXCLUDED_DIR_NAMES.has(seg))) continue;
+
+        const fullPath = path.join(subDir, relativePath);
+        if (isExcludedCategoryIndex(fullPath)) continue;
+
+        results.push(fullPath);
+      }
     }
   }
 
@@ -211,39 +245,25 @@ function getHtmlFilesRecursive(dir: string, excludeIndex = false): string[] {
 }
 
 /**
- * Scan HTML di folder kategori (Sub-directory)
+ * Ekstraksi gambar murni menggunakan Regex.
+ * Super cepat, ringan, dan menangkap semua teks yang berakhiran
+ * ekstensi gambar (meskipun ada di dalam custom tag atau script).
  */
-async function scanCategoryFolders() {
-  for (const category of ALLOWED_CATEGORIES) {
-    const categoryPath = path.join(ROOT_DIR, category);
-
-    if (!fs.existsSync(categoryPath)) continue;
-
-    // index.html di folder kategori tetap diabaikan
-    const htmlFiles = getHtmlFilesRecursive(categoryPath, true);
-
-    if (htmlFiles.length > 0) {
-      console.log(`📂 ${category}: ${htmlFiles.length} file HTML dipindai.`);
-    }
-
-    for (const fullPath of htmlFiles) {
-      await scanHtmlFile(fullPath);
-    }
-  }
+function extractImageRefsFromHtml(html: string): string[] {
+  const matches = html.match(IMAGE_REF_REGEX);
+  return matches ? Array.from(matches) : [];
 }
 
 /**
- * Baca satu file HTML dan ambil semua referensi gambar
+ * Baca satu file HTML dan ekstrak referensinya
  */
 async function scanHtmlFile(fullPath: string) {
   try {
     const content = await bunFile(fullPath).text();
-    const matches = content.match(IMAGE_REF_REGEX);
+    const matches = extractImageRefsFromHtml(content);
 
-    if (matches) {
-      for (const match of matches) {
-        protectImageReference(match);
-      }
+    for (const match of matches) {
+      protectImageReference(match);
     }
   } catch {
     console.warn(`⚠️  Gagal baca: ${fullPath}`);
@@ -251,31 +271,42 @@ async function scanHtmlFile(fullPath: string) {
 }
 
 /**
- * 🔥 DIPERBAIKI: Deteksi file varian (-sm, -md) yang yatim UNTUK SEMUA EKSTENSI.
+ * Scan seluruh HTML
+ */
+async function scanEntireRepoForHtml() {
+  const htmlFiles = await getAllHtmlFilesInRepo(ROOT_DIR);
+
+  if (htmlFiles.length > 0) {
+    console.log(`📂 Seluruh repo: ${htmlFiles.length} file HTML dipindai (Regex) untuk proteksi gambar.`);
+  }
+
+  for (const fullPath of htmlFiles) {
+    await scanHtmlFile(fullPath);
+  }
+}
+
+/**
+ * Deteksi file varian (-sm, -md) yang yatim (induknya gak ada)
  */
 function findOrphanVariants(allImages: ImageFile[]): string[] {
   const orphanFiles: string[] = [];
 
-  // Ubah ke lowercase semua supaya pencocokan parent kebal case-sensitive
   const allBasenamesLower = new Set(allImages.map((img) => img.basename.toLowerCase()));
 
   for (const img of allImages) {
     const lowerName = img.basename.toLowerCase();
     const ext = path.extname(lowerName);
 
-    // Filter awal: Pastikan ekstensinya kita pantau
     if (!IMAGE_EXTENSIONS.includes(ext)) continue;
 
     for (const suffix of VARIANT_SUFFIXES) {
       const variantEnding = `${suffix}${ext}`;
 
       if (lowerName.endsWith(variantEnding)) {
-        // Ambil nama dasar tanpa suffix dan ekstensi (misal: "gambar-sm.png" -> "gambar")
         const lowerRawName = lowerName.slice(0, -variantEnding.length);
 
         let hasParent = false;
 
-        // Cek apakah ada parent dengan ekstensi APAPUN (bisa jadi file.png, file.jpg, file.webp)
         for (const parentExt of IMAGE_EXTENSIONS) {
           if (allBasenamesLower.has(`${lowerRawName}${parentExt}`)) {
             hasParent = true;
@@ -287,7 +318,6 @@ function findOrphanVariants(allImages: ImageFile[]): string[] {
           orphanFiles.push(img.fullPath);
         }
 
-        // Kalau sudah dipastikan yatim di satu suffix, nggak usah cek suffix lain untuk gambar ini
         break;
       }
     }
@@ -297,9 +327,9 @@ function findOrphanVariants(allImages: ImageFile[]): string[] {
 }
 
 async function runCleaner() {
-  console.log("🚀 Memulai Pembersih Gambar (Sub-Folder Only & Multi-Extension Variants)...");
+  console.log("🚀 Memulai Pembersih Gambar (Bun.Glob + Regex String Scanner)...");
 
-  const allImages = getAllPhysicalImages(IMG_FOLDER);
+  const allImages = await getAllPhysicalImages(IMG_FOLDER);
 
   if (allImages.length === 0) {
     return console.log("📭 Tidak ada file gambar di folder img.");
@@ -313,15 +343,15 @@ async function runCleaner() {
   // 2. Load perlindungan khusus -rg dari JSON
   loadArtikelLite();
 
-  // 3. Scan HTML HANYA di dalam folder Kategori (Melewati Root)
-  await scanCategoryFolders();
+  // 3. Scan SELURUH .html di repo
+  await scanEntireRepoForHtml();
 
-  // 4. Deteksi gambar varian dari segala jenis format yang nggak punya parent
+  // 4. Deteksi gambar varian yang yatim
   const orphanVariantFiles = findOrphanVariants(allImages);
 
   if (orphanVariantFiles.length > 0) {
     console.log(
-      `🕵️  Menemukan ${orphanVariantFiles.length} file varian (-sm/-md) yatim dari berbagai format.`
+      `🕵️  Menemukan ${orphanVariantFiles.length} file varian (-sm/-md) yatim.`
     );
   }
 
@@ -332,7 +362,7 @@ async function runCleaner() {
 
   const toDeletePaths = new Set<string>([
     ...unusedFromHtml.map((img) => img.fullPath),
-                                        ...orphanVariantFiles,
+    ...orphanVariantFiles,
   ]);
 
   if (toDeletePaths.size > 0) {
