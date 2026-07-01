@@ -304,9 +304,7 @@ margin: 0 auto;
    * Rekomendasi body text: `1.125rem`
    * Teks sekunder/footer: `0.85rem` hingga `0.9rem`
 5. Gunakan `line-height` yang lega dan nyaman.
-6. Jika menggunakan teks Arab, gunakan:
-
-`font-family: "Noto Naskh Arabic", "Amiri", serif;`
+6. Jika menggunakan teks Arab, gunakan: `font-family: "Noto Naskh Arabic", "Amiri", serif;`
 
 ---
 
