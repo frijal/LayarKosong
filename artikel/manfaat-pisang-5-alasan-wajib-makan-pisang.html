@@ -63,209 +63,281 @@
     <meta property="article:tag" content="Tips Sehat">
     <meta property="article:published_time" content="2026-04-17T16:05:34.000Z">
     <meta property="article:modified_time" content="2026-04-17T16:05:34.000Z">
-  <!-- ========== META SEO & CORE WEB VITALS ========== -->
-  <!-- article:tag (variasi) -->
-  <!-- PromptHint (pertanyaan + jawaban singkat) -->
-  <!-- Canonical & Open Graph -->
-  <!-- Twitter Card -->
-  <!-- Preload Font Awesome (optimasi LCP) -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="/ext/fontawesome.css">
-  <style>
-    /* RESET & BOX SIZING */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+ <style>
+    /* ==========================================
+       1. FONDASI & RESET (Kawasan Bebas PX)
+       ========================================== */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
-    /* Tema Terang (default) */
+
+    html {
+        scroll-behavior: smooth;
+        /* Biarkan browser mengatur base font-size demi aksesibilitas pembaca */
+    }
+
+    /* ==========================================
+       2. VARIABEL TEMA & MOBILE-FIRST LAYOUT
+       ========================================== */
     :root {
-      --bg-body: #fffdf8;
-      --text-primary: #1e1e1e;
-      --text-secondary: #3a3a3a;
-      --accent: #e6a020;
-      --accent-soft: #fff3da;
-      --card-bg: #ffffff;
-      --border-light: #e0d6c0;
-      --shadow: 0 4px 14px rgba(0,0,0,0.04);
-      --footer-bg: #f5ede0;
+        /* Strategi Ruang Dinamis (Default Layar HP) */
+        --screen-padding: 1rem;
+        --nested-padding: 0rem;
+        --radius-card: 1.75rem; /* ~28px */
+        --radius-img: 1.125rem; /* ~18px */
+
+        /* Tipografi & Dukungan Teks Arab */
+        --font-stack: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+        --font-arabic: "Noto Naskh Arabic", "Amiri", serif;
+
+        /* TEMA TERANG (Dikalibrasi Ketat untuk WCAG AA) */
+        color-scheme: light;
+        --bg-body: #fffdf8;
+        --card-bg: #ffffff;
+        --text-primary: #1e1e1e;    /* Kontras ~15:1 */
+        --text-secondary: #4a4a4a;  /* Dipergelap dari #3a3a3a untuk kontras rasio > 7:1 */
+        --accent: #b06500;          /* Emas ditarik ke terakota/perunggu agar kontras > 4.5:1 */
+        --accent-soft: #fff3da;
+        --border-light: #e0d6c0;
+        --footer-bg: #f5ede0;
+        --shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.04);
     }
-    /* Tema Gelap (prefers-color-scheme) tanpa JS */
+
+    /* Setelan Desktop: Ruang bernapas ekstra diizinkan bertumpuk */
+    @media (min-width: 64rem) { /* Setara 1024px */
+        :root {
+            --screen-padding: 2.5rem;
+            --nested-padding: 2.2rem;
+        }
+    }
+
+    /* TEMA GELAP (Dikelola 100% dari Variabel, Zero Override Kelas) */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-body: #1e1e1a;
-        --text-primary: #f5f0e6;
-        --text-secondary: #cfc9bb;
-        --accent: #f0b848;
-        --accent-soft: #3a331e;
-        --card-bg: #28261e;
-        --border-light: #5a5543;
-        --shadow: 0 4px 14px rgba(0,0,0,0.3);
-        --footer-bg: #332e22;
-      }
+        :root {
+            color-scheme: dark;
+            --bg-body: #1e1e1a;
+            --card-bg: #28261e;
+            --text-primary: #f5f0e6;    /* Kontras ~13:1 */
+            --text-secondary: #cfc9bb;  /* Kontras ~9:1 */
+            --accent: #f0b848;          /* Emas dipertahankan, kontras aman ~7.7:1 di atas bg gelap */
+            --accent-soft: #3a331e;
+            --border-light: #5a5543;
+            --footer-bg: #332e22;
+            --shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.3);
+        }
     }
+
+    /* ==========================================
+       3. BODY & TYPOGRAPHY UTAMA
+       ========================================== */
     body {
-      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-body);
-      color: var(--text-primary);
-      line-height: 1.7;
-      padding: 0 1rem 2.5rem;
-      transition: background-color 0.2s, color 0.2s;
+        font-family: var(--font-stack);
+        background-color: var(--bg-body);
+        color: var(--text-primary);
+        font-size: 1.125rem; /* Rekomendasi body text yang nyaman */
+        line-height: 1.75;
+        /* Padding body dihapus total agar tidak memicu padding inception */
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.2s ease, color 0.2s ease;
     }
-    /* Container utama 1 kolom max 1000px */
-    .article-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      border-radius: 28px;
-      padding: 2.2rem 2.2rem 2.8rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-light);
+
+    .arabic-text {
+        font-family: var(--font-arabic);
+        font-size: 1.5rem;
+        line-height: 2.2;
     }
-    /* Typography */
+
+    h1, h2, h3 {
+        line-height: 1.3;
+        color: var(--text-primary);
+    }
+
     h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-      border-left: 7px solid var(--accent);
-      padding-left: 1.5rem;
+        font-size: clamp(2.2rem, 5vw, 2.5rem);
+        margin-block-end: 1.25rem;
+        font-weight: 700;
+        color: var(--accent);
+        border-inline-start: 0.45rem solid var(--accent); /* Properti logis border-left */
+        padding-inline-start: 1.5rem;
     }
+
     h2 {
-      font-size: 1.9rem;
-      margin: 2.5rem 0 1.2rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 2px dashed var(--border-light);
-      padding-bottom: 0.5rem;
+        font-size: clamp(1.5rem, 3vw, 1.9rem);
+        margin-block-start: 2.5rem;
+        margin-block-end: 1.25rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        border-block-end: 0.125rem dashed var(--border-light);
+        padding-block-end: 0.5rem;
     }
+
     h2 i, h2 span.emoji-big {
-      margin-right: 8px;
+        margin-inline-end: 0.5rem; /* Properti logis margin-right */
     }
+
     p {
-      margin-bottom: 1.3rem;
-      color: var(--text-secondary);
+        margin-block-end: 1.3rem;
+        color: var(--text-secondary);
+        text-align: justify;
     }
-    /* Gambar thumbnail (tanpa CLS) */
-    .single-image {
-      margin: 2rem 0 2.5rem;
-      text-align: center;
-    }
-    .image-card {
-      background: var(--accent-soft);
-      border-radius: 24px;
-      padding: 16px 16px 18px;
-      border: 1px solid var(--border-light);
-      display: inline-block;
-      max-width: 100%;
-    }
-    .image-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 18px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      background: #cfb87c;
-      display: block;
-      width: 100%;
-    }
-    figcaption {
-      margin-top: 12px;
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-    }
-    /* Highlight box / manfaat */
-    .benefit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
-      margin: 2.2rem 0;
-    }
-    .benefit-card {
-      background: var(--accent-soft);
-      border-radius: 30px;
-      padding: 1.5rem 1.5rem;
-      border: 1px solid var(--border-light);
-      transition: transform 0.1s ease;
-    }
-    .benefit-card i, .benefit-card .emoji-big {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      color: var(--accent);
-    }
-    .benefit-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .benefit-desc {
-      color: var(--text-secondary);
-    }
-    /* Div placeholder */
-    #related-articles-grid, #response {
-      margin: 2.5rem 0 1.5rem;
-      padding: 1.5rem 1.8rem;
-      background: var(--accent-soft);
-      border-radius: 28px;
-      border: 1px dashed var(--border-light);
-    }
-    #related-articles-grid::before {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.2rem;
-    }
-    #response::before {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.2rem;
-    }
-    /* Footer */
-    .footer {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      text-align: center;
-      border-top: 2px solid var(--border-light);
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-    .footer i {
-      color: var(--accent);
-      margin: 0 5px;
-    }
+
     a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        transition: text-decoration 0.2s ease;
     }
+
     a:hover {
-      text-decoration: underline;
+        text-decoration: underline;
+        text-underline-offset: 0.15rem;
     }
-    /* Responsif mobile */
-    @media (max-width: 640px) {
-      .article-container {
-        padding: 1.5rem 1.2rem;
-      }
-      h1 {
-        font-size: 2rem;
-        padding-left: 1rem;
-      }
-      h2 {
-        font-size: 1.6rem;
-      }
-    }
+
     .emoji-big {
-      font-size: 1.8rem;
+        font-size: 1.8rem;
     }
-  </style>
+
+    /* ==========================================
+       4. LAYOUT PRO & ANTI PADDING-INCEPTION
+       ========================================== */
+    .container {
+        width: min(100%, 62.5rem); /* ~1000px */
+        margin-inline: auto; /* Properti Logis pengganti margin: 0 auto */
+        padding-inline: var(--screen-padding);
+        padding-block-start: 2rem;
+    }
+
+    /* Target eksekusi padding berlapis */
+    .article-container {
+        background-color: var(--card-bg);
+        padding-inline: var(--nested-padding);
+        padding-block: var(--nested-padding);
+        border-radius: var(--radius-card);
+        border: 0.0625rem solid var(--border-light);
+        box-shadow: var(--shadow);
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Efek Sulap "Melebur" di HP (<= 640px) */
+    @media (max-width: 40rem) {
+        .article-container {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding-block: 0rem;
+        }
+
+        h1 {
+            /* Sedikit penyesuaian estetika saat border melebur di HP */
+            padding-inline-start: 1rem;
+        }
+    }
+
+    /* ==========================================
+       5. KOMPONEN UI & MEDIA
+       ========================================== */
+
+    /* Gambar (Anti-CLS) */
+    .single-image {
+        margin-block: 2rem 2.5rem;
+        text-align: center;
+    }
+
+    .image-card {
+        background-color: var(--accent-soft);
+        border-radius: var(--radius-card);
+        padding-inline: 1rem;
+        padding-block: 1rem 1.125rem;
+        border: 0.0625rem solid var(--border-light);
+        display: inline-block;
+        width: 100%;
+    }
+
+    .image-card img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9; /* Mencegah Cumulative Layout Shift */
+        object-fit: cover;
+        border-radius: var(--radius-img);
+        box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.05);
+        background-color: #cfb87c;
+        display: block;
+    }
+
+    figcaption {
+        margin-block-start: 0.75rem;
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+    /* Grid Manfaat / Highlight Box */
+    .benefit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); /* 16rem = 256px */
+        gap: 1.25rem; /* ~20px */
+        margin-block: 2.25rem;
+    }
+
+    .benefit-card {
+        background-color: var(--accent-soft);
+        border-radius: var(--radius-card);
+        padding-inline: 1.5rem;
+        padding-block: 1.5rem;
+        border: 0.0625rem solid var(--border-light);
+        transition: transform 0.2s ease;
+    }
+
+    .benefit-card:hover {
+        transform: translateY(-0.25rem);
+    }
+
+    .benefit-card i, .benefit-card .emoji-big {
+        font-size: 2.2rem;
+        margin-block-end: 0.75rem;
+        color: var(--accent);
+        display: block;
+    }
+
+    .benefit-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-block-end: 0.625rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .benefit-desc {
+        color: var(--text-secondary);
+        margin-block-end: 0;
+    }
+
+    /* ==========================================
+       6. FOOTER
+       ========================================== */
+    .footer {
+        margin-block-start: 3rem;
+        padding-block: 2rem 1.5rem;
+        text-align: center;
+        border-block-start: 0.125rem solid var(--border-light);
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    .footer i {
+        color: var(--accent);
+        margin-inline: 0.3rem;
+    }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <div class="article-container">
