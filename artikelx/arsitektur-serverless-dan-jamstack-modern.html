@@ -62,134 +62,183 @@
     <meta property="article:published_time" content="2026-06-30T00:00:00.000Z">
     <meta property="article:modified_time" content="2026-06-30T00:05:07.066Z">
     <style>
+    :root {
+        --bg-body: #f8fafc;
+        --bg-card: #ffffff;
+        --fg: #0f172a;
+        --muted: #475569;
+        --accent: #2563eb;
+        --accent-2: #3b82f6;
+        --border: #e2e8f0;
+        --shadow: 0 8px 24px rgba(0,0,0,0.06);
+        --maxw: 64rem;
+        --radius: 14px;
+        --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+        /* ========================================================
+           PANDUAN 6: KENDALI JARAK AMAN LAYAR (DEFAULT MOBILE)
+           ======================================================== */
+        --screen-padding: 1rem;   /* Jarak aman tepi layar ponsel */
+        --nested-padding: 0rem;   /* Anti-tumpuk: artikel tidak boleh nambah padding lagi */
+    }
+
+    @media (prefers-color-scheme: dark) {
         :root {
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --fg: #0f172a;
-            --muted: #475569;
-            --accent: #2563eb;
-            --accent-2: #3b82f6;
-            --border: #e2e8f0;
-            --shadow: 0 8px 24px rgba(0,0,0,0.06);
-            --maxw: 64rem;
-            --radius: 14px;
-            --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            --bg-body: #1e293b;
+            --bg-card: #334155;
+            --fg: #f1f5f9;
+            --muted: #94a3b8;
+            --accent: #60a5fa;
+            --accent-2: #93c5fd;
+            --border: #475569;
+            --shadow: 0 10px 30px rgba(0,0,0,0.45);
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-body: #1e293b;
-                --bg-card: #334155;
-                --fg: #f1f5f9;
-                --muted: #94a3b8;
-                --accent: #60a5fa;
-                --accent-2: #93c5fd;
-                --border: #475569;
-                --shadow: 0 10px 30px rgba(0,0,0,0.45);
-            }
+    }
+
+    /* SAKLAR DESKTOP: Aktif jika layar minimal 1024px */
+    @media (min-width: 1024px) {
+        :root {
+            --screen-padding: 2.5rem; /* Ruang desktop lebih megah */
+            --nested-padding: 2.5rem; /* Kamar kos desktop luas, silakan bertingkat */
         }
-        * { box-sizing: border-box; margin:0; padding:0; }
-        html, body {
-            background: var(--bg-body);
-            color: var(--fg);
-            font: 18px/1.7 var(--font);
-            scroll-behavior: smooth;
-        }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; border-radius: 6px; display: block; }
-        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
-        header.site {
-            padding: 0.8rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            background: var(--bg-card);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .brand { font-weight: bold; font-size: 1.2rem; }
-        main {
-            display: flex;
-            justify-content: center;
-            padding: 2rem 1rem 4rem;
-            flex-grow: 1;
-        }
-        .col {
-            width: 100%;
-            max-width: var(--maxw);
-        }
+    }
+
+    * { box-sizing: border-box; margin:0; padding:0; }
+
+    html, body {
+        background: var(--bg-body);
+        color: var(--fg);
+        font: 18px/1.7 var(--font);
+        scroll-behavior: smooth;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; border-radius: 6px; display: block; }
+
+    .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+
+    header.site {
+        padding: 0.8rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg-card);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .brand { font-weight: bold; font-size: 1.2rem; }
+
+    /* LAYOUT UTAMA */
+    main {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        /* Eksekusi Panduan: Gunakan padding-block untuk atas-bawah, padding-inline untuk kanan-kiri */
+        padding-block: 2rem 4rem;
+        padding-inline: var(--screen-padding);
+    }
+
+    .col {
+        width: 100%;
+        max-width: var(--maxw);
+    }
+
+    /* KONTEN ARTIKEL */
+    article {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        /* Eksekusi Panduan: Pisahkan sumbu vertikal dan horizontal */
+        padding-block: 2.5rem;
+        padding-inline: var(--nested-padding);
+    }
+
+    article h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin: 0 0 0.5rem;
+        color: var(--accent-2);
+    }
+
+    article h2 {
+        font-size: 1.6rem;
+        margin-top: 2.5rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.4rem;
+    }
+
+    article h3 {
+        font-size: 1.3rem;
+        margin-top: 1.8rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .lead {
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+        font-size: 1.15rem;
+    }
+
+    p { margin-bottom: 1.2rem; }
+    ul { margin: 0.5rem 0 1.2rem 1.8rem; }
+    li { margin-bottom: 0.3rem; }
+    code { background: var(--border); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+
+    details {
+        margin: 1.6rem 0 1rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.2rem 1rem 0.8rem;
+    }
+
+    summary {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1.2rem;
+        padding: 0.6rem 0;
+        list-style: none;
+        user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+        content: "▶";
+        display: inline-block;
+        transition: transform 0.2s;
+        margin-right: 0.5rem;
+        color: var(--accent);
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--accent); }
+
+    footer.site {
+        padding: 1.2rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    footer a { margin: 0 0.2rem; }
+
+    /* RESPONSIVITAS MOBILE VIEW */
+    @media (max-width: 640px) {
         article {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
+            padding-block: 1.2rem; /* Jarak atas-bawah artikel di HP agar proporsional */
+
+            /* Trik Pro-Tip: Karena di mobile padding-inline bernilai 0rem, kita buat
+               kotak artikelnya "melebur" rata dengan background body agar teksnya tidak menempel kaku di border boks. */
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
         }
-        article h1 {
-            font-size: 2.2rem;
-            line-height: 1.2;
-            margin: 0 0 0.5rem;
-            color: var(--accent-2);
-        }
-        article h2 {
-            font-size: 1.6rem;
-            margin-top: 2.5rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.4rem;
-        }
-        article h3 {
-            font-size: 1.3rem;
-            margin-top: 1.8rem;
-            margin-bottom: 0.3rem;
-        }
-        .lead {
-            color: var(--muted);
-            margin-bottom: 1.5rem;
-            font-size: 1.15rem;
-        }
-        p { margin-bottom: 1.2rem; }
-        ul { margin: 0.5rem 0 1.2rem 1.8rem; }
-        li { margin-bottom: 0.3rem; }
-        code { background: var(--border); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
-        details {
-            margin: 1.6rem 0 1rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.2rem 1rem 0.8rem;
-        }
-        summary {
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.2rem;
-            padding: 0.6rem 0;
-            list-style: none;
-            user-select: none;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::before {
-            content: "▶";
-            display: inline-block;
-            transition: transform 0.2s;
-            margin-right: 0.5rem;
-            color: var(--accent);
-        }
-        details[open] summary::before { transform: rotate(90deg); }
-        summary:hover { color: var(--accent); }
-        footer.site {
-            padding: 1.2rem;
-            color: var(--muted);
-            border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        footer a { margin: 0 0.2rem; }
-        @media (max-width: 640px) {
-            article { padding: 1.2rem; }
-            article h1 { font-size: 1.8rem; }
-            article h2 { font-size: 1.4rem; }
-            article h3 { font-size: 1.2rem; }
-            body { font-size: 16px; }
-        }
-    </style>
+        article h1 { font-size: 1.8rem; }
+        article h2 { font-size: 1.4rem; }
+        article h3 { font-size: 1.2rem; }
+        body { font-size: 16px; }
+    }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <div class="wrap">
