@@ -32,10 +32,10 @@
                     (ua.includes('chrome') || ua.includes('crios')) ? 'Chrome' :
                     ua.includes('safari') ? 'Safari' : 'Unknown';
 
+    // 🔥 UKURAN DISERAGAMKAN: Pakai 1.2em agar konsisten dengan ikon feed di bawah
     const getIcon = (name: string) => {
       const file = (name === 'iOS' || name === 'macOS') ? 'macios' : name.toLowerCase();
-      // Tambah border-radius jaga-jaga kalau SVG-nya punya background bawaan
-      return `<img src="/ext/icons/${file}.svg" alt="${name}" onerror="this.src='/ext/icons/unknown.svg'" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;display:inline-block;border-radius:2px;">`;
+      return `<img src="/ext/icons/${file}.svg" alt="${name}" onerror="this.src='/ext/icons/unknown.svg'" style="width:1.2em;height:1.2em;vertical-align:middle;margin-right:4px;display:inline-block;border-radius:2px;">`;
     };
 
     // --- B. FETCH STATS (Jalan Asinkron di Background) ---
@@ -51,14 +51,11 @@
           const currentPath = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
           const fileName = currentPath.endsWith('.html') ? currentPath : `${currentPath}.html`;
           
-          // 🔥 PANGGIL JALUR TOL: Gunakan getFor agar data di-map sesuai UI schema
+          // PANGGIL JALUR TOL: Gunakan getFor agar data di-map sesuai UI schema
           const data = await dp.getFor('iposbrowser.ts');
 
           for (const cat in data) {
-            // Karena sudah melewati mapper() di provider,
-            // datanya bukan lagi array [x, y, z], tapi object { slug, date }
             const match = data[cat].find((item: any) => item.slug === fileName);
-            
             if (match && match.date) {
               return new Date(match.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
             }
@@ -90,10 +87,9 @@
     });
 
     // --- D. EKSEKUSI PARALEL & RENDER DOM ---
-    // Tunggu data stats dan tanggal selesai diekstrak barengan
     const [stats, articleDate] = await Promise.all([fetchStats, fetchDate]);
 
-    // Ukuran SVG dibikin pakai 'em' biar ngikutin ukuran font (lebih proporsional)
+    // 🔥 UKURAN DISERAGAMKAN: Tetap pakai 1.2em
     const atomSVG = `<svg viewBox="0 0 64 64" fill="none" style="width:1.2em;height:1.2em;display:block;overflow:visible;"><circle cx="32" cy="32" fill="currentColor" r="5"/><ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"/><ellipse transform="rotate(60 32 32)" cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"/><ellipse transform="rotate(120 32 32)" cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"/></svg>`;
     const rssSVG = `<svg viewBox="0 0 64 64" fill="none" style="width:1.2em;height:1.2em;display:block;overflow:visible;"><rect fill="currentColor" height="48" rx="10" width="48" x="8" y="8"/><circle cx="22" cy="44" fill="white" r="5"/><path d="M17 30c9.4 0 17 7.6 17 17" stroke="white" stroke-linecap="round" stroke-width="6"/><path d="M17 18c16 0 29 13 29 29" stroke="white" stroke-linecap="round" stroke-width="6"/></svg>`;
 
@@ -126,7 +122,6 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initIposBrowser);
   } else {
-    // Kalau HTML udah selesai dimuat, ndak usah nunggu lama, langsung hajar!
     initIposBrowser();
   }
 
