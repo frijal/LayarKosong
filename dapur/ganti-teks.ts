@@ -14,7 +14,18 @@ const EXTS    = (process.env.EXT    ?? process.argv[5] ?? "")
 .map((e) => `.${e.trim()}`)
 .filter((e) => e.length > 1);
 
-const EXCLUDED_DIRS = new Set(["node_modules", "functions", "img", "mini", "sementara"]);
+const EXCLUDED_DIRS = new Set([
+  ".cache",
+  ".git",
+  ".github",
+  ".wrangler",
+  "artikelx",
+  "build",
+  "dist",
+  "functions",
+  "img",
+  "node_modules",
+  "search"]);
 
 if (!SEARCH) {
   console.error("❌ Argumen SEARCH tidak boleh kosong.");
