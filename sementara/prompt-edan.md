@@ -500,7 +500,7 @@ Aturannya:
 
 Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode signature ini persis tanpa inline styling, tanpa tambahan css pada `<style>`:
 
-`<!--baris ini adalah signature penulis jangan diubah-->`
+`<!--signature artikel oleh LayarKosong-->`
 
 Kode tersebut harus berada di dalam konten artikel, sebelum `</article>`.
 
@@ -550,7 +550,7 @@ Sebelum memberikan jawaban final, pastikan:
 9. Gambar pertama diletakkan setelah beberapa paragraf pembuka.
 10. Elemen wajib berikut sudah ada kode signature ini persis tanpa inline styling tepat sebelum `</article>` tanpa tambahan css pada `<style>`::
 
-`<!--baris ini adalah signature penulis jangan diubah-->`
+`<!--signature artikel oleh LayarKosong-->`
 
 11. Metadata SEO lengkap.
 12. Canonical benar.
