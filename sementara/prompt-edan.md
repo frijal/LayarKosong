@@ -15,7 +15,7 @@ Sebelum menghasilkan kode final, lakukan urutan kerja berikut secara internal:
    `https://dalam.web.id/artikel/{slug-judul-artikel}.html`
 5. Identifikasi semua URL gambar yang ada di [OUTLINE].
 6. Jika [OUTLINE] tidak memiliki gambar, gunakan fallback image:
-   `https://dalam.web.id/img/thumbnail.webp`
+   `https://dalam.web.id/thumbnail.webp`
 7. Susun artikel dengan alur pembuka, pembahasan utama, pendalaman konteks, dan penutup.
 8. Pastikan elemen 5W+1H hadir secara natural dalam narasi, tanpa menulis label “5W+1H”, “Apa”, “Siapa”, “Kapan”, “Di mana”, “Mengapa”, atau “Bagaimana” sebagai subjudul eksplisit.
 9. Tentukan apakah artikel membutuhkan blok kode.
@@ -126,7 +126,7 @@ Gunakan aturan berikut untuk semua gambar:
 
 1. Gunakan semua URL gambar yang ada di dalam [OUTLINE].
 2. Jika [OUTLINE] tidak menyertakan gambar sama sekali, WAJIB gunakan fallback image ini:
-   `https://dalam.web.id/img/thumbnail.webp`
+   `https://dalam.web.id/thumbnail.webp`
 3. Gambar pertama di artikel adalah elemen LCP.
 4. Gambar pertama WAJIB diletakkan setelah beberapa paragraf pembuka, bukan sebagai hero image raksasa di paling atas.
 5. Semua gambar harus tampil full container width dengan CSS:
