@@ -77,7 +77,7 @@ function preProcessRawText(html: string): string {
   out = out.replace(brandingRegex, "");
 
   out = out
-    .replaceAll("<!--baris ini adalah signature penulis jangan diubah-->", `<div id="related-articles-grid"></div><div id="response"></div>`)
+    .replaceAll("<!--baris ini adalah signature penulis jangan diubah-->", `<div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>`)
     .replaceAll("Dalam Web Artikel", "Jaga Data Pribadi Tetap Aman")
     .replaceAll("Dalam Web Id",      "Jaga Data Pribadi Tetap Aman")
     .replaceAll("Dalam.Web.Id",      "Jaga Data Pribadi Tetap Aman")
@@ -277,10 +277,6 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
           `<a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a>`,
       ].join(" ");
       $("footer").append(` ${footerLinks}`);
-  }
-  
-  if ($("h1").length && $("#iposbrowser").length === 0) {
-      $("h1").first().before('<div id="iposbrowser"></div>');
   }
   
   if ($("#progress").length === 0) {
