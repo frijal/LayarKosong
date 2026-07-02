@@ -1,67 +1,62 @@
 /**
- * Takoio Loader for Layar Kosong
- * Versi: 1.0 (Berdasarkan Official README)
+ * Twikoo Loader for Layar Kosong
+ * Versi: 1.7.13 (Patched & Optimized)
  * Target: #response
  */
 (function() {
-    // 1. Konfigurasi Utama
-    const TAKOIO_ENV_ID = 'https://komm.dalam.web.id'; // Ganti dengan custom domain kalau sudah di-set (misal: https://kom.dalam.web.id)
-const TAKOIO_CONTAINER_ID = '#response';
+    const TWIKOO_ENV_ID = 'https://kom.dalam.web.id';
+    const TWIKOO_CONTAINER_ID = '#response';
+    const TWIKOO_CDN = 'https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js';
 
-// 2. Resource CDN Resmi Takoio (dari README)
-const VUE_CDN = 'https://unpkg.com/vue@3/dist/vue.global.prod.js';
-const TAKOIO_CDN_JS = 'https://unpkg.com/takoio/dist/takoio.min.js';
-const TAKOIO_CDN_CSS = 'https://unpkg.com/takoio/dist/takoio.min.css';
+    // 1. Cek Apakah Kontainer Komentar Ada di Halaman Ini
+    // Jika tidak ada (misal di halaman utama/arsip), hentikan skrip agar hemat resource
+    if (!document.querySelector(TWIKOO_CONTAINER_ID)) return;
 
-// Cek apakah kontainer komentar ada di halaman ini
-if (!document.querySelector(TAKOIO_CONTAINER_ID)) return;
-
-// 3. Muat File CSS Takoio
-if (!document.querySelector(`link[href="${TAKOIO_CDN_CSS}"]`)) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = TAKOIO_CDN_CSS;
-    document.head.appendChild(link);
-}
-
-// 4. Fungsi Pemuat Script Berurutan (Promise Based)
-function loadScript(url, globalVarName) {
-    return new Promise((resolve, reject) => {
-        // Cek apakah script sudah termuat sebelumnya
-        if (window[globalVarName]) {
-            resolve();
+    // 2. Fungsi untuk Memuat Script CDN Secara Aman
+    function loadScript(url, callback) {
+        // Cegah duplikasi suntikan script Twikoo ke dalam <head>
+        if (document.querySelector(`script[src="${url}"]`)) {
+            const checkExist = setInterval(() => {
+                if (typeof twikoo !== 'undefined') {
+                    clearInterval(checkExist);
+                    callback();
+                }
+            }, 100);
             return;
         }
-
+        
         const script = document.createElement('script');
         script.src = url;
         script.async = true;
-        script.onload = resolve;
-        script.onerror = () => reject(new Error(`Gagal memuat ${url}`));
+        script.onload = callback;
         document.head.appendChild(script);
-    });
-}
-
-// 5. Fungsi Inisialisasi Utama
-function initTakoio() {
-    // PENGAMAN TURNSTILE
-    if (window.turnstile && document.querySelector('.cf-turnstile')) {
-        try { window.turnstile.reset(); } catch(e) {}
     }
 
-    takoio.init({
-        envId: TAKOIO_ENV_ID,
-        el: TAKOIO_CONTAINER_ID,
-        lang: 'en', // Sesuai docs, ini valid untuk maksa UX ke bahasa Inggris
-    });
+    // 3. Fungsi Inisialisasi Utama
+    function initTwikoo() {
+        if (typeof twikoo !== 'undefined') {
+            
+            // PENGAMAN TURNSTILE (Mencegah Error 300030 / Hung)
+            // Jika skrip mendeteksi window.turnstile sudah ada dari pemuatan sebelumnya (efek PJAX/InstantClick),
+            // kita bersihkan memorinya sejenak agar Twikoo bisa memuat ulang Turnstile dengan bersih.
+            if (window.turnstile && document.querySelector('.cf-turnstile')) {
+                try { window.turnstile.reset(); } catch(e) {}
+            }
 
-    console.log('Takoio berhasil mengudara di Layar Kosong! 🚀');
-}
+            twikoo.init({
+                envId: TWIKOO_ENV_ID,
+                el: TWIKOO_CONTAINER_ID,
+                lang: 'en', // KUNCI UTAMA: Memaksa UX ke Bahasa Inggris agar bebas dari Bahasa Mandarin bawaan pabrik!
+            });
+            
+            console.log('Twikoo 1.7.13 berhasil dimuat di #response dengan konfigurasi Bahasa Inggris.');
+        }
+    }
 
-// 6. Eksekusi Pemuatan Berantai
-// Muat Vue dulu, setelah selesai baru muat Takoio, baru jalankan inisialisasi
-loadScript(VUE_CDN, 'Vue')
-.then(() => loadScript(TAKOIO_CDN_JS, 'takoio'))
-.then(() => initTakoio())
-.catch((error) => console.error('Waduh, ada kendala:', error));
+    // 4. Eksekusi Pemuatan
+    if (typeof twikoo !== 'undefined') {
+        initTwikoo();
+    } else {
+        loadScript(TWIKOO_CDN, initTwikoo);
+    }
 })();
