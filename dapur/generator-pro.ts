@@ -174,7 +174,7 @@ const distribute = async (
 
     // 🌟 4. GENERASI & SUNTIK BREADCRUMB VISUAL 🌟
     // Kembali ke inline style mini, tanpa <style> internal, murni inherit CSS halaman
-    const breadcrumbHtml = `<nav class="static-crumb" aria-label="Breadcrumb" style="font-size: .85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/${catSlug}/">${catLabel}</a></nav>`;
+    const breadcrumbHtml = `<nav class="static-crumb" aria-label="Breadcrumb" style="font-size: .85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/${catSlug}">${catLabel}</a></nav>`;
     
     // Cukup jangkar ke tag PEMBUKA <h1...> saja — isi & posisi </h1> diabaikan total
     const H1_OPEN_RE = /<h1[^>]*>/i;
