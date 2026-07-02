@@ -498,7 +498,7 @@ Aturannya:
 
 ## 12. ELEMEN PENUTUP ARTIKEL WAJIB
 
-Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling:
+Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling, tanpa tambahan css pada <style>:
 
 `<div id="related-articles-grid"></div><div id="response"></div>`
 
