@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Konversi Tipografi (REM - PX - PT)</title>
+
+
+
+    <meta name="description" content="memahami perbedaan REM, PX, dan PT dalam tipografi web, lengkap dengan fungsi, kelebihan, kekurangan, serta kapan sebaiknya digunakan di HTML dan CSS.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kalkulator Konversi Tipografi (REM - PX - PT)">
+<meta property="og:description" content="Panduan memahami perbedaan REM, PX, dan PT dalam tipografi web. Pelajari kapan memakai pixel, root em, dan point agar desain HTML/CSS lebih responsif, aksesibel, dan sesuai kebutuhan cetak.">
+<meta property="og:url" content="https://dalam.web.id/artikel/kalkulator-konversi-tipografi-rem-px-pt.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%202%2C%202026%2C%2008_16_16%20PM.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkulator Konversi Tipografi (REM - PX - PT)">
+<meta name="twitter:description" content="Pelajari perbedaan REM, PX, dan PT dalam CSS untuk membuat tipografi web yang responsif, aksesibel, dan mudah diterjemahkan dari desain Figma ke HTML.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%202%2C%202026%2C%2008_16_16%20PM.png">
+<link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-konversi-tipografi-rem-px-pt.html">
+
+
+    <style>
+        /* Kasur Warna & Variabel Utama */
+        :root {
+            --bg-color: #fcfcfc;
+            --text-color: #2b2b2b;
+            --primary-color: #35bf5c;
+            --border-color: #e2e8f0;
+            --accent-bg: #f8fafc;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --container-max: 64rem;
+        }
+
+        /* Dukungan Mode Gelap Otomatis */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121418;
+                --text-color: #e2e8f0;
+                --primary-color: #38d667;
+                --border-color: #2d3748;
+                --accent-bg: #1a202c;
+            }
+        }
+
+        /* Reset Dasar */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* Kontainer Utama (Maksimal 64rem) */
+        .container {
+            max-width: var(--container-max);
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 0.2rem solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* 📱 POLA MOBILE-FIRST (Default bertumpuk vertikal) */
+        .main-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .calc-section, .narrative-section {
+            width: 100%;
+        }
+
+        .narrative-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        /* 💻 UPGRADE KE DESKTOP (Lebar layar mulai dari 48rem / 768px) */
+        @media (min-width: 48rem) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .main-layout {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .calc-section {
+                flex: 1;
+                max-width: 32rem; /* Sisi kiri tetap proporsional */
+            }
+            .narrative-section {
+                flex: 1;
+                border-top: none;
+                border-left: 1px solid var(--border-color);
+                padding-top: 0;
+                padding-left: 2rem;
+            }
+        }
+
+        /* Kotak Besar Hasil */
+        .display-box {
+            background-color: var(--accent-bg);
+            border: 2px dashed var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            min-height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-all;
+        }
+
+        .display-box span {
+            color: var(--primary-color);
+        }
+
+        /* Form Grup & Input */
+        .input-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
+            display: flex;
+            position: relative;
+            align-items: stretch;
+        }
+
+        /* Jinakkan Spinner Bawaan Browser */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        /* 🕹️ BUTTON UP-DOWN KUSTOM DI SEBELAH KIRI */
+        .spinner-buttons {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 0.375rem 0 0 0.375rem;
+            overflow: hidden;
+            background-color: var(--accent-bg);
+            width: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .spinner-buttons button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 0.65rem;
+            cursor: pointer;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.15s;
+        }
+
+        .spinner-buttons button:hover {
+            background-color: var(--border-color);
+        }
+
+        .spinner-buttons button:first-child {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 0.75rem 3.5rem 0.75rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0 0.375rem 0.375rem 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .input-wrapper:focus-within .spinner-buttons {
+            border-color: var(--primary-color);
+        }
+
+        /* Lencana Satuan di Kanan */
+        .unit-badge {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            color: var(--primary-color);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Narasi Pengetahuan */
+        .narrative-section h2 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .narrative-section p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        .narrative-section ul {
+            padding-left: 1.25rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .narrative-section li {
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Judul Halaman -->
+    <h1>Kalkulator Konversi Tipografi Web Unit Size</h1>
+
+    <div class="main-layout">
+        <!-- Sisi Kiri: Simulator & Input -->
+        <div class="calc-section">
+            <div class="display-box" id="big-display">
+                Masukkan angka untuk menghitung...
+            </div>
+
+            <!-- Input REM -->
+            <div class="input-group">
+                <label for="input-rem">Nenek Moyang Responsif (REM)</label>
+                <div class="input-wrapper">
+                    <div class="spinner-buttons">
+                        <button type="button" class="spin-up">▲</button>
+                        <button type="button" class="spin-down">▼</button>
+                    </div>
+                    <input type="number" id="input-rem" step="0.01" placeholder="Misal: 0.85 atau 1">
+                    <span class="unit-badge">REM</span>
+                </div>
+            </div>
+
+            <!-- Input PX -->
+            <div class="input-group">
+                <label for="input-px">Presisi Layar Digital (PX)</label>
+                <div class="input-wrapper">
+                    <div class="spinner-buttons">
+                        <button type="button" class="spin-up">▲</button>
+                        <button type="button" class="spin-down">▼</button>
+                    </div>
+                    <input type="number" id="input-px" step="1" placeholder="Misal: 16 atau 14">
+                    <span class="unit-badge">PX</span>
+                </div>
+            </div>
+
+            <!-- Input PT -->
+            <div class="input-group">
+                <label for="input-pt">Warisan Dunia Cetak (PT)</label>
+                <div class="input-wrapper">
+                    <div class="spinner-buttons">
+                        <button type="button" class="spin-up">▲</button>
+                        <button type="button" class="spin-down">▼</button>
+                    </div>
+                    <input type="number" id="input-pt" step="0.5" placeholder="Misal: 12 atau 10.5">
+                    <span class="unit-badge">PT</span>
+                </div>
+            </div>
+            <p><em>Rumus dasarnya (asumsi standar browser 16px):</em><br>
+            <code>1 rem = 16 px = 12 pt</code>
+            </p>
+        </div>
+
+        <!-- Sisi Kanan: Narasi Pengetahuan -->
+        <div class="narrative-section">
+            <h2>Size Tipografi Web: REM - PX - PT</h2>
+            <p>Biar tidak sering tersesat saat menerjemahkan desain Figma ke kode HTML/CSS, ini rangkuman logis kenapa ketiga makhluk ini punya ego masing-masing:</p>
+            <ul>
+                <li><strong>PX (Pixel):</strong> Satuan absolut paling jujur di layar digital. Jika kamu kunci 16px, maka selamanya dia akan berukuran 16 titik pixel di layar. Masalahnya, PX ini agak keras kepala. Kalau pembaca blogmu memperbesar ukuran font bawaan di pengaturan browser karena faktor mata, elemen bersatuan PX akan menolak untuk ikut membesar. Kurang ramah aksesibilitas.</li>
+                <li><strong>REM (Root EM):</strong> Satuan relatif yang dinamis dan sangat dicintai robot penilai performa web. Ukurannya merujuk langsung pada font-size elemen root alias tag <code>&lt;html&gt;</code>. Secara standar browser desktop, 1rem setara dengan 16px. Menggunakan REM memastikan web kamu fleksibel mengikuti preferensi ukuran layar dan kenyamanan mata pengguna.</li>
+                <li><strong>PT (Point):</strong> Satuan fisik kuno yang aslinya lahir di dunia mesin cetak kertas (1pt = 1/72 inci). Di era modern, PT hampir tidak pernah dipakai untuk web harian, kecuali kamu sedang membuat CSS khusus cetak (<code>@media print</code>) agar layout artikel saat di-print ke kertas kertas A4 ukurannya tetap presisi seperti dokumen resmi.</li>
+            </ul>
+                    </div>
+    </div><!--signature artikel oleh LayarKosong-->
+</div><footer></footer>
+
+<script>
+    const remIn = document.getElementById('input-rem');
+    const pxIn = document.getElementById('input-px');
+    const ptIn = document.getElementById('input-pt');
+    const bigDisplay = document.getElementById('big-display');
+
+    function cleanNum(num, fixed) {
+        return parseFloat(num.toFixed(fixed));
+    }
+
+    function updateBigDisplay(rem, px, pt) {
+        if (!rem || !px || !pt) {
+            bigDisplay.innerHTML = "Masukkan angka untuk memulai kalkulasi...";
+            return;
+        }
+        bigDisplay.innerHTML = `<span>${rem} rem</span> &nbsp;=&nbsp; <span>${px} px</span> &nbsp;=&nbsp; <span>${pt} pt</span>`;
+    }
+
+    // Input Reaksi
+    remIn.addEventListener('input', () => {
+        const rem = parseFloat(remIn.value);
+        if (!isNaN(rem)) {
+            const px = cleanNum(rem * 16, 2);
+            const pt = cleanNum(rem * 12, 2);
+            pxIn.value = px; ptIn.value = pt;
+            updateBigDisplay(rem, px, pt);
+        } else { resetInputs(); }
+    });
+
+    pxIn.addEventListener('input', () => {
+        const px = parseFloat(pxIn.value);
+        if (!isNaN(px)) {
+            const rem = cleanNum(px / 16, 4);
+            const pt = cleanNum(px * 0.75, 2);
+            remIn.value = rem; ptIn.value = pt;
+            updateBigDisplay(rem, px, pt);
+        } else { resetInputs(); }
+    });
+
+    ptIn.addEventListener('input', () => {
+        const pt = parseFloat(ptIn.value);
+        if (!isNaN(pt)) {
+            const px = cleanNum(pt / 0.75, 2);
+            const rem = cleanNum(pt / 12, 4);
+            remIn.value = rem; pxIn.value = px;
+            updateBigDisplay(rem, px, pt);
+        } else { resetInputs(); }
+    });
+
+    function resetInputs() {
+        remIn.value = ''; pxIn.value = ''; ptIn.value = '';
+        updateBigDisplay();
+    }
+
+    // Logika Penggerak Button Up-Down Kustom Sebelah Kiri
+    document.querySelectorAll('.input-group').forEach(group => {
+        const input = group.querySelector('input');
+        const upBtn = group.querySelector('.spin-up');
+        const downBtn = group.querySelector('.spin-down');
+
+        upBtn.addEventListener('click', () => {
+            const step = parseFloat(input.getAttribute('step')) || 1;
+            const val = parseFloat(input.value) || 0;
+            input.value = cleanNum(val + step, 4);
+            input.dispatchEvent(new Event('input'));
+        });
+
+        downBtn.addEventListener('click', () => {
+            const step = parseFloat(input.getAttribute('step')) || 1;
+            const val = parseFloat(input.value) || 0;
+            if (val - step >= 0) {
+                input.value = cleanNum(val - step, 4);
+                input.dispatchEvent(new Event('input'));
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
