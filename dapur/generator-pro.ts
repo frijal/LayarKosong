@@ -34,7 +34,7 @@ const decodeHTML = (str: string) => {
         '&mdash;': '—', '&nbsp;': ' '
     };
     let t = str.replace(/&[a-z0-9#]+;/gi, (m) => entities[m.toLowerCase()] || m);
-    t = t.replace(/&#(\d+);/g,        (_, dec) => String.fromCharCode(parseInt(dec, 10)));
+    t = t.replace(/&#(\d+);/g,       (_, dec) => String.fromCharCode(parseInt(dec, 10)));
     t = t.replace(/&#x([a-f0-9]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
     return t.trim();
 };
@@ -137,9 +137,10 @@ const distribute = async (
 
     let html = pre || await Bun.file(`${C.art}/${f}`).text();
     const catLabel = getCategoryLabel(slug(cat));
+    const catSlug = slug(cat);
 
     const tags = catLabel.split(',').map(t => t.trim()).filter(Boolean);
-    const tagsHtml = tags.map(t => `<meta property="article:tag" content="${t}">`).join('\n    ');
+    const tagsHtml = tags.map(t => `<meta property="article:tag" content="${t}">`).join('\n     ');
 
     // ✨ SUNTIK URL BESERTA ATRIBUT 'TITLE' (Langsung Judul Bersih) ✨
     let prevNextTags = '';
@@ -154,6 +155,7 @@ const distribute = async (
 
     // 1. Bersihkan SEMUA sisa tag lama secara total agar tidak terjadi penumpukan
     html = html
+    .replace(/<nav class="static-crumb"[\s\S]*?<\/nav>\s*/gi, '') // 🌟 ANTI-TUMPUK: Buang remah roti lama jika ada
     .replace(/<meta property="article:tag" content="[^"]*">\s*/gi, '')
     .replace(/<link rel="(prev|next)" [^>]*>\s*/gi, '') // Regex diperluas untuk menghapus tag yang punya 'title'
     .replace(/<meta property="article:section" content="[^"]*">\s*/gi, '')
@@ -170,7 +172,17 @@ const distribute = async (
         html = html.replace('</head>', `    <link rel="canonical" href="${url}">${seoInjection}\n</head>`);
     }
 
-    // 4. Koreksi URL & Waktu Modified
+    // 🌟 4. GENERASI & SUNTIK BREADCRUMB VISUAL 🌟
+    // Kembali ke inline style mini, tanpa <style> internal, murni inherit CSS halaman
+    const breadcrumbHtml = `<nav class="static-crumb" aria-label="Breadcrumb" style="font-size: 0.85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/${catSlug}/">${catLabel}</a></nav>`;
+    
+    // Cukup jangkar ke tag PEMBUKA <h1...> saja — isi & posisi </h1> diabaikan total
+    const H1_OPEN_RE = /<h1[^>]*>/i;
+    if (html.match(H1_OPEN_RE)) {
+        html = html.replace(H1_OPEN_RE, (match) => `${breadcrumbHtml}\n    ${match}`);
+    }
+
+    // 5. Koreksi URL & Waktu Modified
     html = html
     .replace(new RegExp(`${BASE_RE}/artikelx?/${f.replace('.html', '')}`, 'g'), url)
     .replace(/\/artikelx?\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
@@ -436,7 +448,7 @@ sitemapByCategory.get(catSlug)!.push(`
             loc:     `${C.base}/${fileName}`,
             lastmod,
             content: buildSitemapUrlset(entries.join('')),
-                                                                      count:   entries.length
+                                                                    count:   entries.length
         };
     });
 
@@ -456,14 +468,14 @@ sitemapByCategory.get(catSlug)!.push(`
     ]);
 
     console.log(`✅ Sitemap index dibuat : sitemap.xml`);
-    categorySitemapItems.forEach(it => console.log(`   📂 ${it.fileName.padEnd(32)} ${it.count} URL`));
+    categorySitemapItems.forEach(it => console.log(`    📂 ${it.fileName.padEnd(32)} ${it.count} URL`));
 
     const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
     const dateFormatter = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' });
 
     if (tmp) {
         for (const [cat, arts] of Object.entries(final)) {
-            const s                 = slug(cat);
+            const s                   = slug(cat);
             const rUrl              = `${C.base}/feed-${s}.xml`;
             const rAtomUrl          = `${C.base}/feed-${s}-atom.xml`;
             const seoCategoryLabel  = getCategoryLabel(s);
