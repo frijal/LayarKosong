@@ -498,9 +498,9 @@ Aturannya:
 
 ## 12. ELEMEN PENUTUP ARTIKEL WAJIB
 
-Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling, tanpa tambahan css pada `<style>`:
+Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode signature ini persis tanpa inline styling, tanpa tambahan css pada `<style>`:
 
-`<div id="related-articles-grid"></div><div id="response"></div>`
+`<!--baris ini adalah signature penulis jangan diubah-->`
 
 Kode tersebut harus berada di dalam konten artikel, sebelum `</article>`.
 
@@ -548,9 +548,9 @@ Sebelum memberikan jawaban final, pastikan:
 7. Semua gambar punya `alt`.
 8. Semua gambar punya dimensi eksplisit atau `aspect-ratio`.
 9. Gambar pertama diletakkan setelah beberapa paragraf pembuka.
-10. Elemen wajib berikut sudah ada kode ini persis tanpa inline styling tepat sebelum `</article>` tanpa tambahan css pada `<style>`::
+10. Elemen wajib berikut sudah ada kode signature ini persis tanpa inline styling tepat sebelum `</article>` tanpa tambahan css pada `<style>`::
 
-`<div id="related-articles-grid"></div><div id="response"></div>`
+`<!--baris ini adalah signature penulis jangan diubah-->`
 
 11. Metadata SEO lengkap.
 12. Canonical benar.
