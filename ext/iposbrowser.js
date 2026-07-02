@@ -10,7 +10,7 @@
           <strong style="margin-right:4px;">∞</strong> 
           ${H.v.toLocaleString("id-ID")} <small style="margin:0 4px;opacity:0.5;">-</small> ${H.t.toLocaleString("id-ID")}
         </span>`:""}
-                  <span style="opacity:0.3;margin:0 2px;">|</span>
+
         <span style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap;margin-left:5px;">
           <a aria-label="Atom Feed" rel="noopener noreferrer" title="Atom Feed" href="/atom.xml" target="_blank" style="color:#2563eb;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
             ${Z}
