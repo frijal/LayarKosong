@@ -315,14 +315,18 @@ function prosesHtmlDenganCheerio(rawHtml: string): string {
       $("body").append(`<script defer src="/ext/iposbrowser.js"></script>`);
   }
   
-  // Guard Lightbox + Pengecekan Ekstensi Gambar
-  if ($('script[src="/ext/lightbox.js"]').length === 0) {
-      const bodyHtml = $("body").html() || "";
-      const hasImage = /\.(jpg|jpeg|png|gif|webp|avif|svg|bmp)["']/i.test(bodyHtml);
-      if (hasImage) {
-          $("body").append(`<script defer src="/ext/lightbox.js"></script>`);
-      }
-  }
+  // Guard Lightbox + Pengecekan Ekstensi Gambar (Regex Anti-Query String)
+if ($('script[src="/ext/lightbox.js"]').length === 0) {
+    const bodyHtml = $("body").html() || "";
+    
+    // Regex di-upgrade untuk menoleransi query string (?) atau fragment (#)
+    // sebelum tanda kutip penutup (' atau ")
+    const hasImage = /\.(jpg|jpeg|png|gif|webp|avif|svg|bmp)(?:[?#][^"']*)?["']/i.test(bodyHtml);
+    
+    if (hasImage) {
+        $("body").append(`<script defer src="/ext/lightbox.js"></script>`);
+    }
+}
   
   if ($('script[src="/ext/response.js"]').length === 0) {
       $("body").append(`<script defer src="/ext/response.js"></script>`);
