@@ -498,7 +498,7 @@ Aturannya:
 
 ## 12. ELEMEN PENUTUP ARTIKEL WAJIB
 
-Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling, tanpa tambahan css pada <style>:
+Tepat sebelum tag penutup konten artikel, WAJIB masukkan kode ini persis tanpa inline styling, tanpa tambahan css pada `<style>`:
 
 `<div id="related-articles-grid"></div><div id="response"></div>`
 
@@ -548,7 +548,7 @@ Sebelum memberikan jawaban final, pastikan:
 7. Semua gambar punya `alt`.
 8. Semua gambar punya dimensi eksplisit atau `aspect-ratio`.
 9. Gambar pertama diletakkan setelah beberapa paragraf pembuka.
-10. Elemen wajib berikut sudah ada kode ini persis tanpa inline styling tepat sebelum `</article>`:
+10. Elemen wajib berikut sudah ada kode ini persis tanpa inline styling tepat sebelum `</article>` tanpa tambahan css pada `<style>`::
 
 `<div id="related-articles-grid"></div><div id="response"></div>`
 
