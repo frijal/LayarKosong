@@ -1,42 +1,66 @@
-<!DOCTYPE html>
-
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sakis3G: Konek Modem 3G di Ubuntu</title>
-  <meta name="description" content="Panduan nostalgia Sakis3G untuk modem 3G di Ubuntu, dari ekstrak paket, chmod, menjalankan terminal, sampai koneksi tersambung dengan aman dan ringan.">
-  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
-  <meta name="author" content="Fakhrul Rijal">
-  <meta name="theme-color" content="#2563eb">
-  <link rel="canonical" href="https://dalam.web.id/artikel/sakis3g-konek-modem-3g-di-ubuntu.html">
-
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Sakis3G: Konek Modem 3G di Ubuntu">
-  <meta property="og:description" content="Ulasan Sakis3G untuk modem 3G GSM yang sulit konek di Ubuntu, lengkap dengan langkah terminal, tangkapan layar, dan catatan penting sebelum mencobanya.">
-  <meta property="og:url" content="https://dalam.web.id/artikel/sakis3g-konek-modem-3g-di-ubuntu.html">
-  <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%203%2C%202026%2C%2008_18_13%20PM.png">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="768">
-  <meta property="article:published_time" content="2026-07-03T17:00:00+08:00">
-  <meta property="article:modified_time" content="2026-07-03T17:00:00+08:00">
-  <meta property="article:author" content="Fakhrul Rijal">
-  <meta property="article:section" content="Linux & Open Source">
-  <meta property="article:tag" content="Sakis3G">
-  <meta property="article:tag" content="Modem 3G">
-  <meta property="article:tag" content="Ubuntu">
-  <meta property="article:tag" content="Linux">
-  <meta property="article:tag" content="GSM Modem">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sakis3G: Konek Modem 3G di Ubuntu">
-  <meta name="twitter:description" content="Catatan praktis memakai Sakis3G agar modem 3G lebih mudah tersambung di Ubuntu lama, mulai dari izin eksekusi hingga pilihan disconnect selesai online.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%203%2C%202026%2C%2008_18_13%20PM.png">
-
-  <meta name="news_keywords" content="Sakis3G, modem 3G, Ubuntu, Linux, GSM modem, koneksi internet Linux, terminal Linux">
-  <meta name="promphint" content="Bagaimana konek modem 3G di Ubuntu lama? | Jalankan Sakis3G, beri izin eksekusi, pilih modem GSM, lalu sambungkan lewat menu terminal.">
-
-
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sakis3G: Konek Modem 3G di Ubuntu - Layar Kosong</title>
+    <meta name="description" content="Panduan nostalgia Sakis3G untuk modem 3G di Ubuntu, dari ekstrak paket, chmod, menjalankan terminal, sampai koneksi tersambung dengan aman dan ringan.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/sakis3g-konek-modem-3g-di-ubuntu">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Sakis3G, modem 3G, Ubuntu, Linux, GSM modem, koneksi internet Linux, terminal Linux">
+    <meta name="promphint" content="Bagaimana konek modem 3G di Ubuntu lama? | Jalankan Sakis3G, beri izin eksekusi, pilih modem GSM, lalu sambungkan lewat menu terminal.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/sakis3g-konek-modem-3g-di-ubuntu">
+    <meta property="og:title" content="Sakis3G: Konek Modem 3G di Ubuntu">
+    <meta property="og:description" content="Ulasan Sakis3G untuk modem 3G GSM yang sulit konek di Ubuntu, lengkap dengan langkah terminal, tangkapan layar, dan catatan penting sebelum mencobanya.">
+    <meta property="og:updated_time" content="2026-07-03T09:06:12.736Z">
+    <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/15f2251678cd4c9d.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/15f2251678cd4c9d.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/15f2251678cd4c9d.webp">
+    <meta property="og:image:alt" content="Sakis3G: Konek Modem 3G di Ubuntu">
+    <meta property="og:image:width" content="1672">
+    <meta property="og:image:height" content="941">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/sakis3g-konek-modem-3g-di-ubuntu">
+    <meta name="twitter:title" content="Sakis3G: Konek Modem 3G di Ubuntu">
+    <meta name="twitter:description" content="Catatan praktis memakai Sakis3G agar modem 3G lebih mudah tersambung di Ubuntu lama, mulai dari izin eksekusi hingga pilihan disconnect selesai online.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/15f2251678cd4c9d.webp">
+    <meta name="twitter:image:alt" content="Sakis3G: Konek Modem 3G di Ubuntu">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Sakis3G">
+    <meta property="article:tag" content="Modem 3G">
+    <meta property="article:tag" content="Ubuntu">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="GSM Modem">
+    <meta property="article:published_time" content="2026-07-03T09:00:00.000Z">
+    <meta property="article:modified_time" content="2026-07-03T09:06:12.736Z">
   <style>
     :root {
       color-scheme: light;
@@ -60,7 +84,6 @@
       --radius-small: 0.75rem;
       --shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.08);
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         color-scheme: dark;
@@ -81,22 +104,18 @@
         --shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.32);
       }
     }
-
     @media (min-width: 64rem) {
       :root {
         --screen-padding: 2.5rem;
         --nested-padding: 1.5rem;
       }
     }
-
     * {
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
     }
-
     body {
       margin: 0;
       background:
@@ -109,17 +128,14 @@
       line-height: 1.75;
       text-rendering: optimizeLegibility;
     }
-
     a {
       color: var(--brand-strong);
       text-decoration-thickness: 0.08rem;
       text-underline-offset: 0.18rem;
     }
-
     a:hover {
       color: var(--accent);
     }
-
     code {
       padding: 0.18rem 0.35rem;
       border: 0.0625rem solid var(--border);
@@ -130,14 +146,12 @@
       font-size: 0.92em;
       overflow-wrap: anywhere;
     }
-
     .page {
       width: min(100%, 64rem);
       margin: 0 auto;
       padding-inline: var(--screen-padding);
       padding-block: 2rem;
     }
-
     .article {
       background: var(--surface);
       border: 0.0625rem solid var(--border);
@@ -146,12 +160,10 @@
       padding-block: 2rem;
       overflow: hidden;
     }
-
     .article-header,
     .article-body {
       padding-inline: var(--nested-padding);
     }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -163,7 +175,6 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
-
     h1,
     h2,
     h3 {
@@ -171,45 +182,36 @@
       line-height: 1.25;
       letter-spacing: -0.02em;
     }
-
     h1 {
       margin: 0 0 1rem;
       font-size: clamp(2rem, 6vw, 2.5rem);
     }
-
     h2 {
       margin-block: 2.25rem 1rem;
       font-size: clamp(1.45rem, 4vw, 1.75rem);
     }
-
     h3 {
       margin-block: 1.45rem 0.55rem;
       font-size: clamp(1.18rem, 3vw, 1.35rem);
     }
-
     p {
       margin-block: 0 1.15rem;
     }
-
     b {
       color: var(--heading);
     }
-
     .lead {
       margin: 0;
       color: var(--muted);
       font-size: clamp(1.08rem, 3vw, 1.25rem);
     }
-
        .intro {
       margin-top: 1.75rem;
     }
-
     figure {
       margin: 2rem 0;
       padding: 0;
     }
-
     img {
       display: block;
       width: 100%;
@@ -218,7 +220,6 @@
       border-radius: var(--radius-small);
       background: var(--surface-soft);
     }
-
     figcaption {
       margin-top: 0.65rem;
       color: var(--muted);
@@ -226,7 +227,6 @@
       line-height: 1.55;
       text-align: center;
     }
-
     .note {
       margin: 1.5rem 0;
       padding: 1rem 1.15rem;
@@ -236,11 +236,9 @@
       background: var(--surface-soft);
       color: var(--text);
     }
-
     .note p:last-child {
       margin-bottom: 0;
     }
-
     blockquote {
       margin: 1.5rem 0;
       padding: 1rem 1.15rem;
@@ -250,21 +248,17 @@
       background: var(--surface-warm);
       color: var(--text);
     }
-
     blockquote p:last-child {
       margin-bottom: 0;
     }
-
     ul,
     ol {
       padding-left: 1.35rem;
       margin-block: 0.75rem 1.25rem;
     }
-
     li {
       margin-block: 0.45rem;
     }
-
     details {
       margin: 1.25rem 0;
       border: 0.0625rem solid var(--border);
@@ -272,7 +266,6 @@
       background: var(--surface);
       overflow: hidden;
     }
-
     summary {
       display: flex;
       align-items: center;
@@ -284,17 +277,14 @@
       color: var(--heading);
       transition: background-color 0.18s ease, color 0.18s ease;
     }
-
     summary:hover {
       background: var(--summary-hover);
     }
-
     summary h2 {
       display: inline;
       margin: 0;
       font-size: clamp(1.3rem, 4vw, 1.65rem);
     }
-
     summary::after {
       content: "+";
       flex: 0 0 auto;
@@ -308,55 +298,45 @@
       font-weight: 800;
       line-height: 1;
     }
-
     details[open] summary::after {
       content: "−";
     }
-
     .details-inner {
       padding: 1.25rem;
     }
-
     .details-inner > :first-child {
       margin-top: 0;
     }
-
     .cards {
       display: grid;
       gap: 1rem;
       margin-block: 1.5rem;
     }
-
     .card {
       padding: 1rem;
       border: 0.0625rem solid var(--border);
       border-radius: var(--radius-small);
       background: var(--surface-soft);
     }
-
     .card p {
       margin: 0;
     }
-
     .mini-title {
       display: block;
       margin-bottom: 0.25rem;
       color: var(--heading);
       font-weight: 800;
     }
-
     .command-list {
       list-style: none;
       padding-left: 0;
     }
-
     .command-list li {
       padding: 0.9rem 1rem;
       border: 0.0625rem solid var(--border);
       border-radius: var(--radius-small);
       background: var(--surface-soft);
     }
-
     .site-footer {
       display: flex;
       flex-wrap: wrap;
@@ -369,22 +349,18 @@
       font-size: 0.9rem;
       text-align: center;
     }
-
     .site-footer span:not(:last-child)::after {
       content: "•";
       margin-left: 0.8rem;
       color: var(--border);
     }
-
     @media (max-width: 40rem) {
       body {
         font-size: 1.0625rem;
       }
-
       .page {
         padding-block: 1rem;
       }
-
       .article {
         background: transparent;
         border: none;
@@ -392,36 +368,29 @@
         border-radius: 0;
         padding-block: 1rem;
       }
-
       figure {
         margin-inline: 0;
       }
-
       summary {
         padding: 0.95rem 1rem;
       }
-
       .details-inner {
         padding: 1rem;
       }
-
       .site-footer {
         display: block;
       }
-
       .site-footer span {
         display: block;
         margin-block: 0.25rem;
       }
-
       .site-footer span:not(:last-child)::after {
         content: "";
         margin: 0;
       }
     }
   </style>
-
-</head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
   <main class="page">
     <article class="article">
@@ -430,170 +399,127 @@
         <h1>Sakis3G: Konek Modem 3G di Ubuntu Tanpa Banyak Drama</h1>
         <p class="lead">Ulasan ringan tentang Sakis3G, aplikasi kecil yang dulu sering jadi penyelamat bagi pemilik modem 3G GSM yang susah tersambung di Ubuntu.</p>
             </header>
-
-
   <div class="article-body">
     <section class="intro">
       <p>Artikel ini sekadar mengulas aplikasi yang dulu sangat berguna bagi para pemilik modem 3gp, eh, modem <b>3G</b>. Jenis modem seperti ini biasanya unik: bisa dipakai untuk koneksi internet, tetapi sekaligus muncul sebagai media penyimpanan seperti flashdisk. Praktis, tetapi kadang bikin sistem operasi bengong sebentar sebelum sadar bahwa benda yang dicolok itu bukan cuma tempat menyimpan file.</p>
-
       <p>Di Ubuntu lama, terutama ketika Network Manager belum semulus sekarang, modem 3G tertentu kadang sulit untuk konek. Bukan karena Linux tidak mampu, tetapi karena modem semacam ini sering punya mode ganda: awalnya dikenali sebagai storage, lalu perlu “dipindahkan” agar dikenali sebagai modem. Di sinilah aplikasi kecil bernama <b>Sakis3G</b> pernah punya peran yang cukup menyenangkan.</p>
-
       <p>Sebelum lanjut, ada catatan dari masa lalu yang perlu tetap ditaruh di depan: panduan ini ditulis untuk konteks modem 3G GSM. Jika modem yang digunakan memakai kartu CDMA, sebaiknya berhenti dulu membaca langkah teknisnya, karena jalurnya bisa berbeda. Daripada terminal ikut bingung, lebih baik kita jaga martabat masing-masing.</p>
-
       <figure>
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjwIxxr08iuXReUcxod3BoYgDidiGJPmzhmANsduO7o_CTWEXTkSvNu1HDKFBebT5M-tifRSG7o4Y7cKSyk_wKsXYwdZ8s9Npr9UBJ4RHvzHdE5dtamvTlU_MF16bQpQJHWyeTq6RqkSvE/s1600/Selection_012.jpeg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjwIxxr08iuXReUcxod3BoYgDidiGJPmzhmANsduO7o_CTWEXTkSvNu1HDKFBebT5M-tifRSG7o4Y7cKSyk_wKsXYwdZ8s9Npr9UBJ4RHvzHdE5dtamvTlU_MF16bQpQJHWyeTq6RqkSvE/s320/Selection_012.jpeg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjwIxxr08iuXReUcxod3BoYgDidiGJPmzhmANsduO7o_CTWEXTkSvNu1HDKFBebT5M-tifRSG7o4Y7cKSyk_wKsXYwdZ8s9Npr9UBJ4RHvzHdE5dtamvTlU_MF16bQpQJHWyeTq6RqkSvE/s1600/Selection_012.jpeg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Tampilan awal Sakis3G untuk menghubungkan modem 3G di Ubuntu" fetchpriority="high" decoding="async">
+        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/957c506eaade2a81.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjwIxxr08iuXReUcxod3BoYgDidiGJPmzhmANsduO7o_CTWEXTkSvNu1HDKFBebT5M-tifRSG7o4Y7cKSyk_wKsXYwdZ8s9Npr9UBJ4RHvzHdE5dtamvTlU_MF16bQpQJHWyeTq6RqkSvE/s320/Selection_012.jpeg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjwIxxr08iuXReUcxod3BoYgDidiGJPmzhmANsduO7o_CTWEXTkSvNu1HDKFBebT5M-tifRSG7o4Y7cKSyk_wKsXYwdZ8s9Npr9UBJ4RHvzHdE5dtamvTlU_MF16bQpQJHWyeTq6RqkSvE/s1600/Selection_012.jpeg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Tampilan awal Sakis3G untuk menghubungkan modem 3G di Ubuntu" fetchpriority="high" decoding="async">
         <figcaption>Tampilan awal penggunaan Sakis3G untuk membantu modem 3G tersambung di Ubuntu lama.</figcaption>
       </figure>
     </section>
-
     <section>
       <h2>Sakis3G dan Masa Ketika Modem USB Masih Penuh Kejutan</h2>
       <p>Sakis3G adalah skrip atau aplikasi kecil yang membantu proses konfigurasi modem 3G di Linux. Pada masanya, alat ini terasa sangat membantu karena pengguna tidak perlu selalu mengatur koneksi secara manual dari awal. Ia memberi menu berbasis teks yang cukup ramah, lalu membantu mendeteksi modem, memilih operator, dan memulai koneksi.</p>
-
       <p>Modem USB 3G lama biasanya tidak sesederhana colok lalu langsung jalan. Banyak perangkat dikenali lebih dulu sebagai CD-ROM virtual atau flash storage karena membawa driver untuk sistem operasi lain. Di Linux, kondisi itu kadang membuat pengguna harus melakukan proses tambahan agar perangkat berubah mode menjadi modem. Sakis3G mencoba membuat proses tersebut lebih mudah diikuti.</p>
-
       <p>Jadi, tulisan ini bukan membahas teknologi internet modern yang tinggal klik tethering lalu selesai. Ini catatan dari era ketika koneksi internet punya ritual sendiri: colok modem, cek lampu indikator, buka terminal, jalankan skrip, pilih menu, lalu menunggu sambil berharap sinyal tidak sedang cuti.</p>
     </section>
-
     <details>
       <summary><h2>Persiapan Awal Sebelum Menjalankan Sakis3G</h2></summary>
       <div class="details-inner">
         <p>Langkah awalnya tidak rumit. Unduh paket Sakis3G dari situs resminya, ekstrak paket tersebut, lalu arahkan terminal ke direktori tempat file <code>sakis3g</code> berada. Karena ini dijalankan dari terminal, pastikan Anda berada di folder yang benar. Terminal itu jujur: salah folder, salah pula nasib perintahnya.</p>
-
         <h3>Masuk ke folder hasil ekstrak</h3>
         <p>Setelah paket Sakis3G diekstrak, buka terminal dan masuk ke direktori tempat file berada. Ini penting karena perintah berikutnya akan dijalankan langsung terhadap file <code>sakis3g</code>.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgExWmFMruMUE_5Vw6quGFSGqy44ailKtItqOxxWC_sdQnrJVbJTSBewrXIV8d5H0FZ2zdAN09jqhjEiOO1SodLqWT5-uhGGYr5sHdmeVyQwrycxMbL5fni6Ceo6f2f5T1H9UI3FgDajFn1/s1600/selection005x.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgExWmFMruMUE_5Vw6quGFSGqy44ailKtItqOxxWC_sdQnrJVbJTSBewrXIV8d5H0FZ2zdAN09jqhjEiOO1SodLqWT5-uhGGYr5sHdmeVyQwrycxMbL5fni6Ceo6f2f5T1H9UI3FgDajFn1/s320/selection005x.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgExWmFMruMUE_5Vw6quGFSGqy44ailKtItqOxxWC_sdQnrJVbJTSBewrXIV8d5H0FZ2zdAN09jqhjEiOO1SodLqWT5-uhGGYr5sHdmeVyQwrycxMbL5fni6Ceo6f2f5T1H9UI3FgDajFn1/s1600/selection005x.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Terminal Ubuntu berada di direktori hasil ekstrak Sakis3G" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/f5be5d6274d28bad.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgExWmFMruMUE_5Vw6quGFSGqy44ailKtItqOxxWC_sdQnrJVbJTSBewrXIV8d5H0FZ2zdAN09jqhjEiOO1SodLqWT5-uhGGYr5sHdmeVyQwrycxMbL5fni6Ceo6f2f5T1H9UI3FgDajFn1/s320/selection005x.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgExWmFMruMUE_5Vw6quGFSGqy44ailKtItqOxxWC_sdQnrJVbJTSBewrXIV8d5H0FZ2zdAN09jqhjEiOO1SodLqWT5-uhGGYr5sHdmeVyQwrycxMbL5fni6Ceo6f2f5T1H9UI3FgDajFn1/s1600/selection005x.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Terminal Ubuntu berada di direktori hasil ekstrak Sakis3G" loading="lazy" decoding="async">
           <figcaption>Masuk ke lokasi hasil ekstrak paket Sakis3G melalui terminal.</figcaption>
         </figure>
-
         <h3>Beri izin eksekusi</h3>
         <p>Agar file dapat dijalankan, beri izin eksekusi dengan perintah <code>chmod a+x sakis3g</code>. Perintah ini membuat file bisa dieksekusi oleh pengguna. Tanpa izin ini, sistem bisa menolak menjalankannya, meski niat kita sudah tulus sejak awal.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEik5Z4J5F_CXENfxY094GMKTtcjT-dyErDjPS9YZ2RsvtOFDBJ8vj815WjcaYZ0sFOjtvQpZBOOx27uH1SFLRtnzgtUa1NBILbrZC78SkYJeIuN3-f456JhRORXHSYi-W101FpSxmSxfgZF/s1600/selection005xx.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEik5Z4J5F_CXENfxY094GMKTtcjT-dyErDjPS9YZ2RsvtOFDBJ8vj815WjcaYZ0sFOjtvQpZBOOx27uH1SFLRtnzgtUa1NBILbrZC78SkYJeIuN3-f456JhRORXHSYi-W101FpSxmSxfgZF/s320/selection005xx.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEik5Z4J5F_CXENfxY094GMKTtcjT-dyErDjPS9YZ2RsvtOFDBJ8vj815WjcaYZ0sFOjtvQpZBOOx27uH1SFLRtnzgtUa1NBILbrZC78SkYJeIuN3-f456JhRORXHSYi-W101FpSxmSxfgZF/s1600/selection005xx.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Perintah chmod a+x sakis3g untuk memberi izin eksekusi pada Sakis3G" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/7622a7bbca1998a1.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEik5Z4J5F_CXENfxY094GMKTtcjT-dyErDjPS9YZ2RsvtOFDBJ8vj815WjcaYZ0sFOjtvQpZBOOx27uH1SFLRtnzgtUa1NBILbrZC78SkYJeIuN3-f456JhRORXHSYi-W101FpSxmSxfgZF/s320/selection005xx.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEik5Z4J5F_CXENfxY094GMKTtcjT-dyErDjPS9YZ2RsvtOFDBJ8vj815WjcaYZ0sFOjtvQpZBOOx27uH1SFLRtnzgtUa1NBILbrZC78SkYJeIuN3-f456JhRORXHSYi-W101FpSxmSxfgZF/s1600/selection005xx.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Perintah chmod a+x sakis3g untuk memberi izin eksekusi pada Sakis3G" loading="lazy" decoding="async">
           <figcaption>Memberikan izin eksekusi agar file Sakis3G dapat dijalankan dari terminal.</figcaption>
         </figure>
-
         <h3>Jalankan Sakis3G</h3>
         <p>Setelah itu, jalankan dengan perintah <code>sh sakis3g</code>. Dari sini, Sakis3G akan membuka menu pengaturan awal dan memandu proses koneksi modem 3G.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt3R51rl_LkUW0wkDYJMRF4RZvSgrfu8Igi2dfxUq7QDhosGOjmbC0SAMWM5EKGc6axtxWY_qkmz3wiAHMEV62u0CQnSL4-Q9HjPug62rZcmK1sEEILuL4wcrxbJBcUrUM3KcqLbCy_7Ow/s1600/selection005.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt3R51rl_LkUW0wkDYJMRF4RZvSgrfu8Igi2dfxUq7QDhosGOjmbC0SAMWM5EKGc6axtxWY_qkmz3wiAHMEV62u0CQnSL4-Q9HjPug62rZcmK1sEEILuL4wcrxbJBcUrUM3KcqLbCy_7Ow/s320/selection005.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt3R51rl_LkUW0wkDYJMRF4RZvSgrfu8Igi2dfxUq7QDhosGOjmbC0SAMWM5EKGc6axtxWY_qkmz3wiAHMEV62u0CQnSL4-Q9HjPug62rZcmK1sEEILuL4wcrxbJBcUrUM3KcqLbCy_7Ow/s1600/selection005.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menjalankan Sakis3G dengan perintah sh sakis3g di terminal Ubuntu" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/97f0ef4426656bf5.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt3R51rl_LkUW0wkDYJMRF4RZvSgrfu8Igi2dfxUq7QDhosGOjmbC0SAMWM5EKGc6axtxWY_qkmz3wiAHMEV62u0CQnSL4-Q9HjPug62rZcmK1sEEILuL4wcrxbJBcUrUM3KcqLbCy_7Ow/s320/selection005.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt3R51rl_LkUW0wkDYJMRF4RZvSgrfu8Igi2dfxUq7QDhosGOjmbC0SAMWM5EKGc6axtxWY_qkmz3wiAHMEV62u0CQnSL4-Q9HjPug62rZcmK1sEEILuL4wcrxbJBcUrUM3KcqLbCy_7Ow/s1600/selection005.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menjalankan Sakis3G dengan perintah sh sakis3g di terminal Ubuntu" loading="lazy" decoding="async">
           <figcaption>Menjalankan Sakis3G untuk memulai proses konfigurasi modem 3G.</figcaption>
         </figure>
       </div>
     </details>
-
     <details>
       <summary><h2>Langkah Koneksi dari Menu Sakis3G</h2></summary>
       <div class="details-inner">
         <p>Setelah Sakis3G berjalan, pengguna akan masuk ke antarmuka berbasis menu. Dari sini, pilih aksi untuk menyambungkan modem. Menu seperti ini terlihat sederhana, tetapi justru enak dipakai karena tidak memaksa pengguna menghafal terlalu banyak perintah.</p>
-
         <h3>Langkah pertama: pilih aksi koneksi</h3>
         <p>Pada tahap pertama, pilih menu yang mengarah ke proses koneksi. Biasanya Sakis3G akan menawarkan opsi untuk menyambungkan modem, memutus koneksi, atau melakukan konfigurasi lain.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-YTQYtft0F-5lZ1gl92isC-mNzb6OywamPkTTQwJK6ktVwV-vRgp-dg2FCR9TB3eZQnV5jsBoPZCnTMMH60MHeMqIfh9p0Fhn94f4r-6hc_vE7oSpc8jNHyzDYA5T7ftfd4Mn1EHrKQ0R/s1600/pleaseselectanaction008.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-YTQYtft0F-5lZ1gl92isC-mNzb6OywamPkTTQwJK6ktVwV-vRgp-dg2FCR9TB3eZQnV5jsBoPZCnTMMH60MHeMqIfh9p0Fhn94f4r-6hc_vE7oSpc8jNHyzDYA5T7ftfd4Mn1EHrKQ0R/s320/pleaseselectanaction008.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-YTQYtft0F-5lZ1gl92isC-mNzb6OywamPkTTQwJK6ktVwV-vRgp-dg2FCR9TB3eZQnV5jsBoPZCnTMMH60MHeMqIfh9p0Fhn94f4r-6hc_vE7oSpc8jNHyzDYA5T7ftfd4Mn1EHrKQ0R/s1600/pleaseselectanaction008.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menu pilihan aksi pada Sakis3G untuk memulai koneksi modem 3G" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/6464d50d23f0dd80.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-YTQYtft0F-5lZ1gl92isC-mNzb6OywamPkTTQwJK6ktVwV-vRgp-dg2FCR9TB3eZQnV5jsBoPZCnTMMH60MHeMqIfh9p0Fhn94f4r-6hc_vE7oSpc8jNHyzDYA5T7ftfd4Mn1EHrKQ0R/s320/pleaseselectanaction008.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-YTQYtft0F-5lZ1gl92isC-mNzb6OywamPkTTQwJK6ktVwV-vRgp-dg2FCR9TB3eZQnV5jsBoPZCnTMMH60MHeMqIfh9p0Fhn94f4r-6hc_vE7oSpc8jNHyzDYA5T7ftfd4Mn1EHrKQ0R/s1600/pleaseselectanaction008.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menu pilihan aksi pada Sakis3G untuk memulai koneksi modem 3G" loading="lazy" decoding="async">
           <figcaption>Menu awal Sakis3G untuk memilih aksi yang akan dilakukan.</figcaption>
         </figure>
-
         <h3>Langkah kedua: pilih opsi modem dan operator</h3>
         <p>Pada langkah berikutnya, pilih konfigurasi yang sesuai dengan modem dan operator GSM yang digunakan. Di sinilah Sakis3G membantu menyederhanakan urusan yang biasanya bisa cukup melelahkan kalau dilakukan manual.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia57HgnlJlOZJd69T5dmPaTqnJrDdjT81U-VlgOAH5KO1USEMhPRIASVoR0TjPcdqqi5DxUzbsHEUMT5dMPapGamy257W2zqzesOpb_u-9dO6pfYZ6RcPGR8lUtT3TNZlTQsyoP-VpMkdq/s1600/sakis3g020e010.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia57HgnlJlOZJd69T5dmPaTqnJrDdjT81U-VlgOAH5KO1USEMhPRIASVoR0TjPcdqqi5DxUzbsHEUMT5dMPapGamy257W2zqzesOpb_u-9dO6pfYZ6RcPGR8lUtT3TNZlTQsyoP-VpMkdq/s320/sakis3g020e010.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia57HgnlJlOZJd69T5dmPaTqnJrDdjT81U-VlgOAH5KO1USEMhPRIASVoR0TjPcdqqi5DxUzbsHEUMT5dMPapGamy257W2zqzesOpb_u-9dO6pfYZ6RcPGR8lUtT3TNZlTQsyoP-VpMkdq/s1600/sakis3g020e010.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Langkah pilihan modem atau operator pada Sakis3G" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/f6697ebf53533ea7.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia57HgnlJlOZJd69T5dmPaTqnJrDdjT81U-VlgOAH5KO1USEMhPRIASVoR0TjPcdqqi5DxUzbsHEUMT5dMPapGamy257W2zqzesOpb_u-9dO6pfYZ6RcPGR8lUtT3TNZlTQsyoP-VpMkdq/s320/sakis3g020e010.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia57HgnlJlOZJd69T5dmPaTqnJrDdjT81U-VlgOAH5KO1USEMhPRIASVoR0TjPcdqqi5DxUzbsHEUMT5dMPapGamy257W2zqzesOpb_u-9dO6pfYZ6RcPGR8lUtT3TNZlTQsyoP-VpMkdq/s1600/sakis3g020e010.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Langkah pilihan modem atau operator pada Sakis3G" loading="lazy" decoding="async">
           <figcaption>Proses pemilihan opsi koneksi pada Sakis3G sebelum modem tersambung.</figcaption>
         </figure>
-
         <h3>Langkah ketiga: koneksi berhasil tersambung</h3>
         <p>Jika pengaturan cocok, modem akan tersambung. Biasanya akan muncul pesan bahwa koneksi sudah aktif. Pada titik ini, jangan buru-buru menutup terminal jika Sakis3G masih membutuhkan proses berjalan di latar. Biarkan dulu, yang penting internet sudah bisa dipakai.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHgIRnkGFNdGdd3YHxf5bQfL0J6bOGWhUHPe0LFH5Et69kZXn5i8Yx4xE9CUwB1d775yYOBREetZjEYX3lnKQ4kXI9t3CgQfVp2BOM1cIzvD4_YL7pGD6WMbT9Ebdaemc04ep54l4OYTCq/s1600/sakis3g020e011.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHgIRnkGFNdGdd3YHxf5bQfL0J6bOGWhUHPe0LFH5Et69kZXn5i8Yx4xE9CUwB1d775yYOBREetZjEYX3lnKQ4kXI9t3CgQfVp2BOM1cIzvD4_YL7pGD6WMbT9Ebdaemc04ep54l4OYTCq/s320/sakis3g020e011.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHgIRnkGFNdGdd3YHxf5bQfL0J6bOGWhUHPe0LFH5Et69kZXn5i8Yx4xE9CUwB1d775yYOBREetZjEYX3lnKQ4kXI9t3CgQfVp2BOM1cIzvD4_YL7pGD6WMbT9Ebdaemc04ep54l4OYTCq/s1600/sakis3g020e011.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Pesan Sakis3G yang menunjukkan modem 3G berhasil tersambung" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/ad94ed9879eea83a.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHgIRnkGFNdGdd3YHxf5bQfL0J6bOGWhUHPe0LFH5Et69kZXn5i8Yx4xE9CUwB1d775yYOBREetZjEYX3lnKQ4kXI9t3CgQfVp2BOM1cIzvD4_YL7pGD6WMbT9Ebdaemc04ep54l4OYTCq/s320/sakis3g020e011.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHgIRnkGFNdGdd3YHxf5bQfL0J6bOGWhUHPe0LFH5Et69kZXn5i8Yx4xE9CUwB1d775yYOBREetZjEYX3lnKQ4kXI9t3CgQfVp2BOM1cIzvD4_YL7pGD6WMbT9Ebdaemc04ep54l4OYTCq/s1600/sakis3g020e011.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Pesan Sakis3G yang menunjukkan modem 3G berhasil tersambung" loading="lazy" decoding="async">
           <figcaption>Modem 3G berhasil tersambung melalui Sakis3G.</figcaption>
         </figure>
-
         <h3>Langkah berikutnya: biarkan koneksi berjalan</h3>
         <p>Setelah koneksi aktif, langkah berikutnya adalah membiarkannya. Ini bagian paling menyenangkan dari semua tutorial jaringan: tidak melakukan apa-apa. Kadang diam adalah strategi teknis yang paling elegan.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaxiuox0sHn2NAKfpu00_RYPNcNbC0twfuMYEKQJJ4NLg6ogZ8Y0OGvDnZk0_iuUvW57RKw29N5RHnloZJLc2oY4B8QdWgm4qA1TV2gPZZPNSHxk0cZFKLOPKTHG6k0VCPYVAUiETFMC2B/s1600/pleaseselectanaction006.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaxiuox0sHn2NAKfpu00_RYPNcNbC0twfuMYEKQJJ4NLg6ogZ8Y0OGvDnZk0_iuUvW57RKw29N5RHnloZJLc2oY4B8QdWgm4qA1TV2gPZZPNSHxk0cZFKLOPKTHG6k0VCPYVAUiETFMC2B/s320/pleaseselectanaction006.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaxiuox0sHn2NAKfpu00_RYPNcNbC0twfuMYEKQJJ4NLg6ogZ8Y0OGvDnZk0_iuUvW57RKw29N5RHnloZJLc2oY4B8QdWgm4qA1TV2gPZZPNSHxk0cZFKLOPKTHG6k0VCPYVAUiETFMC2B/s1600/pleaseselectanaction006.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menu Sakis3G setelah modem tersambung dan koneksi dibiarkan berjalan" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/f0148991907425f7.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaxiuox0sHn2NAKfpu00_RYPNcNbC0twfuMYEKQJJ4NLg6ogZ8Y0OGvDnZk0_iuUvW57RKw29N5RHnloZJLc2oY4B8QdWgm4qA1TV2gPZZPNSHxk0cZFKLOPKTHG6k0VCPYVAUiETFMC2B/s320/pleaseselectanaction006.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaxiuox0sHn2NAKfpu00_RYPNcNbC0twfuMYEKQJJ4NLg6ogZ8Y0OGvDnZk0_iuUvW57RKw29N5RHnloZJLc2oY4B8QdWgm4qA1TV2gPZZPNSHxk0cZFKLOPKTHG6k0VCPYVAUiETFMC2B/s1600/pleaseselectanaction006.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menu Sakis3G setelah modem tersambung dan koneksi dibiarkan berjalan" loading="lazy" decoding="async">
           <figcaption>Setelah tersambung, biarkan proses koneksi berjalan sesuai kebutuhan.</figcaption>
         </figure>
-
         <h3>Langkah terakhir: putuskan koneksi setelah selesai</h3>
         <p>Setelah selesai online, kembali ke menu Sakis3G dan gunakan opsi untuk memutus koneksi. Ini lebih rapi daripada langsung mencabut modem, apalagi kalau perangkat masih aktif sebagai modem sekaligus storage.</p>
-
         <figure>
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO_lyUHfUAokvqe38QhiCN3Ypzmq3C-t3et6F2hIlVS7zMenUd3mb7afHBlefTYi07Be2UFyVXg7oxYcgWeIBbc8ddrXT4L-Y7KIAg9KnqaiCZ5-awoBQhbVnwpzb4xL2aQfyiLVNRlCbp/s1600/sakis3g020e007.jpg" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO_lyUHfUAokvqe38QhiCN3Ypzmq3C-t3et6F2hIlVS7zMenUd3mb7afHBlefTYi07Be2UFyVXg7oxYcgWeIBbc8ddrXT4L-Y7KIAg9KnqaiCZ5-awoBQhbVnwpzb4xL2aQfyiLVNRlCbp/s320/sakis3g020e007.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO_lyUHfUAokvqe38QhiCN3Ypzmq3C-t3et6F2hIlVS7zMenUd3mb7afHBlefTYi07Be2UFyVXg7oxYcgWeIBbc8ddrXT4L-Y7KIAg9KnqaiCZ5-awoBQhbVnwpzb4xL2aQfyiLVNRlCbp/s1600/sakis3g020e007.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menu Sakis3G untuk memutus koneksi modem 3G setelah selesai online" loading="lazy" decoding="async">
+          <img src="https://dalam.web.id/img/blogger.googleusercontent.com/8a639b7c082b4dc.webp" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO_lyUHfUAokvqe38QhiCN3Ypzmq3C-t3et6F2hIlVS7zMenUd3mb7afHBlefTYi07Be2UFyVXg7oxYcgWeIBbc8ddrXT4L-Y7KIAg9KnqaiCZ5-awoBQhbVnwpzb4xL2aQfyiLVNRlCbp/s320/sakis3g020e007.jpg 320w, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO_lyUHfUAokvqe38QhiCN3Ypzmq3C-t3et6F2hIlVS7zMenUd3mb7afHBlefTYi07Be2UFyVXg7oxYcgWeIBbc8ddrXT4L-Y7KIAg9KnqaiCZ5-awoBQhbVnwpzb4xL2aQfyiLVNRlCbp/s1600/sakis3g020e007.jpg 1024w" sizes="(max-width: 64rem) calc(100vw - 2rem), 64rem" width="1024" height="768" alt="Menu Sakis3G untuk memutus koneksi modem 3G setelah selesai online" loading="lazy" decoding="async">
           <figcaption>Gunakan opsi disconnect setelah selesai memakai koneksi internet.</figcaption>
         </figure>
       </div>
     </details>
-
     <section>
       <h2>Perintah Inti yang Dipakai</h2>
       <p>Kalau diringkas, langkah terminal yang paling penting adalah memberi izin eksekusi lalu menjalankan Sakis3G. Dua perintah berikut menjadi inti dari proses awal:</p>
-
       <ul class="command-list">
         <li><span class="mini-title">Memberi izin eksekusi</span><code>chmod a+x sakis3g</code></li>
         <li><span class="mini-title">Menjalankan Sakis3G</span><code>sh sakis3g</code></li>
       </ul>
-
       <p>Setelah perintah kedua dijalankan, proses berikutnya lebih banyak dilakukan lewat menu. Pilih opsi yang sesuai dengan modem dan operator, lalu tunggu hingga koneksi aktif. Sederhana, tetapi pada zamannya ini bisa terasa seperti menemukan tombol rahasia di balik lemari.</p>
     </section>
-
     <details>
       <summary><h2>Catatan Penting untuk Modem 3G Lama</h2></summary>
       <div class="details-inner">
         <p>Sebelum mencoba, ada beberapa hal yang perlu dipahami agar panduan ini tidak dibaca seperti resep universal semua modem. Dunia modem USB lama itu luas, penuh tipe, penuh chipset, dan kadang penuh kejutan yang tidak tercantum di dus penjualan.</p>
-
         <h3>Fokus pada modem GSM</h3>
         <p>Panduan ini berangkat dari konteks modem 3G GSM. Jika modem memakai CDMA, pengaturannya bisa berbeda. Jangan dipaksakan hanya karena sama-sama berbentuk USB. Bentuk fisik boleh mirip, isi kepala perangkat bisa berbeda jauh.</p>
-
         <h3>Modem bisa muncul sebagai storage</h3>
         <p>Banyak modem 3G lama membawa penyimpanan internal untuk driver. Saat dicolok, perangkat bisa dikenali sebagai storage lebih dulu. Ini alasan mengapa modem kadang tidak langsung terdeteksi sebagai perangkat jaringan.</p>
-
         <h3>Sakis3G adalah catatan nostalgia</h3>
         <p>Artikel ini juga perlu dibaca sebagai catatan era Ubuntu lama. Pada sistem modern, dukungan modem, Network Manager, kernel, dan perangkat jaringan sudah banyak berubah. Jika menggunakan distribusi Linux terbaru, langkah yang diperlukan bisa berbeda atau bahkan tidak diperlukan lagi.</p>
-
         <h3>Jangan lupa disconnect dengan rapi</h3>
         <p>Setelah selesai online, putuskan koneksi melalui menu yang tersedia. Ini membantu memastikan proses modem berhenti dengan baik sebelum perangkat dicabut. Komputer memang benda mati, tetapi kalau dicabut sembarangan terus protes, kita juga yang repot.</p>
       </div>
     </details>
-
     <section>
       <h2>Tempat Mengunduh Sakis3G</h2>
       <p>Pada catatan lama ini, Sakis3G dapat diunduh melalui situs resminya di <a target="_blank" href="https://github.com/search?q=sakis3g" rel="noreferrer">sakis3g.org</a>. Karena ini perangkat lunak lama, selalu pastikan sumber unduhan, integritas file, dan kesesuaian dengan sistem yang digunakan sebelum menjalankannya.</p>
-
       <div class="note">
         <p><b>Saran aman:</b> jangan menjalankan skrip dari internet tanpa memahami sumbernya. Untuk sistem harian yang penting, gunakan repositori resmi distribusi atau dokumentasi yang masih aktif jika tersedia.</p>
       </div>
     </section>
-
     <section>
       <h2>Penutup</h2>
       <p>Sakis3G pernah menjadi alat kecil yang sangat membantu bagi pengguna Ubuntu dengan modem 3G GSM. Ia menyederhanakan proses yang sebelumnya bisa terasa merepotkan: mengubah modem dari mode storage, memilih konfigurasi, lalu menyambungkan koneksi internet melalui menu terminal.</p>
-
       <p>Untuk ukuran sekarang, panduan ini mungkin terasa seperti membuka album foto teknologi: ada terminal, ada modem USB, ada sinyal yang ditunggu, dan ada rasa lega ketika akhirnya tersambung. Namun sebagai catatan Linux klasik, Sakis3G tetap menarik karena menunjukkan bagaimana komunitas dan alat kecil sering menjadi penyelamat di saat fitur bawaan belum sematang hari ini.</p>
-
       <blockquote>
         <p><b>Intinya:</b> ekstrak paket, masuk ke foldernya, beri izin eksekusi dengan <code>chmod a+x sakis3g</code>, jalankan <code>sh sakis3g</code>, lalu ikuti menu sampai modem tersambung. Semoga bermanfaat. ;)</p>
       </blockquote>
     </section>
   </div>
-  <!--signature artikel oleh LayarKosong-->
+  <div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
 </article>
-
 <footer class="site-footer">
   <span>Author Meta: Fakhrul Rijal</span>
   <span>Tanggal Publikasi: 3 Juli 2026</span>
   <span>Referensi: <a target="_blank" href="https://github.com/search?q=sakis3g" rel="noreferrer">situs resmi Sakis3G</a></span>
-</footer>
-
-
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
   </main>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
