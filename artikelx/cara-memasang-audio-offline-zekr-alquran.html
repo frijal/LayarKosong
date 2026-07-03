@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cara Memasang Audio Offline di Zekr Al-Qur'an (Semua OS)</title>
+
+    <meta name="description" content="Panduan komprehensif cara mudah memasang file murattal audio offline pada aplikasi Zekr Al-Qur'an di Linux, Windows, dan Mac agar tilawah lancar tanpa internet.">
+    <meta property="og:description" content="Solusi cerdas mendengarkan lantunan ayat suci Al-Qur'an secara offline menggunakan aplikasi Zekr. Ikuti langkah ekstraksi dan konfigurasi properties-nya di sini.">
+    <meta name="twitter:description" content="Internet putus-putus saat mengaji di layar desktop? Mari belajar cara setup audio offline Zekr dengan mudah di semua OS tanpa ribet, lengkap dengan trik Linux.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cara Memasang Audio Offline di Zekr Al-Qur'an (Semua OS)">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cara-memasang-audio-offline-zekr-alquran.html">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8jQ_oz6_NL1O-HkEHIFbB54EgMcHg0YumZ8yVk9tX7Turdntf51iFc_tomOj9qlETMJ6sRSIF1qBHfToWMl_6e5Fjd_2JOkkW_USLE3jYfwdVmNQrz2Icx97aphMVxZj8GdU0bCJD7TpP/s1600/Screenshot_20180520_140442.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cara Memasang Audio Offline di Zekr Al-Qur'an (Semua OS)">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8jQ_oz6_NL1O-HkEHIFbB54EgMcHg0YumZ8yVk9tX7Turdntf51iFc_tomOj9qlETMJ6sRSIF1qBHfToWMl_6e5Fjd_2JOkkW_USLE3jYfwdVmNQrz2Icx97aphMVxZj8GdU0bCJD7TpP/s1600/Screenshot_20180520_140442.png">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-memasang-audio-offline-zekr-alquran.html">
+
+    <meta name="news_keywords" content="Zekr offline audio, install murattal Zekr, Quran offline Linux, audio properties Zekr">
+    <meta property="article:tag" content="Zekr">
+    <meta property="article:tag" content="Al-Qur'an">
+    <meta property="article:tag" content="Tutorial Linux">
+    <meta property="article:tag" content="Software">
+
+    <meta name="promphint" content="Bagaimana cara memasang audio offline di Zekr? | Unduh paket tilawah dari SourceForge, ekstrak ke direktori instalasi audio Zekr, atur file properties, lalu restart aplikasi.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer crossorigin="anonymous" referrerpolicy="no-referrer">
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+        });
+    </script>
+
+    <style>
+        /* Mobile-First CSS Variables */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+
+            --bg-body: #f4f4f9;
+            --bg-article: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #666666;
+            --heading-color: #1a1a1a;
+            --border-color: #e0e0e0;
+            --link-color: #0066cc;
+            --link-hover: #004999;
+            --summary-bg: #f9f9f9;
+            --summary-hover: #f1f1f1;
+
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #121212;
+                --bg-article: #1e1e1e;
+                --text-main: #e0e0e0;
+                --text-muted: #a0a0a0;
+                --heading-color: #ffffff;
+                --border-color: #333333;
+                --link-color: #4da6ff;
+                --link-hover: #80c1ff;
+                --summary-bg: #2a2a2a;
+                --summary-hover: #333333;
+            }
+        }
+
+        /* Desktop View Padding Adjustments */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+            }
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-size: 1.125rem;
+        }
+
+        /* Layout Container */
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+            padding-block: 2rem;
+        }
+
+        .article-body {
+            background-color: var(--bg-article);
+            padding-inline: var(--nested-padding);
+            padding-block: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        /* Melebur di Mobile */
+        @media (max-width: 640px) {
+            .article-body {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding-block: 1rem;
+            }
+        }
+
+        @media (min-width: 641px) {
+            .article-body {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                border: 1px solid var(--border-color);
+            }
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-top: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        .lead-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--link-color);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+            border-bottom-style: solid;
+        }
+
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Images */
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            display: block;
+            margin: 2rem 0;
+            background-color: var(--border-color);
+        }
+
+        .caption {
+            display: block;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Accordion / Details */
+        details {
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--bg-article);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            background-color: var(--summary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease;
+            user-select: none;
+        }
+
+        summary:hover {
+            background-color: var(--summary-hover);
+        }
+
+        summary h2 {
+            margin: 0;
+            border: none;
+            padding: 0;
+            font-size: 1.5rem;
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: 1rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .details-content {
+            padding: 1.5rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: #282c34;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article class="article-body">
+            <header>
+                <h1>Cara Memasang Audio Offline di Zekr Al-Qur'an (Semua OS)</h1>
+                <p class="lead-text">Menjaga rutinitas mendengarkan lantunan ayat suci Al-Qur'an sembari bekerja di depan monitor adalah kebiasaan yang produktif dan menenangkan. Mari maksimalkan pengalaman tersebut dengan memasang paket audio lokal pada aplikasi Zekr.</p>
+            </header>
+
+            <p><i>Opo to kok Offline Zekr Audio?</i> Ternyata jika dibahasakan ke dalam bahasa Indonesia, ini adalah kumpulan fail suara merdu dari para Ustadz dan Qari ternama yang membacakan ayat-ayat suci Al-Qur'an untuk kita simak melalui aplikasi <b>Zekr</b> tanpa perlu bergantung pada koneksi internet.</p>
+
+            <p>Bagi sebagian dari kita, terutama yang sehari-hari menggunakan sistem operasi GNU/Linux, Windows, atau Mac untuk bekerja, aplikasi Zekr sudah tidak asing lagi. Perangkat lunak ini tidak hanya ringan, tetapi juga menyediakan antarmuka yang sangat mendukung untuk mempelajari dan mendengarkan tilawah langsung dari layar desktop.</p>
+
+            <p>Sayangnya, saat koneksi internet sedang tidak kooperatif, fitur <i>streaming murattal</i> bawaan Zekr bisa terputus-putus dan merusak konsentrasi. Apalagi ukuran berkas yang harus diunduh untuk mengaji secara luring (<i>offline</i>) ini cukup besar, sekira lebih dari 300MB. Tentunya akan memakan waktu yang sangat lama jika harus terus-menerus mengunduhnya ulang (<i>streaming</i>) menggunakan sarana koneksi internet umum yang kadang kurang stabil di negeri ini. Solusinya? Unduh sekali, pasang di sistem, dan dengarkan selamanya.</p>
+
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8jQ_oz6_NL1O-HkEHIFbB54EgMcHg0YumZ8yVk9tX7Turdntf51iFc_tomOj9qlETMJ6sRSIF1qBHfToWMl_6e5Fjd_2JOkkW_USLE3jYfwdVmNQrz2Icx97aphMVxZj8GdU0bCJD7TpP/s1600/Screenshot_20180520_140442.png"
+                 alt="Tangkapan layar antarmuka aplikasi Zekr Al-Qur'an di desktop menampilkan pemutar audio offline"
+                 width="1600" height="900"
+                 fetchpriority="high" decoding="async"
+                 style="aspect-ratio: 16/9; object-fit: cover;">
+            <span class="caption">Ilustrasi tampilan aplikasi Zekr saat memutar audio tilawah secara luring.</span>
+
+            <h2>Tahap Persiapan: Mengunduh Paket Tilawah Zekr</h2>
+
+            <p>Proses ini bermula dengan mengamankan berkas-berkas yang diperlukan. Zekr memang sengaja tidak menyimpan semua audio Qari secara langsung pada paket instalasi awal agar ukuran aplikasinya tetap ringkas. Anda diwajibkan untuk mengunduhnya secara terpisah dari repositori resmi proyek perangkat lunak ini.</p>
+
+            <p>Silakan buka peramban web andalan Anda dan arahkan ke halaman Repositori SourceForge milik Zekr. Di sana, Anda akan menemukan daftar panjang dari berbagai qari kenamaan, seperti Syaikh Abdurrahman As-Sudais, Syaikh Mishary Rashid Al-Afasy, dan masih banyak lagi.</p>
+
+            <p>Hal terpenting yang perlu Anda perhatikan adalah mengunduh <b>dua berkas sekaligus</b> untuk qari pilihan Anda. Sebagai contoh, jika Anda memilih As-Sudais dengan kualitas suara 64kbps, Anda harus mengunduh berkas ZIP utamanya (berisi fail audio MP3 seperti <i>sudais-64kbps-offline.recit.zip</i>) serta berkas pendamping berekstensi <i>.properties</i> jika disediakan secara terpisah di repositori tersebut.</p>
+
+            <details>
+                <summary><h2>Panduan Instalasi, Ekstraksi Audio, dan Konfigurasi Properties</h2></summary>
+                <div class="details-content">
+                    <p>Setelah berkas ZIP tilawah berhasil bersarang di ruang penyimpanan komputer Anda, langkah krusial berikutnya adalah mengekstrak dan menempatkannya pada jalur direktori yang tepat agar aplikasi Zekr dapat memindainya dengan sempurna.</p>
+
+                    <h3>1. Langkah Ekstraksi Sesuai Sistem Operasi</h3>
+                    <p>Lokasi instalasi Zekr tentu berbeda-beda bergantung pada sistem operasi yang Anda gunakan. Temukan letak map (<i>folder</i>) instalasi aplikasi tersebut berdasarkan panduan berikut:</p>
+                    <ul>
+                        <li><b>Pengguna Windows:</b> Buka <i>File Explorer</i> dan tuju ke alamat <i>C:\Program Files\Zekr\res\audio</i> (atau ke <i>drive</i> tempat Anda menginstal Zekr).</li>
+                        <li><b>Pengguna Mac dan Linux (Ubuntu, Debian, CachyOS, dll):</b> Buka terminal atau <i>file manager</i> Anda dan arahkan ke <i>~/.zekr/audio</i> untuk instalasi level pengguna, atau <i>/usr/share/zekr/res/audio/</i> untuk instalasi global (seperti pada beberapa distro GNU/Linux).</li>
+                    </ul>
+
+                    <p>Ekstrak seluruh isi berkas ZIP yang baru saja Anda unduh. <u>Pastikan</u> bahwa kumpulan fail audio MP3 tersebut berada di dalam sebuah map yang diberi nama persis dengan nama sang Qari (sebagai contoh, buatlah map dengan nama <i>sudais</i>).</p>
+
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBADqWjuLtCG8DyWl6B30YTZDbKOl9HMwS1nTnHfsxCRecQFu4Q9E3SL8SCSfqxUe6gZLulwRIo3Y6fLbCGwq7qH65Y_PoTb1KtO8mpd_Rhmm5hxv13LTGzwnKyDQ-xTLjqC7rUOAXd51x/s1600/h.jpg"
+                         alt="Tangkapan layar direktori /usr/share/zekr/res/audio/ yang berisi file properties dan map audio"
+                         loading="lazy" decoding="async"
+                         width="1600" height="900"
+                         style="aspect-ratio: 16/9; object-fit: contain;">
+                    <span class="caption">Struktur direktori Zekr setelah map audio dan file properties disalin.</span>
+
+                    <h3>2. Mengatur File Konfigurasi (.properties)</h3>
+                    <p>Tanpa file konfigurasi ini, Zekr akan kebingungan mencari di mana letak fail MP3 yang baru saja Anda ekstrak. Jika Anda sudah mengunduh file <i>.properties</i> secara terpisah, cukup salin file tersebut langsung ke dalam map konfigurasi audio yang sejajar dengan map nama qari tadi.</p>
+
+                    <p>Jika Anda menyalin dari pengguna lain, pastikan Anda juga menyertakan berkas kecil yang berakhiran <i>-offline.properties</i>.</p>
+
+                    <p>Namun, jika Anda ingin meracik konfigurasinya secara manual menggunakan teks editor, Anda bisa membuat sebuah fail teks baru, memberinya nama yang sesuai (misal <i>sudais-offline.properties</i>), lalu memasukkan instruksi wajib di bawah ini:</p>
+
+<pre><code class="language-ini">audio.type = offline
+audio.baseUrl = [base]/res/audio/NAMA_MAP_QARI_ANDA</code></pre>
+
+                    <p>Jangan lupa untuk mengganti teks <i>NAMA_MAP_QARI_ANDA</i> dengan nama map tempat Anda meletakkan kumpulan MP3 tadi. Simpan berkas tersebut agar Zekr bisa membaca preferensi pembacaan lokal ini.</p>
+                </div>
+            </details>
+
+            <h2>Jalan Pintas ala Pengguna Distro Islami (Sabily & BlankOn Sadjadah)</h2>
+
+            <p>Sebagai informasi tambahan yang cukup menarik di ekosistem Linux, jika ada rekan Anda yang telah memiliki DVD <b>Sabily</b> atau <b>BlankOn Sadjadah</b>, Anda tentunya dapat dengan lebih mudah berdakwah dan berbagi fail ini.</p>
+
+            <p>Untuk Anda pengguna sistem operasi umum lainnya seperti Ubuntu atau Linux Mint yang ingin memasang Zekr secara luring, Anda dapat langsung menyalin berkas audio beserta fail <i>.properties</i>-nya langsung dari direktori <i>/usr/share/zekr/res/audio/</i> milik distro Sadjadah atau Sabily tersebut, lalu meletakkannya di lokasi yang sama pada komputer Anda.</p>
+
+            <h2>Tahap Akhir: Membersihkan Tembolok dan Mengaktifkan Qari</h2>
+
+            <p>Kini tiba saatnya memetik hasil jerih payah teknis Anda. Jika Anda menyalin fail audio dan <i>properties</i> tadi secara manual, sangat disarankan untuk membersihkan tembolok (<i>cache</i>) konfigurasi Zekr lama Anda agar sistem bisa memindai pengaturan baru dengan bersih.</p>
+
+            <p>Buka terminal Anda dan jalankan perintah berikut untuk menghapus konfigurasi lama (tenang, aplikasi akan membuat ulang konfigurasinya saat dijalankan):</p>
+
+<pre><code class="language-bash">rm -rf ~/.zekr/</code></pre>
+
+            <p>Setelah itu, jalankan aplikasi Zekr seperti biasa. Buka menu <b>Audio</b> yang berada di bilah atas antarmuka, klik pada bagian <b>Recitation</b>, lalu pilih nama qari luring (<i>offline</i>) yang baru saja Anda pasangkan.</p>
+
+            <p>Jika semua langkah dieksekusi dengan benar, Anda sekarang bisa memutar bacaan per ayat secara instan. Zekr tidak akan lagi memanggil koneksi keluar untuk mengunduh suara, melainkan membaca fail-fail lokal tersebut secara sigap. Selamat mengaji dengan tenang tanpa hambatan kuota, kawan!</p>
+
+            <!--signature artikel oleh LayarKosong-->
+        </article>
+
+        <footer class="site-footer">
+            <div class="footer-inline">
+                <span><b>Penulis:</b> Frijal</span>
+                <span>•</span>
+                <span><b>Dipublikasikan:</b> Juli 2026</span>
+                <span>•</span>
+                <span><b>Referensi:</b> Dokumentasi Resmi Zekr SourceForge & Komunitas Sabily</span>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
