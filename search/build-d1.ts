@@ -6,7 +6,7 @@ import * as cheerio from "cheerio";
 const ROOT_DIR = "./deploy_dir";
 const ARTICLE_DIRS = ["gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"];
 const SQL_FILE = "./temp_sync.sql";
-const TEMP_CONFIG = "/tmp/wrangler.toml"; 
+const TEMP_CONFIG = "/tmp/wrangler.toml";
 
 // 🎯 FILTER: File yang Harus Di-Skip
 const SKIP_PATTERNS = [
@@ -19,6 +19,52 @@ const SKIP_PATTERNS = [
  */
 const shouldSkipFile = (filename: string): boolean => {
     return SKIP_PATTERNS.some(pattern => pattern.test(filename));
+};
+
+/**
+ * 🔗 STOP WORDS: Kata Penghubung (Konjungsi)
+ * Dipakai buat mangkas noise di FTS index, BUKAN buat title/display.
+ * 93 entri unik (100 item asli dikurangi 7 duplikat: kemudian, padahal,
+ * sebab, akibatnya, apabila, biarpun, bahwa masing-masing muncul 2x di sumber).
+ *
+ * ⚠️ Beberapa kata di sini homonim (jadi, asal, biar, guna, kedua, serta) —
+ * bisa punya makna non-konjungsi. Strip ini mengorbankan searchability kata
+ * tsb demi index yang lebih bersih dari filler words.
+ */
+const STOP_WORDS: string[] = [
+    "dan", "atau", "tetapi", "sedangkan", "melainkan", "lalu", "kemudian", "padahal",
+    "sesudah", "setelah", "sebelum", "sejak", "ketika", "sementara", "sambil", "selama",
+    "sampai", "jika", "kalau", "asalkan", "bila", "andaikan", "sekiranya", "agar",
+    "supaya", "biarpun", "meskipun", "walaupun", "seakan-akan", "seolah-olah", "sebab",
+    "karena", "sehingga", "bahwa", "dengan",
+    "biarpun demikian", "sekalipun begitu", "walaupun demikian", "meskipun begitu",
+    "sesudah itu", "selanjutnya", "tambahan pula", "lagi pula", "selain itu",
+    "sebaliknya", "sesungguhnya", "bahwasanya", "malahan", "bahkan", "akan tetapi",
+    "namun", "kecuali itu", "dengan demikian", "oleh karena itu", "oleh sebab itu",
+    "sebelum itu",
+    "begitu pula", "demikian juga", "tambahan lagi", "di samping itu", "kedua",
+    "akhirnya", "bagaimanapun juga", "sebagaimana", "sama halnya", "jadi", "akibatnya",
+    "untuk maksud itu", "untuk mencapai hal itu", "ringkasnya", "secara singkat",
+    "pada intinya", "sementara itu",
+    "serta", "apabila", "bilamana", "guna", "ataupun", "bagai", "ibarat", "serupa",
+    "mula-mula", "biar", "yaitu", "yakni", "asal",
+    "maka", "adapun", "kendati", "lantaran", "alhasil", "andaikata", "manakala",
+];
+
+const escapeRegExp = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+// Urutkan dari yang paling panjang biar frasa multi-kata (mis. "oleh karena itu")
+// ke-match duluan sebelum kata tunggal di dalamnya (mis. "karena") ikut ke-strip.
+const STOP_WORDS_PATTERN = new RegExp(
+    "\\b(" + [...STOP_WORDS].sort((a, b) => b.length - a.length).map(escapeRegExp).join("|") + ")\\b",
+    "gi"
+);
+
+/**
+ * 🔗 Buang kata penghubung dari teks (khusus buat konten yang di-index FTS)
+ */
+const stripStopWords = (text: string): string => {
+    return text.replace(STOP_WORDS_PATTERN, " ").replace(/\s+/g, " ").trim();
 };
 
 /**
@@ -64,11 +110,17 @@ const extractArticleData = (filePath: string, file: string, category: string) =>
     const dateISO = $('meta[property="article:published_time"]').attr('content') || new Date().toISOString();
 
     // Hapus elemen yang tidak relevan
-    $('script, style, meta, link, noscript, i, header, footer, nav, aside, #header-placeholder, #loading-indicator').remove();
+    // Catatan: "i" SENGAJA gak dimasukkan lagi ke sini. Font Awesome icon (<i class="fa-...">)
+    // emang kosong dari teks jadi gak ngefek ke .text(), tapi italic asli (<i>istilah</i>)
+    // sekarang ikut ke-index dengan benar.
+    $('script, style, meta, link, noscript, header, footer, nav, aside, #header-placeholder, #loading-indicator').remove();
 
     // Ambil konten dari area artikel
     const articleArea = $('article').length ? $('article') : $('main').length ? $('main') : $('body');
-    const bodyContent = superCleanText(articleArea.text());
+
+    // Title TIDAK di-strip stopwords (biar tetap natural buat display di hasil search).
+    // bodyContent DI-strip stopwords karena ini yang dipakai buat FTS matching.
+    const bodyContent = stripStopWords(superCleanText(articleArea.text()));
 
     return { title, image, dateISO, bodyContent };
 };
@@ -106,7 +158,7 @@ for (const cat of Object.keys(CATEGORY_MAP)) {
     if (!existsSync(fullCatPath)) continue;
 
     const files = readdirSync(fullCatPath).filter(f => f.endsWith(".html"));
-    
+
     // 1. Kumpulkan semua data artikel dalam kategori ini
     let categoryArticles: any[] = [];
 
@@ -134,7 +186,7 @@ for (const cat of Object.keys(CATEGORY_MAP)) {
     categoryArticles.forEach((article, index) => {
         const seqNumber = index + 1;
         const code = `${catNumber}-${seqNumber}`;
-        
+
         sqlCommands.push(generateInsertSQL({ ...article, category: cat, code }));
         totalProcessed++;
     });
