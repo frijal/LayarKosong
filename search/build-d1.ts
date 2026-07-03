@@ -113,7 +113,14 @@ const extractArticleData = (filePath: string, file: string, category: string) =>
     // Catatan: "i" SENGAJA gak dimasukkan lagi ke sini. Font Awesome icon (<i class="fa-...">)
     // emang kosong dari teks jadi gak ngefek ke .text(), tapi italic asli (<i>istilah</i>)
     // sekarang ikut ke-index dengan benar.
-    $('script, style, meta, link, noscript, header, footer, nav, aside, #header-placeholder, #loading-indicator').remove();
+    // Catatan: "header" JUGA sengaja gak dimasukkan lagi. Di template artikel, <header>
+    // membungkus breadcrumb + <h1> + paragraf .lead jadi satu — kalau tag header dihapus
+    // utuh, h1 dan .lead ikut lenyap padahal .lead adalah satu-satunya sumber teks ringkasan
+    // yang gak punya kolom lain di skema tabel. Breadcrumb tetap ke-strip lewat selector "nav".
+    // "h1" ditambahin ke sini (bukan lewat header) karena h1 udah redundan sama kolom title,
+    // dan strip di level tag h1 ini gak nyenggol <p class="lead"> yang tag-nya beda —
+    // jadi ringkasan lead tetap aman masuk index, cuma judulnya yang gak dobel.
+    $('script, style, meta, link, noscript, footer, nav, aside, h1, #header-placeholder, #loading-indicator').remove();
 
     // Ambil konten dari area artikel
     const articleArea = $('article').length ? $('article') : $('main').length ? $('main') : $('body');
