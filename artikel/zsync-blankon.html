@@ -1,28 +1,61 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Panduan ZSync untuk ISO BlankOn Rote - Hemat Kuota</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan ZSync untuk ISO BlankOn Rote - Hemat Kuota - Layar Kosong</title>
     <meta name="description" content="Tutorial lengkap menggunakan ZSync untuk mengunduh ISO BlankOn Rote secara efisien. Hemat kuota dan waktu untuk para penggemar Linux.">
     <link rel="canonical" href="https://dalam.web.id/artikelx/zsync-blankon">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
     <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#2c3e50">
+    <meta name="theme-color" content="#00b0ed">
     <meta name="color-scheme" content="light dark">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="ZSync, BlankOn, ISO, Linux, hemat kuota, daily build">
     <meta name="promphint" content="Panduan ZSync untuk ISO BlankOn Rote | Hemat kuota dan waktu dengan mengunduh hanya bagian yang berubah.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Panduan ZSync untuk ISO BlankOn Rote">
-    <meta property="og:description" content="Tutorial hemat kuota menggunakan ZSync untuk mengunduh ISO BlankOn Rote terbaru. Cocok untuk Pendekar BlankOn.">
     <meta property="og:url" content="https://dalam.web.id/artikelx/zsync-blankon">
+    <meta property="og:title" content="Panduan ZSync untuk ISO BlankOn Rote - Hemat Kuota">
+    <meta property="og:description" content="Tutorial hemat kuota menggunakan ZSync untuk mengunduh ISO BlankOn Rote terbaru. Cocok untuk Pendekar BlankOn.">
+    <meta property="og:updated_time" content="2026-07-03T02:28:27.270Z">
     <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/d13b6458935ea399.webp">
-    <meta property="og:image:alt" content="Logo BlankOn Rote">
+    <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/d13b6458935ea399.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/d13b6458935ea399.webp">
+    <meta property="og:image:alt" content="Panduan ZSync untuk ISO BlankOn Rote - Hemat Kuota">
+    <meta property="og:image:width" content="1208">
+    <meta property="og:image:height" content="680">
+    <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Panduan ZSync untuk ISO BlankOn Rote">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/zsync-blankon">
+    <meta name="twitter:title" content="Panduan ZSync untuk ISO BlankOn Rote - Hemat Kuota">
     <meta name="twitter:description" content="Tutorial hemat kuota menggunakan ZSync untuk mengunduh ISO BlankOn Rote terbaru.">
     <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/d13b6458935ea399.webp">
+    <meta name="twitter:image:alt" content="Panduan ZSync untuk ISO BlankOn Rote - Hemat Kuota">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-07-03T02:26:25.507Z">
+    <meta property="article:modified_time" content="2026-07-03T02:28:27.270Z">
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -30,7 +63,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --bg-body: #f4f6f9;
             --bg-card: #ffffff;
@@ -49,7 +81,6 @@
             --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --font-mono: 'SF Mono', 'Fira Code', 'Courier New', monospace;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #161b22;
@@ -67,12 +98,10 @@
                 --shadow-md: 0 6px 24px rgba(0,0,0,0.6);
             }
         }
-
         html {
             font-size: 100%;
             scroll-behavior: smooth;
         }
-
         body {
             font-family: var(--font-body);
             background: var(--bg-body);
@@ -81,14 +110,12 @@
             padding: 0;
             margin: 0;
         }
-
         /* ===== LAYOUT ===== */
         .container {
             max-width: 64rem;
             margin: 0 auto;
             padding: 2rem 1.5rem 1.5rem;
         }
-
         .article-card {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -96,12 +123,10 @@
             padding: 2.5rem 2rem;
             transition: background 0.2s;
         }
-
         @media (max-width: 640px) {
             .container { padding: 1rem 1rem 0.5rem; }
             .article-card { padding: 1.5rem 1.2rem; }
         }
-
         /* ===== HEADER ===== */
         .article-header {
             text-align: center;
@@ -109,7 +134,6 @@
             border-bottom: 2px solid var(--border-light);
             margin-bottom: 2rem;
         }
-
         .article-header h1 {
             font-size: 2.2rem;
             font-weight: 700;
@@ -118,13 +142,11 @@
             line-height: 1.2;
             margin-bottom: 0.5rem;
         }
-
         .article-header .subtitle {
             font-size: 1.15rem;
             color: var(--text-secondary);
             font-weight: 400;
         }
-
         .article-header .meta {
             margin-top: 0.75rem;
             font-size: 0.9rem;
@@ -134,9 +156,7 @@
             justify-content: center;
             gap: 0.5rem 1.2rem;
         }
-
         .article-header .meta span { display: inline-flex; align-items: center; gap: 0.3rem; }
-
         /* ===== TIPOGRAFI ===== */
         h2 {
             font-size: 1.7rem;
@@ -146,28 +166,24 @@
             padding-bottom: 0.4rem;
             border-bottom: 2px solid var(--accent-soft);
         }
-
         h3 {
             font-size: 1.25rem;
             font-weight: 600;
             margin: 1.5rem 0 0.5rem;
             color: var(--text-primary);
         }
-
         p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 1.25rem;
             color: var(--text-secondary);
         }
-
         .lead {
             font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
             font-weight: 400;
         }
-
         b, strong { color: var(--text-primary); font-weight: 600; }
         i, em { color: var(--text-secondary); }
         a {
@@ -177,7 +193,6 @@
             transition: color 0.15s;
         }
         a:hover { color: var(--accent-hover); }
-
         /* ===== GAMBAR ===== */
         .article-img {
             margin: 1.75rem 0;
@@ -187,7 +202,6 @@
             line-height: 0;
             box-shadow: var(--shadow-sm);
         }
-
         .article-img img {
             width: 100%;
             height: auto;
@@ -196,7 +210,6 @@
             object-fit: contain;
             background: var(--bg-card);
         }
-
         .article-img figcaption {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -206,7 +219,6 @@
             border-top: 1px solid var(--border-light);
             text-align: center;
         }
-
         /* ===== LIST ===== */
         ul, ol {
             padding-left: 1.8rem;
@@ -214,7 +226,6 @@
             color: var(--text-secondary);
         }
         li { font-size: 1.05rem; margin-bottom: 0.4rem; }
-
         /* ===== BLOK KODE ===== */
         pre {
             background: var(--code-bg);
@@ -228,7 +239,6 @@
             margin: 1.2rem 0;
             border: 1px solid var(--border-light);
         }
-
         code {
             font-family: var(--font-mono);
             font-size: 0.9em;
@@ -237,14 +247,12 @@
             padding: 0.1rem 0.4rem;
             border-radius: 4px;
         }
-
         pre code {
             background: transparent;
             color: inherit;
             padding: 0;
             font-size: 0.95rem;
         }
-
         /* ===== ACCORDION (jika ada) ===== */
         details {
             margin: 1.5rem 0 0.5rem;
@@ -254,9 +262,7 @@
             box-shadow: var(--shadow-sm);
             transition: box-shadow 0.2s;
         }
-
         details[open] { box-shadow: var(--shadow-md); }
-
         summary {
             cursor: pointer;
             padding: 0.9rem 1.5rem;
@@ -272,10 +278,8 @@
             transition: background 0.15s;
             user-select: none;
         }
-
         summary:hover { background: var(--border-light); }
         summary::-webkit-details-marker { display: none; }
-
         summary::after {
             content: "▸";
             margin-left: auto;
@@ -283,13 +287,10 @@
             transition: transform 0.25s ease;
             opacity: 0.6;
         }
-
         details[open] summary::after { transform: rotate(90deg); }
-
         details > *:not(summary) {
             padding: 0.3rem 1.5rem 1.2rem;
         }
-
         /* ===== FOOTER ===== */
         .footer-meta {
             margin-top: 3rem;
@@ -302,24 +303,19 @@
             font-size: 0.9rem;
             color: var(--text-muted);
         }
-
         .footer-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
-
         .footer-links {
             margin-top: 1rem;
             text-align: center;
             font-size: 0.9rem;
         }
-
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
             margin: 0 0.6rem;
             transition: color 0.2s;
         }
-
         .footer-links a:hover { color: var(--accent); }
-
         /* ===== RESPONSIF ===== */
         @media (max-width: 640px) {
             .article-header h1 { font-size: 1.7rem; }
@@ -331,11 +327,9 @@
             pre { font-size: 0.85rem; padding: 1rem; }
             .footer-meta { flex-direction: column; align-items: center; gap: 0.4rem; }
         }
-
         @media (min-width: 1024px) {
             .article-header h1 { font-size: 2.6rem; }
         }
-
         /* ===== SIGNATURE ===== */
         .signature-line {
             margin-top: 2.5rem;
@@ -345,7 +339,6 @@
             color: var(--text-muted);
             letter-spacing: 0.5px;
         }
-
         /* ===== BADGE ===== */
         .badge {
             display: inline-block;
@@ -357,16 +350,14 @@
             border-radius: 20px;
             margin-right: 0.4rem;
         }
-
         /* ===== UTILITY ===== */
         .text-center { text-align: center; }
         .mt-2 { margin-top: 2rem; }
     </style>
-</head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <div class="container">
         <article class="article-card">
-
             <!-- HEADER -->
             <header class="article-header">
                 <h1>Panduan ZSync untuk ISO BlankOn Rote</h1>
@@ -377,10 +368,8 @@
                     <span>🏷️ <span class="badge">Linux</span><span class="badge">BlankOn</span></span>
                 </div>
             </header>
-
             <!-- KONTEN UTAMA -->
             <section>
-
                 <!-- PENDAHULUAN -->
                 <p class="lead">
                     Bagi Anda yang hobi mencoba ISO terbaru dari distribusi Linux
@@ -389,23 +378,17 @@
                     dengan efisien. BlankOn Rote dikenal rajin merilis CD harian
                     (<i>daily build</i>) dan saat ini sudah mencapai versi Jahitan Lima.
                 </p>
-
                 <!-- GAMBAR PERTAMA (LCP) -->
                 <figure class="article-img">
-                    <img src="https://dalam.web.id/img/raw.githubusercontent.com/d13b6458935ea399.webp"
-                         alt="Logo BlankOn Rote"
-                         width="1208" height="680"
-                         fetchpriority="high" decoding="async">
+                    <img src="https://dalam.web.id/img/raw.githubusercontent.com/d13b6458935ea399.webp" alt="Logo BlankOn Rote" width="1208" height="680" fetchpriority="high" decoding="async">
                     <figcaption>Logo BlankOn Rote – distribusi Linux kebanggaan Indonesia.</figcaption>
                 </figure>
-
                 <p>
                     Artikel ini ditujukan bagi para <b>Pendekar BlankOn</b> agar dapat
                     menyediakan versi <code>.iso.zsync</code> untuk setiap pembaruan,
                     sehingga pengguna dengan kuota terbatas tetap bisa ikut menguji
                     tanpa harus mengunduh ulang file ISO berukuran besar.
                 </p>
-
                 <!-- APA ITU ZSYNC -->
                 <h2>Apa Itu ZSync?</h2>
                 <p>
@@ -416,7 +399,6 @@
                     lama, lalu ZSync akan mengambil <i>delta</i> (perubahan) dari server
                     dan menggabungkannya dengan file lokal.
                 </p>
-
                 <h3>Manfaat ZSync:</h3>
                 <ul>
                     <li><b>Hemat kuota internet</b> – hanya mengunduh data yang berubah.</li>
@@ -424,11 +406,9 @@
                     <li><b>Mudah digunakan</b> – cukup satu perintah di terminal.</li>
                     <li><b>Mendukung resume</b> – jika unduhan terputus, bisa dilanjutkan.</li>
                 </ul>
-
                 <!-- CARA MENGGUNAKAN (ACCORDION) -->
                 <details>
                     <summary><h2 style="display:inline; margin:0; font-size:inherit;">Cara Menggunakan ZSync</h2></summary>
-
                     <h3>1. Install Paket ZSync</h3>
                     <p>
                         Pastikan paket <code>zsync</code> sudah terinstall di sistem Anda.
@@ -439,7 +419,6 @@
                         Untuk distribusi lain, sesuaikan dengan manajer paket yang digunakan,
                         misalnya <code>sudo dnf install zsync</code> atau <code>sudo pacman -S zsync</code>.
                     </p>
-
                     <h3>2. Ganti Nama File ISO Lama</h3>
                     <p>
                         Ubah nama file ISO lama Anda agar sesuai dengan nama file di server.
@@ -451,7 +430,6 @@
                         Pastikan nama file persis sama dengan yang ada di server, karena ZSync
                         akan mencocokkan <i>checksum</i> berdasarkan nama file.
                     </p>
-
                     <h3>3. Jalankan ZSync</h3>
                     <p>
                         Jalankan perintah ZSync dari terminal dengan menunjuk ke alamat
@@ -469,7 +447,6 @@
                         mendapatkan file ISO terbaru yang utuh.
                     </p>
                 </details>
-
                 <!-- KESIMPULAN -->
                 <h2>Kesimpulan</h2>
                 <p>
@@ -480,31 +457,28 @@
                     bermanfaat bagi seluruh <b>Pendekar BlankOn</b> dan komunitas
                     Linux Indonesia pada umumnya.
                 </p>
-
                 <p>
                     Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk
                     berdiskusi di forum atau grup komunitas. Selamat mencoba!
                 </p>
-
                 <!-- SIGNATURE -->
-                <!--signature artikel oleh LayarKosong-->
-
+                <div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
             </section>
-
             <!-- FOOTER -->
             <footer class="footer-meta">
                 <span>🄯 <b>Komunitas BlankOn</b></span>
                 <span>📌 <a href="https://dalam.web.id/artikelx/zsync-blankon" target="_blank" rel="canonical">Permalink</a></span>
                 <span>🔒 <a href="/privacy">Kebijakan Privasi</a></span>
-            </footer>
+             <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
             <div class="footer-links">
                 <a href="/about">Tentang</a>
                 <a href="/disclaimer">Disclaimer</a>
                 <a href="/lisensi">Lisensi</a>
                 <a href="/security-policy">Keamanan</a>
             </div>
-
         </article>
     </div>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>
