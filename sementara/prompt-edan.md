@@ -100,7 +100,7 @@ Gunakan struktur artikel berikut:
 5. Setelah gambar pertama, lanjutkan pembahasan utama menggunakan struktur heading yang rapi:
 
    * `<h2>` untuk bagian besar
-   * `<h3>` untuk subbagian
+   * `<h3>` untuk sub bagian
 6. Gunakan Semantic HTML5:
 
    * `<main>`
@@ -336,7 +336,7 @@ Contoh struktur yang benar:
 `<details>
   <summary><h2>Judul Bagian Panjang</h2></summary>
   <p>Isi pembuka bagian.</p>
-  <h3>Subbagian</h3>
+  <h3>sub bagian</h3>
   <p>Penjelasan lanjutan.</p>
 </details>`
 
