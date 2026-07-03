@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Koneksi WiFi Ad-Hoc di Linux: Solusi Cerdas Berbagi Internet</title>
+
+    <meta name="description" content="Kisah mengatasi koneksi internet terbatas saat liburan dengan membuat jaringan WiFi Ad-Hoc di GNU/Linux. Pelajari cara konfigurasi GUI dan IPTables di sini.">
+    <meta property="og:description" content="Panduan santai namun mendalam cara membagikan koneksi internet via WiFi Ad-Hoc pada sistem operasi Linux. Solusi cerdas berbagi satu kabel LAN untuk semua.">
+    <meta name="twitter:description" content="Liburan gagal karena koneksi putus? Tenang, mari belajar cara setup jaringan Ad-Hoc di Linux untuk berbagi internet dengan teman, lengkap dengan trik Fedora.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Koneksi WiFi Ad-Hoc di Linux: Solusi Cerdas Berbagi Internet">
+    <meta property="og:url" content="https://dalam.web.id/artikel/koneksi-wifi-ad-hoc-linux-solusi-berbagi-internet.html">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiGePox0sR_W-5NFkEgo2FiVHTuUyRy8aEk2368l8nWgjT5f8aJRlIkKePWkNbYJ5g7yQg6RmW3X38GxmIHB4GY7k2XIhK4wZRHUAor4KEajhfsKxymrBgj6Xxwtbb587pLEi4zGBGm3Gj/s1600/xnautilusdesktop003X.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Koneksi WiFi Ad-Hoc di Linux: Solusi Cerdas Berbagi Internet">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiGePox0sR_W-5NFkEgo2FiVHTuUyRy8aEk2368l8nWgjT5f8aJRlIkKePWkNbYJ5g7yQg6RmW3X38GxmIHB4GY7k2XIhK4wZRHUAor4KEajhfsKxymrBgj6Xxwtbb587pLEi4zGBGm3Gj/s1600/xnautilusdesktop003X.jpg">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/koneksi-wifi-ad-hoc-linux-solusi-berbagi-internet.html">
+
+    <meta name="news_keywords" content="Ad-Hoc Linux, berbagi internet Linux, GNOME 3, Fedora 15, konfigurasi iptables wlan0">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Jaringan">
+    <meta property="article:tag" content="Tutorial">
+
+    <meta name="promphint" content="Bagaimana cara berbagi internet dengan Ad-Hoc di Linux? | Buat jaringan baru lewat Network Manager GUI, lalu pastikan IP forwarding aktif jika menggunakan distribusi seperti Fedora.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer crossorigin="anonymous" referrerpolicy="no-referrer">
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+        });
+    </script>
+
+    <style>
+        /* Mobile-First CSS Variables */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+
+            --bg-body: #f4f4f9;
+            --bg-article: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #666666;
+            --heading-color: #1a1a1a;
+            --border-color: #e0e0e0;
+            --link-color: #0066cc;
+            --link-hover: #004999;
+            --summary-bg: #f9f9f9;
+            --summary-hover: #f1f1f1;
+
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #121212;
+                --bg-article: #1e1e1e;
+                --text-main: #e0e0e0;
+                --text-muted: #a0a0a0;
+                --heading-color: #ffffff;
+                --border-color: #333333;
+                --link-color: #4da6ff;
+                --link-hover: #80c1ff;
+                --summary-bg: #2a2a2a;
+                --summary-hover: #333333;
+            }
+        }
+
+        /* Desktop View Padding Adjustments */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+            }
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-size: 1.125rem; /* ~18px for comfortable reading */
+        }
+
+        /* Layout Container */
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+            padding-block: 2rem;
+        }
+
+        .article-body {
+            background-color: var(--bg-article);
+            padding-inline: var(--nested-padding);
+            padding-block: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        /* Melebur di Mobile */
+        @media (max-width: 640px) {
+            .article-body {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding-block: 1rem;
+            }
+        }
+
+        @media (min-width: 641px) {
+            .article-body {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                border: 1px solid var(--border-color);
+            }
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-top: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        .lead-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--link-color);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+            border-bottom-style: solid;
+        }
+
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Images */
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            display: block;
+            margin: 2rem 0;
+            background-color: var(--border-color);
+        }
+
+        .caption {
+            display: block;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Accordion / Details */
+        details {
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--bg-article);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            background-color: var(--summary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease;
+            user-select: none;
+        }
+
+        summary:hover {
+            background-color: var(--summary-hover);
+        }
+
+        summary h2 {
+            margin: 0;
+            border: none;
+            padding: 0;
+            font-size: 1.5rem;
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: 1rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .details-content {
+            padding: 1.5rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: #282c34;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article class="article-body">
+            <header>
+                <h1>Koneksi WiFi Ad-Hoc di Linux: Solusi Cerdas Berbagi Internet</h1>
+                <p class="lead-text">Liburan terkadang tidak berjalan sesuai rencana. Ketika koneksi internet menjadi barang langka, fitur jaringan Ad-Hoc di GNU/Linux bisa menjadi penyelamat untuk membagikan satu akses jaringan ke banyak perangkat sekaligus.</p>
+            </header>
+
+            <p>Kisah ini bermula dari sebuah pagi di hari libur nasional. Niat hati ingin memutar-mutar mencari suasana baru untuk berselancar di dunia maya, namun kenyataan berkata lain. Hampir semua tempat yang biasa dituju ternyata tutup total. Karena sudah terlanjur turun gunung dan menyeberangi lautan debu jalanan, akhirnya kami memutuskan mencari lokasi acak yang menyediakan koneksi internet gratis untuk sekadar <i>nebeng</i> jaringan.</p>
+
+            <p>Sesampainya di Tempat Kejadian Perkara (TKP), kami dihadapkan pada masalah baru: <b>kabel LAN yang tersedia cuma satu</b>, sementara semua anggota rombongan sedang galau ingin segera terkoneksi ke internet. Situasi krisis ini menuntut solusi yang cepat dan elegan.</p>
+
+            <p>Setelah diskusi singkat, kami akhirnya bersepakat untuk berbagi koneksi jaringan internet yang ada menggunakan sistem <b>Ad-Hoc</b>. Kebetulan, mayoritas dari kami menggunakan sistem operasi GNU/Linux, sehingga proses konfigurasi berbagi jaringan ini menjadi sangat mudah dan praktis untuk dilakukan.</p>
+
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiGePox0sR_W-5NFkEgo2FiVHTuUyRy8aEk2368l8nWgjT5f8aJRlIkKePWkNbYJ5g7yQg6RmW3X38GxmIHB4GY7k2XIhK4wZRHUAor4KEajhfsKxymrBgj6Xxwtbb587pLEi4zGBGm3Gj/s1600/xnautilusdesktop003X.jpg"
+                 alt="Menu dropdown pada Network Manager Linux untuk membuat jaringan nirkabel baru"
+                 width="1600" height="900"
+                 fetchpriority="high" decoding="async"
+                 style="aspect-ratio: 16/9; object-fit: cover;">
+            <span class="caption">Langkah awal membuat jaringan Ad-Hoc lewat Network Manager.</span>
+
+            <h2>Langkah Mudah Membuat Koneksi Ad-Hoc via GUI</h2>
+
+            <p>Bagi Anda yang menggunakan lingkungan desktop klasik atau versi antarmuka yang sudah terintegrasi dengan <i>Network Manager</i> bawaan, konfigurasinya benar-benar tinggal klik saja. Berikut adalah urutan langkah yang kami lakukan saat itu:</p>
+
+            <ol>
+                <li>Dari panel menu atas, klik <i>icon</i> <b>Network Manager</b>.</li>
+                <li>Pilih opsi untuk membuat jaringan nirkabel baru, biasanya berlabel <i>"Create New Wireless Network"</i>.</li>
+                <li>Sesaat kemudian, sebuah kotak dialog konfigurasi akan muncul di layar Anda.</li>
+            </ol>
+
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3WJr9DL46xw7Qa93rkpWG8S-G0QqUfiYNLjX3PTIgwx-3X_qfv6ohmiB4UUwIJ7n2MmRMafJIySPCduAD2LSpg01y7372Jf7V3u10tKAX9GfEVgQmlh0LKDm9FYRsBa_2b85ydrsZ4tct/s1600/adhoc.jpg"
+                 alt="Dialog box konfigurasi jaringan Ad-Hoc menampilkan input nama SSID dan kata sandi keamanan"
+                 loading="lazy" decoding="async"
+                 width="1600" height="900"
+                 style="aspect-ratio: 16/9; object-fit: cover;">
+            <span class="caption">Kotak dialog untuk mengatur nama WiFi dan tingkat keamanan.</span>
+
+            <p>Pada kotak dialog tersebut, isilah data-data yang dibutuhkan sesuai kesepakatan bersama:</p>
+            <ul>
+                <li><b>Network Name (SSID):</b> Beri nama jaringan yang mudah dikenali oleh teman-teman Anda.</li>
+                <li><b>Wireless Security:</b> Pilih tipe keamanan yang didukung (misalnya WEP atau WPA).</li>
+                <li><b>Password:</b> Masukkan kata sandi agar tidak ada penyusup asing yang ikut <i>nebeng</i> koneksi Anda.</li>
+            </ul>
+
+            <p>Setelah pengaturan selesai dan disimpan, koneksi <i>Wireless Ad-Hoc</i> Anda kini sudah mengudara dan siap digunakan. Untuk memastikannya, periksalah melalui laptop atau perangkat teman Anda. Jika berhasil, perangkat mereka akan mendeteksi nama jaringan yang baru saja Anda buat.</p>
+
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB_wSpJQqQ-mMrDE2vZGzR5f_7ISMHGp5BI9isgEz0EnWCNunH2wyvKhtDEgb1mBUGUG9tCl0eMq7qKnJjQvm9i8mslZj9xxYRTLBKCi4KZFB6Tty5H0n3KrLlFC5XXOnKZCCePxT89XB6/s1600/xnautilusdesktop004.jpg"
+                 alt="Daftar jaringan WiFi di laptop lain yang berhasil mendeteksi koneksi Ad-Hoc"
+                 loading="lazy" decoding="async"
+                 width="1600" height="900"
+                 style="aspect-ratio: 16/9; object-fit: cover;">
+            <span class="caption">Jaringan Ad-Hoc berhasil terdeteksi di perangkat lain.</span>
+
+            <p>Langkah terakhir sangatlah intuitif. Cukup klik nama jaringan tersebut dari laptop penerima, masukkan <i>password</i> yang sudah disepakati tadi, dan <i>voila!</i> Koneksi pun terjalin. Seluruh anggota kini bisa <i>online</i> bersama-sama melalui satu jalur internet.</p>
+
+            <details>
+                <summary><h2>Tantangan Ekstra: Koneksi Ad-Hoc di GNOME 3 dan Fedora 15</h2></summary>
+                <div class="details-content">
+                    <p>Secara teori, membuat koneksi Ad-Hoc melalui antarmuka grafis (GUI) berjalan sangat mulus. Namun, pada kenyataan di lapangan, beda distro dan beda <i>Desktop Environment</i> terkadang membawa keunikannya masing-masing.</p>
+
+                    <p>Kebetulan, saat menguji metode ini, sistem operasi yang saya gunakan adalah distribusi <b>Fedora 15</b> dengan lingkungan desktop <b>GNOME 3</b>. Terkadang, <i>Network Manager</i> pada versi ini mengalami sedikit kendala dalam merutekan koneksi (<i>routing</i>) secara otomatis ke klien, meskipun status perangkat sudah saling terhubung.</p>
+
+                    <h3>Memaksa IP Forwarding melalui Terminal</h3>
+                    <p>Jika laptop teman Anda sudah berhasil <i>connect</i> ke WiFi Ad-Hoc buatan Anda tetapi masih belum bisa mengakses internet (<i>no internet access</i>), ini berarti sistem host Anda belum mem-<i>forward</i> paket data dari kabel LAN ke antarmuka <i>wireless</i>.</p>
+
+                    <p>Untuk mengatasi masalah perutean jaringan tersebut di lingkungan Fedora (atau distribusi Linux lainnya yang mengalami kendala serupa), buka terminal Anda, masuk sebagai <i>root</i>, dan jalankan perintah <i>iptables</i> berikut secara berurutan:</p>
+
+<pre><code class="language-bash">echo "1" > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -I POSTROUTING -o wlan0 -j MASQUERADE
+service iptables save</code></pre>
+
+                    <p><u>Catatan Penting:</u> Harap perhatikan antarmuka <i>wireless</i> yang Anda gunakan. Gantilah teks <i><b>wlan0</b></i> pada baris kode di atas agar sesuai dengan nama antarmuka <i>wireless interface</i> yang terdeteksi di laptop Anda (bisa berupa <i>wlp2s0</i>, <i>wlan1</i>, dan sebagainya).</p>
+
+                    <p>Semoga pengguna Ubuntu atau distro lainnya yang juga sudah menggunakan GNOME 3 tidak lagi menemui kendala <i>routing</i> ini berkat pembaruan sistem masa kini. Namun jika terjadi, perintah <i>iptables</i> di atas adalah obat yang paling ampuh.</p>
+                </div>
+            </details>
+<!--signature artikel oleh LayarKosong-->
+            </article>
+
+        <footer class="site-footer">
+            <div class="footer-inline">
+                <span><b>Penulis:</b> Frijal</span>
+                <span>•</span>
+                <span><b>Dipublikasikan:</b> Juli 2026</span>
+                <span>•</span>
+                <span><b>Referensi:</b> Arsip Pengalaman Komunitas Pengguna Linux</span>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
