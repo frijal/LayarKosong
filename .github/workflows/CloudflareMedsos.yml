@@ -19,7 +19,7 @@ on:
         type: boolean
 
       diskusi_rss:
-        description: "RSS kirim ke Diskusi GitHub"
+        description: "📰 RSS kirim ke Diskusi GitHub"
         required: false
         default: false
         type: boolean
@@ -101,14 +101,14 @@ jobs:
       # =========================================================
 
       - name: RSS kirim ke Diskusi Github
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.diskusi_rss }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.diskusi_rss
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bun run dapur/bikin-rss-diskusi.ts
 
       - name: 🧹 1. Cloudflare Cleanup
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.cloudflare }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.cloudflare
         continue-on-error: true
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
@@ -117,7 +117,7 @@ jobs:
         run: bun run dapur/rapikan-cloudflare.ts
 
       - name: 🐘 2. Mastodon Autopost
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.mastodon }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.mastodon
         continue-on-error: true
         env:
           MASTODON_INSTANCE: mastodon.social
@@ -125,7 +125,7 @@ jobs:
         run: bun run dapur/post-to-mastodon.ts
 
       - name: ⚙️ 3. Threads Post Script
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.threads }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.threads
         continue-on-error: true
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
@@ -133,7 +133,7 @@ jobs:
         run: bun run dapur/post-to-threads.ts
 
       - name: 🆕 4. LinkedIn Post Script
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.linkedin }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.linkedin
         continue-on-error: true
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
@@ -141,7 +141,7 @@ jobs:
         run: bun run dapur/post-to-linkedin.ts
 
       - name: 🎨 5. Tumblr Autopost
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.tumblr }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.tumblr
         continue-on-error: true
         env:
           TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
@@ -151,14 +151,14 @@ jobs:
         run: bun run dapur/post-to-tumblr.ts
 
       - name: 🦋 6. Discord Feed
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.discord }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.discord
         continue-on-error: true
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: bun run dapur/post-to-discord.ts
 
       - name: 🚀 7. Facebook Page Process
-        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.facebook }}
+        if: github.event_name == 'schedule' || inputs.all || inputs.facebook
         continue-on-error: true
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
@@ -166,7 +166,7 @@ jobs:
         run: bun run dapur/post-to-facebook.ts
 
       # - name: 🦋 9. Bluesky Autopost (Bun Version)
-      #   if: ${{ github.event_name == 'schedule' || inputs.all || inputs.bluesky }}
+      #   if: github.event_name == 'schedule' || inputs.all || inputs.bluesky
       #   continue-on-error: true
       #   env:
       #     BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
@@ -178,7 +178,7 @@ jobs:
       #     fi
 
       # - name: 🟡 10. Lemmy Post
-      #   if: ${{ github.event_name == 'schedule' || inputs.all || inputs.lemmy }}
+      #   if: github.event_name == 'schedule' || inputs.all || inputs.lemmy
       #   continue-on-error: true
       #   env:
       #     LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
