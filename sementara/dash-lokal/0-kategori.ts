@@ -397,7 +397,7 @@ function getHtmlDashboard() {
 
   // Salin kata kunci dalam format siap-tempel array: "keyword",
   function copyKeyword(word, btnEl) {
-    const textToCopy = '"' + word + '",';
+    const textToCopy = '"' + word + '", ';
     const originalIcon = btnEl.innerHTML;
 
     navigator.clipboard.writeText(textToCopy).then(function () {
