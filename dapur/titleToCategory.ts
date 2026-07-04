@@ -13,7 +13,7 @@ const categories: Category[] = [
       "linux", "ubuntu", "debian", "arch", "fedora", "cachyos", "mx-linux", "nixos", "opensuse", "slackware", "zorin", "garuda", "blankon", "mageia", "parrot",
       "apt", "pacman", "paru", "aur", "dpkg", "yum", "dnf", "flatpak", "snap", "brew",
       "gnome", "kde", "xfce", "hyprland", "wayland", "x11", "compiz",
-      "kernel", "systemd", "grub", "btrfs", "ext4", "chroot", "root", "sudo", "bash", "zsh", "fish", "nano", "vim",
+      "kernel", "systemd", "grub", "btrfs", "ext4", "chroot", "root", "sudo", "bash", "zsh", "fish", "nano", "vim", "CentOS",
       "foss", "open source", "oss", "distro", "desktop", "repo", "mirror", "ventoy", "rescuezilla", "rsync", "tar", "shell", "dotfiles", "lts", "glibc"
     ]
   },
