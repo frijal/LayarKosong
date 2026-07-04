@@ -52,7 +52,10 @@ Bun.serve({
 
         let titleToCategoryFn: (title: string) => string;
         try {
-          const mod = await import(absoluteScriptPath);
+          // Cache-bust: Bun.serve hidup sebagai satu proses panjang, jadi ES module
+          // di-cache berdasarkan path. Tanpa query unik ini, edit + simpan script
+          // tidak akan pernah terbaca ulang sampai server di-restart manual.
+          const mod = await import(`${absoluteScriptPath}?update=${Date.now()}`);
           titleToCategoryFn = mod.titleToCategory || mod.default || mod.classify;
           if (!titleToCategoryFn) throw new Error("Fungsi 'titleToCategory' tidak ditemukan.");
         } catch (err: any) {
@@ -392,6 +395,25 @@ function getHtmlDashboard() {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
+  // Salin kata kunci dalam format siap-tempel array: "keyword",
+  function copyKeyword(word, btnEl) {
+    const textToCopy = '"' + word + '",';
+    const originalIcon = btnEl.innerHTML;
+
+    navigator.clipboard.writeText(textToCopy).then(function () {
+      btnEl.innerHTML = '✅';
+    btnEl.disabled = true;
+    setTimeout(function () {
+      btnEl.innerHTML = originalIcon;
+      btnEl.disabled = false;
+    }, 1200);
+    }).catch(function (err) {
+      console.error('Gagal menyalin ke clipboard:', err);
+      btnEl.innerHTML = '⚠️';
+    setTimeout(function () { btnEl.innerHTML = originalIcon; }, 1200);
+    });
+  }
+
   function processHighlight(text, otherWordsSet) {
     const html = escapeHtml(text);
     const lowerText = text.toLowerCase();
@@ -478,11 +500,14 @@ function getHtmlDashboard() {
     data.topWords.forEach((item, index) => {
       wordsList.innerHTML += \`
       <div class="flex items-center justify-between bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-amber-500/40 transition-colors">
-      <div class="flex items-center gap-2">
-      <span class="text-slate-500 font-bold w-4 text-right">\${index + 1}.</span>
-      <span class="font-bold text-amber-300">"\${item.word}"</span>
+      <div class="flex items-center gap-2 min-w-0">
+      <span class="text-slate-500 font-bold w-4 text-right shrink-0">\${index + 1}.</span>
+      <span class="font-bold text-amber-300 truncate">"\${item.word}"</span>
       </div>
+      <div class="flex items-center gap-2 shrink-0">
       <span class="bg-slate-800 text-slate-300 text-[10px] px-2 py-0.5 rounded font-mono">\${item.count} artikel</span>
+      <button onclick="copyKeyword('\${item.word}', this)" title="Salin sebagai &quot;\${item.word}&quot;," class="bg-slate-800 hover:bg-cyan-600 text-slate-300 hover:text-white text-[11px] w-6 h-6 flex items-center justify-center rounded transition-colors">📋</button>
+      </div>
       </div>\`;
     });
   }

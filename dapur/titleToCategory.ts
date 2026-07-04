@@ -30,7 +30,7 @@ const categories: Category[] = [
   {
     name: "Jejak Sejarah",
     keywords: [
-      "nabi", "rasul", "sahabat", "khalifah", "sejarah", "islam", "muhammadiyah", "sirah",
+      "nabi", "rasul", "sahabat", "khalifah", "sejarah", "kisah", "islam", "muhammadiyah", "sirah",
       "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin",
       "shalahuddin", "fatih", "muhammad", "ibrahim", "musa", "isa", "nuh", "yunus",
       "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah",
@@ -49,7 +49,7 @@ const categories: Category[] = [
   {
     name: "Opini Sosial",
     keywords: [
-      "politik", "pemerintah", "korupsi", "demokrasi", "pemilu", "presiden",
+      "politik", "pemerintah", "korupsi", "demokrasi", "pemilu", "presiden", "balikpapan", 
       "mbg", "guru honorer", "pendidikan", "ekonomi", "indonesia",
       "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini",
       "sosial", "masyarakat", "keadilan", "koruptor", "integritas", "rakyat", "sekolah", "pemimpin", "bisnis"
@@ -58,7 +58,7 @@ const categories: Category[] = [
   {
     name: "Warta Tekno",
     keywords: [
-      "ai", "chatgpt", "gemini", "claude", "llm", "deep learning", "prompt",
+      "ai", "chatgpt", "gemini", "claude", "llm", "deep learning", "prompt", "online", 
       "github", "git", "programming", "javascript", "python", "html", "css", "markdown",
       "workflow", "github actions", "api", "backend", "frontend", "fullstack",
       "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware",
