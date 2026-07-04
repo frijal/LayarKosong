@@ -37,6 +37,7 @@ jobs:
           fi
 
       - name: 🔄 Refresh LinkedIn Token
+        if: always() # <--- INI KUNCI AGAR TETAP JALAN
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
