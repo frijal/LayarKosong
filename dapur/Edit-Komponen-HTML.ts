@@ -77,7 +77,7 @@ function preProcessRawText(html: string): string {
   out = out.replace(brandingRegex, "");
 
   out = out
-    .replaceAll("<!--signature artikel oleh LayarKosong-->", `<div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>`)
+    .replaceAll(`<!--wajib ini tulis signature artikel oleh LayarKosong-->`, `<div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>`)
     .replaceAll("Dalam Web Artikel", "Jaga Data Pribadi Tetap Aman")
     .replaceAll("Dalam Web Id",      "Jaga Data Pribadi Tetap Aman")
     .replaceAll("Dalam.Web.Id",      "Jaga Data Pribadi Tetap Aman")
