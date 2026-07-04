@@ -20,52 +20,15 @@ const delay = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, m
 const slugify = (text: string) =>
 text.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
 
-const MAX_RETRIES = 3;
-
-// "Code 1: An unknown error occurred" itu error generic/fallback khas Graph
-// API family — seringnya transient (server Meta lagi hiccup), bukan selalu
-// masalah token/permission. Jadi retry dulu dengan backoff sebelum nyerah,
-// KECUALI kalau errornya jelas-jelas akun kena block (subcode 2207051) —
-// kalau itu, retry nggak akan membantu, langsung gagal.
-async function createContainerWithRetry(url: string, body: any, headers: Record<string, string>): Promise<string> {
-  let lastErrJson: any;
-
-  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-    const res = await fetch(url, { method: 'POST', headers, body: JSON.stringify(body) });
-    const json: any = await res.json();
-
-    if (res.ok) return json?.id;
-
-    if (json?.error?.error_subcode === 2207051) {
-      console.error('⚠️ Meta Block: Akun butuh istirahat (Action Blocked).');
-      throw new Error(`Container Error: ${JSON.stringify(json)}`);
-    }
-
-    lastErrJson = json;
-    console.warn(`⚠️ Percobaan ${attempt}/${MAX_RETRIES} gagal (HTTP ${res.status}): ${JSON.stringify(json)}`);
-
-    if (attempt < MAX_RETRIES) {
-      const backoffMs = attempt * 8000;
-      console.log(`⏳ Retry dalam ${backoffMs / 1000} detik...`);
-      await delay(backoffMs);
-    }
-  }
-
-  throw new Error(`Container Error (gagal setelah ${MAX_RETRIES}x percobaan): ${JSON.stringify(lastErrJson)}`);
-}
-
 // --- FUNGSI UTAMA ---
 async function postToThreads(): Promise<void> {
   const ACCESS_TOKEN = Bun.env.THREADS_ACCESS_TOKEN;
   const THREADS_USER_ID = Bun.env.THREADS_USER_ID;
   const API_BASE = 'https://graph.threads.net/v1.0';
 
-  // Identitas jujur, bukan nyamar jadi browser. Untuk API server-to-server
-  // kayak gini, User-Agent yang mengaku Chrome tapi tanpa TLS fingerprint/
-  // sec-ch-ua/cookies browser asli justru pola yang lebih dicurigai sistem
-  // anti-bot Meta dibanding API client yang identitasnya jelas & konsisten.
-  const API_HEADERS = {
-    'User-Agent': 'LayarKosong-AutomationBot/1.0 (+https://dalam.web.id)',
+  // Header "Browser" agar tidak disangka bot kasar
+  const BROWSER_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   };
@@ -108,7 +71,7 @@ async function postToThreads(): Promise<void> {
   try {
     console.log(`🚀 Menyiapkan Threads: ${target.title}`);
 
-    // Step 1: Create Container (dengan retry, karena Code 1 biasanya transient)
+    // Step 1: Create Container
     const containerBody = {
       media_type: 'TEXT',
       text: `${target.desc}\n\n#Repost`,
@@ -116,12 +79,23 @@ async function postToThreads(): Promise<void> {
       access_token: ACCESS_TOKEN
     };
 
-    const creationId = await createContainerWithRetry(
-      `${API_BASE}/${THREADS_USER_ID}/threads`,
-      containerBody,
-      API_HEADERS
-    );
+    const resContainer = await fetch(`${API_BASE}/${THREADS_USER_ID}/threads`, {
+      method: 'POST',
+      headers: BROWSER_HEADERS,
+      body: JSON.stringify(containerBody)
+    });
 
+    const containerJson: any = await resContainer.json();
+
+    if (!resContainer.ok) {
+      // Jika kena block, tampilkan pesan lebih ramah
+      if (containerJson.error?.error_subcode === 2207051) {
+        console.error('⚠️ Meta Block: Akun butuh istirahat (Action Blocked).');
+      }
+      throw new Error(`Container Error: ${JSON.stringify(containerJson)}`);
+    }
+
+    const creationId = containerJson?.id;
     console.log(`📦 Container ID: ${creationId}. Jeda 15 detik...`);
 
     // Tambah delay dikit jadi 15 detik agar lebih natural
@@ -130,7 +104,7 @@ async function postToThreads(): Promise<void> {
     // Step 2: Publish
     const resPublish = await fetch(`${API_BASE}/${THREADS_USER_ID}/threads_publish`, {
       method: 'POST',
-      headers: API_HEADERS,
+      headers: BROWSER_HEADERS,
       body: JSON.stringify({
         creation_id: creationId,
         access_token: ACCESS_TOKEN

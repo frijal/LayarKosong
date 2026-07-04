@@ -16,13 +16,7 @@ async function httpPost(url: string, body: any, headers: Record<string,string> =
     headers: { 'Content-Type': 'application/json', ...headers },
     body: JSON.stringify(body)
   });
-  if (!res.ok) {
-    // Baca body-nya dulu sebelum throw — LinkedIn hampir selalu ngasih
-    // "message" atau "serviceErrorCode" yang jelasin alasan sebenarnya,
-    // jangan cuma buang informasi ini dan nyisain status code doang.
-    const errBody = await res.text();
-    throw new Error(`POST ${url} gagal: ${res.status} - ${errBody}`);
-  }
+  if (!res.ok) throw new Error(`POST ${url} gagal: ${res.status}`);
   return res.json();
 }
 
@@ -40,31 +34,14 @@ async function httpPut(url: string, buffer: Buffer, headers: Record<string,strin
     headers,
     body: buffer
   });
-  if (!res.ok) {
-    const errBody = await res.text();
-    throw new Error(`PUT ${url} gagal: ${res.status} - ${errBody}`);
-  }
+  if (!res.ok) throw new Error(`PUT ${url} gagal: ${res.status}`);
   return res;
 }
 
 // --- Main Function ---
 async function postToLinkedIn() {
   const ACCESS_TOKEN = process.env.LINKEDIN_ACCESS_TOKEN;
-  let LINKEDIN_PERSON_ID = process.env.LINKEDIN_PERSON_ID;
-
-  if (!ACCESS_TOKEN || !LINKEDIN_PERSON_ID) {
-    console.error('❌ LinkedIn Error: LINKEDIN_ACCESS_TOKEN atau LINKEDIN_PERSON_ID belum diset.');
-    process.exit(1);
-  }
-
-  // LinkedIn REST API wajib format URN penuh: "urn:li:person:xxxxxxxxx".
-  // Kalau secret-nya cuma ID mentah (angka/string polos), request bakal
-  // ditolak 401 tanpa penjelasan jelas kenapa. Auto-normalisasi di sini
-  // biar kesalahan format secret nggak nyasar jadi misteri "401 doang".
-  if (!LINKEDIN_PERSON_ID.startsWith('urn:li:person:')) {
-    console.warn(`⚠️ LINKEDIN_PERSON_ID ("${LINKEDIN_PERSON_ID}") tidak berformat URN. Menambahkan prefix "urn:li:person:" secara otomatis.`);
-    LINKEDIN_PERSON_ID = `urn:li:person:${LINKEDIN_PERSON_ID}`;
-  }
+  const LINKEDIN_PERSON_ID = process.env.LINKEDIN_PERSON_ID;
 
   if (!fs.existsSync(JSON_FILE)) return;
 
