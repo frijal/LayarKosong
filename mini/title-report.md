@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/3/2026, 3:03:57 PM
+Generated on: 7/4/2026, 2:24:36 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -760,7 +760,7 @@ Generated on: 7/3/2026, 3:03:57 PM
 | `artikel/kubuntu-11-10.html` | Kubuntu 11.10 - Panduan dan Pengalaman - Layar Kosong | Kubuntu 11.10 - Panduan dan Pengalaman | Layar Kosong | ✅ Perfect |
 | `artikel/kuhp-baru-kebebasan-sipil.html` | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil - Layar Kosong | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil | Layar Kosong | ✅ Perfect |
 | `artikel/kuis-pilih-distro-linux.html` | Kuis Interaktif: Temukan Distro Linux yang Paling Cocok Untukmu! - Layar Kosong | Kuis Interaktif: Temukan Distro Linux yang Paling Cocok Untukmu! | Layar Kosong | ✅ Perfect |
-| `artikel/kumpulan-tools-link.html` | Kumpulan Tools Link - Layar Kosong | Kumpulan Tools Link | Layar Kosong | ✅ Perfect |
+| `artikel/kumpulan-tools-link.html` | Kumpulan Tools Link, Bookmark - Layar Kosong | Kumpulan Tools Link, Bookmark | Layar Kosong | ✅ Perfect |
 | `artikel/kuota-hangus-dipertahankan-operator.html` | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen - Layar Kosong | KUOTA HANGUS Dipertahankan OPERATOR: Fakta, Risiko, dan Masa Depan Hak Konsumen | Layar Kosong | ✅ Perfect |
 | `artikel/kupas-kebijakan-hardiknas-2026.html` | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? - Layar Kosong | Kebijakan Hardiknas 2026: Deep Learning, Solusi atau Branding? | Layar Kosong | ✅ Perfect |
 | `artikel/kurangi-cahaya-ketika-tidur.html` | Kurangi Cahaya Saat Tidur: Sains dan Tuntunan Nabi - Layar Kosong | Kurangi Cahaya Saat Tidur: Sains dan Tuntunan Nabi | Layar Kosong | ✅ Perfect |
