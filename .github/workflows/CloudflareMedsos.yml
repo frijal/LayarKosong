@@ -30,12 +30,6 @@ on:
         default: false
         type: boolean
 
-      diskusi_rss:
-        description: "📰 RSS kirim ke Diskusi GitHub"
-        required: false
-        default: false
-        type: boolean
-
       facebook:
         description: "🚀 Facebook Page Process"
         required: false
@@ -56,6 +50,12 @@ on:
 
       mastodon:
         description: "🐘 Mastodon Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      diskusi_rss:
+        description: "📰 RSS kirim ke Diskusi GitHub"
         required: false
         default: false
         type: boolean
