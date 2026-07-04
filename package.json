@@ -21,16 +21,16 @@
     "update:latest": "bun update --latest"
   },
   "dependencies": {
-    "@minify-html/node": "*",
-    "@xmldom/xmldom": "*",
-    "cheerio": "*",
-    "glob": "*",
-    "sharp": "*",
-    "tumblr.js": "*"
+    "@minify-html/node": "^0.18.1",
+    "@xmldom/xmldom": "^0.9.10",
+    "cheerio": "^1.2.0",
+    "glob": "^13.0.6",
+    "sharp": "^0.35.3",
+    "tumblr.js": "^5.0.1"
   },
   "devDependencies": {
-    "typescript": "*",
-    "wrangler": "*"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.107.0"
   },
   "engines": {
     "bun": ">=1.3.0",
