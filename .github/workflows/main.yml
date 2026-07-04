@@ -1,0 +1,55 @@
+name: Refresh API Tokens 🚀
+
+on:
+  schedule:
+    # Jalan otomatis setiap tanggal 1 tiap bulan jam 00:00 UTC
+    - cron: '0 0 1 * *'
+  workflow_dispatch: # Memungkinkan kamu menekan tombol "Run workflow" secara manual
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🥟 Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 🔄 Refresh Threads Token
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }} # Wajib pakai PAT untuk GitHub CLI
+        run: |
+          echo "Menjalankan skrip refresh Threads..."
+          # Menangkap output console.log dari skrip Bun
+          NEW_THREADS_TOKEN=$(bun run dapur/refresh-threads-token.ts)
+          
+          if [ -n "$NEW_THREADS_TOKEN" ]; then
+            # Timpa secret lama dengan token baru menggunakan GitHub CLI (gh)
+            gh secret set THREADS_ACCESS_TOKEN --body "$NEW_THREADS_TOKEN"
+            echo "✅ Threads token berhasil diperbarui dan disimpan ke Secrets!"
+          else
+            echo "❌ Gagal mendapatkan token Threads baru."
+            exit 1
+          fi
+
+      - name: 🔄 Refresh LinkedIn Token
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          echo "Menjalankan skrip refresh LinkedIn..."
+          NEW_LI_TOKEN=$(bun run dapur/refresh-linkedin-token.ts)
+          
+          if [ -n "$NEW_LI_TOKEN" ]; then
+            gh secret set LINKEDIN_ACCESS_TOKEN --body "$NEW_LI_TOKEN"
+            echo "✅ LinkedIn token berhasil diperbarui dan disimpan ke Secrets!"
+          else
+            echo "❌ Gagal mendapatkan token LinkedIn baru."
+            exit 1
+          fi
