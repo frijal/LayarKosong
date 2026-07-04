@@ -3,25 +3,74 @@ name: "🟢 Automation & MedSos (Full Bun)"
 on:
   schedule:
     - cron: 10 0,8,16 * * *
+
   workflow_dispatch:
     inputs:
-      task:
-        description: 'Pilih tugas yang ingin dijalankan'
-        required: true
-        default: 'all'
-        type: choice
-        options:
-          - all
-          - cloudflare
-          - diskusi RSS
-          - bluesky
-          - discord
-          - facebook
-          - linkedin
-          - mastodon
-          - threads
-          - tumblr
-          - lemmy
+      all:
+        description: "✅ Jalankan semua tugas"
+        required: false
+        default: true
+        type: boolean
+
+      cloudflare:
+        description: "🧹 Cloudflare Cleanup"
+        required: false
+        default: false
+        type: boolean
+
+      diskusi_rss:
+        description: "RSS kirim ke Diskusi GitHub"
+        required: false
+        default: false
+        type: boolean
+
+      mastodon:
+        description: "🐘 Mastodon Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      threads:
+        description: "⚙️ Threads Post"
+        required: false
+        default: false
+        type: boolean
+
+      linkedin:
+        description: "🆕 LinkedIn Post"
+        required: false
+        default: false
+        type: boolean
+
+      tumblr:
+        description: "🎨 Tumblr Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      discord:
+        description: "🦋 Discord Feed"
+        required: false
+        default: false
+        type: boolean
+
+      facebook:
+        description: "🚀 Facebook Page Process"
+        required: false
+        default: false
+        type: boolean
+
+      bluesky:
+        description: "🦋 Bluesky Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      lemmy:
+        description: "🟡 Lemmy Post"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -31,7 +80,7 @@ permissions:
 jobs:
   everything-job:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 🛰️ Checkout Repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
@@ -42,24 +91,24 @@ jobs:
       - name: 🚀 Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: latest         
-      
+          bun-version: latest
+
       - name: 📦 Install
-        run: bun install 
+        run: bun install
 
       # =========================================================
       # 🟢 AUTOMATION SCRIPTS (ALL RUNNING ON BUN)
       # =========================================================
 
       - name: RSS kirim ke Diskusi Github
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'diskusi RSS'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.diskusi_rss }}
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bun run dapur/bikin-rss-diskusi.ts
 
       - name: 🧹 1. Cloudflare Cleanup
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'cloudflare'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.cloudflare }}
         continue-on-error: true
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
@@ -68,7 +117,7 @@ jobs:
         run: bun run dapur/rapikan-cloudflare.ts
 
       - name: 🐘 2. Mastodon Autopost
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'mastodon'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.mastodon }}
         continue-on-error: true
         env:
           MASTODON_INSTANCE: mastodon.social
@@ -76,7 +125,7 @@ jobs:
         run: bun run dapur/post-to-mastodon.ts
 
       - name: ⚙️ 3. Threads Post Script
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'threads'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.threads }}
         continue-on-error: true
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
@@ -84,7 +133,7 @@ jobs:
         run: bun run dapur/post-to-threads.ts
 
       - name: 🆕 4. LinkedIn Post Script
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.linkedin }}
         continue-on-error: true
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
@@ -92,7 +141,7 @@ jobs:
         run: bun run dapur/post-to-linkedin.ts
 
       - name: 🎨 5. Tumblr Autopost
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'tumblr'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.tumblr }}
         continue-on-error: true
         env:
           TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
@@ -102,49 +151,50 @@ jobs:
         run: bun run dapur/post-to-tumblr.ts
 
       - name: 🦋 6. Discord Feed
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'discord'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.discord }}
         continue-on-error: true
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: bun run dapur/post-to-discord.ts
 
       - name: 🚀 7. Facebook Page Process
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
+        if: ${{ github.event_name == 'schedule' || inputs.all || inputs.facebook }}
         continue-on-error: true
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-        run: bun run dapur/post-to-facebook.ts      
+        run: bun run dapur/post-to-facebook.ts
 
-#      - name: 🦋 9. Bluesky Autopost (Bun Version)
-#        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
-#        continue-on-error: true
-#        env:
-#          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
-#          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-#        run: |
-#          bun run dapur/post-to-bluesky.js
-#          if [ -f /tmp/temp_new_url_bsky.txt ]; then
-#            cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
-#          fi
+      # - name: 🦋 9. Bluesky Autopost (Bun Version)
+      #   if: ${{ github.event_name == 'schedule' || inputs.all || inputs.bluesky }}
+      #   continue-on-error: true
+      #   env:
+      #     BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+      #     BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
+      #   run: |
+      #     bun run dapur/post-to-bluesky.js
+      #     if [ -f /tmp/temp_new_url_bsky.txt ]; then
+      #       cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
+      #     fi
 
-#      - name: 🟡 10. Lemmy Post
-#        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
-#        continue-on-error: true
-#        env:
-#          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
-#          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-#        run: bun run dapur/post-to-lemmy.js
+      # - name: 🟡 10. Lemmy Post
+      #   if: ${{ github.event_name == 'schedule' || inputs.all || inputs.lemmy }}
+      #   continue-on-error: true
+      #   env:
+      #     LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
+      #     LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
+      #   run: bun run dapur/post-to-lemmy.js
 
       # =========================================================
       # 💾 FINAL COMMIT
       # =========================================================
-      
+
       - name: 💾 Save All Changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add . 
+          git add .
+
           if git diff --staged --quiet; then
             echo "ℹ️ Ga ada kerjaan baru, skip commit."
           else
