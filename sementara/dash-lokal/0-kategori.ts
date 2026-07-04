@@ -1,5 +1,5 @@
 import { join } from "path";
-import { readdirSync, statSync, existsSync } from "fs";
+import { readdirSync, statSync, existsSync, mkdirSync } from "fs";
 
 const PORT = 5000;
 
@@ -27,7 +27,6 @@ Bun.serve({
           return Response.json({ error: "Path script dan path artikel wajib diisi!" }, { status: 400 });
         }
 
-        // Tentukan path absolut agar aman luar dalam
         const absoluteScriptPath = join(process.cwd(), scriptPath);
         const absoluteArticlesPath = join(process.cwd(), articlesPath);
 
@@ -39,45 +38,49 @@ Bun.serve({
           return Response.json({ error: `File/Folder artikel tidak ditemukan di path: ${articlesPath}` }, { status: 400 });
         }
 
-        // --- BACA ISI FILE SCRIPT UNTUK DITAMPILKAN DI EDITOR ---
-        const scriptContentRaw = await Bun.file(absoluteScriptPath).text();
+        // --- MANAJEMEN FILE STOPWORDS (.txt) ---
+        const stopwordDir = join(process.cwd(), "mini");
+        const stopwordPath = join(stopwordDir, "stopwordkategori.txt");
 
-        // --- MENGIMPOR SCRIPT CLASSIFIER SECARA DINAMIS ---
+        // Buat folder 'mini' jika belum ada
+        if (!existsSync(stopwordDir)) {
+          mkdirSync(stopwordDir, { recursive: true });
+        }
+
+        // Buat file default jika belum ada
+        if (!existsSync(stopwordPath)) {
+          const defaultStopwords = "dan, atau, tetapi, sedangkan, melainkan, lalu, kemudian, padahal, sesudah, setelah, sebelum, sejak, ketika, sementara, sambil, selama, sampai, jika, kalau, asalkan, bila, andaikan, sekiranya, agar, supaya, biarpun, meskipun, walaupun, seakan-akan, seolah-olah, sebab, karena, sehingga, bahwa, dengan, biarpun demikian, sekalipun begitu, walaupun demikian, meskipun begitu, sesudah itu, selanjutnya, tambahan pula, lagi pula, selain itu, sebaliknya, sesungguhnya, bahwasanya, malahan, bahkan, akan tetapi, namun, kecuali itu, dengan demikian, oleh karena itu, oleh sebab itu, sebelum itu, begitu pula, demikian juga, tambahan lagi, di samping itu, kedua, akhirnya, bagaimanapun juga, sebagaimana, sama halnya, jadi, akibatnya, untuk maksud itu, untuk mencapai hal itu, ringkasnya, secara singkat, pada intinya, sementara itu, serta, apabila, bilamana, guna, ataupun, bagai, ibarat, serupa, mula-mula, biar, yaitu, yakni, asal, maka, adapun, kendati, lantaran, alhasil, andaikata, manakala, the, of, and, a, to, in, is, you, that, it, for, on, are, as, with, mengatasi, solusi, membuat, panduan, lengkap, terbaru, tips, trik, mengenal, bagaimana, kenapa, mengapa, vs, buat, di, ke, dari, yang, untuk, ini, itu, adalah, bisa, cara, pada, sebuah, yg, dalam, tentang, paling, nya, tidak, bukan, tanpa, lebih, baru, jangan, hari, kita, tak, masa, menjadi, hingga, al, era, dunia, makna";
+          await Bun.write(stopwordPath, defaultStopwords);
+        }
+
+        // Baca isi kedua file untuk ditampilkan di Live Editor
+        const scriptContentRaw = await Bun.file(absoluteScriptPath).text();
+        const stopwordContentRaw = await Bun.file(stopwordPath).text();
+
+        // --- MENGIMPOR SCRIPT CLASSIFIER ---
         let titleToCategoryFn: (title: string) => string;
         try {
           const mod = await import(absoluteScriptPath);
           titleToCategoryFn = mod.titleToCategory || mod.default || mod.classify;
-
-          if (!titleToCategoryFn) {
-            throw new Error("Fungsi 'titleToCategory' atau default export tidak ditemukan di dalam script.");
-          }
+          if (!titleToCategoryFn) throw new Error("Fungsi 'titleToCategory' tidak ditemukan.");
         } catch (err: any) {
-          return Response.json({ error: `Gagal memuat fungsi dari script: ${err.message}` }, { status: 400 });
+          return Response.json({ error: `Gagal memuat script: ${err.message}` }, { status: 400 });
         }
 
-        // --- MEMBACA DATA ARTIKEL ---
+        // --- MEMBACA DATA ARTIKEL (Versi Super Cepat khusus JSON) ---
         let articles: string[] = [];
         try {
-          const isDir = statSync(absoluteArticlesPath).isDirectory();
-          if (isDir) {
-            const files = readdirSync(absoluteArticlesPath).filter(f => f.endsWith(".json"));
-            for (const file of files) {
-              const content = await Bun.file(join(absoluteArticlesPath, file)).json();
-              articles = articles.concat(extractTitles(content));
-            }
-          } else {
-            const content = await Bun.file(absoluteArticlesPath).json();
-            articles = extractTitles(content);
-          }
+          const content = await Bun.file(absoluteArticlesPath).json();
+          articles = extractTitles(content);
         } catch (err: any) {
-          return Response.json({ error: `Gagal memproses file JSON artikel: ${err.message}` }, { status: 400 });
+          return Response.json({ error: `Gagal memproses file JSON: ${err.message}` }, { status: 400 });
         }
 
         if (articles.length === 0) {
-          return Response.json({ error: "Tidak ditemukan judul artikel yang bisa dianalisis." }, { status: 400 });
+          return Response.json({ error: "Tidak ditemukan judul artikel." }, { status: 400 });
         }
 
-        // --- PROSES KLASIFIKASI & HITUNG STATISTIK ---
+        // --- KLASIFIKASI ARTIKEL ---
         const categoryDistribution: Record<string, number> = {};
         const uncategorizedTitles: string[] = [];
         let categorizedCount = 0;
@@ -87,7 +90,6 @@ Bun.serve({
           try {
             const resCategory = titleToCategoryFn(title);
             const category = resCategory ? resCategory.trim() : "Lainnya";
-
             if (category.toLowerCase() === "lainnya" || category === "") {
               uncategorizedCount++;
               uncategorizedTitles.push(title);
@@ -101,94 +103,69 @@ Bun.serve({
           }
         }
 
-        // --- EKSTRAKSI KATA KUNCI BARU DARI "LAINNYA" ---
+        // --- EKSTRAKSI KATA KUNCI & PROSES STOPWORD ---
         const wordFreq: Record<string, number> = {};
+        const stopwords = new Set<string>();
 
-        const STOP_WORDS: string[] = [
-          "dan", "atau", "tetapi", "sedangkan", "melainkan", "lalu", "kemudian", "padahal",
-          "sesudah", "setelah", "sebelum", "sejak", "ketika", "sementara", "sambil", "selama",
-          "sampai", "jika", "kalau", "asalkan", "bila", "andaikan", "sekiranya", "agar",
-          "supaya", "biarpun", "meskipun", "walaupun", "seakan-akan", "seolah-olah", "sebab",
-          "karena", "sehingga", "bahwa", "dengan", "biarpun demikian", "sekalipun begitu",
-          "walaupun demikian", "meskipun begitu", "sesudah itu", "selanjutnya", "tambahan pula",
-          "lagi pula", "selain itu", "sebaliknya", "sesungguhnya", "bahwasanya", "malahan",
-          "bahkan", "akan tetapi", "namun", "kecuali itu", "dengan demikian", "oleh karena itu",
-          "oleh sebab itu", "sebelum itu", "begitu pula", "demikian juga", "tambahan lagi",
-          "di samping itu", "kedua", "akhirnya", "bagaimanapun juga", "sebagaimana",
-          "sama halnya", "jadi", "akibatnya", "untuk maksud itu", "untuk mencapai hal itu",
-          "ringkasnya", "secara singkat", "pada intinya", "sementara itu", "serta", "apabila",
-          "bilamana", "guna", "ataupun", "bagai", "ibarat", "serupa", "mula-mula", "biar",
-          "yaitu", "yakni", "asal", "maka", "adapun", "kendati", "lantaran", "alhasil",
-          "andaikata", "manakala"
-        ];
-
-        const stopwords = new Set([
-          "the", "of", "and", "a", "to", "in", "is", "you", "that", "it", "for", "on", "are", "as", "with",
-          "mengatasi", "solusi", "membuat", "panduan", "lengkap", "terbaru", "tips", "trik", "mengenal", "bagaimana", "kenapa", "mengapa", "vs", "buat",
-          "di", "ke", "dari", "yang", "untuk", "ini", "itu", "adalah", "bisa", "cara", "pada", "sebuah",
-          "yg", "dalam", "tentang", "paling", "nya", "tidak", "bukan", "tanpa", "lebih"
-        ]);
-
-        STOP_WORDS.forEach(phrase => {
-          phrase.split(/\s+/).forEach(word => {
-            stopwords.add(word);
-          });
+        // Memecah stopwords dari file .txt (bisa dipisah koma atau spasi) menjadi kata tunggal otomatis
+        stopwordContentRaw.split(/[\s,]+/).forEach(word => {
+          if (word.trim().length > 0) stopwords.add(word.trim().toLowerCase());
         });
 
-        for (const title of uncategorizedTitles) {
-          const words = title
-          .toLowerCase()
-          .replace(/[^\p{L}\s]/gu, " ")
-          .split(/\s+/);
-
-          for (const word of words) {
-            if (word.length > 1 && !stopwords.has(word)) {
-              wordFreq[word] = (wordFreq[word] || 0) + 1;
+          for (const title of uncategorizedTitles) {
+            const words = title.toLowerCase().replace(/[^\p{L}\s]/gu, " ").split(/\s+/);
+            for (const word of words) {
+              if (word.length > 1 && !stopwords.has(word)) {
+                wordFreq[word] = (wordFreq[word] || 0) + 1;
+              }
             }
           }
-        }
 
-        const topWords = Object.entries(wordFreq)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 25)
-        .map(([word, count]) => ({ word, count }));
+          const topWords = Object.entries(wordFreq)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 25)
+          .map(([word, count]) => ({ word, count }));
 
-        return Response.json({
-          summary: {
-            total: articles.length,
-            categorized: categorizedCount,
-            uncategorized: uncategorizedCount,
-            accuracy: ((categorizedCount / articles.length) * 100).toFixed(1) + "%",
-          },
-          categoryDistribution,
-          topWords,
-          uncategorizedSample: uncategorizedTitles.slice(0, 300), // Ditingkatkan krn ruang lebih lega
-                             scriptContent: scriptContentRaw
-        });
+          return Response.json({
+            summary: {
+              total: articles.length,
+              categorized: categorizedCount,
+              uncategorized: uncategorizedCount,
+              accuracy: ((categorizedCount / articles.length) * 100).toFixed(1) + "%",
+            },
+            categoryDistribution,
+            topWords,
+            uncategorizedSample: uncategorizedTitles.slice(0, 300),
+                               scriptContent: scriptContentRaw,
+                               stopwordContent: stopwordContentRaw
+          });
 
       } catch (globalErr: any) {
         return Response.json({ error: `Server Error: ${globalErr.message}` }, { status: 500 });
       }
     }
 
-    // 3. Endpoint API BARU untuk Menyimpan Perubahan Script
+    // 3. Endpoint API: Simpan titleToCategory.ts
     if (url.pathname === "/api/save-script" && req.method === "POST") {
       try {
-        const body = await req.json();
-        const { scriptPath, newContent } = body;
-
-        if (!scriptPath || newContent === undefined) {
-          return Response.json({ error: "Path script dan konten tidak valid!" }, { status: 400 });
-        }
-
+        const { scriptPath, newContent } = await req.json();
         const absoluteScriptPath = join(process.cwd(), scriptPath);
-
-        // Bun.write super cepat untuk me-replace isi file
         await Bun.write(absoluteScriptPath, newContent);
-
-        return Response.json({ success: true, message: "Perubahan script berhasil disimpan!" });
+        return Response.json({ success: true, message: "Script berhasil disimpan!" });
       } catch (err: any) {
-        return Response.json({ error: `Gagal menyimpan file: ${err.message}` }, { status: 500 });
+        return Response.json({ error: err.message }, { status: 500 });
+      }
+    }
+
+    // 4. Endpoint API: Simpan stopwordkategori.txt
+    if (url.pathname === "/api/save-stopword" && req.method === "POST") {
+      try {
+        const { newContent } = await req.json();
+        const absoluteStopwordPath = join(process.cwd(), "mini/stopwordkategori.txt");
+        await Bun.write(absoluteStopwordPath, newContent);
+        return Response.json({ success: true, message: "Stopwords berhasil disimpan!" });
+      } catch (err: any) {
+        return Response.json({ error: err.message }, { status: 500 });
       }
     }
 
@@ -196,32 +173,21 @@ Bun.serve({
   },
 });
 
-// Helper super-kilat khusus untuk struktur: { "Kategori": [ ["Judul", "url", ...], ... ] }
+// Helper ektraksi super cepat dari array JSON
 function extractTitles(json: any): string[] {
   const titles: string[] = [];
-
-  // Pastikan data utamanya adalah Object (bukan null atau array murni)
   if (typeof json === "object" && json !== null && !Array.isArray(json)) {
-
-    // Looping setiap kunci kategori (misal: "Sistem Terbuka", "Warta Tekno")
     for (const category in json) {
       const articlesList = json[category];
-
       if (Array.isArray(articlesList)) {
-        // Looping setiap baris artikel di dalam kategori tersebut
         for (const articleData of articlesList) {
-
-          // Pastikan baris ini adalah array dan index 0 (judul) adalah string
           if (Array.isArray(articleData) && typeof articleData[0] === "string") {
-            titles.push(articleData[0].trim()); // .trim() buat ngebersihin spasi nyasar
+            titles.push(articleData[0].trim());
           }
-
         }
       }
     }
-
   }
-
   return titles;
 }
 
@@ -238,7 +204,6 @@ function getHtmlDashboard() {
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
   body { font-family: 'Plus Jakarta Sans', sans-serif; }
-  /* Custom Scrollbar untuk Textarea biar manis */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: #020617; border-radius: 4px; }
   ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
@@ -248,11 +213,10 @@ function getHtmlDashboard() {
   <body class="bg-slate-950 text-slate-100 min-h-screen">
 
   <div class="container mx-auto px-4 py-8 max-w-[96%]">
-
   <div class="mb-8 text-center md:text-left md:flex md:items-center md:justify-between border-b border-slate-800 pb-6">
   <div>
   <h1 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">📊 Dashboard Analisis & Strategi Kata Kunci</h1>
-  <p class="text-slate-400 mt-1">Saring kata kunci baru untuk 6 kategori utama dari sisa artikel "Lainnya". Edit algoritma langsung dari sini.</p>
+  <p class="text-slate-400 mt-1">Saring kata kunci baru dari sisa artikel "Lainnya" & kelola aturan algoritma langsung di sini.</p>
   </div>
   <div class="mt-4 md:mt-0">
   <span class="bg-cyan-500/10 text-cyan-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-cyan-500/20 shadow-sm">Bun Serve Localhost:5000</span>
@@ -265,7 +229,7 @@ function getHtmlDashboard() {
   <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">⚙️ Parameter Analisis</h2>
   <div class="space-y-4">
   <div>
-  <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Target Path File/Folder Artikel</label>
+  <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Path File JSON Artikel</label>
   <input type="text" id="articlesPath" value="artikel.json" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 text-slate-100 font-mono">
   </div>
   <div>
@@ -309,7 +273,7 @@ function getHtmlDashboard() {
 
   <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow flex flex-col h-76">
   <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">🔑 Rekomendasi Kata Kunci Baru</h3>
-  <p class="text-[11px] text-slate-400 mb-4">Tambahkan kata ini ke file script di bawah, lalu klik "Simpan" & jalankan ulang analisis.</p>
+  <p class="text-[11px] text-slate-400 mb-4">Tambahkan kata ini ke file di bawah (kiri/kanan), lalu jalankan ulang analisis.</p>
   <div id="topWordsList" class="flex-1 overflow-y-auto space-y-1.5 pr-1 text-xs max-h-52"></div>
   </div>
   </div>
@@ -321,8 +285,7 @@ function getHtmlDashboard() {
   </div>
   </div>
 
-  <div id="resultsContainerBottom" class="hidden mt-8 space-y-6">
-
+  <div id="resultsContainerMiddle" class="hidden mt-8">
   <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow w-full">
   <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex justify-between items-center">
   <span>📋 Judul Artikel Kategori "Lainnya" (Butuh Kata Kunci Baru)</span>
@@ -331,23 +294,40 @@ function getHtmlDashboard() {
   <div id="titlesSampleContainer" class="max-h-60 overflow-y-auto space-y-2 text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono">
   </div>
   </div>
+  </div>
+
+  <div id="resultsContainerBottom" class="hidden mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
 
   <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow w-full">
   <div class="flex justify-between items-center mb-3">
   <div>
-  <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">
-  📄 Live Editor: Script titleToCategory
-  </h3>
-  <p class="text-[11px] text-slate-400 mt-1">Kamu bisa langsung mengedit array keywords di sini tanpa perlu membuka teks editor lain.</p>
+  <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">📄 Editor: titleToCategory.ts</h3>
+  <p class="text-[11px] text-slate-400 mt-1">Aturan klasifikasi utama (Array)</p>
   </div>
   <div class="flex items-center gap-3">
-  <span id="saveStatusMsg" class="text-xs font-bold hidden"></span>
-  <button id="btnSaveScript" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2 px-6 rounded-lg shadow-lg transition-all transform active:scale-95 flex items-center gap-2">
-  💾 Simpan Perubahan
+  <span id="saveStatusMsg1" class="text-xs font-bold hidden"></span>
+  <button id="btnSaveScript" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2 px-4 rounded-lg shadow-lg transition-all transform active:scale-95 flex items-center gap-2">
+  💾 Simpan Script
   </button>
   </div>
   </div>
-  <textarea id="scriptContentEditor" spellcheck="false" class="w-full h-[500px] bg-[#0d1117] p-5 rounded-xl border border-slate-700 text-[13px] text-slate-300 font-mono focus:outline-none focus:border-cyan-500 resize-y leading-relaxed shadow-inner"></textarea>
+  <textarea id="scriptContentEditor" spellcheck="false" class="w-full h-[450px] bg-[#0d1117] p-5 rounded-xl border border-slate-700 text-[13px] text-slate-300 font-mono focus:outline-none focus:border-cyan-500 resize-y leading-relaxed shadow-inner"></textarea>
+  </div>
+
+  <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow w-full">
+  <div class="flex justify-between items-center mb-3">
+  <div>
+  <h3 class="text-xs font-bold text-rose-400 uppercase tracking-wider">⛔ Editor: stopwordkategori.txt</h3>
+  <p class="text-[11px] text-slate-400 mt-1">Kata generik yang diabaikan (Pisahkan dg Koma/Spasi)</p>
+  </div>
+  <div class="flex items-center gap-3">
+  <span id="saveStatusMsg2" class="text-xs font-bold hidden"></span>
+  <button id="btnSaveStopword" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold py-2 px-4 rounded-lg shadow-lg transition-all transform active:scale-95 flex items-center gap-2">
+  💾 Simpan Stopwords
+  </button>
+  </div>
+  </div>
+  <textarea id="stopwordContentEditor" spellcheck="false" class="w-full h-[450px] bg-[#0d1117] p-5 rounded-xl border border-slate-700 text-[13px] text-rose-200 font-mono focus:outline-none focus:border-rose-500 resize-y leading-relaxed shadow-inner"></textarea>
   </div>
 
   </div>
@@ -366,7 +346,7 @@ function getHtmlDashboard() {
 
     errorDiv.classList.add('hidden');
     btn.disabled = true;
-    btn.innerText = '⏳ Memproses Klasifikasi...';
+    btn.innerText = '⏳ Memproses...';
 
   try {
     const response = await fetch('/api/analyze', {
@@ -380,18 +360,20 @@ function getHtmlDashboard() {
 
     document.getElementById('placeholderState').classList.add('hidden');
     document.getElementById('resultsContainerTop').classList.remove('hidden');
+    document.getElementById('resultsContainerMiddle').classList.remove('hidden');
     document.getElementById('resultsContainerBottom').classList.remove('hidden');
 
-    // Isi Metrik Ringkasan
+    // Tampilkan Metrik
     document.getElementById('statTotal').innerText = data.summary.total;
     document.getElementById('statCategorized').innerText = data.summary.categorized;
     document.getElementById('statUncategorized').innerText = data.summary.uncategorized;
     document.getElementById('statAccuracy').innerText = data.summary.accuracy;
 
-    // Tampilkan Isi Script ke dalam Textarea Live Editor
+    // Isi Textarea Kiri & Kanan
     document.getElementById('scriptContentEditor').value = data.scriptContent;
+    document.getElementById('stopwordContentEditor').value = data.stopwordContent;
 
-    // Tampilkan Rekomendasi Kata Kunci Baru
+    // List Top Words
     const wordsList = document.getElementById('topWordsList');
     wordsList.innerHTML = '';
   if(data.topWords.length === 0) {
@@ -409,7 +391,7 @@ function getHtmlDashboard() {
     });
   }
 
-  // Tampilkan Daftar Judul "Lainnya"
+  // Daftar Judul Lainnya
   const sampleContainer = document.getElementById('titlesSampleContainer');
   document.getElementById('sampleCount').innerText = \`Total: \${data.summary.uncategorized} judul\`;
   sampleContainer.innerHTML = '';
@@ -421,7 +403,7 @@ function getHtmlDashboard() {
     });
   }
 
-  // Gambar Grafik Distribusi Kategori
+  // Chart
   const labels = Object.keys(data.categoryDistribution);
   const counts = Object.values(data.categoryDistribution);
   if(data.summary.uncategorized > 0) {
@@ -438,16 +420,12 @@ function getHtmlDashboard() {
         datasets: [{
           data: counts,
           backgroundColor: ['#06b6d4', '#10b981', '#3b82f6', '#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#64748b'],
-          borderWidth: 1,
-          borderColor: '#0f172a'
+          borderWidth: 1, borderColor: '#0f172a'
         }]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 11 } } }
-        }
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 11 } } } }
       }
     });
 
@@ -460,43 +438,51 @@ function getHtmlDashboard() {
   }
   });
 
-  // --- LOGIKA TOMBOL SIMPAN SCRIPT ---
+  // --- LOGIKA TOMBOL SIMPAN SCRIPT KIRI ---
   document.getElementById('btnSaveScript').addEventListener('click', async () => {
     const btn = document.getElementById('btnSaveScript');
-    const msg = document.getElementById('saveStatusMsg');
+    const msg = document.getElementById('saveStatusMsg1');
     const scriptPath = document.getElementById('scriptPath').value;
     const newContent = document.getElementById('scriptContentEditor').value;
 
-    btn.disabled = true;
-    btn.innerText = '⏳ Menyimpan...';
-  msg.classList.add('hidden');
+    btn.disabled = true; btn.innerText = '⏳ Menyimpan...'; msg.classList.add('hidden');
+    try {
+      const response = await fetch('/api/save-script', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scriptPath, newContent })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error);
+      msg.innerText = '✅ ' + data.message; msg.className = 'text-xs font-bold text-emerald-400 block';
+    } catch (err) {
+      msg.innerText = '❌ ' + err.message; msg.className = 'text-xs font-bold text-rose-400 block';
+    } finally {
+      btn.disabled = false; btn.innerText = '💾 Simpan Script';
+  setTimeout(() => msg.classList.add('hidden'), 4000);
+    }
+  });
 
-  try {
-    const response = await fetch('/api/save-script', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ scriptPath, newContent })
-    });
+  // --- LOGIKA TOMBOL SIMPAN STOPWORD KANAN ---
+  document.getElementById('btnSaveStopword').addEventListener('click', async () => {
+    const btn = document.getElementById('btnSaveStopword');
+    const msg = document.getElementById('saveStatusMsg2');
+    const newContent = document.getElementById('stopwordContentEditor').value;
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Terjadi galat saat menyimpan.');
-
-    // Pesan Sukses
-    msg.innerText = '✅ ' + data.message;
-    msg.className = 'text-xs font-bold text-emerald-400 block';
-  } catch (err) {
-    // Pesan Error
-    msg.innerText = '❌ ' + err.message;
-    msg.className = 'text-xs font-bold text-rose-400 block';
-  } finally {
-    btn.disabled = false;
-    btn.innerText = '💾 Simpan Perubahan';
-
-  // Sembunyikan pesan sukses setelah 4 detik
-  setTimeout(() => {
-    msg.classList.add('hidden');
-  }, 4000);
-  }
+    btn.disabled = true; btn.innerText = '⏳ Menyimpan...'; msg.classList.add('hidden');
+    try {
+      const response = await fetch('/api/save-stopword', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newContent })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error);
+      msg.innerText = '✅ ' + data.message; msg.className = 'text-xs font-bold text-emerald-400 block';
+    } catch (err) {
+      msg.innerText = '❌ ' + err.message; msg.className = 'text-xs font-bold text-rose-400 block';
+    } finally {
+      btn.disabled = false; btn.innerText = '💾 Simpan Stopwords';
+  setTimeout(() => msg.classList.add('hidden'), 4000);
+    }
   });
 
   </script>
