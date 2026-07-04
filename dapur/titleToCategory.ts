@@ -43,7 +43,7 @@ const categories: Category[] = [
       "kesehatan", "pencernaan", "tidur", "diet", "herbal", "obat", "sakit",
       "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan",
       "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel",
-      "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga"
+      "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga", "anak", "bahaya", "listrik"
     ]
   },
   {
@@ -52,7 +52,7 @@ const categories: Category[] = [
       "politik", "pemerintah", "korupsi", "demokrasi", "pemilu", "presiden",
       "mbg", "guru honorer", "pendidikan", "ekonomi", "indonesia",
       "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini",
-      "sosial", "masyarakat", "keadilan", "koruptor", "integritas"
+      "sosial", "masyarakat", "keadilan", "koruptor", "integritas", "rakyat", "sekolah", "pemimpin", "bisnis"
     ]
   },
   {
@@ -63,7 +63,7 @@ const categories: Category[] = [
       "workflow", "github actions", "api", "backend", "frontend", "fullstack",
       "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware",
       "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare",
-      "security", "phishing", "encryption", "privacy", "backup", "ssh"
+      "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
     ]
   }
 ];
