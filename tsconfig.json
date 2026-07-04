@@ -1,29 +1,39 @@
 {
   "compilerOptions": {
+    // --- 🚀 Environment & Target ---
     "target": "ESNext",
-    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["bun"],
+    "jsx": "react-jsx",
+
+    // --- 📦 Module & Bundler (Bun + Wrangler/esbuild) ---
+    "module": "Preserve",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
 
+    // --- 👮‍♂️ Type Checking & CI/CD Guard (Strict Mode) ---
     "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
 
-    "allowImportingTsExtensions": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-
-    "noEmit": true,
+    // --- ⚡ Build Performance ---
     "skipLibCheck": true,
-    "isolatedModules": true,
-
-    "types": ["bun"]
+    "noEmit": true
   },
-  "include": ["dapur/**/*.ts", "index.ts"],
+  "include": [
+    "dapur/**/*.ts",
+    "dapur/**/*.tsx",
+    "index.ts",
+    "index.tsx"
+  ],
   "exclude": [
     "node_modules",
     "dist",
