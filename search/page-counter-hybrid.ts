@@ -1,34 +1,23 @@
 export default {
   // =================================================================
-  // 🚪 PERTAHANAN 1: MELAYANI MANUSIA DI BROWSER (FAST READ-ONLY)
+  // 🚪 FUNGSI BACA: Melayani Pengunjung (Bisa artikel / total domain)
   // =================================================================
   async fetch(request: Request, env: any, ctx: any): Promise<Response> {
     const url = new URL(request.url);
-    const pageSlug = url.searchParams.get("url");
+    let pageSlug = url.searchParams.get("url");
 
-    // 1. Validasi parameter wajib ada
     if (!pageSlug) {
       return new Response(JSON.stringify({ error: "Missing URL parameter" }), { 
-        status: 400,
-        headers: { "content-type": "application/json" }
+        status: 400, headers: { "content-type": "application/json" }
       });
     }
 
-    // 2. Langsung ambil data matang dari KV
-    const pageKey = `view:${pageSlug}`;
-    const rawData = await env.COUNTS_KV.get(pageKey);
-    
-    let stats = { v: 0, t: 0 };
-    if (rawData) {
-      try {
-        stats = JSON.parse(rawData);
-      } catch {
-        // Antisipasi jika data lama masih berformat string angka biasa
-        stats = { v: parseInt(rawData) || 0, t: 1 };
-      }
-    }
+    // Tarik data dari D1
+    const stmt = env.DB.prepare("SELECT views as v, visitors as t FROM page_stats WHERE path = ?").bind(pageSlug);
+    const result = await stmt.first();
 
-    // 3. Kembalikan respon secepat kilat tanpa proses write database
+    const stats = result || { v: 0, t: 0 };
+
     return new Response(JSON.stringify(stats), {
       headers: {
         "content-type": "application/json",
@@ -38,36 +27,43 @@ export default {
   },
 
   // =================================================================
-  // ⏰ PERTAHANAN 2: CRON JOB SINKRONISASI (GRAPHQL TO KV)
+  // ⏰ FUNGSI TULIS: Cron Job Inkremental 1 Jam Sekali
   // =================================================================
   async scheduled(event: any, env: any, ctx: any): Promise<void> {
     ctx.waitUntil(runCronSync(env));
   }
 };
 
-// --- FUNGSI UTAMA SINKRONISASI AWANG-AWANG ---
+// --- FUNGSI UTAMA SINKRONISASI INCREMENTAL (D1 COUNTER DB) ---
 async function runCronSync(env: any): Promise<void> {
   const graphqlEndpoint = "https://api.cloudflare.com/client/v4/graphql";
   
-  // Ambil data trafik sejak 30 hari terakhir (Maksimal retensi plan Free di tahun 2026)
-  const dateStart = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+  const now = new Date();
+  const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+  const dateStart = oneHourAgo.toISOString();
+  const dateEnd = now.toISOString();
 
-  // Query GraphQL untuk mengelompokkan data berdasarkan Path URL artikel
+  // 🎯 QUERY DOUBLE STRIKE: Mengambil data artikel DAN total domain secara absolut
   const query = `
-    query GetBlogStats($zoneTag: String!, $dateStart: String!) {
+    query GetBlogStats($zoneTag: String!, $dateStart: String!, $dateEnd: String!) {
       viewer {
         zones(filter: { zoneTag: $zoneTag }) {
-          httpRequestsAdaptiveGroups(
+          # 1. Ambil data pecahan per halaman/artikel
+          perArtikel: httpRequestsAdaptiveGroups(
             limit: 1000
-            filter: { datetime_geq: $dateStart, clientRequestHTTPStatus: 200 }
+            filter: { datetime_geq: $dateStart, datetime_leq: $dateEnd, clientRequestHTTPStatus: 200 }
             orderBy: [count_DESC]
           ) {
-            dimensions {
-              clientRequestPath
-            }
-            uniq {
-              uniques
-            }
+            dimensions { clientRequestPath }
+            uniq { uniques }
+            count
+          }
+          # 2. Ambil total global domain tanpa dipecah berdasarkan path
+          totalDomain: httpRequestsAdaptiveGroups(
+            limit: 1
+            filter: { datetime_geq: $dateStart, datetime_leq: $dateEnd, clientRequestHTTPStatus: 200 }
+          ) {
+            uniq { uniques }
             count
           }
         }
@@ -84,48 +80,63 @@ async function runCronSync(env: any): Promise<void> {
       },
       body: JSON.stringify({
         query: query,
-        variables: {
-          zoneTag: env.CF_ZONE_ID,
-          dateStart: dateStart
-        }
+        variables: { zoneTag: env.CF_ZONE_ID, dateStart, dateEnd }
       })
     });
 
     const result: any = await response.json();
-    const groups = result?.data?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
+    const zoneData = result?.data?.viewer?.zones?.[0];
+    
+    const articleGroups = zoneData?.perArtikel;
+    const domainGroups = zoneData?.totalDomain;
 
-    if (!groups || !Array.isArray(groups)) {
-      console.error("Gagal mengambil data trafik dari GraphQL API.");
-      return;
+    const sqlStatements = [];
+
+    // ─── PROSES DATA PER ARTIKEL ───
+    if (articleGroups && Array.isArray(articleGroups)) {
+      for (const group of articleGroups) {
+        const path = group.dimensions.clientRequestPath;
+        const newPageviews = group.count;
+        const newUniqueVisitors = group.uniq.uniques;
+
+        // Filter bot nakal
+        const isTrash = 
+          path.includes("__") || 
+          path.includes(".php") || 
+          /^\/(b_dt2|c_dt2|d1|de1|enc\d|g1)\//i.test(path);
+
+        if (isTrash) continue; 
+
+        sqlStatements.push(
+          env.DB.prepare(`
+            INSERT INTO page_stats (path, views, visitors) VALUES (?, ?, ?) 
+            ON CONFLICT(path) DO UPDATE SET views = views + excluded.views, visitors = visitors + excluded.visitors
+          `).bind(path, newPageviews, newUniqueVisitors)
+        );
+      }
     }
 
-    // Lakukan perulangan hasil data dari Cloudflare Analytics
-    for (const group of groups) {
-      const path = group.dimensions.clientRequestPath;
-      const totalPageviews = group.count;
-      const uniqueVisitors = group.uniq.uniques;
+    // ─── PROSES DATA GLOBAL TOTAL DOMAIN ───
+    if (domainGroups && domainGroups.length > 0) {
+      const globalViews = domainGroups[0].count;
+      const globalVisitors = domainGroups[0].uniq.uniques;
 
-      // Filter Tambahan: Pastikan path bersih dari sisa-sisa bot nakal
-      const isTrash = 
-        path.includes("__") || 
-        path.includes(".php") || 
-        /^\/(b_dt2|c_dt2|d1|de1|enc\d|g1)\//i.test(path);
-
-      if (isTrash) continue; // Skip jika terdeteksi sampah
-
-      // Format data matang menjadi JSON
-      const pageKey = `view:${path}`;
-      const matangJSON = JSON.stringify({
-        v: totalPageviews,
-        t: uniqueVisitors
-      });
-
-      // Simpan data matang ke KV untuk dibaca manusia di frontend
-      await env.COUNTS_KV.put(pageKey, matangJSON);
+      // Masukkan ke baris khusus bernama 'TOTAL_DOMAIN'
+      sqlStatements.push(
+        env.DB.prepare(`
+          INSERT INTO page_stats (path, views, visitors) VALUES ('TOTAL_DOMAIN', ?, ?) 
+          ON CONFLICT(path) DO UPDATE SET views = views + excluded.views, visitors = visitors + excluded.visitors
+        `).bind(globalViews, globalVisitors)
+      );
     }
     
-    console.log(`Cron sukses! Berhasil menyinkronkan ${groups.length} data halaman.`);
+    // Eksekusi masal ke D1
+    if (sqlStatements.length > 0) {
+      await env.DB.batch(sqlStatements);
+      console.log(`⚡ Cron sukses! Menambahkan data inkremental untuk artikel dan total domain.`);
+    }
+
   } catch (error) {
-    console.error("Terjadi kesalahan pada sistem Cron:", error);
+    console.error("❌ Eror pada sistem Cron Incremental:", error);
   }
 }

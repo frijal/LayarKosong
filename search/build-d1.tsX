@@ -6,8 +6,7 @@ import * as cheerio from "cheerio";
 const ROOT_DIR = "./deploy_dir";
 const ARTICLE_DIRS = ["gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"];
 const SQL_FILE = "./temp_sync.sql";
-const TEMP_CONFIG = "./wrangler-pages.toml";  // 👈 JALUR SINKRONISASI: Diarahkan ke berkas root dari YAML Pages
-const WORKER_CONFIG = "./wrangler-worker.toml"; // 👈 JALUR BARU: Menunjuk ke konfigurasi brankas counter Worker
+const TEMP_CONFIG = "/tmp/wrangler.toml";
 
 // 🎯 FILTER: File yang Harus Di-Skip
 const SKIP_PATTERNS = [
@@ -110,6 +109,17 @@ const extractArticleData = (filePath: string, file: string, category: string) =>
     const image = ($('meta[property="og:image"]').attr('content') || "/thumbnail.webp").replace(/'/g, "''");
     const dateISO = $('meta[property="article:published_time"]').attr('content') || new Date().toISOString();
 
+    // Hapus elemen yang tidak relevan
+    // Catatan: "i" SENGAJA gak dimasukkan lagi ke sini. Font Awesome icon (<i class="fa-...">)
+    // emang kosong dari teks jadi gak ngefek ke .text(), tapi italic asli (<i>istilah</i>)
+    // sekarang ikut ke-index dengan benar.
+    // Catatan: "header" JUGA sengaja gak dimasukkan lagi. Di template artikel, <header>
+    // membungkus breadcrumb + <h1> + paragraf .lead jadi satu — kalau tag header dihapus
+    // utuh, h1 dan .lead ikut lenyap padahal .lead adalah satu-satunya sumber teks ringkasan
+    // yang gak punya kolom lain di skema tabel. Breadcrumb tetap ke-strip lewat selector "nav".
+    // "h1" ditambahin ke sini (bukan lewat header) karena h1 udah redundan sama kolom title,
+    // dan strip di level tag h1 ini gak nyenggol <p class="lead"> yang tag-nya beda —
+    // jadi ringkasan lead tetap aman masuk index, cuma judulnya yang gak dobel.
     $('script, style, meta, link, noscript, footer, nav, aside, h1, #header-placeholder, #loading-indicator').remove();
 
     // Ambil konten dari area artikel
@@ -167,6 +177,7 @@ for (const cat of Object.keys(CATEGORY_MAP)) {
 
         try {
             const data = extractArticleData(join(fullCatPath, file), file, cat);
+            // Simpan data beserta file name-nya
             categoryArticles.push({ ...data, file });
         } catch (e: any) {
             console.error(`❌ Gagal olah file: ${file} (${e.message})`);
@@ -191,20 +202,12 @@ for (const cat of Object.keys(CATEGORY_MAP)) {
 writeFileSync(SQL_FILE, sqlCommands.join("\n"));
 
 try {
-    // 🛡️ BAGIAN 1: Pastikan tabel counter aman bersarang di database terpisah
-    if (existsSync(WORKER_CONFIG)) {
-        console.log("⏳ Memastikan tabel 'page_stats' siap di layarkosong-counter-db...");
-        const createTableQuery = "CREATE TABLE IF NOT EXISTS page_stats (path TEXT PRIMARY KEY, views INTEGER DEFAULT 0, visitors INTEGER DEFAULT 0);";
-        execSync(`bunx wrangler d1 execute layarkosong-counter-db --remote --command="${createTableQuery}" -c ${WORKER_CONFIG}`, { stdio: 'inherit' });
-    }
-
-    // 📊 BAGIAN 2: Eksekusi sinkronisasi FTS Pencarian ke database utama
     if (existsSync(TEMP_CONFIG)) {
         execSync(`bunx wrangler d1 execute layarkosong-db --remote --file=${SQL_FILE} -c ${TEMP_CONFIG}`, { stdio: 'inherit' });
         console.log(`\n✅ Sync D1 Berhasil!`);
         console.log(`    📊 ${totalProcessed} artikel diproses | ${totalSkipped} file di-skip`);
     } else {
-        console.error("❌ File konfigurasi wrangler-pages.toml tidak ditemukan.");
+        console.error("❌ File konfigurasi wrangler.toml tidak ditemukan.");
         process.exit(1);
     }
 } catch (err: any) {
