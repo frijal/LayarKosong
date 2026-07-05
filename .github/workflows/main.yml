@@ -115,7 +115,7 @@ jobs:
           # B. Konfigurasi Khusus untuk Worker Hybrid Counter
           cat <<EOF > /tmp/wrangler-worker.toml
           name = "layarkosong-counter"
-          main = "search/page-counter-hybrid.ts" # 👈 Diubah jadi relatif terhadap folder source
+          main = "source/search/page-counter-hybrid.ts" # 👈 Diubah jadi relatif terhadap folder source
           compatibility_date = "2026-07-05"
 
           [triggers]
