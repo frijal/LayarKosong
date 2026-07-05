@@ -91,11 +91,11 @@ jobs:
             --exclude='*' \
             source/ deploy_dir/
 
-      # 🔑 Create Configs (Membuat 2 File Temp untuk Pages dan Worker)
+      # 🔑 Create Configs (Dibuat di direktori root saat ini, BUKAN di /tmp/)
       - name: Create Temporary Wrangler Configs
         run: |
           # A. Konfigurasi Khusus untuk Cloudflare Pages
-          cat <<EOF > /tmp/wrangler-pages.toml
+          cat <<EOF > ./wrangler-pages.toml
           #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
           name = "layarkosong"
           compatibility_date = "2025-12-01"
@@ -113,9 +113,9 @@ jobs:
           EOF
 
           # B. Konfigurasi Khusus untuk Worker Hybrid Counter
-          cat <<EOF > /tmp/wrangler-worker.toml
+          cat <<EOF > ./wrangler-worker.toml
           name = "layarkosong-counter"
-          main = "source/search/page-counter-hybrid.ts" # 👈 Diubah jadi relatif terhadap folder source
+          main = "source/search/page-counter-hybrid.ts"
           compatibility_date = "2026-07-05"
 
           [triggers]
@@ -139,7 +139,8 @@ jobs:
       # 🚀 Deploy Frontend ke Cloudflare Pages (Retry 3x)
       - name: Deploy to Cloudflare Pages
         run: |
-          cp /tmp/wrangler-pages.toml ./wrangler.toml
+          # Perintah cp disesuaikan mengambil dari root ./
+          cp ./wrangler-pages.toml ./wrangler.toml
           cp -r source/functions ./functions
 
           max_attempts=3
@@ -162,13 +163,13 @@ jobs:
 
       # 🚀 Deploy Backend ke Cloudflare Workers (Hybrid Counter & Cron)
       - name: Deploy Hybrid Counter Worker & Secret
-        working-directory: source # 👈 Pindahkan terminal ke folder source sebelum deploy
         run: |
           echo "🚀 Starting Worker Deployment..."
-          bunx wrangler deploy -c /tmp/wrangler-worker.toml
+          # Perintah deploy menunjuk ke file TOML di root
+          bunx wrangler deploy -c ./wrangler-worker.toml
           
           echo "🔐 Injecting Cloudflare API Token to Worker Secret..."
-          echo "${{ secrets.CF_API_TOKEN }}" | bunx wrangler secret put CF_API_TOKEN -c /tmp/wrangler-worker.toml
+          echo "${{ secrets.CF_API_TOKEN }}" | bunx wrangler secret put CF_API_TOKEN -c ./wrangler-worker.toml
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
