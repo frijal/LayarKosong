@@ -12,6 +12,12 @@ on:
         default: true
         type: boolean      
 
+      blogspot:
+        description: "🧡 Blogspot Planet Autopost"
+        required: false
+        default: false
+        type: boolean
+
       cloudflare:
         description: "🧹 Cloudflare Cleanup"
         required: false
@@ -26,12 +32,6 @@ on:
 
       facebook:
         description: "🚀 Facebook Page Process"
-        required: false
-        default: false
-        type: boolean
-
-      lemmy:
-        description: "🟡 Lemmy Post"
         required: false
         default: false
         type: boolean
@@ -185,14 +185,17 @@ jobs:
           WP_POST_EMAIL: ${{ secrets.WP_POST_EMAIL }}
         run: bun run dapur/post-to-wordpress.ts
 
-  #    - name: 🟡 9. Lemmy Post
-  #      id: lemmy
-  #      if: github.event_name == 'schedule' || inputs.all || inputs.lemmy
-  #      continue-on-error: true
-  #      env:
-  #        LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
-  #        LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-  #      run: bun run dapur/post-to-lemmy.js
+      - name: 🧡 9. Blogspot Planet Autopost
+        id: blogspot
+        if: github.event_name == 'schedule' || inputs.all || inputs.blogspot
+        continue-on-error: true
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          BLOGSPOT_POST_EMAIL: ${{ secrets.BLOGSPOT_POST_EMAIL }}
+        run: bun run dapur/post-to-blogspot.ts
 
       # =========================================================
       # 📋 RINGKASAN HASIL (biar ga perlu buka log satu-satu)
@@ -210,7 +213,7 @@ jobs:
           STATUS_DISCORD: ${{ steps.discord.outcome }}
           STATUS_FACEBOOK: ${{ steps.facebook.outcome }}
           STATUS_WORDPRESS: ${{ steps.wordpress.outcome }}
-          STATUS_LEMMY: ${{ secrets.STATUS_LEMMY }} # Mengambil fallback jika kosong
+          STATUS_BLOGSPOT: ${{ steps.blogspot.outcome }}
         run: |
           print_status() {
             local label="$1"
@@ -235,10 +238,10 @@ jobs:
             echo "|---|---|"
           } >> "$GITHUB_STEP_SUMMARY"
 
+          print_status "Blogspot Planet 🧡"       "$STATUS_BLOGSPOT"
           print_status "Cloudflare Cleanup 🧹"    "$STATUS_CLOUDFLARE"
           print_status "Discord 🦋"               "$STATUS_DISCORD"
           print_status "Facebook 🚀"              "$STATUS_FACEBOOK"
-          print_status "Lemmy 🟡"                  "$STATUS_LEMMY"
           print_status "LinkedIn 🆕"              "$STATUS_LINKEDIN"
           print_status "Mastodon 🐘"              "$STATUS_MASTODON"
           print_status "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS"
