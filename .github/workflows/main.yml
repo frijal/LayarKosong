@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      # ⚠️ INI YANG TADI KURANG: Instalasi Bun
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -21,15 +19,26 @@ jobs:
           CLOUDFLARE_ID_KV: ${{ secrets.CLOUDFLARE_ID_KV }}
         run: |
           echo "🚀 Fetching keys..."
-          curl -s -H "Authorization: Bearer $CF_API_TOKEN" \
+          # Kita hapus -s supaya kalau ada error, dia langsung muncul
+          curl -H "Authorization: Bearer $CF_API_TOKEN" \
             "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/storage/kv/namespaces/$CLOUDFLARE_ID_KV/keys" \
             > keys.json
           
+          cat keys.json # <--- INI PENTING! Kita lihat isi file-nya di log
+
           echo "processing data..."
           
           bun -e '
             const fs = require("fs");
-            const keys = JSON.parse(fs.readFileSync("keys.json")).result;
+            const content = fs.readFileSync("keys.json", "utf8");
+            const data = JSON.parse(content);
+            
+            if (!data.success) {
+              console.error("❌ CLOUDFLARE API ERROR:", JSON.stringify(data.errors));
+              process.exit(1);
+            }
+            
+            const keys = data.result;
             let sql = [];
             
             async function run() {
@@ -52,11 +61,11 @@ jobs:
           '
 
       - name: Apply SQL to D1
+        if: success()
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: |
-          # Setup wrangler.toml sementara untuk eksekusi
           echo 'name = "migrator"
           [[d1_databases]]
           binding = "DB"
