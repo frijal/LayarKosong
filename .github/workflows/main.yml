@@ -1,174 +1,34 @@
-name: 🚀 Cloudflare Deployer Filter & Direct
+name: 🔄 Migrate KV to D1
 
 on:
-  workflow_run:
-    workflows: ["☢️ Build and Generate Site Files"]
-    types: [completed]
-  push:
-    branches:
-      - main
-    paths:
-      # - 'wrangler.toml'
-      - '_redirects'
-      - '_headers'
-
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: 'Pilih mode deploy'
-        required: true
-        default: 'full'
-        type: choice
-        options:
-          - full         # Default run: deploy + build D1
-          - update-only  # Hanya deploy, tanpa build D1
-
-permissions:
-  contents: read
-  deployments: write
+  workflow_dispatch: # Bisa dijalankan manual dari tab Actions
 
 jobs:
-  deploy-direct:
+  migrate:
     runs-on: ubuntu-latest
-
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-      # 1. Checkout source
-      - name: Checkout source branch
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
-        with:
-          path: source
-          fetch-depth: 1
-          persist-credentials: true
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
 
-      - name: '1.5 Setup Node.js v22'
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24.18.0
-
-      - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install
-        working-directory: source
-
-      - name: 🧹 Prepare Clean Directory (rsync)
-        run: |
-          mkdir deploy_dir
-          rsync -a --delete \
-            --include='gaya-hidup/***' \
-            --include='jejak-sejarah/***' \
-            --include='lainnya/***' \
-            --include='olah-media/***' \
-            --include='opini-sosial/***' \
-            --include='sistem-terbuka/***' \
-            --include='warta-tekno/***' \
-            --include='functions/***' \
-            --include='search/***' \
-            --include='ext/***' \
-            --include='.well-known/***' \
-            --include='img/***' \
-            --include='artikel.json' \
-            --include='artikel-lite.json' \
-            --include='redirectmap.json' \
-            --include='auth.md' \
-            --include='llms.md' \
-            --include='_redirects' \
-            --include='_headers' \
-            --include='*.html' \
-            --include='*.xml' \
-            --include='*.xsl' \
-            --include='*.txt' \
-            --include='favicon.*' \
-            --include='icon.*' \
-            --include='logo.*' \
-            --include='thumbnail.*' \
-            --include='thumbnail-sm.*' \
-            --include='*.webmanifest' \
-            --exclude='*' \
-            source/ deploy_dir/
-
-      # 🔑 Create Configs (Membuat 2 File Temp di Root Kerja)
-      - name: Create Temporary Wrangler Configs
-        run: |
-          # A. Konfigurasi Khusus untuk Cloudflare Pages (Frontend Statis)
-          cat <<EOF > ./wrangler-pages.toml
-          #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
-          name = "layarkosong"
-          compatibility_date = "2025-12-01"
-          pages_build_output_dir = "deploy_dir"
-          [vars]
-          BUN_VERSION = "latest"
-          NODE_VERSION = "24"
-          [[d1_databases]]
-          binding = "DB"
-          database_name = "layarkosong-db"
-          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
-          [[kv_namespaces]]
-          binding = "COUNTS_KV"
-          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
-          EOF
-
-          # B. Konfigurasi Khusus untuk Worker (D1 Incremental Counter & Cron)
-          cat <<EOF > ./wrangler-worker.toml
-          name = "layarkosong-counter"
-          main = "source/search/page-counter-hybrid.ts"
-          compatibility_date = "2026-07-05"
-
-          [triggers]
-          crons = ["0 * * * *"]
-
-          [vars]
-          CF_ZONE_ID = "${{ secrets.CF_ZONE_ID }}"
-
-          [[d1_databases]]
-          binding = "DB"
-          database_name = "layarkosong-counter-db" # 👈 Nama DB baru
-          database_id = "${{ secrets.CLOUDFLARE_ID_D1_COUNTER }}" # 👈 Secret baru
-          EOF
-
-      # 🍳 Run Dapur — DILEWATI kalau mode: update-only
-      - name: Run Dapur (Build D1)
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'full' }}
-        run: bun run source/search/build-d1.ts
+      - name: Run Migration Script
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLOUDFLARE_ID_KV: ${{ secrets.CLOUDFLARE_ID_KV }}
+        run: bun run migrate-kv.ts
 
-      # 🚀 Deploy Frontend ke Cloudflare Pages (Retry 3x)
-      - name: Deploy to Cloudflare Pages
-        run: |
-          cp ./wrangler-pages.toml ./wrangler.toml
-          cp -r source/functions ./functions
-
-          max_attempts=3
-          attempt=1
-          until [ $attempt -gt $max_attempts ]
-          do
-            echo "🚀 Attempt $attempt to deploy Pages..."
-            if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
-              echo "✅ Pages deploy succeeded on attempt $attempt"
-              break
-            else
-              echo "⚠️ Pages deploy failed on attempt $attempt"
-              attempt=$((attempt+1))
-              [ $attempt -le $max_attempts ] && sleep 15
-            fi
-          done
+      - name: Apply SQL to D1
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-
-      # 🚀 Deploy Backend ke Cloudflare Workers (D1 Hybrid Counter & Cron Trigger)
-      - name: Deploy Hybrid Counter Worker & Secret
         run: |
-          echo "🚀 Starting Worker Deployment..."
-          bunx wrangler deploy -c ./wrangler-worker.toml
+          # Gunakan konfigurasi Worker yang sudah kita buat sebelumnya
+          cat <<EOF > ./wrangler-migrate.toml
+          name = "migrator"
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "layarkosong-counter-db"
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1_COUNTER }}"
+          EOF
           
-          echo "🔐 Injecting Cloudflare API Token to Worker Secret..."
-          echo "${{ secrets.CF_API_TOKEN }}" | bunx wrangler secret put CF_API_TOKEN -c ./wrangler-worker.toml
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          bunx wrangler d1 execute layarkosong-counter-db --remote --file=migrasi-kv-ke-d1.sql -c ./wrangler-migrate.toml
