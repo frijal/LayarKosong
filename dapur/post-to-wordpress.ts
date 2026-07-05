@@ -121,23 +121,15 @@ async function run(): Promise<void> {
     const wpTagsShortcode = `[tags ${[...tags].join(", ")}]`;
 
     /* =====================
-     * Format Body Email (Struktur Bersih + Proteksi Anti Meluber)
+     * Format Body Email (HTML Super Polos & Ringan)
      * ===================== */
     const emailContent = `
     <p>${target.desc}</p>
-    ${target.image ? `
-        <figure class="wp-block-image">
-        <a href="${target.url}">
-        <img src="${target.image}"
-        alt="${target.title}"
-        width="100%"
-        style="max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 8px;" />
-        </a>
-        </figure>` : ""}
-        <p>Baca artikel selengkapnya di: <a href="${target.url}">${target.url}</a></p>
-        <br><br>
-        <p>${wpTagsShortcode}</p>
-        `;
+    ${target.image ? `<p><a href="${target.url}"><img src="${target.image}" alt="${target.title}"/></a></p>` : ""}
+    <p>Baca artikel selengkapnya di: <a href="${target.url}">${target.url}</a></p>
+    <br><br>
+    <p>${wpTagsShortcode}</p>
+    `;
 
     /* =====================
      * Setup Nodemailer & Kirim
