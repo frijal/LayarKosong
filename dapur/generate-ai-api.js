@@ -131,7 +131,7 @@ async function fixSEO() {
     head.append(`\n    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`);
     head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
-    head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);
+    head.append(`\n    `);
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
     head.append(`\n    <meta property="og:locale" content="id_ID">`);
     head.append(`\n    <meta property="og:type" content="article">`);
