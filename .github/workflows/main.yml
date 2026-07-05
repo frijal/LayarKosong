@@ -115,7 +115,7 @@ jobs:
           # B. Konfigurasi Khusus untuk Worker Hybrid Counter
           cat <<EOF > /tmp/wrangler-worker.toml
           name = "layarkosong-counter"
-          main = "source/search/page-counter-hybrid.ts"
+          main = "search/page-counter-hybrid.ts" # 👈 Diubah jadi relatif terhadap folder source
           compatibility_date = "2026-07-05"
 
           [triggers]
@@ -162,6 +162,7 @@ jobs:
 
       # 🚀 Deploy Backend ke Cloudflare Workers (Hybrid Counter & Cron)
       - name: Deploy Hybrid Counter Worker & Secret
+        working-directory: source # 👈 Pindahkan terminal ke folder source sebelum deploy
         run: |
           echo "🚀 Starting Worker Deployment..."
           bunx wrangler deploy -c /tmp/wrangler-worker.toml
