@@ -17,6 +17,14 @@
                             `}).join("");else J.innerHTML=`<div class="no-results">❌ Pencarian "${Y(Z)}" nihil. Tekan Enter untuk detail.</div>`}catch($){console.error("❌ Gagal fetch Floating Search D1:",$),J.innerHTML='<div class="no-results">⚠️ Ups, database sedang sibuk. Coba sesaat lagi.</div>'}},300)}),X.addEventListener("keydown",(Z)=>{if(Z.key==="Enter"){Z.preventDefault();let $=X.value.trim();if($)window.location.href=`/search/?q=${encodeURIComponent($)}`}}),W.addEventListener("click",()=>{X.value="",J.style.display="none",W.style.display="none",clearTimeout(V),X.focus()})}function b(Q,X){let W=document.getElementById("related-articles-grid");if(!W)return;let J=B(X,Q);if(!J)return;let V=J.list.find((z)=>z.id===X),Y=V?V.title:document.title,Z="";if(V&&V.description)Z=V.description;else{let z=document.querySelector('meta[name="description"]');if(z)Z=z.getAttribute("content")||""}let $=Z?Z:Y,q=encodeURIComponent($),P=encodeURIComponent(window.location.href),G=document.getElementById("dynamic-nav-container");if(!G)G=document.createElement("div"),G.id="dynamic-nav-container",G.className="floating-nav",W.appendChild(G);let R=document.querySelector('link[rel="prev"]'),O=document.querySelector('link[rel="next"]'),U="";if(R){let z=R.getAttribute("title")||"Artikel Sebelumnya";U+=`<a href="${R.getAttribute("href")}" title="${z}" class="btn-emoji">⏪</a>`}if(O){let z=O.getAttribute("title")||"Artikel Selanjutnya";U+=`<a href="${O.getAttribute("href")}" title="${z}" class="btn-emoji">⏩</a>`}G.innerHTML=`
 <div class="nav-left">
 <a href="/${J.slug}" class="category-link visible">${J.name}</a>
+</div>
+
+<div class="nav-right">
+<a href="/" title="Beranda" class="btn-emoji">\uD83C\uDFE0</a>
+<a href="/sitemap" title="Daftar Isi" class="btn-emoji">\uD83D\uDCC4</a>
+<a href="/feed" title="RSS Feed" class="btn-emoji">\uD83D\uDCE1</a>
+${U}
+
 <div class="lk-share-wrapper">
 <button id="btn-share-main" class="lk-share-main-btn" title="Bagikan" aria-label="Bagikan">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3791 3729" width="20" height="20" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
@@ -31,7 +39,7 @@
 </svg>
 </a>
 
-<a href="https://www.facebook.com/sharer/sharer.php?u=${P}&quote=${q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
+<a href="https://www.facebook.com/sharer/sharer.php?u=${P}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 509 509">
 <g fill-rule="nonzero">
 <path fill="#0866FF" d="M509 254.5C509 113.94 395.06 0 254.5 0S0 113.94 0 254.5C0 373.86 82.17 474 193.02 501.51V332.27h-52.48V254.5h52.48v-33.51c0-86.63 39.2-126.78 124.24-126.78 16.13 0 43.95 3.17 55.33 6.33v70.5c-6.01-.63-16.44-.95-29.4-.95-41.73 0-57.86 15.81-57.86 56.91v27.5h83.13l-14.28 77.77h-68.85v174.87C411.35 491.92 509 384.62 509 254.5z"/>
@@ -60,12 +68,6 @@
 </a>
 </div>
 </div>
-</div>
-<div class="nav-right">
-<a href="/" title="Beranda" class="btn-emoji">\uD83C\uDFE0</a>
-<a href="/sitemap" title="Daftar Isi" class="btn-emoji">\uD83D\uDCC4</a>
-<a href="/feed" title="RSS Feed" class="btn-emoji">\uD83D\uDCE1</a>
-${U}
 </div>`;let K=document.getElementById("btn-share-main"),j=document.getElementById("lk-share-providers");if(K&&j)K.addEventListener("click",async()=>{if(navigator.share&&w())try{await navigator.share({title:Y,text:$,url:window.location.href})}catch(z){console.error(z)}else{let z=j.classList.contains("lk-share-providers-hidden");j.classList.toggle("lk-share-providers-hidden",!z),j.classList.toggle("lk-share-providers-visible",z)}})}function F(){let Q=document.getElementById("internal-nav");if(!Q)return;let W=Array.from(document.querySelectorAll("h2, h3, h4")).filter((J)=>{return(J.textContent||"").trim().length>0&&!J.closest(".floating-nav")&&!Q.contains(J)});if(W.length===0){Q.style.display="none";return}Q.innerHTML='<ul class="nav-list">'+W.map((J,V)=>{let Y=(J.textContent||"").trim();if(!J.id)J.id=Y.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||`section-${V}`;return`<li class="nav-item nav-${J.tagName.toLowerCase()}"><a href="#${J.id}" class="nav-link">${Y}</a></li>`}).join("")+"</ul>",Q.addEventListener("click",(J)=>{let V=J.target;if(V.tagName.toLowerCase()==="a"&&V.classList.contains("nav-link")){let Y=V.getAttribute("href");if(!Y||!Y.startsWith("#"))return;let Z=Y.substring(1),$=document.getElementById(Z);if($){let q=$.closest("details");while(q){if(!q.open)q.open=!0;q=q.parentElement?.closest("details")||null}}}})}function N(Q,X){let W=document.getElementById("related-articles-grid");if(!W)return;let J=B(X,Q);if(!J){W.style.display="none";return}let V="/thumbnail-sm.webp",Y=J.list.filter(($)=>$.id!==X).sort(()=>0.5-Math.random()).slice(0,6);if(Y.length===0){W.style.display="none";return}W.innerHTML=Y.map(($,q)=>{let P=$.image||V,G=$.image?`${$.image.replace(/\.[^/.]+$/,"")}-rg.webp`:V;return`
             <div class="rel-card-mini">
             <a href="${k($.id,Q)}">

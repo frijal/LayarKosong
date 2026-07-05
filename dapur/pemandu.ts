@@ -245,7 +245,7 @@
         const currentArticle = catInfo.list.find((a: any) => a.id === currentFile);
         const cleanTitle = currentArticle ? currentArticle.title : document.title;
 
-        // 💡 TANGKAP DESKRIPSI (Gunakan fallback ke meta description jika di data provider kosong)
+        // 💡 TANGKAP DESKRIPSI
         let cleanDesc = '';
 if (currentArticle && currentArticle.description) {
     cleanDesc = currentArticle.description;
@@ -256,9 +256,7 @@ if (currentArticle && currentArticle.description) {
     }
 }
 
-// 💡 CUKUP DESKRIPSI SAJA (Fallback ke judul jika deskripsi kebetulan kosong)
 const shareText = cleanDesc ? cleanDesc : cleanTitle;
-
 const encodedText = encodeURIComponent(shareText);
 const encodedLink = encodeURIComponent(window.location.href);
 
@@ -270,7 +268,6 @@ if (!nav) {
     grid.appendChild(nav);
 }
 
-// --- Logic prev/next dari <link rel="prev/next"> di <head> ---
 const prevTag = document.querySelector('link[rel="prev"]');
 const nextTag = document.querySelector('link[rel="next"]');
 
@@ -286,10 +283,18 @@ if (nextTag) {
     prevNextHtml += `<a href="${nextTag.getAttribute('href')}" title="${nextTitle}" class="btn-emoji">⏩</a>`;
 }
 
-// --- HTML DENGAN SLOT SVG (Tombol Copy Dihapus) ---
+// --- HTML DENGAN SHARE BUTTON DI KANAN ---
 nav.innerHTML = `
 <div class="nav-left">
 <a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a>
+</div>
+
+<div class="nav-right">
+<a href="/" title="Beranda" class="btn-emoji">🏠</a>
+<a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
+<a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
+${prevNextHtml}
+
 <div class="lk-share-wrapper">
 <button id="btn-share-main" class="lk-share-main-btn" title="Bagikan" aria-label="Bagikan">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3791 3729" width="20" height="20" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
@@ -304,7 +309,7 @@ nav.innerHTML = `
 </svg>
 </a>
 
-<a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}&quote=${encodedText}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
+<a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 509 509">
 <g fill-rule="nonzero">
 <path fill="#0866FF" d="M509 254.5C509 113.94 395.06 0 254.5 0S0 113.94 0 254.5C0 373.86 82.17 474 193.02 501.51V332.27h-52.48V254.5h52.48v-33.51c0-86.63 39.2-126.78 124.24-126.78 16.13 0 43.95 3.17 55.33 6.33v70.5c-6.01-.63-16.44-.95-29.4-.95-41.73 0-57.86 15.81-57.86 56.91v27.5h83.13l-14.28 77.77h-68.85v174.87C411.35 491.92 509 384.62 509 254.5z"/>
@@ -333,12 +338,6 @@ nav.innerHTML = `
 </a>
 </div>
 </div>
-</div>
-<div class="nav-right">
-<a href="/" title="Beranda" class="btn-emoji">🏠</a>
-<a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
-<a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
-${prevNextHtml}
 </div>`;
 
 // LOGIKA EVENT LISTENER
