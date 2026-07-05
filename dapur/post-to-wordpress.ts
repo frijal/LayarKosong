@@ -121,12 +121,11 @@ async function run(): Promise<void> {
     const wpTagsShortcode = `[tags ${[...tags].join(", ")}]`;
 
     /* =====================
-     * Format Body Email (HTML dengan Gambar)
-     = ==*================== */
-    // Kita selipin gambar di bagian atas artikel agar terlihat rapi di WordPress
+     * Format Body Email (HTML Sesuai Standar Gutenberg)
+     * ===================== */
     const emailContent = `
-    ${target.image ? `<p><img src="${target.image}" alt="${target.title}" style="max-width:100%; height:auto;" /></p>` : ""}
     <p>${target.desc}</p>
+    ${target.image ? `<figure class="wp-block-image"><img src="${target.image}" alt="${target.title}"/></figure>` : ""}
     <p>Baca artikel selengkapnya di: <a href="${target.url}">${target.url}</a></p>
     <br><br>
     <p>${wpTagsShortcode}</p>
