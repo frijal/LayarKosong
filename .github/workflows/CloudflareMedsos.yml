@@ -10,13 +10,7 @@ on:
         description: "✅ Jalankan semua tugas"
         required: false
         default: true
-        type: boolean
-
-      bluesky:
-        description: "🦋 Bluesky Autopost"
-        required: false
-        default: false
-        type: boolean
+        type: boolean      
 
       cloudflare:
         description: "🧹 Cloudflare Cleanup"
@@ -68,6 +62,12 @@ on:
 
       tumblr:
         description: "🎨 Tumblr Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      wordpress:
+        description: "🪐 WordPress Planet Autopost"
         required: false
         default: false
         type: boolean
@@ -173,27 +173,26 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
         run: bun run dapur/post-to-facebook.ts
 
-      # - name: 🦋 9. Bluesky Autopost (Bun Version)
-      #   id: bluesky
-      #   if: github.event_name == 'schedule' || inputs.all || inputs.bluesky
-      #   continue-on-error: true
-      #   env:
-      #     BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
-      #     BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-      #   run: |
-      #     bun run dapur/post-to-bluesky.js
-      #     if [ -f /tmp/temp_new_url_bsky.txt ]; then
-      #       cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
-      #     fi
+      - name: 🪐 8. WordPress Planet Autopost
+        id: wordpress
+        if: github.event_name == 'schedule' || inputs.all || inputs.wordpress
+        continue-on-error: true
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          WP_POST_EMAIL: ${{ secrets.WP_POST_EMAIL }}
+        run: bun run dapur/post-to-wordpress.ts
 
-      # - name: 🟡 10. Lemmy Post
-      #   id: lemmy
-      #   if: github.event_name == 'schedule' || inputs.all || inputs.lemmy
-      #   continue-on-error: true
-      #   env:
-      #     LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
-      #     LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-      #   run: bun run dapur/post-to-lemmy.js
+  #    - name: 🟡 9. Lemmy Post
+  #      id: lemmy
+  #      if: github.event_name == 'schedule' || inputs.all || inputs.lemmy
+  #      continue-on-error: true
+  #      env:
+  #        LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
+  #        LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
+  #      run: bun run dapur/post-to-lemmy.js
 
       # =========================================================
       # 📋 RINGKASAN HASIL (biar ga perlu buka log satu-satu)
@@ -210,8 +209,8 @@ jobs:
           STATUS_TUMBLR: ${{ steps.tumblr.outcome }}
           STATUS_DISCORD: ${{ steps.discord.outcome }}
           STATUS_FACEBOOK: ${{ steps.facebook.outcome }}
-          STATUS_BLUESKY: ${{ steps.bluesky.outcome }}
-          STATUS_LEMMY: ${{ steps.lemmy.outcome }}
+          STATUS_WORDPRESS: ${{ steps.wordpress.outcome }}
+          STATUS_LEMMY: ${{ secrets.STATUS_LEMMY }} # Mengambil fallback jika kosong
         run: |
           print_status() {
             local label="$1"
@@ -222,7 +221,7 @@ jobs:
               skipped)   icon="⏭️ Dilewati (toggle off)" ;;
               failure)   icon="❌ Gagal" ;;
               cancelled) icon="🚫 Dibatalkan" ;;
-              "")        icon="⏸️ Nonaktif (step masih dikomentari)" ;;
+              *)         icon="⏸️ Nonaktif (step masih dikomentari)" ;;
             esac
             echo "$label -> $icon"
             echo "| $label | $icon |" >> "$GITHUB_STEP_SUMMARY"
@@ -236,16 +235,16 @@ jobs:
             echo "|---|---|"
           } >> "$GITHUB_STEP_SUMMARY"
 
-          print_status "Bluesky 🦋"               "$STATUS_BLUESKY"
           print_status "Cloudflare Cleanup 🧹"    "$STATUS_CLOUDFLARE"
           print_status "Discord 🦋"               "$STATUS_DISCORD"
           print_status "Facebook 🚀"              "$STATUS_FACEBOOK"
-          print_status "Lemmy 🟡"                 "$STATUS_LEMMY"
+          print_status "Lemmy 🟡"                  "$STATUS_LEMMY"
           print_status "LinkedIn 🆕"              "$STATUS_LINKEDIN"
           print_status "Mastodon 🐘"              "$STATUS_MASTODON"
           print_status "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS"
           print_status "Threads ⚙️"               "$STATUS_THREADS"
           print_status "Tumblr 🎨"                "$STATUS_TUMBLR"
+          print_status "WordPress Planet 🪐"       "$STATUS_WORDPRESS"
 
       # =========================================================
       # 💾 FINAL COMMIT
