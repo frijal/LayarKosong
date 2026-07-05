@@ -500,6 +500,7 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
       htmlTag.metaProperty("fb:app_id", "175216696195384"),
       htmlTag.metaProperty("fb:pages", "917962134736490"),
       htmlTag.link({ rel: "icon", href: "/favicon.svg", type: "image/svg+xml", sizes: "any" }),
+      htmlTag.link({ rel: "alternate icon", href: "/favicon.ico", type: "image/x-icon" }),
       htmlTag.link({ rel: "manifest", href: "/site.webmanifest" }),
       htmlTag.link({ rel: "sitemap", type: "application/xml", href: "/sitemap.xml" }),
       htmlTag.link({ rel: "alternate", type: "application/rss+xml", title: "Feed 30 artikel baru bikin.", href: `${baseUrl}/rss.xml` }),
