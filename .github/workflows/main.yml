@@ -126,8 +126,8 @@ jobs:
 
           [[d1_databases]]
           binding = "DB"
-          database_name = "layarkosong-db"
-          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+          database_name = "layarkosong-counter-db" # 👈 Nama DB baru
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1_COUNTER }}" # 👈 Secret baru
           EOF
 
       # 🍳 Run Dapur — DILEWATI kalau mode: update-only
