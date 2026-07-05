@@ -1,4 +1,4 @@
-name: 🔄 Migrate KV to D1 (Direct API)
+name: 🔄 Migrate KV to D1 (Bash & Wrangler Way)
 
 on:
   workflow_dispatch:
@@ -9,63 +9,56 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
 
-      - name: Run Migration
+      - name: 1. Tarik Data & Buat SQL (Menggunakan Logika Grep-mu)
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CLOUDFLARE_ID_KV: ${{ secrets.CLOUDFLARE_ID_KV }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          KV_ID: ${{ secrets.CLOUDFLARE_ID_KV }}
         run: |
-          echo "🚀 Fetching keys..."
-          # Kita hapus -s supaya kalau ada error, dia langsung muncul
-          curl -H "Authorization: Bearer $CF_API_TOKEN" \
-            "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/storage/kv/namespaces/$CLOUDFLARE_ID_KV/keys" \
-            > keys.json
+          echo "🚀 Mulai memanen keys dari KV..."
           
-          cat keys.json # <--- INI PENTING! Kita lihat isi file-nya di log
-
-          echo "processing data..."
+          # Pakai trik grep saktimu untuk mengekstrak nama key!
+          KEYS=$(bunx wrangler kv key list --namespace-id="$KV_ID" --remote | grep -o '"name": "[^"]*' | grep -o '[^"]*$')
           
-          bun -e '
-            const fs = require("fs");
-            const content = fs.readFileSync("keys.json", "utf8");
-            const data = JSON.parse(content);
+          echo "Mempersiapkan file migrasi.sql..."
+          > migrasi.sql # Kosongkan file jika ada
+          
+          # Loop semua key yang ditemukan
+          for key in $KEYS; do
+            # Ekstrak nilai mentah dari KV
+            VAL=$(bunx wrangler kv key get --namespace-id="$KV_ID" --remote "$key")
             
-            if (!data.success) {
-              console.error("❌ CLOUDFLARE API ERROR:", JSON.stringify(data.errors));
-              process.exit(1);
-            }
+            # Parsing JSON mentah ({"v": 10, "t": 5}) menggunakan regex perl/grep
+            # Jika gagal grep (kosong), fallback ke 0 atau 1
+            V=$(echo "$VAL" | grep -Po '"v":\s*\K[0-9]+' || echo 0)
+            T=$(echo "$VAL" | grep -Po '"t":\s*\K[0-9]+' || echo 1)
             
-            const keys = data.result;
-            let sql = [];
+            # Jika data lama bentuknya cuma angka biasa (bukan JSON)
+            if [ "$V" -eq 0 ] && [[ "$VAL" =~ ^[0-9]+$ ]]; then
+              V=$VAL
+            fi
             
-            async function run() {
-              for (const k of keys) {
-                const name = k.name;
-                const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_ID_KV}/values/${encodeURIComponent(name)}`, {
-                  headers: { "Authorization": `Bearer ${process.env.CF_API_TOKEN}` }
-                });
-                const val = await res.text();
-                
-                let stats = { v: 0, t: 0 };
-                try { stats = JSON.parse(val); } catch { stats = { v: parseInt(val) || 0, t: 1 }; }
-                
-                const clean = name.replace(/^view:/, "");
-                sql.push(`INSERT INTO page_stats (path, views, visitors) VALUES ("${clean}", ${stats.v}, ${stats.t}) ON CONFLICT(path) DO UPDATE SET views = views + excluded.views, visitors = visitors + excluded.visitors;`);
-              }
-              fs.writeFileSync("migrasi.sql", sql.join("\n"));
-            }
-            run();
-          '
+            # Bersihkan prefix "view:" dari key
+            CLEAN_PATH=$(echo "$key" | sed 's/^view://')
+            
+            # Tulis ke file SQL
+            echo "INSERT INTO page_stats (path, views, visitors) VALUES ('$CLEAN_PATH', $V, $T) ON CONFLICT(path) DO UPDATE SET views = views + excluded.views, visitors = visitors + excluded.visitors;" >> migrasi.sql
+          done
+          
+          echo "✅ Semua data selesai diubah menjadi SQL!"
+          
+          # Intip 5 baris pertama untuk memastikan bentuknya benar
+          echo "Preview isi migrasi.sql:"
+          head -n 5 migrasi.sql
 
-      - name: Apply SQL to D1
-        if: success()
+      - name: 2. Eksekusi Suntik ke D1
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: |
+          echo "🚀 Menyuntikkan data ke D1..."
+          
           echo 'name = "migrator"
           [[d1_databases]]
           binding = "DB"
