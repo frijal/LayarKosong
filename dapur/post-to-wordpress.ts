@@ -122,7 +122,7 @@ async function run(): Promise<void> {
 
     /* =====================
      * Format Body Email (HTML Sesuai Standar Gutenberg)
-     * ===================== */
+     * =================== */
     const emailContent = `
     <p>${target.desc}</p>
     ${target.image ? `<figure class="wp-block-image"><img src="${target.image}" alt="${target.title}"/></figure>` : ""}
