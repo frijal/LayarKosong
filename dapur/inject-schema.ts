@@ -33,8 +33,7 @@ interface ExtractedMeta {
   articleAuthorProfile: string;
   articlePublisherProfile: string;
   twitterCreatorProfile: string;
-  twitterSiteProfile: string;
-  blueskyProfile: string;
+  twitterSiteProfile: string;  
   fediverseProfile: string;
 }
 
@@ -204,17 +203,6 @@ const normalizeXProfile = (value: string): string => {
   if (!handle) return "";
 
   return `https://x.com/${handle}`;
-};
-
-const normalizeBlueskyProfile = (value: string): string => {
-  const raw = cleanText(value);
-  if (!raw) return "";
-  if (/^https?:\/\//i.test(raw)) return raw;
-
-  const handle = raw.replace(/^@+/, "").trim();
-  if (!handle) return "";
-
-  return `https://bsky.app/profile/${handle}`;
 };
 
 const normalizeFediverseProfile = (value: string): string => {
@@ -522,7 +510,6 @@ function extractMetaFromHtml(
 
   const twitterCreatorProfile = normalizeXProfile(getMeta($, "name", "twitter:creator"));
   const twitterSiteProfile    = normalizeXProfile(getMeta($, "name", "twitter:site"));
-  const blueskyProfile        = normalizeBlueskyProfile(getMeta($, "name", "bluesky:creator"));
   const fediverseProfile      = normalizeFediverseProfile(getMeta($, "name", "fediverse:creator"));
 
   return {
@@ -550,7 +537,6 @@ function extractMetaFromHtml(
     articlePublisherProfile,
     twitterCreatorProfile,
     twitterSiteProfile,
-    blueskyProfile,
     fediverseProfile
   };
 }
@@ -657,7 +643,6 @@ function buildSchema(category: string, article: ArticleEntry, htmlContent: strin
     ...PERSON_SAME_AS,
     meta.articleAuthorProfile,
     meta.twitterCreatorProfile,
-    meta.blueskyProfile,
     meta.fediverseProfile
   ]);
 
