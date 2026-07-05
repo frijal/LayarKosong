@@ -318,12 +318,6 @@ title="Bagikan ke LinkedIn" aria-label="Bagikan ke LinkedIn">
 </svg>
 </a>
 
-<a href="https://bsky.app/intent/compose?text=${encodedText}%20${encodedLink}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke Bluesky" aria-label="Bagikan ke Bluesky">
-<svg width="20" height="20" viewBox="0 0 511.999 452.266" fill="currentColor">
-<path d="M110.985 30.442c58.695 44.217 121.837 133.856 145.013 181.961 23.176-48.105 86.322-137.744 145.016-181.961 42.361-31.897 110.985-56.584 110.985 21.96 0 15.681-8.962 131.776-14.223 150.628-18.272 65.516-84.873 82.228-144.112 72.116 103.55 17.68 129.889 76.238 73 134.8-108.04 111.223-155.288-27.905-167.385-63.554-3.489-10.262-2.991-10.498-6.561 0-12.098 35.649-59.342 174.777-167.382 63.554-56.89-58.562-30.551-117.12 72.999-134.8-59.239 10.112-125.84-6.6-144.112-72.116C8.962 184.178 0 68.083 0 52.402c0-78.544 68.633-53.857 110.985-21.96z"/>
-</svg>
-</a>
-
 <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Telegram" aria-label="Bagikan ke Telegram">
 <svg width="20" height="20" viewBox="0 0 512 512">
 <circle fill="#229ED9" cx="256" cy="256" r="256"/>
