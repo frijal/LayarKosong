@@ -6,7 +6,7 @@ import nodemailer from "nodemailer";
 const CONFIG = {
   articleFile: "artikel.json",
   databaseFile: "mini/posted-blogspot.txt", // Database terpisah khusus Blogspot Planet
-  baseUrl: "https://dalam.web.id",[cite: 2, 7]
+  baseUrl: "https://dalam.web.id",
 
   // Ambil dari Bun.env
   smtpHost: Bun.env.SMTP_HOST || "smtp.gmail.com",
@@ -19,7 +19,6 @@ const CONFIG = {
 /* =====================
  * Interfaces
  * ===================== */
-// Struktur sesuai artikel.json: [judul, path, gambar, tanggal, deskripsi][cite: 7]
 type RawArticle = [string, string, string, string, string?];
 interface ArticleData {
   [category: string]: RawArticle[];
@@ -57,7 +56,7 @@ async function run(): Promise<void> {
     process.exit(1);
   }
 
-  // Load Database pakai Bun.file[cite: 2]
+  // Load Database pakai Bun.file
   const dbFile = Bun.file(CONFIG.databaseFile);
   const postedDatabase = (await dbFile.exists()) ? await dbFile.text() : "";
 
@@ -67,7 +66,7 @@ async function run(): Promise<void> {
   for (const [category, items] of Object.entries(rawData)) {
     const catSlug = slugify(category);
     for (const item of items) {
-      const [title, fileName, imageUrl, isoDate, description] = item;[cite: 7]
+      const [title, fileName, imageUrl, isoDate, description] = item;
       const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
 
       if (fileSlug.startsWith("agregat-20")) continue;
@@ -79,7 +78,7 @@ async function run(): Promise<void> {
           title,
           url: fullUrl,
           slug: fileSlug,
-          image: imageUrl,[cite: 7]
+          image: imageUrl,
           date: isoDate,
           desc: description || "Archive.",
           category
@@ -141,7 +140,7 @@ async function run(): Promise<void> {
       html: emailContent,    // Body HTML format Gmail style
     });
 
-    // Simpan Log pakai Bun.write[cite: 2]
+    // Simpan Log pakai Bun.write
     const newContent = postedDatabase + target.url + "\n";
     await Bun.write(CONFIG.databaseFile, newContent);
 
