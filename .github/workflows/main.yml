@@ -91,10 +91,10 @@ jobs:
             --exclude='*' \
             source/ deploy_dir/
 
-      # 🔑 Create Configs (Dibuat di direktori root saat ini, BUKAN di /tmp/)
+      # 🔑 Create Configs (Membuat 2 File Temp di Root Kerja)
       - name: Create Temporary Wrangler Configs
         run: |
-          # A. Konfigurasi Khusus untuk Cloudflare Pages
+          # A. Konfigurasi Khusus untuk Cloudflare Pages (Frontend Statis)
           cat <<EOF > ./wrangler-pages.toml
           #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
           name = "layarkosong"
@@ -112,7 +112,7 @@ jobs:
           id = "${{ secrets.CLOUDFLARE_ID_KV }}"
           EOF
 
-          # B. Konfigurasi Khusus untuk Worker Hybrid Counter
+          # B. Konfigurasi Khusus untuk Worker (D1 Incremental Counter & Cron)
           cat <<EOF > ./wrangler-worker.toml
           name = "layarkosong-counter"
           main = "source/search/page-counter-hybrid.ts"
@@ -124,9 +124,10 @@ jobs:
           [vars]
           CF_ZONE_ID = "${{ secrets.CF_ZONE_ID }}"
 
-          [[kv_namespaces]]
-          binding = "COUNTS_KV"
-          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "layarkosong-db"
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
           EOF
 
       # 🍳 Run Dapur — DILEWATI kalau mode: update-only
@@ -139,7 +140,6 @@ jobs:
       # 🚀 Deploy Frontend ke Cloudflare Pages (Retry 3x)
       - name: Deploy to Cloudflare Pages
         run: |
-          # Perintah cp disesuaikan mengambil dari root ./
           cp ./wrangler-pages.toml ./wrangler.toml
           cp -r source/functions ./functions
 
@@ -161,11 +161,10 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
 
-      # 🚀 Deploy Backend ke Cloudflare Workers (Hybrid Counter & Cron)
+      # 🚀 Deploy Backend ke Cloudflare Workers (D1 Hybrid Counter & Cron Trigger)
       - name: Deploy Hybrid Counter Worker & Secret
         run: |
           echo "🚀 Starting Worker Deployment..."
-          # Perintah deploy menunjuk ke file TOML di root
           bunx wrangler deploy -c ./wrangler-worker.toml
           
           echo "🔐 Injecting Cloudflare API Token to Worker Secret..."
