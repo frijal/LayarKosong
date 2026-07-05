@@ -1,34 +1,64 @@
-name: 🔄 Migrate KV to D1
+name: 🔄 Migrate KV to D1 (Direct API)
 
 on:
-  workflow_dispatch: # Bisa dijalankan manual dari tab Actions
+  workflow_dispatch:
 
 jobs:
   migrate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: oven-sh/setup-bun@v2
-
-      - name: Run Migration Script
+      - name: Run Migration
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CLOUDFLARE_ID_KV: ${{ secrets.CLOUDFLARE_ID_KV }}
-        run: bun run migrate-kv.ts
+        run: |
+          # 1. Ambil list keys menggunakan cURL
+          echo "🚀 Fetching keys..."
+          curl -s -H "Authorization: Bearer $CF_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/storage/kv/namespaces/$CLOUDFLARE_ID_KV/keys" \
+            > keys.json
+          
+          # 2. Proses keys menjadi SQL (Menggunakan awk/sed/js agar ringan)
+          echo "processing data..."
+          
+          # Kita pakai node/bun one-liner untuk memproses JSON
+          bun -e '
+            const fs = require("fs");
+            const keys = JSON.parse(fs.readFileSync("keys.json")).result;
+            let sql = [];
+            
+            // Loop langsung ambil value per key
+            async function run() {
+              for (const k of keys) {
+                const name = k.name;
+                const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_ID_KV}/values/${encodeURIComponent(name)}`, {
+                  headers: { "Authorization": `Bearer ${process.env.CF_API_TOKEN}` }
+                });
+                const val = await res.text();
+                
+                // Parsing value
+                let stats = { v: 0, t: 0 };
+                try { stats = JSON.parse(val); } catch { stats = { v: parseInt(val) || 0, t: 1 }; }
+                
+                const clean = name.replace(/^view:/, "");
+                sql.push(`INSERT INTO page_stats (path, views, visitors) VALUES ("${clean}", ${stats.v}, ${stats.t}) ON CONFLICT(path) DO UPDATE SET views = views + excluded.views, visitors = visitors + excluded.visitors;`);
+              }
+              fs.writeFileSync("migrasi.sql", sql.join("\n"));
+            }
+            run();
+          '
 
       - name: Apply SQL to D1
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: |
-          # Gunakan konfigurasi Worker yang sudah kita buat sebelumnya
-          cat <<EOF > ./wrangler-migrate.toml
-          name = "migrator"
+          # Pakai Wrangler HANYA untuk eksekusi, bukan untuk list/get
+          echo 'name = "migrator"
           [[d1_databases]]
           binding = "DB"
           database_name = "layarkosong-counter-db"
-          database_id = "${{ secrets.CLOUDFLARE_ID_D1_COUNTER }}"
-          EOF
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1_COUNTER }}"' > ./wrangler.toml
           
-          bunx wrangler d1 execute layarkosong-counter-db --remote --file=migrasi-kv-ke-d1.sql -c ./wrangler-migrate.toml
+          bunx wrangler d1 execute layarkosong-counter-db --remote --file=migrasi.sql
