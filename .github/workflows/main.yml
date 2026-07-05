@@ -1,56 +1,173 @@
-name: Refresh API Tokens 🚀
+name: 🚀 Cloudflare Deployer Filter & Direct
 
 on:
-  schedule:
-    # Jalan otomatis setiap tanggal 1 tiap bulan jam 00:00 UTC
-    - cron: '0 0 1 * *'
-  workflow_dispatch: # Memungkinkan kamu menekan tombol "Run workflow" secara manual
+  workflow_run:
+    workflows: ["☢️ Build and Generate Site Files"]
+    types: [completed]
+  push:
+    branches:
+      - main
+    paths:
+      # - 'wrangler.toml'
+      - '_redirects'
+      - '_headers'
+
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Pilih mode deploy'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full         # Default run: deploy + build D1
+          - update-only  # Hanya deploy, tanpa build D1
+
+permissions:
+  contents: read
+  deployments: write
 
 jobs:
-  refresh:
+  deploy-direct:
     runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v7
 
-      - name: 🥟 Setup Bun
-        uses: oven-sh/setup-bun@v2
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      # 1. Checkout source
+      - name: Checkout source branch
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          path: source
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: '1.5 Setup Node.js v22'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
           bun-version: latest
 
-      - name: 🔄 Refresh Threads Token
-        env:
-          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_PAT }} # Wajib pakai PAT untuk GitHub CLI
-        run: |
-          echo "Menjalankan skrip refresh Threads..."
-          # Menangkap output console.log dari skrip Bun
-          NEW_THREADS_TOKEN=$(bun run dapur/refresh-threads-token.ts)
-          
-          if [ -n "$NEW_THREADS_TOKEN" ]; then
-            # Timpa secret lama dengan token baru menggunakan GitHub CLI (gh)
-            gh secret set THREADS_ACCESS_TOKEN --body "$NEW_THREADS_TOKEN"
-            echo "✅ Threads token berhasil diperbarui dan disimpan ke Secrets!"
-          else
-            echo "❌ Gagal mendapatkan token Threads baru."
-            exit 1
-          fi
+      - name: Install dependencies
+        run: bun install
+        working-directory: source
 
-      - name: 🔄 Refresh LinkedIn Token
-        if: always() # <--- INI KUNCI AGAR TETAP JALAN
-        env:
-          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
-          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
-          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+      - name: 🧹 Prepare Clean Directory (rsync)
         run: |
-          echo "Menjalankan skrip refresh LinkedIn..."
-          NEW_LI_TOKEN=$(bun run dapur/refresh-linkedin-token.ts)
+          mkdir deploy_dir
+          rsync -a --delete \
+            --include='gaya-hidup/***' \
+            --include='jejak-sejarah/***' \
+            --include='lainnya/***' \
+            --include='olah-media/***' \
+            --include='opini-sosial/***' \
+            --include='sistem-terbuka/***' \
+            --include='warta-tekno/***' \
+            --include='functions/***' \
+            --include='search/***' \
+            --include='ext/***' \
+            --include='.well-known/***' \
+            --include='img/***' \
+            --include='artikel.json' \
+            --include='artikel-lite.json' \
+            --include='redirectmap.json' \
+            --include='auth.md' \
+            --include='llms.md' \
+            --include='_redirects' \
+            --include='_headers' \
+            --include='*.html' \
+            --include='*.xml' \
+            --include='*.xsl' \
+            --include='*.txt' \
+            --include='favicon.*' \
+            --include='icon.*' \
+            --include='logo.*' \
+            --include='thumbnail.*' \
+            --include='thumbnail-sm.*' \
+            --include='*.webmanifest' \
+            --exclude='*' \
+            source/ deploy_dir/
+
+      # 🔑 Create Configs (Membuat 2 File Temp untuk Pages dan Worker)
+      - name: Create Temporary Wrangler Configs
+        run: |
+          # A. Konfigurasi Khusus untuk Cloudflare Pages
+          cat <<EOF > /tmp/wrangler-pages.toml
+          #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
+          name = "layarkosong"
+          compatibility_date = "2025-12-01"
+          pages_build_output_dir = "deploy_dir"
+          [vars]
+          BUN_VERSION = "latest"
+          NODE_VERSION = "24"
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "layarkosong-db"
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+          [[kv_namespaces]]
+          binding = "COUNTS_KV"
+          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          EOF
+
+          # B. Konfigurasi Khusus untuk Worker Hybrid Counter
+          cat <<EOF > /tmp/wrangler-worker.toml
+          name = "layarkosong-counter"
+          main = "source/search/page-counter-hybrid.ts"
+          compatibility_date = "2026-07-05"
+
+          [triggers]
+          crons = ["0 * * * *"]
+
+          [vars]
+          CF_ZONE_ID = "${{ secrets.CF_ZONE_ID }}"
+
+          [[kv_namespaces]]
+          binding = "COUNTS_KV"
+          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          EOF
+
+      # 🍳 Run Dapur — DILEWATI kalau mode: update-only
+      - name: Run Dapur (Build D1)
+        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'full' }}
+        run: bun run source/search/build-d1.ts
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      # 🚀 Deploy Frontend ke Cloudflare Pages (Retry 3x)
+      - name: Deploy to Cloudflare Pages
+        run: |
+          cp /tmp/wrangler-pages.toml ./wrangler.toml
+          cp -r source/functions ./functions
+
+          max_attempts=3
+          attempt=1
+          until [ $attempt -gt $max_attempts ]
+          do
+            echo "🚀 Attempt $attempt to deploy Pages..."
+            if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
+              echo "✅ Pages deploy succeeded on attempt $attempt"
+              break
+            else
+              echo "⚠️ Pages deploy failed on attempt $attempt"
+              attempt=$((attempt+1))
+              [ $attempt -le $max_attempts ] && sleep 15
+            fi
+          done
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      # 🚀 Deploy Backend ke Cloudflare Workers (Hybrid Counter & Cron)
+      - name: Deploy Hybrid Counter Worker & Secret
+        run: |
+          echo "🚀 Starting Worker Deployment..."
+          bunx wrangler deploy -c /tmp/wrangler-worker.toml
           
-          if [ -n "$NEW_LI_TOKEN" ]; then
-            gh secret set LINKEDIN_ACCESS_TOKEN --body "$NEW_LI_TOKEN"
-            echo "✅ LinkedIn token berhasil diperbarui dan disimpan ke Secrets!"
-          else
-            echo "❌ Gagal mendapatkan token LinkedIn baru."
-            exit 1
-          fi
+          echo "🔐 Injecting Cloudflare API Token to Worker Secret..."
+          echo "${{ secrets.CF_API_TOKEN }}" | bunx wrangler secret put CF_API_TOKEN -c /tmp/wrangler-worker.toml
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
