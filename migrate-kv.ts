@@ -1,49 +1,96 @@
-import { execSync } from "child_process";
 import { writeFileSync } from "fs";
 
-// Mengambil dari ENV yang dikirim oleh GitHub Actions
-const API_TOKEN = process.env.CF_API_TOKEN;
-const ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
-const KV_ID = process.env.CLOUDFLARE_ID_KV;
+// 🔴 GANTI DUA BARIS INI DENGAN DATA ASLIMU 🔴
+const ACCOUNT_ID = "6cc48a342566fd658c88dd1d725ad474"; 
+const API_TOKEN = "cfat_tivBVw8RfsuFo5YB4xbQvruCk5oDwnUXIPEZArimfa283127"; 
 
-async function migrate() {
-  console.log("🚀 Mengambil data dari KV Namespace...");
-  
-  // Ambil Keys via REST API (Cara paling stabil/independen dari versi Wrangler)
-  const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${KV_ID}/keys`, {
-    headers: { "Authorization": `Bearer ${API_TOKEN}` }
-  });
-  const data = await res.json();
-  const keys = data.result || [];
+const KV_ID = "5c5197918fee41a0b79f4212c00a7552";
 
-  console.log(`📊 Ditemukan ${keys.length} key. Memproses...`);
-  
-  let sqlCommands = [];
-
-  for (const k of keys) {
-    const keyName = k.name;
-    // Ambil Value
-    const vRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${KV_ID}/values/${encodeURIComponent(keyName)}`, {
-      headers: { "Authorization": `Bearer ${API_TOKEN}` }
-    });
-    const valText = await vRes.text();
+async function panenData() {
+    console.log("🚀 Menghubungi Server Cloudflare via API...");
     
-    let stats = { v: 0, t: 0 };
-    try {
-      stats = JSON.parse(valText);
-    } catch {
-      stats = { v: parseInt(valText) || 0, t: 1 };
+    const keysResponse = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${KV_ID}/keys`, {
+        headers: { "Authorization": `Bearer ${API_TOKEN}` }
+    });
+    
+    const keysData = await keysResponse.json();
+
+    if (!keysData.success) {
+        console.log("❌ Gagal Akses API. Alasan dari Cloudflare:");
+        console.log(JSON.stringify(keysData.errors, null, 2));
+        process.exit(1);
     }
 
-    const cleanPath = keyName.replace(/^view:/, "");
-    sqlCommands.push(
-      `INSERT INTO page_stats (path, views, visitors) VALUES ('${cleanPath}', ${stats.v}, ${stats.t}) ` +
-      `ON CONFLICT(path) DO UPDATE SET views = views + excluded.views, visitors = visitors + excluded.visitors;`
-    );
-  }
+    const keys = keysData.result;
+    console.log(`📊 Sukses! Ditemukan ${keys.length} keys di dalam KV.`);
+    
+    if (keys.length === 0) {
+        console.log("⚠️ Ternyata datanya memang 0.");
+        process.exit(0);
+    }
 
-  writeFileSync("migrasi-kv-ke-d1.sql", sqlCommands.join("\n"));
-  console.log("✅ File 'migrasi-kv-ke-d1.sql' siap!");
+    let sql = [];
+    let counter = 1;
+
+    for (const k of keys) {
+        const keyName = k.name;
+        
+        // NYALAKAN LOG-NYA + TAMBAH COUNTER BIAR NGGAK KELIATAN STUCK
+        console.log(`⏳ [${counter}/${keys.length}] Mengekstrak: ${keyName}`);
+        counter++;
+        
+        const valResponse = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${KV_ID}/values/${encodeURIComponent(keyName)}`, {
+            headers: { "Authorization": `Bearer ${API_TOKEN}` }
+        });
+        
+        // Jaga-jaga kalau Cloudflare ngambek (Rate Limit 429)
+        if (!valResponse.ok) {
+            console.error(`⚠️ Gagal mengambil ${keyName} (Status: ${valResponse.status}). Lanjut ke data berikutnya...`);
+            continue;
+        }
+
+
+        const rawVal = await valResponse.text();
+        const cleanVal = rawVal.trim();
+
+        let v = 0, t = 1;
+        
+        // Cek apakah datanya murni angka polos (format lama)
+        if (/^\d+$/.test(cleanVal)) {
+            v = parseInt(cleanVal, 10);
+            t = 1; // Karena data lama tidak menyimpan visitor unik, kita set 1
+        } else {
+            // Kalau bukan angka polos, coba parse sebagai JSON (format baru)
+            try {
+                const parsed = JSON.parse(cleanVal);
+                v = parsed.v ?? 0;
+                t = parsed.t ?? 1;
+            } catch {
+                console.error(`⚠️ Format tidak dikenal pada ${keyName}: ${cleanVal}`);
+            }
+        }
+
+        // ==========================================
+        // 🛡️ FILTER PRETTY URL SUPER KETAT
+        // ==========================================
+        let cleanPath = keyName.replace(/^view:/, "");
+        
+        if (cleanPath !== "/" && cleanPath.endsWith("/")) {
+            cleanPath = cleanPath.slice(0, -1);
+        }
+
+        cleanPath = cleanPath.replace(/\.(html|php)$/, "");
+
+        if (!cleanPath.startsWith("/")) {
+            cleanPath = "/" + cleanPath;
+        }
+        // ==========================================
+
+        sql.push(`INSERT INTO page_stats (path, views, visitors) VALUES ('${cleanPath}', ${v}, ${t}) ON CONFLICT(path) DO UPDATE SET views = views + excluded.views, visitors = visitors + excluded.visitors;`);
+    }
+
+    writeFileSync("migrasi.sql", sql.join("\n"));
+    console.log(`\n✅ MISSION ACCOMPLISHED! Berhasil memproses ${sql.length} data ke file 'migrasi.sql' (Pretty URL murni)!`);
 }
 
-migrate();
+panenData();

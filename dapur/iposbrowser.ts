@@ -7,9 +7,10 @@
 (function (): void {
   'use strict';
 
+  // Interface dengan urutan t (Total) lalu v (Views)
 interface PageStats {
-  v: number;
   t: number;
+  v: number;
 }
 
 async function initIposBrowser(): Promise<void> {
@@ -101,9 +102,9 @@ target.innerHTML = `
 
 ${articleDate ? `<span style="display:inline-flex;align-items:center;white-space:nowrap;">🗓️ <span style="margin-left:4px;">${articleDate}</span></span>` : ''}
 
-${stats ? `<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Views / Visitors">
+${stats ? `<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Total Visitors / Page Views">
   <strong style="margin-right:4px;">\u221E</strong>
-  ${stats.v.toLocaleString('id-ID')} <small style="margin:0 4px;opacity:0.5;">-</small> ${stats.t.toLocaleString('id-ID')}
+  ${stats.t.toLocaleString('id-ID')} <small style="margin:0 4px;opacity:0.5;">-</small> ${stats.v.toLocaleString('id-ID')}
   </span>` : ''}
 
   <span style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap;margin-left:5px;">

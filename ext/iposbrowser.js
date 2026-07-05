@@ -8,9 +8,9 @@
 
 ${$?`<span style="display:inline-flex;align-items:center;white-space:nowrap;">\uD83D\uDDD3️ <span style="margin-left:4px;">${$}</span></span>`:""}
 
-${H?`<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Views / Visitors">
+${H?`<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Total Visitors / Page Views">
   <strong style="margin-right:4px;">∞</strong>
-  ${H.v.toLocaleString("id-ID")} <small style="margin:0 4px;opacity:0.5;">-</small> ${H.t.toLocaleString("id-ID")}
+  ${H.t.toLocaleString("id-ID")} <small style="margin:0 4px;opacity:0.5;">-</small> ${H.v.toLocaleString("id-ID")}
   </span>`:""}
 
   <span style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap;margin-left:5px;">
