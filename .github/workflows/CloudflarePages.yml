@@ -91,24 +91,31 @@ jobs:
             --exclude='*' \
             source/ deploy_dir/
 
-      # 🔑 Create Config (selalu dibuat — dibutuhkan oleh D1 maupun deploy)
+      # 🔑 Create Config (Digabungkan dengan Fitur Hybrid Counter & Cron Trigger)
       - name: Create Temporary Wrangler Config
         run: |
           cat <<EOF > /tmp/wrangler.toml
           #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
           name = "layarkosong"
-          compatibility_date = "2025-12-01"
+          main = "source/search/page-counter-hybrid.ts"
+          compatibility_date = "2026-07-05"
           pages_build_output_dir = "deploy_dir"
+
           [vars]
           BUN_VERSION = "latest"
           NODE_VERSION = "24"
+
+          [triggers]
+          crons = ["0 * * * *"]
+
           [[d1_databases]]
           binding = "DB"
           database_name = "layarkosong-db"
           database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+
           [[kv_namespaces]]
           binding = "COUNTS_KV"
-          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
+          id = "5c5197918fee41a0b79f4212c00a7552"
           EOF
 
       # 🍳 Run Dapur — DILEWATI kalau mode: update-only
