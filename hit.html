@@ -322,35 +322,49 @@
         </div>
       </div>
 
-      <section class="mt-6 grid gap-3 lg:grid-cols-[1.35fr_1fr]">
-        <label class="block">
-          <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
-            Worker Endpoint
-          </span>
+      <section class="mt-6 grid gap-3 lg:grid-cols-[1.35fr_1fr_1fr]">
+  <label class="block">
+    <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+      Worker Endpoint
+    </span>
 
-          <input
-            id="workerInput"
-            class="field"
-            type="url"
-            value="https://hit.dalam.web.id"
-            autocomplete="off"
-          />
-        </label>
+    <input
+      id="workerInput"
+      class="field"
+      type="url"
+      value="https://hit.dalam.web.id/"
+      autocomplete="off"
+    />
+  </label>
 
-        <label class="block">
-          <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
-            Password / Secret
-          </span>
+  <label class="block">
+    <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+      Dashboard Secret
+    </span>
 
-          <input
-            id="secretInput"
-            class="field"
-            type="password"
-            placeholder="Masukkan DASHBOARD_SECRET"
-            autocomplete="current-password"
-          />
-        </label>
-      </section>
+    <input
+      id="secretInput"
+      class="field"
+      type="password"
+      placeholder="Masukkan DASHBOARD_SECRET"
+      autocomplete="current-password"
+    />
+  </label>
+
+  <label class="block">
+    <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+      Sync Secret
+    </span>
+
+    <input
+      id="syncSecretInput"
+      class="field"
+      type="password"
+      placeholder="Masukkan CRON_SECRET"
+      autocomplete="current-password"
+    />
+  </label>
+</section>
 
       <section class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
         <label class="block sm:col-span-2 xl:col-span-2">
@@ -571,13 +585,14 @@
     const nf = new Intl.NumberFormat('id-ID');
 
     const state = {
-      worker: '',
-      secret: '',
-      q: '',
-      category: '__all',
-      sort: 'views_desc',
-      limit: 100
-    };
+  worker: '',
+  secret: '',
+  syncSecret: '',
+  q: '',
+  category: '__all',
+  sort: 'views_desc',
+  limit: 100
+};
 
     function normalizeWorkerUrl(value) {
       const trimmed = String(value || '').trim();
@@ -624,13 +639,14 @@
     }
 
     function readInputs() {
-      state.worker = normalizeWorkerUrl($('workerInput').value);
-      state.secret = $('secretInput').value.trim();
-      state.q = $('searchInput').value.trim();
-      state.category = $('categoryInput').value || '__all';
-      state.sort = $('sortInput').value || 'views_desc';
-      state.limit = Number($('limitInput').value || 100);
-    }
+  state.worker = normalizeWorkerUrl($('workerInput').value);
+  state.secret = $('secretInput').value.trim();
+  state.syncSecret = $('syncSecretInput').value.trim();
+  state.q = $('searchInput').value.trim();
+  state.category = $('categoryInput').value || '__all';
+  state.sort = $('sortInput').value || 'views_desc';
+  state.limit = Number($('limitInput').value || 100);
+}
 
     function loadSettings() {
       $('workerInput').value =
@@ -650,10 +666,15 @@
         '';
 
       const sessionSecret = sessionStorage.getItem('counterDashboardSecret') || '';
+const sessionSyncSecret = sessionStorage.getItem('counterDashboardSyncSecret') || '';
 
-      if (sessionSecret) {
-        $('secretInput').value = sessionSecret;
-      }
+if (sessionSecret) {
+  $('secretInput').value = sessionSecret;
+}
+
+if (sessionSyncSecret) {
+  $('syncSecretInput').value = sessionSyncSecret;
+}
 
       readInputs();
     }
@@ -666,23 +687,35 @@
       localStorage.setItem('counterDashboardSort', state.sort);
       localStorage.setItem('counterDashboardSearch', state.q);
 
-      if ($('rememberSessionInput').checked && state.secret) {
-        sessionStorage.setItem('counterDashboardSecret', state.secret);
-      }
+      if ($('rememberSessionInput').checked) {
+  if (state.secret) {
+    sessionStorage.setItem('counterDashboardSecret', state.secret);
+  }
 
-      if (!$('rememberSessionInput').checked) {
-        sessionStorage.removeItem('counterDashboardSecret');
-      }
+  if (state.syncSecret) {
+    sessionStorage.setItem('counterDashboardSyncSecret', state.syncSecret);
+  }
+}
+
+if (!$('rememberSessionInput').checked) {
+  sessionStorage.removeItem('counterDashboardSecret');
+  sessionStorage.removeItem('counterDashboardSyncSecret');
+}
 
       setStatus('Setting dashboard tersimpan.', 'success');
     }
 
     function clearPassword() {
-      $('secretInput').value = '';
-      sessionStorage.removeItem('counterDashboardSecret');
-      readInputs();
-      setStatus('Password dibersihkan dari sessionStorage.', 'warning');
-    }
+  $('secretInput').value = '';
+  $('syncSecretInput').value = '';
+
+  sessionStorage.removeItem('counterDashboardSecret');
+  sessionStorage.removeItem('counterDashboardSyncSecret');
+
+  readInputs();
+
+  setStatus('Password dashboard dan sync dibersihkan dari sessionStorage.', 'warning');
+}
 
     function buildAdminUrl() {
       const url = new URL(state.worker);
@@ -710,14 +743,14 @@
       return url.toString();
     }
 
-    async function fetchJson(url) {
-      const res = await fetch(url, {
-        method: 'GET',
-        cache: 'no-store',
-        headers: {
-          'x-dashboard-key': state.secret
-        }
-      });
+    async function fetchJson(url, secret) {
+  const res = await fetch(url, {
+    method: 'GET',
+    cache: 'no-store',
+    headers: {
+      'x-dashboard-key': secret
+    }
+  });
 
       let data = null;
 
@@ -753,7 +786,7 @@
       $('refreshBtn').textContent = 'Memuat...';
 
       try {
-        const data = await fetchJson(buildAdminUrl());
+        const data = await fetchJson(buildAdminUrl(), state.secret);
 
         renderDashboard(data);
 
@@ -768,34 +801,45 @@
     }
 
     async function runManualSync() {
-      readInputs();
+  readInputs();
 
-      if (!state.worker || !state.secret) {
-        setStatus('Isi Worker Endpoint dan password dulu.', 'warning');
-        return;
-      }
+  if (!state.worker) {
+    setStatus('Isi Worker Endpoint dulu.', 'warning');
+    return;
+  }
 
-      $('syncBtn').disabled = true;
-      $('syncBtn').textContent = 'Sync...';
+  if (!state.syncSecret) {
+    setStatus('Isi Sync Secret / CRON_SECRET dulu untuk menjalankan sync manual.', 'warning');
+    return;
+  }
 
-      try {
-        const data = await fetchJson(buildSyncUrl());
+  $('syncBtn').disabled = true;
+  $('syncBtn').textContent = 'Sync...';
 
-        if (data.result?.skipped) {
-          setStatus(`Sync dilewati: ${data.result.reason}`, 'warning');
-        } else {
-          setStatus('Sync manual berhasil. Memuat ulang dashboard...', 'success');
-        }
+  try {
+    const data = await fetchJson(buildSyncUrl(), state.syncSecret);
 
-        await loadDashboard();
-      } catch (error) {
-        console.error(error);
-        setStatus(`Gagal sync manual: ${error.message || error}`, 'error');
-      } finally {
-        $('syncBtn').disabled = false;
-        $('syncBtn').textContent = 'Sync Manual';
-      }
+    if (data.result?.skipped) {
+      setStatus(`Sync dilewati: ${data.result.reason}`, 'warning');
+    } else {
+      setStatus('Sync manual berhasil. Memuat ulang dashboard...', 'success');
     }
+
+    /**
+     * Setelah sync manual, refresh dashboard.
+     * Refresh tetap memakai DASHBOARD_SECRET, bukan CRON_SECRET.
+     */
+    if (state.secret) {
+      await loadDashboard();
+    }
+  } catch (error) {
+    console.error(error);
+    setStatus(`Gagal sync manual: ${error.message || error}`, 'error');
+  } finally {
+    $('syncBtn').disabled = false;
+    $('syncBtn').textContent = 'Sync Manual';
+  }
+}
 
     function renderDashboard(data) {
       renderSummary(data.summary || {});
@@ -1046,6 +1090,7 @@
 
       $('workerInput').addEventListener('change', saveSettings);
       $('secretInput').addEventListener('change', saveSettings);
+      $('syncSecretInput').addEventListener('change', saveSettings);
       $('rememberSessionInput').addEventListener('change', saveSettings);
     }
 
