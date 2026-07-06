@@ -16,31 +16,31 @@ const categories: Category[] = [
   {
     name: "Olah Media",
     keywords: [
-      "ffmpeg", "handbrake", "excel", "Foto","Gambar","imagemagick", "Media", "Visual","Editor", "libreoffice", "ghostscript", "pdftk", "gimp", "inkscape", "video", "audio", "mp4", "mkv", "mp3", "ogg", "webp", "png", "svg", "edit", "convert", "compress", "resize", "crop", "split", "gabung", "Viewer", "watermark", "subtitle", "srt", "transcribe", "ocr", "metadata", "exif", "batch", "rekam", "screencast", "thumbnail", "framerate", "bitrate", "codec", "h264", "h265", "av1"
+      "ffmpeg", "handbrake", "excel", "invoices", "Foto","Gambar","imagemagick", "Media", "Visual","Editor", "libreoffice", "ghostscript", "pdftk", "gimp", "inkscape", "video", "audio", "mp4", "mkv", "mp3", "ogg", "webp", "png", "svg", "edit", "convert", "compress", "resize", "crop", "split", "gabung", "Viewer", "watermark", "subtitle", "srt", "transcribe", "ocr", "metadata", "exif", "batch", "rekam", "screencast", "thumbnail", "framerate", "bitrate", "codec", "h264", "h265", "av1"
     ]
   },
   {
     name: "Jejak Sejarah",
     keywords: [
-      "nabi", "rasul", "sahabat", "khalifah", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
+      "nabi", "rasul", "sahabat", "khalifah", "Mitos", "Masjid", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "ramadhan", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
     ]
   },
   {
     name: "Gaya Hidup",
     keywords: [
-      "kesehatan", "pencernaan", "tidur", "diet", "lisensi", "Angkringan", "Psikotes","medsos", "Lembur","Konsumen","Pelajar","Sajadah","koperasi", "herbal", "obat", "sakit", "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan", "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel", "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga", "anak", "bahaya", "listrik"
+      "kesehatan", "pencernaan", "tidur", "efisiensi","penyakit",  "Vitamin", "diet", "Rupiah", "Wasiat","lisensi", "Angkringan", "Psikotes","medsos", "Lembur","Konsumen","Pelajar","Sajadah","koperasi", "herbal", "obat", "sakit", "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan", "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel", "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga", "anak", "bahaya", "listrik"
     ]
   },
   {
     name: "Opini Sosial",
     keywords: [
-      "politik", "pemerintah", "korupsi", "Adab", "Kosakata", "apbn", "oknum", "nasional", "Moral","Psikologis","Pegawai","demokrasi", "Bangsa","pemilu", "mk", "lagu", "presiden", "balikpapan", "mbg", "guru honorer", "pendidikan", "ekonomi", "publik", "negara", "fakta", "indonesia", "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini", "sosial", "masyarakat", "keadilan", "koruptor", "integritas", "rakyat", "sekolah", "pemimpin", "bisnis"
+      "politik", "pemerintah", "Intelektual", "kekuasaan", "HRD", "korupsi", "polisi", "Sekularisme", "Adab", "Kosakata", "apbn", "oknum", "nasional", "Moral","Psikologis","Pegawai","demokrasi", "Bangsa","pemilu", "mk", "lagu", "presiden", "balikpapan", "mbg", "guru honorer", "pendidikan", "ekonomi", "publik", "negara", "fakta", "indonesia", "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini", "sosial", "masyarakat", "keadilan", "koruptor", "integritas", "rakyat", "sekolah", "pemimpin", "bisnis"
     ]
   },
   {
     name: "Warta Tekno",
     keywords: [
-      "ai", "chatgpt", "gemini", "claude", "HDD", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
+      "ai", "chatgpt", "gemini", "claude", "HDD", "email", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
     ]
   }
 ];
