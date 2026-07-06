@@ -104,15 +104,10 @@ async function run(): Promise<void> {
   const emailContent = `
   <div dir="ltr">
   <div>
-  <div style="font-family:arial,sans-serif" class="gmail_default">
   ${target.desc}
-  </div>
-  <div style="font-family:arial,sans-serif" class="gmail_default">
   ${target.image ? `<a href="${target.url}"><img src="${target.image}" width="auto" height="auto"></a>` : ""}<br><br>
   </div><br clear="all">
-  </div>
   <div>
-  <div style="font-family:arial,sans-serif" class="gmail_default">
   Baca artikel selengkapnya di: <a href="${target.url}">${target.url}</a>
   </div>
   </div>
