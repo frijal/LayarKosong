@@ -92,7 +92,7 @@ const fetchDate = new Promise<string | null>((resolve) => {
   }, 100);
 });
 
-// --- D. EKSEKUSI PARALEL & RENDER DOM ---
+// --- D. EKSEKUSI PARALEL RENDER DOM ---
 ${stats ? `<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Page Views / Global Views">
   <strong style="margin-right:4px;">\u221E</strong>
   ${stats.t.toLocaleString('id-ID')} <small style="margin:0 4px;opacity:0.5;">-</small> ${stats.v.toLocaleString('id-ID')}
