@@ -5,15 +5,15 @@ import nodemailer from "nodemailer";
  */
 const CONFIG = {
   articleFile: "artikel.json",
-  databaseFile: "mini/posted-blogspot.txt", // Database terpisah khusus Blogspot Planet
+  databaseFile: "mini/posted-blogspot.txt",
   baseUrl: "https://dalam.web.id",
 
   // Ambil dari Bun.env
   smtpHost: Bun.env.SMTP_HOST || "smtp.gmail.com",
   smtpPort: parseInt(Bun.env.SMTP_PORT || "465"),
   smtpUser: Bun.env.SMTP_USER!,
-  smtpPassword: Bun.env.SMTP_PASSWORD!,
-  blogPostEmail: Bun.env.BLOGSPOT_POST_EMAIL!, // Email rahasia username.keyword@blogger.com
+  smtpPassword: Bun.env.SMTP_PASSWORD!, // WAJIB PAKAI APP PASSWORD GMAIL!
+  blogPostEmail: Bun.env.BLOGSPOT_POST_EMAIL!, 
 };
 
 /* =====================
@@ -73,7 +73,8 @@ async function run(): Promise<void> {
 
       const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
-      if (!postedDatabase.includes(fileSlug)) {
+      // Konsisten: Cek berdasarkan fileSlug
+      if (!postedDatabase.includes(`[${fileSlug}]`)) {
         allArticles.push({
           title,
           url: fullUrl,
@@ -99,18 +100,18 @@ async function run(): Promise<void> {
   console.log(`🚀 Mengirim Email Post ke Blogspot Planet: ${target.title}`);
 
   /* =====================
-   * Format Body Email (HTML Khusus Struktur Blogspot / Gmail)
+   * Format Body Email (Sudah diperbaiki struktur div-nya)
    * ===================== */
   const emailContent = `
   <div dir="ltr">
-  <div>
-  ${target.desc}
-  ${target.image ? `<a href="${target.url}"><img src="${target.image}" width="auto" height="auto"></a>` : ""}<br><br>
-  </div><br clear="all">
-  <div>
-  Baca artikel selengkapnya di: <a href="${target.url}">${target.url}</a>
-  </div>
-  </div>
+    <div>
+      ${target.desc}
+      ${target.image ? `<br><a href="${target.url}"><img src="${target.image}" width="auto" height="auto"></a>` : ""}<br><br>
+    </div>
+    <br clear="all">
+    <div>
+      Baca artikel selengkapnya di: <a href="${target.url}">${target.url}</a>
+    </div>
   </div>
   `;
 
@@ -120,29 +121,34 @@ async function run(): Promise<void> {
   const transporter = nodemailer.createTransport({
     host: CONFIG.smtpHost,
     port: CONFIG.smtpPort,
-    secure: CONFIG.smtpPort === 465,
+    secure: CONFIG.smtpPort === 465, // true untuk 465, false untuk port lainnya
     auth: {
       user: CONFIG.smtpUser,
-      pass: CONFIG.smtpPassword,
+      pass: CONFIG.smtpPassword, // Masukkan 16 digit App Password di sini
     },
+    // Tambahan timeout biar gak gantung kalau koneksi diblokir firewall
+    connectionTimeout: 10000, 
   });
 
   try {
     await transporter.sendMail({
       from: `"Layar Kosong Syndication" <${CONFIG.smtpUser}>`,
       to: CONFIG.blogPostEmail,
-      subject: target.title, // Subject otomatis jadi Judul Postingan Blogspot
-      html: emailContent,    // Body HTML format Gmail style
+      subject: target.title, 
+      html: emailContent,    
     });
 
-    // Simpan Log pakai Bun.write
-    const newContent = postedDatabase + target.url + "\n";
+    // Simpan Log dengan format unik agar .includes() tidak salah deteksi di kemudian hari
+    const newContent = postedDatabase + `[${target.slug}]\n`;
     await Bun.write(CONFIG.databaseFile, newContent);
 
-    console.log(`✅ Berhasil! Artikel terposting ke Blogspot.`);
+    console.log(`✅ Berhasil! Artikel "${target.title}" terposting ke Blogspot.`);
 
   } catch (err: any) {
     console.error("❌ Gagal mengirim email ke Blogspot:", err.message);
+    if (err.message.includes("Invalid login")) {
+      console.error("💡 Petunjuk: Google menolak password-mu. Pastikan kamu menggunakan 'App Password', bkn password akun utama.");
+    }
     process.exit(1);
   }
 }
