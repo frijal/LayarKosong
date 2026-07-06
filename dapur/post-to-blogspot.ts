@@ -44,11 +44,19 @@ const slugify = (text: string): string =>
  * Main Logic
  * ===================== */
 async function run(): Promise<void> {
-  // Validasi Env
-  if (!CONFIG.smtpUser || !CONFIG.smtpPassword || !CONFIG.blogPostEmail) {
-    console.error("❌ Error: SMTP_USER, SMTP_PASSWORD, atau BLOGSPOT_POST_EMAIL belum diset.");
-    process.exit(1);
-  }
+  // Validasi Env yang lebih ketat
+if (!CONFIG.smtpUser || !CONFIG.smtpPassword || !CONFIG.blogPostEmail) {
+  console.error("❌ Error: SMTP_USER, SMTP_PASSWORD, atau BLOGSPOT_POST_EMAIL belum diset.");
+  process.exit(1);
+}
+
+// Cek apakah string mengandung karakter '@' khas email atau cuma teks palsu
+if (!CONFIG.blogPostEmail.includes('@') || CONFIG.blogPostEmail.trim() === '') {
+  console.error("❌ Error: BLOGSPOT_POST_EMAIL ada isinya, tapi formatnya BUKAN email yang valid!");
+  console.error(`👉 Panjang karakter yang terbaca: ${CONFIG.blogPostEmail.length} karakter.`);
+  console.error(`👉 Cek file YAML kamu, pastikan nilainya bukan teks mentah atau 'undefined'.`);
+  process.exit(1);
+}
 
   const articleFile = Bun.file(CONFIG.articleFile);
   if (!(await articleFile.exists())) {
