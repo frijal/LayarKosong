@@ -106,9 +106,6 @@ jobs:
           binding = "DB"
           database_name = "layarkosong-db"
           database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
-          [[kv_namespaces]]
-          binding = "COUNTS_KV"
-          id = "${{ secrets.CLOUDFLARE_ID_KV }}"
           EOF
 
       # 🍳 Run Dapur — DILEWATI kalau mode: update-only
