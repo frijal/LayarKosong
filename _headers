@@ -157,3 +157,14 @@ https://:version.:project.pages.dev/*
   Link: </.well-known/api-catalog>; rel="api-catalog"
   Link: </llms.txt>; rel="alternate"; type="text/markdown"
   Link: </llms.md>; rel="alternate"; type="text/markdown"
+
+
+/hit.html
+  Content-Type: text/html; charset=utf-8
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+
+/hit
+  Content-Type: text/html; charset=utf-8
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
