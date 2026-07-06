@@ -1,10 +1,9 @@
 # 🗓️ Dashboard Jadwal Otomatis Layar Kosong
 
-> **Terakhir Diperbarui:** Minggu, 05 Juli 2026 pukul 22.26.29 WITA
+> **Terakhir Diperbarui:** Selasa, 07 Juli 2026 pukul 00.14.17 WITA
 
 | 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Jadwal Lokal (Balikpapan) |
 | :--- | :--- | :--- |
-| Refresh API Tokens 🚀 | `0 0 1 * *` | Setiap pukul 08:00 WITA, tanggal 1 |
 | 🟢 Automation & MedSos (Full Bun) | `10 0,8,16 * * *` | Setiap pukul 00:10, 08:10, 16:10 WITA |
 | 🧺 XCleanup Old GitHub Actions Cache | `40 0 */6 * *` | Setiap pukul 08:40 WITA, setiap 6 hari |
 | 🧬 Zemester Content Aggregation | `25 1 1 1,7 *` | Setiap pukul 09:25 WITA, tanggal 1, bulan ke-1,7 |

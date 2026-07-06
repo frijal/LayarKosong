@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/5/2026, 2:26:29 PM
+Generated on: 7/6/2026, 4:14:17 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -11,10 +11,11 @@ Generated on: 7/5/2026, 2:26:29 PM
 | `disclosure.html` | FTC Disclosure & Transparansi Afiliasi - Layar Kosong | FTC Disclosure & Transparansi Afiliasi | Layar Kosong | ✅ Perfect |
 | `feed.html` | RSS Feed - Artikel Terbaru - Layar Kosong | RSS Feed – Artikel Terbaru | Layar Kosong | ✅ Perfect |
 | `google2e9cfaf2f2923d27.html` | *(Missing)* | *(Missing)* | *(Missing)* | - |
+| `hit.html` | Dashboard Counter - Layar Kosong | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v24.8 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v24.10 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -845,6 +846,7 @@ Generated on: 7/5/2026, 2:26:29 PM
 | `artikel/manfaat-pisang-5-alasan-wajib-makan-pisang.html` | Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood - Layar Kosong | Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood | Layar Kosong | ✅ Perfect |
 | `artikel/manhaj-tarjih-tajdid-muhammadiyah.html` | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern - Layar Kosong | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern | Layar Kosong | ✅ Perfect |
 | `artikel/manjaro-26-1-bian-may-fitur-baru-review-lengkap.html` | Manjaro 26.1 Bian-May: Fitur Baru & Review Lengkap - Layar Kosong | Manjaro 26.1 Bian-May: Fitur Baru & Review Lengkap | Layar Kosong | ✅ Perfect |
+| `artikel/manusia-merasa-lebih-bijak-dari-wahyu-sekularisme.html` | Ketika Manusia Merasa Lebih Bijak dari Wahyu: Ilusi Sekularisme - Layar Kosong | Ketika Manusia Merasa Lebih Bijak dari Wahyu: Ilusi Sekularisme | Layar Kosong | ✅ Perfect |
 | `artikel/manuver-mikro-pendidikan-indonesia.html` | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu - Layar Kosong | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu | Layar Kosong | ✅ Perfect |
 | `artikel/marie-muhammad-mr-clean.html` | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Mr. Clean dari Indonesia - Layar Kosong | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Mr. Clean dari Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/markdown-viewer-editor.html` | Markdown Viewer dan Editor - Layar Kosong | Markdown Viewer dan Editor | Layar Kosong | ✅ Perfect |
@@ -853,6 +855,7 @@ Generated on: 7/5/2026, 2:26:29 PM
 | `artikel/masalah-patching-jaringan-terbatas-secure-boot.html` | Masalah Patching Jaringan Terbatas pada Update Secure Boot - Layar Kosong | Masalah Patching Jaringan Terbatas pada Update Secure Boot | Layar Kosong | ✅ Perfect |
 | `artikel/masalah-pendidikan-indonesia.html` | Apa yang Keliru dari Pendidikan Indonesia? Jawabannya Bukan 'Uang' - Layar Kosong | Apa yang Keliru dari Pendidikan Indonesia? Jawabannya Bukan 'Uang' | Layar Kosong | ✅ Perfect |
 | `artikel/masalah-windows-update-kb5070311-crash.html` | Update Windows membuat Pusing Lagi: Insiden Crash KB5070311 - Layar Kosong | Update Windows membuat Pusing Lagi: Insiden Crash KB5070311 | Layar Kosong | ✅ Perfect |
+| `artikel/masjid-tak-butuh-amplifier-solusi-suara-jernih.html` | Masjid Tak Butuh Power Amplifier Besar, Ini Solusi Suara Jernih - Layar Kosong | Masjid Tak Butuh Power Amplifier Besar, Ini Solusi Suara Jernih | Layar Kosong | ✅ Perfect |
 | `artikel/master-dashboard-monitor-linux-bash.html` | Master Dashboard Monitor Linux: Disk, RAM, dan Network dalam Satu Script Bash - Layar Kosong | Master Dashboard Monitor Linux: Disk, RAM, dan Network dalam Satu Script Bash | Layar Kosong | ✅ Perfect |
 | `artikel/masyitoh.html` | Iman Masyitoh, Pelayan Istana Fir‘aun yang Syahid - Layar Kosong | Iman Masyitoh, Pelayan Istana Fir‘aun yang Syahid | Layar Kosong | ✅ Perfect |
 | `artikel/mate-vs-xfce-laptop-tua.html` | MATE vs XFCE di Linux Mint: Pilih Mana Buat Laptop Tua? 🤔💻 - Layar Kosong | MATE vs XFCE di Linux Mint: Pilih Mana Buat Laptop Tua? 🤔💻 | Layar Kosong | ✅ Perfect |
@@ -1378,6 +1381,7 @@ Generated on: 7/5/2026, 2:26:29 PM
 | `artikel/sumur-rumah-madinah.html` | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah - Layar Kosong | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah | Layar Kosong | ✅ Perfect |
 | `artikel/surat-terbuka-aiman-witjaksono-ruang-diskursus-publik.html` | Surat Terbuka Untuk Aiman Witjaksono Tentang Kualitas Diskursus Publik - Layar Kosong | Surat Terbuka Untuk Aiman Witjaksono Tentang Kualitas Diskursus Publik | Layar Kosong | ✅ Perfect |
 | `artikel/surat-terbuka-pemilik-pena-kebijakan-kesehatan.html` | Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan - Layar Kosong | Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan | Layar Kosong | ✅ Perfect |
+| `artikel/surat-wasiat-bukan-seremonial-kematian.html` | Surat Wasiat Terbuka untuk Keluarga: Bukan Seremonial Kematian - Layar Kosong | Surat Wasiat Terbuka untuk Keluarga: Bukan Seremonial Kematian | Layar Kosong | ✅ Perfect |
 | `artikel/Susah-Tidur.html` | Susah Tidur? Panduan Praktis untuk Tidur Lebih Nyenyak - Layar Kosong | Susah Tidur? Panduan Praktis untuk Tidur Lebih Nyenyak | Layar Kosong | ✅ Perfect |
 | `artikel/susu-dan-pencernaan.html` | Suka Kopi Susu Tapi Jadi Susah Buang Air Besar? Ini Penjelasannya! - Layar Kosong | Suka Kopi Susu Tapi Jadi Susah Buang Air Besar? Ini Penjelasannya! | Layar Kosong | ✅ Perfect |
 | `artikel/syarat-wajib-berkendara.html` | Syarat Wajib Berkendara: Jangan Cuma Gaspol, Perhatikan Keselamatan! 🏍️ - Layar Kosong | Syarat Wajib Berkendara: Jangan Cuma Gaspol, Perhatikan Keselamatan! 🏍️ | Layar Kosong | ✅ Perfect |
@@ -1631,6 +1635,7 @@ Generated on: 7/5/2026, 2:26:29 PM
 | `gaya-hidup/spanyol-umumkan-inisiatif-baru-buka-darsgah-untuk-gadis-muslim.html` | Spanyol Umumkan Inisiatif Baru Buka 50.000 Darsgah untuk Gadis Muslim - Layar Kosong | Spanyol Umumkan Inisiatif Baru Buka 50.000 Darsgah untuk Gadis Muslim | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/stop-piracy-retro.html` | Poster Stop Piracy Retro: Desain Tegas untuk Edukasi Hak Cipta - Layar Kosong | Poster Stop Piracy Retro: Desain Tegas untuk Edukasi Hak Cipta | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/surat-terbuka-pemilik-pena-kebijakan-kesehatan.html` | Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan - Layar Kosong | Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/surat-wasiat-bukan-seremonial-kematian.html` | Surat Wasiat Terbuka untuk Keluarga: Bukan Seremonial Kematian - Layar Kosong | Surat Wasiat Terbuka untuk Keluarga: Bukan Seremonial Kematian | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/Susah-Tidur.html` | Susah Tidur? Panduan Praktis untuk Tidur Lebih Nyenyak - Layar Kosong | Susah Tidur? Panduan Praktis untuk Tidur Lebih Nyenyak | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/susu-dan-pencernaan.html` | Suka Kopi Susu Tapi Jadi Susah Buang Air Besar? Ini Penjelasannya! - Layar Kosong | Suka Kopi Susu Tapi Jadi Susah Buang Air Besar? Ini Penjelasannya! | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/syarat-wajib-berkendara.html` | Syarat Wajib Berkendara: Jangan Cuma Gaspol, Perhatikan Keselamatan! 🏍️ - Layar Kosong | Syarat Wajib Berkendara: Jangan Cuma Gaspol, Perhatikan Keselamatan! 🏍️ | Layar Kosong | ✅ Perfect |
@@ -1764,6 +1769,7 @@ Generated on: 7/5/2026, 2:26:29 PM
 | `jejak-sejarah/makna-az-zumar-53.html` | Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan - Layar Kosong | Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/manhaj-tarjih-tajdid-muhammadiyah.html` | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern - Layar Kosong | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/masa-penuh-fitnah.html` | Masa penuh fitnah: duduk lebih baik dari berdiri, berjalan, dan berlari - Layar Kosong | Masa penuh fitnah: duduk lebih baik dari berdiri, berjalan, dan berlari | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/masjid-tak-butuh-amplifier-solusi-suara-jernih.html` | Masjid Tak Butuh Power Amplifier Besar, Ini Solusi Suara Jernih - Layar Kosong | Masjid Tak Butuh Power Amplifier Besar, Ini Solusi Suara Jernih | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/masyitoh.html` | Iman Masyitoh, Pelayan Istana Fir‘aun yang Syahid - Layar Kosong | Iman Masyitoh, Pelayan Istana Fir‘aun yang Syahid | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/maulid-kajian-lengkap.html` | Kajian Lengkap Maulid Nabi: Fatwa, Perbandingan Ulama, dan Sejarah - Layar Kosong | Kajian Lengkap Maulid Nabi: Fatwa, Perbandingan Ulama, dan Sejarah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/maulid-nabi.html` | Hukum Perayaan Maulid Nabi dalam Spektrum Pendapat Ulama - Layar Kosong | Hukum Perayaan Maulid Nabi dalam Spektrum Pendapat Ulama | Layar Kosong | ✅ Perfect |
@@ -2217,6 +2223,7 @@ Generated on: 7/5/2026, 2:26:29 PM
 | `opini-sosial/makan-siang-masa-depan.html` | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG - Layar Kosong | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG | Layar Kosong | ✅ Perfect |
 | `opini-sosial/makna-at-taghabun-ayat-14.html` | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian - Layar Kosong | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian | Layar Kosong | ✅ Perfect |
 | `opini-sosial/malaysia-tolak-board-of-peace-trump.html` | Malaysia Tolak Board of Peace Trump demi Palestina - Layar Kosong | Malaysia Tolak Board of Peace Trump demi Palestina | Layar Kosong | ✅ Perfect |
+| `opini-sosial/manusia-merasa-lebih-bijak-dari-wahyu-sekularisme.html` | Ketika Manusia Merasa Lebih Bijak dari Wahyu: Ilusi Sekularisme - Layar Kosong | Ketika Manusia Merasa Lebih Bijak dari Wahyu: Ilusi Sekularisme | Layar Kosong | ✅ Perfect |
 | `opini-sosial/manuver-mikro-pendidikan-indonesia.html` | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu - Layar Kosong | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu | Layar Kosong | ✅ Perfect |
 | `opini-sosial/marie-muhammad-mr-clean.html` | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Mr. Clean dari Indonesia - Layar Kosong | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Mr. Clean dari Indonesia | Layar Kosong | ✅ Perfect |
 | `opini-sosial/masalah-pendidikan-indonesia.html` | Apa yang Keliru dari Pendidikan Indonesia? Jawabannya Bukan 'Uang' - Layar Kosong | Apa yang Keliru dari Pendidikan Indonesia? Jawabannya Bukan 'Uang' | Layar Kosong | ✅ Perfect |
