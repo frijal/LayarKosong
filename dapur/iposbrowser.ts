@@ -37,12 +37,20 @@ const getIcon = (name: string) => {
   const file = (name === 'iOS' || name === 'macOS') ? 'macios' : name.toLowerCase();
   return `<img src="/ext/icons/${file}.svg" alt="${name}" onerror="this.src='/ext/icons/unknown.svg'" style="width:1.2em;height:1.2em;vertical-align:middle;margin-right:4px;display:inline-block;border-radius:2px;">`;
 };
-
 // --- B. FETCH STATS (Menembak ke Cloudflare Worker D1) ---
 const workerURL = `https://layarkosong-counter.frijal.workers.dev/?url=${encodeURIComponent(window.location.pathname)}`;
+
 const fetchStats = fetch(workerURL)
-.then(res => res.ok ? res.json() as Promise<PageStats> : null)
-.catch(() => null);
+.then(res => {
+  if (res.ok) {
+    return res.json() as Promise<PageStats>;
+  }
+  return null;
+})
+.catch((err) => {
+  console.error("⚠️ Gagal mengambil data statistik counter:", err);
+  return null;
+});
 
 // --- C. AMBIL TANGGAL (Lewat Master Data Provider) ---
 const fetchDate = new Promise<string | null>((resolve) => {
@@ -85,7 +93,11 @@ const fetchDate = new Promise<string | null>((resolve) => {
 });
 
 // --- D. EKSEKUSI PARALEL & RENDER DOM ---
-const [stats, articleDate] = await Promise.all([fetchStats, fetchDate]);
+${stats ? `<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Page Views / Global Views">
+  <strong style="margin-right:4px;">\u221E</strong>
+  ${stats.t.toLocaleString('id-ID')} <small style="margin:0 4px;opacity:0.5;">-</small> ${stats.v.toLocaleString('id-ID')}
+  </span>` : ''}
+
 
 // Koleksi SVG dengan ukuran seragam 1.2em
 const atomSVG = `<svg viewBox="0 0 64 64" fill="none" style="width:1.2em;height:1.2em;display:block;overflow:visible;"><circle cx="32" cy="32" fill="currentColor" r="5"/><ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"/><ellipse transform="rotate(60 32 32)" cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"/><ellipse transform="rotate(120 32 32)" cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"/></svg>`;
