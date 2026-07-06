@@ -1,7 +1,12 @@
 /**
  * Twikoo Loader for Layar Kosong
- * Versi: 1.7.13-turnstile-safe
+ * Versi: 1.7.13-turnstile-borrow
  * Target: #response
+ *
+ * Prinsip:
+ * - Twikoo tetap dimuat normal.
+ * - Kalau Turnstile sudah ada, Twikoo "meminjam" window.turnstile.
+ * - Duplicate Turnstile api.js dari Twikoo diblokir.
  */
 
 interface TwikooInitOptions {
@@ -15,7 +20,10 @@ interface TwikooApi {
 }
 
 interface TurnstileApi {
-  reset?: () => void;
+  render?: (...args: unknown[]) => unknown;
+  reset?: (...args: unknown[]) => unknown;
+  remove?: (...args: unknown[]) => unknown;
+  ready?: (callback: () => void) => void;
 }
 
 interface LayarKosongTwikooState {
@@ -27,7 +35,7 @@ type LayarKosongWindow = Window & {
   twikoo?: TwikooApi;
   turnstile?: TurnstileApi;
   __LK_TWIKOO__?: LayarKosongTwikooState;
-  __LK_TURNSTILE_GUARD_INSTALLED__?: boolean;
+  __LK_TURNSTILE_SINGLETON_GUARD__?: boolean;
 };
 
 (function (): void {
@@ -49,10 +57,6 @@ type LayarKosongWindow = Window & {
 
   const twikooState = lkWindow.__LK_TWIKOO__;
 
-  /**
-   * Kalau container ini sudah pernah di-init,
-   * jangan render Twikoo lagi.
-   */
   if (
     container.dataset.twikooState === 'loading' ||
     container.dataset.twikooState === 'ready' ||
@@ -61,10 +65,6 @@ type LayarKosongWindow = Window & {
     return;
   }
 
-  /**
-   * Kalau markup Twikoo sudah ada di dalam container,
-   * anggap sudah aktif.
-   */
   if (
     container.querySelector('.tk-comments') ||
     container.querySelector('.tk-submit') ||
@@ -76,50 +76,90 @@ type LayarKosongWindow = Window & {
   }
 
   function isTurnstileScript(src: string): boolean {
-    return /^https:\/\/challenges(?:\.fed)?\.cloudflare\.com\/turnstile\/v0\/.*api\.js/i.test(src);
+    return /^https:\/\/challenges(?:\.fed)?\.cloudflare\.com\/turnstile\/v0(?:\/.*)?\/api\.js/i.test(src);
   }
 
-  function hasTurnstileScript(): boolean {
-    return Array.from(document.scripts).some((script: HTMLScriptElement) => {
+  function getExistingTurnstileScript(): HTMLScriptElement | null {
+    return Array.from(document.scripts).find((script) => {
       return isTurnstileScript(script.src);
-    });
+    }) || null;
+  }
+
+  function dispatchSyntheticLoad(node: Node): void {
+    window.setTimeout(() => {
+      try {
+        node.dispatchEvent(new Event('load'));
+      } catch {
+        // Abaikan error event tiruan.
+      }
+    }, 0);
+  }
+
+  function waitExistingTurnstileThenLoad(node: Node): void {
+    if (lkWindow.turnstile) {
+      dispatchSyntheticLoad(node);
+      return;
+    }
+
+    const existingScript = getExistingTurnstileScript();
+
+    if (!existingScript) {
+      dispatchSyntheticLoad(node);
+      return;
+    }
+
+    existingScript.addEventListener(
+      'load',
+      () => {
+        dispatchSyntheticLoad(node);
+      },
+      { once: true }
+    );
+
+    existingScript.addEventListener(
+      'error',
+      () => {
+        dispatchSyntheticLoad(node);
+      },
+      { once: true }
+    );
+
+    /**
+     * Fallback supaya Twikoo tidak menggantung kalau script lama
+     * sudah selesai tetapi event load-nya tidak bisa ditangkap.
+     */
+    window.setTimeout(() => {
+      dispatchSyntheticLoad(node);
+    }, 3000);
   }
 
   /**
-   * Pengaman tambahan:
-   * kalau Twikoo mencoba menyuntik Turnstile api.js lagi
-   * padahal window.turnstile sudah ada, blokir script kedua.
+   * Ini bagian utama:
+   * kalau Turnstile sudah ada / sedang dimuat,
+   * script Turnstile kedua dari Twikoo tidak boleh masuk.
    */
-  function installTurnstileDuplicateGuard(): void {
-    if (lkWindow.__LK_TURNSTILE_GUARD_INSTALLED__) return;
-
-    lkWindow.__LK_TURNSTILE_GUARD_INSTALLED__ = true;
+  function installTurnstileSingletonGuard(): void {
+    if (lkWindow.__LK_TURNSTILE_SINGLETON_GUARD__) return;
+    lkWindow.__LK_TURNSTILE_SINGLETON_GUARD__ = true;
 
     const originalAppendChild = Node.prototype.appendChild;
     const originalInsertBefore = Node.prototype.insertBefore;
 
-    function shouldBlockDuplicateTurnstile(node: Node): boolean {
+    function shouldBorrowExistingTurnstile(node: Node): boolean {
       if (!(node instanceof HTMLScriptElement)) return false;
+      if (!isTurnstileScript(node.src)) return false;
 
-      return Boolean(
-        isTurnstileScript(node.src) &&
-        lkWindow.turnstile &&
-        hasTurnstileScript()
-      );
+      /**
+       * Blokir hanya kalau sudah ada Turnstile global
+       * atau sudah ada script Turnstile lain yang sedang/selesai dimuat.
+       */
+      return Boolean(lkWindow.turnstile || getExistingTurnstileScript());
     }
 
     Node.prototype.appendChild = function <T extends Node>(this: Node, node: T): T {
-      if (shouldBlockDuplicateTurnstile(node)) {
-        console.warn('[Layar Kosong] Duplicate Turnstile api.js diblokir.');
-
-        window.setTimeout(() => {
-          try {
-            node.dispatchEvent(new Event('load'));
-          } catch {
-            // Abaikan error event tiruan.
-          }
-        }, 0);
-
+      if (shouldBorrowExistingTurnstile(node)) {
+        console.warn('[Layar Kosong] Twikoo memakai Turnstile yang sudah ada. Duplicate api.js diblokir.');
+        waitExistingTurnstileThenLoad(node);
         return node;
       }
 
@@ -131,17 +171,9 @@ type LayarKosongWindow = Window & {
       node: T,
       child: Node | null
     ): T {
-      if (shouldBlockDuplicateTurnstile(node)) {
-        console.warn('[Layar Kosong] Duplicate Turnstile api.js diblokir.');
-
-        window.setTimeout(() => {
-          try {
-            node.dispatchEvent(new Event('load'));
-          } catch {
-            // Abaikan error event tiruan.
-          }
-        }, 0);
-
+      if (shouldBorrowExistingTurnstile(node)) {
+        console.warn('[Layar Kosong] Twikoo memakai Turnstile yang sudah ada. Duplicate api.js diblokir.');
+        waitExistingTurnstileThenLoad(node);
         return node;
       }
 
@@ -206,7 +238,11 @@ type LayarKosongWindow = Window & {
     container.dataset.twikooState = 'loading';
 
     try {
-      installTurnstileDuplicateGuard();
+      /**
+       * Guard harus dipasang sebelum Twikoo dimuat,
+       * karena Twikoo bisa menyuntik Turnstile setelah init.
+       */
+      installTurnstileSingletonGuard();
 
       await loadScript(TWIKOO_CDN);
 
@@ -223,10 +259,9 @@ type LayarKosongWindow = Window & {
       container.dataset.twikooState = 'ready';
       twikooState.initializedContainers.add(container);
 
-      console.log('Twikoo 1.7.13 berhasil dimuat di #response.');
+      console.log('Twikoo 1.7.13 berhasil dimuat di #response dengan Turnstile singleton.');
     } catch (error) {
       container.dataset.twikooState = 'error';
-
       console.error('Gagal memuat Twikoo:', error);
     } finally {
       twikooState.loading = false;
