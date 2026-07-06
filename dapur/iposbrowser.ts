@@ -8,8 +8,8 @@
   'use strict';
 
 interface PageStats {
-  t: number; // Angka Artikel (150)
-v: number; // Angka Global (Ribuan)
+  t: number; // Angka halaman/artikel
+  v: number; // Angka global
 }
 
 async function initIposBrowser(): Promise<void> {
