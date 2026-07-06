@@ -144,7 +144,7 @@ const [stats, articleDate] = await Promise.all([
 ]);
 
 const statsHTML = stats ? `
-<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Views halaman / total artikel global">
+<span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Views Title / Visit">
 <strong style="margin-right:4px;">∞</strong>
 ${Number(stats.t || 0).toLocaleString('id-ID')}
 <small style="margin:0 4px;opacity:0.5;">-</small>
