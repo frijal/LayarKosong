@@ -28,9 +28,33 @@ const getIcon = (name: string) => {
 
 // --- B. FETCH STATS ---
 const workerURL = `https://layarkosong-counter.frijal.workers.dev/?url=${encodeURIComponent(window.location.pathname)}`;
-const fetchStats = fetch(workerURL)
-.then(res => res.ok ? res.json() as Promise<PageStats> : null)
-.catch(() => null);
+
+const fetchStats = (async (): Promise<PageStats | null> => {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 2500);
+
+  try {
+    const res = await fetch(workerURL, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-store',
+      signal: controller.signal
+    });
+
+    if (!res.ok) return null;
+
+    const data = await res.json() as Partial<PageStats>;
+
+    return {
+      t: Number(data.t || 0),
+                    v: Number(data.v || 0)
+    };
+  } catch {
+    return null;
+  } finally {
+    window.clearTimeout(timeout);
+  }
+})();
 
 // --- C. AMBIL TANGGAL ---
 const fetchDate = new Promise<string | null>((resolve) => {
@@ -63,7 +87,7 @@ const [stats, articleDate] = await Promise.all([fetchStats, fetchDate]);
 const statsHTML = stats ? `
 <span style="display:inline-flex;align-items:center;white-space:nowrap;" title="Halaman / Total Global">
 <strong style="margin-right:4px;">\u221E</strong>
-${stats.t.toLocaleString('id-ID')} <small style="margin:0 4px;opacity:0.5;">-</small> ${stats.v.toLocaleString('id-ID')}
+${Number(stats.t || 0).toLocaleString('id-ID')} <small style="margin:0 4px;opacity:0.5;">-</small> ${Number(stats.v || 0).toLocaleString('id-ID')}
 </span>` : '';
 
 // Koleksi SVG dengan ukuran seragam 1.2em
