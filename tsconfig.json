@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    // --- 🚀 Environment & Target ---
     "target": "ESNext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "types": ["bun"],
     "jsx": "react-jsx",
 
-    // --- 📦 Module & Bundler (Bun + Wrangler/esbuild) ---
     "module": "Preserve",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
@@ -16,7 +14,6 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
 
-    // --- 👮‍♂️ Type Checking & CI/CD Guard (Strict Mode) ---
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -24,7 +21,6 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
 
-    // --- ⚡ Build Performance ---
     "skipLibCheck": true,
     "noEmit": true
   },
