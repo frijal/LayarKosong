@@ -1,0 +1,217 @@
+name: 📥 Download D1 Database via Bun
+
+on:
+  workflow_dispatch:
+    inputs:
+      database_name:
+        description: "Pilih database D1 yang akan diunduh"
+        required: true
+        default: "layarkosong-counter-db"
+        type: choice
+        options:
+          - layarkosong-counter-db
+          - layarkosong-db
+          - custom
+
+      custom_database_name:
+        description: "Isi hanya jika memilih database_name = custom"
+        required: false
+        type: string
+        default: ""
+
+      export_mode:
+        description: "Pilih mode unduhan"
+        required: true
+        default: "full_sql"
+        type: choice
+        options:
+          - full_sql       # Export schema + data ke .sql
+          - schema_only    # Export struktur tabel saja ke .sql
+          - data_only      # Export data saja tanpa schema ke .sql
+          - table_sql      # Export tabel tertentu ke .sql
+          - query_json     # Jalankan query custom dan simpan ke .json
+
+      table_name:
+        description: "Nama tabel, wajib untuk mode table_sql. Contoh: counters"
+        required: false
+        type: string
+        default: ""
+
+      sql_query:
+        description: "SQL custom, wajib untuk mode query_json"
+        required: false
+        type: string
+        default: "SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;"
+
+jobs:
+  download-d1:
+    name: Download D1 Database
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Prepare Export Config
+        id: config
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          SELECTED_DB="${{ github.event.inputs.database_name }}"
+          CUSTOM_DB="${{ github.event.inputs.custom_database_name }}"
+          EXPORT_MODE="${{ github.event.inputs.export_mode }}"
+          TABLE_NAME="${{ github.event.inputs.table_name }}"
+
+          if [ "$SELECTED_DB" = "custom" ]; then
+            if [ -z "$CUSTOM_DB" ]; then
+              echo "❌ custom_database_name wajib diisi jika database_name = custom."
+              exit 1
+            fi
+
+            DB_NAME="$CUSTOM_DB"
+          else
+            DB_NAME="$SELECTED_DB"
+          fi
+
+          if [ "$EXPORT_MODE" = "table_sql" ] && [ -z "$TABLE_NAME" ]; then
+            echo "❌ table_name wajib diisi untuk mode table_sql."
+            exit 1
+          fi
+
+          SAFE_DB_NAME="$(echo "$DB_NAME" | tr -c 'A-Za-z0-9._-' '-')"
+          SAFE_TABLE_NAME="$(echo "$TABLE_NAME" | tr -c 'A-Za-z0-9._-' '-')"
+          TS="$(date '+%Y-%m-%d-%H%M%S')"
+
+          mkdir -p backups/d1
+
+          case "$EXPORT_MODE" in
+            full_sql)
+              OUTPUT_FILE="backups/d1/${SAFE_DB_NAME}-full-${TS}.sql"
+              ARTIFACT_NAME="d1-${SAFE_DB_NAME}-full-${TS}"
+              ;;
+
+            schema_only)
+              OUTPUT_FILE="backups/d1/${SAFE_DB_NAME}-schema-${TS}.sql"
+              ARTIFACT_NAME="d1-${SAFE_DB_NAME}-schema-${TS}"
+              ;;
+
+            data_only)
+              OUTPUT_FILE="backups/d1/${SAFE_DB_NAME}-data-${TS}.sql"
+              ARTIFACT_NAME="d1-${SAFE_DB_NAME}-data-${TS}"
+              ;;
+
+            table_sql)
+              OUTPUT_FILE="backups/d1/${SAFE_DB_NAME}-table-${SAFE_TABLE_NAME}-${TS}.sql"
+              ARTIFACT_NAME="d1-${SAFE_DB_NAME}-table-${SAFE_TABLE_NAME}-${TS}"
+              ;;
+
+            query_json)
+              OUTPUT_FILE="backups/d1/${SAFE_DB_NAME}-query-${TS}.json"
+              ARTIFACT_NAME="d1-${SAFE_DB_NAME}-query-${TS}"
+              ;;
+
+            *)
+              echo "❌ export_mode tidak dikenal: $EXPORT_MODE"
+              exit 1
+              ;;
+          esac
+
+          echo "DB_NAME=$DB_NAME" >> "$GITHUB_ENV"
+          echo "EXPORT_MODE=$EXPORT_MODE" >> "$GITHUB_ENV"
+          echo "TABLE_NAME=$TABLE_NAME" >> "$GITHUB_ENV"
+          echo "OUTPUT_FILE=$OUTPUT_FILE" >> "$GITHUB_ENV"
+          echo "ARTIFACT_NAME=$ARTIFACT_NAME" >> "$GITHUB_ENV"
+
+          echo "✅ Database      : $DB_NAME"
+          echo "✅ Export mode   : $EXPORT_MODE"
+          echo "✅ Table name    : ${TABLE_NAME:-'-'}"
+          echo "✅ Output file   : $OUTPUT_FILE"
+          echo "✅ Artifact name : $ARTIFACT_NAME"
+
+      - name: Download D1 Database
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          SQL_QUERY: ${{ github.event.inputs.sql_query }}
+        run: |
+          set -euo pipefail
+
+          echo "⛅ Wrangler version:"
+          bunx wrangler@latest --version
+
+          echo "📋 Mengecek daftar database D1 yang terlihat oleh token ini..."
+          bunx wrangler@latest d1 list --json
+
+          case "$EXPORT_MODE" in
+            full_sql)
+              echo "🚀 Export FULL database: $DB_NAME"
+              bunx wrangler@latest d1 export "$DB_NAME" \
+                --remote \
+                --output "$OUTPUT_FILE" \
+                --y
+              ;;
+
+            schema_only)
+              echo "🚀 Export SCHEMA ONLY database: $DB_NAME"
+              bunx wrangler@latest d1 export "$DB_NAME" \
+                --remote \
+                --no-data \
+                --output "$OUTPUT_FILE" \
+                --y
+              ;;
+
+            data_only)
+              echo "🚀 Export DATA ONLY database: $DB_NAME"
+              bunx wrangler@latest d1 export "$DB_NAME" \
+                --remote \
+                --no-schema \
+                --output "$OUTPUT_FILE" \
+                --y
+              ;;
+
+            table_sql)
+              echo "🚀 Export TABLE database: $DB_NAME / table: $TABLE_NAME"
+              bunx wrangler@latest d1 export "$DB_NAME" \
+                --remote \
+                --table "$TABLE_NAME" \
+                --output "$OUTPUT_FILE" \
+                --y
+              ;;
+
+            query_json)
+              echo "🚀 Execute custom query database: $DB_NAME"
+              echo "SQL: $SQL_QUERY"
+
+              bunx wrangler@latest d1 execute "$DB_NAME" \
+                --remote \
+                --command "$SQL_QUERY" \
+                --json > "$OUTPUT_FILE"
+              ;;
+
+            *)
+              echo "❌ export_mode tidak dikenal: $EXPORT_MODE"
+              exit 1
+              ;;
+          esac
+
+          echo "📦 File hasil:"
+          ls -lah "$OUTPUT_FILE"
+
+      - name: Upload D1 Backup Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.OUTPUT_FILE }}
+          retention-days: 1
