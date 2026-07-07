@@ -182,7 +182,7 @@
       <pre><code>- Zone → DNS → Edit         (Untuk edit data DNS)</code></pre>
       <h2><span>3️⃣</span> Langkah 3 – Buat dan Simpan Token (PENTING!)</h2>
       <p>Setelah atur semua izin dan klik "Create Token", Cloudflare bakal ngasih kamu satu kode API yang panjang banget. Kayak gini contohnya:</p>
-      <pre><code>CF_API_TOKEN = 1a2b3c4d5e6f7g8h9iJkLmNoPqRsTuVwXyZ...</code></pre>
+      <pre><code>CF_API_TOKENXXX = 1a2b3c4d5e6f7g8h9iJkLmNoPqRsTuVwXyZ...</code></pre>
       <p><strong>PERHATIAN:</strong> Langsung salin (copy) dan simpan token ini di tempat yang aman (kayak password manager). Token ini cuma bakal muncul <strong>SATU KALI AJA</strong>. Kalau halaman ini kamu refresh atau tutup, tokennya hilang selamanya dan kamu harus bikin baru lagi.</p>
       <h2><span>4️⃣</span> Langkah 4 – Simpan Token di GitHub Secrets</h2>
       <p>Nah, token ini paling sering dipakai buat otomatisasi di GitHub Actions. Biar aman, jangan taruh tokennya langsung di kode kamu. Simpan di "Secrets".</p>
@@ -190,7 +190,7 @@
       <pre><code>Settings → Secrets and variables → Actions → New repository secret</code></pre>
       <p>Lalu isi formulirnya:</p>
       <ul class="list">
-        <li><strong>Name:</strong> <code>CF_API_TOKEN</code></li>
+        <li><strong>Name:</strong> <code>CF_API_TOKENXXX</code></li>
         <li><strong>Value:</strong> <code>tempel_token_rahasia_kamu_di_sini</code></li>
       </ul>
       <h2><span>5️⃣</span> Langkah 5 – Tes Token (Biar Yakin)</h2>

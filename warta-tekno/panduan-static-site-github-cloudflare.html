@@ -596,7 +596,7 @@ jobs:
       - name: Run Dapur (Build D1)
         run: bun run source/search/build-d1.ts
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKENXXX }}
       # 🚀 4. DEPLOY (Retry 3x)
       - name: Deploy to Cloudflare Pages
         run: |
@@ -622,7 +622,7 @@ jobs:
             fi
           done
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKENXXX }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}</eof></b></b></b></b></b></b></b></b></b></b></b></b></code></pre><b><b><b>
                             </b></b></b></details><b><b><b>
         </b></b></b></section><b><b><b>
@@ -673,7 +673,7 @@ sudo pacman -S git</code></pre>
                 <li>Buka tab <strong>Settings</strong> &gt; <strong>Secrets and variables</strong> &gt; <strong>Actions</strong> pada repository GitHub-mu.</li>
                 <li>Klik <strong>New repository secret</strong> dan tambahkan:
                     <ul>
-                        <li><code>CF_API_TOKEN</code>: (Isi dengan token API Cloudflare-mu).</li>
+                        <li><code>CF_API_TOKENXXX</code>: (Isi dengan token API Cloudflare-mu).</li>
                         <li><code>CF_ACCOUNT_ID</code>: (Isi dengan ID akun Cloudflare-mu).</li>
                     </ul>
                 </li>

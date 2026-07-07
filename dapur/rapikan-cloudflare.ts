@@ -5,10 +5,10 @@ const API = "https://api.cloudflare.com/client/v4";
 // Menggunakan Bun.env agar lebih "Bun-way"
 const accountId = Bun.env.CF_ACCOUNT_ID;
 const projectName = Bun.env.CF_PROJECT_NAME;
-const token = Bun.env.CF_API_TOKEN;
+const token = Bun.env.CF_API_TOKENXXX;
 
 if (!accountId || !projectName || !token) {
-  console.error("❌ Environment variable belum lengkap (CF_ACCOUNT_ID, CF_PROJECT_NAME, CF_API_TOKEN).");
+  console.error("❌ Environment variable belum lengkap (CF_ACCOUNT_ID, CF_PROJECT_NAME, CF_API_TOKENXXX).");
   process.exit(1);
 }
 
