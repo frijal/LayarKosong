@@ -1,165 +1,196 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, follow">
-<meta http-equiv="refresh" content="30;url=/">
-<meta property="og:site_name" content="Layar Kosong">
-<meta property="og:title" content="404 Not Found">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<meta name="twitter:title" content="404 Not Found">
-<title>404 - Halaman Tidak Ditemukan - Layar Kosong</title>
-<meta name="color-scheme" content="light dark">
-<style>
-/* === RESET & VARIABEL TEMA === */
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-:root {
---bg-color: #f8f9fa;
---text-color: #212529;
---box-bg: #e9ecef;
---btn-hover: #dee2e6;
---accent: #0d6efd;
-}
-/* Deteksi Tema Gelap (Dark Mode) Otomatis */
-@media (prefers-color-scheme: dark) {
-:root {
---bg-color: #121212;
---text-color: #e0e0e0;
---box-bg: #1e1e1e;
---btn-hover: #2d2d2d;
---accent: #3b82f6;
-}
-}
-/* === LAYOUT UTAMA === */
-body {
-/* System font paling ringan dan bawaan OS */
-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-background-color: var(--bg-color);
-color: var(--text-color);
-width: 100vw;
-height: 100vh;
-overflow: hidden; /* Mutlak: Mencegah page-scrolling */
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 2vh 0;
-}
-/* === 1. Teks 404 Besar (Lebar 92%) === */
-.svg-404 {
-width: 92%;
-max-height: 35vh; /* Dibatasi agar tidak mendorong elemen lain turun */
-display: flex;
-justify-content: center;
-align-items: center;
-margin-bottom: 2vh;
-}
-.svg-404 svg {
-width: 100%;
-height: auto;
-}
-/* === 2. Tiga Tombol Besar Sejajar === */
-.button-container {
-display: flex;
-width: 92%;
-gap: 1rem;
-margin-bottom: 3vh;
-}
-.btn {
-flex: 1; /* Membuat ketiganya sama besar dan sejajar */
-text-align: center;
-text-decoration: none;
-background-color: var(--box-bg);
-color: var(--text-color);
-padding: 2vh 1vw;
-border-radius: 8px;
-font-size: clamp(0.9rem, 2vw, 1.2rem); /* Font responsif ukuran layar */
-font-weight: 600;
-transition: background-color 0.2s ease;
-white-space: nowrap; /* Mencegah teks tombol turun ke baris baru */
-}
-.btn:hover {
-background-color: var(--btn-hover);
-}
-/* === 3. Konten Teks === */
-.content-box {
-width: 92%;
-background-color: var(--box-bg);
-padding: 3vh 3vw;
-border-radius: 12px;
-font-size: clamp(0.85rem, 1.6vw, 1.1rem); /* Ukuran auto sesuaikan viewport */
-line-height: 1.6;
-}
-.content-box p {
-margin-bottom: 1vh;
-}
-.content-box ul {
-padding-left: 20px;
-}
-.content-box li {
-margin-bottom: 0.5vh;
-}
-/* === 4. Progress Bar Auto Redirect === */
-.progress-bar-container {
-width: 92%;
-height: 4px;
-background-color: var(--box-bg);
-margin-top: 2vh;
-border-radius: 2px;
-overflow: hidden;
-}
-.progress-bar-fill {
-height: 100%;
-background-color: var(--accent);
-width: 0%;
-transition: width 1s linear; /* Animasi mulus detik per detik */
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+    <meta http-equiv="refresh" content="30;url=/">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:title" content="404 Not Found">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="twitter:title" content="404 Not Found">
+    <title>404 - Halaman Tidak Ditemukan - Layar Kosong</title>
+    <meta name="color-scheme" content="light dark">
+    <style>
+        /* === RESET & VARIABEL TEMA === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --box-bg: #e9ecef;
+            --btn-hover: #dee2e6;
+            --accent: #0d6efd;
+        }
+
+        /* Deteksi Tema Gelap (Dark Mode) Otomatis */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --box-bg: #1e1e1e;
+                --btn-hover: #2d2d2d;
+                --accent: #3b82f6;
+            }
+        }
+
+        /* === LAYOUT UTAMA === */
+        body {
+            /* System font paling ringan dan bawaan OS */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /* Mutlak: Mencegah page-scrolling */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2vh 0;
+        }
+
+        /* === 1. Teks 404 Besar (Lebar 92%) === */
+        .svg-404 {
+            width: 92%;
+            max-height: 35vh;
+            /* Dibatasi agar tidak mendorong elemen lain turun */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2vh;
+        }
+
+        .svg-404 svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* === 2. Tiga Tombol Besar Sejajar === */
+        .button-container {
+            display: flex;
+            width: 92%;
+            gap: 1rem;
+            margin-bottom: 3vh;
+        }
+
+        .btn {
+            flex: 1;
+            /* Membuat ketiganya sama besar dan sejajar */
+            text-align: center;
+            text-decoration: none;
+            background-color: var(--box-bg);
+            color: var(--text-color);
+            padding: 2vh 1vw;
+            border-radius: 8px;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            /* Font responsif ukuran layar */
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+            white-space: nowrap;
+            /* Mencegah teks tombol turun ke baris baru */
+        }
+
+        .btn:hover {
+            background-color: var(--btn-hover);
+        }
+
+        /* === 3. Konten Teks === */
+        .content-box {
+            width: 92%;
+            background-color: var(--box-bg);
+            padding: 3vh 3vw;
+            border-radius: 12px;
+            font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+            /* Ukuran auto sesuaikan viewport */
+            line-height: 1.6;
+        }
+
+        .content-box p {
+            margin-bottom: 1vh;
+        }
+
+        .content-box ul {
+            padding-left: 20px;
+        }
+
+        .content-box li {
+            margin-bottom: 0.5vh;
+        }
+
+        /* === 4. Progress Bar Auto Redirect === */
+        .progress-bar-container {
+            width: 92%;
+            height: 4px;
+            background-color: var(--box-bg);
+            margin-top: 2vh;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--accent);
+            width: 0%;
+            transition: width 1s linear;
+            /* Animasi mulus detik per detik */
+        }
+    </style>
 </head>
+
 <body>
-<div class="svg-404">
-<svg viewBox="0 0 400 120" preserveAspectRatio="xMidYMid meet">
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="120" font-weight="900" fill="currentColor">404</text>
-</svg>
-</div>
-<div class="button-container">
-<a href="/" class="btn">/ Beranda</a>
-<a href="/search" class="btn">/ Cari</a>
-<a href="/feed" class="btn">/ Feed</a>
-<a href="/sitemap" class="btn">/ Sitemap</a>
-</div>
-<div class="content-box">
-<p><strong>Apa itu 404 (Not Found)?</strong></p>
-<p>Ini adalah kode status HTTP yang artinya, server website berhasil dikunjungi, tapi tujuan spesifik yang diminta tidak ada (biasanya karena salah ketik URL, atau halamannya sudah dihapus/dipindah).</p>
-<p><strong>Fungsi Utama 404:</strong></p>
-<ul>
-<li><strong>Memberi Kepastian (UX):</strong> Daripada menampilkan layar putih kosong yang bikin bingung, halaman ini langsung menegaskan ke pengunjung bahwa mereka nyasar atau salah alamat.</li>
-<li><strong>Alarm Webmaster (SEO):</strong> Menjadi indikator bagi pengelola web untuk mendeteksi keberadaan <em>broken link</em> (tautan rusak) di situsnya agar bisa segera diperbaiki atau menggunakan <em>redirect</em>.</li>
-</ul>
-</div>
-<div class="progress-bar-container">
-<div class="progress-bar-fill" id="redirect-progress"></div>
-</div>
-<script>
-const readingTimeSeconds = 30;
-let timeElapsed = 0;
-const progressBar = document.getElementById('redirect-progress');
-// Mulai menghitung mundur dengan interval 1 detik
-const timerInterval = setInterval(() => {
-timeElapsed++;
-const progressPercentage = (timeElapsed / readingTimeSeconds) * 100;
-progressBar.style.width = progressPercentage + "%";
-// Jika waktu sudah habis, jalankan Auto-Redirect
-if (timeElapsed >= readingTimeSeconds) {
-clearInterval(timerInterval);
-window.location.href = "/"; // Auto Redirect ke Beranda
-}
-}, 1000); // 1000ms = 1 detik
-</script>
-<script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><script defer="" src="/ext/balon-cf.js"></script></body>
+    <div class="svg-404">
+        <svg viewBox="0 0 400 120" preserveAspectRatio="xMidYMid meet">
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="120" font-weight="900"
+                fill="currentColor">404</text>
+        </svg>
+    </div>
+    <div class="button-container">
+        <a href="/" class="btn">/ Beranda</a>
+        <a href="/search" class="btn">/ Cari</a>
+        <a href="/feed" class="btn">/ Feed</a>
+        <a href="/sitemap" class="btn">/ Sitemap</a>
+    </div>
+    <div class="content-box">
+        <p><strong>Apa itu 404 (Not Found)?</strong></p>
+        <p>Ini adalah kode status HTTP yang artinya, server website berhasil dikunjungi, tapi tujuan spesifik yang
+            diminta tidak ada (biasanya karena salah ketik URL, atau halamannya sudah dihapus/dipindah).</p>
+        <p><strong>Fungsi Utama 404:</strong></p>
+        <ul>
+            <li><strong>Memberi Kepastian (UX):</strong> Daripada menampilkan layar putih kosong yang bikin bingung,
+                halaman ini langsung menegaskan ke pengunjung bahwa mereka nyasar atau salah alamat.</li>
+            <li><strong>Alarm Webmaster (SEO):</strong> Menjadi indikator bagi pengelola web untuk mendeteksi keberadaan
+                <em>broken link</em> (tautan rusak) di situsnya agar bisa segera diperbaiki atau menggunakan
+                <em>redirect</em>.</li>
+        </ul>
+    </div>
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="redirect-progress"></div>
+    </div>
+    <script>
+        const readingTimeSeconds = 30;
+        let timeElapsed = 0;
+        const progressBar = document.getElementById('redirect-progress');
+        // Mulai menghitung mundur dengan interval 1 detik
+        const timerInterval = setInterval(() => {
+            timeElapsed++;
+            const progressPercentage = (timeElapsed / readingTimeSeconds) * 100;
+            progressBar.style.width = progressPercentage + "%";
+            // Jika waktu sudah habis, jalankan Auto-Redirect
+            if (timeElapsed >= readingTimeSeconds) {
+                clearInterval(timerInterval);
+                window.location.href = "/"; // Auto Redirect ke Beranda
+            }
+        }, 1000); // 1000ms = 1 detik
+    </script>
+    <script>if ('modelContext' in navigator) { navigator.modelContext.provideContext({ tools: [{ name: "baca_llms_index", description: "Mengambil daftar lengkap artikel Layar Kosong", inputSchema: { type: "object", properties: {} }, execute: async () => { const res = await fetch('/llms.txt'); return await res.text() } }] }) }</script>
+    <script defer="" src="/ext/balon-cf.js"></script>
+</body>
+
 </html>
