@@ -217,7 +217,7 @@ Hapus semua file contoh bawaan agar situsmu bersih:
 Agar GitHub bisa mengirim file ke Cloudflare secara otomatis, masukkan kredensialmu ke repo hasil *fork*:
 1. Buka tab **Settings** > **Secrets and variables** > **Actions** pada repository GitHub-mu.
 2. Klik **New repository secret** dan tambahkan dua rahasia ini:
-   * `CF_API_TOKEN`: (Isi dengan token API Cloudflare-mu).
+   * `CF_API_TOKENXXX`: (Isi dengan token API Cloudflare-mu).
    * `CF_ACCOUNT_ID`: (Isi dengan ID akun Cloudflare-mu).
 
 ---
