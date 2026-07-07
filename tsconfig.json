@@ -27,8 +27,8 @@
     "noEmit": true
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "dapur/**/*.ts",
+    "dapur/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
