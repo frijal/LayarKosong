@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/6/2026, 4:14:17 PM
+Generated on: 7/7/2026, 3:41:10 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ Generated on: 7/6/2026, 4:14:17 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v24.10 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v24.11 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -875,7 +875,7 @@ Generated on: 7/6/2026, 4:14:17 PM
 | `artikel/mburu-uceng-kelangan-deleg.html` | Mburu Uceng Kelangan Deleg: Pepatah Jawa yang Ngena Banget! 🐟 - Layar Kosong | Mburu Uceng Kelangan Deleg: Pepatah Jawa yang Ngena Banget! 🐟 | Layar Kosong | ✅ Perfect |
 | `artikel/mehmed-ii-al-fatih.html` | Kisah Mehmed II Al-Fatih - Penakluk Konstantinopel - Layar Kosong | Kisah Mehmed II Al-Fatih - Penakluk Konstantinopel | Layar Kosong | ✅ Perfect |
 | `artikel/mekanisme-pemakzulan-presiden.html` | Mekanisme Pemakzulan Presiden di Indonesia: Proses Hukum Tegas Berdasarkan UUD 1945 dan 3 Lembaga Kunci - Layar Kosong | Mekanisme Pemakzulan Presiden di Indonesia: Proses Hukum Tegas Berdasarkan UUD 1945 dan 3 Lembaga Kunci | Layar Kosong | ✅ Perfect |
-| `artikel/melawan-algoritma-emosi.html` | *(Missing)* | *(Missing)* | *(Missing)* | ❌ Check Failed |
+| `artikel/melawan-algoritma-emosi.html` | Jangan Mau Dipermainkan Algoritma: Mengapa Amarah Dijual sebagai Komoditas di Medsos - Layar Kosong | Jangan Mau Dipermainkan Algoritma: Mengapa Amarah Dijual sebagai Komoditas di Medsos | Layar Kosong | ✅ Perfect |
 | `artikel/memahami-ikon-github-actions.html` | Membongkar Misteri Ikon di Log GitHub Actions - Panduan Lengkap - Layar Kosong | Membongkar Misteri Ikon di Log GitHub Actions - Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/memahami-kdrt-lebih-dalam.html` | KDRT: Lebih dari Sekadar Luka Lebam (Memahami Kekerasan dalam Rumah Tangga) - Layar Kosong | KDRT: Lebih dari Sekadar Luka Lebam (Memahami Kekerasan dalam Rumah Tangga) | Layar Kosong | ✅ Perfect |
 | `artikel/memahami-npm-audit-vulnerability.html` | npm audit Menemukan Vulnerability 'High'? Jangan Panik, Ini Penjelasannya! - Layar Kosong | npm audit Menemukan Vulnerability 'High'? Jangan Panik, Ini Penjelasannya! | Layar Kosong | ✅ Perfect |
@@ -1600,7 +1600,7 @@ Generated on: 7/6/2026, 4:14:17 PM
 | `gaya-hidup/manfaat-kurma.html` | Manfaat Memakan Kurma - Khasiat, Nutrisi, dan Cara Mengonsumsinya - Layar Kosong | Manfaat Memakan Kurma - Khasiat, Nutrisi, dan Cara Mengonsumsinya | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/manfaat-pisang-5-alasan-wajib-makan-pisang.html` | Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood - Layar Kosong | Pisang: Buah Murah dengan Manfaat Dahsyat untuk Energi, Pencernaan, dan Mood | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/masa-depan-globalisasi-ekonomi.html` | Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics - Layar Kosong | Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics | Layar Kosong | ✅ Perfect |
-| `gaya-hidup/melawan-algoritma-emosi.html` | *(Missing)* | *(Missing)* | *(Missing)* | ❌ Check Failed |
+| `gaya-hidup/melawan-algoritma-emosi.html` | Jangan Mau Dipermainkan Algoritma: Mengapa Amarah Dijual sebagai Komoditas di Medsos - Layar Kosong | Jangan Mau Dipermainkan Algoritma: Mengapa Amarah Dijual sebagai Komoditas di Medsos | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/memaknai-ketidakpuasan-dunia-energi-kehidupan-dan-pesan-al-qasas-ayat-77.html` | Memaknai Ketidakpuasan Dunia: Energi Kehidupan dan Pesan Al-Qasas Ayat 77 - Layar Kosong | Memaknai Ketidakpuasan Dunia: Energi Kehidupan dan Pesan Al-Qasas Ayat 77 | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/mengenal-taktik-darvo-denial-attack-reverse-victim-offender.html` | Mengenal Taktik DARVO: Manipulasi Psikologis yang Membalikkan Peran - Layar Kosong | Mengenal Taktik DARVO: Manipulasi Psikologis yang Membalikkan Peran | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/menyiapkan-kader-ulama-politik-dan-profesional-agenda-strategis-menuju-muktamar-muhammadiyah-ke-49.html` | Menyiapkan Kader Ulama, Politik, dan Profesional: Agenda Strategis Menuju Muktamar Muhammadiyah ke-49 - Layar Kosong | Menyiapkan Kader Ulama, Politik, dan Profesional: Agenda Strategis Menuju Muktamar Muhammadiyah ke-49 | Layar Kosong | ✅ Perfect |
