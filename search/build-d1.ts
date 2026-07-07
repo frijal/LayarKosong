@@ -108,6 +108,7 @@ const extractArticleData = (filePath: string, file: string, category: string) =>
     const title = superCleanText($('title').text() || file);
     const image = ($('meta[property="og:image"]').attr('content') || "/thumbnail.webp").replace(/'/g, "''");
     const dateISO = $('meta[property="article:published_time"]').attr('content') || new Date().toISOString();
+    const description = ($('meta[name="description"]').attr('content') || "").replace(/'/g, "''");
 
     // Hapus elemen yang tidak relevan
     // Catatan: "i" SENGAJA gak dimasukkan lagi ke sini. Font Awesome icon (<i class="fa-...">)
@@ -129,15 +130,15 @@ const extractArticleData = (filePath: string, file: string, category: string) =>
     // bodyContent DI-strip stopwords karena ini yang dipakai buat FTS matching.
     const bodyContent = stripStopWords(superCleanText(articleArea.text()));
 
-    return { title, image, dateISO, bodyContent };
+    return { title, image, dateISO, bodyContent, description };
 };
 
 /**
  * 🏗️ Generate SQL INSERT statement (Sesuai dengan kolom D1 yang baru)
  */
-const generateInsertSQL = (data: { title: string; bodyContent: string; file: string; category: string; image: string; dateISO: string; code: string }) => {
-    return `INSERT INTO articles_fts (title, content, id, category, image, date, code) ` +
-    `VALUES ('${data.title}', '${data.bodyContent}', '${data.file}', '${data.category}', '${data.image}', '${data.dateISO}', '${data.code}');`;
+const generateInsertSQL = (data: { title: string; bodyContent: string; file: string; category: string; image: string; dateISO: string; code: string; description: string }) => {
+    return `INSERT INTO articles_fts (title, content, id, category, image, date, code, description) ` +
+    `VALUES ('${data.title}', '${data.bodyContent}', '${data.file}', '${data.category}', '${data.image}', '${data.dateISO}', '${data.code}', '${data.description}');`;
 };
 
 // ============================================
