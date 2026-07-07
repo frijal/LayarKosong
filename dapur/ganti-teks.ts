@@ -17,7 +17,6 @@ const EXTS    = (process.env.EXT    ?? process.argv[5] ?? "")
 const EXCLUDED_DIRS = new Set([
   ".cache",
   ".git",
-  ".github",
   ".wrangler",
   "artikelx",
   "build",
