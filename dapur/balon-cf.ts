@@ -40,6 +40,22 @@
     color: #212529;
   }
 
+  /* --- GAYA BACK TO TOP (Tanpa pernak-pernik, hanya susunan posisi) --- */
+  .layar-kosong-btt {
+    position: fixed;
+    /* Bottom = Jarak dasar bubble (2rem) + Ukuran bubble (60px) + Gap (12px) */
+    bottom: calc(2rem + 60px + 12px);
+    right: 2rem;
+    z-index: 9999;
+    font-size: 24px;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
   /* --- RESPONSIVE DESIGN (MOBILE MODE) --- */
   @media (max-width: 768px) {
     chat-bubble-snippet {
@@ -47,6 +63,13 @@
       --chat-bubble-button-right: 1rem !important;
       --chat-bubble-button-size: 48px !important;
       --chat-bubble-button-icon-size: 22px !important;
+    }
+
+    .layar-kosong-btt {
+      /* Bottom = Jarak dasar mobile (1rem) + Ukuran mobile (48px) + Gap (12px) */
+      bottom: calc(1rem + 48px + 12px);
+      right: 1rem;
+      font-size: 20px;
     }
   }
   `;
@@ -76,27 +99,21 @@
 
     // Trik Pemantau Jendela Terbuka untuk Menyisipkan Salam Pembuka
     chatBubble.addEventListener('ready', () => {
-      // Kita pantau klik pada tombol bundar bubble di dalam Shadow DOM
       const shadow = chatBubble.shadowRoot;
       if (!shadow) return;
 
-      // Cari tombol trigger bawaan Cloudflare (biasanya tag button atau class chat-bubble-button)
       const bubbleButton = shadow.querySelector('button') || shadow.querySelector('.chat-bubble-button');
 
       if (bubbleButton) {
         bubbleButton.addEventListener('click', () => {
-          // Kasih jeda sesaat agar jendela chat-nya terbuka dan dirender dulu oleh browser
           setTimeout(() => {
-            // Cari kontainer area chat tempat jalannya pesan mengalir
             const messageContainer = shadow.querySelector('.search-snippet-messages') || shadow.querySelector('.chat-messages') || shadow.querySelector('div');
 
-            // Jika kontainer ketemu dan belum dipasangin salam pembuka kustom kita
             if (messageContainer && !shadow.querySelector('.layar-kosong-welcome')) {
               const welcomeDiv = document.createElement('div');
               welcomeDiv.className = 'layar-kosong-welcome';
               welcomeDiv.innerHTML = '<strong style=\'display:block; font-family:"Noto Naskh Arabic","Amiri",serif; text-align:right; direction:rtl; font-size:1.4em; line-height:1.8;\'>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</strong>Untuk versi penuh, silakan kunjungi <a href="https://ai.dalam.web.id" target="_blank" style="color: #F6821F; font-weight: bold; text-decoration: underline;">ai.dalam.web.id</a>.';
 
-              // Sisipkan di bagian paling atas kontainer pesan chat
               messageContainer.insertBefore(welcomeDiv, messageContainer.firstChild);
             }
           }, 50);
@@ -107,7 +124,23 @@
     document.body.appendChild(chatBubble);
   }
 
-  // 4. Load Library Core ES Module Cloudflare
+  // 4. Suntikkan Tombol Back to Top
+  if (!document.querySelector('.layar-kosong-btt')) {
+    const bttButton = document.createElement('a');
+    bttButton.href = '#';
+    bttButton.className = 'layar-kosong-btt';
+    bttButton.textContent = '🔝'; // Polosan, murni emoji saja
+
+    // Smooth scroll ketika diklik
+bttButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.body.appendChild(bttButton);
+  }
+
+  // 5. Load Library Core ES Module Cloudflare
   const coreScript: HTMLScriptElement = document.createElement('script');
   coreScript.type = 'module';
   coreScript.src = 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/assets/v0.0.40/search-snippet.es.js';
