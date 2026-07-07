@@ -118,7 +118,7 @@ jobs:
         run: |
           set -euo pipefail
           echo "⬇️ Mengunduh state D1 saat ini..."
-          bunx wrangler@latest d1 execute layarkosong-db --remote --command="SELECT id, date FROM articles_fts" --json -c /tmp/wrangler.toml > current_d1_state.json
+          bunx wrangler@latest d1 execute layarkosong-db --remote --command="SELECT id, date, code FROM articles_fts" --json -c /tmp/wrangler.toml > current_d1_state.json
           ls -lah current_d1_state.json
 
       - name: 🔍 Jalankan Script Diff & Generate Patch SQL
