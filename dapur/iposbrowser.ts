@@ -137,7 +137,7 @@ for (const cat in data) {
   }, 100);
 });
 
-// --- D. EKSEKUSI PARALEL ---
+// --- D. EKSEKUSI PARALEL ------
 const [stats, articleDate] = await Promise.all([
   fetchStats,
   fetchDate
