@@ -1,100 +1,66 @@
 /**
- * MASTER DATA PROVIDER (Ultra Fast & Tiny)
- * v2.0 - Dual Core Fetching (Full & Lite)
+ * MASTER DATA PROVIDER v3.0 (D1 Edge Core)
+ * Jembatan mulus dari array JSON statis ke Cloudflare D1
  */
 
 declare global {
 	interface Window {
-		siteDataProvider: { getFor: (ui: string) => Promise<any> };
+		siteDataProvider: { getFor: (ui: string) => Promise<Record<string, any[]>> };
 	}
 }
 
-type Row = any[];
-type DB = Record<string, Row[]>;
-
-const SEMUANYA = { title: 0, id: 1, image: 2, date: 3, description: 4 };
-
-const UI: Record<string, Record<string, number>> = {
-	"halaman-pencarian.ts": SEMUANYA, // (Sebagai fallback jika tidak pakai D1)
-	"homepage.ts": SEMUANYA,
-	"img.html": { title: 1, url: 2, date: 3 },
-	"iposbrowser.ts": { slug: 1, date: 3 },
-	"pemandu.ts": { title: 0, id: 1, image: 2, description: 4 },
-	"sitemap.ts": { title: 0, id: 1, date: 3, description: 4 }
-};
-
-// 🎯 DAFTAR UI YANG CUKUP PAKAI DATA "DIET" (artikel-lite.json)
-const LITE_UIS = ["pemandu.ts"];
-
-const mapperCache: Record<string, Function> = {};
-
-function mapper(schema: Record<string, number>) {
-	const k = JSON.stringify(schema);
-	if (mapperCache[k]) return mapperCache[k];
-
-	const f = Object.entries(schema)
-	.map(([n, i]) => `"${n}":r[${i}]`)
-	.join(",");
-
-	return mapperCache[k] = new Function("r", `return{${f}}`);
-}
-
 window.siteDataProvider = {
-	// State untuk Data Full (artikel.json)
-	c: null as DB | null,
-	p: null as Promise<DB> | null,
-
-	// State untuk Data Diet (artikel-lite.json)
-	cLite: null as DB | null,
-	pLite: null as Promise<DB> | null,
-
-	// 📦 FETCH DATA FULL (Untuk keperluan berat)
-	async getData() {
-		if (this.c) return this.c;
-		if (this.p) return this.p;
-
-		this.p = fetch("/artikel.json")
-		.then(r => r.json())
-		.then((d: DB) => (this.c = d, this.p = null, d));
-
-		return this.p;
-	},
-
-	// 🚀 FETCH DATA DIET (Untuk Marquee & Navigasi Cepat)
-	async getLiteData() {
-		if (this.cLite) return this.cLite;
-		if (this.pLite) return this.pLite;
-
-		this.pLite = fetch("/artikel-lite.json")
-		.then(r => r.json())
-		.then((d: DB) => (this.cLite = d, this.pLite = null, d));
-
-		return this.pLite;
-	},
+	// 🧠 Memori Cache: Simpan hasil fetch per UI agar tidak spam request ke D1
+	cache: {} as Record<string, Record<string, any[]>>,
+	// 🛡️ Promise Tracker: Cegah race condition jika UI yang sama memanggil getFor berbarengan
+	promises: {} as Record<string, Promise<Record<string, any[]>>>,
 
 	async getFor(ui: string) {
-		// Cek apakah UI yang memanggil butuh data ringan atau berat
-		const isLite = LITE_UIS.includes(ui);
+		// 1. Return dari cache jika sudah ada
+		if (this.cache[ui]) return this.cache[ui];
 
-		// Panggil fungsi fetch yang sesuai
-		const db = await (isLite ? this.getLiteData() : this.getData());
+		// 2. Return promise jika sedang dalam proses fetch (mencegah double fetch)
+		if (this.promises[ui]) return this.promises[ui];
 
-		const s = UI[ui];
-		if (!s) return db;
+		// 3. Tarik data dari Cloudflare Pages Function (katalog.js)
+		this.promises[ui] = fetch(`/katalog?ui=${ui}`)
+		.then(res => {
+			if (!res.ok) throw new Error(`Gagal mengambil katalog untuk UI: ${ui}`);
+			return res.json();
+		})
+		.then((flatData: any[]) => {
+			// 4. REKONSTRUKSI KELOMPOK KATEGORI
+			// Mengubah bentuk array flat dari D1 menjadi Object Grouping { "kategori": [...] }
+			// agar kompatibel 100% dengan script UI lama (homepage.ts, sitemap.ts, dll)
+			const groupedOut: Record<string, any[]> = {};
 
-		const m = mapper(s);
-		const out: Record<string, any[]> = {};
+			for (let i = 0; i < flatData.length; i++) {
+				const item = flatData[i];
+				// Gunakan fallback 'Lainnya' jika kategori kosong
+				const cat = item.category || 'Lainnya';
 
-		for (const k in db) {
-			const rows = db[k];
-			const arr = new Array(rows.length);
-
-			for (let i = 0; i < rows.length; i++)
-				arr[i] = m(rows[i]);
-
-			out[k] = arr;
+		if (!groupedOut[cat]) {
+			groupedOut[cat] = [];
 		}
 
-		return out;
+		// Pecah objeknya: pisahkan 'category', sisanya kirim ke array UI
+		// (Sesuai dengan ekspektasi output mapper lama)
+		const { category, ...rest } = item;
+		groupedOut[cat].push(rest);
+			}
+
+			// 5. Simpan ke cache, bersihkan tracker promise, lalu sajikan ke UI
+			this.cache[ui] = groupedOut;
+			delete this.promises[ui];
+
+			return groupedOut;
+		})
+		.catch(err => {
+			console.error("D1 Provider Error:", err);
+			delete this.promises[ui];
+			return {}; // Return objek kosong agar UI tidak crash
+		});
+
+		return this.promises[ui];
 	}
 };
