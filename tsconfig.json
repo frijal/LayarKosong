@@ -31,10 +31,24 @@
     "dapur/**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "dist",
-    "build",
-    ".wrangler",
-    ".git"
+    ".git",
+".wrangler",
+"build",
+"dist",
+"functions",
+"node_modules",
+"search",
+"artikel",
+"artikelx",
+"gaya-hidup",
+"img",
+"jejak-sejarah",
+"lainnya",
+"mini",
+"olah-media",
+"opini-sosial",
+"sementara",
+"sistem-terbuka",
+"warta-tekno"
   ]
 }
