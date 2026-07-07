@@ -11,6 +11,8 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
 
@@ -25,14 +27,13 @@
     "noEmit": true
   },
   "include": [
-    "dapur/**/*.ts",
-    "dapur/**/*.tsx",
-    "index.ts",
-    "index.tsx"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules",
     "dist",
+    "build",
     ".wrangler",
     ".git"
   ]
