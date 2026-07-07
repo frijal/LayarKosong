@@ -1,6 +1,6 @@
 /**
  * Twikoo Loader for Layar Kosong
- * Versi: 1.7.13-turnstile-borrow
+ * Versi: 1.7.14-turnstile-borrow
  * Target: #response
  *
  * Prinsip:
@@ -45,7 +45,7 @@ type LayarKosongWindow = Window & {
 
   const TWIKOO_ENV_ID = 'https://kom.dalam.web.id';
   const TWIKOO_CONTAINER_ID = '#response';
-  const TWIKOO_CDN = 'https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js';
+  const TWIKOO_CDN = 'https://cdn.jsdelivr.net/npm/twikoo@1.7.14/dist/twikoo.all.min.js';
 
   const container = document.querySelector<HTMLElement>(TWIKOO_CONTAINER_ID);
   if (!container) return;
@@ -251,7 +251,7 @@ type LayarKosongWindow = Window & {
       await lkWindow.twikoo.init({
         envId: TWIKOO_ENV_ID,
         el: TWIKOO_CONTAINER_ID,
-        lang: 'en'
+        lang: 'id'
       });
 
       container.dataset.twikooState = 'ready';
