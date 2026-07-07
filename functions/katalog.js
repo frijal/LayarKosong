@@ -33,8 +33,8 @@ export async function onRequest(context) {
 
   try {
     const { results } = await env.DB.prepare(`
-      SELECT ${cols} 
-      FROM articles_fts 
+      SELECT ${cols}
+      FROM articles_fts
       ORDER BY date DESC
     `).all();
 
