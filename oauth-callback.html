@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Universal OAuth Callback - Layar Kosong</title>
+    
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/oauth-callback">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any"><link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="me" href="https://github.com/frijal">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Halaman redirect untuk autentikasi OAuth Universal. Memproses token akses dan mengalihkan pengguna ke aplikasi Layar Kosong secara aman.">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="publisher" content="Jaga Data Pribadi Tetap Aman">
+    <meta name="referrer" content="no-referrer">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:description" content="Proses autentikasi OAuth untuk aplikasi Layar Kosong.">
+    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:title" content="Universal OAuth Callback - Layar Kosong">
+    <meta name="twitter:url" content="https://dalam.web.id/oauth-callback">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:modified_time" content="2026-07-07T13:00:36.282Z">
+    <meta property="article:published_time" content="2026-07-07T03:00:06.940Z">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <meta property="og:description" content="Menangani otentikasi OAuth universal untuk ekosistem Layar Kosong.">
+    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:title" content="Universal OAuth Callback - Layar Kosong">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dalam.web.id/oauth-callback">
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --border-color: #334155;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 40px 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+        h2 { margin-top: 0; color: var(--accent-color); font-size: 24px; display: flex; align-items: center; gap: 10px; }
+        p { color: #94a3b8; line-height: 1.6; }
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #334155;
+            margin-bottom: 15px;
+        }
+        .code-box {
+            background: #090d16;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: #e2e8f0;
+            position: relative;
+        }
+        .btn {
+            background: var(--accent-color);
+            color: #0f172a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.9; }
+        .footer-status {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 13px;
+        }
+        .footer-status summary { cursor: pointer; color: #64748b; font-weight: bold; }
+        .status-list { list-style: none; padding: 0; margin: 10px 0 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .status-list li { color: #cbd5e1; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 id="provider-title">🔑 OAuth Callback</h2>
+    <div id="provider-badge" class="badge">Mendeteksi Layanan...</div>
+
+    <p>Otentikasi berhasil! Berikut adalah kode otorisasi atau token yang dilempar oleh <b>provider</b> Anda.</p>
+
+    <h3>1. Raw Code / Token</h3>
+    <div class="code-box" id="raw-code">Mencari parameter di URL...</div>
+    <button class="btn" onclick="copyText('raw-code')">Salin Kode</button>
+
+    <div id="curl-section" style="display: none;">
+        <h3>2. Perintah Penukaran Token (cURL)</h3>
+        <p>Jalankan perintah ini di terminal Anda untuk mendapatkan Access Token final:</p>
+        <div class="code-box" id="curl-code"></div>
+        <button class="btn" style="background: #10b981;" onclick="copyText('curl-code')">Salin Perintah cURL</button>
+    </div>
+
+  </div>
+
+<script>
+    // Ambil parameter URL saat ini
+    const urlParams = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.replace('#', '?')); // Jaga-jaga jika OAuth menggunakan implicit grant (#access_token=)
+
+    // Cari code (OAuth2) atau oauth_token (OAuth1)
+    const authCode = urlParams.get('code') || urlParams.get('oauth_token') || hashParams.get('access_token');
+    const state = urlParams.get('state') || '';
+
+    // Deteksi provider berdasarkan referer, state, atau parameter bawaan platform
+    let provider = {
+        name: "Layanan Umum / Tidak Dikenal",
+        emoji: "🌐",
+        color: "#64748b",
+        curl: null
+    };
+
+    // Logika deteksi pintar
+    const currentUrl = window.location.href.split('?')[0];
+
+    // Cek berdasarkan parameter 'state' atau tebakan platform
+    if (document.referrer.includes('linkedin.com') || state.includes('linkedin') || urlParams.get('code')?.startsWith('AQ')) {
+        provider = {
+            name: "LinkedIn",
+            emoji: "🆕 ⏸️",
+            color: "#0a66c2",
+            curl: `curl -X POST https://www.linkedin.com/oauth/v2/accessToken \\\n  -H "Content-Type: application/x-www-form-urlencoded" \\\n  -d "grant_type=authorization_code" \\\n  -d "code=${authCode}" \\\n  -d "client_id=CLIENT_ID_KAMU" \\\n  -d "client_secret=CLIENT_SECRET_KAMU" \\\n  -d "redirect_uri=${currentUrl}"`
+        };
+    } else if (document.referrer.includes('facebook.com') || state.includes('facebook')) {
+        provider = {
+            name: "Facebook",
+            emoji: "🚀",
+            color: "#1877f2",
+            curl: `curl -X GET "https://graph.facebook.com/v18.0/oauth/access_token?client_id=CLIENT_ID_KAMU&redirect_uri=${currentUrl}&client_secret=CLIENT_SECRET_KAMU&code=${authCode}"`
+        };
+    } else if (document.referrer.includes('discord.com') || state.includes('discord')) {
+        provider = {
+            name: "Discord",
+            emoji: "🦋",
+            color: "#5865F2",
+            curl: `curl -X POST https://discord.com/api/oauth2/token \\\n  -H "Content-Type: application/x-www-form-urlencoded" \\\n  -d "client_id=CLIENT_ID_KAMU" \\\n  -d "client_secret=CLIENT_SECRET_KAMU" \\\n  -d "grant_type=authorization_code" \\\n  -d "code=${authCode}" \\\n  -d "redirect_uri=${currentUrl}"`
+        };
+    } else if (state.includes('threads') || state.includes('instagram')) {
+        provider = {
+            name: "Threads",
+            emoji: "⚙️ ⏸️",
+            color: "#000000",
+            curl: `curl -X POST https://graph.threads.net/oauth/access_token \\\n  -d "client_id=CLIENT_ID_KAMU" \\\n  -d "client_secret=CLIENT_SECRET_KAMU" \\\n  -d "grant_type=authorization_code" \\\n  -d "redirect_uri=${currentUrl}" \\\n  -d "code=${authCode}"`
+        };
+    } else if (urlParams.has('oauth_verifier')) {
+        // Deteksi OAuth 1.0a (biasanya digunakan Tumblr jadul jika belum migrasi penuh ke OAuth2)
+        provider = {
+            name: "Tumblr / Provider OAuth 1.0a",
+            emoji: "🎨",
+            color: "#36465d",
+            curl: `# Salin token dan verifier di bawah untuk script backend Anda.\n# Verifier: ${urlParams.get('oauth_verifier')}`
+        };
+    }
+
+    // Render data ke halaman UI
+    if (authCode) {
+        document.getElementById('raw-code').innerText = authCode;
+        document.getElementById('provider-title').innerText = `${provider.emoji} Callback Terdeteksi: ${provider.name}`;
+
+        const badge = document.getElementById('provider-badge');
+        badge.innerText = provider.name;
+        badge.style.backgroundColor = provider.color;
+
+        if (provider.curl) {
+            document.getElementById('curl-section').style.display = 'block';
+            document.getElementById('curl-code').innerText = provider.curl;
+        }
+    } else {
+        document.getElementById('raw-code').innerText = "Tidak ada kode otorisasi (`code`) yang ditemukan di URL. Halaman siap menerima kiriman OAuth.";
+    }
+
+    // Fungsi salin teks ke clipboard
+    function copyText(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text);
+        alert('Teks berhasil disalin ke clipboard!');
+    }
+</script>
+
+</body>
+</html>
