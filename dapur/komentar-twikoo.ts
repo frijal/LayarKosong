@@ -158,7 +158,6 @@ type LayarKosongWindow = Window & {
 
     Node.prototype.appendChild = function <T extends Node>(this: Node, node: T): T {
       if (shouldBorrowExistingTurnstile(node)) {
-        console.warn('[Layar Kosong] Twikoo memakai Turnstile yang sudah ada. Duplicate api.js diblokir.');
         waitExistingTurnstileThenLoad(node);
         return node;
       }
@@ -172,7 +171,6 @@ type LayarKosongWindow = Window & {
       child: Node | null
     ): T {
       if (shouldBorrowExistingTurnstile(node)) {
-        console.warn('[Layar Kosong] Twikoo memakai Turnstile yang sudah ada. Duplicate api.js diblokir.');
         waitExistingTurnstileThenLoad(node);
         return node;
       }
@@ -259,7 +257,6 @@ type LayarKosongWindow = Window & {
       container.dataset.twikooState = 'ready';
       twikooState.initializedContainers.add(container);
 
-      console.log('Twikoo 1.7.13 berhasil dimuat di #response dengan Turnstile singleton.');
     } catch (error) {
       container.dataset.twikooState = 'error';
       console.error('Gagal memuat Twikoo:', error);
