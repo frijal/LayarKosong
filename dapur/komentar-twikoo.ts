@@ -251,7 +251,7 @@ type LayarKosongWindow = Window & {
       await lkWindow.twikoo.init({
         envId: TWIKOO_ENV_ID,
         el: TWIKOO_CONTAINER_ID,
-        lang: 'en'
+        lang: 'id'
       });
 
       container.dataset.twikooState = 'ready';
