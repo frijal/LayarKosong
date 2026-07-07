@@ -10,6 +10,7 @@ on:
     paths:
       - '_redirects'
       - '_headers'
+      - '**/*.html' # Trigger jika ada artikel HTML yang diubah/ditambah
 
   workflow_dispatch:
     inputs:
@@ -87,7 +88,6 @@ jobs:
             --include='*.webmanifest' \
             --exclude='*' \
             source/ deploy_dir/
-          # 🗑️ Catatan: artikel.json & artikel-lite.json resmi dihapus dari daftar rsync!
 
       # 🔑 Create Config (selalu dibuat — dibutuhkan oleh D1 maupun deploy)
       - name: Create Temporary Wrangler Config
@@ -123,7 +123,6 @@ jobs:
 
       - name: 🔍 Jalankan Script Diff & Generate Patch SQL
         if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'full' }}
-        # Pastikan path ini sesuai dengan script diff Mas Frijal yang baru
         run: bun run source/search/sync-d1-diff.ts 
 
       - name: 🚀 Eksekusi Patch ke D1
@@ -176,14 +175,13 @@ jobs:
         if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'full' }}
         shell: bash
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }} # ⚠️ Pastikan secret ini sudah di-set di GitHub!
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
         run: |
           echo "Menghapus cache khusus untuk endpoint /katalog di Cloudflare Edge..."
           
-          # Mendaftarkan seluruh variasi URL secara eksak (exact match)
           curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
-               -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+               -H "Authorization: Bearer $CF_API_TOKEN" \
                -H "Content-Type: application/json" \
                --data '{
                  "files": [
@@ -196,4 +194,4 @@ jobs:
                  ]
                }'
           
-          echo -e "\n✅ Cache URL katalog spesifik berhasil dibersihkan!"
+          echo -e "\n✅ Permintaan Purge Cache terkirim!"
