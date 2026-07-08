@@ -3,17 +3,6 @@
   const style: HTMLStyleElement = document.createElement('style');
   style.textContent = `
   chat-bubble-snippet {
-    /* 🔥 FIX LAYOUT SHIFT: Keluarkan cangkang dari document flow agar tidak menggeser CSS web existing */
-    position: fixed !important;
-    bottom: 0;
-    right: 0;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    pointer-events: none !important; /* Cangkang tidak menghalangi klik, tapi isinya (shadow dom) tetap bisa diklik */
-
     /* --- AREA WARNA & BRANDING --- */
     --search-snippet-primary-color: #F6821F;
     --search-snippet-primary-hover: #E06B0F;
@@ -32,6 +21,7 @@
     --search-snippet-animation-duration: 0s !important;
 
     /* --- POSITIONING DEFAULT (DESKTOP) --- */
+    /* Bubble sekarang kita dorong ke atas sejauh tinggi emoji BTT (24px) + gap (12px) */
     --chat-bubble-button-bottom: calc(2rem + 36px) !important;
     --chat-bubble-button-right: 2rem !important;
     --chat-bubble-button-z-index: 9999 !important;
@@ -54,28 +44,25 @@
   /* --- GAYA BACK TO TOP (Polosan di paling bawah) --- */
   .layar-kosong-btt {
     position: fixed;
-    bottom: 2rem;
+    bottom: 2rem; /* Mengambil alih posisi lama bubble di dasar layar */
     right: 2rem;
     z-index: 9999;
     font-size: 24px;
-    line-height: 1; /* Diperbaiki agar tidak ada sisa ruang */
-    width: 60px;
-    height: 60px; /* Ditambahkan height agar sentris */
-    display: flex; /* Flexbox agar emoji benar-benar di tengah */
-    align-items: center;
-    justify-content: center;
+    line-height: 24px;
+    width: 60px; /* Disamakan dengan ukuran bubble agar rata tengah sempurna */
+    text-align: center;
     text-decoration: none;
     cursor: pointer;
     background: transparent;
     border: none;
     padding: 0;
     margin: 0;
-    pointer-events: auto;
   }
 
   /* --- RESPONSIVE DESIGN (MOBILE MODE) --- */
   @media (max-width: 768px) {
     chat-bubble-snippet {
+      /* Bubble mobile didorong ke atas: tinggi emoji BTT (20px) + gap (12px) */
       --chat-bubble-button-bottom: calc(1rem + 32px) !important;
       --chat-bubble-button-right: 1rem !important;
       --chat-bubble-button-size: 48px !important;
@@ -83,17 +70,17 @@
     }
 
     .layar-kosong-btt {
-      bottom: 1rem;
+      bottom: 1rem; /* BTT mobile menempel di dasar layar */
       right: 1rem;
       font-size: 20px;
-      width: 48px;
-      height: 48px;
+      line-height: 20px;
+      width: 48px; /* Disamakan dengan ukuran bubble mobile */
     }
   }
   `;
   document.head.appendChild(style);
 
-  // 2. Setup Lokalisasi Bahasa Indonesia
+  // 2. Setup Lokalisasi Bahasa Indonesia (Gunakan kunci yang valid untuk Bubble)
   interface ChatTranslations {
     chatPlaceholder: string;
     chatTitle: string;
@@ -108,7 +95,7 @@
     sendButtonLabel: "Kirim"
   };
 
-  // 3. Suntikan Komponen Chat Bubble ke Body
+  // 3. Suntikkan Komponen Chat Bubble ke Body
   if (!document.querySelector('chat-bubble-snippet')) {
     const chatBubble: HTMLElement = document.createElement('chat-bubble-snippet');
     chatBubble.setAttribute('api-url', 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/');
@@ -142,14 +129,14 @@
     document.body.appendChild(chatBubble);
   }
 
-  // 4. Suntikkan Tombol Back to Top
+  // 4. Suntikkan Tombol Back to Top (Sekarang ditaruh di bawah bubble)
   if (!document.querySelector('.layar-kosong-btt')) {
     const bttButton = document.createElement('a');
     bttButton.href = '#';
     bttButton.className = 'layar-kosong-btt';
-    bttButton.textContent = '🔝';
+bttButton.textContent = '🔝';
 
-    // Smooth scroll ketika diklik
+// Smooth scroll ketika diklik
 bttButton.addEventListener('click', (e) => {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
