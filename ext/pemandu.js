@@ -164,8 +164,8 @@ background-color: var(--border, #eee);
 
 .playground-title {
   height: var(--thumb-size);
-  font-size: calc(var(--thumb-size) / 3);
-  line-height: calc(var(--thumb-size) / 3);
+  font-size: calc(var(--thumb-size) / 6);
+  line-height: calc(var(--thumb-size) / 6);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
   flex-grow: 1;
