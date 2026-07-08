@@ -226,12 +226,12 @@ if (!nav) {
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
 
-  // ✅ SOLUSI: Taruh elemen Navigasi ini sebagai kakak (sebelum) grid,
-  // bukan dimasukkan ke dalam "perut" grid.
+  // ✅ SOLUSI: Taruh elemen Navigasi tepat DI BAWAH grid
 if (grid.parentNode) {
-  grid.parentNode.insertBefore(nav, grid);
+  // Kita menyisipkan 'nav' tepat sebelum elemen setelah 'grid' (artinya: di bawah grid)
+  grid.parentNode.insertBefore(nav, grid.nextSibling);
 } else {
-  document.body.appendChild(nav); // Fallback darurat
+  document.body.appendChild(nav);
 }
 }
 
