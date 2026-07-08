@@ -46,6 +46,7 @@ ${_}
   `}).join(""),Z.querySelectorAll(".lk-related-thumb[data-fallback-idx]").forEach((Q)=>{let z=Number(Q.dataset.fallbackIdx),O=$[z];if(!O)return;let W=O.image||X;L(Q,[W,X])})}catch(Y){console.error(Y),Z.style.display="none"}}function I(V,Z){function Y(J){if(J==="down"){window.location.href="/";return}if(J==="up"){let $=M(Z,V);if($)window.location.href=`/${$.slug}`;return}let X=document.querySelector(`link[rel="${J}"]`);if(X){let $=X.getAttribute("href");if($)window.location.href=$}}document.addEventListener("keydown",(J)=>{if(P())return;let X=document.activeElement;if(X.tagName==="INPUT"||X.tagName==="TEXTAREA"||X.isContentEditable||X.closest("#disqus_thread"))return;if(J.ctrlKey&&J.key==="ArrowDown")J.preventDefault(),Y("down");if(J.ctrlKey&&J.key==="ArrowUp")J.preventDefault(),Y("up");if(J.ctrlKey&&J.key==="ArrowRight")J.preventDefault(),Y("next");if(J.ctrlKey&&J.key==="ArrowLeft")J.preventDefault(),Y("prev")})}let R=[];function v(){if(document.getElementById("playground-styles"))return;let V=document.createElement("style");V.id="playground-styles",V.innerHTML=`
 :root {
   --thumb-size: 4.5rem;
+  --item-gap: 1.25rem;
 }
 
 /* WIDGET SEBAGAI FLEX CONTAINER */
@@ -61,11 +62,14 @@ display: flex;
 flex-direction: column;
 }
 
-/* WADAH LIST ARTIKEL */
+/* WADAH LIST ARTIKEL — tinggi dikunci fix: 7 item x thumb-size + 6 jarak antar item */
 #playground-list {
 display: flex;
 flex-direction: column;
+gap: var(--item-gap);
 order: 1;
+height: calc((var(--thumb-size) * 7) + (var(--item-gap) * 6));
+overflow: hidden;
 }
 
 /* WADAH TOMBOL AKSI (Hide + Shuffle sejajar horizontal) */
@@ -139,10 +143,10 @@ background-color: var(--border, #eee);
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 1.25rem;
   text-decoration: none;
   color: inherit;
   cursor: pointer; /* Memastikan ikon tangan selalu muncul */
+  flex-shrink: 0; /* Biar tinggi tiap item konsisten 4.5rem, nggak ketekan sama height fix parent */
 }
 
 .playground-item:hover {
@@ -160,7 +164,9 @@ background-color: var(--border, #eee);
 
 .playground-title {
   height: var(--thumb-size);
+  font-size: calc(var(--thumb-size) / 3);
   line-height: calc(var(--thumb-size) / 3);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
   flex-grow: 1;
 
