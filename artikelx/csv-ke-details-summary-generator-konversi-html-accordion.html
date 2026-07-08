@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSV ke Details Summary Generator - Konversi HTML Accordion</title>
+<meta name="title" content="CSV ke Details Summary Generator - Konversi HTML Accordion">
+<meta name="description" content="Ubah data atau file CSV menjadi kode HTML dengan format <details> dan <summary> (accordion) secara otomatis. Cepat, rapi, dan siap pakai.">
+<meta name="keywords" content="csv ke html, csv to details summary, html accordion generator, konversi csv, tools web developer, format details summary, format accordion html">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="Indonesian">
+<meta name="author" content="Frijal">
+    <link rel="canonical" href="https://dalam.web.id/artikel/csv-ke-details-summary-generator-konversi-html-accordion.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dalam.web.id/tools/csv-to-details"> <meta property="og:title" content="CSV ke Details Summary Generator - Konversi HTML Accordion">
+<meta property="og:description" content="Ubah data atau file CSV menjadi kode HTML dengan format <details> dan <summary> (accordion) secara otomatis. Cepat, rapi, dan siap pakai.">
+<meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Gemini_Generated_Image_jbov09jbov09jbov.png"> <meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://dalam.web.id/tools/csv-to-details">
+<meta property="twitter:title" content="CSV ke Details Summary Generator - Konversi HTML Accordion">
+<meta property="twitter:description" content="Ubah data atau file CSV menjadi kode HTML dengan format <details> dan <summary> (accordion) secara otomatis. Cepat, rapi, dan siap pakai.">
+<meta property="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Gemini_Generated_Image_jbov09jbov09jbov.png">
+<meta property="twitter:creator" content="@responaja">
+  <style>
+    :root {
+      --page-bg: #f4f7fb;
+      --card-bg: #ffffff;
+      --text-main: #172033;
+      --text-muted: #5c677d;
+      --border: #d9e0ec;
+      --accent: #0b63ce;
+      --accent-2: #12805c;
+      --danger: #b42318;
+      --code-bg: #101828;
+      --code-text: #f2f4f7;
+      --shadow: 0 14px 40px rgba(15, 23, 42, .08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page-bg: #0b1020;
+        --card-bg: #121a2b;
+        --text-main: #f5f7fb;
+        --text-muted: #c3cad8;
+        --border: #2c3650;
+        --accent: #66a6ff;
+        --accent-2: #5ad8a6;
+        --danger: #ff8a80;
+        --code-bg: #060914;
+        --code-text: #f5f7fb;
+        --shadow: 0 14px 40px rgba(0, 0, 0, .25);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      background: var(--page-bg);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 2rem auto 4rem;
+    }
+
+    h1 {
+      margin: 0 0 .5rem;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+    }
+
+    .lead {
+      margin: 0 0 1.5rem;
+      max-width: 72ch;
+      color: var(--text-muted);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: .45rem;
+    }
+
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      background: var(--card-bg);
+      color: var(--text-main);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 360px;
+      padding: .9rem;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+
+    input[type="file"] {
+      padding: .8rem;
+    }
+
+    .help {
+      margin: .45rem 0 0;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    .actions,
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      align-items: center;
+      margin-top: .9rem;
+    }
+
+    .options label {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    button {
+      border: 0;
+      border-radius: .7rem;
+      padding: .7rem 1rem;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      color: #fff;
+      background: var(--accent);
+    }
+
+    button.secondary {
+      background: var(--accent-2);
+    }
+
+    button.ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    button:hover {
+      filter: brightness(.95);
+    }
+
+    .status {
+      min-height: 1.5rem;
+      margin-top: .75rem;
+      color: var(--text-muted);
+      font-weight: 650;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .preview-box {
+      min-height: 360px;
+      max-height: 680px;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1rem;
+      background: var(--card-bg);
+    }
+
+    .output-box {
+      min-height: 420px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Generator CSV ke &lt;details&gt; / &lt;summary&gt;</h1>
+    <p class="lead">
+      Tempel CSV atau pilih file <code>.csv</code>, lalu generate accordion HTML bertingkat untuk struktur DPP, DPD, DPC, PAC, dan PR. Semua proses berjalan lokal di browser, tanpa upload ke server.
+    </p>
+
+    <section class="card">
+      <label for="csvFile">Pilih file CSV</label>
+      <input id="csvFile" type="file" accept=".csv,text/csv,text/plain">
+      <p class="help">Boleh juga pakai CSV hasil copy dari spreadsheet. Parser mendukung koma di dalam tanda kutip, misalnya <code>"IMBRAN B.H., S.Pd., S.H."</code>.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <label for="csvInput">Input CSV</label>
+        <textarea id="csvInput" spellcheck="false" placeholder="Tempel data CSV di sini..."></textarea>
+
+        <div class="options" aria-label="Opsi output">
+          <label><input id="includeCss" type="checkbox" checked> Sertakan CSS</label>
+          <label><input id="includeWp" type="checkbox" checked> Bungkus sebagai blok WordPress HTML</label>
+          <label><input id="includeCount" type="checkbox" checked> Tampilkan jumlah pengurus</label>
+        </div>
+
+        <div class="actions">
+          <button id="generateBtn" type="button">Generate HTML</button>
+          <button id="copyBtn" class="secondary" type="button">Copy Output</button>
+          <button id="downloadBtn" class="ghost" type="button">Download HTML</button>
+          <button id="clearBtn" class="ghost" type="button">Bersihkan</button>
+        </div>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="card">
+        <label>Preview</label>
+        <div id="preview" class="preview-box">
+          <p class="help">Preview akan muncul setelah tombol Generate ditekan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <label for="htmlOutput">Output HTML siap tempel</label>
+      <textarea id="htmlOutput" class="output-box" spellcheck="false" readonly placeholder="Output HTML akan muncul di sini..."></textarea>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const csvFile = document.getElementById('csvFile');
+      const csvInput = document.getElementById('csvInput');
+      const htmlOutput = document.getElementById('htmlOutput');
+      const preview = document.getElementById('preview');
+      const statusBox = document.getElementById('status');
+      const includeCss = document.getElementById('includeCss');
+      const includeWp = document.getElementById('includeWp');
+      const includeCount = document.getElementById('includeCount');
+      const generateBtn = document.getElementById('generateBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const clearBtn = document.getElementById('clearBtn');
+
+      let lastGenerated = '';
+
+      const GENERATED_CSS = `<style>
+  .lbh-org-wrapper {
+    --lbh-bg: #ffffff;
+    --lbh-bg-soft: #f6f8fb;
+    --lbh-bg-summary: #eef4ff;
+    --lbh-text: #172033;
+    --lbh-muted: #64748b;
+    --lbh-border: #d9e2ef;
+    --lbh-accent: #0b63ce;
+    --lbh-accent-soft: #dbeafe;
+    --lbh-warning-bg: #fff7ed;
+    --lbh-warning-text: #9a3412;
+    --lbh-radius: 14px;
+    --lbh-shadow: 0 10px 28px rgba(15, 23, 42, .08);
+    color: var(--lbh-text);
+    font-family: inherit;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .lbh-org-wrapper {
+      --lbh-bg: #111827;
+      --lbh-bg-soft: #0b1220;
+      --lbh-bg-summary: #162033;
+      --lbh-text: #f8fafc;
+      --lbh-muted: #cbd5e1;
+      --lbh-border: #334155;
+      --lbh-accent: #7db7ff;
+      --lbh-accent-soft: #1e3a5f;
+      --lbh-warning-bg: #3b2514;
+      --lbh-warning-text: #fed7aa;
+      --lbh-shadow: none;
+    }
+  }
+
+  .lbh-org-wrapper,
+  .lbh-org-wrapper * {
+    box-sizing: border-box;
+  }
+
+  .lbh-org-wrapper {
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+
+  .lbh-org-title {
+    margin: 0 0 1rem;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .lbh-org-note {
+    margin: 0 0 1rem;
+    color: var(--lbh-muted);
+  }
+
+  .lbh-node {
+    margin: .75rem 0;
+    border: 1px solid var(--lbh-border);
+    border-radius: var(--lbh-radius);
+    background: var(--lbh-bg);
+    box-shadow: var(--lbh-shadow);
+    overflow: hidden;
+  }
+
+  .lbh-node .lbh-node {
+    margin: .75rem 0 0;
+    box-shadow: none;
+  }
+
+  .lbh-node summary {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: .9rem 1rem;
+    cursor: pointer;
+    list-style: none;
+    background: var(--lbh-bg-summary);
+    color: var(--lbh-text);
+    font-weight: 800;
+  }
+
+  .lbh-node summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .lbh-node summary::before {
+    content: "+";
+    width: 1.55rem;
+    height: 1.55rem;
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    color: var(--lbh-accent);
+    background: var(--lbh-accent-soft);
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .lbh-node[open] > summary::before {
+    content: "−";
+  }
+
+  .lbh-node-title {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .lbh-badge,
+  .lbh-count {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: .2rem .55rem;
+    font-size: .78rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .lbh-count {
+    margin-left: auto;
+    color: var(--lbh-muted);
+    background: var(--lbh-bg-soft);
+    border: 1px solid var(--lbh-border);
+  }
+
+  .lbh-badge {
+    color: var(--lbh-warning-text);
+    background: var(--lbh-warning-bg);
+    border: 1px solid color-mix(in srgb, var(--lbh-warning-text) 28%, transparent);
+    font-weight: 800;
+  }
+
+  .lbh-node-body {
+    padding: 1rem;
+    background: var(--lbh-bg);
+  }
+
+  .lbh-member-list {
+    display: grid;
+    gap: .6rem;
+    margin: 0 0 .9rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lbh-person {
+    display: grid;
+    gap: .35rem;
+    padding: .8rem;
+    border: 1px solid var(--lbh-border);
+    border-radius: 12px;
+    background: var(--lbh-bg-soft);
+  }
+
+  @media (min-width: 720px) {
+    .lbh-person {
+      grid-template-columns: minmax(160px, 28%) 1fr;
+      align-items: start;
+    }
+  }
+
+  .lbh-role {
+    font-weight: 800;
+    color: var(--lbh-accent);
+  }
+
+  .lbh-name {
+    font-weight: 700;
+  }
+
+  .lbh-meta {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: .25rem .8rem;
+    margin: .25rem 0 0;
+    color: var(--lbh-muted);
+    font-size: .92rem;
+  }
+
+  @media (min-width: 720px) {
+    .lbh-meta {
+      grid-template-columns: max-content 1fr;
+    }
+  }
+
+  .lbh-meta dt {
+    font-weight: 800;
+  }
+
+  .lbh-meta dd {
+    margin: 0;
+  }
+
+  .lbh-empty {
+    margin: 0;
+    padding: .8rem;
+    color: var(--lbh-muted);
+    border: 1px dashed var(--lbh-border);
+    border-radius: 12px;
+    background: var(--lbh-bg-soft);
+  }
+</style>`;
+
+      function setStatus(message, isError) {
+        statusBox.textContent = message || '';
+        statusBox.classList.toggle('error', Boolean(isError));
+      }
+
+      function parseCSV(text) {
+        const rows = [];
+        let row = [];
+        let cell = '';
+        let inQuotes = false;
+        const input = String(text || '').replace(/^\uFEFF/, '');
+
+        for (let i = 0; i < input.length; i += 1) {
+          const char = input[i];
+          const next = input[i + 1];
+
+          if (char === '"') {
+            if (inQuotes && next === '"') {
+              cell += '"';
+              i += 1;
+            } else {
+              inQuotes = !inQuotes;
+            }
+            continue;
+          }
+
+          if (char === ',' && !inQuotes) {
+            row.push(cell);
+            cell = '';
+            continue;
+          }
+
+          if ((char === '\n' || char === '\r') && !inQuotes) {
+            if (char === '\r' && next === '\n') i += 1;
+            row.push(cell);
+            rows.push(row);
+            row = [];
+            cell = '';
+            continue;
+          }
+
+          cell += char;
+        }
+
+        row.push(cell);
+        rows.push(row);
+        return rows;
+      }
+
+      function clean(value) {
+        return String(value || '')
+          .replace(/\u00a0/g, ' ')
+          .replace(/[ \t]+/g, ' ')
+          .trim();
+      }
+
+      function normalizeHeader(value) {
+        return clean(value)
+          .toLowerCase()
+          .replace(/[.]/g, '')
+          .replace(/\s+/g, ' ');
+      }
+
+      function findHeaderIndex(rows) {
+        return rows.findIndex((row) => {
+          const joined = row.map(normalizeHeader).join(' | ');
+          return joined.includes('nasional') && joined.includes('jabatan') && joined.includes('nama');
+        });
+      }
+
+      function findCol(header, matcher, fallback) {
+        const found = header.findIndex((cell) => matcher(normalizeHeader(cell)));
+        return found >= 0 ? found : fallback;
+      }
+
+      function getColumns(rows, headerIndex) {
+        if (headerIndex < 0) {
+          return {
+            nasional: 0,
+            provinsi: 1,
+            kota: 2,
+            kecamatan: 3,
+            kelurahan: 4,
+            jabatan: 5,
+            nama: 6,
+            id: 7,
+            alamat: 8,
+            ktp: 9,
+            telepon: 10,
+            masa: 11
+          };
+        }
+
+        const header = rows[headerIndex];
+        return {
+          nasional: findCol(header, (h) => h.includes('nasional'), 0),
+          provinsi: findCol(header, (h) => h.includes('provinsi'), 1),
+          kota: findCol(header, (h) => h.includes('kota') || h.includes('kabupaten'), 2),
+          kecamatan: findCol(header, (h) => h.includes('kecamatan'), 3),
+          kelurahan: findCol(header, (h) => h.includes('kelurahan'), 4),
+          jabatan: findCol(header, (h) => h.includes('jabatan'), 5),
+          nama: findCol(header, (h) => h === 'nama' || h.includes('nama'), 6),
+          id: findCol(header, (h) => h.includes('id lbh'), 7),
+          alamat: findCol(header, (h) => h.includes('alamat'), 8),
+          ktp: findCol(header, (h) => h.includes('ktp'), 9),
+          telepon: findCol(header, (h) => h.includes('telepon') || h.includes('telp') || h.includes('phone'), 10),
+          masa: findCol(header, (h) => h.includes('masa aktif') || h.includes('aktif kartu'), 11)
+        };
+      }
+
+      function cell(row, index) {
+        return clean(row[index]);
+      }
+
+      function isBlankRow(row) {
+        return row.every((value) => clean(value) === '');
+      }
+
+      function isTerritory(value) {
+        const v = clean(value);
+        if (!v) return false;
+        if (/^pengurus$/i.test(v)) return false;
+        return true;
+      }
+
+      function tidyUnit(value) {
+        return clean(value)
+          .replace(/^dpp\b/i, 'DPP')
+          .replace(/^dpd\b/i, 'DPD')
+          .replace(/^dpc\b/i, 'DPC')
+          .replace(/^pac\b/i, 'PAC')
+          .replace(/^pr\b/i, 'PR');
+      }
+
+      function isDicari(value) {
+        return /\(?\s*dicari\s*\)?/i.test(clean(value));
+      }
+
+      function makeNode(title, level) {
+        return {
+          title,
+          level,
+          status: '',
+          members: [],
+          childMap: new Map(),
+          children: []
+        };
+      }
+
+      function getChild(parent, title, level) {
+        const key = level + '::' + title.toLowerCase();
+        if (!parent.childMap.has(key)) {
+          const node = makeNode(title, level);
+          parent.childMap.set(key, node);
+          parent.children.push(node);
+        }
+        return parent.childMap.get(key);
+      }
+
+      function addPath(root, path) {
+        let node = root;
+        path.forEach((part) => {
+          node = getChild(node, part.title, part.level);
+        });
+        return node;
+      }
+
+      function countMembers(node) {
+        return node.members.length + node.children.reduce((total, child) => total + countMembers(child), 0);
+      }
+
+      function countNodes(node) {
+        return node.children.length + node.children.reduce((total, child) => total + countNodes(child), 0);
+      }
+
+      function escapeHTML(value) {
+        return String(value || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function buildTree(csvText) {
+        const rows = parseCSV(csvText);
+        const headerIndex = findHeaderIndex(rows);
+        const cols = getColumns(rows, headerIndex);
+        const dataRows = rows.slice(headerIndex >= 0 ? headerIndex + 1 : 0);
+        const root = makeNode('ROOT', 'root');
+        const current = {
+          nasional: '',
+          provinsi: '',
+          kota: '',
+          kecamatan: '',
+          kelurahan: ''
+        };
+
+        let processed = 0;
+        let skipped = 0;
+
+        dataRows.forEach((row) => {
+          if (isBlankRow(row)) {
+            skipped += 1;
+            return;
+          }
+
+          const nasional = tidyUnit(cell(row, cols.nasional));
+          const provinsi = tidyUnit(cell(row, cols.provinsi));
+          const kota = tidyUnit(cell(row, cols.kota));
+          const kecamatan = tidyUnit(cell(row, cols.kecamatan));
+          const kelurahan = tidyUnit(cell(row, cols.kelurahan));
+          const jabatan = clean(cell(row, cols.jabatan));
+          const nama = clean(cell(row, cols.nama));
+          const id = clean(cell(row, cols.id));
+          const alamat = clean(cell(row, cols.alamat));
+          const ktp = clean(cell(row, cols.ktp));
+          const telepon = clean(cell(row, cols.telepon));
+          const masa = clean(cell(row, cols.masa));
+
+          if (isTerritory(nasional)) {
+            current.nasional = nasional;
+            current.provinsi = '';
+            current.kota = '';
+            current.kecamatan = '';
+            current.kelurahan = '';
+          }
+
+          if (isTerritory(provinsi)) {
+            current.nasional = '';
+            current.provinsi = provinsi;
+            current.kota = '';
+            current.kecamatan = '';
+            current.kelurahan = '';
+          }
+
+          if (isTerritory(kota)) {
+            current.kota = kota;
+            current.kecamatan = '';
+            current.kelurahan = '';
+          }
+
+          if (isTerritory(kecamatan)) {
+            current.kecamatan = kecamatan;
+            current.kelurahan = '';
+          }
+
+          if (isTerritory(kelurahan)) {
+            current.kelurahan = kelurahan;
+          }
+
+          const path = [];
+          if (current.provinsi) {
+            path.push({ title: current.provinsi, level: 'dpd' });
+            if (current.kota) path.push({ title: current.kota, level: 'dpc' });
+            if (current.kecamatan) path.push({ title: current.kecamatan, level: 'pac' });
+            if (current.kelurahan) path.push({ title: current.kelurahan, level: 'pr' });
+          } else if (current.nasional) {
+            path.push({ title: current.nasional, level: 'dpp' });
+          }
+
+          if (!path.length) {
+            skipped += 1;
+            return;
+          }
+
+          const node = addPath(root, path);
+
+          if (isDicari(jabatan) && !nama) {
+            node.status = 'dicari';
+          } else if (jabatan || nama || id || alamat || ktp || telepon || masa) {
+            node.members.push({
+              jabatan: jabatan || 'Anggota',
+              nama: nama || '—',
+              id,
+              alamat,
+              ktp,
+              telepon,
+              masa
+            });
+          }
+
+          processed += 1;
+        });
+
+        return {
+          root,
+          processed,
+          skipped,
+          headerFound: headerIndex >= 0
+        };
+      }
+
+      function renderMember(member, indent) {
+        const space = '  '.repeat(indent);
+        const meta = [
+          ['No. ID LBH', member.id],
+          ['Alamat KTP', member.alamat],
+          ['No. KTP', member.ktp],
+          ['Telepon', member.telepon],
+          ['Masa Aktif Kartu', member.masa]
+        ].filter((item) => item[1]);
+
+        let html = `${space}<li class="lbh-person">\n`;
+        html += `${space}  <span class="lbh-role">${escapeHTML(member.jabatan)}</span>\n`;
+        html += `${space}  <span class="lbh-name">${escapeHTML(member.nama)}</span>\n`;
+
+        if (meta.length) {
+          html += `${space}  <dl class="lbh-meta">\n`;
+          meta.forEach(([label, value]) => {
+            html += `${space}    <dt>${escapeHTML(label)}</dt>\n`;
+            html += `${space}    <dd>${escapeHTML(value)}</dd>\n`;
+          });
+          html += `${space}  </dl>\n`;
+        }
+
+        html += `${space}</li>`;
+        return html;
+      }
+
+      function renderNode(node, indent, showCount) {
+        const space = '  '.repeat(indent);
+        const total = countMembers(node);
+        const badge = node.status === 'dicari' ? '<span class="lbh-badge">dicari</span>' : '';
+        const counter = showCount ? `<span class="lbh-count">${total} pengurus</span>` : '';
+        let html = `${space}<details class="lbh-node lbh-level-${escapeHTML(node.level)}">\n`;
+        html += `${space}  <summary><span class="lbh-node-title">${escapeHTML(node.title)}</span>${badge}${counter}</summary>\n`;
+        html += `${space}  <div class="lbh-node-body">\n`;
+
+        if (node.members.length) {
+          html += `${space}    <ul class="lbh-member-list">\n`;
+          html += node.members.map((member) => renderMember(member, indent + 3)).join('\n') + '\n';
+          html += `${space}    </ul>\n`;
+        }
+
+        if (node.children.length) {
+          html += node.children.map((child) => renderNode(child, indent + 2, showCount)).join('\n') + '\n';
+        }
+
+        if (!node.members.length && !node.children.length) {
+          const text = node.status === 'dicari' ? 'Data pengurus masih dicari.' : 'Belum ada data pengurus.';
+          html += `${space}    <p class="lbh-empty">${text}</p>\n`;
+        }
+
+        html += `${space}  </div>\n`;
+        html += `${space}</details>`;
+        return html;
+      }
+
+      function renderHTML(root, showCount) {
+        let html = `<div class="lbh-org-wrapper">\n`;
+        html += `  <h2 class="lbh-org-title">Struktur Organisasi LBH PARI</h2>\n`;
+        html += `  <p class="lbh-org-note">Klik setiap bagian untuk membuka detail struktur pengurus.</p>\n`;
+
+        if (root.children.length) {
+          html += root.children.map((child) => renderNode(child, 1, showCount)).join('\n') + '\n';
+        } else {
+          html += `  <p class="lbh-empty">Tidak ada data yang bisa digenerate.</p>\n`;
+        }
+
+        html += `</div>`;
+        return html;
+      }
+
+      function generate() {
+        try {
+          const source = csvInput.value;
+          if (!source.trim()) {
+            setStatus('Input CSV masih kosong.', true);
+            return;
+          }
+
+          const result = buildTree(source);
+          const bodyHTML = renderHTML(result.root, includeCount.checked);
+          const parts = [];
+
+          if (includeCss.checked) parts.push(GENERATED_CSS);
+          parts.push(bodyHTML);
+
+          let output = parts.join('\n\n');
+          if (includeWp.checked) {
+            output = `<!-- wp:html -->\n${output}\n<!-- /wp:html -->`;
+          }
+
+          htmlOutput.value = output;
+          preview.innerHTML = `${includeCss.checked ? GENERATED_CSS : ''}\n${bodyHTML}`;
+          lastGenerated = output;
+
+          const nodeTotal = countNodes(result.root);
+          const memberTotal = countMembers(result.root);
+          const headerText = result.headerFound ? 'header CSV terdeteksi' : 'header tidak ditemukan, memakai urutan kolom default';
+          setStatus(`Selesai: ${nodeTotal} unit, ${memberTotal} data pengurus, ${result.processed} baris diproses, ${result.skipped} baris kosong/dilewati; ${headerText}.`, false);
+        } catch (error) {
+          console.error(error);
+          setStatus(`Gagal generate: ${error.message}`, true);
+        }
+      }
+
+      async function copyOutput() {
+        const text = htmlOutput.value || lastGenerated;
+        if (!text.trim()) {
+          setStatus('Belum ada output untuk dicopy.', true);
+          return;
+        }
+
+        try {
+          await navigator.clipboard.writeText(text);
+          setStatus('Output HTML berhasil dicopy.', false);
+        } catch (error) {
+          htmlOutput.focus();
+          htmlOutput.select();
+          document.execCommand('copy');
+          setStatus('Output HTML dicopy memakai fallback browser.', false);
+        }
+      }
+
+      function downloadOutput() {
+        const text = htmlOutput.value || lastGenerated;
+        if (!text.trim()) {
+          setStatus('Belum ada output untuk didownload.', true);
+          return;
+        }
+
+        const blob = new Blob([text], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'lbh-details-summary-snippet.html';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        setStatus('File HTML berhasil dibuat.', false);
+      }
+
+      function clearAll() {
+        csvInput.value = '';
+        htmlOutput.value = '';
+        preview.innerHTML = '<p class="help">Preview akan muncul setelah tombol Generate ditekan.</p>';
+        lastGenerated = '';
+        csvFile.value = '';
+        setStatus('', false);
+      }
+
+      csvFile.addEventListener('change', () => {
+        const file = csvFile.files && csvFile.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          csvInput.value = String(reader.result || '');
+          setStatus(`File "${file.name}" berhasil dibaca. Tekan Generate HTML.`, false);
+        };
+        reader.onerror = () => {
+          setStatus('File gagal dibaca oleh browser.', true);
+        };
+        reader.readAsText(file, 'utf-8');
+      });
+
+      generateBtn.addEventListener('click', generate);
+      copyBtn.addEventListener('click', copyOutput);
+      downloadBtn.addEventListener('click', downloadOutput);
+      clearBtn.addEventListener('click', clearAll);
+    })();
+  </script>
+</body>
+</html>
