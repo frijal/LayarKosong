@@ -8,7 +8,8 @@
     <meta name="news_keywords" content="rss feed, artikel terbaru, feed blog, update konten, layar kosong, teknologi, open source">
     <meta name="promphint" content="Halaman RSS Feed yang menyajikan daftar artikel terbaru secara kronologis untuk pembaca dan aplikasi pembaca RSS.">
     <link rel="canonical" href="https://dalam.web.id/feed">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any"><link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico">
     <meta property="twitter:domain" content="https://dalam.web.id">
@@ -16,7 +17,6 @@
     <meta name="author" content="Fakhrul Rijal">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <meta name="twitter:creator" content="@responaja">
-    
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="twitter:site" content="@responaja">
@@ -41,222 +41,255 @@
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://dalam.web.id/feed.html","url":"https://dalam.web.id/feed.html","name":"RSS Feed Layar Kosong","description":"RSS Feed Layar Kosong berisi kumpulan artikel terbaru dari berbagai topik. Ikuti pembaruan konten secara real-time melalui RSS reader favorit Anda.","isPartOf":{"@type":"WebSite","@id":"https://dalam.web.id/#website"},"about":{"@type":"Organization","@id":"https://dalam.web.id/#organization"},"inLanguage":"id-ID","dateModified":"%%DATE_MODIFIED%%"}</script>
+
     <style>
       :root {
-        --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+        /* Tema Gelap (Default & Preferensi Sistem) */
         --bg-color: #121212;
         --surface-color: #1e1e1e;
-        --primary-text-color: #e0e0e0;
-        --secondary-text-color: #b3b3b3;
-        --accent-color: #03dac6;
+        --primary-text-color: #f8f9fa;
+        --secondary-text-color: #adb5bd;
+        --accent-color: #F6821F; /* Brand Orange */
+        --accent-hover: #E06B0F;
         --border-color: #2c2c2c;
-        --shadow-color: rgba(3, 218, 198, 0.1);
-        --error-bg: #4e1a1a;
-        --error-text: #ffc4c4;
-        --error-border: #a83c3c;
+        --shadow-color: rgba(0, 0, 0, 0.4);
+        --badge-bg: #2b2b2b;
       }
+
       @media (prefers-color-scheme: light) {
         :root {
+          /* Tema Terang */
           --bg-color: #f4f4f9;
           --surface-color: #ffffff;
-          --primary-text-color: #212121;
-          --secondary-text-color: #666666;
-          --accent-color: #009688;
-          --border-color: #e0e0e0;
-          --shadow-color: rgba(0, 150, 136, 0.15);
-          --error-bg: #ffebee;
-          --error-text: #c62828;
-          --error-border: #ef9a9a;
+          --primary-text-color: #212529;
+          --secondary-text-color: #6c757d;
+          --accent-color: #F6821F; /* Brand Orange */
+          --accent-hover: #E06B0F;
+          --border-color: #e9ecef;
+          --shadow-color: rgba(0, 0, 0, 0.08);
+          --badge-bg: #f1f3f5;
         }
       }
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
+
       body {
         font-family: var(--font-sans);
         background-color: var(--bg-color);
         color: var(--primary-text-color);
-        line-height: 1.7;
+        line-height: 1.6;
         transition: background-color 0.3s, color 0.3s;
       }
+
       .container {
-        max-width: 1200px;
+        max-width: 1100px;
         margin: 0 auto;
-        padding: 2rem 1.5rem;
+        padding: 3rem 1.5rem;
       }
+
       h1 {
         text-align: center;
-        color: var(--accent-color);
-        margin-bottom: 2.5rem;
-        font-size: 2.5rem;
+        color: var(--primary-text-color);
+        margin-bottom: 3rem;
+        font-size: 2.25rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
       }
+
+      /* Grid Layout */
       #feed-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
       }
+
+      /* Card Styling */
       .feed-item {
         background-color: var(--surface-color);
         border: 1px solid var(--border-color);
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 16px;
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
+
       .feed-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px var(--shadow-color);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px var(--shadow-color);
       }
+
       .feed-item-thumbnail {
         width: 100%;
         aspect-ratio: 16 / 9;
-        background-color: #333;
+        background-color: var(--border-color);
         overflow: hidden;
       }
+
       .feed-item-thumbnail img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 1;
+        transition: transform 0.3s ease;
       }
+
+      .feed-item:hover .feed-item-thumbnail img {
+        transform: scale(1.05);
+      }
+
       .feed-item-content {
         padding: 1.5rem;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
       }
-      .feed-item-content h2 {
-        margin-bottom: 0.5rem;
-        font-size: 1.25rem;
-      }
-      .feed-item-content h2 a {
-        color: var(--primary-text-color);
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-      .feed-item-content h2 a:hover {
-        color: var(--accent-color);
-      }
+
+      /* Pil/Badge Kategori & Tanggal */
       .feed-meta {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: 0.5rem 1rem;
-        font-size: 0.8rem;
-        color: var(--secondary-text-color);
-        margin-bottom: 1rem;
+        gap: 8px;
+        margin-bottom: 12px;
       }
+
       .feed-meta-item {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 6px;
+        background-color: var(--badge-bg);
+        color: var(--secondary-text-color);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
       }
+
       .feed-meta-item i {
         color: var(--accent-color);
       }
+
+      .feed-item-content h2 {
+        margin-bottom: 0.75rem;
+        font-size: 1.2rem;
+        line-height: 1.4;
+        font-weight: 700;
+      }
+
+      .feed-item-content h2 a {
+        color: var(--primary-text-color);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .feed-item-content h2 a:hover {
+        color: var(--accent-color);
+      }
+
       .feed-item-content p {
         color: var(--secondary-text-color);
         font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
       }
+
+      /* Bagian Social Share */
       .social-share {
-        margin-top: auto;
-        padding-top: 1rem;
+        padding-top: 1.25rem;
         border-top: 1px solid var(--border-color);
         display: flex;
-        gap: 0.8rem;
+        gap: 12px;
         align-items: center;
       }
+
       .social-share span {
         font-size: 0.8rem;
+        font-weight: 600;
         color: var(--secondary-text-color);
+        margin-right: auto; /* Mendorong ikon ke kanan */
       }
+
       .social-share a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: var(--secondary-text-color);
-        transition: color 0.3s ease, transform 0.3s ease;
+        text-decoration: none;
+        transition: color 0.2s ease, transform 0.2s ease;
       }
+
       .social-share a:hover {
-        transform: scale(1.2);
+        transform: translateY(-2px);
         color: var(--accent-color);
       }
-      .error-message {
-        background-color: var(--error-bg);
-        color: var(--error-text);
-        border: 1px solid var(--error-border);
-        padding: 1rem;
-        border-radius: 8px;
-        text-align: center;
-      }
+
       @media (max-width: 768px) {
-        h1 {
-          font-size: 2rem;
+        .container {
+          padding: 2rem 1rem;
         }
-        .feed-item-content h2 {
-          font-size: 1.25rem;
+        h1 {
+          font-size: 1.75rem;
+        }
+        #feed-container {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
         }
       }
     </style>
   </head>
-  <body><div id="header-placeholder"></div>
-    <div class="container">
-      <h1><a href="https://dalam.web.id/atom.xml"
-   aria-label="Atom Feed"
-   title="Atom Feed"
-   target="_blank"
-   rel="noopener noreferrer"
-   style="display:inline-flex;align-items:center;justify-content:center;width:1em;height:1em;font-size:inherit;line-height:1;color:#2563eb;text-decoration:none;vertical-align:-0.125em;">
-  <svg xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 64 64"
-       role="img"
-       aria-hidden="true"
-       style="display:block;width:1em;height:1em;overflow:visible;"
-       fill="none">
-    <circle cx="32" cy="32" r="5" fill="currentColor"></circle>
-    <ellipse cx="32" cy="32" rx="24" ry="9"
-             stroke="currentColor"
-             stroke-width="4"></ellipse>
-    <ellipse cx="32" cy="32" rx="24" ry="9"
-             stroke="currentColor"
-             stroke-width="4"
-             transform="rotate(60 32 32)"></ellipse>
-    <ellipse cx="32" cy="32" rx="24" ry="9"
-             stroke="currentColor"
-             stroke-width="4"
-             transform="rotate(120 32 32)"></ellipse>
-  </svg>
-</a> Feed 30 Artikel Terbaru <a href="https://dalam.web.id/rss.xml"
-   aria-label="RSS Feed"
-   title="RSS Feed"
-   target="_blank"
-   rel="noopener noreferrer"
-   style="display:inline-flex;align-items:center;justify-content:center;width:1em;height:1em;font-size:inherit;line-height:1;color:#f97316;text-decoration:none;vertical-align:-0.125em;">
-  <svg xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 64 64"
-       role="img"
-       aria-hidden="true"
-       style="display:block;width:1em;height:1em;overflow:visible;"
-       fill="none">
-    <rect x="8" y="8" width="48" height="48" rx="10" fill="currentColor"></rect>
-    <circle cx="22" cy="44" r="5" fill="white"></circle>
-    <path d="M17 30c9.4 0 17 7.6 17 17"
-          stroke="white"
-          stroke-width="6"
-          stroke-linecap="round"></path>
-    <path d="M17 18c16 0 29 13 29 29"
-          stroke="white"
-          stroke-width="6"
-          stroke-linecap="round"></path>
-  </svg>
-</a></h1>
-      <div id="feed-container"></div>
-    </div><script defer src="/ext/header.js"></script><script defer src="/ext/balon-cf.js"><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body>
-</html>
 
+  <body>
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+      <h1>
+        <a href="https://dalam.web.id/atom.xml" aria-label="Atom Feed" title="Atom Feed" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;width:1.2em;height:1.2em;color:#2563eb;text-decoration:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" style="width:100%;height:100%;">
+            <circle cx="32" cy="32" r="5" fill="currentColor"></circle>
+            <ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"></ellipse>
+            <ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4" transform="rotate(60 32 32)"></ellipse>
+            <ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4" transform="rotate(120 32 32)"></ellipse>
+          </svg>
+        </a>
+        Feed 30 Artikel Terbaru
+        <a href="https://dalam.web.id/rss.xml" aria-label="RSS Feed" title="RSS Feed" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;width:1.2em;height:1.2em;color:#F6821F;text-decoration:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" style="width:100%;height:100%;">
+            <rect x="8" y="8" width="48" height="48" rx="10" fill="currentColor"></rect>
+            <circle cx="22" cy="44" r="5" fill="white"></circle>
+            <path d="M17 30c9.4 0 17 7.6 17 17" stroke="white" stroke-width="6" stroke-linecap="round"></path>
+            <path d="M17 18c16 0 29 13 29 29" stroke="white" stroke-width="6" stroke-linecap="round"></path>
+          </svg>
+        </a>
+      </h1>
+
+      <div id="feed-container"></div>
+    </div>
+
+    <script defer src="/ext/header.js"></script>
+    <script defer src="/ext/balon-cf.js"></script>
+    <script>
+      if('modelContext' in navigator){
+        navigator.modelContext.provideContext({
+          tools:[{
+            name:"baca_llms_index",
+            description:"Mengambil daftar lengkap artikel Layar Kosong",
+            inputSchema:{type:"object",properties:{}},
+            execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}
+          }]
+        })
+      }
+    </script>
+  </body>
+</html>
