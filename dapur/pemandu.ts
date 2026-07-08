@@ -450,13 +450,19 @@ flex-direction: column;
 order: 1;
 }
 
+/* WADAH TOMBOL AKSI (Hide + Shuffle sejajar horizontal) */
+#playground-controls {
+order: 2;
+display: flex;
+gap: 0.5rem;
+margin-top: 0.5rem;
+}
+
 /* TOMBOL SHUFFLE */
 #shuffle-btn {
-order: 2;
-width: 100%;
+flex: 1 1 auto;
 padding: 0.75rem;
-margin-top: 0.5rem;
-margin-bottom: 0;
+margin: 0;
 cursor: pointer;
 border-radius: 0.5rem;
 background-color: transparent;
@@ -466,31 +472,24 @@ font-family: inherit;
 }
 
 #shuffle-btn:hover {
-background: var(--primary, #F6821F);
-color: #fff;
-border-color: var(--primary, #F6821F);
-transform: scale(1.1) rotate(180deg);
+background-color: var(--border, #eee);
 }
 
-#hide-btn, #shuffle-btn {
-background: var(--surface);
-color: var(--text-muted, #888);
-border: 1px solid var(--border);
-border-radius: 50%;
-width: 2rem; /* Diubah dari 32px ke 2rem */
-height: 2rem; /* Diubah dari 32px ke 2rem */
+/* TOMBOL HIDE (default tampil, disembunyikan lewat media query di mobile) */
+#hide-btn {
+flex: 0 0 auto;
+padding: 0.75rem 1rem;
+margin: 0;
 cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.3s ease;
+border-radius: 0.5rem;
+background-color: transparent;
+border: 1px solid var(--border, #ccc);
+transition: all 0.2s ease;
+font-family: inherit;
 }
 
 #hide-btn:hover {
-background: #ff4d4d;
-color: #fff;
-border-color: #ff4d4d;
-transform: scale(1.1);
+background-color: var(--border, #eee);
 }
 
 /* POSISI MOBILE (< 1024px) */
@@ -505,49 +504,16 @@ transform: scale(1.1);
   border-top: 1px solid var(--border);
   }
 
-  #shuffle-btn {
+  #playground-controls {
   order: -1;
   margin-top: 0;
   margin-bottom: 1.5rem;
   }
-}
 
-/* STYLING PLAYGROUND ITEM */
-.playground-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer; /* Memastikan ikon tangan selalu muncul */
-}
-
-.playground-item:hover {
-  opacity: 0.85; /* Sedikit efek interaktif pas di-hover */
-}
-
-.playground-thumb {
-  width: var(--thumb-size);
-  height: var(--thumb-size);
-  object-fit: cover;
-  border-radius: 0.5rem;
-  flex-shrink: 0;
-  background-color: var(--border, #f3f4f6);
-}
-
-.playground-title {
-  height: var(--thumb-size);
-  line-height: calc(var(--thumb-size) / 3);
-  margin: 0;
-  flex-grow: 1;
-
-  /* Trik multiline ellipsis (Maksimal 3 baris) */
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  white-space: normal;
+  /* Tombol hide cuma buat desktop, di mobile ditiadakan total */
+  #hide-btn {
+  display: none;
+  }
 }
 `;
 document.head.appendChild(style);
@@ -608,6 +574,20 @@ async function initRandomPlayground() {
     const listContainer = document.createElement('div');
     listContainer.id = 'playground-list';
 
+    // Bikin Wadah Tombol Aksi (Hide + Shuffle biar sejajar horizontal di desktop)
+    const controlsContainer = document.createElement('div');
+    controlsContainer.id = 'playground-controls';
+
+    // Tombol Hide — cuma keliatan di desktop (>1024px), disembunyikan via CSS media query pas mobile
+    const hideBtn = document.createElement('button');
+    hideBtn.id = 'hide-btn';
+    hideBtn.textContent = '📴';
+    hideBtn.title = 'Sembunyikan widget';
+    hideBtn.setAttribute('aria-label', 'Sembunyikan widget');
+    hideBtn.onclick = () => {
+      widget.style.display = 'none';
+    };
+
     // Bikin Tombol Shuffle
     const shuffleBtn = document.createElement('button');
     shuffleBtn.id = 'shuffle-btn';
@@ -616,9 +596,13 @@ shuffleBtn.onclick = () => {
   renderPlaygroundList(listContainer);
 };
 
+// Hide diletakkan sebelum Shuffle biar tampil sejajar di kirinya
+controlsContainer.appendChild(hideBtn);
+controlsContainer.appendChild(shuffleBtn);
+
 // Masukin ke widget
 widget.appendChild(listContainer);
-widget.appendChild(shuffleBtn);
+widget.appendChild(controlsContainer);
 
 const isMobileLayout = window.matchMedia('(max-width: 1024px)').matches;
 
