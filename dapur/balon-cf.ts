@@ -108,7 +108,7 @@
     sendButtonLabel: "Kirim"
   };
 
-  // 3. Suntikkan Komponen Chat Bubble ke Body
+  // 3. Suntikan Komponen Chat Bubble ke Body
   if (!document.querySelector('chat-bubble-snippet')) {
     const chatBubble: HTMLElement = document.createElement('chat-bubble-snippet');
     chatBubble.setAttribute('api-url', 'https://2cfe5ad6-066d-47d5-961a-fb8f20e24705.search.ai.cloudflare.com/');
