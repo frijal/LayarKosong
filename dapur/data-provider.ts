@@ -1,66 +1,97 @@
 /**
- * MASTER DATA PROVIDER v3.0 (D1 Edge Core)
+ * MASTER DATA PROVIDER v3.1 (D1 Edge Core + Lite Support)
  * Jembatan mulus dari array JSON statis ke Cloudflare D1
  */
 
 declare global {
 	interface Window {
-		siteDataProvider: { getFor: (ui: string) => Promise<Record<string, any[]>> };
+		siteDataProvider: {
+			getFor: (ui: string) => Promise<Record<string, any[]>>;
+			getRelatedLiteData: () => Promise<Record<string, any[]>>;
+			cache: Record<string, Record<string, any[]>>;
+			promises: Record<string, Promise<Record<string, any[]>>>;
+		};
 	}
 }
 
 window.siteDataProvider = {
-	// 🧠 Memori Cache: Simpan hasil fetch per UI agar tidak spam request ke D1
 	cache: {} as Record<string, Record<string, any[]>>,
-	// 🛡️ Promise Tracker: Cegah race condition jika UI yang sama memanggil getFor berbarengan
 	promises: {} as Record<string, Promise<Record<string, any[]>>>,
 
 	async getFor(ui: string) {
-		// 1. Return dari cache jika sudah ada
 		if (this.cache[ui]) return this.cache[ui];
-
-		// 2. Return promise jika sedang dalam proses fetch (mencegah double fetch)
 		if (this.promises[ui]) return this.promises[ui];
 
-		// 3. Tarik data dari Cloudflare Pages Function (katalog.js)
 		this.promises[ui] = fetch(`/katalog?ui=${ui}`)
 		.then(res => {
 			if (!res.ok) throw new Error(`Gagal mengambil katalog untuk UI: ${ui}`);
 			return res.json();
 		})
 		.then((flatData: any[]) => {
-			// 4. REKONSTRUKSI KELOMPOK KATEGORI
-			// Mengubah bentuk array flat dari D1 menjadi Object Grouping { "kategori": [...] }
-			// agar kompatibel 100% dengan script UI lama (homepage.ts, sitemap.ts, dll)
 			const groupedOut: Record<string, any[]> = {};
 
 			for (let i = 0; i < flatData.length; i++) {
 				const item = flatData[i];
-				// Gunakan fallback 'Lainnya' jika kategori kosong
 				const cat = item.category || 'Lainnya';
 
 		if (!groupedOut[cat]) {
 			groupedOut[cat] = [];
 		}
 
-		// Pecah objeknya: pisahkan 'category', sisanya kirim ke array UI
-		// (Sesuai dengan ekspektasi output mapper lama)
 		const { category, ...rest } = item;
 		groupedOut[cat].push(rest);
 			}
 
-			// 5. Simpan ke cache, bersihkan tracker promise, lalu sajikan ke UI
 			this.cache[ui] = groupedOut;
 			delete this.promises[ui];
-
 			return groupedOut;
 		})
 		.catch(err => {
 			console.error("D1 Provider Error:", err);
 			delete this.promises[ui];
-			return {}; // Return objek kosong agar UI tidak crash
+			return {};
 		});
 
 		return this.promises[ui];
+	},
+
+	// 🔥 FUNGSI BARU KHUSUS UNTUK RELATED GRID (Diet Payload 30 Artikel)
+	async getRelatedLiteData() {
+		const uiName = 'related-lite';
+
+		if (this.cache[uiName]) return this.cache[uiName];
+		if (this.promises[uiName]) return this.promises[uiName];
+
+		this.promises[uiName] = fetch(`/katalog?ui=related-grid`)
+		.then(res => {
+			if (!res.ok) throw new Error('Gagal mengambil data lite dari D1');
+			return res.json();
+		})
+		.then((flatData: any[]) => {
+			const groupedLite: Record<string, any[]> = {};
+
+			for (let i = 0; i < flatData.length; i++) {
+				const item = flatData[i];
+				// Gunakan raw slug category untuk kemudahan mapping URL di UI
+				const cat = item.category || 'lainnya';
+
+		if (!groupedLite[cat]) {
+			groupedLite[cat] = [];
+		}
+
+		groupedLite[cat].push(item);
+			}
+
+			this.cache[uiName] = groupedLite;
+			delete this.promises[uiName];
+			return groupedLite;
+		})
+		.catch(err => {
+			console.error("Data Provider Lite Error:", err);
+			delete this.promises[uiName];
+			return {};
+		});
+
+		return this.promises[uiName];
 	}
 };

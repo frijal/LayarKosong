@@ -10,9 +10,11 @@ export async function onRequest(context) {
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
+    // Instruksi Cache: Browser simpan 1 jam, Edge simpan 1 hari
+    "Cache-Control": "public, max-age=3600, s-maxage=86400"
   };
 
-  // 🔥 MAGIC: Default kolom memakai 'description' langsung dari D1
+  // Default kolom
   let cols = "title, id, image, date, description, category";
 
   // 🎭 SQL ALIASING: Menyesuaikan output sesuai UI yang meminta
@@ -29,16 +31,33 @@ export async function onRequest(context) {
     case 'sitemap.ts':
       cols = "title, id, date, description, category";
       break;
+      // 🔥 JALUR BARU KHUSUS UNTUK LITE GRID
+    case 'related-grid':
+      cols = "title, id, image, category"; // Hanya ambil data yang diperlukan grid (hemat size)
+      break;
   }
 
   try {
     const { results } = await env.DB.prepare(`
-      SELECT ${cols}
-      FROM articles_fts
-      ORDER BY date DESC
+    SELECT ${cols}
+    FROM articles_fts
+    ORDER BY date DESC
     `).all();
 
-    return new Response(JSON.stringify(results), { headers });
+    let finalResults = results;
+
+    // ✂️ REPLIKASI ARTIKEL-LITE: Potong maksimal 30 artikel per kategori khusus
+    if (ui === 'related-grid') {
+      const categoryCounters = {};
+      finalResults = results.filter(item => {
+        const cat = item.category || 'lainnya';
+        if (!categoryCounters[cat]) categoryCounters[cat] = 0;
+        categoryCounters[cat]++;
+        return categoryCounters[cat] <= 30;
+      });
+    }
+
+    return new Response(JSON.stringify(finalResults), { headers });
   } catch (e) {
     console.error("Katalog D1 Error:", e.message);
     return new Response(JSON.stringify({ error: e.message }), { status: 500, headers });

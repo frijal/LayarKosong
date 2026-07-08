@@ -1,7 +1,7 @@
 /**
  * =================================================================================
- * pemandu.ts v8.0 (D1 Native & Independent)
- * Bypass Data-Provider, Fix Typography, Share Component Merged.
+ * pemandu.ts v8.1 (D1 Native + Dual Provider Split)
+ * Navigasi Utama utuh, Related Grid pakai jalur Lite independen.
  * =================================================================================
  */
 
@@ -26,40 +26,26 @@ function getCurrentFileName(): string {
   return name.endsWith('.html') ? name : `${name}.html`;
 }
 
-// 🔥 Helper Baru: Merapikan Tipografi Kategori (gaya-hidup -> Gaya Hidup)
 function formatCategoryName(slug: string): string {
   if (!slug) return 'Lainnya';
   return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
-function getFullUrl(fileName: string, allData: any): string {
-  for (const [catName, articles] of Object.entries(allData)) {
-    const catArticles = articles as any[];
-    if (catArticles.some((a: any) => a.id === fileName)) {
-      return `/${catName}/${fileName.replace('.html', '')}`;
-    }
-  }
-  return `/${cleanSlug(fileName)}`;
-}
-
 function getCategoryInfo(fileName: string, allData: any) {
-  // 1. CARI DI DATABASE
   for (const [catName, articles] of Object.entries(allData)) {
     const catArticles = articles as any[];
     if (catArticles.some((a: any) => a.id === fileName)) {
       return {
-        name: formatCategoryName(catName), // Tipografi otomatis rapi
- slug: catName, // slug tetap aman untuk URL
+        name: formatCategoryName(catName),
+ slug: catName,
  list: catArticles
       };
     }
   }
 
-  // 2. FALLBACK ULTRA AMAN: Curi slug kategori langsung dari URL Bar Browser
   const pathSegments = window.location.pathname.split('/').filter(Boolean);
   if (pathSegments.length > 0) {
     const currentSlug = pathSegments[0];
-
     for (const [catName, articles] of Object.entries(allData)) {
       if (catName === currentSlug) {
         return {
@@ -70,7 +56,6 @@ function getCategoryInfo(fileName: string, allData: any) {
       }
     }
   }
-
   return null;
 }
 
@@ -83,7 +68,6 @@ let fallbackStyleInjected = false;
 function ensureFallbackStyleInjected(): void {
   if (fallbackStyleInjected) return;
   fallbackStyleInjected = true;
-
   const style = document.createElement('style');
   style.textContent = `
   .${BROKEN_IMG_CLASS} {
@@ -103,7 +87,6 @@ function ensureFallbackStyleInjected(): void {
 function attachImageFallback(img: HTMLImageElement, fallbackChain: string[]): void {
   const chain = [...new Set(fallbackChain.filter(Boolean))];
   let step = 0;
-
   function handleError(): void {
     if (step < chain.length) {
       img.src = chain[step];
@@ -207,7 +190,7 @@ function initFloatingSearch(): void {
 }
 
 function initNavIcons(allData: any, currentFile: string): void {
-  const grid = document.getElementById('related-articles-grid');
+  const grid = document.getElementById('related-articles-grid'); // Memastikan node ada, meski elemennya dirender fungsi lain
   if (!grid) return;
 
   const catInfo = getCategoryInfo(currentFile, allData);
@@ -233,7 +216,7 @@ if (!nav) {
   nav = document.createElement('div');
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
-  grid.appendChild(nav);
+  grid.appendChild(nav); // Attach ke grid wrap
 }
 
 const prevTag = document.querySelector('link[rel="prev"]');
@@ -332,17 +315,29 @@ tocContainer.addEventListener('click', (e: Event) => {
 });
 }
 
-function initRelatedGrid(allData: any, currentFile: string): void {
+// 🔥 Fungsi Grid yang Diubah Menjadi Async (Panggil Data Sendiri)
+async function initRelatedGrid(currentFile: string): Promise<void> {
   const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
 
-  const catInfo = getCategoryInfo(currentFile, allData);
-  if (!catInfo) {
-    grid.style.display = 'none';
-    return;
-  }
+  try {
+    // 1. MINTA DATA LITE (Maks. 30 per kategori) DARI PROVIDER
+    const liteData = await (window as any).siteDataProvider.getRelatedLiteData();
+    if (!liteData || Object.keys(liteData).length === 0) {
+      grid.style.display = 'none';
+      return;
+    }
 
-  const STATIC_FALLBACK = '/thumbnail-sm.webp';
+    // 2. TENTUKAN KATEGORI SAAT INI
+    const catInfo = getCategoryInfo(currentFile, liteData);
+    if (!catInfo) {
+      grid.style.display = 'none';
+      return;
+    }
+
+    const STATIC_FALLBACK = '/thumbnail-sm.webp';
+
+    // 3. FILTER, ACAK 6 ARTIKEL, DAN POTONG
 const related = catInfo.list
 .filter((i: any) => i.id !== currentFile)
 .sort(() => 0.5 - Math.random())
@@ -354,12 +349,13 @@ if (related.length === 0) {
 }
 
 grid.innerHTML = related.map((item: any, idx: number) => {
-  const original = item.image || STATIC_FALLBACK;
   const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
+  // Bentuk URL dari category raw slug
+  const url = `/${catInfo.slug}/${item.id.replace('.html', '')}`;
 
   return `
   <div class="rel-card-mini">
-  <a href="${getFullUrl(item.id, allData)}">
+  <a href="${url}">
   <div class="rel-img-mini">
   <img class="lk-related-thumb" data-fallback-idx="${idx}" src="${rg}" alt="${item.title}" width="120" height="100" loading="lazy" decoding="async">
   </div>
@@ -379,6 +375,10 @@ imgs.forEach((img) => {
   const original = item.image || STATIC_FALLBACK;
   attachImageFallback(img, [original, STATIC_FALLBACK]);
 });
+  } catch (e) {
+    console.error(e);
+    grid.style.display = 'none';
+  }
 }
 
 function initKeyboardNav(allData: any, currentFile: string): void {
@@ -414,40 +414,26 @@ function initKeyboardNav(allData: any, currentFile: string): void {
 }
 
 // ---------------------------
-// 3. MAIN INITIALIZATION (BYPASS DATA PROVIDER)
+// 3. MAIN INITIALIZATION
 // ---------------------------
 async function initializeApp(): Promise<void> {
   try {
-    // 🔥 LANGSUNG TEMBAK KE D1! (Bebas dari pengaruh cache data-provider lama)
-    const res = await fetch('/katalog?ui=pemandu.ts');
-    if (!res.ok) throw new Error('Katalog pemandu.ts gagal dimuat');
+    while (!(window as any).siteDataProvider) await new Promise(r => setTimeout(r, 100));
 
-    const flatData = await res.json();
-
-    // 📦 REKONSTRUKSI DATA (Grouping per kategori)
-    const allData: Record<string, any[]> = {};
-
-    for (let i = 0; i < flatData.length; i++) {
-      const item = flatData[i];
-      const cat = item.category || 'lainnya';
-
-if (!allData[cat]) {
-  allData[cat] = [];
-}
-
-// Buang 'category' dari dalam objek agar struktur 100% sama dengan dulu
-const { category, ...rest } = item;
-allData[cat].push(rest);
-    }
-
+    // 1. Panggil Data FULL untuk Search, Prev/Next Icon, Keyboard Nav (Sesuai aslinya)
+    const allData = await (window as any).siteDataProvider.getFor('pemandu.ts');[cite: 4]
     const currentFile = getCurrentFileName();
 
-    initInternalNav();
-    initProgressBar();
-    initFloatingSearch();
-    initRelatedGrid(allData, currentFile);
-    initNavIcons(allData, currentFile);
-    initKeyboardNav(allData, currentFile);
+    if (allData && Object.keys(allData).length > 0) {
+      initInternalNav();
+      initProgressBar();
+      initFloatingSearch();
+      initNavIcons(allData, currentFile);[cite: 4]
+      initKeyboardNav(allData, currentFile);[cite: 4]
+    }
+
+    // 2. Panggil fungsi independen Related Grid (dia akan mendownload versi diet secara asinkron)
+    initRelatedGrid(currentFile);
 
   } catch (err) {
     console.error("Gagal inisialisasi Pemandu:", err);
