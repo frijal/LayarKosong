@@ -440,7 +440,7 @@ background-color: transparent;
 border: none;
 z-index: 999;
 display: flex;
-flex-direction: column; /* Biar bisa mainin urutan (order) atas-bawah */
+flex-direction: column;
 }
 
 /* WADAH LIST ARTIKEL */
@@ -458,11 +458,11 @@ padding: 0.75rem;
 margin-top: 0.5rem;
 margin-bottom: 0;
 cursor: pointer;
-font-weight: bold;
 border-radius: 0.5rem;
 background-color: transparent;
 border: 1px solid var(--border, #ccc);
 transition: all 0.2s ease;
+font-family: inherit; /* Memaksa tombol tunduk ke font CSS utama */
 }
 
 #shuffle-btn:hover {
@@ -482,9 +482,9 @@ background-color: var(--border, #eee);
   }
 
   #shuffle-btn {
-  order: -1; /* MOBILE: Tombol pindah ke urutan paling atas! */
+  order: -1; /* MOBILE: Tombol pindah ke atas list */
   margin-top: 0;
-  margin-bottom: 1.5rem; /* Kasih jarak bawah ke list artikel */
+  margin-bottom: 1.5rem;
   }
 }
 
@@ -510,11 +510,10 @@ background-color: var(--border, #eee);
 .playground-title {
   height: var(--thumb-size);
   line-height: calc(var(--thumb-size) / 3);
-  font-size: 0.9rem;
-  font-weight: 600;
   margin: 0;
   flex-grow: 1;
 
+  /* Trik multiline ellipsis (Maksimal 3 baris) */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -525,14 +524,13 @@ background-color: var(--border, #eee);
 document.head.appendChild(style);
 }
 
-// FUNGSI RENDER (Sekarang cuma ngolah listContainer)
+// FUNGSI RENDER (Mengolah listContainer)
 function renderPlaygroundList(listContainer) {
-  // Yang dikosongin cuma wadah list-nya, tombol shuffle aman sentosa
   listContainer.innerHTML = '';
 
 const shuffledArticles = [...allPlaygroundArticles]
 .sort(() => 0.5 - Math.random())
-.slice(0, 7);
+.slice(0, 4);
 
 shuffledArticles.forEach(article => {
   const item = document.createElement('a');
@@ -581,7 +579,7 @@ async function initRandomPlayground() {
     const listContainer = document.createElement('div');
     listContainer.id = 'playground-list';
 
-    // Bikin Tombol Shuffle (cuma dieksekusi 1x pas awal)
+    // Bikin Tombol Shuffle
     const shuffleBtn = document.createElement('button');
     shuffleBtn.id = 'shuffle-btn';
     shuffleBtn.textContent = '🎲 Acak Artikel';
@@ -589,7 +587,7 @@ shuffleBtn.onclick = () => {
   renderPlaygroundList(listContainer);
 };
 
-// Masukin ke widget. Urutan aslinya nggak ngaruh karena CSS Flexbox 'order' yang ngatur
+// Masukin ke widget. Urutan visual diatur sama CSS order
 widget.appendChild(listContainer);
 widget.appendChild(shuffleBtn);
 

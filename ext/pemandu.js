@@ -58,7 +58,7 @@ background-color: transparent;
 border: none;
 z-index: 999;
 display: flex;
-flex-direction: column; /* Biar bisa mainin urutan (order) atas-bawah */
+flex-direction: column;
 }
 
 /* WADAH LIST ARTIKEL */
@@ -76,11 +76,11 @@ padding: 0.75rem;
 margin-top: 0.5rem;
 margin-bottom: 0;
 cursor: pointer;
-font-weight: bold;
 border-radius: 0.5rem;
 background-color: transparent;
 border: 1px solid var(--border, #ccc);
 transition: all 0.2s ease;
+font-family: inherit; /* Memaksa tombol tunduk ke font CSS utama */
 }
 
 #shuffle-btn:hover {
@@ -100,9 +100,9 @@ background-color: var(--border, #eee);
   }
 
   #shuffle-btn {
-  order: -1; /* MOBILE: Tombol pindah ke urutan paling atas! */
+  order: -1; /* MOBILE: Tombol pindah ke atas list */
   margin-top: 0;
-  margin-bottom: 1.5rem; /* Kasih jarak bawah ke list artikel */
+  margin-bottom: 1.5rem;
   }
 }
 
@@ -128,18 +128,17 @@ background-color: var(--border, #eee);
 .playground-title {
   height: var(--thumb-size);
   line-height: calc(var(--thumb-size) / 3);
-  font-size: 0.9rem;
-  font-weight: 600;
   margin: 0;
   flex-grow: 1;
 
+  /* Trik multiline ellipsis (Maksimal 3 baris) */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   white-space: normal;
 }
-`,document.head.appendChild(V)}function B(V){V.innerHTML="",[...K].sort(()=>0.5-Math.random()).slice(0,7).forEach((X)=>{let J=document.createElement("a");J.href=X.url||"#",J.className="playground-item";let Z=X.image||X.thumbnail||"",$=Z,z=Z.lastIndexOf(".");if(z!==-1)$=Z.substring(0,z)+"-sm.webp";let q=(X.title||"Judul Tanpa Kategori").replace(/\s*-\s*Layar Kosong$/i,"");J.innerHTML=`
+`,document.head.appendChild(V)}function B(V){V.innerHTML="",[...K].sort(()=>0.5-Math.random()).slice(0,4).forEach((X)=>{let J=document.createElement("a");J.href=X.url||"#",J.className="playground-item";let Z=X.image||X.thumbnail||"",$=Z,z=Z.lastIndexOf(".");if(z!==-1)$=Z.substring(0,z)+"-sm.webp";let q=(X.title||"Judul Tanpa Kategori").replace(/\s*-\s*Layar Kosong$/i,"");J.innerHTML=`
   <img
   class="playground-thumb"
   src="${$}"
