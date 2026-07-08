@@ -45,20 +45,20 @@ ${K}
   </div>
   `}).join(""),W.querySelectorAll(".lk-related-thumb[data-fallback-idx]").forEach((X)=>{let Q=Number(X.dataset.fallbackIdx),z=$[Q];if(!z)return;let O=z.image||Y;A(X,[O,Y])})}catch(Z){console.error(Z),W.style.display="none"}}function C(J,W){function Z(V){if(V==="down"){window.location.href="/";return}if(V==="up"){let $=B(W,J);if($)window.location.href=`/${$.slug}`;return}let Y=document.querySelector(`link[rel="${V}"]`);if(Y){let $=Y.getAttribute("href");if($)window.location.href=$}}document.addEventListener("keydown",(V)=>{if(M())return;let Y=document.activeElement;if(Y.tagName==="INPUT"||Y.tagName==="TEXTAREA"||Y.isContentEditable||Y.closest("#disqus_thread"))return;if(V.ctrlKey&&V.key==="ArrowDown")V.preventDefault(),Z("down");if(V.ctrlKey&&V.key==="ArrowUp")V.preventDefault(),Z("up");if(V.ctrlKey&&V.key==="ArrowRight")V.preventDefault(),Z("next");if(V.ctrlKey&&V.key==="ArrowLeft")V.preventDefault(),Z("prev")})}let H=[];function f(){if(document.getElementById("playground-styles"))return;let J=document.createElement("style");J.id="playground-styles",J.innerHTML=`
 #random-playground-widget {
-position: sticky;
-top: 90px;
-width: 100%;
-max-width: 330px;
-float: right;
-margin-left: 2rem;
-margin-bottom: 2rem;
-background-color: var(--surface, #1e1e1e);
-padding: 1.25rem;
-border-radius: 12px;
-border: 1px solid var(--border, #2c2c2c);
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-z-index: 10;
+position: fixed; /* Mengikuti jejak search box yang pakai fixed */
+top: 6rem; /* 1.25rem + 2.75rem + 2rem jarak */
+right: 1.25rem; /* Rata kanan persis dengan search box */
+width: 18.75rem; /* Lebar absolut sesuai search box saat terbuka */
+background-color: transparent; /* Sesuai request: Tanpa background */
+border: none; /* Sesuai request: Tanpa border */
+box-shadow: none; /* Menghilangkan bayangan agar membaur murni */
+z-index: 10000; /* Satu tingkat di bawah z-index search (10001) */
+
+/* Hapus setting float dan margin lama karena sekarang pakai koordinat fixed */
+display: flex;
+flex-direction: column;
 }
+
 .playground-item {
   display: flex;
   gap: 12px;
@@ -69,17 +69,23 @@ z-index: 10;
   border-radius: 8px;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
+
+/* Hover state yang lebih halus karena background luarnya transparan */
 .playground-item:hover {
-  background-color: var(--hover, rgba(255, 255, 255, 0.05));
+  background-color: var(--bg-glass, rgba(255, 255, 255, 0.05));
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
+
 .playground-item h4 {
   transition: color 0.2s ease;
 }
 .playground-item:hover h4 {
-  color: var(--accent-color, #F6821F);
+  color: var(--accent, #00b0ed); /* Mengikuti aksen warna Layar Kosong */
 }
+
 #shuffle-btn {
-background: var(--surface);
+background: transparent;
 color: var(--text-muted, #888);
 border: 1px solid var(--border);
 border-radius: 50%;
@@ -92,11 +98,12 @@ justify-content: center;
 transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 #shuffle-btn:hover {
-background: var(--primary, #F6821F);
+background: var(--accent, #00b0ed);
 color: #fff;
-border-color: var(--primary, #F6821F);
-transform: scale(1.1);
+border-color: var(--accent, #00b0ed);
+transform: scale(1.1) rotate(180deg); /* Tambah efek muter otomatis pas di-hover */
 }
+
 @keyframes shakeAndFade {
   0% { transform: translateX(0); opacity: 1; }
   20% { transform: translateX(-6px) rotate(-3deg); }
@@ -108,7 +115,8 @@ transform: scale(1.1);
 .shake-anim {
   animation: shakeAndFade 0.4s ease-in-out forwards;
 }
-@media (max-width: 1024px) {
+
+@media (max-width: 62rem) { /* Batas aman sembunyikan widget (sekitar 992px) */
   #random-playground-widget { display: none !important; }
 }
 `,document.head.appendChild(J)}function N(J){let W=window.location.pathname,V=H.filter((X)=>!W.includes(X.id.replace(".html",""))).sort(()=>0.5-Math.random()).slice(0,5),Y=`
