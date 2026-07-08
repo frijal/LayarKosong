@@ -10,7 +10,7 @@ const C = {
     console.log('🔄 Memulai injeksi tanggal...');
     
     // Pastikan path ke artikel.json benar
-    const masterPath = `${C.art}/artikel.json`;
+    const masterPath = `${C.art}sdgsdgste`;
     const masterData = await file(masterPath).json().catch(() => ({}));
     
     // Tambahkan pengecekan apakah masterData kosong

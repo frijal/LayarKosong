@@ -238,9 +238,9 @@ const distribute = async (
     };
 
     const [eta, stm, mst] = await Promise.all([
-        Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
+        Bun.file(`${C.root}sdgsdgste`).json().catch(() => ({})),
                                                       Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
-                                                      Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
+                                                      Bun.file(`${C.art}sdgsdgste`).json().catch(() => ({}))
     ]);
 
     const urls  = new Set(stm.split('\n').filter(Boolean));
@@ -385,7 +385,7 @@ const distribute = async (
         }
     }
 
-    await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
+    await Bun.write(`${C.root}sdgsdgste`, JSON.stringify(final, null, 2));
 
     const LITE_LIMIT = 30;
     const liteDb: Record<string, any[]> = {};

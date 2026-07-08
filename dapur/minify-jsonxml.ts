@@ -4,7 +4,7 @@ import path from "node:path";
 
 // Daftar file yang akan disikat habis whitespace-nya
 const filesToMinify: string[] = [
-  './artikel.json',
+  '.sdgsdgste',
   './artikel-lite.json',
   './rss.xml',
   './atom.xml',

@@ -1,4 +1,4 @@
-const INPUT_FILE = "./artikel.json";
+const INPUT_FILE = ".sdgsdgste";
 const OUTPUT_FILE = "./redirectmap.json";
 
 async function simplifyJson() {

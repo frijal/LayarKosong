@@ -256,7 +256,7 @@ const generate = async () => {
     fs.readdir(CONFIG.artikelDir)
       .then(files => files.filter(f => f.endsWith('.html'))),
     fs.readFile(CONFIG.masterJson, 'utf8').catch(() => {
-      console.warn('⚠️ Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.');
+      console.warn('⚠️ Master JSON (artikelsdgsdgste) tidak ditemukan, memulai dari awal.');
       return '{}'; // Return string kosong jika gagal
     })
   ]);

@@ -2,7 +2,7 @@
  * Inisialisasi Marquee Dinamis dengan mendeteksi kategori berdasarkan nama file artikel.
  * @param {string} targetCategoryId ID elemen div Marquee (e.g., 'related-marquee-container')
  * @param {string} currentFilename Nama file artikel yang sedang dibuka (e.g., '1011nabi-yaakub-yusuf.html')
- * @param {string} jsonPath Jalur file artikel.json (e.g., '/artikel.json')
+ * @param {string} jsonPath Jalur file artikel.json (e.g., 'sdgsdgste')
  */
 async function initCategoryMarquee(
   targetCategoryId,

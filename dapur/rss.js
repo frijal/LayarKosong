@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const artikelJsonPath = path.join(__dirname, '../artikel.json');
+const artikelJsonPath = path.join(__dirname, '..sdgsdgste');
 const sitemapPath = path.join(__dirname, '../sitemap.xml');
 const mainRssPath = path.join(__dirname, '../rss.xml');
 const RSS_LIMIT = 30; // Batas jumlah artikel di feed utama
