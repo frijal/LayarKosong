@@ -10,7 +10,7 @@ const categories: Category[] = [
   {
     name: "Sistem Terbuka",
     keywords: [
-      "linux", "ubuntu", "debian", "arch", "Terminal", "fedora", "Clonezilla", "Manjaro","Kubuntu", "Synaptic", "cachyos", "mx-linux", "nixos", "opensuse", "Cinnamon","slackware", "zorin", "garuda", "Lubuntu", "blankon", "Mandrake", "mageia", "parrot", "apt", "pacman", "paru", "aur", "dpkg", "yum", "dnf", "OpenMandriva", "flatpak", "snap", "brew", "Perl", "Solaris", "gnome", "kde", "xfce", "hyprland", "wayland", "x11", "compiz", "kernel", "systemd", "grub", "btrfs", "ext4", "chroot", "root", "sudo", "bash", "zsh", "fish", "nano", "vim", "CentOS", "foss", "open source", "oss", "distro", "desktop", "repo", "mirror", "ventoy", "rescuezilla", "rsync", "tar", "shell", "dotfiles", "lts", "glibc"
+      "linux", "ubuntu", "debian", "arch", "cli", "cURL", "Terminal", "Dependencies", "fedora", "Clonezilla", "Manjaro","Kubuntu", "Synaptic", "cachyos", "mx-linux", "nixos", "opensuse", "Cinnamon","slackware", "zorin", "garuda", "Lubuntu", "blankon", "Mandrake", "mageia", "parrot", "apt", "pacman", "paru", "aur", "dpkg", "yum", "dnf", "OpenMandriva", "flatpak", "snap", "brew", "Perl", "Solaris", "gnome", "kde", "xfce", "hyprland", "wayland", "x11", "compiz", "kernel", "systemd", "grub", "btrfs", "ext4", "chroot", "root", "sudo", "bash", "zsh", "fish", "nano", "vim", "CentOS", "foss", "open source", "oss", "distro", "desktop", "repo", "mirror", "ventoy", "rescuezilla", "rsync", "tar", "shell", "dotfiles", "lts", "glibc"
     ]
   },
   {
@@ -22,13 +22,13 @@ const categories: Category[] = [
   {
     name: "Jejak Sejarah",
     keywords: [
-      "nabi", "rasul", "sahabat", "khalifah", "Mitos", "Masjid", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "ramadhan", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
+      "nabi", "rasul", "sahabat", "khalifah", "Syari", "Mitos", "Masjid", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "ramadhan", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
     ]
   },
   {
     name: "Gaya Hidup",
     keywords: [
-      "kesehatan", "pencernaan", "tidur", "efisiensi","penyakit",  "Vitamin", "diet", "Rupiah", "Wasiat","lisensi", "Angkringan", "Psikotes","medsos", "Lembur","Konsumen","Pelajar","Sajadah","koperasi", "herbal", "obat", "sakit", "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan", "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel", "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga", "anak", "bahaya", "listrik"
+      "kesehatan", "pencernaan", "tidur", "Teknologi", "efisiensi","penyakit",  "Vitamin", "diet", "Rupiah", "Wasiat","lisensi", "Angkringan", "Psikotes","medsos", "Lembur","Konsumen","Pelajar","Sajadah","koperasi", "herbal", "obat", "sakit", "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan", "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel", "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga", "anak", "bahaya", "listrik"
     ]
   },
   {
@@ -40,7 +40,7 @@ const categories: Category[] = [
   {
     name: "Warta Tekno",
     keywords: [
-      "ai", "chatgpt", "gemini", "claude", "HDD", "email", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
+      "ai", "chatgpt", "gemini","Copilot", "Hacker", "Blog", "Install", "Chatbot", "Script", "Blogspot", "kode", "DDoS", "SEO", "website", "web", "claude","NotebookLM", "Deepfake", "Keyboard", "YouTube", "PostgreSQL", "SQLite", "MySQL", "HDD", "Boot", "Link", "email", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
     ]
   }
 ];
