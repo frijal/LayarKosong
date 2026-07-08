@@ -466,7 +466,31 @@ font-family: inherit;
 }
 
 #shuffle-btn:hover {
-background-color: var(--border, #eee);
+background: var(--primary, #F6821F);
+color: #fff;
+border-color: var(--primary, #F6821F);
+transform: scale(1.1) rotate(180deg);
+}
+
+#hide-btn, #shuffle-btn {
+background: var(--surface);
+color: var(--text-muted, #888);
+border: 1px solid var(--border);
+border-radius: 50%;
+width: 2rem; /* Diubah dari 32px ke 2rem */
+height: 2rem; /* Diubah dari 32px ke 2rem */
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s ease;
+}
+
+#hide-btn:hover {
+background: #ff4d4d;
+color: #fff;
+border-color: #ff4d4d;
+transform: scale(1.1);
 }
 
 /* POSISI MOBILE (< 1024px) */
