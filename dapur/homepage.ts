@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider (Optimized Images)
+ * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider (Optimized Images & Typography)
  * =================================================================================
  */
 
@@ -24,13 +24,24 @@ let heroTimer: ReturnType<typeof setInterval> | null = null;
 let limit: number = 6;
 let currentActiveCategory: string = 'All';
 
+// 🔥 HELPER BARU: Merapikan tipografi kategori (gaya-hidup -> Gaya Hidup)
+function formatCategoryName(slug: string): string {
+  if (!slug) return 'Lainnya';
+  return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 async function fetchData(): Promise<void> {
   try {
     const data = await (window as any).siteDataProvider.getFor('homepage.ts');
     allData = [];
 
     for (const cat in data) {
+      // catSlug: Murni untuk URL (tetap huruf kecil dan pakai setrip)
       const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+
+      // readableCat: Tipografi cantik untuk ditampilkan ke UI
+      const readableCat = formatCategoryName(cat);
+
       data[cat].forEach((item: any) => {
         const fileSlug = item.id.replace(/\.html$/, '');
 
@@ -41,14 +52,14 @@ async function fetchData(): Promise<void> {
         const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
 
         allData.push({
-          category: cat,
+          category: readableCat, // Simpan teks yang sudah rapi
           title: item.title,
           id: item.id,
-          url: `/${catSlug}/${fileSlug}`,
+          url: `/${catSlug}/${fileSlug}`, // URL tetap pakai slug asli
           img: smallImage,
           fullImg: originalImage,
           date: item.date ? new Date(item.date) : new Date(),
-          summary: item.description || ''
+                     summary: item.description || ''
         });
       });
     }
@@ -56,6 +67,7 @@ async function fetchData(): Promise<void> {
     allData.sort((a, b) => b.date.getTime() - a.date.getTime());
     displayedData = [...allData];
 
+    // Ekstrak kategori unik berdasarkan yang sudah dirapikan
     const categories = [...new Set(allData.map(item => item.category))];
     heroData = categories.map(cat => allData.find(item => item.category === cat) as Article);
 
@@ -91,8 +103,8 @@ function initSite(): void {
       }
 
       displayedData = allData.filter(i =>
-        i.title.toLowerCase().includes(val) ||
-        (i.summary && i.summary.toLowerCase().includes(val))
+      i.title.toLowerCase().includes(val) ||
+      (i.summary && i.summary.toLowerCase().includes(val))
       );
 
       renderFeed(true);
@@ -132,11 +144,11 @@ function renderSidebar(targetCat?: string) {
   side.innerHTML = '';
 
   const activePill = document.querySelector('.pill.active');
-  const currentCategory = targetCat || (activePill ? activePill.textContent.trim() : 'All');
+  const currentCategory = targetCat || (activePill ? activePill.textContent?.trim() : 'All');
 
   let filteredForSidebar = (currentCategory === 'All' || currentCategory === 'Kategori')
-    ? [...allData]
-    : allData.filter(item => item.category === currentCategory);
+  ? [...allData]
+  : allData.filter(item => item.category === currentCategory);
 
   const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
   const finalAvailable = filteredForSidebar.filter(item => !displayedTitles.includes(item.title));
@@ -149,20 +161,20 @@ function renderSidebar(targetCat?: string) {
     const formattedDate = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getFullYear())}`;
 
     return `
-      <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-        <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="if(this.src.includes('-sm.webp')) { this.src='${item.fullImg}'; } else { this.onerror=null; this.src='/thumbnail-sm.webp'; }" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; flex-shrink:0;">
-        <div class="mini-text">
-          <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
-            <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-              ${item.title}
-            </a>
-          </h4>
-          <div style="display: flex; align-items: center; gap: 5px;">
-            <small style="color: #888; font-size: 0.65rem;">${formattedDate} •</small>
-            <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
-          </div>
-        </div>
-      </div>`;
+    <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="if(this.src.includes('-sm.webp')) { this.src='${item.fullImg}'; } else { this.onerror=null; this.src='/thumbnail-sm.webp'; }" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; flex-shrink:0;">
+    <div class="mini-text">
+    <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
+    <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+    ${item.title}
+    </a>
+    </h4>
+    <div style="display: flex; align-items: center; gap: 5px;">
+    <small style="color: #888; font-size: 0.65rem;">${formattedDate} •</small>
+    <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
+    </div>
+    </div>
+    </div>`;
   }).join('');
 }
 
@@ -188,25 +200,24 @@ function renderHero(): void {
 
   heroEl.classList.remove('skeleton');
 
-  // Menggunakan h.fullImg agar slider tetap tajam (Gambar Asli)
   wrapper.innerHTML = heroData.map((h) => `
-    <a href="${h.url}" class="hero-slide" style="background-image: url('${h.fullImg}')">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="hero-cat">${h.category}</span>
-        <h1 class="hero-title">${h.title}</h1>
-        <p class="hero-summary">
-          ${h.summary.substring(0, 270)}...
-          <strong style="color:var(--secondary);">Ungkap Faktanya →</strong>
-        </p>
-      </div>
-    </a>`).join('');
+  <a href="${h.url}" class="hero-slide" style="background-image: url('${h.fullImg}')">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+  <span class="hero-cat">${h.category}</span>
+  <h1 class="hero-title">${h.title}</h1>
+  <p class="hero-summary">
+  ${h.summary.substring(0, 270)}...
+  <strong style="color:var(--secondary);">Ungkap Faktanya →</strong>
+  </p>
+  </div>
+  </a>`).join('');
 
   const navHTML = `
-    <div class="hero-nav">
-      <button class="nav-btn prev" id="heroPrev"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="nav-btn next" id="heroNext"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>`;
+  <div class="hero-nav">
+  <button class="nav-btn prev" id="heroPrev"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="nav-btn next" id="heroNext"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>`;
 
   const existingNav = heroEl.querySelector('.hero-nav');
   if (existingNav) existingNav.remove();
@@ -269,23 +280,23 @@ function renderFeed(reset: boolean = false): void {
   const itemsToDisplay = filteredItems.slice(0, limit);
 
   itemsToDisplay.forEach(item => {
-  const cleanTitle = item.title.replace(/"/g, '&quot;');
-  container.innerHTML += `
-  <div class="card" style="animation: fadeIn 0.5s ease">
-  <img src="${item.img}" class="card-img" alt="${cleanTitle}" onerror="if(this.src.includes('-sm.webp')) { this.src='${item.fullImg}'; } else { this.onerror=null; this.src='/thumbnail-sm.webp'; }">
-        <div class="card-body">
-          <a href="${item.url}" class="card-link">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-              <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${item.date.toISOString()}">
-                ${item.date.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
-              </time>
-              <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${item.category}</small>
-            </div>
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-excerpt">${item.summary.substring(0, 200)}...</p>
-          </a>
-        </div>
-      </div>`;
+    const cleanTitle = item.title.replace(/"/g, '&quot;');
+    container.innerHTML += `
+    <div class="card" style="animation: fadeIn 0.5s ease">
+    <img src="${item.img}" class="card-img" alt="${cleanTitle}" onerror="if(this.src.includes('-sm.webp')) { this.src='${item.fullImg}'; } else { this.onerror=null; this.src='/thumbnail-sm.webp'; }">
+    <div class="card-body">
+    <a href="${item.url}" class="card-link">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${item.date.toISOString()}">
+    ${item.date.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
+    </time>
+    <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${item.category}</small>
+    </div>
+    <h3 class="card-title">${item.title}</h3>
+    <p class="card-excerpt">${item.summary.substring(0, 200)}...</p>
+    </a>
+    </div>
+    </div>`;
   });
 
   const loadMoreBtn = document.getElementById('loadMore');
@@ -306,6 +317,7 @@ function renderCategories(): void {
   if (!container) return;
   container.innerHTML = `<div class="pill active" id="pill-all">Kategori</div>`;
   cats.forEach(c => {
+    // Pastikan ID valid tanpa spasi
     const pillId = `pill-${c.replace(/\s+/g, '-')}`;
     container.innerHTML += `<div class="pill" id="${pillId}">${c}</div>`;
   });
