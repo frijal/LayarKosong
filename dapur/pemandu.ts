@@ -226,7 +226,7 @@ if (!nav) {
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
 
-  // ✅ SOLUSI: Taruh elemen Navigasi ini sebagai "kakak" (sebelum) grid,
+  // ✅ SOLUSI: Taruh elemen Navigasi ini sebagai kakak (sebelum) grid,
   // bukan dimasukkan ke dalam "perut" grid.
 if (grid.parentNode) {
   grid.parentNode.insertBefore(nav, grid);
