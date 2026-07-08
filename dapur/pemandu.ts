@@ -424,7 +424,13 @@ function injectPlaygroundStyles() {
   if (document.getElementById('playground-styles')) return;
   const style = document.createElement('style');
   style.id = 'playground-styles';
+
 style.innerHTML = `
+:root {
+  /* Tinggi thumbnail & ruang teks. Kalau ini diubah, semua otomatis ngikut. */
+  --thumb-size: 4.5rem;
+}
+
 /* POSISI DESKTOP (STICKY) */
 #random-playground-widget {
 position: fixed;
@@ -449,108 +455,183 @@ z-index: 999;
   }
 }
 
-.playground-item { /* ... styling tetap sama ... */ }
-#shuffle-btn { /* ... styling tetap sama ... */ }
-.shake-anim { animation: shakeAndFade 0.4s ease-in-out forwards; }
-@keyframes shakeAndFade { /* ... keyframe tetap sama ... */ }
+/* STYLING PLAYGROUND ITEM (SIDE-BY-SIDE) */
+.playground-item {
+  display: flex;
+  align-items: flex-start; /* Ubah ke flex-start biar teks rata atas sama thumbnail */
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.playground-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  object-fit: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  background-color: var(--border, #f3f4f6);
+}
+
+.playground-title {
+  /* Tinggi total disamakan dengan tinggi thumbnail */
+  height: var(--thumb-size);
+  /* Tinggi per baris persis 1/3 dari total tinggi thumbnail */
+  line-height: calc(var(--thumb-size) / 3);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  flex-grow: 1;
+
+  /* Trik multiline ellipsis (Maksimal 3 baris) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal; /* Kembalikan ke normal agar bisa turun baris */
+}
+
+/* SHUFFLE BUTTON & ANIMATION */
+#shuffle-btn {
+width: 100%;
+padding: 0.75rem;
+margin-bottom: 1.5rem;
+cursor: pointer;
+font-weight: bold;
+border-radius: 0.5rem;
+background-color: transparent;
+border: 1px solid var(--border, #ccc);
+transition: all 0.2s ease;
+}
+
+#shuffle-btn:hover {
+background-color: var(--border, #eee);
+}
+
+.shake-anim {
+  animation: shakeAndFade 0.4s ease-in-out forwards;
+}
+
+@keyframes shakeAndFade {
+  0% { transform: translateX(0); opacity: 1; }
+  25% { transform: translateX(-5px); opacity: 0.7; }
+  50% { transform: translateX(5px); opacity: 0.4; }
+  75% { transform: translateX(-5px); opacity: 0.7; }
+  100% { transform: translateX(0); opacity: 1; }
+}
 `;
 document.head.appendChild(style);
 }
 
-function renderPlaygroundList(widget: HTMLElement) {
-  const currentPath = window.location.pathname;
-  const filteredRandoms = allPlaygroundArticles.filter(r => !currentPath.includes(r.id.replace('.html', '')));
-  const selectedRandoms = filteredRandoms.sort(() => 0.5 - Math.random()).slice(0, 5);
 
-  const headerHTML = `
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
-  <h3 style="font-size:1.1rem; margin:0; font-weight:700; color:var(--text, #fff); display:flex; align-items:center; gap:8px;">
-  <i class="fa-solid fa-dice" style="color:var(--primary, #F6821F);"></i> Artikel Acak
-  </h3>
-  <button id="shuffle-btn" title="Kocok Artikel Lain!">
-  <i class="fa-solid fa-arrows-rotate"></i>
-  </button>
-  </div>
-  <div id="playground-list" style="display:flex; flex-direction:column; gap:4px;"></div>
+
+// FUNGSI RENDER (Disisipkan di script utama lo)
+function renderPlaygroundList(widget) {
+  // Kosongin widget tiap kali render ulang (penting buat fitur shuffle)
+  widget.innerHTML = '';
+
+  // 1. Bikin tombol Shuffle
+  const shuffleBtn = document.createElement('button');
+  shuffleBtn.id = 'shuffle-btn';
+  shuffleBtn.textContent = '🎲 Acak Artikel';
+shuffleBtn.onclick = () => {
+  widget.classList.add('shake-anim');
+  setTimeout(() => {
+    renderPlaygroundList(widget); // Panggil render lagi buat re-shuffle
+    widget.classList.remove('shake-anim');
+  }, 400);
+};
+widget.appendChild(shuffleBtn);
+
+// 2. Ambil 4 artikel random dari array allPlaygroundArticles
+const shuffledArticles = [...allPlaygroundArticles]
+.sort(() => 0.5 - Math.random())
+.slice(0, 4);
+
+// 3. Looping dan bikin elemen HTML-nya
+shuffledArticles.forEach(article => {
+  const item = document.createElement('a');
+  item.href = article.url || '#';
+  item.className = 'playground-item';
+
+  // Ambil URL gambar original
+  const origImg = article.image || article.thumbnail || '';
+  let smWebpImg = origImg;
+
+  // Manipulasi string buat inject suffix -sm.webp
+  // (Biar kalau ekstensi aslinya .jpg/.png bisa diganti)
+  const dotIndex = origImg.lastIndexOf('.');
+  if (dotIndex !== -1) {
+    smWebpImg = origImg.substring(0, dotIndex) + '-sm.webp';
+  }
+
+  // Pakai atribut `onerror` biar fallback otomatis jalan kalau -sm.webp gagal diload
+  item.innerHTML = `
+  <img
+  class="playground-thumb"
+  src="${smWebpImg}"
+  data-orig="${origImg}"
+  onerror="this.onerror=null; this.src=this.dataset.orig;"
+  alt="${article.title || 'Thumbnail Artikel'}"
+  loading="lazy"
+  >
+  <h4 class="playground-title">${article.title || 'Judul Tanpa Kategori'}</h4>
   `;
 
-  if (!document.getElementById('shuffle-btn')) {
-    widget.innerHTML = headerHTML;
-  }
-
-  const listContainer = document.getElementById('playground-list');
-  if (!listContainer) return;
-
-  listContainer.innerHTML = selectedRandoms.map(item => {
-    const cleanTitle = item.title.replace(/\s*-\s*Layar Kosong$/i, '');
-    const thumbImg = item.image ? item.image.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp') : '/thumbnail-sm.webp';
-    const catSlug = (item.category || 'lainnya').toLowerCase().replace(/\s+/g, '-');
-    const fileSlug = item.id.replace('.html', '');
-    const itemUrl = `/${catSlug}/${fileSlug}`;
-
-    return `
-    <a href="${itemUrl}" class="playground-item">
-    <img src="${thumbImg}" alt="${cleanTitle}" style="width:65px; height:65px; object-fit:cover; border-radius:8px; flex-shrink:0; background:var(--border);">
-    <div style="flex-grow:1; min-width:0;">
-    <h4 style="margin:0 0 4px 0; font-size:0.85rem; line-height:1.4; font-weight:600; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
-    ${cleanTitle}
-    </h4>
-    <span style="font-size:0.65rem; color:var(--primary, #F6821F); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">${item.category}</span>
-    </div>
-    </a>
-    `;
-  }).join('');
-
-  const shuffleBtn = document.getElementById('shuffle-btn');
-  if (shuffleBtn) {
-    shuffleBtn.addEventListener('click', function() {
-      const icon = this.querySelector('i');
-      if (icon) {
-        icon.style.transition = 'transform 0.4s ease';
-        icon.style.transform = `rotate(${Math.random() > 0.5 ? 180 : -180}deg)`;
-        setTimeout(() => { icon.style.transition = 'none'; icon.style.transform = 'rotate(0deg)'; }, 400);
-      }
-
-      const items = listContainer.querySelectorAll('.playground-item');
-      items.forEach(el => el.classList.add('shake-anim'));
-
-      setTimeout(() => {
-        renderPlaygroundList(widget);
-      }, 400);
-    });
-  }
+  widget.appendChild(item);
+});
 }
+
+
 
 async function initRandomPlayground() {
   injectPlaygroundStyles();
 
   let widget = document.getElementById('random-playground-widget');
+
   if (!widget) {
     widget = document.createElement('aside');
     widget.id = 'random-playground-widget';
 
-if (isMobileDevice()) {
-  // 🔥 MOBILE: Pindahkan ke paling bawah sebelum penutup body
-  document.body.appendChild(widget);
-} else {
-  // 💻 DESKTOP: Sisipkan di samping konten utama (posisi sticky)
-  const mainContent = document.querySelector('.article-content, main, article, #main-wrapper');
-  if (mainContent && mainContent.parentNode) {
-    mainContent.parentNode.insertBefore(widget, mainContent.nextSibling);
-  } else {
-    document.body.appendChild(widget);
-  }
-}
+    // 🔥 Pengecekan viewport: Single Source of Truth
+    // Nilai 1024px disamain plek ketiplek sama @media di CSS
+    const isMobileLayout = window.matchMedia('(max-width: 1024px)').matches;
+
+    if (isMobileLayout) {
+      // 📱 MOBILE: Pindahkan ke paling bawah sebelum penutup body
+      document.body.appendChild(widget);
+    } else {
+      // 💻 DESKTOP: Sisipkan di samping konten utama
+      const mainContent = document.querySelector('.article-content, main, article, #main-wrapper');
+
+      if (mainContent && mainContent.parentNode) {
+        mainContent.parentNode.insertBefore(widget, mainContent.nextSibling);
+      } else {
+        // Fallback kalau selector main content nggak ketemu
+        document.body.appendChild(widget);
+      }
+    }
   }
 
-  // ... sisa fungsi tetap sama (fetch data dan render) ...
-  if (allPlaygroundArticles.length === 0) {
+  // Fetch data
+  if (typeof allPlaygroundArticles === 'undefined' || allPlaygroundArticles.length === 0) {
     try {
       const data = await window.siteDataProvider.getFor('pemandu.ts');
-      allPlaygroundArticles = Object.values(data).flat();
-    } catch (e) { return; }
+      // Pastikan data valid sebelum di-flat()
+      if (data) {
+        allPlaygroundArticles = Object.values(data).flat();
+      }
+    } catch (e) {
+      console.error("Gagal memuat data playground:", e);
+      return;
+    }
   }
-  renderPlaygroundList(widget);
+
+  // Render list
+  if (typeof renderPlaygroundList === 'function') {
+    renderPlaygroundList(widget);
+  }
 }
 
 // ---------------------------
