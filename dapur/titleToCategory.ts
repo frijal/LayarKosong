@@ -22,7 +22,7 @@ const categories: Category[] = [
   {
     name: "Jejak Sejarah",
     keywords: [
-      "nabi", "rasul", "sahabat", "khalifah", "Syari", "Mitos", "Masjid", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "ramadhan", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
+      "nabi", "rasul", "sahabat", "khalifah", "Sujud", "Syari", "Mitos", "Masjid", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "ramadhan", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
     ]
   },
   {
@@ -40,7 +40,7 @@ const categories: Category[] = [
   {
     name: "Warta Tekno",
     keywords: [
-      "ai", "chatgpt", "gemini","Copilot", "Hacker", "Blog", "Install", "Chatbot", "Script", "Blogspot", "kode", "DDoS", "SEO", "website", "web", "claude","NotebookLM", "Deepfake", "Keyboard", "YouTube", "PostgreSQL", "SQLite", "MySQL", "HDD", "Boot", "Link", "email", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
+      "ai", "chatgpt", "gemini","Copilot", "Skrip", "Cleanup","Software", "Vulnerability", "ngrok","Komdigi", "Reddit", "Proxy", "Facebook", "WordPress", "Hacker", "Blog", "Install", "Chatbot", "Script", "Blogspot", "kode", "DDoS", "SEO", "website", "web", "claude","NotebookLM", "Deepfake", "Keyboard", "YouTube", "PostgreSQL", "SQLite", "MySQL", "HDD", "Boot", "Link", "email", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
     ]
   }
 ];
