@@ -427,11 +427,10 @@ function injectPlaygroundStyles() {
 
 style.innerHTML = `
 :root {
-  /* Tinggi thumbnail & ruang teks. Kalau ini diubah, semua otomatis ngikut. */
   --thumb-size: 4.5rem;
 }
 
-/* POSISI DESKTOP (STICKY) */
+/* WIDGET SEBAGAI FLEX CONTAINER */
 #random-playground-widget {
 position: fixed;
 top: 6rem;
@@ -440,9 +439,37 @@ width: 18.75rem;
 background-color: transparent;
 border: none;
 z-index: 999;
+display: flex;
+flex-direction: column; /* Biar bisa mainin urutan (order) atas-bawah */
 }
 
-/* POSISI MOBILE (PINDAH KE BAWAH) */
+/* WADAH LIST ARTIKEL */
+#playground-list {
+display: flex;
+flex-direction: column;
+order: 1; /* DESKTOP: List artikel ada di urutan pertama (atas) */
+}
+
+/* TOMBOL SHUFFLE */
+#shuffle-btn {
+order: 2; /* DESKTOP: Tombol ada di urutan kedua (bawah) */
+width: 100%;
+padding: 0.75rem;
+margin-top: 0.5rem;
+margin-bottom: 0;
+cursor: pointer;
+font-weight: bold;
+border-radius: 0.5rem;
+background-color: transparent;
+border: 1px solid var(--border, #ccc);
+transition: all 0.2s ease;
+}
+
+#shuffle-btn:hover {
+background-color: var(--border, #eee);
+}
+
+/* POSISI MOBILE (< 1024px) */
 @media (max-width: 1024px) {
   #random-playground-widget {
   position: relative;
@@ -453,12 +480,18 @@ z-index: 999;
   padding: 1rem;
   border-top: 1px solid var(--border);
   }
+
+  #shuffle-btn {
+  order: -1; /* MOBILE: Tombol pindah ke urutan paling atas! */
+  margin-top: 0;
+  margin-bottom: 1.5rem; /* Kasih jarak bawah ke list artikel */
+  }
 }
 
 /* STYLING PLAYGROUND ITEM (SIDE-BY-SIDE) */
 .playground-item {
   display: flex;
-  align-items: flex-start; /* Ubah ke flex-start biar teks rata atas sama thumbnail */
+  align-items: flex-start;
   gap: 1rem;
   margin-bottom: 1.25rem;
   text-decoration: none;
@@ -475,116 +508,66 @@ z-index: 999;
 }
 
 .playground-title {
-  /* Tinggi total disamakan dengan tinggi thumbnail */
   height: var(--thumb-size);
-  /* Tinggi per baris persis 1/3 dari total tinggi thumbnail */
   line-height: calc(var(--thumb-size) / 3);
   font-size: 0.9rem;
   font-weight: 600;
   margin: 0;
   flex-grow: 1;
 
-  /* Trik multiline ellipsis (Maksimal 3 baris) */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  white-space: normal; /* Kembalikan ke normal agar bisa turun baris */
-}
-
-/* SHUFFLE BUTTON & ANIMATION */
-#shuffle-btn {
-width: 100%;
-padding: 0.75rem;
-margin-bottom: 1.5rem;
-cursor: pointer;
-font-weight: bold;
-border-radius: 0.5rem;
-background-color: transparent;
-border: 1px solid var(--border, #ccc);
-transition: all 0.2s ease;
-}
-
-#shuffle-btn:hover {
-background-color: var(--border, #eee);
-}
-
-.shake-anim {
-  animation: shakeAndFade 0.4s ease-in-out forwards;
-}
-
-@keyframes shakeAndFade {
-  0% { transform: translateX(0); opacity: 1; }
-  25% { transform: translateX(-5px); opacity: 0.7; }
-  50% { transform: translateX(5px); opacity: 0.4; }
-  75% { transform: translateX(-5px); opacity: 0.7; }
-  100% { transform: translateX(0); opacity: 1; }
+  white-space: normal;
 }
 `;
 document.head.appendChild(style);
 }
 
+// FUNGSI RENDER (Sekarang cuma ngolah listContainer)
+function renderPlaygroundList(listContainer) {
+  // Yang dikosongin cuma wadah list-nya, tombol shuffle aman sentosa
+  listContainer.innerHTML = '';
 
-
-// FUNGSI RENDER (Disisipkan di script utama lo)
-function renderPlaygroundList(widget) {
-  // Kosongin widget tiap kali render ulang (penting buat fitur shuffle)
-  widget.innerHTML = '';
-
-  // 1. Bikin tombol Shuffle
-  const shuffleBtn = document.createElement('button');
-  shuffleBtn.id = 'shuffle-btn';
-  shuffleBtn.textContent = '🎲 Acak Artikel';
-shuffleBtn.onclick = () => {
-  widget.classList.add('shake-anim');
-  setTimeout(() => {
-    renderPlaygroundList(widget); // Panggil render lagi buat re-shuffle
-    widget.classList.remove('shake-anim');
-  }, 400);
-};
-widget.appendChild(shuffleBtn);
-
-// 2. Ambil 4 artikel random dari array allPlaygroundArticles
 const shuffledArticles = [...allPlaygroundArticles]
 .sort(() => 0.5 - Math.random())
 .slice(0, 4);
 
-// 3. Looping dan bikin elemen HTML-nya
 shuffledArticles.forEach(article => {
   const item = document.createElement('a');
   item.href = article.url || '#';
   item.className = 'playground-item';
 
-  // Ambil URL gambar original
   const origImg = article.image || article.thumbnail || '';
   let smWebpImg = origImg;
 
-  // Manipulasi string buat inject suffix -sm.webp
-  // (Biar kalau ekstensi aslinya .jpg/.png bisa diganti)
   const dotIndex = origImg.lastIndexOf('.');
   if (dotIndex !== -1) {
     smWebpImg = origImg.substring(0, dotIndex) + '-sm.webp';
   }
 
-  // Pakai atribut `onerror` biar fallback otomatis jalan kalau -sm.webp gagal diload
+  // Bersihin " - Layar Kosong" dari judul
+  let rawTitle = article.title || 'Judul Tanpa Kategori';
+  let cleanTitle = rawTitle.replace(/\s*-\s*Layar Kosong$/i, '');
+
   item.innerHTML = `
   <img
   class="playground-thumb"
   src="${smWebpImg}"
   data-orig="${origImg}"
   onerror="this.onerror=null; this.src=this.dataset.orig;"
-  alt="${article.title || 'Thumbnail Artikel'}"
+  alt="${cleanTitle}"
   loading="lazy"
   >
-  <h4 class="playground-title">${article.title || 'Judul Tanpa Kategori'}</h4>
+  <h4 class="playground-title">${cleanTitle}</h4>
   `;
 
-  widget.appendChild(item);
+  listContainer.appendChild(item);
 });
 }
 
-
-
+// FUNGSI INISIALISASI UTAMA
 async function initRandomPlayground() {
   injectPlaygroundStyles();
 
@@ -594,31 +577,40 @@ async function initRandomPlayground() {
     widget = document.createElement('aside');
     widget.id = 'random-playground-widget';
 
-    // 🔥 Pengecekan viewport: Single Source of Truth
-    // Nilai 1024px disamain plek ketiplek sama @media di CSS
-    const isMobileLayout = window.matchMedia('(max-width: 1024px)').matches;
+    // Bikin Wadah List
+    const listContainer = document.createElement('div');
+    listContainer.id = 'playground-list';
 
-    if (isMobileLayout) {
-      // 📱 MOBILE: Pindahkan ke paling bawah sebelum penutup body
-      document.body.appendChild(widget);
-    } else {
-      // 💻 DESKTOP: Sisipkan di samping konten utama
-      const mainContent = document.querySelector('.article-content, main, article, #main-wrapper');
+    // Bikin Tombol Shuffle (cuma dieksekusi 1x pas awal)
+    const shuffleBtn = document.createElement('button');
+    shuffleBtn.id = 'shuffle-btn';
+    shuffleBtn.textContent = '🎲 Acak Artikel';
+shuffleBtn.onclick = () => {
+  renderPlaygroundList(listContainer);
+};
 
-      if (mainContent && mainContent.parentNode) {
-        mainContent.parentNode.insertBefore(widget, mainContent.nextSibling);
-      } else {
-        // Fallback kalau selector main content nggak ketemu
-        document.body.appendChild(widget);
-      }
-    }
+// Masukin ke widget. Urutan aslinya nggak ngaruh karena CSS Flexbox 'order' yang ngatur
+widget.appendChild(listContainer);
+widget.appendChild(shuffleBtn);
+
+const isMobileLayout = window.matchMedia('(max-width: 1024px)').matches;
+
+if (isMobileLayout) {
+  document.body.appendChild(widget);
+} else {
+  const mainContent = document.querySelector('.article-content, main, article, #main-wrapper');
+  if (mainContent && mainContent.parentNode) {
+    mainContent.parentNode.insertBefore(widget, mainContent.nextSibling);
+  } else {
+    document.body.appendChild(widget);
+  }
+}
   }
 
   // Fetch data
   if (typeof allPlaygroundArticles === 'undefined' || allPlaygroundArticles.length === 0) {
     try {
       const data = await window.siteDataProvider.getFor('pemandu.ts');
-      // Pastikan data valid sebelum di-flat()
       if (data) {
         allPlaygroundArticles = Object.values(data).flat();
       }
@@ -628,9 +620,9 @@ async function initRandomPlayground() {
     }
   }
 
-  // Render list
-  if (typeof renderPlaygroundList === 'function') {
-    renderPlaygroundList(widget);
+  const listContainer = document.getElementById('playground-list');
+  if (listContainer && typeof renderPlaygroundList === 'function') {
+    renderPlaygroundList(listContainer);
   }
 }
 
