@@ -515,6 +515,44 @@ background-color: var(--border, #eee);
   display: none;
   }
 }
+
+/* STYLING PLAYGROUND ITEM */
+.playground-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer; /* Memastikan ikon tangan selalu muncul */
+}
+
+.playground-item:hover {
+  opacity: 0.85; /* Sedikit efek interaktif pas di-hover */
+}
+
+.playground-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  object-fit: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  background-color: var(--border, #f3f4f6);
+}
+
+.playground-title {
+  height: var(--thumb-size);
+  line-height: calc(var(--thumb-size) / 3);
+  margin: 0;
+  flex-grow: 1;
+
+  /* Trik multiline ellipsis (Maksimal 3 baris) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
 `;
 document.head.appendChild(style);
 }
@@ -581,7 +619,7 @@ async function initRandomPlayground() {
     // Tombol Hide — cuma keliatan di desktop (>1024px), disembunyikan via CSS media query pas mobile
     const hideBtn = document.createElement('button');
     hideBtn.id = 'hide-btn';
-    hideBtn.textContent = '📴';
+    hideBtn.textContent = '🙈';
     hideBtn.title = 'Sembunyikan widget';
     hideBtn.setAttribute('aria-label', 'Sembunyikan widget');
     hideBtn.onclick = () => {

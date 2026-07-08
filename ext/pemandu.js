@@ -133,6 +133,44 @@ background-color: var(--border, #eee);
   display: none;
   }
 }
+
+/* STYLING PLAYGROUND ITEM */
+.playground-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer; /* Memastikan ikon tangan selalu muncul */
+}
+
+.playground-item:hover {
+  opacity: 0.85; /* Sedikit efek interaktif pas di-hover */
+}
+
+.playground-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  object-fit: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  background-color: var(--border, #f3f4f6);
+}
+
+.playground-title {
+  height: var(--thumb-size);
+  line-height: calc(var(--thumb-size) / 3);
+  margin: 0;
+  flex-grow: 1;
+
+  /* Trik multiline ellipsis (Maksimal 3 baris) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
 `,document.head.appendChild(V)}function E(V){V.innerHTML="",[...R].sort(()=>0.5-Math.random()).slice(0,7).forEach((Y)=>{let J=document.createElement("a");J.href=Y.url||"#",J.className="playground-item";let X=Y.image||Y.thumbnail||"",$=X,q=X.lastIndexOf(".");if(q!==-1)$=X.substring(0,q)+"-sm.webp";let z=(Y.title||"Judul Tanpa Kategori").replace(/\s*-\s*Layar Kosong$/i,"");J.innerHTML=`
   <img
   class="playground-thumb"
@@ -143,4 +181,4 @@ background-color: var(--border, #eee);
   loading="lazy"
   >
   <h4 class="playground-title">${z}</h4>
-  `,V.appendChild(J)})}async function f(){v();let V=document.getElementById("random-playground-widget");if(!V){V=document.createElement("aside"),V.id="random-playground-widget";let Y=document.createElement("div");Y.id="playground-list";let J=document.createElement("div");J.id="playground-controls";let X=document.createElement("button");X.id="hide-btn",X.textContent="\uD83D\uDCF4",X.title="Sembunyikan widget",X.setAttribute("aria-label","Sembunyikan widget"),X.onclick=()=>{V.style.display="none"};let $=document.createElement("button");if($.id="shuffle-btn",$.textContent="\uD83C\uDFB2 Acak Artikel",$.onclick=()=>{E(Y)},J.appendChild(X),J.appendChild($),V.appendChild(Y),V.appendChild(J),window.matchMedia("(max-width: 1024px)").matches)document.body.appendChild(V);else{let Q=document.querySelector(".article-content, main, article, #main-wrapper");if(Q&&Q.parentNode)Q.parentNode.insertBefore(V,Q.nextSibling);else document.body.appendChild(V)}}if(typeof R>"u"||R.length===0)try{let Y=await window.siteDataProvider.getFor("pemandu.ts");if(Y){R=[];for(let[J,X]of Object.entries(Y))X.forEach(($)=>{let q=$.id?$.id.replace(".html",""):"",Q=$.url||`/${J}/${q}`;R.push({...$,url:Q})})}}catch(Y){console.error("Gagal memuat data playground:",Y);return}let Z=document.getElementById("playground-list");if(Z&&typeof E==="function")E(Z)}async function b(){try{while(!window.siteDataProvider)await new Promise((Y)=>setTimeout(Y,100));let V=await window.siteDataProvider.getFor("pemandu.ts"),Z=w();if(V&&Object.keys(V).length>0)y(),S(),A(),x(V,Z),I(V,Z);D(Z),f()}catch(V){console.error("Gagal inisialisasi Pemandu:",V)}}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",b):b()})();})();
+  `,V.appendChild(J)})}async function f(){v();let V=document.getElementById("random-playground-widget");if(!V){V=document.createElement("aside"),V.id="random-playground-widget";let Y=document.createElement("div");Y.id="playground-list";let J=document.createElement("div");J.id="playground-controls";let X=document.createElement("button");X.id="hide-btn",X.textContent="\uD83D\uDE48",X.title="Sembunyikan widget",X.setAttribute("aria-label","Sembunyikan widget"),X.onclick=()=>{V.style.display="none"};let $=document.createElement("button");if($.id="shuffle-btn",$.textContent="\uD83C\uDFB2 Acak Artikel",$.onclick=()=>{E(Y)},J.appendChild(X),J.appendChild($),V.appendChild(Y),V.appendChild(J),window.matchMedia("(max-width: 1024px)").matches)document.body.appendChild(V);else{let Q=document.querySelector(".article-content, main, article, #main-wrapper");if(Q&&Q.parentNode)Q.parentNode.insertBefore(V,Q.nextSibling);else document.body.appendChild(V)}}if(typeof R>"u"||R.length===0)try{let Y=await window.siteDataProvider.getFor("pemandu.ts");if(Y){R=[];for(let[J,X]of Object.entries(Y))X.forEach(($)=>{let q=$.id?$.id.replace(".html",""):"",Q=$.url||`/${J}/${q}`;R.push({...$,url:Q})})}}catch(Y){console.error("Gagal memuat data playground:",Y);return}let Z=document.getElementById("playground-list");if(Z&&typeof E==="function")E(Z)}async function b(){try{while(!window.siteDataProvider)await new Promise((Y)=>setTimeout(Y,100));let V=await window.siteDataProvider.getFor("pemandu.ts"),Z=w();if(V&&Object.keys(V).length>0)y(),S(),A(),x(V,Z),I(V,Z);D(Z),f()}catch(V){console.error("Gagal inisialisasi Pemandu:",V)}}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",b):b()})();})();
