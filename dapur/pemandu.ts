@@ -225,7 +225,14 @@ if (!nav) {
   nav = document.createElement('div');
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
-grid.appendChild(nav);
+
+  // ✅ SOLUSI: Taruh elemen Navigasi ini sebagai "kakak" (sebelum) grid,
+  // bukan dimasukkan ke dalam "perut" grid.
+if (grid.parentNode) {
+  grid.parentNode.insertBefore(nav, grid);
+} else {
+  document.body.appendChild(nav); // Fallback darurat
+}
 }
 
 const prevTag = document.querySelector('link[rel="prev"]');
