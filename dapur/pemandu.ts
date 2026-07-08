@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * pemandu.ts v8.1 (D1 Native + Dual Provider Split + Bun Ready)
+ * pemandu.ts v8.1 (D1 Native + Dual Provider Split + Bun Ready + Random Playground)
  * TypeScript Strict Mode & Optimized for Bun Bundler.
  * =================================================================================
  */
@@ -44,11 +44,7 @@ function formatCategoryName(slug: string): string {
 function getCategoryInfo(fileName: string, allData: Record<string, any[]>) {
   for (const [catName, articles] of Object.entries(allData)) {
     if (articles.some((a: any) => a.id === fileName)) {
-      return {
-        name: formatCategoryName(catName),
- slug: catName,
- list: articles
-      };
+      return { name: formatCategoryName(catName), slug: catName, list: articles };
     }
   }
 
@@ -57,11 +53,7 @@ function getCategoryInfo(fileName: string, allData: Record<string, any[]>) {
     const currentSlug = pathSegments[0];
     for (const [catName, articles] of Object.entries(allData)) {
       if (catName === currentSlug) {
-        return {
-          name: formatCategoryName(catName),
- slug: catName,
- list: articles
-        };
+        return { name: formatCategoryName(catName), slug: catName, list: articles };
       }
     }
   }
@@ -226,9 +218,7 @@ if (!nav) {
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
 
-  // ✅ SOLUSI: Taruh elemen Navigasi tepat DI BAWAH grid
 if (grid.parentNode) {
-  // Kita menyisipkan 'nav' tepat sebelum elemen setelah 'grid' (artinya: di bawah grid)
   grid.parentNode.insertBefore(nav, grid.nextSibling);
 } else {
   document.body.appendChild(nav);
@@ -336,7 +326,6 @@ async function initRelatedGrid(currentFile: string): Promise<void> {
   if (!grid) return;
 
   try {
-    // ✅ Ganti pemanggilan ke API fungsi Lite dari siteDataProvider
     const liteData = await window.siteDataProvider.getRelatedLiteData();
     if (!liteData || Object.keys(liteData).length === 0) {
       grid.style.display = 'none';
@@ -425,6 +414,182 @@ function initKeyboardNav(allData: Record<string, any[]>, currentFile: string): v
   });
 }
 
+// =========================================================================
+// 2b. FITUR WIDGET STICKY: PLAYGROUND ARTIKEL ACAK (SHUFFLE)
+// =========================================================================
+
+let allPlaygroundArticles: any[] = [];
+
+function injectPlaygroundStyles() {
+  if (document.getElementById('playground-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'playground-styles';
+style.innerHTML = `
+#random-playground-widget {
+position: sticky;
+top: 90px;
+width: 100%;
+max-width: 330px;
+float: right;
+margin-left: 2rem;
+margin-bottom: 2rem;
+background-color: var(--surface, #1e1e1e);
+padding: 1.25rem;
+border-radius: 12px;
+border: 1px solid var(--border, #2c2c2c);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+z-index: 10;
+}
+.playground-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.playground-item:hover {
+  background-color: var(--hover, rgba(255, 255, 255, 0.05));
+}
+.playground-item h4 {
+  transition: color 0.2s ease;
+}
+.playground-item:hover h4 {
+  color: var(--accent-color, #F6821F);
+}
+#shuffle-btn {
+background: var(--surface);
+color: var(--text-muted, #888);
+border: 1px solid var(--border);
+border-radius: 50%;
+width: 32px;
+height: 32px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#shuffle-btn:hover {
+background: var(--primary, #F6821F);
+color: #fff;
+border-color: var(--primary, #F6821F);
+transform: scale(1.1);
+}
+@keyframes shakeAndFade {
+  0% { transform: translateX(0); opacity: 1; }
+  20% { transform: translateX(-6px) rotate(-3deg); }
+  40% { transform: translateX(6px) rotate(3deg); }
+  60% { transform: translateX(-4px) rotate(-2deg); opacity: 0.8; }
+  80% { transform: translateX(4px) rotate(2deg); opacity: 0.4; }
+  100% { transform: translateX(0); opacity: 0; }
+}
+.shake-anim {
+  animation: shakeAndFade 0.4s ease-in-out forwards;
+}
+@media (max-width: 1024px) {
+  #random-playground-widget { display: none !important; }
+}
+`;
+document.head.appendChild(style);
+}
+
+function renderPlaygroundList(widget: HTMLElement) {
+  const currentPath = window.location.pathname;
+  const filteredRandoms = allPlaygroundArticles.filter(r => !currentPath.includes(r.id.replace('.html', '')));
+  const selectedRandoms = filteredRandoms.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+  const headerHTML = `
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+  <h3 style="font-size:1.1rem; margin:0; font-weight:700; color:var(--text, #fff); display:flex; align-items:center; gap:8px;">
+  <i class="fa-solid fa-dice" style="color:var(--primary, #F6821F);"></i> Artikel Acak
+  </h3>
+  <button id="shuffle-btn" title="Kocok Artikel Lain!">
+  <i class="fa-solid fa-arrows-rotate"></i>
+  </button>
+  </div>
+  <div id="playground-list" style="display:flex; flex-direction:column; gap:4px;"></div>
+  `;
+
+  if (!document.getElementById('shuffle-btn')) {
+    widget.innerHTML = headerHTML;
+  }
+
+  const listContainer = document.getElementById('playground-list');
+  if (!listContainer) return;
+
+  listContainer.innerHTML = selectedRandoms.map(item => {
+    const cleanTitle = item.title.replace(/\s*-\s*Layar Kosong$/i, '');
+    const thumbImg = item.image ? item.image.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp') : '/thumbnail-sm.webp';
+    const catSlug = (item.category || 'lainnya').toLowerCase().replace(/\s+/g, '-');
+    const fileSlug = item.id.replace('.html', '');
+    const itemUrl = `/${catSlug}/${fileSlug}`;
+
+    return `
+    <a href="${itemUrl}" class="playground-item">
+    <img src="${thumbImg}" alt="${cleanTitle}" style="width:65px; height:65px; object-fit:cover; border-radius:8px; flex-shrink:0; background:var(--border);">
+    <div style="flex-grow:1; min-width:0;">
+    <h4 style="margin:0 0 4px 0; font-size:0.85rem; line-height:1.4; font-weight:600; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+    ${cleanTitle}
+    </h4>
+    <span style="font-size:0.65rem; color:var(--primary, #F6821F); font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">${item.category}</span>
+    </div>
+    </a>
+    `;
+  }).join('');
+
+  const shuffleBtn = document.getElementById('shuffle-btn');
+  if (shuffleBtn) {
+    shuffleBtn.addEventListener('click', function() {
+      const icon = this.querySelector('i');
+      if (icon) {
+        icon.style.transition = 'transform 0.4s ease';
+        icon.style.transform = `rotate(${Math.random() > 0.5 ? 180 : -180}deg)`;
+        setTimeout(() => { icon.style.transition = 'none'; icon.style.transform = 'rotate(0deg)'; }, 400);
+      }
+
+      const items = listContainer.querySelectorAll('.playground-item');
+      items.forEach(el => el.classList.add('shake-anim'));
+
+      setTimeout(() => {
+        renderPlaygroundList(widget);
+      }, 400);
+    });
+  }
+}
+
+async function initRandomPlayground() {
+  injectPlaygroundStyles();
+
+  let widget = document.getElementById('random-playground-widget');
+  if (!widget) {
+    widget = document.createElement('aside');
+    widget.id = 'random-playground-widget';
+
+    const mainContent = document.querySelector('.article-content, main, article, #main-wrapper');
+    if (mainContent && mainContent.parentNode) {
+      mainContent.parentNode.insertBefore(widget, mainContent.nextSibling);
+    } else {
+      document.body.appendChild(widget);
+    }
+  }
+
+  if (allPlaygroundArticles.length === 0) {
+    try {
+      const data = await window.siteDataProvider.getFor('pemandu.ts');
+      allPlaygroundArticles = Object.values(data).flat();
+    } catch (e) {
+      console.error('Playground Error:', e);
+      widget.innerHTML = '<p style="padding:1rem; text-align:center;">Gagal memuat arena bermain.</p>';
+      return;
+    }
+  }
+
+  renderPlaygroundList(widget);
+}
+
 // ---------------------------
 // 3. MAIN INITIALIZATION
 // ---------------------------
@@ -443,13 +608,18 @@ async function initializeApp(): Promise<void> {
       initKeyboardNav(allData, currentFile);
     }
 
-    // Grid dipanggil di urutan terakhir agar tidak memblokir render utama
+    // Dieksekusi di akhir agar tidak nge-blok konten utama
     initRelatedGrid(currentFile);
+
+    // 🔥 Panggil Playground secara asinkron di sini!
+    initRandomPlayground();
 
   } catch (err) {
     console.error("Gagal inisialisasi Pemandu:", err);
   }
 }
 
+// Cukup satu event listener utama yang mengurus segalanya
 document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', initializeApp) : initializeApp();
+
 })();
