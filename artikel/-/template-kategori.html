@@ -4,44 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%%TITLE%% - Layar Kosong</title>
-    <meta
-      name="description"
-      content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%."
-    />
+    <meta name="description" content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%." />
     <link rel="canonical" href="%%CANONICAL_URL%%">
-    <link
-      rel="alternate"
-      type="application/atom+xml"
-      title="%%CATEGORY_NAME%% Atom"
-      href="%%ATOM_URL%%"
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="%%CATEGORY_NAME%% RSS"
-      href="%%RSS_URL%%"
-    />
-    <link
-      rel="alternate"
-      type="application/atom+xml"
-      title="Layar Kosong - Semua Artikel Terbaru Atom"
-      href="https://dalam.web.id/atom.xml"
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Layar Kosong - Semua Artikel Terbaru RSS"
-      href="https://dalam.web.id/rss.xml"
-    />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any"><link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="alternate" type="application/atom+xml" title="%%CATEGORY_NAME%% Atom" href="%%ATOM_URL%%" />
+    <link rel="alternate" type="application/rss+xml" title="%%CATEGORY_NAME%% RSS" href="%%RSS_URL%%" />
+    <link rel="alternate" type="application/atom+xml" title="Layar Kosong - Semua Artikel Terbaru Atom" href="https://dalam.web.id/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Layar Kosong - Semua Artikel Terbaru RSS" href="https://dalam.web.id/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <meta name="author" content="Fakhrul Rijal">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
+    <meta name="theme-color" content="#F6821F">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta name="twitter:creator" content="@responaja">
-    
     <meta name="twitter:site" content="@responaja">
     <meta property="fb:app_id" content="175216696195384">
     <meta property="fb:pages" content="917962134736490">
@@ -50,9 +27,7 @@
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <meta property="og:title" content="%%TITLE%%">
-    <meta property="og:description"
-      content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%."
-    />
+    <meta property="og:description" content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%." />
     <meta property="og:image" content="https://dalam.web.id/thumbnail.webp"/>
     <meta property="og:image:alt" content="%%TITLE%%">
     <meta property="og:url" content="%%CANONICAL_URL%%">
@@ -61,12 +36,10 @@
     <meta name="color-scheme" content="light dark">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="%%TITLE%%">
-    <meta
-      name="twitter:description"
-      content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%."
-    />
+    <meta name="twitter:description" content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%." />
     <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp"/>
     <link rel="stylesheet" href="/ext/fontawesome.css"/>
+
     <script type="application/ld+json" id="seo-schema">
     {
       "@context": "https://schema.org",
@@ -103,50 +76,66 @@
       ]
     }
     </script>
+
     <style>
       :root {
-        --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+        /* Tema Gelap (Default) */
         --bg-color: #121212;
-        --bg-color-translucent: rgba(18, 18, 18, 0.85);
         --surface-color: #1e1e1e;
-        --primary-text-color: #e0e0e0;
-        --secondary-text-color: #b3b3b3;
-        --accent-color: #3da9fc;
+        --header-bg: rgba(30, 30, 30, 0.85); /* Transparan untuk efek blur */
+        --primary-text-color: #f8f9fa;
+        --secondary-text-color: #adb5bd;
+        --accent-color: #F6821F; /* Brand Orange */
+        --accent-hover: #E06B0F;
         --border-color: #2c2c2c;
-        --shadow-color: rgba(61, 169, 252, 0.1);
+        --shadow-color: rgba(0, 0, 0, 0.4);
+        --badge-bg: #2b2b2b;
       }
+
       @media (prefers-color-scheme: light) {
         :root {
+          /* Tema Terang */
           --bg-color: #f4f4f9;
-          --bg-color-translucent: rgba(244, 244, 249, 0.85);
           --surface-color: #ffffff;
-          --primary-text-color: #212121;
-          --secondary-text-color: #666666;
-          --accent-color: #007bff;
-          --border-color: #e0e0e0;
-          --shadow-color: rgba(0, 123, 255, 0.15);
+          --header-bg: rgba(255, 255, 255, 0.85);
+          --primary-text-color: #212529;
+          --secondary-text-color: #6c757d;
+          --accent-color: #F6821F; /* Brand Orange */
+          --accent-hover: #E06B0F;
+          --border-color: #e9ecef;
+          --shadow-color: rgba(0, 0, 0, 0.08);
+          --badge-bg: #f1f3f5;
         }
       }
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
+
       body {
         font-family: var(--font-sans);
         background-color: var(--bg-color);
         color: var(--primary-text-color);
         line-height: 1.7;
-        padding-top: 8rem;
+        padding-top: 7rem; /* Ruang untuk header fixed */
+        transition: background-color 0.3s, color 0.3s;
       }
+
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 2rem 1.5rem;
       }
+
+      /* Header Modern & Glassmorphism */
       .new-header {
-        background-color: var(--surface-color);
+        background-color: var(--header-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border-color);
         position: fixed;
         top: 0;
@@ -154,186 +143,242 @@
         right: 0;
         width: 100%;
         z-index: 50;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px var(--shadow-color);
+        transition: background-color 0.3s, border-color 0.3s;
       }
+
       .new-header-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0.75rem 1.5rem;
+        padding: 0.8rem 1.5rem;
         display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: center;
       }
+
       .header-bottom-row {
         display: flex;
-        justify-content: center;
+        justify-content: space-between; /* Memberi jarak antara judul dan kotak pencarian */
         align-items: center;
         width: 100%;
-        gap: 1rem;
+        gap: 1.5rem;
         flex-wrap: wrap;
       }
+
       .header-left {
         display: flex;
         align-items: center;
         gap: 1rem;
         min-width: 0;
       }
+
       .new-header h1 {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        color: var(--accent-color);
-        font-size: 1.25rem;
+        color: var(--primary-text-color);
+        font-size: 1.4rem;
         margin: 0;
-        font-weight: 600;
+        font-weight: 800;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       .new-header .rss-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         color: var(--accent-color);
         text-decoration: none;
         font-size: 1.2rem;
-        vertical-align: middle;
-        transition: color 0.2s ease;
-        flex-shrink: 0;
+        transition: transform 0.2s ease, color 0.2s ease;
       }
+
       .new-header .rss-link:hover {
-        color: orange;
+        transform: scale(1.15);
+        color: var(--accent-hover);
       }
+
+      /* Logo Banner Kecil di Atas */
       .header-logo-container {
         display: none;
         align-items: center;
+        opacity: 0.8;
       }
+
       .header-logo {
         height: 1.5rem;
         width: auto;
       }
+
+      /* Search Box */
       .header-search {
         position: relative;
         width: 100%;
-        max-width: 350px;
+        max-width: 380px;
         min-width: 0;
+        margin-left: auto; /* Mendorong ke kanan di mode desktop */
       }
+
       .search-input {
         font-family: var(--font-sans);
         width: 100%;
-        padding: 0.5rem 1rem 0.5rem 2.5rem;
+        padding: 0.6rem 1rem 0.6rem 2.5rem;
         border: 1px solid var(--border-color);
-        border-radius: 8px;
-        font-size: 0.9rem;
+        border-radius: 12px;
+        font-size: 0.95rem;
         background-color: var(--surface-color);
         color: var(--primary-text-color);
         transition: border-color 0.2s, box-shadow 0.2s;
       }
+
       .search-input:focus {
         outline: none;
         border-color: var(--accent-color);
-        box-shadow: 0 0 0 2px var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(246, 130, 31, 0.2);
       }
+
       .search-icon {
         position: absolute;
         top: 50%;
-        left: 0.75rem;
+        left: 0.8rem;
         transform: translateY(-50%);
         color: var(--secondary-text-color);
         font-size: 1rem;
         pointer-events: none;
       }
-      @media (min-width: 640px) {
-        .header-logo-container {
-          display: flex;
-          margin-bottom: 0.5rem;
-        }
-        .new-header h1 {
-          font-size: 1.75rem;
-        }
-      }
+
+      /* Grid Artikel */
       #article-grid {
         display: grid;
         gap: 1.5rem;
         grid-template-columns: 1fr;
       }
+
       @media (min-width: 600px) {
-        #article-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
+        #article-grid { grid-template-columns: repeat(2, 1fr); }
       }
+
       @media (min-width: 1024px) {
-        #article-grid {
-          grid-template-columns: repeat(4, 1fr);
+        #article-grid { grid-template-columns: repeat(4, 1fr); }
+        .header-logo-container {
+          display: flex;
+          margin-bottom: 0.8rem;
+        }
+        .new-header h1 {
+          font-size: 1.75rem;
         }
       }
+
+      /* Styling Card Hasil Generate build.ts */
       .article-card {
         background-color: var(--surface-color);
         border: 1px solid var(--border-color);
-        border-radius: 12px;
+        border-radius: 16px;
         box-shadow: 0 4px 15px var(--shadow-color);
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
         text-decoration: none;
       }
+
       .article-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px var(--shadow-color);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 25px var(--shadow-color);
       }
+
       .card-thumbnail {
         width: 100%;
         aspect-ratio: 16 / 9;
-        background-color: #333;
+        background-color: var(--border-color);
         overflow: hidden;
       }
+
       .card-thumbnail img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.3s ease;
       }
+
+      .article-card:hover .card-thumbnail img {
+        transform: scale(1.05);
+      }
+
       .card-content {
         padding: 1.5rem;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
       }
+
       .card-content h2 {
         color: var(--primary-text-color);
-        margin-bottom: 0.5rem;
-        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+        font-size: 1.2rem;
+        line-height: 1.4;
+        font-weight: 700;
+        transition: color 0.2s ease;
       }
+
+      .article-card:hover .card-content h2 {
+        color: var(--accent-color);
+      }
+
       .card-content p {
         color: var(--secondary-text-color);
         font-size: 0.9rem;
-        margin-bottom: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
       }
+
+      /* Ubah Tanggal Menjadi Badge/Pil */
       .card-meta {
-        margin-top: auto;
-        font-size: 0.8rem;
+        align-self: flex-start;
+        display: inline-block;
+        background-color: var(--badge-bg);
         color: var(--secondary-text-color);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
       }
+
       .message {
         text-align: center;
         margin-top: 3rem;
         font-size: 1.1rem;
         color: var(--secondary-text-color);
       }
+
       .noscript-msg {
-        background: #ff6b6b;
+        background: #e63946;
         color: white;
         text-align: center;
-        padding: 1rem;
-        font-weight: bold;
-        position: fixed;
-        bottom: 0;
+        padding: 0.8rem;
+        font-weight: 600;
+        font-size: 0.9rem;
         width: 100%;
-        z-index: 100;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+
+      @media (max-width: 600px) {
+        body { padding-top: 8rem; }
+        .header-bottom-row { justify-content: center; }
+        .header-search { margin-left: 0; }
       }
     </style>
   </head>
+
   <body>
     <header id="main-header" class="new-header">
       <div class="new-header-container">
+        <!-- Logo Banner -->
         <div class="header-logo-container">
           <a href="https://dalam.web.id/disclaimer.html" aria-label="disclaimer">
             <img class="header-logo" src="/ext/icons/fsf.svg" alt="FSF" loading="lazy">
@@ -349,6 +394,7 @@
             <img class="header-logo" src="/ext/icons/favicon.svg" alt="Layar Kosong" loading="lazy">
           </a>
         </div>
+
         <noscript>
           <div class="noscript-msg">
             JavaScript dinonaktifkan. Kamu tetap bisa akses via
@@ -356,87 +402,58 @@
             atau kembali ke <a href="/" style="color: white; text-decoration: underline;">Beranda</a>.
           </div>
         </noscript>
+
         <div class="header-bottom-row">
           <div class="header-left">
             <h1>
               <span id="category-title-text">%%ICON%% %%CATEGORY_NAME%%</span>
-              <a href="%%RSS_URL%%" class="rss-link" title="Langganan RSS">
-                <i class="fa-solid fa-rss"></i>
-              </a><a href="https://dalam.web.id/atom.xml"
-   aria-label="Atom Feed"
-   title="Atom Feed"
-   target="_blank"
-   rel="noopener noreferrer"
-   style="display:inline-flex;align-items:center;justify-content:center;width:1em;height:1em;font-size:inherit;line-height:1;color:#2563eb;text-decoration:none;vertical-align:-0.125em;">
-  <svg xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 64 64"
-       role="img"
-       aria-hidden="true"
-       style="display:block;width:1em;height:1em;overflow:visible;"
-       fill="none">
-    <circle cx="32" cy="32" r="5" fill="currentColor"></circle>
-    <ellipse cx="32" cy="32" rx="24" ry="9"
-             stroke="currentColor"
-             stroke-width="4"></ellipse>
-    <ellipse cx="32" cy="32" rx="24" ry="9"
-             stroke="currentColor"
-             stroke-width="4"
-             transform="rotate(60 32 32)"></ellipse>
-    <ellipse cx="32" cy="32" rx="24" ry="9"
-             stroke="currentColor"
-             stroke-width="4"
-             transform="rotate(120 32 32)"></ellipse>
-  </svg>
-</a>
-
-<a href="https://dalam.web.id/rss.xml"
-   aria-label="RSS Feed"
-   title="RSS Feed"
-   target="_blank"
-   rel="noopener noreferrer"
-   style="display:inline-flex;align-items:center;justify-content:center;width:1em;height:1em;font-size:inherit;line-height:1;color:#f97316;text-decoration:none;vertical-align:-0.125em;">
-  <svg xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 64 64"
-       role="img"
-       aria-hidden="true"
-       style="display:block;width:1em;height:1em;overflow:visible;"
-       fill="none">
-    <rect x="8" y="8" width="48" height="48" rx="10" fill="currentColor"></rect>
-    <circle cx="22" cy="44" r="5" fill="white"></circle>
-    <path d="M17 30c9.4 0 17 7.6 17 17"
-          stroke="white"
-          stroke-width="6"
-          stroke-linecap="round"></path>
-    <path d="M17 18c16 0 29 13 29 29"
-          stroke="white"
-          stroke-width="6"
-          stroke-linecap="round"></path>
-  </svg>
-</a>
+              <!-- Ikon Atom -->
+              <a href="https://dalam.web.id/atom.xml" aria-label="Atom Feed" title="Atom Feed" target="_blank" rel="noopener noreferrer" class="rss-link" style="color:#2563eb;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" style="width:1em;height:1em;">
+                  <circle cx="32" cy="32" r="5" fill="currentColor"></circle>
+                  <ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4"></ellipse>
+                  <ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4" transform="rotate(60 32 32)"></ellipse>
+                  <ellipse cx="32" cy="32" rx="24" ry="9" stroke="currentColor" stroke-width="4" transform="rotate(120 32 32)"></ellipse>
+                </svg>
+              </a>
+              <!-- Ikon RSS -->
+              <a href="https://dalam.web.id/rss.xml" aria-label="RSS Feed" title="RSS Feed" target="_blank" rel="noopener noreferrer" class="rss-link" style="color:#F6821F;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" style="width:1em;height:1em;">
+                  <rect x="8" y="8" width="48" height="48" rx="10" fill="currentColor"></rect>
+                  <circle cx="22" cy="44" r="5" fill="white"></circle>
+                  <path d="M17 30c9.4 0 17 7.6 17 17" stroke="white" stroke-width="6" stroke-linecap="round"></path>
+                  <path d="M17 18c16 0 29 13 29 29" stroke="white" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+              </a>
             </h1>
           </div>
-          <form
-            action="https://dalam.web.id/search"
-            method="get"
-            class="header-search"
-          >
+
+          <form action="https://dalam.web.id/search" method="get" class="header-search">
             <span class="search-icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </span>
-            <input
-              type="search"
-              name="q"
-              placeholder="cari artikel..."
-              class="search-input"
-              required
-            />
+            <input type="search" name="q" placeholder="cari artikel..." class="search-input" required />
           </form>
         </div>
       </div>
     </header>
+
     <div class="container">
       <div id="article-grid"></div>
     </div>
-  <script defer src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body>
-</html>
 
+    <script defer src="/ext/balon-cf.js"></script>
+    <script>
+      if('modelContext' in navigator){
+        navigator.modelContext.provideContext({
+          tools:[{
+            name:"baca_llms_index",
+            description:"Mengambil daftar lengkap artikel Layar Kosong",
+            inputSchema:{type:"object",properties:{}},
+            execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}
+          }]
+        })
+      }
+    </script>
+  </body>
+</html>
