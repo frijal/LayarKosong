@@ -113,17 +113,17 @@ async function loadTOC(): Promise<void> {
     grouped = {};
 
     Object.keys(data).forEach((rawCat) => {
-      // 🌟 Terapkan tipografi sebelum dikelompokkan
       const readableCat = formatCategoryName(rawCat);
 
       if (!grouped[readableCat]) grouped[readableCat] = [];
 
       const items = data[rawCat].map((item: any) => ({
-        title: item.title,
+        // 🔥 FIX: Bersihkan embel-embel "- Layar Kosong" dari judul
+        title: item.title.replace(/\s*-\s*Layar Kosong$/i, ''),
         file: item.id,
         lastmod: item.date,
         description: item.description,
-        category: readableCat // Menggunakan nama yang sudah rapi
+        category: readableCat
       }));
 
       grouped[readableCat] = [...grouped[readableCat], ...items].sort((a: Article, b: Article) =>

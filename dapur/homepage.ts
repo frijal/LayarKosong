@@ -45,17 +45,17 @@ async function fetchData(): Promise<void> {
       data[cat].forEach((item: any) => {
         const fileSlug = item.id.replace(/\.html$/, '');
 
-        // Penyesuaian Gambar:
-        // img: versi kecil untuk list/feed
-        // fullImg: versi asli untuk slider hero
         const originalImage = item.image || '/thumbnail.webp';
         const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
 
+        // 🔥 FIX: Bersihkan embel-embel "- Layar Kosong" dari judul
+        const cleanTitle = item.title.replace(/\s*-\s*Layar Kosong$/i, '');
+
         allData.push({
-          category: readableCat, // Simpan teks yang sudah rapi
-          title: item.title,
+          category: readableCat,
+          title: cleanTitle, // Gunakan judul yang sudah bersih
           id: item.id,
-          url: `/${catSlug}/${fileSlug}`, // URL tetap pakai slug asli
+          url: `/${catSlug}/${fileSlug}`,
           img: smallImage,
           fullImg: originalImage,
           date: item.date ? new Date(item.date) : new Date(),
