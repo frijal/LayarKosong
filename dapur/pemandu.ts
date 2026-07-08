@@ -447,12 +447,12 @@ flex-direction: column;
 #playground-list {
 display: flex;
 flex-direction: column;
-order: 1; /* DESKTOP: List artikel ada di urutan pertama (atas) */
+order: 1;
 }
 
 /* TOMBOL SHUFFLE */
 #shuffle-btn {
-order: 2; /* DESKTOP: Tombol ada di urutan kedua (bawah) */
+order: 2;
 width: 100%;
 padding: 0.75rem;
 margin-top: 0.5rem;
@@ -462,7 +462,7 @@ border-radius: 0.5rem;
 background-color: transparent;
 border: 1px solid var(--border, #ccc);
 transition: all 0.2s ease;
-font-family: inherit; /* Memaksa tombol tunduk ke font CSS utama */
+font-family: inherit;
 }
 
 #shuffle-btn:hover {
@@ -482,13 +482,13 @@ background-color: var(--border, #eee);
   }
 
   #shuffle-btn {
-  order: -1; /* MOBILE: Tombol pindah ke atas list */
+  order: -1;
   margin-top: 0;
   margin-bottom: 1.5rem;
   }
 }
 
-/* STYLING PLAYGROUND ITEM (SIDE-BY-SIDE) */
+/* STYLING PLAYGROUND ITEM */
 .playground-item {
   display: flex;
   align-items: flex-start;
@@ -496,6 +496,11 @@ background-color: var(--border, #eee);
   margin-bottom: 1.25rem;
   text-decoration: none;
   color: inherit;
+  cursor: pointer; /* Memastikan ikon tangan selalu muncul */
+}
+
+.playground-item:hover {
+  opacity: 0.85; /* Sedikit efek interaktif pas di-hover */
 }
 
 .playground-thumb {
@@ -534,7 +539,7 @@ const shuffledArticles = [...allPlaygroundArticles]
 
 shuffledArticles.forEach(article => {
   const item = document.createElement('a');
-  item.href = article.url || '#';
+  item.href = article.url || '#'; // Sekarang ini udah pasti bawa URL yang benar
   item.className = 'playground-item';
 
   const origImg = article.image || article.thumbnail || '';
@@ -587,7 +592,7 @@ shuffleBtn.onclick = () => {
   renderPlaygroundList(listContainer);
 };
 
-// Masukin ke widget. Urutan visual diatur sama CSS order
+// Masukin ke widget
 widget.appendChild(listContainer);
 widget.appendChild(shuffleBtn);
 
@@ -605,12 +610,26 @@ if (isMobileLayout) {
 }
   }
 
-  // Fetch data
+  // Fetch data & BENTUK URL-NYA DI SINI!
   if (typeof allPlaygroundArticles === 'undefined' || allPlaygroundArticles.length === 0) {
     try {
       const data = await window.siteDataProvider.getFor('pemandu.ts');
       if (data) {
-        allPlaygroundArticles = Object.values(data).flat();
+        allPlaygroundArticles = [];
+
+        // Looping kategori untuk ngebentuk URL artikel biar pas diklik nggak nyasar ke '#'
+        for (const [catSlug, articles] of Object.entries(data)) {
+          articles.forEach(art => {
+            const fileSlug = art.id ? art.id.replace('.html', '') : '';
+            // Kita inject properti "url" langsung ke objek datanya
+            const finalUrl = art.url || `/${catSlug}/${fileSlug}`;
+
+            allPlaygroundArticles.push({
+              ...art,
+              url: finalUrl
+            });
+          });
+        }
       }
     } catch (e) {
       console.error("Gagal memuat data playground:", e);
