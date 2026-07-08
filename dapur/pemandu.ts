@@ -1,9 +1,19 @@
 /**
  * =================================================================================
- * pemandu.ts v8.1 (D1 Native + Dual Provider Split)
- * Navigasi Utama utuh, Related Grid pakai jalur Lite independen.
+ * pemandu.ts v8.1 (D1 Native + Dual Provider Split + Bun Ready)
+ * TypeScript Strict Mode & Optimized for Bun Bundler.
  * =================================================================================
  */
+
+// 🌟 Deklarasi Global agar TypeScript mengenali siteDataProvider bawaan window
+declare global {
+  interface Window {
+    siteDataProvider: {
+      getFor: (ui: string) => Promise<Record<string, any[]>>;
+      getRelatedLiteData: () => Promise<Record<string, any[]>>;
+    };
+  }
+}
 
 (function (): void {
   'use strict';
@@ -31,14 +41,13 @@ function formatCategoryName(slug: string): string {
   return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
-function getCategoryInfo(fileName: string, allData: any) {
+function getCategoryInfo(fileName: string, allData: Record<string, any[]>) {
   for (const [catName, articles] of Object.entries(allData)) {
-    const catArticles = articles as any[];
-    if (catArticles.some((a: any) => a.id === fileName)) {
+    if (articles.some((a: any) => a.id === fileName)) {
       return {
         name: formatCategoryName(catName),
  slug: catName,
- list: catArticles
+ list: articles
       };
     }
   }
@@ -51,7 +60,7 @@ function getCategoryInfo(fileName: string, allData: any) {
         return {
           name: formatCategoryName(catName),
  slug: catName,
- list: articles as any[]
+ list: articles
         };
       }
     }
@@ -189,8 +198,8 @@ function initFloatingSearch(): void {
   });
 }
 
-function initNavIcons(allData: any, currentFile: string): void {
-  const grid = document.getElementById('related-articles-grid'); // Memastikan node ada, meski elemennya dirender fungsi lain
+function initNavIcons(allData: Record<string, any[]>, currentFile: string): void {
+  const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
 
   const catInfo = getCategoryInfo(currentFile, allData);
@@ -216,7 +225,7 @@ if (!nav) {
   nav = document.createElement('div');
   nav.id = 'dynamic-nav-container';
   nav.className = 'floating-nav';
-  grid.appendChild(nav); // Attach ke grid wrap
+grid.appendChild(nav);
 }
 
 const prevTag = document.querySelector('link[rel="prev"]');
@@ -315,20 +324,18 @@ tocContainer.addEventListener('click', (e: Event) => {
 });
 }
 
-// 🔥 Fungsi Grid yang Diubah Menjadi Async (Panggil Data Sendiri)
 async function initRelatedGrid(currentFile: string): Promise<void> {
   const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
 
   try {
-    // 1. MINTA DATA LITE (Maks. 30 per kategori) DARI PROVIDER
-    const liteData = await (window as any).siteDataProvider.getRelatedLiteData();
+    // ✅ Ganti pemanggilan ke API fungsi Lite dari siteDataProvider
+    const liteData = await window.siteDataProvider.getRelatedLiteData();
     if (!liteData || Object.keys(liteData).length === 0) {
       grid.style.display = 'none';
       return;
     }
 
-    // 2. TENTUKAN KATEGORI SAAT INI
     const catInfo = getCategoryInfo(currentFile, liteData);
     if (!catInfo) {
       grid.style.display = 'none';
@@ -337,7 +344,6 @@ async function initRelatedGrid(currentFile: string): Promise<void> {
 
     const STATIC_FALLBACK = '/thumbnail-sm.webp';
 
-    // 3. FILTER, ACAK 6 ARTIKEL, DAN POTONG
 const related = catInfo.list
 .filter((i: any) => i.id !== currentFile)
 .sort(() => 0.5 - Math.random())
@@ -350,7 +356,6 @@ if (related.length === 0) {
 
 grid.innerHTML = related.map((item: any, idx: number) => {
   const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
-  // Bentuk URL dari category raw slug
   const url = `/${catInfo.slug}/${item.id.replace('.html', '')}`;
 
   return `
@@ -381,7 +386,7 @@ imgs.forEach((img) => {
   }
 }
 
-function initKeyboardNav(allData: any, currentFile: string): void {
+function initKeyboardNav(allData: Record<string, any[]>, currentFile: string): void {
   function navigateTo(direction: 'next' | 'prev' | 'up' | 'down'): void {
     if (direction === 'down') {
       window.location.href = '/';
@@ -418,21 +423,20 @@ function initKeyboardNav(allData: any, currentFile: string): void {
 // ---------------------------
 async function initializeApp(): Promise<void> {
   try {
-    while (!(window as any).siteDataProvider) await new Promise(r => setTimeout(r, 100));
+    while (!window.siteDataProvider) await new Promise(r => setTimeout(r, 100));
 
-    // 1. Panggil Data FULL untuk Search, Prev/Next Icon, Keyboard Nav (Sesuai aslinya)
-    const allData = await (window as any).siteDataProvider.getFor('pemandu.ts');[cite: 4]
+    const allData = await window.siteDataProvider.getFor('pemandu.ts');
     const currentFile = getCurrentFileName();
 
     if (allData && Object.keys(allData).length > 0) {
       initInternalNav();
       initProgressBar();
       initFloatingSearch();
-      initNavIcons(allData, currentFile);[cite: 4]
-      initKeyboardNav(allData, currentFile);[cite: 4]
+      initNavIcons(allData, currentFile);
+      initKeyboardNav(allData, currentFile);
     }
 
-    // 2. Panggil fungsi independen Related Grid (dia akan mendownload versi diet secara asinkron)
+    // Grid dipanggil di urutan terakhir agar tidak memblokir render utama
     initRelatedGrid(currentFile);
 
   } catch (err) {
