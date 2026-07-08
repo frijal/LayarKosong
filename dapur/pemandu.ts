@@ -530,7 +530,7 @@ function renderPlaygroundList(listContainer) {
 
 const shuffledArticles = [...allPlaygroundArticles]
 .sort(() => 0.5 - Math.random())
-.slice(0, 4);
+.slice(0, 7);
 
 shuffledArticles.forEach(article => {
   const item = document.createElement('a');

@@ -138,7 +138,7 @@ background-color: var(--border, #eee);
   overflow: hidden;
   white-space: normal;
 }
-`,document.head.appendChild(V)}function B(V){V.innerHTML="",[...K].sort(()=>0.5-Math.random()).slice(0,4).forEach((X)=>{let J=document.createElement("a");J.href=X.url||"#",J.className="playground-item";let Z=X.image||X.thumbnail||"",$=Z,z=Z.lastIndexOf(".");if(z!==-1)$=Z.substring(0,z)+"-sm.webp";let q=(X.title||"Judul Tanpa Kategori").replace(/\s*-\s*Layar Kosong$/i,"");J.innerHTML=`
+`,document.head.appendChild(V)}function B(V){V.innerHTML="",[...K].sort(()=>0.5-Math.random()).slice(0,7).forEach((X)=>{let J=document.createElement("a");J.href=X.url||"#",J.className="playground-item";let Z=X.image||X.thumbnail||"",$=Z,z=Z.lastIndexOf(".");if(z!==-1)$=Z.substring(0,z)+"-sm.webp";let q=(X.title||"Judul Tanpa Kategori").replace(/\s*-\s*Layar Kosong$/i,"");J.innerHTML=`
   <img
   class="playground-thumb"
   src="${$}"
