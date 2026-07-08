@@ -83,6 +83,12 @@ function updateStats(total: number, read: number, term: string = ''): void {
   `;
 }
 
+// 🔥 HELPER BARU: Merapikan tipografi kategori
+function formatCategoryName(slug: string): string {
+  if (!slug) return 'Lainnya';
+  return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 function getCleanUrl(file: string, category: string): string {
   const catSlug = category.toLowerCase().replace(/\s+/g, '-');
   const fileSlug = file.replace('.html', '');
@@ -106,14 +112,21 @@ async function loadTOC(): Promise<void> {
     toc.innerHTML = '';
     grouped = {};
 
-    Object.keys(data).forEach((cat) => {
-      grouped[cat] = data[cat].map((item: any) => ({
+    Object.keys(data).forEach((rawCat) => {
+      // 🌟 Terapkan tipografi sebelum dikelompokkan
+      const readableCat = formatCategoryName(rawCat);
+
+      if (!grouped[readableCat]) grouped[readableCat] = [];
+
+      const items = data[rawCat].map((item: any) => ({
         title: item.title,
         file: item.id,
         lastmod: item.date,
         description: item.description,
-        category: cat
-      })).sort((a: Article, b: Article) =>
+        category: readableCat // Menggunakan nama yang sudah rapi
+      }));
+
+      grouped[readableCat] = [...grouped[readableCat], ...items].sort((a: Article, b: Article) =>
       new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime()
       );
     });
@@ -131,6 +144,8 @@ async function loadTOC(): Promise<void> {
       catDiv.className = 'category';
       const color = shuffledColors[index % shuffledColors.length];
       catDiv.style.setProperty('--category-color', color);
+
+      // Nama kategori ($cat) sekarang dijamin tampil rapi
       catDiv.innerHTML = `
       <div class="category-content">
       <div class="category-header">
@@ -208,16 +223,6 @@ async function loadTOC(): Promise<void> {
       toc.appendChild(catDiv);
     });
 
-    const m = document.getElementById('marquee-content');
-    if (m) {
-      const shuffledMarquee = shuffle(allArticles);
-      m.innerHTML = shuffledMarquee
-      .map((d) => {
-        const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
-        return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
-      })
-      .join(' \u2022 ');
-    }
     updateTOCToggleText();
   } catch (e) {
     console.error('Gagal load artikel via provider', e);
@@ -236,9 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTOCToggleText();
     });
   }
+
   loadTOC();
+
   const searchInput = document.getElementById('search') as HTMLInputElement | null;
   const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
+
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const term = searchInput.value.toLowerCase();
@@ -269,12 +277,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const list = category.querySelector('.toc-list') as HTMLElement;
         if (list) list.style.display = (term && catVisible) ? 'block' : 'none';
       });
+
         const allArticlesCount = Object.values(grouped).flat().length;
         if (term) updateStats(countVisible, visitedLinks.length, term);
         else updateStats(allArticlesCount, visitedLinks.length);
         updateTOCToggleText();
     });
   }
+
   if (clearBtn && searchInput) {
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
