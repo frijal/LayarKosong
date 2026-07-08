@@ -209,8 +209,8 @@ for (const oldId of d1State.keys()) {
 
 // Tulis file Patch SQL
 if (sqlCommands.length > 0) {
-    // Bungkus semua perintah dalam TRANSACTION agar eksekusinya kilat dan aman
-    const finalSQL = `BEGIN TRANSACTION;\n${sqlCommands.join("\n")}\nCOMMIT;`;
+    // 🔥 PERBAIKAN: Cloudflare D1 tidak izinkan manual TRANSACTION via CLI
+    const finalSQL = sqlCommands.join("\n");
     writeFileSync(PATCH_FILE, finalSQL);
     console.log(`\n🎉 Patch SQL berhasil dibuat (${sqlCommands.length} perintah modifikasi).`);
 } else {
