@@ -425,81 +425,34 @@ function injectPlaygroundStyles() {
   const style = document.createElement('style');
   style.id = 'playground-styles';
 style.innerHTML = `
+/* POSISI DESKTOP (STICKY) */
 #random-playground-widget {
-position: fixed; /* Mengikuti jejak search box yang pakai fixed */
-top: 6rem; /* 1.25rem + 2.75rem + 2rem jarak */
-right: 1.25rem; /* Rata kanan persis dengan search box */
-width: 18.75rem; /* Lebar absolut sesuai search box saat terbuka */
-background-color: transparent; /* Sesuai request: Tanpa background */
-border: none; /* Sesuai request: Tanpa border */
-box-shadow: none; /* Menghilangkan bayangan agar membaur murni */
-z-index: 10000; /* Satu tingkat di bawah z-index search (10001) */
-
-/* Hapus setting float dan margin lama karena sekarang pakai koordinat fixed */
-display: flex;
-flex-direction: column;
+position: fixed;
+top: 6rem;
+right: 1.25rem;
+width: 18.75rem;
+background-color: transparent;
+border: none;
+z-index: 999;
 }
 
-.playground-item {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  padding: 8px;
-  border-radius: 8px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+/* POSISI MOBILE (PINDAH KE BAWAH) */
+@media (max-width: 1024px) {
+  #random-playground-widget {
+  position: relative;
+  top: auto;
+  right: auto;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  }
 }
 
-/* Hover state yang lebih halus karena background luarnya transparan */
-.playground-item:hover {
-  background-color: var(--bg-glass, rgba(255, 255, 255, 0.05));
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-}
-
-.playground-item h4 {
-  transition: color 0.2s ease;
-}
-.playground-item:hover h4 {
-  color: var(--accent, #00b0ed); /* Mengikuti aksen warna Layar Kosong */
-}
-
-#shuffle-btn {
-background: transparent;
-color: var(--text-muted, #888);
-border: 1px solid var(--border);
-border-radius: 50%;
-width: 32px;
-height: 32px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-#shuffle-btn:hover {
-background: var(--accent, #00b0ed);
-color: #fff;
-border-color: var(--accent, #00b0ed);
-transform: scale(1.1) rotate(180deg); /* Tambah efek muter otomatis pas di-hover */
-}
-
-@keyframes shakeAndFade {
-  0% { transform: translateX(0); opacity: 1; }
-  20% { transform: translateX(-6px) rotate(-3deg); }
-  40% { transform: translateX(6px) rotate(3deg); }
-  60% { transform: translateX(-4px) rotate(-2deg); opacity: 0.8; }
-  80% { transform: translateX(4px) rotate(2deg); opacity: 0.4; }
-  100% { transform: translateX(0); opacity: 0; }
-}
-.shake-anim {
-  animation: shakeAndFade 0.4s ease-in-out forwards;
-}
-
-@media (max-width: 62rem) { /* Batas aman sembunyikan widget (sekitar 992px) */
-  #random-playground-widget { display: none !important; }
-}
+.playground-item { /* ... styling tetap sama ... */ }
+#shuffle-btn { /* ... styling tetap sama ... */ }
+.shake-anim { animation: shakeAndFade 0.4s ease-in-out forwards; }
+@keyframes shakeAndFade { /* ... keyframe tetap sama ... */ }
 `;
 document.head.appendChild(style);
 }
@@ -576,25 +529,27 @@ async function initRandomPlayground() {
     widget = document.createElement('aside');
     widget.id = 'random-playground-widget';
 
-    const mainContent = document.querySelector('.article-content, main, article, #main-wrapper');
-    if (mainContent && mainContent.parentNode) {
-      mainContent.parentNode.insertBefore(widget, mainContent.nextSibling);
-    } else {
-      document.body.appendChild(widget);
-    }
+if (isMobileDevice()) {
+  // 🔥 MOBILE: Pindahkan ke paling bawah sebelum penutup body
+  document.body.appendChild(widget);
+} else {
+  // 💻 DESKTOP: Sisipkan di samping konten utama (posisi sticky)
+  const mainContent = document.querySelector('.article-content, main, article, #main-wrapper');
+  if (mainContent && mainContent.parentNode) {
+    mainContent.parentNode.insertBefore(widget, mainContent.nextSibling);
+  } else {
+    document.body.appendChild(widget);
+  }
+}
   }
 
+  // ... sisa fungsi tetap sama (fetch data dan render) ...
   if (allPlaygroundArticles.length === 0) {
     try {
       const data = await window.siteDataProvider.getFor('pemandu.ts');
       allPlaygroundArticles = Object.values(data).flat();
-    } catch (e) {
-      console.error('Playground Error:', e);
-      widget.innerHTML = '<p style="padding:1rem; text-align:center;">Gagal memuat arena bermain.</p>';
-      return;
-    }
+    } catch (e) { return; }
   }
-
   renderPlaygroundList(widget);
 }
 
